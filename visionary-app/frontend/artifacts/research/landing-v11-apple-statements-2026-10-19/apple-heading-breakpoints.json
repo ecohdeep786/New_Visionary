@@ -1,0 +1,260 @@
+{
+  "education@1024": [
+    {
+      "text": "Real stories. Real impact.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 621,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "Our values lead the way.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 672,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "How to Buy.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 299,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "Education that’s a grade ahead.",
+      "size": 64,
+      "lh": 68,
+      "weight": "600",
+      "w": 600,
+      "lhRatio": 1.063
+    }
+  ],
+  "education@834": [
+    {
+      "text": "Real stories. Real impact.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 455,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "Our values lead the way.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 547,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "How to Buy.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 243,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "Education that’s a grade ahead.",
+      "size": 64,
+      "lh": 68,
+      "weight": "600",
+      "w": 600,
+      "lhRatio": 1.063
+    }
+  ],
+  "education@390": [
+    {
+      "text": "Real stories. Real impact.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 341,
+      "lhRatio": 1.125
+    },
+    {
+      "text": "Our values lead the way.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 341,
+      "lhRatio": 1.125
+    },
+    {
+      "text": "How to Buy.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 341,
+      "lhRatio": 1.125
+    },
+    {
+      "text": "Education that’s a grade ahead.",
+      "size": 48,
+      "lh": 52,
+      "weight": "600",
+      "w": 341,
+      "lhRatio": 1.083
+    }
+  ],
+  "education-initiative@1024": [
+    {
+      "text": "Our work in education doesn’t end here.",
+      "size": 56,
+      "lh": 60,
+      "weight": "600",
+      "w": 540,
+      "lhRatio": 1.071
+    },
+    {
+      "text": "More from Apple on education.",
+      "size": 56,
+      "lh": 60,
+      "weight": "600",
+      "w": 692,
+      "lhRatio": 1.071
+    },
+    {
+      "text": "Our values lead the way.",
+      "size": 56,
+      "lh": 60,
+      "weight": "600",
+      "w": 692,
+      "lhRatio": 1.071
+    }
+  ],
+  "education-initiative@834": [
+    {
+      "text": "Our work in education doesn’t end here.",
+      "size": 56,
+      "lh": 60,
+      "weight": "600",
+      "w": 540,
+      "lhRatio": 1.071
+    },
+    {
+      "text": "More from Apple on education.",
+      "size": 56,
+      "lh": 60,
+      "weight": "600",
+      "w": 692,
+      "lhRatio": 1.071
+    },
+    {
+      "text": "Our values lead the way.",
+      "size": 56,
+      "lh": 60,
+      "weight": "600",
+      "w": 692,
+      "lhRatio": 1.071
+    }
+  ],
+  "education-initiative@390": [
+    {
+      "text": "Our work in education doesn’t end here.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 315,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "More from Apple on education.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 330,
+      "lhRatio": 1.1
+    },
+    {
+      "text": "Our values lead the way.",
+      "size": 40,
+      "lh": 44,
+      "weight": "600",
+      "w": 330,
+      "lhRatio": 1.1
+    }
+  ],
+  "vision-pro@1024": [
+    {
+      "text": "Take a closer look.",
+      "size": 48,
+      "lh": 52,
+      "weight": "600",
+      "w": 519,
+      "lhRatio": 1.083
+    },
+    {
+      "text": "Explore Apple Vision Pro accessories.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 384,
+      "lhRatio": 1.125
+    },
+    {
+      "text": "An exciting new platform. A world of new opportunities for developers.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 577,
+      "lhRatio": 1.125
+    }
+  ],
+  "vision-pro@834": [
+    {
+      "text": "Take a closer look.",
+      "size": 48,
+      "lh": 52,
+      "weight": "600",
+      "w": 519,
+      "lhRatio": 1.083
+    },
+    {
+      "text": "Explore Apple Vision Pro accessories.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 313,
+      "lhRatio": 1.125
+    },
+    {
+      "text": "An exciting new platform. A world of new opportunities for developers.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 577,
+      "lhRatio": 1.125
+    }
+  ],
+  "vision-pro@390": [
+    {
+      "text": "Take a closer look.",
+      "size": 32,
+      "lh": 40,
+      "weight": "600",
+      "w": 341,
+      "lhRatio": 1.25
+    },
+    {
+      "text": "Explore Apple Vision Pro accessories.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 299,
+      "lhRatio": 1.125
+    },
+    {
+      "text": "An exciting new platform. A world of new opportunities for developers.",
+      "size": 32,
+      "lh": 36,
+      "weight": "600",
+      "w": 299,
+      "lhRatio": 1.125
+    }
+  ]
+}

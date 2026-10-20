@@ -1,0 +1,556 @@
+diff --git a/visionary-app/frontend/src/pages/Landing.jsx b/visionary-app/frontend/src/pages/Landing.jsx
+index 2a45071c..1799b0b2 100644
+--- a/visionary-app/frontend/src/pages/Landing.jsx
++++ b/visionary-app/frontend/src/pages/Landing.jsx
+@@ -9,6 +9,7 @@ import {
+   PremiumCTASection,
+   PremiumExploreSection,
+ } from "@/components/landing/persona/PremiumPersonaSections";
++import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
+ // Hero images (above the fold) ΓÇö loaded eagerly with high fetch priority
+ import studentmeet from "@/assets/student-hero-main-1600w.webp";
+ import teachermeet from "@/assets/teacher-hero-main-1600w.webp";
+@@ -56,17 +57,6 @@ function usePrefersReducedMotion() {
+   return reduced;
+ }
+ 
+-function useCycleIndex(total, intervalMs) {
+-  const [index, setIndex] = useState(0);
+-  const goTo = useCallback((i) => setIndex(((i % total) + total) % total), [total]);
+-  useEffect(() => {
+-    if (!intervalMs || intervalMs <= 0) return undefined;
+-    const id = setInterval(() => setIndex((i) => (i + 1) % total), intervalMs);
+-    return () => clearInterval(id);
+-  }, [total, intervalMs]);
+-  return { index, goTo };
+-}
+-
+ /* The section choreography ΓÇö content fades up when its chapter enters the
+    viewport band and fades back down as it leaves (the wipe-out). Under
+    prefers-reduced-motion the story stays present: no hiding. */
+@@ -123,6 +113,63 @@ function useActiveStep(total) {
+   return { active, setStepRef, scrollToStep };
+ }
+ 
++/* The gallery controller ΓÇö Apple's chapter galleries are horizontal tracks:
++   the reader swipes, the paddles step, and the chapter answers. Position is
++   read as a fraction of the track's travel, so every slide is reachable even
++   when the last cards cannot touch the spine; the lock keeps an in-flight
++   smooth scroll from re-deriving intermediate states. */
++function useGalleryTrack(total) {
++  const reduced = usePrefersReducedMotion();
++  const trackRef = useRef(null);
++  const lockRef = useRef(0);
++  const rafRef = useRef(0);
++  const [active, setActive] = useState(0);
++  const [canPrev, setCanPrev] = useState(false);
++  const [canNext, setCanNext] = useState(true);
++
++  const update = useCallback(() => {
++    const track = trackRef.current;
++    if (!track) return;
++    setCanPrev(track.scrollLeft > 4);
++    setCanNext(track.scrollLeft < track.scrollWidth - track.clientWidth - 4);
++  }, []);
++
++  const onScroll = useCallback(() => {
++    if (rafRef.current) return;
++    rafRef.current = requestAnimationFrame(() => {
++      rafRef.current = 0;
++      const track = trackRef.current;
++      if (!track) return;
++      update();
++      if (Date.now() < lockRef.current) return;
++      const max = track.scrollWidth - track.clientWidth;
++      if (max <= 4 || total < 2) return;
++      setActive(Math.min(total - 1, Math.max(0, Math.round((track.scrollLeft / max) * (total - 1)))));
++    });
++  }, [total, update]);
++
++  const stepTo = useCallback((i) => {
++    const clamped = Math.min(total - 1, Math.max(0, i));
++    setActive(clamped);
++    lockRef.current = Date.now() + 700;
++    const track = trackRef.current;
++    if (!track) return;
++    const max = Math.max(0, track.scrollWidth - track.clientWidth);
++    track.scrollTo({
++      left: (clamped / Math.max(1, total - 1)) * max,
++      behavior: reduced ? "auto" : "smooth",
++    });
++  }, [reduced, total]);
++
++  useEffect(() => {
++    update();
++    window.addEventListener("resize", update, { passive: true });
++    return () => window.removeEventListener("resize", update);
++  }, [update]);
++  useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
++  return { trackRef, active, canPrev, canNext, stepTo, onScroll };
++}
++
+ /* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SHARED VIEWS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
+ /* Every landing reveal rides Apple's resolve-out curve
+    cubic-bezier(0.16,1,0.3,1) ΓÇö the deceleration you feel on apple.com's
+@@ -147,35 +194,52 @@ const FadeSoft = React.memo(function FadeSoft({ visible, children, className = "
+   );
+ });
+ 
+-const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, tone = "ink" }) {
+-  /* tone "pill" ΓÇö the AirPods highlights dotnav: uniform warm-gray dots inside
+-     the light pill, the active one stretching into a 48├ù8 rounded bar */
+-  const pill = tone === "pill";
++/* The chapter-gallery controls ΓÇö Apple's education-initiative cluster,
++   measured live (Oct 2026): bare 36px hairline circles on the content
++   spine; the chevron pair steps the track, the play control paces the
++   tour. No fill, no shadow ΓÇö the hairline is the whole affordance. */
++const GalleryArrow = React.memo(function GalleryArrow({ direction = "right", label, onClick, disabled }) {
+   return (
+-    <div className={`flex items-center ${pill ? "gap-4" : "gap-2"}`} role="group" aria-label="Carousel slides">
+-      {Array.from({ length: total }, (_, i) => (
+-        <button
+-          key={i}
+-          type="button"
+-          aria-pressed={i === active}
+-          aria-label={`Go to slide ${i + 1}`}
+-          onClick={() => onSelect(i)}
+-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+-          style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
+-        />
+-      ))}
+-    </div>
++    <button
++      type="button"
++      aria-label={label}
++      onClick={onClick}
++      disabled={disabled}
++      className="flex h-9 w-9 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
++      style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
++    >
++      <ChevronIcon direction={direction} className="h-4 w-4" />
++    </button>
++  );
++});
++
++const GalleryPlay = React.memo(function GalleryPlay({ playing, onClick }) {
++  return (
++    <button
++      type="button"
++      aria-label={playing ? "Pause the journey" : "Play the journey"}
++      aria-pressed={playing}
++      onClick={onClick}
++      className="flex h-9 w-9 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
++      style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
++    >
++      {playing ? <Pause className="h-4 w-4" strokeWidth={2} /> : <Play className="h-4 w-4 translate-x-[1px] fill-current" strokeWidth={2} />}
++    </button>
+   );
+ });
+ 
+ /* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ MODELS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
++/* the studio photos' subjects touch their canvas edges ΓÇö dissolve the cuts
++   into the page's own white (the hero's floor recipe) so no unframed edge
++   ever reads as a line */
++const STUDIO_MASK = "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 80%, transparent 98%)";
++
+ const PROBLEM_SLIDES = [
+   { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem, alt: "Teacher looking overwhelmed after class" },
+   { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: problemrevision, alt: "Parent reviewing a child's progress" },
+   { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
+   { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I read every article. I still can't turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
+ ];
+-const PROBLEM_MS = 4200;
+ 
+ /* The five journeys ΓÇö the landing's category router. Rendered with the
+    accepted line-up module (white cards on the grey ground): the studio
+@@ -211,10 +275,10 @@ const LG_RING_MS = 3600;
+    never passes through Vite's pipeline and 404s at runtime); lazy-loaded via
+    LazyImage below the fold. */
+ const JOURNEY_STEPS = [
+-  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: journeyPrimary, alt: "Child learning with a tablet outdoors", tone: "light" },
+-  { title: "Grow", copy: "When you know more, you should be able to go further.", image: journeySecondary, alt: "Student growing their skills", tone: "light" },
+-  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: journeyVocational, alt: "Person building a real project", tone: "light" },
+-  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: journeyHigher, alt: "Learner continuing their journey", tone: "dark" },
++  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: journeyPrimary, alt: "Child learning with a tablet outdoors" },
++  { title: "Grow", copy: "When you know more, you should be able to go further.", image: journeySecondary, alt: "Student growing their skills" },
++  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: journeyVocational, alt: "Person building a real project" },
++  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: journeyHigher, alt: "Learner continuing their journey" },
+ ];
+ const JOURNEY_CARD_MS = 5000;
+ 
+@@ -295,95 +359,74 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
+   );
+ });
+ 
+-/* 02 ┬╖ PROBLEM ΓÇö Apple's education-initiative anatomy: one centered
+-   declarative statement, one cinematic subject, one voice ΓÇö nothing
+-   else on the stage. The photography is studio-white, so it renders
+-   unframed on the page's own white: the subject stands on the section
+-   floor, edge-to-edge breathing, no card, no crop. The four subjects stay
+-   mounted and crossfade ΓÇö the dots let the reader pace it, exactly
+-   like Apple's "Stories about educators" gallery. */
++/* 02 ┬╖ PROBLEM ΓÇö the story chapter, in Apple's education-initiative anatomy:
++   a left-spined chapter header, then the four voices as one story row ΓÇö each
++   person keeps their photograph, their statement and their words together,
++   so the reader takes the whole room in at a glance. The studio photography
++   carries its own white, so the pictures stay unframed, floating on the
++   page's ground the way the hero stages the family; the canvas cuts dissolve
++   into that white (the hero's floor recipe), so no hard edge ever shows. */
+ function LandingProblemSection() {
+-  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
+   const { ref, visible } = useRevealContinuous();
+-  const slide = PROBLEM_SLIDES[index];
+   return (
+     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-white" style={{ fontFamily: fontStack }}>
+       <FadeReveal visible={visible}>
+         <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
+-        {/* the section's own compact-band override (bridge: 02-problem) provides
+-            the chapter's opening/closing breath ΓÇö no inner padding here */}
+-        <div className="px-6">
+-          <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>Why Visionary exists</p>
+-          <h2 key={`h-${index}`} className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.05] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+-            {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
+-          </h2>
+-          <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
++        <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
++          <p className="text-[15px] font-medium" style={{ color: COLORS.slate }}>Why Visionary exists</p>
++          <h2 className="mt-[clamp(14px,1.6vw,22px)] max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+             Effort isn't the gap. Knowing whether understanding landed is.
+-          </p>
++          </h2>
+         </div>
+-        <figure className="m-0">
+-          {/* the chapter stage ΓÇö one-glance comprehension: statement, subject,
+-              persona, quote all land inside ~1.2 viewports, the way Apple's
+-              compact chapters read. The statementΓåÆstage drop opens to 65px on
+-              desktop (Apple's product-shot drop), and the stage itself scales
+-              WITH the device: it tracks the smaller of 44vw / 58svh so the
+-              subject earns real presence on large screens while the phone
+-              stage stays a full-bleed crop. */}
+-          <div className="relative mt-[clamp(32px,4.5vw,72px)] h-[clamp(300px,42svh,380px)] sm:h-[clamp(300px,min(44vw,58svh),600px)]">
+-            {PROBLEM_SLIDES.map((s, i) => (
+-              <LazyImage
+-                key={s.alt}
+-                src={s.image}
+-                alt={i === index ? s.alt : ""}
+-                aria-hidden={i !== index}
+-                eager={i === index}
+-                placeholderBg="transparent"
+-                decoding="async"
+-                draggable="false"
+-                style={{
+-                  /* the studio photos' subjects touch their canvas edges;
+-                     unframed, those cuts would read as hard lines ΓÇö dissolve
+-                     them into the page's own white (the hero's floor recipe).
+-                     The img element is sized to the painted square (h-full
+-                     w-auto, centered) so the mask tracks the photo, not the
+-                     full-bleed band. */
+-                  WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+-                  WebkitMaskComposite: "source-in",
+-                  maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+-                  maskComposite: "intersect",
+-                }}
+-                className={`absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 select-none transition-opacity duration-700 ${EASE_APPLE} motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
+-              />
++        <div className="mx-auto mt-12 w-full px-6 sm:mt-16 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
++          <ul className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 min-[1069px]:grid-cols-4">
++            {PROBLEM_SLIDES.map((s) => (
++              <li key={s.persona} className="flex flex-col">
++                <LazyImage
++                  src={s.image}
++                  alt={s.alt}
++                  placeholderBg="transparent"
++                  decoding="async"
++                  draggable="false"
++                  style={{
++                    WebkitMaskImage: STUDIO_MASK,
++                    WebkitMaskComposite: "source-in",
++                    maskImage: STUDIO_MASK,
++                    maskComposite: "intersect",
++                  }}
++                  className="aspect-[4/5] w-full select-none object-cover"
++                />
++                <p className="mt-5 text-[14px] font-medium" style={{ color: COLORS.slate }}>{s.persona}</p>
++                <p className="mt-2 text-balance font-semibold tracking-[-0.006em] leading-[1.24] text-[clamp(17px,1.45vw,20px)]" style={{ color: COLORS.ink }}>
++                  {s.black} <span style={{ color: COLORS.blue }}>{s.blue}</span>.
++                </p>
++                <p className="mt-2.5 text-balance leading-[1.45] text-[15px]" style={{ color: COLORS.slate }}>{s.quote}</p>
++              </li>
+             ))}
+-          </div>
+-          <figcaption key={`q-${index}`} className="hero-fade-up mx-auto mt-[clamp(16px,2.4vw,32px)] w-full max-w-[640px] px-6 text-center [animation-delay:80ms] [animation-fill-mode:both]">
+-            <p className="font-medium tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.slate }}>{slide.persona}</p>
+-            {/* the reserved two-line slot keeps the dots from jumping when a
+-                shorter quote occupies one line */}
+-            <p className="mt-2.5 flex min-h-[2.9em] items-center justify-center font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
+-          </figcaption>
+-        </figure>
+-        <div className="mt-8 flex justify-center"><CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} /></div>
++          </ul>
++        </div>
+       </FadeReveal>
+     </section>
+   );
+ }
+ 
+-/* 03 ┬╖ PROMISE ΓÇö not a section: a sentence. The turn of the story ΓÇö the
+-   page speaks the what-if once, and the line behaves like Apple's intro
+-   beats: it fades up as the reader arrives, holds for the beat, then fades
+-   back down and lets go as the product chapter (meet) arrives. It rides
+-   the same reveal band every other chapter uses, so it genuinely appears
+-   and disappears with the scroll ΓÇö no pinned 200vh cinema, no staying. */
++/* 03 ┬╖ PROMISE ΓÇö the intro beat, in Apple's education-initiative anatomy:
++   after the hero, before the chapters, the page says the one thing it
++   believes ΓÇö a quiet centered sentence on the intro tier (28px/600, 860
++   wide) suspended in air. A manifesto, not a banner: no display type, no
++   second headline stacked under it. It is a <p> on purpose: the h2 tier is
++   the chapters' voice, and the intro speaks on the lead scale ΓÇö the same
++   move Apple makes with its intro beats. The accent keeps the house
++   voice-print. */
+ function LandingPromiseSection() {
+   const { ref, visible } = useRevealContinuous();
+   return (
+     <section ref={ref} data-section="03-promise" className="relative z-10 bg-white px-6 [overflow-x:clip]" style={{ fontFamily: fontStack }}>
+       <FadeReveal visible={visible}>
+-        <h2 className="mx-auto text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch" }}>
++        <p className="mx-auto max-w-[860px] text-balance text-center font-semibold tracking-[-0.008em] leading-[1.16] text-[clamp(21px,2vw,28px)]" style={{ color: COLORS.ink }}>
+           What if your intelligence never forgot{" "}
+           <span className="accent-gradient">where you were?</span>
+-        </h2>
++        </p>
+       </FadeReveal>
+     </section>
+   );
+@@ -394,8 +437,8 @@ function LandingPromiseSection() {
+    cards on the #f5f5f7 ground, the studio portrait whole on its square
+    field, the quiet blue link) ΓÇö the same card system every persona page
+    closes with, so the product reads as one family. On the landing the
+-   module sits mid-story as the router: after the promise, before the
+-   journey. The grey ground is the chapter join ΓÇö Apple carries no hairline
++   module sits as the router after the story chapters: after the journey,
++   before the language beat. The grey ground is the chapter join ΓÇö Apple carries no hairline
+    between chapters, the surface change does the work. (The heading lands on
+    the 64/68 card-chapter tier automatically: the bridge's card-chapter rule
+    keys off the line-up's data-card attribute.) */
+@@ -410,115 +453,74 @@ function LandingRouterSection() {
+     />
+   );
+ }
+-/* 06 ┬╖ THE JOURNEY ΓÇö Apple's education-initiative chapter anatomy: a left-aligned
+-   statement on the 40px highlights tier (32px on phones) that sits on Apple's
+-   measured content frame, then a VERTICAL stack of full-bleed story cards.
+-   Apple ed-initiative renders these as centered 980px media cards (border-
+-   radius 30px) with a one-line caption overlaid on the image ΓÇö NOT a horizontal
+-   carousel, NOT text-below-photo. The reader scrolls down through the journey
+-   (no autoplay, no carousel chrome); each card lands full-bleed and the eye
+-   rests on the next. Caption lives ON the media (bottom-left), dark media
+-   flips to white type. This is how an Apple premium story steps: one beat,
+-   then a breath, then the next ΓÇö the reader paces it, it does not pace itself. */
++/* 06 ┬╖ THE JOURNEY ΓÇö Apple's education-initiative chapter anatomy, second
++   beat: the same left-spined chapter header (statement, then the lead on
++   the 24/600 ink tier), then the story as Apple's media gallery ΓÇö near-
++   full-bleed 1000px cards (69vw), the caption ON the media bottom-left
++   over a soft scrim, so the photograph stays a photograph and the words
++   sit inside it. Below the gallery, Apple's control cluster sits on the
++   content spine: play/pause left, the paddle pair right ΓÇö the reader
++   paces it, the play control opts into the tour. */
+ function LandingJourneySection() {
+-  const reduced = usePrefersReducedMotion();
+   const { ref, visible } = useRevealContinuous();
+-  const trackRef = useRef(null);
+-  const lockRef = useRef(0);
+-  const rafRef = useRef(0);
+-  const [active, setActive] = useState(0);
++  const { trackRef, active, canPrev, canNext, stepTo, onScroll } = useGalleryTrack(JOURNEY_STEPS.length);
+   /* the journey starts paused ΓÇö Apple galleries are reader-paced; the play
+      control opts in to the tour, it does not ambush it. */
+   const [playing, setPlaying] = useState(false);
+ 
+-  const stepTo = useCallback((i) => {
+-    const track = trackRef.current;
+-    if (!track) return;
+-    const first = track.children[0];
+-    const unit = track.children[1] ? track.children[1].offsetLeft - first.offsetLeft : first.offsetWidth;
+-    const clamped = Math.min(JOURNEY_STEPS.length - 1, Math.max(0, i));
+-    setActive(clamped);
+-    /* the lock keeps the scroll listener from re-deriving intermediate
+-       indices (and jittering the dot pill) while the smooth scroll runs */
+-    lockRef.current = Date.now() + 700;
+-    track.scrollTo({ left: clamped * unit, behavior: reduced ? "auto" : "smooth" });
+-  }, [reduced]);
+-
+   useEffect(() => {
+     if (!playing) return undefined;
+     const id = setInterval(() => stepTo((active + 1) % JOURNEY_STEPS.length), JOURNEY_CARD_MS);
+     return () => clearInterval(id);
+   }, [playing, active, stepTo]);
+ 
+-  /* swiping the track by hand keeps the dots honest */
+-  const onScroll = useCallback(() => {
+-    if (rafRef.current) return;
+-    rafRef.current = requestAnimationFrame(() => {
+-      rafRef.current = 0;
+-      const track = trackRef.current;
+-      if (!track || !track.children[1] || Date.now() < lockRef.current) return;
+-      const unit = track.children[1].offsetLeft - track.children[0].offsetLeft || 1;
+-      setActive(Math.min(JOURNEY_STEPS.length - 1, Math.max(0, Math.round(track.scrollLeft / unit))));
+-    });
+-  }, []);
+-  useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
+-
+   return (
+     <section ref={ref} data-section="06-journey" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
+       <div className={`transition-all duration-700 ${EASE_APPLE} ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+-        {/* the header ΓÇö Apple's "Get the highlights." treatment: the statement
+-            alone, LEFT-aligned, on the 40px highlights tier (32px on phones).
+-            From lg it sits on Apple's measured page gutter (left: 90px @1440,
+-            6.25vw ΓÇö measured live on /education/k12/) instead of hugging the
+-            viewport edge, and the first card of the slide starts EXACTLY at
+-            the heading's left edge ΓÇö the track carries the same gutter, so
+-            heading and cards share one spine. Apple's 40px tier carries zero
+-            tracking (measured Oct 2026). */}
++        {/* the header ΓÇö Apple's story-chapter opener: the statement left on
++            the content spine, the lead under it on the measured lead tier
++            (24/28, 600, ink). Heading and first card share one spine. */}
+         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
+           <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch" }}>
+             Life changes. Visionary keeps pace.
+           </h2>
+-          <p className="mt-[var(--gap-title-sub-display)] max-w-[40ch] text-balance font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.grey }}>
++          <p className="mt-[var(--gap-title-sub-display)] max-w-[46ch] text-balance font-semibold tracking-[-0.005em] leading-[1.2] text-[clamp(21px,1.8vw,24px)]" style={{ color: COLORS.ink }}>
+             When your world changes, the way you learn can change with it ΓÇö and your progress comes along.
+           </p>
+         </div>
+-        {/* the card slide ΓÇö the track bleeds to the viewport edge so the next
+-            card peeks, inviting the reader on (the Apple gallery signature) */}
++        {/* the card slide ΓÇö Apple's gallery: the track bleeds to the viewport
++            edge so the next card peeks, and the first card starts on the
++            header's own spine */}
+         <div ref={trackRef} onScroll={onScroll} role="group" aria-roledescription="carousel" aria-label="The journey, one step at a time"
+-          className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden [scroll-padding-left:24px] min-[735px]:[padding-left:calc((100vw_-_692px)/2)] min-[735px]:[scroll-padding-left:calc((100vw_-_692px)/2)] min-[1069px]:[padding-left:calc((100vw_-_980px)/2)] min-[1069px]:[scroll-padding-left:calc((100vw_-_980px)/2)]"
++          className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden [scroll-padding-left:24px] min-[735px]:[padding-left:calc((100%_-_692px)/2)] min-[735px]:[scroll-padding-left:calc((100%_-_692px)/2)] min-[1069px]:gap-8 min-[1069px]:[padding-left:calc((100%_-_980px)/2)] min-[1069px]:[scroll-padding-left:calc((100%_-_980px)/2)]"
+           style={{ paddingRight: 24 }}>
+           {JOURNEY_STEPS.map((s, i) => (
+-              <figure key={s.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${JOURNEY_STEPS.length}: ${s.title}`}
+-                className="relative m-0 flex w-[78%] flex-none snap-start flex-col overflow-hidden rounded-[18px] bg-[#F5F5F7] sm:w-[46%] lg:w-[56%] lg:max-w-[840px]">
+-                <LazyImage src={s.image} alt={s.alt} eager={i === 0} decoding="async" draggable="false" placeholderBg="#f5f5f7"
+-                  className="aspect-[4/3] w-full flex-none select-none object-cover sm:aspect-[16/10] lg:aspect-[16/8.5]" />
+-                {/* the on-card caption ΓÇö a padded block UNDER the media on every
+-                    device (Apple's line-up tile anatomy: flush-top photo, text
+-                    below). The active card's block fades up as the story
+-                    advances. The support copy stays in the sr-only live region. */}
+-                <figcaption className={`flex flex-col px-6 pb-7 pt-6 text-left sm:px-8 lg:px-10 lg:pb-8 lg:pt-7 ${i === active ? "hero-fade-up" : ""}`}>
+-                  <p className="font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(19px,1.4vw,24px)] text-[rgba(18,19,23,0.92)]">{s.title}</p>
+-                  <p className="mt-2 font-normal leading-[1.47] text-[clamp(14px,1vw,17px)] text-[rgba(18,19,23,0.68)]">{s.copy}</p>
+-                </figcaption>
+-              </figure>
++            <figure key={s.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${JOURNEY_STEPS.length}: ${s.title}`}
++              className="relative m-0 w-[73vw] flex-none snap-start overflow-hidden rounded-[18px] bg-[#F5F5F7] sm:w-[712px] min-[1069px]:w-[69vw] min-[1069px]:max-w-[1000px]">
++              <LazyImage src={s.image} alt={s.alt} eager={i === 0} decoding="async" draggable="false" placeholderBg="#f5f5f7"
++                className="aspect-[4/3] w-full select-none object-cover sm:aspect-[16/10] min-[1069px]:aspect-[1000/516]" />
++              {/* the caption lives ON the media (bottom-left) ΓÇö Apple's
++                  education-initiative tile anatomy; the soft scrim keeps
++                  white type legible on any photograph. The support copy
++                  stays in the sr-only live region as well. */}
++              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
++              <figcaption className="absolute inset-x-0 bottom-0 p-6 text-left sm:p-8 min-[1069px]:p-10">
++                <p className="font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(24px,2vw,32px)] text-white">{s.title}</p>
++                <p className="mt-2 max-w-[46ch] font-normal leading-[1.47] text-[17px] text-white/80">{s.copy}</p>
++              </figcaption>
++            </figure>
+           ))}
+         </div>
+-        {/* the gallery controls ΓÇö Apple's media-card gallery cluster: the
+-            #E8E8ED pill around the dot nav beside the 56px play/pause circle */}
+-        <div className="mt-12 flex items-center justify-center gap-4 px-6 sm:mt-16">
+-          <div className="flex h-12 items-center rounded-full bg-[#E8E8ED] px-4 sm:h-14">
+-            <CarouselDots total={JOURNEY_STEPS.length} active={active} onSelect={stepTo} tone="pill" />
++        {/* the gallery controls ΓÇö Apple's cluster on the content spine:
++            play/pause left, the paddle pair right (36px hairline circles) */}
++        <div className="mx-auto mt-10 w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
++          <div className="flex items-center justify-between">
++            <GalleryPlay playing={playing} onClick={() => setPlaying((v) => !v)} />
++            <div className="flex items-center gap-3">
++              <GalleryArrow direction="left" label="Previous step" disabled={!canPrev} onClick={() => stepTo(active - 1)} />
++              <GalleryArrow direction="right" label="Next step" disabled={!canNext} onClick={() => stepTo(active + 1)} />
++            </div>
+           </div>
+-          <button
+-            type="button"
+-            aria-label={playing ? "Pause the journey" : "Play the journey"}
+-            aria-pressed={!playing}
+-            onClick={() => setPlaying((v) => !v)}
+-            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:h-14 sm:w-14"
+-            style={{ color: COLORS.ink }}
+-          >
+-            {playing ? <Pause className="h-[18px] w-[18px]" strokeWidth={2.4} /> : <Play className="h-[18px] w-[18px] translate-x-[1px] fill-current" strokeWidth={2.4} />}
+-          </button>
+         </div>
+         <p aria-live="polite" className="sr-only">{`${JOURNEY_STEPS[active].title}. ${JOURNEY_STEPS[active].copy}`}</p>
+         {/* the chapter's closing statement ΓÇö an h2 so it lands on the
+@@ -534,10 +536,11 @@ function LandingJourneySection() {
+ }
+ 
+ /* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ PAGE ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+-   The Vision Pro anatomy: the family stage pins to the viewport, the
+-   story glides over it on frosted glass (problem), the thesis fades up
+-   (promise), the five-journey router (the accepted line-up module on its
+-   grey ground), the journey, the language chapter, trust, and the closer. */
++   The education-initiative story flow: the family stage pins to the
++   viewport and the glass sheet covers it, the promise answers as the intro
++   manifesto, then the two chapters ΓÇö the problem as a story row, the
++   journey as Apple's media gallery ΓÇö the five-journey router on its grey
++   ground, and the close: language, trust, CTA. */
+ export default function LandingPage() {
+   return (
+     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+@@ -556,10 +559,10 @@ export default function LandingPage() {
+             maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+           }}
+         />
+-        <LandingProblemSection />
+         <LandingPromiseSection />
+-        <LandingRouterSection />
++        <LandingProblemSection />
+         <LandingJourneySection />
++        <LandingRouterSection />
+         <PremiumLanguageSection
+           chips={LG_CHIPS}
+           questions={LG_QUESTIONS}
+diff --git a/visionary-app/frontend/src/styles/public-bridge.css b/visionary-app/frontend/src/styles/public-bridge.css
+index 8896f462..607de20e 100644
+--- a/visionary-app/frontend/src/styles/public-bridge.css
++++ b/visionary-app/frontend/src/styles/public-bridge.css
+@@ -50,9 +50,8 @@ main > section[data-section="10-journey-flow"] {
+    white too) ΓÇö 07's bottom padding is the whole breath; adding more above
+    the statement would read as a new chapter. No hairline. !important beats
+    the (0,2,1) base border/padding rule. Scoped to the DIRECT 07ΓåÆ06
+-   adjacency: when the journey opens after a different surface (the landing's
+-   grey 13-explore router), the surface change itself is the join ΓÇö the
+-   chapter keeps its own top breath there. */
++   adjacency (the persona pages' flow): where the journey opens after other
++   chapters instead ΓÇö the landing ΓÇö it keeps its own top breath. */
+ main > section[data-section="06-journey"] {
+   border-top-color: transparent !important;
+ }
+@@ -61,20 +60,6 @@ main > section[data-section="07-language"] + section[data-section="06-journey"]
+   padding-block-start: 0 !important;
+ }
+ 
+-/* The problem chapter is a one-glance scene, not a full chapter, and the
+-   landing's promise is a sentence, not a section ΓÇö both carry Apple's
+-   compact-band rhythm (measured Oct 2026): a tighter 56ΓÇô90px band lets the
+-   statement + subject + caption sit inside ~1.2 viewports on desktop while
+-   the phone chapter stays compact. 02-struggle is a full chapter that
+-   balances the sections below it, so it takes the shared rhythm instead.
+-   03-promise is scoped to .page-landing because persona pages keep their
+-   own full promise chapter. !important beats the (0,2,1) base rule and the
+-   narrow-screen rule alike. */
+-main > section[data-section="02-problem"],
+-.page-landing main > section[data-section="03-promise"] {
+-  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+-}
+-
+ /* the landing's category line-up sits between two white chapters and carries
+    its own grey ground ΓÇö the surface change IS the chapter join, so the
+    hairline never reads (Apple's no-seam law). Landing-scoped: the persona

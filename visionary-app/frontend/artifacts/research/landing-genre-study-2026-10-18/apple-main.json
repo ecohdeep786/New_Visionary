@@ -1,0 +1,401 @@
+{
+  "title": "Apple (India)",
+  "url": "https://www.apple.com/in/",
+  "docH": 5579,
+  "secs": [
+    {
+      "cls": "section section-hero",
+      "id": "",
+      "y": 96,
+      "h": 2100,
+      "first": "iPhone Duo"
+    },
+    {
+      "cls": "section section-promo",
+      "id": "",
+      "y": 2208,
+      "h": 1764,
+      "first": "Apple Watch Series 12"
+    },
+    {
+      "cls": "section-endless-entertainment-gallery",
+      "id": "",
+      "y": 3984,
+      "h": 571,
+      "first": "AdventureA new threat will surface."
+    },
+    {
+      "cls": "ac-gf-sosumi",
+      "id": "",
+      "y": 4555,
+      "h": 515,
+      "first": ""
+    },
+    {
+      "cls": "ac-gf-footer",
+      "id": "",
+      "y": 5453,
+      "h": 126,
+      "first": ""
+    }
+  ],
+  "heads": [
+    {
+      "tag": "h1",
+      "y": 0,
+      "text": "Apple",
+      "size": "34px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Quick Links",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Special Stores",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Entertainment",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Support",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Accessories",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Accessories",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Support",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Get Help",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Helpful Topics",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 148,
+      "text": "Quick Links",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 152,
+      "text": "iPhone Duo",
+      "size": "56px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 1270,
+      "text": "Welcome Joy.",
+      "size": "56px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 1565,
+      "text": "Apple HomeView",
+      "size": "25.5px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2265,
+      "text": "Apple Watch Series 12",
+      "size": "40px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2265,
+      "text": "Apple Watch Ultra 4",
+      "size": "40px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2853,
+      "text": "iPhone 18 Pro",
+      "size": "40px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2857,
+      "text": "iPad Air",
+      "size": "40px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 3445,
+      "text": "AirPods 5",
+      "size": "40px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 3449,
+      "text": "Apple Pay",
+      "size": "40px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 4555,
+      "text": "Apple Footer",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5090,
+      "text": "Shop and Learn Shop and Learn",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5386,
+      "text": "Apple Wallet Apple Wallet",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5090,
+      "text": "Account Account",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5207,
+      "text": "Entertainment Entertainment",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5090,
+      "text": "Apple Store Apple Store",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5090,
+      "text": "For Business For Business",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5182,
+      "text": "For Education For Education",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5298,
+      "text": "For Healthcare For Healthcare",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5364,
+      "text": "For Government For Government",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5090,
+      "text": "Apple Values Apple Values",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5258,
+      "text": "About Apple About Apple",
+      "size": "12px",
+      "weight": "400"
+    }
+  ]
+}

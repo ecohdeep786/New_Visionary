@@ -1,0 +1,381 @@
+{
+  "vision-pro": {
+    "url": "https://www.apple.com/apple-vision-pro/",
+    "docH": 32700,
+    "map": [
+      {
+        "h": 1800,
+        "bg": "rgb(245, 245, 247)",
+        "radius": "0px",
+        "heading": "Apple Vision Pro",
+        "imgs": 1,
+        "videos": 0,
+        "btns": [
+          "Book a demo",
+          "Buy"
+        ]
+      },
+      {
+        "h": 900,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": null,
+        "imgs": 0,
+        "videos": 0,
+        "btns": []
+      },
+      {
+        "h": 2129,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "0px",
+        "heading": "Take a closer look.",
+        "imgs": 12,
+        "videos": 4,
+        "btns": [
+          "Stream Wolfs on Apple TV with a subscription",
+          "View in your space",
+          "1",
+          "2"
+        ]
+      },
+      {
+        "h": 13118,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Entertainment",
+        "imgs": 28,
+        "videos": 15,
+        "btns": [
+          "Stream Wolfs on Apple TV with a subscription",
+          "3",
+          "4",
+          "5",
+          "Learn more about Apple Intelligence"
+        ]
+      },
+      {
+        "h": 2425,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "visionOS",
+        "imgs": 9,
+        "videos": 3,
+        "btns": [
+          "Learn more about visionOS"
+        ]
+      },
+      {
+        "h": 7788,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Technology",
+        "imgs": 14,
+        "videos": 2,
+        "btns": [
+          "Replay",
+          "8",
+          "1",
+          "8",
+          "9"
+        ]
+      },
+      {
+        "h": 1607,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Values",
+        "imgs": 5,
+        "videos": 2,
+        "btns": [
+          "10",
+          "Apple and the environment"
+        ]
+      },
+      {
+        "h": 1727,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Explore Apple Vision Pro accessories.",
+        "imgs": 2,
+        "videos": 0,
+        "btns": [
+          "Shop",
+          "Learn more about developing for visionOS"
+        ]
+      },
+      {
+        "h": 764,
+        "bg": "rgb(245, 245, 247)",
+        "radius": "0px",
+        "heading": "Explore Apple Vision Pro accessories.",
+        "imgs": 1,
+        "videos": 0,
+        "btns": [
+          "Shop"
+        ]
+      },
+      {
+        "h": 883,
+        "bg": "rgb(245, 245, 247)",
+        "radius": "0px",
+        "heading": "An exciting new platform. A world of new opportunities for developers.",
+        "imgs": 1,
+        "videos": 0,
+        "btns": [
+          "Learn more about developing for visionOS"
+        ]
+      },
+      {
+        "h": 794,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": null,
+        "imgs": 0,
+        "videos": 0,
+        "btns": [
+          "apple.com/apple-intelligence",
+          "support.apple.com/guide/iphone/spatial-photos-record-videos-apple-vision-pro-iph6e3a6d4fe/ios",
+          "apple.com"
+        ]
+      },
+      {
+        "h": 126,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": null,
+        "imgs": 0,
+        "videos": 0,
+        "btns": [
+          "Find an Apple Store",
+          "other retailer",
+          "1-800-MY-APPLE",
+          "United States",
+          "Privacy Policy"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "url": "https://www.apple.com/in/education/",
+    "docH": 7405,
+    "map": [
+      {
+        "h": 1254,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "0px",
+        "heading": "Apple Education",
+        "imgs": 5,
+        "videos": 0,
+        "btns": [
+          "*",
+          "Shop"
+        ]
+      },
+      {
+        "h": 400,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "0px",
+        "heading": "Discover Apple Education in action.",
+        "imgs": 1,
+        "videos": 0,
+        "btns": [
+          "Watch the film"
+        ]
+      },
+      {
+        "h": 1985,
+        "bg": "rgb(250, 248, 246)",
+        "radius": "0px",
+        "heading": "Education that’s a grade ahead.",
+        "imgs": 4,
+        "videos": 0,
+        "btns": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "h": 771,
+        "bg": "rgb(0, 0, 0)",
+        "radius": "0px",
+        "heading": "From grade school to grad school.",
+        "imgs": 3,
+        "videos": 0,
+        "btns": []
+      },
+      {
+        "h": 771,
+        "bg": "rgb(250, 248, 246)",
+        "radius": "0px",
+        "heading": "Real stories. Real impact.",
+        "imgs": 4,
+        "videos": 0,
+        "btns": [
+          "Explore Success Stories"
+        ]
+      },
+      {
+        "h": 660,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "0px",
+        "heading": "How to Buy.",
+        "imgs": 1,
+        "videos": 0,
+        "btns": [
+          "Learn more"
+        ]
+      },
+      {
+        "h": 735,
+        "bg": "rgb(250, 250, 252)",
+        "radius": "0px",
+        "heading": "Our values lead the way.",
+        "imgs": 3,
+        "videos": 0,
+        "btns": [
+          "Learn more",
+          "Learn more",
+          "Learn more"
+        ]
+      },
+      {
+        "h": 186,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": null,
+        "imgs": 0,
+        "videos": 0,
+        "btns": [
+          "apple.com/in-edu/store",
+          "apple.com/in/batteries",
+          "https://tei.forrester.com/go/apple/tei/?lang=en-us"
+        ]
+      },
+      {
+        "h": 126,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": null,
+        "imgs": 0,
+        "videos": 0,
+        "btns": [
+          "Find an Apple Store",
+          "other retailer",
+          "000800 040 1966",
+          "India",
+          "Privacy Policy"
+        ]
+      }
+    ]
+  },
+  "education-initiative": {
+    "url": "https://www.apple.com/in/education-initiative/",
+    "docH": 7945,
+    "map": [
+      {
+        "h": 900,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Education moves learners, leaders, innovators, communities and everyone forward.",
+        "imgs": 5,
+        "videos": 0,
+        "btns": []
+      },
+      {
+        "h": 335,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": null,
+        "imgs": 0,
+        "videos": 0,
+        "btns": []
+      },
+      {
+        "h": 953,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Standing alongside educators to move learning forward.",
+        "imgs": 5,
+        "videos": 0,
+        "btns": []
+      },
+      {
+        "h": 953,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Equipping today’s learners for tomorrow’s opportunities.",
+        "imgs": 5,
+        "videos": 0,
+        "btns": []
+      },
+      {
+        "h": 973,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Advancing equity through education.",
+        "imgs": 5,
+        "videos": 0,
+        "btns": []
+      },
+      {
+        "h": 1953,
+        "bg": "rgb(245, 245, 247)",
+        "radius": "0px",
+        "heading": "Our work in education doesn’t end here.",
+        "imgs": 4,
+        "videos": 0,
+        "btns": [
+          "Learn more about the Malala Fund",
+          "Learn more about Challenge for Change",
+          "Learn more",
+          "Learn more",
+          "Learn more"
+        ]
+      },
+      {
+        "h": 738,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "More from Apple on education.",
+        "imgs": 0,
+        "videos": 0,
+        "btns": [
+          "UPDATE Cherokee language learners bridge generations with iPad and Mac 28 May 2026",
+          "UPDATE Meet four of this year’s Swift Student Challenge winners 08 May 2025",
+          "PRESS RELEASE Apple launches new resources for teachers, expands education grant program 01 October 2024",
+          "FEATURE At Exceptional Minds, artists turn creativity into careers 31 March 2023",
+          "Show more"
+        ]
+      },
+      {
+        "h": 598,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": "Our values lead the way.",
+        "imgs": 0,
+        "videos": 0,
+        "btns": [
+          "Learn more",
+          "Learn more",
+          "Learn more",
+          "Learn more"
+        ]
+      },
+      {
+        "h": 126,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "heading": null,
+        "imgs": 0,
+        "videos": 0,
+        "btns": [
+          "Find an Apple Store",
+          "other retailer",
+          "000800 040 1966",
+          "India",
+          "Privacy Policy"
+        ]
+      }
+    ]
+  }
+}

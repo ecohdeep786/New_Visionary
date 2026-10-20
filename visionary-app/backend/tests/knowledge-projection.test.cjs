@@ -63,12 +63,12 @@ test('a server-assessed pass projects a calibrated estimate from the stored verd
   assert.equal(first.modelVersion, 'a2-calib-v1'); assert.equal(first.revision, 1); assert.equal(first.lastSequence, 1);
   assert.equal(first.assessedCount, 1); assert.equal(first.lastReceiptId, s.receiptId); assert.equal(first.lastReceiptDigest, s.digest);
   assert.equal(Math.abs(first.pKnown - 0.7149122807017544) < 1e-9, true, 'hand-computed BKT posterior plus transit');
-  const receipt = m.rows.get(`${account('owner')}/knowledge/receipts/${s.receiptId}`);
+  const receipt = m.rows.get(`${account('owner')}/knowledgeReceipts/${s.receiptId}`);
   assert.equal(receipt.correct, true); assert.equal(receipt.origin, 'server_assessment'); assert.equal(receipt.sequence, 1);
   assert.equal(receipt.assessedAt, Date.parse('2026-10-18T06:00:00.000Z')); assert.equal(receipt.digest, s.digest);
   assert.equal(receipt.selection, undefined); assert.equal(receipt.answerIndex, undefined);
-  assert.equal(m.rows.get(`${account('owner')}/knowledge/commands/${body.commandId}`).kind, 'knowledge-projected');
-  const [outboxKey] = knowledgeKeys(m, '/knowledge/outbox/');
+  assert.equal(m.rows.get(`${account('owner')}/knowledgeCommands/${body.commandId}`).kind, 'knowledge-projected');
+  const [outboxKey] = knowledgeKeys(m, '/knowledgeOutbox/');
   assert.equal(m.rows.get(outboxKey).event, 'knowledge_projected'); assert.equal(m.rows.get(outboxKey).receiptId, s.receiptId);
   assert.equal(m.rows.get(outboxKey).sequence, 1);
 });
@@ -85,7 +85,7 @@ test('foreign, missing and tampered evidence is refused without inventing projec
   const copied = seed(m, 'owner');
   m.rows.set(`${account('owner')}/learningSessions/${copied.sessionId}`, { ...m.rows.get(`${account('owner')}/learningSessions/${copied.sessionId}`), uid: 'other' });
   await assert.rejects(service.project('owner', command({ sessionId: copied.sessionId, receiptId: copied.receiptId })), e => e.getStatus() === 503);
-  assert.equal(knowledgeKeys(m, '/knowledge/').length, 0);
+  assert.equal(knowledgeKeys(m, '/knowledge').length, 0);
 });
 
 test('identical commands and already-projected evidence replay; altered commands conflict; concurrent retries commit exactly once', async () => {
@@ -97,13 +97,13 @@ test('identical commands and already-projected evidence replay; altered commands
   assert.ok(winner, 'exactly one concurrent submission is the original commit');
   for (const row of results) assert.deepEqual({ ...row.value, replay: false }, { ...winner.value, replay: false });
   assert.equal(results.filter(row => row.value.replay).length, results.length - 1);
-  assert.equal(knowledgeKeys(m, '/knowledge/').length, 4); // one command, receipt, projection and outbox event
+  assert.equal(knowledgeKeys(m, '/knowledge').length, 4); // one command, receipt, projection and outbox event
   await assert.rejects(a.project('owner', { ...body, receiptId: uuid() }), e => e.getStatus() === 409);
   const before = await a.projection('owner', { workspaceId: 'demo-adult:student', conceptId: 'squares', sourceVersion: 'a2', criteriaVersion: 'rubric-a2' });
   const again = await b.project('owner', command({ sessionId: one.sessionId, receiptId: one.receiptId }));
   assert.equal(again.replay, true); assert.equal(again.lastSequence, before.lastSequence);
   assert.equal(again.pKnown, before.pKnown); assert.equal(again.assessedCount, 1);
-  assert.equal(knowledgeKeys(m, '/knowledge/outbox/').length, 1);
+  assert.equal(knowledgeKeys(m, '/knowledgeOutbox/').length, 1);
   // Evidence from a session that was later cancelled still counts once: cancel voids the open check, not assessed evidence.
   const two = seed(m, 'owner', { passed: false, status: 'cancelled' });
   const failed = await a.project('owner', command({ sessionId: two.sessionId, receiptId: two.receiptId }));
@@ -120,7 +120,7 @@ test('a lost commit response maps to a redacted outage and the same command repl
   await assert.rejects(service.project('owner', body), e => e.getStatus() === 503 && !e.message.includes('credentials'));
   const retried = await service.project('owner', body);
   assert.equal(retried.replay, true); assert.equal(retried.lastSequence, 1); assert.equal(retried.lastReceiptId, s.receiptId);
-  assert.equal(knowledgeKeys(m, '/knowledge/receipts/').length, 1);
+  assert.equal(knowledgeKeys(m, '/knowledgeReceipts/').length, 1);
 });
 
 test('cross-device reads share one owner projection; a stored model change refuses silent inheritance until replay', async () => {
@@ -133,11 +133,11 @@ test('cross-device reads share one owner projection; a stored model change refus
   assert.equal(seen.lastReceiptDigest, s.digest); assert.equal(seen.assessedCount, 1);
   await assert.rejects(b.projection('owner', { workspaceId: 'demo-adult:student', conceptId: 'squares', sourceVersion: 'a2', criteriaVersion: 'rubric-missing' }), e => e instanceof NotFoundException);
   await assert.rejects(b.projection('other', { workspaceId: 'demo-adult:student', conceptId: 'squares', sourceVersion: 'a2', criteriaVersion: 'rubric-a2' }), e => e instanceof NotFoundException);
-  const [projectionRow] = knowledgeKeys(m, '/knowledge/projections/');
+  const [projectionRow] = knowledgeKeys(m, '/knowledgeProjections/');
   m.rows.set(projectionRow, { ...m.rows.get(projectionRow), modelVersion: 'a2-calib-v0' });
   const next = seed(m, 'owner');
   await assert.rejects(a.project('owner', command({ sessionId: next.sessionId, receiptId: next.receiptId })), e => e.getStatus() === 409 && /model/i.test(e.message));
-  assert.equal(knowledgeKeys(m, '/knowledge/receipts/').length, 1);
+  assert.equal(knowledgeKeys(m, '/knowledgeReceipts/').length, 1);
 });
 
 test('knowledge HTTP enforces session, CSRF, expected UID and owner-scoped reads without exposing security or verdict fields', async () => {
@@ -166,4 +166,59 @@ test('knowledge HTTP enforces session, CSRF, expected UID and owner-scoped reads
     const models = await (await fetch(`${base}/models?sourceVersion=a2&criteriaVersion=rubric-a2`, { headers })).json();
     assert.equal(models.model.version, 'a2-calib-v1'); assert.equal(models.model.mastered, undefined); assert.equal(models.model.pKnown, undefined);
   } finally { await app.close(); }
+});
+
+
+test('installed Firestore SDK accepts every constructed knowledge reference and the fixture rejects invalid path parity', async () => {
+  const { Firestore } = req('firebase-admin/firestore');
+  const sdk = new Firestore({ projectId: 'demo-knowledge-path-validation' });
+  const m = billingMemory(), original = m.db.collection;
+  assert.throws(() => original('visionary_accounts/owner/knowledge/commands'), /collection path/);
+  assert.throws(() => original('visionary_accounts').doc('owner/odd'), /document path/);
+  const collections = new Set();
+  m.db.collection = name => { sdk.collection(name); collections.add(name); return original(name); };
+  const service = new KnowledgeProjectionService({ getDatabase: () => m.db });
+  const one = seed(m, 'owner'), body = command({ sessionId: one.sessionId, receiptId: one.receiptId });
+  const result = await service.project('owner', body);
+  assert.equal(result.assessedCount, 1);
+  await service.project('owner', body);
+  const read = await service.projection('owner', one.values);
+  assert.equal(read.lastReceiptId, one.receiptId);
+  for (const row of m.rows.keys()) sdk.doc(row);
+  for (const name of ['knowledgeCommands', 'knowledgeReceipts', 'knowledgeProjections', 'knowledgeOutbox'])
+    assert.ok(collections.has(`visionary_accounts/owner/${name}`));
+  await sdk.terminate(); // No SDK read/write, credential or network operation was made.
+});
+
+test('opaque delimiter-containing scope tuples have independent projections and every read/replay rejects corrupted scope', async () => {
+  const m = billingMemory(), service = new KnowledgeProjectionService({ getDatabase: () => m.db });
+  const a = seed(m, 'owner', { fields: { workspaceId: 'workspace|concept', conceptId: 'one' } });
+  const b = seed(m, 'owner', { passed: false, fields: { workspaceId: 'workspace', conceptId: 'concept|one' } });
+  const ac = command({ sessionId: a.sessionId, receiptId: a.receiptId });
+  const ar = await service.project('owner', ac);
+  await assert.rejects(service.projection('owner', b.values), e => e.getStatus() === 404);
+  const br = await service.project('owner', command({ sessionId: b.sessionId, receiptId: b.receiptId }));
+  assert.notEqual(ar.pKnown, br.pKnown);
+  assert.equal(knowledgeKeys(m, '/knowledgeProjections/').length, 2);
+  for (const x of [a, b]) {
+    const current = await service.projection('owner', x.values);
+    assert.equal(current.workspaceId, x.values.workspaceId); assert.equal(current.conceptId, x.values.conceptId);
+    assert.equal(current.assessedCount, 1); assert.equal(current.lastReceiptId, x.receiptId);
+  }
+  const row = knowledgeKeys(m, '/knowledgeProjections/').find(key => m.rows.get(key).workspaceId === a.values.workspaceId);
+  m.rows.set(row, { ...m.rows.get(row), workspaceId: b.values.workspaceId, conceptId: b.values.conceptId });
+  const before = JSON.stringify([...m.rows]);
+  await assert.rejects(service.projection('owner', a.values), e => e.getStatus() === 409);
+  await assert.rejects(service.project('owner', ac), e => e.getStatus() === 409);
+  await assert.rejects(service.project('owner', command({ sessionId: a.sessionId, receiptId: a.receiptId })), e => e.getStatus() === 409);
+  assert.equal(JSON.stringify([...m.rows]), before);
+});
+
+test('already-projected evidence cannot replay under a different own session', async () => {
+  const m = billingMemory(), service = new KnowledgeProjectionService({ getDatabase: () => m.db });
+  const a = seed(m, 'owner'), b = seed(m, 'owner');
+  await service.project('owner', command({ sessionId: a.sessionId, receiptId: a.receiptId }));
+  const before = JSON.stringify([...m.rows]);
+  await assert.rejects(service.project('owner', command({ sessionId: b.sessionId, receiptId: a.receiptId })), e => e.getStatus() === 409);
+  assert.equal(JSON.stringify([...m.rows]), before);
 });

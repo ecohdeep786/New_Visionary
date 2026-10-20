@@ -1,0 +1,541 @@
+{
+  "title": "Education - Apple (IN)",
+  "url": "https://www.apple.com/in/education/",
+  "docH": 7405,
+  "secs": [
+    {
+      "cls": "section section-welcome section-hero preserve-pad-bottom",
+      "id": "",
+      "y": 96,
+      "h": 1254,
+      "first": "Get education savings for students and educators exclusively at the Apple Store.* Shop"
+    },
+    {
+      "cls": "section section-film-banner preserve-pad-bottom staggered-end",
+      "id": "",
+      "y": 1350,
+      "h": 400,
+      "first": "Discover Apple Education in action."
+    },
+    {
+      "cls": "section section-pillar preserve-pad-bottom staggered-end",
+      "id": "",
+      "y": 1750,
+      "h": 1985,
+      "first": "Education that’s a grade ahead."
+    },
+    {
+      "cls": "section section-education-path preserve-pad-bottom theme-dark staggere",
+      "id": "",
+      "y": 3735,
+      "h": 771,
+      "first": "From grade school to grad school."
+    },
+    {
+      "cls": "section section-real-stories preserve-pad-bottom staggered-end",
+      "id": "",
+      "y": 4506,
+      "h": 771,
+      "first": "Real stories. Real impact."
+    },
+    {
+      "cls": "section section-how-to-buy no-pad-bottom staggered-end",
+      "id": "how-to-buy",
+      "y": 5277,
+      "h": 660,
+      "first": "How to Buy."
+    },
+    {
+      "cls": "section section-values preserve-pad-bottom",
+      "id": "",
+      "y": 5937,
+      "h": 735,
+      "first": "Our values lead the way."
+    },
+    {
+      "cls": "ac-gf-sosumi",
+      "id": "",
+      "y": 6672,
+      "h": 186,
+      "first": ""
+    },
+    {
+      "cls": "ac-gf-footer",
+      "id": "",
+      "y": 7279,
+      "h": 126,
+      "first": ""
+    }
+  ],
+  "heads": [
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Quick Links",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Special Stores",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Entertainment",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Support",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Accessories",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Accessories",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Support",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Get Help",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Helpful Topics",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 148,
+      "text": "Quick Links",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h1",
+      "y": 478,
+      "text": "Apple Education",
+      "size": "34px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 541,
+      "text": "Designed for every kind of learner.",
+      "size": "64px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 1459,
+      "text": "Discover Apple Education in action.",
+      "size": "25.5px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 1850,
+      "text": "Education that’s a grade ahead.",
+      "size": "80px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2619,
+      "text": "Intuitive devices built to engage.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2619,
+      "text": "Versatile tools that enable expression.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 3317,
+      "text": "An investment that’s built to last.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 3317,
+      "text": "A partnership that ignites bright ideas.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 3879,
+      "text": "From grade school to grad school.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4007,
+      "text": "K–12",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4007,
+      "text": "Higher Education",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4007,
+      "text": "College Students",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 4650,
+      "text": "Real stories. Real impact.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4778,
+      "text": "Higher Education",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4778,
+      "text": "College Students",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4778,
+      "text": "K–12",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4778,
+      "text": "K–12",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 5511,
+      "text": "How to Buy.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 6081,
+      "text": "Our values lead the way.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 6252,
+      "text": "Private and secure. On campus and off.",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 6252,
+      "text": "Innovation that’s accessible for every learner.",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 6251,
+      "text": "Designed with the environment in mind.",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 6672,
+      "text": "Apple Footer",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 6916,
+      "text": "Shop and Learn Shop and Learn",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7212,
+      "text": "Apple Wallet Apple Wallet",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 6916,
+      "text": "Account Account",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7033,
+      "text": "Entertainment Entertainment",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 6916,
+      "text": "Apple Store Apple Store",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 6916,
+      "text": "For Business For Business",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7007,
+      "text": "For Education For Education",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7124,
+      "text": "For Healthcare For Healthcare",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7190,
+      "text": "For Government For Government",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 6916,
+      "text": "Apple Values Apple Values",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7084,
+      "text": "About Apple About Apple",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "How to Buy.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Shop for your institution.",
+      "size": "21px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Buy online.",
+      "size": "21px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Buy from Apple.",
+      "size": "21px",
+      "weight": "600"
+    }
+  ]
+}

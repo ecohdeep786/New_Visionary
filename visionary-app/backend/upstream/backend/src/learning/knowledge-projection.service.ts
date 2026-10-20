@@ -9,7 +9,7 @@ import { updateKnowledge, TeachingPolicyError, AssessedReceipt, KnowledgeProject
 
 export const KNOWLEDGE_VERSION = 1;
 const scopeKey = (scope: LearningScope) =>
-  'u' + createHash('sha256').update([scope.workspaceId, scope.conceptId, scope.sourceVersion, scope.criteriaVersion].join('|')).digest('hex').slice(0, 32);
+  'u' + createHash('sha256').update(JSON.stringify([scope.workspaceId, scope.conceptId, scope.sourceVersion, scope.criteriaVersion])).digest('hex').slice(0, 32);
 const eventKey = (uid: string, receiptId: string) => createHash('sha256').update(uid + '|' + receiptId).digest('hex').slice(0, 32);
 const unavailable = () => new ServiceUnavailableException('The assessed evidence could not be verified for this account.');
 const serverEvidenceError = () => new ServiceUnavailableException('Knowledge projection could not be confirmed from saved evidence. Retry with the same receipt.');
@@ -32,10 +32,10 @@ export class KnowledgeProjectionService {
   constructor(private readonly accounts: FirebaseProductService) {}
   private db() { return this.accounts.getDatabase(); }
   private sessions(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/learningSessions`); }
-  private commands(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledge/commands`); }
-  private receipts(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledge/receipts`); }
-  private projections(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledge/projections`); }
-  private outbox(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledge/outbox`); }
+  private commands(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledgeCommands`); }
+  private receipts(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledgeReceipts`); }
+  private projections(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledgeProjections`); }
+  private outbox(db: Firestore, uid: string) { return db.collection(`${accountPath(uid)}/knowledgeOutbox`); }
   private async stored<T>(operation: () => Promise<T>): Promise<T> {
     try { return await operation(); }
     catch (error) { if (error instanceof HttpException) throw error; throw serverEvidenceError(); }
@@ -62,6 +62,10 @@ export class KnowledgeProjectionService {
     if (!Number.isSafeInteger(assessedAt) || assessedAt < 0) throw unavailable();
     return { scope, correct: assessment.passed, digest: assessment.digest, assessedAt };
   }
+  private requireScope(state: any, expected: LearningScope) {
+    if (!state || !(['uid', 'workspaceId', 'conceptId', 'sourceVersion', 'criteriaVersion'] as const)
+      .every(key => state[key] === expected[key])) throw new ConflictException('Saved knowledge state does not match this assessed scope. Load the saved activity.');
+  }
   private receipt(uid: string, state: any, replay: boolean) {
     if (!state || state.uid !== uid) throw unavailable();
     if (![state.workspaceId, state.conceptId, state.sourceVersion, state.criteriaVersion, state.modelVersion].every(boundedReference)) throw unavailable();
@@ -84,28 +88,30 @@ export class KnowledgeProjectionService {
     const command = knowledgeProjectionCommand(input);
     return this.stored(async () => {
       const db = this.db();
-      const fingerprint = createHash('sha256').update([uid, command.sessionId, command.receiptId].join('|')).digest('hex');
+      const fingerprint = createHash('sha256').update(JSON.stringify([uid, command.sessionId, command.receiptId])).digest('hex');
       const commandRef = this.commands(db, uid).doc(command.commandId);
       const evidenceRef = this.receipts(db, uid).doc(command.receiptId);
       return db.runTransaction(async tx => {
         const previousCommand = (await tx.get(commandRef)).data();
-        if (previousCommand) {
-          if (previousCommand.uid !== uid || previousCommand.kind !== 'knowledge-projected' ||
-            previousCommand.fingerprint !== fingerprint || !boundedReference(previousCommand.projectionKey))
-            throw new ConflictException('This projection command already has different evidence. Load the saved activity.');
-          const projection = (await tx.get(this.projections(db, uid).doc(previousCommand.projectionKey))).data();
-          if (!projection) throw new ServiceUnavailableException('Projection continuity data is incomplete for this scope.');
-          return this.receipt(uid, projection, true);
-        }
+        if (previousCommand && (previousCommand.uid !== uid || previousCommand.kind !== 'knowledge-projected' ||
+          previousCommand.fingerprint !== fingerprint || previousCommand.sessionId !== command.sessionId ||
+          previousCommand.receiptId !== command.receiptId || !boundedReference(previousCommand.projectionKey)))
+          throw new ConflictException('This projection command already has different evidence. Load the saved activity.');
         const evidence = (await tx.get(evidenceRef)).data();
         if (evidence) {
-          const scope = this.scopeOf(evidence, uid);
-          const projection = (await tx.get(this.projections(db, uid).doc(scopeKey(scope)))).data();
+          if (evidence.sessionId !== command.sessionId || evidence.id !== command.receiptId)
+            throw new ConflictException('This assessed receipt belongs to a different saved session.');
+          const scope = this.scopeOf(evidence, uid), key = scopeKey(scope);
+          if (previousCommand && previousCommand.projectionKey !== key)
+            throw new ConflictException('Saved projection command scope does not match its assessed receipt.');
+          const projection = (await tx.get(this.projections(db, uid).doc(key))).data();
           if (!projection) throw new ServiceUnavailableException('Projection continuity data is incomplete for this scope.');
-          tx.set(commandRef, { uid, commandId: command.commandId, kind: 'knowledge-projected', fingerprint,
-            sessionId: command.sessionId, receiptId: command.receiptId, projectionKey: scopeKey(scope), schemaVersion: KNOWLEDGE_VERSION, createdAt: new Date().toISOString() });
+          this.requireScope(projection, scope);
+          if (!previousCommand) tx.set(commandRef, { uid, commandId: command.commandId, kind: 'knowledge-projected', fingerprint,
+            sessionId: command.sessionId, receiptId: command.receiptId, projectionKey: key, schemaVersion: KNOWLEDGE_VERSION, createdAt: new Date().toISOString() });
           return this.receipt(uid, projection, true);
         }
+        if (previousCommand) throw new ServiceUnavailableException('Projection continuity data is incomplete for this scope.');
         const session = (await tx.get(this.sessions(db, uid).doc(command.sessionId))).data();
         if (!session) throw new NotFoundException('No server-assessed learning session was found for this reference.');
         const assessment = (await tx.get(this.sessions(db, uid).doc(command.sessionId).collection('assessments').doc(command.receiptId))).data();
@@ -115,7 +121,7 @@ export class KnowledgeProjectionService {
         catch (error) { if (error instanceof TeachingPolicyError) throw mapTeachingError(error); throw error; }
         const projectionRef = this.projections(db, uid).doc(scopeKey(scope));
         const saved = (await tx.get(projectionRef)).data();
-        if (saved && saved.uid !== uid) throw unavailable();
+        if (saved) this.requireScope(saved, scope);
         const state: KnowledgeProjection = saved ? {
           uid: saved.uid, workspaceId: saved.workspaceId, conceptId: saved.conceptId, sourceVersion: saved.sourceVersion, criteriaVersion: saved.criteriaVersion,
           modelVersion: saved.modelVersion, pKnown: saved.pKnown, revision: saved.revision, lastSequence: saved.lastSequence,
@@ -140,6 +146,7 @@ export class KnowledgeProjectionService {
     return this.stored(async () => {
       const existing = (await this.projections(this.db(), uid).doc(scopeKey({ uid, ...options })).get()).data();
       if (!existing) throw new NotFoundException('No assessments are projected for this scope yet.');
+      this.requireScope(existing, { uid, ...options });
       return this.receipt(uid, existing, false);
     });
   }

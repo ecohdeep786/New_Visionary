@@ -1,0 +1,690 @@
+{
+  "390": {
+    "docH": 10365,
+    "overflow": 0,
+    "problem": {
+      "sec": {
+        "h": 1060,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "eyebrow": {
+        "text": "Why Visionary exists",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "w": 342,
+        "h": 20,
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 40,
+        "weight": "600",
+        "lh": 44,
+        "w": 342,
+        "h": 220,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "w": 342,
+        "h": 75,
+        "align": "start"
+      },
+      "card": {
+        "w": 342,
+        "h": 463,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "28px"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 24,
+        "weight": "500",
+        "lh": 29.8,
+        "w": 294,
+        "h": 79,
+        "align": "start"
+      },
+      "dotsTop": 24
+    },
+    "ret": {
+      "sec": {
+        "h": 1672,
+        "bg": "rgb(255, 255, 255)"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn somet",
+        "size": 32,
+        "weight": "500",
+        "lh": 37.8,
+        "w": 342,
+        "h": 151,
+        "align": "start"
+      },
+      "cards": [
+        {
+          "w": 342,
+          "h": 289,
+          "x": 24
+        },
+        {
+          "w": 342,
+          "h": 289,
+          "x": 24
+        },
+        {
+          "w": 342,
+          "h": 312,
+          "x": 24
+        },
+        {
+          "w": 342,
+          "h": 266,
+          "x": 24
+        }
+      ],
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "w": 278,
+        "h": 25,
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "w": 278,
+        "h": 69,
+        "align": "start"
+      },
+      "routeLine": false
+    },
+    "explore": {
+      "sec": {
+        "h": 1035,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 32,
+        "weight": "600",
+        "lh": 36,
+        "w": 342,
+        "h": 72,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary ad",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "w": 342,
+        "h": 92,
+        "align": "start"
+      },
+      "cardsPerRow": 5
+    },
+    "suite": {
+      "sec": {
+        "h": 1180,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "Explore further.",
+        "size": 32,
+        "weight": "600",
+        "lh": 36,
+        "w": 342,
+        "h": 36,
+        "align": "start"
+      }
+    },
+    "trust": {
+      "h2": {
+        "text": "Your learning stays yours.",
+        "size": 40,
+        "weight": "600",
+        "lh": 40,
+        "w": 302,
+        "h": 80,
+        "align": "start"
+      }
+    },
+    "cta": {
+      "h2": {
+        "text": "Your next step starts here.",
+        "size": 40,
+        "weight": "600",
+        "lh": 40,
+        "w": 342,
+        "h": 80,
+        "align": "center"
+      },
+      "routeLine": true
+    }
+  },
+  "834": {
+    "docH": 9481,
+    "overflow": 0,
+    "problem": {
+      "sec": {
+        "h": 1038,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "eyebrow": {
+        "text": "Why Visionary exists",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "w": 692,
+        "h": 20,
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 56,
+        "weight": "600",
+        "lh": 60.8,
+        "w": 692,
+        "h": 182,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "w": 692,
+        "h": 25,
+        "align": "start"
+      },
+      "card": {
+        "w": 692,
+        "h": 519,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "28px"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 24,
+        "weight": "500",
+        "lh": 29.8,
+        "w": 343,
+        "h": 79,
+        "align": "start"
+      },
+      "dotsTop": 24
+    },
+    "ret": {
+      "sec": {
+        "h": 1041,
+        "bg": "rgb(255, 255, 255)"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn somet",
+        "size": 33.4,
+        "weight": "500",
+        "lh": 39.4,
+        "w": 651,
+        "h": 118,
+        "align": "start"
+      },
+      "cards": [
+        {
+          "w": 385,
+          "h": 292,
+          "x": 24
+        },
+        {
+          "w": 385,
+          "h": 292,
+          "x": 425
+        },
+        {
+          "w": 385,
+          "h": 292,
+          "x": 24
+        },
+        {
+          "w": 385,
+          "h": 292,
+          "x": 425
+        }
+      ],
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 24,
+        "weight": "600",
+        "lh": 28,
+        "w": 321,
+        "h": 28,
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "w": 321,
+        "h": 69,
+        "align": "start"
+      },
+      "routeLine": false
+    },
+    "explore": {
+      "sec": {
+        "h": 1046,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 40,
+        "weight": "600",
+        "lh": 44,
+        "w": 524,
+        "h": 88,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary ad",
+        "size": 21,
+        "weight": "400",
+        "lh": 25,
+        "w": 786,
+        "h": 50,
+        "align": "start"
+      },
+      "cardsPerRow": 5
+    },
+    "suite": {
+      "sec": {
+        "h": 729,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "Explore further.",
+        "size": 40,
+        "weight": "600",
+        "lh": 44,
+        "w": 524,
+        "h": 44,
+        "align": "start"
+      }
+    },
+    "trust": {
+      "h2": {
+        "text": "Your learning stays yours.",
+        "size": 56,
+        "weight": "600",
+        "lh": 56,
+        "w": 612,
+        "h": 112,
+        "align": "start"
+      }
+    },
+    "cta": {
+      "h2": {
+        "text": "Your next step starts here.",
+        "size": 56,
+        "weight": "600",
+        "lh": 56,
+        "w": 786,
+        "h": 56,
+        "align": "center"
+      },
+      "routeLine": true
+    }
+  },
+  "1024": {
+    "docH": 8855,
+    "overflow": 0,
+    "problem": {
+      "sec": {
+        "h": 1107,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "eyebrow": {
+        "text": "Why Visionary exists",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "w": 692,
+        "h": 20,
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 56,
+        "weight": "600",
+        "lh": 60.8,
+        "w": 692,
+        "h": 182,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "w": 692,
+        "h": 25,
+        "align": "start"
+      },
+      "card": {
+        "w": 692,
+        "h": 548,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "28px"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 24,
+        "weight": "500",
+        "lh": 29.8,
+        "w": 343,
+        "h": 79,
+        "align": "start"
+      },
+      "dotsTop": 24
+    },
+    "ret": {
+      "sec": {
+        "h": 1106,
+        "bg": "rgb(255, 255, 255)"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn somet",
+        "size": 41,
+        "weight": "500",
+        "lh": 48.3,
+        "w": 799,
+        "h": 145,
+        "align": "start"
+      },
+      "cards": [
+        {
+          "w": 424,
+          "h": 292,
+          "x": 80
+        },
+        {
+          "w": 424,
+          "h": 292,
+          "x": 520
+        },
+        {
+          "w": 424,
+          "h": 292,
+          "x": 80
+        },
+        {
+          "w": 424,
+          "h": 292,
+          "x": 520
+        }
+      ],
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 24,
+        "weight": "600",
+        "lh": 28,
+        "w": 360,
+        "h": 28,
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "w": 360,
+        "h": 69,
+        "align": "start"
+      },
+      "routeLine": false
+    },
+    "explore": {
+      "sec": {
+        "h": 1103,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 40,
+        "weight": "600",
+        "lh": 44,
+        "w": 524,
+        "h": 88,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary ad",
+        "size": 21,
+        "weight": "400",
+        "lh": 25,
+        "w": 813,
+        "h": 50,
+        "align": "start"
+      },
+      "cardsPerRow": 5
+    },
+    "suite": {
+      "sec": {
+        "h": 770,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "Explore further.",
+        "size": 40,
+        "weight": "600",
+        "lh": 44,
+        "w": 524,
+        "h": 44,
+        "align": "start"
+      }
+    },
+    "trust": {
+      "h2": {
+        "text": "Your learning stays yours.",
+        "size": 56,
+        "weight": "600",
+        "lh": 56,
+        "w": 564,
+        "h": 112,
+        "align": "start"
+      }
+    },
+    "cta": {
+      "h2": {
+        "text": "Your next step starts here.",
+        "size": 56,
+        "weight": "600",
+        "lh": 56,
+        "w": 881,
+        "h": 56,
+        "align": "center"
+      },
+      "routeLine": true
+    }
+  },
+  "1440": {
+    "docH": 9668,
+    "overflow": 0,
+    "problem": {
+      "sec": {
+        "h": 1065,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "eyebrow": {
+        "text": "Why Visionary exists",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "w": 980,
+        "h": 20,
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 64,
+        "weight": "600",
+        "lh": 68,
+        "w": 980,
+        "h": 136,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 24,
+        "weight": "600",
+        "lh": 28,
+        "w": 944,
+        "h": 28,
+        "align": "start"
+      },
+      "card": {
+        "w": 980,
+        "h": 440,
+        "bg": "rgb(255, 255, 255)",
+        "radius": "28px"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 33.1,
+        "weight": "500",
+        "lh": 41.1,
+        "w": 370,
+        "h": 123,
+        "align": "start"
+      },
+      "dotsTop": 24
+    },
+    "ret": {
+      "sec": {
+        "h": 1238,
+        "bg": "rgb(255, 255, 255)"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn somet",
+        "size": 48,
+        "weight": "500",
+        "lh": 56.6,
+        "w": 937,
+        "h": 170,
+        "align": "start"
+      },
+      "cards": [
+        {
+          "w": 545,
+          "h": 289,
+          "x": 168
+        },
+        {
+          "w": 545,
+          "h": 289,
+          "x": 728
+        },
+        {
+          "w": 545,
+          "h": 289,
+          "x": 168
+        },
+        {
+          "w": 545,
+          "h": 289,
+          "x": 728
+        }
+      ],
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 28,
+        "weight": "600",
+        "lh": 32,
+        "w": 465,
+        "h": 32,
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "w": 465,
+        "h": 46,
+        "align": "start"
+      },
+      "routeLine": false
+    },
+    "explore": {
+      "sec": {
+        "h": 1212,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 48,
+        "weight": "600",
+        "lh": 52,
+        "w": 629,
+        "h": 104,
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary ad",
+        "size": 21,
+        "weight": "400",
+        "lh": 25,
+        "w": 813,
+        "h": 50,
+        "align": "start"
+      },
+      "cardsPerRow": 5
+    },
+    "suite": {
+      "sec": {
+        "h": 870,
+        "bg": "rgb(245, 245, 247)"
+      },
+      "h2": {
+        "text": "Explore further.",
+        "size": 48,
+        "weight": "600",
+        "lh": 52,
+        "w": 629,
+        "h": 52,
+        "align": "start"
+      }
+    },
+    "trust": {
+      "h2": {
+        "text": "Your learning stays yours.",
+        "size": 72,
+        "weight": "600",
+        "lh": 72,
+        "w": 557,
+        "h": 144,
+        "align": "start"
+      }
+    },
+    "cta": {
+      "h2": {
+        "text": "Your next step starts here.",
+        "size": 72,
+        "weight": "600",
+        "lh": 72,
+        "w": 1133,
+        "h": 72,
+        "align": "center"
+      },
+      "routeLine": true
+    }
+  }
+}

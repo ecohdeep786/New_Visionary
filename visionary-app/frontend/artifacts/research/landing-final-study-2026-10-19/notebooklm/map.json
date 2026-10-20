@@ -1,0 +1,63 @@
+{
+  "title": "Gemini Notebook",
+  "docH": 900,
+  "headingCount": 1,
+  "ctaCount": 5,
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Understand anything",
+      "y": 250,
+      "fs": "80px",
+      "fw": "500",
+      "color": "rgb(0, 0, 0)"
+    }
+  ],
+  "ctas": [
+    {
+      "text": "Gemini Notebook home",
+      "href": "/",
+      "y": 27,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sign in",
+      "href": "/login?continue=https://notebook.google.com/?from%3Dtrynow",
+      "y": 20,
+      "bg": "rgb(157, 210, 255)",
+      "radius": "9999px",
+      "fs": "15px"
+    },
+    {
+      "text": "Sign in to Gemini Notebook",
+      "href": "/login?continue=https://notebook.google.com/?from%3Dtrynow",
+      "y": 614,
+      "bg": "rgb(157, 210, 255)",
+      "radius": "9999px",
+      "fs": "17px"
+    },
+    {
+      "text": "Google",
+      "href": "https://www.google.com",
+      "y": 857,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Privacy & Terms",
+      "href": "https://policies.google.com/",
+      "y": 856,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "13px"
+    }
+  ],
+  "imgs": 3,
+  "videos": 0,
+  "bodyBg": "rgba(0, 0, 0, 0)",
+  "url": "https://notebooklm.google.com/",
+  "errors": []
+}
