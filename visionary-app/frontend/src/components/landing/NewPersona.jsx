@@ -40,17 +40,21 @@ function useCycleStep(total, ms) {
 /* The shared CTA pair — one source for every hero, so the pills stay
    identical across the universal and persona pages. `align="baseline"`
    right-aligns the pair on the wordmark's baseline (the Vision Pro
-   product-page anatomy); the default centers under the copy. */
+   product-page anatomy); the default centers under the copy. Spacing is
+   measured from Apple: pills are 44px tall with 21px side padding
+   (apple.com/apple-vision-pro hero pair, 2026-10-20), the label carries
+   the 17px button voice, and the landing pair breathes 20px apart with
+   the text link on a full 44px target. */
 const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, secondaryLabel, align = "center" }) {
   const alignment =
     align === "baseline"
       ? "flex flex-wrap items-center justify-center gap-3 lg:justify-end"
-      : "mt-9 flex flex-wrap items-center justify-center gap-3";
+      : "mt-10 flex flex-wrap items-center justify-center gap-3 sm:mt-12 sm:gap-5";
   return (
     <div className={alignment}>
       <Link
         to={ctaTo}
-        className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-5 text-[17px] font-normal tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
+        className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-[21px] text-[17px] font-normal tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
       >
         {ctaLabel}
         <svg
@@ -70,7 +74,7 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
       {secondaryLabel && (
         <Link
           to={secondaryTo}
-          className="inline-flex items-center gap-1 text-[17px] font-normal tracking-[0] leading-[1.2] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+          className="inline-flex min-h-11 items-center gap-1.5 px-2 text-[17px] font-normal tracking-[-0.011em] leading-[1.2] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
         >
           {secondaryLabel}
           <ChevronRight className="h-[18px] w-[18px]" strokeWidth={2.5} />
@@ -218,10 +222,11 @@ export default function NewPersona({
                 {hasAnimatedHeadline ? (
                   /* Apple's stacked hero lines: the statement reads as its own
                      line, the audience line below it — the same masked-line
-                     rhythm as an education-init headline. */
+                     rhythm as an education-init headline, including the
+                     measured 0.05em line padding (2.8px at 56, 7px at 140). */
                   <>
-                    <span className="block text-balance tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)" }}>{animatedHeadlinePrefix}</span>
-                    <span key={animatedIndex} className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
+                    <span className="block text-balance tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{animatedHeadlinePrefix}</span>
+                    <span key={animatedIndex} className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both", paddingBottom: "0.05em" }}>
                       {animatedHeadlineWords[animatedIndex]}.
                     </span>
                   </>
@@ -230,8 +235,8 @@ export default function NewPersona({
                      line, the audience on the next — both in the accent
                      gradient, balanced as one composed headline. */
                   <>
-                    <span className="block text-balance accent-gradient tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)" }}>{words[0]}</span>
-                    <span className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
+                    <span className="block text-balance accent-gradient tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{words[0]}</span>
+                    <span className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both", paddingBottom: "0.05em" }}>
                       {staticHeadline}
                     </span>
                   </>
@@ -258,7 +263,7 @@ export default function NewPersona({
               focus previews that line and holds it; the click opens the
               persona page. Auto-advance pauses under reduced motion. */}
           {audienceLinks?.length ? (
-            <nav aria-label="Audiences" className="mt-6 flex flex-wrap items-center justify-center gap-x-1 gap-y-0.5">
+            <nav aria-label="Audiences" className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
               {audienceLinks.map((audience, i) => (
                 <Link
                   key={audience.to}
@@ -273,7 +278,7 @@ export default function NewPersona({
                     audienceStep.setIndex(i);
                   }}
                   onBlur={() => audienceStep.setPaused(false)}
-                  className={`inline-flex h-9 items-center whitespace-nowrap rounded-full px-3 text-[12px] tracking-[-0.010em] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+                  className={`inline-flex h-11 items-center whitespace-nowrap rounded-full px-4 text-[12px] tracking-[-0.010em] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
                     i === audienceStep.index ? "font-medium text-[#121317]" : "font-normal text-[#6e6e73] hover:text-[#121317]"
                   }`}
                 >
