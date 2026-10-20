@@ -207,25 +207,27 @@
       "sourceId": "MAIN-PRODUCTION-01",
       "jiraKey": "KAN-162",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-162",
-      "status": "Testing",
+      "status": "Done",
       "scope": "Verified main-only production hosting and CI/CD in visionary-research; full product/content/provider gates remain separate",
       "branch": "codex/firebase-visionary-research",
       "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/firebase-visionary-research",
       "review": {
-        "state": "approved-for-checked-integration",
+        "state": "approved",
         "implementer": "Codex",
         "reviewer": "/root/kan162_review",
         "approvedCommit": "4de8a33cb223a746c9738dc24554dd8ab812556e",
         "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md",
         "hostedScopeAccepted": true,
-        "hostedEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md"
+        "hostedEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md",
+        "productionAcceptanceReportCommit": "86718c1f7b9420b38e00bb20bd9e41cea254435b"
       },
       "integration": {
         "devCommit": "ab201364d4a0dd3ed2314851fd94164b0a2887f3",
         "mainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
         "remotePublished": true,
-        "helperFollowupPendingIntegration": false
+        "helperFollowupPendingIntegration": false,
+        "evidenceDevCommit": "1caf66fbbc039f8d1d054e2f42ce7d88852fa356"
       },
       "checks": {
         "frontendTests": 532,
@@ -256,9 +258,16 @@
         "rollbackRestorationVerified": true,
         "runUrl": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39405370084"
       },
-      "jiraCommentId": "10050",
-      "jiraReturnedStatus": "Testing",
-      "linkedProductGatesRemainOpen": true
+      "jiraCommentId": "10053",
+      "jiraReturnedStatus": "Done",
+      "linkedProductGatesRemainOpen": true,
+      "jiraTransitionId": "51",
+      "verifiedAt": "2026-10-20T10:18:00Z",
+      "cleanup": {
+        "state": "preservation-and-retirement-in-progress",
+        "localEvidenceRoot": "C:/Users/Administrator/New_Visionary/visionary-app/artifacts/qa/kan162-closeout-20261020",
+        "pushedSourceAndReviewRefsRetained": true
+      }
     }
   ]
 }
