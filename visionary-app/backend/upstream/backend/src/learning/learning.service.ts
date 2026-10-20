@@ -29,8 +29,9 @@ export class LearningService {
       throw new ServiceUnavailableException('Learning progress could not be confirmed. Your saved work is kept; retry when connected.');
     }
   }
-  private replay(data: any, uid: string, kind: string, fingerprint: string) {
-    if (!data || data.uid !== uid || data.kind !== kind || data.fingerprint !== fingerprint) throw new ConflictException('This learning command already has different content. Load the saved activity and retry.');
+  private replay(data: any, uid: string, kind: string, fingerprint: string, sessionId?: string) {
+    if (!data || data.uid !== uid || data.kind !== kind || data.fingerprint !== fingerprint ||
+      data.receipt?.uid !== uid || data.receipt?.sessionId !== data.sessionId || sessionId !== undefined && data.sessionId !== sessionId) throw new ConflictException('This learning command already has different content. Load the saved activity and retry.');
     return data.receipt;
   }
   private projection(data: any, extra: Record<string, unknown> = {}) {
@@ -109,12 +110,12 @@ export class LearningService {
   async present(uid: string, sessionId: string, input: unknown) {
     const command = presentTeachingCheckCommand(input);
     return this.stored(async () => {
-      const db = this.accounts.getDatabase(), fingerprint = digest(JSON.stringify(command));
+      const db = this.accounts.getDatabase(), fingerprint = digest(JSON.stringify(['present', sessionId, command]));
       const receiptRef = this.commands(db, uid).doc(command.commandId);
       const sessionRef = this.sessions(db, uid).doc(sessionId);
       return db.runTransaction(async tx => {
         const previous = await tx.get(receiptRef);
-        if (previous.exists) return this.replay(previous.data(), uid, 'present', fingerprint);
+        if (previous.exists) return this.replay(previous.data(), uid, 'present', fingerprint, sessionId);
         const stored = await tx.get(sessionRef);
         if (!stored.exists) throw new NotFoundException('This learning session is unavailable.');
         const data = stored.data(), loop = this.active(data, uid);
@@ -137,12 +138,12 @@ export class LearningService {
   async assess(uid: string, sessionId: string, input: unknown) {
     const command = assessTeachingCheckCommand(input);
     return this.stored(async () => {
-      const db = this.accounts.getDatabase(), fingerprint = digest(JSON.stringify(command));
+      const db = this.accounts.getDatabase(), fingerprint = digest(JSON.stringify(['assess', sessionId, command]));
       const receiptRef = this.commands(db, uid).doc(command.commandId);
       const sessionRef = this.sessions(db, uid).doc(sessionId);
       return db.runTransaction(async tx => {
         const previous = await tx.get(receiptRef);
-        if (previous.exists) return this.replay(previous.data(), uid, 'assess', fingerprint);
+        if (previous.exists) return this.replay(previous.data(), uid, 'assess', fingerprint, sessionId);
         const stored = await tx.get(sessionRef);
         if (!stored.exists) throw new NotFoundException('This learning session is unavailable.');
         const data = stored.data(), loop = this.active(data, uid);
@@ -175,12 +176,12 @@ export class LearningService {
   async cancel(uid: string, sessionId: string, input: unknown) {
     const command = cancelLearningSessionCommand(input);
     return this.stored(async () => {
-      const db = this.accounts.getDatabase(), fingerprint = digest(JSON.stringify(command));
+      const db = this.accounts.getDatabase(), fingerprint = digest(JSON.stringify(['cancel', sessionId, command]));
       const receiptRef = this.commands(db, uid).doc(command.commandId);
       const sessionRef = this.sessions(db, uid).doc(sessionId);
       return db.runTransaction(async tx => {
         const previous = await tx.get(receiptRef);
-        if (previous.exists) return this.replay(previous.data(), uid, 'cancel', fingerprint);
+        if (previous.exists) return this.replay(previous.data(), uid, 'cancel', fingerprint, sessionId);
         const stored = await tx.get(sessionRef);
         if (!stored.exists) throw new NotFoundException('This learning session is unavailable.');
         const data = stored.data();

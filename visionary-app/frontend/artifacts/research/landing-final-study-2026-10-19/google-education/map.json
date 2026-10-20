@@ -1,0 +1,1484 @@
+{
+  "title": "Google for Education - Online Resources for Teachers & Students",
+  "docH": 9589,
+  "headingCount": 45,
+  "ctaCount": 142,
+  "headings": [
+    {
+      "tag": "h2",
+      "text": "Workspace for Education",
+      "y": 89,
+      "fs": "18px",
+      "fw": "500",
+      "color": "rgb(60, 64, 67)"
+    },
+    {
+      "tag": "h3",
+      "text": "Product",
+      "y": 166,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Editions",
+      "y": 166,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Add-ons",
+      "y": 166,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h2",
+      "text": "Chromebooks",
+      "y": 89,
+      "fs": "18px",
+      "fw": "500",
+      "color": "rgb(60, 64, 67)"
+    },
+    {
+      "tag": "h3",
+      "text": "Get started",
+      "y": 89,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Training",
+      "y": 89,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Connect",
+      "y": 89,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Institution type",
+      "y": 89,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h1",
+      "text": "Elevating Educators. Empowering Learners.",
+      "y": 240,
+      "fs": "80px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h2",
+      "text": "Education for today and beyond",
+      "y": 185,
+      "fs": "64px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Collaborate with Google Workspace for Education",
+      "y": 449,
+      "fs": "36px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Learn from anywhere with Chromebooks",
+      "y": 449,
+      "fs": "36px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Create engaging learning experiences with Classroom",
+      "y": 981,
+      "fs": "36px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Transform education with Gemini",
+      "y": 1161,
+      "fs": "36px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h2",
+      "text": "In a secure and flexible suite",
+      "y": 5011,
+      "fs": "64px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Transform education using Google Workspace with Gemini",
+      "y": 5975,
+      "fs": "20px",
+      "fw": "400",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h2",
+      "text": "That meets your unique needs",
+      "y": 6217,
+      "fs": "48px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h2",
+      "text": "K-12",
+      "y": 6309,
+      "fs": "18px",
+      "fw": "300",
+      "color": "rgb(95, 99, 104)"
+    },
+    {
+      "tag": "h2",
+      "text": "Higher Education",
+      "y": 6309,
+      "fs": "18px",
+      "fw": "300",
+      "color": "rgb(95, 99, 104)"
+    },
+    {
+      "tag": "h2",
+      "text": "Education Leaders",
+      "y": 6309,
+      "fs": "18px",
+      "fw": "300",
+      "color": "rgb(95, 99, 104)"
+    },
+    {
+      "tag": "h2",
+      "text": "IT Admins",
+      "y": 6309,
+      "fs": "18px",
+      "fw": "300",
+      "color": "rgb(95, 99, 104)"
+    },
+    {
+      "tag": "h2",
+      "text": "Educators",
+      "y": 6309,
+      "fs": "18px",
+      "fw": "300",
+      "color": "rgb(95, 99, 104)"
+    },
+    {
+      "tag": "h2",
+      "text": "Everything you need to empower learning, now in one place",
+      "y": 6566,
+      "fs": "28px",
+      "fw": "400",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Start today with Google for Education",
+      "y": 7086,
+      "fs": "36px",
+      "fw": "600",
+      "color": "rgb(255, 255, 255)"
+    },
+    {
+      "tag": "h2",
+      "text": "Have questions? We’ve got answers",
+      "y": 7418,
+      "fs": "48px",
+      "fw": "600",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "What are the resources to get started with Google Workspace for education?",
+      "y": 7572,
+      "fs": "28px",
+      "fw": "400",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "What are the Google tools for education?",
+      "y": 7685,
+      "fs": "28px",
+      "fw": "400",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Help me choose what’s best for my school?",
+      "y": 7798,
+      "fs": "28px",
+      "fw": "400",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "What is the difference between free of charge and paid editions of Google Workspace for Education?",
+      "y": 7897,
+      "fs": "28px",
+      "fw": "400",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "How do Google Workspace and Chromebooks address data privacy and security concerns, especially for student data?",
+      "y": 8018,
+      "fs": "28px",
+      "fw": "400",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h2",
+      "text": "Sign up for updates, insights, resources and more",
+      "y": 8195,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(25, 103, 210)"
+    },
+    {
+      "tag": "h3",
+      "text": "Product",
+      "y": 8400,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Editions",
+      "y": 8716,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Add-ons",
+      "y": 9002,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Chromebooks",
+      "y": 9150,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Get started",
+      "y": 8400,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Training",
+      "y": 8674,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Support",
+      "y": 9032,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Connect",
+      "y": 9222,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Institution type",
+      "y": 8400,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "AI",
+      "y": 8590,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Partner program",
+      "y": 8822,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "Our values",
+      "y": 8400,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    },
+    {
+      "tag": "h3",
+      "text": "More from Google",
+      "y": 8674,
+      "fs": "16px",
+      "fw": "500",
+      "color": "rgb(32, 33, 36)"
+    }
+  ],
+  "ctas": [
+    {
+      "text": "Jump to content",
+      "href": "#gfe-main-content",
+      "y": 8,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "4px",
+      "fs": "18px"
+    },
+    {
+      "text": "for Education",
+      "href": "/intl/ALL_in/",
+      "y": 18,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "14px"
+    },
+    {
+      "text": "Our values",
+      "y": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Our Commitment",
+      "href": "/intl/ALL_in/our-values/our-commitment/",
+      "y": 81,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Privacy and Security",
+      "href": "/intl/ALL_in/our-values/privacy-security/",
+      "y": 129,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Accessibility",
+      "href": "/intl/ALL_in/our-values/accessibility/",
+      "y": 177,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sustainability",
+      "href": "/intl/ALL_in/our-values/education-sustainability/",
+      "y": 225,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Product",
+      "y": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Classroom",
+      "href": "/intl/ALL_in/workspace-for-education/products/classroom/",
+      "y": 202,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini for Education",
+      "href": "/intl/ALL_in/ai/gemini-for-education/?pt_ref=products",
+      "y": 250,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini Notebook",
+      "href": "/intl/ALL_in/ai-gemini-notebook/?pt_ref=products",
+      "y": 298,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Meet",
+      "href": "/intl/ALL_in/workspace-for-education/products/meet/",
+      "y": 346,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Workspace LTI",
+      "href": "/intl/ALL_in/workspace-lti/",
+      "y": 394,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "About editions",
+      "href": "/intl/ALL_in/workspace-for-education/editions/overview/",
+      "y": 202,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Education Fundamentals",
+      "href": "/intl/ALL_in/workspace-for-education/editions/education-fundamentals/",
+      "y": 250,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Education Plus",
+      "href": "/intl/ALL_in/workspace-for-education/editions/education-plus/",
+      "y": 322,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Compare editions",
+      "href": "/intl/ALL_in/workspace-for-education/editions/compare-editions/?pt_ref=products",
+      "y": 370,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google AI Pro for Education",
+      "href": "/intl/ALL_in/workspace-for-education/add-ons/google-workspace-with-gemini/?pt_ref=products",
+      "y": 202,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Teaching and Learning",
+      "href": "/intl/ALL_in/workspace-for-education/add-ons/teaching-and-learning/",
+      "y": 274,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "About Chromebooks",
+      "href": "/intl/ALL_in/chromebooks/overview/",
+      "y": 174,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "ChromeOS Flex",
+      "href": "/intl/ALL_in/chromebooks/chrome-os-flex/",
+      "y": 222,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Explore Devices",
+      "href": "/intl/ALL_in/chromebooks/explore-chromebook-devices/",
+      "y": 270,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Login to Classroom",
+      "href": "https://accounts.google.com/ServiceLogin?continue=https%3A%2F%2Fclassroom.google.com&passive=true",
+      "y": 499,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Product guides",
+      "href": "/intl/ALL_in/for-educators/product-guides/",
+      "y": 499,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Product demos",
+      "href": "/intl/ALL_in/resources/support/product-demos/?pt_ref=products",
+      "y": 499,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "App Hub",
+      "href": "/intl/ALL_in/resources/get-started/apps/?pt_ref=products",
+      "y": 499,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "AI",
+      "y": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Our approach",
+      "href": "/intl/ALL_in/ai/education/",
+      "y": 81,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google AI Pro for Education",
+      "href": "/intl/ALL_in/workspace-for-education/add-ons/google-workspace-with-gemini/?pt_ref=ai",
+      "y": 129,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini for Education",
+      "href": "/intl/ALL_in/ai/gemini-for-education/?pt_ref=ai",
+      "y": 201,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini Notebook",
+      "href": "/intl/ALL_in/ai-gemini-notebook/?pt_ref=ai",
+      "y": 249,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Resources",
+      "y": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Resources by role",
+      "href": "/intl/ALL_in/resources/get-started/find-educational-resources/",
+      "y": 125,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Paid Workspace",
+      "href": "/intl/ALL_in/resources/get-started/paid-workspace-admin-support/",
+      "y": 173,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Product help",
+      "href": "/intl/ALL_in/resources/get-started/get-product-help/",
+      "y": 221,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Product demos",
+      "href": "/intl/ALL_in/resources/support/product-demos/?pt_ref=resources",
+      "y": 269,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "App Hub",
+      "href": "/intl/ALL_in/resources/get-started/apps/?pt_ref=resources",
+      "y": 317,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Learning Center",
+      "href": "/intl/ALL_in/learning-center/",
+      "y": 125,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google AI Educator Series",
+      "href": "/intl/ALL_in/learning-center/google-ai-educator-series/",
+      "y": 173,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Certifications",
+      "href": "/intl/ALL_in/learning-center/certifications/",
+      "y": 245,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "K-12 AI Use Cases",
+      "href": "/intl/ALL_in/resources/ai-for-k-12-educators/",
+      "y": 293,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Higher Ed AI Use Cases",
+      "href": "/intl/ALL_in/resources/higher-edu-ai-use-cases/",
+      "y": 341,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Communities",
+      "href": "/intl/ALL_in/for-educators/communities/",
+      "y": 125,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Find a partner",
+      "href": "/intl/ALL_in/resources/get-started/find-a-partner/",
+      "y": 173,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "K-12",
+      "href": "/intl/ALL_in/resources/institution-type/k-12-solutions/",
+      "y": 125,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Higher Ed",
+      "href": "/intl/ALL_in/resources/institution-type/higher-ed-solutions/",
+      "y": 173,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "8px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sign in",
+      "y": 20,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Classroom",
+      "href": "https://accounts.google.com/ServiceLogin?continue=https%3A%2F%2Fclassroom.google.com&passive=true",
+      "y": 82,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Workspace admin",
+      "href": "https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fadmin.google.com%2F&authuser=0&passive=3600&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin",
+      "y": 125,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Cloud",
+      "href": "https://accounts.google.com/signin/v2/challenge/sk?continue=https%3A%2F%2Fconsole.cloud.google.com%2F&service=cloudconsole&osid=1&rart=ANgoxcfhp82iy7iuH4ivmlEzbU9Zl8t2yZBoXaOlGiYwsWuyRaVyvzInyA-YEHk7-q5MviTCedqcqPMWRJrXJypBMBtFtWTRyNzA144gw4Tg-MTnkS0PPtw&TL=AM3QAYYu0GFLg0OSHdEhrb638Uxft-K7mbVC7YK6H7J4INhGhmmTyraiz9Q_-Z5a&flowName=GlifWebSignIn&cid=1&flowEntry=ServiceLogin",
+      "y": 168,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Contact sales",
+      "href": "/intl/ALL_in/contact/",
+      "y": 8,
+      "bg": "rgb(26, 115, 232)",
+      "radius": "200px",
+      "fs": "16px"
+    },
+    {
+      "text": "Earn your first badge",
+      "href": "https://in.educertifications.google/google-ai-educator-series/badges",
+      "y": 82,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "16px"
+    },
+    {
+      "text": "Close",
+      "y": 80,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "18px"
+    },
+    {
+      "text": "Learn about Google for Education",
+      "href": "#intro-container",
+      "y": 538,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Learn about Google for Education",
+      "href": "#intro-container",
+      "y": 586,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "18px"
+    },
+    {
+      "text": "Explore Google Workspace for Education",
+      "href": "/intl/ALL_in/workspace-for-education/editions/overview/",
+      "y": 1275,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "200px",
+      "fs": "16px"
+    },
+    {
+      "text": "Explore Chromebooks",
+      "href": "/intl/ALL_in/chromebooks/overview/",
+      "y": 1591,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "200px",
+      "fs": "16px"
+    },
+    {
+      "text": "Explore Classroom",
+      "href": "/intl/ALL_in/workspace-for-education/products/classroom/",
+      "y": 2073,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "200px",
+      "fs": "16px"
+    },
+    {
+      "text": "Explore Gemini",
+      "href": "/intl/ALL_in/workspace-for-education/add-ons/google-workspace-with-gemini/",
+      "y": 2001,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "200px",
+      "fs": "16px"
+    },
+    {
+      "text": "Explore Google Workspace for Education",
+      "href": "/intl/ALL_in/workspace-for-education/editions/overview/",
+      "y": 5199,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "200px",
+      "fs": "16px"
+    },
+    {
+      "text": "K-12",
+      "href": "#tab-k-12",
+      "y": 6309,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "Higher Education",
+      "href": "#tab-higher-education",
+      "y": 6309,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "Education Leaders",
+      "href": "#tab-education-leaders",
+      "y": 6309,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "IT Admins",
+      "href": "#tab-it-admins",
+      "y": 6309,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "Educators",
+      "href": "#tab-educators",
+      "y": 6309,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "Explore solutions for K-12",
+      "href": "/intl/ALL_in/resources/institution-type/k-12-solutions/",
+      "y": 6764,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Contact sales",
+      "href": "/intl/ALL_in/contact/",
+      "y": 7190,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "200px",
+      "fs": "16px"
+    },
+    {
+      "text": "What are the resources to get started with Google Workspace for educat",
+      "y": 7534,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "18px"
+    },
+    {
+      "text": "What are the Google tools for education?",
+      "y": 7647,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "18px"
+    },
+    {
+      "text": "Help me choose what’s best for my school?",
+      "y": 7760,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "18px"
+    },
+    {
+      "text": "Visit the Compare Editions pages for more details on finding the Editi",
+      "href": "/intl/ALL_in/workspace-for-education/editions/compare-editions/",
+      "y": 7963,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "18px"
+    },
+    {
+      "text": "What is the difference between free of charge and paid editions of Goo",
+      "y": 7873,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "18px"
+    },
+    {
+      "text": "Visit the Compare Editions pages",
+      "href": "/intl/ALL_in/workspace-for-education/editions/compare-editions/",
+      "y": 8112,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "18px"
+    },
+    {
+      "text": "How do Google Workspace and Chromebooks address data privacy and secur",
+      "y": 7994,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "18px"
+    },
+    {
+      "text": "Sign up for updates, insights, resources and more",
+      "href": "/intl/ALL_in/communications/",
+      "y": 8195,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "18px"
+    },
+    {
+      "text": "Facebook",
+      "href": "https://www.facebook.com/GoogleforEducation/",
+      "y": 8291,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "50%",
+      "fs": "16px"
+    },
+    {
+      "text": "Blog",
+      "href": "https://www.blog.google/topics/education/",
+      "y": 8291,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "50%",
+      "fs": "16px"
+    },
+    {
+      "text": "X (formerly known as Twitter)",
+      "href": "https://twitter.com/googleforedu/",
+      "y": 8291,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "50%",
+      "fs": "16px"
+    },
+    {
+      "text": "YouTube",
+      "href": "https://www.youtube.com/user/eduatgoogle/",
+      "y": 8291,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "50%",
+      "fs": "16px"
+    },
+    {
+      "text": "Classroom",
+      "href": "/intl/ALL_in/workspace-for-education/products/classroom/",
+      "y": 8445,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini for Education",
+      "href": "/intl/ALL_in/ai/gemini-for-education/",
+      "y": 8487,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini Notebook",
+      "href": "/intl/ALL_in/ai-gemini-notebook/?pt_ref=products",
+      "y": 8529,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Meet",
+      "href": "/intl/ALL_in/workspace-for-education/products/meet/",
+      "y": 8571,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Workspace LTI",
+      "href": "/intl/ALL_in/workspace-lti/",
+      "y": 8613,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Assignments",
+      "href": "/intl/ALL_in/workspace-for-education/products/assignments/",
+      "y": 8655,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "About editions",
+      "href": "/intl/ALL_in/workspace-for-education/editions/overview/",
+      "y": 8761,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Education Fundamentals",
+      "href": "/intl/ALL_in/workspace-for-education/editions/education-fundamentals/",
+      "y": 8803,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Education Plus",
+      "href": "/intl/ALL_in/workspace-for-education/editions/education-plus/",
+      "y": 8845,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Compare editions",
+      "href": "/intl/ALL_in/workspace-for-education/editions/compare-editions/",
+      "y": 8887,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sign up for Education Fundamentals free trial",
+      "href": "https://workspace.google.com/signup/edu/welcome?hl=en",
+      "y": 8928,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google AI Pro for Education",
+      "href": "/intl/ALL_in/workspace-for-education/add-ons/google-workspace-with-gemini/",
+      "y": 9048,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Teaching and Learning",
+      "href": "/intl/ALL_in/workspace-for-education/add-ons/teaching-and-learning/",
+      "y": 9090,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "About Chromebooks",
+      "href": "/intl/ALL_in/chromebooks/overview/",
+      "y": 9196,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "ChromeOS Flex",
+      "href": "/intl/ALL_in/chromebooks/chrome-os-flex/",
+      "y": 9238,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Explore Devices",
+      "href": "/intl/ALL_in/chromebooks/explore-chromebook-devices/",
+      "y": 9280,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Repairability",
+      "href": "/intl/ALL_in/chromebooks/chromebook-repairability/",
+      "y": 9322,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Resources by role",
+      "href": "/intl/ALL_in/resources/get-started/find-educational-resources/",
+      "y": 8445,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Paid Workspace",
+      "href": "/intl/ALL_in/resources/get-started/paid-workspace-admin-support/",
+      "y": 8487,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Product help",
+      "href": "/intl/ALL_in/resources/get-started/get-product-help/",
+      "y": 8529,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Product demos",
+      "href": "/intl/ALL_in/resources/support/product-demos/",
+      "y": 8571,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "App Hub",
+      "href": "/intl/ALL_in/resources/get-started/apps/",
+      "y": 8613,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Learning Center",
+      "href": "/intl/ALL_in/learning-center/",
+      "y": 8719,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google AI Educator Series",
+      "href": "/intl/ALL_in/learning-center/google-ai-educator-series/",
+      "y": 8761,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Course Catalog",
+      "href": "/intl/ALL_in/learning-center/course-catalog/",
+      "y": 8803,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Certifications",
+      "href": "/intl/ALL_in/learning-center/certifications/",
+      "y": 8845,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "K-12 AI Use Cases",
+      "href": "/intl/ALL_in/resources/ai-for-k-12-educators/",
+      "y": 8887,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Higher Ed AI Use Cases",
+      "href": "/intl/ALL_in/resources/higher-edu-ai-use-cases/",
+      "y": 8929,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "FAQ",
+      "href": "/intl/ALL_in/learning-center/frequently-asked-questions/",
+      "y": 8971,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Contact sales",
+      "href": "/intl/ALL_in/contact/",
+      "y": 9077,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Customer stories",
+      "href": "/intl/ALL_in/resources/customer-stories/",
+      "y": 9119,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Research",
+      "href": "/intl/ALL_in/research/",
+      "y": 9161,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Reference Program",
+      "href": "/intl/ALL_in/resources/reference-program/",
+      "y": 9267,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Communities",
+      "href": "/intl/ALL_in/for-educators/communities/",
+      "y": 9309,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "News & events",
+      "href": "/intl/ALL_in/news-events/",
+      "y": 9351,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sign up for updates",
+      "href": "/intl/ALL_in/communications/",
+      "y": 9393,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "For K12",
+      "href": "/intl/ALL_in/resources/institution-type/k-12-solutions/",
+      "y": 8445,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Higher Ed",
+      "href": "/intl/ALL_in/resources/institution-type/higher-ed-solutions/",
+      "y": 8487,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Distance learning",
+      "href": "/intl/ALL_in/resources/institution-type/distance-learning/",
+      "y": 8529,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Our approach",
+      "href": "/intl/ALL_in/ai/education/",
+      "y": 8635,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google AI Pro for Education",
+      "href": "/intl/ALL_in/workspace-for-education/add-ons/google-workspace-with-gemini/",
+      "y": 8677,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini for Education",
+      "href": "/intl/ALL_in/ai/gemini-for-education/",
+      "y": 8719,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Gemini Notebook",
+      "href": "/intl/ALL_in/ai-gemini-notebook/?pt_ref=ai",
+      "y": 8761,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Find a partner",
+      "href": "/intl/ALL_in/resources/get-started/find-a-partner/",
+      "y": 8867,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sales partner",
+      "href": "https://cloud.google.com/find-a-partner/?products=Google+for+Education&hl=en",
+      "y": 8909,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Professional development partners",
+      "href": "https://services.google.com/fh/files/misc/edu_directory_pd_partner_list.pdf",
+      "y": 8951,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Our commitment",
+      "href": "/intl/ALL_in/our-values/our-commitment/",
+      "y": 8445,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Privacy and Security",
+      "href": "/intl/ALL_in/our-values/privacy-security/",
+      "y": 8487,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Accessibility",
+      "href": "/intl/ALL_in/our-values/accessibility/",
+      "y": 8529,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sustainability",
+      "href": "/intl/ALL_in/our-values/education-sustainability/",
+      "y": 8571,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Future of Education",
+      "href": "/intl/ALL_in/future-of-education/",
+      "y": 8613,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Learning.Google",
+      "href": "https://learning.google/",
+      "y": 8719,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Code with Google",
+      "href": "https://grow.google/educators/",
+      "y": 8761,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Grow with Google",
+      "href": "https://grow.google/",
+      "y": 8803,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Education blog",
+      "href": "https://www.blog.google/outreach-initiatives/education/",
+      "y": 8845,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Workspace",
+      "href": "http://admin.google.com/",
+      "y": 8887,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Cloud",
+      "href": "https://cloud.google.com/?hl=en",
+      "y": 8929,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Apply for Google Cloud credits",
+      "href": "https://cloud.google.com/edu/?hl=en",
+      "y": 8971,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "About Google",
+      "href": "https://about.google/",
+      "y": 9528,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Google Products",
+      "href": "https://www.google.com/about/products/",
+      "y": 9528,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Privacy",
+      "href": "https://policies.google.com/privacy?hl=en",
+      "y": 9528,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    }
+  ],
+  "imgs": 44,
+  "videos": 13,
+  "bodyBg": "rgb(255, 255, 255)",
+  "url": "https://edu.google.com/",
+  "errors": []
+}

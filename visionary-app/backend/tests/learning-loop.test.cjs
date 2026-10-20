@@ -265,3 +265,28 @@ test('learning HTTP enforces session, CSRF, expected account and bounds, and nev
     const failure = await post('', startCommand()); assert.equal(failure.status, 503); assert.doesNotMatch(await failure.text(), /Private database detail/);
   } finally { await app.close(); }
 });
+
+
+test('present, assess and cancel command retries stay bound to their original route session with no cross-session writes', async () => {
+  for (const kind of ['present', 'assess', 'cancel']) {
+    const { f, service } = memory();
+    let a = await service.start('owner', startCommand()), b = await service.start('owner', startCommand());
+    if (kind === 'assess') {
+      a = await service.present('owner', a.sessionId, presented(a));
+      b = await service.present('owner', b.sessionId, presented(b));
+    }
+    const body = kind === 'present' ? presented(a) : kind === 'assess' ? answered(a) : cancelled(a);
+    const original = await service[kind]('owner', a.sessionId, body);
+    assert.deepEqual(await service[kind]('owner', a.sessionId, body), original);
+    const before = JSON.stringify([...f.rows]);
+    await assert.rejects(service[kind]('owner', b.sessionId, body), e => e.getStatus() === 409);
+    assert.equal(JSON.stringify([...f.rows]), before);
+    assert.deepEqual(await service.get('owner', b.sessionId), b);
+    const key = `visionary_accounts/owner/learningCommands/${body.commandId}`;
+    const saved = f.rows.get(key);
+    f.rows.set(key, { ...saved, sessionId: b.sessionId });
+    const corrupted = JSON.stringify([...f.rows]);
+    await assert.rejects(service[kind]('owner', a.sessionId, body), e => e.getStatus() === 409);
+    assert.equal(JSON.stringify([...f.rows]), corrupted);
+  }
+});

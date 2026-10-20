@@ -14,6 +14,29 @@ function useCycle(total, ms) {
   return index;
 }
 
+/* The audience line's cycle, with a hold — the landing's audience rail
+   previews a persona on hover/focus (setIndex) and holds the line there
+   (setPaused) until the pointer or keyboard focus leaves. Under
+   prefers-reduced-motion the auto-advance never starts; the rail still
+   lets the reader choose a line. */
+function useCycleStep(total, ms) {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
+    try {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch {
+      return false;
+    }
+  });
+  useEffect(() => {
+    if (!ms || ms <= 0 || total <= 1 || paused) return undefined;
+    const id = setInterval(() => setIndex((i) => (i + 1) % total), ms);
+    return () => clearInterval(id);
+  }, [total, ms, paused]);
+  return { index, setIndex, setPaused };
+}
+
 /* The shared CTA pair — one source for every hero, so the pills stay
    identical across the universal and persona pages. `align="baseline"`
    right-aligns the pair on the wordmark's baseline (the Vision Pro
@@ -141,6 +164,10 @@ export default function NewPersona({
   /* Panorama-cast mode: the five alpha cutouts composed as one continuous
      family stage on the landing page. */
   cast,
+  /* Landing-only audience rail under the hero actions — one door per
+     persona (label + route), in the cycling line's order. Absent on every
+     persona page, so those heroes render exactly as before. */
+  audienceLinks,
   /* The canonical display minimum is 48px; the universal lead fragment is
      longer than any persona lead ("One Intelligence."), so the landing drops
      the floor to keep 390px screens on one line. */
@@ -150,7 +177,13 @@ export default function NewPersona({
      fixed product statement so the family lineup carries the variation. */
   const index = useCycle(words.length, wordMs);
   const hasAnimatedHeadline = Boolean(animatedHeadlinePrefix && animatedHeadlineWords?.length);
-  const animatedIndex = useCycle(animatedHeadlineWords?.length || 0, hasAnimatedHeadline ? wordMs : 0);
+  /* The audience line is landing-only (cast). Its cycle is interruptible —
+     the audience rail previews and holds a persona — while non-cast heroes
+     keep the original auto-cycle untouched (one `useCycle` with the exact
+     original arguments; the step hook stays inert there). */
+  const cycleIndex = useCycle(cast ? 0 : animatedHeadlineWords?.length || 0, cast ? 0 : hasAnimatedHeadline ? wordMs : 0);
+  const audienceStep = useCycleStep(cast && hasAnimatedHeadline ? animatedHeadlineWords.length : 0, cast ? wordMs : 0);
+  const animatedIndex = cast ? audienceStep.index : cycleIndex;
   /* Canonical display scale — Apple product-first rhythm, with
      the measured apple.com hero tracking (80px tier: -0.015em / lh 1.05) */
   const displaySize = `clamp(${minDisplay}px, 5.55vw, 80px)`;
@@ -218,6 +251,38 @@ export default function NewPersona({
               the same shared pills the persona heroes wear, so one button
               system carries every hero. */}
           <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          {/* the audience rail — Apple's education local-nav row (measured
+              live 12px/400 quiet links; K–12 · Higher Education · College
+              Students · Success Stories), carried into the hero at our
+              chrome tier: every persona gets a door on the first screen
+              instead of waiting for its turn in the cycling line. Hover or
+              focus previews that line and holds it; the click opens the
+              persona page. Auto-advance pauses under reduced motion. */}
+          {audienceLinks?.length ? (
+            <nav aria-label="Audiences" className="mt-6 flex flex-wrap items-center justify-center gap-x-1 gap-y-0.5">
+              {audienceLinks.map((audience, i) => (
+                <Link
+                  key={audience.to}
+                  to={audience.to}
+                  onMouseEnter={() => {
+                    audienceStep.setPaused(true);
+                    audienceStep.setIndex(i);
+                  }}
+                  onMouseLeave={() => audienceStep.setPaused(false)}
+                  onFocus={() => {
+                    audienceStep.setPaused(true);
+                    audienceStep.setIndex(i);
+                  }}
+                  onBlur={() => audienceStep.setPaused(false)}
+                  className={`inline-flex h-9 items-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0.24px] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+                    i === audienceStep.index ? "font-medium text-[#121317]" : "font-normal text-[#6e6e73] hover:text-[#121317]"
+                  }`}
+                >
+                  {audience.label}
+                </Link>
+              ))}
+            </nav>
+          ) : null}
         </div>
 
         {/* the family's floor reserve, in flow — the copy's auto margins

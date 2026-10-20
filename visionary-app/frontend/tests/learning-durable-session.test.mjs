@@ -219,3 +219,23 @@ test('an unconfigured adapter keeps the verified local flow and sends no server 
   assert.equal(graded.answer.correct, true); assert.match(graded.answer.id, /:check:0:durable:check$/);
   assert.equal(graded.checkPassed, true);
 });
+
+
+for (const [field, mutate] of [
+  ['session', x => ({ ...x, sessionId: crypto.randomUUID() })],
+  ['workspace', x => ({ ...x, workspaceId: 'other-workspace' })],
+  ['command', x => ({ ...x, receipt: { ...x.receipt, id: crypto.randomUUID() } })],
+]) test(`a mismatched ${field} assessment keeps the draft and cannot advance local learning evidence`, async () => {
+  const server = fakeServer(), assess = server.assess.bind(server);
+  server.assess = async (id, command) => mutate(await assess(id, command));
+  pipeline.configureLearningSessionAdapter(server);
+  const { request, unit } = await sourcedActivity();
+  await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+  const checked = await pipeline.beginComprehension(request, unit.id);
+  const revision = checked.durableRevision, knowledge = JSON.stringify(mentor.getStudentState(request));
+  await assert.rejects(pipeline.answerLearningQuestion(request, unit.id, 0), /did not confirm/);
+  const saved = pipeline.getLearningUnit(request, unit.id);
+  assert.equal(saved.durableRevision, revision); assert.equal(saved.durableCheckId, checked.durableCheckId);
+  assert.equal(saved.durableSessionId, checked.durableSessionId); assert.ok(saved.durableAssess);
+  assert.equal(saved.stage, checked.stage); assert.equal(JSON.stringify(mentor.getStudentState(request)), knowledge);
+});

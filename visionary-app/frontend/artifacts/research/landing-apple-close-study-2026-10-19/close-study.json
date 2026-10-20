@@ -1,0 +1,362 @@
+{
+  "apple-watch": {
+    "url": "https://www.apple.com/watch/",
+    "docH": 7252,
+    "vh": 900,
+    "vw": 1440,
+    "sections": [
+      {
+        "tag": "section",
+        "cls": "ChapterNavSection_section__EVfDB.MarcomSection_section__Hd6T8.MarcomSection_noTo",
+        "top": 166,
+        "h": 418,
+        "vh": 0.46,
+        "words": 36,
+        "maxFont": 80,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "section",
+        "cls": "MarcomSection_section__Hd6T8.MarcomSection_backgroundTertiary___LAi8.MarcomSecti",
+        "top": 584,
+        "h": 1068,
+        "vh": 1.19,
+        "words": 106,
+        "maxFont": 48,
+        "media": 6,
+        "mediaPx": 883872,
+        "bg": "rgb(245, 245, 247)"
+      },
+      {
+        "tag": "section",
+        "cls": "MarcomSection_section__Hd6T8.MarcomSection_backgroundTertiary___LAi8",
+        "top": 1548,
+        "h": 827,
+        "vh": 0.92,
+        "words": 248,
+        "maxFont": 48,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      },
+      {
+        "tag": "section",
+        "cls": "MarcomSection_section__Hd6T8.MarcomSection_noBottomPadding__dUGgu",
+        "top": 2375,
+        "h": 724,
+        "vh": 0.8,
+        "words": 29,
+        "maxFont": 48,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "section",
+        "cls": "MarcomSection_section__Hd6T8",
+        "top": 3099,
+        "h": 1172,
+        "vh": 1.3,
+        "words": 170,
+        "maxFont": 48,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "section",
+        "cls": "MarcomSection_section__Hd6T8.MarcomSection_backgroundSecondary__LCbTB",
+        "top": 4271,
+        "h": 769,
+        "vh": 0.85,
+        "words": 70,
+        "maxFont": 48,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(250, 250, 252)"
+      },
+      {
+        "tag": "section",
+        "cls": "ac-gf-sosumi",
+        "top": 5040,
+        "h": 1568,
+        "vh": 1.74,
+        "words": 1827,
+        "maxFont": 12,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      }
+    ]
+  },
+  "beats": {
+    "url": "https://www.beatsbydre.com/",
+    "docH": 7219,
+    "vh": 900,
+    "vw": 1440,
+    "sections": [
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-83f84e23-5da0-3ea2-b041-6a1fc9a7063e",
+        "top": 129,
+        "h": 722,
+        "vh": 0.8,
+        "words": 19,
+        "maxFont": 80,
+        "media": 2,
+        "mediaPx": 2057923,
+        "bg": "rgb(240, 240, 240)"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-a206bc5f-995a-3a3a-a7e9-aa398568eacd",
+        "top": 851,
+        "h": 821,
+        "vh": 0.91,
+        "words": 288,
+        "maxFont": 40,
+        "media": 3,
+        "mediaPx": 261075,
+        "bg": "rgb(240, 240, 240)"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-24297362-be8a-342f-ad43-671e5f289603",
+        "top": 1672,
+        "h": 821,
+        "vh": 0.91,
+        "words": 17,
+        "maxFont": 80,
+        "media": 2,
+        "mediaPx": 2139727,
+        "bg": "body"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-b3da237b-63e9-3f48-89f2-1e4be164e8bd",
+        "top": 2493,
+        "h": 490,
+        "vh": 0.54,
+        "words": 47,
+        "maxFont": 38,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "body"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-785fa386-7d23-33a5-b6b6-8575521119ac",
+        "top": 2982,
+        "h": 1543,
+        "vh": 1.71,
+        "words": 308,
+        "maxFont": 80,
+        "media": 5,
+        "mediaPx": 2318998,
+        "bg": "rgb(240, 240, 240)"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-0972d83f-1215-3db3-a507-db5fa34ac38e",
+        "top": 4525,
+        "h": 688,
+        "vh": 0.76,
+        "words": 68,
+        "maxFont": 32,
+        "media": 5,
+        "mediaPx": 424823,
+        "bg": "rgb(240, 240, 240)"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-c5c8f9cf-7215-3b3e-909d-1d87a3fa1266",
+        "top": 5213,
+        "h": 436,
+        "vh": 0.48,
+        "words": 19,
+        "maxFont": 64,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "body"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-1c859fe9-1dc1-3e10-aaff-0249a516a9fc",
+        "top": 5213,
+        "h": 436,
+        "vh": 0.48,
+        "words": 19,
+        "maxFont": 64,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "section",
+        "cls": "bbd-component.bbd-full-width-container.id-6ff35ae5-7d7a-3e39-850a-308180ced081",
+        "top": 5931,
+        "h": 404,
+        "vh": 0.45,
+        "words": 38,
+        "maxFont": 32,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(22, 22, 22)"
+      }
+    ]
+  },
+  "airpods": {
+    "url": "https://www.apple.com/airpods/",
+    "docH": 9359,
+    "vh": 900,
+    "vw": 1440,
+    "sections": [
+      {
+        "tag": "section",
+        "cls": "section.section-airpods-5.hero-tile",
+        "top": 298,
+        "h": 801,
+        "vh": 0.89,
+        "words": 15,
+        "maxFont": 80,
+        "media": 2,
+        "mediaPx": 2298240,
+        "bg": "body"
+      },
+      {
+        "tag": "section",
+        "cls": "section.section-airpods-pro-3.hero-tile",
+        "top": 1099,
+        "h": 786,
+        "vh": 0.87,
+        "words": 14,
+        "maxFont": 80,
+        "media": 4,
+        "mediaPx": 4173120,
+        "bg": "body"
+      },
+      {
+        "tag": "section",
+        "cls": "section.section-airpods-max-2.hero-tile",
+        "top": 1885,
+        "h": 786,
+        "vh": 0.87,
+        "words": 9,
+        "maxFont": 26,
+        "media": 4,
+        "mediaPx": 850960,
+        "bg": "body"
+      },
+      {
+        "tag": "section",
+        "cls": "section.section-compare.current-airpods",
+        "top": 2671,
+        "h": 2099,
+        "vh": 2.33,
+        "words": 371,
+        "maxFont": 64,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "body"
+      },
+      {
+        "tag": "section",
+        "cls": "section.section-consider",
+        "top": 4770,
+        "h": 1184,
+        "vh": 1.32,
+        "words": 89,
+        "maxFont": 64,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "section",
+        "cls": "section.section-music",
+        "top": 5954,
+        "h": 515,
+        "vh": 0.57,
+        "words": 14,
+        "maxFont": 48,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(250, 250, 252)"
+      },
+      {
+        "tag": "section",
+        "cls": "ac-gf-buystrip",
+        "top": 6469,
+        "h": 319,
+        "vh": 0.35,
+        "words": 81,
+        "maxFont": 19,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      },
+      {
+        "tag": "section",
+        "cls": "ac-gf-buystrip-info-column.ac-promo.ac-gf-buystrip-info-shipping",
+        "top": 6469,
+        "h": 262,
+        "vh": 0.29,
+        "words": 15,
+        "maxFont": 19,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      },
+      {
+        "tag": "section",
+        "cls": "ac-gf-buystrip-info-column.ac-gf-buystrip-info-financing",
+        "top": 6469,
+        "h": 262,
+        "vh": 0.29,
+        "words": 30,
+        "maxFont": 19,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      },
+      {
+        "tag": "section",
+        "cls": "ac-gf-buystrip-info-column.ac-gf-buystrip-info-help",
+        "top": 6469,
+        "h": 262,
+        "vh": 0.29,
+        "words": 14,
+        "maxFont": 19,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      },
+      {
+        "tag": "section",
+        "cls": "ac-gf-buystrip-info-column.ac-gf-buystrip-info-engraving",
+        "top": 6469,
+        "h": 262,
+        "vh": 0.29,
+        "words": 22,
+        "maxFont": 19,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      },
+      {
+        "tag": "section",
+        "cls": "ac-gf-sosumi",
+        "top": 6788,
+        "h": 1949,
+        "vh": 2.17,
+        "words": 2351,
+        "maxFont": 12,
+        "media": 0,
+        "mediaPx": 0,
+        "bg": "rgb(245, 245, 247)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,423 @@
+{
+  "viewports": {
+    "390": {
+      "line": "for students.",
+      "lineFs": 42,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(18, 19, 23)",
+        "fw": "500"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 485,
+      "ctaBottom": 387,
+      "figureTop": 680,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 215,
+      "overflow": false
+    },
+    "834": {
+      "line": "for students.",
+      "lineFs": 46,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(18, 19, 23)",
+        "fw": "500"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 484,
+      "ctaBottom": 424,
+      "figureTop": 711,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 243,
+      "overflow": false
+    },
+    "1024": {
+      "line": "for students.",
+      "lineFs": 57,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(18, 19, 23)",
+        "fw": "500"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 510,
+      "ctaBottom": 450,
+      "figureTop": 738,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 247,
+      "overflow": false
+    },
+    "1440": {
+      "line": "for students.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(18, 19, 23)",
+        "fw": "500"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 658,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    }
+  },
+  "interaction": {
+    "before": {
+      "line": "for students.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(18, 19, 23)",
+        "fw": "500"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 673,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    },
+    "hoverTeachers": {
+      "line": "for teachers.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(110, 110, 115)",
+        "fw": "400"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 658,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    },
+    "afterLeave3000": {
+      "line": "for parents.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(110, 110, 115)",
+        "fw": "400"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 658,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    },
+    "hoverOrganizations": {
+      "line": "for organizations.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(110, 110, 115)",
+        "fw": "400"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 658,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    },
+    "clickedUrl": "http://localhost:5173/organization"
+  },
+  "reduced": {
+    "atLoad": {
+      "line": "for students.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(18, 19, 23)",
+        "fw": "500"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 658,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    },
+    "after6s": {
+      "line": "for students.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(18, 19, 23)",
+        "fw": "500"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 658,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    },
+    "hoverPro": {
+      "line": "for professionals.",
+      "lineFs": 80,
+      "railCount": 5,
+      "railLabels": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railActive": [
+        "Students",
+        "Teachers",
+        "Parents",
+        "Professionals",
+        "Organizations"
+      ],
+      "railText": {
+        "fs": 14,
+        "color": "rgb(110, 110, 115)",
+        "fw": "400"
+      },
+      "railActiveStyle": "500",
+      "railBottom": 499,
+      "ctaBottom": 439,
+      "figureTop": 658,
+      "railHrefs": [
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "copyTop": 187,
+      "overflow": false
+    }
+  },
+  "persona": {
+    "url": "/student",
+    "rail": 0,
+    "h1": "Learning,Learning, to master, to build.",
+    "heroSection": true
+  },
+  "errors": []
+}
