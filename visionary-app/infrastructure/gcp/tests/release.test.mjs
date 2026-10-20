@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { production, trustedRun, releaseEnvironment, environmentFlag, verifyRevision, deployRelease, probe, currentRevision } from '../release.mjs';
+import { production, trustedRun, releaseEnvironment, environmentFlag, verifyRevision, deployRelease, baselineRelease, command, probe, currentRevision } from '../release.mjs';
 
 const commit = 'a'.repeat(40), previousCommit = 'b'.repeat(40);
 const revision = production.service + '-g' + commit.slice(0, 12) + '-1-1', previous = production.service + '-previous';
@@ -107,4 +107,65 @@ test('health requires expected source, JSON success and no-store and refuses red
   const response = (status = 200, sha = commit, cache = 'no-store', sanitized = true) => new Response(JSON.stringify({ status: 'ok', forwardedForSanitized: sanitized }), { status, headers: { 'content-type': 'application/json', 'cache-control': cache, 'x-visionary-revision': sha } });
   await probe(production.origin, '/__deploy-check', commit, async (_url, options) => { assert.equal(options.redirect, 'manual'); assert.equal(options.headers['X-Forwarded-For'], '198.51.100.99'); return response(); });
   for (const fake of [response(302), response(200, previousCommit), response(200, commit, 'public'), response(200, commit, 'no-store', false)]) await assert.rejects(probe(production.origin, '/__deploy-check', commit, async () => fake));
+});
+
+function baselineFixture() {
+  let current = previous, latest = true, deployed = false;
+  const calls = [], baselineRevision = production.service + '-baseline-' + commit.slice(0, 12) + '-test';
+  const placeholder = compatible();
+  placeholder.spec.containers[0].image = 'us-docker.pkg.dev/cloudrun/container/hello@sha256:' + 'd'.repeat(64);
+  placeholder.spec.containers[0].env = [];
+  const options = { commit, image, revision: baselineRevision,
+    readService: async () => ({ metadata: { annotations: { 'run.googleapis.com/ingress': 'all', 'run.googleapis.com/maxScale': '1' } }, status: { url: 'https://placeholder.run.app', traffic: [{ revisionName: current, percent: 100, latestRevision: latest }, ...(deployed ? [{ revisionName: baselineRevision, tag: production.tag, url: 'https://candidate.run.app' }] : [])] } }),
+    readRevision: async name => name === previous ? placeholder : compatible(commit),
+    assertCurrentMain: async () => calls.push('main'),
+    deploy: async () => { calls.push('deploy'); deployed = true; },
+    moveTraffic: async name => { calls.push('traffic:' + name); current = name; latest = false; },
+    health: async (url, sha) => { assert.ok(['https://placeholder.run.app', 'https://candidate.run.app'].includes(url)); assert.equal(sha, commit); calls.push(url.includes('candidate') ? 'candidate-health' : 'health'); },
+  };
+  return { options, calls, placeholder, current: () => current, setCurrent: name => { current = name; latest = false; } };
+}
+
+test('first baseline resolves placeholder LATEST, verifies candidate, then pins and probes the release', async () => {
+  const f = baselineFixture(), receipt = await baselineRelease(f.options);
+  assert.equal(receipt.verified, true); assert.equal(receipt.revision, f.options.revision);
+  assert.deepEqual(f.calls, ['main', 'traffic:' + previous, 'main', 'deploy', 'candidate-health', 'main', 'traffic:' + f.options.revision, 'health']);
+});
+
+test('baseline retry verifies the same image/source and pins traffic without redeploying', async () => {
+  const f = baselineFixture(); f.options.readRevision = async () => compatible(commit);
+  const receipt = await baselineRelease(f.options);
+  assert.equal(receipt.resumed, true); assert.equal(f.calls.includes('deploy'), false);
+  assert.deepEqual(f.calls, ['main', 'traffic:' + previous, 'health']);
+  f.options.readRevision = async () => compatible(previousCommit);
+  await assert.rejects(baselineRelease(f.options), /different canonical/);
+});
+
+test('baseline rejects foreign images, stale main, unrelated services and invalid placeholder bounds', async () => {
+  const foreign = baselineFixture(); foreign.options.image = image.replace(production.project, 'other-project');
+  await assert.rejects(baselineRelease(foreign.options), /identity/); assert.deepEqual(foreign.calls, []);
+  const stale = baselineFixture(); stale.options.assertCurrentMain = async () => { throw Error('stale main'); };
+  await assert.rejects(baselineRelease(stale.options), /stale/); assert.equal(stale.calls.includes('deploy'), false);
+  for (const mutate of [r => { r.spec.serviceAccountName = 'other@example.test'; }, r => { r.spec.containers[0].image = production.image + ':latest'; }, r => { r.spec.containerConcurrency = 80; }, r => { r.metadata.annotations['autoscaling.knative.dev/maxScale'] = '10'; }]) {
+    const f = baselineFixture(); mutate(f.placeholder);
+    await assert.rejects(baselineRelease(f.options), /placeholder/); assert.equal(f.calls.includes('deploy'), false);
+  }
+});
+
+test('baseline health or ambiguous promotion failure restores placeholder without overwriting an operator', async () => {
+  const f = baselineFixture(); f.options.health = async url => { if (url.includes('placeholder')) throw Error('health failed'); };
+  await assert.rejects(baselineRelease(f.options), /health failed/); assert.equal(f.current(), previous);
+  const ambiguous = baselineFixture(), move = ambiguous.options.moveTraffic;
+  ambiguous.options.moveTraffic = async name => { await move(name); if (name === ambiguous.options.revision) throw Error('connection lost'); };
+  await assert.rejects(baselineRelease(ambiguous.options), /connection lost/); assert.equal(ambiguous.current(), previous);
+  const operator = baselineFixture(); operator.options.health = async () => { operator.setCurrent('operator-release'); throw Error('health failed'); };
+  await assert.rejects(baselineRelease(operator.options), /health failed/); assert.equal(operator.current(), 'operator-release');
+});
+
+test('Windows gcloud uses the cmd shim with quoted arguments and rejects shell expansion', () => {
+  const calls = [], shell = (line, options) => { calls.push(line); assert.equal(options.windowsHide, true); return 'ok'; };
+  assert.equal(command('gcloud', ['run', '--set-env-vars=A=1,B=https://visionary.org.in'], true, 'win32', () => assert.fail(), shell), 'ok');
+  assert.equal(calls[0], 'gcloud.cmd "run" "--set-env-vars=A=1,B=https://visionary.org.in"');
+  for (const arg of ['a&b', '%PATH%', 'a|b', 'a"b', 'a\nb']) assert.throws(() => command('gcloud', [arg], true, 'win32', () => assert.fail(), shell), /Unsafe/);
+  command('gcloud', ['version'], true, 'linux', (file, args) => { assert.equal(file, 'gcloud'); assert.deepEqual(args, ['version']); }, () => assert.fail());
 });

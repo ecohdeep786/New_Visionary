@@ -163,6 +163,9 @@ def apply_foundation():
                 "--min-instances=0", "--max-instances=1", "--cpu=1", "--memory=512Mi", "--concurrency=20",
                 "--timeout=30s", "--no-cpu-boost", "--cpu-throttling", "--execution-environment=gen2", "--port=8080"])
         service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
+        # --max-instances limits each revision; --max separately caps the service.
+        gcloud(["run", "services", "update", SERVICE, f"--region={REGION}", "--max=1"])
+        service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
     if not placeholder_service(service):
         raise RuntimeError("Existing service is not the bounded foundation placeholder; review it manually.")
     print(("Created" if created else "Verified") + " bounded placeholder service:", SERVICE)

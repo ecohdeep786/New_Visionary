@@ -77,6 +77,29 @@ class PlaceholderServiceTests(unittest.TestCase):
             mutate(service)
             self.assertFalse(bootstrap.placeholder_service(service))
 
+    def test_fresh_foundation_sets_service_cap_before_placeholder_validation(self):
+        service = self.service()
+        service['metadata']['annotations'].pop('run.googleapis.com/maxScale')
+        service['status'] = {'url': 'https://placeholder.run.app'}
+        calls = []
+        reads = 0
+
+        def fake_gcloud(args, missing=False):
+            nonlocal reads
+            calls.append(args)
+            if args[:3] == ['run', 'services', 'describe']:
+                reads += 1
+                return None if reads == 1 else service
+            if args[:3] == ['run', 'services', 'update']:
+                self.assertIn('--max=1', args)
+                service['metadata']['annotations']['run.googleapis.com/maxScale'] = '1'
+            return {}
+
+        with patch.object(bootstrap, 'gcloud', side_effect=fake_gcloud), patch.object(bootstrap, 'ensure'), patch.object(bootstrap, 'ensure_secret'):
+            bootstrap.apply_foundation()
+        operations = [args[2] for args in calls if args[:2] == ['run', 'services']]
+        self.assertEqual(operations, ['describe', 'describe', 'update', 'describe', 'update-traffic'])
+
 
 class RunGcloudTests(unittest.TestCase):
     def test_windows_cmd_shim_uses_shell(self):
