@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim AS web
+FROM node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5 AS web
 WORKDIR /build/frontend
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund
@@ -12,9 +12,9 @@ ARG VITE_FIREBASE_MESSAGING_SENDER_ID
 ENV VITE_AUTH_MODE=firebase
 RUN npm run build
 
-FROM node:24-bookworm-slim AS api
+FROM node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5 AS api
 WORKDIR /build/backend
-COPY backend/upstream/backend/package.json backend/upstream/backend/package-lock.json ./
+COPY infrastructure/gcp/runtime/package.json infrastructure/gcp/runtime/package-lock.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY backend/upstream/backend/tsconfig*.json backend/upstream/backend/nest-cli.json ./
 COPY backend/upstream/backend/src/ ./src/
@@ -22,7 +22,10 @@ COPY backend/upstream/backend/src/ ./src/
 # unrelated legacy app/Prisma/ML startup graph is neither compiled nor started.
 RUN ./node_modules/.bin/tsc -p tsconfig.product.json && npm prune --omit=dev --ignore-scripts --no-audit --no-fund
 
-FROM node:24-bookworm-slim AS product
+FROM node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5 AS product
+ARG VISIONARY_RELEASE_COMMIT
+LABEL org.opencontainers.image.revision=$VISIONARY_RELEASE_COMMIT
+ENV VISIONARY_RELEASE_COMMIT=$VISIONARY_RELEASE_COMMIT
 ENV NODE_ENV=production PORT=8080 PUBLIC_ROOT=/app/public
 WORKDIR /app/backend
 COPY --from=api --chown=node:node /build/backend/node_modules ./node_modules

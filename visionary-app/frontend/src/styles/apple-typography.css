@@ -632,6 +632,17 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
   letter-spacing: var(--track-section) !important;
   font-weight: var(--weight-heading) !important;
 }
+/* Card-chapter statements — Education's values and stories chapters
+   ("Real stories. Real impact.", "Our values lead the way.", "How to Buy.",
+   measured Oct 2026 at 1440/1024/834/390: 48/52 · 40/44 · 40/44 · 32/36).
+   The landing's card rows opt in through this role; the persona line-ups keep
+   their accepted 64px gallery tier. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="card-chapter"] {
+  font-size: var(--fs-card-chapter) !important;
+  line-height: var(--lh-card-chapter) !important;
+  letter-spacing: -0.009em !important;
+  font-weight: var(--weight-heading) !important;
+}
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="emphasis"] {
   font-size: var(--fs-emphasis) !important;
   line-height: var(--lh-emphasis) !important;

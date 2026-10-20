@@ -89,14 +89,14 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "Testing",
-      "scope": "Independently approved connected account coverage API/Learn UI and budget production packaging; hosted verification and whole release matrix acceptance remain pending. All exposed roles/categories retained.",
+      "status": "In Progress",
+      "scope": "Current-dev compatibility candidate for connected coverage API/Learn UI; not integrated or deployed in visionary-research. Full source/version/rights/category/language acceptance remains open; zero released slices.",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix/visionary-app",
       "preparationBranch": "codex/kan-29-coverage-matrix",
       "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
-      "jiraCommentId": "10035",
+      "jiraCommentId": "10037",
       "jiraTransitionId": "41",
-      "connectedRuntimeCandidate": "2d45f0780d3a30a1b889481d382482027d289199",
+      "connectedRuntimeCandidate": "79797d1ab21c64e4e2632703421ed5083b2fedab",
       "connectedRuntimeChecks": {
         "backendBuildExitCode": 0,
         "backendTestsPassed": 79,
@@ -109,23 +109,14 @@
         "frontendBuildSeconds": 19,
         "browserScenarioGroupsPassed": 5,
         "browserEnvironment": "Loopback demo project, actual Learn/API, synthetic transactional store. No live credentials/providers.",
-        "hostedVerified": false,
-        "reviewState": "approved connected source; hosted gate pending",
+        "hostedVerified": true,
+        "hostedScope": "Synthetic Firebase custom-token session, canonical account/setup/read-back, authority denials, two devices and actual desktop/mobile Learn browser. Not email/OAuth, real-source, provider, privacy or load acceptance.",
+        "reviewState": "approved exact connected source; whole release-matrix acceptance pending",
         "fullRootApplicationSource": "7650049ef0923cf73e7d83aa630aa7d03807eef9",
         "additionalReviewedScriptSuiteTests": 31,
-        "note": "Later environment guard and portable archive deltas do not change backend/frontend/Docker/contracts. Independent reviewer verifies that comparison, new tests and actual ZIP contents."
-      },
-      "review": {
-        "state": "approved-connected-source-hosted-pending",
-        "implementer": "Codex",
-        "reviewer": "kan29_runtime_review",
-        "candidateCommit": "2d45f0780d3a30a1b889481d382482027d289199",
-        "approvedCommit": "2d45f0780d3a30a1b889481d382482027d289199",
-        "reviewerReportCommit": "7d3bdb180d61ebb9d7c382711eed507f3c916c49",
-        "importedReportCommit": "b730bdee562122310cc04e3f41699fc5a46682ea",
-        "evidence": "docs/architecture/delivery/KAN29_RUNTIME_INDEPENDENT_REVIEW.md",
-        "findingResolved": true,
-        "wholeTaskAccepted": false
+        "healthDeltaTestsPassed": 2,
+        "productionImageChecksPassed": 9,
+        "note": "Packaging-only deltas preserved7650049e application. Later79797d1a changes only health alias/test, independently compiles and passes2HTTPtests. Actual image9checks and real hosted browser run on79797d1a; old live multi-device/authority checks stay attributed to2d45f078."
       },
       "historicalToolingReview": {
         "state": "approved-engineering-only",
@@ -180,13 +171,66 @@
       "founderScope": {
         "allExposedCategoriesAndCurriculumChoices": true,
         "sourceEditionRightsProviderAcceptance": false,
-        "acceptedRealLearningSlices": 0
+        "acceptedRealLearningSlices": 0,
+        "disposition": "Founder explicitly retains full KAN-29 scope open until real source coverage is accepted; enabler-only narrowing is not accepted.",
+        "decisionDate": "2026-10-19",
+        "jiraCommentId": "10037"
+      },
+      "hostedEngineering": {
+        "sourceCommit": "79797d1ab21c64e4e2632703421ed5083b2fedab",
+        "imageDigest": "sha256:daddef811b7d7817afb00f18ab2ffa115eb5c3d7574efa8590d49cd6994c2384",
+        "revision": "visionary-product-kan29-79797d1a",
+        "origin": "https://visionary-product-1022011629348.asia-south1.run.app",
+        "serviceAndRevisionMaxInstances": 1,
+        "minimumInstances": 0,
+        "cpu": 1,
+        "memory": "512Mi",
+        "requestCpuNoStartupBoost": true,
+        "containerChecksPassed": 9,
+        "realSyntheticAccountAndBrowser": true,
+        "rollbackAndRestorePassed": true,
+        "browserPassedAfterRestore": true,
+        "syntheticIdentityDisabled": true,
+        "realSourceProviderLoadPrivacyAccepted": false,
+        "evidence": "docs/architecture/delivery/KAN29_HOSTED_ACCEPTANCE.md",
+        "historicalEnvironmentOnly": true,
+        "currentProductionProjectAccepted": false
       },
       "integration": {
         "state": "not-integrated",
         "branch": "dev",
-        "currentDev": "c960aba02ad9c921058d07e3741195795b6d07ad",
-        "note": "Whole task acceptance is still open; technical approval alone is not a full release-matrix closeout."
+        "currentDev": "e089319a24953bcadb522fcfef0e795065dd0c29",
+        "note": "Refreshed against accepted KAN-162 production source. No feature integration or deployment until full task acceptance; historic old-project hosting does not qualify current production."
+      },
+      "historicalConnectedReview": {
+        "state": "approved-connected-source-hosted-engineering-verified",
+        "implementer": "Codex",
+        "reviewer": "kan29_runtime_review",
+        "candidateCommit": "79797d1ab21c64e4e2632703421ed5083b2fedab",
+        "approvedCommit": "79797d1ab21c64e4e2632703421ed5083b2fedab",
+        "reviewerReportCommit": "63166e36d42a597b346f93fa3f09c7be6b12f35d",
+        "importedReportCommit": "a33a10bf585e16ec6b615e8a07e6f9de162c38b0",
+        "evidence": "docs/architecture/delivery/KAN29_RUNTIME_INDEPENDENT_REVIEW.md",
+        "findingResolved": true,
+        "wholeTaskAccepted": false
+      },
+      "review": {
+        "state": "pending-current-dev-compatibility-review",
+        "implementer": "Codex",
+        "wholeTaskAccepted": false,
+        "evidence": "docs/architecture/delivery/KAN29_CURRENT_PRODUCTION_COMPATIBILITY.md"
+      },
+      "resumption": {
+        "date": "2026-10-20",
+        "agent": "Codex",
+        "jiraCommentId": "10055",
+        "previousHead": "70decb67af74b2f29b00c614b078128bb0614dc3",
+        "integratedDevBase": "e089319a24953bcadb522fcfef0e795065dd0c29",
+        "reason": "Resume the matching interrupted task instance after actual KAN-162 Done and completed-worktree cleanup.",
+        "currentProject": "visionary-research",
+        "productionSource": "github-main-only",
+        "manualTaskPublisherRetired": true,
+        "realSourcePackageProvided": false
       }
     },
     {
@@ -290,6 +334,84 @@
         "reviewPreloaderPreserved": "artifacts/qa/kan161/review-ts-preloader.cjs",
         "taskBackup": "93e27749a0eda8cdfc549d50d13125a928db3b75",
         "limitation": "Git removal unregistered the completed task but reported Filename too long. Automatic approval review rejected the checked extended-path recursive deletion: blocked by policy. No bypass or further deletion attempted."
+      }
+    },
+    {
+      "sourceId": "MAIN-PRODUCTION-01",
+      "jiraKey": "KAN-162",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-162",
+      "status": "Done",
+      "scope": "Verified main-only production hosting and CI/CD in visionary-research; full product/content/provider gates remain separate",
+      "branch": "codex/firebase-visionary-research",
+      "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
+      "worktree": null,
+      "review": {
+        "state": "approved",
+        "implementer": "Codex",
+        "reviewer": "/root/kan162_review",
+        "approvedCommit": "4de8a33cb223a746c9738dc24554dd8ab812556e",
+        "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md",
+        "hostedScopeAccepted": true,
+        "hostedEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md",
+        "productionAcceptanceReportCommit": "86718c1f7b9420b38e00bb20bd9e41cea254435b"
+      },
+      "integration": {
+        "devCommit": "ab201364d4a0dd3ed2314851fd94164b0a2887f3",
+        "mainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+        "remotePublished": true,
+        "helperFollowupPendingIntegration": false,
+        "evidenceDevCommit": "1caf66fbbc039f8d1d054e2f42ce7d88852fa356"
+      },
+      "checks": {
+        "frontendTests": 532,
+        "scriptTests": 18,
+        "productionTests": 65,
+        "infrastructureNodeTests": 21,
+        "bootstrapPythonTests": 11,
+        "highCriticalAuditFindings": 0,
+        "moderateAuditFindings": 4,
+        "mainBuildContainerSmokePublish": true
+      },
+      "hosted": {
+        "project": "visionary-research",
+        "projectNumber": "174851137514",
+        "region": "asia-south1",
+        "service": "visionary-product",
+        "baselineRevision": "visionary-product-baseline-f3cf316edb74-mvgi7evq",
+        "imageDigest": "sha256:95f26b3ca800d148577456b2b21951bb2f93f76d1534628a37304ccd1363a7aa",
+        "edgeIp": "34.8.58.39",
+        "baselineVerified": true,
+        "syntheticUidTwoSessionStoreChecksPassed": true,
+        "syntheticIdentityDisabled": true,
+        "certificateStatus": "ACTIVE",
+        "canonicalAcceptance": true,
+        "automaticDeploymentEnabled": true,
+        "currentRevision": "visionary-product-g7aee2324024c-39405370084-1",
+        "actualMainPushDeploymentVerified": true,
+        "rollbackRestorationVerified": true,
+        "runUrl": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39405370084"
+      },
+      "jiraCommentId": "10053",
+      "jiraReturnedStatus": "Done",
+      "linkedProductGatesRemainOpen": true,
+      "jiraTransitionId": "51",
+      "verifiedAt": "2026-10-20T10:12:09Z",
+      "cleanup": {
+        "state": "completed",
+        "removedWorktrees": [
+          "codex-kan-162-main-deployment",
+          "qa-review-kan-162-main-deployment",
+          "qa-review-kan-162-visionary-research",
+          "firebase-visionary-research"
+        ],
+        "preservedFiles": 77,
+        "preservedBytes": 776009,
+        "localEvidenceRoot": "C:/Users/Administrator/New_Visionary/visionary-app/artifacts/qa/kan162-closeout-20261020",
+        "manifest": "preserved-files.json",
+        "pushedSourceAndReviewRefsRetained": true,
+        "dependencyJunctionsRemovedWithoutFollowingTargets": 4,
+        "primaryDependenciesRetained": true,
+        "primaryBranch": "dev"
       }
     }
   ]

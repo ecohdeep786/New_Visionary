@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "state": "planned-not-deployed",
-  "projectId": "visionary-fd6d2",
+  "state": "coverage-candidate-not-deployed",
+  "projectId": "visionary-research",
   "service": "visionary-product",
   "region": "asia-south1",
   "minimumInstances": 0,
@@ -13,10 +13,10 @@
   "requestBasedBilling": true,
   "startupCpuBoost": false,
   "frontendAndApiSameOrigin": true,
-  "initialHost": "managed-run.app-https",
+  "initialHost": "https://visionary.org.in",
   "ownedDomain": "visionary.org.in",
-  "customDomainState": "not-configured",
-  "alwaysOnLoadBalancer": false,
+  "customDomainState": "hosting-verified-coverage-candidate-pending",
+  "alwaysOnLoadBalancer": true,
   "cloudSql": false,
   "managedRedis": false,
   "newModelServing": false,
@@ -24,6 +24,11 @@
     "Zero minimum instances avoids an idle container allocation; cold starts are expected.",
     "The maximum instance count bounds concurrency, not total spend. Build, artifact, network and existing Firebase usage can still be billable.",
     "Retain the current named Firestore database; do not provision a parallel database or migrate learner records.",
-    "Production URL, authenticated deployment access, secrets/IAM, reviewed image digest and hosted checks must be retained before claiming deployment."
-  ]
+    "Production URL, authenticated deployment access, secrets/IAM, reviewed image digest and hosted checks must be retained before claiming deployment.",
+    "KAN-162 verified the hosting/pipeline; this profile does not deploy or accept the KAN-29 feature.",
+    "The global load balancer has the separately accepted fixed base cost plus usage; maximum instances is not a spending cap.",
+    "The old task manual publication script is retired. Publish and promote only accepted GitHub main through production.yml."
+  ],
+  "projectNumber": "174851137514",
+  "deploymentSource": "github-main-only"
 }

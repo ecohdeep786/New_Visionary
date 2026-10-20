@@ -176,7 +176,7 @@ function IntelligenceBeats({ index, label }) {
    settle-scale, a clip plays only while its beat is active, and reduced
    motion snaps everything to instant. The 30px radius matches the journey
    story cards exactly. */
-const IntelligenceFrame = React.memo(function IntelligenceFrame({ steps, active, autoplay = true }) {
+const IntelligenceFrame = React.memo(function IntelligenceFrame({ steps, active, autoplay = true, plain = false }) {
   const reduced = usePrefersReducedMotion();
   const videos = useRef([]);
   useEffect(() => {
@@ -189,7 +189,7 @@ const IntelligenceFrame = React.memo(function IntelligenceFrame({ steps, active,
   return (
     <div
       className="relative h-full w-full overflow-hidden rounded-[30px] border"
-      style={{ backgroundColor: "#0d1017", borderColor: "rgba(255,255,255,0.1)" }}
+      style={{ backgroundColor: "#0d1017", borderColor: plain ? "transparent" : "rgba(255,255,255,0.1)" }}
     >
       {steps.map((s, i) => (
         <div
@@ -249,9 +249,24 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
   );
 });
 
-function PremiumIntelligenceSection({ steps, sub }) {
+function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo }) {
   const { ref: headRef } = useRevealOnce();
   const { active, setStepRef, nodes } = useCentredStep(steps.length);
+  const reduced = usePrefersReducedMotion();
+  const [beat, setBeat] = useState(0);
+
+  /* promo mode — the front door's product band: the chapter's statement over
+     one slowly morphing stage (the mark walks its four scenes), one door
+     out to the full mechanism. No beats, no drawers, no dots — the door is
+     the dark-band white pill (Apple's dark chapters never carry a filled
+     accent button; the accent lives in the statement and the light) and the
+     mark floats bare, no card border. The default renders the full chapter
+     every category page carries. */
+  useEffect(() => {
+    if (!promo || reduced) return undefined;
+    const id = setInterval(() => setBeat((b) => (b + 1) % steps.length), 4200);
+    return () => clearInterval(id);
+  }, [promo, reduced, steps.length]);
 
   const scrollToBeat = useCallback((i) => {
     const node = nodes.current?.[i];
@@ -261,6 +276,54 @@ function PremiumIntelligenceSection({ steps, sub }) {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     node.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
   }, [nodes]);
+
+  if (promo) {
+    return (
+      <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
+        {/* the chapter's one breath of light — kept in promo scale */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[480px]"
+          style={{ background: "radial-gradient(52% 74% at 50% 0%, rgba(66,133,244,0.13) 0%, rgba(66,133,244,0.04) 46%, rgba(10,13,20,0) 74%)" }}
+        />
+        <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
+          <RevealItem idx={0}>
+            <h2
+              className="text-balance font-semibold tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]"
+              style={{ maxWidth: "22ch", marginInline: "auto" }}
+            >
+              <span className="accent-gradient-on-dark">One intelligence.</span>
+            </h2>
+          </RevealItem>
+          <RevealItem idx={1}>
+            <p className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]">
+              {sub}
+            </p>
+          </RevealItem>
+          {ctaLabel ? (
+            <RevealItem idx={2}>
+              <Link
+                to={ctaTo}
+                className={`mt-9 inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 text-[17px] font-medium tracking-[0.24px] transition-all duration-200 hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ab4f8] focus-visible:ring-offset-2 ${
+                  promo
+                    ? "bg-white text-[#121317] hover:bg-[#f5f5f7] focus-visible:ring-offset-[#0a0d14]"
+                    : "bg-[#4285F4] text-white hover:bg-[#0b57d0]"
+                }`}
+              >
+                {ctaLabel}
+                <ChevronIcon className="h-4 w-4" />
+              </Link>
+            </RevealItem>
+          ) : null}
+        </ScrollReveal>
+        <div aria-hidden="true" className="relative mx-auto mt-16 w-full px-6">
+          <div className="mx-auto aspect-square w-full max-w-[560px]">
+            <IntelligenceFrame steps={steps} active={beat} autoplay={false} plain />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
@@ -866,59 +929,139 @@ export { PremiumJourneyFlowSection };
    supporting sentence in Apple's first-person voice, one quiet link —
    separated by hairline rules. No icons and no cards: the type carries the
    trust. (Icons keep the student page's quiet 20px line, nothing more.) */
-function PremiumTrustSection({ heading, sub, values }) {
+function PremiumTrustSection({ heading, sub, values, variant }) {
   const { ref } = useRevealOnce();
+  const feature = variant === "feature";
+
+  const headingBlock = (
+    <RevealItem idx={0}>
+      <h2
+        className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
+        style={{ color: COLORS.ink, maxWidth: "24ch" }}
+      >
+        {heading}
+      </h2>
+    </RevealItem>
+  );
+
+  const subBlock = (
+    <RevealItem idx={1}>
+      <p
+        className={`text-balance mt-[var(--gap-title-sub-display)] font-normal tracking-[0] leading-[1.4] text-[18px] ${feature ? "max-w-[52ch]" : "max-w-[40ch]"}`}
+        style={{ color: COLORS.grey }}
+      >
+        {sub}
+      </p>
+    </RevealItem>
+  );
+
+  /* The feature card's supporting line is body copy, not the page's semibold
+     lead — the extra wrapper keeps it out of the h2-lead role so the panel's
+     statement stays the only loud voice in the card. */
+  const featureSubBlock = (
+    <RevealItem idx={1}>
+      <div>
+        <p
+          className="text-balance mt-[var(--gap-title-sub-display)] max-w-[34ch] font-normal tracking-[0] leading-[1.5] text-[19px]"
+          style={{ color: COLORS.grey }}
+        >
+          {sub}
+        </p>
+      </div>
+    </RevealItem>
+  );
+
   return (
     <section ref={ref} data-section="11-trust" className="public-values relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <div className="public-editorial-frame mx-auto">
-          <RevealItem idx={0}>
-            <h2
-              className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
-              style={{ color: COLORS.ink, maxWidth: "24ch" }}
-            >
-              {heading}
-            </h2>
-          </RevealItem>
-          <RevealItem idx={1}>
-            <p
-              className="text-balance mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]"
-              style={{ color: COLORS.grey }}
-            >
-              {sub}
-            </p>
-          </RevealItem>
-
-          {/* the values — typographic columns on the ground, hairline rules */}
-          <RevealItem idx={2} className="stagger-group">
-            <div className="mt-14 grid grid-cols-1 lg:mt-20 lg:grid-cols-3">
-              {values.map((value, i) => (
-                <article
-                  key={value.title}
-                  className={`stagger-child py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
-                  style={{ borderColor: `${COLORS.ink}1A` }}
+        {feature ? (
+          /* The landing's feature-card variant — Apple Watch's close-card
+             anatomy: the values stop being four columns on the page and become
+             one designed panel on the white ground. The statement heads the
+             card, then the four marks stand in a 2×2 Why-grid, each in the
+             public pages' own icon vocabulary. The persona pages keep the
+             typographic anatomy below. */
+          <div className="public-editorial-frame mx-auto">
+            <div className="rounded-[1.75rem] bg-[#f5f5f7] px-5 py-9 sm:px-10 sm:py-12 lg:px-16 lg:py-16">
+              <div className="grid gap-y-0 min-[1069px]:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)] min-[1069px]:items-end min-[1069px]:gap-x-14">
+                {headingBlock}
+                {featureSubBlock}
+              </div>
+              <RevealItem idx={2} className="stagger-group">
+                <div
+                  className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 border-t pt-9 sm:grid-cols-2 lg:mt-12 lg:gap-x-14 lg:gap-y-10 lg:pt-11"
+                  style={{ borderColor: "rgba(18,19,23,0.08)" }}
                 >
-                  {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />}
-                  <h3 data-type="value-title" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: COLORS.ink }}>
-                    {value.title}
-                  </h3>
-                  <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: COLORS.grey }}>
-                    {value.copy}
-                  </p>
-                  <Link
-                    to={value.to}
-                    aria-label={`Learn more about ${value.title.toLowerCase()}`}
-                    className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                    style={{ color: COLORS.blue }}
-                  >
-                    Learn more
-                    <ChevronIcon className="h-4 w-4" />
-                  </Link>
-                </article>
-              ))}
+                  {values.map((value) => (
+                    <article key={value.title} className="stagger-child flex items-start gap-4 sm:block">
+                      <span
+                        aria-hidden="true"
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white sm:h-12 sm:w-12"
+                        style={{ border: "1px solid rgba(18,19,23,0.05)", boxShadow: "0 1px 2px rgba(18,19,23,0.05)" }}
+                      >
+                        {value.Icon ? <value.Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.55} style={{ color: COLORS.ink }} /> : null}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <h3 data-type="value-title" className="mt-0 sm:mt-5" style={{ color: COLORS.ink }}>
+                          {value.title}
+                        </h3>
+                        <p data-type="value-body" className="mt-2 max-w-[36ch] text-balance" style={{ color: COLORS.grey }}>
+                          {value.copy}
+                        </p>
+                        <Link
+                          to={value.to}
+                          aria-label={`Learn more about ${value.title.toLowerCase()}`}
+                          className="mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                          style={{ color: COLORS.blue }}
+                        >
+                          Learn more
+                          <ChevronIcon className="h-4 w-4" />
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </RevealItem>
             </div>
-          </RevealItem>
-        </div>
+          </div>
+        ) : (
+          <div className="public-editorial-frame mx-auto">
+            {headingBlock}
+            {subBlock}
+
+            {/* the values — typographic columns on the ground, hairline rules.
+                Four values (the landing's trust doors) open a fourth column;
+                the three-value pages keep their accepted three-up rhythm. */}
+            <RevealItem idx={2} className="stagger-group">
+              <div className={`mt-14 grid grid-cols-1 lg:mt-20 ${values.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+                {values.map((value, i) => (
+                  <article
+                    key={value.title}
+                    className={`stagger-child py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
+                    style={{ borderColor: `${COLORS.ink}1A` }}
+                  >
+                    {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />}
+                    <h3 data-type="value-title" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: COLORS.ink }}>
+                      {value.title}
+                    </h3>
+                    <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: COLORS.grey }}>
+                      {value.copy}
+                    </p>
+                    <Link
+                      to={value.to}
+                      aria-label={`Learn more about ${value.title.toLowerCase()}`}
+                      className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                      style={{ color: COLORS.blue }}
+                    >
+                      Learn more
+                      <ChevronIcon className="h-4 w-4" />
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            </RevealItem>
+          </div>
+        )}
       </ScrollReveal>
     </section>
   );
@@ -931,39 +1074,98 @@ export { PremiumTrustSection };
    opens the chapter (no eyebrow), one text-only primary pill with one quiet
    path beside it, and the small print beneath — the way Apple's product
    heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page's forks under the actions — Apple's tail mini-router. */
-function PremiumCTASection({ heading, sub, routeLinks }) {
+function PremiumCTASection({ heading, sub, routeLinks, variant }) {
   const { ref } = useRevealOnce();
+  const closing = variant === "closing";
   return (
-    <section ref={ref} data-section="12-cta" className="relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]">
+    <section
+      ref={ref}
+      data-section="12-cta"
+      className={
+        closing
+          ? "scene-dark relative isolate overflow-hidden px-6 py-24 lg:py-32"
+          : "relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]"
+      }
+    >
+      {/* The landing's ceremonial close — Beats'/Apple's black closing band:
+          one line, one pair of actions, the product's own breath of light
+          beneath, and the orbit's two faint rings crossing the lower third.
+          No grid, no columns: the page ends on a moment, not another reading
+          task. */}
+      {closing ? (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div
+            className="absolute left-1/2 top-[-16%] -translate-x-1/2 rounded-full"
+            style={{
+              width: "min(115vw, 820px)",
+              height: "min(115vw, 820px)",
+              background: "radial-gradient(circle at 50% 48%, rgba(66,133,244,0.20) 0%, rgba(66,133,244,0.06) 44%, rgba(10,13,20,0) 72%)",
+            }}
+          />
+          <div
+            className="absolute left-1/2 top-[64%] -translate-x-1/2 rounded-full border"
+            style={{
+              width: "min(140vw, 1240px)",
+              height: "min(140vw, 1240px)",
+              borderColor: "rgba(138,180,248,0.12)",
+            }}
+          />
+          <div
+            className="absolute left-1/2 top-[64%] -translate-x-1/2 rounded-full border"
+            style={{
+              width: "min(104vw, 900px)",
+              height: "min(104vw, 900px)",
+              borderColor: "rgba(138,180,248,0.07)",
+            }}
+          />
+        </div>
+      ) : null}
       <ScrollReveal>
-        <div className="mx-auto max-w-[1500px] text-center">
+        <div
+          className={`mx-auto max-w-[1500px] text-center ${
+            closing ? "relative flex min-h-[clamp(280px,36svh,420px)] flex-col justify-center" : ""
+          }`}
+        >
           <RevealItem idx={0}>
             <h2
-              className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
-              style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}
+              className={`text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] ${closing ? "text-white" : ""}`}
+              style={{ color: closing ? "#f5f5f7" : COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}
             >
               {heading}
             </h2>
           </RevealItem>
           <RevealItem idx={1}>
-          <p
-            className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]"
-            style={{ color: COLORS.grey }}
-          >
-            {sub}
-          </p>
+          {closing ? (
+            /* body copy, not the page lead — the close keeps one loud voice */
+            <div>
+              <p className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[46ch] font-normal tracking-[0] leading-[1.5] text-[19px] text-white/70">
+                {sub}
+              </p>
+            </div>
+          ) : (
+            <p
+              className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]"
+              style={{ color: COLORS.grey }}
+            >
+              {sub}
+            </p>
+          )}
           </RevealItem>
           <RevealItem idx={2}>
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/register"
-              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
+              className={`inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full px-7 font-medium tracking-[0.24px] text-[17px] transition-all duration-200 hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px] ${
+                closing ? "bg-white text-[#121317] hover:bg-[#f5f5f7]" : "bg-[#121317] text-white hover:bg-[#2c2d31]"
+              }`}
             >
               Get started
             </Link>
             <Link
               to="/contact"
-              className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
+              className={`inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px] ${
+                closing ? "text-[#2997ff] hover:text-[#6bb6ff]" : "text-[#4285F4] hover:text-[#0b57d0]"
+              }`}
             >
               Talk to our team
               <ChevronIcon className="h-4 w-4" />
@@ -972,13 +1174,18 @@ function PremiumCTASection({ heading, sub, routeLinks }) {
           </RevealItem>
           <RevealItem idx={3}>
           {routeLinks?.length ? (
-            <p className="mt-8 text-center font-normal tracking-[0] text-[15px] leading-[1.5]" style={{ color: COLORS.grey }}>
+            <p
+              className={`mt-8 text-center font-normal tracking-[0] text-[15px] leading-[1.5] ${closing ? "text-white/50" : ""}`}
+              style={closing ? undefined : { color: COLORS.grey }}
+            >
               See how it works for{" "}
               {routeLinks.map((route, i) => (
                 <React.Fragment key={route.to}>
                   <Link
                     to={route.to}
-                    className="rounded font-medium text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                    className={`rounded font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+                      closing ? "text-[#2997ff] hover:text-[#6bb6ff]" : "text-[#4285F4] hover:text-[#0b57d0]"
+                    }`}
                   >
                     {route.label}
                   </Link>
@@ -987,7 +1194,10 @@ function PremiumCTASection({ heading, sub, routeLinks }) {
               ))}
             </p>
           ) : null}
-          <p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]" style={{ color: COLORS.grey }}>
+          <p
+            className={`mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5] ${closing ? "text-white/45" : ""}`}
+            style={closing ? undefined : { color: COLORS.grey }}
+          >
             Free to start. Private by design.
           </p>
           </RevealItem>
@@ -1055,8 +1265,11 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
 /* Props: heading (node), categories, images. Optional eyebrow + sub render
    the same left-spined chapter header the site's other chapters carry — the
    landing's router uses them; persona pages pass neither, so their line-up
-   header stays exactly the measured "Explore the line-up." anatomy. */
-function PremiumExploreSection({ heading, categories, images, eyebrow, sub }) {
+   header stays exactly the measured "Explore the line-up." anatomy.
+   headingRole/subRole let a page bind the header to a measured public type
+   role (the landing's router opens at Education's card-chapter tier and reads
+   its intro at the editorial-body tier); omitted, nothing changes. */
+function PremiumExploreSection({ heading, categories, images, eyebrow, sub, headingRole, subRole }) {
   const { ref } = useRevealOnce();
   const { trackRef, canPrev, canNext, scrollByCard, update } = useScrollTrack();
 
@@ -1099,19 +1312,28 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub }) {
               </p>
             )}
             <h2
+              data-type={headingRole}
               className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
               style={{ color: COLORS.ink, maxWidth: "20ch", marginTop: eyebrow ? "var(--gap-eyebrow-title-display)" : undefined }}
             >
               {heading}
             </h2>
-            {sub && (
+            {sub && (subRole ? (
+              /* a bound role (Education's card-chapter intro) is not the
+                 h2's semibold lead — the wrapper keeps it out of that role */
+              <div className="mt-[var(--gap-title-sub-display)]">
+                <p data-type={subRole} className="text-balance max-w-[60ch]" style={{ color: COLORS.grey }}>
+                  {sub}
+                </p>
+              </div>
+            ) : (
               <p
                 className="text-balance mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]"
                 style={{ color: COLORS.grey }}
               >
                 {sub}
               </p>
-            )}
+            ))}
           </div>
         </RevealItem>
         <RevealItem idx={1} className="stagger-group">

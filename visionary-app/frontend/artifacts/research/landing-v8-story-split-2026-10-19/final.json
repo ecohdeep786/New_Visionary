@@ -1,0 +1,210 @@
+{
+  "widths": {
+    "390": {
+      "docH": 10099,
+      "scrollW": 390,
+      "innerW": 390,
+      "secs": [
+        {
+          "id": "01-hero",
+          "h": 788
+        },
+        {
+          "id": "05-intelligence",
+          "h": 795
+        },
+        {
+          "id": "02-problem",
+          "h": 1021
+        },
+        {
+          "id": "03-promise",
+          "h": 658
+        },
+        {
+          "id": "04-return",
+          "h": 1484
+        },
+        {
+          "id": "13-explore",
+          "h": 1084
+        },
+        {
+          "id": "14-suite",
+          "h": 1164
+        },
+        {
+          "id": "11-trust",
+          "h": 1102
+        },
+        {
+          "id": "12-cta",
+          "h": 534
+        }
+      ]
+    },
+    "834": {
+      "docH": 9133,
+      "scrollW": 834,
+      "innerW": 834,
+      "secs": [
+        {
+          "id": "01-hero",
+          "h": 788
+        },
+        {
+          "id": "05-intelligence",
+          "h": 974
+        },
+        {
+          "id": "02-problem",
+          "h": 936
+        },
+        {
+          "id": "03-promise",
+          "h": 658
+        },
+        {
+          "id": "04-return",
+          "h": 1392
+        },
+        {
+          "id": "13-explore",
+          "h": 1079
+        },
+        {
+          "id": "14-suite",
+          "h": 705
+        },
+        {
+          "id": "11-trust",
+          "h": 959
+        },
+        {
+          "id": "12-cta",
+          "h": 497
+        }
+      ]
+    },
+    "1024": {
+      "docH": 9306,
+      "scrollW": 1024,
+      "innerW": 1024,
+      "secs": [
+        {
+          "id": "01-hero",
+          "h": 844
+        },
+        {
+          "id": "05-intelligence",
+          "h": 1007
+        },
+        {
+          "id": "02-problem",
+          "h": 947
+        },
+        {
+          "id": "03-promise",
+          "h": 702
+        },
+        {
+          "id": "04-return",
+          "h": 1463
+        },
+        {
+          "id": "13-explore",
+          "h": 1137
+        },
+        {
+          "id": "14-suite",
+          "h": 746
+        },
+        {
+          "id": "11-trust",
+          "h": 1048
+        },
+        {
+          "id": "12-cta",
+          "h": 550
+        }
+      ]
+    },
+    "1440": {
+      "docH": 9347,
+      "scrollW": 1440,
+      "innerW": 1440,
+      "secs": [
+        {
+          "id": "01-hero",
+          "h": 844
+        },
+        {
+          "id": "05-intelligence",
+          "h": 1117
+        },
+        {
+          "id": "02-problem",
+          "h": 1033
+        },
+        {
+          "id": "03-promise",
+          "h": 702
+        },
+        {
+          "id": "04-return",
+          "h": 990
+        },
+        {
+          "id": "13-explore",
+          "h": 1251
+        },
+        {
+          "id": "14-suite",
+          "h": 838
+        },
+        {
+          "id": "11-trust",
+          "h": 1069
+        },
+        {
+          "id": "12-cta",
+          "h": 642
+        }
+      ]
+    }
+  },
+  "errors": [
+    {
+      "width": 1440,
+      "console": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "width": 1440,
+      "console": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase"
+    },
+    {
+      "width": 1024,
+      "console": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "width": 1024,
+      "console": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase"
+    },
+    {
+      "width": 834,
+      "console": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "width": 834,
+      "console": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase"
+    },
+    {
+      "width": 390,
+      "console": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "width": 390,
+      "console": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase"
+    }
+  ]
+}

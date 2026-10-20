@@ -1,0 +1,271 @@
+{
+  "url": "http://localhost:5173/",
+  "viewports": {
+    "390": {
+      "docH": 10060,
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "trust": {
+        "rect": {
+          "top": 7264,
+          "h": 1102
+        },
+        "panelRadius": "28px",
+        "panelBg": "rgb(245, 245, 247)",
+        "panelPadding": "36px 20px",
+        "gridCols": "302px",
+        "cards": 4,
+        "icons": 4,
+        "h2": {
+          "fs": 40,
+          "color": "rgb(29, 29, 31)",
+          "lines": 2
+        },
+        "linkColor": "rgb(0, 102, 204)",
+        "linkFs": 17,
+        "firstArticle": {
+          "top": 7629,
+          "h": 139
+        }
+      },
+      "cta": {
+        "rect": {
+          "top": 8366,
+          "h": 534
+        },
+        "bg": "rgb(10, 13, 20)",
+        "borderRadiusTop": "0px",
+        "h2": {
+          "fs": 40,
+          "color": "rgb(245, 245, 247)",
+          "lines": 2
+        },
+        "sub": {
+          "fs": 17,
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "minH": "303.84px",
+        "rings": 2
+      },
+      "vh": 844
+    },
+    "834": {
+      "docH": 9261,
+      "innerWidth": 834,
+      "scrollWidth": 834,
+      "trust": {
+        "rect": {
+          "top": 6949,
+          "h": 959
+        },
+        "panelRadius": "28px",
+        "panelBg": "rgb(245, 245, 247)",
+        "panelPadding": "48px 40px",
+        "gridCols": "286px 286px",
+        "cards": 4,
+        "icons": 4,
+        "h2": {
+          "fs": 56,
+          "color": "rgb(29, 29, 31)",
+          "lines": 2
+        },
+        "linkColor": "rgb(0, 102, 204)",
+        "linkFs": 17,
+        "firstArticle": {
+          "top": 7341,
+          "h": 207
+        }
+      },
+      "cta": {
+        "rect": {
+          "top": 7908,
+          "h": 517
+        },
+        "bg": "rgb(10, 13, 20)",
+        "borderRadiusTop": "0px",
+        "h2": {
+          "fs": 56,
+          "color": "rgb(245, 245, 247)",
+          "lines": 1
+        },
+        "sub": {
+          "fs": 17,
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "minH": "324px",
+        "rings": 2
+      },
+      "vh": 900
+    },
+    "1024": {
+      "docH": 9357,
+      "innerWidth": 1024,
+      "scrollWidth": 1024,
+      "trust": {
+        "rect": {
+          "top": 7223,
+          "h": 1048
+        },
+        "panelRadius": "28px",
+        "panelBg": "rgb(245, 245, 247)",
+        "panelPadding": "64px 64px",
+        "gridCols": "254px 254px",
+        "cards": 4,
+        "icons": 4,
+        "h2": {
+          "fs": 56,
+          "color": "rgb(29, 29, 31)",
+          "lines": 2
+        },
+        "linkColor": "rgb(0, 102, 204)",
+        "linkFs": 17,
+        "firstArticle": {
+          "top": 7663,
+          "h": 207
+        }
+      },
+      "cta": {
+        "rect": {
+          "top": 8271,
+          "h": 550
+        },
+        "bg": "rgb(10, 13, 20)",
+        "borderRadiusTop": "0px",
+        "h2": {
+          "fs": 56,
+          "color": "rgb(245, 245, 247)",
+          "lines": 1
+        },
+        "sub": {
+          "fs": 17,
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "minH": "324px",
+        "rings": 2
+      },
+      "vh": 900
+    },
+    "1440": {
+      "docH": 9584,
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "trust": {
+        "rect": {
+          "top": 7338,
+          "h": 1069
+        },
+        "panelRadius": "28px",
+        "panelBg": "rgb(245, 245, 247)",
+        "panelPadding": "64px 64px",
+        "gridCols": "398px 398px",
+        "cards": 4,
+        "icons": 4,
+        "h2": {
+          "fs": 72,
+          "color": "rgb(29, 29, 31)",
+          "lines": 2
+        },
+        "linkColor": "rgb(0, 102, 204)",
+        "linkFs": 17,
+        "firstArticle": {
+          "top": 7798,
+          "h": 184
+        }
+      },
+      "cta": {
+        "rect": {
+          "top": 8406,
+          "h": 642
+        },
+        "bg": "rgb(10, 13, 20)",
+        "borderRadiusTop": "0px",
+        "h2": {
+          "fs": 72,
+          "color": "rgb(245, 245, 247)",
+          "lines": 1
+        },
+        "sub": {
+          "fs": 17,
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "minH": "324px",
+        "rings": 2
+      },
+      "vh": 900
+    }
+  },
+  "errors": [
+    {
+      "vp": "1440",
+      "type": "console",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "vp": "1440",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at "
+    },
+    {
+      "vp": "1024",
+      "type": "console",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "vp": "1024",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at "
+    },
+    {
+      "vp": "834",
+      "type": "console",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "vp": "834",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at "
+    },
+    {
+      "vp": "390",
+      "type": "console",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "vp": "390",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at "
+    }
+  ]
+}
