@@ -225,7 +225,9 @@ async function baseline() {
     readService: () => gcloud(['run', 'services', 'describe', production.service]),
     readRevision: name => gcloud(['run', 'revisions', 'describe', name]),
     assertCurrentMain: async () => { if (await currentMain() !== commit) throw Error('Baseline must use the current remote main commit.'); },
-    moveTraffic: name => gcloud(['run', 'services', 'update-traffic', production.service, '--to-revisions=' + name + '=100']),
+    // A LATEST tag is merged into status traffic even when spec traffic is
+    // explicitly pinned. Resolve the foundation tag as well as its percentage.
+    moveTraffic: name => gcloud(['run', 'services', 'update-traffic', production.service, '--to-revisions=' + name + '=100', '--update-tags=' + production.tag + '=' + name]),
     health: (url, sha) => waitForHealth(url, '/api/health', sha),
     deploy: () => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
     '--ingress=all', '--no-invoker-iam-check', '--service-account=' + production.runtime,
