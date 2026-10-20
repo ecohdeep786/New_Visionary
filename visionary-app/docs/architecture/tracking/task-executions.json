@@ -320,7 +320,7 @@
         "KAN-144",
         "KAN-74"
       ],
-      "scopeDecision": "pending founder choice on development-enabler completion vs full connected feature",
+      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
       "acceptedScope": "development backend enabler",
       "fullFeatureGate": "KAN-163",
       "fullFeatureAccepted": false,
@@ -398,7 +398,7 @@
         "KAN-145",
         "KAN-143"
       ],
-      "scopeDecision": "pending founder enabler completion vs full feature choice",
+      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
       "acceptedScope": "development teaching loop/client enabler",
       "fullFeatureGate": "KAN-164",
       "fullFeatureAccepted": false,
