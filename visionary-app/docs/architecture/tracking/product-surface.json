@@ -81695,7 +81695,7 @@
       },
       {
         "id": "hosted-release",
-        "finding": "Authenticated console inspection lists no Cloud Run services and no Cloud Build triggers in visionary-research. No product deployment pipeline exists in this repository; dev/production hosting, IAM, secrets, health and rollback acceptance remain open. Other hosting products were not inspected.",
+        "finding": "The main-only delivery workflow now targets visionary-research, but authenticated console inspection on 17 October 2026 lists no Cloud Run services and no Cloud Build triggers and the project has not been provisioned. Hosting, IAM, secrets, first baseline, DNS/TLS, health and rollback acceptance remain open; a Git push alone does not deploy. Other hosting products were not inspected.",
         "followUp": [
           "PLAT-01",
           "PLAT-02",
@@ -81713,7 +81713,10 @@
       "triggerUrl": "https://console.cloud.google.com/cloud-build/triggers?project=visionary-research",
       "scope": "Read-only console listings; no filters applied, no resource creation. Other hosting products were not inspected.",
       "localGcpCliAvailable": false,
-      "hostedProductDeploymentVerified": false
+      "hostedProductDeploymentVerified": false,
+      "sourceDeliveryWorkflowAddedAt": "2026-10-20",
+      "sourceDeliveryTargetProject": "visionary-research",
+      "sourceDeliveryProvisioned": false
     }
   },
   "counts": {

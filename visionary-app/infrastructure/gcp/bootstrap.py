@@ -1,19 +1,24 @@
 """Owner-operated, explicit one-time GCP setup. No keys or DNS credentials.
 
-Default prints a plan. apply-edge creates missing, named edge resources only;
-apply-identity creates the narrowly scoped GitHub deployment identity. Existing
-objects are checked instead of silently adopting or replacing unrelated ones.
+Default prints a plan. apply-foundation creates missing project resources and a
+bounded placeholder Cloud Run service; apply-edge creates missing, named edge
+resources only; apply-identity creates the narrowly scoped GitHub deployment
+identity. Existing objects are checked instead of silently adopting or replacing
+unrelated ones.
 """
 import json
+import secrets
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
-PROJECT = "visionary-fd6d2"
-NUMBER = "1022011629348"
+PROJECT = "visionary-research"
+NUMBER = "174851137514"
 REGION = "asia-south1"
 SERVICE = "visionary-product"
+REPOSITORY = "visionary-product"
+SECRET = "visionary-product-auth-rate-limit"
 DOMAIN = "visionary.org.in"
 DEPLOYER = f"visionary-github-deployer@{PROJECT}.iam.gserviceaccount.com"
 RUNTIME = f"visionary-product-runtime@{PROJECT}.iam.gserviceaccount.com"
@@ -72,6 +77,65 @@ def ensure_url_map(desired):
         # The validate API targets an existing URL map, so import it before validating on first setup.
         gcloud(["compute", "url-maps", "validate", f"--source={source}", "--global", "--load-balancing-scheme=EXTERNAL_MANAGED"])
     return found
+
+
+def ensure_secret():
+    found = gcloud(["secrets", "describe", SECRET], missing=True)
+    if found is None:
+        value = secrets.token_urlsafe(48)
+        result = subprocess.run(["gcloud", "secrets", "create", SECRET, "--data-file=-", f"--project={PROJECT}", "--quiet"],
+                                input=value, text=True, capture_output=True, timeout=300)
+        if result.returncode:
+            raise RuntimeError("GCP secret creation failed; no value was displayed.")
+        print("Created secret:", SECRET, "(value not displayed)")
+    else:
+        print("Verified:", SECRET)
+    version = gcloud(["secrets", "versions", "describe", "1", "--secret=" + SECRET], missing=True)
+    if version is None or version.get("state") != "ENABLED":
+        raise RuntimeError("Secret version 1 must exist and be enabled for the release contract.")
+    return found
+
+
+def apply_foundation():
+    gcloud(["services", "enable", "run.googleapis.com", "artifactregistry.googleapis.com", "iam.googleapis.com",
+            "secretmanager.googleapis.com", "firestore.googleapis.com", "identitytoolkit.googleapis.com"])
+    ensure(["artifacts", "repositories", "describe", REPOSITORY, f"--location={REGION}"],
+           ["artifacts", "repositories", "create", REPOSITORY, "--repository-format=docker", f"--location={REGION}", "--description=Visionary product images"],
+           lambda x: x.get("format") == "DOCKER")
+    ensure(["iam", "service-accounts", "describe", RUNTIME],
+           ["iam", "service-accounts", "create", "visionary-product-runtime", "--display-name=Visionary product runtime"],
+           lambda x: x.get("email") == RUNTIME and not x.get("disabled"))
+    for role in ("roles/firebase.sdkAdminServiceAgent", "roles/datastore.user"):
+        gcloud(["projects", "add-iam-policy-binding", PROJECT, "--member=serviceAccount:" + RUNTIME, "--role=" + role])
+    ensure_secret()
+    gcloud(["secrets", "add-iam-policy-binding", SECRET, "--member=serviceAccount:" + RUNTIME,
+            "--role=roles/secretmanager.secretAccessor"])
+    service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"], missing=True)
+    if service is None:
+        gcloud(["run", "deploy", SERVICE, "--image=us-docker.pkg.dev/cloudrun/container/hello", f"--region={REGION}",
+                "--service-account=" + RUNTIME, "--allow-unauthenticated", "--ingress=all",
+                "--min-instances=0", "--max-instances=1", "--cpu=1", "--memory=512Mi", "--concurrency=20",
+                "--timeout=30s", "--no-cpu-boost", "--cpu-throttling", "--execution-environment=gen2", "--port=8080"])
+        service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
+        print("Created bounded placeholder service:", SERVICE)
+    else:
+        print("Verified:", SERVICE)
+    annotations = service.get("metadata", {}).get("annotations", {})
+    if annotations.get("run.googleapis.com/maxScale") != "1":
+        gcloud(["run", "services", "update", SERVICE, f"--region={REGION}", "--update-annotations=run.googleapis.com/maxScale=1"])
+        service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
+        annotations = service.get("metadata", {}).get("annotations", {})
+    if annotations.get("run.googleapis.com/ingress") not in ("all", "internal-and-cloud-load-balancing"):
+        gcloud(["run", "services", "update", SERVICE, f"--region={REGION}", "--ingress=all"])
+        service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
+        annotations = service.get("metadata", {}).get("annotations", {})
+    if annotations.get("run.googleapis.com/maxScale") != "1" or annotations.get("run.googleapis.com/ingress") not in ("all", "internal-and-cloud-load-balancing"):
+        raise RuntimeError("Existing service is not the bounded foundation placeholder; review it manually.")
+    if annotations.get("run.googleapis.com/ingress") == "all":
+        gcloud(["run", "services", "update-traffic", SERVICE, f"--region={REGION}", "--set-tags=ci-candidate=LATEST"])
+    print(json.dumps({"project": PROJECT, "projectNumber": NUMBER, "region": REGION, "repository": REPOSITORY,
+                      "runtime": RUNTIME, "secret": SECRET, "service": SERVICE, "serviceUrl": service.get("status", {}).get("url"),
+                      "placeholder": True, "next": "apply-identity, publish, release.mjs baseline, apply-edge"}, indent=2))
 
 
 def apply_edge():
@@ -145,7 +209,7 @@ def apply_identity():
     for args in [
         ["iam", "service-accounts", "add-iam-policy-binding", DEPLOYER, "--role=roles/iam.workloadIdentityUser", "--member=" + principal],
         ["run", "services", "add-iam-policy-binding", SERVICE, f"--region={REGION}", "--role=roles/run.developer", "--member=serviceAccount:" + DEPLOYER],
-        ["artifacts", "repositories", "add-iam-policy-binding", "visionary-product", f"--location={REGION}", "--role=roles/artifactregistry.writer", "--member=serviceAccount:" + DEPLOYER],
+        ["artifacts", "repositories", "add-iam-policy-binding", REPOSITORY, f"--location={REGION}", "--role=roles/artifactregistry.writer", "--member=serviceAccount:" + DEPLOYER],
         ["iam", "service-accounts", "add-iam-policy-binding", RUNTIME, "--role=roles/iam.serviceAccountUser", "--member=serviceAccount:" + DEPLOYER],
     ]:
         gcloud(args)
@@ -154,17 +218,25 @@ def apply_identity():
 
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "plan"
-    if mode == "apply-edge":
+    if mode == "apply-foundation":
+        apply_foundation()
+    elif mode == "apply-edge":
         apply_edge()
     elif mode == "apply-identity":
         apply_identity()
     elif mode == "plan":
-        print(json.dumps({"project": PROJECT, "region": REGION, "domain": DOMAIN, "service": SERVICE,
+        print(json.dumps({"project": PROJECT, "projectNumber": NUMBER, "region": REGION, "domain": DOMAIN, "service": SERVICE,
+                          "foundation": ["enable Run, Artifact Registry, IAM, Secret Manager, Firestore and Identity Toolkit APIs",
+                                         "create private Docker repository " + REPOSITORY,
+                                         "create runtime identity " + RUNTIME + " with Firebase Admin SDK, Firestore data and secret-access roles",
+                                         "create secret " + SECRET + " version 1 with a generated value that is never printed",
+                                         "create a bounded public placeholder Cloud Run service and ci-candidate traffic tag"],
                           "edge": ["1 global IPv4", "2 serverless NEGs (main and exact health-only candidate)", "2 global backend services (each replaces untrusted X-Forwarded-For)", "2 URL maps", "1 managed apex TLS certificate", "HTTP and HTTPS proxies/forwarding rules"],
                           "approvedBaseEstimateUSDPer730Hours": 18.25, "usageAdditional": True,
                           "identity": DEPLOYER, "condition": CONDITION,
-                          "grants": ["WIF user on deployer for exact repository identity", "Run developer on existing service", "Artifact Registry writer on existing repository", "actAs on existing runtime identity"],
+                          "grants": ["WIF user on deployer for exact repository identity", "Run developer on foundation-created service", "Artifact Registry writer on foundation-created repository", "actAs on foundation-created runtime identity"],
+                          "firstRelease": "After apply-foundation and apply-identity, publish from main and run release.mjs baseline with the published digest and current main commit. Then apply-edge, DNS/TLS, set ingress internal and enable automatic deploy.",
                           "forwardedForOverride": "X-Forwarded-For:{client_ip_address},{server_ip_address}",
                           "dnsChanged": False, "workflowActivated": False, "urlmap": edge_urlmap()}, indent=2))
     else:
-        raise SystemExit("Use plan, apply-edge or apply-identity.")
+        raise SystemExit("Use plan, apply-foundation, apply-edge or apply-identity.")
