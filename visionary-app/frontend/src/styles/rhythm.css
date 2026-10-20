@@ -20,13 +20,14 @@
   --fs-hero-headline: 8.75rem; /* desktop 140px */
 
   /* Category-hero tokens — the apple.com/apple-vision-pro hero, measured
-     2026-10-20 at 390/768/1024/1440/1920 (artifacts/qa-2026-10-20/
-     hero-measure.json): foundation statement 28/40/48 and tagline 17/24/28,
-     both at 600 (the statement wears Apple's 700 phone state in the law
-     below). The main landing hero keeps the education ladder above. */
-  --fs-category-statement: 3rem; /* desktop 48px */
+     2026-10-20 (artifacts/qa-2026-10-20/hero-measure.json + vp-lockup.mjs):
+     the focal element is the h1 wordmark lockup, 43px tall on phones and
+     62px from 734px up (letters ~44–46px cap height) — a 64px Google Sans
+     statement lands on the same visual mass; the tagline steps 17/24/28 at
+     600 like Apple's. The main landing hero keeps the education ladder. */
+  --fs-category-statement: 4rem; /* desktop 64px — syncs to the 62px lockup */
   --lh-category-statement: 1.08;
-  --track-category-statement: -0.003em;
+  --track-category-statement: -0.009em; /* section-head curve at 64 */
   --fs-category-tagline: 1.75rem; /* desktop 28px */
   --lh-category-tagline: 1.14;
   --track-category-tagline: 0.007em;
@@ -101,7 +102,7 @@ main h2 + p.mt-6 {
    (out of the section scope, so they live at :root like the cast tokens). */
 @media (max-width: 1068px) {
   :root {
-    --fs-category-statement: 2.5rem; /* tablet 40px */
+    --fs-category-statement: 3.5rem; /* tablet 56px — matches the 62px lockup */
     --lh-category-statement: 1.1;
     --track-category-statement: 0em;
     --fs-category-tagline: 1.5rem; /* tablet 24px */
@@ -112,7 +113,7 @@ main h2 + p.mt-6 {
 
 @media (max-width: 734px) {
   :root {
-    --fs-category-statement: 1.75rem; /* phone 28px */
+    --fs-category-statement: 2.5rem; /* phone 40px — matches the 43px lockup */
     --lh-category-statement: 1.14;
     --track-category-statement: 0.007em;
     --fs-category-tagline: 1.0625rem; /* phone 17px */
