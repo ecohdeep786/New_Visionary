@@ -5,8 +5,10 @@ matrix](../docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md) separates SDK path
 provider settings, real sign-in and hosted/device acceptance. Mobile, Microsoft
 and organization SSO are explicitly unavailable before collecting input or
 opening a provider; Google/Apple/email retain their existing implementation and
-separate qualification gates. This candidate is pending independent review and
-integration. KAN-162's accepted main-only hosting supersedes the pending-deploy
+separate qualification gates. Independent review approves source `7aba0d56`;
+[the report](../docs/architecture/reviews/KAN34_EXACT_SHA_REVIEW_7ABA0D56.md) keeps
+full provider/mail/hosted-device acceptance open. Integration remains pending.
+KAN-162's accepted main-only hosting supersedes the pending-deploy
 statements in the dated project-switch notes below.
 
 This implements the local auth/profile slice authorized on 14 October 2026, with D-064 frontend recovery/error hardening and D-065 [connected onboarding and introduction](ONBOARDING_CONTRACT.md). It supersedes browser storage for real authentication when `VITE_AUTH_MODE=firebase`. The original preview adapter remains for fictional offline development. It is not a complete production auth release.

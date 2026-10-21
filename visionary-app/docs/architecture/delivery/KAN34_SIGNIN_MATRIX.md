@@ -16,7 +16,7 @@ discussion on 21 October; its full acceptance stays open.
 
 Verified remote dev is `84a432ec`; remote main is `7aee2324`. The primary checkout
 remains on older dev `e089319a` with unrelated edits. Do not reset or merge over
-them. Nine registered worktrees comprise the primary, this task, unfinished
+them. At the initial reconciliation, nine registered worktrees comprised the primary, this task, unfinished
 KAN-29 and its reviewer, four completed KAN-145/146 implementation/reviewer
 instances, and the separate landing worktree with edits. Previous cleanup
 rejections and preserved evidence remain in execution receipts; this checkpoint
@@ -53,8 +53,9 @@ roles, new provider configuration, data migration or production deployment occur
   accepted dev and the matching pushed task instance were verified before edits.
 - Local verification: recorded below after commands finish. Mocked identity and
   rendered fictional account responses must remain labelled as such.
-- Reviewer: pending; no identity or exact-SHA approval is invented. Full KAN-34
-  remains In Progress while actual provider/delivery/device work remains open.
+- Reviewer: `/root/kan34_review` independently approved source implementation
+  `7aba0d56e176aa3d74f1b4fc459146988924a21b`, with no blocking source finding.
+  Full KAN-34 remains In Progress while actual provider/delivery/device work remains open.
 - Integration: pending. Only main deploys production; no task branch deployment.
   A later review-approved dev integration needs its own relevant checks.
 - Next implementation task: none selected; this worker retains KAN-34 until its
@@ -85,3 +86,28 @@ Verification uses the existing primary frontend dependencies through a local
 ignored junction, without changing either lock. Partial install files are kept in
 ignored `artifacts/qa/kan34/dependency-install-partial/`. No backend/ML source or
 runtime dependency changed, so their full suites are outside this source patch.
+
+## Independent review outcome
+
+The founder authorized a separate reviewer on 21 October. The fresh reviewer
+instance was created from verified dev `84a432ec`, fast-forwarded to the candidate
+and pushed/ref-verified before review. Its separate branch is
+`codex/qa-review-kan-34-signin-matrix`; its checkout adds a tenth registered
+worktree. Reviewer responsibility and the exact source decision are recorded in
+[the independent report](../reviews/KAN34_EXACT_SHA_REVIEW_7ABA0D56.md), published
+at `6d86b5238cffb919494d31b2bafabd0d10fbcc46` after a report-only clarification.
+
+The reviewer independently reproduced root check (18 script/554 frontend,
+lint/types/layout/import/audit/build), 27 focused tests and all four compiled
+desktop/mobile scenarios. Five additional probes passed for unsupported calls
+during a pending popup, Google/Apple completion after logout, token-refresh
+completion after logout, and unverified-provider token/notification denial.
+Independent build: 19.83 seconds. Visual inspection passes. The report labels
+the fictional anonymous response and matching dependency reuse explicitly.
+
+**Decision: source patch approved; full KAN-34 acceptance remains open.** The
+reviewer report and this receipt are evidence only; the reviewed implementation
+remains `7aba0d56`. No product source changed after that review. Draft
+[PR 17](https://github.com/ecohdeep786/New_Visionary/pull/17) remains unmerged;
+neither dev/main integration nor deployment is claimed. Real provider, mail and
+hosted-device gates still require their recorded acceptance evidence.
