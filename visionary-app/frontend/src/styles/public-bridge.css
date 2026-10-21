@@ -1,6 +1,8 @@
 /* Bridged public contract: canonical Google×Apple spacing and radii applied
    to the legacy class/variable names the existing landing routes already use,
-   so convergence reaches every public route without rewriting each one. */
+   so convergence reaches every public route without rewriting each one.
+   Burn-down ledger (A4, 2026-10-21): remove an entry only with BOTH zero
+   rendered matches AND zero authoring files across all public routes. */
 
 :root {
   --radius-card: 12px;
@@ -254,17 +256,11 @@ main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) i
    values live in rhythm.css; legacy arbitrary classes retag by element
    role: h2 = section head (--fs-h2, 64/56/40), h3/span = feature statement
    (--fs-story-card, 48/40/28), card/step heads (--fs-card-title, 40/32/28),
-   p = lead copy (--fs-lead, 24/21/19), quiet labels (--fs-label, 24/21). */
-
-.text-\[clamp\(36px\,5vw\,72px\)\],
-.text-\[clamp\(34px\,5vw\,72px\)\],
-.text-\[clamp\(40px\,4\.5vw\,72px\)\],
-.text-\[clamp\(30px\,3\.8vw\,56px\)\],
-.text-\[clamp\(26px\,3\.4vw\,48px\)\] {
-  font-size: var(--fs-story-card) !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.003em !important;
-}
+   p = lead copy (--fs-lead, 24/21/19), quiet labels (--fs-label, 24/21). 
+   A4 burn-down (2026-10-21): retag members with zero rendered matches and
+   zero authoring files across the public routes were removed; live members
+   stay until their surfaces converge (persona/editorial headers in B1–B3,
+   auth/onboarding spacing in C1, dashboard interior in C3). */
 
 h2.text-\[clamp\(36px\,5vw\,72px\)\],
 h2.text-\[clamp\(34px\,5vw\,72px\)\],
@@ -273,6 +269,9 @@ h2.text-\[clamp\(30px\,3\.8vw\,56px\)\],
 h2.text-\[clamp\(26px\,3\.4vw\,48px\)\],
 h2.text-\[clamp\(40px\,5\.55vw\,80px\)\] {
   font-size: var(--fs-h2) !important;
+  /* 600 weight folds in from the former base-class rule: every authored
+     use of these clamps lives on an h2 (A4 burn-down evidence). */
+  font-weight: 600 !important;
 }
 
 .text-\[clamp\(28px\,2\.78vw\,40px\)\],
@@ -347,12 +346,14 @@ h2.text-\[52px\], h2.text-\[56px\] {
   background: #ffffff;
 }
 
-.rounded-\[14px\] { border-radius: var(--radius-media) !important; }
-.rounded-\[24px\] { border-radius: var(--radius-card) !important; }
+/* Radius retags: 14/28 share the media token, 24 the card token. 32/60 stay
+   pinned (authored in PersonaSections.jsx behind conditional branches — zero
+   default-render matches, but the die is cast for their surfaces). 48/50
+   removed: zero authoring files, zero matches (A4 burn-down). */
+.rounded-\[14px\],
 .rounded-\[28px\] { border-radius: var(--radius-media) !important; }
+.rounded-\[24px\] { border-radius: var(--radius-card) !important; }
 .rounded-\[32px\] { border-radius: var(--radius-media) !important; }
-.rounded-\[48px\] { border-radius: var(--radius-media) !important; }
-.rounded-\[50px\] { border-radius: var(--radius-media) !important; }
 .rounded-\[60px\] { border-radius: var(--radius-media) !important; }
 
 /* Google×Apple chapter rhythm: major content bands breathe together */
@@ -402,20 +403,10 @@ main {
    its markup. Font weight stays on each page's own utility (500/400) —
    the brand reads Medium, not Apple's Semibold. */
 
-/* display + section tiers — Apple's tracking curve */
-.text-\[clamp\(48px\,5\.55vw\,80px\)\] {
-  letter-spacing: -0.015em !important;
-  line-height: 1.05 !important;
-}
-
-.text-\[clamp\(36px\,5vw\,72px\)\],
-.text-\[clamp\(34px\,5vw\,72px\)\],
-.text-\[clamp\(40px\,4\.5vw\,72px\)\],
-.text-\[clamp\(30px\,3\.8vw\,56px\)\],
-.text-\[clamp\(26px\,3\.4vw\,48px\)\] {
-  letter-spacing: -0.003em !important;
-  line-height: 1.08 !important;
-}
+/* display + section tiers — Apple's tracking curve. The display-clamp
+   (48px,5.55vw,80px) and bare story-card class lists were removed in the
+   A4 burn-down: zero authored non-h2 uses on public routes; the h2 members
+   below carry this tier now. */
 
 /* h2s in the same groups carry the section token's own tracking/leading */
 h2.text-\[clamp\(36px\,5vw\,72px\)\],
@@ -486,7 +477,9 @@ main p[style*="6e6e73"].text-\[17px\] {
   color: #1d1d1f !important;
 }
 
-/* smallest metadata — nothing below 14px on an Apple page */
+/* smallest metadata — nothing below 14px on an Apple page. This floor is
+   load-bearing for the workspace interior too (workspace-typography.css
+   counters it per-element); it stays until C3 retakes the interior. */
 .text-\[13px\] {
   font-size: 14px !important;
 }
