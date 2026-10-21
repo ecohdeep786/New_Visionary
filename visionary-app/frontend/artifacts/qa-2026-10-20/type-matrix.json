@@ -1,0 +1,438 @@
+{
+  "apple-edu": {
+    "url": "https://www.apple.com/in/education-initiative/",
+    "kind": "apple",
+    "by": {
+      "390": {
+        "body": "12/600/1.33/-0.010",
+        "heroHeadline": "64/600/1/-0.001",
+        "heroEyebrow": "40/600/1/n",
+        "sectionHeadline": "40/600/1.1/n",
+        "storyHeadline": "28/600/1.14/0.007",
+        "label": "21/600/1.19/0.011",
+        "intro": "19/400/1.21/0.012",
+        "tout": "19/600/1.21/0.012",
+        "caption": "12/600/1.33/-0.010",
+        "cardHeadline": "28/600/1.14/0.007",
+        "navLink": "19/600/1.21/0.012",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": null,
+        "docH": 8964
+      },
+      "768": {
+        "body": "12/600/1.33/-0.010",
+        "heroHeadline": "96/600/1/-0.001",
+        "heroEyebrow": "40/600/1/n",
+        "sectionHeadline": "56/600/1.07/-0.005",
+        "storyHeadline": "40/600/1.1/n",
+        "label": "21/600/1.19/0.011",
+        "intro": "21/400/1.19/0.011",
+        "tout": "19/600/1.21/0.012",
+        "caption": "12/600/1.33/-0.010",
+        "cardHeadline": "32/600/1.13/0.004",
+        "navLink": "19/600/1.21/0.012",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": null,
+        "docH": 8772
+      },
+      "1024": {
+        "body": "12/600/1.33/-0.010",
+        "heroHeadline": "96/600/1/-0.001",
+        "heroEyebrow": "40/600/1/n",
+        "sectionHeadline": "56/600/1.07/-0.005",
+        "storyHeadline": "40/600/1.1/n",
+        "label": "21/600/1.19/0.011",
+        "intro": "21/400/1.19/0.011",
+        "tout": "19/600/1.21/0.012",
+        "caption": "12/600/1.33/-0.010",
+        "cardHeadline": "32/600/1.13/0.004",
+        "navLink": "17/600/1.24/-0.022",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": null,
+        "docH": 8545
+      },
+      "1440": {
+        "body": "12/600/1.33/-0.010",
+        "heroHeadline": "140/600/1/-0.002",
+        "heroEyebrow": "56/600/1/-0.000",
+        "sectionHeadline": "64/600/1.06/-0.009",
+        "storyHeadline": "48/600/1.08/-0.003",
+        "label": "24/600/1.17/0.009",
+        "intro": "21/400/1.19/0.011",
+        "tout": "19/600/1.21/0.012",
+        "caption": "12/600/1.33/-0.010",
+        "cardHeadline": "40/600/1.1/n",
+        "navLink": "17/600/1.24/-0.022",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": null,
+        "docH": 7945
+      },
+      "1920": {
+        "body": "12/600/1.33/-0.010",
+        "heroHeadline": "140/600/1/-0.002",
+        "heroEyebrow": "56/600/1/-0.000",
+        "sectionHeadline": "64/600/1.06/-0.009",
+        "storyHeadline": "48/600/1.08/-0.003",
+        "label": "24/600/1.17/0.009",
+        "intro": "21/400/1.19/0.011",
+        "tout": "19/600/1.21/0.012",
+        "caption": "12/600/1.33/-0.010",
+        "cardHeadline": "40/600/1.1/n",
+        "navLink": "17/600/1.24/-0.022",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": null,
+        "docH": 8063
+      }
+    }
+  },
+  "apple-home": {
+    "url": "https://www.apple.com/",
+    "kind": "apple",
+    "by": {
+      "390": {
+        "body": "19/400/1.21/0.012",
+        "heroHeadline": null,
+        "heroEyebrow": null,
+        "sectionHeadline": null,
+        "storyHeadline": null,
+        "label": null,
+        "intro": null,
+        "tout": null,
+        "caption": null,
+        "cardHeadline": "32/600/1.13/0.002",
+        "navLink": "19/600/1.21/0.012",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": "12/400/1.33/-0.010",
+        "docH": 27926
+      },
+      "768": {
+        "body": "24/400/1.17/0.009",
+        "heroHeadline": null,
+        "heroEyebrow": null,
+        "sectionHeadline": null,
+        "storyHeadline": null,
+        "label": null,
+        "intro": null,
+        "tout": null,
+        "caption": null,
+        "cardHeadline": "32/600/1.13/0.002",
+        "navLink": "19/600/1.21/0.012",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": "12/400/1.33/-0.010",
+        "docH": 15240
+      },
+      "1024": {
+        "body": "24/400/1.17/0.009",
+        "heroHeadline": null,
+        "heroEyebrow": null,
+        "sectionHeadline": null,
+        "storyHeadline": null,
+        "label": null,
+        "intro": null,
+        "tout": null,
+        "caption": null,
+        "cardHeadline": "32/600/1.13/0.002",
+        "navLink": "17/600/1.24/-0.022",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": "12/400/1.33/-0.010",
+        "docH": 12889
+      },
+      "1440": {
+        "body": "28/400/1.14/0.007",
+        "heroHeadline": null,
+        "heroEyebrow": null,
+        "sectionHeadline": null,
+        "storyHeadline": null,
+        "label": null,
+        "intro": null,
+        "tout": null,
+        "caption": null,
+        "cardHeadline": "40/600/1.1/n",
+        "navLink": "17/600/1.24/-0.022",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": "12/400/1.33/-0.010",
+        "docH": 13471
+      },
+      "1920": {
+        "body": "28/400/1.14/0.007",
+        "heroHeadline": null,
+        "heroEyebrow": null,
+        "sectionHeadline": null,
+        "storyHeadline": null,
+        "label": null,
+        "intro": null,
+        "tout": null,
+        "caption": null,
+        "cardHeadline": "40/600/1.1/n",
+        "navLink": "17/600/1.24/-0.022",
+        "footerLink": "12/400/1.33/-0.010",
+        "legal": "12/400/1.33/-0.010",
+        "docH": 13646
+      }
+    }
+  },
+  "vz-home": {
+    "url": "http://127.0.0.1:5173/",
+    "kind": "ours",
+    "by": {
+      "390": {
+        "bodyModePx": "17",
+        "bigPpx": 32,
+        "h1": "16/400/1.5/n",
+        "h2": "40/600/1.1/-0.020",
+        "h3": "21/600/1.19/0.011",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 10365
+      },
+      "768": {
+        "bodyModePx": "17",
+        "bigPpx": 32,
+        "h1": "16/400/1.5/n",
+        "h2": "64/600/1.06/-0.009",
+        "h3": "24/600/1.17/0.009",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 9367
+      },
+      "1024": {
+        "bodyModePx": "17",
+        "bigPpx": 41,
+        "h1": "16/400/1.5/n",
+        "h2": "64/600/1.06/-0.009",
+        "h3": "24/600/1.17/0.009",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 8855
+      },
+      "1440": {
+        "bodyModePx": "17",
+        "bigPpx": 48,
+        "h1": "16/400/1.5/n",
+        "h2": "80/600/1.05/-0.015",
+        "h3": "28/600/1.14/0.007",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 9668
+      },
+      "1920": {
+        "bodyModePx": "17",
+        "bigPpx": 48,
+        "h1": "16/400/1.5/n",
+        "h2": "80/600/1.05/-0.015",
+        "h3": "28/600/1.14/0.007",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 10060
+      }
+    }
+  },
+  "vz-student": {
+    "url": "http://127.0.0.1:5173/student",
+    "kind": "ours",
+    "by": {
+      "390": {
+        "bodyModePx": "17",
+        "bigPpx": 24,
+        "h1": "48/500/1.05/n",
+        "h2": "40/600/1/n",
+        "h3": "21/600/1.19/0.011",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 12,
+        "button": null,
+        "docH": 12785
+      },
+      "768": {
+        "bodyModePx": null,
+        "bigPpx": null,
+        "h1": null,
+        "h2": null,
+        "h3": null,
+        "navLinkMin": null,
+        "footerLinkMin": null,
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 1024
+      },
+      "1024": {
+        "bodyModePx": "17",
+        "bigPpx": 24,
+        "h1": "57/500/1.05/n",
+        "h2": "56/600/1/-0.005",
+        "h3": "24/600/1.17/0.009",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 12,
+        "button": null,
+        "docH": 11733
+      },
+      "1440": {
+        "bodyModePx": "17",
+        "bigPpx": 28,
+        "h1": "80/500/1.05/n",
+        "h2": "72/600/1/-0.009",
+        "h3": "28/600/1.14/0.007",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 12,
+        "button": null,
+        "docH": 13322
+      },
+      "1920": {
+        "bodyModePx": "17",
+        "bigPpx": 28,
+        "h1": "80/500/1.05/n",
+        "h2": "72/600/1/-0.009",
+        "h3": "28/600/1.14/0.007",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 12,
+        "button": null,
+        "docH": 14064
+      }
+    }
+  },
+  "vz-pricing": {
+    "url": "http://127.0.0.1:5173/pricing",
+    "kind": "ours",
+    "by": {
+      "390": {
+        "bodyModePx": null,
+        "bigPpx": null,
+        "h1": null,
+        "h2": null,
+        "h3": null,
+        "navLinkMin": null,
+        "footerLinkMin": null,
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 844
+      },
+      "768": {
+        "bodyModePx": "17",
+        "bigPpx": 18,
+        "h1": "40/600/1.06/-0.009",
+        "h2": "56/600/1/-0.005",
+        "h3": "24/600/1.12/0.009",
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 12,
+        "button": null,
+        "docH": 6765
+      },
+      "1024": {
+        "bodyModePx": null,
+        "bigPpx": null,
+        "h1": null,
+        "h2": null,
+        "h3": null,
+        "navLinkMin": null,
+        "footerLinkMin": null,
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 768
+      },
+      "1440": {
+        "bodyModePx": null,
+        "bigPpx": null,
+        "h1": null,
+        "h2": null,
+        "h3": null,
+        "navLinkMin": null,
+        "footerLinkMin": null,
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 900
+      },
+      "1920": {
+        "bodyModePx": null,
+        "bigPpx": null,
+        "h1": null,
+        "h2": null,
+        "h3": null,
+        "navLinkMin": null,
+        "footerLinkMin": null,
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 1080
+      }
+    }
+  },
+  "vz-help": {
+    "url": "http://127.0.0.1:5173/help",
+    "kind": "ours",
+    "by": {
+      "390": {
+        "bodyModePx": null,
+        "bigPpx": null,
+        "h1": null,
+        "h2": null,
+        "h3": null,
+        "navLinkMin": null,
+        "footerLinkMin": null,
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 844
+      },
+      "768": {
+        "bodyModePx": "17",
+        "bigPpx": 24,
+        "h1": "40/600/1.06/-0.009",
+        "h2": null,
+        "h3": null,
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 3110
+      },
+      "1024": {
+        "bodyModePx": "17",
+        "bigPpx": 24,
+        "h1": "51/600/1.06/-0.009",
+        "h2": null,
+        "h3": null,
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 2495
+      },
+      "1440": {
+        "bodyModePx": "17",
+        "bigPpx": 28,
+        "h1": "64/600/1.06/-0.009",
+        "h2": null,
+        "h3": null,
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 2477
+      },
+      "1920": {
+        "bodyModePx": "17",
+        "bigPpx": 28,
+        "h1": "64/600/1.06/-0.009",
+        "h2": null,
+        "h3": null,
+        "navLinkMin": "14px",
+        "footerLinkMin": "12px/400",
+        "smallTextPx": 14,
+        "button": null,
+        "docH": 2477
+      }
+    }
+  }
+}
