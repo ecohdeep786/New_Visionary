@@ -14,7 +14,7 @@ test('unavailable and malformed providers never invoke identity or exchange and 
     identity: { provider: async () => { identities++; return user; } },
   });
   await auth.me();
-  for (const provider of ['microsoft', 'mobile', 'organization', 'phone', 'google.com', 'Google', '__proto__', 'constructor', '', null, {}, ['google']]) {
+  for (const provider of ['apple', 'apple.com', 'microsoft', 'mobile', 'organization', 'phone', 'google.com', 'Google', '__proto__', 'constructor', '', null, {}, ['google']]) {
     await assert.rejects(auth.loginWithProvider(provider), error => error.code === 'auth/operation-not-allowed');
     assert.equal(auth.currentProfile(), profile);
   }
@@ -22,7 +22,7 @@ test('unavailable and malformed providers never invoke identity or exchange and 
   assert.deepEqual(requests, ['/me']);
 });
 
-for (const provider of ['google', 'apple']) {
+for (const provider of ['google']) {
   test(`${provider} still requires verified identity and an owner-matched server profile`, async () => {
     const calls = [];
     const auth = createServerAuth({
@@ -53,7 +53,7 @@ test('cancelled OAuth can retry without an exchange or duplicate identity reques
   });
   await assert.rejects(auth.loginWithProvider('google'), error => error.code === 'auth/popup-closed-by-user');
   assert.equal(exchanges, 0);
-  const retry = auth.loginWithProvider('apple');
+  const retry = auth.loginWithProvider('google');
   await assert.rejects(auth.loginWithProvider('google'), error => error.code === 'auth/operation-in-progress');
   finish(user);
   assert.equal(await retry, profile);

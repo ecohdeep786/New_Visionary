@@ -43,7 +43,9 @@ try {
         assert.equal(method?.disabled, true, `${route} ${width}: ${name}`);
         assert.match(method.description, /unavailable/);
       }
-      for (const name of ['Continue with Email', 'Continue with Google', 'Continue with Apple']) {
+      assert.equal(methods.some(button => /Apple/i.test(button.name)), false, 'Apple is absent from web sign-in');
+      assert.equal(await page.evaluate(() => /\bApple\b/.test(document.body.innerText)), false);
+      for (const name of ['Continue with Email', 'Continue with Google']) {
         assert.equal(methods.find(button => button.name === name)?.disabled, false, name);
       }
       assert.equal(await page.$('input[type="tel"]'), null);

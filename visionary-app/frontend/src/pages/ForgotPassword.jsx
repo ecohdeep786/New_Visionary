@@ -33,8 +33,8 @@ export default function ForgotPassword() {
 
   return (
     <AuthLayout
-      title="Forgot your password?"
-      supportingText="We'll help you reset it and get back to learning."
+      title="Reset your Visionary password"
+      supportingText="Enter your account email to request a password reset link."
       footer={
         <Link to="/login" className="flex items-center gap-1 text-[#4285F4] font-medium hover:underline">
           <ArrowLeft className="w-3 h-3" /> Back to sign in

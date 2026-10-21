@@ -5,13 +5,13 @@ import { authFlowError } from '../../lib/authErrors.js';
 export const signInMethods = Object.freeze({
   email: true,
   google: true,
-  apple: true,
+  apple: false,
   microsoft: false,
   mobile: false,
   organization: false,
 });
 
-const popupProviders = Object.freeze({ google: 'google.com', apple: 'apple.com' });
+const popupProviders = Object.freeze({ google: 'google.com' });
 
 export function popupProviderId(name) {
   if (typeof name !== 'string' || !Object.hasOwn(popupProviders, name)) {

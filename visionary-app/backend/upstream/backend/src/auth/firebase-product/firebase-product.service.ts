@@ -8,8 +8,10 @@ import { freeBillingAccount } from '../../billing/billing-account';
 import { ACCOUNT_STORAGE_VERSION, LEGACY_BILLING_ACCOUNTS, billingDocument, deviceDocument, deviceRecord, eventDocument, identitySnapshot } from './account-storage';
 import { accountDirectory, directoryDocument, directoryNeedsUpdate } from './account-directory';
 
-const ABSOLUTE_MS = 8 * 60 * 60 * 1000;
-const IDLE_MS = 30 * 60 * 1000;
+// Durable device sign-in, bounded by Firebase's maximum session-cookie lifetime.
+// Passwords/SDK refresh tokens are never used as a browser-side login cache.
+const ABSOLUTE_MS = 14 * 24 * 60 * 60 * 1000;
+const IDLE_MS = 7 * 24 * 60 * 60 * 1000;
 const digest = (value: string) => createHash('sha256').update(value).digest('hex');
 const invalidAuth = new Set(['auth/argument-error', 'auth/invalid-argument', 'auth/invalid-id-token', 'auth/id-token-expired', 'auth/id-token-revoked', 'auth/invalid-session-cookie', 'auth/session-cookie-expired', 'auth/session-cookie-revoked', 'auth/user-disabled', 'auth/user-not-found']);
 const assertAccountUid = (uid: unknown) => {
@@ -116,7 +118,7 @@ export class FirebaseProductService implements OnModuleDestroy {
         const account = await tx.get(this.db().collection('visionary_accounts').doc(identity.uid));
         const deviceRef = deviceDocument(this.db(), identity.uid, sessionId), savedDevice = touch ? (await tx.get(deviceRef)).data() : null;
         if (account.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your account storage upgrade is in progress.');
-        if (!data || data.revokedAt || data.uid !== identity.uid || data.cookieHash !== digest(cookie) || data.expires <= now || !Number.isFinite(data.lastSeen) || now - data.lastSeen >= IDLE_MS) throw new UnauthorizedException('Your session ended. Sign in again.');
+        if (!data || data.revokedAt || data.uid !== identity.uid || data.cookieHash !== digest(cookie) || !Number.isFinite(data.expires) || data.expires <= now || !Number.isFinite(data.lastSeen) || data.lastSeen > now + 60000 || now - data.lastSeen >= IDLE_MS) throw new UnauthorizedException('Your session ended. Sign in again.');
         if (touch) {
           tx.update(ref, { lastSeen: now });
           tx.set(deviceRef, deviceRecord(identity.uid, sessionId, { ...data, lastSeen: now }, savedDevice));

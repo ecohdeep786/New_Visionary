@@ -149,7 +149,7 @@ test('cookie/device binding, idle timeout, revoked identity and logout reject se
   const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
   assert.equal((await f.service.authenticate(session.cookie, session.device)).uid, 'fixture-adult');
   await assert.rejects(f.service.authenticate('another-cookie', session.device), e => e.getStatus() === 401);
-  const ref = `visionary_auth_sessions/${hash(session.device)}`, record = f.rows.get(ref); record.lastSeen = Date.now() - 1800001;
+  const ref = `visionary_auth_sessions/${hash(session.device)}`, record = f.rows.get(ref); record.lastSeen = Date.now() - 7 * 86400000 - 1;
   await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
   record.lastSeen = Date.now(); f.revoke(); await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
   await assert.rejects(f.service.logout(session.device, 'another-account'), e => e.getStatus() === 409);
@@ -168,13 +168,42 @@ test('absolute expiry and mismatched UID reject a retained session record', asyn
   await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
 });
 
+test('returning devices remain signed in across days with bounded cookies and no sliding absolute expiry', async () => {
+  const f = fixture(); let requestedLifetime;
+  f.auth.createSessionCookie = async (_token, options) => { requestedLifetime = options.expiresIn; return 'fictional-cookie'; };
+  const session = await f.service.signIn('fixture-token', metadata);
+  assert.equal(requestedLifetime, 14 * 86400000);
+  assert.equal(session.expiresIn, requestedLifetime);
+  const key = `visionary_auth_sessions/${hash(session.device)}`;
+  const record = f.rows.get(key), originalExpiry = record.expires;
+  record.lastSeen = Date.now() - 6 * 86400000;
+  assert.equal((await f.service.authenticate(session.cookie, session.device)).uid, f.identity.uid);
+  assert.equal(f.rows.get(key).expires, originalExpiry, 'Visits must not extend absolute expiry');
+  assert.ok(Date.now() - f.rows.get(key).lastSeen < 1000);
+  const second = await f.service.signIn('fixture-token', metadata);
+  await f.service.logout(session.device, f.identity.uid);
+  await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
+  assert.equal((await f.service.authenticate(second.cookie, second.device)).uid, f.identity.uid);
+});
+
+test('malformed expiry and future activity cannot create a cached authentication bypass', async () => {
+  const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
+  const key = `visionary_auth_sessions/${hash(session.device)}`, saved = { ...f.rows.get(key) };
+  for (const expires of [undefined, null, NaN, Infinity, '9999999999999']) {
+    f.rows.set(key, { ...saved, expires });
+    await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
+  }
+  f.rows.set(key, { ...saved, lastSeen: Date.now() + 120000 });
+  await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
+});
+
 test('billing observation validates expiry without extending the device idle window', async () => {
   const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
   const record = f.rows.get(`visionary_auth_sessions/${hash(session.device)}`); record.lastSeen = Date.now() - 10000;
   const previous = record.lastSeen;
   await f.service.authenticate(session.cookie, session.device, false);
   assert.equal(f.rows.get(`visionary_auth_sessions/${hash(session.device)}`).lastSeen, previous);
-  record.lastSeen = Date.now() - 1800001;
+  record.lastSeen = Date.now() - 7 * 86400000 - 1;
   await assert.rejects(f.service.authenticate(session.cookie, session.device, false), error => error.getStatus() === 401);
 });
 test('repeated sign-in rotates only the proven current device and retains account/history', async () => {

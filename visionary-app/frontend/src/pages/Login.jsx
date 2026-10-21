@@ -102,7 +102,7 @@ export default function Login() {
 
   const layoutProps = isPasswordView
     ? {
-        title: "Welcome",
+        title: "Enter your password",
         supportingText: null,
         accountInfo: email,
         footer: (
@@ -113,8 +113,8 @@ export default function Login() {
         ),
       }
     : {
-        title: "Sign in",
-        supportingText: "Use your Visionary Account",
+        title: "Sign in to Visionary",
+        supportingText: "Continue with Google, or use your email and password. Your sign-in is remembered on this browser; sign out on shared devices.",
         accountInfo: null,
         footer: (
           <>

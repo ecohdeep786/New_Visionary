@@ -468,19 +468,19 @@
       "jiraKey": "KAN-34",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
       "status": "In Progress",
-      "scope": "Sign-in method implementation matrix and truthful unavailable paths; actual provider, email delivery, hosted/device acceptance remain open",
+      "scope": "Email/Google web sign-in, explicit unavailable methods, remembered server-owned device sessions and native Firebase verification links; founder removes Apple from web. Firebase template editing/domain and hosted candidate acceptance remain open.",
       "branch": "codex/codex-kan-34-signin-matrix",
       "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
       "implementer": "Codex",
       "review": {
-        "state": "pending-latest-runtime-repair-review",
-        "approvedCommit": "7aba0d56e176aa3d74f1b4fc459146988924a21b",
+        "state": "pending-apple-copy-durable-session-review",
+        "approvedCommit": "c896dafa82fc813c5706e721e12c7947789638fb",
         "approvalAppliesToPreviousSourceOnly": true,
         "reviewer": "/root/kan34_review",
         "reviewerBranch": "codex/qa-review-kan-34-signin-matrix",
-        "reviewerReportCommit": "6d86b5238cffb919494d31b2bafabd0d10fbcc46",
-        "evidence": "docs/architecture/reviews/KAN34_EXACT_SHA_REVIEW_7ABA0D56.md",
+        "reviewerReportCommit": "abf3291316f022acece27ddf7e5db324776603d4",
+        "evidence": "docs/architecture/reviews/KAN34_RUNTIME_REPAIR_REVIEW_C896DAFA.md",
         "blockingSourceFindings": 0,
         "independentFrontendTests": 554,
         "independentScriptTests": 18,
@@ -526,9 +526,40 @@
         "appleRealSignIn": false,
         "onboardingAccountRecoveryRepaired": true,
         "compiledRecoveryScenarios": 6,
-        "repairReview": "pending"
+        "repairReview": "pending",
+        "founderReleaseChoices": {
+          "appleWeb": "removed-by-explicit-founder-instruction",
+          "emailVerification": "firebase-native-links-explicitly-selected",
+          "customSender": false,
+          "numericCodeImplemented": false
+        },
+        "rememberedDeviceCandidate": {
+          "absoluteDays": 14,
+          "idleDays": 7,
+          "authority": "server-verified-HttpOnly-cookie-plus-device-record",
+          "sdkTokenPersistence": "memory-only",
+          "deployed": false
+        },
+        "firebaseTemplates": {
+          "status": "prepared-not-applied",
+          "api": "EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED",
+          "consoleSenderSubjectSave": "rejected-project-updates-unavailable",
+          "senderDomain": "visionary.org.in",
+          "senderDomainStatus": "IN_PROGRESS",
+          "configuration": "infrastructure/gcp/auth-email-templates.json"
+        },
+        "resetEvidence": {
+          "mailDelivered": true,
+          "resetFormOpened": true,
+          "oldPasswordRejectedAfterHandoff": true,
+          "preResetSessionDenied": true,
+          "newPasswordSignInObserved": false
+        }
       },
-      "integration": { "remotePublished": false, "commit": null }
+      "integration": {
+        "remotePublished": false,
+        "commit": null
+      }
     }
   ]
 }

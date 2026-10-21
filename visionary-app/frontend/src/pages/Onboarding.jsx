@@ -55,7 +55,9 @@ function ProductSetup() {
       await logout();
       navigate(authLink('/login'), { replace: true });
     } catch (failure) {
-      setError(authErrorMessage(failure, 'We couldn’t sign you out. Your setup draft is kept. Please try again.'));
+      setError(failure?.status >= 500
+        ? 'We couldn’t sign you out. Your setup draft is kept. Please try again shortly.'
+        : authErrorMessage(failure, 'We couldn’t sign you out. Your setup draft is kept. Please try again.'));
     } finally { lock.current = false; setSwitchingAccount(false); }
   }
   const accountActions = { onChangeAccount: switchAccount, isSubmitting: busy || switchingAccount, isSwitchingAccount: switchingAccount };

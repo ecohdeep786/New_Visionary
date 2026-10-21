@@ -160,3 +160,51 @@ candidate must receive independent review. Full KAN-34 remains In Progress for
 Apple, reset completion and remaining hosted candidate acceptance. Do not merge,
 promote main, remove unfinished worktrees or take the next task on partial
 provider acceptance.
+
+## Founder release choice and remembered device sign-in
+
+21 October 2026, subsequent founder instructions supersede the Apple requirement
+above: remove Apple sign-in from the web release. Login and registration no
+longer render the Apple control or recommend it; both the facade and Firebase
+adapter reject `apple` before SDK calls, session exchange or profile clearing.
+No global Firebase provider is disabled, so this web change does not revoke
+existing identities or change other clients. Email and Google remain available.
+
+The founder initially requests numeric email codes, then explicitly chooses
+**Keep Firebase verification links for this release** after the built-in sender
+limitation is explained. No custom SMTP sender or numeric-code mechanism is
+added. The existing `visionary.org.in` sender-domain verification remains in
+progress; no DNS record, domain name, callback handler or provider secret is
+changed. Domain verification is an external status, not a timer-based guarantee.
+
+Native Firebase verification/reset links remain the email actions. Desired
+sender/subject wording for all four templates and a branded password-reset body
+are prepared in `infrastructure/gcp/auth-email-templates.json`. Verification,
+email-change and MFA bodies remain Firebase-managed under its built-in sender
+restrictions. Field-masked API saves fail for all four template types with
+`EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED`. A real Firebase Console attempt to change
+only the verification sender name/subject also fails and explicitly says email
+template updates are unavailable for this project and to contact Firebase
+support. Read-back retains the old wording; **no live template update is claimed**.
+The project supports sending existing templates; an edit failure is not proof
+that delivery itself is down. No support message is sent on the founder's behalf.
+
+The remembered-device candidate changes newly issued server session cookies
+from eight hours to a maximum of 14 days and inactivity expiry from 30 minutes
+to seven days. This remains bounded by Firebase's supported cookie lifetime.
+Every request verifies the Firebase cookie with revocation plus the server's
+UID/device/cookie-hash record and expiry. A return visit uses that server check;
+no password, SDK refresh token or cached profile becomes identity authority.
+Existing shorter cookies keep their stored expiry. Activity cannot extend
+absolute expiry. Logout revokes the device and clears cookies, and other device
+sessions remain independent. Missing/nonfinite expiry and future activity fail
+closed. Sign-in copy tells people to sign out on shared devices.
+
+Independent review approved the earlier recovery source at `c896dafa`, report
+`KAN34_RUNTIME_REPAIR_REVIEW_C896DAFA.md`, report-only commit `abf32913`.
+That approval does not cover this newer Apple/copy/session candidate. A renewed
+exact-SHA review and live candidate verification are required before integration.
+The reviewer's sign-out failure-copy observation is repaired with action-specific
+503 wording. Full task acceptance, new-password sign-in after the reset handoff,
+the blocked Firebase template edits/domain verification and hosted candidate
+release remain open. No dev/main merge, deployment, Done or cleanup is claimed.

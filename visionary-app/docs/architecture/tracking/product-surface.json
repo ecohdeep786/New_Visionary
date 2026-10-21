@@ -346,10 +346,9 @@
         "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
-        "frontend/src/components/SocialAuthButtons.jsx:49:7",
-        "frontend/src/components/SocialAuthButtons.jsx:52:7",
-        "frontend/src/components/SocialAuthButtons.jsx:55:7",
-        "frontend/src/components/SocialAuthButtons.jsx:58:7",
+        "frontend/src/components/SocialAuthButtons.jsx:41:7",
+        "frontend/src/components/SocialAuthButtons.jsx:44:7",
+        "frontend/src/components/SocialAuthButtons.jsx:47:7",
         "frontend/src/pages/Login.jsx:111:13",
         "frontend/src/pages/Login.jsx:122:13",
         "frontend/src/pages/Login.jsx:129:35",
@@ -471,10 +470,9 @@
         "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
-        "frontend/src/components/SocialAuthButtons.jsx:49:7",
-        "frontend/src/components/SocialAuthButtons.jsx:52:7",
-        "frontend/src/components/SocialAuthButtons.jsx:55:7",
-        "frontend/src/components/SocialAuthButtons.jsx:58:7",
+        "frontend/src/components/SocialAuthButtons.jsx:41:7",
+        "frontend/src/components/SocialAuthButtons.jsx:44:7",
+        "frontend/src/components/SocialAuthButtons.jsx:47:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
         "frontend/src/pages/Register.jsx:140:13",
         "frontend/src/pages/Register.jsx:151:13",
@@ -3660,11 +3658,11 @@
         "frontend/src/components/onboarding/steps/student/StudyRoutine.jsx:58:9",
         "frontend/src/components/onboarding/steps/student/SubjectConfidence.jsx:19:11",
         "frontend/src/components/onboarding/SubjectContextInput.jsx:6:5",
-        "frontend/src/pages/Onboarding.jsx:82:36",
-        "frontend/src/pages/Onboarding.jsx:91:12",
-        "frontend/src/pages/Onboarding.jsx:94:50",
-        "frontend/src/pages/Onboarding.jsx:94:185",
-        "frontend/src/pages/Onboarding.jsx:100:10"
+        "frontend/src/pages/Onboarding.jsx:84:36",
+        "frontend/src/pages/Onboarding.jsx:93:12",
+        "frontend/src/pages/Onboarding.jsx:96:50",
+        "frontend/src/pages/Onboarding.jsx:96:185",
+        "frontend/src/pages/Onboarding.jsx:102:10"
       ],
       "operations": [
         "auth-session-profile",
@@ -45080,9 +45078,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:49:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:41:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 49,
+      "line": 41,
       "column": 7,
       "tag": "button",
       "events": [
@@ -45120,9 +45118,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:52:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:44:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 52,
+      "line": 44,
       "column": 7,
       "tag": "button",
       "events": [],
@@ -45153,49 +45151,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:55:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:47:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 55,
-      "column": 7,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => handleSocial(\"apple\")}"
-        }
-      ],
-      "calls": [
-        "handleSocial"
-      ],
-      "disabled": "disabled={busy || !signInMethods.apple}",
-      "declarationSha256": "1df3c662d36abd30edd5b87832b74f5ca21311ffc97eb95caa247a9768bce5a1",
-      "routeIds": [
-        "/login",
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:58:7",
-      "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 58,
+      "line": 47,
       "column": 7,
       "tag": "button",
       "events": [],
@@ -74791,9 +74749,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:82:36",
+      "id": "frontend/src/pages/Onboarding.jsx:84:36",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 82,
+      "line": 84,
       "column": 36,
       "tag": "IdentitySelection",
       "events": [
@@ -74828,9 +74786,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:91:12",
+      "id": "frontend/src/pages/Onboarding.jsx:93:12",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 91,
+      "line": 93,
       "column": 12,
       "tag": "OnboardingLayout",
       "events": [
@@ -74873,9 +74831,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:94:50",
+      "id": "frontend/src/pages/Onboarding.jsx:96:50",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 94,
+      "line": 96,
       "column": 50,
       "tag": "button",
       "events": [
@@ -74912,9 +74870,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:94:185",
+      "id": "frontend/src/pages/Onboarding.jsx:96:185",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 94,
+      "line": 96,
       "column": 185,
       "tag": "button",
       "events": [
@@ -74952,9 +74910,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:100:10",
+      "id": "frontend/src/pages/Onboarding.jsx:102:10",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 100,
+      "line": 102,
       "column": 10,
       "tag": "OnboardingLayout",
       "events": [
@@ -76155,7 +76113,7 @@
     },
     {
       "file": "frontend/src/api/firebase/authAdapter.js",
-      "sourceSha256": "a6d83e09d786606642f412567face8eb4799968140f46685f839cae3eb73c218"
+      "sourceSha256": "cff52329304e59f6b99c1103df29c12f3aea72d655e794a5756a4cdaa090da4b"
     },
     {
       "file": "frontend/src/api/firebase/authTransport.js",
@@ -76175,7 +76133,7 @@
     },
     {
       "file": "frontend/src/api/firebase/signInMethods.js",
-      "sourceSha256": "f64114ba2e8313a4d48dabb49ebf1e2832344292d8a917de033cc4a2f87a7e08"
+      "sourceSha256": "9c1c14204ccb8e10adcc9cf0650f99f3e6e92ce088c8473178b806ff25feedc3"
     },
     {
       "file": "frontend/src/api/previewPermissions.js",
@@ -76195,7 +76153,7 @@
     },
     {
       "file": "frontend/src/components/auth/EmailVerification.jsx",
-      "sourceSha256": "db69c3e8c926dfa1687acb84ce247f1c3a159a8d6f6489d8bfb06ac48a598cc4"
+      "sourceSha256": "3d26040fb4d3cbb6ba39de4d9df44653b85c07cca6768f132af969cc45fa979a"
     },
     {
       "file": "frontend/src/components/auth/LanguageSelector.jsx",
@@ -76799,7 +76757,7 @@
     },
     {
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "sourceSha256": "8142948c40b0feddc95c3c32c089447fa9cbd3c1373469a630824b5308abc7e0"
+      "sourceSha256": "df33fd10fb93e49072a293709f8630df39a068d31813a0b414d3ed5cf73c9440"
     },
     {
       "file": "frontend/src/components/ui/accordion.jsx",
@@ -77495,7 +77453,7 @@
     },
     {
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "sourceSha256": "11ea7828a373ded76e05ef806124cb41ee0db0fea85279a08f5c6086c680a4c6"
+      "sourceSha256": "9ce67182aff2bebf74ceb8cbbce5f142432adc677688116e9d2d55bbdfc36fc5"
     },
     {
       "file": "frontend/src/pages/ForgotUserId.jsx",
@@ -77599,7 +77557,7 @@
     },
     {
       "file": "frontend/src/pages/Login.jsx",
-      "sourceSha256": "8cd343c24bc6fb6238d306df99cdb2ca14bbf65d44c81dcaace4fbfe450aabaf"
+      "sourceSha256": "7dd53f9f59a4078709f90057182bd18b795520efc7db4f41ac25278c09a04d6a"
     },
     {
       "file": "frontend/src/pages/OAuthConsent.jsx",
@@ -77607,7 +77565,7 @@
     },
     {
       "file": "frontend/src/pages/Onboarding.jsx",
-      "sourceSha256": "b757e4a91f5136ef27d5e8db239cee7038f678d1b597a69c9c3cd7836edb82e7"
+      "sourceSha256": "7c127b9c30003a7b0d674370285249ce04eda636e88d71929bf0b15da70f9e67"
     },
     {
       "file": "frontend/src/pages/Register.jsx",
@@ -81090,11 +81048,11 @@
   "counts": {
     "routes": 68,
     "registeredEndpoints": 35,
-    "controlDeclarations": 1624,
-    "routeReachableDeclarations": 1466,
+    "controlDeclarations": 1623,
+    "routeReachableDeclarations": 1465,
     "controlFiles": 219,
     "states": {
-      "connected": 481,
+      "connected": 480,
       "preview": 931,
       "missing": 52,
       "intentionally-unreleased": 160

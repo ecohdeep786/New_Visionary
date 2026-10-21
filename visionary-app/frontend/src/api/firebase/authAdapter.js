@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, confirmPasswordReset, verifyPasswordResetCode, applyActionCode, validatePassword, reload, signOut, signInWithPopup, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, confirmPasswordReset, verifyPasswordResetCode, applyActionCode, validatePassword, reload, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { getFirebaseAuthClient } from './client.js';
 import { createServerAuth } from './serverAuth.js';
 import { authFlowError, passwordRequirements } from '../../lib/authErrors.js';
@@ -19,9 +19,8 @@ const identity = {
     pendingVerificationTimes.set(user.uid, Date.now());
   },
   async provider(name) {
-    const providerId = popupProviderId(name);
-    const provider = providerId === 'google.com' ? new GoogleAuthProvider() : new OAuthProvider(providerId);
-    if (name === 'apple') provider.addScope('email');
+    popupProviderId(name);
+    const provider = new GoogleAuthProvider();
     return (await signInWithPopup(getFirebaseAuthClient(), provider)).user;
   },
   resetRequest: email => sendPasswordResetEmail(getFirebaseAuthClient(), email, { url: `${window.location.origin}/login` }),

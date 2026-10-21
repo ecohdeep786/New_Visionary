@@ -1,13 +1,28 @@
 # Firebase auth and account routing — D-063
 
-21 October 2026 / KAN-34 candidate: the [sign-in implementation and acceptance
-matrix](../docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md) separates SDK paths,
-provider settings, real sign-in and hosted/device acceptance. Mobile, Microsoft
-and organization SSO are explicitly unavailable before collecting input or
-opening a provider; Google/Apple/email retain their existing implementation and
-separate qualification gates. Independent review approves source `7aba0d56`;
-[the report](../docs/architecture/reviews/KAN34_EXACT_SHA_REVIEW_7ABA0D56.md) keeps
-full provider/mail/hosted-device acceptance open. Integration remains pending.
+21 October 2026 / KAN-34 candidate: founder explicitly removes Apple from the
+web release and chooses Firebase verification links after discussing the custom
+sender required for numeric codes. Email and Google remain implemented; Apple is
+absent from login/register and rejected before any SDK/session call. Mobile,
+Microsoft and organization SSO remain explicitly unavailable. The candidate
+remembers a device using a server-verified HttpOnly cookie for at most 14 days,
+with a seven-day inactivity limit; Firebase credentials stay in memory. Logout,
+password reset/revocation, account binding and absolute expiry still end access.
+Existing shorter-lived cookies are not renewed or upgraded by a page visit.
+The production main revision still has its previous eight-hour/30-minute policy
+until reviewed integration and release; this document does not claim deployment.
+
+The [acceptance matrix](../docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md)
+distinguishes source review, provider settings and live acceptance. Independent
+review approves onboarding recovery at `c896dafa`; the newer Apple/copy/session
+candidate requires replacement review. Firebase rejects all attempted template
+updates with `EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED`, including a console sender/
+subject-only save. Desired supported edits are retained in
+`infrastructure/gcp/auth-email-templates.json` as prepared, not applied. Firebase
+controls verification/change/MFA bodies; only the reset body is customizable
+with its built-in sender. The existing `visionary.org.in` sender-domain request
+remains in progress. No custom SMTP, DNS change or numeric-code implementation
+is introduced. Integration and full task acceptance remain pending.
 KAN-162's accepted main-only hosting supersedes the pending-deploy
 statements in the dated project-switch notes below.
 
@@ -44,7 +59,7 @@ All routes live under `/api/auth` on the standalone `main-auth` application. No 
 | --- | --- |
 | GET `/csrf` | No-store token response and host-only HttpOnly SameSite Strict cookie |
 | POST `/session` | Exact Origin/CSRF check; verify Firebase ID token with revocation; require verified email and auth_time within5 minutes; atomically retain/create profile, session and sign-in event |
-| GET `/me` | Verify Firebase session cookie with revocation, device-cookie binding, UID,8-hour absolute expiry and30-minute inactivity expiry; load persisted profile |
+| GET `/me` | Verify Firebase session cookie with revocation, device-cookie binding, UID,14-day absolute expiry and7-day inactivity expiry; load persisted profile |
 | POST `/onboarding` | Authenticated UID only; bounded allowlist, adult admission, supported role/stage/name validation; first completion wins transactionally |
 | POST `/onboarding/introduction` | Bound UID, Origin/CSRF and profile budget; empty acknowledgement only; completed setup required; introduction acknowledgement is idempotent and retained on the same account |
 | PATCH `/profile` | Display name/account accent only; expected-name/accent conflicts return409; no claimed UID, consent, membership or onboarding completion |
@@ -61,7 +76,7 @@ Profile response is an allowlisted product projection, not an Admin user record.
 | `visionary_accounts/{uid}` | UID/storageVersion2, verified identity metadata, email/name, validated role preferences, onboarding state/version, creation/latest sign-in | Canonical retained account; no passwords, ID/session tokens or private keys |
 | `visionary_accounts/{uid}/devices/{deviceHash}` | First/last seen, provider, observed IP/User-Agent and expiry/revocation for one browser session | Atomically synchronized with its server-only session lookup; no cookie hash/raw credentials |
 | `visionary_accounts/{uid}/authEvents/{eventId}` | Owned retained sign-in/out history | Same transaction as the global security index; no token/cookie data |
-| `visionary_auth_sessions/{deviceHash}` | UID, cookie hash, last activity, absolute expiry/revocation timestamp |8-hour access; retained history, revoked on logout |
+| `visionary_auth_sessions/{deviceHash}` | UID, cookie hash, last activity, absolute expiry/revocation timestamp |14-day maximum access; retained history, revoked on logout |
 | `visionary_auth_events/{randomId}` | UID, session hash, sign-in provider, server-observed IP, bounded User-Agent, timestamp |Retained security index; same event also lives beneath the UID |
 | `visionary_auth_limits/{hmac}` | Counter and expiresAt; subject/window keyed with persistent server secret |2-minute logical counter expiry, retained records; atomic20/minute observed-IP session budget,10/minute UID session budget,20/minute profile-command budget |
 
@@ -79,7 +94,7 @@ The auth transport bounds each request to one20-second deadline, including queue
 
 Concurrent account reads share one in-flight request. A confirmed mutation invalidates older reads. Login, verification, onboarding, introduction and profile updates adopt their authenticated canonical response in AuthContext directly instead of making a second confirmation read. Expected UID and account-epoch checks reject stale account transitions; query caches clear on account changes. Normal error mapping and retry affordances remain in place.
 
-Visible, trusted pointer/keyboard activity quietly revalidates server authority at most once per five minutes, while no account command is active. Capture listeners include keyboard controls that stop bubbling. Focus also revalidates. There is no background keepalive interval; the existing30-minute idle and8-hour absolute limits remain server-owned. Inactive sessions still expire. Connection/loading/recovery states use the product font surface and accessible status text.
+Visible, trusted pointer/keyboard activity quietly revalidates server authority at most once per five minutes, while no account command is active. Capture listeners include keyboard controls that stop bubbling. Focus also revalidates. There is no background keepalive interval; the candidate7-day idle and14-day absolute limits remain server-owned. Visits never extend absolute expiry. Inactive, revoked and expired sessions still require sign-in. Connection/loading/recovery states use the product font surface and accessible status text.
 
 Rendered fictional browser checks verify actual custom Google Sans glyphs from local Regular/Medium font files on login, registration, onboarding, dashboard and account-service recovery. No Google Fonts CDN is requested in these fixtures. Public-site typography remains a separate existing surface. Nine role/learner scenarios also assert zero redundant profile GETs after confirmed setup/introduction; four routing fixtures and eleven real Auth Emulator workflows pass. See [QA](../docs/visionary/QA.md) for precise evidence and remaining production gates, and [the payment auth handoff](PAYMENTS_AUTH_HANDOFF.md) for the next design boundary.
 
