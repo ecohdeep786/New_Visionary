@@ -208,3 +208,12 @@ The reviewer's sign-out failure-copy observation is repaired with action-specifi
 503 wording. Full task acceptance, new-password sign-in after the reset handoff,
 the blocked Firebase template edits/domain verification and hosted candidate
 release remain open. No dev/main merge, deployment, Done or cleanup is claimed.
+
+Visual review of the rebuilt `f094876a` candidate found a retained layout bug:
+AuthLayout rendered account-navigation footer links only in its desktop panel.
+At 390px, Login had no visible Create account link and Register had no visible
+Sign in link. The follow-up renders the same footer after the form on mobile,
+while retaining desktop placement. The four compiled method scenarios now also
+require visible account navigation at both widths and follow it to the opposite
+auth route while preserving the original return destination. This latest layout
+delta must be included in the replacement exact-SHA source review.

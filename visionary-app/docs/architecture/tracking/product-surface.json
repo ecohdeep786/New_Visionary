@@ -343,9 +343,9 @@
         "frontend/src/components/auth/EmailVerification.jsx:28:5",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
-        "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
+        "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/SocialAuthButtons.jsx:41:7",
         "frontend/src/components/SocialAuthButtons.jsx:44:7",
         "frontend/src/components/SocialAuthButtons.jsx:47:7",
@@ -467,9 +467,9 @@
         "frontend/src/components/auth/EmailVerification.jsx:28:5",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
-        "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
+        "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/SocialAuthButtons.jsx:41:7",
         "frontend/src/components/SocialAuthButtons.jsx:44:7",
         "frontend/src/components/SocialAuthButtons.jsx:47:7",
@@ -566,9 +566,9 @@
         "frontend/src/components/auth/AuthUI.jsx:224:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
-        "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
+        "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/pages/ForgotPassword.jsx:39:9",
         "frontend/src/pages/ForgotPassword.jsx:56:11",
         "frontend/src/pages/ForgotPassword.jsx:57:11",
@@ -625,9 +625,9 @@
         "frontend/src/components/auth/AuthUI.jsx:224:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
-        "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
+        "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/pages/ForgotUserId.jsx:10:7",
         "frontend/src/pages/ForgotUserId.jsx:11:7"
       ],
@@ -707,9 +707,9 @@
         "frontend/src/components/auth/AuthUI.jsx:224:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
-        "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
+        "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/pages/ResetPassword.jsx:51:154",
         "frontend/src/pages/ResetPassword.jsx:52:129",
         "frontend/src/pages/ResetPassword.jsx:53:29",
@@ -788,9 +788,9 @@
         "frontend/src/components/auth/AuthUI.jsx:224:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
-        "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
+        "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/pages/AuthAction.jsx:28:7"
       ],
       "operations": [
@@ -18619,9 +18619,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/AuthLayout.jsx:77:11",
+      "id": "frontend/src/components/AuthLayout.jsx:78:11",
       "file": "frontend/src/components/AuthLayout.jsx",
-      "line": 77,
+      "line": 78,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -18649,9 +18649,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/AuthLayout.jsx:78:11",
+      "id": "frontend/src/components/AuthLayout.jsx:79:11",
       "file": "frontend/src/components/AuthLayout.jsx",
-      "line": 78,
+      "line": 79,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -18679,9 +18679,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/AuthLayout.jsx:79:11",
+      "id": "frontend/src/components/AuthLayout.jsx:80:11",
       "file": "frontend/src/components/AuthLayout.jsx",
-      "line": 79,
+      "line": 80,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -76161,7 +76161,7 @@
     },
     {
       "file": "frontend/src/components/AuthLayout.jsx",
-      "sourceSha256": "bdb08518411c18e4f15ef4ba26e326d41ad070824a89e269f9acb70ed124f319"
+      "sourceSha256": "bc1345b2644e8fb941ed8b49f115864ccf8407742c32edc831510fa87d80574f"
     },
     {
       "file": "frontend/src/components/dashboard/AchievementsCard.jsx",

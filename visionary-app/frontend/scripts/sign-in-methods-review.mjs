@@ -49,8 +49,19 @@ try {
         assert.equal(methods.find(button => button.name === name)?.disabled, false, name);
       }
       assert.equal(await page.$('input[type="tel"]'), null);
+      const otherRoute = route === '/login' ? '/register' : '/login';
+      const accountLink = await page.evaluate(target => {
+        const link = [...document.querySelectorAll('a')].find(element => new URL(element.href).pathname === target && element.getClientRects().length);
+        return link ? { href: link.href, text: link.textContent.trim() } : null;
+      }, otherRoute);
+      assert.ok(accountLink, `${route} ${width}: account navigation must be visible`);
+      assert.equal(new URL(accountLink.href).searchParams.get('returnTo'), '/dashboard/plans');
       await page.screenshot({ path: path.join(output, `${route.slice(1)}-${width}.png`), fullPage: true });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      await page.evaluate(href => [...document.querySelectorAll('a')].find(link => link.href === href && link.getClientRects().length).click(), accountLink.href);
+      await page.waitForFunction(target => location.pathname === target, {}, otherRoute);
+      assert.equal(new URL(page.url()).searchParams.get('returnTo'), '/dashboard/plans');
+      await page.goto(`${origin}${route}?returnTo=%2Fdashboard%2Fplans`, { waitUntil: 'networkidle0' });
       await page.evaluate(() => [...document.querySelectorAll('button')].find(button => button.textContent.includes('Continue with Email')).click());
       await page.waitForSelector('input[type="email"]');
       await page.type('input[type="email"]', 'fixture@example.test');
