@@ -15,21 +15,21 @@ import { LEGAL_META } from "@/data/legalMeta";
 import { fontStack } from "@/components/landing/system/tokens";
 
 const COLORS = {
-  ink: "#121317",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
-  mist: "#dadce0",
-  border: "#dadce0",
-  soft: "#f8f9fa",
+  ink: "#1d1d1f",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
+  mist: "#d2d2d7",
+  border: "#d2d2d7",
+  soft: "#f5f5f7",
   canvas: "#f7f8fa",
-  blue: "#4285F4",
-  navy: "#0b57d0",
+  blue: "#0066cc",
+  navy: "#0066cc",
   white: "#ffffff",
-  graphite: "#5f6368",
+  graphite: "#6e6e73",
 };
 
 /* ═══ Link grammar — the approved public quiet link, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4";
+const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -222,10 +222,10 @@ export default function TermsPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active ? "bg-[#f5f5f7]" : "text-[#5f6368] hover:text-[#121317]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
-                          <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0b57d0]" : ""}`}>{section.number}</span>
-                          <span className={`text-[13px] leading-[1.45] ${active ? "text-[#121317]" : ""}`}>{section.title}</span>
+                          <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
+                          <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
                         </button>
                       );
                     })}
@@ -292,7 +292,7 @@ export default function TermsPage() {
                     onClick={() => setShowMobileContents((value) => !value)}
                     aria-expanded={showMobileContents}
                     aria-controls="terms-mobile-contents"
-                    className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                   >
                     <span>
                       <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
@@ -311,10 +311,10 @@ export default function TermsPage() {
                               type="button"
                               onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
                               aria-current={active ? "location" : undefined}
-                              className={`flex min-h-12 w-full items-start gap-4 rounded-[16px] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active ? "bg-white" : "text-[#5f6368]"}`}
+                              className={`flex min-h-12 w-full items-start gap-4 rounded-[16px] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-white" : "text-[#6e6e73]"}`}
                             >
-                              <span className={`mt-0.5 text-[12px] font-medium tabular-nums ${active ? "text-[#0b57d0]" : ""}`}>{section.number}</span>
-                              <span className={`text-[14px] leading-[1.45] ${active ? "text-[#121317]" : ""}`}>{section.title}</span>
+                              <span className={`mt-0.5 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
+                              <span className={`text-[14px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
                             </button>
                           );
                         })}
@@ -329,11 +329,11 @@ export default function TermsPage() {
                   <h2 id="terms-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                         <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
-                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                       </a>
                     ))}
                   </div>
@@ -515,13 +515,13 @@ export default function TermsPage() {
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
-                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               ))}
             </div>

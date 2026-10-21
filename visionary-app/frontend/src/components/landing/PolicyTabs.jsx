@@ -35,10 +35,10 @@ export default function PolicyTabs() {
                   key={to}
                   to={to}
                   aria-current={active ? "page" : undefined}
-                  className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium tracking-[0.01em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                  className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium tracking-[0.01em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
                     active
-                      ? "bg-[#121317] text-white"
-                      : "text-[#5f6368] hover:text-[#121317]"
+                      ? "bg-[#1d1d1f] text-white"
+                      : "text-[#6e6e73] hover:text-[#1d1d1f]"
                   }`}
                 >
                   {label}

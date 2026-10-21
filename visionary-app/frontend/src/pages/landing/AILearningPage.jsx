@@ -14,12 +14,12 @@ import organizationImage from "@/assets/organization-face-main.webp";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
-  ink: "#121317",
+  ink: "#1d1d1f",
   surface: "#f5f5f7",
-  blue: "#4285F4",
-  grey: "#5f6368",
-  slate: "#5f6368",
-  lightGrey: "#9AA0A6",
+  blue: "#0066cc",
+  grey: "#6e6e73",
+  slate: "#6e6e73",
+  lightGrey: "#86868b",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };
@@ -78,11 +78,11 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
             type="button"
             aria-pressed={active}
             onClick={() => onChange(b)}
-            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#121317] font-medium text-white" : "font-normal text-[#5f6368] hover:bg-[#f5f5f7]"}`}
+            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
           >
             {b === "monthly" ? "Monthly" : "Annual"}
             {b === "annual" && (
-              <span className={`rounded-full px-2 py-0.5 text-[12px] font-medium tracking-[0] ${active ? "bg-white/15 text-white" : "bg-[#f5f5f7] text-[#5f6368]"}`}>
+              <span className={`rounded-full px-2 py-0.5 text-[12px] font-medium tracking-[0] ${active ? "bg-white/15 text-white" : "bg-[#f5f5f7] text-[#6e6e73]"}`}>
                 2 months free
               </span>
             )}
@@ -102,7 +102,7 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
       className="relative flex h-full flex-col rounded-[20px] bg-white p-6 sm:p-7 xl:p-8"
     >
       <div className="mb-2 flex h-6 items-center">
-        {plan.badge && <span className="rounded-full bg-[#121317] px-2.5 py-1 text-[12px] font-medium leading-none text-white">{plan.badge}</span>}
+        {plan.badge && <span className="rounded-full bg-[#1d1d1f] px-2.5 py-1 text-[12px] font-medium leading-none text-white">{plan.badge}</span>}
       </div>
       <h3 className="text-[24px] font-semibold leading-[1.12] tracking-[0.009em]" style={{ color: COLORS.ink }}>{plan.name}</h3>
       <p className="mt-2 min-h-[44px] font-normal leading-[1.5] text-[14px]" style={{ color: COLORS.grey }}>{plan.tagline}</p>
@@ -132,10 +132,10 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
 
       <Link
         to={['personal', 'family'].includes(plan.id) ? billingPath(plan.id, billing) : plan.to}
-        className={`mt-5 inline-flex h-12 items-center justify-center rounded-full px-5 text-center font-medium tracking-[0] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+        className={`mt-5 inline-flex h-11 items-center justify-center rounded-full px-[21px] text-center font-medium tracking-[-0.011em] text-[17px] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
           plan.highlight
-            ? "bg-[#121317] text-white hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98]"
-            : "bg-[#f5f5f7] text-[#121317] hover:bg-[#e8e8ed] active:scale-[0.98]"
+            ? "bg-[#1d1d1f] text-white hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a]"
+            : "bg-[rgba(0,0,0,0.08)] text-[#1d1d1f] hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98]"
         }`}
       >
         {plan.cta}
@@ -165,7 +165,7 @@ function PricingPlansSection() {
           <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
             Plans for <span className="accent-gradient">every journey</span>.
           </h1>
-          <p className="mx-auto max-w-[760px] text-[17.5px] font-normal leading-[25px] text-[#5f6368]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+          <p className="mx-auto max-w-[760px] text-[17.5px] font-normal leading-[25px] text-[#6e6e73]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
             Start free. Find the right fit for yourself, your family, or your organization.
           </p>
         </div>
@@ -195,7 +195,7 @@ function PricingPersonaSection() {
         <div className="mx-auto mt-12 w-full max-w-[1280px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {PERSONA_PLANS.map((p) => (
-            <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+            <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
               <div className="mb-5 flex h-36 items-center justify-center overflow-hidden rounded-[18px] bg-white">
                 <img src={PERSONA_IMAGES[p.persona]} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
@@ -227,7 +227,7 @@ function PricingComparisonSection() {
     <section ref={ref} data-section="03-compare" className="relative px-6" style={{fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h2 className="mx-auto max-w-[20ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
-        <p className="mx-auto mt-6 max-w-[1240px] text-right text-[12px] text-[#5f6368] md:hidden">Scroll to compare all plans →</p>
+        <p className="mx-auto mt-6 max-w-[1240px] text-right text-[12px] text-[#6e6e73] md:hidden">Scroll to compare all plans →</p>
         <div className="mx-auto mt-10 w-full max-w-[1240px] overflow-x-auto rounded-[20px] md:mt-12">
           <table className="w-full min-w-[760px] border-collapse text-center">
             <thead>
@@ -291,9 +291,9 @@ function PricingFAQSection() {
           <div className="border-t" style={{ borderColor: COLORS.mist }}>
             {PRICING_FAQ.map((item, i) => (
               <div key={item.q} className="border-b" style={{ borderColor: COLORS.mist }}>
-                <button id={`pricing-faq-question-${i}`} type="button" aria-controls={`pricing-faq-answer-${i}`} aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 rounded-[8px] py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+                <button id={`pricing-faq-question-${i}`} type="button" aria-controls={`pricing-faq-answer-${i}`} aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 rounded-[8px] py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
                   <span className="text-[19px] font-normal leading-[1.35] sm:text-[20px]" style={{ color: COLORS.ink }}>{item.q}</span>
-                  <ChevronDown aria-hidden="true" className={`h-5 w-5 shrink-0 text-[#5f6368] transition-transform duration-300 motion-reduce:transition-none ${open === i ? "rotate-180" : ""}`} />
+                  <ChevronDown aria-hidden="true" className={`h-5 w-5 shrink-0 text-[#6e6e73] transition-transform duration-300 motion-reduce:transition-none ${open === i ? "rotate-180" : ""}`} />
                 </button>
                 <div id={`pricing-faq-answer-${i}`} aria-labelledby={`pricing-faq-question-${i}`} aria-hidden={open !== i} className={`grid transition-all duration-300 ease-google motion-reduce:transition-none ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                   <div className="overflow-hidden">
@@ -318,10 +318,10 @@ function PricingCTASection() {
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
-          <Link to="/contact" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/contact" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Talk to sales
             <ChevronIcon className="h-4 w-4" />
           </Link>

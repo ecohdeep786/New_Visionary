@@ -12,8 +12,8 @@ import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system) ═══ */
 const COLORS = {
-  ink: "#121317", surface: "#F5F6F8", blue: "#4285F4", grey: "#5f6368",
-  lightGrey: "#9AA0A6", mist: "#dadce0", white: "#ffffff",
+  ink: "#1d1d1f", surface: "#F5F6F8", blue: "#0066cc", grey: "#6e6e73",
+  lightGrey: "#86868b", mist: "#d2d2d7", white: "#ffffff",
 };
 
 /* ═══ CONTROLLERS ═══ */
@@ -127,7 +127,7 @@ function AnswerItem({ a }) {
   return (
     <div className="border-b py-6" style={{ borderColor: `${COLORS.ink}14` }}>
       <button type="button" aria-expanded={open} onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+        className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
         <span className="font-normal tracking-[0] leading-[1.3] text-[17.5px]" style={{ color: COLORS.ink }}>{a.q}</span>
         <ArrowRight className={`h-4 w-4 shrink-0 transition-transform duration-300 ${open ? "rotate-90" : ""}`} strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />
       </button>
@@ -189,7 +189,7 @@ export default function SchoolPage() {
               <p className="mt-5 max-w-[560px] text-center text-[17px] leading-[1.6]" style={{ color: COLORS.grey }}>Search, or browse a topic, then reach us.</p>
 
               {/* Search bar */}
-              <div className="mx-auto mt-10 flex h-14 w-full max-w-[760px] items-center gap-3 rounded-full border bg-white px-6 transition-colors focus-within:border-[#4285F4]">
+              <div className="mx-auto mt-10 flex h-14 w-full max-w-[760px] items-center gap-3 rounded-full border bg-white px-6 transition-colors focus-within:border-[#0066cc]">
                 <Search className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />
                 <input
                   value={q}
@@ -206,7 +206,7 @@ export default function SchoolPage() {
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 {SUGGESTIONS.map((s) => (
                   <button key={s} type="button" onClick={() => { setQ(s); setTopicId(null); }}
-                    className="rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px] transition-colors hover:border-[#4285F4]"
+                    className="rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px] transition-colors hover:border-[#0066cc]"
                     style={{ borderColor: COLORS.mist, color: COLORS.grey }}>
                     {s}
                   </button>
@@ -221,7 +221,7 @@ export default function SchoolPage() {
           {activeTopic ? (
             <div className="mx-auto w-full max-w-[900px]">
               <button type="button" onClick={() => setTopicId(null)}
-                className="inline-flex items-center gap-2 font-normal tracking-[0] text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-[8px]"
+                className="inline-flex items-center gap-2 font-normal tracking-[0] text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] rounded-[8px]"
                 style={{ color: COLORS.blue }}>
                 <ArrowLeft className="h-4 w-4" strokeWidth={1.8} /> All topics
               </button>
@@ -253,7 +253,7 @@ export default function SchoolPage() {
                   <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {topics.map((t) => (
                       <button key={t.id} type="button" onClick={() => { setTopicId(t.id); setQ(""); }}
-                        className="group flex flex-col items-start rounded-[24px] g-card p-7 text-left transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                        className="group flex flex-col items-start rounded-[24px] g-card p-7 text-left transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                        >
                         <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card" style={{ color: COLORS.blue }}>
                           <t.Icon className="h-6 w-6" strokeWidth={1.8} />
@@ -303,7 +303,7 @@ export default function SchoolPage() {
               <a href="mailto:hello@visionary.org.in" className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90" style={{ backgroundColor: COLORS.blue }}>
                 <Mail className="h-4 w-4" strokeWidth={1.8} /> hello@visionary.org.in
               </a>
-              <a href="mailto:safety@visionary.org.in" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+              <a href="mailto:safety@visionary.org.in" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#1d1d1f]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
                 <ShieldCheck className="h-4 w-4" strokeWidth={1.8} /> Report a safety issue
               </a>
             </div>

@@ -12,11 +12,11 @@ import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
-  ink: "#121317",
+  ink: "#1d1d1f",
   surface: "#f5f5f7",
-  blue: "#4285F4",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
+  blue: "#0066cc",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
   soft: "#f5f5f7",
@@ -100,8 +100,10 @@ const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
   );
 });
 const BlueTag = React.memo(function BlueTag({ children, className = "" }) {
+  /* the label's accent voice — quiet link blue, matching the site's one accent
+     (measure: apple.com inline/tertiary actions #0066cc); GreyTag stays grey. */
   return (
-    <p className={`font-medium tracking-[0] leading-[1.45] text-[17px] ${className}`} style={{ color: COLORS.grey }}>
+    <p className={`font-medium tracking-[0] leading-[1.45] text-[17px] ${className}`} style={{ color: COLORS.blue }}>
       {children}
     </p>
   );
@@ -234,7 +236,7 @@ function AuthMock({ state, onPause, onResume }) {
           key={`btn-${state}`}
           to={isSignIn ? "/login" : "/register"}
           aria-label={isSignIn ? "Sign in to Visionary" : "Create a free Visionary account"}
-          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f]"
           style={{ backgroundColor: COLORS.blue }}
         >
           {isSignIn ? "Sign in" : "Create account"}
@@ -495,7 +497,7 @@ function HowLoopSection() {
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActive(i)}
-                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${isActive ? "bg-[#121317] text-white" : "text-[#5f6368] hover:bg-white"}`}
+                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${isActive ? "bg-[#1d1d1f] text-white" : "text-[#6e6e73] hover:bg-white"}`}
               >
                 <st.Icon className="h-4 w-4" strokeWidth={1.8} />
                 {st.label}
@@ -548,7 +550,7 @@ function HowDifferentPeopleSection() {
         <div className="mx-auto mt-12 flex h-[52px] w-full max-w-[900px] items-stretch overflow-x-auto rounded-full bg-[#f5f5f7] p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist" aria-label="Roles">
           {ROLES.map((r, i) => (
             <button key={r.id} type="button" role="tab" aria-selected={role === i} onClick={() => setRole(i)}
-              className={`flex h-full min-w-[92px] flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0] transition-colors sm:px-0 ${role === i ? "bg-[#121317] font-medium text-white" : "font-normal text-[#5f6368] hover:bg-white"}`}>
+              className={`flex h-full min-w-[92px] flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0] transition-colors sm:px-0 ${role === i ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-white"}`}>
               {r.tab}
             </button>
           ))}
@@ -562,7 +564,7 @@ function HowDifferentPeopleSection() {
               {scenario.ui}
             </p>
             <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{scenario.outcome}</p>
-            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
               See the {scenario.tab.toLowerCase()} page
               <ChevronIcon className="h-4 w-4" />
             </Link>
@@ -594,10 +596,10 @@ function HowCTASection() {
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}>See it with your own question.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
-          <Link to="/pricing" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/pricing" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See pricing
             <ChevronIcon className="h-4 w-4" />
           </Link>

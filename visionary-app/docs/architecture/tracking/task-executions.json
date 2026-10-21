@@ -280,6 +280,184 @@
         "primaryDependenciesRetained": true,
         "primaryBranch": "dev"
       }
+    },
+    {
+      "sourceId": "LEARN-09",
+      "jiraKey": "KAN-145",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-145",
+      "status": "Done",
+      "scope": "Repaired development knowledge-projection enabler; whole connected feature prerequisites/acceptance remain open",
+      "branch": "codex/deepseek-kan-145-knowledge-projection",
+      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-145-knowledge-projection",
+      "review": {
+        "state": "approved-repaired-development-enabler",
+        "candidateCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+        "approvedCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+        "reviewer": "/root/kan145_repair_review",
+        "reviewerReportCommit": "7f1fa144a5b0155fcf8c5c4ea62726ab994fd70c",
+        "evidence": "docs/architecture/reviews/KAN145_EXACT_SHA_REPAIR_8B14A762.md",
+        "fullFeatureAccepted": false,
+        "enablerScopeAccepted": true
+      },
+      "hostedAcceptance": false,
+      "implementationCommit": "98ce3e5916e61b3c76a01b732f29d9b49b692af6",
+      "checks": {
+        "backendBuild": true,
+        "focusedTests": 11,
+        "backendTests": 84,
+        "rootCheck": true,
+        "frontendTests": 532,
+        "scriptTests": 18,
+        "failed": 0,
+        "productionTests": 76
+      },
+      "jiraCommentId": "10061",
+      "liveEvidence": "integration/KNOWLEDGE_PROJECTION_CONTRACT.md",
+      "currentDevBase": "e089319a24953bcadb522fcfef0e795065dd0c29",
+      "repairHandoff": "docs/architecture/delivery/KAN145_STORAGE_REPAIR.md",
+      "remainingPrerequisites": [
+        "KAN-144",
+        "KAN-74"
+      ],
+      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
+      "acceptedScope": "development backend enabler",
+      "fullFeatureGate": "KAN-163",
+      "fullFeatureAccepted": false,
+      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+      "integration": {
+        "branch": "dev",
+        "commit": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+        "pullRequest": 15,
+        "remotePublished": true,
+        "ciRun": "39457245132",
+        "ciConclusion": "success",
+        "productionJob": "skipped"
+      },
+      "jiraReturnedStatus": "Done",
+      "jiraTransitionId": "51",
+      "cleanup": {
+        "state": "blocked-by-automatic-approval-review",
+        "removed": false,
+        "reason": "Combined cleanup and narrower literal dependency-junction removal rejected: blocked by policy. No workaround deletion performed.",
+        "primaryDependenciesRetained": true,
+        "sourceAndReviewRefsRetained": true,
+        "worktrees": [
+          "deepseek-kan-145-knowledge-projection",
+          "qa-review-kan-145-knowledge-projection"
+        ],
+        "preservedFiles": 9,
+        "preservedBytes": 118332,
+        "evidenceRoot": "artifacts/qa/kan145-closeout-20261020",
+        "manifest": "preserved-files.json",
+        "jiraCommentId": "10062"
+      },
+      "enablerScopeAccepted": true
+    },
+    {
+      "sourceId": "LEARN-10",
+      "jiraKey": "KAN-146",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-146",
+      "status": "Done",
+      "scope": "Repaired development teaching replay and client confirmation enabler; full learner acceptance open",
+      "branch": "codex/deepseek-kan-146-teaching-loop",
+      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-146-teaching-loop",
+      "review": {
+        "state": "approved-repaired-development-enabler",
+        "approvedCommit": "3920140df87a21522b227c0e807476b47a3a29d6",
+        "reviewer": "/root/kan146_repair_review",
+        "reviewerReportCommit": "4259d5ef40b853975de059655fda0908b90155a9",
+        "evidence": "docs/architecture/reviews/KAN146_EXACT_SHA_REPAIR_3920140D.md",
+        "enablerScopeAccepted": true,
+        "fullFeatureAccepted": false
+      },
+      "hostedAcceptance": false,
+      "implementationCommit": "83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec",
+      "checks": {
+        "backendBuild": true,
+        "backendTests": 95,
+        "productionTests": 87,
+        "focusedFrontendTests": 18,
+        "scriptTests": 18,
+        "frontendTests": 550,
+        "rootCheck": true,
+        "lint": true,
+        "typecheck": true,
+        "buildSeconds": 153,
+        "independentBackendTests": 22,
+        "independentFrontendTests": 18,
+        "independentVersionProbes": 12,
+        "failed": 0
+      },
+      "jiraCommentId": "10065",
+      "liveEvidence": "integration/LEARNING_LOOP_CONTRACT.md",
+      "currentDevBase": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+      "repairHandoff": "docs/architecture/delivery/KAN146_REPLAY_REPAIR.md",
+      "remainingPrerequisites": [
+        "KAN-145",
+        "KAN-143"
+      ],
+      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
+      "acceptedScope": "development teaching loop/client enabler",
+      "fullFeatureGate": "KAN-164",
+      "fullFeatureAccepted": false,
+      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+      "integration": {
+        "branch": "dev",
+        "commit": "e91a75ddbcd1e40b1894367909298e7373728aab",
+        "pullRequest": 16,
+        "remotePublished": true,
+        "ciRun": "39459245188",
+        "ciConclusion": "success",
+        "productionJob": "skipped"
+      },
+      "enablerScopeAccepted": true,
+      "jiraReturnedStatus": "Done",
+      "jiraTransitionId": "51",
+      "cleanup": {
+        "state": "blocked-by-automatic-approval-review",
+        "removed": false,
+        "reason": "Combined cleanup and narrower literal dependency-junction removal rejected: blocked by policy. No workaround deletion performed.",
+        "primaryDependenciesRetained": true,
+        "sourceAndReviewRefsRetained": true,
+        "worktrees": [
+          "deepseek-kan-146-teaching-loop",
+          "qa-review-kan-146-teaching-loop"
+        ],
+        "preservedFiles": 18,
+        "preservedBytes": 310136,
+        "evidenceRoot": "artifacts/qa/kan146-closeout-20261020",
+        "manifest": "preserved-files.json",
+        "deletionAttemptOnThisTask": false
+      }
+    },
+    {
+      "jiraKey": "KAN-163",
+      "status": "To Do",
+      "scope": "Full connected learner feature acceptance retained from KAN-145; original requirements not accepted by enabler closeout",
+      "scopeTransferredFrom": "KAN-145",
+      "prerequisites": [
+        "KAN-144",
+        "KAN-74",
+        "KAN-36",
+        "KAN-29"
+      ],
+      "fullFeatureAccepted": false,
+      "worktree": null
+    },
+    {
+      "jiraKey": "KAN-164",
+      "status": "To Do",
+      "scope": "Full connected learner feature acceptance retained from KAN-146; original requirements not accepted by enabler closeout",
+      "scopeTransferredFrom": "KAN-146",
+      "prerequisites": [
+        "KAN-163",
+        "KAN-143",
+        "KAN-74"
+      ],
+      "fullFeatureAccepted": false,
+      "worktree": null
     }
   ]
 }

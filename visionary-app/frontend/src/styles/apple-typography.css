@@ -391,10 +391,10 @@
 
 /* Links and actions are a 17px role; embedded links inherit surrounding copy. */
 
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a,
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-action,
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-primary,
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-secondary {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a:not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-action:not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-primary:not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-secondary:not([class*="rounded-full"]) {
   font-size: var(--fs-body) !important;
   line-height: 1.294118 !important;
   letter-spacing: var(--track-body) !important;
@@ -407,11 +407,12 @@
   letter-spacing: inherit !important;
 }
 
-/* Legacy text-only link spans and labels consume the same body token. */
+/* Legacy text-only link spans and labels consume the same body token.
+   Law-shaped CTAs (rounded-full pills) are exempt: the CTA tier owns their anatomy (A2 / FAP-42). */
 
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[18px\]:not(h2):not(h3):not(p),
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17px\]:not(h2):not(h3):not(p),
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17\.5px\]:not(h2):not(h3):not(p) {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[18px\]:not(h2):not(h3):not(p):not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17px\]:not(h2):not(h3):not(p):not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17\.5px\]:not(h2):not(h3):not(p):not([class*="rounded-full"]) {
   font-size: var(--fs-body) !important;
   line-height: var(--lh-body) !important;
   letter-spacing: var(--track-body) !important;
@@ -559,7 +560,7 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(strong, b, .apple-lead-bold) {
   font-weight: var(--weight-heading) !important;
 }
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(a, .public-text-link, .public-action, .apple-btn-primary, .apple-btn-secondary) {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(a, .public-text-link, .public-action, .apple-btn-primary, .apple-btn-secondary):not([class*="rounded-full"]) {
   font-weight: var(--weight-body);
 }
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-text-link {

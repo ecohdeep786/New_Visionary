@@ -10,17 +10,17 @@ import { useInViewOnce } from "@/components/landing/system/hooks";
  * Page data (slides, journey modals, icon maps, images) is passed in via
  * props; the visual anatomy, motion, and class strings live here once.
  *
- * Canonical colors: the site hairline #dadce0 and the Google app-chip tint
- * #e8f0fe (chip law) apply to every persona page through this module.
+ * Canonical colors: the site hairline #d2d2d7 and the Google app-chip tint
+ * rgba(0,102,204,0.10) (chip law) apply to every persona page through this module.
  */
 const COLORS = {
-  ink: "#121317",
-  grey: "#5f6368",
-  slate: "#5f6368",
-  lightGrey: "#9AA0A6",
-  blue: "#4285F4",
-  chipBg: "#e8f0fe",
-  mist: "#dadce0",
+  ink: "#1d1d1f",
+  grey: "#6e6e73",
+  slate: "#6e6e73",
+  lightGrey: "#86868b",
+  blue: "#0066cc",
+  chipBg: "rgba(0,102,204,0.10)",
+  mist: "#d2d2d7",
   white: "#ffffff",
 };
 
@@ -157,7 +157,7 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%]"
-          style={{ background: "radial-gradient(46% 62% at 50% 100%, rgba(66,133,244,0.05) 0%, rgba(66,133,244,0.02) 46%, rgba(66,133,244,0) 72%)" }}
+          style={{ background: "radial-gradient(46% 62% at 50% 100%, rgba(0,102,204,0.05) 0%, rgba(0,102,204,0.02) 46%, rgba(0,102,204,0) 72%)" }}
         />
         {/* the subject shares the statement's centered column — the same
             980px spine the heading and copy sit on, so the photograph is
@@ -210,7 +210,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
           aria-label={`Go to challenge ${i + 1}`}
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
@@ -338,7 +338,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
               type="button"
               onClick={() => openStage(stage)}
               aria-label={`Open details for ${stage.title}`}
-              className="group relative block w-full overflow-hidden rounded-[30px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+              className="group relative block w-full overflow-hidden rounded-[30px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
             >
               <img
                 src={stage.image}
@@ -387,7 +387,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
           aria-label={playing ? "Pause the journey" : "Play the journey"}
           aria-pressed={!playing}
           onClick={() => setPlaying((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+          className="flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
         >
           {playing ? (
             <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -406,7 +406,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
             aria-label={`Previous ${label}`}
             disabled={active === 0}
             onClick={() => stepTo(active - 1)}
-            className={`flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+            className={`flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
           >
             <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
           </button>
@@ -415,7 +415,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
             aria-label={`Next ${label}`}
             disabled={active === stages.length - 1}
             onClick={() => stepTo(active + 1)}
-            className={`flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+            className={`flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
           >
             <ChevronIcon className="h-[18px] w-[18px]" />
           </button>
@@ -489,7 +489,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" />
@@ -528,13 +528,13 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 to={content.primary.to}
-                className="inline-flex h-11 items-center justify-center rounded-full bg-[#121317] px-6 text-[17px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-6 text-[17px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
               >
                 {content.primary.label}
               </Link>
               <Link
                 to={secondary.to}
-                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[17px] transition-colors hover:bg-[#F5F6F8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[17px] transition-colors hover:bg-[#F5F6F8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                 style={{ borderColor: COLORS.mist, color: COLORS.ink }}
               >
                 {secondary.label}
@@ -555,7 +555,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
                       </p>
                       <Link
                         to={b.to}
-                        className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                        className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                         style={{ color: COLORS.blue }}
                       >
                         {b.l}
@@ -602,11 +602,11 @@ const isExternalSrc = (src) => typeof src === "string" && /^https?:/i.test(src);
 const IntelligenceArt = React.memo(function IntelligenceArt({ label, variant = 0, className = "" }) {
   const v = ART_VARIANTS[variant % ART_VARIANTS.length];
   return (
-    <div role="img" aria-label={label} className={`relative overflow-hidden bg-[#f8f9fa] ${className}`}>
+    <div role="img" aria-label={label} className={`relative overflow-hidden bg-[#f5f5f7] ${className}`}>
       <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" aria-hidden="true">
-        <circle cx="50" cy="50" r="47" fill="none" stroke="#dadce0" strokeWidth="0.4" strokeDasharray="4 5" transform={`rotate(${v.rotate} 50 50)`} />
-        <circle cx="50" cy="50" r="36" fill="none" stroke="#4285F4" strokeOpacity="0.35" strokeWidth="0.45" strokeDasharray="3 6" transform={`rotate(${-v.rotate * 1.6} 50 50)`} />
-        <circle cx="50" cy="50" r="24" fill="#ffffff" stroke="#121317" strokeOpacity="0.08" strokeWidth="0.4" />
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#d2d2d7" strokeWidth="0.4" strokeDasharray="4 5" transform={`rotate(${v.rotate} 50 50)`} />
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#0066cc" strokeOpacity="0.35" strokeWidth="0.45" strokeDasharray="3 6" transform={`rotate(${-v.rotate * 1.6} 50 50)`} />
+        <circle cx="50" cy="50" r="24" fill="#ffffff" stroke="#1d1d1f" strokeOpacity="0.08" strokeWidth="0.4" />
         {v.dots.map((deg, i) => {
           const rad = ((deg + v.rotate) * Math.PI) / 180;
           return (
@@ -615,7 +615,7 @@ const IntelligenceArt = React.memo(function IntelligenceArt({ label, variant = 0
               cx={50 + 36 * Math.cos(rad)}
               cy={50 + 36 * Math.sin(rad)}
               r={i === 0 ? 2.1 : 1.4}
-              fill="#4285F4"
+              fill="#0066cc"
               fillOpacity={i === 0 ? 1 : 0.55}
             />
           );
@@ -623,7 +623,7 @@ const IntelligenceArt = React.memo(function IntelligenceArt({ label, variant = 0
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
         <svg viewBox="1.5 6 60 44.5" className="w-[26%]" fill="none" aria-hidden="true" style={{ transform: `scale(${v.scale})` }}>
-          <g transform="translate(0,64) scale(0.1,-0.1)" fill="#121317" stroke="none">
+          <g transform="translate(0,64) scale(0.1,-0.1)" fill="#1d1d1f" stroke="none">
             <path d="M49 551 c-16 -16 -29 -40 -29 -53 0 -14 42 -98 93 -187 l92 -163 6 38 c13 76 99 118 159 77 33 -22 44 -41 50 -83 5 -33 9 -28 98 128 60 105 92 172 92 192 0 34 -28 67 -66 76 -41 10 -72 -22 -149 -154 -38 -66 -72 -123 -75 -126 -4 -3 -41 55 -83 128 -95 164 -128 186 -188 127z" />
           </g>
         </svg>
@@ -668,7 +668,7 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect, chip
           type="button"
           aria-pressed={active === lang.code}
           onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 tracking-[0] leading-[20px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`}
+          className={`rounded-full px-5 py-2 tracking-[0] leading-[20px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#1d1d1f]/5"}`}
           style={{
             backgroundColor: active === lang.code ? COLORS.chipBg : "transparent",
             color: COLORS.ink,
@@ -702,7 +702,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-3 rounded-full border px-8 py-3 font-normal tracking-[0] leading-[20px] text-[15px] transition-colors hover:bg-[#121317]/5"
+        className="flex items-center gap-3 rounded-full border px-8 py-3 font-normal tracking-[0] leading-[20px] text-[15px] transition-colors hover:bg-[#1d1d1f]/5"
         style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
       >
         {stages[active].name}
@@ -728,7 +728,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
                 role="option"
                 aria-selected={i === active}
                 onClick={() => { onSelect(i); setOpen(false); }}
-                className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[#D2E3FC] font-medium" : "font-normal hover:bg-[#121317]/5"}`}
+                className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[#rgba(0,102,204,0.10)] font-medium" : "font-normal hover:bg-[#1d1d1f]/5"}`}
                 style={{ color: COLORS.ink }}
               >
                 {s.name}
@@ -756,7 +756,7 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
           className={`h-[320px] w-full object-cover sm:h-[420px] ${imgClass}`}
         />
   
-   <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
+   <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/55 via-[#1d1d1f]/20 to-transparent" aria-hidden="true" />
             <div className="absolute inset-0 flex items-center justify-center px-4">
           <span key={text} className="hero-fade-up text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)]">
             {text}
@@ -813,7 +813,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       type={isInteractive ? "button" : undefined}
       onClick={isInteractive ? () => onOpen(category) : undefined}
       aria-label={isInteractive ? `Open ${text}` : undefined}
-      className={`relative block overflow-hidden rounded-[30px] text-left ${isInteractive ? "cursor-pointer border-0 bg-transparent outline-none transition-transform duration-300 ease-google hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4" : ""} ${className}`}
+      className={`relative block overflow-hidden rounded-[30px] text-left ${isInteractive ? "cursor-pointer border-0 bg-transparent outline-none transition-transform duration-300 ease-google hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4" : ""} ${className}`}
     >
       <img
         src={images[index % images.length]}
@@ -823,7 +823,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
         className="aspect-[20/19] w-full object-cover"
       />
       {/* scrim — guarantees white type contrast on any photo */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/55 via-[#1d1d1f]/20 to-transparent" aria-hidden="true" />
       <div className="absolute inset-0 flex items-center justify-center px-4">
         <span key={text} className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
           {text}
@@ -847,7 +847,7 @@ const TrustCard = React.memo(function TrustCard({ card, image }) {
         <div className="rounded-[20px] bg-white/95 p-5">
           <card.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
           <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
-          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" style={{ color: COLORS.blue }}>
             {card.link}
             <ChevronIcon className="h-3.5 w-3.5" />
           </Link>
@@ -877,7 +877,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
         <p className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.grey, maxWidth: "38ch" }}>
           {category.copy}
         </p>
-        <span className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+        <span className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
           Learn more
           <ChevronIcon className="h-4 w-4" />
         </span>

@@ -41,7 +41,7 @@ export default function SocialAuthButtons({ onOrganization }) {
   };
 
   const btnClass =
-    "w-12 h-12 rounded-xl border border-[#dadce0] bg-white flex items-center justify-center hover:bg-[#121317]/5 hover:shadow-sm transition-all";
+    "w-12 h-12 rounded-xl border border-[#d2d2d7] bg-white flex items-center justify-center hover:bg-[#f5f5f7] hover:shadow-sm transition-all";
 
   return (
     <div><div className="flex items-center justify-center gap-3">
@@ -52,10 +52,10 @@ export default function SocialAuthButtons({ onOrganization }) {
         <MicrosoftIcon className="w-5 h-5" />
       </button>
       <button disabled={busy} onClick={() => handleSocial("apple")} className={btnClass} aria-label="Continue with Apple">
-        <AppleIcon className="w-5 h-5 text-[#121317]" />
+        <AppleIcon className="w-5 h-5 text-[#1d1d1f]" />
       </button>
       <button disabled={busy} onClick={onOrganization} className={btnClass} aria-label="Continue with Organization">
-        <Building2 className="w-5 h-5 text-[#5f6368]" />
+        <Building2 className="w-5 h-5 text-[#6e6e73]" />
       </button>
     </div>{error && <p role="alert" className="mt-3 text-sm text-[#b3261e]">{error}</p>}</div>
   );
