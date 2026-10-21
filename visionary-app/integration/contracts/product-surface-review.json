@@ -1257,13 +1257,13 @@
       ]
     },
     "frontend/src/components/landing/system/ui.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Measured landing-system primitives (CtaPair pill pair, Reveal, ProgressDots) are imported by the landing and persona pages. Client-side presentation and navigation only; no server connection, data authority or educational coverage is claimed.",
       "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
+        "SCOPE-06",
+        "PLAT-01"
       ]
     },
     "frontend/src/components/landing/ValuesStrip.jsx": {

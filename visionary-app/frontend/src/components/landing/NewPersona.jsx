@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
 import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
+import { CtaPair } from "@/components/landing/system/ui";
 import "@/components/landing/cast.css";
 
 function useCycle(total, ms) {
@@ -37,52 +37,10 @@ function useCycleStep(total, ms) {
   return { index, setIndex, setPaused };
 }
 
-/* The shared CTA pair — one source for every hero, so the pills stay
-   identical across the universal and persona pages. `align="baseline"`
-   right-aligns the pair on the wordmark's baseline (the Vision Pro
-   product-page anatomy); the default centers under the copy. Spacing is
-   measured from Apple: pills are 44px tall with 21px side padding
-   (apple.com/apple-vision-pro hero pair, 2026-10-20), the label carries
-   the 17px button voice, and the landing pair breathes 20px apart with
-   the text link on a full 44px target. */
-const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, secondaryLabel, align = "center" }) {
-  const alignment =
-    align === "baseline"
-      ? "flex flex-wrap items-center justify-center gap-3 lg:justify-end"
-      : "mt-10 flex flex-wrap items-center justify-center gap-3 sm:mt-12 sm:gap-5";
-  return (
-    <div className={alignment}>
-      <Link
-        to={ctaTo}
-        className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-      >
-        {ctaLabel}
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4 w-4"
-          aria-hidden="true"
-        >
-          <path d="M5 12h14" />
-          <path d="M13 6l6 6-6 6" />
-        </svg>
-      </Link>
-      {secondaryLabel && (
-        <Link
-          to={secondaryTo}
-          className="inline-flex min-h-11 items-center gap-1.5 px-2 text-[17px] font-normal tracking-[-0.011em] leading-[1.2] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-        >
-          {secondaryLabel}
-          <ChevronRight className="h-[18px] w-[18px]" strokeWidth={2.5} />
-        </Link>
-      )}
-    </div>
-  );
-});
+/* The shared CTA pair lives in system/ui.jsx (CtaPair) — one measured
+   anatomy for the universal front door and every persona hero: 44px ink
+   pill with the 21px pad, the 17px button voice, and the full-44px text
+   link beside it (apple.com/apple-vision-pro hero pair, 2026-10-20). */
 
 /* The family stage — the landing's "product shot". The five personas stand
    together as alpha cutouts on the page's own white: no tiles, no seams, no
@@ -315,7 +273,7 @@ export default function NewPersona({
           {/* the hero pair — full buttons. This is the product's front door;
               the same shared pills the persona heroes wear, so one button
               system carries every hero. */}
-          <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          <CtaPair ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
           {/* the audience rail — Apple's education local-nav row (measured
               live 12px/400 quiet links; K–12 · Higher Education · College
               Students · Success Stories), carried into the hero at our
@@ -476,7 +434,7 @@ export default function NewPersona({
               {sub}
             </p>
           </div>
-          <HeroCtas align="baseline" ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          <CtaPair align="baseline" ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
       </div>
     </section>
   );

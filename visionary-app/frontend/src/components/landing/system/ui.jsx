@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { color, type } from "./tokens";
+import { color, type, BUTTONS } from "./tokens";
 
 /**
  * Shared UI primitives for the public landing pages. Every page composes these
@@ -89,26 +89,85 @@ export function GCard({ as: Tag = "div", className = "", children, ...rest }) {
   );
 }
 
-/** Primary/secondary pill button rendered as a router Link. */
+/**
+ * The CTA law as a component. `variant` selects the measured tone:
+ * "dark" (neutral ink — the site's default), "alpha" (quiet secondary,
+ * hover 0.13), "outline" (hairline card pair), "commerce" (billing surfaces
+ * only). `as` supports Link (default), button and a; `<ArrowIcon/>` is the
+ * measured 16px-arrow glyph. Focus ring and reduce-motion behaviour ride
+ * BUTTONS.geo.
+ */
+const ARROW_ICON = (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-4 w-4"
+    aria-hidden="true"
+  >
+    <path d="M5 12h14" />
+    <path d="M13 6l6 6-6 6" />
+  </svg>
+);
+
+const TONE_MAP = {
+  dark: BUTTONS.neutral,
+  alpha: BUTTONS.alpha,
+  outline: BUTTONS.outline,
+  commerce: BUTTONS.commerce,
+};
+
 export function PillButton({
+  as: Tag = Link,
   to,
   children,
   variant = "dark",
   withIcon = false,
   className = "",
+  ...rest
 }) {
-  const base =
-    "public-action inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
-  const styles = {
-    dark: "bg-[#1d1d1f] text-white hover:bg-black",
-    blue: "bg-[#0066cc] text-white hover:bg-[#1765cc]",
-    outline:
-      "border border-[#d2d2d7] bg-white text-[#1d1d1f] hover:bg-[#f5f5f7]",
-  };
+  const tone = TONE_MAP[variant] || TONE_MAP.dark;
   return (
-    <Link to={to} className={`${base} ${styles[variant]} ${className}`}>
+    <Tag
+      to={Tag === Link ? to : undefined}
+      className={`${BUTTONS.geo} ${tone} ${className}`}
+      {...rest}
+    >
       {children}
-      {withIcon && (
+      {withIcon && ARROW_ICON}
+    </Tag>
+  );
+}
+
+/**
+ * The measured hero CTA pair — one ink pill + one 17px text link (400), the
+ * anatomy the front door and every persona hero share (Apple Vision Pro
+ * product-page pair). `align="baseline"` right-aligns on the wordmark's
+ * baseline; the default centers under the copy. Lifted verbatim from
+ * NewPersona's HeroCtas at A5 activation so every hero renders from one
+ * primitive instead of five copies.
+ */
+export function CtaPair({
+  ctaTo,
+  ctaLabel,
+  secondaryTo,
+  secondaryLabel,
+  align = "center",
+}) {
+  const alignment =
+    align === "baseline"
+      ? "flex flex-wrap items-center justify-center gap-3 lg:justify-end"
+      : "mt-10 flex flex-wrap items-center justify-center gap-3 sm:mt-12 sm:gap-5";
+  return (
+    <div className={alignment}>
+      <Link
+        to={ctaTo}
+        className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+      >
+        {ctaLabel}
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -116,25 +175,45 @@ export function PillButton({
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="public-icon public-icon-action"
+          className="h-4 w-4"
           aria-hidden="true"
         >
           <path d="M5 12h14" />
           <path d="M13 6l6 6-6 6" />
         </svg>
+      </Link>
+      {secondaryLabel && (
+        <Link
+          to={secondaryTo}
+          className="inline-flex min-h-11 items-center gap-1.5 px-2 text-[17px] font-normal tracking-[-0.011em] leading-[1.2] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+        >
+          {secondaryLabel}
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-[18px] w-[18px]"
+            aria-hidden="true"
+          >
+            <path d="M9 6l6 6-6 6" />
+          </svg>
+        </Link>
       )}
-    </Link>
+    </div>
   );
 }
 
-/** Inline text link and glyph share the centrally defined action scale. */
+/** Inline text link, lawed by the css family (color, size, underline hover).
+ *  No inline color: the stylesheet owns the ink so dark scenes can retune it. */
 export function TextLink({ to, children, className = "", onClick }) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className={`public-text-link inline-flex items-center gap-1.5 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}
-      style={{ color: color.blue }}
+      className={`public-text-link inline-flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}
     >
       {children}
       <svg
@@ -161,22 +240,22 @@ export function MediaFrame({ src, alt, className = "", eager = false, rounded = 
       alt={alt}
       loading={eager ? "eager" : "lazy"}
       decoding="async"
-      className={`w-full object-cover ${rounded ? "rounded-[var(--radius-media,8px)]" : ""} ${className}`}
+      className={`w-full object-cover ${rounded ? "rounded-[var(--radius-media,12px)]" : ""} ${className}`}
     />
   );
 }
 
-/** Chip using the canonical surface tint for the active state. */
+/** Chip on the canonical accent wash for the active state; 14px floor. */
 export function Chip({ children, active = false, onSelect, className = "" }) {
   const style = active
-    ? { backgroundColor: color.surfaceBlue, color: color.deepBlue, fontWeight: 500 }
+    ? { backgroundColor: color.wash, color: color.link, fontWeight: 500 }
     : { backgroundColor: color.white, color: color.slate, border: `1px solid ${color.mist}` };
   return (
     <button
       type="button"
       aria-pressed={active}
       onClick={onSelect}
-      className={`rounded-full px-4 py-1.5 text-[13px] leading-[20px] transition-colors hover:bg-[#f5f5f7] ${className}`}
+      className={`inline-flex items-center justify-center gap-1 rounded-full px-4 py-1.5 text-[14px] leading-[20px] transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}
       style={style}
     >
       {children}
@@ -202,7 +281,7 @@ export function TabBar({ tabs, active, onSelect, label }) {
           onClick={() => onSelect(i)}
           className={`h-[44px] shrink-0 whitespace-nowrap rounded-full px-6 text-[14px] tracking-[0.24px] transition-all duration-200 ${
             active === i
-              ? "bg-white font-medium text-[#1d1d1f] shadow-[0_1px_2px_rgba(60,64,67,0.16),0_2px_8px_rgba(60,64,67,0.12)]"
+              ? "bg-white font-medium text-[#1d1d1f] shadow-[0_1px_2px_rgba(29,29,31,0.16),0_2px_8px_rgba(29,29,31,0.12)]"
               : "font-normal text-[#6e6e73] hover:text-[#1d1d1f]"
           }`}
         >
@@ -213,24 +292,25 @@ export function TabBar({ tabs, active, onSelect, label }) {
   );
 }
 
-/** Carousel progress dots; the active dot stretches into a pill. */
-export function ProgressDots({ total, active, onSelect, label = "Carousel slides" }) {
+/** Carousel progress dots; the active dot stretches into a pill.
+ *  `pill` tone renders the AirPods-style uniform dots inside the light pill
+ *  with a taller active bar (the landing's story pager anatomy). */
+export function ProgressDots({ total, active, onSelect, label = "Carousel slides", pill = false }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label={label}>
+    <div className={`flex items-center ${pill ? "gap-4" : "gap-2"}`} role="group" aria-label={label}>
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
           type="button"
-          role="tab"
           aria-label={`Go to slide ${i + 1}`}
-          aria-selected={i === active}
+          aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${
-            i === active ? "w-10" : "w-2 hover:opacity-70"
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
+            i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"
           }`}
           style={{
             backgroundColor:
-              i === active ? color.ink : `${color.ink}33`,
+              pill ? "rgba(29,29,31,0.6)" : i === active ? color.ink : `${color.ink}33`,
           }}
         />
       ))}
@@ -278,7 +358,7 @@ export function ArrowButton({
  */
 export function FigureCard({ src, alt, className = "", eager = false }) {
   return (
-    <div className={`overflow-hidden rounded-[28px] bg-[#f5f5f7] ${className}`}>
+    <div className={`overflow-hidden rounded-[var(--radius-card)] bg-[#f5f5f7] ${className}`}>
       <img
         src={src}
         alt={alt}
@@ -309,17 +389,17 @@ export function ChevronIcon({ direction = "right", className = "h-6 w-6" }) {
   );
 }
 
-/** Reveal wrapper: rise + fade when `visible` flips true. */
-export function Reveal({ visible, children, className = "" }) {
+/** Reveal wrapper: rise + fade when `visible` flips true — on Apple's law
+ *  resolve curve (--ease-out-apple), not the earlier google curve. It is the
+ *  memoized anatomy the landing's section choreography wraps every chapter in. */
+export const Reveal = React.memo(function Reveal({ visible, children, className = "" }) {
   return (
     <div
-      className={`transition-all duration-700 ease-google ${
+      className={`transition-all duration-700 ease-apple ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
       {children}
     </div>
   );
-}
-
-export const SECTION_RHYTHM_DESKTOP = "py-24 lg:py-32";
+});
