@@ -10,11 +10,12 @@ import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
 import {
   primaryBtnClass, primaryBtnAutoClass, outlineBtnClass,
-  Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow, PhoneInput,
+  Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow,
 } from "@/components/auth/AuthUI";
 import { useAuth } from "@/lib/AuthContext";
 import { toast } from "@/components/ui/use-toast";
 import { authErrorMessage } from '@/lib/authErrors';
+import { signInMethods } from '@/api/firebase/signInMethods';
 
 export default function Register() {
   const { user, isAuthenticated, isLoadingAuth, checkUserAuth, authError } = useAuth();
@@ -24,8 +25,6 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [orgEmail, setOrgEmail] = useState("");
   const [otpCode, setOtpCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -160,14 +159,15 @@ export default function Register() {
       case "methods":
         return (
           <div key="methods" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-4">
-            <button type="button" onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
-              <Phone className="w-4 h-4" /> Continue with Mobile Number
-            </button>
-            <button type="button" onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
+            <button type="button" onClick={() => { setError(""); setView("email"); }} className={primaryBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
+            <button type="button" disabled={!signInMethods.mobile} aria-describedby="mobile-unavailable" className={`${outlineBtnClass} disabled:opacity-50 disabled:cursor-not-allowed`}>
+              <Phone className="w-4 h-4" /> Mobile sign-in unavailable
+            </button>
+            <p id="mobile-unavailable" className="text-xs text-[#5f6368] text-center">Mobile number sign-in is unavailable. Use another method below or email above.</p>
             <AuthDivider />
-            <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
+            <SocialAuthButtons />
             {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
             <p className="text-xs text-[#5f6368] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
@@ -293,60 +293,6 @@ export default function Register() {
                 Resend
               </button>
             </p>
-          </div>
-        );
-
-      case "mobile":
-        return (
-          <div key="mobile" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-            <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Mobile sign-up is coming soon. Please use email or social sign-up."); }} className="flex flex-col gap-6">
-              <PhoneInput
-                label="Mobile number"
-                autoFocus
-                value={phone}
-                onChange={setPhone}
-                required
-              />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
-              <ActionRow
-                left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
-                    Use another method
-                  </button>
-                }
-              >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
-              </ActionRow>
-            </form>
-          </div>
-        );
-
-      case "organization":
-        return (
-          <div key="org" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-            <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Organization sign-up is coming soon. Please use email or social sign-up."); }} className="flex flex-col gap-6">
-              <InputField
-                label="Organization email"
-                type="email"
-                autoFocus
-                placeholder="you@school.edu"
-                value={orgEmail}
-                onChange={(e) => setOrgEmail(e.target.value)}
-                required
-              />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
-              <ActionRow
-                left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
-                    Use another method
-                  </button>
-                }
-              >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
-              </ActionRow>
-            </form>
           </div>
         );
 

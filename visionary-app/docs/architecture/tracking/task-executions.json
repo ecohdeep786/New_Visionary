@@ -89,9 +89,13 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "To Do",
-      "scope": "Preparation only; runtime/matrix implementation has not started. Founder requests retirement of idle checkouts.",
-      "worktree": null,
+      "status": "In Progress",
+      "scope": "Connected coverage candidate independently reviewed for technical compatibility; full real source/version/rights acceptance remains open. Founder defers source discussion on 21 October 2026.",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix",
+      "branch": "codex/codex-kan-29-coverage-matrix",
+      "currentCheckpoint": "99d18b12d8734a52973c63f629ac88cdce2127e8",
+      "currentHandoff": "docs/architecture/delivery/KAN29_CURRENT_PRODUCTION_COMPATIBILITY.md on the KAN-29 branch",
+      "fullFeatureAccepted": false,
       "preparationBranch": "codex/kan-29-coverage-matrix",
       "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
       "jiraCommentId": "10015",
@@ -458,6 +462,35 @@
       ],
       "fullFeatureAccepted": false,
       "worktree": null
+    },
+    {
+      "sourceId": "SCOPE-07",
+      "jiraKey": "KAN-34",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
+      "status": "In Progress",
+      "scope": "Sign-in method implementation matrix and truthful unavailable paths; actual provider, email delivery, hosted/device acceptance remain open",
+      "branch": "codex/codex-kan-34-signin-matrix",
+      "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
+      "implementer": "Codex",
+      "review": { "state": "pending", "approvedCommit": null, "reviewer": null },
+      "handoff": "docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md",
+      "jiraResumeCommentId": "10072",
+      "checks": {
+        "rootCheck": true,
+        "frontendTests": 554,
+        "scriptTests": 18,
+        "focusedAuthTests": 27,
+        "compiledBrowserScenarios": 4,
+        "lint": true,
+        "typecheck": true,
+        "buildSeconds": 35.96,
+        "failed": 0,
+        "realProviderAcceptance": false
+      },
+      "hostedAcceptance": false,
+      "fullFeatureAccepted": false,
+      "integration": { "remotePublished": false, "commit": null }
     }
   ]
 }

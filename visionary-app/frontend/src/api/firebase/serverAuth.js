@@ -1,4 +1,5 @@
 import { authFlowError } from '../../lib/authErrors.js';
+import { popupProviderId } from './signInMethods.js';
 
 // Server identity and profile are authoritative; credentials are never persisted here.
 export function createServerAuth({ request, identity, notify = () => {} }) {
@@ -66,7 +67,11 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       if (!user) throw authFlowError('auth/no-pending-verification');
       await identity.sendVerification(user);
     },
-    loginWithProvider: provider => transition(async expected => exchange(await identity.provider(provider), expected)),
+    async loginWithProvider(provider) {
+      // Reject unsupported methods before clearing profile or invoking the SDK.
+      popupProviderId(provider);
+      return transition(async expected => exchange(await identity.provider(provider), expected));
+    },
     async completeOnboarding(data) {
       const expected = generation, accountId = profile?.id;
       if (!accountId) throw authFlowError('auth/profile-unavailable');

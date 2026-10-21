@@ -3,6 +3,7 @@ import { getFirebaseAuthClient } from './client.js';
 import { createServerAuth } from './serverAuth.js';
 import { authFlowError, passwordRequirements } from '../../lib/authErrors.js';
 import { createAuthTransport } from './authTransport.js';
+import { popupProviderId } from './signInMethods.js';
 
 export const firebaseAuthEnabled = import.meta.env?.VITE_AUTH_MODE === 'firebase';
 const pendingVerificationTimes = new Map();
@@ -18,8 +19,8 @@ const identity = {
     pendingVerificationTimes.set(user.uid, Date.now());
   },
   async provider(name) {
-    const provider = name === 'google' ? new GoogleAuthProvider() : name === 'apple' ? new OAuthProvider('apple.com') : name === 'microsoft' ? new OAuthProvider('microsoft.com') : null;
-    if (!provider) throw new Error('This provider needs an organization connection before it can be used.');
+    const providerId = popupProviderId(name);
+    const provider = providerId === 'google.com' ? new GoogleAuthProvider() : new OAuthProvider(providerId);
     if (name === 'apple') provider.addScope('email');
     return (await signInWithPopup(getFirebaseAuthClient(), provider)).user;
   },

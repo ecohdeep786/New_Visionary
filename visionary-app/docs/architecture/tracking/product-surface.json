@@ -21,6 +21,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/domain/curriculumTemplate.ts",
         "frontend/src/domain/lessonObjective.ts",
@@ -278,6 +279,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/AuthLayout.jsx",
         "frontend/src/components/GoogleIcon.jsx",
@@ -344,16 +346,15 @@
         "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
-        "frontend/src/components/SocialAuthButtons.jsx:48:7",
-        "frontend/src/components/SocialAuthButtons.jsx:51:7",
-        "frontend/src/components/SocialAuthButtons.jsx:54:7",
-        "frontend/src/components/SocialAuthButtons.jsx:57:7",
-        "frontend/src/pages/Login.jsx:112:13",
-        "frontend/src/pages/Login.jsx:123:13",
-        "frontend/src/pages/Login.jsx:130:35",
-        "frontend/src/pages/Login.jsx:134:13",
-        "frontend/src/pages/Login.jsx:137:13",
-        "frontend/src/pages/Login.jsx:141:13",
+        "frontend/src/components/SocialAuthButtons.jsx:49:7",
+        "frontend/src/components/SocialAuthButtons.jsx:52:7",
+        "frontend/src/components/SocialAuthButtons.jsx:55:7",
+        "frontend/src/components/SocialAuthButtons.jsx:58:7",
+        "frontend/src/pages/Login.jsx:111:13",
+        "frontend/src/pages/Login.jsx:122:13",
+        "frontend/src/pages/Login.jsx:129:35",
+        "frontend/src/pages/Login.jsx:133:13",
+        "frontend/src/pages/Login.jsx:136:13",
         "frontend/src/pages/Login.jsx:145:15",
         "frontend/src/pages/Login.jsx:147:15",
         "frontend/src/pages/Login.jsx:150:15",
@@ -372,17 +373,7 @@
         "frontend/src/pages/Login.jsx:241:17",
         "frontend/src/pages/Login.jsx:246:15",
         "frontend/src/pages/Login.jsx:251:15",
-        "frontend/src/pages/Login.jsx:254:15",
-        "frontend/src/pages/Login.jsx:264:13",
-        "frontend/src/pages/Login.jsx:265:13",
-        "frontend/src/pages/Login.jsx:266:15",
-        "frontend/src/pages/Login.jsx:276:19",
-        "frontend/src/pages/Login.jsx:281:17",
-        "frontend/src/pages/Login.jsx:290:13",
-        "frontend/src/pages/Login.jsx:291:13",
-        "frontend/src/pages/Login.jsx:292:15",
-        "frontend/src/pages/Login.jsx:304:19",
-        "frontend/src/pages/Login.jsx:309:17"
+        "frontend/src/pages/Login.jsx:254:15"
       ],
       "operations": [
         "auth-session-profile",
@@ -410,6 +401,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/AuthLayout.jsx",
         "frontend/src/components/GoogleIcon.jsx",
@@ -479,17 +471,16 @@
         "frontend/src/components/AuthLayout.jsx:77:11",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
-        "frontend/src/components/SocialAuthButtons.jsx:48:7",
-        "frontend/src/components/SocialAuthButtons.jsx:51:7",
-        "frontend/src/components/SocialAuthButtons.jsx:54:7",
-        "frontend/src/components/SocialAuthButtons.jsx:57:7",
+        "frontend/src/components/SocialAuthButtons.jsx:49:7",
+        "frontend/src/components/SocialAuthButtons.jsx:52:7",
+        "frontend/src/components/SocialAuthButtons.jsx:55:7",
+        "frontend/src/components/SocialAuthButtons.jsx:58:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
-        "frontend/src/pages/Register.jsx:141:13",
-        "frontend/src/pages/Register.jsx:152:13",
-        "frontend/src/pages/Register.jsx:159:35",
-        "frontend/src/pages/Register.jsx:163:13",
-        "frontend/src/pages/Register.jsx:166:13",
-        "frontend/src/pages/Register.jsx:170:13",
+        "frontend/src/pages/Register.jsx:140:13",
+        "frontend/src/pages/Register.jsx:151:13",
+        "frontend/src/pages/Register.jsx:158:35",
+        "frontend/src/pages/Register.jsx:162:13",
+        "frontend/src/pages/Register.jsx:165:13",
         "frontend/src/pages/Register.jsx:174:15",
         "frontend/src/pages/Register.jsx:176:15",
         "frontend/src/pages/Register.jsx:184:13",
@@ -506,17 +497,7 @@
         "frontend/src/pages/Register.jsx:252:17",
         "frontend/src/pages/Register.jsx:274:15",
         "frontend/src/pages/Register.jsx:286:15",
-        "frontend/src/pages/Register.jsx:292:15",
-        "frontend/src/pages/Register.jsx:302:13",
-        "frontend/src/pages/Register.jsx:303:13",
-        "frontend/src/pages/Register.jsx:304:15",
-        "frontend/src/pages/Register.jsx:314:19",
-        "frontend/src/pages/Register.jsx:319:17",
-        "frontend/src/pages/Register.jsx:328:13",
-        "frontend/src/pages/Register.jsx:329:13",
-        "frontend/src/pages/Register.jsx:330:15",
-        "frontend/src/pages/Register.jsx:342:19",
-        "frontend/src/pages/Register.jsx:347:17"
+        "frontend/src/pages/Register.jsx:292:15"
       ],
       "operations": [
         "auth-session-profile",
@@ -544,6 +525,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/AuthLayout.jsx",
         "frontend/src/components/VisionaryLogo.jsx",
@@ -672,6 +654,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/AuthLayout.jsx",
         "frontend/src/components/VisionaryLogo.jsx",
@@ -764,6 +747,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/AuthLayout.jsx",
         "frontend/src/components/VisionaryLogo.jsx",
@@ -3559,6 +3543,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/auth/AuthUI.jsx",
@@ -3705,6 +3690,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -3898,6 +3884,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -4873,6 +4860,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -5848,6 +5836,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignedCurriculumOutline.jsx",
@@ -6156,6 +6145,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -6556,6 +6546,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -6773,6 +6764,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -7748,6 +7740,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -8142,6 +8135,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -8700,6 +8694,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -8956,6 +8951,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -9270,6 +9266,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -9476,6 +9473,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -9795,6 +9793,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -10114,6 +10113,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -10433,6 +10433,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -10752,6 +10753,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -10967,6 +10969,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -11484,6 +11487,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -11693,6 +11697,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -11899,6 +11904,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -12100,6 +12106,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -12592,6 +12599,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -13085,6 +13093,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -13576,6 +13585,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -14068,6 +14078,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -14565,6 +14576,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -15056,6 +15068,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -15551,6 +15564,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -16046,6 +16060,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -16541,6 +16556,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AssignLesson.jsx",
@@ -17033,6 +17049,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -17251,6 +17268,7 @@
         "frontend/src/api/firebase/client.js",
         "frontend/src/api/firebase/config.js",
         "frontend/src/api/firebase/serverAuth.js",
+        "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/dashboard/AudioPresence.jsx",
@@ -45028,9 +45046,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:48:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:49:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 48,
+      "line": 49,
       "column": 7,
       "tag": "button",
       "events": [
@@ -45042,8 +45060,8 @@
       "calls": [
         "handleSocial"
       ],
-      "disabled": "disabled={busy}",
-      "declarationSha256": "7dd27e1b84bd7424eaa9fdb923bfadcddd0a573825439983e544159c5fdf504c",
+      "disabled": "disabled={busy || !signInMethods.google}",
+      "declarationSha256": "790cb3f9fb97f53d6ad4e906a84440a27a1cc696225d3fb27f252115789d4873",
       "routeIds": [
         "/login",
         "/register"
@@ -45068,22 +45086,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:51:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:52:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 51,
+      "line": 52,
       "column": 7,
       "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => handleSocial(\"microsoft\")}"
-        }
-      ],
-      "calls": [
-        "handleSocial"
-      ],
-      "disabled": "disabled={busy}",
-      "declarationSha256": "3d777e401c2d5e8c60065ddb9bcacdd6f4f0872fc1a7a556cce329df3ed9bbaf",
+      "events": [],
+      "calls": [],
+      "disabled": "disabled={!signInMethods.microsoft}",
+      "declarationSha256": "784a44b966b4d1509c41bc79e8e8154ee2da81f680565ded42abf0313a699f4a",
       "routeIds": [
         "/login",
         "/register"
@@ -45108,9 +45119,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:54:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:55:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 54,
+      "line": 55,
       "column": 7,
       "tag": "button",
       "events": [
@@ -45122,8 +45133,8 @@
       "calls": [
         "handleSocial"
       ],
-      "disabled": "disabled={busy}",
-      "declarationSha256": "3ac39bd653d33e269ed36676128ff457b1d5f44b43d5da4f97d661509ee90cbf",
+      "disabled": "disabled={busy || !signInMethods.apple}",
+      "declarationSha256": "1df3c662d36abd30edd5b87832b74f5ca21311ffc97eb95caa247a9768bce5a1",
       "routeIds": [
         "/login",
         "/register"
@@ -45148,20 +45159,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:57:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:58:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 57,
+      "line": 58,
       "column": 7,
       "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{onOrganization}"
-        }
-      ],
+      "events": [],
       "calls": [],
-      "disabled": "disabled={busy}",
-      "declarationSha256": "f5ae6dc5b031c1587f37fb439eb56202d8fa0ac21100b67288d1233ec8fdb76a",
+      "disabled": "disabled={!signInMethods.organization}",
+      "declarationSha256": "1f954ce54c0f160f5032fa49e2f5cba23f0a9e3ffa8954a0cbb454b76a1e69b6",
       "routeIds": [
         "/login",
         "/register"
@@ -73839,9 +73845,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:112:13",
+      "id": "frontend/src/pages/Login.jsx:111:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 112,
+      "line": 111,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -73871,9 +73877,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:123:13",
+      "id": "frontend/src/pages/Login.jsx:122:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 123,
+      "line": 122,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -73903,9 +73909,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:130:35",
+      "id": "frontend/src/pages/Login.jsx:129:35",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 130,
+      "line": 129,
       "column": 35,
       "tag": "EmailVerification",
       "events": [
@@ -73943,49 +73949,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:134:13",
+      "id": "frontend/src/pages/Login.jsx:133:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 134,
-      "column": 13,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => { setError(\"\"); setView(\"mobile\"); }}"
-        }
-      ],
-      "calls": [
-        "setError",
-        "setView"
-      ],
-      "disabled": null,
-      "declarationSha256": "cfd8344f096f765ff1287416e17a69174813ff8055cfd22c5def45c24ccec38e",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:137:13",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 137,
+      "line": 133,
       "column": 13,
       "tag": "button",
       "events": [
@@ -73999,7 +73965,7 @@
         "setView"
       ],
       "disabled": null,
-      "declarationSha256": "e0f859d92e4824635d58209e7a47ad9ade401ca2cc98b75dea998b727100973e",
+      "declarationSha256": "237a1ca8693c1b3d901f6e6e2806641ac0fe63f5f8b02a42be4a6a057b95872b",
       "routeIds": [
         "/login"
       ],
@@ -74023,23 +73989,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:141:13",
+      "id": "frontend/src/pages/Login.jsx:136:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 141,
+      "line": 136,
       "column": 13,
-      "tag": "SocialAuthButtons",
-      "events": [
-        {
-          "event": "onOrganization",
-          "expression": "{() => { setError(\"\"); setView(\"organization\"); }}"
-        }
-      ],
-      "calls": [
-        "setError",
-        "setView"
-      ],
-      "disabled": null,
-      "declarationSha256": "0b9908cf2dc169a5bc98f70221ccc601d36220a1886bd287ba8b5467c290fd30",
+      "tag": "button",
+      "events": [],
+      "calls": [],
+      "disabled": "disabled={!signInMethods.mobile}",
+      "declarationSha256": "8b724bd206496aba384a8d3445409fa3d8e99f70e8c0fdf98dabad2e9394fde3",
       "routeIds": [
         "/login"
       ],
@@ -74741,374 +74699,6 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:264:13",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 264,
-      "column": 13,
-      "tag": "BackButton",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "9e3f5034a6f7cb89bab8b4a39827d6eebaf277b95b36489b1854a8e20630dd94",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:265:13",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 265,
-      "column": 13,
-      "tag": "form",
-      "events": [
-        {
-          "event": "onSubmit",
-          "expression": "{(e) => { e.preventDefault(); setError(\"Mobile sign-in is coming soon. Please use email or social sign-in.\"); }}"
-        }
-      ],
-      "calls": [
-        "e.preventDefault",
-        "setError"
-      ],
-      "disabled": null,
-      "declarationSha256": "c04723d9a739c4ed7ded77b34bbcc77b787e863c8f6a1495f51a434a15c97d02",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:266:15",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 266,
-      "column": 15,
-      "tag": "PhoneInput",
-      "events": [
-        {
-          "event": "onChange",
-          "expression": "{setPhone}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "1f68d398929de6333e8fe4684c359755c669606f635770f0bf3801853206a64c",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:276:19",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 276,
-      "column": 19,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:281:17",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 281,
-      "column": 17,
-      "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "69653c42e21143b80bb521066f279df5dfc2417a454eb4aa5cd16339e5d59ac7",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:290:13",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 290,
-      "column": 13,
-      "tag": "BackButton",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "9e3f5034a6f7cb89bab8b4a39827d6eebaf277b95b36489b1854a8e20630dd94",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:291:13",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 291,
-      "column": 13,
-      "tag": "form",
-      "events": [
-        {
-          "event": "onSubmit",
-          "expression": "{(e) => { e.preventDefault(); setError(\"Organization sign-in is coming soon. Please use email or social sign-in.\"); }}"
-        }
-      ],
-      "calls": [
-        "e.preventDefault",
-        "setError"
-      ],
-      "disabled": null,
-      "declarationSha256": "824d76eacc7c58f5943a91e63d8be55788c1852963cff0237d3e877107a416d4",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:292:15",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 292,
-      "column": 15,
-      "tag": "InputField",
-      "events": [
-        {
-          "event": "onChange",
-          "expression": "{(e) => setOrgEmail(e.target.value)}"
-        }
-      ],
-      "calls": [
-        "setOrgEmail"
-      ],
-      "disabled": null,
-      "declarationSha256": "1ae6fd529d2eb16e9ad2afee54e9ecf6a916c6519b3c0e8a716ea1ea35835c65",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:304:19",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 304,
-      "column": 19,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:309:17",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 309,
-      "column": 17,
-      "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "69653c42e21143b80bb521066f279df5dfc2417a454eb4aa5cd16339e5d59ac7",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
       "id": "frontend/src/pages/OAuthConsent.jsx:220:9",
       "file": "frontend/src/pages/OAuthConsent.jsx",
       "line": 220,
@@ -75373,9 +74963,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:141:13",
+      "id": "frontend/src/pages/Register.jsx:140:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 141,
+      "line": 140,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -75405,9 +74995,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:152:13",
+      "id": "frontend/src/pages/Register.jsx:151:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 152,
+      "line": 151,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -75437,9 +75027,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:159:35",
+      "id": "frontend/src/pages/Register.jsx:158:35",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 159,
+      "line": 158,
       "column": 35,
       "tag": "EmailVerification",
       "events": [
@@ -75477,49 +75067,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:163:13",
+      "id": "frontend/src/pages/Register.jsx:162:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 163,
-      "column": 13,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => { setError(\"\"); setView(\"mobile\"); }}"
-        }
-      ],
-      "calls": [
-        "setError",
-        "setView"
-      ],
-      "disabled": null,
-      "declarationSha256": "cfd8344f096f765ff1287416e17a69174813ff8055cfd22c5def45c24ccec38e",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:166:13",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 166,
+      "line": 162,
       "column": 13,
       "tag": "button",
       "events": [
@@ -75533,7 +75083,7 @@
         "setView"
       ],
       "disabled": null,
-      "declarationSha256": "e0f859d92e4824635d58209e7a47ad9ade401ca2cc98b75dea998b727100973e",
+      "declarationSha256": "237a1ca8693c1b3d901f6e6e2806641ac0fe63f5f8b02a42be4a6a057b95872b",
       "routeIds": [
         "/register"
       ],
@@ -75557,23 +75107,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:170:13",
+      "id": "frontend/src/pages/Register.jsx:165:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 170,
+      "line": 165,
       "column": 13,
-      "tag": "SocialAuthButtons",
-      "events": [
-        {
-          "event": "onOrganization",
-          "expression": "{() => { setError(\"\"); setView(\"organization\"); }}"
-        }
-      ],
-      "calls": [
-        "setError",
-        "setView"
-      ],
-      "disabled": null,
-      "declarationSha256": "0b9908cf2dc169a5bc98f70221ccc601d36220a1886bd287ba8b5467c290fd30",
+      "tag": "button",
+      "events": [],
+      "calls": [],
+      "disabled": "disabled={!signInMethods.mobile}",
+      "declarationSha256": "8b724bd206496aba384a8d3445409fa3d8e99f70e8c0fdf98dabad2e9394fde3",
       "routeIds": [
         "/register"
       ],
@@ -76202,374 +75744,6 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:302:13",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 302,
-      "column": 13,
-      "tag": "BackButton",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "9e3f5034a6f7cb89bab8b4a39827d6eebaf277b95b36489b1854a8e20630dd94",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:303:13",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 303,
-      "column": 13,
-      "tag": "form",
-      "events": [
-        {
-          "event": "onSubmit",
-          "expression": "{(e) => { e.preventDefault(); setError(\"Mobile sign-up is coming soon. Please use email or social sign-up.\"); }}"
-        }
-      ],
-      "calls": [
-        "e.preventDefault",
-        "setError"
-      ],
-      "disabled": null,
-      "declarationSha256": "a3aa694485ab9200d13a41dcedbeb7848c8f30cd12a1c0680badec256d1945ea",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:304:15",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 304,
-      "column": 15,
-      "tag": "PhoneInput",
-      "events": [
-        {
-          "event": "onChange",
-          "expression": "{setPhone}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "1f68d398929de6333e8fe4684c359755c669606f635770f0bf3801853206a64c",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:314:19",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 314,
-      "column": 19,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:319:17",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 319,
-      "column": 17,
-      "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "69653c42e21143b80bb521066f279df5dfc2417a454eb4aa5cd16339e5d59ac7",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:328:13",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 328,
-      "column": 13,
-      "tag": "BackButton",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "9e3f5034a6f7cb89bab8b4a39827d6eebaf277b95b36489b1854a8e20630dd94",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:329:13",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 329,
-      "column": 13,
-      "tag": "form",
-      "events": [
-        {
-          "event": "onSubmit",
-          "expression": "{(e) => { e.preventDefault(); setError(\"Organization sign-up is coming soon. Please use email or social sign-up.\"); }}"
-        }
-      ],
-      "calls": [
-        "e.preventDefault",
-        "setError"
-      ],
-      "disabled": null,
-      "declarationSha256": "ef6a863a532575225c6a667e836085da1574542388db94f86c9dbee9c3700755",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:330:15",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 330,
-      "column": 15,
-      "tag": "InputField",
-      "events": [
-        {
-          "event": "onChange",
-          "expression": "{(e) => setOrgEmail(e.target.value)}"
-        }
-      ],
-      "calls": [
-        "setOrgEmail"
-      ],
-      "disabled": null,
-      "declarationSha256": "1ae6fd529d2eb16e9ad2afee54e9ecf6a916c6519b3c0e8a716ea1ea35835c65",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:342:19",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 342,
-      "column": 19,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Register.jsx:347:17",
-      "file": "frontend/src/pages/Register.jsx",
-      "line": 347,
-      "column": 17,
-      "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "69653c42e21143b80bb521066f279df5dfc2417a454eb4aa5cd16339e5d59ac7",
-      "routeIds": [
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
       "id": "frontend/src/pages/ResetPassword.jsx:51:154",
       "file": "frontend/src/pages/ResetPassword.jsx",
       "line": 51,
@@ -76947,7 +76121,7 @@
     },
     {
       "file": "frontend/src/api/firebase/authAdapter.js",
-      "sourceSha256": "c2c5888f1504b8c856f8e1858d3a2fc2feff3b63be3082c1b50d62ea1a0fa19d"
+      "sourceSha256": "a6d83e09d786606642f412567face8eb4799968140f46685f839cae3eb73c218"
     },
     {
       "file": "frontend/src/api/firebase/authTransport.js",
@@ -76963,7 +76137,11 @@
     },
     {
       "file": "frontend/src/api/firebase/serverAuth.js",
-      "sourceSha256": "475f575ba480f1cdcae13417d22707953c03a28c56fc7d0fc2fa5983ce0495fb"
+      "sourceSha256": "419d0819cb2743cd5d6a97539f9febc95656c2520825b51348210cdc8f7e443b"
+    },
+    {
+      "file": "frontend/src/api/firebase/signInMethods.js",
+      "sourceSha256": "f64114ba2e8313a4d48dabb49ebf1e2832344292d8a917de033cc4a2f87a7e08"
     },
     {
       "file": "frontend/src/api/previewPermissions.js",
@@ -77587,7 +76765,7 @@
     },
     {
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "sourceSha256": "02dffa9f22836a3835d34cb0b04f5f7b9c3c8a4f33edb301186a76494becb437"
+      "sourceSha256": "8142948c40b0feddc95c3c32c089447fa9cbd3c1373469a630824b5308abc7e0"
     },
     {
       "file": "frontend/src/components/ui/accordion.jsx",
@@ -78387,7 +77565,7 @@
     },
     {
       "file": "frontend/src/pages/Login.jsx",
-      "sourceSha256": "b6741f1acdbcc435c58275b473671313005858290727064ec53880eca6b30974"
+      "sourceSha256": "8cd343c24bc6fb6238d306df99cdb2ca14bbf65d44c81dcaace4fbfe450aabaf"
     },
     {
       "file": "frontend/src/pages/OAuthConsent.jsx",
@@ -78399,7 +77577,7 @@
     },
     {
       "file": "frontend/src/pages/Register.jsx",
-      "sourceSha256": "0d9197e2310a466867a9e93a01f0b59519b283730a5867d4eefdc44d3d9fdaeb"
+      "sourceSha256": "0d108439d2be564bc90c860a52775299717ca29d088f01501c0dae55f33e63bd"
     },
     {
       "file": "frontend/src/pages/ResetPassword.jsx",
@@ -81878,11 +81056,11 @@
   "counts": {
     "routes": 68,
     "registeredEndpoints": 35,
-    "controlDeclarations": 1645,
-    "routeReachableDeclarations": 1487,
+    "controlDeclarations": 1623,
+    "routeReachableDeclarations": 1465,
     "controlFiles": 219,
     "states": {
-      "connected": 502,
+      "connected": 480,
       "preview": 931,
       "missing": 52,
       "intentionally-unreleased": 160

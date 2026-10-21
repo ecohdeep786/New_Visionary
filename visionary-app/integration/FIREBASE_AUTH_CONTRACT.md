@@ -1,5 +1,14 @@
 # Firebase auth and account routing — D-063
 
+21 October 2026 / KAN-34 candidate: the [sign-in implementation and acceptance
+matrix](../docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md) separates SDK paths,
+provider settings, real sign-in and hosted/device acceptance. Mobile, Microsoft
+and organization SSO are explicitly unavailable before collecting input or
+opening a provider; Google/Apple/email retain their existing implementation and
+separate qualification gates. This candidate is pending independent review and
+integration. KAN-162's accepted main-only hosting supersedes the pending-deploy
+statements in the dated project-switch notes below.
+
 This implements the local auth/profile slice authorized on 14 October 2026, with D-064 frontend recovery/error hardening and D-065 [connected onboarding and introduction](ONBOARDING_CONTRACT.md). It supersedes browser storage for real authentication when `VITE_AUTH_MODE=firebase`. The original preview adapter remains for fictional offline development. It is not a complete production auth release.
 
 > **Project switch (20 October 2026, D-102/D-103):** the product now uses Firebase project `visionary-research`. The environment notes below dated 14 October 2026 describe the former `visionary-fd6d2` project and are retained as history. The new project is on Blaze and has one Web app, Native Firestore database `default` in `asia-south1` with deployed client rules denying all reads/writes, and Email/Password, Phone, Google and Apple providers enabled. A bounded read-only Admin check on 20 October 2026 confirms Auth access with an empty Users list and access to `default`; no test identity, profile or document is created. The public Web configuration is committed at `infrastructure/gcp/firebase-web-config.json`; the private Admin credential remains in ignored local configuration and is not used by the hosted GCP runtime. Deployment source now targets `visionary-research`; the owner-run foundation and identity were applied on 20 October 2026, while the product image, canonical baseline, edge/DNS/TLS and hosted product deployment remain open. See `infrastructure/gcp/README.md` for the owner-run first-release sequence.
