@@ -70,7 +70,7 @@ used. The committed public Firebase Web values configured the production build.
 | `npm run check` with `VITE_AUTH_MODE=firebase` and committed public Web configuration | Exit 0; layout/import integrity, 18 script tests, source audit, lint, both TypeScript checks, 554 frontend tests and production build all pass |
 | Independent production build within root check | Vite completes in 19.83 seconds |
 | `VISIONARY_REVIEW_ORIGIN=http://127.0.0.1:5185 node frontend/scripts/sign-in-methods-review.mjs` against independently built preview | Exit 0; Login/Register each at 1280px and 390px pass, four scenarios total |
-| `git diff --check` and source-surface comparisons | Pass; no backend/ML/infrastructure/contract/package-lock delta, unchanged route paths/dimensions/endpoints/backend fingerprints |
+| `git diff --check` and source-surface comparisons | Pass; no backend/ML/infrastructure runtime, `integration/contracts/` API/schema or package-lock delta; `integration/FIREBASE_AUTH_CONTRACT.md` prose is updated; route paths/dimensions/endpoints/backend fingerprints are unchanged |
 | Visual inspection | Independently generated desktop login and mobile registration PNGs inspected; unavailable controls/copy visible and layout intact |
 
 The additional reviewer probes verify that an unsupported call does not interrupt
