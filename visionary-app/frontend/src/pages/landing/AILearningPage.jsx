@@ -78,7 +78,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
             type="button"
             aria-pressed={active}
             onClick={() => onChange(b)}
-            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#121317] font-medium text-white" : "font-normal text-[#5f6368] hover:bg-[#f5f5f7]"}`}
+            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#5f6368] hover:bg-[#f5f5f7]"}`}
           >
             {b === "monthly" ? "Monthly" : "Annual"}
             {b === "annual" && (
@@ -132,10 +132,10 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
 
       <Link
         to={['personal', 'family'].includes(plan.id) ? billingPath(plan.id, billing) : plan.to}
-        className={`mt-5 inline-flex h-12 items-center justify-center rounded-full px-5 text-center font-medium tracking-[0] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+        className={`mt-5 inline-flex h-11 items-center justify-center rounded-full px-[21px] text-center font-medium tracking-[-0.011em] text-[17px] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
           plan.highlight
-            ? "bg-[#121317] text-white hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98]"
-            : "bg-[#f5f5f7] text-[#121317] hover:bg-[#e8e8ed] active:scale-[0.98]"
+            ? "bg-[#1d1d1f] text-white hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a]"
+            : "bg-[rgba(0,0,0,0.08)] text-[#1d1d1f] hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98]"
         }`}
       >
         {plan.cta}
@@ -318,10 +318,10 @@ function PricingCTASection() {
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
-          <Link to="/contact" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/contact" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Talk to sales
             <ChevronIcon className="h-4 w-4" />
           </Link>

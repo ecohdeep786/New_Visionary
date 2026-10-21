@@ -122,7 +122,7 @@ function DownloadHeroSection() {
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <Link
               to="/register"
-              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               Open Visionary
             </Link>
@@ -140,7 +140,7 @@ function DownloadHeroSection() {
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[15px] text-[#121317] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               See platforms
             </button>
@@ -193,7 +193,7 @@ function DownloadPlatformsSection() {
                 {p.kind === "web" ? (
                   <Link
                     to={p.href}
-                    className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-[#121317] px-6 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                   >
                     {p.action}
                   </Link>
@@ -203,7 +203,7 @@ function DownloadPlatformsSection() {
                     type="button"
                     aria-disabled="true"
                     title="Available at launch"
-                    className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-6 font-medium tracking-[0.24px] text-[14px] text-[#9AA0A6] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                   >
                     {p.action}
                   </button>
@@ -261,12 +261,12 @@ function DownloadNotifySection() {
                   aria-invalid={status === "error"}
                   aria-describedby={status === "error" ? "notify-error" : undefined}
                   placeholder="you@example.com"
-                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#0066cc] focus:ring-2 focus:ring-[#0066cc]/20"
                   style={{ borderColor: status === "error" ? "#EA4335" : COLORS.mist, color: COLORS.ink }}
                 />
                 <button
                   type="submit"
-                  className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 disabled:opacity-70"
+                  className="inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 disabled:opacity-70"
                 >
                   Prepare email request
                 </button>
@@ -356,10 +356,10 @@ function DownloadCTASection() {
           Still deciding? The web is one click away.
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Continue on web
           </Link>
-          <Link to="/how-it-works" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/how-it-works" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See how it works
             <ChevronIcon className="h-4 w-4" />
           </Link>
