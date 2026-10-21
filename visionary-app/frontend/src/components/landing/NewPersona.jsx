@@ -54,7 +54,7 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
     <div className={alignment}>
       <Link
         to={ctaTo}
-        className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-normal tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+        className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
       >
         {ctaLabel}
         <svg

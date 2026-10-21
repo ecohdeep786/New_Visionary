@@ -1,0 +1,26 @@
+{
+  "probedAt": "2026-10-21T15:18:20.841Z",
+  "probe": {
+    "navCta": {
+      "h": 1,
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "borderRadius": "0px",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(31, 31, 31)",
+      "paddingLR": "0px 0px"
+    },
+    "heroPill": {
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "borderRadius": "9999px",
+      "bg": "rgb(29, 29, 31)",
+      "color": "rgb(255, 255, 255)",
+      "paddingLR": "21px 21px"
+    },
+    "googleBlueEls": 0,
+    "quietLinkBlueEls": 9,
+    "dataTypeRoles": 22
+  }
+}

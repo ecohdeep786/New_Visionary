@@ -40416,7 +40416,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "956e8b5b9a859672d3cd6965447cde74d7b57c3d5fe456409473f890987a79bd",
+      "declarationSha256": "a73a2e19d2338b731c7980f7a9af478d9fa94e25b9734b2162afced5d2165c4f",
       "routeIds": [
         "/",
         "/student",
@@ -77475,7 +77475,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "6f09648855d294489d1a0dc1378f80710590caccc17bf2361ad7de9b990acfda"
+      "sourceSha256": "6f6a56cf38c4b594ce1ecf388a87d7d894f6aeb5e7a7b0525b4d0ca28446c7d8"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
