@@ -120,7 +120,8 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
           {kicker}
         </p>
         <h2
-          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center font-semibold tracking-[-0.009em] leading-[1.05] text-[clamp(40px,5vw,64px)]"
+          data-type="section"
+          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center"
           style={{ color: color.ink, ...revealStyle(entered, 90) }}
         >
           {/* the fixed problem sentence always holds line one; the rotating
@@ -178,7 +179,7 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
         >
           {/* the reserved two-line slot keeps the dots from jumping when a
               shorter quote occupies one line */}
-          <p className="flex min-h-[2.9em] items-center justify-center font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: color.ink }}>
+          <p data-type="body" className="flex min-h-[2.9em] items-center justify-center" style={{ color: color.ink }}>
             {slide.quote}
           </p>
         </figcaption>
@@ -499,7 +500,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             <img src={stage.image} alt={stage.alt} className="aspect-[16/9] w-full object-cover" />
             <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
             <span
-              className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[13px] font-medium tracking-[0] sm:left-9"
+              className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[14px] font-medium tracking-[0] sm:left-9"
               style={{ color: color.ink }}
             >
               <meta.Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.75} style={{ color: color.ink }} />
@@ -510,7 +511,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
           {/* the story zone — Apple's measured breath, text inset from the
               panel edges; heading at the 48/600 story tier, body 17px */}
           <div className="px-6 pb-12 pt-10 sm:px-12 sm:pb-14 lg:px-16 lg:pb-[72px] lg:pt-14">
-            <h3 id="journey-modal-title" className="max-w-[760px] font-semibold tracking-[0] leading-[1.08] text-[clamp(28px,3.34vw,48px)]" style={{ color: color.ink }}>
+            <h3 id="journey-modal-title" data-type="story" className="max-w-[760px]" style={{ color: color.ink }}>
               {content.top}
               <br />
               <span className="accent-gradient">{content.accent}</span>
@@ -558,7 +559,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
 const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
   return (
     <div key={step.title} className="hero-fade-up max-w-[460px]">
-      <h3 className="whitespace-pre-line font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: color.ink }}>
+      <h3 data-type="feature" className="whitespace-pre-line" style={{ color: color.ink }}>
         {step.title}
       </h3>
       <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: color.ink }}>
@@ -741,7 +742,7 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
   
    <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/55 via-[#1d1d1f]/20 to-transparent" aria-hidden="true" />
             <div className="absolute inset-0 flex items-center justify-center px-4">
-          <span key={text} className="hero-fade-up text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)]">
+          <span key={text} data-type="display" className="hero-fade-up text-center text-white">
             {text}
           </span>
         </div>
@@ -762,7 +763,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
           <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${color.ink}26` }}>
 
             <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start justify-between gap-4 text-left">
-              <h3 className="max-w-[460px] flex-1 font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(24px,2.2vw,30px)]" style={{ color: color.ink }}>
+              <h3 data-type="feature" className="max-w-[460px] flex-1" style={{ color: color.ink }}>
                 {tab.black} <span className="accent-gradient">{tab.blue}</span>
               </h3>
               <ChevronDown
@@ -808,7 +809,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       {/* scrim — guarantees white type contrast on any photo */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/55 via-[#1d1d1f]/20 to-transparent" aria-hidden="true" />
       <div className="absolute inset-0 flex items-center justify-center px-4">
-        <span key={text} className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
+        <span key={text} data-type="display" className="text-center text-white animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
           {text}
         </span>
       </div>
@@ -854,7 +855,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
         <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="h-full w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
       </div>
       <div className="p-7 lg:p-8">
-        <h3 className="text-balance text-[24px] font-semibold leading-[1.12] tracking-[0.009em]" style={{ color: color.ink, maxWidth: "18ch" }}>
+        <h3 data-type="feature" className="text-balance" style={{ color: color.ink, maxWidth: "18ch" }}>
           {category.chip}
         </h3>
         <p className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: color.slate, maxWidth: "38ch" }}>

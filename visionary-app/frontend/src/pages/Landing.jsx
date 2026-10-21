@@ -242,7 +242,7 @@ function LandingProblemSection() {
                 </div>
                 <figcaption key={`q-${index}`} className="hero-fade-up flex flex-col justify-center px-6 py-8 [animation-delay:80ms] [animation-fill-mode:both] sm:px-10 sm:py-10 min-[1069px]:px-12 min-[1069px]:py-12">
                   <blockquote>
-                    <p className="flex min-h-[3.3em] items-center text-balance font-medium tracking-[-0.01em] leading-[1.24] text-[clamp(24px,2.3vw,34px)]" style={{ color: BRAND.ink, maxWidth: "22ch" }}>{slide.quote}</p>
+                    <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "22ch" }}>{slide.quote}</p>
                   </blockquote>
                   <p className="mt-5 text-[15px] font-medium tracking-[0] leading-[20px]" style={{ color: BRAND.slate }}>{slide.persona}</p>
                 </figcaption>
@@ -452,7 +452,7 @@ function LandingSuiteSection() {
             >
               <div className="flex flex-col justify-between px-4 py-4 sm:px-6 sm:py-6">
                 <div>
-                  <h3 className="text-[22px] font-medium sm:text-[24px]" style={{ color: BRAND.ink }}>{item.label}</h3>
+                  <h3 data-type="feature" style={{ color: BRAND.ink }}>{item.label}</h3>
                   <p className="mt-2 max-w-[300px] text-[15px] leading-[1.6]" style={{ color: BRAND.graphite }}>{item.copy}</p>
                 </div>
                 <span aria-hidden="true" className="mt-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#f5f5f7] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none">

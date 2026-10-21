@@ -212,12 +212,13 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
   const frostDim = "rgba(245,247,250,0.45)";
   return (
     <div key={`${index}-${step.title}`} className="hero-fade-up w-full">
-      <p className="text-[13px] font-medium tracking-[0.08em] leading-[1.4]">
+      <p className="text-[14px] font-medium tracking-[0.08em] leading-[1.4]">
         <span style={{ color: active ? "#2997ff" : frostDim }}>{String(index + 1).padStart(2, "0")}</span>
         <span style={{ color: frostDim }}>{String(total).padStart(2, "0")}</span>
       </p>
       <h3
-        className="mt-4 whitespace-pre-line font-semibold tracking-[-0.005em] leading-[1.14] text-[clamp(26px,2.4vw,32px)]"
+        data-type="feature-heading"
+        className="mt-4 whitespace-pre-line"
         style={{ color: "#f5f7fa", maxWidth: "35ch" }}
       >
         {step.title}
@@ -272,14 +273,15 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
         <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
           <RevealItem idx={0}>
             <h2
-              className="text-balance font-semibold tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]"
+              data-type="section"
+              className="text-balance font-semibold"
               style={{ maxWidth: "22ch", marginInline: "auto" }}
             >
               <span className="accent-gradient-on-dark">One intelligence.</span>
             </h2>
           </RevealItem>
           <RevealItem idx={1}>
-            <p className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]">
+            <p data-type="body" className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch]">
               {sub}
             </p>
           </RevealItem>
@@ -324,14 +326,15 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
       <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
         <RevealItem idx={0}>
           <h2
-            className="text-balance font-semibold tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]"
+            data-type="section"
+            className="text-balance font-semibold"
             style={{ maxWidth: "22ch", marginInline: "auto" }}
           >
             <span className="accent-gradient-on-dark">One intelligence.</span>
           </h2>
         </RevealItem>
         <RevealItem idx={1}>
-          <p className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]">
+          <p data-type="body" className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch]">
             {sub}
           </p>
         </RevealItem>
@@ -508,7 +511,8 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
         </RevealItem>
         <RevealItem idx={1}>
           <h2
-            className="text-balance mt-[var(--gap-eyebrow-title-display)] text-center font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,5vw,64px)]"
+            data-type="section"
+            className="text-balance mt-[var(--gap-eyebrow-title-display)] text-center font-semibold"
             style={{ color: color.ink, maxWidth: "24ch", marginInline: "auto" }}
           >
             {line1}<br className="hidden sm:block" /><span className="accent-gradient">{accent}</span>{tail}
@@ -516,7 +520,8 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
         </RevealItem>
         <RevealItem idx={2}>
           <p
-            className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] text-center font-normal tracking-[0] leading-[1.4] text-[18px]"
+            data-type="body"
+            className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] text-center"
             style={{ color: color.slate }}
           >
             {sub}
@@ -548,7 +553,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                   listening beneath */}
               <div className="absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center">
                 <span key={`name-${index}`} className="hero-fade-up text-[14px] font-medium tracking-[0] leading-[1.5]" style={{ color: color.slate }}>{active.label}</span>
-                <p aria-live="polite" lang={active.code} className="mt-3 flex items-center justify-center text-center font-semibold tracking-[-0.01em] leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: color.ink, maxWidth: "80%" }}>
+                <p aria-live="polite" lang={active.code} data-type="feature" className="mt-3 flex items-center justify-center text-center" style={{ color: color.ink, maxWidth: "80%" }}>
                   <span key={index} className="hero-fade-up text-balance">{question}</span>
                 </p>
                 <div className="mt-5 flex items-end justify-center gap-1.5" aria-hidden="true">
@@ -622,7 +627,8 @@ function PremiumAchievementSection({ heading, tabs, images }) {
         <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
           <RevealItem idx={0}>
             <h2
-              className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
+              data-type="section"
+              className="text-balance font-semibold"
               style={{ color: color.ink, maxWidth: "24ch" }}
             >
               {heading}
@@ -643,7 +649,7 @@ function PremiumAchievementSection({ heading, tabs, images }) {
                         className="flex w-full items-start justify-between gap-4 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4 lg:py-8"
                       >
                         <span
-                          className="font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(24px,2.2vw,30px)]"
+                          data-type="feature"
                           style={{ color: color.ink, maxWidth: "28ch" }}
                         >
                           {tab.title}
@@ -713,7 +719,7 @@ const JourneyPairCard = React.memo(function JourneyPairCard({ stage, className =
   return (
     <figure className={`relative flex flex-col overflow-hidden rounded-[18px] bg-[#f5f5f7] ${className}`}>
       <figcaption className="p-8 pb-0">
-        <h3 className="max-w-[18ch] text-balance text-[17px] font-semibold leading-[1.4] tracking-[0]" style={{ color: color.ink }}>
+        <h3 data-type="card-name" className="max-w-[18ch] text-balance" style={{ color: color.ink }}>
           {stage.title}
         </h3>
         <p
@@ -805,7 +811,8 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
         </RevealItem>
         <RevealItem idx={1}>
           <h2
-            className="px-6 text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
+            data-type="section"
+            className="px-6 text-balance text-center font-semibold"
             style={{ color: color.ink, maxWidth: "24ch", marginInline: "auto", marginTop: "var(--gap-eyebrow-title-display)" }}
           >
             {heading}
@@ -917,7 +924,8 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
   const headingBlock = (
     <RevealItem idx={0}>
       <h2
-        className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
+        data-type="section"
+        className="text-balance font-semibold"
         style={{ color: color.ink, maxWidth: "24ch" }}
       >
         {heading}
@@ -1107,7 +1115,8 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
         >
           <RevealItem idx={0}>
             <h2
-              className={`text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] ${closing ? "text-white" : ""}`}
+              data-type="section"
+              className={`text-balance font-semibold ${closing ? "text-white" : ""}`}
               style={{ color: closing ? "#f5f5f7" : color.ink, maxWidth: "24ch", marginInline: "auto" }}
             >
               {heading}
@@ -1219,7 +1228,8 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
       </div>
       <div className="p-7 lg:p-8">
         <h3
-          className="text-balance text-[24px] font-semibold leading-[1.12] tracking-[0.009em]"
+          data-type="feature"
+          className="text-balance"
           style={{ color: color.ink, maxWidth: "18ch" }}
         >
           {category.chip}
@@ -1292,7 +1302,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
             )}
             <h2
               data-type={headingRole}
-              className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
+              className="text-balance font-semibold"
               style={{ color: color.ink, maxWidth: "20ch", marginTop: eyebrow ? "var(--gap-eyebrow-title-display)" : undefined }}
             >
               {heading}

@@ -262,14 +262,16 @@ function ProJourneySection() {
             edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
-            className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-balance"
+            data-type="section"
+            className="text-balance"
             style={{ color: color.ink, maxWidth: "24ch" }}
           >
             <span className="block">Work that</span>
             <span key={index} className="hero-fade-up accent-gradient block min-h-[1.06em] [animation-duration:1s]">{JOURNEY_WORDS[index]}</span>
           </h2>
           <p
-            className="mt-4 max-w-[40ch] text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
+            data-type="body"
+            className="mt-4 max-w-[40ch] text-balance"
             style={{ color: color.slate }}
           >
             Wherever your career begins, Visionary helps your work move forward from there.
@@ -327,6 +329,7 @@ export default function CollegePage() {
           sub="Understand it faster. Solve it with intelligence. Ship it and carry the lesson forward."
         />
         <PremiumExploreSection
+          headingRole="section"
           heading={<>Explore <span className="accent-gradient">Visionary.</span></>}
           categories={EXPLORE_CATEGORIES}
           images={EXPLORE_CAT_IMG}

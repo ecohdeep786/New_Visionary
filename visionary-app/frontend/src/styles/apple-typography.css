@@ -686,6 +686,15 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
   letter-spacing: -0.014em !important;
   font-weight: var(--weight-body) !important;
 }
+/* The feature-heading voice — Apple's 32px flat feature heading (FAP-34
+   measured token). B1 (FAP-46) exposes it so the intelligence drawer's
+   one-off 26px→32px clamp retires onto the ladder. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="feature-heading"] {
+  font-size: var(--fs-feature-heading) !important;
+  line-height: var(--lh-feature-heading) !important;
+  letter-spacing: var(--track-feature-heading) !important;
+  font-weight: var(--weight-heading) !important;
+}
 
 }
 
