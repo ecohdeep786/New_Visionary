@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-10-21",
+  "viewport": "1000x700 (full-page capture, browser device 1000 CSS px)",
+  "route": "/",
+  "probe": {
+    "navCtaFound": true,
+    "navCtaRectH": 44,
+    "navCtaFont": "17px/500 -0.187px (=-0.011em x 17)",
+    "navCtaRadius": "9999px",
+    "navCtaBg": "rgb(29, 29, 31)",
+    "googleBlueEls": 0,
+    "typeRoles": 22,
+    "dataTypes": ["section", "emphasis", "card-chapter", "feature", "value-body", "editorial-body", "value-title"]
+  },
+  "notes": [
+    "Nav CTA pill matches the measured CTA law: 44px height, 17px/500 fill text with -0.011em tracking, pill radius, #1d1d1f fill.",
+    "Zero rendered elements with Google blue #4285F4 in color/background/fill across the landing page after the KAN-201 convergence pass.",
+    "22 data-type role tags present in DOM (section/emphasis/card-chapter/feature/value-body/editorial-body/value-title).",
+    "10 below-fold blocks are scroll-reveal modules (opacity:0 pre-scroll) — captured blank in full-page shots by design; will be OS-visible.",
+    "Frames with Google sodar/recaptcha/pagead requests on this page confirm the live AdSense banner (tracked as old-Epic A launch blocker, FAP-6)."
+  ],
+  "limitations": [
+    "Screenshot device-viewport resizing unavailable in the tooling during this session; 390/768 captures deferred to task A0 baseline freeze.",
+    "/pricing and /download render behind a backend proxy (vite proxy without a running backend keeps the route spinner); recorded for C1/C4 setup rather than a design defect."
+  ]
+}

@@ -1,0 +1,4893 @@
+{
+ "apple-edu": {
+  "390": {
+   "vw": 390,
+   "docH": 8964,
+   "leaves": [
+    {
+     "tag": "h1",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 0,
+     "cls": "",
+     "txt": "Education moves learners, leaders, innovators,"
+    },
+    {
+     "tag": "p",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 804,
+     "cls": "caption typography-figure-caption current",
+     "txt": "Santa Fe Creative Coding Initiative, Santa Fe"
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 330,
+     "top": 757,
+     "cls": "copy",
+     "txt": "Education is essential to creating a more equi"
+    },
+    {
+     "tag": "h2",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 330,
+     "top": 1312,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Standing alongside educators to move learning "
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 330,
+     "top": 1505,
+     "cls": "typography-label stories-subhead",
+     "txt": "We work closely with educators to engage and i"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1911,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Teaching educators to teach code — and change "
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1911,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Reducing barriers to access for inclusive educ"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1943,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 2007,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Communities on the rise."
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1975,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "tag": "h2",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 330,
+     "top": 2251,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Equipping today’s learners for tomorrow’s oppo"
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 330,
+     "top": 2444,
+     "cls": "typography-label stories-subhead",
+     "txt": "We’re helping to prepare people of all ages wi"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 2793,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Inspiring generational change through communit"
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-figure-caption",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 804,
+     "txt": "Santa Fe Creative Coding Initiative, San"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 341,
+     "top": 394,
+     "txt": "Education moves"
+    },
+    {
+     "cls": "typography-hero-headline",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0006",
+     "w": 341,
+     "top": 436,
+     "txt": "learners\n\t\t\t\t\t\tleaders\n\t\t\t\t\t\tinnovators\n"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 341,
+     "top": 504,
+     "txt": "forward."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 330,
+     "top": 1312,
+     "txt": "Standing alongside educators to move lea"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 330,
+     "top": 1505,
+     "txt": "We work closely with educators to engage"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1911,
+     "txt": "Teaching educators to teach code — and c"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1911,
+     "txt": "Reducing barriers to access for inclusiv"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1943,
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 2007,
+     "txt": "Communities on the rise."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 1975,
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 330,
+     "top": 2251,
+     "txt": "Equipping today’s learners for tomorrow’"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 330,
+     "top": 2444,
+     "txt": "We’re helping to prepare people of all a"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 2921,
+     "txt": "Building trust. And apps."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 179,
+     "top": 2793,
+     "txt": "Inspiring generational change through co"
+    }
+   ]
+  },
+  "768": {
+   "vw": 768,
+   "docH": 8772,
+   "leaves": [
+    {
+     "tag": "h1",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 0,
+     "cls": "",
+     "txt": "Education moves learners, leaders, innovators,"
+    },
+    {
+     "tag": "p",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 984,
+     "cls": "caption typography-figure-caption current",
+     "txt": "Santa Fe Creative Coding Initiative, Santa Fe"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 600,
+     "top": 798,
+     "cls": "copy",
+     "txt": "Education is essential to creating a more equi"
+    },
+    {
+     "tag": "h2",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 500,
+     "top": 1274,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Standing alongside educators to move learning "
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 520,
+     "top": 1471,
+     "cls": "typography-label stories-subhead",
+     "txt": "We work closely with educators to engage and i"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 408,
+     "top": 1882,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Teaching educators to teach code — and change "
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 510,
+     "top": 1926,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Reducing barriers to access for inclusive educ"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1926,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 255,
+     "top": 1926,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Communities on the rise."
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1926,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "tag": "h2",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 2227,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Equipping today’s learners for tomorrow’s oppo"
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2423,
+     "cls": "typography-label stories-subhead",
+     "txt": "We’re helping to prepare people of all ages wi"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 459,
+     "top": 2784,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Inspiring generational change through communit"
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-figure-caption",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 984,
+     "txt": "Santa Fe Creative Coding Initiative, San"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 692,
+     "top": 468,
+     "txt": "Education moves"
+    },
+    {
+     "cls": "typography-hero-headline",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0014",
+     "w": 692,
+     "top": 510,
+     "txt": "learners\n\t\t\t\t\t\tleaders\n\t\t\t\t\t\tinnovators\n"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 692,
+     "top": 610,
+     "txt": "forward."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 500,
+     "top": 1274,
+     "txt": "Standing alongside educators to move lea"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 520,
+     "top": 1471,
+     "txt": "We work closely with educators to engage"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 408,
+     "top": 1882,
+     "txt": "Teaching educators to teach code — and c"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 510,
+     "top": 1926,
+     "txt": "Reducing barriers to access for inclusiv"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1926,
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 255,
+     "top": 1926,
+     "txt": "Communities on the rise."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1926,
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 2227,
+     "txt": "Equipping today’s learners for tomorrow’"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2423,
+     "txt": "We’re helping to prepare people of all a"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 306,
+     "top": 2828,
+     "txt": "Building trust. And apps."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 459,
+     "top": 2784,
+     "txt": "Inspiring generational change through co"
+    }
+   ]
+  },
+  "1024": {
+   "vw": 1024,
+   "docH": 8545,
+   "leaves": [
+    {
+     "tag": "h1",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 0,
+     "cls": "",
+     "txt": "Education moves learners, leaders, innovators,"
+    },
+    {
+     "tag": "p",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 728,
+     "cls": "caption typography-figure-caption current",
+     "txt": "Santa Fe Creative Coding Initiative, Santa Fe"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 600,
+     "top": 629,
+     "cls": "copy",
+     "txt": "Education is essential to creating a more equi"
+    },
+    {
+     "tag": "h2",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 500,
+     "top": 1105,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Standing alongside educators to move learning "
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 520,
+     "top": 1302,
+     "cls": "typography-label stories-subhead",
+     "txt": "We work closely with educators to engage and i"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 408,
+     "top": 1713,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Teaching educators to teach code — and change "
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 510,
+     "top": 1757,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Reducing barriers to access for inclusive educ"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1757,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 255,
+     "top": 1757,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Communities on the rise."
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1757,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "tag": "h2",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 2058,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Equipping today’s learners for tomorrow’s oppo"
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2254,
+     "cls": "typography-label stories-subhead",
+     "txt": "We’re helping to prepare people of all ages wi"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 306,
+     "top": 2659,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Building trust. And apps."
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 459,
+     "top": 2615,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Inspiring generational change through communit"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 459,
+     "top": 2659,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Preparing educators. Creating opportunities."
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 510,
+     "top": 2659,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Developing home-grown talent in Detroit."
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 2659,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Tradition meets technology."
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-figure-caption",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 728,
+     "txt": "Santa Fe Creative Coding Initiative, San"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 692,
+     "top": 340,
+     "txt": "Education moves"
+    },
+    {
+     "cls": "typography-hero-headline",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0014",
+     "w": 692,
+     "top": 382,
+     "txt": "learners\n\t\t\t\t\t\tleaders\n\t\t\t\t\t\tinnovators\n"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 692,
+     "top": 482,
+     "txt": "forward."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 500,
+     "top": 1105,
+     "txt": "Standing alongside educators to move lea"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 520,
+     "top": 1302,
+     "txt": "We work closely with educators to engage"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 408,
+     "top": 1713,
+     "txt": "Teaching educators to teach code — and c"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 510,
+     "top": 1757,
+     "txt": "Reducing barriers to access for inclusiv"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1757,
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 255,
+     "top": 1757,
+     "txt": "Communities on the rise."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 383,
+     "top": 1757,
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 2058,
+     "txt": "Equipping today’s learners for tomorrow’"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2254,
+     "txt": "We’re helping to prepare people of all a"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 306,
+     "top": 2659,
+     "txt": "Building trust. And apps."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 459,
+     "top": 2615,
+     "txt": "Inspiring generational change through co"
+    }
+   ]
+  },
+  "1440": {
+   "vw": 1440,
+   "docH": 7945,
+   "leaves": [
+    {
+     "tag": "h1",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 0,
+     "cls": "",
+     "txt": "Education moves learners, leaders, innovators,"
+    },
+    {
+     "tag": "p",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 860,
+     "cls": "caption typography-figure-caption current",
+     "txt": "Santa Fe Creative Coding Initiative, Santa Fe"
+    },
+    {
+     "tag": "p",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 860,
+     "top": 737,
+     "cls": "copy",
+     "txt": "Education is essential to creating a more equi"
+    },
+    {
+     "tag": "h2",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 830,
+     "top": 1229,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Standing alongside educators to move learning "
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 980,
+     "top": 1384,
+     "cls": "typography-label stories-subhead",
+     "txt": "We work closely with educators to engage and i"
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 490,
+     "top": 1807,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Teaching educators to teach code — and change "
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 612,
+     "top": 1859,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Reducing barriers to access for inclusive educ"
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1859,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 306,
+     "top": 1859,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Communities on the rise."
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1859,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "tag": "h2",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 840,
+     "top": 2182,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Equipping today’s learners for tomorrow’s oppo"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 770,
+     "top": 2337,
+     "cls": "typography-label stories-subhead",
+     "txt": "We’re helping to prepare people of all ages wi"
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-figure-caption",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 860,
+     "txt": "Santa Fe Creative Coding Initiative, San"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 980,
+     "top": 366,
+     "txt": "Education moves"
+    },
+    {
+     "cls": "typography-hero-headline",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 980,
+     "top": 425,
+     "txt": "learners\n\t\t\t\t\t\tleaders\n\t\t\t\t\t\tinnovators\n"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 980,
+     "top": 572,
+     "txt": "forward."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 830,
+     "top": 1229,
+     "txt": "Standing alongside educators to move lea"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 980,
+     "top": 1384,
+     "txt": "We work closely with educators to engage"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 490,
+     "top": 1807,
+     "txt": "Teaching educators to teach code — and c"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 612,
+     "top": 1859,
+     "txt": "Reducing barriers to access for inclusiv"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1859,
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 306,
+     "top": 1859,
+     "txt": "Communities on the rise."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1859,
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 840,
+     "top": 2182,
+     "txt": "Equipping today’s learners for tomorrow’"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 770,
+     "top": 2337,
+     "txt": "We’re helping to prepare people of all a"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 367,
+     "top": 2812,
+     "txt": "Building trust. And apps."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 673,
+     "top": 2812,
+     "txt": "Inspiring generational change through co"
+    }
+   ]
+  },
+  "1920": {
+   "vw": 1920,
+   "docH": 8063,
+   "leaves": [
+    {
+     "tag": "h1",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 0,
+     "cls": "",
+     "txt": "Education moves learners, leaders, innovators,"
+    },
+    {
+     "tag": "p",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 1040,
+     "cls": "caption typography-figure-caption current",
+     "txt": "Santa Fe Creative Coding Initiative, Santa Fe"
+    },
+    {
+     "tag": "p",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 860,
+     "top": 856,
+     "cls": "copy",
+     "txt": "Education is essential to creating a more equi"
+    },
+    {
+     "tag": "h2",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 830,
+     "top": 1348,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Standing alongside educators to move learning "
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 980,
+     "top": 1503,
+     "cls": "typography-label stories-subhead",
+     "txt": "We work closely with educators to engage and i"
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 490,
+     "top": 1926,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Teaching educators to teach code — and change "
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 612,
+     "top": 1978,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Reducing barriers to access for inclusive educ"
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1978,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 306,
+     "top": 1978,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "Communities on the rise."
+    },
+    {
+     "tag": "span",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1978,
+     "cls": "story-headline typography-story-headline word-break",
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "tag": "h2",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 840,
+     "top": 2301,
+     "cls": "typography-section-headline stories-headline",
+     "txt": "Equipping today’s learners for tomorrow’s oppo"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 770,
+     "top": 2456,
+     "cls": "typography-label stories-subhead",
+     "txt": "We’re helping to prepare people of all ages wi"
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-figure-caption",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 255,
+     "top": 1040,
+     "txt": "Santa Fe Creative Coding Initiative, San"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 980,
+     "top": 456,
+     "txt": "Education moves"
+    },
+    {
+     "cls": "typography-hero-headline",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 980,
+     "top": 515,
+     "txt": "learners\n\t\t\t\t\t\tleaders\n\t\t\t\t\t\tinnovators\n"
+    },
+    {
+     "cls": "typography-hero-eyebrow",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 980,
+     "top": 662,
+     "txt": "forward."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 830,
+     "top": 1348,
+     "txt": "Standing alongside educators to move lea"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 980,
+     "top": 1503,
+     "txt": "We work closely with educators to engage"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 490,
+     "top": 1926,
+     "txt": "Teaching educators to teach code — and c"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 612,
+     "top": 1978,
+     "txt": "Reducing barriers to access for inclusiv"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1978,
+     "txt": "Learning English by learning to code."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 306,
+     "top": 1978,
+     "txt": "Communities on the rise."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 459,
+     "top": 1978,
+     "txt": "A culture of creativity and innovation."
+    },
+    {
+     "cls": "typography-section-headline",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 840,
+     "top": 2301,
+     "txt": "Equipping today’s learners for tomorrow’"
+    },
+    {
+     "cls": "typography-label",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 770,
+     "top": 2456,
+     "txt": "We’re helping to prepare people of all a"
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 367,
+     "top": 2931,
+     "txt": "Building trust. And apps."
+    },
+    {
+     "cls": "typography-story-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 673,
+     "top": 2931,
+     "txt": "Inspiring generational change through co"
+    }
+   ]
+  }
+ },
+ "apple-vision-pro": {
+  "390": {
+   "vw": 390,
+   "docH": 22642,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 665,
+     "cls": "visuallyhidden",
+     "txt": "Apple Vision Pro"
+    },
+    {
+     "tag": "h2",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 280,
+     "top": 717,
+     "cls": "typography-eyebrow-elevated typography-hero-tagline hero-tagline",
+     "txt": "New powerful M5 chip and comfortable Dual Knit"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 83,
+     "top": 795,
+     "cls": "icon-copy",
+     "txt": "Book a demo"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 24,
+     "top": 795,
+     "cls": "icon-copy",
+     "txt": "Buy"
+    },
+    {
+     "tag": "li",
+     "fs": 28,
+     "fw": "700",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 307,
+     "top": 1078,
+     "cls": "foundation-headline headline-1",
+     "txt": "Apple Vision Pro seamlessly blends digital con"
+    },
+    {
+     "tag": "li",
+     "fs": 28,
+     "fw": "700",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 307,
+     "top": 1206,
+     "cls": "foundation-headline headline-2",
+     "txt": "So you can work, watch, relive memories, and c"
+    },
+    {
+     "tag": "li",
+     "fs": 28,
+     "fw": "700",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 307,
+     "top": 1362,
+     "cls": "foundation-headline headline-3",
+     "txt": "The era of spatial computing is here."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 151,
+     "top": 1853,
+     "cls": "icon-copy",
+     "txt": "Stream Wolfs on Apple TV with a subscription"
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 190,
+     "top": 1885,
+     "cls": "",
+     "txt": "PlayStation VR2 Sense controller sold separate"
+    },
+    {
+     "tag": "h2",
+     "fs": 32,
+     "fw": "600",
+     "lh": 1.25,
+     "ls": "0.0040",
+     "w": 341,
+     "top": 2031,
+     "cls": "typography-section-headline-design large-10 medium-9",
+     "txt": "Take a closer look."
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "Apple Vision Pro is the result of decades of h"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 85,
+     "top": 2595,
+     "cls": "highlight",
+     "txt": "elegant form"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "The new Dual Knit Band combines soft, breathab"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 98,
+     "top": 2541,
+     "cls": "highlight",
+     "txt": "Dual Knit Band"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "The dual-function Fit Dial lets you easily adj"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 46,
+     "top": 2541,
+     "cls": "highlight",
+     "txt": "Fit Dial"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "The Light Seal magnetically attaches to the al"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 66,
+     "top": 2541,
+     "cls": "highlight",
+     "txt": "Light Seal"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "Speakers positioned close to your ears deliver"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 88,
+     "top": 2559,
+     "cls": "highlight",
+     "txt": "Spatial Audio"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "Press the Digital Crown to bring up the Home V"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 89,
+     "top": 2541,
+     "cls": "highlight",
+     "txt": "Digital Crown"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "Apple Vision Pro is powered by an external, al"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 49,
+     "top": 2559,
+     "cls": "highlight",
+     "txt": "battery"
+    },
+    {
+     "tag": "a",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 4,
+     "top": 2631,
+     "cls": "",
+     "txt": "1"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "ZEISS Optical Inserts can be customized with y"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 140,
+     "top": 2541,
+     "cls": "highlight",
+     "txt": "ZEISS Optical Inserts"
+    },
+    {
+     "tag": "a",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 5,
+     "top": 2577,
+     "cls": "",
+     "txt": "2"
+    },
+    {
+     "tag": "p",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "cls": "",
+     "txt": "The optional Solo Knit Band provides cushionin"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 97,
+     "top": 2541,
+     "cls": "highlight",
+     "txt": "Solo Knit Band"
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-eyebrow-elevated typography-hero-tagline",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 280,
+     "top": 717,
+     "txt": "New powerful M5 chip and comfortable Dua"
+    },
+    {
+     "cls": "typography-foundation-headline",
+     "fs": 28,
+     "fw": "700",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 307,
+     "top": 1078,
+     "txt": "Apple Vision Pro seamlessly blends digit"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 190,
+     "top": 1852,
+     "txt": "Stream Wolfs on Apple TV with a subscrip"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 190,
+     "top": 1884,
+     "txt": "PlayStation VR2 Sense controller sold se"
+    },
+    {
+     "cls": "typography-section-headline-design",
+     "fs": 32,
+     "fw": "600",
+     "lh": 1.25,
+     "ls": "0.0040",
+     "w": 341,
+     "top": 2031,
+     "txt": "Take a closer look."
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "Apple Vision Pro is the result of decade"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "The new Dual Knit Band combines soft, br"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "The dual-function Fit Dial lets you easi"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "The Light Seal magnetically attaches to "
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "Speakers positioned close to your ears d"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "Press the Digital Crown to bring up the "
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "Apple Vision Pro is powered by an extern"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "ZEISS Optical Inserts can be customized "
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 260,
+     "top": 2540,
+     "txt": "The optional Solo Knit Band provides cus"
+    },
+    {
+     "cls": "typography-section-eyebrow",
+     "fs": 19,
+     "fw": "700",
+     "lh": 1.21,
+     "ls": "0.0120",
+     "w": 341,
+     "top": 2944,
+     "txt": "Entertainment"
+    }
+   ]
+  },
+  "768": {
+   "vw": 768,
+   "docH": 30483,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 832,
+     "cls": "visuallyhidden",
+     "txt": "Apple Vision Pro"
+    },
+    {
+     "tag": "h2",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 382,
+     "top": 910,
+     "cls": "typography-eyebrow-elevated typography-hero-tagline hero-tagline",
+     "txt": "New powerful M5 chip and comfortable Dual Knit"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 100,
+     "top": 915,
+     "cls": "icon-copy",
+     "txt": "Book a demo"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 29,
+     "top": 915,
+     "cls": "icon-copy",
+     "txt": "Buy"
+    },
+    {
+     "tag": "li",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 1292,
+     "cls": "foundation-headline headline-1",
+     "txt": "Apple Vision Pro seamlessly blends digital con"
+    },
+    {
+     "tag": "li",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 1424,
+     "cls": "foundation-headline headline-2",
+     "txt": "So you can work, watch, relive memories, and c"
+    },
+    {
+     "tag": "li",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 1646,
+     "cls": "foundation-headline headline-3",
+     "txt": "The era of spatial computing is here."
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-eyebrow-elevated typography-hero-tagline",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 382,
+     "top": 910,
+     "txt": "New powerful M5 chip and comfortable Dua"
+    },
+    {
+     "cls": "typography-foundation-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 1292,
+     "txt": "Apple Vision Pro seamlessly blends digit"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2944,
+     "txt": "Stream Wolfs on Apple TV with a subscrip"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2964,
+     "txt": "PlayStation VR2 Sense controller sold se"
+    },
+    {
+     "cls": "typography-section-headline-design",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 519,
+     "top": 3182,
+     "txt": "Take a closer look."
+    }
+   ]
+  },
+  "1024": {
+   "vw": 1024,
+   "docH": 26990,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 576,
+     "cls": "visuallyhidden",
+     "txt": "Apple Vision Pro"
+    },
+    {
+     "tag": "h2",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 435,
+     "top": 654,
+     "cls": "typography-eyebrow-elevated typography-hero-tagline hero-tagline",
+     "txt": "New powerful M5 chip and comfortable Dual Knit"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 100,
+     "top": 659,
+     "cls": "icon-copy",
+     "txt": "Book a demo"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 29,
+     "top": 659,
+     "cls": "icon-copy",
+     "txt": "Buy"
+    },
+    {
+     "tag": "li",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 908,
+     "cls": "foundation-headline headline-1",
+     "txt": "Apple Vision Pro seamlessly blends digital con"
+    },
+    {
+     "tag": "li",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 1040,
+     "cls": "foundation-headline headline-2",
+     "txt": "So you can work, watch, relive memories, and c"
+    },
+    {
+     "tag": "li",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 1262,
+     "cls": "foundation-headline headline-3",
+     "txt": "The era of spatial computing is here."
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 304,
+     "top": 2173,
+     "cls": "icon-copy",
+     "txt": "Stream Wolfs on Apple TV with a subscription"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2193,
+     "cls": "",
+     "txt": "PlayStation VR2 Sense controller sold separate"
+    },
+    {
+     "tag": "h2",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 519,
+     "top": 2414,
+     "cls": "typography-section-headline-design large-10 medium-9",
+     "txt": "Take a closer look."
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-eyebrow-elevated typography-hero-tagline",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 435,
+     "top": 654,
+     "txt": "New powerful M5 chip and comfortable Dua"
+    },
+    {
+     "cls": "typography-foundation-headline",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "n",
+     "w": 493,
+     "top": 908,
+     "txt": "Apple Vision Pro seamlessly blends digit"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2172,
+     "txt": "Stream Wolfs on Apple TV with a subscrip"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2192,
+     "txt": "PlayStation VR2 Sense controller sold se"
+    },
+    {
+     "cls": "typography-section-headline-design",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 519,
+     "top": 2414,
+     "txt": "Take a closer look."
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 588,
+     "top": 3000,
+     "txt": "Apple Vision Pro is the result of decade"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 588,
+     "top": 3000,
+     "txt": "The new Dual Knit Band combines soft, br"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 588,
+     "top": 3000,
+     "txt": "The dual-function Fit Dial lets you easi"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 588,
+     "top": 3000,
+     "txt": "The Light Seal magnetically attaches to "
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 286,
+     "top": 3000,
+     "txt": "Speakers positioned close to your ears d"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 286,
+     "top": 3000,
+     "txt": "Press the Digital Crown to bring up the "
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 286,
+     "top": 3000,
+     "txt": "Apple Vision Pro is powered by an extern"
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 588,
+     "top": 3000,
+     "txt": "ZEISS Optical Inserts can be customized "
+    },
+    {
+     "cls": "typography-drawer-caption",
+     "fs": 17,
+     "fw": "600",
+     "lh": 1.24,
+     "ls": "-0.0220",
+     "w": 286,
+     "top": 3000,
+     "txt": "The optional Solo Knit Band provides cus"
+    }
+   ]
+  },
+  "1440": {
+   "vw": 1440,
+   "docH": 32700,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 731,
+     "cls": "visuallyhidden",
+     "txt": "Apple Vision Pro"
+    },
+    {
+     "tag": "h2",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 687,
+     "top": 810,
+     "cls": "typography-eyebrow-elevated typography-hero-tagline hero-tagline",
+     "txt": "New powerful M5 chip and comfortable Dual Knit"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 100,
+     "top": 810,
+     "cls": "icon-copy",
+     "txt": "Book a demo"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 29,
+     "top": 810,
+     "cls": "icon-copy",
+     "txt": "Buy"
+    },
+    {
+     "tag": "li",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1118,
+     "cls": "foundation-headline headline-1",
+     "txt": "Apple Vision Pro seamlessly blends digital con"
+    },
+    {
+     "tag": "li",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1274,
+     "cls": "foundation-headline headline-2",
+     "txt": "So you can work, watch, relive memories, and c"
+    },
+    {
+     "tag": "li",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1480,
+     "cls": "foundation-headline headline-3",
+     "txt": "The era of spatial computing is here."
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 304,
+     "top": 2549,
+     "cls": "icon-copy",
+     "txt": "Stream Wolfs on Apple TV with a subscription"
+    },
+    {
+     "tag": "span",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2569,
+     "cls": "",
+     "txt": "PlayStation VR2 Sense controller sold separate"
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-eyebrow-elevated typography-hero-tagline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 687,
+     "top": 810,
+     "txt": "New powerful M5 chip and comfortable Dua"
+    },
+    {
+     "cls": "typography-foundation-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1118,
+     "txt": "Apple Vision Pro seamlessly blends digit"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2548,
+     "txt": "Stream Wolfs on Apple TV with a subscrip"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 2568,
+     "txt": "PlayStation VR2 Sense controller sold se"
+    },
+    {
+     "cls": "typography-section-headline-design",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.07,
+     "ls": "-0.0050",
+     "w": 817,
+     "top": 2892,
+     "txt": "Take a closer look."
+    }
+   ]
+  },
+  "1920": {
+   "vw": 1920,
+   "docH": 35398,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 34,
+     "fw": "600",
+     "lh": 1.47,
+     "ls": "-0.0110",
+     "w": 1,
+     "top": 911,
+     "cls": "visuallyhidden",
+     "txt": "Apple Vision Pro"
+    },
+    {
+     "tag": "h2",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 687,
+     "top": 990,
+     "cls": "typography-eyebrow-elevated typography-hero-tagline hero-tagline",
+     "txt": "New powerful M5 chip and comfortable Dual Knit"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 100,
+     "top": 990,
+     "cls": "icon-copy",
+     "txt": "Book a demo"
+    },
+    {
+     "tag": "span",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.18,
+     "ls": "-0.0220",
+     "w": 29,
+     "top": 990,
+     "cls": "icon-copy",
+     "txt": "Buy"
+    },
+    {
+     "tag": "li",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1388,
+     "cls": "foundation-headline headline-1",
+     "txt": "Apple Vision Pro seamlessly blends digital con"
+    },
+    {
+     "tag": "li",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1544,
+     "cls": "foundation-headline headline-2",
+     "txt": "So you can work, watch, relive memories, and c"
+    },
+    {
+     "tag": "li",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1750,
+     "cls": "foundation-headline headline-3",
+     "txt": "The era of spatial computing is here."
+    }
+   ],
+   "roles": [
+    {
+     "cls": "typography-eyebrow-elevated typography-hero-tagline",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "0.0070",
+     "w": 687,
+     "top": 990,
+     "txt": "New powerful M5 chip and comfortable Dua"
+    },
+    {
+     "cls": "typography-foundation-headline",
+     "fs": 48,
+     "fw": "600",
+     "lh": 1.08,
+     "ls": "-0.0030",
+     "w": 754,
+     "top": 1388,
+     "txt": "Apple Vision Pro seamlessly blends digit"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 3088,
+     "txt": "Stream Wolfs on Apple TV with a subscrip"
+    },
+    {
+     "cls": "typography-video-attribution",
+     "fs": 14,
+     "fw": "600",
+     "lh": 1.29,
+     "ls": "-0.0160",
+     "w": 328,
+     "top": 3108,
+     "txt": "PlayStation VR2 Sense controller sold se"
+    }
+   ]
+  }
+ },
+ "vz-home": {
+  "390": {
+   "vw": 390,
+   "docH": 10365,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 350,
+     "top": 175,
+     "cls": "block text-balance tracking-[-0.00028em]",
+     "txt": "One intelligence"
+    },
+    {
+     "tag": "span",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 350,
+     "top": 218,
+     "cls": "apple-anim accent-gradient block",
+     "txt": "for teachers."
+    },
+    {
+     "tag": "span",
+     "fs": 16,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "n",
+     "w": 1,
+     "top": 342,
+     "cls": "sr-only",
+     "txt": "One intelligence, for students, teachers, pare"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 164,
+     "top": 379,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 392,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 72,
+     "top": 451,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Students"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "500",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 73,
+     "top": 451,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Teachers"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 64,
+     "top": 451,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Parents"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 94,
+     "top": 451,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Professionals"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 98,
+     "top": 489,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Organizations"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0200",
+     "w": 309,
+     "top": 1215,
+     "cls": "accent-gradient-on-dark",
+     "txt": "One intelligence."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 342,
+     "top": 1279,
+     "cls": "text-frost text-balance mx-auto",
+     "txt": "From the first question to using what you know"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 2010,
+     "cls": "sr-only",
+     "txt": "Stories from a teacher, a parent, a student, a"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "500",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 342,
+     "top": 2011,
+     "cls": "text-[17px] font-medium",
+     "txt": "Why Visionary exists"
+    },
+    {
+     "tag": "h2",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "0.0040",
+     "w": 342,
+     "top": 2047,
+     "cls": "hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance",
+     "txt": "Teaching everyone is possible. Reaching everyo"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "0.0040",
+     "w": 266,
+     "top": 2176,
+     "cls": "",
+     "txt": "Reaching everyone isn't"
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 342,
+     "top": 2284,
+     "cls": "mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal",
+     "txt": "Effort isn't the gap. Knowing whether understa"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "500",
+     "lh": 1.24,
+     "ls": "-0.0100",
+     "w": 294,
+     "top": 2699,
+     "cls": "flex min-h-[3.3em] items-center",
+     "txt": "I taught the whole class. Half of them still l"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "500",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 294,
+     "top": 2798,
+     "cls": "mt-5 text-[15px] font-medium",
+     "txt": "A teacher"
+    }
+   ],
+   "roles": []
+  },
+  "768": {
+   "vw": 768,
+   "docH": 9359,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 580,
+     "top": 292,
+     "cls": "block text-balance tracking-[-0.00028em]",
+     "txt": "One intelligence"
+    },
+    {
+     "tag": "span",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 580,
+     "top": 336,
+     "cls": "apple-anim accent-gradient block",
+     "txt": "for teachers."
+    },
+    {
+     "tag": "span",
+     "fs": 16,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "n",
+     "w": 1,
+     "top": 427,
+     "cls": "sr-only",
+     "txt": "One intelligence, for students, teachers, pare"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 180,
+     "top": 464,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 478,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 72,
+     "top": 536,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Students"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "500",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 73,
+     "top": 536,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Teachers"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 64,
+     "top": 536,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Parents"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 94,
+     "top": 536,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Professionals"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 98,
+     "top": 536,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Organizations"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 443,
+     "top": 1448,
+     "cls": "accent-gradient-on-dark",
+     "txt": "One intelligence."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 551,
+     "top": 1530,
+     "cls": "text-frost text-balance mx-auto",
+     "txt": "From the first question to using what you know"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 2456,
+     "cls": "sr-only",
+     "txt": "Stories from a teacher, a parent, a student, a"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "500",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 692,
+     "top": 2457,
+     "cls": "text-[17px] font-medium",
+     "txt": "Why Visionary exists"
+    },
+    {
+     "tag": "h2",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.09,
+     "ls": "n",
+     "w": 692,
+     "top": 2494,
+     "cls": "hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance",
+     "txt": "Teaching everyone is possible. Reaching everyo"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.09,
+     "ls": "n",
+     "w": 553,
+     "top": 2550,
+     "cls": "",
+     "txt": "Reaching everyone isn't"
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2693,
+     "cls": "mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal",
+     "txt": "Effort isn't the gap. Knowing whether understa"
+    }
+   ],
+   "roles": []
+  },
+  "1024": {
+   "vw": 1024,
+   "docH": 8846,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 580,
+     "top": 174,
+     "cls": "block text-balance tracking-[-0.00028em]",
+     "txt": "One intelligence"
+    },
+    {
+     "tag": "span",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 580,
+     "top": 227,
+     "cls": "apple-anim accent-gradient block",
+     "txt": "for teachers."
+    },
+    {
+     "tag": "span",
+     "fs": 16,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "n",
+     "w": 1,
+     "top": 309,
+     "cls": "sr-only",
+     "txt": "One intelligence, for students, teachers, pare"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 180,
+     "top": 346,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 360,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 72,
+     "top": 418,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Students"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "500",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 73,
+     "top": 418,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Teachers"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 64,
+     "top": 418,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Parents"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 94,
+     "top": 418,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Professionals"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 98,
+     "top": 418,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Organizations"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 443,
+     "top": 1132,
+     "cls": "accent-gradient-on-dark",
+     "txt": "One intelligence."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 551,
+     "top": 1214,
+     "cls": "text-frost text-balance mx-auto",
+     "txt": "From the first question to using what you know"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 2174,
+     "cls": "sr-only",
+     "txt": "Stories from a teacher, a parent, a student, a"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "500",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 692,
+     "top": 2175,
+     "cls": "text-[17px] font-medium",
+     "txt": "Why Visionary exists"
+    },
+    {
+     "tag": "h2",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.09,
+     "ls": "n",
+     "w": 692,
+     "top": 2211,
+     "cls": "hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance",
+     "txt": "Teaching everyone is possible. Reaching everyo"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1.09,
+     "ls": "n",
+     "w": 553,
+     "top": 2267,
+     "cls": "",
+     "txt": "Reaching everyone isn't"
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2410,
+     "cls": "mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal",
+     "txt": "Effort isn't the gap. Knowing whether understa"
+    }
+   ],
+   "roles": []
+  },
+  "1440": {
+   "vw": 1440,
+   "docH": 9652,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 848,
+     "top": 173,
+     "cls": "block text-balance tracking-[-0.00028em]",
+     "txt": "One intelligence"
+    },
+    {
+     "tag": "span",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 848,
+     "top": 229,
+     "cls": "apple-anim accent-gradient block",
+     "txt": "for students."
+    },
+    {
+     "tag": "span",
+     "fs": 16,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "n",
+     "w": 1,
+     "top": 368,
+     "cls": "sr-only",
+     "txt": "One intelligence, for students, teachers, pare"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 180,
+     "top": 405,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 419,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "500",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 73,
+     "top": 477,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Students"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 71,
+     "top": 477,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Teachers"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 64,
+     "top": 477,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Parents"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 94,
+     "top": 477,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Professionals"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 98,
+     "top": 477,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Organizations"
+    },
+    {
+     "tag": "span",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.05,
+     "ls": "-0.0150",
+     "w": 499,
+     "top": 1348,
+     "cls": "accent-gradient-on-dark",
+     "txt": "One intelligence."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 551,
+     "top": 1442,
+     "cls": "text-frost text-balance mx-auto",
+     "txt": "From the first question to using what you know"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 2493,
+     "cls": "sr-only",
+     "txt": "Stories from a teacher, a parent, a student, a"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "500",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 980,
+     "top": 2494,
+     "cls": "text-[17px] font-medium",
+     "txt": "Why Visionary exists"
+    },
+    {
+     "tag": "h2",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 2530,
+     "cls": "hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance",
+     "txt": "Teaching everyone is possible. Reaching everyo"
+    },
+    {
+     "tag": "span",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 707,
+     "top": 2592,
+     "cls": "",
+     "txt": "Reaching everyone isn't"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 944,
+     "top": 2685,
+     "cls": "mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal",
+     "txt": "Effort isn't the gap. Knowing whether understa"
+    }
+   ],
+   "roles": []
+  },
+  "1920": {
+   "vw": 1920,
+   "docH": 10043,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0003",
+     "w": 848,
+     "top": 220,
+     "cls": "block text-balance tracking-[-0.00028em]",
+     "txt": "One intelligence"
+    },
+    {
+     "tag": "span",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 848,
+     "top": 276,
+     "cls": "apple-anim accent-gradient block",
+     "txt": "for students."
+    },
+    {
+     "tag": "span",
+     "fs": 16,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "n",
+     "w": 1,
+     "top": 415,
+     "cls": "sr-only",
+     "txt": "One intelligence, for students, teachers, pare"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 180,
+     "top": 452,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 466,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "500",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 73,
+     "top": 524,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Students"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 71,
+     "top": 524,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Teachers"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 64,
+     "top": 524,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Parents"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 94,
+     "top": 524,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Professionals"
+    },
+    {
+     "tag": "a",
+     "fs": 12,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0100",
+     "w": 98,
+     "top": 524,
+     "cls": "inline-flex h-9 items-center",
+     "txt": "Organizations"
+    },
+    {
+     "tag": "span",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.05,
+     "ls": "-0.0150",
+     "w": 499,
+     "top": 1584,
+     "cls": "accent-gradient-on-dark",
+     "txt": "One intelligence."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 551,
+     "top": 1677,
+     "cls": "text-frost text-balance mx-auto",
+     "txt": "From the first question to using what you know"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 2731,
+     "cls": "sr-only",
+     "txt": "Stories from a teacher, a parent, a student, a"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "500",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 980,
+     "top": 2732,
+     "cls": "text-[17px] font-medium",
+     "txt": "Why Visionary exists"
+    },
+    {
+     "tag": "h2",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1.06,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 2769,
+     "cls": "hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance",
+     "txt": "Teaching everyone is possible. Reaching everyo"
+    }
+   ],
+   "roles": []
+  }
+ },
+ "vz-student": {
+  "390": {
+   "vw": 390,
+   "docH": 12785,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 285,
+     "top": 141,
+     "cls": "apple-anim accent-gradient inline-block",
+     "txt": "Learning,"
+    },
+    {
+     "tag": "span",
+     "fs": 64,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 1,
+     "top": 140,
+     "cls": "sr-only",
+     "txt": "Learning, to master, to build."
+    },
+    {
+     "tag": "p",
+     "fs": 19,
+     "fw": "400",
+     "lh": 1.4,
+     "ls": "0.0090",
+     "w": 342,
+     "top": 221,
+     "cls": "text-balance mt-4 max-w-[560px]",
+     "txt": "Every concept you understand becomes the found"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 199,
+     "top": 306,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning free"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 366,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 950,
+     "cls": "sr-only",
+     "txt": "Student learning challenges"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 342,
+     "top": 951,
+     "cls": "text-center text-[15px] font-normal",
+     "txt": "Where understanding slips"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 342,
+     "top": 985,
+     "cls": "block text-balance",
+     "txt": "Every student struggles with"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 342,
+     "top": 1065,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "understanding."
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 342,
+     "top": 1124,
+     "cls": "mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px]",
+     "txt": "Studying isn't the difficulty. Knowing it land"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "400",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 342,
+     "top": 1610,
+     "cls": "flex min-h-[2.9em] items-center",
+     "txt": "I studied for hours. I still couldn't explain "
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 342,
+     "top": 1896,
+     "cls": "block",
+     "txt": "Learning that"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1,
+     "ls": "n",
+     "w": 342,
+     "top": 1936,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "moves with \nyou."
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 342,
+     "top": 1995,
+     "cls": "mt-4 max-w-[40ch] text-balance",
+     "txt": "Wherever you begin, Visionary helps your learn"
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 150,
+     "top": 2362,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Primary"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "-0.0030",
+     "w": 150,
+     "top": 2390,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Build the basics. Build them right."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 150,
+     "top": 2378,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Secondary and higher secondary"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "-0.0030",
+     "w": 150,
+     "top": 2422,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "One place for every subject."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 150,
+     "top": 2330,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Competitive exams"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "-0.0030",
+     "w": 150,
+     "top": 2358,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Prepare for the exam. Not just the syllabus."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 150,
+     "top": 2362,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Vocational and skills"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "-0.0030",
+     "w": 150,
+     "top": 2390,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Learn by doing. Skills that work."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 150,
+     "top": 2394,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Higher education"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "-0.0030",
+     "w": 150,
+     "top": 2422,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Go deeper. Build further."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 150,
+     "top": 2426,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Learning on your own"
+    },
+    {
+     "tag": "span",
+     "fs": 28,
+     "fw": "600",
+     "lh": 1.14,
+     "ls": "-0.0030",
+     "w": 150,
+     "top": 2454,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Your pace. Your path."
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 2577,
+     "cls": "sr-only",
+     "txt": "Primary. From your first questions to the idea"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0200",
+     "w": 309,
+     "top": 2789,
+     "cls": "accent-gradient-on-dark",
+     "txt": "One intelligence."
+    }
+   ],
+   "roles": []
+  },
+  "768": {
+   "vw": 768,
+   "docH": 13074,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 427,
+     "top": 82,
+     "cls": "apple-anim accent-gradient inline-block",
+     "txt": "Learning,"
+    },
+    {
+     "tag": "span",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 1,
+     "top": 81,
+     "cls": "sr-only",
+     "txt": "Learning, to master, to build."
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "400",
+     "lh": 1.4,
+     "ls": "0.0090",
+     "w": 560,
+     "top": 194,
+     "cls": "text-balance mt-4 max-w-[560px]",
+     "txt": "Every concept you understand becomes the found"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 215,
+     "top": 284,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning free"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 298,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 1132,
+     "cls": "sr-only",
+     "txt": "Student learning challenges"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 720,
+     "top": 1133,
+     "cls": "text-center text-[15px] font-normal",
+     "txt": "Where understanding slips"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 720,
+     "top": 1167,
+     "cls": "block text-balance",
+     "txt": "Every student struggles with"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 720,
+     "top": 1279,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "understanding."
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 720,
+     "top": 1355,
+     "cls": "mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px]",
+     "txt": "Studying isn't the difficulty. Knowing it land"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "400",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 592,
+     "top": 1790,
+     "cls": "flex min-h-[2.9em] items-center",
+     "txt": "I studied for hours. I still couldn't explain "
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 2080,
+     "cls": "block",
+     "txt": "Learning that"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 2136,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "moves with \nyou."
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2213,
+     "cls": "mt-4 max-w-[40ch] text-balance",
+     "txt": "Wherever you begin, Visionary helps your learn"
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2629,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Primary"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2657,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Build the basics. Build them right."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2629,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Secondary and higher secondary"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2657,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "One place for every subject."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2585,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Competitive exams"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2613,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Prepare for the exam. Not just the syllabus."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2629,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Vocational and skills"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2657,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Learn by doing. Skills that work."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2629,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Higher education"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2657,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Go deeper. Build further."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2629,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Learning on your own"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2657,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Your pace. Your path."
+    }
+   ],
+   "roles": []
+  },
+  "1024": {
+   "vw": 1024,
+   "docH": 11724,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 427,
+     "top": 539,
+     "cls": "apple-anim accent-gradient inline-block",
+     "txt": "Learning,"
+    },
+    {
+     "tag": "span",
+     "fs": 96,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 1,
+     "top": 538,
+     "cls": "sr-only",
+     "txt": "Learning, to master, to build."
+    },
+    {
+     "tag": "p",
+     "fs": 23,
+     "fw": "400",
+     "lh": 1.4,
+     "ls": "0.0090",
+     "w": 512,
+     "top": 651,
+     "cls": "text-balance mt-4 max-w-[560px]",
+     "txt": "Every concept you understand becomes the found"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 215,
+     "top": 634,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning free"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 694,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 893,
+     "cls": "sr-only",
+     "txt": "Student learning challenges"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 976,
+     "top": 894,
+     "cls": "text-center text-[15px] font-normal",
+     "txt": "Where understanding slips"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 976,
+     "top": 932,
+     "cls": "block text-balance",
+     "txt": "Every student struggles with"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 976,
+     "top": 988,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "understanding."
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 826,
+     "top": 1064,
+     "cls": "mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px]",
+     "txt": "Studying isn't the difficulty. Knowing it land"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "400",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 592,
+     "top": 1636,
+     "cls": "flex min-h-[2.9em] items-center",
+     "txt": "I studied for hours. I still couldn't explain "
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 1959,
+     "cls": "block",
+     "txt": "Learning that"
+    },
+    {
+     "tag": "span",
+     "fs": 56,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0050",
+     "w": 692,
+     "top": 2015,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "moves with \nyou."
+    },
+    {
+     "tag": "p",
+     "fs": 21,
+     "fw": "600",
+     "lh": 1.19,
+     "ls": "0.0110",
+     "w": 692,
+     "top": 2092,
+     "cls": "mt-4 max-w-[40ch] text-balance",
+     "txt": "Wherever you begin, Visionary helps your learn"
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2508,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Primary"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2536,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Build the basics. Build them right."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2508,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Secondary and higher secondary"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2536,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "One place for every subject."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2464,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Competitive exams"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2492,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Prepare for the exam. Not just the syllabus."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2508,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Vocational and skills"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2536,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Learn by doing. Skills that work."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2508,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Higher education"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2536,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Go deeper. Build further."
+    },
+    {
+     "tag": "span",
+     "fs": 12,
+     "fw": "600",
+     "lh": 1.33,
+     "ls": "-0.0100",
+     "w": 393,
+     "top": 2508,
+     "cls": "mb-3 block text-white/75",
+     "txt": "Learning on your own"
+    },
+    {
+     "tag": "span",
+     "fs": 40,
+     "fw": "600",
+     "lh": 1.1,
+     "ls": "-0.0030",
+     "w": 393,
+     "top": 2536,
+     "cls": "block max-w-[15ch] font-semibold",
+     "txt": "Your pace. Your path."
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 2695,
+     "cls": "sr-only",
+     "txt": "Primary. From your first questions to the idea"
+    }
+   ],
+   "roles": []
+  },
+  "1440": {
+   "vw": 1440,
+   "docH": 13305,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 669,
+     "top": 628,
+     "cls": "apple-anim accent-gradient inline-block",
+     "txt": "to master."
+    },
+    {
+     "tag": "span",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 1,
+     "top": 613,
+     "cls": "sr-only",
+     "txt": "Learning, to master, to build."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "400",
+     "lh": 1.4,
+     "ls": "0.0090",
+     "w": 560,
+     "top": 770,
+     "cls": "text-balance mt-4 max-w-[560px]",
+     "txt": "Every concept you understand becomes the found"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 215,
+     "top": 789,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning free"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 803,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 1070,
+     "cls": "sr-only",
+     "txt": "Student learning challenges"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1392,
+     "top": 1071,
+     "cls": "text-center text-[15px] font-normal",
+     "txt": "Where understanding slips"
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 1116,
+     "cls": "block text-balance",
+     "txt": "Every student struggles with"
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 1188,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "understanding."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 944,
+     "top": 1282,
+     "cls": "mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px]",
+     "txt": "Studying isn't the difficulty. Knowing it land"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "400",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 592,
+     "top": 1990,
+     "cls": "flex min-h-[2.9em] items-center",
+     "txt": "I studied for hours. I still couldn't explain "
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 2406,
+     "cls": "block",
+     "txt": "Learning that"
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 2478,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "moves with \nyou."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 944,
+     "top": 2573,
+     "cls": "mt-4 max-w-[40ch] text-balance",
+     "txt": "Wherever you begin, Visionary helps your learn"
+    }
+   ],
+   "roles": []
+  },
+  "1920": {
+   "vw": 1920,
+   "docH": 14047,
+   "leaves": [
+    {
+     "tag": "span",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 669,
+     "top": 795,
+     "cls": "apple-anim accent-gradient inline-block",
+     "txt": "to master."
+    },
+    {
+     "tag": "span",
+     "fs": 140,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0021",
+     "w": 1,
+     "top": 780,
+     "cls": "sr-only",
+     "txt": "Learning, to master, to build."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "400",
+     "lh": 1.4,
+     "ls": "0.0090",
+     "w": 560,
+     "top": 937,
+     "cls": "text-balance mt-4 max-w-[560px]",
+     "txt": "Every concept you understand becomes the found"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.5,
+     "ls": "-0.0110",
+     "w": 215,
+     "top": 956,
+     "cls": "inline-flex h-12 items-center",
+     "txt": "Start learning free"
+    },
+    {
+     "tag": "a",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.2,
+     "ls": "n",
+     "w": 151,
+     "top": 970,
+     "cls": "inline-flex items-center gap-1",
+     "txt": "See how it works"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1,
+     "top": 1252,
+     "cls": "sr-only",
+     "txt": "Student learning challenges"
+    },
+    {
+     "tag": "p",
+     "fs": 17,
+     "fw": "400",
+     "lh": 1.19,
+     "ls": "-0.0220",
+     "w": 1872,
+     "top": 1253,
+     "cls": "text-center text-[15px] font-normal",
+     "txt": "Where understanding slips"
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 1297,
+     "cls": "block text-balance",
+     "txt": "Every student struggles with"
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 1369,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "understanding."
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "600",
+     "lh": 1.17,
+     "ls": "0.0090",
+     "w": 944,
+     "top": 1464,
+     "cls": "mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px]",
+     "txt": "Studying isn't the difficulty. Knowing it land"
+    },
+    {
+     "tag": "p",
+     "fs": 24,
+     "fw": "400",
+     "lh": 1.17,
+     "ls": "0.0110",
+     "w": 592,
+     "top": 2244,
+     "cls": "flex min-h-[2.9em] items-center",
+     "txt": "I studied for hours. I still couldn't explain "
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 2663,
+     "cls": "block",
+     "txt": "Learning that"
+    },
+    {
+     "tag": "span",
+     "fs": 72,
+     "fw": "600",
+     "lh": 1,
+     "ls": "-0.0090",
+     "w": 980,
+     "top": 2735,
+     "cls": "hero-fade-up accent-gradient block",
+     "txt": "moves with \nyou."
+    }
+   ],
+   "roles": []
+  }
+ }
+}

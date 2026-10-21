@@ -25,18 +25,23 @@ import proProblem from "@/assets/professional-problem-2.webp";
 import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
+/* One source of truth: every color resolves from system/tokens.js (the
+   measured Apple-neutral system, see APPLE_MEASURED_REFERENCE_2026-10-21.md).
+   The legacy key names stay so this page's internal references read unchanged. */
 const COLORS = {
-  ink: "#121317",
-  graphite: "#5f6368",
-  slate: "#5f6368",
-  lightGrey: "#9AA0A6",
-  mist: "#dadce0",
-  surface: "#F5F6F8",
-  white: "#ffffff",
-  blue: "#4285F4",
-  chipBg: "#D2E3FC",
-  track: "rgba(69,71,77,0.15)",
+  ink: BRAND.ink,
+  graphite: BRAND.slate,
+  slate: BRAND.slate,
+  lightGrey: BRAND.muted,
+  mist: BRAND.line,
+  surface: BRAND.ground,
+  white: BRAND.white,
+  blue: BRAND.link,
+  chipBg: BRAND.chipBg,
+  track: BRAND.trackStrong,
 };
+
+import { color as BRAND } from "@/components/landing/system/tokens";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
 function usePrefersReducedMotion() {
@@ -115,7 +120,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
           aria-pressed={i === active}
           aria-label={`Go to slide ${i + 1}`}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
@@ -257,7 +262,6 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaLabel="Start learning"
       secondaryLabel="See how it works"
-      minDisplay={42}
       wordMs={2600}
     />
   );
@@ -283,8 +287,8 @@ function LandingProblemSection() {
         <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
         <div className="public-editorial-frame mx-auto">
           <p className="text-[17px] font-medium" style={{ color: COLORS.graphite }}>Why Visionary exists</p>
-          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "980px" }}>
-            {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
+          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: COLORS.ink, maxWidth: "980px" }}>
+            {slide.black} <span className="accent-gradient">{slide.blue}</span>.
           </h2>
           <p className="mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal tracking-[0]" style={{ color: COLORS.graphite }}>
             Effort isn't the gap. Knowing whether understanding landed is.
@@ -368,7 +372,11 @@ function LandingPromiseSection() {
         style={{ background: "radial-gradient(58% 70% at 50% 44%, rgba(66,133,244,0.14) 0%, rgba(66,133,244,0.04) 48%, rgba(10,13,20,0) 82%)" }}
       />
       <FadeReveal visible={visible} className="relative mx-auto w-full max-w-[1100px]">
-        <h2 className="mx-auto text-balance text-center font-semibold tracking-[-0.012em] leading-[1.04] text-[clamp(42px,5.8vw,84px)]" style={{ maxWidth: "20ch" }}>
+          <h2
+            data-type="emphasis"
+            className="mx-auto text-balance text-center font-semibold"
+            style={{ maxWidth: "20ch", color: COLORS.ink }}
+          >
           What if your intelligence never forgot{" "}
           <span className="accent-gradient-on-dark">where you were?</span>
         </h2>
@@ -410,11 +418,11 @@ function LandingReturnSection() {
   return (
     <section ref={ref} data-section="04-return" className="relative isolate bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
           <p className="text-[17px] font-medium" style={{ color: COLORS.graphite }}>What you get</p>
           <figure className="m-0">
             <blockquote className="mt-[clamp(20px,2.6vw,32px)]">
-              <p className="text-balance font-medium tracking-[-0.015em] leading-[1.18] text-[clamp(32px,4vw,48px)]" style={{ color: COLORS.ink, maxWidth: "30ch" }}>“A person should not have to start over every time life asks them to learn something new.”</p>
+              <p data-type="card-chapter" className="text-balance font-semibold" style={{ color: COLORS.ink, maxWidth: "30ch" }}>“A person should not have to start over every time life asks them to learn something new.”</p>
             </blockquote>
             <figcaption className="mt-5 text-[15px] font-normal" style={{ color: COLORS.slate }}>
               Md Shahid Ali · Founder and CEO
@@ -438,7 +446,7 @@ function LandingReturnSection() {
                     underline (#0066cc / underlined) */}
                 <Link
                   to={item.to}
-                  className="mt-auto inline-flex items-center gap-1.5 pt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  className="mt-auto inline-flex items-center gap-1.5 pt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                 >
                   {item.l}
                   <ChevronRight className="h-3.5 w-3.5" />
@@ -507,7 +515,7 @@ function LandingSuiteSection() {
 
   return (
     <section ref={ref} data-section="14-suite" className="relative isolate bg-[#f5f5f7] [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible} className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+      <FadeReveal visible={visible} className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
         {/* Apple's accessory/line-up chapters open with a statement over the
             grid ("Explore Apple Vision Pro accessories."). The suite's own
             eyebrow promotes to the measured card-chapter statement tier —
@@ -515,7 +523,7 @@ function LandingSuiteSection() {
             the journeys line-up above, not a second hero. */}
         <h2
           data-type="card-chapter"
-          className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(28px,3.2vw,44px)]"
+          className="text-balance font-semibold"
           style={{ color: COLORS.ink, maxWidth: "20ch" }}
         >
           Explore further.
@@ -529,7 +537,7 @@ function LandingSuiteSection() {
             <Link
               key={item.to}
               to={item.to}
-              className="group relative grid min-h-[220px] grid-cols-[1fr_118px] gap-3 overflow-hidden rounded-[20px] bg-white p-3 transition-shadow duration-200 hover:shadow-[0_12px_32px_rgba(18,19,23,0.07)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:grid-cols-[1fr_180px]"
+              className="group relative grid min-h-[220px] grid-cols-[1fr_118px] gap-3 overflow-hidden rounded-[20px] bg-white p-3 transition-shadow duration-200 hover:shadow-[0_12px_32px_rgba(29,29,31,0.07)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] sm:grid-cols-[1fr_180px]"
             >
               <div className="flex flex-col justify-between px-4 py-4 sm:px-6 sm:py-6">
                 <div>
@@ -576,7 +584,7 @@ export default function LandingPage() {
             hero's own floor dissolves them. */}
         <div
           aria-hidden="true"
-          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#121317]/10"
+          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#1d1d1f]/10"
           style={{
             WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
             maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",

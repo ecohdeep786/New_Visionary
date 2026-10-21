@@ -35,7 +35,11 @@
   }
 }
 
-.cast-copy { margin-top: auto; margin-bottom: auto; }
+/* The copy block centres in the free stage above the family reserve. A small
+   clamped top pad gives it Apple's optical weight — the education-init stack
+   sits just below the stage's mid-line (measured 2026-10-20), not above it —
+   while the reserve still guarantees the family-collision breath. */
+.cast-copy { margin-top: auto; margin-bottom: auto; padding-top: clamp(0px, 5svh, 48px); }
 
 .cast-slot-0 { z-index: 10; }
 .cast-slot-2 { z-index: 30; }

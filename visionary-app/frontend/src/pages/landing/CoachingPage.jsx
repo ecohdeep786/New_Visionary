@@ -100,8 +100,10 @@ const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
   );
 });
 const BlueTag = React.memo(function BlueTag({ children, className = "" }) {
+  /* the label's accent voice — quiet link blue, matching the site's one accent
+     (measure: apple.com inline/tertiary actions #0066cc); GreyTag stays grey. */
   return (
-    <p className={`font-medium tracking-[0] leading-[1.45] text-[17px] ${className}`} style={{ color: COLORS.grey }}>
+    <p className={`font-medium tracking-[0] leading-[1.45] text-[17px] ${className}`} style={{ color: COLORS.blue }}>
       {children}
     </p>
   );

@@ -10,26 +10,8 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — start
-        "figma-primary": "hsl(var(--figma-primary))",
-        "figma-secondary": "hsl(var(--figma-secondary))",
-        "figma-accent": "hsl(var(--figma-accent))",
-        "figma-muted": "hsl(var(--figma-muted))",
-        "figma-subtle-2": "hsl(var(--figma-subtle-2))",
-        "figma-color-9-2": "hsl(var(--figma-color-9-2))",
-        "figma-color-10-2": "hsl(var(--figma-color-10-2))",
-        "figma-color-11-2": "hsl(var(--figma-color-11-2))",
-        "figma-color-14-2": "hsl(var(--figma-color-14-2))",
-        "figma-color-15-2": "hsl(var(--figma-color-15-2))",
-        "figma-color-16-2": "hsl(var(--figma-color-16-2))",
-        "figma-color-17-2": "hsl(var(--figma-color-17-2))",
-        "figma-color-18-2": "hsl(var(--figma-color-18-2))",
-        "figma-color-19-2": "hsl(var(--figma-color-19-2))",
-        "figma-color-20-2": "hsl(var(--figma-color-20-2))",
-        "figma-text-1-2": "hsl(var(--figma-text-1-2))",
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — end
-      
-  			background: 'hsl(var(--background))',
+
+		  			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
@@ -157,22 +139,11 @@ module.exports = {
   		
   		
   		fontSize: {
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — start
-        "figma-6": "6px",
-        "figma-12": "12px",
-        "figma-14": "14px",
-        "figma-16": "16px",
-        "figma-18": "18px",
-        "figma-19": "19px",
-        "figma-24": "24px",
-        "figma-32": "32px",
-        "figma-42": "42px",
-        "figma-48": "48px",
-        "figma-96": "96px",
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — end
-      
-  			
-  			'figma-10': '10px',
+			'figma-6': '6px',
+			'figma-19': '19px',
+			'figma-48': '48px',
+
+		  			'figma-10': '10px',
   			
   			'figma-11': '11px',
   			
@@ -216,17 +187,8 @@ module.exports = {
   		
   		
   		fontWeight: {
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — start
-        "figma-normal": "400",
-        "figma-medium": "500",
-        "figma-w-510": "510",
-        "figma-w-590": "590",
-        "figma-semibold": "600",
-        "figma-bold": "700",
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — end
-      
-  			
-  			'figma-normal': '400',
+    
+			  			'figma-normal': '400',
   			
   			'figma-medium': '500',
   			
@@ -242,25 +204,12 @@ module.exports = {
   		
   		
   		lineHeight: {
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — start
-        "figma-9": "9px",
-        "figma-16": "16px",
-        "figma-18": "18px",
-        "figma-20": "20px",
-        "figma-21": "21px",
-        "figma-23": "23px",
-        "figma-26": "26px",
-        "figma-29": "29px",
-        "figma-30": "30px",
-        "figma-38": "38px",
-        "figma-44": "44px",
-        "figma-57": "57px",
-        "figma-60": "60px",
-        "figma-144": "144px",
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — end
-      
-  			
-  			'figma-13': '13px',
+    
+			'figma-9': '9px',
+			'figma-29': '29px',
+			'figma-30': '30px',
+			'figma-60': '60px',
+			  			'figma-13': '13px',
   			
   			'figma-14': '14px',
   			
@@ -323,12 +272,8 @@ module.exports = {
         sans: ['var(--font-brand)'],
         public: ['var(--font-public)'],
         product: ['var(--font-product)'],
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — start
-        "figma-inter": ['"Inter"', 'sans-serif'],
-        // figma:company-pitch-deck-all-design (Ty6gmHof) — end
-      
-  			
-        'heading': ['var(--font-brand)'],
+
+		        'heading': ['var(--font-brand)'],
   			
         'paragraph': ['var(--font-brand)'],
   			
