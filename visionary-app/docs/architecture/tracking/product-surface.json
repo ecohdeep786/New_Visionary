@@ -3619,9 +3619,10 @@
         "frontend/src/components/onboarding/ChipMultiSelect.jsx:21:11",
         "frontend/src/components/onboarding/ChoiceGrid.jsx:23:11",
         "frontend/src/components/onboarding/OnboardingLayout.jsx:16:10",
-        "frontend/src/components/onboarding/OnboardingLayout.jsx:43:17",
-        "frontend/src/components/onboarding/OnboardingLayout.jsx:44:93",
-        "frontend/src/components/onboarding/OnboardingLayout.jsx:45:9",
+        "frontend/src/components/onboarding/OnboardingLayout.jsx:37:47",
+        "frontend/src/components/onboarding/OnboardingLayout.jsx:44:17",
+        "frontend/src/components/onboarding/OnboardingLayout.jsx:45:93",
+        "frontend/src/components/onboarding/OnboardingLayout.jsx:46:9",
         "frontend/src/components/onboarding/ProductSetupFields.jsx:8:5",
         "frontend/src/components/onboarding/ProductSetupFields.jsx:15:5",
         "frontend/src/components/onboarding/ProductSetupFields.jsx:19:10",
@@ -3647,7 +3648,7 @@
         "frontend/src/components/onboarding/stepConfigs.jsx:290:9",
         "frontend/src/components/onboarding/stepConfigs.jsx:299:9",
         "frontend/src/components/onboarding/steps/IdentitySelection.jsx:14:10",
-        "frontend/src/components/onboarding/steps/IdentitySelection.jsx:16:5",
+        "frontend/src/components/onboarding/steps/IdentitySelection.jsx:17:5",
         "frontend/src/components/onboarding/steps/org/OrgInfo.jsx:4:5",
         "frontend/src/components/onboarding/steps/student/StudentContextForm.jsx:34:9",
         "frontend/src/components/onboarding/steps/student/StudentContextForm.jsx:49:11",
@@ -3659,11 +3660,11 @@
         "frontend/src/components/onboarding/steps/student/StudyRoutine.jsx:58:9",
         "frontend/src/components/onboarding/steps/student/SubjectConfidence.jsx:19:11",
         "frontend/src/components/onboarding/SubjectContextInput.jsx:6:5",
-        "frontend/src/pages/Onboarding.jsx:68:36",
-        "frontend/src/pages/Onboarding.jsx:77:12",
-        "frontend/src/pages/Onboarding.jsx:80:50",
-        "frontend/src/pages/Onboarding.jsx:80:185",
-        "frontend/src/pages/Onboarding.jsx:86:10"
+        "frontend/src/pages/Onboarding.jsx:82:36",
+        "frontend/src/pages/Onboarding.jsx:91:12",
+        "frontend/src/pages/Onboarding.jsx:94:50",
+        "frontend/src/pages/Onboarding.jsx:94:185",
+        "frontend/src/pages/Onboarding.jsx:100:10"
       ],
       "operations": [
         "auth-session-profile",
@@ -43761,9 +43762,38 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/onboarding/OnboardingLayout.jsx:43:17",
+      "id": "frontend/src/components/onboarding/OnboardingLayout.jsx:37:47",
       "file": "frontend/src/components/onboarding/OnboardingLayout.jsx",
-      "line": 43,
+      "line": 37,
+      "column": 47,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{onChangeAccount}"
+        }
+      ],
+      "calls": [],
+      "disabled": "disabled={isSubmitting}",
+      "declarationSha256": "0479e069c7515f571e5fd1b0edf6e5fcf4575d85b3fabfbf748720de52548720",
+      "routeIds": [
+        "/onboarding"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/onboarding/OnboardingLayout.jsx:44:17",
+      "file": "frontend/src/components/onboarding/OnboardingLayout.jsx",
+      "line": 44,
       "column": 17,
       "tag": "button",
       "events": [
@@ -43790,9 +43820,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/onboarding/OnboardingLayout.jsx:44:93",
+      "id": "frontend/src/components/onboarding/OnboardingLayout.jsx:45:93",
       "file": "frontend/src/components/onboarding/OnboardingLayout.jsx",
-      "line": 44,
+      "line": 45,
       "column": 93,
       "tag": "button",
       "events": [
@@ -43819,9 +43849,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/onboarding/OnboardingLayout.jsx:45:9",
+      "id": "frontend/src/components/onboarding/OnboardingLayout.jsx:46:9",
       "file": "frontend/src/components/onboarding/OnboardingLayout.jsx",
-      "line": 45,
+      "line": 46,
       "column": 9,
       "tag": "button",
       "events": [],
@@ -44630,13 +44660,17 @@
         {
           "event": "onContinue",
           "expression": "{() => onContinue(selected)}"
+        },
+        {
+          "event": "onChangeAccount",
+          "expression": "{onChangeAccount}"
         }
       ],
       "calls": [
         "onContinue"
       ],
       "disabled": null,
-      "declarationSha256": "c71a2c893aa975ea30922a1bc7e1a6ab2cca0402fea08b031670b08489cfed94",
+      "declarationSha256": "80e5ae964db7c3320ae0a89684070fd35413bd80b1a7bbabb472f4f03dc4d804",
       "routeIds": [
         "/onboarding"
       ],
@@ -44652,9 +44686,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/onboarding/steps/IdentitySelection.jsx:16:5",
+      "id": "frontend/src/components/onboarding/steps/IdentitySelection.jsx:17:5",
       "file": "frontend/src/components/onboarding/steps/IdentitySelection.jsx",
-      "line": 16,
+      "line": 17,
       "column": 5,
       "tag": "ChoiceGrid",
       "events": [
@@ -74757,9 +74791,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:68:36",
+      "id": "frontend/src/pages/Onboarding.jsx:82:36",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 68,
+      "line": 82,
       "column": 36,
       "tag": "IdentitySelection",
       "events": [
@@ -74770,7 +74804,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "37ae9d6361b3e93848195aa31d16e93daa11690c0d13ef020fc8e7702ea6b804",
+      "declarationSha256": "7a39f1958d4705ceef4b6a79572bc0137846692c5bceae767a134c216058fbab",
       "routeIds": [
         "/onboarding"
       ],
@@ -74794,9 +74828,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:77:12",
+      "id": "frontend/src/pages/Onboarding.jsx:91:12",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 77,
+      "line": 91,
       "column": 12,
       "tag": "OnboardingLayout",
       "events": [
@@ -74815,7 +74849,7 @@
         "steps.at"
       ],
       "disabled": null,
-      "declarationSha256": "e433ec641ba512c3cfd098c71aa193536c58572bea057617ba67fcf090e81175",
+      "declarationSha256": "b8e29b46f3ea4171b8685481585bbc1451068eb9e6fa41c4ef11169c97c43fe5",
       "routeIds": [
         "/onboarding"
       ],
@@ -74839,9 +74873,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:80:50",
+      "id": "frontend/src/pages/Onboarding.jsx:94:50",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 80,
+      "line": 94,
       "column": 50,
       "tag": "button",
       "events": [
@@ -74878,9 +74912,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:80:185",
+      "id": "frontend/src/pages/Onboarding.jsx:94:185",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 80,
+      "line": 94,
       "column": 185,
       "tag": "button",
       "events": [
@@ -74918,9 +74952,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Onboarding.jsx:86:10",
+      "id": "frontend/src/pages/Onboarding.jsx:100:10",
       "file": "frontend/src/pages/Onboarding.jsx",
-      "line": 86,
+      "line": 100,
       "column": 10,
       "tag": "OnboardingLayout",
       "events": [
@@ -74939,7 +74973,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "0599067daaa9db329caf2ea352ffe70f71cbba374e857a938ea891551615f945",
+      "declarationSha256": "e3d889df9c65a9f570a713e1ef91981711035e2f2a31d749952bdc92737fe8be",
       "routeIds": [
         "/onboarding"
       ],
@@ -76705,7 +76739,7 @@
     },
     {
       "file": "frontend/src/components/onboarding/OnboardingLayout.jsx",
-      "sourceSha256": "bab67e12f13adad7742248c9caab1ce93c5915fa9a03b46f9798b8f81c095745"
+      "sourceSha256": "e9dc695908dddd4f2e3cfdbecd67119d4163ea709f1f3dea9c3ad77f7ae0c2c5"
     },
     {
       "file": "frontend/src/components/onboarding/ProductSetupFields.jsx",
@@ -76725,7 +76759,7 @@
     },
     {
       "file": "frontend/src/components/onboarding/steps/IdentitySelection.jsx",
-      "sourceSha256": "f79bc7d1df9b06bf5f1e0ac1748ed5d23c7f99e51c76a003df3848f5827c02ed"
+      "sourceSha256": "1973311166155d471dd5bdb9c8326e1af72801b59b631490eee2ca02fd6a0045"
     },
     {
       "file": "frontend/src/components/onboarding/steps/org/OrgInfo.jsx",
@@ -77573,7 +77607,7 @@
     },
     {
       "file": "frontend/src/pages/Onboarding.jsx",
-      "sourceSha256": "2b8ba95e0bef2d6cbaa9c4879c8afce641db058675b8703ac85469b4f9caef01"
+      "sourceSha256": "b757e4a91f5136ef27d5e8db239cee7038f678d1b597a69c9c3cd7836edb82e7"
     },
     {
       "file": "frontend/src/pages/Register.jsx",
@@ -81056,11 +81090,11 @@
   "counts": {
     "routes": 68,
     "registeredEndpoints": 35,
-    "controlDeclarations": 1623,
-    "routeReachableDeclarations": 1465,
+    "controlDeclarations": 1624,
+    "routeReachableDeclarations": 1466,
     "controlFiles": 219,
     "states": {
-      "connected": 480,
+      "connected": 481,
       "preview": 931,
       "missing": 52,
       "intentionally-unreleased": 160

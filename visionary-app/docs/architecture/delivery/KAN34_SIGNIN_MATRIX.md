@@ -107,7 +107,56 @@ the fictional anonymous response and matching dependency reuse explicitly.
 
 **Decision: source patch approved; full KAN-34 acceptance remains open.** The
 reviewer report and this receipt are evidence only; the reviewed implementation
-remains `7aba0d56`. No product source changed after that review. Draft
+remained `7aba0d56` at that checkpoint. The later runtime repair below requires
+renewed exact-SHA review. Draft
 [PR 17](https://github.com/ecohdeep786/New_Visionary/pull/17) remains unmerged;
 neither dev/main integration nor deployment is claimed. Real provider, mail and
 hosted-device gates still require their recorded acceptance evidence.
+
+## Live runtime continuation and recovery repair
+
+21 October 2026, after the founder requires continued real-product testing and
+full task acceptance before dev integration/cleanup. The task app runs its
+Firebase production build at `http://localhost:5184` against the real standalone
+backend and configured `visionary-research` Auth/Firestore. No response
+interception is used for the live scenarios below. Existing production remains
+main `7aee2324`; canonical health returns that exact revision, JSON 200/no-store,
+and an anonymous auth/me request returns 401/no-store.
+
+| Live scenario | Observed outcome and limit |
+| --- | --- |
+| Initial Google popup on localhost | Failed with unauthorized-domain warning. Read-only provider/project inspection confirmed localhost absent. |
+| Development-domain repair | Field-masked update adds only `localhost`, preserving `visionary-research.firebaseapp.com`, `visionary-research.web.app` and `visionary.org.in`; read-back matches and signIn configuration is unchanged. No provider key or production origin is replaced. |
+| Google after repair | Real SDK popup → server session → existing account onboarding succeeds locally. Canonical GCP Google login also reaches the same account's onboarding; reload recovers the session. No profile setup preferences or existing credentials are overwritten. |
+| Onboarding account recovery | Live testing found no way to sign out/switch an incomplete account. The repair adds Use a different account on every setup phase, reuses server logout, waits for success, keeps the UID-scoped draft and return intent, and prevents concurrent finish/switch commands. Failure remains retryable. |
+| Local logout / independent production session | Repaired local account switch returns to login; independently hosted session still recovers onboarding. No cross-device logout claim beyond these two actual origins is made. |
+| Email/password | Isolated task-owned password identity uses a plus alias of the founder-designated inbox. Actual wrong-password UI denial passes. Correct password for the unverified identity reaches verification instead of an authenticated product account. |
+| Real verification delivery | Native Firebase verification mail arrives in the designated inbox. After its actual action is opened, Auth confirms emailVerified=true; the live SDK reload and verified token exchange reaches the same test identity's onboarding. No Admin emailVerified override is used. The inspected hosted action page shows already-used/expired, so a first success-page rendering is not claimed. |
+| Real reset delivery | Native reset mail arrives and opens a valid new-password form for the isolated account. Credential entry/submission is handed to the founder under browser-control policy; completed reset/new-password sign-in is pending. |
+| Apple | Console inspection and authenticated config GET independently show Apple enabled with empty Service ID, Team ID, Key ID and private key. Actual popup returns method unavailable. Apple Developer-owned configuration and successful real sign-in remain required; GCP hosting alone cannot supply those credentials. |
+
+The owner's original Google identity is preserved. The isolated identity and its
+random test credential are retained only in ignored local QA material while the
+reset handoff is pending. No mailbox contents, addresses, UID, password, action
+code, identity token, cookie or provider secret is committed or copied to Jira.
+Only requested test messages were opened. Disable/revoke the owned fixture after
+the remaining tests; never disable or remove the owner's account.
+
+The domain-change receipt includes the original domain list for rollback. If
+local OAuth support must be withdrawn later, apply a field-masked change against
+a fresh read, retaining any subsequent owner-approved domains. The retained
+receipt is not a command to replace current settings blindly.
+
+Repair verification: root check exits 0 (18 script tests, 554 frontend tests,
+lint, both types, layout/import and source audit), Firebase build 83 seconds.
+Six new compiled recovery scenarios cover role/flow/review at 1280px and 390px,
+each exercising failed logout, duplicate denial, retry success, preserved draft,
+account/CSRF binding and return intent without profile writes. The earlier four
+compiled sign-in scenarios still pass. Additional script lint passes from the
+frontend package. These fixture checks remain separate from the live flows.
+
+The old source approval does not cover this recovery repair. A replacement exact
+candidate must receive independent review. Full KAN-34 remains In Progress for
+Apple, reset completion and remaining hosted candidate acceptance. Do not merge,
+promote main, remove unfinished worktrees or take the next task on partial
+provider acceptance.

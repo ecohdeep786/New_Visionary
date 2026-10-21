@@ -8,7 +8,7 @@ import './product-onboarding.css';
 
 export default function OnboardingLayout({ step = 1, totalSteps = 4, stepLabels = ['Your role', 'About you', 'Preferences', 'Review'], title, subtitle,
   onBack, onContinue, canContinue, isSubmitting, children, showNav = true, illustration = 'compass',
-  continueLabel = 'Continue', optional = false, onSkip, accountEmail }) {
+  continueLabel = 'Continue', optional = false, onSkip, accountEmail, onChangeAccount, isSwitchingAccount }) {
   const heading = useRef(null);
   const completed = Math.max(0, step - 1);
   const portrait = ['student', 'teacher', 'parent', 'team'].includes(illustration);
@@ -34,6 +34,7 @@ export default function OnboardingLayout({ step = 1, totalSteps = 4, stepLabels 
           <h1 ref={heading} tabIndex={-1} id="onboarding-title" className="text-[26px] font-medium leading-tight outline-none sm:text-[32px]">{title}</h1>
           {subtitle && <p className="mt-3 text-sm leading-6 text-[#5f6368]">{subtitle}</p>}
           {accountEmail && <p className="mt-4 truncate text-xs text-[#5f6368]" title={accountEmail}>Using {accountEmail}</p>}
+          {accountEmail && onChangeAccount && <button type="button" disabled={isSubmitting} onClick={onChangeAccount} className="mt-2 min-h-11 rounded-full px-3 text-sm font-medium text-[#0b57d0] hover:bg-[#e8f0fd] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50">{isSwitchingAccount ? 'Signing out…' : 'Use a different account'}</button>}
           {optional && <p className="mt-3 text-xs font-medium text-[#5f6368]">Optional · choose your details now or skip for later.</p>}
           <fieldset disabled={isSubmitting} className="mt-6 min-w-0">{children}</fieldset>
         </section>
@@ -42,7 +43,7 @@ export default function OnboardingLayout({ step = 1, totalSteps = 4, stepLabels 
     {showNav && <footer className="sticky bottom-0 border-t border-[#e3e7ee] bg-white/95 px-5 py-4 backdrop-blur-sm sm:px-8"><div className="mx-auto flex max-w-[960px] flex-wrap items-center justify-between gap-3">
       {onBack ? <button type="button" disabled={isSubmitting} onClick={onBack} className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-[#0b57d0] hover:bg-[#e8f0fd] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50"><ArrowLeft size={18} aria-hidden="true" />Back</button> : <span className="text-xs text-[#5f6368]">Your preferences. Your pace.</span>}
       <div className="flex flex-wrap items-center justify-end gap-2">{optional && onSkip && <button type="button" disabled={isSubmitting} onClick={onSkip} className="min-h-11 rounded-full px-4 text-sm font-medium text-[#0b57d0] hover:bg-[#e8f0fd]">Skip for now</button>}
-        <button type="submit" disabled={!canContinue || isSubmitting} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#0b57d0] px-6 py-3 text-sm font-medium text-white hover:bg-[#0842a0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0b57d0] disabled:cursor-not-allowed disabled:opacity-50">{isSubmitting ? <><Spinner />Saving…</> : continueLabel}</button>
+        <button type="submit" disabled={!canContinue || isSubmitting} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#0b57d0] px-6 py-3 text-sm font-medium text-white hover:bg-[#0842a0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0b57d0] disabled:cursor-not-allowed disabled:opacity-50">{isSubmitting ? <><Spinner />{isSwitchingAccount ? 'Signing out…' : 'Saving…'}</> : continueLabel}</button>
       </div>
     </div></footer>}
   </form>;
