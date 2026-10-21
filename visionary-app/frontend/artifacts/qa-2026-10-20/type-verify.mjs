@@ -25,7 +25,7 @@ const measure = () => `(() => {
   const vis = (sel) => Array.from(document.querySelectorAll(sel)).find(e => e.offsetWidth && (e.textContent || '').trim());
   const biggest = (sel) => { let best = null, bf = 0; document.querySelectorAll(sel).forEach(e => { if (!e.offsetWidth || !(e.textContent || '').trim()) return; let f = parseFloat(getComputedStyle(e).fontSize); e.querySelectorAll('span').forEach(s => { f = Math.max(f, parseFloat(getComputedStyle(s).fontSize)); }); if (f > bf) { bf = f; best = e; } }); return best ? bf : 0; };
   const mode = (arr) => { const c = {}; arr.forEach(f => { const k = Math.round(f); c[k] = (c[k] || 0) + 1; }); const top = Object.entries(c).sort((a, b) => b[1] - a[1])[0]; return top ? Number(top[0]) : null; };
-  const navFs = Array.from(document.querySelectorAll('header a, nav a')).filter(e => {
+  const navFs = Array.from(document.querySelectorAll('header a')).filter(e => {
     if (!e.offsetWidth) return false;
     const cls = String(e.className);
     if (cls.indexOf('sr-only') >= 0 || cls.indexOf('shrink-0') >= 0) return false;
@@ -53,9 +53,9 @@ const measure = () => `(() => {
 })()`;
 
 const SPEC = {
-  390: { landing: 64, category: 40, cap: 40, nav: 12, body: 17 },
-  768: { landing: 96, category: 56, cap: 56, nav: 12, body: 17 },
-  1440: { landing: 140, category: 64, cap: 64, nav: 12, body: 17 }
+  390: { landing: 64, category: 40, cap: 40, nav: 14, body: 17 },
+  768: { landing: 96, category: 56, cap: 56, nav: 14, body: 17 },
+  1440: { landing: 140, category: 64, cap: 64, nav: 14, body: 17 }
 };
 
 const near = (v, t) => Math.abs(v - t) <= 1;

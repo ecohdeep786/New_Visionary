@@ -465,6 +465,27 @@
   }
 }
 
+/* Masked line reveal — the rotating hero line rises inside its clip box
+   (Apple's education-init masked cadence); the keyed span re-runs the
+   animation on every word change. */
+@keyframes heroLineUp {
+  from {
+    opacity: 0;
+    transform: translateY(0.32em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-anim {
+    animation: none !important;
+  }
+}
+
 .hero-fade-up {
   animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
