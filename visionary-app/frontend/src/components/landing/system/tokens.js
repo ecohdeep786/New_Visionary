@@ -38,9 +38,11 @@ export const color = {
   secondary: "#757579",    // .button-secondary
   alpha: "rgba(0,0,0,0.08)", // .button-secondary-alpha
 
-  /* ── channel colors carried over for the remaining legacy consumers ── */
-  deepBlue: "#0b57d0",     // deprecated — scheduled for deletion at the A3 sweep
-  chipBg: "#e8f0fe",       // deprecated — legacy Google chip tint
+  /* ── channel colors carried over for the remaining legacy consumers ──
+     (A3 retirees the Google values; consumers render law colors now —
+     migrate consumers to the law keys; keys drop at A5 activation) */
+  deepBlue: "#0066cc",     // was #0b57d0 → law link blue
+  chipBg: "rgba(0,102,204,0.10)", // was #e8f0fe → law chip wash
 
   /* ── legacy alias map (values now resolve to the measured system) ── */
   graphite: "#6e6e73",     // was #5f6368
@@ -49,7 +51,7 @@ export const color = {
   track: "#f5f5f7",        // was #f1f3f4
   trackStrong: "rgba(29,29,31,0.15)", // was rgba(69,71,77,0.15)
   surfaceAlt: "#f5f5f7",   // was #f8f9fa
-  surfaceBlue: "#e8f0fe",  // deprecated — legacy Google soft blue
+  surfaceBlue: "rgba(0,102,204,0.10)", // was #e8f0fe → law chip wash
 };
 
 /** Corner-radius law. Media and cards share 12px; overlays 16; interactive is a 980px pill. */

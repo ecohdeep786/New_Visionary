@@ -36,10 +36,10 @@
   --radius-control: 999px;
   --radius-media: 12px;
   --radius-surface: 12px;
-  --line-subtle: #dadce0;
-  --surface-soft: #f8f9fa;
-  --surface-blue: #e8f0fe;
-  --accent-blue: #0b57d0;
+  --line-subtle: #d2d2d7;
+  --surface-soft: #f5f5f7;
+  --surface-blue: rgba(0,102,204,0.10);
+  --accent-blue: #0066cc;
 
   /* ratio-locked intra-unit gaps (L1): gap = the heading's own size × its frozen desktop ratio */
   --gap-eyebrow-title: calc(var(--fs-h3) * 0.5);

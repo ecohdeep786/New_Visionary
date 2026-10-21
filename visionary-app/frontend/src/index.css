@@ -336,8 +336,8 @@
   }
 
   ::selection {
-    background: #D2E3FC;
-    color: #121317;
+    background: #rgba(0,102,204,0.10);
+    color: #1d1d1f;
   }
 
   /* iOS notch / home-bar safe areas */
@@ -431,7 +431,7 @@
 
   /* ── Student: Learning → Mastery ─────────────────────────────── */
   .lm-section {
-    color: #121317;
+    color: #1d1d1f;
     font-family: var(--font-public);
   }
 
@@ -625,5 +625,5 @@ h3[id] {
    keep their deliberate outlines. ═══ */
 /* :where() = zero specificity, so bg-white / bg-[…] utilities always win */
 :where(.g-card) {
-  background-color: #f8f9fa;
+  background-color: #f5f5f7;
 }

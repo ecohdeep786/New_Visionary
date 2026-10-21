@@ -481,9 +481,9 @@ h1.text-\[48px\] {
    form; this keeps ink-coloured card copy untouched. */
 main p[style*="95, 99, 104"].text-\[17\.5px\],
 main p[style*="95, 99, 104"].text-\[17px\],
-main p[style*="5f6368"].text-\[17\.5px\],
-main p[style*="5f6368"].text-\[17px\] {
-  color: #3c4043 !important;
+main p[style*="6e6e73"].text-\[17\.5px\],
+main p[style*="6e6e73"].text-\[17px\] {
+  color: #1d1d1f !important;
 }
 
 /* smallest metadata — nothing below 14px on an Apple page */

@@ -17803,7 +17803,7 @@
         "window.location.reload"
       ],
       "disabled": null,
-      "declarationSha256": "d359afdd297b57a8fd9e0144f207ff8e6da926f48ffb93d9627b903fd13feb92",
+      "declarationSha256": "c204600508bdb2162e5276248db543cbd256dcb5ff6c0a87eca9eacf14bb2f39",
       "routeIds": [
         "/dev/scenarios",
         "/",
@@ -17899,7 +17899,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "fa45840db482658a55008e0a918f95b1484b16c934eb43dafbe58590b2d5c9bd",
+      "declarationSha256": "38963ec0a5099120ca38e35b43f5b45a419e80368647dc9ee11c7e998c8fa2a7",
       "routeIds": [
         "/dev/scenarios",
         "/",
@@ -17990,7 +17990,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "bb9c962ad813f59953373deb3766d224d70a9830d45aa85d3cb7008b27ae35c7",
+      "declarationSha256": "804fc0e7068ac5adc33478929d831c561790d68174186ac3933799282eedb1f4",
       "routeIds": [
         "/dev/scenarios",
         "/",
@@ -18082,7 +18082,7 @@
       "calls": [],
       "destination": "#main",
       "disabled": null,
-      "declarationSha256": "1edcaa8c701c837cc1ac40fd3f6f4a4947ed60b7e289f8774fa4908f135494f7",
+      "declarationSha256": "69630cabeeca623ca5faa71250552b270ae1d10d3f1aea5fc2d6f9ac017e4e57",
       "routeIds": [
         "/dev/scenarios",
         "/",
@@ -18243,7 +18243,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "837e44e92dc13cb46d4ed80a3a961401f6d97cce9ead6a45b920fd5eb4dbaa9a",
+      "declarationSha256": "e090a6d43e5e0cb695cee969a59894185e1bbb68fbcda1fd02c520bc160d4621",
       "routeIds": [
         "/login",
         "/register",
@@ -18288,7 +18288,7 @@
         "setFocused"
       ],
       "disabled": null,
-      "declarationSha256": "9386d5865ec59bd5b80e143cedb06c87fc723eb60ac7653c6c6927aac86677a2",
+      "declarationSha256": "21746698cfe0ebca2b97974b00f10e1d62ec0dc49327ddc9d7e95bda0cdaf5a2",
       "routeIds": [
         "/login",
         "/register",
@@ -18333,7 +18333,7 @@
         "setFocused"
       ],
       "disabled": "disabled={disabled}",
-      "declarationSha256": "48630ad69f21fb8b5894ab306aa7cad90d55935f4a0f65a172280a6dac68f6f0",
+      "declarationSha256": "8e3bc28b50e01da1c533b491985588d88c81b2c4526bee46032272845c59bfcd",
       "routeIds": [
         "/login",
         "/register",
@@ -18370,7 +18370,7 @@
         "setShowPassword"
       ],
       "disabled": null,
-      "declarationSha256": "6f95a489ab798018b0d99b61ef9def294ad58f7623d66fe3991ca5d23561effa",
+      "declarationSha256": "a22c5dc2f82d8b6e70629885afa0caa4f1f805fb0c43a565ea3c69d2d3dac2ce",
       "routeIds": [
         "/login",
         "/register",
@@ -18415,7 +18415,7 @@
         "setFocused"
       ],
       "disabled": "disabled={disabled}",
-      "declarationSha256": "ccbacc07ab51488435b4f4f920ce8a6e2b8a013e0b7229a006fe8f4eb130c55e",
+      "declarationSha256": "2f701d863f2489fd03e3256eb75dbc2f344345e1744fcdc7ef61487e008d8fa6",
       "routeIds": [
         "/login",
         "/register",
@@ -18484,7 +18484,7 @@
         "act"
       ],
       "disabled": "disabled={busy || cooldown > 0}",
-      "declarationSha256": "6ea05789dfa70951c50112e0482b91b1ca32c3a9fb0032f06a36ef79d0a01406",
+      "declarationSha256": "518efe353f9c25a1242fdf88bd299dcb79a11b9a65d9064b2bd49785e880731f",
       "routeIds": [
         "/login",
         "/register"
@@ -18510,7 +18510,7 @@
       "calls": [],
       "destination": "/login",
       "disabled": null,
-      "declarationSha256": "79dd552c944b3d5801bf17fd4ebb4d4e8a862498268af7245eeae7445fe72ae4",
+      "declarationSha256": "bf34e4e3c586cb9849b2335693a284e875513e3cd15d2dd90b34936795d97c5e",
       "routeIds": [
         "/login",
         "/register"
@@ -18542,7 +18542,7 @@
         "setOpen"
       ],
       "disabled": null,
-      "declarationSha256": "de8d5446dc47dd710b62c3ad751b6974b5d3266ff3951629a08404cff3f1db2e",
+      "declarationSha256": "8138e74492e5945dc91cff0f22e03f44230201ce1adecc15bfd31459da96399f",
       "routeIds": [
         "/login",
         "/register",
@@ -18580,7 +18580,7 @@
         "setSelected"
       ],
       "disabled": null,
-      "declarationSha256": "a2176e4dca7b173133a23c7f4431f8d8c599f0d02c4e5f81543589c76935627a",
+      "declarationSha256": "8f326ccd0d990267cbbede831b88345752118f5cd07f05ddb7635421493c2b75",
       "routeIds": [
         "/login",
         "/register",
@@ -18611,7 +18611,7 @@
       "calls": [],
       "destination": "/contact",
       "disabled": null,
-      "declarationSha256": "65278bffc99a133104ae9a0f0e01b0d716a0fac8929145e95fe5177f2c158916",
+      "declarationSha256": "246e446e21b08bec69d6db9afdd57884fcaa6f26f704ceb915e7bb575f9ce76c",
       "routeIds": [
         "/login",
         "/register",
@@ -18641,7 +18641,7 @@
       "calls": [],
       "destination": "/privacy",
       "disabled": null,
-      "declarationSha256": "700cd16c7562a46b631efac8214ae76a7ac638b8a1aba87d2e29ace940c6f0a8",
+      "declarationSha256": "a62efeecd3caaa68e49c7a7e892d9232b7d99f2cbf14212fd7c53daafe318b8a",
       "routeIds": [
         "/login",
         "/register",
@@ -18671,7 +18671,7 @@
       "calls": [],
       "destination": "/terms",
       "disabled": null,
-      "declarationSha256": "be62c5649b645a6b8fe5553b19388792e5924ffb8a5808b0a8800a9429a21913",
+      "declarationSha256": "5e884d0137921ecb535964b295ad2198f0380a3c5716bf1899173d6cb75174c6",
       "routeIds": [
         "/login",
         "/register",
@@ -38279,7 +38279,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "8f294c7f1f0c8c16751dc2a753a55464561cacb2883bce02baf6b3c16ce104e4",
+      "declarationSha256": "7b8edb26f32032acb787daabe2b1ad101b56856df91e8c1c76e9de6725e760db",
       "routeIds": [
         "/about"
       ],
@@ -38304,7 +38304,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "0c359bf4f0119c668c7d0ce53e1213d1dcfbf4ff5b67a8b0284135daf230daf5",
+      "declarationSha256": "b3afdd1a579d0f13ed43d1d0059c5afe31bf6ad670192b8e0a3ace8131dab9f7",
       "routeIds": [
         "/about"
       ],
@@ -38354,7 +38354,7 @@
       "calls": [],
       "destination": "/",
       "disabled": null,
-      "declarationSha256": "5c082881acfe1fc792013c560e437c84c7b9be9fb1b9a92de5cd4dc984ce6a91",
+      "declarationSha256": "6c4d2df2f5e13a64ec63f7def3f6af2bd792a273e59e0b9abccb946c45db6fc9",
       "routeIds": [
         "/help",
         "/how-it-works",
@@ -38393,7 +38393,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "4eaac53a6c5b69ec12beec10779391f1927eb5874ac6cbf14bb7ede8237d66c9",
+      "declarationSha256": "35046ed2886b1015fc98932584fef4fc3576e2cfa6e0c46be0e22d1a21aeaf52",
       "routeIds": [
         "/help",
         "/how-it-works",
@@ -38432,7 +38432,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "bbb4016a267b072187c3b5eb8d0a40f27c43d98bda02fa4f7b230b13377a1dd9",
+      "declarationSha256": "70dcebb653189d81184fa3d5af78a9e81a1599a98e6ba584311590e6cf2281af",
       "routeIds": [
         "/about"
       ],
@@ -38461,7 +38461,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7033e90c22c65f6e03220d045b2c49c1dc44adaa98752d38f88cfd6ff30e13f1",
+      "declarationSha256": "285d88034be94fbd220909a7d2f2b9f4dc7304398b3152517c794c1afe416cfb",
       "routeIds": [
         "/community",
         "/contact",
@@ -38495,7 +38495,7 @@
         "toggle"
       ],
       "disabled": null,
-      "declarationSha256": "4205a29836731b2fc849d60c9eb658598c2ef987372f7dbc44eca9b4f068155d",
+      "declarationSha256": "0658b826cb643a4acbde8c64b11021bebbf14772a45c037f1933bd4cbe85b30f",
       "routeIds": [
         "/community",
         "/contact",
@@ -38529,7 +38529,7 @@
         "toggle"
       ],
       "disabled": null,
-      "declarationSha256": "c35a95ecc7cbb0d53ae3a15afd132830ba15b307c3bf20dc413997966e91a166",
+      "declarationSha256": "5531aa4e99159a2d541a5e4e40254895fd97d9224e7bdc294d614eaf4b88365b",
       "routeIds": [
         "/community",
         "/contact",
@@ -38561,7 +38561,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "59d9b3d18828dae5ab5b7d114870dc496c7fc8dffb85dd10fb9b30f681b8472a",
+      "declarationSha256": "122bbf14510cfc5f14755e1021404fa58b1da6dadfa0e7054ec31c0959f8b642",
       "routeIds": [
         "/community",
         "/contact",
@@ -38640,7 +38640,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "c0392638bfa905fec12feebf5c719e4601d9f545540a6724a625804ced8c44b4",
+      "declarationSha256": "83a6b0b61106b7a039fcd925021fb7403dc79e012614a171bb6f14f28c17cda1",
       "routeIds": [
         "/",
         "/student",
@@ -38687,7 +38687,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "e1dbea457f9acfb8c48b2953239a27fcd4d08a0e622d34072fa3e6aa69c06b99",
+      "declarationSha256": "3d39102f8f3277ec8029acbd08481badd43a4a992e6d88316a185841314d530d",
       "routeIds": [
         "/",
         "/student",
@@ -40580,7 +40580,7 @@
         "onSelect"
       ],
       "disabled": null,
-      "declarationSha256": "22156976d7345d5a65c503ef104bf2c677e43aa0f1c94e64cc58349746081fbe",
+      "declarationSha256": "f8b26018fcfca8fcd08297428a879e350a5708fc36d70b74022146ada5e1f992",
       "routeIds": [
         "/",
         "/student",
@@ -40682,7 +40682,7 @@
         "openStage"
       ],
       "disabled": null,
-      "declarationSha256": "eefb90da5988552ab2066fe6b939b68e9614919029cf3e9a200eb080fc231b7e",
+      "declarationSha256": "f02a100fb3c8f7b0280c1f34e6d869dc6707171ab51a4b3002500d153dd38d84",
       "routeIds": [
         "/",
         "/student",
@@ -40734,7 +40734,7 @@
         "setPlaying"
       ],
       "disabled": null,
-      "declarationSha256": "7e62f24f947bb61cb1c549db72196cd0143880317c5665d343b59e16e578be5e",
+      "declarationSha256": "7c87523fe2fa64a8277fb32f44eca0371bb3f7373d56bb7c66527732e31193b5",
       "routeIds": [
         "/",
         "/student",
@@ -40786,7 +40786,7 @@
         "stepTo"
       ],
       "disabled": "disabled={active === 0}",
-      "declarationSha256": "e4d5f2810990fea531608f0a645de9caff2ba39e7908753495526ffa1ef36190",
+      "declarationSha256": "0e6b7e7cbcda4e2fc5eeac879695fca508c1d4cf954b5f48e77f23fb4d9f7d4c",
       "routeIds": [
         "/",
         "/student",
@@ -40838,7 +40838,7 @@
         "stepTo"
       ],
       "disabled": "disabled={active === stages.length - 1}",
-      "declarationSha256": "0c256f6d85ef48962d7640fe1ec62297bcad5cc5ecafac6f47092f7f86e6e855",
+      "declarationSha256": "e7cfe37133d28834364ee5b365872d4e72bbb4e3aedd45a50a90e88c487d6ec2",
       "routeIds": [
         "/",
         "/student",
@@ -40938,7 +40938,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "972cb78f41061fc5179157fcf8c4b890969bfb5d04aa28e1c57af753784ec038",
+      "declarationSha256": "910bbb8bb8716bb463a85cd2f44b7184dd1d5ef92324bcff9b989e258983676f",
       "routeIds": [
         "/",
         "/student",
@@ -40983,7 +40983,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "6aab3a50d3d89f53373619e94a260e6d7759d09c227ad0f5dd422d84b19ab936",
+      "declarationSha256": "c1dc4b22745e8149de315e1761964bf50e53d7948a5e8cc21d01b3dfbcbbfd32",
       "routeIds": [
         "/",
         "/student",
@@ -41028,7 +41028,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "8d0707f393ad96662218dd9b89e8f2ced0aa562cf11485c0f4e9c44b6d7d5874",
+      "declarationSha256": "8a3951a08834d99ef99dc301d7e148644f13a40f4d5b82b44c8220a69b7c3b47",
       "routeIds": [
         "/",
         "/student",
@@ -41073,7 +41073,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "822f6115d07e478c21f102e5d79e01c2fe04c55d78f438a51390ab1d82ec2156",
+      "declarationSha256": "aa5cc8603514fcb4b22697a3fd8b0e593a6a7a04fee596e4db81a0bf7930e766",
       "routeIds": [
         "/",
         "/student",
@@ -41125,7 +41125,7 @@
         "onSelect"
       ],
       "disabled": null,
-      "declarationSha256": "473fe210de73d8824904829d98fc8df628cba85f9daf7bd0913e10b79a7382e4",
+      "declarationSha256": "7d41f815546edf2f0ee5b0db31e11aebc688003f7358e4e6913326d2c4d79726",
       "routeIds": [
         "/",
         "/student",
@@ -41177,7 +41177,7 @@
         "setOpen"
       ],
       "disabled": null,
-      "declarationSha256": "c941ff0630a24a3ba04e3a5d66daee48274f535079f0e7c93b824d1ee168d458",
+      "declarationSha256": "ae43649f693f27e72b287574abbbad2c2ac0ed920e78cd5a0b8dd9c629381d89",
       "routeIds": [
         "/",
         "/student",
@@ -41230,7 +41230,7 @@
         "setOpen"
       ],
       "disabled": null,
-      "declarationSha256": "02c841838fb45334a442583f1049911930fc16393109b92cb6605ebdec52eb95",
+      "declarationSha256": "7b31e45646ef2b62ed1f1a0e7a7211a9cdfcb696aec80e984214f3f79bdb78a0",
       "routeIds": [
         "/",
         "/student",
@@ -41334,7 +41334,7 @@
         "onOpen"
       ],
       "disabled": null,
-      "declarationSha256": "89b47569cf30765203b0cf9914b3c9d826fcd232e4e58c5c010b445ea1cbfe28",
+      "declarationSha256": "d6df78ca4d06f7fe953ab592ae3efafbe3b573cff187644e93e940faa3e2e7c6",
       "routeIds": [
         "/",
         "/student",
@@ -41379,7 +41379,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "d4394fb864aa88c2cca72391615e825a190f3d1b9fdc16de81f6e60b25074406",
+      "declarationSha256": "70af696f521875e97a990483a0363a929f9516f51d082975f0570fdac83405f1",
       "routeIds": [
         "/",
         "/student",
@@ -41720,7 +41720,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "75aeb70c30bb9c9d01aeb9568528859ca02bbaef297e41bd29aebc9a1cb20d7f",
+      "declarationSha256": "4d616febb2996f5c2f1c91827540bbaffa85f0a38db119e5833e166f94300a31",
       "routeIds": [
         "/",
         "/student",
@@ -42001,7 +42001,7 @@
         "step"
       ],
       "disabled": null,
-      "declarationSha256": "afb67f61e96a96f7ecd0d3fe1071ec7e4bd1b1e69a8d6c11c4fe8a2f8fbb1cf6",
+      "declarationSha256": "c7281c1c7e9bf41a0b8e3f1e57cd9114403d27a1d67a2b28ac61e8a1fe16da4e",
       "routeIds": [
         "/",
         "/student",
@@ -42037,7 +42037,7 @@
         "step"
       ],
       "disabled": null,
-      "declarationSha256": "150e368dddfeb279af7f5acd7cbc1eb72b60bd8cc959f791e33a9048acef7bc8",
+      "declarationSha256": "e33294d8ec307fb635d4b6f5141ea904fbd5016e365eb7dfbb5e769896ad489a",
       "routeIds": [
         "/",
         "/student",
@@ -42194,7 +42194,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "64d5afe70bc5c81bd514e21316f64247b1792484d4965f5eaa7ce2cab4f1d85e",
+      "declarationSha256": "b0d7d125ce04e6a3c0d0b6f60b83d34d7da4476b1d51f4994f39de68727d53c3",
       "routeIds": [
         "/",
         "/student",
@@ -42382,7 +42382,7 @@
         "step"
       ],
       "disabled": null,
-      "declarationSha256": "3b4288c3ce46b1d7500e20c7ca7c9e6d25b8aac2034ee4a32ee55db8d020271b",
+      "declarationSha256": "3972132e271dffe4195939e7241a366d9e2af18a75bff27b89ddded3f7a7b92a",
       "routeIds": [
         "/",
         "/student",
@@ -42418,7 +42418,7 @@
         "step"
       ],
       "disabled": null,
-      "declarationSha256": "8e2f16fe1553e148ed2938620ebcc2e00723c68847e665472b97ceb143219b1b",
+      "declarationSha256": "2c7c4c217594de09c93fe1197cce860d0af12bad76460d64311f09976ad544b3",
       "routeIds": [
         "/",
         "/student",
@@ -43132,7 +43132,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "e097ea113682bfd3b6576e00a7e3cd6376c7bb5b58ea8c04ed778cc442b28119",
+      "declarationSha256": "42a4f8be350459e81f546c92366eba46ec0c2a93439f50333be4e656fbf57bb7",
       "routeIds": [
         "/privacy",
         "/terms",
@@ -43186,7 +43186,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "04fe3b417f6553d0608f67ca02e79533cfea185ca44ff79fa07fcbb7f47022b8",
+      "declarationSha256": "77e503ab237dcf2aef2dd56465afb67dc88b67a27ea3d53c8bf5d3eea9bf4391",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -43213,7 +43213,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "38103fcf526a79d4e69e7dfe33f6e96df0f0db934361eccfce81af358b170cc5",
+      "declarationSha256": "a16dd73d284739e23ee6305cdb4b4d22dd4848726e1f12f914f233342bbf46b8",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -43242,7 +43242,7 @@
         "onSelect"
       ],
       "disabled": null,
-      "declarationSha256": "4a27f3899be86e78199da4262661ad5ca6a17b2659ce92d25db7e0f7220126c5",
+      "declarationSha256": "82a715e57c49c4dcc92cb69a1fe4d83f22803c560c34fdb2ac91f6958cb0ee77",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -43298,7 +43298,7 @@
       ],
       "calls": [],
       "disabled": "disabled={disabled}",
-      "declarationSha256": "e250f77182d06f49909de757d92e53ba583311cff63136258316a1acab80c9e8",
+      "declarationSha256": "166b1c8cc1654acb8ff9632fce377630ca910737d1b6f00759a91eab36971c25",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -43320,7 +43320,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "10218aba197d76f6dc03ad3d455f2c4fec65e4757688595163e1121f2f7569b2",
+      "declarationSha256": "06894ba2e7961df658013e580dd9101dccf60df65a57fa412192c69aad132cb3",
       "routeIds": [
         "/safety",
         "/privacy",
@@ -45014,7 +45014,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "2032c6cc35d61b0a5f3289172d38e904a51de24669b59a9e2b1f1853eb5ebfe4",
+      "declarationSha256": "598482d380bcac6af25d1220a6d13f5163a318fbefa0b8ef58b392d6322bd24e",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -46338,7 +46338,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "4cd4e8dd35458728d2146f4578111c848941350fd32d273c250ae80c21b37f10",
+      "declarationSha256": "9addea0ed5c2670769dc1a26b77d9066db95e2d692ec6fa7d07e9800fea25c9c",
       "routeIds": [
         "*"
       ],
@@ -67918,7 +67918,7 @@
       "calls": [],
       "destination": "/login",
       "disabled": null,
-      "declarationSha256": "ac982f884ccbb27ef03724595bf9f0517ca461b80042bf62024c24f03e292ebd",
+      "declarationSha256": "412ddabac8bdf9b5cd6daf4dacdccb8419c9b57788286e80fa576780ccd7ed54",
       "routeIds": [
         "/forgot-password"
       ],
@@ -67991,7 +67991,7 @@
         "setSent"
       ],
       "disabled": null,
-      "declarationSha256": "948dda25ac34f500d4066ea9b7cffd32a8708e7ada813090079b24322f8129b0",
+      "declarationSha256": "3d159cbdf71bea016b9fe4fb923e851057fcff416b6924442afa7b4afcc0c738",
       "routeIds": [
         "/forgot-password"
       ],
@@ -68024,7 +68024,7 @@
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "e65b25af11dda2a3945f6ae932067bd92adad2e33136fd7da4e9edbf9afa2016",
+      "declarationSha256": "418ecc2914be4e5c491a4b08a80501ea1e677a4909a4faf22aa512741efeede0",
       "routeIds": [
         "/forgot-password"
       ],
@@ -68166,7 +68166,7 @@
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "1b9c84586fc7de62d4de7a184664663b45d144a7b9fa085dbb463d90e8670ac5",
+      "declarationSha256": "9d4f1261884fd789eb75ff303626fdbfcb58c72936f6228eac680521be0fef2c",
       "routeIds": [
         "/forgot-password"
       ],
@@ -68264,7 +68264,7 @@
       "calls": [],
       "destination": "/forgot-password",
       "disabled": null,
-      "declarationSha256": "b7ca2625fb4fa9d6ceed5b5f9cc4052535d2b88874b9984435bff55c7354ae54",
+      "declarationSha256": "26b20dce7f37dcaa483a8604e9a65974d079d19c44dad27422314464478c68f0",
       "routeIds": [
         "/forgot-user-id"
       ],
@@ -68296,7 +68296,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "95caa390cca0366c86eb51f0b2fa698fcd2153742a6ba74202aa022d78c7caeb",
+      "declarationSha256": "0a9868db99bf7f0567769340ab8d8c83e55a3957e3c615360d925a3fc1dfba6d",
       "routeIds": [
         "/about"
       ],
@@ -68321,7 +68321,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "2c7192c006e45b283b75cd82ffdc734e647ed2ad75ccd0512d02974bf1bdaf54",
+      "declarationSha256": "bc3aef332153ae8cebe2a25c379186ff0c5099a18880a9fdc5df258613e3c333",
       "routeIds": [
         "/about"
       ],
@@ -68370,7 +68370,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7b0706b93322d4dafb541c7198d39ccecfc1981be1caa104a31b2b6f8740a1b3",
+      "declarationSha256": "48792ab5812589a8c33fad7b7e11b70fd95568d49f739a6914f2952988462aa8",
       "routeIds": [
         "/about"
       ],
@@ -68419,7 +68419,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "3e2c8602e01d1d63e8cf54abfefe6c1ec2fb0b937089f660253c5a49e48449db",
+      "declarationSha256": "809e1b0f82ec03cd65372cf9abaea581868bb3e90d950bb832e851c29cc33a15",
       "routeIds": [
         "/about"
       ],
@@ -68444,7 +68444,7 @@
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "d8816c7d493041c673bb2758902b7b490d10a414418bc49479e96c3f17a370ec",
+      "declarationSha256": "b5c0c34b95eb10379213eb54edf0c7ddcd25d11168fd28fef3a2c3ec51e843f1",
       "routeIds": [
         "/about"
       ],
@@ -68469,7 +68469,7 @@
       "calls": [],
       "destination": "/contact",
       "disabled": null,
-      "declarationSha256": "bf1a4d251f9296b5eb2b9da48b141a0da4198abe950d9b198e7b7e9269e7fe2f",
+      "declarationSha256": "c71de0a8c1e7d0784579a1545ddad38b1897da710b2fa6fca0532caa32c5b190",
       "routeIds": [
         "/about"
       ],
@@ -68592,7 +68592,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "e83aaa9f91fb9eacb34a1622d20b3f4185b545b94fbffa2cdc8fb0fba9fc1759",
+      "declarationSha256": "42891514c377e7e664d6c72a3de2574c3320cdcfaa53bf0612fd2e826a4cff8c",
       "routeIds": [
         "/accessibility"
       ],
@@ -68617,7 +68617,7 @@
       "calls": [],
       "destination": "mailto:accessibility@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "229059252a608bb3278d3da21a524e01427e94228278613eb9c48d997169b086",
+      "declarationSha256": "a27e5f39f6abfb4387ed3c678ce8d78bd6a53cce45caabbdd0a942029f89a76d",
       "routeIds": [
         "/accessibility"
       ],
@@ -68698,7 +68698,7 @@
         "onChange"
       ],
       "disabled": null,
-      "declarationSha256": "8a42f4bc44bae7608b8eca917666e5447c4cc8d877be9d843bf884286125984b",
+      "declarationSha256": "9509f3c9258c1c081e9a5556929e4060a31a10715f8791fde8c8599b6161b9fd",
       "routeIds": [
         "/pricing"
       ],
@@ -68775,7 +68775,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "e2ccb32c929166d1c7e1a01a8657c12c08b169a8a0945d21c0c9e58204ddeb99",
+      "declarationSha256": "e3c4045f2790b45e0e0b15814ef50946d7616945a8de58114ebb1b585e3a0ae3",
       "routeIds": [
         "/pricing"
       ],
@@ -68806,7 +68806,7 @@
         "toggle"
       ],
       "disabled": null,
-      "declarationSha256": "936ea6ad7d1e00b451471c7bbd035a8183f8ec0bf8d6e3024fda5ec79590a812",
+      "declarationSha256": "91d414886e169f69d6ac6325ec01371c1efd71f526996f8959f6f8096cd72580",
       "routeIds": [
         "/pricing"
       ],
@@ -68888,7 +68888,7 @@
         "scrollToSection"
       ],
       "disabled": null,
-      "declarationSha256": "80b709e2885c17f2560e9ee9a9bc856121a365b8f111029f9924e106e0f9e9fe",
+      "declarationSha256": "809d79797d977bed0abde243dcecf0173863998d34328860ec19a85992597285",
       "routeIds": [
         "/careers"
       ],
@@ -68920,7 +68920,7 @@
         "scrollToSection"
       ],
       "disabled": null,
-      "declarationSha256": "1e23a35f73fbc74d31c744b3aeed6c9f8d2c9e72813ce92b03b2430d83bd82c8",
+      "declarationSha256": "8d2145ce1a6989fa060ff0229722d48af6141c930febc89aec39be6c3635e8a0",
       "routeIds": [
         "/careers"
       ],
@@ -69035,7 +69035,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "85e9599cf37cfa90b6b71fb234839ba867aedc7dbb8311c9b4c4f61a13b70d1f",
+      "declarationSha256": "92ec3fdad1c142dc3bcefeca4f478a97e8c59bc896f9bdf8bbd32fced0d4e627",
       "routeIds": [
         "/careers"
       ],
@@ -69059,7 +69059,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "1844056b1cf236bc45129ebb346bba4b7c660fd21c1a2798d2d3f7c25e2e1d13",
+      "declarationSha256": "e5032f191a97600ad06be541e7b7379a0a2e89175f20529ce688a6882cd0019b",
       "routeIds": [
         "/careers"
       ],
@@ -69108,7 +69108,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "a5159c7442eef723179ed05670543178726ae96f4e2e83b19018e1227f5db2e0",
+      "declarationSha256": "97c67d2899c1350c0b0abd76922690896b5744acd55e6b70b1ea1e312178fc4f",
       "routeIds": [
         "/careers"
       ],
@@ -69141,7 +69141,7 @@
       ],
       "destination": "#hiring",
       "disabled": null,
-      "declarationSha256": "29db70484b3cce0e71050132129b2b4dd1b4b23e4aa8dfbb6df27b83e23c1dea",
+      "declarationSha256": "28beff75a35f4a4f82c45767f1e7d03df9ec2febd4bb233993305d85ee83007d",
       "routeIds": [
         "/careers"
       ],
@@ -69165,7 +69165,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "3e436cca00cdbe8727e565e44d47017e77e59b8bbed7e3e2c0b34fdd449c8d07",
+      "declarationSha256": "c6520d0731a4f3f1e441f337b3f7db8bba9972bc21e193d45dfb1b099bf52ed8",
       "routeIds": [
         "/careers"
       ],
@@ -69190,7 +69190,7 @@
       "calls": [],
       "destination": "/accessibility",
       "disabled": null,
-      "declarationSha256": "fdc0cb1a3e4f49991ba59c4f14c6b3771025e117a7551027623729c869567b16",
+      "declarationSha256": "e30c7aff1cc7a85454232c6e3969caa7cbe5e6c71b4b71fd7d1677c86ca3f5ec",
       "routeIds": [
         "/careers"
       ],
@@ -69214,7 +69214,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "fb4fe80bb7ca4676bdd9a3d2d81a7a2779f75226755b31e591d85a46f0310f00",
+      "declarationSha256": "b11c456a0bf2bf5743f327a2339253ca7b4719ed53bd2142389d5eb9a9ec85a1",
       "routeIds": [
         "/careers"
       ],
@@ -69239,7 +69239,7 @@
       "calls": [],
       "destination": "/about",
       "disabled": null,
-      "declarationSha256": "883a36f9ace527141be67b78b5028a8140f572bb1ec96b9d11dccf4b4f2351d8",
+      "declarationSha256": "b2558a246f88629425fb4c7418563922d36e4f2cd5b7a95975365b917629a3cf",
       "routeIds": [
         "/careers"
       ],
@@ -69304,7 +69304,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "3cc4e4a55a98928f850af385b548ab52bfe4713e0f75681de93d3e4cbde08afb",
+      "declarationSha256": "34bbfc8bcf6215d2049fcd8aa5134bb980026e37e013e361b8bf1ae4933f7da6",
       "routeIds": [
         "/how-it-works"
       ],
@@ -69411,7 +69411,7 @@
         "setActive"
       ],
       "disabled": null,
-      "declarationSha256": "08bb060e9244afa7cb9d583f49df1efff3352494015b73fdcd3d3247eab6b8e2",
+      "declarationSha256": "2b70b5c77a725a41ba4c9c7f2f263a5c30ab8ef33dd60dd253a869214e7204df",
       "routeIds": [
         "/how-it-works"
       ],
@@ -69442,7 +69442,7 @@
         "setRole"
       ],
       "disabled": null,
-      "declarationSha256": "ea494045f69ec590be579d58a9f142940d985dbe980a5477b8a46649cd65a66f",
+      "declarationSha256": "2b8c03c391bde5bf59245ae00c626527c5be6c79055bb1c5da847b742b67d0aa",
       "routeIds": [
         "/how-it-works"
       ],
@@ -69466,7 +69466,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "37964749d337e33dd536cba0467ecf2501daf4c1c13b77859d000944cc950a7e",
+      "declarationSha256": "4599cc433398832c3068b4762a7673270d9a64d053f12238d0de5d4750658d52",
       "routeIds": [
         "/how-it-works"
       ],
@@ -69491,7 +69491,7 @@
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "d8816c7d493041c673bb2758902b7b490d10a414418bc49479e96c3f17a370ec",
+      "declarationSha256": "b5c0c34b95eb10379213eb54edf0c7ddcd25d11168fd28fef3a2c3ec51e843f1",
       "routeIds": [
         "/how-it-works"
       ],
@@ -69516,7 +69516,7 @@
       "calls": [],
       "destination": "/pricing",
       "disabled": null,
-      "declarationSha256": "215e6be74e708c3f1694698ba65bc3523eebee7dba5abc146627a29a317011b4",
+      "declarationSha256": "e331850df60b476d447d1e9bd28a5a926ccb5d533b5d5de028d45a6dc5a4022c",
       "routeIds": [
         "/how-it-works"
       ],
@@ -69609,7 +69609,7 @@
       ],
       "destination": "#learners",
       "disabled": null,
-      "declarationSha256": "f0aa347869307f5c16f4edd8951c933d6cb059615a74d118fc859022dfc9a315",
+      "declarationSha256": "354590f28fcd5ca83828eec7bea4fe19b9955b02bebdf11b83f6c6ef89bda852",
       "routeIds": [
         "/community"
       ],
@@ -69634,7 +69634,7 @@
       "calls": [],
       "destination": "/safety",
       "disabled": null,
-      "declarationSha256": "05641ef30e413237baac4a0e49ce5e5c8956df6594a2280a7888f0512e034313",
+      "declarationSha256": "6d6dc4c1b13e3167fdc18490c2dcb044163257ce86f013c68a710f5058976060",
       "routeIds": [
         "/community"
       ],
@@ -69666,7 +69666,7 @@
         "scrollToSection"
       ],
       "disabled": null,
-      "declarationSha256": "8f145d5a141923e02e14c28a109b842a9d58eb382555d1ae6960a5e265d6f9ad",
+      "declarationSha256": "b5ce813133b324fa645fc2d506e6e3d174e841db92d497b17dcbc8222df4f4e6",
       "routeIds": [
         "/community"
       ],
@@ -69690,7 +69690,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "17c34d9dedb334801a125240dd42e317b22666a30f02e94f17a1655af316c15c",
+      "declarationSha256": "d7e9c528f3adea30b3a56e7bf75f6785823a231d8f089d793f5ce616bfecbbdc",
       "routeIds": [
         "/community"
       ],
@@ -69714,7 +69714,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "ba20c22651e30f196b55415fa575e88780c838826456de8aaab34378ea71e53f",
+      "declarationSha256": "6a6de3e2c3d50ce6b4b5482d39582bc479735a62929aaa42ec6aed5776bac0e7",
       "routeIds": [
         "/community"
       ],
@@ -69739,7 +69739,7 @@
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "90b0f00406578d6eb4f98d00aba612ff2339591ed449d0191680a2dcca6961c8",
+      "declarationSha256": "17abfa207f444ce62a2d0245e366fc3abee8cd41d79ef284d24cbd4c18834a08",
       "routeIds": [
         "/community"
       ],
@@ -69764,7 +69764,7 @@
       "calls": [],
       "destination": "/safety",
       "disabled": null,
-      "declarationSha256": "05641ef30e413237baac4a0e49ce5e5c8956df6594a2280a7888f0512e034313",
+      "declarationSha256": "6d6dc4c1b13e3167fdc18490c2dcb044163257ce86f013c68a710f5058976060",
       "routeIds": [
         "/community"
       ],
@@ -69788,7 +69788,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "4bba59aa30ff40498007de658550e7a20077afd6bc560b235e995a03f13e5e03",
+      "declarationSha256": "0848b4de631f0bf1cb703fa6a14dfc6f4ea082c85bcfb0630c5962a0df5e7336",
       "routeIds": [
         "/contact"
       ],
@@ -69812,7 +69812,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7590372c481e02131b4e99c21dab326316b82f6bb50e45194892ad268949a013",
+      "declarationSha256": "783ff7747f308df48745b5d5248b8801f1dc9400cce50ea0931ff50c97f98b4b",
       "routeIds": [
         "/contact"
       ],
@@ -69837,7 +69837,7 @@
       "calls": [],
       "destination": "/help",
       "disabled": null,
-      "declarationSha256": "a526a0df5b919feeafed4bf9c0cea7ddc01db03a4af333518ebcc4122b358dc5",
+      "declarationSha256": "1a55b7704cd1b8474195cbfd285c4a08d71c5e226f5f7c50b5dc8a535d853085",
       "routeIds": [
         "/contact"
       ],
@@ -69868,7 +69868,7 @@
         "setActiveTab"
       ],
       "disabled": null,
-      "declarationSha256": "f38daa4b9135142e3d618929b5ef1470538926ec730c2b193dd5fbdd9ddcffa8",
+      "declarationSha256": "18bc2049ddc059bb4f0c5c2bffa991b3e16bbbc987444fec425439fb53386937",
       "routeIds": [
         "/contact"
       ],
@@ -69893,7 +69893,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "861864015e36e2a1b39e40af28670f4dea2d615ee9295bd811032e1dd3d919de",
+      "declarationSha256": "c8eccc688b4f3661d9559f3f45ee9f4b60b62c54df401a368fed5808054ee977",
       "routeIds": [
         "/contact"
       ],
@@ -69918,7 +69918,7 @@
       "calls": [],
       "destination": "/help",
       "disabled": null,
-      "declarationSha256": "a526a0df5b919feeafed4bf9c0cea7ddc01db03a4af333518ebcc4122b358dc5",
+      "declarationSha256": "1a55b7704cd1b8474195cbfd285c4a08d71c5e226f5f7c50b5dc8a535d853085",
       "routeIds": [
         "/contact"
       ],
@@ -69943,7 +69943,7 @@
       "calls": [],
       "destination": "/help",
       "disabled": null,
-      "declarationSha256": "4e470cbc7a557ffeb9a5deacc69bc6fac83455f6ac06c4d92c90f4c1231ceeb3",
+      "declarationSha256": "8897fdb73785c11fec41379eab92a47187e48db31c08df6cf8c254a1f93989c0",
       "routeIds": [
         "/contact"
       ],
@@ -70095,7 +70095,7 @@
         "scrollToSection"
       ],
       "disabled": null,
-      "declarationSha256": "1469977aba8913c03716691c18d976ca43b752e9f1a09d714cca4edd81303eac",
+      "declarationSha256": "c2faa08f6a81e7cf196fdc0e067094eaaf6ab23d22c2cb262dcf0ecd4aaddff0",
       "routeIds": [
         "/cookies"
       ],
@@ -70157,7 +70157,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "ef1a3909b1e3aedf37bbeb55a71eb1d1235db4434c700a2072bee3f24673d18b",
+      "declarationSha256": "ab91d84e315c0b770c0f88a02aa0d8b83c9472da528286b24b40ed75678f1dc0",
       "routeIds": [
         "/cookies"
       ],
@@ -70190,7 +70190,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "a503e851e0515d300d9292b21fc32b4b8b6c4ea48fc905145337968991210449",
+      "declarationSha256": "36d2634c250183131874368a15dfacfd6c18078d603ba92615f98993e8b65ceb",
       "routeIds": [
         "/cookies"
       ],
@@ -70214,7 +70214,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "5f32b6a1ae8aa10d01442a89a30adfabd2bb79442b727d4b4fc6ce152f74e647",
+      "declarationSha256": "1403fe2cfaf203580c3e082f56790f1101dc0d44c486c1d3de5b7eb320577b98",
       "routeIds": [
         "/cookies"
       ],
@@ -70243,7 +70243,7 @@
       ],
       "calls": [],
       "disabled": "disabled={row.disabled}",
-      "declarationSha256": "d7cf40e8260e8c68f9eaa16e573d55894b42844c1584ef5dd8cd3e273452fe3f",
+      "declarationSha256": "ea6418002469fa5e7f6a1a5e596404cf4b90af8b863e78a6eaf469d5811eeed6",
       "routeIds": [
         "/cookies"
       ],
@@ -70321,7 +70321,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "6c57d3bb14980de6bbe6e69c7f8a48e35f4b2086eeb275a8c57721d140df14b3",
+      "declarationSha256": "067ac365fb3c2779a939c0bae7edaacd368658b2421bd9a211774a000e4d84e1",
       "routeIds": [
         "/cookies"
       ],
@@ -70484,7 +70484,7 @@
         "setStatus"
       ],
       "disabled": null,
-      "declarationSha256": "57031abf93cdf5b176a0e62fa5b6c59c401615da1a5ffcea32ec0ffefc8209eb",
+      "declarationSha256": "37a7ee1b031805f3c1d1c86073a39a97b58ec3423bc06cf473799a46b334ae09",
       "routeIds": [
         "/download"
       ],
@@ -70740,7 +70740,7 @@
         "setIndex"
       ],
       "disabled": null,
-      "declarationSha256": "1bf51166192fced3506c67105bb0a08d814e97cf1d37eac44c029d45ed36c3a8",
+      "declarationSha256": "b474902e056159f7c4da49531bbe62315b654ae1d3edcf9149fbe1588113e2c9",
       "routeIds": [
         "/partners"
       ],
@@ -70795,7 +70795,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "d98d1e87da4b9fb19d78eed7647bd1a422bc1a713403303ed9fa24854d7b51c0",
+      "declarationSha256": "141eb5602efa995c62d32c5f1cb0359792c800ab53219144d736ab78bd51d9bc",
       "routeIds": [
         "/partners"
       ],
@@ -70820,7 +70820,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "e93937aad688cb1e75b184c3ec280ebce1bd6ad5e07fe0a531f570669e3ca57c",
+      "declarationSha256": "f0aaf124d9c60a719680a2d85e31de970ca04b2f0959f6a250b528aebc63c1d5",
       "routeIds": [
         "/partners"
       ],
@@ -70844,7 +70844,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "cb312da8226be54584090ffd58607e5cac6131571d75dfa21e9ef4620d0fde36",
+      "declarationSha256": "3dc8a39c9106d05ab5ac5a48809d4a14d6b0494d0c5cc5ac4e54af4c73f9332d",
       "routeIds": [
         "/partners"
       ],
@@ -70869,7 +70869,7 @@
       "calls": [],
       "destination": "#support",
       "disabled": null,
-      "declarationSha256": "5b8e9604d713d0d770eb2ca46db756fbfa78fac89df4c39bfd01546b126e8363",
+      "declarationSha256": "b27018fc689bc147f13bcf48181c9961d6051a9875100dbc44bdf96ea398b499",
       "routeIds": [
         "/partners"
       ],
@@ -70894,7 +70894,7 @@
       "calls": [],
       "destination": "/help",
       "disabled": null,
-      "declarationSha256": "a526a0df5b919feeafed4bf9c0cea7ddc01db03a4af333518ebcc4122b358dc5",
+      "declarationSha256": "1a55b7704cd1b8474195cbfd285c4a08d71c5e226f5f7c50b5dc8a535d853085",
       "routeIds": [
         "/partners"
       ],
@@ -70919,7 +70919,7 @@
       "calls": [],
       "destination": "/contact",
       "disabled": null,
-      "declarationSha256": "ba84e99c51f21f8d9467b583d514c3adc9d5c054588171cc7dc151b02b8aed51",
+      "declarationSha256": "12974e0c72464202df80d1a60407020e6a8c3b7a2f94266bfed16b5e0837e877",
       "routeIds": [
         "/partners"
       ],
@@ -70943,7 +70943,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "31e15f1058a1371eebb6f96085fb7f43ed1c7cf8ec420eb483c59a2f96b87f75",
+      "declarationSha256": "1bccad20718d3e113e15daef831d6a5b023d787bb36843e537ba0d48ecbfb09c",
       "routeIds": [
         "/partners"
       ],
@@ -70968,7 +70968,7 @@
       "calls": [],
       "destination": "/contact",
       "disabled": null,
-      "declarationSha256": "65c475b5b6dbf84e014a65417558683166479baefb53c968beaf5a8255d8a3b0",
+      "declarationSha256": "5330aea9b20dc2fb1e1935dec2bdd30047a4ca191783abe2331e7fe2688e8132",
       "routeIds": [
         "/partners"
       ],
@@ -71023,7 +71023,7 @@
         "scrollToSection"
       ],
       "disabled": null,
-      "declarationSha256": "1469977aba8913c03716691c18d976ca43b752e9f1a09d714cca4edd81303eac",
+      "declarationSha256": "c2faa08f6a81e7cf196fdc0e067094eaaf6ab23d22c2cb262dcf0ecd4aaddff0",
       "routeIds": [
         "/privacy"
       ],
@@ -71079,7 +71079,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "ef3fbad307bf35e1ee2b99eef5cb3e2bdd8d0600aafd223fa4fa5e0f7e44bebe",
+      "declarationSha256": "904afcd5e4bda5c2f8dfb3e008941a2a1c489ccec599f7deaccb04e0d4c54d8c",
       "routeIds": [
         "/privacy"
       ],
@@ -71112,7 +71112,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "a503e851e0515d300d9292b21fc32b4b8b6c4ea48fc905145337968991210449",
+      "declarationSha256": "36d2634c250183131874368a15dfacfd6c18078d603ba92615f98993e8b65ceb",
       "routeIds": [
         "/privacy"
       ],
@@ -71136,7 +71136,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "5f32b6a1ae8aa10d01442a89a30adfabd2bb79442b727d4b4fc6ce152f74e647",
+      "declarationSha256": "1403fe2cfaf203580c3e082f56790f1101dc0d44c486c1d3de5b7eb320577b98",
       "routeIds": [
         "/privacy"
       ],
@@ -71161,7 +71161,7 @@
       "calls": [],
       "destination": "/dashboard/privacy",
       "disabled": null,
-      "declarationSha256": "8b3a140e407adc038487325b80313c9a02e62bb370bf460ec27801e3e15e44bb",
+      "declarationSha256": "3c42fc80fa48efdd3363f0a3fa82e4e76086fc42370d78e9193e0d61c65d85fc",
       "routeIds": [
         "/privacy"
       ],
@@ -71186,7 +71186,7 @@
       "calls": [],
       "destination": "#grievance-officer",
       "disabled": null,
-      "declarationSha256": "cf608bd007317ecb000d349ea057fed5e4a49ca20aa2ad086b318185e2e9094b",
+      "declarationSha256": "543b6041fae0c4fc6b4384022c2d5d5fda1222946d67860b95330f5144d22520",
       "routeIds": [
         "/privacy"
       ],
@@ -71316,7 +71316,7 @@
         "setOpenFaq"
       ],
       "disabled": null,
-      "declarationSha256": "6b60de2dbf78e504eee1945b03624946f259993fa1b43e66314efc88a3e836a3",
+      "declarationSha256": "a81a11428456a670bcb0c968cc47ebd8045ba7456489166210b0ee4dd42bb9a3",
       "routeIds": [
         "/privacy"
       ],
@@ -71364,7 +71364,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "6c57d3bb14980de6bbe6e69c7f8a48e35f4b2086eeb275a8c57721d140df14b3",
+      "declarationSha256": "067ac365fb3c2779a939c0bae7edaacd368658b2421bd9a211774a000e4d84e1",
       "routeIds": [
         "/privacy"
       ],
@@ -71522,7 +71522,7 @@
         "event.currentTarget.select"
       ],
       "disabled": null,
-      "declarationSha256": "e6b69cc5d356c6ad99a97d87c9907a9d431d19eb9ca75f4acef21256d27ae2e0",
+      "declarationSha256": "50c8ad5b605ded2251c3d1d12b7892df267f0db366aacd05cb1fb02d10eba494",
       "routeIds": [
         "/referral"
       ],
@@ -71630,7 +71630,7 @@
       "calls": [],
       "destination": "mailto:hello@visionary.org.in?subject=Referral%20question",
       "disabled": null,
-      "declarationSha256": "1eafe2a61e9d638677b57f7d4801950f8e569b13db94bc3993f4d40a89061d1e",
+      "declarationSha256": "f8213f91de69469e65e04e3b918da8d9633ba8fe6e99e839524298e3bb3a15a0",
       "routeIds": [
         "/referral"
       ],
@@ -71808,7 +71808,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "c6e2a3fae3988c2a0b3dddfc5de66784ecd543738662e2e3062fc69bcb6c7108",
+      "declarationSha256": "c33de4e9659411d328d96f92740bd36bbb74c3283bf3a83e9b4f8036cfc9d520",
       "routeIds": [
         "/research"
       ],
@@ -72007,7 +72007,7 @@
       "calls": [],
       "destination": "/community",
       "disabled": null,
-      "declarationSha256": "89089e7f2123ca3a0b0ed0cc43fdc6838eefb09638b7e5807e0dddbf371c103c",
+      "declarationSha256": "30bfa1839e2e682b2c3ed56906d28bec1864553e45f5e569f534477b1f79a001",
       "routeIds": [
         "/research"
       ],
@@ -72032,7 +72032,7 @@
       "calls": [],
       "destination": "/careers",
       "disabled": null,
-      "declarationSha256": "571a06c1eb23759ee9c153a8a3fdad5ea4f3cf72f4ea35d347c8cb6a4868bbb1",
+      "declarationSha256": "91aef6e6d29b0f935a5c09074e1768ced313694512dfc38931eba400c32cd6bc",
       "routeIds": [
         "/research"
       ],
@@ -72334,7 +72334,7 @@
         "setOpen"
       ],
       "disabled": null,
-      "declarationSha256": "48a37e5efd949a0f14f68248f804bd83255decf0e9feea97a515a7490d739a78",
+      "declarationSha256": "b97be25850cc5b464636ada975757f3b546139c68c0111402e5ba0020d08af1f",
       "routeIds": [
         "/help"
       ],
@@ -72445,7 +72445,7 @@
         "setTopicId"
       ],
       "disabled": null,
-      "declarationSha256": "d04382cbb1be44cd0c3fe53e94c40f6d608e2552ae982d29d6c52d48e957c432",
+      "declarationSha256": "bb1413433612e30ff65ff33770444aab78181cf63ba7f550affb64c5de73ac47",
       "routeIds": [
         "/help"
       ],
@@ -72476,7 +72476,7 @@
         "setTopicId"
       ],
       "disabled": null,
-      "declarationSha256": "5ad4772ff8b1edcf11dd48da48a03a457ce994acae023b351797ca5606431f58",
+      "declarationSha256": "a2390d831ec93cc6ed388addf9851b6825995baaf72a302988462103b98a7f6b",
       "routeIds": [
         "/help"
       ],
@@ -72532,7 +72532,7 @@
         "setTopicId"
       ],
       "disabled": null,
-      "declarationSha256": "e2f7f32391874f9e0f399e3c436a36b3af9e183a461433a7b11b22ac51bb21c1",
+      "declarationSha256": "e46d66daa0c03b722fc34503004c7e106026d1e27edfe2b76835c09622c3f6e0",
       "routeIds": [
         "/help"
       ],
@@ -72631,7 +72631,7 @@
       "calls": [],
       "destination": "mailto:safety@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "7bf5f1ebfaac8b21759b74e27d2f6b823f316c2d729bd1029cdf77cf4d07bd01",
+      "declarationSha256": "87c7a19f6a4d605742aac7a1b4afe6d71e6ca067b39adb0601581376a36ef283",
       "routeIds": [
         "/help"
       ],
@@ -72686,7 +72686,7 @@
         "scrollToSection"
       ],
       "disabled": null,
-      "declarationSha256": "1469977aba8913c03716691c18d976ca43b752e9f1a09d714cca4edd81303eac",
+      "declarationSha256": "c2faa08f6a81e7cf196fdc0e067094eaaf6ab23d22c2cb262dcf0ecd4aaddff0",
       "routeIds": [
         "/security"
       ],
@@ -72742,7 +72742,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "c590dda693e0a9a85ac2e7f8a015db241ea3b1397af16a155ddf9c217a652da3",
+      "declarationSha256": "ed61af95544a094230aecd20529d4c726edf8de7a5237332521db7ad208e132c",
       "routeIds": [
         "/security"
       ],
@@ -72775,7 +72775,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "a503e851e0515d300d9292b21fc32b4b8b6c4ea48fc905145337968991210449",
+      "declarationSha256": "36d2634c250183131874368a15dfacfd6c18078d603ba92615f98993e8b65ceb",
       "routeIds": [
         "/security"
       ],
@@ -72799,7 +72799,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "5f32b6a1ae8aa10d01442a89a30adfabd2bb79442b727d4b4fc6ce152f74e647",
+      "declarationSha256": "1403fe2cfaf203580c3e082f56790f1101dc0d44c486c1d3de5b7eb320577b98",
       "routeIds": [
         "/security"
       ],
@@ -72923,7 +72923,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "6c57d3bb14980de6bbe6e69c7f8a48e35f4b2086eeb275a8c57721d140df14b3",
+      "declarationSha256": "067ac365fb3c2779a939c0bae7edaacd368658b2421bd9a211774a000e4d84e1",
       "routeIds": [
         "/security"
       ],
@@ -73098,7 +73098,7 @@
         "scrollToSection"
       ],
       "disabled": null,
-      "declarationSha256": "1469977aba8913c03716691c18d976ca43b752e9f1a09d714cca4edd81303eac",
+      "declarationSha256": "c2faa08f6a81e7cf196fdc0e067094eaaf6ab23d22c2cb262dcf0ecd4aaddff0",
       "routeIds": [
         "/terms"
       ],
@@ -73154,7 +73154,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "20acaaebe78ba10aeaf7dea6cac180f83933e74a5ee5f967c84acf43d1c281d1",
+      "declarationSha256": "0f512b362824eae5f84b9d295705a7ee29e37435f313fe5aa7485659da0ece05",
       "routeIds": [
         "/terms"
       ],
@@ -73187,7 +73187,7 @@
         "setShowMobileContents"
       ],
       "disabled": null,
-      "declarationSha256": "a503e851e0515d300d9292b21fc32b4b8b6c4ea48fc905145337968991210449",
+      "declarationSha256": "36d2634c250183131874368a15dfacfd6c18078d603ba92615f98993e8b65ceb",
       "routeIds": [
         "/terms"
       ],
@@ -73211,7 +73211,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "5f32b6a1ae8aa10d01442a89a30adfabd2bb79442b727d4b4fc6ce152f74e647",
+      "declarationSha256": "1403fe2cfaf203580c3e082f56790f1101dc0d44c486c1d3de5b7eb320577b98",
       "routeIds": [
         "/terms"
       ],
@@ -73260,7 +73260,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "6c57d3bb14980de6bbe6e69c7f8a48e35f4b2086eeb275a8c57721d140df14b3",
+      "declarationSha256": "067ac365fb3c2779a939c0bae7edaacd368658b2421bd9a211774a000e4d84e1",
       "routeIds": [
         "/terms"
       ],
@@ -73285,7 +73285,7 @@
       "calls": [],
       "destination": "#signup",
       "disabled": null,
-      "declarationSha256": "008e90cf53249e54d3de9c3f99205ff8ed9cb9d88e4bfbf9f408830e1278e684",
+      "declarationSha256": "a46886516cef15b48cd5a3147e39081c2889e20080480cbb2297f9aaec177d75",
       "routeIds": [
         "/updates"
       ],
@@ -73310,7 +73310,7 @@
       "calls": [],
       "destination": "#latest",
       "disabled": null,
-      "declarationSha256": "e4b657fcc9b76b3c28ecf8b72c5c08ea1dba71b7637a1f57f34bdd9e46d4355e",
+      "declarationSha256": "5fa62430df03996ba96d594bf39981f02220c257b6710408eaf87c1aed4d2e69",
       "routeIds": [
         "/updates"
       ],
@@ -73335,7 +73335,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "cb83c2f75a88511c0118a38da3d8e9c413330a5baf6c30a59a13d67da0d08949",
+      "declarationSha256": "ac6debdd68a7087b64b25ecd4dda72e0db3c5969865a6a271ec17e8c4ca15657",
       "routeIds": [
         "/updates"
       ],
@@ -73366,7 +73366,7 @@
         "setFilter"
       ],
       "disabled": null,
-      "declarationSha256": "3fa070cdbf8860cb450b6eb25ef6707582005ffc1bcdaceabcc0582712c287b5",
+      "declarationSha256": "d3769bb3451d524851b39eca23835e0c95bffa94dc1d9eda74397c4591a91ff0",
       "routeIds": [
         "/updates"
       ],
@@ -73397,7 +73397,7 @@
         "setFilter"
       ],
       "disabled": null,
-      "declarationSha256": "689f2ac47755a270da3e6fb19b3a3181638e145a896d4c630fc66eb1e139de01",
+      "declarationSha256": "a4f9afc14033b27d55e3da772ada7865f23e53f03cc11b07f058cae0757f8ff6",
       "routeIds": [
         "/updates"
       ],
@@ -73422,7 +73422,7 @@
       "calls": [],
       "destination": "/research",
       "disabled": null,
-      "declarationSha256": "2a7ccbec26583177d0f11ad6f0c256e55c1709fbe4d786d60a5aa29df16df976",
+      "declarationSha256": "98a3558745211f2cfbbfbe9b674e6290b36e2d4ca65c7d4b58dccb505e96b12c",
       "routeIds": [
         "/updates"
       ],
@@ -73455,7 +73455,7 @@
         "setSelected"
       ],
       "disabled": null,
-      "declarationSha256": "31be394840444b8726b9930c3b5e057949753b2bf8b4b1cf33e307ae4d237142",
+      "declarationSha256": "68f5edc21ea731118f590c59851275fadc2f90054419f48ea2c375bb23e22e89",
       "routeIds": [
         "/updates"
       ],
@@ -73486,7 +73486,7 @@
         "setSubmitted"
       ],
       "disabled": null,
-      "declarationSha256": "3383d92e6738ed598333137684fc0268a3bd2a23492f6b04cfa69e60696f4ea2",
+      "declarationSha256": "f2861884bbb33ad777e630e873adc22d1d41c2c4e2643e2f83bd535920e259f0",
       "routeIds": [
         "/updates"
       ],
@@ -73546,7 +73546,7 @@
         "setName"
       ],
       "disabled": null,
-      "declarationSha256": "7f1405c566632912f0fe2687971adf48725d3eb6dd74c5eeb683a535f0c9d095",
+      "declarationSha256": "275b5eace56e155206588b58182e354e164919d413382a5c5461c223973c2aa1",
       "routeIds": [
         "/updates"
       ],
@@ -73577,7 +73577,7 @@
         "setEmail"
       ],
       "disabled": null,
-      "declarationSha256": "18e2722650d4dc11df5cde5bf01f6200bab33ee9b319f63622d6f38bf6ad4779",
+      "declarationSha256": "8133eb539bb3fd8acd1a1b18194fbaf52f70eaa7f942e1519540ef1ccc299147",
       "routeIds": [
         "/updates"
       ],
@@ -73610,7 +73610,7 @@
         "setSelected"
       ],
       "disabled": null,
-      "declarationSha256": "3001e4f38603454737e154d8562214f2e57d660c301b1aa5d5813986cb96ee39",
+      "declarationSha256": "867f4188611e599b00c44dc5b4c6bf85a6b137478a90419523e79a64ce655126",
       "routeIds": [
         "/updates"
       ],
@@ -73641,7 +73641,7 @@
         "setConsent"
       ],
       "disabled": null,
-      "declarationSha256": "b2934de95a1beea0381f94aa524cf767cc8e45340110839e9cc240c7cef1c8c3",
+      "declarationSha256": "9ed83c451d321c203ee1c378ac9b6efeacf01d505b941c3c4e6e19f43b100fa6",
       "routeIds": [
         "/updates"
       ],
@@ -73665,7 +73665,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "be0e19d645e43c35f3e0c728a61801c3eee3401f3bdee55e2c30fd31fadace46",
+      "declarationSha256": "3cf4f012f6a409a8886802f615f1dc89c1279817660a28fc1b1354ebc7f889d0",
       "routeIds": [
         "/updates"
       ],
@@ -73690,7 +73690,7 @@
       "calls": [],
       "destination": "/privacy",
       "disabled": null,
-      "declarationSha256": "21e4713fd485fe07ed0ad1b43316de80b0f14b722289aa4f1e2b182021c763eb",
+      "declarationSha256": "affbf541e3e33181e31c70ea8ad300288148d4cb849d4d415f390f2aa4188cef",
       "routeIds": [
         "/updates"
       ],
@@ -73715,7 +73715,7 @@
       "calls": [],
       "destination": "mailto:hello@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "9761fa403754c78aa9d843b7d1ff4cc0b95501d15a8563cae0392f002e99331a",
+      "declarationSha256": "466160a092aa0824f8214ce33bbee5d5aa1520034a4e67144efe519417c0b712",
       "routeIds": [
         "/updates"
       ],
@@ -73847,7 +73847,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "0674842c9321c05a3ce26e3e779536fa8a5e1f6562bbcdd7b9a12c8854cf1452",
+      "declarationSha256": "87e6ab82ad9b6496ff66b32790f0331dbbafc9b2cdc4dc22977b6ba02bf8b3b0",
       "routeIds": [
         "/login"
       ],
@@ -73879,7 +73879,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "0674842c9321c05a3ce26e3e779536fa8a5e1f6562bbcdd7b9a12c8854cf1452",
+      "declarationSha256": "87e6ab82ad9b6496ff66b32790f0331dbbafc9b2cdc4dc22977b6ba02bf8b3b0",
       "routeIds": [
         "/login"
       ],
@@ -74072,7 +74072,7 @@
       "calls": [],
       "destination": "/privacy",
       "disabled": null,
-      "declarationSha256": "0a8e133d481142ff7c47591b132eeda27e4b6f474b8a9540c6de87a2a4e766ed",
+      "declarationSha256": "761f2d9bbfd7e62e6e687d7f8ed7006e499c722a377068e014e57471e1422b4f",
       "routeIds": [
         "/login"
       ],
@@ -74105,7 +74105,7 @@
       "calls": [],
       "destination": "/terms",
       "disabled": null,
-      "declarationSha256": "bf9facace2184c9e9c87182a98b2d83618ae296c5c8a852f2ef33539988a0066",
+      "declarationSha256": "91252da8617c9f1d9a937bc1f2fb15215afd87d144c01317e0c3e9bc3b7dd267",
       "routeIds": [
         "/login"
       ],
@@ -74138,7 +74138,7 @@
       "calls": [],
       "destination": "/forgot-user-id",
       "disabled": null,
-      "declarationSha256": "13948e4e4976cf780c353df373a54b209513db896299e01f357daffd4dbdf013",
+      "declarationSha256": "128ed6e3f4bf5f3deb9c7b15ca69129176cd457168051bb8f60c53942df053d9",
       "routeIds": [
         "/login"
       ],
@@ -74207,7 +74207,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "4191d8e0be1b94870934a7ba26a08e64c9d2b401848f3ca416a7b378402c5c35",
+      "declarationSha256": "a28d955b5bba84e5f8f8ab350e88537604d9e0e2ea612d8c29cf7135e12dd19b",
       "routeIds": [
         "/login"
       ],
@@ -74316,7 +74316,7 @@
       "calls": [],
       "destination": "/forgot-user-id",
       "disabled": null,
-      "declarationSha256": "13948e4e4976cf780c353df373a54b209513db896299e01f357daffd4dbdf013",
+      "declarationSha256": "128ed6e3f4bf5f3deb9c7b15ca69129176cd457168051bb8f60c53942df053d9",
       "routeIds": [
         "/login"
       ],
@@ -74496,7 +74496,7 @@
       "calls": [],
       "destination": "/forgot-password",
       "disabled": null,
-      "declarationSha256": "4af3f6102f2cdc6281973aac2701b61e8efc44a45ba70ba9e76c19c198369860",
+      "declarationSha256": "f677ddee5ff47cb0221496eabe9dc5e5a21107fb52ff7bc5b3f37334740fc92b",
       "routeIds": [
         "/login"
       ],
@@ -74602,7 +74602,7 @@
       "calls": [],
       "destination": "/forgot-password",
       "disabled": null,
-      "declarationSha256": "4af3f6102f2cdc6281973aac2701b61e8efc44a45ba70ba9e76c19c198369860",
+      "declarationSha256": "f677ddee5ff47cb0221496eabe9dc5e5a21107fb52ff7bc5b3f37334740fc92b",
       "routeIds": [
         "/login"
       ],
@@ -74717,7 +74717,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "2264f8840bd99263b89125a8dd513131ee7c4f186ebd11463590863c813b4851",
+      "declarationSha256": "02d77d54eeeacf487e0053f89dbc08aa8f04e74454f9f7bb8fb268466a170a3d",
       "routeIds": [
         "/login"
       ],
@@ -74868,7 +74868,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
+      "declarationSha256": "2f996505a99a7ec32a4d596c71c71213d7c3994e8e0fed4b66eb25cee716096d",
       "routeIds": [
         "/login"
       ],
@@ -75053,7 +75053,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
+      "declarationSha256": "2f996505a99a7ec32a4d596c71c71213d7c3994e8e0fed4b66eb25cee716096d",
       "routeIds": [
         "/login"
       ],
@@ -75381,7 +75381,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "856e96282e4be9b07894d31f83cf89a5db70c5575a7f8874c10952271472b974",
+      "declarationSha256": "7fb18893dfb11d905da9969f500539efb0282f321777f4265a7a29511745bf64",
       "routeIds": [
         "/register"
       ],
@@ -75413,7 +75413,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "856e96282e4be9b07894d31f83cf89a5db70c5575a7f8874c10952271472b974",
+      "declarationSha256": "7fb18893dfb11d905da9969f500539efb0282f321777f4265a7a29511745bf64",
       "routeIds": [
         "/register"
       ],
@@ -75606,7 +75606,7 @@
       "calls": [],
       "destination": "/privacy",
       "disabled": null,
-      "declarationSha256": "0a8e133d481142ff7c47591b132eeda27e4b6f474b8a9540c6de87a2a4e766ed",
+      "declarationSha256": "761f2d9bbfd7e62e6e687d7f8ed7006e499c722a377068e014e57471e1422b4f",
       "routeIds": [
         "/register"
       ],
@@ -75639,7 +75639,7 @@
       "calls": [],
       "destination": "/terms",
       "disabled": null,
-      "declarationSha256": "bf9facace2184c9e9c87182a98b2d83618ae296c5c8a852f2ef33539988a0066",
+      "declarationSha256": "91252da8617c9f1d9a937bc1f2fb15215afd87d144c01317e0c3e9bc3b7dd267",
       "routeIds": [
         "/register"
       ],
@@ -75708,7 +75708,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "f4527d66530725eda78abe84a322a1e79e14b2410150b52c24ba23d8310e5d89",
+      "declarationSha256": "c3f95a0b7b6c3c82746a9ad6b2c83f65478b46fa057d61689f0e8106fd899114",
       "routeIds": [
         "/register"
       ],
@@ -76002,7 +76002,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "5f3b19f97b3e1e0dbb8f91615429f32e870f4a8f940694d758dbb1acb33a1633",
+      "declarationSha256": "fde0bd5d6701ae7048041fa21d3381840ed747b724dad7ca5239ae1b5e4c1d5b",
       "routeIds": [
         "/register"
       ],
@@ -76035,7 +76035,7 @@
       "calls": [],
       "destination": "/forgot-password",
       "disabled": null,
-      "declarationSha256": "cbcb276956e8c3859f6130132f105c0a46e2dd6c83270538c36a4deae8369d33",
+      "declarationSha256": "24b4166275bb5ffc88686039d5b6449f30413b29968f863385881d7a8bc707c2",
       "routeIds": [
         "/register"
       ],
@@ -76178,7 +76178,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "77e112039559b62ba7f8d1cdcdf1cca4f898cdd6df79975afbc76d746c2618b4",
+      "declarationSha256": "7f209fe4fba7f4013428c46738379e4c1b9c6704791d7d799bd0c7adc44b708b",
       "routeIds": [
         "/register"
       ],
@@ -76329,7 +76329,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
+      "declarationSha256": "2f996505a99a7ec32a4d596c71c71213d7c3994e8e0fed4b66eb25cee716096d",
       "routeIds": [
         "/register"
       ],
@@ -76514,7 +76514,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "1d2e01cc67f8496d03df2d0ffc8fed48256d93c06064177b41acfb764b7bc44a",
+      "declarationSha256": "2f996505a99a7ec32a4d596c71c71213d7c3994e8e0fed4b66eb25cee716096d",
       "routeIds": [
         "/register"
       ],
@@ -76868,7 +76868,7 @@
       "calls": [],
       "destination": "/login",
       "disabled": null,
-      "declarationSha256": "ccf8de55108a3208c4c15b225b62733daa494715686431fc1c1d9cb975295cfc",
+      "declarationSha256": "77e3731686c1d03a0e4c7247dbf6365fbeec013bc007c6243ed013ef8d6aa34d",
       "routeIds": [
         "/reset-password"
       ],
@@ -76971,27 +76971,27 @@
     },
     {
       "file": "frontend/src/App.jsx",
-      "sourceSha256": "ae9a3903d96559950df6a199425aa0bfa9cdcfddda992b895e78daba5fb65b5b"
+      "sourceSha256": "1ba1deec324a3a15db7db6fdc2074871d89e9fab259b9a3a7b263f0282fc28e1"
     },
     {
       "file": "frontend/src/components/auth/AuthUI.jsx",
-      "sourceSha256": "6129ad912203b2217e08db924370237d9e2c8132132f18abbbe2bd8a1ddca5a3"
+      "sourceSha256": "7ef08bc05d47b510b077137e20de2f46353f102cb705588b970f6be93952f072"
     },
     {
       "file": "frontend/src/components/auth/BillingAuthNotice.jsx",
-      "sourceSha256": "6c31376d1c86a169d20ae28ddced69b1779cc97daafc8845ea805d69590de019"
+      "sourceSha256": "f4727bee2b18035639b920fe0b7dd2207f0fab98c629a57cf3c963f7da43983c"
     },
     {
       "file": "frontend/src/components/auth/EmailVerification.jsx",
-      "sourceSha256": "db69c3e8c926dfa1687acb84ce247f1c3a159a8d6f6489d8bfb06ac48a598cc4"
+      "sourceSha256": "207d3a59e5a129aebf60a2960928da176e3c0480b58e1039bfb677f624399049"
     },
     {
       "file": "frontend/src/components/auth/LanguageSelector.jsx",
-      "sourceSha256": "f59ebe5686b85ed37ff6ac3c2d46af5a698058d25b0c71996a6316afc82959af"
+      "sourceSha256": "4f0fb72fca4fe8aded61be8b471320f0c9a6c7ec2fff73e8063071074118899a"
     },
     {
       "file": "frontend/src/components/AuthLayout.jsx",
-      "sourceSha256": "bdb08518411c18e4f15ef4ba26e326d41ad070824a89e269f9acb70ed124f319"
+      "sourceSha256": "826b7e7c9b9c0bedceb9eaff140aceb85cf5195dd241d73342a0577763ffc64a"
     },
     {
       "file": "frontend/src/components/dashboard/AchievementsCard.jsx",
@@ -77447,23 +77447,23 @@
     },
     {
       "file": "frontend/src/components/landing/AboutUsHero.jsx",
-      "sourceSha256": "145da31d7ee3e38c5c9bc5044557ecdd9b79ea3fd0404f253ce20b1d1e745da0"
+      "sourceSha256": "cfdcc8eaaebf8ec4e18c3e0f29f8dd3dfc395bd12af99509e90bb76551161601"
     },
     {
       "file": "frontend/src/components/landing/Breadcrumb.jsx",
-      "sourceSha256": "7818854c4e0e7abde007c605f377a3cdcbbc6c345698357cf639de7f4853154b"
+      "sourceSha256": "7bc2461db7e1a7b60a534eca9e2e52e7bd18920561013961e07bb755bc7cae0e"
     },
     {
       "file": "frontend/src/components/landing/HeroFanCards.jsx",
-      "sourceSha256": "d2db155176e16ce27eb0adeb6dcba933c894505475c40f796bb47e6cb2dd224b"
+      "sourceSha256": "04599e879a7f87147c5c29334df22b7c9252228495861f55de5a30994e31316d"
     },
     {
       "file": "frontend/src/components/landing/LandingFAQ.jsx",
-      "sourceSha256": "3e3efc56d53626d519645d388cd6bf2cf5eaf2e784f44bca8c1413d200dac89c"
+      "sourceSha256": "a51eca637e8929f3cd57df3a75331905c278feb36f8265196d790905094c9b81"
     },
     {
       "file": "frontend/src/components/landing/LandingFooter.jsx",
-      "sourceSha256": "12397043d866e75d09e40f714da8da206594f588b255593dea51f46fdbb2784d"
+      "sourceSha256": "97ef1681a847d1959c35bfd4867bd8de1b6b0d125bcb6f7d982ce05dc56b75ae"
     },
     {
       "file": "frontend/src/components/landing/LandingNav.jsx",
@@ -77479,15 +77479,15 @@
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
-      "sourceSha256": "2438cceb114169bf15757099421a6f65093a0dccf5dc300844593ed32b1e8fce"
+      "sourceSha256": "962f8b0801f4c5ca75c554841bffbbb7ee12c37f8a6cca33cbe2594e77c8a04f"
     },
     {
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "sourceSha256": "121de40ef65b241416d3cbae834f2a6c690e716e58059c2e03dbb0744dddf61e"
+      "sourceSha256": "c04b49a7802b6a40d1b150c0c05b74f8fb75655e39d7b4f1d4b674c63c44a8f1"
     },
     {
       "file": "frontend/src/components/landing/PolicyTabs.jsx",
-      "sourceSha256": "4ddfe66830601fdb45ec8f2a65d6e8cbbc76a3337a3e424a1bec4a6531f6f489"
+      "sourceSha256": "c268e54182406a8cb836e4f493ea088dac76030d65a46bc62edf3ce9ff4786d4"
     },
     {
       "file": "frontend/src/components/landing/SpotIllustration.jsx",
@@ -77499,11 +77499,11 @@
     },
     {
       "file": "frontend/src/components/landing/system/tokens.js",
-      "sourceSha256": "a14f465cfafd9b0579ad9fbe9af5a316a02bea2e794b84f6588391e11278da0c"
+      "sourceSha256": "c010b83be3b5046689a7828742e2bf547553aa676fde29cb48d9834fab54d4a3"
     },
     {
       "file": "frontend/src/components/landing/system/ui.jsx",
-      "sourceSha256": "1fe2f94606519d61455cbf54b72ca5db1c7b149f28abfcf445b07cb861a5e755"
+      "sourceSha256": "d462795754dbe9a7b511da5e60a3bfcefd95d44b89010345d1681eb089289ce5"
     },
     {
       "file": "frontend/src/components/landing/system/useSheetStack.js",
@@ -77511,7 +77511,7 @@
     },
     {
       "file": "frontend/src/components/landing/ValuesStrip.jsx",
-      "sourceSha256": "864026a4a36985278219122e2b46f0b7917280b3fc131112a53c0ab4cd8dfd42"
+      "sourceSha256": "1a7d352618f23dcff8265424f9f69e8b694ea6b1d2173ecc5910955e5bb31916"
     },
     {
       "file": "frontend/src/components/onboarding/ChipMultiSelect.jsx",
@@ -77579,7 +77579,7 @@
     },
     {
       "file": "frontend/src/components/ProtectedRoute.jsx",
-      "sourceSha256": "ef31e43e44a4759fde4be1c59c04415f3d9e9f5179e4973d1f1ac9ff738938e7"
+      "sourceSha256": "a6cdef07bf8a4fc95fdb579878c0ff564c80914266305212a177685918f0ff65"
     },
     {
       "file": "frontend/src/components/ScrollToTop.jsx",
@@ -77587,7 +77587,7 @@
     },
     {
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "sourceSha256": "02dffa9f22836a3835d34cb0b04f5f7b9c3c8a4f33edb301186a76494becb437"
+      "sourceSha256": "5080906f96f08afd5de30fdcbfe32dbb56a58bc10e4b22a10a31a9fac5d13d19"
     },
     {
       "file": "frontend/src/components/ui/accordion.jsx",
@@ -77787,15 +77787,15 @@
     },
     {
       "file": "frontend/src/components/UserNotRegisteredError.jsx",
-      "sourceSha256": "97be197c60cf01cb5138776561bf70c566d829849f8eeca8aa4b002a6e6fa54d"
+      "sourceSha256": "d59693f338ad80c9f77958d2cb3d737df9585bdcad22b7b28b03202ed90d0894"
     },
     {
       "file": "frontend/src/components/VisionaryLogo.jsx",
-      "sourceSha256": "5725d7b7c4574d8663acd7eaca102a330ee656613582ee2c3c3c9e0f378106ba"
+      "sourceSha256": "7bbc3e9870265721dc56938e8ff72a8e1f594ebaae7b268cd1d791d5cae681f2"
     },
     {
       "file": "frontend/src/data/landingCategories.js",
-      "sourceSha256": "c9f58066e60e5c1b490256fe18f079472812139eb421a55b0daf065d42a4f5d3"
+      "sourceSha256": "678c2422f26474129915379a53ff98f186c7a3105ca8413bd9544e8d9882cc7e"
     },
     {
       "file": "frontend/src/data/legalMeta.js",
@@ -78015,7 +78015,7 @@
     },
     {
       "file": "frontend/src/lib/PageNotFound.jsx",
-      "sourceSha256": "b179201321de49c13409d98bb617fe148a898f26b4deb3b1cc6f85d142118682"
+      "sourceSha256": "425aaaad2e1a829b1f2425459d04c3532b5adf7b72bd0f86e90eaa553a406886"
     },
     {
       "file": "frontend/src/lib/parentCopy.js",
@@ -78283,103 +78283,103 @@
     },
     {
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "sourceSha256": "11ea7828a373ded76e05ef806124cb41ee0db0fea85279a08f5c6086c680a4c6"
+      "sourceSha256": "95cedf88e069b5f42ef9d8b9be26adb052aa7d5614dd7efcb20a0340fe5532fd"
     },
     {
       "file": "frontend/src/pages/ForgotUserId.jsx",
-      "sourceSha256": "b80c59635e178c95a166a90c8790131799e7da1a998585f3f84070c449bbade8"
+      "sourceSha256": "66d03c5d48d3c6604e63e08c8a0159fc0dfd8ba60a97dee62ea9fdc2b8c62f88"
     },
     {
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "sourceSha256": "a5fc46638d7d6ee645e1f8dd764e16fcec684ee7d594474e2c6f931b32574dbb"
+      "sourceSha256": "b0a8e20c0a0bed37f5ea3ad6145acc232df946073b6532787358d1e89be87c0b"
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "cd90d541418b85e406a807a43c8ae425187a1e8762425de3b52732d05de8aa8b"
+      "sourceSha256": "2ebdfd2628ca4d216eb0515356af8024ecdd503a8b96f5350f4d3e6ba9a5f859"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "43d6bbd1cf134a5737371b99d34cf20f0c322ff891412e4a9f32f6c6248d6a3c"
+      "sourceSha256": "c063e465184579f3af057cde945f603d74394c7e62419c37c69d5e15fb09d159"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "sourceSha256": "b812cb709dfd289096f00a830523e5c1c3db31d5be912932d5c0121bccf57390"
+      "sourceSha256": "cbc9fefb2fde34c9273b508d56fd2a595e3f97f5cf718157851cb994202276fa"
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "sourceSha256": "15c02f57992ddf437330ffdc8b092e9b538aea408cda6925c901f0812c4af130"
+      "sourceSha256": "988ee246d666129ddb49001fcb412793c9533d5267ec13a20160e1a96c335465"
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "c6b14c4a54d3d5b3c5f3e87cfbca788aff493ab59f33fab95cb14a43b0240029"
+      "sourceSha256": "a5fe3cee11eb84656faf8d78131ea42fe5d32b3ebdbb84b73b99f749688fb782"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "c427e8c9dc1a5e250b64572b404b90ce83a9d1456c99f19feb28a26701d8973a"
+      "sourceSha256": "4864bac24d54214dbdd02bad3951107f8b992e8b23acf9b36073f4ab969c8a82"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
-      "sourceSha256": "7788d4d4be5c0d76f018ffe0dc042da6f61a4995fbaffec863542da6556f9df7"
+      "sourceSha256": "267adbd561f5c0152d45eb23758e0f8fde5cd5c1c3809818abe5b0e7f5b8c911"
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "sourceSha256": "c77d814300ca96c4c3797195272f1851be989482404e96178c7c780f99574fef"
+      "sourceSha256": "cb068ce8b81f0e12d851d14e542d7ab0cb0b8f14d6027e30b2196cc569ea3cc0"
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "sourceSha256": "7083031471a9e61869092287ea44167b37265f88258927d8c0d4336b52d13ce0"
+      "sourceSha256": "ad81e89f896db50874a7240dda04e0be21cac33f963979739768f2b53d53dc40"
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "sourceSha256": "13275c6a9f3fd40d93e997212ef268400d15d4de11c0ca40cc1c50f9446dce52"
+      "sourceSha256": "56d5c02a39a482e10aaea8a529f0e9d6639819caa0cfabba768ff6db6ad2ae08"
     },
     {
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "sourceSha256": "0b65fac9e87b2f68791bd571008d64416738c55fdb26c9f7f328f48564c3c276"
+      "sourceSha256": "b50f185efe0a56e003199c01c28d852e9795a642a64c720e3961f6911d1d2086"
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "sourceSha256": "df9500d06ce5a405381a8deb0c73526f2674998a53b786ab5f53b3f28cefa4b8"
+      "sourceSha256": "37d4bd51825acf4919e8a8325b272ea710a131a04929bcbf82d2f4eedcc31564"
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "74092683813647805f92ce081b11e676d12bdd6ca03e7b9f6657c7f4317c857b"
+      "sourceSha256": "0791401c54f5d8148a693cf807734317b8ec524c20d3f5693ebdb83c4c85e75f"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "sourceSha256": "4ce56c43ac46c106c32fd122ea4c7b653e67b1a7bef69d6d889afa931d2e1462"
+      "sourceSha256": "318ae969ef9126d0d5a7637b4a7557124653614b7ab10c548a15c6a025da9d84"
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "sourceSha256": "b57150fd555698d22bb8bdf4df8efeb046573f261226f3db3b4ba06abae8df02"
+      "sourceSha256": "d6264c400de20e821cf6f46511d0dc022d1bbf497c515899dbbd26a5a94282ad"
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "sourceSha256": "4b9e0a444860f3c1611dde99a53f2f1459ca77f0ad4309ad7b49cf6366f0301e"
+      "sourceSha256": "65eced9411bd3fa01f8645c5d2865124c8046a3b6d8e6dd1fae41823b34e8e55"
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "sourceSha256": "2ac261968628111c5341248351f78410cf55ae338d8e4d608886299465f281eb"
+      "sourceSha256": "1482408388ff93c6bf03583b10c6a87c62a577a2793edf647788b33e0e1c09b0"
     },
     {
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "sourceSha256": "cc6974239c4237ef8a7d001c290cc7e0cbc5fa30257532ff2f84d05958e782c5"
+      "sourceSha256": "777707e4b518cb7351bec2eeca561edd5f7585597015f8e1c6ba4180bb5481a2"
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "sourceSha256": "abbdc9a812678f81ebbfff3b8bbe417ef2d3f3c47967604f1f096957cb73def4"
+      "sourceSha256": "ed66e9ff203c8bd46f3e5c93c972a935ff7cbbf518c9b6c959d5e3c6bd11b681"
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "sourceSha256": "47792429d81d888108621be6e4437c24ddc560dbb113fede2c55689ca5d17541"
+      "sourceSha256": "119fc8777f393e7137a2e0a3867679df9fd7257a0bb1a7987b0711666769e39a"
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "sourceSha256": "42567cc3c1b2a397b0298b2aadc7600dd9c54828209433763d6681c3bef4992f"
+      "sourceSha256": "55ff5da42b84318264945d09540fa16031c41fd42cc7e3240d1bef0ec89985e5"
     },
     {
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "sourceSha256": "ddcb2844bc7cbd20f74944a6db80617a79d4537ab690f2558ff487769cf16b9a"
+      "sourceSha256": "4cb3c2987d12c224fb6c6512b8c47a4f5eef6b891a27f5ea53bb4d4b534cde83"
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
@@ -78387,7 +78387,7 @@
     },
     {
       "file": "frontend/src/pages/Login.jsx",
-      "sourceSha256": "b6741f1acdbcc435c58275b473671313005858290727064ec53880eca6b30974"
+      "sourceSha256": "5965af84f94b63d57fbb649f52c5d92fec7384099ef5b9c249d8bfe8bda3e660"
     },
     {
       "file": "frontend/src/pages/OAuthConsent.jsx",
@@ -78399,11 +78399,11 @@
     },
     {
       "file": "frontend/src/pages/Register.jsx",
-      "sourceSha256": "0d9197e2310a466867a9e93a01f0b59519b283730a5867d4eefdc44d3d9fdaeb"
+      "sourceSha256": "19539120609a38d583ced46116e7d8330af5aa93d7055946179c327611f6fe8f"
     },
     {
       "file": "frontend/src/pages/ResetPassword.jsx",
-      "sourceSha256": "73abe98597cd268f1d213e0b80adf14f40b407f0abc09e5e5588eb5524f2b71c"
+      "sourceSha256": "4e240e961630f32ed7884e439a3dd0e549dd6ed08c6b6eb28213b3a7d4e8bdac"
     },
     {
       "file": "frontend/src/services/artifactEditorDraft.ts",

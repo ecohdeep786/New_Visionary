@@ -465,7 +465,7 @@ const PremiumPlayPause = React.memo(function PremiumPlayPause({ playing, onClick
       aria-label={playing ? `Pause the ${labelPrefix}` : `Play the ${labelPrefix}`}
       aria-pressed={!playing}
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+      className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
     >
       {playing ? (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -571,7 +571,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                   <span key={index} className="hero-fade-up text-balance">{question}</span>
                 </p>
                 <div className="mt-5 flex items-end justify-center gap-1.5" aria-hidden="true">
-                  {["#121317", "#0066cc", "#121317", "#121317"].map((c, i) => (
+                  {["#1d1d1f", "#0066cc", "#1d1d1f", "#1d1d1f"].map((c, i) => (
                     <span key={i} className="h-6 w-1.5 rounded-full" style={{ backgroundColor: c, opacity: i === 1 ? 1 : 0.22, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
                   ))}
                 </div>
@@ -586,7 +586,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                   type="button"
                   aria-label="Previous language"
                   onClick={() => step(-1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
                 </button>
@@ -594,7 +594,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                   type="button"
                   aria-label="Next language"
                   onClick={() => step(1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon className="h-[18px] w-[18px]" />
                 </button>
@@ -763,7 +763,7 @@ const PremiumPlayPauseButton = React.memo(function PremiumPlayPauseButton({ play
       aria-label={playing ? `Pause the ${label}` : `Play the ${label}`}
       aria-pressed={!playing}
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+      className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
     >
       {playing ? (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -885,7 +885,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
                   type="button"
                   aria-label="Previous stages"
                   onClick={() => step(-1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
                 </button>
@@ -893,7 +893,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
                   type="button"
                   aria-label="Next stages"
                   onClick={() => step(1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon className="h-[18px] w-[18px]" />
                 </button>

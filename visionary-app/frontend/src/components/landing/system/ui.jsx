@@ -98,12 +98,12 @@ export function PillButton({
   className = "",
 }) {
   const base =
-    "public-action inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
+    "public-action inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
   const styles = {
-    dark: "bg-[#121317] text-white hover:bg-black",
-    blue: "bg-[#0b57d0] text-white hover:bg-[#1765cc]",
+    dark: "bg-[#1d1d1f] text-white hover:bg-black",
+    blue: "bg-[#0066cc] text-white hover:bg-[#1765cc]",
     outline:
-      "border border-[#dadce0] bg-white text-[#121317] hover:bg-[#F8F9FA]",
+      "border border-[#d2d2d7] bg-white text-[#1d1d1f] hover:bg-[#f5f5f7]",
   };
   return (
     <Link to={to} className={`${base} ${styles[variant]} ${className}`}>
@@ -133,7 +133,7 @@ export function TextLink({ to, children, className = "", onClick }) {
     <Link
       to={to}
       onClick={onClick}
-      className={`public-text-link inline-flex items-center gap-1.5 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${className}`}
+      className={`public-text-link inline-flex items-center gap-1.5 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}
       style={{ color: color.blue }}
     >
       {children}
@@ -176,7 +176,7 @@ export function Chip({ children, active = false, onSelect, className = "" }) {
       type="button"
       aria-pressed={active}
       onClick={onSelect}
-      className={`rounded-full px-4 py-1.5 text-[13px] leading-[20px] transition-colors hover:bg-[#f8f9fa] ${className}`}
+      className={`rounded-full px-4 py-1.5 text-[13px] leading-[20px] transition-colors hover:bg-[#f5f5f7] ${className}`}
       style={style}
     >
       {children}
@@ -202,8 +202,8 @@ export function TabBar({ tabs, active, onSelect, label }) {
           onClick={() => onSelect(i)}
           className={`h-[44px] shrink-0 whitespace-nowrap rounded-full px-6 text-[14px] tracking-[0.24px] transition-all duration-200 ${
             active === i
-              ? "bg-white font-medium text-[#121317] shadow-[0_1px_2px_rgba(60,64,67,0.16),0_2px_8px_rgba(60,64,67,0.12)]"
-              : "font-normal text-[#5f6368] hover:text-[#121317]"
+              ? "bg-white font-medium text-[#1d1d1f] shadow-[0_1px_2px_rgba(60,64,67,0.16),0_2px_8px_rgba(60,64,67,0.12)]"
+              : "font-normal text-[#6e6e73] hover:text-[#1d1d1f]"
           }`}
         >
           {tab}
@@ -251,7 +251,7 @@ export function ArrowButton({
       aria-label={label}
       onClick={onClick}
       disabled={disabled}
-      className={`public-icon-control flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${
+      className={`public-icon-control flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#1d1d1f]/5 ${
         disabled ? "pointer-events-none opacity-40" : "opacity-100"
       }`}
       style={{ borderColor: color.mist, color: color.ink }}
@@ -278,7 +278,7 @@ export function ArrowButton({
  */
 export function FigureCard({ src, alt, className = "", eager = false }) {
   return (
-    <div className={`overflow-hidden rounded-[28px] bg-[#f8f9fa] ${className}`}>
+    <div className={`overflow-hidden rounded-[28px] bg-[#f5f5f7] ${className}`}>
       <img
         src={src}
         alt={alt}

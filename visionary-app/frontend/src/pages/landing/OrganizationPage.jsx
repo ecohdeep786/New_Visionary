@@ -59,13 +59,13 @@ const EXPLORE_CATEGORIES = [
 
 /* ── DESIGN TOKENS ── */
 const COLORS = {
-  ink: "#121317",
+  ink: "#1d1d1f",
   surface: "#F5F6F8",
-  blue: "#4285F4",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
-  chipBg: "#D2E3FC",
-  mist: "#dadce0",
+  blue: "#0066cc",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
+  chipBg: "#rgba(0,102,204,0.10)",
+  mist: "#d2d2d7",
   white: "#ffffff",
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",

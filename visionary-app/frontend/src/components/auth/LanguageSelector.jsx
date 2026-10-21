@@ -34,14 +34,14 @@ export default function LanguageSelector() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#121317] transition-colors"
+        className="flex items-center gap-1.5 text-sm text-[#6e6e73] hover:text-[#1d1d1f] transition-colors"
       >
         <Globe className="w-4 h-4" />
         {current?.label}
         <ChevronDown className="w-3 h-3" />
       </button>
       {open && (
-        <div className="absolute bottom-full mb-2 left-0 w-40 bg-white rounded-xl shadow-lg border border-[#dadce0]/40 py-1.5 z-50 max-h-64 overflow-y-auto">
+        <div className="absolute bottom-full mb-2 left-0 w-40 bg-white rounded-xl shadow-lg border border-[#d2d2d7]/40 py-1.5 z-50 max-h-64 overflow-y-auto">
           {LANGUAGES.map((lang) => (
             <button
               type="button"
@@ -50,10 +50,10 @@ export default function LanguageSelector() {
                 setSelected(lang.code);
                 setOpen(false);
               }}
-              className="w-full flex items-center justify-between px-4 py-2 hover:bg-[#121317]/5 transition-colors text-sm text-[#121317]"
+              className="w-full flex items-center justify-between px-4 py-2 hover:bg-[#1d1d1f]/5 transition-colors text-sm text-[#1d1d1f]"
             >
               {lang.label}
-              {selected === lang.code && <Check className="w-4 h-4 text-[#4285F4]" />}
+              {selected === lang.code && <Check className="w-4 h-4 text-[#0066cc]" />}
             </button>
           ))}
         </div>

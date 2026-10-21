@@ -30,7 +30,7 @@ export default function Login() {
   if (isLoadingAuth) {
     return (
       <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
-        <Spinner className="w-8 h-8 text-[#4285F4]" />
+        <Spinner className="w-8 h-8 text-[#0066cc]" />
       </div>
     );
   }
@@ -109,7 +109,7 @@ export default function Login() {
         footer: (
           <>
             Don't have an account?{" "}
-            <Link to={authLink('/register')} className="text-[#4285F4] font-medium hover:underline">Create account</Link>
+            <Link to={authLink('/register')} className="text-[#0066cc] font-medium hover:underline">Create account</Link>
           </>
         ),
       }
@@ -120,7 +120,7 @@ export default function Login() {
         footer: (
           <>
             Don't have an account?{" "}
-            <Link to={authLink('/register')} className="text-[#4285F4] font-medium hover:underline">Create account</Link>
+            <Link to={authLink('/register')} className="text-[#0066cc] font-medium hover:underline">Create account</Link>
           </>
         ),
       };
@@ -140,14 +140,14 @@ export default function Login() {
             <AuthDivider />
             <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
             {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
-            <p className="text-xs text-[#5f6368] text-center leading-relaxed mt-2">
+            <p className="text-xs text-[#6e6e73] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
-              <Link to="/privacy" className="text-[#4285F4] hover:underline">Privacy Policy</Link>
+              <Link to="/privacy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
               {" "}and{" "}
-              <Link to="/terms" className="text-[#4285F4] hover:underline">Terms of Service</Link>.
+              <Link to="/terms" className="text-[#0066cc] hover:underline">Terms of Service</Link>.
             </p>
             <div className="text-center mt-1">
-              <Link to="/forgot-user-id" className="text-sm text-[#4285F4] font-medium hover:underline">
+              <Link to="/forgot-user-id" className="text-sm text-[#0066cc] font-medium hover:underline">
                 Forgot email or user ID?
               </Link>
             </div>
@@ -160,11 +160,11 @@ export default function Login() {
             <BackButton onClick={goToMethods} />
             {error && (
               <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-                <AlertCircle className="w-5 h-5 text-[#ea4335] shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm text-[#ea4335] font-medium">Account not found</p>
-                  <p className="text-xs text-[#ea4335] mt-1">{error}</p>
-                  <Link to={authLink('/register')} className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
+                  <p className="text-sm text-[#e30000] font-medium">Account not found</p>
+                  <p className="text-xs text-[#e30000] mt-1">{error}</p>
+                  <Link to={authLink('/register')} className="text-xs text-[#0066cc] font-medium hover:underline mt-1.5 inline-block">
                     Create a new account →
                   </Link>
                 </div>
@@ -183,7 +183,7 @@ export default function Login() {
               />
               <ActionRow
                 left={
-                  <Link to="/forgot-user-id" className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <Link to="/forgot-user-id" className="text-sm text-[#0066cc] font-medium hover:underline">
                     Forgot email?
                   </Link>
                 }
@@ -215,7 +215,7 @@ export default function Login() {
               />
               <ActionRow
                 left={
-                  <Link to="/forgot-password" className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <Link to="/forgot-password" className="text-sm text-[#0066cc] font-medium hover:underline">
                     Forgot password?
                   </Link>
                 }
@@ -233,12 +233,12 @@ export default function Login() {
           <div key="wrong" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={() => { setPassword(""); setError(""); setView("password"); }} />
             <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-              <AlertCircle className="w-5 h-5 text-[#ea4335] shrink-0 mt-0.5" />
-              <p role="alert" className="text-sm text-[#ea4335]">{error}</p>
+              <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" />
+              <p role="alert" className="text-sm text-[#e30000]">{error}</p>
             </div>
             <ActionRow
               left={
-                <Link to="/forgot-password" className="text-sm text-[#4285F4] font-medium hover:underline">
+                <Link to="/forgot-password" className="text-sm text-[#0066cc] font-medium hover:underline">
                   Forgot password?
                 </Link>
               }
@@ -251,7 +251,7 @@ export default function Login() {
               <button type="button" onClick={goToMethods} className={outlineBtnClass}>
                 Sign in with another method
               </button>
-              <button type="button" onClick={useAnotherAccount} className="flex items-center justify-center gap-2 text-sm text-[#4285F4] font-medium hover:underline self-center">
+              <button type="button" onClick={useAnotherAccount} className="flex items-center justify-center gap-2 text-sm text-[#0066cc] font-medium hover:underline self-center">
                 <UserRound className="w-4 h-4" /> Use another account
               </button>
             </div>
@@ -273,7 +273,7 @@ export default function Login() {
               {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <button type="button" onClick={goToMethods} className="text-sm text-[#0066cc] font-medium hover:underline">
                     Use another method
                   </button>
                 }
@@ -301,7 +301,7 @@ export default function Login() {
               {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <button type="button" onClick={goToMethods} className="text-sm text-[#0066cc] font-medium hover:underline">
                     Use another method
                   </button>
                 }

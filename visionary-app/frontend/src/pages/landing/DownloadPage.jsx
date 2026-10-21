@@ -12,11 +12,11 @@ import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
-  ink: "#121317",
+  ink: "#1d1d1f",
   surface: "#f5f5f7",
-  blue: "#4285F4",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
+  blue: "#0066cc",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };
@@ -181,7 +181,7 @@ function DownloadPlatformsSection() {
                 className="relative flex flex-col scroll-mt-24 rounded-[20px] bg-white p-7"
               >
                 {isRecommended && (
-                  <span className="absolute right-5 top-5 rounded-full bg-[#121317] px-2.5 py-1 text-[12px] font-medium leading-none text-white">
+                  <span className="absolute right-5 top-5 rounded-full bg-[#1d1d1f] px-2.5 py-1 text-[12px] font-medium leading-none text-white">
                     Recommended
                   </span>
                 )}
@@ -261,8 +261,8 @@ function DownloadNotifySection() {
                   aria-invalid={status === "error"}
                   aria-describedby={status === "error" ? "notify-error" : undefined}
                   placeholder="you@example.com"
-                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#0066cc] focus:ring-2 focus:ring-[#0066cc]/20"
-                  style={{ borderColor: status === "error" ? "#EA4335" : COLORS.mist, color: COLORS.ink }}
+                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#86868b] focus:border-[#0066cc] focus:ring-2 focus:ring-[#0066cc]/20"
+                  style={{ borderColor: status === "error" ? "#e30000" : COLORS.mist, color: COLORS.ink }}
                 />
                 <button
                   type="submit"
@@ -272,7 +272,7 @@ function DownloadNotifySection() {
                 </button>
               </div>
               {status === "error" && (
-                <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#EA4335" }}>
+                <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#e30000" }}>
                   Please enter a valid email address. We can't notify you without one.
                 </p>
               )}

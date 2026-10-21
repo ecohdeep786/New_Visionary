@@ -30,10 +30,10 @@ export default function HeroFanCards({ items, ariaLabel }) {
                   to={item.to}
                   aria-hidden={dup || undefined}
                   tabIndex={dup ? -1 : undefined}
-                  className="group relative mr-6 flex h-[360px] w-[290px] shrink-0 flex-col overflow-hidden rounded-[28px] p-7 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(18,19,23,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+                  className="group relative mr-6 flex h-[360px] w-[290px] shrink-0 flex-col overflow-hidden rounded-[28px] p-7 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(18,19,23,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
                   style={{ backgroundColor: item.tint, transform: `translateY(${lift}px) rotate(${tilt}deg)` }}
                 >
-                  <span className="text-[22px] font-medium leading-[1.3] text-[#121317]">{item.label}</span>
+                  <span className="text-[22px] font-medium leading-[1.3] text-[#1d1d1f]">{item.label}</span>
                   <SpotIllustration subject={item.subject} className="pointer-events-none absolute bottom-0 left-1/2 h-[72%] w-auto -translate-x-1/2 transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none" />
                 </Link>
               );
