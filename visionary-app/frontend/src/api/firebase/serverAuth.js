@@ -24,7 +24,10 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
   };
   const exchange = async (user, expected) => {
     check(expected);
-    if (!user.emailVerified) throw authFlowError('auth/email-not-verified');
+    // Phone identities are verified by SMS inside Firebase; email identities
+    // must be verified by email before the server mints a product session.
+    const phoneVerified = !!(user?.phoneNumber || user?.providerData?.[0]?.providerId === 'phone');
+    if (!user.emailVerified && !phoneVerified) throw authFlowError('auth/email-not-verified');
     const idToken = await user.getIdToken(true);
     check(expected);
     const value = await request('/session', { method: 'POST', body: { idToken }, beforeSend: () => check(expected) });
@@ -67,6 +70,24 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       await identity.sendVerification(user);
     },
     loginWithProvider: provider => transition(async expected => exchange(await identity.provider(provider), expected)),
+    // Phone sign-in across two steps: requestPhoneSignIn sends the SMS code and
+    // returns the pending confirmation; confirmPhoneSignIn verifies the code and
+    // exchanges the SMS-verified identity for a server session. Until the backend
+    // grants phone-only identities a product session, this fails closed calmly.
+    requestPhoneSignIn: phone => transition(async expected => {
+      const confirmation = await identity.beginPhoneSignIn(phone, 'auth-recaptcha');
+      check(expected);
+      return { verification: 'phone-sms', confirmation };
+    }),
+    confirmPhoneSignIn: (confirmation, code) => transition(async expected => {
+      if (!confirmation) throw authFlowError('auth/no-pending-verification');
+      const user = await identity.confirmPhoneSignIn(confirmation, code); check(expected);
+      try { return await exchange(user, expected); }
+      catch (error) {
+        if (error?.status === 401 || error?.status === 403) throw authFlowError('auth/phone-sign-in-unavailable');
+        throw error;
+      }
+    }),
     async completeOnboarding(data) {
       const expected = generation, accountId = profile?.id;
       if (!accountId) throw authFlowError('auth/profile-unavailable');

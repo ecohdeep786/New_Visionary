@@ -2,14 +2,16 @@ import { Loader2, ArrowLeft, ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 
-/* ── Shared classes · CTA law (FAP-42): 44px fill, 17px/-0.011em/500, pill 980, ring #0066cc;
-     auth submit uses the commerce fill #0071e3 + hover #0077ed, outline = ink on line #d2d2d7 (A3 sweeps remaining icons) ── */
+/* ── Shared classes · CTA law (FAP-42): 44px fill, 17px/-0.011em/500, pill 980, ring #0066cc.
+     C1 (FAP-49) — auth joins the one system: the primary submit is the ink pill
+     (#1d1d1f, hover #272729, pressed #18181a), replacing FAP-42's commerce fill;
+     outline = ink on line #d2d2d7; error red is #e30000 everywhere in auth ── */
 
 export const primaryBtnClass =
-  "w-full h-11 bg-[#0071e3] text-white rounded-full text-[17px] font-medium tracking-[-0.011em] hover:bg-[#0077ed] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
+  "w-full h-11 bg-[#1d1d1f] text-white rounded-full text-[17px] font-medium tracking-[-0.011em] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] transition-all duration-200 disabled:opacity-60 disabled:active:scale-100 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
 
 export const primaryBtnAutoClass =
-  "h-11 px-[21px] bg-[#0071e3] text-white rounded-full text-[17px] font-medium tracking-[-0.011em] hover:bg-[#0077ed] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
+  "h-11 px-[21px] bg-[#1d1d1f] text-white rounded-full text-[17px] font-medium tracking-[-0.011em] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] transition-all duration-200 disabled:opacity-60 disabled:active:scale-100 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
 
 export const outlineBtnClass =
   "w-full h-11 bg-white text-[#1d1d1f] rounded-full text-[17px] font-medium tracking-[-0.011em] border border-[#d2d2d7] hover:bg-[#f5f5f7] transition-colors duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";

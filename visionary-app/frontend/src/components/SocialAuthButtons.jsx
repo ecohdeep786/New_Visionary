@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { Building2 } from "lucide-react";
 import GoogleIcon from "@/components/GoogleIcon";
 import { useAuth } from '@/lib/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +24,7 @@ function MicrosoftIcon({ className }) {
   );
 }
 
-export default function SocialAuthButtons({ onOrganization }) {
+export default function SocialAuthButtons() {
   const { signInWithProvider } = useAuth();
   const navigate = useNavigate();
   const pending = useRef(false);
@@ -54,9 +53,6 @@ export default function SocialAuthButtons({ onOrganization }) {
       <button disabled={busy} onClick={() => handleSocial("apple")} className={btnClass} aria-label="Continue with Apple">
         <AppleIcon className="w-5 h-5 text-[#1d1d1f]" />
       </button>
-      <button disabled={busy} onClick={onOrganization} className={btnClass} aria-label="Continue with Organization">
-        <Building2 className="w-5 h-5 text-[#6e6e73]" />
-      </button>
-    </div>{error && <p role="alert" className="mt-3 text-sm text-[#b3261e]">{error}</p>}</div>
+    </div>{error && <p role="alert" className="mt-3 text-sm text-[#e30000]">{error}</p>}</div>
   );
 }

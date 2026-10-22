@@ -1,0 +1,208 @@
+{
+  "results": [
+    {
+      "scenario": "registration-awaits-verification",
+      "passed": true
+    },
+    {
+      "scenario": "verified-signup-loads-first-time-onboarding",
+      "passed": true
+    },
+    {
+      "scenario": "onboarding-persists-and-dashboard-resumes",
+      "passed": true
+    },
+    {
+      "scenario": "introduction-acknowledgement-persists-on-account",
+      "passed": true
+    },
+    {
+      "scenario": "forgot-password-sends-real-emulator-action",
+      "passed": true
+    },
+    {
+      "scenario": "password-reset-signs-out-and-preserves-account",
+      "passed": true
+    },
+    {
+      "scenario": "used-reset-link-offers-new-request",
+      "passed": true
+    },
+    {
+      "scenario": "old-password-denied-with-human-message",
+      "passed": true
+    },
+    {
+      "scenario": "new-password-resumes-same-account",
+      "passed": true
+    },
+    {
+      "scenario": "phone-signin-tokens-and-fails-closed-until-backend-gate",
+      "passed": true
+    },
+    {
+      "scenario": "duplicate-registration-offers-sign-in-and-reset",
+      "passed": true
+    },
+    {
+      "scenario": "truthful-recovery-and-mobile-layout",
+      "passed": true
+    }
+  ],
+  "recordChecks": {
+    "accounts": 7,
+    "events": [
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_in",
+        "hasIp": true,
+        "hasBrowser": true
+      },
+      {
+        "type": "sign_out",
+        "hasIp": true,
+        "hasBrowser": true
+      }
+    ],
+    "sessions": [
+      {
+        "revoked": false
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": false
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": false
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": false
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": true
+      },
+      {
+        "revoked": true
+      }
+    ]
+  }
+}

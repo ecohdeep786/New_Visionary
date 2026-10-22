@@ -3,14 +3,14 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
-import { Mail, Phone, AlertCircle } from "lucide-react";
+import { Mail, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
 import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
 import {
-  primaryBtnClass, primaryBtnAutoClass, outlineBtnClass,
-  Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow, PhoneInput,
+  primaryBtnClass, primaryBtnAutoClass,
+  Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow,
 } from "@/components/auth/AuthUI";
 import { useAuth } from "@/lib/AuthContext";
 import { toast } from "@/components/ui/use-toast";
@@ -24,8 +24,6 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [orgEmail, setOrgEmail] = useState("");
   const [otpCode, setOtpCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,7 +32,7 @@ export default function Register() {
 
   if (isLoadingAuth) {
     return (
-      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
+      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f5f5f7]">
         <Spinner className="w-8 h-8 text-[#0066cc]" />
       </div>
     );
@@ -160,15 +158,12 @@ export default function Register() {
       case "methods":
         return (
           <div key="methods" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-4">
-            <button type="button" onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
-              <Phone className="w-4 h-4" /> Continue with Mobile Number
-            </button>
-            <button type="button" onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
+            <button type="button" onClick={() => { setError(""); setView("email"); }} className={primaryBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
             <AuthDivider />
-            <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
-            {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
+            <SocialAuthButtons />
+            {(error || authError) && <p role="alert" className="text-sm text-[#e30000]">{error || authError.message}</p>}
             <p className="text-xs text-[#6e6e73] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
               <Link to="/privacy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
@@ -293,60 +288,6 @@ export default function Register() {
                 Resend
               </button>
             </p>
-          </div>
-        );
-
-      case "mobile":
-        return (
-          <div key="mobile" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-            <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Mobile sign-up is coming soon. Please use email or social sign-up."); }} className="flex flex-col gap-6">
-              <PhoneInput
-                label="Mobile number"
-                autoFocus
-                value={phone}
-                onChange={setPhone}
-                required
-              />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
-              <ActionRow
-                left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#0066cc] font-medium hover:underline">
-                    Use another method
-                  </button>
-                }
-              >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
-              </ActionRow>
-            </form>
-          </div>
-        );
-
-      case "organization":
-        return (
-          <div key="org" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-            <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Organization sign-up is coming soon. Please use email or social sign-up."); }} className="flex flex-col gap-6">
-              <InputField
-                label="Organization email"
-                type="email"
-                autoFocus
-                placeholder="you@school.edu"
-                value={orgEmail}
-                onChange={(e) => setOrgEmail(e.target.value)}
-                required
-              />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
-              <ActionRow
-                left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#0066cc] font-medium hover:underline">
-                    Use another method
-                  </button>
-                }
-              >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
-              </ActionRow>
-            </form>
           </div>
         );
 

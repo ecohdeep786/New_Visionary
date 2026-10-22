@@ -1,4 +1,4 @@
-# Voice → type ladder (B1, FAP-46 · extended by B2, FAP-47 · B3, FAP-48) — 2026-10-21
+# Voice → type ladder (B1, FAP-46 · extended by B2, FAP-47 · B3, FAP-48 · C1, FAP-49) — 2026-10-21
 
 **Law:** assign a `data-type` role, never a new page-specific font size. Every landing
 section carries roles from this page. Raw fluid sizes (`text-[clamp(…)]`) are retired
@@ -97,3 +97,35 @@ sections containing an h1 are deliberately outside the layer.
   sits in its `variant="hero"` arm, which no routed page consumes (grep: zero
   `variant="hero"` call sites) — left untouched; re-voice when a task adopts
   the hero variant.
+
+## C1 (FAP-49) — auth joins the one system (2026-10-22)
+
+- **Canvas + font surface.** The AuthLayout shell and the Login/Register loading
+  screens move `#f0f2f5 → #f5f5f7`; `data-font-surface="product"` is preserved
+  (`qa:fonts` asserts `/login` + `/register` guest body = Google Sans).
+- **Ink primary pill.** AuthUI `primaryBtnClass`/`primaryBtnAutoClass` move from
+  FAP-42's commerce fill `#0071e3/#0077ed` to the system **ink pill** `#1d1d1f`
+  (hover `#272729`, pressed `#18181a` + press-scale grammar). Ring `#0066cc`
+  unchanged; links stay `#0066cc`; error red unified to `#e30000` (the
+  `#b3261e`/`#b06000` sites die with the coming-soon flows).
+- **Radius verdict — the ticket said 28px.** The A4 public-bridge radius law
+  (`public-bridge.css`: `.rounded-\[28px\] { border-radius: var(--radius-media)
+  !important; }`, `--radius-media: 12px`) normalizes the arbitrary marker to the
+  one system's canonical radius, so the auth card renders white at 12px. The law
+  is preserved and the reconciliation recorded here and in the C1 evidence pack;
+  B2's "C1 persona-router card radius → token" hand-forward resolves through
+  this same law.
+- **Dead flows render as null choices.** The coming-soon mobile/organization
+  views and their method buttons (Login + Register), the SocialAuthButtons
+  organization button and the `PhoneInput` consumers they anchored are removed
+  from every auth surface; probes assert zero Mobile/Organization/coming-soon
+  choices at every route/width, "Continue with Email" carries the ink primary.
+- **Real mobile sign-in (founder-approved addition) rides on Firebase phone
+  verification.** The methods option returns — gated by
+  `source === 'firebase' && VITE_ENABLE_PHONE_SIGNIN === '1'` so preview builds
+  never show a dead choice — as a real two-step flow: the restored `PhoneInput`
+  → `signInWithPhoneNumber` SMS → OTP slots → server session exchange. Until the
+  backend `/session` phone-identity gate (backend agent) merges, the exchange
+  fails closed calmly (`auth/phone-sign-in-unavailable`), asserted by the
+  extended auth-emulator-review (12/12 scenarios). Send-again/moment copy stays
+  within the error-red law; no new invented voice tiers.
