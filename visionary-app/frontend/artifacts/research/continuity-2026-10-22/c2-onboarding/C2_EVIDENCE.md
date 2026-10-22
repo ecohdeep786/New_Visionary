@@ -27,9 +27,11 @@ Getting-started overlay: open, card 12px/white, ink pill and close control at **
 
 `c2-<identity|about|focus|context|review|getting-started>-<1440|768|390>.png` — the complete journey, three widths, including the ink selected state (identity/focus) and the workspace-scoped overlay.
 
-## Surface archaeology (recorded, untouched)
+## Surface archaeology (recorded)
 
 `components/onboarding/steps/{AGIIntro,OrgInfo,CurriculumSummary,StudentContextForm,StudyRoutine,SubjectConfidence}.jsx` + `StarRating.jsx` are an **A-era goal-flow cluster with no live import path** (importer sweep: only the dormant intra-cluster edges survive; the live flow's steps come from `lib/productSetup.js`, options come from `stepConfigs`' list exports). They keep their old tokens by design — dormant code is not swept, consistent with "preserve unrelated work"; noted here so a future dead-flow removal task can find them. `stepConfigs`' live list-export label helpers (`#121317`/`#5f6368`) were harmonised anyway since they sit behind the same import edge.
+
+Addendum (founder comment review, same day): the founder directed copy changes on the dormant `AGIIntro.jsx` — eyebrow "Visionary PA" → **"Visionary Dashboard"**, title "Your space is ready" → **"Your workspace is ready"** — which are applied as the only edits in that file (copy-only; its off-law tokens remain untouched with the rest of the dormant cluster).
 
 ## Gates
 
