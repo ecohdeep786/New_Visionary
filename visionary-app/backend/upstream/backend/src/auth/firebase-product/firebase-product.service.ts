@@ -62,6 +62,10 @@ export class FirebaseProductService implements OnModuleDestroy {
     if (!Number.isSafeInteger(identity.auth_time) || identity.auth_time < 1 || now / 1000 - identity.auth_time > 300 || identity.auth_time > Math.floor(now / 1000)) throw new UnauthorizedException('Wait a moment, then sign in again before starting a session.');
     // Unverified identities cannot create a product profile or a product session.
     if (!identity.email || !identity.email_verified) throw new UnauthorizedException('Verify your email before continuing.');
+    // Old signed tokens must not consume a newly authenticated device's budget.
+    // The commit transaction repeats this check to close concurrent sign-out.
+    const admissionPolicy = await this.database(async () => accountSessionPolicy((await this.db().collection('visionary_accounts').doc(identity.uid).get()).data()));
+    if (admissionPolicy.cutoff && identity.auth_time <= admissionPolicy.cutoff) throw new UnauthorizedException('Your devices were signed out. Wait a moment, then sign in again.');
     await this.rateLimit('session-uid', identity.uid, 10);
     const cookie = await this.verified(() => this.admin.getAuth().createSessionCookie(idToken, { expiresIn: ABSOLUTE_MS }));
     const device = randomBytes(32).toString('hex'), sessionId = digest(device);
@@ -211,7 +215,12 @@ export class FirebaseProductService implements OnModuleDestroy {
     const identity = await this.verified(() => this.admin.getAuth().verifySessionCookie(cookie, true));
     assertAccountUid(identity.uid);
     if (expectedUid !== identity.uid) throw new ConflictException('The signed-in account changed. Reload before signing out.');
-    await this.rateLimit('logout-all', identity.uid, 5);
+    await this.database(async () => {
+      const saved = (await this.db().collection('visionary_auth_sessions').doc(digest(device)).get()).data();
+      if (!saved || saved.uid !== identity.uid || saved.cookieHash !== digest(cookie)) throw new UnauthorizedException('Sign in again.');
+    });
+    // Retired devices cannot exhaust a fresh device's sign-out budget.
+    await this.rateLimit('logout-all-session', `${identity.uid}:${digest(device)}`, 5);
     await this.database(async () => {
       const db = this.db(), id = digest(device), accountRef = db.collection('visionary_accounts').doc(identity.uid);
       const sessionRef = db.collection('visionary_auth_sessions').doc(id), deviceRef = deviceDocument(db, identity.uid, id);

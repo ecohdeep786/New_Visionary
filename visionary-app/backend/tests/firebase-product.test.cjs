@@ -57,6 +57,21 @@ test('a future-dated preexisting token cannot cross the global sign-out cutoff',
   await assert.rejects(f.service.signIn('future-token', metadata), e => e.getStatus() === 401);
 });
 
+test('retired-device retries cannot throttle a fresh device global sign-out or sign-in', async t => {
+  let now = Date.now(); t.mock.method(Date, 'now', () => now);
+  const f = fixture(), old = await f.service.signIn('fixture-token', metadata);
+  await f.service.logoutAll(old.cookie, old.device, f.identity.uid, metadata);
+  for (let attempt = 0; attempt < 12; attempt++) {
+    await assert.rejects(f.service.signIn('old-token', metadata), e => e.getStatus() === 401);
+    try { await f.service.logoutAll(old.cookie, old.device, f.identity.uid, metadata); }
+    catch (error) { assert.equal(error.getStatus(), 429); }
+  }
+  now += 2000; f.identity.auth_time = Math.floor(now / 1000);
+  const fresh = await f.service.signIn('fresh-token', metadata);
+  await f.service.logoutAll(fresh.cookie, fresh.device, f.identity.uid, metadata);
+  assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).authSessionVersion, 2);
+});
+
 test('global sign-out requires cookie, device and account ownership and leaves another UID intact', async () => {
   const f = fixture(), a = await f.service.signIn('fixture-token', metadata), uid = f.identity.uid;
   await assert.rejects(f.service.logoutAll('wrong-cookie', a.device, uid, metadata), e => e.getStatus() === 401);

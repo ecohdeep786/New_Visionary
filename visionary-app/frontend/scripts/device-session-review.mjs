@@ -46,6 +46,7 @@ const browser = await puppeteer.launch({ headless: true });
 console.log('Device review: browser started');
 const results = [];
 const authReads = new Map();
+const passiveReads = new Map();
 const seed = async context => {
   const csrfResponse = await fetch(`${origin}/api/auth/csrf`), csrf = await csrfResponse.json();
   const csrfCookie = csrfResponse.headers.getSetCookie()[0].split(';')[0];
@@ -67,17 +68,26 @@ try {
       page.on('request', request => {
         const target = new URL(request.url());
         if (target.origin === origin && target.pathname === '/api/auth/me') authReads.set(page, (authReads.get(page) || 0) + 1);
+        if (target.origin === origin && target.pathname === '/api/auth/me' && target.searchParams.get('passive') === '1') passiveReads.set(page, (passiveReads.get(page) || 0) + 1);
         return target.origin === origin ? request.continue() : request.abort();
       });
       await seed(context); return page;
     }));
     if (!results.length) {
       assert.equal((await service.me(identity.uid)).onboarding_complete, false);
+      const draftKey = `visionary_onboarding_${identity.uid}`;
+      const seeded = await pages[0].evaluateOnNewDocument(key => localStorage.setItem(key, JSON.stringify({ phase: 'identity', data: { full_name: 'Unsaved fixture draft', identity: 'professional', preferred_language: 'English' } })), draftKey);
       await pages[0].goto(`${origin}/dashboard/home`, { waitUntil: 'networkidle0' });
+      await pages[0].removeScriptToEvaluateOnNewDocument(seeded.identifier);
       assert.ok(authReads.get(pages[0]) > 0, 'Build the frontend with VITE_AUTH_MODE=firebase before this review');
       await pages[0].waitForFunction(() => location.pathname === '/onboarding');
+      await pages[0].bringToFront();
+      const draftBefore = await pages[0].evaluate(key => localStorage.getItem(key), draftKey), observationsBefore = passiveReads.get(pages[0]) || 0;
       await service.completeOnboarding(identity.uid, { full_name: 'Session Review Adult', identity: 'professional', age_band: 'adult', preferred_language: 'English' });
       await service.completeIntroduction(identity.uid, {});
+      await pages[0].waitForFunction(() => location.pathname === '/dashboard/home', { timeout: 45000 });
+      assert.ok((passiveReads.get(pages[0]) || 0) > observationsBefore, 'Still-open onboarding must observe the other device completion');
+      assert.equal(await pages[0].evaluate(key => localStorage.getItem(key), draftKey), draftBefore, 'Passive sync must preserve the unfinished local draft');
     }
     for (const page of pages) {
       await page.goto(`${origin}/dashboard/home`, { waitUntil: 'networkidle0' });
