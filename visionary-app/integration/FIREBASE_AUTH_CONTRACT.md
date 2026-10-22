@@ -1,6 +1,6 @@
 # Firebase auth and account routing — D-063
 
-21 October 2026 / KAN-34 candidate: founder explicitly removes Apple from the
+22 October 2026 / KAN-34 candidate: founder explicitly removes Apple from the
 web release and chooses Firebase verification links after discussing the custom
 sender required for numeric codes. Email and Google remain implemented; Apple is
 absent from login/register and rejected before any SDK/session call. Mobile,
@@ -9,13 +9,17 @@ remembers a device using a server-verified HttpOnly cookie for at most 14 days,
 with a seven-day inactivity limit; Firebase credentials stay in memory. Logout,
 password reset/revocation, account binding and absolute expiry still end access.
 Existing shorter-lived cookies are not renewed or upgraded by a page visit.
+Dashboard sign-out ends all Visionary device sessions; onboarding account
+switching retains local-device sign-out. A new device initially authenticates.
+This does not sign the person out of their Google account or other products.
 The production main revision still has its previous eight-hour/30-minute policy
 until reviewed integration and release; this document does not claim deployment.
 
 The [acceptance matrix](../docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md)
 distinguishes source review, provider settings and live acceptance. Independent
-review approves onboarding recovery at `c896dafa`; the newer Apple/copy/session
-candidate requires replacement review. Firebase rejects all attempted template
+review approves the prior Apple/copy/device-session source at `d87ea72e`; the
+new account-wide session candidate requires replacement exact-SHA review.
+Firebase rejects all previously attempted template
 updates with `EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED`, including a console sender/
 subject-only save. Desired supported edits are retained in
 `infrastructure/gcp/auth-email-templates.json` as prepared, not applied. Firebase
@@ -58,29 +62,56 @@ All routes live under `/api/auth` on the standalone `main-auth` application. No 
 | Route | Behavior |
 | --- | --- |
 | GET `/csrf` | No-store token response and host-only HttpOnly SameSite Strict cookie |
-| POST `/session` | Exact Origin/CSRF check; verify Firebase ID token with revocation; require verified email and auth_time within5 minutes; atomically retain/create profile, session and sign-in event |
-| GET `/me` | Verify Firebase session cookie with revocation, device-cookie binding, UID,14-day absolute expiry and7-day inactivity expiry; load persisted profile |
+| POST `/session` | Exact Origin/CSRF check; verify Firebase ID token with revocation; require verified email and a positive integer auth_time within5 minutes, never future-dated; check global cutoff before UID quota and again in the session transaction; retain/create profile, session and sign-in event atomically |
+| GET `/me` | Verify Firebase session cookie with revocation, device-cookie binding, UID, account/session version,14-day absolute expiry and7-day inactivity expiry; touch activity and load persisted profile |
+| GET `/me?passive=1` | Same authority and profile checks without session/device writes or cookie renewal; only `passive=1` or no passive query is accepted |
 | POST `/onboarding` | Authenticated UID only; bounded allowlist, adult admission, supported role/stage/name validation; first completion wins transactionally |
 | POST `/onboarding/introduction` | Bound UID, Origin/CSRF and profile budget; empty acknowledgement only; completed setup required; introduction acknowledgement is idempotent and retained on the same account |
 | PATCH `/profile` | Display name/account accent only; expected-name/accent conflicts return409; no claimed UID, consent, membership or onboarding completion |
 | POST `/logout` | Exact Origin/CSRF; revoke device session and clear cookies, retaining account/profile/security history |
+| POST `/logout-all` | Exact Origin/CSRF, bound verified cookies and expected UID; atomically advance account session version/cutoff, revoke issuer and append sign_out_all event; clear cookies after commit. Retried issuer acknowledgements never revoke a later sign-in again |
 
 Session cookies are HttpOnly, host-only and SameSite Strict; HTTPS uses Secure `__Host-` names. HTTP is permitted only for explicit loopback development. The exact public origin is required; production runtime rejects HTTP. Firebase SDK identity persistence is memory-only, following [Firebase's session-cookie pattern](https://firebase.google.com/docs/auth/admin/manage-cookies). An opaque random device cookie indexes a SHA256-hashed session document; its Firebase-cookie fingerprint binds both cookies. Firebase Auth outage returns503; recognised invalid/expired/revoked identity returns401. Expired or revoked server sessions are rejected immediately; their records remain retained.
 
 Profile response is an allowlisted product projection, not an Admin user record. Onboarding/profile mutations compare the expected account header with server authority, rejecting a stale tab/account with409. Logout checks a supplied UID; without cached identity, both bound cookies must match the retained device record. Canonical account ID is the verified UID. Missing profile/database outage is an error, not first-time onboarding. Completing setup is idempotent across devices. Repeated login preserves setup. Browser caches are cleared on account/workspace changes; stale responses cannot restore a signed-out account. Tabs notify each other with a noncredential epoch; focus rechecks server authority. Safe return paths apply only after onboarding completes.
 
+Global sign-out increments server-only `authSessionVersion` and records
+`lastGlobalSignOutSecond`. A sign-in stamps the current version while reading
+that account in the same transaction. Every protected admission compares the
+session's version with the current account. Missing legacy fields mean version
+zero only when both account security fields are absent; malformed/incomplete
+security state fails closed. Pre-cutoff ID tokens cannot re-establish access.
+Because Firebase auth_time has second precision, a same-second fresh sign-in
+must be repeated after the cutoff second. Setup/profile/introduction writes
+also recheck the admitted version in their mutation transaction; other domains
+retain their existing ordering for operations already admitted before sign-out.
+Do not describe this as retroactively cancelling all in-flight work.
+
+Same-scope concurrent logout calls share a promise; mixed local/global scope
+rejects explicitly rather than reporting local-only success as global success.
+A failed global commit preserves the current profile for retry. Server success
+remains success even if subsequent in-memory Firebase SDK cleanup fails.
+
 ## Persisted records and boundaries
 
 | Collection | Contents | Lifetime / boundary |
 | --- | --- | --- |
-| `visionary_accounts/{uid}` | UID/storageVersion2, verified identity metadata, email/name, validated role preferences, onboarding state/version, creation/latest sign-in | Canonical retained account; no passwords, ID/session tokens or private keys |
-| `visionary_accounts/{uid}/devices/{deviceHash}` | First/last seen, provider, observed IP/User-Agent and expiry/revocation for one browser session | Atomically synchronized with its server-only session lookup; no cookie hash/raw credentials |
+| `visionary_accounts/{uid}` | UID/storageVersion2, verified identity metadata, email/name, validated role preferences, onboarding state/version, creation/latest sign-in, authSessionVersion/lastGlobalSignOutSecond | Canonical retained account; security fields remain server-only; no passwords, ID/session tokens or private keys |
+| `visionary_accounts/{uid}/devices/{deviceHash}` | Session version, first/last seen, provider, observed IP/User-Agent and expiry/revocation for one browser session | Atomically synchronized with its server-only session lookup; list status compares current account version and shared idle/absolute bounds; no cookie hash/raw credentials |
 | `visionary_accounts/{uid}/authEvents/{eventId}` | Owned retained sign-in/out history | Same transaction as the global security index; no token/cookie data |
-| `visionary_auth_sessions/{deviceHash}` | UID, cookie hash, last activity, absolute expiry/revocation timestamp |14-day maximum access; retained history, revoked on logout |
+| `visionary_auth_sessions/{deviceHash}` | UID, session version, cookie hash, last activity, absolute expiry/revocation timestamp and issuer globalSignOutVersion for retry acknowledgement |14-day maximum access; retained history, revoked on local logout or account version change |
 | `visionary_auth_events/{randomId}` | UID, session hash, sign-in provider, server-observed IP, bounded User-Agent, timestamp |Retained security index; same event also lives beneath the UID |
-| `visionary_auth_limits/{hmac}` | Counter and expiresAt; subject/window keyed with persistent server secret |2-minute logical counter expiry, retained records; atomic20/minute observed-IP session budget,10/minute UID session budget,20/minute profile-command budget |
+| `visionary_auth_limits/{hmac}` | Counter and expiresAt; subject/window keyed with persistent server secret |2-minute logical counter expiry, retained records; atomic20/minute observed-IP session budget,10/minute admitted-UID session budget,20/minute profile-command budget,5/minute bound-device global-logout budget |
 
 Those budgets cover owned session/profile endpoints, not direct Firebase Web SDK signup/password/OAuth traffic. Firebase quotas, enumeration protection, password policy, reCAPTCHA/App Check where applicable, edge controls and cost alerts need console/deployment verification. Do not claim a comprehensive DDoS defense or a configurable Firebase password-attempt lockout.
+
+Old pre-cutoff sign-in tokens are rejected before the UID budget. Global logout
+checks stored cookie/device/UID proof before creating a quota bucket; its quota
+is scoped to that device so revoked-device retries cannot throttle a fresh
+device's sign-out. The final revocation transaction repeats authority checks.
+22 October read-only provider inspection confirms improved email privacy is
+enabled and password email sign-in is required; no explicit password policy is
+configured. Those observations are configuration inventory, not load testing.
 
 In local development, the observed IP is normally loopback. The Express app does not trust arbitrary X-Forwarded-For. GCP ingress/proxy trust must be narrowly configured and tested before reporting public client IPs. IP/browser text is never proof of a person, guardian or organization, or a reason to merge/delete accounts. No Analytics, precise location, browser history, MAC address or covert fingerprinting is collected. The profile discards child name and organization contact fields that belong in later consent/organization services.
 
@@ -94,7 +125,20 @@ The auth transport bounds each request to one20-second deadline, including queue
 
 Concurrent account reads share one in-flight request. A confirmed mutation invalidates older reads. Login, verification, onboarding, introduction and profile updates adopt their authenticated canonical response in AuthContext directly instead of making a second confirmation read. Expected UID and account-epoch checks reject stale account transitions; query caches clear on account changes. Normal error mapping and retry affordances remain in place.
 
-Visible, trusted pointer/keyboard activity quietly revalidates server authority at most once per five minutes, while no account command is active. Capture listeners include keyboard controls that stop bubbling. Focus also revalidates. There is no background keepalive interval; the candidate7-day idle and14-day absolute limits remain server-owned. Visits never extend absolute expiry. Inactive, revoked and expired sessions still require sign-in. Connection/loading/recovery states use the product font surface and accessible status text.
+Visible, trusted pointer/keyboard activity quietly touches/revalidates server
+authority at most once per five minutes, while no account command is active.
+Capture listeners include controls that stop bubbling. A visible signed-in
+client also observes with passive=1 every thirty seconds and on focus/visibility;
+overlapping observations coalesce and listeners/timers are cleaned up. Hidden
+documents skip observation and check on return. Passive success never updates
+the trusted-activity clock, so observation cannot keep an idle device alive.
+A current passive401 clears auth/UI; other passive outages preserve the current
+account for retry. Generation guards reject stale replies after account changes.
+This provides normally thirty-second visible-UI convergence, while the server
+rejects a revoked version on its next protected admission. Unsaved UID drafts
+remain intact and completed setup synchronizes through the saved profile.
+The candidate7-day idle and14-day absolute limits remain server-owned; visits
+never extend absolute expiry. Inactive/revoked/expired sessions require sign-in.
 
 Rendered fictional browser checks verify actual custom Google Sans glyphs from local Regular/Medium font files on login, registration, onboarding, dashboard and account-service recovery. No Google Fonts CDN is requested in these fixtures. Public-site typography remains a separate existing surface. Nine role/learner scenarios also assert zero redundant profile GETs after confirmed setup/introduction; four routing fixtures and eleven real Auth Emulator workflows pass. See [QA](../docs/visionary/QA.md) for precise evidence and remaining production gates, and [the payment auth handoff](PAYMENTS_AUTH_HANDOFF.md) for the next design boundary.
 

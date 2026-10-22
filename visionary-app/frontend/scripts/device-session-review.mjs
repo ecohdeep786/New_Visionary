@@ -50,6 +50,7 @@ console.log('Device review: browser started');
 const results = [];
 const authReads = new Map();
 const passiveReads = new Map();
+const responses = new Map();
 const seed = async context => {
   const csrfResponse = await fetch(`${origin}/api/auth/csrf`), csrf = await csrfResponse.json();
   const csrfCookie = csrfResponse.headers.getSetCookie()[0].split(';')[0];
@@ -74,6 +75,10 @@ try {
         if (target.origin === origin && target.pathname === '/api/auth/me') authReads.set(page, (authReads.get(page) || 0) + 1);
         if (target.origin === origin && target.pathname === '/api/auth/me' && target.searchParams.get('passive') === '1') passiveReads.set(page, (passiveReads.get(page) || 0) + 1);
         return target.origin === origin ? request.continue() : request.abort();
+      });
+      page.on('response', response => {
+        const target = new URL(response.url());
+        if (target.origin === origin && target.pathname === '/api/auth/me') responses.set(page, [...(responses.get(page) || []), { passive: target.searchParams.get('passive') === '1', status: response.status(), at: Date.now() }].slice(-10));
       });
       await seed(context); return page;
     }));
@@ -112,6 +117,13 @@ try {
     assert.equal(new URL(pages[1].url()).pathname, '/dashboard/home');
     console.log(`Device review: ${width}px passive outage preserved signed-in UI`);
     passiveOutage = false;
+    const recovered = pages[1].waitForResponse(response => {
+      const target = new URL(response.url());
+      return target.origin === origin && target.pathname === '/api/auth/me' && target.searchParams.get('passive') === '1' && response.status() === 200;
+    }, { timeout: 45000 });
+    await pages[1].evaluate(() => window.dispatchEvent(new Event('focus')));
+    await recovered;
+    console.log(`Device review: ${width}px peer recovered a healthy passive session before logout`);
     await pages[0].bringToFront();
     await pages[0].click('button[aria-label="Open account menu"]');
     await pages[0].waitForSelector('[role="menuitem"]');
@@ -126,13 +138,17 @@ try {
     await pages[0].waitForFunction(() => location.pathname === '/login', { polling: 100 });
     assert.equal(rows.get(`visionary_accounts/${identity.uid}`).authSessionVersion, previousVersion + 1, 'The UI must commit all-device revocation, not local logout');
     assert.equal(await pages[1].evaluate(() => document.hidden), false, 'The peer device must remain visible for timer observation');
-    try { await pages[1].waitForFunction(() => location.pathname === '/login', { timeout: 45000, polling: 100 }); }
+    // ProtectedRoute intentionally renders Login at the original protected URL.
+    // Check the visible security outcome rather than inventing a redirect.
+    try { await pages[1].waitForFunction(() => !document.querySelector('header.workspace-topbar') &&
+      document.body.textContent.includes('Sign in to Visionary') && [...document.querySelectorAll('button')].some(button => button.textContent.trim() === 'Continue with Email' && button.getClientRects().length), { timeout: 45000, polling: 100 }); }
     catch (error) {
-      console.error('Peer device observation failed', JSON.stringify(await pages[1].evaluate(async () => ({ hidden: document.hidden, path: location.pathname, passiveStatus: (await fetch('/api/auth/me?passive=1', { cache: 'no-store' })).status }))));
+      console.error('Peer device observation failed', JSON.stringify({ responses: responses.get(pages[1]), state: await pages[1].evaluate(async () => ({ hidden: document.hidden, path: location.pathname, passiveStatus: (await fetch('/api/auth/me?passive=1', { cache: 'no-store' })).status })) }));
       await pages[1].screenshot({ path: path.join(output, `peer-observation-failed-${width}.png`), fullPage: true });
       throw error;
     }
     assert.ok(Date.now() - started < 45000);
+    assert.ok(responses.get(pages[1]).some(response => response.passive && response.status === 401 && response.at >= started), 'The peer must observe server revocation without a reload or focus event');
     await pages[1].screenshot({ path: path.join(output, `other-device-signed-out-${width}.png`), fullPage: true });
     assert.equal((await service.me(identity.uid)).onboarding_complete, true);
     console.log(`Device review: ${width}px both devices signed out`);
