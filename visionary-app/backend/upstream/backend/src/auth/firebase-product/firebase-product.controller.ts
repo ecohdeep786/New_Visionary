@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Req, Res, Body } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Req, Res, Body, Query, BadRequestException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { randomBytes } from 'node:crypto';
 import { Request, Response } from 'express';
@@ -24,15 +24,23 @@ export class FirebaseProductController extends ProductRequestAuthority {
     res.cookie(settings.device, result.device, { ...this.options(), maxAge: result.expiresIn });
     return result.profile;
   }
-  @Get('me') async me(@Req() req: Request) { return this.service.me((await this.current(req)).uid); }
+  @Get('me') async me(@Req() req: Request, @Query('passive') passive?: string) {
+    if (passive !== undefined && passive !== '1') throw new BadRequestException('Use passive=1 for session observation.');
+    return this.service.me((await this.current(req, passive !== '1')).uid);
+  }
   @Post('onboarding') async onboarding(@Req() req: Request, @Body() body: unknown) {
-    this.csrf(req); const { uid } = await this.commandAccount(req); await this.service.rateLimit('profile', uid, 20); return this.service.completeOnboarding(uid, body);
+    this.csrf(req); const { uid, authSessionVersion } = await this.commandAccount(req); await this.service.rateLimit('profile', uid, 20); return this.service.completeOnboarding(uid, body, authSessionVersion);
   }
   @Patch('profile') async profile(@Req() req: Request, @Body() body: unknown) {
-    this.csrf(req); const { uid } = await this.commandAccount(req); await this.service.rateLimit('profile', uid, 20); return this.service.updateProfile(uid, body);
+    this.csrf(req); const { uid, authSessionVersion } = await this.commandAccount(req); await this.service.rateLimit('profile', uid, 20); return this.service.updateProfile(uid, body, authSessionVersion);
   }
   @Post('onboarding/introduction') async introduction(@Req() req: Request, @Body() body: unknown) {
-    this.csrf(req); const { uid } = await this.commandAccount(req); await this.service.rateLimit('profile', uid, 20); return this.service.completeIntroduction(uid, body);
+    this.csrf(req); const { uid, authSessionVersion } = await this.commandAccount(req); await this.service.rateLimit('profile', uid, 20); return this.service.completeIntroduction(uid, body, authSessionVersion);
+  }
+  @Post('logout-all') async logoutAll(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    this.csrf(req); const settings = this.settings();
+    await this.service.logoutAll(req.cookies?.[settings.session], req.cookies?.[settings.device], req.get('X-Visionary-Account'), { ip: req.ip || req.socket.remoteAddress || 'unknown', userAgent: req.get('User-Agent') || '' });
+    for (const name of [settings.session, settings.device, settings.csrf]) res.clearCookie(name, this.options()); return { ok: true };
   }
   @Post('logout') async logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
     this.csrf(req); const settings = this.settings();

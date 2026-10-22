@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { authErrorMessage, authFlowError } from '@/lib/authErrors';
@@ -9,20 +9,22 @@ import { productSetupSteps, setupPayload, setupRoles, setupStepReady } from '@/l
 import OnboardingLayout from '@/components/onboarding/OnboardingLayout';
 import ProductSetupFields from '@/components/onboarding/ProductSetupFields';
 import IdentitySelection from '@/components/onboarding/steps/IdentitySelection';
-import { safeReturnTo } from '@/lib/authReturnTo';
+import { authLink, safeReturnTo } from '@/lib/authReturnTo';
 
 export default function Onboarding() {
   const { account } = useAuth();
   return <ProductSetup key={account?.id} />;
 }
 function ProductSetup() {
-  const { account, updateUser, completeOnboarding } = useAuth();
+  const { account, updateUser, completeOnboarding, logout } = useAuth();
+  const navigate = useNavigate();
   const live = base44.auth.source === 'firebase', draftKey = `visionary_onboarding_${account?.id}`;
   const [saved] = useState(() => { try { return parseOnboardingDraft(localStorage.getItem(draftKey)); } catch { return null; } });
   const [phase, setPhase] = useState(saved?.phase || 'identity');
   const [data, setData] = useState(saved?.data || { full_name: account?.full_name || '', preferred_language: 'English' });
   const [currentStepId, setCurrentStepId] = useState(saved?.currentStepId || 'about');
   const [busy, setBusy] = useState(false), [error, setError] = useState(''), [notice, setNotice] = useState('');
+  const [switchingAccount, setSwitchingAccount] = useState(false);
   const lock = useRef(false);
   const steps = useMemo(() => productSetupSteps(data), [data]);
   const current = steps.find(step => step.id === currentStepId) || steps[0];
@@ -35,6 +37,7 @@ function ProductSetup() {
     catch { setNotice('Keep this page open: your browser cannot save an unfinished draft. Completed setup will still be saved to your account.'); }
   }, [draftKey, phase, data, currentStepId, account?.onboarding_complete]);
   function chooseRole(identity) {
+    if (lock.current) return;
     setData(previous => changeOnboardingRole(previous, identity)); setPhase('flow'); setCurrentStepId('about'); setError('');
   }
   function next() {
@@ -45,6 +48,19 @@ function ProductSetup() {
     setError('');
     if (index > 0) setCurrentStepId(steps[index - 1].id); else setPhase('identity');
   }
+  async function switchAccount() {
+    if (lock.current) return;
+    lock.current = true; setSwitchingAccount(true); setError('');
+    try {
+      await logout();
+      navigate(authLink('/login'), { replace: true });
+    } catch (failure) {
+      setError(failure?.status >= 500
+        ? 'We couldn’t sign you out. Your setup draft is kept. Please try again shortly.'
+        : authErrorMessage(failure, 'We couldn’t sign you out. Your setup draft is kept. Please try again.'));
+    } finally { lock.current = false; setSwitchingAccount(false); }
+  }
+  const accountActions = { onChangeAccount: switchAccount, isSubmitting: busy || switchingAccount, isSwitchingAccount: switchingAccount };
   async function finish() {
     if (lock.current) return;
     lock.current = true; setBusy(true); setError('');
@@ -65,7 +81,7 @@ function ProductSetup() {
     finally { lock.current = false; setBusy(false); }
   }
   if (account?.onboarding_complete && !busy) return <Navigate to={safeReturnTo()} replace />;
-  if (phase === 'identity') return <IdentitySelection onContinue={chooseRole} initialRole={data.identity} accountEmail={account?.email} />;
+  if (phase === 'identity') return <IdentitySelection onContinue={chooseRole} initialRole={data.identity} accountEmail={account?.email} error={error} {...accountActions} />;
   const alerts = <>{error && <p role="alert" className="mb-5 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#e30000]">{error}</p>}{notice && <p role="status" className="mb-5 text-xs leading-6 text-[#6e6e73]">{notice}</p>}</>;
   if (phase === 'review') {
     const payload = setupPayload(data);
@@ -75,7 +91,7 @@ function ProductSetup() {
       ...(data.identity === 'organization' ? [['Organization', data.org_name], ['Organization type', data.org_type]] : []), ['Goal or interest', data.career_goal]].filter(([, value]) => value);
     const ready = steps.every(step => setupStepReady(step, data, live));
     return <OnboardingLayout title="Ready to start with Visionary?" subtitle="A quick check before we save your preferences to this account." step={total} totalSteps={total} stepLabels={labels} illustration="shield" accountEmail={account?.email}
-      onBack={() => { setPhase('flow'); setCurrentStepId(steps.at(-1).id); }} onContinue={finish} canContinue={ready} isSubmitting={busy} continueLabel="Start using Visionary">
+      onBack={() => { setPhase('flow'); setCurrentStepId(steps.at(-1).id); }} onContinue={finish} canContinue={ready} {...accountActions} continueLabel="Start using Visionary">
       {alerts}
       <div className="mb-5 flex flex-wrap gap-4"><button type="button" onClick={() => setPhase('identity')} className="min-h-11 text-sm font-medium text-[#0066cc] hover:underline">Change role</button><button type="button" onClick={() => { setCurrentStepId('about'); setPhase('flow'); }} className="min-h-11 text-sm font-medium text-[#0066cc] hover:underline">Edit details</button></div>
       <dl className="divide-y divide-[#d2d2d7]/60 text-sm">{rows.map(([label, value]) => <div key={label} className="grid gap-1 py-3 sm:grid-cols-2 sm:gap-4"><dt className="text-[#6e6e73]">{label}</dt><dd className="break-words font-medium leading-6">{value}</dd></div>)}</dl>
@@ -84,7 +100,7 @@ function ProductSetup() {
     </OnboardingLayout>;
   }
   return <OnboardingLayout step={index + 2} totalSteps={total} stepLabels={labels} title={current.title} subtitle={current.subtitle} illustration={current.illustration} accountEmail={account?.email}
-    onBack={back} onContinue={next} canContinue={setupStepReady(current, data, live)} isSubmitting={busy} optional={current.optional} onSkip={next}>
+    onBack={back} onContinue={next} canContinue={setupStepReady(current, data, live)} {...accountActions} optional={current.optional} onSkip={next}>
     {alerts}<ProductSetupFields key={`${current.id}:${data.education_stage || ''}`} step={current} data={data} updateData={updateData} live={live} />
   </OnboardingLayout>;
 }

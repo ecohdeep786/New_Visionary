@@ -31,6 +31,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const searchInput = useRef(null);
   const openSearch = () => { searchOrigin.current = document.activeElement; setSearchError(''); setSearchOpen(true); };
   const { user, logout } = useAuth();
+  const globalSignOut = user?.auth_features?.global_sign_out === true;
   const navigate = useNavigate();
   const student = useStudentData();
   const { data: workspaceData, ctx } = useWorkspace();
@@ -88,7 +89,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <DropdownMenuItem onSelect={() => navigate('/dashboard/privacy')} className="workspace-account-item gap-3"><ShieldCheck aria-hidden="true" />{t("privacyConsent")}</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/support')} className="workspace-account-item gap-3"><HelpCircle aria-hidden="true" />{t("support")}</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={async () => { try { await logout(); navigate("/login", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />{t("signOut")}</DropdownMenuItem>
+        <DropdownMenuItem onSelect={async () => { try { await logout({ allDevices: globalSignOut }); navigate("/login", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />{globalSignOut ? 'Sign out on all devices' : t('signOut')}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
     <Dialog open={searchOpen} onOpenChange={setSearchOpen}>

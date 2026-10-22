@@ -14,6 +14,7 @@ import {
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useAuth } from "@/lib/AuthContext";
 import { authErrorMessage, isCredentialError } from '@/lib/authErrors';
+import { signInMethods } from '@/api/firebase/signInMethods';
 
 export default function Login() {
   const { user, isAuthenticated, isLoadingAuth, checkUserAuth, signInViaEmailPassword, confirmPhoneSignIn, authError } = useAuth();
@@ -31,7 +32,7 @@ export default function Login() {
   // Real mobile sign-in rides on Firebase phone verification. The option stays
   // hidden until both the connected identity source and the environment enable
   // it; preview builds and the local demo never show a dead choice.
-  const phoneEnabled = base44.auth.source === 'firebase' && import.meta.env?.VITE_ENABLE_PHONE_SIGNIN === '1';
+  const phoneEnabled = signInMethods.mobile && base44.auth.source === 'firebase' && import.meta.env?.VITE_ENABLE_PHONE_SIGNIN === '1';
 
   if (isLoadingAuth) {
     return (
@@ -153,7 +154,7 @@ export default function Login() {
 
   const layoutProps = isPasswordView
     ? {
-        title: "Welcome",
+        title: "Enter your password",
         supportingText: null,
         accountInfo: email,
         footer: (
@@ -164,8 +165,8 @@ export default function Login() {
         ),
       }
     : {
-        title: "Sign in",
-        supportingText: "Use your Visionary Account",
+        title: "Sign in to Visionary",
+        supportingText: "Continue with Google, or use your email and password. Your sign-in is remembered on this browser; sign out on shared devices.",
         accountInfo: null,
         footer: (
           <>
@@ -189,6 +190,10 @@ export default function Login() {
             <button type="button" onClick={() => { setError(""); setView("email"); }} className={phoneEnabled ? outlineBtnClass : primaryBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
+            {!phoneEnabled && <button type="button" disabled={!signInMethods.mobile} aria-describedby="mobile-unavailable" className={`${outlineBtnClass} disabled:opacity-50 disabled:cursor-not-allowed`}>
+              <Phone className="w-4 h-4" /> Mobile sign-in unavailable
+            </button>}
+            {!phoneEnabled && <p id="mobile-unavailable" className="text-xs text-[#6e6e73] text-center">Mobile number sign-in is unavailable. Use another method below or email above.</p>}
             <AuthDivider />
             <SocialAuthButtons />
             {(error || authError) && <p role="alert" className="text-sm text-[#e30000]">{error || authError.message}</p>}

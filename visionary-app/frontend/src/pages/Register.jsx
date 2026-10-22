@@ -3,18 +3,19 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
-import { Mail, AlertCircle } from "lucide-react";
+import { Mail, Phone, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
 import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
 import {
-  primaryBtnClass, primaryBtnAutoClass,
+  primaryBtnClass, primaryBtnAutoClass, outlineBtnClass,
   Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow,
 } from "@/components/auth/AuthUI";
 import { useAuth } from "@/lib/AuthContext";
 import { toast } from "@/components/ui/use-toast";
 import { authErrorMessage } from '@/lib/authErrors';
+import { signInMethods } from '@/api/firebase/signInMethods';
 
 export default function Register() {
   const { user, isAuthenticated, isLoadingAuth, checkUserAuth, authError } = useAuth();
@@ -161,6 +162,10 @@ export default function Register() {
             <button type="button" onClick={() => { setError(""); setView("email"); }} className={primaryBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
+            <button type="button" disabled={!signInMethods.mobile} aria-describedby="mobile-unavailable" className={`${outlineBtnClass} disabled:opacity-50 disabled:cursor-not-allowed`}>
+              <Phone className="w-4 h-4" /> Mobile sign-in unavailable
+            </button>
+            <p id="mobile-unavailable" className="text-xs text-[#6e6e73] text-center">Mobile number sign-in is unavailable. Use another method below or email above.</p>
             <AuthDivider />
             <SocialAuthButtons />
             {(error || authError) && <p role="alert" className="text-sm text-[#e30000]">{error || authError.message}</p>}

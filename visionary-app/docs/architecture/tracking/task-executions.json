@@ -89,9 +89,13 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "To Do",
-      "scope": "Preparation only; runtime/matrix implementation has not started. Founder requests retirement of idle checkouts.",
-      "worktree": null,
+      "status": "In Progress",
+      "scope": "Connected coverage candidate independently reviewed for technical compatibility; full real source/version/rights acceptance remains open. Founder defers source discussion on 21 October 2026.",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix",
+      "branch": "codex/codex-kan-29-coverage-matrix",
+      "currentCheckpoint": "99d18b12d8734a52973c63f629ac88cdce2127e8",
+      "currentHandoff": "docs/architecture/delivery/KAN29_CURRENT_PRODUCTION_COMPATIBILITY.md on the KAN-29 branch",
+      "fullFeatureAccepted": false,
       "preparationBranch": "codex/kan-29-coverage-matrix",
       "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
       "jiraCommentId": "10015",
@@ -458,6 +462,137 @@
       ],
       "fullFeatureAccepted": false,
       "worktree": null
+    },
+    {
+      "sourceId": "SCOPE-07",
+      "jiraKey": "KAN-34",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
+      "status": "Testing",
+      "scope": "Email/Google web sign-in, native Firebase verification links, remembered server-owned sessions, shared account/onboarding, and account-wide Visionary sign-out. Apple removed from web by founder. Device-local learning and linked hosted/provider gates retain their explicit boundaries.",
+      "branch": "codex/codex-kan-34-signin-matrix",
+      "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
+      "implementer": "Codex",
+      "review": {
+        "state": "approved-source-and-two-stage-release-procedure",
+        "reviewer": "/root/kan34_release_review",
+        "exactReviewedCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+        "report": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
+        "reportCommit": "a333955c8a35e1fa1072610d3e5e640321dad7d4",
+        "independentAuthAndGcpTests": 65,
+        "independentRenderLint": true,
+        "compiledBrowserReceiptsInspected": 14,
+        "fullFeatureAccepted": false,
+        "hostedAcceptancePending": true
+      },
+      "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+      "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/17",
+      "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39820287068",
+      "sourceCiConclusion": "success",
+      "handoff": "docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md",
+      "jiraResumeCommentId": "10122",
+      "checks": {
+        "backendBuild": true,
+        "backendTests": 104,
+        "frontendTests": 617,
+        "scriptTests": 18,
+        "gcpJavascriptTests": 26,
+        "rootCheck": true,
+        "rootCheckEvidence": "Local root check at d3b3ba32; final445 import repair separately linted/rebuilt, all14 compiled browser cases pass, and final445 GitHub CI reruns full root check.",
+        "lint": true,
+        "typecheck": true,
+        "firebaseModeBuild": true,
+        "finalFirebaseBuildSeconds": 28.17,
+        "compiledBrowserScenarios": 14,
+        "compiledBrowserEnvironment": "Fictional identity/store, compiled frontend and Nest service. Four methods, six onboarding recovery, two enabled global-logout device cases and two disabled compatibility-stage local-logout cases.",
+        "realProviderAcceptance": false,
+        "failed": 0
+      },
+      "hostedAcceptance": false,
+      "fullFeatureAccepted": false,
+      "liveContinuation": {
+        "date": "2026-10-22",
+        "localRealFirebaseGoogle": true,
+        "canonicalProductionGoogle": true,
+        "existingProductionCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+        "localhostDomainAddedAndReadBack": true,
+        "productionDomainsPreserved": true,
+        "signInProviderConfigurationUnchanged": true,
+        "realVerificationMailReceived": true,
+        "realVerifiedEmailSession": true,
+        "realResetMailReceived": true,
+        "passwordResetCompleted": true,
+        "appleConfigured": false,
+        "appleRealSignIn": false,
+        "onboardingAccountRecoveryRepaired": true,
+        "compiledRecoveryScenarios": 6,
+        "repairReview": "pending",
+        "founderReleaseChoices": {
+          "appleWeb": "removed-by-explicit-founder-instruction",
+          "emailVerification": "firebase-native-links-explicitly-selected",
+          "customSender": false,
+          "numericCodeImplemented": false
+        },
+        "rememberedDeviceCandidate": {
+          "absoluteDays": 14,
+          "idleDays": 7,
+          "authority": "server-verified-HttpOnly-cookie-plus-device-record",
+          "sdkTokenPersistence": "memory-only",
+          "deployed": false,
+          "globalLogout": true,
+          "passiveVisibleObservationSeconds": 30,
+          "passiveObservationTouchesIdle": false
+        },
+        "firebaseTemplates": {
+          "status": "prepared-not-applied",
+          "api": "EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED",
+          "consoleSenderSubjectSave": "rejected-project-updates-unavailable",
+          "senderDomain": "visionary.org.in",
+          "senderDomainStatus": "IN_PROGRESS",
+          "configuration": "infrastructure/gcp/auth-email-templates.json"
+        },
+        "resetEvidence": {
+          "mailDelivered": true,
+          "resetFormOpened": true,
+          "oldPasswordRejectedAfterHandoff": true,
+          "preResetSessionDenied": true,
+          "newPasswordSignInObserved": true,
+          "sourceCommit": "d87ea72e9cbc4b88a701718231ac7e5a1b786665"
+        },
+        "currentCandidateNativeEmail": {
+          "sourceCommit": "10f1f95646b21b64a72fcef9acac36e1b37186e1",
+          "realSignIn": true,
+          "savedOnboardingRestored": true,
+          "reloadRestored": true,
+          "globalLogoutFirestoreVersionBefore": 0,
+          "globalLogoutFirestoreVersionAfter": 1,
+          "globalCutoffRecorded": true,
+          "issuerReturnedToSignIn": true,
+          "fixtureDisabledAfterVerification": true,
+          "fixtureTokensRevokedAfterVerification": true,
+          "originalAccountChanged": false,
+          "hostedCandidate": false
+        },
+        "mailDomainLatestRead": {
+          "pendingCustomDomain": "visionary.org.in",
+          "customDomainState": "IN_PROGRESS",
+          "domainVerificationRequestTime": "2026-10-22T16:44:51.371Z",
+          "templateEditsApplied": false
+        }
+      },
+      "integration": {
+        "remotePublished": false,
+        "commit": null
+      },
+      "synchronizedDevCommit": "37934ceef147834c7da48f3a6e154b3a8cd794fc",
+      "sourceCiCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+      "releasePlan": {
+        "procedure": "two-stage-main-only-compatibility-rollout",
+        "firstDeploymentGlobalSignOut": false,
+        "activationRequiresVerifiedPolicyAwareFallback": true,
+        "epochEnforcementAlwaysEnabled": true,
+        "deployed": false
+      }
     }
   ]
 }

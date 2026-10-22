@@ -18,12 +18,117 @@ function fixture() {
   const identity = { uid: 'fixture-adult', email: 'adult@example.test', email_verified: true, auth_time: Math.floor(Date.now() / 1000), firebase: { sign_in_provider: 'password' } };
   let revoked = false;
   const auth = { verifyIdToken: async () => identity, createSessionCookie: async () => 'fictional-cookie', verifySessionCookie: async () => { if (revoked) throw { code: 'auth/session-cookie-revoked' }; return identity; } };
-  const service = new FirebaseProductService({ getAuth: () => auth }, new ConfigService({ AUTH_RATE_LIMIT_KEY: 'fixture-only-rate-key-that-is-long-enough' }));
+  const service = new FirebaseProductService({ getAuth: () => auth }, new ConfigService({ AUTH_GLOBAL_LOGOUT_ENABLED: 'true', AUTH_RATE_LIMIT_KEY: 'fixture-only-rate-key-that-is-long-enough' }));
   service.db = () => db;
   return { service, rows, identity, auth, revoke: () => { revoked = true; }, db };
 }
 const setup = { full_name: 'Fixture Adult', identity: 'student', education_stage: 'higher_ed', age_band: 'adult', subjects: ['Mathematics'], institution_type: 'college', degree_program: 'B.Sc', department: 'Mathematics', semester: 'Semester 1', career_goal: 'research' };
 const metadata = { ip: '127.0.0.1', userAgent: 'Fixture browser' };
+
+test('compatibility rollout disables new revocations while continuing to reject revoked sessions and tokens', async t => {
+  let now = Date.now(); t.mock.method(Date, 'now', () => now);
+  const f = fixture(), a = await f.service.signIn('fixture-token', metadata), b = await f.service.signIn('fixture-token', metadata);
+  assert.equal(a.profile.auth_features.global_sign_out, true);
+  await f.service.logoutAll(a.cookie, a.device, f.identity.uid, metadata);
+  let currentFlag;
+  const get = f.service.config.get.bind(f.service.config);
+  t.mock.method(f.service.config, 'get', key => key === 'AUTH_GLOBAL_LOGOUT_ENABLED' ? currentFlag : get(key));
+  for (const flag of [undefined, null, false, 'false', 'TRUE']) {
+    currentFlag = flag;
+    const before = JSON.stringify([...f.rows]);
+    await assert.rejects(f.service.logoutAll(b.cookie, b.device, f.identity.uid, metadata), e => e.getStatus() === 503);
+    assert.equal(JSON.stringify([...f.rows]), before);
+    assert.equal((await f.service.me(f.identity.uid)).auth_features.global_sign_out, false);
+    await assert.rejects(f.service.authenticate(b.cookie, b.device, false), e => e.getStatus() === 401);
+    await assert.rejects(f.service.signIn('stale-token', metadata), e => e.getStatus() === 401);
+  }
+  now += 2000; f.identity.auth_time = Math.floor(now / 1000);
+  const fresh = await f.service.signIn('fresh-token', metadata);
+  assert.equal(fresh.profile.auth_features.global_sign_out, false);
+  assert.equal((await f.service.authenticate(fresh.cookie, fresh.device, false)).authSessionVersion, 1);
+});
+
+test('global sign-out revokes every device, rejects token replay, and preserves the shared completed profile', async t => {
+  let now = Date.now(); t.mock.method(Date, 'now', () => now);
+  const f = fixture(), a = await f.service.signIn('fixture-token', metadata), b = await f.service.signIn('fixture-token', metadata);
+  await f.service.completeOnboarding(f.identity.uid, setup);
+  await f.service.logoutAll(a.cookie, a.device, f.identity.uid, metadata);
+  for (const session of [a, b]) await assert.rejects(f.service.authenticate(session.cookie, session.device, false), e => e.getStatus() === 401);
+  await assert.rejects(f.service.updateProfile(f.identity.uid, { full_name: 'Late old-device edit' }, 0), e => e.getStatus() === 401);
+  await assert.rejects(f.service.completeOnboarding(f.identity.uid, setup, 0), e => e.getStatus() === 401);
+  await assert.rejects(f.service.completeIntroduction(f.identity.uid, {}, 0), e => e.getStatus() === 401);
+  await assert.rejects(f.service.signIn('stale-token', metadata), e => e.getStatus() === 401);
+  const root = `visionary_accounts/${f.identity.uid}`, cutoff = f.rows.get(root).lastGlobalSignOutSecond;
+  now += 2000;
+  f.identity.auth_time = cutoff + 1;
+  const fresh = await f.service.signIn('new-login-token', metadata);
+  assert.equal(fresh.profile.onboarding_complete, true);
+  assert.equal(fresh.profile.full_name, setup.full_name);
+  assert.equal((await f.service.authenticate(fresh.cookie, fresh.device)).authSessionVersion, 1);
+  // A lost-response retry cannot revoke a subsequently created session.
+  await f.service.logoutAll(a.cookie, a.device, f.identity.uid, metadata);
+  assert.equal(f.rows.get(root).authSessionVersion, 1);
+  assert.equal((await f.service.authenticate(fresh.cookie, fresh.device, false)).uid, f.identity.uid);
+  assert.equal([...f.rows].filter(([key, row]) => key.startsWith('visionary_auth_events/') && row.type === 'sign_out_all').length, 1);
+});
+
+test('a future-dated preexisting token cannot cross the global sign-out cutoff', async () => {
+  const f = fixture(), a = await f.service.signIn('fixture-token', metadata);
+  f.identity.auth_time = Math.floor(Date.now() / 1000) + 30;
+  await assert.rejects(f.service.signIn('future-token', metadata), e => e.getStatus() === 401);
+  await f.service.logoutAll(a.cookie, a.device, f.identity.uid, metadata);
+  await assert.rejects(f.service.signIn('future-token', metadata), e => e.getStatus() === 401);
+});
+
+test('retired-device retries cannot throttle a fresh device global sign-out or sign-in', async t => {
+  let now = Date.now(); t.mock.method(Date, 'now', () => now);
+  const f = fixture(), old = await f.service.signIn('fixture-token', metadata);
+  await f.service.logoutAll(old.cookie, old.device, f.identity.uid, metadata);
+  for (let attempt = 0; attempt < 12; attempt++) {
+    await assert.rejects(f.service.signIn('old-token', metadata), e => e.getStatus() === 401);
+    try { await f.service.logoutAll(old.cookie, old.device, f.identity.uid, metadata); }
+    catch (error) { assert.equal(error.getStatus(), 429); }
+  }
+  now += 2000; f.identity.auth_time = Math.floor(now / 1000);
+  const fresh = await f.service.signIn('fresh-token', metadata);
+  await f.service.logoutAll(fresh.cookie, fresh.device, f.identity.uid, metadata);
+  assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).authSessionVersion, 2);
+});
+
+test('global sign-out requires cookie, device and account ownership and leaves another UID intact', async () => {
+  const f = fixture(), a = await f.service.signIn('fixture-token', metadata), uid = f.identity.uid;
+  await assert.rejects(f.service.logoutAll('wrong-cookie', a.device, uid, metadata), e => e.getStatus() === 401);
+  await assert.rejects(f.service.logoutAll(a.cookie, a.device, 'foreign-account', metadata), e => e.getStatus() === 409);
+  f.identity.uid = 'separate-user';
+  const other = await f.service.signIn('other-token', metadata);
+  f.identity.uid = uid;
+  await f.service.logoutAll(a.cookie, a.device, uid, metadata);
+  f.identity.uid = 'separate-user';
+  assert.equal((await f.service.authenticate(other.cookie, other.device)).uid, f.identity.uid);
+  assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).authSessionVersion, undefined);
+});
+
+test('legacy sessions work before revocation but missing or malformed epochs cannot bypass it', async () => {
+  const f = fixture(), a = await f.service.signIn('fixture-token', metadata), key = `visionary_auth_sessions/${hash(a.device)}`;
+  delete f.rows.get(key).authSessionVersion;
+  assert.equal((await f.service.authenticate(a.cookie, a.device, false)).authSessionVersion, 0);
+  await f.service.logoutAll(a.cookie, a.device, f.identity.uid, metadata);
+  const account = f.rows.get(`visionary_accounts/${f.identity.uid}`);
+  delete f.rows.get(key).revokedAt;
+  await assert.rejects(f.service.authenticate(a.cookie, a.device), e => e.getStatus() === 401);
+  for (const value of [undefined, null, NaN, '1', -1, Infinity]) {
+    account.authSessionVersion = value;
+    await assert.rejects(f.service.authenticate(a.cookie, a.device), e => e.getStatus() === 401);
+    await assert.rejects(f.service.signIn('token', metadata), e => e.getStatus() === 401);
+  }
+});
+
+test('passive device checks perform no writes and never extend inactivity', async () => {
+  const f = fixture(), a = await f.service.signIn('fixture-token', metadata);
+  const before = structuredClone([...f.rows]);
+  await f.service.authenticate(a.cookie, a.device, false);
+  assert.deepEqual([...f.rows], before);
+});
 
 test('same-named users keep separate UIDs while independent device sessions and onboarding share one account', async () => {
   const f = fixture(); f.identity.name = 'Same name';
@@ -149,7 +254,7 @@ test('cookie/device binding, idle timeout, revoked identity and logout reject se
   const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
   assert.equal((await f.service.authenticate(session.cookie, session.device)).uid, 'fixture-adult');
   await assert.rejects(f.service.authenticate('another-cookie', session.device), e => e.getStatus() === 401);
-  const ref = `visionary_auth_sessions/${hash(session.device)}`, record = f.rows.get(ref); record.lastSeen = Date.now() - 1800001;
+  const ref = `visionary_auth_sessions/${hash(session.device)}`, record = f.rows.get(ref); record.lastSeen = Date.now() - 7 * 86400000 - 1;
   await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
   record.lastSeen = Date.now(); f.revoke(); await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
   await assert.rejects(f.service.logout(session.device, 'another-account'), e => e.getStatus() === 409);
@@ -168,13 +273,42 @@ test('absolute expiry and mismatched UID reject a retained session record', asyn
   await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
 });
 
+test('returning devices remain signed in across days with bounded cookies and no sliding absolute expiry', async () => {
+  const f = fixture(); let requestedLifetime;
+  f.auth.createSessionCookie = async (_token, options) => { requestedLifetime = options.expiresIn; return 'fictional-cookie'; };
+  const session = await f.service.signIn('fixture-token', metadata);
+  assert.equal(requestedLifetime, 14 * 86400000);
+  assert.equal(session.expiresIn, requestedLifetime);
+  const key = `visionary_auth_sessions/${hash(session.device)}`;
+  const record = f.rows.get(key), originalExpiry = record.expires;
+  record.lastSeen = Date.now() - 6 * 86400000;
+  assert.equal((await f.service.authenticate(session.cookie, session.device)).uid, f.identity.uid);
+  assert.equal(f.rows.get(key).expires, originalExpiry, 'Visits must not extend absolute expiry');
+  assert.ok(Date.now() - f.rows.get(key).lastSeen < 1000);
+  const second = await f.service.signIn('fixture-token', metadata);
+  await f.service.logout(session.device, f.identity.uid);
+  await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
+  assert.equal((await f.service.authenticate(second.cookie, second.device)).uid, f.identity.uid);
+});
+
+test('malformed expiry and future activity cannot create a cached authentication bypass', async () => {
+  const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
+  const key = `visionary_auth_sessions/${hash(session.device)}`, saved = { ...f.rows.get(key) };
+  for (const expires of [undefined, null, NaN, Infinity, '9999999999999']) {
+    f.rows.set(key, { ...saved, expires });
+    await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
+  }
+  f.rows.set(key, { ...saved, lastSeen: Date.now() + 120000 });
+  await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
+});
+
 test('billing observation validates expiry without extending the device idle window', async () => {
   const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
   const record = f.rows.get(`visionary_auth_sessions/${hash(session.device)}`); record.lastSeen = Date.now() - 10000;
   const previous = record.lastSeen;
   await f.service.authenticate(session.cookie, session.device, false);
   assert.equal(f.rows.get(`visionary_auth_sessions/${hash(session.device)}`).lastSeen, previous);
-  record.lastSeen = Date.now() - 1800001;
+  record.lastSeen = Date.now() - 7 * 86400000 - 1;
   await assert.rejects(f.service.authenticate(session.cookie, session.device, false), error => error.getStatus() === 401);
 });
 test('repeated sign-in rotates only the proven current device and retains account/history', async () => {
@@ -247,6 +381,10 @@ test('HTTP boundary requires exact origin and CSRF, and issues HttpOnly bound co
     assert.equal((await login.json()).onboarding_complete, false);
     const cookie = issued.map(c => c.split(';')[0]).join('; ');
     const me = await fetch(`${url}/api/auth/me`, { headers: { Cookie: cookie } }); assert.equal(me.status, 200); assert.equal((await me.json()).id, 'fixture-adult');
+    const beforePassive = structuredClone([...f.rows]);
+    const passive = await fetch(`${url}/api/auth/me?passive=1`, { headers: { Cookie: cookie } });
+    assert.equal(passive.status, 200); assert.equal(passive.headers.getSetCookie().length, 0); assert.deepEqual([...f.rows], beforePassive);
+    assert.equal((await fetch(`${url}/api/auth/me?passive=invalid`, { headers: { Cookie: cookie } })).status, 400);
     const update = await fetch(`${url}/api/auth/onboarding`, { method: 'POST', headers: { Origin: 'http://localhost:5173', Cookie: `${cookie}; ${cookies}`, 'X-CSRF-Token': csrf.token, 'X-Visionary-Account': 'another-account', 'Content-Type': 'application/json' }, body: JSON.stringify(setup) });
     assert.equal(update.status, 409); assert.equal((await f.service.me('fixture-adult')).onboarding_complete, false);
     const commandHeaders = { Origin: 'http://localhost:5173', Cookie: `${cookie}; ${cookies}`, 'X-CSRF-Token': csrf.token, 'X-Visionary-Account': 'fixture-adult', 'Content-Type': 'application/json' };
@@ -257,9 +395,13 @@ test('HTTP boundary requires exact origin and CSRF, and issues HttpOnly bound co
     assert.equal((await fetch(introPath, { method: 'POST', headers: { ...commandHeaders, 'X-Visionary-Account': 'other' }, body: '{}' })).status, 409);
     const acknowledged = await fetch(introPath, { method: 'POST', headers: commandHeaders, body: '{}' });
     assert.equal(acknowledged.status, 201); assert.equal((await acknowledged.json()).getting_started_complete, true);
-    const logout = await fetch(`${url}/api/auth/logout`, { method: 'POST', headers: commandHeaders });
+    const otherDevice = await f.service.signIn('fixture-token', metadata);
+    assert.equal((await fetch(`${url}/api/auth/logout-all`, { method: 'POST', headers: { ...commandHeaders, Origin: 'https://attacker.test' } })).status, 403);
+    assert.equal((await fetch(`${url}/api/auth/logout-all`, { method: 'POST', headers: { ...commandHeaders, 'X-Visionary-Account': 'other' } })).status, 409);
+    const logout = await fetch(`${url}/api/auth/logout-all`, { method: 'POST', headers: commandHeaders });
     assert.equal(logout.status, 201);
     assert.equal((await fetch(`${url}/api/auth/me`, { headers: { Cookie: cookie } })).status, 401);
+    await assert.rejects(f.service.authenticate(otherDevice.cookie, otherDevice.device), e => e.getStatus() === 401);
     assert.equal((await f.service.me('fixture-adult')).onboarding_complete, true);
   } finally { await app.close(); }
 });

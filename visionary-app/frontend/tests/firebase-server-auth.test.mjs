@@ -7,6 +7,51 @@ const user = { emailVerified: true, getIdToken: async () => 'fictional-id-token'
 const first = { id: 'fixture-a', onboarding_complete: false }, complete = { ...first, onboarding_complete: true };
 const fixture = request => createServerAuth({ request, identity: { login: async () => user, register: async () => user, provider: async () => user, sendVerification: async () => {}, logout: async () => {}, reloadCurrent: async () => user } });
 
+test('passive observation survives an outage but clears a server-revoked session', async () => {
+  let status = 0; const paths = [];
+  const auth = fixture(async path => { paths.push(path); if (status) throw Object.assign(new Error('Fixture failure'), { status }); return complete; });
+  await auth.me(); status = 503;
+  await assert.rejects(auth.me({ passive: true }), e => e.status === 503);
+  assert.equal(auth.currentProfile(), complete);
+  status = 401;
+  await assert.rejects(auth.me({ passive: true }), e => e.status === 401);
+  assert.equal(auth.currentProfile(), null);
+  assert.deepEqual(paths, ['/me', '/me?passive=1', '/me?passive=1']);
+});
+
+test('a delayed passive rejection cannot erase a newly authenticated account', async () => {
+  let rejectOld;
+  const auth = fixture(path => path === '/me?passive=1' ? new Promise((_, reject) => { rejectOld = reject; }) : Promise.resolve(complete));
+  await auth.me(); const old = auth.me({ passive: true });
+  await auth.loginViaEmailPassword('fixture@example.test', 'fixture-only');
+  rejectOld(Object.assign(new Error('Old revoked session'), { status: 401 }));
+  await assert.rejects(old); assert.equal(auth.currentProfile(), complete);
+});
+
+test('all-device sign-out coalesces duplicate clicks and never falls back to local logout', async () => {
+  const paths = []; let finish;
+  const auth = fixture(path => { paths.push(path); return path === '/logout-all' ? new Promise(resolve => { finish = resolve; }) : Promise.resolve(complete); });
+  await auth.me(); const a = auth.logout({ allDevices: true }), b = auth.logout({ allDevices: true });
+  assert.equal(a, b);
+  await assert.rejects(auth.loginViaEmailPassword('fixture@example.test', 'fixture-only'), e => e.code === 'auth/operation-in-progress');
+  finish({ ok: true }); await a;
+  assert.deepEqual(paths, ['/me', '/logout-all']); assert.equal(auth.currentProfile(), null);
+});
+
+test('failed all-device sign-out preserves the account for retry', async () => {
+  const auth = fixture(async path => { if (path === '/logout-all') throw Object.assign(new Error('Unavailable'), { status: 503 }); return complete; });
+  await auth.me(); await assert.rejects(auth.logout({ allDevices: true }), e => e.status === 503);
+  assert.equal(auth.currentProfile(), complete);
+});
+
+test('a pending local sign-out cannot be reported as successful all-device sign-out', async () => {
+  let finish; const paths = [];
+  const auth = fixture(path => { paths.push(path); return path === '/logout' ? new Promise(resolve => { finish = resolve; }) : Promise.resolve(complete); });
+  await auth.me(); const local = auth.logout();
+  await assert.rejects(auth.logout({ allDevices: true }), e => e.code === 'auth/operation-in-progress');
+  finish({ ok: true }); await local; assert.deepEqual(paths, ['/me', '/logout']);
+});
+
 test('overlapping authority reads share one request without treating focus as an account change', async () => {
   let resolve, calls=0;
   const auth=fixture(()=>{calls++;return new Promise(done=>{resolve=done;});});

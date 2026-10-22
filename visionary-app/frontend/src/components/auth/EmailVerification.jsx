@@ -20,7 +20,7 @@ export default function EmailVerification({ email, onVerified, initialMessage = 
     finally { pending.current = false; setBusy(false); }
   };
   return <div className="flex flex-col gap-6" aria-busy={busy}>
-    <h2 className="text-2xl font-normal">Verify your email</h2>
+    <h2 className="text-2xl font-normal">Confirm your email address</h2>
     <p className="text-sm text-[#6e6e73]">Check {email} for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification.</p>
     {message && <p role="status" className="text-sm">{message}</p>}
     <button className={primaryBtnAutoClass} disabled={busy} onClick={() => act(true)}>{busy ? <Spinner /> : 'I verified my email'}</button>

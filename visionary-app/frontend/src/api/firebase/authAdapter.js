@@ -1,8 +1,9 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, confirmPasswordReset, verifyPasswordResetCode, applyActionCode, validatePassword, reload, signOut, signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, confirmPasswordReset, verifyPasswordResetCode, applyActionCode, validatePassword, reload, signOut, signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier, GoogleAuthProvider } from 'firebase/auth';
 import { getFirebaseAuthClient } from './client.js';
 import { createServerAuth } from './serverAuth.js';
 import { authFlowError, passwordRequirements } from '../../lib/authErrors.js';
 import { createAuthTransport } from './authTransport.js';
+import { popupProviderId } from './signInMethods.js';
 
 export const firebaseAuthEnabled = import.meta.env?.VITE_AUTH_MODE === 'firebase';
 const pendingVerificationTimes = new Map();
@@ -19,9 +20,8 @@ const identity = {
     pendingVerificationTimes.set(user.uid, Date.now());
   },
   async provider(name) {
-    const provider = name === 'google' ? new GoogleAuthProvider() : name === 'apple' ? new OAuthProvider('apple.com') : name === 'microsoft' ? new OAuthProvider('microsoft.com') : null;
-    if (!provider) throw new Error('This provider needs an organization connection before it can be used.');
-    if (name === 'apple') provider.addScope('email');
+    popupProviderId(name);
+    const provider = new GoogleAuthProvider();
     return (await signInWithPopup(getFirebaseAuthClient(), provider)).user;
   },
   // Phone sign-in starts a two-step exchange: send the SMS code, confirm it, and

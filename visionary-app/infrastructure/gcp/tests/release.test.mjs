@@ -1,23 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { production, trustedRun, releaseEnvironment, environmentFlag, verifyRevision, deployRelease, baselineRelease, command, probe, currentRevision } from '../release.mjs';
+import { production, trustedRun, releaseEnvironment, environmentFlag, verifyRevision, deployRelease, baselineRelease, command, probe, currentRevision, revisionAuthPolicy, releaseDeployArgs } from '../release.mjs';
 
 const commit = 'a'.repeat(40), previousCommit = 'b'.repeat(40);
 const revision = production.service + '-g' + commit.slice(0, 12) + '-1-1', previous = production.service + '-previous';
 const image = production.image + '@sha256:' + 'c'.repeat(64);
 const run = { GITHUB_REPOSITORY: 'ecohdeep786/New_Visionary', GITHUB_REF: 'refs/heads/main', GITHUB_EVENT_NAME: 'push', GITHUB_WORKFLOW_REF: 'ecohdeep786/New_Visionary/.github/workflows/production.yml@refs/heads/main', GITHUB_SHA: commit, GITHUB_RUN_ID: '1', GITHUB_RUN_ATTEMPT: '1' };
-function compatible(source = previousCommit) {
-  return { metadata: { annotations: { 'autoscaling.knative.dev/maxScale': '1', 'run.googleapis.com/cpu-throttling': 'true', 'run.googleapis.com/startup-cpu-boost': 'false', 'run.googleapis.com/execution-environment': 'gen2' } }, spec: { serviceAccountName: production.runtime, containerConcurrency: 20, timeoutSeconds: 30, containers: [{ image, resources: { limits: { cpu: '1', memory: '512Mi' } }, env: Object.entries({ ...releaseEnvironment(source), AUTH_RATE_LIMIT_KEY: undefined }).filter(([, value]) => value !== undefined).map(([name, value]) => ({ name, value })).concat([{ name: 'AUTH_RATE_LIMIT_KEY', valueFrom: { secretKeyRef: { name: production.secret, key: '1' } } }]) }] } };
+function compatible(source = previousCommit, enabled = false) {
+  return { metadata: { annotations: { 'autoscaling.knative.dev/maxScale': '1', 'run.googleapis.com/cpu-throttling': 'true', 'run.googleapis.com/startup-cpu-boost': 'false', 'run.googleapis.com/execution-environment': 'gen2' } }, spec: { serviceAccountName: production.runtime, containerConcurrency: 20, timeoutSeconds: 30, containers: [{ image, resources: { limits: { cpu: '1', memory: '512Mi' } }, env: Object.entries({ ...releaseEnvironment(source, enabled), AUTH_RATE_LIMIT_KEY: undefined }).filter(([, value]) => value !== undefined).map(([name, value]) => ({ name, value })).concat([{ name: 'AUTH_RATE_LIMIT_KEY', valueFrom: { secretKeyRef: { name: production.secret, key: '1' } } }]) }] } };
 }
 function fixture(overrides = {}) {
   const calls = []; let current = previous;
   const options = { commit, revision, image,
     readService: async () => ({ metadata: { annotations: { 'run.googleapis.com/ingress': 'internal-and-cloud-load-balancing', 'run.googleapis.com/maxScale': '1' } }, status: { traffic: [{ revisionName: current, percent: 100 }] } }),
-    readRevision: async name => compatible(name === previous ? previousCommit : commit),
+    readRevision: async name => compatible(name === previous ? previousCommit : commit, name !== previous),
     ancestor: async () => true, assertCurrentMain: async () => { calls.push('main'); },
     deploy: async () => { calls.push('deploy'); },
     moveTraffic: async name => { calls.push('traffic:' + name); current = name; },
-    candidateProbe: async () => { calls.push('candidate'); },
+    baselineProbe: async () => ({ authPolicy: { version: 1, globalSignOut: false } }),
+    candidateProbe: async () => { calls.push('candidate'); return { authPolicy: { version: 1, globalSignOut: true } }; },
     canonicalChecks: async sha => { calls.push('check:' + (sha || commit)); }, wait: async () => {},
     ...overrides,
   };
@@ -41,6 +42,77 @@ test('candidate is checked without moving traffic, then main is rechecked before
   const f = fixture(), receipt = await deployRelease(f.options);
   assert.deepEqual(f.calls, ['main', 'deploy', 'candidate', 'main', 'traffic:' + revision, 'check:' + commit]);
   assert.equal(receipt.previous, previous); assert.equal(receipt.previousCommit, previousCommit); assert.equal(receipt.verified, true);
+});
+
+test('legacy rollback target forces compatibility stage with global sign-out disabled', async () => {
+  const old = compatible();
+  old.spec.containers[0].env = old.spec.containers[0].env.filter(row => !['AUTH_SESSION_POLICY_VERSION', 'AUTH_GLOBAL_LOGOUT_ENABLED'].includes(row.name));
+  const f = fixture({
+    readRevision: async name => name === previous ? old : compatible(commit, false),
+    baselineProbe: async () => ({ status: 'ok' }),
+    deploy: async flags => assert.equal(flags.globalSignOut, false),
+    candidateProbe: async () => ({ authPolicy: { version: 1, globalSignOut: false } }),
+  });
+  const result = await deployRelease(f.options);
+  assert.deepEqual(result.previousAuthPolicy, { version: 0, globalSignOut: false });
+  assert.deepEqual(result.authPolicy, { version: 1, globalSignOut: false });
+});
+
+test('feature activation has a policy-aware disabled rollback and verifies its state on fallback', async () => {
+  const f = fixture({ canonicalChecks: async (sha, policy) => {
+    if (!sha) { assert.deepEqual(policy, { version: 1, globalSignOut: true }); throw Error('failed after activation'); }
+    assert.equal(sha, previousCommit);
+    assert.deepEqual(policy, { version: 1, globalSignOut: false });
+  } });
+  f.options.deploy = async flags => assert.equal(flags.globalSignOut, true);
+  await assert.rejects(deployRelease(f.options), /failed after activation/);
+  assert.equal(f.getCurrent(), previous);
+});
+
+test('the production CLI command carries the derived rollout policy into pinned GCP environment', async () => {
+  for (const enabled of [false, true]) {
+    const old = compatible();
+    if (!enabled) old.spec.containers[0].env = old.spec.containers[0].env.filter(row => !['AUTH_SESSION_POLICY_VERSION', 'AUTH_GLOBAL_LOGOUT_ENABLED'].includes(row.name));
+    let actual;
+    const f = fixture({
+      readRevision: async name => name === previous ? old : compatible(commit, enabled),
+      baselineProbe: async () => enabled ? { authPolicy: { version: 1, globalSignOut: false } } : {},
+      candidateProbe: async () => ({ authPolicy: { version: 1, globalSignOut: enabled } }),
+      deploy: policy => { actual = releaseDeployArgs({ commit, image, suffix: 'g' + commit.slice(0, 12) + '-1-1', ...policy }); },
+    });
+    await deployRelease(f.options);
+    assert.ok(actual.includes('--image=' + image));
+    assert.ok(actual.includes('--no-traffic'));
+    assert.ok(actual.includes('--ingress=internal-and-cloud-load-balancing'));
+    const environment = actual.find(arg => arg.startsWith('--set-env-vars='));
+    assert.match(environment, /AUTH_SESSION_POLICY_VERSION=1/);
+    assert.match(environment, new RegExp('AUTH_GLOBAL_LOGOUT_ENABLED=' + enabled + '$'));
+  }
+  assert.throws(() => releaseDeployArgs({ commit, image, suffix: 'fixture' }), /explicit rollout policy/);
+});
+
+test('configuration alone cannot attest epoch enforcement or enable revocation', async () => {
+  for (const body of [{}, { authPolicy: { version: 0, globalSignOut: false } }, { authPolicy: { version: 1, globalSignOut: true } }]) {
+    const f = fixture({ baselineProbe: async () => body });
+    await assert.rejects(deployRelease(f.options), /attestation/);
+    assert.equal(f.calls.includes('deploy'), false);
+  }
+  const malformed = compatible();
+  malformed.spec.containers[0].env.find(row => row.name === 'AUTH_GLOBAL_LOGOUT_ENABLED').value = 'TRUE';
+  assert.throws(() => revisionAuthPolicy(malformed), /configuration/);
+  const candidate = fixture({ candidateProbe: async () => ({ authPolicy: { version: 1, globalSignOut: false } }) });
+  await assert.rejects(deployRelease(candidate.options), /attestation/);
+  assert.equal(candidate.getCurrent(), previous);
+  const incorrectEnv = fixture({ readRevision: async name => compatible(name === previous ? previousCommit : commit, false) });
+  await assert.rejects(deployRelease(incorrectEnv.options), /attestation/);
+  assert.equal(incorrectEnv.getCurrent(), previous);
+});
+
+test('traffic changes during baseline attestation stop deployment', async () => {
+  const f = fixture();
+  f.options.baselineProbe = async () => { f.setCurrent('operator-release'); return { authPolicy: { version: 1, globalSignOut: false } }; };
+  await assert.rejects(deployRelease(f.options), /traffic changed/);
+  assert.equal(f.calls.includes('deploy'), false);
 });
 test('unhealthy candidate exhausts bounded retries and never receives product traffic', async () => {
   let probes = 0; const f = fixture({ candidateProbe: async () => { probes++; throw Error('unhealthy'); } });
@@ -85,7 +157,7 @@ test('ambiguous promotion CLI failure rolls back if it actually moved traffic', 
 test('stale main, an operator traffic change or incompatible rollback baseline prevents promotion', async () => {
   const stale = fixture(); let checks = 0; stale.options.assertCurrentMain = async () => { if (++checks === 2) throw Error('stale'); };
   await assert.rejects(deployRelease(stale.options), /stale/); assert.equal(stale.getCurrent(), previous);
-  const operator = fixture(); operator.options.candidateProbe = async () => operator.setCurrent('operator-release');
+  const operator = fixture(); operator.options.candidateProbe = async () => { operator.setCurrent('operator-release'); return { authPolicy: { version: 1, globalSignOut: true } }; };
   await assert.rejects(deployRelease(operator.options), /traffic changed/); assert.equal(operator.getCurrent(), 'operator-release');
   const incompatible = fixture({ readRevision: async () => { const r = compatible(); r.spec.containers[0].env.find(x => x.name === 'AUTH_PUBLIC_ORIGIN').value = 'https://old.run.app'; return r; } });
   await assert.rejects(deployRelease(incompatible.options), /compatible/); assert.equal(incompatible.calls.includes('deploy'), false);
