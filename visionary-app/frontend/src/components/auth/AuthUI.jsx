@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 /* ── Shared classes · CTA law (FAP-42): 44px fill, 17px/-0.011em/500, pill 980, ring #0066cc.
      C1 (FAP-49) — auth joins the one system: the primary submit is the ink pill
      (#1d1d1f, hover #272729, pressed #18181a), replacing FAP-42's commerce fill;
-     outline = ink on line #d2d2d7; error red is #e30000 everywhere in auth ── */
+     outline = ink on line #d2d2d7; error red is #e30000 everywhere in auth.
+     C2 (FAP-50) — onboarding joins the same law: the Continue/Start submits and
+     the getting-started primary ride primaryBtnAutoClass verbatim. ── */
 
 export const primaryBtnClass =
   "w-full h-11 bg-[#1d1d1f] text-white rounded-full text-[17px] font-medium tracking-[-0.011em] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] transition-all duration-200 disabled:opacity-60 disabled:active:scale-100 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";

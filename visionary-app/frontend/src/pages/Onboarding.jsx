@@ -66,7 +66,7 @@ function ProductSetup() {
   }
   if (account?.onboarding_complete && !busy) return <Navigate to={safeReturnTo()} replace />;
   if (phase === 'identity') return <IdentitySelection onContinue={chooseRole} initialRole={data.identity} accountEmail={account?.email} />;
-  const alerts = <>{error && <p role="alert" className="mb-5 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#b3261e]">{error}</p>}{notice && <p role="status" className="mb-5 text-xs leading-6 text-[#5f6368]">{notice}</p>}</>;
+  const alerts = <>{error && <p role="alert" className="mb-5 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#e30000]">{error}</p>}{notice && <p role="status" className="mb-5 text-xs leading-6 text-[#6e6e73]">{notice}</p>}</>;
   if (phase === 'review') {
     const payload = setupPayload(data);
     const rows = [['Using Visionary as', setupRoles[data.identity]], ['Name', data.full_name], ['Age range', data.age_band === 'adult' ? '18 or older' : data.age_band === 'minor' ? 'Under 18' : 'Choose your age range'], ['Learning language', payload.preferred_language],
@@ -77,10 +77,10 @@ function ProductSetup() {
     return <OnboardingLayout title="Ready to start with Visionary?" subtitle="A quick check before we save your preferences to this account." step={total} totalSteps={total} stepLabels={labels} illustration="shield" accountEmail={account?.email}
       onBack={() => { setPhase('flow'); setCurrentStepId(steps.at(-1).id); }} onContinue={finish} canContinue={ready} isSubmitting={busy} continueLabel="Start using Visionary">
       {alerts}
-      <div className="mb-5 flex flex-wrap gap-4"><button type="button" onClick={() => setPhase('identity')} className="min-h-11 text-sm font-medium text-[#0b57d0]">Change role</button><button type="button" onClick={() => { setCurrentStepId('about'); setPhase('flow'); }} className="min-h-11 text-sm font-medium text-[#0b57d0]">Edit details</button></div>
-      <dl className="divide-y divide-[#e3e7ee] text-sm">{rows.map(([label, value]) => <div key={label} className="grid gap-1 py-3 sm:grid-cols-2 sm:gap-4"><dt className="text-[#5f6368]">{label}</dt><dd className="break-words font-medium leading-6">{value}</dd></div>)}</dl>
-      {!ready && <p role="status" className="mt-4 rounded-xl bg-[#fef7e0] p-4 text-sm leading-6">{data.age_band === 'minor' && live ? 'Under-18 setup needs a verified guardian connection. Your account and draft are kept.' : 'A required detail is missing. Select Edit details to finish it.'}</p>}
-      <p className="mt-5 text-xs leading-6 text-[#5f6368]">{live ? 'Your account preferences are saved online. Learning activity is currently saved on this device.' : 'This local preview saves information in your browser. Use fictional details.'} Private activity is never automatically shared.</p>
+      <div className="mb-5 flex flex-wrap gap-4"><button type="button" onClick={() => setPhase('identity')} className="min-h-11 text-sm font-medium text-[#0066cc] hover:underline">Change role</button><button type="button" onClick={() => { setCurrentStepId('about'); setPhase('flow'); }} className="min-h-11 text-sm font-medium text-[#0066cc] hover:underline">Edit details</button></div>
+      <dl className="divide-y divide-[#d2d2d7]/60 text-sm">{rows.map(([label, value]) => <div key={label} className="grid gap-1 py-3 sm:grid-cols-2 sm:gap-4"><dt className="text-[#6e6e73]">{label}</dt><dd className="break-words font-medium leading-6">{value}</dd></div>)}</dl>
+      {!ready && <p role="status" className="mt-4 rounded-xl bg-[#f5f5f7] p-4 text-sm leading-6">{data.age_band === 'minor' && live ? 'Under-18 setup needs a verified guardian connection. Your account and draft are kept.' : 'A required detail is missing. Select Edit details to finish it.'}</p>}
+      <p className="mt-5 text-xs leading-6 text-[#6e6e73]">{live ? 'Your account preferences are saved online. Learning activity is currently saved on this device.' : 'This local preview saves information in your browser. Use fictional details.'} Private activity is never automatically shared.</p>
     </OnboardingLayout>;
   }
   return <OnboardingLayout step={index + 2} totalSteps={total} stepLabels={labels} title={current.title} subtitle={current.subtitle} illustration={current.illustration} accountEmail={account?.email}

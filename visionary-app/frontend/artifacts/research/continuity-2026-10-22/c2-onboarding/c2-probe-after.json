@@ -1,0 +1,275 @@
+{
+  "w1440": {
+    "identity": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "selected": {
+        "border": "rgb(29, 29, 31)",
+        "background": "rgb(245, 245, 247)",
+        "check": "rgb(29, 29, 31)"
+      }
+    },
+    "about": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "fieldHeight": 56
+    },
+    "focus": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {}
+    },
+    "context": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "selectHeight": 56
+    },
+    "review": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "linkColor": "rgb(0, 102, 204)"
+    },
+    "gettingStarted": {
+      "open": true,
+      "cardRadius": "12px",
+      "cardBg": "rgb(255, 255, 255)",
+      "closeControl": "48px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 48,
+      "pillRadius": "9999px",
+      "minFontSize": 12,
+      "offLawColorHits": {}
+    }
+  },
+  "w768": {
+    "identity": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "selected": {
+        "border": "rgb(29, 29, 31)",
+        "background": "rgb(245, 245, 247)",
+        "check": "rgb(29, 29, 31)"
+      }
+    },
+    "about": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "fieldHeight": 56
+    },
+    "focus": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {}
+    },
+    "context": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "selectHeight": 56
+    },
+    "review": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "linkColor": "rgb(0, 102, 204)"
+    },
+    "gettingStarted": {
+      "open": true,
+      "cardRadius": "12px",
+      "cardBg": "rgb(255, 255, 255)",
+      "closeControl": "48px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 48,
+      "pillRadius": "9999px",
+      "minFontSize": 12,
+      "offLawColorHits": {}
+    }
+  },
+  "w390": {
+    "identity": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "selected": {
+        "border": "rgb(29, 29, 31)",
+        "background": "rgb(245, 245, 247)",
+        "check": "rgb(29, 29, 31)"
+      }
+    },
+    "about": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "fieldHeight": 56
+    },
+    "focus": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {}
+    },
+    "context": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "selectHeight": 56
+    },
+    "review": {
+      "canvas": "rgb(245, 245, 247)",
+      "cardBg": "rgb(255, 255, 255)",
+      "cardRadius": "12px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 44,
+      "pillRadius": "9999px",
+      "stepLabelSizes": [
+        "12px"
+      ],
+      "minFontSize": 12,
+      "progressFill": "rgb(29, 29, 31)",
+      "offLawColorHits": {},
+      "linkColor": "rgb(0, 102, 204)"
+    },
+    "gettingStarted": {
+      "open": true,
+      "cardRadius": "12px",
+      "cardBg": "rgb(255, 255, 255)",
+      "closeControl": "48px",
+      "pillBg": "rgb(29, 29, 31)",
+      "pillHeight": 48,
+      "pillRadius": "9999px",
+      "minFontSize": 12,
+      "offLawColorHits": {}
+    }
+  }
+}
