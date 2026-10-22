@@ -10,19 +10,13 @@ import { useInViewOnce } from "@/components/landing/system/hooks";
  * Page data (slides, journey modals, icon maps, images) is passed in via
  * props; the visual anatomy, motion, and class strings live here once.
  *
- * Canonical colors: the site hairline #d2d2d7 and the Google app-chip tint
- * rgba(0,102,204,0.10) (chip law) apply to every persona page through this module.
+ * Canonical colors come from system/tokens.js (the measured Apple-neutral
+ * system): the hairline color.mist #d2d2d7 and the law chip wash
+ * color.wash rgba(0,102,204,0.10) apply to every persona page through
+ * this module. The pills come from system/ui.jsx (PillButton — the CTA law).
  */
-const COLORS = {
-  ink: "#1d1d1f",
-  grey: "#6e6e73",
-  slate: "#6e6e73",
-  lightGrey: "#86868b",
-  blue: "#0066cc",
-  chipBg: "rgba(0,102,204,0.10)",
-  mist: "#d2d2d7",
-  white: "#ffffff",
-};
+import { color } from "@/components/landing/system/tokens";
+import { PillButton } from "@/components/landing/system/ui";
 
 /* The problem chapter on every persona page — one anatomy shared with the
    landing's approved problem chapter (02-problem): centered kicker, one
@@ -122,12 +116,13 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
     <div ref={revealRef} style={linked ? linkedReveal.style : undefined}>
       <p className="sr-only">{label}</p>
       <div className="px-6">
-        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey, ...revealStyle(entered, 0) }}>
+        <p className="text-center text-[16px] font-normal" style={{ color: color.slate, ...revealStyle(entered, 0) }}>
           {kicker}
         </p>
         <h2
-          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center font-semibold tracking-[-0.009em] leading-[1.05] text-[clamp(40px,5vw,64px)]"
-          style={{ color: COLORS.ink, ...revealStyle(entered, 90) }}
+          data-type="section"
+          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center"
+          style={{ color: color.ink, ...revealStyle(entered, 90) }}
         >
           {/* the fixed problem sentence always holds line one; the rotating
               accent word is reserved on line two (a min-h slot) so the chapter
@@ -144,8 +139,8 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
             own white with measured air. Clean, centered, calm. */}
         {copy && (
           <p
-            className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
-            style={{ color: COLORS.grey, ...revealStyle(entered, 165) }}
+            className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17px]"
+            style={{ color: color.slate, ...revealStyle(entered, 165) }}
           >
             {copy}
           </p>
@@ -184,7 +179,7 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
         >
           {/* the reserved two-line slot keeps the dots from jumping when a
               shorter quote occupies one line */}
-          <p className="flex min-h-[2.9em] items-center justify-center font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: COLORS.ink }}>
+          <p data-type="body" className="flex min-h-[2.9em] items-center justify-center" style={{ color: color.ink }}>
             {slide.quote}
           </p>
         </figcaption>
@@ -211,7 +206,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
           className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
+          style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? color.ink : `${color.ink}33` }}
         />
       ))}
     </div>
@@ -366,7 +361,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                   carrying the plus cutout, pinned to the card's bottom-right
                   over the smoke and matched to our ink color */}
               <span className="public-card-control absolute bottom-6 right-6 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white sm:bottom-6 sm:right-6">
-                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="public-icon public-icon-plus" aria-hidden="true" style={{ color: COLORS.ink }}>
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="public-icon public-icon-plus" aria-hidden="true" style={{ color: color.ink }}>
                   <path d="M10 4v12M4 10h12" />
                 </svg>
               </span>
@@ -505,10 +500,10 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             <img src={stage.image} alt={stage.alt} className="aspect-[16/9] w-full object-cover" />
             <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
             <span
-              className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[13px] font-medium tracking-[0] sm:left-9"
-              style={{ color: COLORS.ink }}
+              className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[14px] font-medium tracking-[0] sm:left-9"
+              style={{ color: color.ink }}
             >
-              <meta.Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
+              <meta.Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.75} style={{ color: color.ink }} />
               Visionary for {stage.title}
             </span>
           </div>
@@ -516,47 +511,36 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
           {/* the story zone — Apple's measured breath, text inset from the
               panel edges; heading at the 48/600 story tier, body 17px */}
           <div className="px-6 pb-12 pt-10 sm:px-12 sm:pb-14 lg:px-16 lg:pb-[72px] lg:pt-14">
-            <h3 id="journey-modal-title" className="max-w-[760px] font-semibold tracking-[0] leading-[1.08] text-[clamp(28px,3.34vw,48px)]" style={{ color: COLORS.ink }}>
+            <h3 id="journey-modal-title" data-type="story" className="max-w-[760px]" style={{ color: color.ink }}>
               {content.top}
               <br />
               <span className="accent-gradient">{content.accent}</span>
             </h3>
 
-            <p className="mt-6 max-w-[680px] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>
+            <p className="mt-6 max-w-[680px] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: color.ink }}>
               {content.intro}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                to={content.primary.to}
-                className="inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-6 text-[17px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-              >
-                {content.primary.label}
-              </Link>
-              <Link
-                to={secondary.to}
-                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[17px] transition-colors hover:bg-[#F5F6F8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
-                style={{ borderColor: COLORS.mist, color: COLORS.ink }}
-              >
-                {secondary.label}
-              </Link>
+              <PillButton to={content.primary.to}>{content.primary.label}</PillButton>
+              <PillButton to={secondary.to} variant="outline">{secondary.label}</PillButton>
             </div>
 
             <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
               {content.blocks.map((b) => (
-                <div key={b.t} className="border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                <div key={b.t} className="border-t pt-6" style={{ borderColor: color.mist }}>
                   <div className="flex items-start gap-4">
-                    <b.Icon aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.75} style={{ color: COLORS.ink }} />
+                    <b.Icon aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.75} style={{ color: color.ink }} />
                     <div className="min-w-0">
-                      <h4 className="text-[17px] font-semibold leading-[21px] tracking-[-0.01em]" style={{ color: COLORS.ink }}>
+                      <h4 className="text-[17px] font-semibold leading-[21px] tracking-[-0.01em]" style={{ color: color.ink }}>
                         {b.t}
                       </h4>
-                      <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[15px]" style={{ color: COLORS.grey }}>
+                      <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[16px]" style={{ color: color.slate }}>
                         {b.c}
                       </p>
                       <Link
                         to={b.to}
                         className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
-                        style={{ color: COLORS.blue }}
+                        style={{ color: color.link }}
                       >
                         {b.l}
                         <ChevronIcon className="h-3.5 w-3.5" />
@@ -575,10 +559,10 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
 const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
   return (
     <div key={step.title} className="hero-fade-up max-w-[460px]">
-      <h3 className="whitespace-pre-line font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>
+      <h3 data-type="feature" className="whitespace-pre-line" style={{ color: color.ink }}>
         {step.title}
       </h3>
-      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: color.ink }}>
         {step.copy}
       </p>
     </div>
@@ -670,15 +654,15 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect, chip
           onClick={() => onSelect(lang.code)}
           className={`rounded-full px-5 py-2 tracking-[0] leading-[20px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#1d1d1f]/5"}`}
           style={{
-            backgroundColor: active === lang.code ? COLORS.chipBg : "transparent",
-            color: COLORS.ink,
-            borderColor: active === lang.code ? "transparent" : `${COLORS.ink}40`,
+            backgroundColor: active === lang.code ? color.wash : "transparent",
+            color: color.ink,
+            borderColor: active === lang.code ? "transparent" : `${color.ink}40`,
           }}
         >
           {lang.label}
         </button>
       ))}
-      <span className="ml-1 font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
+      <span className="ml-1 font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: color.slate }}>
         +20 languages
       </span>
     </div>
@@ -702,8 +686,8 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-3 rounded-full border px-8 py-3 font-normal tracking-[0] leading-[20px] text-[15px] transition-colors hover:bg-[#1d1d1f]/5"
-        style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+        className="flex items-center gap-3 rounded-full border px-8 py-3 font-normal tracking-[0] leading-[20px] text-[16px] transition-colors hover:bg-[#1d1d1f]/5"
+        style={{ borderColor: `${color.ink}4D`, color: color.ink }}
       >
         {stages[active].name}
         <svg
@@ -729,7 +713,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
                 aria-selected={i === active}
                 onClick={() => { onSelect(i); setOpen(false); }}
                 className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[#rgba(0,102,204,0.10)] font-medium" : "font-normal hover:bg-[#1d1d1f]/5"}`}
-                style={{ color: COLORS.ink }}
+                style={{ color: color.ink }}
               >
                 {s.name}
               </button>
@@ -744,7 +728,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
 const ContinuityCard = React.memo(function ContinuityCard({ index, label, caption, text, imgClass = "", className = "", images }) {
   return (
     <div className={className}>
-      <p className="mb-6 text-center font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>
+      <p className="mb-6 text-center font-normal tracking-[0] leading-[20px] text-[16px]" style={{ color: color.ink }}>
         {label}
       </p>
       <div className="relative overflow-hidden rounded-[30px]">
@@ -758,12 +742,12 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
   
    <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/55 via-[#1d1d1f]/20 to-transparent" aria-hidden="true" />
             <div className="absolute inset-0 flex items-center justify-center px-4">
-          <span key={text} className="hero-fade-up text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)]">
+          <span key={text} data-type="display" className="hero-fade-up text-center text-white">
             {text}
           </span>
         </div>
       </div>
-      <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>
+      <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[16px]" style={{ color: color.ink }}>
         {caption}
       </p>
     </div>
@@ -776,10 +760,10 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
       {tabs.map((tab, i) => {
         const isOpen = open === i;
         return (
-          <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
+          <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${color.ink}26` }}>
 
             <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start justify-between gap-4 text-left">
-              <h3 className="max-w-[460px] flex-1 font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(24px,2.2vw,30px)]" style={{ color: COLORS.ink }}>
+              <h3 data-type="feature" className="max-w-[460px] flex-1" style={{ color: color.ink }}>
                 {tab.black} <span className="accent-gradient">{tab.blue}</span>
               </h3>
               <ChevronDown
@@ -791,7 +775,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
             </button>
             <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
-                <p className="max-w-[520px] pt-6 font-normal tracking-[0] leading-[1.5] text-[18px]" style={{ color: COLORS.grey }}>
+                <p className="max-w-[520px] pt-6 font-normal tracking-[0] leading-[1.5] text-[18px]" style={{ color: color.slate }}>
                   {tab.copy}
                 </p>
               </div>
@@ -825,7 +809,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       {/* scrim — guarantees white type contrast on any photo */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/55 via-[#1d1d1f]/20 to-transparent" aria-hidden="true" />
       <div className="absolute inset-0 flex items-center justify-center px-4">
-        <span key={text} className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
+        <span key={text} data-type="display" className="text-center text-white animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
           {text}
         </span>
       </div>
@@ -836,7 +820,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
 const TrustCard = React.memo(function TrustCard({ card, image }) {
   const showArt = !image || isExternalSrc(image);
   return (
-    <div className="elevation-1 relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
+    <div className="elevation-1 relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${color.ink}1A` }}>
       {showArt ? (
         <IntelligenceArt label={card.title} className="aspect-[8/5] w-full" />
       ) : (
@@ -845,9 +829,9 @@ const TrustCard = React.memo(function TrustCard({ card, image }) {
       {/* white chip guarantees copy contrast on any image */}
       <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
         <div className="rounded-[20px] bg-white/95 p-5">
-          <card.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
-          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
-          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" style={{ color: COLORS.blue }}>
+          <card.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: color.ink }} />
+          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: color.ink }}>{card.copy}</p>
+          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" style={{ color: color.link }}>
             {card.link}
             <ChevronIcon className="h-3.5 w-3.5" />
           </Link>
@@ -871,10 +855,10 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
         <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="h-full w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
       </div>
       <div className="p-7 lg:p-8">
-        <h3 className="text-balance text-[24px] font-semibold leading-[1.12] tracking-[0.009em]" style={{ color: COLORS.ink, maxWidth: "18ch" }}>
+        <h3 data-type="feature" className="text-balance" style={{ color: color.ink, maxWidth: "18ch" }}>
           {category.chip}
         </h3>
-        <p className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.grey, maxWidth: "38ch" }}>
+        <p className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: color.slate, maxWidth: "38ch" }}>
           {category.copy}
         </p>
         <span className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">

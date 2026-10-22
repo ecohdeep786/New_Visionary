@@ -144,6 +144,24 @@ Rendered fictional browser checks verify actual custom Google Sans glyphs from l
 
 ## Local operation and checks
 
+KAN-34 rollout capability (22 October 2026): every profile response includes
+`auth_features.global_sign_out`, derived on the server from the explicit string
+`AUTH_GLOBAL_LOGOUT_ENABLED=true`. Missing/invalid/false disables the action;
+clients with an absent or false capability offer local sign-out. `/logout-all`
+fails with503 before quota allocation or writes while disabled. Session version,
+cutoff and expiry enforcement remain enabled independently of this flag. A
+disabled compatibility revision therefore continues rejecting revoked cookies
+and stale-token exchanges. Do not persist or accept the capability as user input.
+
+Production health attests compiled `authPolicy.version=1` and the runtime action
+state. The main deployment verifies the serving rollback revision's pinned
+configuration plus actual health before choosing the new action state. Against
+legacy production the first deployment keeps it off; a later trusted main run
+enables it only with a verified policy-aware fallback. See the
+[recovery rules](../infrastructure/gcp/README.md#recovery-and-evidence). Local
+feature testing must explicitly enable the flag in ignored backend settings;
+local configuration is never sufficient evidence of hosted activation.
+
 1. Use Node22/24 LTS. Copy the environment templates into ignored component config when setting up another machine. Keep service-account JSON outside source. Set the correct project/database, `AUTH_PUBLIC_ORIGIN=http://localhost:5173` and a persistent random `AUTH_RATE_LIMIT_KEY` with at least32 characters.
 2. `npm run backend:build`, then `npm run backend:auth:dev` starts the standalone auth server on127.0.0.1:3001. The development command watches source, so rebuilding the disposable dist output does not stop it. Compiled production output is dist/src/main-auth.js; deployment remains separate. The old `backend:dev` application is a different startup path.
 3. `npm run dev -- --host 127.0.0.1 --port 5173 --strictPort`; visit `http://localhost:5173`. Vite proxies `/api` to the auth server. Using127.0.0.1 in the browser or preview4173 requires matching origin configuration and authorized-domain review.

@@ -6,7 +6,7 @@ import { fontStack } from "@/components/landing/system/tokens";
 const C = { ink: "#1d1d1f", graphite: "#1d1d1f", slate: "#6e6e73", mist: "#d2d2d7", white: "#ffffff", blue: "#0066cc" };
 
 const FOOTER_LINK =
-  "-mx-3 inline-flex min-h-11 items-center rounded-full px-3 text-[15px] font-normal tracking-[0.24px] transition-colors hover:bg-white hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]";
+  "-mx-3 inline-flex min-h-11 items-center rounded-full px-3 text-[16px] font-normal tracking-[0.24px] transition-colors hover:bg-white hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]";
 
 const FOOTER_SECTIONS = [
   {

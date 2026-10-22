@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
-import { Mail, Phone, AlertCircle } from "lucide-react";
+import { Mail, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
 import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
@@ -33,7 +33,7 @@ export default function Register() {
 
   if (isLoadingAuth) {
     return (
-      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
+      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f5f5f7]">
         <Spinner className="w-8 h-8 text-[#0066cc]" />
       </div>
     );
@@ -168,7 +168,7 @@ export default function Register() {
             <p id="mobile-unavailable" className="text-xs text-[#6e6e73] text-center">Mobile number sign-in is unavailable. Use another method below or email above.</p>
             <AuthDivider />
             <SocialAuthButtons />
-            {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
+            {(error || authError) && <p role="alert" className="text-sm text-[#e30000]">{error || authError.message}</p>}
             <p className="text-xs text-[#6e6e73] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
               <Link to="/privacy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>

@@ -31,6 +31,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const searchInput = useRef(null);
   const openSearch = () => { searchOrigin.current = document.activeElement; setSearchError(''); setSearchOpen(true); };
   const { user, logout } = useAuth();
+  const globalSignOut = user?.auth_features?.global_sign_out === true;
   const navigate = useNavigate();
   const student = useStudentData();
   const { data: workspaceData, ctx } = useWorkspace();
@@ -70,12 +71,12 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <Search aria-hidden="true" className="h-5 w-5 shrink-0" /><span className="hidden min-w-0 flex-1 truncate text-left text-sm sm:block">{searchPrompt}</span><kbd className="workspace-search-shortcut hidden text-xs sm:inline">Ctrl K</kbd>
       </button>
     </div>
-    {allowed(connect.to)&&<Link to={connect.to} aria-label={connect.label} title={connect.label} className="workspace-connect-action hidden h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[#0b57d2] hover:bg-[#e8f0fd] md:flex xl:px-3"><Plus aria-hidden="true" className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>}
+    {allowed(connect.to)&&<Link to={connect.to} aria-label={connect.label} title={connect.label} className="workspace-connect-action hidden h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[var(--v-action)] hover:bg-[#e8f0fd] md:flex xl:px-3"><Plus aria-hidden="true" className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>}
     <div className={`workspace-presence-anchor${sidebarExpanded ? ' is-expanded' : ''}`}><AudioPresence /></div>
     <DropdownMenu>
-      <DropdownMenuTrigger asChild><button aria-label={t("accountMenu")} className="ml-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0b57d2] text-sm font-medium text-white ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#4285F4]">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild><button aria-label={t("accountMenu")} className="ml-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-sm font-medium text-white ring-offset-2 focus-visible:ring-2 focus-visible:ring-[var(--v-action)]">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
       <DropdownMenuContent lang={locale} align="end" sideOffset={8} className="workspace-account-menu w-[min(320px,calc(100vw-24px))] rounded-[20px] bg-white p-2">
-        <DropdownMenuLabel className="p-3 font-normal"><div className="flex items-center gap-3"><div aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0b57d2] text-lg font-medium text-white">{userName.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-base font-medium text-[#121317]">{userName}</p><p className="mt-0.5 truncate text-xs text-[#5f6368]">{user?.email}</p></div></div><div className="mt-4 flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#e8f0fd] px-3 py-1 text-xs font-medium capitalize text-[#0b57d2]">{t("role_"+role)} {t("workspace")}</span>{appClient.auth.source === 'firebase' ? <ConnectedPlanBadge key={user?.id} /> : <span className="rounded-full border border-[#dadce0] px-3 py-1 text-xs text-[#5f6368]">{plan} · {t("localPreview")}</span>}</div></DropdownMenuLabel>
+        <DropdownMenuLabel className="p-3 font-normal"><div className="flex items-center gap-3"><div aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-lg font-medium text-white">{userName.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-base font-medium text-[#121317]">{userName}</p><p className="mt-0.5 truncate text-xs text-[#5f6368]">{user?.email}</p></div></div><div className="mt-4 flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#e8f0fd] px-3 py-1 text-xs font-medium capitalize text-[var(--v-action)]">{t("role_"+role)} {t("workspace")}</span>{appClient.auth.source === 'firebase' ? <ConnectedPlanBadge key={user?.id} /> : <span className="rounded-full border border-[var(--v-border)] px-3 py-1 text-xs text-[#5f6368]">{plan} · {t("localPreview")}</span>}</div></DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => navigate("/dashboard/profile")} className="workspace-account-item gap-3"><UserCircle aria-hidden="true" />{t("yourProfile")}</DropdownMenuItem>
         {allowed("/dashboard/subscription")&&<DropdownMenuItem onSelect={() => navigate("/dashboard/subscription")} className="workspace-account-item gap-3"><Crown aria-hidden="true" />{t(role==='organization'?'billing':'plans')}</DropdownMenuItem>}
@@ -88,7 +89,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <DropdownMenuItem onSelect={() => navigate('/dashboard/privacy')} className="workspace-account-item gap-3"><ShieldCheck aria-hidden="true" />{t("privacyConsent")}</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/support')} className="workspace-account-item gap-3"><HelpCircle aria-hidden="true" />{t("support")}</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={async () => { try { await logout({ allDevices: true }); navigate("/login", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />Sign out on all devices</DropdownMenuItem>
+        <DropdownMenuItem onSelect={async () => { try { await logout({ allDevices: globalSignOut }); navigate("/login", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />{globalSignOut ? 'Sign out on all devices' : t('signOut')}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
     <Dialog open={searchOpen} onOpenChange={setSearchOpen}>

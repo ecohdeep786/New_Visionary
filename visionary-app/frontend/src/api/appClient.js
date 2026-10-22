@@ -316,6 +316,14 @@ const auth = {
     throw new Error('Social sign-in is not configured yet');
   },
 
+  requestPhoneSignIn() {
+    throw new Error('Mobile sign-in requires the connected identity provider');
+  },
+
+  confirmPhoneSignIn() {
+    throw new Error('Mobile sign-in requires the connected identity provider');
+  },
+
   logout() {
     const token = localStorage.getItem(SESSION_TOKEN_KEY);
     if (token) {

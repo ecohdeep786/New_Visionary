@@ -6,7 +6,8 @@ import {
   useHorizontalTrack as useScrollTrack,
 } from "@/components/landing/system/hooks";
 import { ScrollReveal, RevealItem, ChevronIcon } from "@/components/landing/persona/PersonaSections";
-import { fontStack } from "@/components/landing/system/tokens";
+import { color, fontStack } from "@/components/landing/system/tokens";
+import { usePrefersReducedMotion } from "@/components/landing/system/hooks";
 
 /* ═══════════════════════════════════════════════════════════════════════
  * PREMIUM PARITY SECTIONS — the student page's FINAL section anatomy, shared
@@ -17,27 +18,7 @@ import { fontStack } from "@/components/landing/system/tokens";
  * 05 · INTELLIGENCE — the dark technology chapter: one sticky product stage,
  * four beats swap it as their copy crosses the viewport centre. */
 
-const COLORS = {
-  /* one source insight: match system/tokens.js (the measured system) so this
-     module renders from the same values as the rest of the landing. */
-  ink: "#1d1d1f",
-  blue: "#0066cc",
-  grey: "#6e6e73",
-  lightGrey: "#86868b",
-};
 
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    if (typeof window.matchMedia !== "function") return undefined;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = (e) => setReduced(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-  return reduced;
-}
 
 function useCentredStep(total) {
   const nodes = useRef([]);
@@ -231,12 +212,13 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
   const frostDim = "rgba(245,247,250,0.45)";
   return (
     <div key={`${index}-${step.title}`} className="hero-fade-up w-full">
-      <p className="text-[13px] font-medium tracking-[0.08em] leading-[1.4]">
+      <p className="text-[14px] font-medium tracking-[0.08em] leading-[1.4]">
         <span style={{ color: active ? "#2997ff" : frostDim }}>{String(index + 1).padStart(2, "0")}</span>
         <span style={{ color: frostDim }}>{String(total).padStart(2, "0")}</span>
       </p>
       <h3
-        className="mt-4 whitespace-pre-line font-semibold tracking-[-0.005em] leading-[1.14] text-[clamp(26px,2.4vw,32px)]"
+        data-type="feature-heading"
+        className="mt-4 whitespace-pre-line"
         style={{ color: "#f5f7fa", maxWidth: "35ch" }}
       >
         {step.title}
@@ -291,14 +273,15 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
         <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
           <RevealItem idx={0}>
             <h2
-              className="text-balance font-semibold tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]"
+              data-type="section"
+              className="text-balance font-semibold"
               style={{ maxWidth: "22ch", marginInline: "auto" }}
             >
               <span className="accent-gradient-on-dark">One intelligence.</span>
             </h2>
           </RevealItem>
           <RevealItem idx={1}>
-            <p className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]">
+            <p data-type="body" className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch]">
               {sub}
             </p>
           </RevealItem>
@@ -343,14 +326,15 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
       <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
         <RevealItem idx={0}>
           <h2
-            className="text-balance font-semibold tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]"
+            data-type="section"
+            className="text-balance font-semibold"
             style={{ maxWidth: "22ch", marginInline: "auto" }}
           >
             <span className="accent-gradient-on-dark">One intelligence.</span>
           </h2>
         </RevealItem>
         <RevealItem idx={1}>
-          <p className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]">
+          <p data-type="body" className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch]">
             {sub}
           </p>
         </RevealItem>
@@ -435,7 +419,7 @@ const PremiumOrbitDots = React.memo(function PremiumOrbitDots({ chips, activeInd
     <>
       {/* the orbit track */}
       <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
-        <circle cx="50" cy="50" r="49.75" fill="none" stroke={COLORS.ink} strokeOpacity="0.12" strokeWidth="0.25" />
+        <circle cx="50" cy="50" r="49.75" fill="none" stroke={color.ink} strokeOpacity="0.12" strokeWidth="0.25" />
       </svg>
       {/* the rotating dot ring */}
       <div className="absolute inset-0 transition-transform ease-google" style={{ transform: `rotate(${rotation}deg)`, transitionDuration: reduced ? "0ms" : "700ms" }}>
@@ -448,7 +432,7 @@ const PremiumOrbitDots = React.memo(function PremiumOrbitDots({ chips, activeInd
                 className="absolute left-1/2 top-0 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full after:absolute after:-inset-y-4 after:-inset-x-4 after:rounded-full after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 style={{ boxShadow: isActive ? "0 0 0 5px rgba(18,19,23,0.05)" : "none" }}>
                 <span className="block rounded-full transition-all duration-500 ease-apple"
-                  style={{ width: isActive ? 12 : 7, height: isActive ? 12 : 7, backgroundColor: isActive ? COLORS.ink : `${COLORS.ink}3D` }} />
+                  style={{ width: isActive ? 12 : 7, height: isActive ? 12 : 7, backgroundColor: isActive ? color.ink : `${color.ink}3D` }} />
               </button>
             </div>
           );
@@ -523,20 +507,22 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <ScrollReveal>
         <RevealItem idx={0}>
-          <p className="text-center text-[18px] font-medium" style={{ color: COLORS.grey }}>{eyebrow}</p>
+          <p className="text-center text-[18px] font-medium" style={{ color: color.slate }}>{eyebrow}</p>
         </RevealItem>
         <RevealItem idx={1}>
           <h2
-            className="text-balance mt-[var(--gap-eyebrow-title-display)] text-center font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,5vw,64px)]"
-            style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}
+            data-type="section"
+            className="text-balance mt-[var(--gap-eyebrow-title-display)] text-center font-semibold"
+            style={{ color: color.ink, maxWidth: "24ch", marginInline: "auto" }}
           >
             {line1}<br className="hidden sm:block" /><span className="accent-gradient">{accent}</span>{tail}
           </h2>
         </RevealItem>
         <RevealItem idx={2}>
           <p
-            className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] text-center font-normal tracking-[0] leading-[1.4] text-[18px]"
-            style={{ color: COLORS.grey }}
+            data-type="body"
+            className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] text-center"
+            style={{ color: color.slate }}
           >
             {sub}
           </p>
@@ -566,8 +552,8 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                   label voice, its question at statement scale, the one accent
                   listening beneath */}
               <div className="absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center">
-                <span key={`name-${index}`} className="hero-fade-up text-[14px] font-medium tracking-[0] leading-[1.5]" style={{ color: COLORS.grey }}>{active.label}</span>
-                <p aria-live="polite" lang={active.code} className="mt-3 flex items-center justify-center text-center font-semibold tracking-[-0.01em] leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: COLORS.ink, maxWidth: "80%" }}>
+                <span key={`name-${index}`} className="hero-fade-up text-[14px] font-medium tracking-[0] leading-[1.5]" style={{ color: color.slate }}>{active.label}</span>
+                <p aria-live="polite" lang={active.code} data-type="feature" className="mt-3 flex items-center justify-center text-center" style={{ color: color.ink, maxWidth: "80%" }}>
                   <span key={index} className="hero-fade-up text-balance">{question}</span>
                 </p>
                 <div className="mt-5 flex items-end justify-center gap-1.5" aria-hidden="true">
@@ -607,10 +593,10 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
             stage, after the controls (Apple: media → controls → caption) */}
         <RevealItem idx={5}>
           <div className="mx-auto mt-10 w-full max-w-[860px] sm:mt-12">
-            <p className="text-center font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.lightGrey }}>
+            <p className="text-center font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: color.muted }}>
               Listening in {active.label} · understood in every language
             </p>
-            <p className="mt-1 text-center font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.lightGrey }}>
+            <p className="mt-1 text-center font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: color.muted }}>
               Use voice or text in the way you're comfortable.
             </p>
           </div>
@@ -641,8 +627,9 @@ function PremiumAchievementSection({ heading, tabs, images }) {
         <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
           <RevealItem idx={0}>
             <h2
-              className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
-              style={{ color: COLORS.ink, maxWidth: "24ch" }}
+              data-type="section"
+              className="text-balance font-semibold"
+              style={{ color: color.ink, maxWidth: "24ch" }}
             >
               {heading}
             </h2>
@@ -654,7 +641,7 @@ function PremiumAchievementSection({ heading, tabs, images }) {
                 {tabs.map((tab, i) => {
                   const isOpen = active === i;
                   return (
-                    <li key={tab.title} className="border-t first:border-t-0 lg:first:border-t-0" style={{ borderColor: `${COLORS.ink}29` }}>
+                    <li key={tab.title} className="border-t first:border-t-0 lg:first:border-t-0" style={{ borderColor: `${color.ink}29` }}>
                       <button
                         type="button"
                         aria-expanded={isOpen}
@@ -662,8 +649,8 @@ function PremiumAchievementSection({ heading, tabs, images }) {
                         className="flex w-full items-start justify-between gap-4 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4 lg:py-8"
                       >
                         <span
-                          className="font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(24px,2.2vw,30px)]"
-                          style={{ color: COLORS.ink, maxWidth: "28ch" }}
+                          data-type="feature"
+                          style={{ color: color.ink, maxWidth: "28ch" }}
                         >
                           {tab.title}
                         </span>
@@ -678,7 +665,7 @@ function PremiumAchievementSection({ heading, tabs, images }) {
                         <div className="overflow-hidden">
                           <p
                             className="pb-9 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
-                            style={{ color: COLORS.ink, maxWidth: "35ch" }}
+                            style={{ color: color.ink, maxWidth: "35ch" }}
                           >
                             {tab.copy}
                           </p>
@@ -732,12 +719,12 @@ const JourneyPairCard = React.memo(function JourneyPairCard({ stage, className =
   return (
     <figure className={`relative flex flex-col overflow-hidden rounded-[18px] bg-[#f5f5f7] ${className}`}>
       <figcaption className="p-8 pb-0">
-        <h3 className="max-w-[18ch] text-balance text-[17px] font-semibold leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>
+        <h3 data-type="card-name" className="max-w-[18ch] text-balance" style={{ color: color.ink }}>
           {stage.title}
         </h3>
         <p
           className="mt-2 text-balance text-[28px] font-semibold leading-[1.14] tracking-[0.007em]"
-          style={{ color: COLORS.ink, maxWidth: "22ch" }}
+          style={{ color: color.ink, maxWidth: "22ch" }}
         >
           {stage.statement}
         </p>
@@ -820,12 +807,13 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
     <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
         <RevealItem idx={0}>
-          <p className="px-6 text-center text-[17px] font-medium" style={{ color: COLORS.grey }}>{eyebrow}</p>
+          <p className="px-6 text-center text-[17px] font-medium" style={{ color: color.slate }}>{eyebrow}</p>
         </RevealItem>
         <RevealItem idx={1}>
           <h2
-            className="px-6 text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
-            style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto", marginTop: "var(--gap-eyebrow-title-display)" }}
+            data-type="section"
+            className="px-6 text-balance text-center font-semibold"
+            style={{ color: color.ink, maxWidth: "24ch", marginInline: "auto", marginTop: "var(--gap-eyebrow-title-display)" }}
           >
             {heading}
           </h2>
@@ -833,7 +821,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
         <RevealItem idx={2}>
           <p
             className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] px-6 text-center font-normal tracking-[0] leading-[1.4] text-[18px]"
-            style={{ color: COLORS.grey }}
+            style={{ color: color.slate }}
           >
             {sub}
           </p>
@@ -854,7 +842,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
                 strokeLinejoin="round"
                 aria-hidden="true"
                 className="hidden h-12 w-16 shrink-0 self-center opacity-55 lg:block"
-                style={{ color: COLORS.ink }}
+                style={{ color: color.ink }}
               >
                 <path d="M4 36 C 20 8, 42 6, 58 22" />
                 <path d="M58 22 l-11 -4" />
@@ -869,7 +857,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
                 strokeLinejoin="round"
                 aria-hidden="true"
                 className="h-5 w-5 shrink-0 opacity-60 lg:hidden"
-                style={{ color: COLORS.ink }}
+                style={{ color: color.ink }}
               >
                 <path d="M12 4v16" />
                 <path d="m5 13 7 7 7-7" />
@@ -936,8 +924,9 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
   const headingBlock = (
     <RevealItem idx={0}>
       <h2
-        className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
-        style={{ color: COLORS.ink, maxWidth: "24ch" }}
+        data-type="section"
+        className="text-balance font-semibold"
+        style={{ color: color.ink, maxWidth: "24ch" }}
       >
         {heading}
       </h2>
@@ -948,7 +937,7 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
     <RevealItem idx={1}>
       <p
         className={`text-balance mt-[var(--gap-title-sub-display)] font-normal tracking-[0] leading-[1.4] text-[18px] ${feature ? "max-w-[52ch]" : "max-w-[40ch]"}`}
-        style={{ color: COLORS.grey }}
+        style={{ color: color.slate }}
       >
         {sub}
       </p>
@@ -963,7 +952,7 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
       <div>
         <p
           className="text-balance mt-[var(--gap-title-sub-display)] max-w-[34ch] font-normal tracking-[0] leading-[1.5] text-[19px]"
-          style={{ color: COLORS.grey }}
+          style={{ color: color.slate }}
         >
           {sub}
         </p>
@@ -999,13 +988,13 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
                         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white sm:h-12 sm:w-12"
                         style={{ border: "1px solid rgba(18,19,23,0.05)", boxShadow: "0 1px 2px rgba(18,19,23,0.05)" }}
                       >
-                        {value.Icon ? <value.Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.55} style={{ color: COLORS.ink }} /> : null}
+                        {value.Icon ? <value.Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.55} style={{ color: color.ink }} /> : null}
                       </span>
                       <div className="min-w-0 flex-1">
-                        <h3 data-type="value-title" className="mt-0 sm:mt-5" style={{ color: COLORS.ink }}>
+                        <h3 data-type="value-title" className="mt-0 sm:mt-5" style={{ color: color.ink }}>
                           {value.title}
                         </h3>
-                        <p data-type="value-body" className="mt-2 max-w-[36ch] text-balance" style={{ color: COLORS.grey }}>
+                        <p data-type="value-body" className="mt-2 max-w-[36ch] text-balance" style={{ color: color.slate }}>
                           {value.copy}
                         </p>
                         <Link
@@ -1037,13 +1026,13 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
                   <article
                     key={value.title}
                     className={`stagger-child py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
-                    style={{ borderColor: `${COLORS.ink}1A` }}
+                    style={{ borderColor: `${color.ink}1A` }}
                   >
-                    {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />}
-                    <h3 data-type="value-title" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: COLORS.ink }}>
+                    {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: color.ink }} />}
+                    <h3 data-type="value-title" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: color.ink }}>
                       {value.title}
                     </h3>
-                    <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: COLORS.grey }}>
+                    <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: color.slate }}>
                       {value.copy}
                     </p>
                     <Link
@@ -1126,8 +1115,9 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
         >
           <RevealItem idx={0}>
             <h2
-              className={`text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] ${closing ? "text-white" : ""}`}
-              style={{ color: closing ? "#f5f5f7" : COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}
+              data-type="section"
+              className={`text-balance font-semibold ${closing ? "text-white" : ""}`}
+              style={{ color: closing ? "#f5f5f7" : color.ink, maxWidth: "24ch", marginInline: "auto" }}
             >
               {heading}
             </h2>
@@ -1143,7 +1133,7 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           ) : (
             <p
               className="text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]"
-              style={{ color: COLORS.grey }}
+              style={{ color: color.slate }}
             >
               {sub}
             </p>
@@ -1173,8 +1163,8 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           <RevealItem idx={3}>
           {routeLinks?.length ? (
             <p
-              className={`mt-8 text-center font-normal tracking-[0] text-[15px] leading-[1.5] ${closing ? "text-white/50" : ""}`}
-              style={closing ? undefined : { color: COLORS.grey }}
+              className={`mt-8 text-center font-normal tracking-[0] text-[16px] leading-[1.5] ${closing ? "text-white/50" : ""}`}
+              style={closing ? undefined : { color: color.slate }}
             >
               See how it works for{" "}
               {routeLinks.map((route, i) => (
@@ -1194,7 +1184,7 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           ) : null}
           <p
             className={`mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5] ${closing ? "text-white/45" : ""}`}
-            style={closing ? undefined : { color: COLORS.grey }}
+            style={closing ? undefined : { color: color.slate }}
           >
             Free to start. Private by design.
           </p>
@@ -1238,14 +1228,15 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
       </div>
       <div className="p-7 lg:p-8">
         <h3
-          className="text-balance text-[24px] font-semibold leading-[1.12] tracking-[0.009em]"
-          style={{ color: COLORS.ink, maxWidth: "18ch" }}
+          data-type="feature"
+          className="text-balance"
+          style={{ color: color.ink, maxWidth: "18ch" }}
         >
           {category.chip}
         </h3>
         <p
           className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
-          style={{ color: COLORS.grey, maxWidth: "38ch" }}
+          style={{ color: color.slate, maxWidth: "38ch" }}
         >
           {category.copy}
         </p>
@@ -1305,14 +1296,14 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
         <RevealItem idx={0}>
           <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
             {eyebrow && (
-              <p className="text-[17px] font-medium" style={{ color: COLORS.grey }}>
+              <p className="text-[17px] font-medium" style={{ color: color.slate }}>
                 {eyebrow}
               </p>
             )}
             <h2
               data-type={headingRole}
-              className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
-              style={{ color: COLORS.ink, maxWidth: "20ch", marginTop: eyebrow ? "var(--gap-eyebrow-title-display)" : undefined }}
+              className="text-balance font-semibold"
+              style={{ color: color.ink, maxWidth: "20ch", marginTop: eyebrow ? "var(--gap-eyebrow-title-display)" : undefined }}
             >
               {heading}
             </h2>
@@ -1320,14 +1311,14 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
               /* a bound role (Education's card-chapter intro) is not the
                  h2's semibold lead — the wrapper keeps it out of that role */
               <div className="mt-[var(--gap-title-sub-display)]">
-                <p data-type={subRole} className="text-balance max-w-[60ch]" style={{ color: COLORS.grey }}>
+                <p data-type={subRole} className="text-balance max-w-[60ch]" style={{ color: color.slate }}>
                   {sub}
                 </p>
               </div>
             ) : (
               <p
                 className="text-balance mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]"
-                style={{ color: COLORS.grey }}
+                style={{ color: color.slate }}
               >
                 {sub}
               </p>
@@ -1360,7 +1351,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
                 onClick={() => scrollByCard(-1)}
                 disabled={!canPrev}
                 className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
+                style={{ borderColor: `${color.ink}33`, color: `${color.ink}99` }}
               >
                 <ChevronIcon direction="left" className="h-4 w-4" />
               </button>
@@ -1370,7 +1361,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
                 onClick={() => scrollByCard(1)}
                 disabled={!canNext}
                 className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
+                style={{ borderColor: `${color.ink}33`, color: `${color.ink}99` }}
               >
                 <ChevronIcon className="h-4 w-4" />
               </button>

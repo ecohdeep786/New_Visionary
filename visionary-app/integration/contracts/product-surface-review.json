@@ -1256,14 +1256,24 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/system/ui.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+    "frontend/src/components/landing/QuietLink.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Measured landing-system quiet-link primitive (B2/FAP-47): the one quiet next-step anatomy shared by door rows and header links. Client-side presentation and navigation only (router Link, plain anchors, optional mailto); callbacks are not attached. No server connection, data authority or educational coverage is claimed.",
       "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/system/ui.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Measured landing-system primitives (CtaPair pill pair, Reveal, ProgressDots) are imported by the landing and persona pages. Client-side presentation and navigation only; no server connection, data authority or educational coverage is claimed.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
       ]
     },
     "frontend/src/components/landing/ValuesStrip.jsx": {

@@ -2,6 +2,10 @@ import { UnauthorizedException } from '@nestjs/common';
 
 export const SESSION_ABSOLUTE_MS = 14 * 24 * 60 * 60 * 1000;
 export const SESSION_IDLE_MS = 7 * 24 * 60 * 60 * 1000;
+// This constant attests admission behavior compiled into this image. An
+// environment variable cannot turn a legacy image into a safe rollback target.
+export const AUTH_SESSION_POLICY_VERSION = 1;
+export const globalLogoutEnabled = (value: unknown) => value === 'true';
 
 // Missing fields are the pre-revocation schema. Malformed security state must
 // never silently turn a revoked account back into that legacy schema.

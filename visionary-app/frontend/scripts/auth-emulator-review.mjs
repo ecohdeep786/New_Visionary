@@ -28,12 +28,21 @@ try {
     await page.waitForFunction(label => [...document.querySelectorAll('button')].some(element => element.textContent.trim() === label && !element.disabled), {}, label);
     await page.evaluate(label => [...document.querySelectorAll('button')].find(element => element.textContent.trim() === label && !element.disabled).click(), label);
   };
+  const clickAria = async label => {
+    await page.waitForFunction(label => [...document.querySelectorAll('button')].some(element => element.getAttribute('aria-label') === label && !element.disabled), {}, label);
+    await page.evaluate(label => [...document.querySelectorAll('button')].find(element => element.getAttribute('aria-label') === label && !element.disabled).click(), label);
+  };
   const fill = async (selector, value) => { await page.waitForSelector(selector); await page.$eval(selector, element => { element.value = ''; element.dispatchEvent(new Event('input', { bubbles: true })); }); await page.type(selector, value); };
   const see = value => page.waitForFunction(value => document.body.innerText.includes(value), {}, value);
   const code = async mode => {
     const response = await fetch(`${emulator}/emulator/v1/projects/${project}/oobCodes`), data = await response.json();
     const action = data.oobCodes.filter(item => item.email === email && item.requestType === mode).at(-1);
     assert.ok(action, 'Expected emulator email action'); return action.oobCode;
+  };
+  const sms = async phoneNumber => {
+    const response = await fetch(`${emulator}/emulator/v1/projects/${project}/verificationCodes`), data = await response.json();
+    const action = (data.verificationCodes || []).filter(item => item.phoneNumber === phoneNumber).at(-1);
+    assert.ok(action, 'Expected emulator SMS verification code'); return action.code;
   };
   const assertSafe = async () => assert.doesNotMatch(await text(), /Firebase:|auth\/|stack trace|TypeError|idToken|private_key/);
   const signIn = async candidate => {
@@ -77,6 +86,37 @@ try {
   results.push({ scenario: 'old-password-denied-with-human-message', passed: true }); console.log('PASS: old-password-denied-with-human-message');
   await signIn(updatedPassword); await page.waitForFunction(() => location.pathname === '/dashboard/home');
   results.push({ scenario: 'new-password-resumes-same-account', passed: true }); console.log('PASS: new-password-resumes-same-account');
+  // C1: real mobile sign-in rides on Firebase phone verification. Sign out first so the
+  // journey starts clean, then run the SMS and code legs against the live emulator flow.
+  // The final profile session depends on the backend phone-identity gate (owned by the
+  // backend agent): until that gate merges, the exchange must fail closed calmly, and when
+  // it lands this scenario flips to asserting the onboarding handoff instead (TODO backend).
+  const signOut = async () => {
+    for (let attempt = 0; attempt < 4; attempt++) {
+      try {
+        await page.waitForFunction(() => [...document.querySelectorAll('button')].some(element => element.getAttribute('aria-label') === 'Open account menu' && !element.disabled), { timeout: 30000 });
+        await page.click('[aria-label="Open account menu"]');
+        await page.waitForSelector('[role="menu"]', { timeout: 6000 });
+        await page.evaluate(() => { const node = [...document.querySelectorAll('[role="menu"] [role="menuitem"], [role="menu"] button')].find(element => /Sign out/i.test(element.textContent || '')); if (!node) throw new Error('Sign out item not found in account menu'); node.click(); });
+        await page.waitForFunction(() => ['/login', '/', '/home'].includes(location.pathname), { timeout: 15000 });
+        return true;
+      } catch (error) {
+        if (attempt === 3) throw error;
+        await page.keyboard.press('Escape'); await page.waitForTimeout(1500);
+      }
+    }
+  };
+  await signOut();
+  await page.goto(`${origin}/login`, { waitUntil: 'networkidle0' });
+  await click('Continue with Mobile Number'); await fill('input[type="tel"]', '5551234567'); await click('Send code');
+  await see('Enter the sign-in code'); await assertSafe();
+  const smsCode = (await sms('+15551234567')).slice(-6);
+  const otpSelector = 'input[data-input-otp="true"], input[autocomplete="one-time-code"], .c1-phone-otp input';
+  await page.waitForSelector(otpSelector); await page.type(otpSelector, smsCode);
+  await click('Verify');
+  await see('Mobile sign-in is not available yet. Use email or another method for now.'); await assertSafe();
+  await page.screenshot({ path: path.join(output, 'phone-signin-pending-backend-gate.png'), fullPage: true });
+  results.push({ scenario: 'phone-signin-tokens-and-fails-closed-until-backend-gate', passed: true }); console.log('PASS: phone-signin-tokens-and-fails-closed-until-backend-gate');
   const status = await (await fetch('http://127.0.0.1:3035/__test/status')).json();
   assert.equal(status.accounts, baseline.accounts + 1); assert.ok(status.events.some(event => event.type === 'sign_in' && event.hasIp && event.hasBrowser)); assert.ok(status.events.some(event => event.type === 'sign_out' && event.hasIp)); assert.ok(status.sessions.some(session => session.revoked));
   const context = await browser.createBrowserContext(), duplicate = await context.newPage();

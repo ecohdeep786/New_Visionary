@@ -13,6 +13,16 @@
   --fs-card-title: clamp(1.75rem, 2.2vw, 2.5rem); /* Apple card headline: 40px/32px/28px */
   --fs-label: 1.3125rem; /* Apple label: 21px */
 
+  /* B2/FAP-47: root-level mirrors of the section-scoped voice tokens. The
+     .apple-eyebrow base class must resolve outside the plain-section scope
+     (policy asides, values strip, nav chrome). Values match rhythm's section
+     scope verbatim, so the in-section ladder is untouched. */
+  --fs-meta: 0.875rem;
+  --fs-caption: 0.75rem;
+  --lh-caption: 1.333333;
+  --track-meta: -0.016em;
+  --weight-heading: 600;
+
   /* Hero tokens live at :root: the 01-hero stage is intentionally outside
      rhythm's section :where() scope (the fixed hero keeps its own geometry),
      so cast/persona heroes read these complements directly (FAP-34). */

@@ -26,7 +26,7 @@ const auth = {
   createSessionCookie: async () => { const cookie = `fictional-cookie-${++serial}`; cookies.set(cookie, { ...identity }); return cookie; },
   verifySessionCookie: async cookie => { if (!cookies.has(cookie)) throw { code: 'auth/invalid-session-cookie' }; return cookies.get(cookie); },
 };
-const config = new ConfigService({ AUTH_RATE_LIMIT_KEY: 'fictional-device-review-key-that-is-long-enough' });
+const config = new ConfigService({ AUTH_GLOBAL_LOGOUT_ENABLED: 'true', AUTH_RATE_LIMIT_KEY: 'fictional-device-review-key-that-is-long-enough' });
 const service = new FirebaseProductService({ getAuth: () => auth }, config); service.db = () => db;
 class FixtureModule {}
 Module({ controllers: [FirebaseProductController], providers: [{ provide: FirebaseProductService, useValue: service }, { provide: ConfigService, useValue: config }] })(FixtureModule);
@@ -61,8 +61,9 @@ const seed = async context => {
   return profile;
 };
 try {
-  for (const width of [1280, 390]) {
-    console.log(`Device review: ${width}px two-device scenario`);
+  for (const { width, globalSignOut } of [{ width: 1280, globalSignOut: true }, { width: 390, globalSignOut: true }, { width: 1280, globalSignOut: false }, { width: 390, globalSignOut: false }]) {
+    config.set('AUTH_GLOBAL_LOGOUT_ENABLED', globalSignOut ? 'true' : 'false');
+    console.log(`Device review: ${width}px two-device scenario; global sign-out ${globalSignOut}`);
     // Native auth_time uses seconds; a fresh sign-in must follow the cutoff.
     if (results.length) await new Promise(resolve => setTimeout(resolve, 1100));
     const contexts = await Promise.all([browser.createBrowserContext(), peerBrowser.createBrowserContext()]);
@@ -127,11 +128,22 @@ try {
     await pages[0].bringToFront();
     await pages[0].click('button[aria-label="Open account menu"]');
     await pages[0].waitForSelector('[role="menuitem"]');
-    await pages[0].screenshot({ path: path.join(output, `all-device-menu-${width}.png`), fullPage: true });
+    await pages[0].screenshot({ path: path.join(output, `${globalSignOut ? 'all-device' : 'local-device'}-menu-${width}.png`), fullPage: true });
     await pages[1].bringToFront();
     assert.equal(await pages[1].evaluate(() => document.hidden), false);
     const started = Date.now();
     const previousVersion = rows.get(`visionary_accounts/${identity.uid}`).authSessionVersion || 0;
+    if (!globalSignOut) {
+      assert.equal(await pages[0].evaluate(() => document.body.textContent.includes('Sign out on all devices')), false);
+      await pages[0].evaluate(() => [...document.querySelectorAll('[role="menuitem"]')].find(item => item.textContent.trim() === 'Sign out').click());
+      await pages[0].waitForFunction(() => location.pathname === '/login', { polling: 100 });
+      assert.equal(rows.get(`visionary_accounts/${identity.uid}`).authSessionVersion || 0, previousVersion);
+      assert.equal(await pages[1].evaluate(async () => (await fetch('/api/auth/me?passive=1', { cache: 'no-store' })).status), 200);
+      await pages[1].waitForSelector('header.workspace-topbar');
+      results.push({ width, compatibilityStage: true, localLogout: true, otherDeviceRetained: true, providerAcceptance: false });
+      await Promise.all(contexts.map(context => context.close()));
+      continue;
+    }
     // Keep the other device visible: its timer must discover revocation without
     // reloading or receiving a same-browser storage/broadcast event.
     await pages[0].evaluate(() => [...document.querySelectorAll('[role="menuitem"]')].find(item => item.textContent.trim() === 'Sign out on all devices').click());

@@ -25,13 +25,25 @@ export function currentRevision(service) {
   if (traffic.length !== 1 || traffic[0].percent !== 100 || !traffic[0].revisionName || traffic[0].latestRevision) throw Error('Expected one explicitly pinned production revision.');
   return traffic[0].revisionName;
 }
-export function releaseEnvironment(commit) {
+export function releaseEnvironment(commit, globalSignOut = false) {
   if (!shaPattern.test(commit || '')) throw Error('A full source commit is required.');
   return {
     NODE_ENV: 'production', AUTH_PUBLIC_ORIGIN: production.origin, AUTH_TRUST_PROXY_HOPS: '2',
     FIREBASE_PROJECT_ID: production.project, FIREBASE_PROJECT_KIND: 'production', FIRESTORE_DATABASE_ID: 'default',
     FIREBASE_AUTH_DOMAIN: production.authDomain, BILLING_MODE: 'test', VISIONARY_RELEASE_COMMIT: commit,
+    AUTH_SESSION_POLICY_VERSION: '1', AUTH_GLOBAL_LOGOUT_ENABLED: globalSignOut === true ? 'true' : 'false',
   };
+}
+export function revisionAuthPolicy(revision) {
+  const env = Object.fromEntries((revision.spec?.containers?.[0]?.env || []).map(row => [row.name, row.value]));
+  const version = env.AUTH_SESSION_POLICY_VERSION, enabled = env.AUTH_GLOBAL_LOGOUT_ENABLED;
+  if (version === undefined && enabled === undefined) return { version: 0, globalSignOut: false };
+  if (version !== '1' || !['true', 'false'].includes(enabled)) throw Error('Invalid auth rollback capability configuration.');
+  return { version: 1, globalSignOut: enabled === 'true' };
+}
+export function verifyAuthPolicy(body, expected) {
+  if (expected.version === 0 && body?.authPolicy === undefined) return;
+  if (body?.authPolicy?.version !== expected.version || body.authPolicy.globalSignOut !== expected.globalSignOut) throw Error('Compiled auth policy attestation does not match the pinned revision.');
 }
 export function environmentFlag(environment) {
   const pairs = Object.entries(environment).map(([name, value]) => {
@@ -41,6 +53,7 @@ export function environmentFlag(environment) {
   return '--set-env-vars=' + pairs.join(',');
 }
 export function verifyRevision(revision, expectedCommit, expectedImage) {
+  revisionAuthPolicy(revision);
   const spec = revision.spec || {}, containers = spec.containers || [], container = containers[0];
   const env = Object.fromEntries((container?.env || []).map(row => [row.name, row.value ?? row.valueFrom]));
   const annotations = revision.metadata?.annotations || {};
@@ -65,9 +78,11 @@ export async function probe(origin, path, commit, fetcher = fetch) {
   const body = response.headers.get('content-type')?.includes('application/json') ? await response.json() : {};
   if (response.status !== 200 || response.headers.get('x-visionary-revision') !== commit || response.headers.get('cache-control') !== 'no-store' ||
       body.status !== 'ok' || (path === '/__deploy-check' && body.forwardedForSanitized !== true)) throw Error('Release health/provenance/proxy-boundary check failed.');
+  return body;
 }
-export async function publicChecks(commit, fetcher = fetch) {
-  await probe(production.origin, '/api/health', commit, fetcher);
+export async function publicChecks(commit, fetcher = fetch, expectedPolicy) {
+  const health = await probe(production.origin, '/api/health', commit, fetcher);
+  if (expectedPolicy) verifyAuthPolicy(health, expectedPolicy);
   for (const [path, status, type] of [['/login', 200, 'text/html'], ['/api/auth/me', 401, 'application/json'], ['/api/account/overview', 401, 'application/json'], ['/api/__unknown-release-probe', 404, 'application/json']]) {
     const response = await fetcher(production.origin + path, { redirect: 'manual', signal: AbortSignal.timeout(15000) });
     if (response.status !== status || response.headers.get('x-visionary-revision') !== commit || !response.headers.get('content-type')?.includes(type) ||
@@ -83,7 +98,7 @@ export async function publicChecks(commit, fetcher = fetch) {
     await response.arrayBuffer();
   }
 }
-export async function deployRelease({ commit, revision, image, readService, readRevision, ancestor, assertCurrentMain, deploy, moveTraffic, candidateProbe, canonicalChecks, wait = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
+export async function deployRelease({ commit, revision, image, readService, readRevision, ancestor, assertCurrentMain, deploy, moveTraffic, baselineProbe, candidateProbe, canonicalChecks, wait = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
   if (!shaPattern.test(commit) || !revision.startsWith(production.service + '-g' + commit.slice(0, 12) + '-') || !new RegExp('^' + production.image.replaceAll('.', '\\.') + '@sha256:[a-f0-9]{64}$').test(image)) throw Error('Invalid immutable release identity.');
   await assertCurrentMain();
   const initialService = await readService();
@@ -92,12 +107,21 @@ export async function deployRelease({ commit, revision, image, readService, read
   const previous = currentRevision(initialService), previousRevision = await readRevision(previous);
   const previousCommit = verifyRevision(previousRevision);
   if (!(await ancestor(previousCommit))) throw Error('Previous release must belong to main history.');
+  const previousAuthPolicy = revisionAuthPolicy(previousRevision);
+  // Prove actual serving code before making this revision the rollback target.
+  // The first policy-aware deployment keeps global revocation disabled. A later
+  // deployment can enable it with this compatible image as the fallback.
+  verifyAuthPolicy(await baselineProbe(previousCommit), previousAuthPolicy);
+  if (currentRevision(await readService()) !== previous) throw Error('Production traffic changed during baseline checks.');
+  const authPolicy = { version: 1, globalSignOut: previousAuthPolicy.version === 1 };
   try {
-    await deploy();
-    verifyRevision(await readRevision(revision), commit, image);
+    await deploy({ globalSignOut: authPolicy.globalSignOut });
+    const candidate = await readRevision(revision);
+    verifyRevision(candidate, commit, image);
+    verifyAuthPolicy({ authPolicy: revisionAuthPolicy(candidate) }, authPolicy);
     let lastError;
     for (let attempt = 0; attempt < 12; attempt++) {
-      try { await candidateProbe(); lastError = undefined; break; } catch (error) { lastError = error; if (attempt < 11) await wait(5000); }
+      try { verifyAuthPolicy(await candidateProbe(), authPolicy); lastError = undefined; break; } catch (error) { lastError = error; if (attempt < 11) await wait(5000); }
     }
     if (lastError) throw lastError;
     await assertCurrentMain();
@@ -123,16 +147,16 @@ export async function deployRelease({ commit, revision, image, readService, read
   try {
     await moveTraffic(revision);
     if (currentRevision(await readService()) !== revision) throw Error('Promotion did not pin the candidate.');
-    await canonicalChecks();
+    await canonicalChecks(undefined, authPolicy);
   } catch (error) {
     if (currentRevision(await readService()) === revision) {
       await moveTraffic(previous);
       if (currentRevision(await readService()) !== previous) throw Error('Rollback could not be verified; operator attention required.');
-      await canonicalChecks(previousCommit);
+      await canonicalChecks(previousCommit, previousAuthPolicy);
     }
     throw error;
   }
-  return { commit, image, revision, previous, previousCommit, verified: true };
+  return { commit, image, revision, authPolicy, previous, previousCommit, previousAuthPolicy, verified: true };
 }
 
 export function command(file, args, capture = false, platform = process.platform, execute = execFileSync, shell = execSync) {
@@ -229,7 +253,7 @@ async function baseline() {
     // explicitly pinned. Resolve the foundation tag as well as its percentage.
     moveTraffic: name => gcloud(['run', 'services', 'update-traffic', production.service, '--to-revisions=' + name + '=100', '--update-tags=' + production.tag + '=' + name]),
     health: (url, sha) => waitForHealth(url, '/api/health', sha),
-    deploy: () => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
+    deploy: ({ globalSignOut }) => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
     '--ingress=all', '--no-invoker-iam-check', '--service-account=' + production.runtime,
     '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s',
     '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080',
@@ -273,9 +297,10 @@ async function cli(mode) {
     readRevision: name => gcloud(['run', 'revisions', 'describe', name]),
     ancestor: sha => { try { command('git', ['merge-base', '--is-ancestor', sha, commit], true); return true; } catch { return false; } },
     deploy: () => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
-      '--ingress=internal-and-cloud-load-balancing', '--service-account=' + production.runtime, '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s', '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080', environmentFlag(releaseEnvironment(commit)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1']),
+      '--ingress=internal-and-cloud-load-balancing', '--service-account=' + production.runtime, '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s', '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080', environmentFlag(releaseEnvironment(commit, globalSignOut)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1']),
+    baselineProbe: sha => probe(production.origin, '/api/health', sha),
     moveTraffic, candidateProbe: () => probe(production.origin, '/__deploy-check', commit),
-    canonicalChecks: sha => publicChecks(sha || commit),
+    canonicalChecks: (sha, policy) => publicChecks(sha || commit, fetch, policy),
   });
   writeFileSync('deployed-release.json', JSON.stringify(receipt, null, 2) + '\n');
 }

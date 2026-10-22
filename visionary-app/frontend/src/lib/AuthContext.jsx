@@ -158,6 +158,7 @@ export const AuthProvider = ({ children }) => {
       updateUser,
       signInViaEmailPassword: (email, password) => runAccountCommand(() => appClient.auth.loginViaEmailPassword(email, password), true),
       signInWithProvider: provider => runAccountCommand(() => appClient.auth.loginWithProvider(provider, '/'), true),
+      confirmPhoneSignIn: (confirmation, code) => runAccountCommand(() => appClient.auth.confirmPhoneSignIn(confirmation, code), true),
       verifyEmail: () => runAccountCommand(() => appClient.auth.verifyEmail(), true),
       completeOnboarding: data => runAccountCommand(() => appClient.auth.completeOnboarding(data)),
       completeIntroduction: () => runAccountCommand(() => appClient.auth.completeIntroduction()),

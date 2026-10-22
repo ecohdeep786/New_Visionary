@@ -18,12 +18,35 @@ function fixture() {
   const identity = { uid: 'fixture-adult', email: 'adult@example.test', email_verified: true, auth_time: Math.floor(Date.now() / 1000), firebase: { sign_in_provider: 'password' } };
   let revoked = false;
   const auth = { verifyIdToken: async () => identity, createSessionCookie: async () => 'fictional-cookie', verifySessionCookie: async () => { if (revoked) throw { code: 'auth/session-cookie-revoked' }; return identity; } };
-  const service = new FirebaseProductService({ getAuth: () => auth }, new ConfigService({ AUTH_RATE_LIMIT_KEY: 'fixture-only-rate-key-that-is-long-enough' }));
+  const service = new FirebaseProductService({ getAuth: () => auth }, new ConfigService({ AUTH_GLOBAL_LOGOUT_ENABLED: 'true', AUTH_RATE_LIMIT_KEY: 'fixture-only-rate-key-that-is-long-enough' }));
   service.db = () => db;
   return { service, rows, identity, auth, revoke: () => { revoked = true; }, db };
 }
 const setup = { full_name: 'Fixture Adult', identity: 'student', education_stage: 'higher_ed', age_band: 'adult', subjects: ['Mathematics'], institution_type: 'college', degree_program: 'B.Sc', department: 'Mathematics', semester: 'Semester 1', career_goal: 'research' };
 const metadata = { ip: '127.0.0.1', userAgent: 'Fixture browser' };
+
+test('compatibility rollout disables new revocations while continuing to reject revoked sessions and tokens', async t => {
+  let now = Date.now(); t.mock.method(Date, 'now', () => now);
+  const f = fixture(), a = await f.service.signIn('fixture-token', metadata), b = await f.service.signIn('fixture-token', metadata);
+  assert.equal(a.profile.auth_features.global_sign_out, true);
+  await f.service.logoutAll(a.cookie, a.device, f.identity.uid, metadata);
+  let currentFlag;
+  const get = f.service.config.get.bind(f.service.config);
+  t.mock.method(f.service.config, 'get', key => key === 'AUTH_GLOBAL_LOGOUT_ENABLED' ? currentFlag : get(key));
+  for (const flag of [undefined, null, false, 'false', 'TRUE']) {
+    currentFlag = flag;
+    const before = JSON.stringify([...f.rows]);
+    await assert.rejects(f.service.logoutAll(b.cookie, b.device, f.identity.uid, metadata), e => e.getStatus() === 503);
+    assert.equal(JSON.stringify([...f.rows]), before);
+    assert.equal((await f.service.me(f.identity.uid)).auth_features.global_sign_out, false);
+    await assert.rejects(f.service.authenticate(b.cookie, b.device, false), e => e.getStatus() === 401);
+    await assert.rejects(f.service.signIn('stale-token', metadata), e => e.getStatus() === 401);
+  }
+  now += 2000; f.identity.auth_time = Math.floor(now / 1000);
+  const fresh = await f.service.signIn('fresh-token', metadata);
+  assert.equal(fresh.profile.auth_features.global_sign_out, false);
+  assert.equal((await f.service.authenticate(fresh.cookie, fresh.device, false)).authSessionVersion, 1);
+});
 
 test('global sign-out revokes every device, rejects token replay, and preserves the shared completed profile', async t => {
   let now = Date.now(); t.mock.method(Date, 'now', () => now);

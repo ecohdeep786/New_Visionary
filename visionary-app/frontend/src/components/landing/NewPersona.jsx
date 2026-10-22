@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
 import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
+import { CtaPair } from "@/components/landing/system/ui";
 import "@/components/landing/cast.css";
 
 function useCycle(total, ms) {
@@ -37,52 +37,10 @@ function useCycleStep(total, ms) {
   return { index, setIndex, setPaused };
 }
 
-/* The shared CTA pair — one source for every hero, so the pills stay
-   identical across the universal and persona pages. `align="baseline"`
-   right-aligns the pair on the wordmark's baseline (the Vision Pro
-   product-page anatomy); the default centers under the copy. Spacing is
-   measured from Apple: pills are 44px tall with 21px side padding
-   (apple.com/apple-vision-pro hero pair, 2026-10-20), the label carries
-   the 17px button voice, and the landing pair breathes 20px apart with
-   the text link on a full 44px target. */
-const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, secondaryLabel, align = "center" }) {
-  const alignment =
-    align === "baseline"
-      ? "flex flex-wrap items-center justify-center gap-3 lg:justify-end"
-      : "mt-10 flex flex-wrap items-center justify-center gap-3 sm:mt-12 sm:gap-5";
-  return (
-    <div className={alignment}>
-      <Link
-        to={ctaTo}
-        className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-      >
-        {ctaLabel}
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4 w-4"
-          aria-hidden="true"
-        >
-          <path d="M5 12h14" />
-          <path d="M13 6l6 6-6 6" />
-        </svg>
-      </Link>
-      {secondaryLabel && (
-        <Link
-          to={secondaryTo}
-          className="inline-flex min-h-11 items-center gap-1.5 px-2 text-[17px] font-normal tracking-[-0.011em] leading-[1.2] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-        >
-          {secondaryLabel}
-          <ChevronRight className="h-[18px] w-[18px]" strokeWidth={2.5} />
-        </Link>
-      )}
-    </div>
-  );
-});
+/* The shared CTA pair lives in system/ui.jsx (CtaPair) — one measured
+   anatomy for the universal front door and every persona hero: 44px ink
+   pill with the 21px pad, the 17px button voice, and the full-44px text
+   link beside it (apple.com/apple-vision-pro hero pair, 2026-10-20). */
 
 /* The family stage — the landing's "product shot". The five personas stand
    together as alpha cutouts on the page's own white: no tiles, no seams, no
@@ -194,35 +152,55 @@ export default function NewPersona({
 
   const copyRef = useRef(null);
   const wordRef = useRef(null);
-  /* One-line guarantee: the rotating word is measured after paint and scaled
-     down only as far as it must to hold a single line inside the copy column
-     (Apple's hero never breaks its display line). Short words keep the
-     measured ladder size; "organizations." fits at every width instead of
-     wrapping and unbalancing the stage. The line box stays at the base
+  /* One-line guarantee — and ONE voice for the whole cycle: the rotating
+     line's size is computed ONCE, from the widest fragment, so every
+     audience word renders at the same size at every width ("students." and
+     "organizations." hold one composition — the earlier per-word fit let
+     the stage re-rank words by length, which read as a size bug). Apple's
+     education hero measures its display line in a 980px box (the headline
+     container), so the fit targets that cap — never the mask, which would
+     let the word clip instead of scale. The line box stays at the base
      display height, so the composition never moves between words. */
+  const [fittedPx, setFittedPx] = useState(0);
   useLayoutEffect(() => {
-    if (!cast) return undefined;
+    if (!cast || !hasAnimatedHeadline) return undefined;
     const fit = () => {
       const word = wordRef.current;
       const copy = copyRef.current;
       if (!word || !copy) return;
-      word.style.fontSize = "";
-      const base = parseFloat(getComputedStyle(word).fontSize);
-      const textWidth = word.scrollWidth;
-      /* Apple's education hero measures its display line in a 980px box
-         (the headline container), so the fit targets that cap — never the
-         mask, which would let the word clip instead of scale. */
-      const available = Math.min(980, copy.clientWidth);
-      if (base > 0 && available > 0 && textWidth > available) {
-        word.style.fontSize = `${(base * (available / textWidth)).toFixed(1)}px`;
+      /* Canvas measure at the line's true computed font: no remount churn,
+         every fragment measured in one pass (letter-spacing carried too via
+         ctx.letterSpacing where Chromium exposes it). */
+      const style = getComputedStyle(word);
+      const base = parseFloat(style.fontSize);
+      if (!(base > 0) || !(copy.clientWidth > 0)) return;
+      let widest = 0;
+      try {
+        const ctx = document.createElement("canvas").getContext("2d");
+        ctx.font = `${style.fontWeight} ${base}px ${style.fontFamily}`;
+        if ("letterSpacing" in ctx) ctx.letterSpacing = style.letterSpacing;
+        for (const fragment of animatedHeadlineWords) {
+          widest = Math.max(widest, ctx.measureText(`${fragment}.`).width);
+        }
+      } catch {
+        widest = 0;
       }
+      const available = Math.min(980, copy.clientWidth);
+      const next =
+        widest > available
+          ? Math.floor((base * (available / widest)) * 2) / 2
+          : 0;
+      setFittedPx((prev) => (prev === next ? prev : next));
     };
     fit();
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(fit).catch(() => {});
+    }
     if (typeof ResizeObserver === "undefined" || !copyRef.current) return undefined;
     const ro = new ResizeObserver(fit);
     ro.observe(copyRef.current);
     return () => ro.disconnect();
-  }, [cast, animatedIndex, hasAnimatedHeadline, staticHeadline]);
+  }, [cast, hasAnimatedHeadline]);
 
   if (cast) {
     return (
@@ -245,7 +223,7 @@ export default function NewPersona({
             them and push the tagline against the screen edges */}
         <div ref={copyRef} className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center text-center">
           <div className="max-w-[980px]">
-            <h1 className="m-0">
+            <h1 data-type="display" className="m-0">
               <span
                 aria-hidden="true"
                 className={`${displayClass} ${hasAnimatedHeadline || staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
@@ -271,7 +249,12 @@ export default function NewPersona({
                         style={{
                           animation: "heroLineUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
                           paddingBottom: "0.05em",
-                          lineHeight: "var(--fs-hero-headline)"
+                          lineHeight: "var(--fs-hero-headline)",
+                          /* the fitted one-voice size survives the per-word
+                             remounts: it is held in state, not per-word */
+                          ...(cast && hasAnimatedHeadline && fittedPx
+                            ? { fontSize: `${fittedPx}px` }
+                            : null),
                         }}
                       >
                         {animatedHeadlineWords[animatedIndex]}.
@@ -315,7 +298,7 @@ export default function NewPersona({
           {/* the hero pair — full buttons. This is the product's front door;
               the same shared pills the persona heroes wear, so one button
               system carries every hero. */}
-          <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          <CtaPair ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
           {/* the audience rail — Apple's education local-nav row (measured
               live 12px/400 quiet links; K–12 · Higher Education · College
               Students · Success Stories), carried into the hero at our
@@ -462,7 +445,7 @@ export default function NewPersona({
                 foundation statement 28/40/48 and the tagline 17/24/28, both
                 600; steps live in rhythm.css. The landing's cast hero keeps
                 the education ladder (var(--fs-hero-headline)). */}
-            <h1 className="category-hero-statement m-0">
+            <h1 data-type="product-section" className="category-hero-statement m-0">
               <span
                 key={index}
                 className="apple-anim accent-gradient inline-block"
@@ -476,7 +459,7 @@ export default function NewPersona({
               {sub}
             </p>
           </div>
-          <HeroCtas align="baseline" ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          <CtaPair align="baseline" ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
       </div>
     </section>
   );

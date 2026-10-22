@@ -46,7 +46,7 @@ export default function ResetPassword() {
   };
   return <AuthLayout title={state === 'success' || state === 'sign-out' ? 'Password updated' : state === 'invalid' ? 'Request a new reset link' : 'Set a new password'} accountInfo={email || null} supportingText="Your saved account and learning setup will be kept.">
     <div className="flex flex-col gap-6" aria-busy={busy || state === 'checking'}>
-      {error && <p role="alert" id="reset-error" className="text-sm text-[#b3261e]">{error}</p>}
+      {error && <p role="alert" id="reset-error" className="text-sm text-[#e30000]">{error}</p>}
       {state === 'checking' && <p role="status" className="flex items-center gap-2"><Spinner /> Checking your reset link…</p>}
       {state === 'invalid' && <><p className="text-sm text-[#6e6e73]">This link is missing, expired or already used. Request a new email to continue.</p><Link to="/forgot-password" state={{ email }} className={primaryBtnAutoClass}>Request new link</Link></>}
       {state === 'unavailable' && <><p className="text-sm">We could not check this link. Your password has not been changed.</p><button className={primaryBtnAutoClass} onClick={() => window.location.reload()}>Try again</button></>}

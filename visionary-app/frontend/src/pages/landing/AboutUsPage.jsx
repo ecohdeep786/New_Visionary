@@ -74,7 +74,7 @@ function Reveal({ children, className = "" }) {
 }
 
 function Eyebrow({ children }) {
-  return <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#6e6e73]">{children}</p>;
+  return <p className="apple-eyebrow text-[#6e6e73]">{children}</p>;
 }
 
 function ArrowLink({ to, children, className = "", style }) {
@@ -91,7 +91,7 @@ function MissionSection() {
       </div>
       <div id="team" className="relative mt-14 grid scroll-mt-28 gap-3 overflow-hidden rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 md:grid-cols-[1.1fr_0.9fr] lg:p-10">
         <div className="flex min-h-[320px] flex-col rounded-[20px] bg-white p-8 sm:p-10 lg:p-14">
-          <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#0066cc]">Our mission</p>
+          <p className="apple-eyebrow text-[#6e6e73]">Our mission</p>
           <span aria-hidden="true" className="mt-8 select-none text-[88px] font-medium leading-[0.55] text-[#0066cc]">"</span>
           <p className="max-w-[760px] text-[clamp(28px,2.78vw,40px)] font-normal text-[#1d1d1f]">
             Build AI intelligence for anyone, anywhere, from student to organization, in India's native languages.
@@ -103,7 +103,7 @@ function MissionSection() {
             bottom-right of the illustration card and the action pill
             floats in it with breathing room */}
         <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[240px] rounded-tl-[28px] bg-white" />
-        <Link to="/how-it-works" className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-6 font-medium tracking-[0.24px] text-[15px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+        <Link to="/how-it-works" className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-6 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
       </div>
     </Reveal>
   </section>;
@@ -120,11 +120,11 @@ function ImpactSection() {
       <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
         <div className="grid gap-3 lg:grid-cols-3">
           {IMPACT.map((item) => <article key={item.number} className="flex min-h-[470px] flex-col rounded-[20px] bg-white p-8">
-            <span className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: item.accent }}>{item.number} / The challenge</span>
+            <span className="apple-eyebrow" style={{ color: item.accent }}>{item.number} / The challenge</span>
             <SpotIllustration subject={item.subject} className="mx-auto my-7 h-40 w-40 sm:my-9 sm:h-44 sm:w-44" />
             <h3 className="max-w-[360px] text-[25px] font-normal leading-[1.2] tracking-[-0.02em] text-[#1d1d1f]">{item.problem}</h3>
             <div className="mt-auto pt-8">
-              <p className="text-[12px] font-medium uppercase tracking-[0.13em]" style={{ color: item.accent }}>What Visionary is building toward</p>
+              <p className="apple-eyebrow" style={{ color: item.accent }}>What Visionary is building toward</p>
               <p className="mt-3 text-[16px] leading-[1.6] text-[#1d1d1f]">{item.answer}</p>
             </div>
           </article>)}
@@ -191,7 +191,7 @@ function ExploreSection() {
       <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
         <div className="grid gap-3 sm:grid-cols-2">
           {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group relative grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] sm:grid-cols-[1fr_180px]">
-            <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#1d1d1f]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[15px] leading-[1.6] text-[#6e6e73]">{item.copy}</p></div></div>
+            <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#1d1d1f]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[16px] leading-[1.6] text-[#6e6e73]">{item.copy}</p></div></div>
             <div className="flex items-center justify-center bg-[#f5f5f7]"><SpotIllustration subject={item.subject} className="h-28 w-28 sm:h-36 sm:w-36" /></div>
             {/* google.com card curve — the card's cutout sweeps into the
                 bottom-right corner and the card's arrow floats in it with breath */}

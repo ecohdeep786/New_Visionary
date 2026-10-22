@@ -46,7 +46,7 @@ import {
 } from "@/components/landing/persona/PremiumPersonaSections";
 
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, Target, Brain, TrendingUp } from "lucide-react";
-import { fontStack } from "@/components/landing/system/tokens";
+import { color, fontStack } from "@/components/landing/system/tokens";
 
 const EXPLORE_CAT_IMG = [studentmeet, parentmeet, promeet, orgmeet];
 
@@ -57,19 +57,8 @@ const EXPLORE_CATEGORIES = [
   { slug: "organization", chip: "Organization", copy: "Help teams share context across projects.", alt: "Leader talking at an organization table" },
 ];
 
-/* ── DESIGN TOKENS ── */
-const COLORS = {
-  ink: "#1d1d1f",
-  surface: "#F5F6F8",
-  blue: "#0066cc",
-  grey: "#6e6e73",
-  lightGrey: "#86868b",
-  chipBg: "#rgba(0,102,204,0.10)",
-  mist: "#d2d2d7",
-  white: "#ffffff",
-  cardSurface: "#EEF1F6",
-  cardSurfaceAlt: "#E9EFFA",
-};
+/* Design tokens come from system/tokens.js (the measured Apple-neutral
+   system) — see APPLE_MEASURED_REFERENCE_2026-10-21.md. */
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 
@@ -274,15 +263,17 @@ function TeacherJourneySection() {
             first card starts exactly at the heading's left edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
-            className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-balance"
-            style={{ color: COLORS.ink, maxWidth: "24ch" }}
+            data-type="section"
+            className="text-balance"
+            style={{ color: color.ink, maxWidth: "24ch" }}
           >
             <span className="block">Teaching that</span>
             <span key={index} className="hero-fade-up accent-gradient block min-h-[1.06em] [animation-duration:1s]">{JOURNEY_WORDS[index]}</span>
           </h2>
           <p
-            className="mt-4 max-w-[40ch] text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
-            style={{ color: COLORS.grey }}
+            data-type="body"
+            className="mt-4 max-w-[40ch] text-balance"
+            style={{ color: color.slate }}
           >
             Wherever your class begins, Visionary helps your teaching move forward from there.
           </p>
@@ -338,6 +329,7 @@ export default function TeacherPage() {
           sub="See who understands. Adapt the next lesson."
         />
         <PremiumExploreSection
+          headingRole="section"
           heading={<>Explore <span className="accent-gradient">Visionary.</span></>}
           categories={EXPLORE_CATEGORIES}
           images={EXPLORE_CAT_IMG}

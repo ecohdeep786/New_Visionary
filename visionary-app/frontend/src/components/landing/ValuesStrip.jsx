@@ -24,7 +24,7 @@ export default function ValuesStrip({ current }) {
       style={{ fontFamily: fontStack }}
     >
       <div className="mx-auto max-w-[1240px] px-6 py-14 sm:px-8 lg:px-10 lg:py-16">
-        <p className="text-center text-[12px] font-medium uppercase tracking-[0.12em] text-[#6e6e73]">
+        <p className="apple-eyebrow text-center text-[#6e6e73]">
           Our commitments
         </p>
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
@@ -40,7 +40,7 @@ export default function ValuesStrip({ current }) {
                   <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <span className="min-w-0">
-                  <span className="block text-[15px] font-semibold leading-[20px] text-[#1d1d1f]">
+                  <span className="block text-[16px] font-semibold leading-[20px] text-[#1d1d1f]">
                     {label}
                   </span>
                   <span className="mt-0.5 block text-[14px] leading-[20px] text-[#6e6e73]">

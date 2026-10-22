@@ -15,6 +15,6 @@ export default function IdentitySelection({ onContinue, initialRole, accountEmai
     step={1} totalSteps={selected === 'student' ? 5 : 4} stepLabels={selected === 'student' ? ['Your role', 'About you', 'Your focus', 'Details', 'Review'] : undefined} illustration="compass" onContinue={() => onContinue(selected)} canContinue={!!selected} accountEmail={accountEmail} onChangeAccount={onChangeAccount} isSubmitting={isSubmitting} isSwitchingAccount={isSwitchingAccount}>
     {error && <p role="alert" className="mb-5 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#b3261e]">{error}</p>}
     <ChoiceGrid options={roles} value={selected} onChange={setSelected} />
-    <p className="mt-6 text-xs leading-6 text-[#5f6368]">Your personal activity stays private. Selecting a role does not grant access to a school, company or another person’s account.</p>
+    <p className="mt-6 text-xs leading-6 text-[#6e6e73]">Your personal activity stays private. Selecting a role does not grant access to a school, company or another person’s account.</p>
   </OnboardingLayout>;
 }

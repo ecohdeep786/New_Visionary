@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, confirmPasswordReset, verifyPasswordResetCode, applyActionCode, validatePassword, reload, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, confirmPasswordReset, verifyPasswordResetCode, applyActionCode, validatePassword, reload, signOut, signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier, GoogleAuthProvider } from 'firebase/auth';
 import { getFirebaseAuthClient } from './client.js';
 import { createServerAuth } from './serverAuth.js';
 import { authFlowError, passwordRequirements } from '../../lib/authErrors.js';
@@ -7,6 +7,7 @@ import { popupProviderId } from './signInMethods.js';
 
 export const firebaseAuthEnabled = import.meta.env?.VITE_AUTH_MODE === 'firebase';
 const pendingVerificationTimes = new Map();
+let phoneVerifier = null;
 const request = createAuthTransport();
 const identity = {
   login: async (email, password) => (await signInWithEmailAndPassword(getFirebaseAuthClient(), email, password)).user,
@@ -23,6 +24,16 @@ const identity = {
     const provider = new GoogleAuthProvider();
     return (await signInWithPopup(getFirebaseAuthClient(), provider)).user;
   },
+  // Phone sign-in starts a two-step exchange: send the SMS code, confirm it, and
+  // rely on the server session exchange. The invisible verifier is skipped by the
+  // Auth Emulator and kept on the client otherwise.
+  async beginPhoneSignIn(phoneE164, reCAPTCHAContainerId) {
+    const auth = getFirebaseAuthClient();
+    if (phoneVerifier) { try { phoneVerifier.clear(); } catch { /* a verifier on another page can be rebuilt */ } phoneVerifier = null; }
+    phoneVerifier = new RecaptchaVerifier(auth, reCAPTCHAContainerId, { size: 'invisible' });
+    return (await signInWithPhoneNumber(auth, phoneE164, phoneVerifier));
+  },
+  confirmPhoneSignIn: async (confirmation, code) => (await confirmation.confirm(code)).user,
   resetRequest: email => sendPasswordResetEmail(getFirebaseAuthClient(), email, { url: `${window.location.origin}/login` }),
   reset: (code, password) => confirmPasswordReset(getFirebaseAuthClient(), code, password),
   resetInfo: code => verifyPasswordResetCode(getFirebaseAuthClient(), code),

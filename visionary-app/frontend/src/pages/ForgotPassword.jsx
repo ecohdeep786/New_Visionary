@@ -41,7 +41,7 @@ export default function ForgotPassword() {
         </Link>
       }
     >
-      {error && <p role="alert" className="mb-4 text-sm text-[#b3261e]">{error}</p>}
+      {error && <p role="alert" className="mb-4 text-sm text-[#e30000]">{error}</p>}
       {sent ? (
         <div key="success" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col items-center gap-6 text-center">
           <div className="w-14 h-14 rounded-full bg-[rgba(52,199,89,0.12)] flex items-center justify-center">

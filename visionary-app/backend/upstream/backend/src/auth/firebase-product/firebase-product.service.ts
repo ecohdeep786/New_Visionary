@@ -7,7 +7,7 @@ import { onboardingProfile, publicProfile } from './profile';
 import { freeBillingAccount } from '../../billing/billing-account';
 import { ACCOUNT_STORAGE_VERSION, LEGACY_BILLING_ACCOUNTS, billingDocument, deviceDocument, deviceRecord, eventDocument, identitySnapshot } from './account-storage';
 import { accountDirectory, directoryDocument, directoryNeedsUpdate } from './account-directory';
-import { SESSION_ABSOLUTE_MS as ABSOLUTE_MS, accountSessionPolicy, sessionVersion, sessionIsLive } from './session-policy';
+import { SESSION_ABSOLUTE_MS as ABSOLUTE_MS, accountSessionPolicy, sessionVersion, sessionIsLive, globalLogoutEnabled } from './session-policy';
 
 // Durable device sign-in, bounded by Firebase's maximum session-cookie lifetime.
 // Passwords/SDK refresh tokens are never used as a browser-side login cache.
@@ -21,6 +21,9 @@ const assertAccountUid = (uid: unknown) => {
 export class FirebaseProductService implements OnModuleDestroy {
   private firestore?: Firestore;
   constructor(private readonly admin: FirebaseAdminService, private readonly config: ConfigService) {}
+  private profile(uid: string, data: Record<string, any>) {
+    return { ...publicProfile(uid, data), auth_features: { global_sign_out: globalLogoutEnabled(this.config.get('AUTH_GLOBAL_LOGOUT_ENABLED')) } };
+  }
   private db() {
     const kind = this.config.get('FIREBASE_PROJECT_KIND') || 'production';
     const emulator = process.env.FIRESTORE_EMULATOR_HOST;
@@ -108,7 +111,7 @@ export class FirebaseProductService implements OnModuleDestroy {
           ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512), createdAt: Timestamp.fromMillis(now) };
         tx.create(event, eventData);
         tx.create(eventDocument(db, identity.uid, event.id.split('/').at(-1)), eventData);
-        return publicProfile(identity.uid, refreshed);
+        return this.profile(identity.uid, refreshed);
       });
     });
     return { cookie, device, profile, expiresIn: ABSOLUTE_MS };
@@ -140,7 +143,7 @@ export class FirebaseProductService implements OnModuleDestroy {
     return this.database(async () => {
       const account = await this.db().collection('visionary_accounts').doc(uid).get();
       if (!account.exists) throw new ConflictException('Your account profile is missing. Sign in again to recover it.');
-      return publicProfile(uid, account.data());
+      return this.profile(uid, account.data());
     });
   }
   async accountDetails(uid: string) {
@@ -150,7 +153,7 @@ export class FirebaseProductService implements OnModuleDestroy {
       const data = snapshot.data(), identity = data.identity || {}, onboarding = data.onboarding || {};
       if (data.uid && data.uid !== uid) throw new ConflictException('Your account identity needs recovery.');
       const iso = (value: any) => value?.toDate?.().toISOString() || null;
-      return { profile: publicProfile(uid, data),
+      return { profile: this.profile(uid, data),
         identity: { uid, email: data.email || '', emailVerified: typeof identity.emailVerified === 'boolean' ? identity.emailVerified : null,
           displayName: identity.displayName || null, phoneNumber: identity.phoneNumber || null, photoURL: identity.photoURL || null,
           provider: identity.provider || null, providerIds: identity.providerIds || [], createdAt: iso(data.createdAt), lastSignInAt: iso(data.lastSignInAt), lastVerifiedAt: iso(identity.lastVerifiedAt) },
@@ -167,11 +170,11 @@ export class FirebaseProductService implements OnModuleDestroy {
         if (expectedSessionVersion !== undefined && accountSessionPolicy(current).version !== expectedSessionVersion) throw new UnauthorizedException('Your session ended. Sign in again.');
         if (!current) throw new ConflictException('Your account profile is missing. Sign in again.');
         // Repeated completion / another device cannot reset the first completed profile.
-        if (current.onboarding?.status === 'complete') return publicProfile(uid, current);
+        if (current.onboarding?.status === 'complete') return this.profile(uid, current);
         const updated = { ...current, profile, full_name: profile.full_name, version: (current.version || 0) + 1,
           onboarding: { status: 'complete', completedAt: Timestamp.now(), version: 2, introduction: { status: 'pending' } } };
         tx.set(ref, updated);
-        return publicProfile(uid, updated);
+        return this.profile(uid, updated);
       });
     });
   }
@@ -191,7 +194,7 @@ export class FirebaseProductService implements OnModuleDestroy {
         const updated: Record<string, any> = { ...current, version: (current.version || 0) + 1 };
         if (input.full_name !== undefined) { updated.full_name = input.full_name.trim(); updated.profile = { ...current.profile, full_name: updated.full_name }; }
         if (theme) updated.preferences = { ...current.preferences, theme_color: theme };
-        tx.set(ref, updated); return publicProfile(uid, updated);
+        tx.set(ref, updated); return this.profile(uid, updated);
       });
     });
   }
@@ -203,14 +206,17 @@ export class FirebaseProductService implements OnModuleDestroy {
         const snapshot = await tx.get(ref), current = snapshot.data();
         if (expectedSessionVersion !== undefined && accountSessionPolicy(current).version !== expectedSessionVersion) throw new UnauthorizedException('Your session ended. Sign in again.');
         if (!current || current.onboarding?.status !== 'complete') throw new ConflictException('Finish account setup before acknowledging the introduction.');
-        if (current.onboarding?.introduction?.status !== 'pending') return publicProfile(uid, current);
+        if (current.onboarding?.introduction?.status !== 'pending') return this.profile(uid, current);
         const updated = { ...current, version: (current.version || 0) + 1,
           onboarding: { ...current.onboarding, introduction: { status: 'complete', completedAt: Timestamp.now() } } };
-        tx.set(ref, updated); return publicProfile(uid, updated);
+        tx.set(ref, updated); return this.profile(uid, updated);
       });
     });
   }
   async logoutAll(cookie: string, device: string, expectedUid: string, metadata: { ip: string; userAgent: string }) {
+    // Roll out admission compatibility before permitting durable revocations.
+    // Disabling the action never disables epoch/cutoff enforcement.
+    if (!globalLogoutEnabled(this.config.get('AUTH_GLOBAL_LOGOUT_ENABLED'))) throw new ServiceUnavailableException('Sign out on all devices is temporarily unavailable. Please try again later.');
     if (!cookie || !/^[a-f0-9]{64}$/.test(device || '')) throw new UnauthorizedException('Sign in to continue.');
     const identity = await this.verified(() => this.admin.getAuth().verifySessionCookie(cookie, true));
     assertAccountUid(identity.uid);

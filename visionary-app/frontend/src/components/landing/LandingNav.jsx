@@ -116,7 +116,7 @@ function MegaTile({ to, onClick, Icon, title, desc, active, compact }) {
         <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
       </span>
       <span className="min-w-0">
-        <span className={`block font-medium leading-[20px] ${compact ? "text-[15px]" : "text-[16px]"}`} style={{ color: C.ink }}>
+        <span className={`block font-medium leading-[20px] text-[16px]`} style={{ color: C.ink }}>
           {title}
         </span>
         <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
@@ -593,7 +593,7 @@ export default function LandingNav() {
             <Link
               to="/help"
               onClick={() => setMobileOpen(false)}
-              className={`flex h-11 items-center justify-center gap-1.5 rounded-full border text-[15px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
+              className={`flex h-11 items-center justify-center gap-1.5 rounded-full border text-[16px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
               style={{ borderColor: C.mist, color: C.ink }}
             >
               <CircleHelp className="h-4 w-4" strokeWidth={1.8} />
@@ -602,14 +602,14 @@ export default function LandingNav() {
             <Link
               to="/login"
               onClick={() => setMobileOpen(false)}
-              className={`flex h-11 items-center justify-center rounded-full border border-[#d2d2d7] text-[15px] font-normal tracking-[0.24px] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] ${FOCUS_RING}`}
+              className={`flex h-11 items-center justify-center rounded-full border border-[#d2d2d7] text-[16px] font-normal tracking-[0.24px] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] ${FOCUS_RING}`}
             >
               Sign in
             </Link>
             <Link
               to="/register"
               onClick={() => setMobileOpen(false)}
-              className={`flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] text-[15px] font-medium tracking-[0.24px] text-white transition-colors duration-200 hover:bg-[#272729] active:bg-[#18181a] ${FOCUS_RING}`}
+              className={`flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] text-[16px] font-medium tracking-[0.24px] text-white transition-colors duration-200 hover:bg-[#272729] active:bg-[#18181a] ${FOCUS_RING}`}
             >
               Get started
             </Link>
@@ -617,7 +617,7 @@ export default function LandingNav() {
 
           {/* WHO YOU ARE */}
           <div className="py-2">
-            <p className="mb-2 text-[13px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               Who you are
             </p>
 
@@ -665,7 +665,7 @@ export default function LandingNav() {
 
           {/* FOR ORGANIZATIONS */}
           <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 text-[13px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               For organizations
             </p>
 
@@ -708,7 +708,7 @@ export default function LandingNav() {
 
           {/* DOWNLOAD */}
           <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 text-[13px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               Download
             </p>
 
@@ -740,13 +740,13 @@ export default function LandingNav() {
 
           {/* ABOUT */}
           <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 text-[13px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               About
             </p>
 
             {ABOUT_GROUPS.map((group) => (
               <div key={group.title} className="pb-3">
-                <p className="px-3 py-2 text-[13px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+                <p className="px-3 py-2 apple-eyebrow" style={{ color: C.slate }}>
                   {group.title}
                 </p>
 

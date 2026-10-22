@@ -91,7 +91,7 @@ function ProgressCard({ link, logs, window, accent }) {
               ))}
             </div>
             <div className="mt-1 flex gap-1.5">
-              {stats.perDay.map((day, i) => <span key={i} className="flex-1 text-center text-[10px] text-[#5f6368]">{day.initial}</span>)}
+              {stats.perDay.map((day, i) => <span key={i} className="flex-1 text-center text-xs text-[#6e6e73]">{day.initial}</span>)}
             </div>
           </div>
 

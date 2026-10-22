@@ -5,6 +5,7 @@ import { Compass, GraduationCap, Link2, UserRoundPlus } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
@@ -15,8 +16,8 @@ import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Link and pill grammar — the approved public classes, verbatim ═══ */
 const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[15px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
+const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[16px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
    motion-reduce safe). ═══ */
@@ -102,11 +103,11 @@ export default function ReferralPage() {
         {/* HERO — the reference's centered statement with the illustration trio */}
         <section data-section="01-hero" className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
-            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Referral programme</p>
+            <p data-type="label" className="text-[#6e6e73]">Referral programme</p>
             <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#1d1d1f]">
               Share a better way to <span className="accent-gradient">learn.</span>
             </h1>
-            <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#6e6e73]">
+            <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
               Invite someone to explore Visionary. One link, the same sign-up everyone gets. No codes, no tracking, nothing to manage.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -140,11 +141,11 @@ export default function ReferralPage() {
         <section id="how" data-section="02-how" aria-labelledby="how-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Sending an invite</p>
+              <p className="apple-eyebrow text-[#6e6e73]">Sending an invite</p>
               <h2 id="how-title" className="mt-3 text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[46px]">
                 How it works.
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 The more personal the share, the more it can mean. Three steps, about a minute.
               </p>
             </div>
@@ -175,11 +176,11 @@ export default function ReferralPage() {
         <section aria-labelledby="point-title" data-section="03-point" className="bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Pointing them well</p>
+              <p className="apple-eyebrow text-[#6e6e73]">Pointing them well</p>
               <h2 id="point-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
                 Start from what they need.
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 A share lands better when the page matches the person. Send the one that fits, or the how-it-works tour for everyone.
               </p>
             </div>
@@ -212,11 +213,11 @@ export default function ReferralPage() {
         <section id="share" data-section="04-share" aria-labelledby="share-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
             <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Ready to share?</p>
+              <p className="apple-eyebrow text-[#6e6e73]">Ready to share?</p>
               <h2 id="share-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
                 Copy the standard sign-up link.
               </h2>
-              <p className="mt-4 max-w-[480px] text-[15px] leading-[1.75] text-[#6e6e73]">
+              <p className="mt-4 max-w-[480px] text-[16px] leading-[1.75] text-[#6e6e73]">
                 It opens Visionary registration. It contains no personal referral code and does not tell Visionary who shared it.
               </p>
               <p className="mt-6 flex items-center gap-2 text-[13px] tracking-[0.01em] text-[#6e6e73]">
@@ -232,7 +233,7 @@ export default function ReferralPage() {
                 readOnly
                 value={shareUrl}
                 onFocus={(event) => event.currentTarget.select()}
-                className="h-12 w-full min-w-0 rounded-full bg-[#f5f5f7] px-5 text-[15px] text-[#6e6e73] outline-none transition-colors focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30"
+                className="h-12 w-full min-w-0 rounded-full bg-[#f5f5f7] px-5 text-[16px] text-[#6e6e73] outline-none transition-colors focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30"
                 aria-describedby="referral-link-note"
               />
               <div className="mt-4 flex flex-wrap items-center gap-4">
@@ -262,16 +263,21 @@ export default function ReferralPage() {
               No points. No tracking. Just a good tool worth passing on.
             </h2>
             <div className="mt-5 max-w-[640px]">
-              <p className="text-[15px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
+              <p className="text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
                 There is no cash reward, account credit, referral code, or tracking dashboard attached to sharing Visionary today. If a formal referral programme with rewards is ever introduced, it will be announced on this page first.
               </p>
             </div>
             <div className="mt-7 flex flex-wrap justify-center gap-2">
               {["No tracking", "No codes", "No rewards", "No expiry"].map((chip) => (
-                <span key={chip} className="inline-flex items-center rounded-[12px] border border-[rgba(18,19,23,0.12)] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#1d1d1f]">
+                <span key={chip} className="inline-flex items-center rounded-[12px] border border-[rgba(18,19,23,0.12)] bg-white px-2.5 py-1 apple-eyebrow text-[#1d1d1f]">
                   {chip}
                 </span>
               ))}
+            </div>
+            <div className="mt-9 flex justify-center">
+              <QuietLink href="mailto:hello@visionary.org.in?subject=Referral%20question">
+                Ask a referral question <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
             </div>
           </Reveal>
         </section>
@@ -280,11 +286,11 @@ export default function ReferralPage() {
         <section id="faq" data-section="06-faq" aria-labelledby="faq-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Good to know</p>
+              <p className="apple-eyebrow text-[#6e6e73]">Good to know</p>
               <h2 id="faq-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
                 Frequently asked questions.
               </h2>
-              <p className="mt-4 max-w-[360px] text-[15px] leading-[1.75] text-[#6e6e73]">
+              <p className="mt-4 max-w-[360px] text-[16px] leading-[1.75] text-[#6e6e73]">
                 Straight answers about sharing Visionary, including what this page does not promise.
               </p>
             </div>
@@ -332,7 +338,7 @@ export default function ReferralPage() {
               <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f]">
                 Not sharing yet? Keep growing with us.
               </h2>
-              <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-[1.7] text-[#1d1d1f]">
+              <p className="mx-auto mt-4 max-w-[520px] text-[16px] leading-[1.7] text-[#1d1d1f]">
                 Follow what changes, or meet the people who learn with Visionary, then share when it feels right.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

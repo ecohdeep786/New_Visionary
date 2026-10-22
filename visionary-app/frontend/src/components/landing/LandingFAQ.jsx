@@ -129,7 +129,7 @@ export default function LandingFAQ({
                 </span>
               </button>
               <div id={answerId} role="region" aria-labelledby={triggerId} hidden={!open} className="px-6 pb-6">
-                <p className="text-[15px] leading-[1.65] text-[#6e6e73]">{faq.a}</p>
+                <p className="text-[16px] leading-[1.65] text-[#6e6e73]">{faq.a}</p>
               </div>
             </div>
           );
