@@ -10,18 +10,11 @@ import {
 } from "lucide-react";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import { CATEGORIES } from "@/data/landingCategories";
-import { fontStack } from "@/components/landing/system/tokens";
+import { color as C, fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens ═══ */
-const C = {
-  ink: "#121317",
-  graphite: "#3c4043",
-  slate: "#5f6368",
-  mist: "#dadce0",
-  canvas: "#f8f9fa",
-  blue: "#4285F4",
-  darkblue: "#0b57d2",
-};
+/* C now aliases the shared token palette (LandingNav was Google-mapped).      */
+/* Legacy keys resolve per tokens.js: ink→#1d1d1f, slate→#6e6e73, mist→hairline. */
 
 /* Persona metadata */
 const CATEGORY_META = {
@@ -88,25 +81,25 @@ const ABOUT_GROUPS = [
   },
 ];
 
-const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
+const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
 
 /* Apple-state nav item — ink at 75% at rest (Apple's global-nav gray),
    resolving to full ink on hover; the selected page's item sits at Medium */
 const navLink = (active) =>
-  `flex h-10 items-center whitespace-nowrap rounded-full px-3 text-[14px] transition-colors duration-200 ${FOCUS_RING} ${
+  `flex h-11 items-center whitespace-nowrap rounded-full px-3.5 text-[14px] tracking-[-0.010em] transition-colors duration-200 ${FOCUS_RING} ${
     active
-      ? "font-medium text-[#121317]"
-      : "font-normal text-[#121317]/75 hover:text-[#121317]"
+      ? "font-medium text-[#1d1d1f]"
+      : "font-normal text-[#1d1d1f]/75 hover:text-[#1d1d1f]"
   }`;
 
 /* Icon-only button — borderless, a quiet gray wash on hover */
 const iconBtn = (active = false) =>
-  `flex h-10 w-10 items-center justify-center rounded-full transition-colors ${FOCUS_RING} ${
-    active ? "bg-[#121317]/5" : "hover:bg-[#121317]/5"
+  `flex h-11 w-11 items-center justify-center rounded-full transition-colors ${FOCUS_RING} ${
+    active ? "bg-[#1d1d1f]/5" : "hover:bg-[#1d1d1f]/5"
   }`;
 
 /* Megamenu tile — one anatomy for every menu item */
-const MEGA_TILE = "flex items-start gap-3.5 rounded-[12px] p-2.5 transition-colors hover:bg-[#f8f9fa]";
+const MEGA_TILE = "flex items-start gap-3.5 rounded-[12px] p-2.5 transition-colors hover:bg-[#f5f5f7]";
 
 function MegaTile({ to, onClick, Icon, title, desc, active, compact }) {
   return (
@@ -114,19 +107,19 @@ function MegaTile({ to, onClick, Icon, title, desc, active, compact }) {
       to={to}
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className={`${MEGA_TILE} ${FOCUS_RING} ${active ? "bg-[#f8f9fa]" : ""}`}
+      className={`${MEGA_TILE} ${FOCUS_RING} ${active ? "bg-[#f5f5f7]" : ""}`}
     >
       <span
         className={`flex shrink-0 items-center justify-center rounded-[12px] border bg-white ${compact ? "h-9 w-9" : "h-10 w-10"}`}
-        style={{ borderColor: C.mist, color: C.blue }}
+        style={{ borderColor: C.mist, color: C.link }}
       >
         <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
       </span>
       <span className="min-w-0">
-        <span className={`block font-medium leading-[20px] ${compact ? "text-[14px]" : "text-[15px]"}`} style={{ color: C.ink }}>
+        <span className={`block font-medium leading-[20px] text-[16px]`} style={{ color: C.ink }}>
           {title}
         </span>
-        <span className="mt-0.5 block text-[13px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
+        <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
           {desc}
         </span>
       </span>
@@ -283,7 +276,7 @@ export default function LandingNav() {
       {/* Skip link — first focusable element, Google/US-WAG convention */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-10 focus:items-center focus:rounded-full focus:bg-[#121317] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-10 focus:items-center focus:rounded-full focus:bg-[#1d1d1f] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
       >
         Skip to main content
       </a>
@@ -295,7 +288,7 @@ export default function LandingNav() {
       <div
         aria-hidden="true"
         className={`absolute inset-0 -z-10 border-b backdrop-blur-[20px] backdrop-saturate-150 transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] ${
-          scrolled ? "border-[#121317]/10 bg-white/90" : "border-[#121317]/[0.06] bg-[rgba(251,251,253,0.8)]"
+          scrolled ? "border-[#1d1d1f]/10 bg-white/90" : "border-[#1d1d1f]/[0.06] bg-[rgba(251,251,253,0.8)]"
         }`}
       />
         <div className="public-frame relative flex h-full items-center justify-between">
@@ -331,7 +324,7 @@ export default function LandingNav() {
 
               {openMega === "who" && (
                 <div id="mega-who" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
-                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#dadce0]/70">
+                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#d2d2d7]">
                     <div className="px-6 py-9 sm:px-8">
                     <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       One intelligence, every learner.
@@ -385,7 +378,7 @@ export default function LandingNav() {
 
               {openMega === "org" && (
                 <div id="mega-org" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
-                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#dadce0]/70">
+                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#d2d2d7]">
                     <div className="px-6 py-9 sm:px-8">
                     <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       For organizations
@@ -438,7 +431,7 @@ export default function LandingNav() {
 
               {openMega === "download" && (
                 <div id="mega-download" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
-                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#dadce0]/70">
+                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#d2d2d7]">
                     <div className="px-6 py-9 sm:px-8">
                     <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       Download Visionary
@@ -486,7 +479,7 @@ export default function LandingNav() {
 
               {openMega === "about" && (
                 <div id="mega-about" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
-                  <div className="mega-sheet pointer-events-auto max-h-[calc(100dvh-100px)] w-full max-w-[1240px] overflow-y-auto rounded-[24px] border border-[#dadce0]/70">
+                  <div className="mega-sheet pointer-events-auto max-h-[calc(100dvh-100px)] w-full max-w-[1240px] overflow-y-auto rounded-[24px] border border-[#d2d2d7]">
                     <div className="px-6 py-9 sm:px-8">
                     <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       About Visionary
@@ -498,7 +491,7 @@ export default function LandingNav() {
                     <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
                       {ABOUT_GROUPS.map((group) => (
                         <div key={group.title}>
-                          <p className="mb-2 text-[12px] font-medium tracking-[0.24px]" style={{ color: C.slate }}>
+                          <p className="mb-2 text-[13px] font-medium tracking-[0.24px]" style={{ color: C.slate }}>
                             {group.title}
                           </p>
 
@@ -548,7 +541,7 @@ export default function LandingNav() {
               color, matching every primary pill on the page. */}
           <Link
             to="/register"
-            className={`ml-2 flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#121317] px-[18px] text-[14px] font-medium text-white transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${FOCUS_RING} ${
+            className={`ml-2 flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] active:bg-[#18181a] focus:outline-none ${FOCUS_RING} ${
               scrolled
                 ? "visible translate-y-0 opacity-100"
                 : "pointer-events-none invisible -translate-y-1 opacity-0"
@@ -600,7 +593,7 @@ export default function LandingNav() {
             <Link
               to="/help"
               onClick={() => setMobileOpen(false)}
-              className={`flex h-10 items-center justify-center gap-1.5 rounded-full border text-[14px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
+              className={`flex h-11 items-center justify-center gap-1.5 rounded-full border text-[16px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
               style={{ borderColor: C.mist, color: C.ink }}
             >
               <CircleHelp className="h-4 w-4" strokeWidth={1.8} />
@@ -609,16 +602,14 @@ export default function LandingNav() {
             <Link
               to="/login"
               onClick={() => setMobileOpen(false)}
-              className={`flex h-10 items-center justify-center rounded-full border text-[14px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
-              style={{ borderColor: C.mist, color: C.blue }}
+              className={`flex h-11 items-center justify-center rounded-full border border-[#d2d2d7] text-[16px] font-normal tracking-[0.24px] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] ${FOCUS_RING}`}
             >
               Sign in
             </Link>
             <Link
               to="/register"
               onClick={() => setMobileOpen(false)}
-              className={`flex h-10 items-center justify-center rounded-full text-[14px] font-medium tracking-[0.24px] text-white ${FOCUS_RING}`}
-              style={{ backgroundColor: C.darkblue }}
+              className={`flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] text-[16px] font-medium tracking-[0.24px] text-white transition-colors duration-200 hover:bg-[#272729] active:bg-[#18181a] ${FOCUS_RING}`}
             >
               Get started
             </Link>
@@ -626,7 +617,7 @@ export default function LandingNav() {
 
           {/* WHO YOU ARE */}
           <div className="py-2">
-            <p className="mb-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               Who you are
             </p>
 
@@ -639,20 +630,20 @@ export default function LandingNav() {
                   to={cat.path}
                   onClick={() => setMobileOpen(false)}
                   aria-current={cat.path === pathname ? "page" : undefined}
-                  className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING} ${cat.path === pathname ? "bg-[#f8f9fa]" : ""}`}
+                  className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING} ${cat.path === pathname ? "bg-[#f5f5f7]" : ""}`}
                 >
                   <span
                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                    style={{ borderColor: C.mist, color: C.blue }}
+                    style={{ borderColor: C.mist, color: C.link }}
                   >
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                   </span>
 
                   <span>
-                    <span className="block text-[15px] font-medium" style={{ color: C.ink }}>
+                    <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
                       {cat.label}
                     </span>
-                    <span className="mt-0.5 block text-[13px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
+                    <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
                       {desc}
                     </span>
                   </span>
@@ -666,7 +657,7 @@ export default function LandingNav() {
             to="/how-it-works"
             onClick={() => setMobileOpen(false)}
             aria-current={pathname === "/how-it-works" ? "page" : undefined}
-            className={`block border-t py-3.5 text-[15px] tracking-[0.24px] ${FOCUS_RING}`}
+            className={`block border-t py-3.5 text-[16px] tracking-[0.24px] ${FOCUS_RING}`}
             style={{ borderColor: C.mist, color: C.ink }}
           >
             How it works
@@ -674,7 +665,7 @@ export default function LandingNav() {
 
           {/* FOR ORGANIZATIONS */}
           <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               For organizations
             </p>
 
@@ -683,20 +674,20 @@ export default function LandingNav() {
                 key={ctx.id}
                 to={`/organization#${ctx.id}`}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING}`}
+                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING}`}
               >
                 <span
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: C.mist, color: C.blue }}
+                  style={{ borderColor: C.mist, color: C.link }}
                 >
                   <ctx.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                 </span>
 
                 <span>
-                  <span className="block text-[15px] font-medium" style={{ color: C.ink }}>
+                  <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
                     {ctx.title}
                   </span>
-                  <span className="mt-0.5 block text-[13px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
+                  <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
                     {ctx.desc}
                   </span>
                 </span>
@@ -709,7 +700,7 @@ export default function LandingNav() {
             to="/pricing"
             onClick={() => setMobileOpen(false)}
             aria-current={pathname === "/pricing" ? "page" : undefined}
-            className={`block border-t py-3.5 text-[15px] tracking-[0.24px] ${FOCUS_RING}`}
+            className={`block border-t py-3.5 text-[16px] tracking-[0.24px] ${FOCUS_RING}`}
             style={{ borderColor: C.mist, color: C.ink }}
           >
             Pricing
@@ -717,7 +708,7 @@ export default function LandingNav() {
 
           {/* DOWNLOAD */}
           <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               Download
             </p>
 
@@ -726,20 +717,20 @@ export default function LandingNav() {
                 key={p.id}
                 to={`/download#${p.id}`}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING}`}
+                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING}`}
               >
                 <span
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: C.mist, color: C.blue }}
+                  style={{ borderColor: C.mist, color: C.link }}
                 >
                   <p.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                 </span>
 
                 <span>
-                  <span className="block text-[15px] font-medium" style={{ color: C.ink }}>
+                  <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
                     {p.title}
                   </span>
-                  <span className="mt-0.5 block text-[13px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
+                  <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
                     {p.desc}
                   </span>
                 </span>
@@ -749,13 +740,13 @@ export default function LandingNav() {
 
           {/* ABOUT */}
           <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
               About
             </p>
 
             {ABOUT_GROUPS.map((group) => (
               <div key={group.title} className="pb-3">
-                <p className="px-3 py-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+                <p className="px-3 py-2 apple-eyebrow" style={{ color: C.slate }}>
                   {group.title}
                 </p>
 
@@ -765,20 +756,20 @@ export default function LandingNav() {
                     to={item.to}
                     onClick={() => setMobileOpen(false)}
                     aria-current={pathname === item.to ? "page" : undefined}
-                    className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING}`}
+                    className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING}`}
                   >
                     <span
                       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                      style={{ borderColor: C.mist, color: C.blue }}
+                      style={{ borderColor: C.mist, color: C.link }}
                     >
                       <item.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                     </span>
 
                     <span>
-                      <span className="block text-[15px] font-medium" style={{ color: C.ink }}>
+                      <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
                         {item.title}
                       </span>
-                      <span className="mt-0.5 block text-[13px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
+                      <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
                         {item.desc}
                       </span>
                     </span>

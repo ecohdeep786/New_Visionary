@@ -8,6 +8,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
@@ -16,23 +17,23 @@ import { LEGAL_META } from "@/data/legalMeta";
 import { fontStack } from "@/components/landing/system/tokens";
 
 const COLORS = {
-  ink: "#121317",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
-  mist: "#dadce0",
-  border: "#dadce0",
-  soft: "#f8f9fa",
+  ink: "#1d1d1f",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
+  mist: "#d2d2d7",
+  border: "#d2d2d7",
+  soft: "#f5f5f7",
   canvas: "#f7f8fa",
-  blue: "#4285F4",
-  navy: "#0b57d0",
+  blue: "#0066cc",
+  navy: "#0066cc",
   white: "#ffffff",
-  graphite: "#5f6368",
+  graphite: "#6e6e73",
 };
 
 /* ═══ Link grammar — the approved public quiet link / ink pill / grey pill, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4";
-const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[15px] text-[#121317] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
+const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[16px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -102,7 +103,7 @@ const SECTIONS = [
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
+      <div className="mb-3 apple-eyebrow" style={{ color: COLORS.grey }}>
         {number}
       </div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
@@ -132,7 +133,7 @@ function SecurityCard({ icon: Icon, eyebrow, title, children }) {
   return (
     <div className="flex h-full flex-col rounded-[20px] bg-white p-6">
       <IconTile Icon={Icon} />
-      <div className="mt-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{eyebrow}</div>
+      <div className="mt-4 apple-eyebrow" style={{ color: COLORS.grey }}>{eyebrow}</div>
       <h3 className="mt-1.5 text-[17px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
       <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
     </div>
@@ -218,7 +219,7 @@ export default function SecurityPage() {
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
-                <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</div>
+                <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
                 <nav aria-label="Security sections">
                   <div className="space-y-1">
                     {SECTIONS.map((section) => {
@@ -229,10 +230,10 @@ export default function SecurityPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active ? "bg-[#f5f5f7]" : "text-[#5f6368] hover:text-[#121317]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
-                          <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0b57d0]" : ""}`}>{section.number}</span>
-                          <span className={`text-[13px] leading-[1.45] ${active ? "text-[#121317]" : ""}`}>{section.title}</span>
+                          <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
+                          <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
                         </button>
                       );
                     })}
@@ -255,11 +256,11 @@ export default function SecurityPage() {
               <FadeReveal visible={heroVisible}>
                 <div className="pb-12 pt-2">
                   <div className="flex justify-center"><SpotIllustration subject="shield" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Security</p>
+                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Security</p>
                   <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                     Secure by design, <span className="accent-gradient">protected end to end.</span>
                   </h1>
-                  <p className="mt-8 max-w-[760px] text-[17.5px] leading-[25px]" style={{ color: COLORS.grey }}>
+                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
                     Encryption, access controls, and clear account tools, described plainly, without security promises we cannot keep.
                   </p>
 
@@ -279,7 +280,7 @@ export default function SecurityPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Found a security issue?</p>
-                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>A clear description and the affected page is all we need.</p>
+                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>A clear description and the affected page is all we need.</p>
                       <a href="mailto:security@visionary.org.in" className={`mt-1.5 ${quietLink}`}>
                         security@visionary.org.in
                         <ChevronIcon className="h-4 w-4" aria-hidden="true" />
@@ -299,11 +300,11 @@ export default function SecurityPage() {
                     onClick={() => setShowMobileContents((value) => !value)}
                     aria-expanded={showMobileContents}
                     aria-controls="security-mobile-contents"
-                    className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                   >
                     <span>
-                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
-                      <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
+                      <span className="block apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="mt-1 block text-[16px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
                   </button>
@@ -318,10 +319,10 @@ export default function SecurityPage() {
                               type="button"
                               onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
                               aria-current={active ? "location" : undefined}
-                              className={`flex min-h-12 w-full items-start gap-4 rounded-[16px] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active ? "bg-white" : "text-[#5f6368]"}`}
+                              className={`flex min-h-12 w-full items-start gap-4 rounded-[16px] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-white" : "text-[#6e6e73]"}`}
                             >
-                              <span className={`mt-0.5 text-[12px] font-medium tabular-nums ${active ? "text-[#0b57d0]" : ""}`}>{section.number}</span>
-                              <span className={`text-[14px] leading-[1.45] ${active ? "text-[#121317]" : ""}`}>{section.title}</span>
+                              <span className={`mt-0.5 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
+                              <span className={`text-[14px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
                             </button>
                           );
                         })}
@@ -332,15 +333,15 @@ export default function SecurityPage() {
 
                 {/* AT A GLANCE */}
                 <section className="py-12" aria-labelledby="security-summary-title">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Start here</p>
+                  <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="security-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                         <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
-                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
+                        <span className="mt-5 flex items-center gap-2 text-[16px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
-                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                       </a>
                     ))}
                   </div>
@@ -549,7 +550,7 @@ export default function SecurityPage() {
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[16px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -567,16 +568,29 @@ export default function SecurityPage() {
                 { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
-                    <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
+                    <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
-                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+            clauses carry no per-module CTAs; the page ends with a way to
+            reach a person). */}
+        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+          <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
+            <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
+              Questions about this policy?
+            </p>
+            <QuietLink to="/contact" className="shrink-0">
+              Talk to a person <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+            </QuietLink>
           </div>
         </section>
       </main>

@@ -38,17 +38,20 @@ export const AuthProvider = ({ children }) => {
     const version = ++requestVersion.current;
     if (!options.quiet) setIsLoadingAuth(true);
     try {
-      const currentUser = await appClient.auth.me();
+      const currentUser = await appClient.auth.me({ passive: options.passive === true });
       if (version !== requestVersion.current) return null;
       if (accountId.current !== currentUser.id) { await queryClientInstance.cancelQueries(); queryClientInstance.clear(); setWorkspaceState(null); }
       if (version !== requestVersion.current) return null;
       if (accountId.current !== currentUser.id) ++accountEpoch.current;
-      accountId.current = currentUser.id; verifiedAt.current = Date.now();
+      accountId.current = currentUser.id;
+      if (!options.passive) verifiedAt.current = Date.now();
       setUser(currentUser);
       setAuthError(null);
       return currentUser;
     } catch (error) {
       if (version !== requestVersion.current) return null;
+      // A background outage is not evidence that the authenticated account ended.
+      if (options.passive && error.status !== 401 && accountId.current) return null;
       await queryClientInstance.cancelQueries(); queryClientInstance.clear();
       if (version !== requestVersion.current) return null;
       setUser(null);
@@ -92,21 +95,30 @@ export const AuthProvider = ({ children }) => {
     };
     window.addEventListener('storage', syncSession);
     window.addEventListener('visionary:auth-change', checkUserAuth);
-    const refresh = () => { if (appClient.auth.source === 'firebase' && !document.hidden) checkUserAuth({ quiet: true, background: true }); };
+    let observing = false;
+    const refresh = async (passive = true) => {
+      if (observing || appClient.auth.source !== 'firebase' || document.hidden) return;
+      observing = true;
+      try { await checkUserAuth({ quiet: true, background: true, passive }); }
+      finally { observing = false; }
+    };
+    const observe = () => { if (accountId.current) refresh(true); };
+    const timer = window.setInterval(observe, 30000);
     const activity = event => {
       if (event.isTrusted && accountId.current && !document.hidden && Date.now() - verifiedAt.current >= 5 * 60 * 1000) {
-        verifiedAt.current = Date.now(); refresh();
+        verifiedAt.current = Date.now(); refresh(false);
       }
     };
-    window.addEventListener('focus', refresh);
+    window.addEventListener('focus', observe);
+    document.addEventListener('visibilitychange', observe);
     window.addEventListener('pointerdown', activity, { passive: true, capture: true }); window.addEventListener('keydown', activity, { capture: true });
-    return () => { ++requestVersion.current; window.removeEventListener('storage', syncSession); window.removeEventListener('visionary:auth-change', checkUserAuth); window.removeEventListener('focus', refresh); window.removeEventListener('pointerdown', activity, true); window.removeEventListener('keydown', activity, true); };
+    return () => { ++requestVersion.current; window.clearInterval(timer); window.removeEventListener('storage', syncSession); window.removeEventListener('visionary:auth-change', checkUserAuth); window.removeEventListener('focus', observe); document.removeEventListener('visibilitychange', observe); window.removeEventListener('pointerdown', activity, true); window.removeEventListener('keydown', activity, true); };
   }, [checkUserAuth]);
 
-  const logout = useCallback(async () => {
+  const logout = useCallback(async (options) => {
     ++accountEpoch.current;
     ++requestVersion.current;
-    await appClient.auth.logout();
+    await appClient.auth.logout(options);
     ++requestVersion.current;
     queryClientInstance.clear();
     accountId.current = null; setWorkspaceState(null); setIsLoadingAuth(false); setAuthError(null);
@@ -146,6 +158,7 @@ export const AuthProvider = ({ children }) => {
       updateUser,
       signInViaEmailPassword: (email, password) => runAccountCommand(() => appClient.auth.loginViaEmailPassword(email, password), true),
       signInWithProvider: provider => runAccountCommand(() => appClient.auth.loginWithProvider(provider, '/'), true),
+      confirmPhoneSignIn: (confirmation, code) => runAccountCommand(() => appClient.auth.confirmPhoneSignIn(confirmation, code), true),
       verifyEmail: () => runAccountCommand(() => appClient.auth.verifyEmail(), true),
       completeOnboarding: data => runAccountCommand(() => appClient.auth.completeOnboarding(data)),
       completeIntroduction: () => runAccountCommand(() => appClient.auth.completeIntroduction()),

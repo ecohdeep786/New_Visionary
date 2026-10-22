@@ -237,8 +237,8 @@ const StudentGoalsForm = ({ data, updateData }) => {
         </div>
       )}
       <div className="mb-8">
-        <p className="text-sm font-medium text-[#121317] mb-2">What are your learning goals?</p>
-        <p className="text-xs text-[#5f6368] mb-3">Select all that apply.</p>
+        <p className="text-sm font-medium text-[#1d1d1f] mb-2">What are your learning goals?</p>
+        <p className="text-xs text-[#6e6e73] mb-3">Select all that apply.</p>
         <ChipMultiSelect
           options={LEARNING_GOALS}
           selected={data.learning_goals || []}
@@ -249,8 +249,8 @@ const StudentGoalsForm = ({ data, updateData }) => {
         <StudyRoutine data={data} updateData={updateData} />
       </div>
       <div className="mb-6">
-        <p className="text-sm font-medium text-[#121317] mb-2">Do you use reference books?</p>
-        <p className="text-xs text-[#5f6368] mb-3">Optional — skip if you don't use any.</p>
+        <p className="text-sm font-medium text-[#1d1d1f] mb-2">Do you use reference books?</p>
+        <p className="text-xs text-[#6e6e73] mb-3">Optional — skip if you don't use any.</p>
         <ChipMultiSelect
           options={REFERENCE_BOOKS}
           selected={data.reference_books || []}
@@ -272,8 +272,8 @@ const StudentOptionalForm = ({ data, updateData }) => {
     <>
       {isHighSchool && (
         <div className="mb-8">
-          <p className="text-sm font-medium text-[#121317] mb-2">Also preparing for competitive exams?</p>
-          <p className="text-xs text-[#5f6368] mb-3">We’ll save this goal separately; exam content connects when the content service is available.</p>
+          <p className="text-sm font-medium text-[#1d1d1f] mb-2">Also preparing for competitive exams?</p>
+          <p className="text-xs text-[#6e6e73] mb-3">We’ll save this goal separately; exam content connects when the content service is available.</p>
           <ChoiceGrid
             options={COMPETITIVE_EXAMS}
             value={data.competitive_exam}
@@ -285,8 +285,8 @@ const StudentOptionalForm = ({ data, updateData }) => {
         </div>
       )}
       <div className="mb-8">
-        <p className="text-sm font-medium text-[#121317] mb-2">What should we notify you about?</p>
-        <p className="text-xs text-[#5f6368] mb-3">Select all that apply.</p>
+        <p className="text-sm font-medium text-[#1d1d1f] mb-2">What should we notify you about?</p>
+        <p className="text-xs text-[#6e6e73] mb-3">Select all that apply.</p>
         <ChipMultiSelect
           options={NOTIFICATION_PREFS}
           selected={data.notifications || []}
@@ -294,8 +294,8 @@ const StudentOptionalForm = ({ data, updateData }) => {
         />
       </div>
       <div className="mb-6">
-        <p className="text-sm font-medium text-[#121317] mb-2">Connect your school or coaching?</p>
-        <p className="text-xs text-[#5f6368] mb-3">Optional — you can always connect later from settings.</p>
+        <p className="text-sm font-medium text-[#1d1d1f] mb-2">Connect your school or coaching?</p>
+        <p className="text-xs text-[#6e6e73] mb-3">Optional — you can always connect later from settings.</p>
         <ChoiceGrid
           options={[
             { id: "skip", label: "Skip for now", desc: "Full personal learning available immediately" },

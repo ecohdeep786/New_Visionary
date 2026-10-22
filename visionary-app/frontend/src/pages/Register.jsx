@@ -10,11 +10,12 @@ import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
 import {
   primaryBtnClass, primaryBtnAutoClass, outlineBtnClass,
-  Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow, PhoneInput,
+  Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow,
 } from "@/components/auth/AuthUI";
 import { useAuth } from "@/lib/AuthContext";
 import { toast } from "@/components/ui/use-toast";
 import { authErrorMessage } from '@/lib/authErrors';
+import { signInMethods } from '@/api/firebase/signInMethods';
 
 export default function Register() {
   const { user, isAuthenticated, isLoadingAuth, checkUserAuth, authError } = useAuth();
@@ -24,8 +25,6 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [orgEmail, setOrgEmail] = useState("");
   const [otpCode, setOtpCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,8 +33,8 @@ export default function Register() {
 
   if (isLoadingAuth) {
     return (
-      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
-        <Spinner className="w-8 h-8 text-[#4285F4]" />
+      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f5f5f7]">
+        <Spinner className="w-8 h-8 text-[#0066cc]" />
       </div>
     );
   }
@@ -138,7 +137,7 @@ export default function Register() {
         footer: (
           <>
             I already have an account.{" "}
-            <Link to={authLink('/login')} className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
+            <Link to={authLink('/login')} className="text-[#0066cc] font-medium hover:underline">Sign in</Link>
           </>
         ),
       }
@@ -149,7 +148,7 @@ export default function Register() {
         footer: (
           <>
             I already have an account.{" "}
-            <Link to={authLink('/login')} className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
+            <Link to={authLink('/login')} className="text-[#0066cc] font-medium hover:underline">Sign in</Link>
           </>
         ),
       };
@@ -160,20 +159,21 @@ export default function Register() {
       case "methods":
         return (
           <div key="methods" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-4">
-            <button type="button" onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
-              <Phone className="w-4 h-4" /> Continue with Mobile Number
-            </button>
-            <button type="button" onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
+            <button type="button" onClick={() => { setError(""); setView("email"); }} className={primaryBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
+            <button type="button" disabled={!signInMethods.mobile} aria-describedby="mobile-unavailable" className={`${outlineBtnClass} disabled:opacity-50 disabled:cursor-not-allowed`}>
+              <Phone className="w-4 h-4" /> Mobile sign-in unavailable
+            </button>
+            <p id="mobile-unavailable" className="text-xs text-[#6e6e73] text-center">Mobile number sign-in is unavailable. Use another method below or email above.</p>
             <AuthDivider />
-            <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
-            {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
-            <p className="text-xs text-[#5f6368] text-center leading-relaxed mt-2">
+            <SocialAuthButtons />
+            {(error || authError) && <p role="alert" className="text-sm text-[#e30000]">{error || authError.message}</p>}
+            <p className="text-xs text-[#6e6e73] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
-              <Link to="/privacy" className="text-[#4285F4] hover:underline">Privacy Policy</Link>
+              <Link to="/privacy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
               {" "}and{" "}
-              <Link to="/terms" className="text-[#4285F4] hover:underline">Terms of Service</Link>.
+              <Link to="/terms" className="text-[#0066cc] hover:underline">Terms of Service</Link>.
             </p>
           </div>
         );
@@ -184,11 +184,11 @@ export default function Register() {
             <BackButton onClick={goToMethods} />
             {error && (
               <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-                <AlertCircle className="w-5 h-5 text-[#ea4335] shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm text-[#ea4335] font-medium">Email already registered</p>
-                  <p className="text-xs text-[#ea4335] mt-1">{error}</p>
-                  <Link to={authLink('/login')} className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
+                  <p className="text-sm text-[#e30000] font-medium">Email already registered</p>
+                  <p className="text-xs text-[#e30000] mt-1">{error}</p>
+                  <Link to={authLink('/login')} className="text-xs text-[#0066cc] font-medium hover:underline mt-1.5 inline-block">
                     Sign in instead →
                   </Link>
                 </div>
@@ -218,9 +218,9 @@ export default function Register() {
         return (
           <div key="password" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={() => setView("email")} />
-            {error && <div id="registration-error" role="alert" className="p-3 rounded-lg bg-[#fce8e6] text-[#ea4335] text-sm">{error}</div>}
+            {error && <div id="registration-error" role="alert" className="p-3 rounded-lg bg-[#fce8e6] text-[#e30000] text-sm">{error}</div>}
             <form onSubmit={handleRegister} className="flex flex-col gap-6">
-              <ul id="password-requirements" className="text-xs text-[#5f6368] list-disc pl-4">{requirements.map(requirement => <li key={requirement}>{requirement}</li>)}</ul>
+              <ul id="password-requirements" className="text-xs text-[#6e6e73] list-disc pl-4">{requirements.map(requirement => <li key={requirement}>{requirement}</li>)}</ul>
               <GooglePasswordField
                 label="Create a password"
                 disabled={loading}
@@ -245,7 +245,7 @@ export default function Register() {
               <ActionRow
                 left={
                   duplicate ? (
-                    <div className="flex flex-col gap-2"><Link to={authLink('/login')} state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Sign in instead</Link><Link to="/forgot-password" state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Reset password</Link></div>
+                    <div className="flex flex-col gap-2"><Link to={authLink('/login')} state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">Sign in instead</Link><Link to="/forgot-password" state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">Reset password</Link></div>
                   ) : null
                 }
               >
@@ -261,15 +261,15 @@ export default function Register() {
         return (
           <div key="otp" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-8">
             <div className="text-center">
-              <div className="w-14 h-14 rounded-full bg-[#e8f0fd] flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-7 h-7 text-[#4285F4]" />
+              <div className="w-14 h-14 rounded-full bg-[rgba(0,102,204,0.10)] flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-7 h-7 text-[#0066cc]" />
               </div>
-              <h2 className="text-2xl font-normal text-[#121317]">Verify your email</h2>
-              <p className="text-sm text-[#5f6368] mt-2 leading-relaxed">
-                We sent a 6-digit code to <span className="font-medium text-[#121317]">{email}</span>
+              <h2 className="text-2xl font-normal text-[#1d1d1f]">Verify your email</h2>
+              <p className="text-sm text-[#6e6e73] mt-2 leading-relaxed">
+                We sent a 6-digit code to <span className="font-medium text-[#1d1d1f]">{email}</span>
               </p>
             </div>
-            {error && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#ea4335] text-sm">{error}</div>}
+            {error && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#e30000] text-sm">{error}</div>}
             <div className="flex justify-center">
               <InputOTP maxLength={6} value={otpCode} onChange={setOtpCode} autoFocus autoComplete="one-time-code">
                 <InputOTPGroup>
@@ -287,66 +287,12 @@ export default function Register() {
                 {loading ? <Spinner /> : "Verify"}
               </button>
             </div>
-            <p className="text-center text-sm text-[#5f6368]">
+            <p className="text-center text-sm text-[#6e6e73]">
               Didn't receive the code?{" "}
-              <button type="button" onClick={handleResend} className="text-[#4285F4] font-medium hover:underline">
+              <button type="button" onClick={handleResend} className="text-[#0066cc] font-medium hover:underline">
                 Resend
               </button>
             </p>
-          </div>
-        );
-
-      case "mobile":
-        return (
-          <div key="mobile" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-            <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Mobile sign-up is coming soon. Please use email or social sign-up."); }} className="flex flex-col gap-6">
-              <PhoneInput
-                label="Mobile number"
-                autoFocus
-                value={phone}
-                onChange={setPhone}
-                required
-              />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
-              <ActionRow
-                left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
-                    Use another method
-                  </button>
-                }
-              >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
-              </ActionRow>
-            </form>
-          </div>
-        );
-
-      case "organization":
-        return (
-          <div key="org" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-            <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Organization sign-up is coming soon. Please use email or social sign-up."); }} className="flex flex-col gap-6">
-              <InputField
-                label="Organization email"
-                type="email"
-                autoFocus
-                placeholder="you@school.edu"
-                value={orgEmail}
-                onChange={(e) => setOrgEmail(e.target.value)}
-                required
-              />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
-              <ActionRow
-                left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
-                    Use another method
-                  </button>
-                }
-              >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
-              </ActionRow>
-            </form>
           </div>
         );
 

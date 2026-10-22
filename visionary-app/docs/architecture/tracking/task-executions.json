@@ -89,9 +89,13 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "To Do",
-      "scope": "Preparation only; runtime/matrix implementation has not started. Founder requests retirement of idle checkouts.",
-      "worktree": null,
+      "status": "In Progress",
+      "scope": "Connected coverage candidate independently reviewed for technical compatibility; full real source/version/rights acceptance remains open. Founder defers source discussion on 21 October 2026.",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix",
+      "branch": "codex/codex-kan-29-coverage-matrix",
+      "currentCheckpoint": "99d18b12d8734a52973c63f629ac88cdce2127e8",
+      "currentHandoff": "docs/architecture/delivery/KAN29_CURRENT_PRODUCTION_COMPATIBILITY.md on the KAN-29 branch",
+      "fullFeatureAccepted": false,
       "preparationBranch": "codex/kan-29-coverage-matrix",
       "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
       "jiraCommentId": "10015",
@@ -207,23 +211,27 @@
       "sourceId": "MAIN-PRODUCTION-01",
       "jiraKey": "KAN-162",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-162",
-      "status": "Testing",
-      "scope": "Main-only production delivery in visionary-research; canonical TLS/automatic deploy/rollback acceptance pending",
+      "status": "Done",
+      "scope": "Verified main-only production hosting and CI/CD in visionary-research; full product/content/provider gates remain separate",
       "branch": "codex/firebase-visionary-research",
       "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
-      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/firebase-visionary-research",
+      "worktree": null,
       "review": {
-        "state": "approved-for-checked-integration",
+        "state": "approved",
         "implementer": "Codex",
         "reviewer": "/root/kan162_review",
         "approvedCommit": "4de8a33cb223a746c9738dc24554dd8ab812556e",
-        "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md"
+        "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md",
+        "hostedScopeAccepted": true,
+        "hostedEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md",
+        "productionAcceptanceReportCommit": "86718c1f7b9420b38e00bb20bd9e41cea254435b"
       },
       "integration": {
-        "devCommit": "3a2626d6f9e9e67e1da36d14eebf76e75eed3298",
-        "mainCommit": "f3cf316edb746ef85a8bfb04f71f29165c54944e",
+        "devCommit": "ab201364d4a0dd3ed2314851fd94164b0a2887f3",
+        "mainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
         "remotePublished": true,
-        "helperFollowupPendingIntegration": true
+        "helperFollowupPendingIntegration": false,
+        "evidenceDevCommit": "1caf66fbbc039f8d1d054e2f42ce7d88852fa356"
       },
       "checks": {
         "frontendTests": 532,
@@ -241,18 +249,350 @@
         "region": "asia-south1",
         "service": "visionary-product",
         "baselineRevision": "visionary-product-baseline-f3cf316edb74-mvgi7evq",
-        "imageDigest": "sha256:d7c679901eaa656dd8759291ff0b1d7f736b7006b4feccd154bc29bf9d28cfe2",
+        "imageDigest": "sha256:95f26b3ca800d148577456b2b21951bb2f93f76d1534628a37304ccd1363a7aa",
         "edgeIp": "34.8.58.39",
         "baselineVerified": true,
         "syntheticUidTwoSessionStoreChecksPassed": true,
         "syntheticIdentityDisabled": true,
-        "certificateStatus": "PROVISIONING",
-        "canonicalAcceptance": false,
-        "automaticDeploymentEnabled": false
+        "certificateStatus": "ACTIVE",
+        "canonicalAcceptance": true,
+        "automaticDeploymentEnabled": true,
+        "currentRevision": "visionary-product-g7aee2324024c-39405370084-1",
+        "actualMainPushDeploymentVerified": true,
+        "rollbackRestorationVerified": true,
+        "runUrl": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39405370084"
       },
-      "jiraCommentId": "10050",
-      "jiraReturnedStatus": "Testing",
-      "linkedProductGatesRemainOpen": true
+      "jiraCommentId": "10053",
+      "jiraReturnedStatus": "Done",
+      "linkedProductGatesRemainOpen": true,
+      "jiraTransitionId": "51",
+      "verifiedAt": "2026-10-20T10:12:09Z",
+      "cleanup": {
+        "state": "completed",
+        "removedWorktrees": [
+          "codex-kan-162-main-deployment",
+          "qa-review-kan-162-main-deployment",
+          "qa-review-kan-162-visionary-research",
+          "firebase-visionary-research"
+        ],
+        "preservedFiles": 77,
+        "preservedBytes": 776009,
+        "localEvidenceRoot": "C:/Users/Administrator/New_Visionary/visionary-app/artifacts/qa/kan162-closeout-20261020",
+        "manifest": "preserved-files.json",
+        "pushedSourceAndReviewRefsRetained": true,
+        "dependencyJunctionsRemovedWithoutFollowingTargets": 4,
+        "primaryDependenciesRetained": true,
+        "primaryBranch": "dev"
+      }
+    },
+    {
+      "sourceId": "LEARN-09",
+      "jiraKey": "KAN-145",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-145",
+      "status": "Done",
+      "scope": "Repaired development knowledge-projection enabler; whole connected feature prerequisites/acceptance remain open",
+      "branch": "codex/deepseek-kan-145-knowledge-projection",
+      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-145-knowledge-projection",
+      "review": {
+        "state": "approved-repaired-development-enabler",
+        "candidateCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+        "approvedCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+        "reviewer": "/root/kan145_repair_review",
+        "reviewerReportCommit": "7f1fa144a5b0155fcf8c5c4ea62726ab994fd70c",
+        "evidence": "docs/architecture/reviews/KAN145_EXACT_SHA_REPAIR_8B14A762.md",
+        "fullFeatureAccepted": false,
+        "enablerScopeAccepted": true
+      },
+      "hostedAcceptance": false,
+      "implementationCommit": "98ce3e5916e61b3c76a01b732f29d9b49b692af6",
+      "checks": {
+        "backendBuild": true,
+        "focusedTests": 11,
+        "backendTests": 84,
+        "rootCheck": true,
+        "frontendTests": 532,
+        "scriptTests": 18,
+        "failed": 0,
+        "productionTests": 76
+      },
+      "jiraCommentId": "10061",
+      "liveEvidence": "integration/KNOWLEDGE_PROJECTION_CONTRACT.md",
+      "currentDevBase": "e089319a24953bcadb522fcfef0e795065dd0c29",
+      "repairHandoff": "docs/architecture/delivery/KAN145_STORAGE_REPAIR.md",
+      "remainingPrerequisites": [
+        "KAN-144",
+        "KAN-74"
+      ],
+      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
+      "acceptedScope": "development backend enabler",
+      "fullFeatureGate": "KAN-163",
+      "fullFeatureAccepted": false,
+      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+      "integration": {
+        "branch": "dev",
+        "commit": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+        "pullRequest": 15,
+        "remotePublished": true,
+        "ciRun": "39457245132",
+        "ciConclusion": "success",
+        "productionJob": "skipped"
+      },
+      "jiraReturnedStatus": "Done",
+      "jiraTransitionId": "51",
+      "cleanup": {
+        "state": "blocked-by-automatic-approval-review",
+        "removed": false,
+        "reason": "Combined cleanup and narrower literal dependency-junction removal rejected: blocked by policy. No workaround deletion performed.",
+        "primaryDependenciesRetained": true,
+        "sourceAndReviewRefsRetained": true,
+        "worktrees": [
+          "deepseek-kan-145-knowledge-projection",
+          "qa-review-kan-145-knowledge-projection"
+        ],
+        "preservedFiles": 9,
+        "preservedBytes": 118332,
+        "evidenceRoot": "artifacts/qa/kan145-closeout-20261020",
+        "manifest": "preserved-files.json",
+        "jiraCommentId": "10062"
+      },
+      "enablerScopeAccepted": true
+    },
+    {
+      "sourceId": "LEARN-10",
+      "jiraKey": "KAN-146",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-146",
+      "status": "Done",
+      "scope": "Repaired development teaching replay and client confirmation enabler; full learner acceptance open",
+      "branch": "codex/deepseek-kan-146-teaching-loop",
+      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-146-teaching-loop",
+      "review": {
+        "state": "approved-repaired-development-enabler",
+        "approvedCommit": "3920140df87a21522b227c0e807476b47a3a29d6",
+        "reviewer": "/root/kan146_repair_review",
+        "reviewerReportCommit": "4259d5ef40b853975de059655fda0908b90155a9",
+        "evidence": "docs/architecture/reviews/KAN146_EXACT_SHA_REPAIR_3920140D.md",
+        "enablerScopeAccepted": true,
+        "fullFeatureAccepted": false
+      },
+      "hostedAcceptance": false,
+      "implementationCommit": "83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec",
+      "checks": {
+        "backendBuild": true,
+        "backendTests": 95,
+        "productionTests": 87,
+        "focusedFrontendTests": 18,
+        "scriptTests": 18,
+        "frontendTests": 550,
+        "rootCheck": true,
+        "lint": true,
+        "typecheck": true,
+        "buildSeconds": 153,
+        "independentBackendTests": 22,
+        "independentFrontendTests": 18,
+        "independentVersionProbes": 12,
+        "failed": 0
+      },
+      "jiraCommentId": "10065",
+      "liveEvidence": "integration/LEARNING_LOOP_CONTRACT.md",
+      "currentDevBase": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+      "repairHandoff": "docs/architecture/delivery/KAN146_REPLAY_REPAIR.md",
+      "remainingPrerequisites": [
+        "KAN-145",
+        "KAN-143"
+      ],
+      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
+      "acceptedScope": "development teaching loop/client enabler",
+      "fullFeatureGate": "KAN-164",
+      "fullFeatureAccepted": false,
+      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+      "integration": {
+        "branch": "dev",
+        "commit": "e91a75ddbcd1e40b1894367909298e7373728aab",
+        "pullRequest": 16,
+        "remotePublished": true,
+        "ciRun": "39459245188",
+        "ciConclusion": "success",
+        "productionJob": "skipped"
+      },
+      "enablerScopeAccepted": true,
+      "jiraReturnedStatus": "Done",
+      "jiraTransitionId": "51",
+      "cleanup": {
+        "state": "blocked-by-automatic-approval-review",
+        "removed": false,
+        "reason": "Combined cleanup and narrower literal dependency-junction removal rejected: blocked by policy. No workaround deletion performed.",
+        "primaryDependenciesRetained": true,
+        "sourceAndReviewRefsRetained": true,
+        "worktrees": [
+          "deepseek-kan-146-teaching-loop",
+          "qa-review-kan-146-teaching-loop"
+        ],
+        "preservedFiles": 18,
+        "preservedBytes": 310136,
+        "evidenceRoot": "artifacts/qa/kan146-closeout-20261020",
+        "manifest": "preserved-files.json",
+        "deletionAttemptOnThisTask": false
+      }
+    },
+    {
+      "jiraKey": "KAN-163",
+      "status": "To Do",
+      "scope": "Full connected learner feature acceptance retained from KAN-145; original requirements not accepted by enabler closeout",
+      "scopeTransferredFrom": "KAN-145",
+      "prerequisites": [
+        "KAN-144",
+        "KAN-74",
+        "KAN-36",
+        "KAN-29"
+      ],
+      "fullFeatureAccepted": false,
+      "worktree": null
+    },
+    {
+      "jiraKey": "KAN-164",
+      "status": "To Do",
+      "scope": "Full connected learner feature acceptance retained from KAN-146; original requirements not accepted by enabler closeout",
+      "scopeTransferredFrom": "KAN-146",
+      "prerequisites": [
+        "KAN-163",
+        "KAN-143",
+        "KAN-74"
+      ],
+      "fullFeatureAccepted": false,
+      "worktree": null
+    },
+    {
+      "sourceId": "SCOPE-07",
+      "jiraKey": "KAN-34",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
+      "status": "Testing",
+      "scope": "Email/Google web sign-in, native Firebase verification links, remembered server-owned sessions, shared account/onboarding, and account-wide Visionary sign-out. Apple removed from web by founder. Device-local learning and linked hosted/provider gates retain their explicit boundaries.",
+      "branch": "codex/codex-kan-34-signin-matrix",
+      "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
+      "implementer": "Codex",
+      "review": {
+        "state": "approved-source-and-two-stage-release-procedure",
+        "reviewer": "/root/kan34_release_review",
+        "exactReviewedCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+        "report": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
+        "reportCommit": "a333955c8a35e1fa1072610d3e5e640321dad7d4",
+        "independentAuthAndGcpTests": 65,
+        "independentRenderLint": true,
+        "compiledBrowserReceiptsInspected": 14,
+        "fullFeatureAccepted": false,
+        "hostedAcceptancePending": true
+      },
+      "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+      "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/17",
+      "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39820287068",
+      "sourceCiConclusion": "success",
+      "handoff": "docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md",
+      "jiraResumeCommentId": "10122",
+      "checks": {
+        "backendBuild": true,
+        "backendTests": 104,
+        "frontendTests": 617,
+        "scriptTests": 18,
+        "gcpJavascriptTests": 26,
+        "rootCheck": true,
+        "rootCheckEvidence": "Local root check at d3b3ba32; final445 import repair separately linted/rebuilt, all14 compiled browser cases pass, and final445 GitHub CI reruns full root check.",
+        "lint": true,
+        "typecheck": true,
+        "firebaseModeBuild": true,
+        "finalFirebaseBuildSeconds": 28.17,
+        "compiledBrowserScenarios": 14,
+        "compiledBrowserEnvironment": "Fictional identity/store, compiled frontend and Nest service. Four methods, six onboarding recovery, two enabled global-logout device cases and two disabled compatibility-stage local-logout cases.",
+        "realProviderAcceptance": false,
+        "failed": 0
+      },
+      "hostedAcceptance": false,
+      "fullFeatureAccepted": false,
+      "liveContinuation": {
+        "date": "2026-10-22",
+        "localRealFirebaseGoogle": true,
+        "canonicalProductionGoogle": true,
+        "existingProductionCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+        "localhostDomainAddedAndReadBack": true,
+        "productionDomainsPreserved": true,
+        "signInProviderConfigurationUnchanged": true,
+        "realVerificationMailReceived": true,
+        "realVerifiedEmailSession": true,
+        "realResetMailReceived": true,
+        "passwordResetCompleted": true,
+        "appleConfigured": false,
+        "appleRealSignIn": false,
+        "onboardingAccountRecoveryRepaired": true,
+        "compiledRecoveryScenarios": 6,
+        "repairReview": "pending",
+        "founderReleaseChoices": {
+          "appleWeb": "removed-by-explicit-founder-instruction",
+          "emailVerification": "firebase-native-links-explicitly-selected",
+          "customSender": false,
+          "numericCodeImplemented": false
+        },
+        "rememberedDeviceCandidate": {
+          "absoluteDays": 14,
+          "idleDays": 7,
+          "authority": "server-verified-HttpOnly-cookie-plus-device-record",
+          "sdkTokenPersistence": "memory-only",
+          "deployed": false,
+          "globalLogout": true,
+          "passiveVisibleObservationSeconds": 30,
+          "passiveObservationTouchesIdle": false
+        },
+        "firebaseTemplates": {
+          "status": "prepared-not-applied",
+          "api": "EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED",
+          "consoleSenderSubjectSave": "rejected-project-updates-unavailable",
+          "senderDomain": "visionary.org.in",
+          "senderDomainStatus": "IN_PROGRESS",
+          "configuration": "infrastructure/gcp/auth-email-templates.json"
+        },
+        "resetEvidence": {
+          "mailDelivered": true,
+          "resetFormOpened": true,
+          "oldPasswordRejectedAfterHandoff": true,
+          "preResetSessionDenied": true,
+          "newPasswordSignInObserved": true,
+          "sourceCommit": "d87ea72e9cbc4b88a701718231ac7e5a1b786665"
+        },
+        "currentCandidateNativeEmail": {
+          "sourceCommit": "10f1f95646b21b64a72fcef9acac36e1b37186e1",
+          "realSignIn": true,
+          "savedOnboardingRestored": true,
+          "reloadRestored": true,
+          "globalLogoutFirestoreVersionBefore": 0,
+          "globalLogoutFirestoreVersionAfter": 1,
+          "globalCutoffRecorded": true,
+          "issuerReturnedToSignIn": true,
+          "fixtureDisabledAfterVerification": true,
+          "fixtureTokensRevokedAfterVerification": true,
+          "originalAccountChanged": false,
+          "hostedCandidate": false
+        },
+        "mailDomainLatestRead": {
+          "pendingCustomDomain": "visionary.org.in",
+          "customDomainState": "IN_PROGRESS",
+          "domainVerificationRequestTime": "2026-10-22T16:44:51.371Z",
+          "templateEditsApplied": false
+        }
+      },
+      "integration": {
+        "remotePublished": false,
+        "commit": null
+      },
+      "synchronizedDevCommit": "37934ceef147834c7da48f3a6e154b3a8cd794fc",
+      "sourceCiCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+      "releasePlan": {
+        "procedure": "two-stage-main-only-compatibility-rollout",
+        "firstDeploymentGlobalSignOut": false,
+        "activationRequiresVerifiedPolicyAwareFallback": true,
+        "epochEnforcementAlwaysEnabled": true,
+        "deployed": false
+      }
     }
   ]
 }

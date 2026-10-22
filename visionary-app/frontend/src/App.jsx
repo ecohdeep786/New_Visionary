@@ -36,37 +36,37 @@ class AppErrorBoundary extends React.Component {
       const internal = window.location.pathname.startsWith('/dashboard');
       const reloadAssets = internal && needsAssetReload(this.state.error);
       return (
-        <main data-font-surface={fontSurfaceForPath(window.location.pathname)} className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#121317]">
-          <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#dadce0]">
+        <main data-font-surface={fontSurfaceForPath(window.location.pathname)} className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#1d1d1f]">
+          <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#d2d2d7]">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#fce8e6] text-red-600">
               <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
             </div>
             <h1 className="mt-5 text-xl font-medium tracking-tight">Something went wrong</h1>
-            <p className="mt-2 text-sm text-[#5f6368] leading-relaxed">
+            <p className="mt-2 text-sm text-[#6e6e73] leading-relaxed">
               {internal ? reloadAssets ? 'This page needs the latest app files. Reload to reopen your workspace.' : 'This page could not open. Try again or return Home. Check your last saved work when you reopen it.' : 'Visionary encountered an unexpected state. Your session and data remain safe.'}
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button
                 type="button"
                 onClick={() => reloadAssets ? window.location.reload() : this.setState({ error: null })}
-                className={`flex-1 rounded-full bg-[#4285F4] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#3367d6]${internal ? ' min-h-11' : ''}`}
+                className={`flex-1 rounded-full bg-[#0066cc] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0071e3]${internal ? ' min-h-11' : ''}`}
               >
                 {reloadAssets ? 'Reload page' : 'Try again'}
               </button>
               <button
                 type="button"
                 onClick={this.handleReset}
-                className="flex-1 rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm font-medium text-[#4285F4] transition-colors hover:bg-[#ffffff]"
+                className="flex-1 rounded-full border border-[#d2d2d7] bg-white px-5 py-2.5 text-sm font-medium text-[#0066cc] transition-colors hover:bg-[#ffffff]"
               >
                 Go to home
               </button>
             </div>
             {process.env.NODE_ENV !== 'production' && this.state.error && (
               <details className="mt-6 text-left">
-                <summary className="text-xs text-[#5f6368] cursor-pointer hover:underline">Diagnostic details</summary>
-                <pre className="mt-2 max-h-40 overflow-auto rounded bg-[#ffffff] p-2 text-[11px] text-[#5f6368]">
+                <summary className="text-xs text-[#6e6e73] cursor-pointer hover:underline">Diagnostic details</summary>
+                <pre className="mt-2 max-h-40 overflow-auto rounded bg-[#ffffff] p-2 text-[11px] text-[#6e6e73]">
                   {this.state.error.toString()}
                 </pre>
               </details>
@@ -136,7 +136,7 @@ const CookiesPage = lazy(() => import('@/pages/landing/CookiesPage'))
 
 const RouteFallback = () => (
   <main data-font-surface={fontSurfaceForPath(window.location.pathname)} className="flex min-h-screen items-center justify-center bg-white" aria-busy="true">
-    <span className="text-sm text-[#5f6368]">Loading...</span>
+    <span className="text-sm text-[#6e6e73]">Loading...</span>
   </main>
 )
 
@@ -228,7 +228,7 @@ function App() {
         <Router>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-6 focus:py-3 focus:text-[14px] focus:text-[#121317]"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-6 focus:py-3 focus:text-[14px] focus:text-[#1d1d1f]"
           >
             Skip to content
           </a>

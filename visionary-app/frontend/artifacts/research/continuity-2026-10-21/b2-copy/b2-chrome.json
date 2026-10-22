@@ -1,0 +1,114 @@
+{
+ "home": {
+  "kickers": [],
+  "blues": []
+ },
+ "student": {
+  "kickers": [],
+  "blues": []
+ },
+ "teacher": {
+  "kickers": [],
+  "blues": [],
+  "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/teacher\", wait"
+ },
+ "parent": {
+  "kickers": [],
+  "blues": [],
+  "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/parent\", waiti"
+ },
+ "help": {
+  "kickers": [],
+  "blues": []
+ },
+ "professional": {
+  "kickers": [],
+  "blues": []
+ },
+ "how-it-works": {
+  "kickers": [],
+  "blues": []
+ },
+ "organization": {
+  "kickers": [],
+  "blues": []
+ },
+ "download": {
+  "kickers": [],
+  "blues": []
+ },
+ "about": {
+  "kickers": [],
+  "blues": []
+ },
+ "pricing": {
+  "kickers": [],
+  "blues": []
+ },
+ "careers": {
+  "kickers": [],
+  "blues": []
+ },
+ "research": {
+  "kickers": [],
+  "blues": []
+ },
+ "community": {
+  "kickers": [],
+  "blues": []
+ },
+ "contact": {
+  "kickers": [],
+  "blues": []
+ },
+ "partners": {
+  "kickers": [],
+  "blues": []
+ },
+ "updates": {
+  "kickers": [],
+  "blues": []
+ },
+ "referral": {
+  "kickers": [],
+  "blues": []
+ },
+ "safety": {
+  "kickers": [],
+  "blues": [],
+  "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/safety\", waiti"
+ },
+ "privacy": {
+  "kickers": [],
+  "blues": [],
+  "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/privacy\", wait"
+ },
+ "terms": {
+  "kickers": [],
+  "blues": [],
+  "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/terms\", waitin"
+ },
+ "security": {
+  "kickers": [],
+  "blues": [],
+  "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/security\", wai"
+ },
+ "accessibility": {
+  "kickers": [
+   {
+    "tag": "P",
+    "text": "OUR COMMITMENTS",
+    "cls": "text-center text-[12px] font-medium uppercase tracking-[0.12em] text-[#6e6e73]",
+    "fs": "12px",
+    "fw": "500",
+    "ls": "1.44px"
+   }
+  ],
+  "blues": []
+ },
+ "cookies": {
+  "kickers": [],
+  "blues": [],
+  "error": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187"
+ }
+}

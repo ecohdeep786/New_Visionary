@@ -199,7 +199,7 @@
     font-size: var(--fs-caption);
     font-weight: 600;
     line-height: var(--lh-caption);
-    letter-spacing: -0.01em;
+    letter-spacing: var(--track-meta);
     font-family: var(--font-public);
     text-transform: none !important;
   }
@@ -377,9 +377,11 @@
   letter-spacing: var(--track-meta) !important;
 }
 
-/* Quiet section tags and metadata use the heading weight role. */
+/* Quiet section tags and metadata use the heading weight role.
+   B2/FAP-47: the `.uppercase` arm is retired — public sites were re-authored
+   onto .apple-eyebrow / data-type="label"; the workspace's own p.uppercase law
+   lives in public-bridge.css and is out of scope here. */
 
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(p, span, div, button, label).uppercase,
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-eyebrow,
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-eyebrow {
   font-size: var(--fs-caption) !important;
@@ -389,12 +391,25 @@
   font-weight: var(--weight-heading) !important;
 }
 
+/* Apple labels: sentence-case bold 21px lead-ins above hero statements
+   (education-initiative "label" tier, measured 21/21/24 at 600). B2 / FAP-47
+   codifies the resolved voice of the retired public uppercase-mask law:
+   opt-in per site via data-type, hero-adjacent kickers only. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) [data-type="label"] {
+  font-size: var(--fs-label) !important;
+  font-weight: 600 !important;
+  line-height: 1.19 !important;
+  letter-spacing: 0.011em !important;
+  text-transform: none !important;
+}
+
 /* Links and actions are a 17px role; embedded links inherit surrounding copy. */
 
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a,
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-action,
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-primary,
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-secondary {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a:not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-action:not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-primary:not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-secondary:not([class*="rounded-full"]) {
   font-size: var(--fs-body) !important;
   line-height: 1.294118 !important;
   letter-spacing: var(--track-body) !important;
@@ -407,11 +422,12 @@
   letter-spacing: inherit !important;
 }
 
-/* Legacy text-only link spans and labels consume the same body token. */
+/* Legacy text-only link spans and labels consume the same body token.
+   Law-shaped CTAs (rounded-full pills) are exempt: the CTA tier owns their anatomy (A2 / FAP-42). */
 
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[18px\]:not(h2):not(h3):not(p),
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17px\]:not(h2):not(h3):not(p),
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17\.5px\]:not(h2):not(h3):not(p) {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[18px\]:not(h2):not(h3):not(p):not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17px\]:not(h2):not(h3):not(p):not([class*="rounded-full"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17\.5px\]:not(h2):not(h3):not(p):not([class*="rounded-full"]) {
   font-size: var(--fs-body) !important;
   line-height: var(--lh-body) !important;
   letter-spacing: var(--track-body) !important;
@@ -559,7 +575,7 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(strong, b, .apple-lead-bold) {
   font-weight: var(--weight-heading) !important;
 }
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(a, .public-text-link, .public-action, .apple-btn-primary, .apple-btn-secondary) {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(a, .public-text-link, .public-action, .apple-btn-primary, .apple-btn-secondary):not([class*="rounded-full"]) {
   font-weight: var(--weight-body);
 }
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-text-link {
@@ -684,6 +700,15 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
   line-height: var(--lh-fine) !important;
   letter-spacing: -0.014em !important;
   font-weight: var(--weight-body) !important;
+}
+/* The feature-heading voice — Apple's 32px flat feature heading (FAP-34
+   measured token). B1 (FAP-46) exposes it so the intelligence drawer's
+   one-off 26px→32px clamp retires onto the ladder. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="feature-heading"] {
+  font-size: var(--fs-feature-heading) !important;
+  line-height: var(--lh-feature-heading) !important;
+  letter-spacing: var(--track-feature-heading) !important;
+  font-weight: var(--weight-heading) !important;
 }
 
 }

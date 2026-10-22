@@ -3,7 +3,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
-import { Mail, Phone, AlertCircle, RefreshCw, UserRound } from "lucide-react";
+import { Mail, Phone, AlertCircle, RefreshCw, UserRound, Smartphone } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
 import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
@@ -11,11 +11,13 @@ import {
   primaryBtnClass, primaryBtnAutoClass, outlineBtnClass,
   Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow, PhoneInput,
 } from "@/components/auth/AuthUI";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useAuth } from "@/lib/AuthContext";
 import { authErrorMessage, isCredentialError } from '@/lib/authErrors';
+import { signInMethods } from '@/api/firebase/signInMethods';
 
 export default function Login() {
-  const { user, isAuthenticated, isLoadingAuth, checkUserAuth, signInViaEmailPassword, authError } = useAuth();
+  const { user, isAuthenticated, isLoadingAuth, checkUserAuth, signInViaEmailPassword, confirmPhoneSignIn, authError } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const submitting = useRef(false);
@@ -23,14 +25,19 @@ export default function Login() {
   const [email, setEmail] = useState(typeof location.state?.email === 'string' ? location.state.email.slice(0, 320) : "");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [orgEmail, setOrgEmail] = useState("");
+  const [confirmation, setConfirmation] = useState(null);
+  const [otpCode, setOtpCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  // Real mobile sign-in rides on Firebase phone verification. The option stays
+  // hidden until both the connected identity source and the environment enable
+  // it; preview builds and the local demo never show a dead choice.
+  const phoneEnabled = signInMethods.mobile && base44.auth.source === 'firebase' && import.meta.env?.VITE_ENABLE_PHONE_SIGNIN === '1';
 
   if (isLoadingAuth) {
     return (
-      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
-        <Spinner className="w-8 h-8 text-[#4285F4]" />
+      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f5f5f7]">
+        <Spinner className="w-8 h-8 text-[#0066cc]" />
       </div>
     );
   }
@@ -92,6 +99,50 @@ export default function Login() {
     setView("methods");
   };
 
+  const handlePhoneRequest = async (e) => {
+    e.preventDefault();
+    if (submitting.current) return;
+    setError("");
+    const phoneE164 = phone.replace(/\s+/g, "");
+    if (!/^\+[1-9]\d{7,14}$/.test(phoneE164)) {
+      setError(authErrorMessage({ code: 'auth/invalid-phone-number' }));
+      return;
+    }
+    submitting.current = true;
+    setLoading(true);
+    try {
+      const result = await base44.auth.requestPhoneSignIn(phoneE164);
+      if (result?.verification === 'phone-sms' && result.confirmation) {
+        setConfirmation(result.confirmation);
+        setOtpCode("");
+        setView("phoneCode");
+      } else {
+        setError(authErrorMessage({ code: 'auth/phone-sign-in-unavailable' }));
+      }
+    } catch (err) {
+      setError(authErrorMessage(err, 'The sign-in code could not be sent. Please try again.'));
+    } finally {
+      submitting.current = false;
+      setLoading(false);
+    }
+  };
+
+  const handlePhoneConfirm = async () => {
+    if (submitting.current || !confirmation) return;
+    submitting.current = true;
+    setError("");
+    setLoading(true);
+    try {
+      const profile = await confirmPhoneSignIn(confirmation, otpCode);
+      navigate(authDestination(profile), { replace: true });
+    } catch (err) {
+      setError(authErrorMessage(err, 'The sign-in code could not be verified. Please try again.'));
+    } finally {
+      submitting.current = false;
+      setLoading(false);
+    }
+  };
+
   const useAnotherAccount = () => {
     setEmail("");
     setPassword("");
@@ -103,24 +154,24 @@ export default function Login() {
 
   const layoutProps = isPasswordView
     ? {
-        title: "Welcome",
+        title: "Enter your password",
         supportingText: null,
         accountInfo: email,
         footer: (
           <>
             Don't have an account?{" "}
-            <Link to={authLink('/register')} className="text-[#4285F4] font-medium hover:underline">Create account</Link>
+            <Link to={authLink('/register')} className="text-[#0066cc] font-medium hover:underline">Create account</Link>
           </>
         ),
       }
     : {
-        title: "Sign in",
-        supportingText: "Use your Visionary Account",
+        title: "Sign in to Visionary",
+        supportingText: "Continue with Google, or use your email and password. Your sign-in is remembered on this browser; sign out on shared devices.",
         accountInfo: null,
         footer: (
           <>
             Don't have an account?{" "}
-            <Link to={authLink('/register')} className="text-[#4285F4] font-medium hover:underline">Create account</Link>
+            <Link to={authLink('/register')} className="text-[#0066cc] font-medium hover:underline">Create account</Link>
           </>
         ),
       };
@@ -131,23 +182,29 @@ export default function Login() {
       case "methods":
         return (
           <div key="methods" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-4">
-            <button type="button" onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
-              <Phone className="w-4 h-4" /> Continue with Mobile Number
-            </button>
-            <button type="button" onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
+            {phoneEnabled && (
+              <button type="button" onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
+                <Phone className="w-4 h-4" /> Continue with Mobile Number
+              </button>
+            )}
+            <button type="button" onClick={() => { setError(""); setView("email"); }} className={phoneEnabled ? outlineBtnClass : primaryBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
+            {!phoneEnabled && <button type="button" disabled={!signInMethods.mobile} aria-describedby="mobile-unavailable" className={`${outlineBtnClass} disabled:opacity-50 disabled:cursor-not-allowed`}>
+              <Phone className="w-4 h-4" /> Mobile sign-in unavailable
+            </button>}
+            {!phoneEnabled && <p id="mobile-unavailable" className="text-xs text-[#6e6e73] text-center">Mobile number sign-in is unavailable. Use another method below or email above.</p>}
             <AuthDivider />
-            <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
-            {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
-            <p className="text-xs text-[#5f6368] text-center leading-relaxed mt-2">
+            <SocialAuthButtons />
+            {(error || authError) && <p role="alert" className="text-sm text-[#e30000]">{error || authError.message}</p>}
+            <p className="text-xs text-[#6e6e73] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
-              <Link to="/privacy" className="text-[#4285F4] hover:underline">Privacy Policy</Link>
+              <Link to="/privacy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
               {" "}and{" "}
-              <Link to="/terms" className="text-[#4285F4] hover:underline">Terms of Service</Link>.
+              <Link to="/terms" className="text-[#0066cc] hover:underline">Terms of Service</Link>.
             </p>
             <div className="text-center mt-1">
-              <Link to="/forgot-user-id" className="text-sm text-[#4285F4] font-medium hover:underline">
+              <Link to="/forgot-user-id" className="text-sm text-[#0066cc] font-medium hover:underline">
                 Forgot email or user ID?
               </Link>
             </div>
@@ -160,11 +217,11 @@ export default function Login() {
             <BackButton onClick={goToMethods} />
             {error && (
               <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-                <AlertCircle className="w-5 h-5 text-[#ea4335] shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm text-[#ea4335] font-medium">Account not found</p>
-                  <p className="text-xs text-[#ea4335] mt-1">{error}</p>
-                  <Link to={authLink('/register')} className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
+                  <p className="text-sm text-[#e30000] font-medium">Account not found</p>
+                  <p className="text-xs text-[#e30000] mt-1">{error}</p>
+                  <Link to={authLink('/register')} className="text-xs text-[#0066cc] font-medium hover:underline mt-1.5 inline-block">
                     Create a new account →
                   </Link>
                 </div>
@@ -183,7 +240,7 @@ export default function Login() {
               />
               <ActionRow
                 left={
-                  <Link to="/forgot-user-id" className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <Link to="/forgot-user-id" className="text-sm text-[#0066cc] font-medium hover:underline">
                     Forgot email?
                   </Link>
                 }
@@ -200,7 +257,7 @@ export default function Login() {
         return (
           <div key="password" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={() => setView("email")} />
-            {error && <p id="login-error" role="alert" className="text-sm text-[#b3261e]">{error}</p>}
+            {error && <p id="login-error" role="alert" className="text-sm text-[#e30000]">{error}</p>}
             <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-6">
               <GooglePasswordField
                 label="Enter your password"
@@ -215,7 +272,7 @@ export default function Login() {
               />
               <ActionRow
                 left={
-                  <Link to="/forgot-password" className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <Link to="/forgot-password" className="text-sm text-[#0066cc] font-medium hover:underline">
                     Forgot password?
                   </Link>
                 }
@@ -233,12 +290,12 @@ export default function Login() {
           <div key="wrong" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={() => { setPassword(""); setError(""); setView("password"); }} />
             <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-              <AlertCircle className="w-5 h-5 text-[#ea4335] shrink-0 mt-0.5" />
-              <p role="alert" className="text-sm text-[#ea4335]">{error}</p>
+              <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" />
+              <p role="alert" className="text-sm text-[#e30000]">{error}</p>
             </div>
             <ActionRow
               left={
-                <Link to="/forgot-password" className="text-sm text-[#4285F4] font-medium hover:underline">
+                <Link to="/forgot-password" className="text-sm text-[#0066cc] font-medium hover:underline">
                   Forgot password?
                 </Link>
               }
@@ -251,7 +308,7 @@ export default function Login() {
               <button type="button" onClick={goToMethods} className={outlineBtnClass}>
                 Sign in with another method
               </button>
-              <button type="button" onClick={useAnotherAccount} className="flex items-center justify-center gap-2 text-sm text-[#4285F4] font-medium hover:underline self-center">
+              <button type="button" onClick={useAnotherAccount} className="flex items-center justify-center gap-2 text-sm text-[#0066cc] font-medium hover:underline self-center">
                 <UserRound className="w-4 h-4" /> Use another account
               </button>
             </div>
@@ -262,7 +319,8 @@ export default function Login() {
         return (
           <div key="mobile" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Mobile sign-in is coming soon. Please use email or social sign-in."); }} className="flex flex-col gap-6">
+            {error && <p role="alert" className="text-sm text-[#e30000]">{error}</p>}
+            <form onSubmit={handlePhoneRequest} className="flex flex-col gap-6">
               <PhoneInput
                 label="Mobile number"
                 autoFocus
@@ -270,45 +328,64 @@ export default function Login() {
                 onChange={setPhone}
                 required
               />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
+              <p className="text-xs text-[#6e6e73] -mt-4 leading-relaxed">We'll text you a sign-in code. Standard message rates may apply.</p>
               <ActionRow
                 left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <button type="button" onClick={goToMethods} className="text-sm text-[#0066cc] font-medium hover:underline">
                     Use another method
                   </button>
                 }
               >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
+                <button type="submit" disabled={loading} className={primaryBtnAutoClass}>
+                  {loading ? <Spinner /> : "Send code"}
+                </button>
               </ActionRow>
             </form>
           </div>
         );
 
-      case "organization":
+      case "phoneCode":
         return (
-          <div key="org" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-            <BackButton onClick={goToMethods} />
-            <form onSubmit={(e) => { e.preventDefault(); setError("Organization sign-in is coming soon. Please use email or social sign-in."); }} className="flex flex-col gap-6">
-              <InputField
-                label="Organization email"
-                type="email"
-                autoFocus
-                placeholder="you@school.edu"
-                value={orgEmail}
-                onChange={(e) => setOrgEmail(e.target.value)}
-                required
-              />
-              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
-              <ActionRow
-                left={
-                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
-                    Use another method
-                  </button>
-                }
-              >
-                <button type="submit" className={primaryBtnAutoClass}>Continue</button>
-              </ActionRow>
-            </form>
+          <div key="phoneCode" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
+            <div className="text-center">
+              <div className="w-14 h-14 rounded-full bg-[rgba(0,102,204,0.10)] flex items-center justify-center mx-auto mb-4">
+                <Smartphone className="w-7 h-7 text-[#0066cc]" />
+              </div>
+              <h2 className="text-2xl font-normal text-[#1d1d1f]">Enter the sign-in code</h2>
+              <p className="text-sm text-[#6e6e73] mt-2 leading-relaxed">
+                We sent a 6-digit code by SMS to <span className="font-medium text-[#1d1d1f]">{phone}</span>
+              </p>
+            </div>
+            {error && <div id="phone-login-error" role="alert" className="p-3 rounded-lg bg-[#fce8e6] text-[#e30000] text-sm">{error}</div>}
+            <div className="flex justify-center">
+              <InputOTP maxLength={6} containerClassName="c1-phone-otp" value={otpCode} onChange={setOtpCode} autoComplete="one-time-code" autoFocus>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+            <ActionRow
+              left={
+                <button type="button" disabled={loading} onClick={() => { setError(""); setView("mobile"); }} className="text-sm text-[#0066cc] font-medium hover:underline">
+                  Change number
+                </button>
+              }
+            >
+              <button type="button" disabled={loading || otpCode.length < 6} onClick={handlePhoneConfirm} className={primaryBtnAutoClass}>
+                {loading ? <Spinner /> : "Verify"}
+              </button>
+            </ActionRow>
+            <p className="text-center text-sm text-[#6e6e73]">
+              Didn't get the code?{" "}
+              <button type="button" disabled={loading} onClick={handlePhoneRequest} className="text-[#0066cc] font-medium hover:underline">
+                Resend code
+              </button>
+            </p>
           </div>
         );
 
@@ -321,6 +398,7 @@ export default function Login() {
     <AuthLayout {...layoutProps}>
       <BillingAuthNotice action={view === 'verification' ? 'Verify your email' : 'Sign in'} />
       {renderContent()}
+      {phoneEnabled && <div id="auth-recaptcha" aria-hidden="true" />}
     </AuthLayout>
   );
 }

@@ -1,0 +1,304 @@
+{
+  "testedAt": "2026-10-22T14:27:27.433Z",
+  "base": "http://localhost:4197",
+  "results": [
+    {
+      "surface": "home",
+      "scheme": "light",
+      "width": 1440,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 323,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "home",
+      "scheme": "light",
+      "width": 390,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 271,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "home",
+      "scheme": "dark",
+      "width": 768,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 271,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "build",
+      "scheme": "light",
+      "width": 1440,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 299,
+      "vCard": {
+        "found": true,
+        "color": "rgb(226, 229, 235)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "build",
+      "scheme": "light",
+      "width": 390,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 247,
+      "vCard": {
+        "found": true,
+        "color": "rgb(226, 229, 235)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "build",
+      "scheme": "dark",
+      "width": 768,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 247,
+      "vCard": {
+        "found": true,
+        "color": "rgb(60, 67, 80)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "classes",
+      "scheme": "light",
+      "width": 1440,
+      "bannedHits": 0,
+      "stalePreferenceHits": 1,
+      "staleAcceptedCount": 0,
+      "elements": 333,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "classes",
+      "scheme": "light",
+      "width": 390,
+      "bannedHits": 0,
+      "stalePreferenceHits": 1,
+      "staleAcceptedCount": 0,
+      "elements": 281,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "classes",
+      "scheme": "dark",
+      "width": 768,
+      "bannedHits": 0,
+      "stalePreferenceHits": 1,
+      "staleAcceptedCount": 0,
+      "elements": 281,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "subscription",
+      "scheme": "light",
+      "width": 1440,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 318,
+      "vCard": {
+        "found": true,
+        "color": "rgb(29, 29, 31)",
+        "radius": "22px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "subscription",
+      "scheme": "light",
+      "width": 390,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 266,
+      "vCard": {
+        "found": true,
+        "color": "rgb(29, 29, 31)",
+        "radius": "22px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "subscription",
+      "scheme": "dark",
+      "width": 768,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 266,
+      "vCard": {
+        "found": true,
+        "color": "rgb(238, 240, 245)",
+        "radius": "22px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "settings",
+      "scheme": "light",
+      "width": 1440,
+      "bannedHits": 0,
+      "stalePreferenceHits": 1,
+      "staleAcceptedCount": 0,
+      "elements": 359,
+      "vCard": {
+        "found": true,
+        "color": "rgb(226, 229, 235)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "settings",
+      "scheme": "light",
+      "width": 390,
+      "bannedHits": 0,
+      "stalePreferenceHits": 1,
+      "staleAcceptedCount": 0,
+      "elements": 307,
+      "vCard": {
+        "found": true,
+        "color": "rgb(226, 229, 235)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "settings",
+      "scheme": "dark",
+      "width": 768,
+      "bannedHits": 0,
+      "stalePreferenceHits": 1,
+      "staleAcceptedCount": 0,
+      "elements": 307,
+      "vCard": {
+        "found": true,
+        "color": "rgb(60, 67, 80)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "people",
+      "scheme": "light",
+      "width": 1440,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 323,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "people",
+      "scheme": "light",
+      "width": 390,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 271,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "people",
+      "scheme": "dark",
+      "width": 768,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 271,
+      "vCard": {
+        "found": false
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "support",
+      "scheme": "light",
+      "width": 1440,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 308,
+      "vCard": {
+        "found": true,
+        "color": "rgba(0, 0, 0, 0)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "support",
+      "scheme": "light",
+      "width": 390,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 256,
+      "vCard": {
+        "found": true,
+        "color": "rgba(0, 0, 0, 0)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    },
+    {
+      "surface": "support",
+      "scheme": "dark",
+      "width": 768,
+      "bannedHits": 0,
+      "stalePreferenceHits": 0,
+      "staleAcceptedCount": 0,
+      "elements": 256,
+      "vCard": {
+        "found": true,
+        "color": "rgba(0, 0, 0, 0)",
+        "radius": "16px"
+      },
+      "pageErrors": 0
+    }
+  ],
+  "fails": []
+}

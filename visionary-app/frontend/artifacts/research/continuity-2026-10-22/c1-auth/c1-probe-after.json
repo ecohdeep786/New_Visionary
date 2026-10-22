@@ -1,0 +1,304 @@
+{
+ "/login": {
+  "w1440": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.36,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 3,
+   "primaryPill": {
+    "bg": "rgb(29, 29, 31)",
+    "h": 44,
+    "radius": "9999px",
+    "fs": "17px",
+    "fw": "500",
+    "ls": "-0.187px",
+    "fw500": true
+   },
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  },
+  "w768": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.35,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 3,
+   "primaryPill": {
+    "bg": "rgb(29, 29, 31)",
+    "h": 44,
+    "radius": "9999px",
+    "fs": "17px",
+    "fw": "500",
+    "ls": "-0.187px",
+    "fw500": true
+   },
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  },
+  "w390": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.45,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 3,
+   "primaryPill": {
+    "bg": "rgb(29, 29, 31)",
+    "h": 44,
+    "radius": "9999px",
+    "fs": "17px",
+    "fw": "500",
+    "ls": "-0.187px",
+    "fw500": true
+   },
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  }
+ },
+ "/register": {
+  "w1440": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.32,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 3,
+   "primaryPill": {
+    "bg": "rgb(29, 29, 31)",
+    "h": 44,
+    "radius": "9999px",
+    "fs": "17px",
+    "fw": "500",
+    "ls": "-0.187px",
+    "fw500": true
+   },
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  },
+  "w768": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.31,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 3,
+   "primaryPill": {
+    "bg": "rgb(29, 29, 31)",
+    "h": 44,
+    "radius": "9999px",
+    "fs": "17px",
+    "fw": "500",
+    "ls": "-0.187px",
+    "fw500": true
+   },
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  },
+  "w390": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.41,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 3,
+   "primaryPill": {
+    "bg": "rgb(29, 29, 31)",
+    "h": 44,
+    "radius": "9999px",
+    "fs": "17px",
+    "fw": "500",
+    "ls": "-0.187px",
+    "fw500": true
+   },
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  }
+ },
+ "/forgot-password": {
+  "w1440": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.32,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(110, 110, 115)",
+   "pageOverflowX": 0
+  },
+  "w768": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.29,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(110, 110, 115)",
+   "pageOverflowX": 0
+  },
+  "w390": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.39,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(110, 110, 115)",
+   "pageOverflowX": 0
+  }
+ },
+ "/forgot-user-id": {
+  "w1440": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.38,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  },
+  "w768": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.41,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  },
+  "w390": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.52,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(0, 102, 204)",
+   "pageOverflowX": 0
+  }
+ },
+ "/reset-password": {
+  "w1440": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.28,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(255, 255, 255)",
+   "pageOverflowX": 0
+  },
+  "w768": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.25,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(255, 255, 255)",
+   "pageOverflowX": 0
+  },
+  "w390": {
+   "canvasBg": "rgb(245, 245, 247)",
+   "fontSurface": true,
+   "cardBg": "rgb(255, 255, 255)",
+   "cardRadius": "12px",
+   "cardHeightRatio": 0.37,
+   "hasMobileChoice": false,
+   "hasOrganizationChoice": false,
+   "hasComingSoon": false,
+   "socialCount": 0,
+   "primaryPill": null,
+   "linkColor": "rgb(255, 255, 255)",
+   "pageOverflowX": 0
+  }
+ },
+ "loginMethodsChecks": {
+  "canvasExactly": true,
+  "cardExactly": true,
+  "cardRadii": "12px",
+  "inkPillExactly": true,
+  "linkExactly": true,
+  "deadChoicesNull": true,
+  "socialExactly": true
+ },
+ "errorState": {
+  "present": false,
+  "colors": [],
+  "titles": [],
+  "iconColor": "rgb(227, 0, 0)",
+  "headline": {
+   "color": "rgb(227, 0, 0)",
+   "text": "Account not found"
+  }
+ },
+ "errorStateExactly": true,
+ "/forgot-user-id-pill": {
+  "text": "Back to sign in",
+  "bg": "rgb(29, 29, 31)",
+  "h": 44,
+  "radius": "9999px",
+  "fs": "17px"
+ },
+ "/reset-password-pill": {
+  "text": "Request new link",
+  "bg": "rgb(29, 29, 31)",
+  "h": 44,
+  "radius": "9999px",
+  "fs": "17px"
+ }
+}

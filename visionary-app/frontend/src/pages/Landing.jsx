@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
 import SpotIllustration from "@/components/landing/SpotIllustration";
@@ -24,104 +25,20 @@ import problemrevision from "@/assets/problem-revision.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
 import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
 
-/* ═══════════════════════ TOKENS ═══════════════════════ */
-const COLORS = {
-  ink: "#121317",
-  graphite: "#5f6368",
-  slate: "#5f6368",
-  lightGrey: "#9AA0A6",
-  mist: "#dadce0",
-  surface: "#F5F6F8",
-  white: "#ffffff",
-  blue: "#4285F4",
-  chipBg: "#D2E3FC",
-  track: "rgba(69,71,77,0.15)",
-};
-
-/* ═══════════════════════ CONTROLLERS ═══════════════════════ */
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    if (typeof window.matchMedia !== "function") return undefined;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = (e) => setReduced(e.matches);
-    mq.addEventListener?.("change", onChange);
-    return () => mq.removeEventListener?.("change", onChange);
-  }, []);
-  return reduced;
-}
-
-function useCycleIndex(total, intervalMs) {
-  const [index, setIndex] = useState(0);
-  const goTo = useCallback((i) => setIndex(((i % total) + total) % total), [total]);
-  useEffect(() => {
-    if (!intervalMs || intervalMs <= 0) return undefined;
-    const id = setInterval(() => setIndex((i) => (i + 1) % total), intervalMs);
-    return () => clearInterval(id);
-  }, [total, intervalMs]);
-  return { index, goTo };
-}
-
-/* The section choreography — content fades up when its chapter enters the
-   viewport band and fades back down as it leaves (the wipe-out). Under
-   prefers-reduced-motion the story stays present: no hiding. */
-function useRevealContinuous(rootMargin = "-40% 0px -10% 0px") {
-  const ref = useRef(null);
-  const reduced = usePrefersReducedMotion();
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const node = ref.current;
-    if (reduced) { setVisible(true); return undefined; }
-    if (!node) { setVisible(true); return undefined; }
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); return undefined; }
-    /* IO can batch queued entries in one callback — entries[0] may be stale,
-       so the LATEST entry always wins (this is what makes the exit wipe
-       actually land after a fast scroll). */
-    const observer = new IntersectionObserver(
-      (entries) => setVisible(entries[entries.length - 1].isIntersecting),
-      { threshold: 0, rootMargin }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [rootMargin, reduced]);
-  return { ref, visible };
-}
+/* One source of truth: every color resolves from system/tokens.js (the
+   measured Apple-neutral system, see APPLE_MEASURED_REFERENCE_2026-10-21.md).
+   The measured primitives (reveal, progress dots, CTA pair) live beside it in
+   system/ui.jsx and system/hooks.js — the landing consumes the system rather
+   than re-declaring it. */
+import { color as BRAND } from "@/components/landing/system/tokens";
+import { Reveal, ProgressDots } from "@/components/landing/system/ui";
+import { useCycleIndex, useRevealContinuous } from "@/components/landing/system/hooks";
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
 /* Every landing reveal rides Apple's resolve-out curve
    cubic-bezier(0.16,1,0.3,1) — the deceleration you feel on apple.com's
    own scroll reveals (the --ease-out-apple token in premium.css). */
 const EASE_APPLE = "ease-apple";
-
-const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
-  return (
-    <div className={`transition-all duration-700 ${EASE_APPLE} ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
-      {children}
-    </div>
-  );
-});
-
-const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, tone = "ink" }) {
-  /* tone "pill" — the AirPods highlights dotnav: uniform warm-gray dots inside
-     the light pill, the active one stretching into a 48×8 rounded bar */
-  const pill = tone === "pill";
-  return (
-    <div className={`flex items-center ${pill ? "gap-4" : "gap-2"}`} role="group" aria-label="Carousel slides">
-      {Array.from({ length: total }, (_, i) => (
-        <button
-          key={i}
-          type="button"
-          aria-pressed={i === active}
-          aria-label={`Go to slide ${i + 1}`}
-          onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
-        />
-      ))}
-    </div>
-  );
-});
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
@@ -257,7 +174,6 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaLabel="Start learning"
       secondaryLabel="See how it works"
-      minDisplay={42}
       wordMs={2600}
     />
   );
@@ -279,14 +195,14 @@ function LandingProblemSection() {
   const slide = PROBLEM_SLIDES[index];
   return (
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-[#f5f5f7]" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible}>
+      <Reveal visible={visible}>
         <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
         <div className="public-editorial-frame mx-auto">
-          <p className="text-[17px] font-medium" style={{ color: COLORS.graphite }}>Why Visionary exists</p>
-          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "980px" }}>
-            {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
+          <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>Why Visionary exists</p>
+          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "980px" }}>
+            {slide.black} <span className="accent-gradient">{slide.blue}</span>.
           </h2>
-          <p className="mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal tracking-[0]" style={{ color: COLORS.graphite }}>
+          <p className="mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal tracking-[0]" style={{ color: BRAND.graphite }}>
             Effort isn't the gap. Knowing whether understanding landed is.
           </p>
         </div>
@@ -327,20 +243,20 @@ function LandingProblemSection() {
                 </div>
                 <figcaption key={`q-${index}`} className="hero-fade-up flex flex-col justify-center px-6 py-8 [animation-delay:80ms] [animation-fill-mode:both] sm:px-10 sm:py-10 min-[1069px]:px-12 min-[1069px]:py-12">
                   <blockquote>
-                    <p className="flex min-h-[3.3em] items-center text-balance font-medium tracking-[-0.01em] leading-[1.24] text-[clamp(24px,2.3vw,34px)]" style={{ color: COLORS.ink, maxWidth: "22ch" }}>{slide.quote}</p>
+                    <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "22ch" }}>{slide.quote}</p>
                   </blockquote>
-                  <p className="mt-5 text-[15px] font-medium tracking-[0] leading-[20px]" style={{ color: COLORS.slate }}>{slide.persona}</p>
+                  <p className="mt-5 text-[16px] font-medium tracking-[0] leading-[20px]" style={{ color: BRAND.slate }}>{slide.persona}</p>
                 </figcaption>
               </div>
             </div>
             {/* Apple's carousel control row — the pager sits under the card,
                 on the section floor, where the initiative's own controls sit */}
             <div className="mt-6 flex justify-start">
-              <CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} />
+              <ProgressDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} />
             </div>
           </div>
         </figure>
-      </FadeReveal>
+      </Reveal>
     </section>
   );
 }
@@ -367,12 +283,21 @@ function LandingPromiseSection() {
         className="pointer-events-none absolute inset-0"
         style={{ background: "radial-gradient(58% 70% at 50% 44%, rgba(66,133,244,0.14) 0%, rgba(66,133,244,0.04) 48%, rgba(10,13,20,0) 82%)" }}
       />
-      <FadeReveal visible={visible} className="relative mx-auto w-full max-w-[1100px]">
-        <h2 className="mx-auto text-balance text-center font-semibold tracking-[-0.012em] leading-[1.04] text-[clamp(42px,5.8vw,84px)]" style={{ maxWidth: "20ch" }}>
+      <Reveal visible={visible} className="relative mx-auto w-full max-w-[1100px]">
+          <h2
+            data-type="emphasis"
+            className="mx-auto text-balance text-center font-semibold"
+            style={{ maxWidth: "20ch", color: BRAND.ink }}
+          >
           What if your intelligence never forgot{" "}
           <span className="accent-gradient-on-dark">where you were?</span>
         </h2>
-      </FadeReveal>
+        <div className="mt-12 flex justify-center">
+          <QuietLink to="/how-it-works" dark>
+            See how the loop remembers your place <ChevronRight className="h-4 w-4" aria-hidden="true" />
+          </QuietLink>
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -409,14 +334,14 @@ function LandingReturnSection() {
   const { ref, visible } = useRevealContinuous();
   return (
     <section ref={ref} data-section="04-return" className="relative isolate bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
-          <p className="text-[17px] font-medium" style={{ color: COLORS.graphite }}>What you get</p>
+      <Reveal visible={visible}>
+        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
+          <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>What you get</p>
           <figure className="m-0">
             <blockquote className="mt-[clamp(20px,2.6vw,32px)]">
-              <p className="text-balance font-medium tracking-[-0.015em] leading-[1.18] text-[clamp(32px,4vw,48px)]" style={{ color: COLORS.ink, maxWidth: "30ch" }}>“A person should not have to start over every time life asks them to learn something new.”</p>
+              <p data-type="card-chapter" className="text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "30ch" }}>“A person should not have to start over every time life asks them to learn something new.”</p>
             </blockquote>
-            <figcaption className="mt-5 text-[15px] font-normal" style={{ color: COLORS.slate }}>
+            <figcaption className="mt-5 text-[16px] font-normal" style={{ color: BRAND.slate }}>
               Md Shahid Ali · Founder and CEO
             </figcaption>
           </figure>
@@ -431,14 +356,14 @@ function LandingReturnSection() {
                 key={item.title}
                 className="flex flex-col rounded-[1.75rem] bg-[#f5f5f7] p-8 min-[1069px]:p-10"
               >
-                <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.75} style={{ color: COLORS.ink }} />
-                <h3 data-type="feature" className="mt-6" style={{ color: COLORS.ink }}>{item.title}</h3>
-                <p data-type="value-body" className="max-w-[46ch]" style={{ color: COLORS.slate }}>{item.copy}</p>
+                <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.75} style={{ color: BRAND.ink }} />
+                <h3 data-type="feature" className="mt-6" style={{ color: BRAND.ink }}>{item.title}</h3>
+                <p data-type="value-body" className="max-w-[46ch]" style={{ color: BRAND.slate }}>{item.copy}</p>
                 {/* the editorial link law owns the door's colour and hover
                     underline (#0066cc / underlined) */}
                 <Link
                   to={item.to}
-                  className="mt-auto inline-flex items-center gap-1.5 pt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  className="mt-auto inline-flex items-center gap-1.5 pt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                 >
                   {item.l}
                   <ChevronRight className="h-3.5 w-3.5" />
@@ -447,7 +372,7 @@ function LandingReturnSection() {
             ))}
           </div>
         </div>
-      </FadeReveal>
+      </Reveal>
     </section>
   );
 }
@@ -507,7 +432,7 @@ function LandingSuiteSection() {
 
   return (
     <section ref={ref} data-section="14-suite" className="relative isolate bg-[#f5f5f7] [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible} className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+      <Reveal visible={visible} className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
         {/* Apple's accessory/line-up chapters open with a statement over the
             grid ("Explore Apple Vision Pro accessories."). The suite's own
             eyebrow promotes to the measured card-chapter statement tier —
@@ -515,8 +440,8 @@ function LandingSuiteSection() {
             the journeys line-up above, not a second hero. */}
         <h2
           data-type="card-chapter"
-          className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(28px,3.2vw,44px)]"
-          style={{ color: COLORS.ink, maxWidth: "20ch" }}
+          className="text-balance font-semibold"
+          style={{ color: BRAND.ink, maxWidth: "20ch" }}
         >
           Explore further.
         </h2>
@@ -529,15 +454,15 @@ function LandingSuiteSection() {
             <Link
               key={item.to}
               to={item.to}
-              className="group relative grid min-h-[220px] grid-cols-[1fr_118px] gap-3 overflow-hidden rounded-[20px] bg-white p-3 transition-shadow duration-200 hover:shadow-[0_12px_32px_rgba(18,19,23,0.07)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:grid-cols-[1fr_180px]"
+              className="group relative grid min-h-[220px] grid-cols-[1fr_118px] gap-3 overflow-hidden rounded-[20px] bg-white p-3 transition-shadow duration-200 hover:shadow-[0_12px_32px_rgba(29,29,31,0.07)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] sm:grid-cols-[1fr_180px]"
             >
               <div className="flex flex-col justify-between px-4 py-4 sm:px-6 sm:py-6">
                 <div>
-                  <h3 className="text-[22px] font-medium sm:text-[24px]" style={{ color: COLORS.ink }}>{item.label}</h3>
-                  <p className="mt-2 max-w-[300px] text-[15px] leading-[1.6]" style={{ color: COLORS.graphite }}>{item.copy}</p>
+                  <h3 data-type="feature" style={{ color: BRAND.ink }}>{item.label}</h3>
+                  <p className="mt-2 max-w-[300px] text-[16px] leading-[1.6]" style={{ color: BRAND.graphite }}>{item.copy}</p>
                 </div>
                 <span aria-hidden="true" className="mt-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#f5f5f7] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none">
-                  <ArrowRight className="h-4 w-4" style={{ color: COLORS.blue }} />
+                  <ArrowRight className="h-4 w-4" style={{ color: BRAND.link }} />
                 </span>
               </div>
               <div className="flex items-center justify-center rounded-[14px] bg-[#f5f5f7] sm:rounded-[16px]">
@@ -546,7 +471,7 @@ function LandingSuiteSection() {
             </Link>
           ))}
         </div>
-      </FadeReveal>
+      </Reveal>
     </section>
   );
 }
@@ -576,7 +501,7 @@ export default function LandingPage() {
             hero's own floor dissolves them. */}
         <div
           aria-hidden="true"
-          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#121317]/10"
+          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#1d1d1f]/10"
           style={{
             WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
             maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",

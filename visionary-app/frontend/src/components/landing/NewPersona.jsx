@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
 import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
+import { CtaPair } from "@/components/landing/system/ui";
 import "@/components/landing/cast.css";
 
 function useCycle(total, ms) {
@@ -37,48 +37,10 @@ function useCycleStep(total, ms) {
   return { index, setIndex, setPaused };
 }
 
-/* The shared CTA pair — one source for every hero, so the pills stay
-   identical across the universal and persona pages. `align="baseline"`
-   right-aligns the pair on the wordmark's baseline (the Vision Pro
-   product-page anatomy); the default centers under the copy. */
-const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, secondaryLabel, align = "center" }) {
-  const alignment =
-    align === "baseline"
-      ? "flex flex-wrap items-center justify-center gap-3 lg:justify-end"
-      : "mt-9 flex flex-wrap items-center justify-center gap-3";
-  return (
-    <div className={alignment}>
-      <Link
-        to={ctaTo}
-        className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
-      >
-        {ctaLabel}
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4 w-4"
-          aria-hidden="true"
-        >
-          <path d="M5 12h14" />
-          <path d="M13 6l6 6-6 6" />
-        </svg>
-      </Link>
-      {secondaryLabel && (
-        <Link
-          to={secondaryTo}
-          className="inline-flex items-center gap-1 text-[17px] font-normal tracking-[0] leading-[1.2] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-        >
-          {secondaryLabel}
-          <ChevronRight className="h-[18px] w-[18px]" strokeWidth={2.5} />
-        </Link>
-      )}
-    </div>
-  );
-});
+/* The shared CTA pair lives in system/ui.jsx (CtaPair) — one measured
+   anatomy for the universal front door and every persona hero: 44px ink
+   pill with the 21px pad, the 17px button voice, and the full-44px text
+   link beside it (apple.com/apple-vision-pro hero pair, 2026-10-20). */
 
 /* The family stage — the landing's "product shot". The five personas stand
    together as alpha cutouts on the page's own white: no tiles, no seams, no
@@ -168,10 +130,6 @@ export default function NewPersona({
      persona (label + route), in the cycling line's order. Absent on every
      persona page, so those heroes render exactly as before. */
   audienceLinks,
-  /* The canonical display minimum is 48px; the universal lead fragment is
-     longer than any persona lead ("One Intelligence."), so the landing drops
-     the floor to keep 390px screens on one line. */
-  minDisplay = 48,
 }) {
   /* Persona pages can still use a cycling lead. The universal landing uses a
      fixed product statement so the family lineup carries the variation. */
@@ -184,10 +142,65 @@ export default function NewPersona({
   const cycleIndex = useCycle(cast ? 0 : animatedHeadlineWords?.length || 0, cast ? 0 : hasAnimatedHeadline ? wordMs : 0);
   const audienceStep = useCycleStep(cast && hasAnimatedHeadline ? animatedHeadlineWords.length : 0, cast ? wordMs : 0);
   const animatedIndex = cast ? audienceStep.index : cycleIndex;
-  /* Canonical display scale — Apple product-first rhythm, with
-     the measured apple.com hero tracking (80px tier: -0.015em / lh 1.05) */
-  const displaySize = `clamp(${minDisplay}px, 5.55vw, 80px)`;
-  const display = `block font-medium tracking-[-0.015em] leading-[1.05]`;
+  /* Apple's live-measured hero ladder (FAP-34, education-initiative):
+     rotating fragment 140/96/64 → var(--fs-hero-headline); the statement
+     line 56/40/40 → var(--fs-hero-eyebrow); 600 weight, 1.0 leading,
+     -0.0021em tracking. Stepped values live in rhythm.css, so persona and
+     cast heroes share one token source. Long fragments may wrap on phones
+     (Apple's own hero words wrap; text-balance keeps it composed). */
+  const displayClass = "font-semibold tracking-[-0.0021em] leading-[1]";
+
+  const copyRef = useRef(null);
+  const wordRef = useRef(null);
+  /* One-line guarantee — and ONE voice for the whole cycle: the rotating
+     line's size is computed ONCE, from the widest fragment, so every
+     audience word renders at the same size at every width ("students." and
+     "organizations." hold one composition — the earlier per-word fit let
+     the stage re-rank words by length, which read as a size bug). Apple's
+     education hero measures its display line in a 980px box (the headline
+     container), so the fit targets that cap — never the mask, which would
+     let the word clip instead of scale. The line box stays at the base
+     display height, so the composition never moves between words. */
+  const [fittedPx, setFittedPx] = useState(0);
+  useLayoutEffect(() => {
+    if (!cast || !hasAnimatedHeadline) return undefined;
+    const fit = () => {
+      const word = wordRef.current;
+      const copy = copyRef.current;
+      if (!word || !copy) return;
+      /* Canvas measure at the line's true computed font: no remount churn,
+         every fragment measured in one pass (letter-spacing carried too via
+         ctx.letterSpacing where Chromium exposes it). */
+      const style = getComputedStyle(word);
+      const base = parseFloat(style.fontSize);
+      if (!(base > 0) || !(copy.clientWidth > 0)) return;
+      let widest = 0;
+      try {
+        const ctx = document.createElement("canvas").getContext("2d");
+        ctx.font = `${style.fontWeight} ${base}px ${style.fontFamily}`;
+        if ("letterSpacing" in ctx) ctx.letterSpacing = style.letterSpacing;
+        for (const fragment of animatedHeadlineWords) {
+          widest = Math.max(widest, ctx.measureText(`${fragment}.`).width);
+        }
+      } catch {
+        widest = 0;
+      }
+      const available = Math.min(980, copy.clientWidth);
+      const next =
+        widest > available
+          ? Math.floor((base * (available / widest)) * 2) / 2
+          : 0;
+      setFittedPx((prev) => (prev === next ? prev : next));
+    };
+    fit();
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(fit).catch(() => {});
+    }
+    if (typeof ResizeObserver === "undefined" || !copyRef.current) return undefined;
+    const ro = new ResizeObserver(fit);
+    ro.observe(copyRef.current);
+    return () => ro.disconnect();
+  }, [cast, hasAnimatedHeadline]);
 
   if (cast) {
     return (
@@ -208,22 +221,44 @@ export default function NewPersona({
             bottom-anchored family, one composition at every width */}
         {/* public-frame carries the canonical gutters — w-full would override
             them and push the tagline against the screen edges */}
-        <div className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center text-center">
+        <div ref={copyRef} className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center text-center">
           <div className="max-w-[980px]">
-            <h1 className="m-0">
+            <h1 data-type="display" className="m-0">
               <span
                 aria-hidden="true"
-                className={`${display} ${hasAnimatedHeadline || staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
-                style={{ color: "#121317", fontSize: displaySize }}
+                className={`${displayClass} ${hasAnimatedHeadline || staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
+                style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-headline)" }}
               >
                 {hasAnimatedHeadline ? (
                   /* Apple's stacked hero lines: the statement reads as its own
                      line, the audience line below it — the same masked-line
-                     rhythm as an education-init headline. */
+                     rhythm as an education-init headline, including the
+                     measured 0.05em line padding (2.8px at 56, 7px at 140).
+                     The audience line rises inside a clip box and never
+                     wraps: its size is fitted to the copy column above. */
                   <>
-                    <span className="block text-balance">{animatedHeadlinePrefix}</span>
-                    <span key={animatedIndex} className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
-                      {animatedHeadlineWords[animatedIndex]}.
+                    <span className="block text-balance tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{animatedHeadlinePrefix}</span>
+                    <span
+                      className="block overflow-hidden"
+                      style={{ height: "calc(var(--fs-hero-headline) * 1.05)" }}
+                    >
+                      <span
+                        ref={wordRef}
+                        key={animatedIndex}
+                        className="apple-anim accent-gradient block whitespace-nowrap"
+                        style={{
+                          animation: "heroLineUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                          paddingBottom: "0.05em",
+                          lineHeight: "var(--fs-hero-headline)",
+                          /* the fitted one-voice size survives the per-word
+                             remounts: it is held in state, not per-word */
+                          ...(cast && hasAnimatedHeadline && fittedPx
+                            ? { fontSize: `${fittedPx}px` }
+                            : null),
+                        }}
+                      >
+                        {animatedHeadlineWords[animatedIndex]}.
+                      </span>
                     </span>
                   </>
                 ) : staticHeadline ? (
@@ -231,9 +266,22 @@ export default function NewPersona({
                      line, the audience on the next — both in the accent
                      gradient, balanced as one composed headline. */
                   <>
-                    <span className="block text-balance accent-gradient">{words[0]}</span>
-                    <span className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
-                      {staticHeadline}
+                    <span className="block text-balance accent-gradient tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{words[0]}</span>
+                    <span
+                      className="block overflow-hidden"
+                      style={{ height: "calc(var(--fs-hero-headline) * 1.05)" }}
+                    >
+                      <span
+                        ref={wordRef}
+                        className="apple-anim accent-gradient block whitespace-nowrap"
+                        style={{
+                          animation: "heroLineUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                          paddingBottom: "0.05em",
+                          lineHeight: "var(--fs-hero-headline)"
+                        }}
+                      >
+                        {staticHeadline}
+                      </span>
                     </span>
                   </>
                 ) : (
@@ -250,7 +298,7 @@ export default function NewPersona({
           {/* the hero pair — full buttons. This is the product's front door;
               the same shared pills the persona heroes wear, so one button
               system carries every hero. */}
-          <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          <CtaPair ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
           {/* the audience rail — Apple's education local-nav row (measured
               live 12px/400 quiet links; K–12 · Higher Education · College
               Students · Success Stories), carried into the hero at our
@@ -259,7 +307,7 @@ export default function NewPersona({
               focus previews that line and holds it; the click opens the
               persona page. Auto-advance pauses under reduced motion. */}
           {audienceLinks?.length ? (
-            <nav aria-label="Audiences" className="mt-6 flex flex-wrap items-center justify-center gap-x-1 gap-y-0.5">
+            <nav aria-label="Audiences" className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
               {audienceLinks.map((audience, i) => (
                 <Link
                   key={audience.to}
@@ -274,8 +322,8 @@ export default function NewPersona({
                     audienceStep.setIndex(i);
                   }}
                   onBlur={() => audienceStep.setPaused(false)}
-                  className={`inline-flex h-9 items-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0.24px] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
-                    i === audienceStep.index ? "font-medium text-[#121317]" : "font-normal text-[#6e6e73] hover:text-[#121317]"
+                  className={`inline-flex h-11 items-center whitespace-nowrap rounded-full px-4 text-[12px] tracking-[-0.010em] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
+                    i === audienceStep.index ? "font-medium text-[#1d1d1f]" : "font-normal text-[#6e6e73] hover:text-[#1d1d1f]"
                   }`}
                 >
                   {audience.label}
@@ -393,7 +441,11 @@ export default function NewPersona({
               stage with the CTA pair on the baseline right. */}
       <div className="relative z-10 order-first flex w-full flex-col items-center gap-8 px-6 pt-[clamp(12px,2.5svh,40px)] pb-[clamp(28px,5svh,64px)] text-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-auto lg:flex-row lg:items-end lg:justify-between lg:gap-16 lg:px-[max(1.5rem,var(--frame-x))] lg:pb-[clamp(40px,7svh,88px)] lg:pt-0 lg:text-left">
         <div className="max-w-[860px]">
-            <h1 className="m-0 font-medium tracking-[0] leading-[1.05]" style={{ fontSize: displaySize }}>
+            {/* FAP-34: category heroes wear the Vision Pro type — the
+                foundation statement 28/40/48 and the tagline 17/24/28, both
+                600; steps live in rhythm.css. The landing's cast hero keeps
+                the education ladder (var(--fs-hero-headline)). */}
+            <h1 data-type="product-section" className="category-hero-statement m-0">
               <span
                 key={index}
                 className="apple-anim accent-gradient inline-block"
@@ -403,11 +455,11 @@ export default function NewPersona({
               </span>
               <span className="sr-only">{srSentence}</span>
             </h1>
-            <p className="text-balance mt-4 max-w-[560px] font-medium tracking-[0] leading-[1.4] text-[clamp(18px,1.4vw,24px)] lg:mx-0" style={{ color: "#121317" }}>
+            <p className="category-hero-tagline text-balance mt-4 max-w-[560px] lg:mx-0" style={{ color: "#1d1d1f" }}>
               {sub}
             </p>
           </div>
-          <HeroCtas align="baseline" ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          <CtaPair align="baseline" ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
       </div>
     </section>
   );

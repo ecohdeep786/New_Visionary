@@ -292,7 +292,7 @@ export default function StudentClasses() {
         <button onClick={() => {
         setJoinStatus("");
         setShowJoin(true);
-      }} className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-full border border-[#dadce0] bg-white px-5 text-sm font-medium text-[#0b57d2] transition-colors hover:bg-[#ffffff] sm:self-auto">
+      }} className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-full border border-[var(--v-border)] bg-white px-5 text-sm font-medium text-[var(--v-action)] transition-colors hover:bg-[#ffffff] sm:self-auto">
           <Link2 className="h-4 w-4" /> {copy("Join class")} </button>
       </div>
 
@@ -315,10 +315,10 @@ export default function StudentClasses() {
           setDraftError(failure.message);
         }
       }}> {copy("Discard current edits and load saved drafts")} </button></div>}
-      {invitations.length > 0 && <section aria-label={copy("Class invitations")} className="rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5"><h2 className="font-medium text-[#121317]"> {copy("Class invitations")} </h2><div className="mt-3 space-y-3">{invitations.map(c => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#121317]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} {copy("invited you to join")} </p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[#0b57d2] px-5 text-sm font-medium text-white disabled:opacity-50"> {copy("Accept class")} </button></div>)}</div></section>}
+      {invitations.length > 0 && <section aria-label={copy("Class invitations")} className="rounded-2xl border border-[var(--v-border)] bg-[#ffffff] p-5"><h2 className="font-medium text-[#121317]"> {copy("Class invitations")} </h2><div className="mt-3 space-y-3">{invitations.map(c => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#121317]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} {copy("invited you to join")} </p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[var(--v-action)] px-5 text-sm font-medium text-white disabled:opacity-50"> {copy("Accept class")} </button></div>)}</div></section>}
 
       {loading ? <div className="flex justify-center py-16">
-          <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
+          <div className="w-8 h-8 border-4 border-[var(--v-border)] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
         </div> : loadError ? null : connectedClasses.length === 0 ? <div className="flex flex-col items-center gap-5 py-16 text-center">
@@ -346,14 +346,14 @@ export default function StudentClasses() {
             </div>
           </header>
 
-          <div className="v-class-sections" aria-label={copy("Class sections")}>{[["classwork", "Classwork"], ["outline", "Learning outline"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#0b57d2]" : "border-transparent text-[#5f6368]"}`}> {copy(label)} </button>)}</div>
-          {classTab === "stream" && <div className="space-y-4">{announcements.filter(a => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#5f6368]" /><p className="text-sm text-[#5f6368]"> {copy("Class updates from your teacher will appear here.")} </p></div> : announcements.filter(a => a.class_id === openClassId).map(a => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#121317]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : copy("Class update")}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.text}</p></article>)}</div>}
+          <div className="v-class-sections" aria-label={copy("Class sections")}>{[["classwork", "Classwork"], ["outline", "Learning outline"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[var(--v-action)] text-[var(--v-action)]" : "border-transparent text-[#5f6368]"}`}> {copy(label)} </button>)}</div>
+          {classTab === "stream" && <div className="space-y-4">{announcements.filter(a => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#5f6368]" /><p className="text-sm text-[#5f6368]"> {copy("Class updates from your teacher will appear here.")} </p></div> : announcements.filter(a => a.class_id === openClassId).map(a => <article key={a.id} className="rounded-2xl border border-[var(--v-border)] p-6"><p className="text-sm font-medium text-[#121317]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : copy("Class update")}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.text}</p></article>)}</div>}
 
           {classTab === "outline" && <><ClassCurriculum key={'published:' + ctx?.workspaceId + ':' + openClassId} classId={openClassId} /><AssignedCurriculumOutline key={ctx?.workspaceId + ':' + openClassId} classId={openClassId} /></>}
-          {classTab === "community" && <CommunityTab classId={openClassId} accent="#4285F4" />}
+          {classTab === "community" && <CommunityTab classId={openClassId} accent="var(--v-action)" />}
           {classTab === "classwork" && <div className="flex flex-col gap-4">
             {classAssignments.length === 0 ? <div className="flex flex-col items-center gap-3 py-12 text-center">
-                <ClipboardList className="w-10 h-10 text-[#dadce0]" />
+                <ClipboardList className="w-10 h-10 text-[var(--v-border)]" />
                 <p className="text-sm text-[#5f6368] max-w-sm"> {copy("No assignments in this class yet. Check back soon.")} </p>
               </div> : classAssignments.map(a => {
           const sub = mySubFor(a.id);
@@ -361,7 +361,7 @@ export default function StudentClasses() {
           const submitted = sub && sub.status === "submitted";
           const revision = sub?.status === 'revision_requested';
           const draft = draftFor(a.id);
-          return <div key={a.id} className="p-6 bg-white rounded-3xl border border-[#dadce0]/60 flex flex-col gap-4">
+          return <div key={a.id} className="p-6 bg-white rounded-3xl border border-[var(--v-border)]/60 flex flex-col gap-4">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{
                 backgroundColor: `${accent}15`
@@ -378,7 +378,7 @@ export default function StudentClasses() {
                         </p>
                         {a.description && <p className="text-sm text-[#5f6368] mt-3 leading-relaxed">{a.description}</p>}
                         {a.topics && a.topics.length > 0 && <div className="flex flex-wrap gap-2 mt-3">
-                            {a.topics.map(t => <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#dadce0] text-[#5f6368]">
+                            {a.topics.map(t => <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[var(--v-border)] text-[#5f6368]">
                                 {t}
                               </span>)}
                           </div>}
@@ -391,7 +391,7 @@ export default function StudentClasses() {
                     </div>
 
                     {revision && <div role="status" className="rounded-2xl bg-[#fef7e0] p-4 text-sm"><p className="font-medium"> {copy("Revision requested \xB7 Attempt")} {sub.attempt || 1}</p><p className="mt-2 whitespace-pre-wrap">{sub.feedback}</p><CriterionFeedback criteria={a.objective_snapshot?.criteria} feedback={sub.criterion_feedback} /><p className="mt-2"> {copy("Update your answers below and resubmit. Your previous response and feedback stay in the attempt history.")} </p></div>}
-                    {!!sub?.revision_history?.length && <details className="text-sm text-[#5f6368]"><summary className="cursor-pointer"> {copy("Previous attempts and feedback ({count})",{count:sub.revision_history.length})} </summary>{sub.revision_history.map((entry, index) => <div key={index} className="mt-3 border-l-2 border-[#dadce0] pl-3"><p className="font-medium"> {copy("Attempt")} {entry.attempt}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap"> {copy("Feedback:")} {entry.feedback}</p><CriterionFeedback criteria={a.objective_snapshot?.criteria} feedback={entry.criterion_feedback} /></div>)}</details>}
+                    {!!sub?.revision_history?.length && <details className="text-sm text-[#5f6368]"><summary className="cursor-pointer"> {copy("Previous attempts and feedback ({count})",{count:sub.revision_history.length})} </summary>{sub.revision_history.map((entry, index) => <div key={index} className="mt-3 border-l-2 border-[var(--v-border)] pl-3"><p className="font-medium"> {copy("Attempt")} {entry.attempt}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap"> {copy("Feedback:")} {entry.feedback}</p><CriterionFeedback criteria={a.objective_snapshot?.criteria} feedback={entry.criterion_feedback} /></div>)}</details>}
                     {graded ? <div className="sm:pl-14 flex flex-col gap-2">
                         {sub.feedback && <div className="p-4 rounded-2xl bg-[#ffffff]">
                             <p className="text-xs font-medium text-[#5f6368] mb-1"> {copy("Teacher feedback")} </p>
@@ -409,12 +409,12 @@ export default function StudentClasses() {
                       ...draft.answers,
                       [check.id]: event.target.value
                     }
-                  })} placeholder={copy("Explain in your own words\u2026")} rows={3} className="mt-2 w-full rounded-2xl border border-[#dadce0] p-4 text-sm font-normal leading-relaxed outline-none focus:border-[#4285F4]" /></label>)}</div> : <textarea value={draft.text || ""} onChange={e => updateDraft(a.id, {
+                  })} placeholder={copy("Explain in your own words\u2026")} rows={3} className="mt-2 w-full rounded-2xl border border-[var(--v-border)] p-4 text-sm font-normal leading-relaxed outline-none focus:border-[var(--v-action)]" /></label>)}</div> : <textarea value={draft.text || ""} onChange={e => updateDraft(a.id, {
                 ...draft,
                 text: e.target.value
               })} placeholder={copy("Write your response\u2026")} aria-label={copy('Your response to {title}', {
                 title: a.title
-              })} rows={3} className="w-full p-4 rounded-2xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4] resize-none leading-relaxed" />}
+              })} rows={3} className="w-full p-4 rounded-2xl border border-[var(--v-border)] text-sm text-[#121317] outline-none focus:border-[var(--v-action)] resize-none leading-relaxed" />}
                         <p className="text-xs text-[#5f6368]"> {copy("Drafts are kept on this device when storage is available. Your teacher reviews the response; it is not automatically scored.")} </p>
                         {!a.checks?.length && <ClassworkProjectSubmission key={`${a.id}:${sub?.attempt || 0}`} ctx={ctx} artifacts={data?.artifacts} assignment={{
                 ...a,
@@ -437,7 +437,7 @@ export default function StudentClasses() {
         </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {connectedClasses.map(c => {
         const count = (assignments || []).filter(a => a.class_id === c.id).length;
-        return <button key={c.id} onClick={() => setOpenClassId(c.id)} className="v-class-card text-left flex flex-col bg-white rounded-2xl border border-[#dadce0] overflow-hidden hover:shadow-md transition-all">
+        return <button key={c.id} onClick={() => setOpenClassId(c.id)} className="v-class-card text-left flex flex-col bg-white rounded-2xl border border-[var(--v-border)] overflow-hidden hover:shadow-md transition-all">
                 <div className="v-class-card-cover p-6" style={{
             ...classColors(c.color || accent)
           }}>
@@ -466,9 +466,9 @@ export default function StudentClasses() {
           <DialogTitle className="text-xl font-medium text-[#121317]"> {copy("Join a class")} </DialogTitle>
           <DialogDescription> {copy("Ask your teacher for their class code, then enter it below.")} </DialogDescription>
           <form onSubmit={joinClass}>
-            <label className="mt-6 block text-sm font-medium text-[#121317]"> {copy("Class code")} <input disabled={joining} value={joinCode} onChange={event => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-lg border border-[#5f6368] px-3 font-mono text-sm tracking-wide outline-none focus:border-[#4285F4] focus:ring-1 focus:ring-[#4285F4]" /></label>
+            <label className="mt-6 block text-sm font-medium text-[#121317]"> {copy("Class code")} <input disabled={joining} value={joinCode} onChange={event => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-lg border border-[#5f6368] px-3 font-mono text-sm tracking-wide outline-none focus:border-[var(--v-action)] focus:ring-1 focus:ring-[var(--v-action)]" /></label>
             {joinStatus && <p className="mt-3 text-sm text-[#b3261e]" role="alert"> {copy(joinStatus)} </p>}
-            <div className="mt-7 flex justify-end gap-3"><button type="button" disabled={joining} onClick={closeJoin} className="h-10 rounded-full px-4 text-sm font-medium text-[#0b57d2] hover:bg-[#ffffff]"> {copy("Cancel")} </button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{
+            <div className="mt-7 flex justify-end gap-3"><button type="button" disabled={joining} onClick={closeJoin} className="h-10 rounded-full px-4 text-sm font-medium text-[var(--v-action)] hover:bg-[#ffffff]"> {copy("Cancel")} </button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{
               backgroundColor: accent
             }}><Link2 className="h-4 w-4" />{joining ? copy("Joining\u2026") : copy("Join class")}</button></div>
           </form>

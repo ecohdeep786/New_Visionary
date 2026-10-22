@@ -62,7 +62,7 @@ export default function LandingFAQ({
             type="button"
             onClick={toggleAll}
             aria-expanded={allOpen}
-            className="inline-flex min-h-11 items-center gap-2 rounded-sm px-2 text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+            className="inline-flex min-h-11 items-center gap-2 rounded-sm px-2 text-[14px] font-medium text-[#0066cc] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
           >
             {allOpen ? collapseAllLabel : expandAllLabel}
             <Plus className={`h-4 w-4 transition-transform duration-200 ${allOpen ? "rotate-45" : ""}`} aria-hidden="true" />
@@ -85,12 +85,12 @@ export default function LandingFAQ({
                   aria-expanded={open}
                   aria-controls={answerId}
                   onClick={() => toggle(index)}
-                  className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                 >
-                  <span className="font-normal leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: "#121317" }}>
+                  <span className="font-normal leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: "#1d1d1f" }}>
                     {faq.q}
                   </span>
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#e8f0fe] sm:h-16 sm:w-16" style={{ color: "#121317" }}>
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[rgba(0,102,204,0.10)] sm:h-16 sm:w-16" style={{ color: "#1d1d1f" }}>
                     {/* closed points down (open me), open points up (collapse me) */}
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`h-6 w-6 transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
                       <path d="M6 9l6 6 6-6" />
@@ -106,7 +106,7 @@ export default function LandingFAQ({
                   className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-[1240px] pt-8 text-[16px] leading-[1.6]" style={{ color: "#121317" }}>{faq.a}</p>
+                    <p className="max-w-[1240px] pt-8 text-[16px] leading-[1.6]" style={{ color: "#1d1d1f" }}>{faq.a}</p>
                   </div>
                 </div>
               </div>
@@ -121,15 +121,15 @@ export default function LandingFAQ({
                 aria-expanded={open}
                 aria-controls={answerId}
                 onClick={() => toggle(index)}
-                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
               >
-                <span className="text-[16px] font-medium text-[#202124]">{faq.q}</span>
-                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${open ? "bg-[#1a73e8] text-white" : "bg-[#e8f0fe] text-[#0b57d0]"}`}>
+                <span className="text-[16px] font-medium text-[#1d1d1f]">{faq.q}</span>
+                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${open ? "bg-[#0066cc] text-white" : "bg-[rgba(0,102,204,0.10)] text-[#0066cc]"}`}>
                   <Plus className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-45" : ""}`} aria-hidden="true" />
                 </span>
               </button>
               <div id={answerId} role="region" aria-labelledby={triggerId} hidden={!open} className="px-6 pb-6">
-                <p className="text-[15px] leading-[1.65] text-[#5f6368]">{faq.a}</p>
+                <p className="text-[16px] leading-[1.65] text-[#6e6e73]">{faq.a}</p>
               </div>
             </div>
           );
@@ -141,7 +141,7 @@ export default function LandingFAQ({
           <button
             type="button"
             onClick={handleShowMore}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#d2d2d7] bg-white px-6 text-[14px] font-medium text-[#0066cc] transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
           >
             {showMoreLabel}
           </button>

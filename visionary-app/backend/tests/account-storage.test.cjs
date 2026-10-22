@@ -67,10 +67,12 @@ test('an interrupted additive migration resumes without replacing the paid subsc
 
 test('account HTTP overview and paginated records are owner-bound, strip security fields and do not expose a Family payer invoice', async () => {
   const memory = billingMemory(), now = Date.now();
-  const auth = { getDatabase: () => memory.db, authenticate: async cookie => { if (cookie !== 'owner-cookie') throw new UnauthorizedException(); return { uid: 'owner', sessionId: 'device_a' }; }, me: async uid => ({ id: uid, full_name: 'Owner', onboarding_complete: true, getting_started_complete: true }) };
+  const auth = { getDatabase: () => memory.db, authenticate: async cookie => { if (cookie !== 'owner-cookie') throw new UnauthorizedException(); return { uid: 'owner', sessionId: 'device_a', authSessionVersion: 0 }; }, me: async uid => ({ id: uid, full_name: 'Owner', onboarding_complete: true, getting_started_complete: true }) };
   const billing = { account: async uid => ({ uid, plan: 'start', invoices: [] }) };
   auth.accountDetails = async uid => ({ profile: await auth.me(uid), identity: { uid }, onboarding: { status: 'complete' } });
   for (const id of ['device_a', 'device_b']) memory.rows.set(`visionary_accounts/owner/devices/${id}`, { uid: 'owner', firstSeenAt: Timestamp.fromMillis(now), lastSeenAt: Timestamp.fromMillis(now), expiresAt: Timestamp.fromMillis(now + 3600000), cookieHash: 'must-not-escape', userAgent: 'Fixture browser', observedIp: '127.0.0.1' });
+  memory.rows.get('visionary_accounts/owner/devices/device_a').lastSeenAt = Timestamp.fromMillis(now - 2 * 86400000);
+  memory.rows.get('visionary_accounts/owner/devices/device_b').authSessionVersion = 1;
   memory.rows.set('visionary_accounts/owner/billing/test/invoices/inv_a', { uid: 'owner', amount: 29900, status: 'paid', cookieHash: 'must-not-escape' });
   memory.rows.set('visionary_accounts/payer/billing/test/invoices/inv_secret', { uid: 'payer', amount: 49900 });
   class FixtureModule {}
@@ -85,6 +87,7 @@ test('account HTTP overview and paginated records are owner-bound, strip securit
     assert.equal(overview.structure.sections.learning.availability, 'not-connected');
     const first = await (await fetch(url + '/api/account/devices?limit=1', { headers })).json(); assert.equal(first.items.length, 1); assert.equal(first.items[0].current, true); assert.equal(first.items[0].status, 'active'); assert.equal(first.nextCursor, 'device_a');
     const second = await (await fetch(url + '/api/account/devices?limit=1&after=' + first.nextCursor, { headers })).json(); assert.equal(second.items[0].id, 'device_b'); assert.equal(second.nextCursor, null);
+    assert.equal(second.items[0].status, 'revoked');
     assert.doesNotMatch(JSON.stringify([first, second]), /cookieHash|must-not-escape/);
     const invoices = await (await fetch(url + '/api/account/invoices', { headers })).json(); assert.equal(invoices.items.length, 1); assert.equal(invoices.items[0].id, 'inv_a'); assert.doesNotMatch(JSON.stringify(invoices), /secret|cookieHash/);
     assert.equal((await fetch(url + '/api/account/devices?limit=1000', { headers })).status, 400);

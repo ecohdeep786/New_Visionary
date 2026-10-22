@@ -7,16 +7,17 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
-  ink: "#121317",
+  ink: "#1d1d1f",
   surface: "#f5f5f7",
-  blue: "#4285F4",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
+  blue: "#0066cc",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
   soft: "#f5f5f7",
@@ -28,7 +29,7 @@ const COLORS = {
    Card / step H3     : clamp(28px,2.78vw,40px) · small card title 22px
    Body large         : 17.5px / 25px
    Body               : 15px/1.6 · card copy 14px/1.5 · meta 13px · fine 12px
-   Tag / eyebrow      : 12px uppercase tracking-[0.43px]  (grey for hero/section, blue for steps)
+   Tag / eyebrow      : .apple-eyebrow (12px/600 sentence-case, -0.016em; data-type="label" above the hero)
    Pills / tabs       : h-[52px] rounded-[90px], 12–14px
    Buttons            : h-14 = 16px · h-12 = 15px
 =========================================================== */
@@ -100,8 +101,10 @@ const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
   );
 });
 const BlueTag = React.memo(function BlueTag({ children, className = "" }) {
+  /* the label's accent voice — quiet link blue, matching the site's one accent
+     (measure: apple.com inline/tertiary actions #0066cc); GreyTag stays grey. */
   return (
-    <p className={`font-medium tracking-[0] leading-[1.45] text-[17px] ${className}`} style={{ color: COLORS.grey }}>
+    <p className={`font-medium tracking-[0] leading-[1.45] text-[17px] ${className}`} style={{ color: COLORS.blue }}>
       {children}
     </p>
   );
@@ -214,7 +217,7 @@ function AuthMock({ state, onPause, onResume }) {
   return (
     <div onMouseEnter={onPause} onMouseLeave={onResume} onFocus={onPause} onBlur={onResume}>
       <MockShell label={isSignIn ? "Sign in" : "Sign up"}>
-        <p key={`title-${state}`} className="hero-fade-up font-medium tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>
+        <p key={`title-${state}`} className="hero-fade-up font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>
           {isSignIn ? "Welcome back" : "Create your account"}
         </p>
         <div className="mt-4 space-y-3">
@@ -234,7 +237,7 @@ function AuthMock({ state, onPause, onResume }) {
           key={`btn-${state}`}
           to={isSignIn ? "/login" : "/register"}
           aria-label={isSignIn ? "Sign in to Visionary" : "Create a free Visionary account"}
-          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f]"
           style={{ backgroundColor: COLORS.blue }}
         >
           {isSignIn ? "Sign in" : "Create account"}
@@ -252,7 +255,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
   if (step.id === "onboarding") {
     return (
       <MockShell label="Start as yourself">
-        <p className="font-medium tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>Who are you?</p>
+        <p className="font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>Who are you?</p>
         <div className="mt-4 grid grid-cols-1 gap-3">
           {ONBOARDING_ROLES.map((role, i) => {
             const isActive = activeRole === i;
@@ -281,13 +284,13 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
             {React.createElement(ONBOARDING_ROLES[activeSpace || 0].Icon, { className: "h-5 w-5", strokeWidth: 1.8, style: { color: COLORS.blue } })}
           </span>
           <div>
-            <p className="font-medium tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>Welcome back</p>
+            <p className="font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>Welcome back</p>
             <p className="text-[12px] tracking-[0]" style={{ color: COLORS.grey }}>{currentSpace.role}</p>
           </div>
         </div>
         <div className="mt-6 rounded-[16px] border p-5" style={{ borderColor: COLORS.mist, backgroundColor: COLORS.surface }}>
-          <p className="text-[13px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Today</p>
-          <p className="mt-2 text-[15px] tracking-[0]" style={{ color: COLORS.ink }}>
+          <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Today</p>
+          <p className="mt-2 text-[16px] tracking-[0]" style={{ color: COLORS.ink }}>
             <span key={activeSpace} className="hero-fade-up inline-block">{currentSpace.text}</span>
           </p>
         </div>
@@ -303,7 +306,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
   }
   return (
     <MockShell label="Connected">
-      <p className="font-medium tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>Your journey, connected</p>
+      <p className="font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>Your journey, connected</p>
       <div className="mt-4 space-y-4">
         {[
           { t: "Yesterday", v: "Fractions — mastered", color: COLORS.lightGrey },
@@ -316,7 +319,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
               {i < 2 && <span className="h-8 w-px" style={{ backgroundColor: COLORS.mist }} />}
             </div>
             <div>
-              <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.lightGrey }}>{r.t}</p>
+              <p className="apple-eyebrow" style={{ color: COLORS.lightGrey }}>{r.t}</p>
               <p className="text-[14px] tracking-[0]" style={{ color: COLORS.ink }}>{r.v}</p>
             </div>
           </div>
@@ -348,7 +351,7 @@ function HowHeroSection() {
         <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           How <span className="accent-gradient">Visionary</span> works.
         </h1>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Understand, ask, practise, then build.
         </p>
       </FadeReveal>
@@ -388,7 +391,7 @@ function HowJourneySection() {
           <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
             {a.blue} <span style={{ color: COLORS.ink }}>{a.title}</span>
           </h3>
-          <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{a.do}</p>
+          <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{a.do}</p>
           <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{a.micro}</p>
         </>
       );
@@ -397,7 +400,7 @@ function HowJourneySection() {
       <>
         <BlueTag>{step.n} · {step.label}</BlueTag>
         <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
-        <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{step.do}</p>
+        <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{step.do}</p>
         <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{step.micro}</p>
       </>
     );
@@ -472,9 +475,9 @@ function HowLoopSection() {
         <h2 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           One loop,
           <br className="hidden sm:block" />{" "}
-          <span key={stage.id} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{stage.label.toLowerCase()}.</span>
+          <span key={stage.id} className="hero-fade-up inline-block">{stage.label.toLowerCase()}.</span>
         </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Every subject in Visionary moves through the same loop, from your goal to what you can build with it.
         </p>
 
@@ -495,7 +498,7 @@ function HowLoopSection() {
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActive(i)}
-                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${isActive ? "bg-[#121317] text-white" : "text-[#5f6368] hover:bg-white"}`}
+                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${isActive ? "bg-[#1d1d1f] text-white" : "text-[#6e6e73] hover:bg-white"}`}
               >
                 <st.Icon className="h-4 w-4" strokeWidth={1.8} />
                 {st.label}
@@ -512,7 +515,7 @@ function HowLoopSection() {
           <p className="mt-5 font-medium tracking-[0] leading-[1.2] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>
             {stage.label}
           </p>
-          <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{stage.copy}</p>
+          <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>{stage.copy}</p>
           <p className="mt-5 font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.lightGrey }}>
             {stage.id === "check-2" ? "Step 5 of 8 · the loop keeps you moving" : `Step ${active + 1} of 8 · ${stage.id === "reflect" ? "then it begins again" : "then " + LOOP_STAGES[(active + 1) % 8].label.toLowerCase()}`}
           </p>
@@ -524,6 +527,12 @@ function HowLoopSection() {
             <li key={st.id}>{st.label}: {st.copy}</li>
           ))}
         </ol>
+
+        <div className="mt-12 flex justify-center">
+          <QuietLink to="/register">
+            Try the loop yourself <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+          </QuietLink>
+        </div>
       </FadeReveal>
     </section>
   );
@@ -541,14 +550,14 @@ function HowDifferentPeopleSection() {
         <h2 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           One intelligence. <span className="accent-gradient">Different ways to use it.</span>
         </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           The product doesn't change. What you're doing does.
         </p>
 
         <div className="mx-auto mt-12 flex h-[52px] w-full max-w-[900px] items-stretch overflow-x-auto rounded-full bg-[#f5f5f7] p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist" aria-label="Roles">
           {ROLES.map((r, i) => (
             <button key={r.id} type="button" role="tab" aria-selected={role === i} onClick={() => setRole(i)}
-              className={`flex h-full min-w-[92px] flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0] transition-colors sm:px-0 ${role === i ? "bg-[#121317] font-medium text-white" : "font-normal text-[#5f6368] hover:bg-white"}`}>
+              className={`flex h-full min-w-[92px] flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0] transition-colors sm:px-0 ${role === i ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-white"}`}>
               {r.tab}
             </button>
           ))}
@@ -561,14 +570,14 @@ function HowDifferentPeopleSection() {
             <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
               {scenario.ui}
             </p>
-            <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{scenario.outcome}</p>
-            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+            <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{scenario.outcome}</p>
+            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
               See the {scenario.tab.toLowerCase()} page
               <ChevronIcon className="h-4 w-4" />
             </Link>
           </div>
           <MockShell label={scenario.tab}>
-            <p className="font-medium tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>{scenario.prompt}</p>
+            <p className="font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>{scenario.prompt}</p>
             <div className="mt-4 rounded-[12px] border px-4 py-3" style={{ borderColor: COLORS.mist }}>
               <p className="text-[14px] tracking-[0]" style={{ color: COLORS.ink }}>{scenario.ui}</p>
             </div>
@@ -594,10 +603,10 @@ function HowCTASection() {
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}>See it with your own question.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
-          <Link to="/pricing" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/pricing" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See pricing
             <ChevronIcon className="h-4 w-4" />
           </Link>

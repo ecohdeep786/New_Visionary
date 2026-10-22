@@ -16,7 +16,7 @@ The public product uses the service-specific `--no-invoker-iam-check` setting be
 
 ## First-time owner setup
 
-The commands below use a signed-in Cloud Shell in project `visionary-research`, region `asia-south1`, from a clone of this repository. Start with `python infrastructure/gcp/bootstrap.py plan` (run from `visionary-app`; use `python3` outside Windows) and review the output. **Current state (2026-10-20):** foundation, identity and edge are applied in visionary-research. Main push `f3cf316e` passed checks, Linux image build/container smoke and keyless immutable publication in [Actions run 39402842556](https://github.com/ecohdeep786/New_Visionary/actions/runs/39402842556). First baseline `visionary-product-baseline-f3cf316edb74-mvgi7evq` serves that exact image at 100%; independent public boundary checks and a real synthetic two-session UID/store test pass. Apex DNS now returns the new edge IP `34.8.58.39`; the Google-managed certificate is still PROVISIONING. Canonical HTTPS, restricted ingress, automatic deployment and live rollback remain unaccepted. Publishing is enabled; automatic deployment stays disabled until those prerequisites are ready. Re-check live state before acting because later steps change it.
+The commands below use a signed-in Cloud Shell in project `visionary-research`, region `asia-south1`, from a clone of this repository. Start with `python infrastructure/gcp/bootstrap.py plan` (run from `visionary-app`; use `python3` outside Windows) and review the output. **Current state (2026-10-20):** production is live at `https://visionary.org.in` in visionary-research. DNS points to `34.8.58.39`, managed TLS is ACTIVE and Cloud Run accepts only internal/load-balancer ingress. Both publication and deployment switches are enabled. [Actual main-push run39405370084](https://github.com/ecohdeep786/New_Visionary/actions/runs/39405370084) passed checks, Linux build/container smoke, keyless immutable publish, no-traffic candidate/proxy verification, promotion and canonical checks. Current revision `visionary-product-g7aee2324024c-39405370084-1` serves main `7aee2324024cb0b9202609c72fcab21b6de7ed6b` at 100%, image digest `sha256:95f26b3ca800d148577456b2b21951bb2f93f76d1534628a37304ccd1363a7aa`. Actual rollback to the initial main baseline and restoration passed canonical source/auth checks. Real synthetic two-session UID/store tests pass through the canonical origin; test identities are disabled. This accepts the hosting/pipeline scope, not open curriculum/provider/full-product launch gates. The numbered setup below is for recovery/reproduction, not instructions to recreate the completed foundation. Re-check live state before acting because later steps change it.
 
 1. **Foundation:** run `python infrastructure/gcp/bootstrap.py apply-foundation` from `visionary-app`. It enables the required APIs, creates the private Docker repository, creates the `visionary-product-runtime` service account with Firebase Admin SDK, Firestore data and secret-access roles, creates the `visionary-product-auth-rate-limit` secret version 1 with a generated value that is never printed, and creates a bounded public placeholder Cloud Run service with a `ci-candidate` tag. Existing resources are checked, not silently replaced.
 2. **Deployment identity:** run `python infrastructure/gcp/bootstrap.py apply-identity`. It creates the repository/ref/workflow-restricted Workload Identity Federation identity and grants only its WIF user, Run deploy, Artifact Registry write and runtime-service-account act-as. It creates no key and does not grant Firebase user-data access to the deployer. The printed provider must match the hardcoded workflow provider.
@@ -48,6 +48,24 @@ The commands below use a signed-in Cloud Shell in project `visionary-research`, 
 - Keep the private Admin key outside the repository. It is only for local development; GCP runtime uses the attached service account and ADC.
 
 ## Recovery and evidence
+
+KAN-34 session compatibility rollout (22 October 2026): deployment verifies the
+serving revision's pinned environment and its actual canonical health response.
+The compiled `authPolicy.version=1` means session epochs and stale-token cutoffs
+remain enforced, even with `AUTH_GLOBAL_LOGOUT_ENABLED=false`. The first main
+deployment against a legacy rollback target keeps global sign-out disabled and
+offers local sign-out. A subsequent trusted main workflow run enables global
+sign-out only with that policy-aware revision as its verified fallback. Candidate
+and canonical probes attest both policy version and enabled state. Deployment
+receipts record `authPolicy` and `previousAuthPolicy` alongside immutable images.
+
+After activation, never manually restore an image without compiled policy v1
+(including historical `7aee2324`), remove account epoch/cutoff fields, or bypass
+the compatibility checks. Such recovery can revive revoked sessions. Use a
+policy-aware image with the action disabled, retaining admission enforcement.
+The baseline command is only for initial placeholder recovery; it is not an
+escape hatch for downgrading a live account schema. Before any manual recovery,
+verify the target image's policy and current main/traffic/source evidence.
 
 The deployment artifact records the source commit, image digest, candidate/previous revision and the previous main commit. A failed new candidate leaves production traffic on the previous revision. A post-promotion failure moves traffic back to the previous verified main revision and re-runs canonical checks. There is no one-time legacy baseline in the new project; the first canonical baseline is created explicitly in step 5. The former project remains untouched for recovery until the new origin is accepted.
 

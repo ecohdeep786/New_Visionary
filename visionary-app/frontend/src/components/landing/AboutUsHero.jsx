@@ -8,7 +8,7 @@ import { fontStack } from "@/components/landing/system/tokens";
       category page. All sub-category cards redirect to their main category
       page — no separate sub-pages exist. ── */
 const FAN_GROUPS = [
-  { to: "/student", label: "Students", subject: "student", tint: "#e8f0fe", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"], ["Competitive exams", "flag"], ["Vocational and skills", "build"], ["Higher education", "research"], ["Learning on your own", "loop"]] },
+  { to: "/student", label: "Students", subject: "student", tint: "rgba(0,102,204,0.10)", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"], ["Competitive exams", "flag"], ["Vocational and skills", "build"], ["Higher education", "research"], ["Learning on your own", "loop"]] },
   { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson planning", "document"], ["In class", "ask"], ["Checking understanding", "practice"], ["Adapting", "compass"], ["Supporting individuals", "handshake"], ["Growing", "growth"]] },
   { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"]] },
   { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
@@ -25,7 +25,7 @@ function ArrowLink({ to, children, className = "" }) {
   return (
     <Link
       to={to}
-      className={`group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4 ${className}`}
+      className={`group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4 ${className}`}
     >
       {children}
       <ChevronIcon className="h-4 w-4" />
@@ -47,18 +47,18 @@ export default function AboutUsHero() {
       }}
     >
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
-        <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">About Visionary</p>
+        <p data-type="label" className="text-center text-[#6e6e73]">About Visionary</p>
         <div className="mx-auto mt-6 max-w-[1120px] text-center">
-          <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]">
+          <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
             Helping people turn questions into <span className="accent-gradient">understanding.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#5f6368]">
+          <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
             A learning product for people who want to understand, practise, and apply what they learn.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
               to="/how-it-works"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
             >
               See how it works
             </Link>

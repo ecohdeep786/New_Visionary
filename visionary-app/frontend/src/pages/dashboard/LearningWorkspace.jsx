@@ -23,10 +23,12 @@ import ContentIssueReport from '@/components/dashboard/ContentIssueReport';
 import ClassworkLearningPlayer from './ClassworkLearningPlayer';
 import ClassworkStudy from './ClassworkStudy';
 import { useAuth } from '@/lib/AuthContext';
+import { appClient } from '@/api/appClient';
+import { createLearningSessionClient } from '@/services/learningSessionClient';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { getContentRepository, getSavedCurriculumGraphs, SAMPLE_SELECTION, SAMPLE_LIBRARY_SELECTION, PROFESSIONAL_SAMPLE_SELECTION } from '@/services/contentRepository';
 import { getStudentState, getStudentClassLearningContext } from '@/services/mentorStateService';
-import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation } from '@/services/learningPipelineService';
+import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation, configureLearningSessionAdapter } from '@/services/learningPipelineService';
 const languageNames = {
   en: 'English',
   hi: 'हिन्दी',
@@ -163,6 +165,14 @@ function CurriculumLearningWorkspace({
   const chapterId = params.get('chapter');
   const bookId = params.get('book');
   const fromClassId = params.get('fromClass');
+  // Connected learning sessions are owner-scoped server receipts; unconfigured or
+  // signed-out visitors keep the verified local-only behaviour.
+  useEffect(() => {
+    const accountId = appClient.auth.source === 'firebase' ? user?.id : null;
+    if (!accountId) { configureLearningSessionAdapter(null); return undefined; }
+    configureLearningSessionAdapter(createLearningSessionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
+    return () => configureLearningSessionAdapter(null);
+  }, [user?.id]);
   useEffect(() => {
     let live = true;
     if (!ctx) return;
@@ -397,6 +407,7 @@ function CurriculumLearningWorkspace({
   <LearningPrerequisites ctx={ctx} conceptId={concept.id} onOpen={id => run(() => openConcept(id))} />
   <nav aria-label={copy("Learning unit stages")}><ol className="v-learning-stages">{[['explain', 'Understand'], ['check', 'Check'], ['practice', 'Practice'], ['build', 'Build']].map(([id, label], index) => <li className="v-learning-step" key={id} aria-current={unit.stage === id || unit.stage === 'completed' && id === 'build' ? 'step' : undefined} data-recorded={id === 'check' ? unit.checkPassed === true : id === 'practice' ? unit.practicePassed === true : id === 'build' ? unit.stage === 'completed' && Boolean(unit.artifactId) : false}><span aria-hidden="true">{(id === 'check' && unit.checkPassed === true || id === 'practice' && unit.practicePassed === true || id === 'build' && unit.stage === 'completed' && unit.artifactId) ? <CheckCircle2 size={16} /> : index + 1}</span>{copy(label)}</li>)}</ol></nav>
   {unit.response && <p role="status" className={`v-notice ${unit.response.status === 'blocked' ? 'v-error' : ''}`} lang={unit.response.status === 'not_connected' ? 'en' : unit.locale}>{unit.response.status === 'ready' ? copy("Teaching service response received.") : unit.response.text}</p>}
+  {unit.durableReviewSuggested && <p role="status" className="v-notice">{copy("This topic reached its bounded check limit after three failed checks. Review the explanation and your saved work, or ask a trusted adult or teacher for help. Another check is not started automatically.")}</p>}
    {unit.stage === 'explain' && <section className="v-card"><h2 className="text-lg font-medium">{copy("Understand one idea")}</h2>{unit.explanation ? <><p className="mt-4 whitespace-pre-wrap leading-8" lang={unit.response?.status === 'ready' ? unit.locale : concept.locale || unit.locale}>{unit.explanation}</p><p className="v-muted mt-3">{unit.response?.status === 'ready' ? copy("Source: connected teaching adapter.") : concept.status === 'sample' ? copy("Source: explicitly authored sample content, not a generated model answer.") : concept.provenance ? copy('Source: {provider} · version {version}.', {
             provider: concept.provenance.provider,
             version: concept.provenance.version

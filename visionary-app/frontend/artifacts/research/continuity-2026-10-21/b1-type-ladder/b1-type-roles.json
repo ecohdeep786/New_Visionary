@@ -1,0 +1,395 @@
+{
+ "home@1440": {
+  "sections": 9,
+  "headedHeadings": 25,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 34,
+   "text-[17px]": 8
+  },
+  "roles": {
+   "display": 1,
+   "section": 4,
+   "emphasis": 1,
+   "feature": 13,
+   "card-chapter": 2,
+   "value-title": 4
+  }
+ },
+ "student@1440": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "teacher@1440": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "parent@1440": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "professional@1440": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "organization@1440": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "home@1024": {
+  "sections": 9,
+  "headedHeadings": 25,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 34,
+   "text-[17px]": 8
+  },
+  "roles": {
+   "display": 1,
+   "section": 4,
+   "emphasis": 1,
+   "feature": 13,
+   "card-chapter": 2,
+   "value-title": 4
+  }
+ },
+ "student@1024": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "teacher@1024": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "parent@1024": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "professional@1024": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "organization@1024": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "home@390": {
+  "sections": 9,
+  "headedHeadings": 25,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 34,
+   "text-[17px]": 8
+  },
+  "roles": {
+   "display": 1,
+   "section": 4,
+   "emphasis": 1,
+   "feature": 13,
+   "card-chapter": 2,
+   "value-title": 4
+  }
+ },
+ "student@390": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "teacher@390": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "parent@390": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "professional@390": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ },
+ "organization@390": {
+  "sections": 10,
+  "headedHeadings": 27,
+  "unroled": [],
+  "unroledCount": 0,
+  "retagHits": {
+   "text-[13px]": 8
+  },
+  "residueHits": {
+   "text-[15px]": 28,
+   "text-[17px]": 5,
+   "text-[17.5px]": 1
+  },
+  "roles": {
+   "product-section": 1,
+   "section": 9,
+   "feature-heading": 8,
+   "card-name": 2,
+   "value-title": 3,
+   "feature": 4
+  }
+ }
+}

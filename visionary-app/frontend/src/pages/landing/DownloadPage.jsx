@@ -8,15 +8,16 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
+import QuietLink from "@/components/landing/QuietLink";
 import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
-  ink: "#121317",
+  ink: "#1d1d1f",
   surface: "#f5f5f7",
-  blue: "#4285F4",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
+  blue: "#0066cc",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };
@@ -99,11 +100,11 @@ function DownloadHeroSection() {
   return (
     <section ref={ref} data-section="01-hero" className="relative overflow-hidden px-6 pb-24 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
+        <p data-type="label" className="text-center" style={{ color: COLORS.grey }}>Download</p>
         <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
           Get <span className="accent-gradient">Visionary</span> on every device.
         </h1>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           On the phone, tablet or laptop you already own.
         </p>
 
@@ -122,7 +123,7 @@ function DownloadHeroSection() {
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <Link
               to="/register"
-              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               Open Visionary
             </Link>
@@ -140,7 +141,7 @@ function DownloadHeroSection() {
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[15px] text-[#121317] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               See platforms
             </button>
@@ -159,9 +160,9 @@ function DownloadPlatformsSection() {
   return (
     <section ref={ref} id="platforms" data-section="02-platforms" className="relative scroll-mt-24 bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
+        <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>Supported platforms</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
-        <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>
           Use Visionary on the web today. Native apps are being prepared
           {detected ? (
             <> for your device, including <span style={{ color: COLORS.blue }}>{PLATFORMS.find((p) => p.id === detected)?.name}</span>.</>
@@ -181,7 +182,7 @@ function DownloadPlatformsSection() {
                 className="relative flex flex-col scroll-mt-24 rounded-[20px] bg-white p-7"
               >
                 {isRecommended && (
-                  <span className="absolute right-5 top-5 rounded-full bg-[#121317] px-2.5 py-1 text-[12px] font-medium leading-none text-white">
+                  <span className="absolute right-5 top-5 rounded-full bg-[#1d1d1f] px-2.5 py-1 text-[12px] font-medium leading-none text-white">
                     Recommended
                   </span>
                 )}
@@ -193,7 +194,7 @@ function DownloadPlatformsSection() {
                 {p.kind === "web" ? (
                   <Link
                     to={p.href}
-                    className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-[#121317] px-6 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                   >
                     {p.action}
                   </Link>
@@ -203,7 +204,7 @@ function DownloadPlatformsSection() {
                     type="button"
                     aria-disabled="true"
                     title="Available at launch"
-                    className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-6 font-medium tracking-[0.24px] text-[14px] text-[#9AA0A6] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                   >
                     {p.action}
                   </button>
@@ -212,6 +213,11 @@ function DownloadPlatformsSection() {
             );
           })}
           </div>
+        </div>
+        <div className="mt-10 flex justify-center">
+          <QuietLink to="/how-it-works">
+            See how the product works first <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+          </QuietLink>
         </div>
       </FadeReveal>
     </section>
@@ -261,18 +267,18 @@ function DownloadNotifySection() {
                   aria-invalid={status === "error"}
                   aria-describedby={status === "error" ? "notify-error" : undefined}
                   placeholder="you@example.com"
-                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
-                  style={{ borderColor: status === "error" ? "#EA4335" : COLORS.mist, color: COLORS.ink }}
+                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#86868b] focus:border-[#0066cc] focus:ring-2 focus:ring-[#0066cc]/20"
+                  style={{ borderColor: status === "error" ? "#e30000" : COLORS.mist, color: COLORS.ink }}
                 />
                 <button
                   type="submit"
-                  className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 disabled:opacity-70"
+                  className="inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 disabled:opacity-70"
                 >
                   Prepare email request
                 </button>
               </div>
               {status === "error" && (
-                <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#EA4335" }}>
+                <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#e30000" }}>
                   Please enter a valid email address. We can't notify you without one.
                 </p>
               )}
@@ -299,9 +305,14 @@ function DownloadSyncSection() {
         <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
         on every other.
       </p>
-      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
+      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
         Conversations, progress, and context sync across web, desktop, and mobile, automatically and privately.
       </p>
+      <div className="mt-9 flex justify-center">
+        <QuietLink to="/contact">
+          Questions about your devices <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+        </QuietLink>
+      </div>
     </section>
   );
 }
@@ -312,7 +323,7 @@ function DownloadRequirementsSection() {
   return (
     <section ref={ref} data-section="04-requirements" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
+        <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>System requirements</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
         <div className="mx-auto mt-12 w-full max-w-[1240px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -323,6 +334,11 @@ function DownloadRequirementsSection() {
             </div>
           ))}
           </div>
+        </div>
+        <div className="mt-10 flex justify-center">
+          <QuietLink to="/help">
+            Setup guides live in the Help center <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+          </QuietLink>
         </div>
       </FadeReveal>
     </section>
@@ -337,7 +353,7 @@ function DownloadTrustBand() {
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
-          <p className="text-center font-normal tracking-[0.24px] text-[15px]" style={{ color: COLORS.ink }}>
+          <p className="text-center font-normal tracking-[0.24px] text-[16px]" style={{ color: COLORS.ink }}>
             Signed builds · Automatic updates · Your data stays yours on every device.
           </p>
         </div>
@@ -356,10 +372,10 @@ function DownloadCTASection() {
           Still deciding? The web is one click away.
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Continue on web
           </Link>
-          <Link to="/how-it-works" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/how-it-works" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See how it works
             <ChevronIcon className="h-4 w-4" />
           </Link>

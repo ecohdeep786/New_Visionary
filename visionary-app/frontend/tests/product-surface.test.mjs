@@ -76,5 +76,11 @@ test('the checked inventory includes every current declaration without granting 
   assert.deepEqual(surface.review.interfaceLocales, ['en', 'hi', 'bn']);
   assert.ok(surface.review.operations.some(o => o.id === 'ask-guide-model-turn' && o.state === 'missing'));
   assert.ok(surface.review.operations.some(o => o.id === 'account-records-ui-binding' && o.state === 'missing'));
-  assert.ok(surface.endpoints.every(e => !/learn|model|project|classroom/.test(e.path)));
+  assert.ok(surface.endpoints.every(e => e.path.startsWith('/api/account/learning/') || !/learn|model|project|classroom/.test(e.path)));
+  // Learning endpoints are permitted only inside separately reviewed, connected learning operations.
+  const learning = surface.endpoints.filter(e => e.path.startsWith('/api/account/learning/'));
+  const reviewedLearning = surface.review.operations.filter(o => o.endpoints.some(endpoint => endpoint.includes('/api/account/learning/')));
+  assert.ok(reviewedLearning.length > 0);
+  assert.ok(reviewedLearning.every(o => o.state === 'connected' && o.execution === 'server'));
+  assert.deepEqual(learning.map(e => `${e.method} ${e.path}`).toSorted(), reviewedLearning.flatMap(o => o.endpoints).toSorted());
 });

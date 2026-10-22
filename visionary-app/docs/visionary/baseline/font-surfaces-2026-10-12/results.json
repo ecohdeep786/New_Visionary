@@ -66,297 +66,27 @@
   "loadedFonts": [
     {
       "family": "Google Sans Flex",
-      "weight": "400 750",
+      "weight": "400",
       "status": "unloaded"
     },
     {
       "family": "Google Sans Flex",
-      "weight": "400 750",
+      "weight": "500",
       "status": "unloaded"
     },
     {
       "family": "Google Sans Flex",
-      "weight": "400 750",
+      "weight": "600",
       "status": "unloaded"
     },
     {
       "family": "Google Sans Flex",
-      "weight": "400 750",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans Flex",
-      "weight": "400 750",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans Flex",
-      "weight": "400 750",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans Flex",
-      "weight": "400 750",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans Flex",
-      "weight": "400 750",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans Flex",
-      "weight": "400 750",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans Flex",
-      "weight": "400 750",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
+      "weight": "700",
       "status": "unloaded"
     },
     {
       "family": "Google Sans",
       "weight": "400",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "400",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "loaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "500",
       "status": "loaded"
     },
     {
@@ -370,122 +100,22 @@
       "status": "unloaded"
     },
     {
-      "family": "Google Sans",
-      "weight": "700",
+      "family": "Google Sans Flex Content",
+      "weight": "400",
       "status": "unloaded"
     },
     {
-      "family": "Google Sans",
-      "weight": "700",
+      "family": "Google Sans Flex Content",
+      "weight": "500",
       "status": "unloaded"
     },
     {
-      "family": "Google Sans",
-      "weight": "700",
+      "family": "Google Sans Flex Content",
+      "weight": "600",
       "status": "unloaded"
     },
     {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
-      "weight": "700",
-      "status": "unloaded"
-    },
-    {
-      "family": "Google Sans",
+      "family": "Google Sans Flex Content",
       "weight": "700",
       "status": "unloaded"
     }

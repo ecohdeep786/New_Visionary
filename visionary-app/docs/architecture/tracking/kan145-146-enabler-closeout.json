@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-20",
+  "founderAcceptedScope": "Complete development enablers; keep linked feature gates open",
+  "knowledge": {
+    "task": "KAN-145",
+    "reviewedSource": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+    "reviewReport": "7f1fa144a5b0155fcf8c5c4ea62726ab994fd70c",
+    "devCommit": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+    "ciRun": "39457245132",
+    "jiraReturnedStatus": "Done",
+    "fullFeatureGate": "KAN-163"
+  },
+  "teaching": {
+    "task": "KAN-146",
+    "reviewedSource": "3920140df87a21522b227c0e807476b47a3a29d6",
+    "reviewReport": "4259d5ef40b853975de059655fda0908b90155a9",
+    "devCommit": "e91a75ddbcd1e40b1894367909298e7373728aab",
+    "ciRun": "39459245188",
+    "jiraReturnedStatus": "Done",
+    "fullFeatureGate": "KAN-164"
+  },
+  "bothIntegratedDevChecks": "success",
+  "productionJobs": "skipped",
+  "mainUnchanged": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+  "productionProject": "visionary-research",
+  "cloudDeploymentPerformed": false,
+  "combinedChecks": {
+    "backend": 95,
+    "deployedLock": 87,
+    "frontend": 550,
+    "scripts": 18,
+    "failed": 0
+  },
+  "physicalCleanup": {
+    "state": "blocked-by-automatic-approval-review",
+    "removed": false,
+    "reason": "Combined cleanup and narrower literal dependency-junction removal rejected: blocked by policy. No workaround deletion performed.",
+    "primaryDependenciesRetained": true,
+    "sourceAndReviewRefsRetained": true,
+    "completedWorktreesRetained": 4,
+    "preservedFiles": 27,
+    "preservedBytes": 428468
+  },
+  "firebasePasswordCheck": {
+    "project": "visionary-research",
+    "database": "default",
+    "nativePasswordCorrectAndWrongCasesPassed": true,
+    "unverifiedSessionDenied": true,
+    "verifiedSyntheticProfileStoreReadBack": true,
+    "firestorePasswordAndRawTokenFieldsAbsent": true,
+    "syntheticIdentityDisabled": true,
+    "syntheticTokensRevoked": true,
+    "preExistingAccountsChanged": 0,
+    "emailDeliveryQualified": false
+  }
+}

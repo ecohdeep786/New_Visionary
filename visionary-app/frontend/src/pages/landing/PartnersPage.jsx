@@ -8,14 +8,15 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { RESPONSE_TIMES } from "@/data/legalMeta";
 import { fontStack } from "@/components/landing/system/tokens";
 
-/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
-   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
+/* ═══ Tokens — the shared Material dialect (#1d1d1f ink, #0066cc/#0066cc
+   actions, #d2d2d7 hairlines, pill buttons, rounded-2xl cards). ═══ */
 const PARTNERS_EMAIL = "partnerships@visionary.org.in";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
@@ -49,7 +50,7 @@ function Reveal({ children, className = "", delay = 0 }) {
 /* The outlined label chip from the reference's access-levels grid */
 function AccessChip({ children }) {
   return (
-    <span className="inline-flex items-center rounded-[12px] border border-[rgba(18,19,23,0.12)] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#121317]">
+    <span className="inline-flex items-center rounded-[12px] border border-[rgba(18,19,23,0.12)] bg-white px-2.5 py-1 apple-eyebrow text-[#1d1d1f]">
       {children}
     </span>
   );
@@ -67,21 +68,21 @@ const PARTNER_TYPES = [
 /* ═══ WHAT A PARTNERSHIP INCLUDES — the reference's benefit columns ═══ */
 const BENEFITS = [
   {
-    Icon: GraduationCap, tile: "bg-[#f5f5f7] text-[#0b57d0]", title: "Enablement & onboarding",
+    Icon: GraduationCap, tile: "bg-[#f5f5f7] text-[#0066cc]", title: "Enablement & onboarding",
     items: [
       { t: "Walkthroughs for your team", d: "Sessions that take teachers and administrators through the learning loop: Learn, Ask, Practice, Build." },
       { t: "Classroom-ready setup guides", d: "Setup, cohort creation, and consent-based access, documented for your context." },
     ],
   },
   {
-    Icon: UsersRound, tile: "bg-[#f5f5f7] text-[#0b57d0]", title: "Co-design & pilot support",
+    Icon: UsersRound, tile: "bg-[#f5f5f7] text-[#0066cc]", title: "Co-design & pilot support",
     items: [
       { t: "A named point of contact", d: "One person accountable for the work, from the first call to the final review." },
       { t: "Scoped pilots with real classrooms", d: "Bounded rollouts with success measures agreed in writing before anything begins." },
     ],
   },
   {
-    Icon: Newspaper, tile: "bg-[#f5f5f7] text-[#0b57d0]", title: "Recognition and shared learning",
+    Icon: Newspaper, tile: "bg-[#f5f5f7] text-[#0066cc]", title: "Recognition and shared learning",
     items: [
       { t: "Co-publication of results", d: "Findings from pilots are written up and shared with your name on them, where both teams agree." },
       { t: "Early visibility of what is changing", d: "Roadmap changes that affect your rollout, before they reach the release notes." },
@@ -132,7 +133,7 @@ const SLIDES = [
 function WhatCarousel() {
   const [index, setIndex] = useState(0);
   const go = (next) => setIndex((next + SLIDES.length) % SLIDES.length);
-  const arrowCls = "flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(18,19,23,0.12)] bg-white text-[#121317] transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]";
+  const arrowCls = "flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(18,19,23,0.12)] bg-white text-[#1d1d1f] transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]";
 
   return (
     <div role="region" aria-roledescription="carousel" aria-label="What a Visionary partnership is">
@@ -157,10 +158,10 @@ function WhatCarousel() {
                   />
                 </div>
                 <div className="max-w-[520px]">
-                  <h3 className="text-[28px] font-normal leading-[1.25] tracking-[-0.02em] text-[#121317]">
+                  <h3 className="text-[28px] font-normal leading-[1.25] tracking-[-0.02em] text-[#1d1d1f]">
                     {slide.title}
                   </h3>
-                  <p className="mt-4 text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">{slide.copy}</p>
+                  <p className="mt-4 text-[16px] leading-[1.7] text-[#6e6e73] sm:text-[16px]">{slide.copy}</p>
                 </div>
               </div>
             </div>
@@ -181,8 +182,8 @@ function WhatCarousel() {
               aria-selected={i === index}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => setIndex(i)}
-              className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
-                i === index ? "w-6 bg-[#0b57d0]" : "w-2 bg-[#d2d2d7] hover:bg-[#86868b]"
+              className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
+                i === index ? "w-6 bg-[#0066cc]" : "w-2 bg-[#d2d2d7] hover:bg-[#86868b]"
               }`}
             />
           ))}
@@ -208,32 +209,32 @@ export default function PartnersPage() {
         <section data-section="01-hero" className="px-6 pb-16 pt-10 sm:px-8 lg:px-10 lg:pb-24 lg:pt-16">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
             <div className="max-w-[640px]">
-              <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">
+              <p data-type="label" className="text-[#6e6e73]">
                 Visionary partnerships
               </p>
-              <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
+              <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#1d1d1f]">
                 Better learning, <span className="accent-gradient">together.</span>
               </h1>
-              <p className="mt-6 max-w-[560px] text-[17.5px] leading-[25px] text-[#5f6368]">
+              <p className="mt-6 max-w-[560px] text-[17px] leading-[25px] text-[#6e6e73]">
                 Education, technology, and local knowledge in one effort, measured by outcomes.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href={`mailto:${PARTNERS_EMAIL}?subject=${encodeURIComponent("Partnership enquiry")}`}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
                 >
                   Discuss a partnership <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <Link
                   to="/how-it-works"
-                  className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+                  className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
                 >
                   See how it works
                   <ChevronIcon className="h-4 w-4" />
                 </Link>
               </div>
-              <p className="mt-5 flex items-center gap-2 text-[13px] tracking-[0.01em] text-[#5f6368]">
-                <Clock className="h-4 w-4 text-[#0b57d0]" aria-hidden="true" />
+              <p className="mt-5 flex items-center gap-2 text-[13px] tracking-[0.01em] text-[#6e6e73]">
+                <Clock className="h-4 w-4 text-[#0066cc]" aria-hidden="true" />
                 {RESPONSE_TIMES.partners}
               </p>
             </div>
@@ -246,8 +247,8 @@ export default function PartnersPage() {
                 className="w-full rounded-[24px]"
                 title="Two partners meeting over a laptop"
               />
-              <p className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full border border-[rgba(18,19,23,0.12)] bg-white py-2 pl-3 pr-4 text-[13px] font-medium text-[#121317] shadow-[0_1px_3px_rgba(18,19,23,0.06)]">
-                <Clock className="h-4 w-4 text-[#0b57d0]" aria-hidden="true" />
+              <p className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full border border-[rgba(18,19,23,0.12)] bg-white py-2 pl-3 pr-4 text-[13px] font-medium text-[#1d1d1f] shadow-[0_1px_3px_rgba(18,19,23,0.06)]">
+                <Clock className="h-4 w-4 text-[#0066cc]" aria-hidden="true" />
                 Reply within 5 business days
               </p>
             </div>
@@ -258,15 +259,20 @@ export default function PartnersPage() {
         <section id="what" data-section="02-what" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[46px]">
                 What is a Visionary partnership?
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 Three things, agreed honestly: enablement, co-design, and evidence. Move through each below.
               </p>
             </div>
             <div className="mt-14">
               <WhatCarousel />
+            </div>
+            <div className="mt-12 flex justify-center">
+              <QuietLink href="#who">
+                See who we partner with <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
             </div>
           </Reveal>
         </section>
@@ -276,10 +282,10 @@ export default function PartnersPage() {
         <section id="who" data-section="03-who" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[820px] text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[46px]">
                 Who we partner with
               </h2>
-              <p className="mx-auto mt-5 max-w-[720px] text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">
+              <p className="mx-auto mt-5 max-w-[720px] text-[16px] leading-[1.7] text-[#6e6e73] sm:text-[16px]">
                 Partnerships start from different kinds of knowledge, the contexts our product must understand to serve learners well. Each starts with the same conversation.
               </p>
             </div>
@@ -293,10 +299,15 @@ export default function PartnersPage() {
                     <h3>
                       <AccessChip>{type.chip}</AccessChip>
                     </h3>
-                    <p className="mt-3 max-w-[460px] text-[15px] leading-[1.7] text-[#5f6368]">{type.copy}</p>
+                    <p className="mt-3 max-w-[460px] text-[16px] leading-[1.7] text-[#6e6e73]">{type.copy}</p>
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="mt-12 flex justify-center">
+              <QuietLink href="#includes">
+                What the programme covers <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
             </div>
           </Reveal>
         </section>
@@ -305,10 +316,10 @@ export default function PartnersPage() {
         <section id="includes" data-section="04-includes" className="scroll-mt-28 bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[46px]">
                 What a partnership includes
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 The same foundations for every partner, scaled to the work we agree on together.
               </p>
             </div>
@@ -318,12 +329,12 @@ export default function PartnersPage() {
                   <span className={`flex h-12 w-12 items-center justify-center rounded-[14px] ${tile}`}>
                     <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <h3 className="mt-5 text-[20px] font-normal tracking-[-0.02em] text-[#121317]">{title}</h3>
+                  <h3 className="mt-5 text-[20px] font-normal tracking-[-0.02em] text-[#1d1d1f]">{title}</h3>
                   <dl className="mt-4 space-y-5">
                     {items.map(({ t, d }) => (
                       <div key={t}>
-                        <dt className="text-[15px] font-medium leading-[1.4] text-[#121317]">{t}</dt>
-                        <dd className="mt-1 text-[14px] leading-[1.65] text-[#5f6368]">{d}</dd>
+                        <dt className="text-[16px] font-medium leading-[1.4] text-[#1d1d1f]">{t}</dt>
+                        <dd className="mt-1 text-[14px] leading-[1.65] text-[#6e6e73]">{d}</dd>
                       </div>
                     ))}
                   </dl>
@@ -338,20 +349,20 @@ export default function PartnersPage() {
         <section id="depth" data-section="05-depth" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
-              <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0b57d0]">
+              <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
                 <Compass />
               </span>
-              <h2 className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#121317] sm:text-[38px]">
+              <h2 className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#1d1d1f] sm:text-[38px]">
                 How deep the work can go
               </h2>
-              <p className="mt-4 max-w-[440px] text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">
+              <p className="mt-4 max-w-[440px] text-[16px] leading-[1.7] text-[#6e6e73] sm:text-[16px]">
                 Every partnership begins as a conversation. Where it goes from there is agreed together, measured in outcomes, not tiers.
               </p>
               <dl className="mt-7 space-y-4 border-t border-[rgba(18,19,23,0.12)] pt-6">
                 {DEPTH_TIERS.map((tier) => (
                   <div key={tier}>
-                    <dt className="text-[15px] font-medium text-[#121317]">{tier}</dt>
-                    <dd className="mt-0.5 text-[14px] leading-[1.6] text-[#5f6368]">
+                    <dt className="text-[16px] font-medium text-[#1d1d1f]">{tier}</dt>
+                    <dd className="mt-0.5 text-[14px] leading-[1.6] text-[#6e6e73]">
                       {tier === "Conversation" && "Understand each other's context, constraints, and timing."}
                       {tier === "Scoped pilot" && "A bounded rollout with success measures agreed in writing."}
                       {tier === "Ongoing programme" && "A longer partnership, reviewed together each term."}
@@ -366,12 +377,12 @@ export default function PartnersPage() {
                 <caption className="sr-only">What each partnership depth includes</caption>
                 <thead>
                   <tr className="border-b border-[rgba(18,19,23,0.12)] bg-[#f5f5f7]">
-                    <th scope="col" className="px-5 py-4 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
+                    <th scope="col" className="px-5 py-4 apple-eyebrow text-[#6e6e73]">
                       What is included
                     </th>
                     {DEPTH_TIERS.map((tier) => (
                       <th key={tier} scope="col" className="px-4 py-4 text-center">
-                        <span className="inline-flex items-center rounded-[12px] border border-[rgba(18,19,23,0.12)] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.1em] text-[#121317]">
+                        <span className="inline-flex items-center rounded-[12px] border border-[rgba(18,19,23,0.12)] bg-white px-2.5 py-1 apple-eyebrow text-[#1d1d1f]">
                           {tier}
                         </span>
                       </th>
@@ -381,7 +392,7 @@ export default function PartnersPage() {
                 <tbody>
                   {DEPTH_ROWS.map(({ label, reach }) => (
                     <tr key={label} className="border-b border-[rgba(18,19,23,0.12)] last:border-b-0">
-                      <th scope="row" className="px-5 py-4 text-[14px] font-medium leading-[1.5] text-[#121317]">
+                      <th scope="row" className="px-5 py-4 text-[14px] font-medium leading-[1.5] text-[#1d1d1f]">
                         {label}
                       </th>
                       {reach.map((included, i) => (
@@ -391,7 +402,7 @@ export default function PartnersPage() {
                               <Check className="h-3.5 w-3.5" strokeWidth={3} />
                             </span>
                           ) : (
-                            <span className="text-[#9aa0a6]" aria-hidden="true">—</span>
+                            <span className="text-[#86868b]" aria-hidden="true">—</span>
                           )}
                           <span className="sr-only">{included ? "Included" : "Not included"}</span>
                         </td>
@@ -402,51 +413,61 @@ export default function PartnersPage() {
               </table>
             </div>
           </Reveal>
+          <div className="mx-auto mt-10 max-w-[1240px]">
+            <QuietLink to="/contact">
+              Begin the conversation <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+            </QuietLink>
+          </div>
         </section>
 
         {/* HOW A PARTNERSHIP BEGINS — the four-step journey */}
         <section id="journey" data-section="06-journey" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">The process</p>
-              <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
+              <p className="apple-eyebrow text-[#6e6e73]">The process</p>
+              <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
                 How a partnership begins.
               </h2>
-              <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">
+              <p className="mt-4 text-[16px] leading-[1.75] text-[#6e6e73]">
                 Four steps from a first note to work in progress, with writing at every hinge.
               </p>
             </div>
             <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
               {JOURNEY.map(({ n, title, copy }) => (
-                <li key={n} className="border-t-2 border-[#121317] pt-5">
-                  <p className="text-[13px] font-medium text-[#0b57d0]">Step {n}</p>
-                  <h3 className="mt-2 text-[19px] font-medium leading-[1.3] text-[#121317]">{title}</h3>
-                  <p className="mt-2 text-[14px] leading-[1.7] text-[#5f6368]">{copy}</p>
+                <li key={n} className="border-t-2 border-[#1d1d1f] pt-5">
+                  <p className="text-[13px] font-medium text-[#0066cc]">Step {n}</p>
+                  <h3 className="mt-2 text-[19px] font-medium leading-[1.3] text-[#1d1d1f]">{title}</h3>
+                  <p className="mt-2 text-[14px] leading-[1.7] text-[#6e6e73]">{copy}</p>
                 </li>
               ))}
             </ol>
-            <p className="mt-12 max-w-[820px] rounded-[20px] bg-[#f5f5f7] px-6 py-5 text-[14px] leading-[1.7] text-[#3c4043]">
+            <p className="mt-12 max-w-[820px] rounded-[20px] bg-[#f5f5f7] px-6 py-5 text-[14px] leading-[1.7] text-[#1d1d1f]">
               Every partnership begins with shared expectations. Scope, responsibilities, privacy, support, costs, and measures of success are agreed in writing before work begins. Sending an enquiry starts a conversation and does not create an endorsement or commercial agreement.
             </p>
+            <div className="mt-10">
+              <QuietLink href="#faq">
+                Straight answers, before you write <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
+            </div>
           </Reveal>
         </section>
 
         {/* STATEMENT BAND — the reference's grey call-to-decision band */}
         <section data-section="07-statement" className="bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto flex max-w-[1000px] flex-col items-center text-center">
-            <h2 className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#121317]">
+            <h2 className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#1d1d1f]">
               If your organization works with learners, in a classroom, a system, or a region, we want to understand your context.
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <a
                 href={`mailto:${PARTNERS_EMAIL}?subject=${encodeURIComponent("Partnership enquiry")}`}
-                className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
               >
                 Discuss a partnership <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <a
                 href="#support"
-                className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+                className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
               >
                 Looking for support instead?
                 <ChevronIcon className="h-4 w-4" />
@@ -461,15 +482,15 @@ export default function PartnersPage() {
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative grid items-center gap-10 overflow-hidden rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
               <div>
-                <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">For organizations seeking support</p>
-                <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#121317] sm:text-[38px]">
+                <p className="apple-eyebrow text-[#6e6e73]">For organizations seeking support</p>
+                <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#1d1d1f] sm:text-[38px]">
                   Start with the support you need.
                 </h2>
-                <p className="mt-4 max-w-[640px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
+                <p className="mt-4 max-w-[640px] text-[16px] leading-[1.75] text-[#1d1d1f] sm:text-[16px]">
                   Tell us about your organization, location, and goal. We can explain the available Visionary options and, when appropriate, whether partner support is available for that need.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-                  <Link to="/help" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                  <Link to="/help" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                     Browse help topics
                     <ChevronIcon className="h-4 w-4" />
                   </Link>
@@ -483,8 +504,8 @@ export default function PartnersPage() {
               {/* google.com card curve — the page background sweeps into the corner
                   and the banner's primary destination floats in it with breath */}
               <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
-              <Link to="/contact" aria-label="Contact Visionary" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                <ArrowUpRight className="mb-3 mr-3 h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
+              <Link to="/contact" aria-label="Contact Visionary" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
+                <ArrowUpRight className="mb-3 mr-3 h-5 w-5 text-[#0066cc]" aria-hidden="true" />
               </Link>
             </div>
           </Reveal>
@@ -494,10 +515,10 @@ export default function PartnersPage() {
         <section id="faq" data-section="09-faq" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[840px]">
             <div className="text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[46px]">
                 Frequently asked questions
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 Straight answers about how partnerships work, and what they do not promise.
               </p>
             </div>
@@ -527,26 +548,26 @@ export default function PartnersPage() {
             draft), and the response-time note as fine print */}
         <section data-section="10-cta" className="bg-[#f5f5f7] px-6 text-center sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[840px]">
-            <h2 className="mx-auto max-w-[720px] text-[clamp(30px,4vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#121317]">
+            <h2 className="mx-auto max-w-[720px] text-[clamp(30px,4vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#1d1d1f]">
               Bring Visionary closer to your learners.
             </h2>
             <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href={`mailto:${PARTNERS_EMAIL}?subject=${encodeURIComponent("Partnership enquiry")}`}
-                className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
+                className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
               >
                 Email the partnerships team
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <Link
                 to="/contact"
-                className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+                className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
               >
                 Or use the contact routes
                 <ChevronIcon className="h-4 w-4" />
               </Link>
             </div>
-            <p className="mt-8 text-[14px] leading-[1.5] font-normal tracking-[0] text-[#5f6368]">
+            <p className="mt-8 text-[14px] leading-[1.5] font-normal tracking-[0] text-[#6e6e73]">
               A five-minute note is enough to start. Tell us your context, and the partnerships team will reply within five business days.
             </p>
           </Reveal>
