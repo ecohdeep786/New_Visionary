@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { production, trustedRun, releaseEnvironment, environmentFlag, verifyRevision, deployRelease, baselineRelease, command, probe, currentRevision, revisionAuthPolicy } from '../release.mjs';
+import { production, trustedRun, releaseEnvironment, environmentFlag, verifyRevision, deployRelease, baselineRelease, command, probe, currentRevision, revisionAuthPolicy, releaseDeployArgs } from '../release.mjs';
 
 const commit = 'a'.repeat(40), previousCommit = 'b'.repeat(40);
 const revision = production.service + '-g' + commit.slice(0, 12) + '-1-1', previous = production.service + '-previous';
@@ -67,6 +67,28 @@ test('feature activation has a policy-aware disabled rollback and verifies its s
   f.options.deploy = async flags => assert.equal(flags.globalSignOut, true);
   await assert.rejects(deployRelease(f.options), /failed after activation/);
   assert.equal(f.getCurrent(), previous);
+});
+
+test('the production CLI command carries the derived rollout policy into pinned GCP environment', async () => {
+  for (const enabled of [false, true]) {
+    const old = compatible();
+    if (!enabled) old.spec.containers[0].env = old.spec.containers[0].env.filter(row => !['AUTH_SESSION_POLICY_VERSION', 'AUTH_GLOBAL_LOGOUT_ENABLED'].includes(row.name));
+    let actual;
+    const f = fixture({
+      readRevision: async name => name === previous ? old : compatible(commit, enabled),
+      baselineProbe: async () => enabled ? { authPolicy: { version: 1, globalSignOut: false } } : {},
+      candidateProbe: async () => ({ authPolicy: { version: 1, globalSignOut: enabled } }),
+      deploy: policy => { actual = releaseDeployArgs({ commit, image, suffix: 'g' + commit.slice(0, 12) + '-1-1', ...policy }); },
+    });
+    await deployRelease(f.options);
+    assert.ok(actual.includes('--image=' + image));
+    assert.ok(actual.includes('--no-traffic'));
+    assert.ok(actual.includes('--ingress=internal-and-cloud-load-balancing'));
+    const environment = actual.find(arg => arg.startsWith('--set-env-vars='));
+    assert.match(environment, /AUTH_SESSION_POLICY_VERSION=1/);
+    assert.match(environment, new RegExp('AUTH_GLOBAL_LOGOUT_ENABLED=' + enabled + '$'));
+  }
+  assert.throws(() => releaseDeployArgs({ commit, image, suffix: 'fixture' }), /explicit rollout policy/);
 });
 
 test('configuration alone cannot attest epoch enforcement or enable revocation', async () => {

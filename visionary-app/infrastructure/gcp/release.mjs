@@ -52,6 +52,11 @@ export function environmentFlag(environment) {
   });
   return '--set-env-vars=' + pairs.join(',');
 }
+export function releaseDeployArgs({ commit, image, suffix, globalSignOut }) {
+  if (typeof globalSignOut !== 'boolean') throw Error('An explicit rollout policy is required.');
+  return ['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
+    '--ingress=internal-and-cloud-load-balancing', '--service-account=' + production.runtime, '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s', '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080', environmentFlag(releaseEnvironment(commit, globalSignOut)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1'];
+}
 export function verifyRevision(revision, expectedCommit, expectedImage) {
   revisionAuthPolicy(revision);
   const spec = revision.spec || {}, containers = spec.containers || [], container = containers[0];
@@ -253,7 +258,7 @@ async function baseline() {
     // explicitly pinned. Resolve the foundation tag as well as its percentage.
     moveTraffic: name => gcloud(['run', 'services', 'update-traffic', production.service, '--to-revisions=' + name + '=100', '--update-tags=' + production.tag + '=' + name]),
     health: (url, sha) => waitForHealth(url, '/api/health', sha),
-    deploy: ({ globalSignOut }) => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
+    deploy: () => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
     '--ingress=all', '--no-invoker-iam-check', '--service-account=' + production.runtime,
     '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s',
     '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080',
@@ -296,8 +301,7 @@ async function cli(mode) {
     readService: () => gcloud(['run', 'services', 'describe', production.service]),
     readRevision: name => gcloud(['run', 'revisions', 'describe', name]),
     ancestor: sha => { try { command('git', ['merge-base', '--is-ancestor', sha, commit], true); return true; } catch { return false; } },
-    deploy: () => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
-      '--ingress=internal-and-cloud-load-balancing', '--service-account=' + production.runtime, '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s', '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080', environmentFlag(releaseEnvironment(commit, globalSignOut)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1']),
+    deploy: policy => gcloud(releaseDeployArgs({ commit, image, suffix, ...policy })),
     baselineProbe: sha => probe(production.origin, '/api/health', sha),
     moveTraffic, candidateProbe: () => probe(production.origin, '/__deploy-check', commit),
     canonicalChecks: (sha, policy) => publicChecks(sha || commit, fetch, policy),
