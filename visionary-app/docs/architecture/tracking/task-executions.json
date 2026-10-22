@@ -474,40 +474,37 @@
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
       "implementer": "Codex",
       "review": {
-        "state": "pending-final-device-session-review",
-        "reviewer": "/root/kan34_review",
-        "previousApprovedCommit": "d87ea72e9cbc4b88a701718231ac7e5a1b786665",
-        "previousReviewEvidence": "docs/architecture/reviews/KAN34_RELEASE_CHOICE_REVIEW_D87EA72E.md",
-        "previousReviewerReportCommit": "489cce5bb1120a96485efff3ef895cd4d9ca7983",
-        "approvalAppliesToPreviousSourceOnly": true,
-        "checkpointChangesRequested": "044aed29: revoked-device quota poisoning, fixed in 10f1f956",
-        "independentBackendTests": 103,
-        "independentSecurityProbes": 9,
-        "independentFrontendTests": 558,
-        "independentScriptTests": 18,
-        "independentRootCheck": true,
-        "independentFirebaseBuildSeconds": 135,
-        "fullFeatureAccepted": false
+        "state": "approved-source-and-two-stage-release-procedure",
+        "reviewer": "/root/kan34_release_review",
+        "exactReviewedCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+        "report": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
+        "reportCommit": "a333955c8a35e1fa1072610d3e5e640321dad7d4",
+        "independentAuthAndGcpTests": 65,
+        "independentRenderLint": true,
+        "compiledBrowserReceiptsInspected": 14,
+        "fullFeatureAccepted": false,
+        "hostedAcceptancePending": true
       },
-      "implementationCommit": "10f1f95646b21b64a72fcef9acac36e1b37186e1",
+      "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
       "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/17",
-      "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39730839691",
+      "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39820287068",
       "sourceCiConclusion": "success",
       "handoff": "docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md",
-      "jiraResumeCommentId": "10102",
+      "jiraResumeCommentId": "10122",
       "checks": {
         "backendBuild": true,
-        "backendTests": 103,
-        "frontendTests": 558,
+        "backendTests": 104,
+        "frontendTests": 617,
         "scriptTests": 18,
+        "gcpJavascriptTests": 26,
         "rootCheck": true,
-        "rootCheckEvidence": "Independent exact-10f root check and GitHub CI; parent post-sync redundant frontend run interrupted, not counted as a full pass.",
+        "rootCheckEvidence": "Local root check at d3b3ba32; final445 import repair separately linted/rebuilt, all14 compiled browser cases pass, and final445 GitHub CI reruns full root check.",
         "lint": true,
         "typecheck": true,
         "firebaseModeBuild": true,
-        "parentFirebaseBuildSeconds": 318,
-        "compiledBrowserScenarios": 12,
-        "compiledBrowserEnvironment": "Isolated fictional identity/store; actual compiled frontend and Nest service. Four method, six onboarding-recovery and two two-browser-device cases.",
+        "finalFirebaseBuildSeconds": 28.17,
+        "compiledBrowserScenarios": 14,
+        "compiledBrowserEnvironment": "Fictional identity/store, compiled frontend and Nest service. Four methods, six onboarding recovery, two enabled global-logout device cases and two disabled compatibility-stage local-logout cases.",
         "realProviderAcceptance": false,
         "failed": 0
       },
@@ -575,14 +572,27 @@
           "fixtureTokensRevokedAfterVerification": true,
           "originalAccountChanged": false,
           "hostedCandidate": false
+        },
+        "mailDomainLatestRead": {
+          "pendingCustomDomain": "visionary.org.in",
+          "customDomainState": "IN_PROGRESS",
+          "domainVerificationRequestTime": "2026-10-22T16:44:51.371Z",
+          "templateEditsApplied": false
         }
       },
       "integration": {
         "remotePublished": false,
         "commit": null
       },
-      "synchronizedDevCommit": "773315d396a68b675a33ce2994a4fc1172d80e34",
-      "sourceCiCommit": "10f1f95646b21b64a72fcef9acac36e1b37186e1"
+      "synchronizedDevCommit": "37934ceef147834c7da48f3a6e154b3a8cd794fc",
+      "sourceCiCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+      "releasePlan": {
+        "procedure": "two-stage-main-only-compatibility-rollout",
+        "firstDeploymentGlobalSignOut": false,
+        "activationRequiresVerifiedPolicyAwareFallback": true,
+        "epochEnforcementAlwaysEnabled": true,
+        "deployed": false
+      }
     }
   ]
 }

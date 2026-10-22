@@ -279,3 +279,46 @@ an image that ignores them can admit still-valid old cookies. Revoke affected
 Firebase sessions or use a reviewed compatibility image before such a rollback.
 Shortening a future cookie setting does not shorten already-issued cookies.
 Exact-SHA review, integrated checks and hosted release acceptance remain pending.
+
+## 22 October final source review and integration handoff
+
+Exact implementation:445267487faef036a1b07fa7cb5abd85255f889d, integrating
+current dev37934cee. Independent reviewer /root/kan34_release_review approved
+source/current-dev integration and the two-stage release procedure; report-only
+commit a333955c records the [decision](../reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md).
+The review caught deployment callback wiring and missing JSX icon imports after
+the frontend merge. Both are repaired; permanent JSX undefined-name lint and an
+actual GCP command-argument regression now cover those failures.
+
+Verification:104 backend tests,617 frontend tests,18 script tests,26 GCP JavaScript
+tests; layout/import/source audit, lint, both TypeScript projects and Firebase-mode
+build. Final rebuild28.17s and all14 compiled-browser cases pass (four methods, six
+account switches and four enabled/disabled device-session cases). The browser
+fixtures use fictional identity/store; native provider acceptance is separate.
+[Final445 CI](https://github.com/ecohdeep786/New_Visionary/actions/runs/39820287068)
+passes. Independent focused checks65/65 and auth render lint pass.
+
+Main release now proves the serving rollback revision's actual compiled policy
+and pinned configuration. First deployment against legacy production disables
+global sign-out while always enforcing epochs/cutoffs. A later trusted main run
+enables the action only with a policy-aware fallback. Candidate/canonical/rollback
+checks attest policy and enabled state. A disabled compatibility image still
+rejects revoked sessions and stale identity-token exchanges. Legacy-image
+rollback after activation is prohibited; the recovery contract supersedes a
+warning-only rollout. Current main7aee is not an ancestor of dev, but its tree
+equals mergebaseab201364; independent dry merge into445 is conflict-free and
+exactly equals the445 source tree.
+
+The native Firebase fixture's actual global-sign-out0-to1 read-back remains
+source10f evidence, not hosted445 acceptance. The fixture remains disabled and
+its refresh tokens revoked. Final source approval does not certify deployment,
+custom mail, load/MFA/provider parity or linked educational launch gates.
+
+Fresh mail read-back:pendingCustomDomain visionary.org.in, state IN_PROGRESS,
+request timestamp2026-10-22T16:44:51.371Z. This is newer than the prior checkpoint;
+no automatic verification or live template update is claimed. Existing Firebase
+verification links remain the founder-selected release flow.
+
+Dev integration, main rollout, native hosted journeys and actual Jira Done are
+still pending at this handoff. Keep Testing and retain both worktrees until
+accepted delivery and safe local-evidence preservation.
