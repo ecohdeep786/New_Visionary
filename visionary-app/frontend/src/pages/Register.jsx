@@ -15,7 +15,8 @@ import {
 import { useAuth } from "@/lib/AuthContext";
 import { toast } from "@/components/ui/use-toast";
 import { authErrorMessage } from '@/lib/authErrors';
-import { signInMethods } from '@/api/firebase/signInMethods';
+import PhoneAuth from '@/components/auth/PhoneAuth';
+import useSignInMethods from '@/hooks/useSignInMethods';
 
 export default function Register() {
   const { user, isAuthenticated, isLoadingAuth, checkUserAuth, authError } = useAuth();
@@ -29,6 +30,7 @@ export default function Register() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [duplicate, setDuplicate] = useState(false);
+  const { phone: phoneEnabled } = useSignInMethods();
   const [requirements, setRequirements] = useState(['Use at least 6 characters.']);
 
   if (isLoadingAuth) {
@@ -156,16 +158,14 @@ export default function Register() {
   const renderContent = () => {
     switch (view) {
       case 'verification': return <EmailVerification email={email} initialMessage={error} initialCooldown={error ? 0 : 60} onVerified={profile => navigate(authDestination(profile), { replace: true })} />;
+      case 'phone': return <PhoneAuth onBack={() => setView('methods')} />;
       case "methods":
         return (
           <div key="methods" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-4">
             <button type="button" onClick={() => { setError(""); setView("email"); }} className={primaryBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
-            <button type="button" disabled={!signInMethods.mobile} aria-describedby="mobile-unavailable" className={`${outlineBtnClass} disabled:opacity-50 disabled:cursor-not-allowed`}>
-              <Phone className="w-4 h-4" /> Mobile sign-in unavailable
-            </button>
-            <p id="mobile-unavailable" className="text-xs text-[#6e6e73] text-center">Mobile number sign-in is unavailable. Use another method below or email above.</p>
+            {phoneEnabled && <button type="button" onClick={() => setView('phone')} className={outlineBtnClass}><Phone className="w-4 h-4" /> Continue with phone</button>}
             <AuthDivider />
             <SocialAuthButtons />
             {(error || authError) && <p role="alert" className="text-sm text-[#e30000]">{error || authError.message}</p>}

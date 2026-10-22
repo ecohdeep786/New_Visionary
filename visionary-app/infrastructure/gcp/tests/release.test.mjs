@@ -33,6 +33,7 @@ test('release environment is pinned to the new Firebase project and database', (
   assert.equal(env.FIREBASE_PROJECT_ID, 'visionary-research');
   assert.equal(env.FIREBASE_AUTH_DOMAIN, 'visionary-research.firebaseapp.com');
   assert.equal(env.FIRESTORE_DATABASE_ID, 'default');
+  assert.equal(env.AUTH_PHONE_SIGNIN_ENABLED, 'true');
   assert.equal(env.VISIONARY_RELEASE_COMMIT, commit);
   assert.throws(() => releaseEnvironment('a'.repeat(7)));
   assert.equal(environmentFlag({ A: '1', B: 'https://visionary.org.in' }), '--set-env-vars=A=1,B=https://visionary.org.in');
@@ -86,7 +87,8 @@ test('the production CLI command carries the derived rollout policy into pinned 
     assert.ok(actual.includes('--ingress=internal-and-cloud-load-balancing'));
     const environment = actual.find(arg => arg.startsWith('--set-env-vars='));
     assert.match(environment, /AUTH_SESSION_POLICY_VERSION=1/);
-    assert.match(environment, new RegExp('AUTH_GLOBAL_LOGOUT_ENABLED=' + enabled + '$'));
+    assert.match(environment, new RegExp('AUTH_GLOBAL_LOGOUT_ENABLED=' + enabled + '(,|$)'));
+    assert.match(environment, /AUTH_PHONE_SIGNIN_ENABLED=true/);
   }
   assert.throws(() => releaseDeployArgs({ commit, image, suffix: 'fixture' }), /explicit rollout policy/);
 });

@@ -81,7 +81,7 @@ function ProductSetup() {
     finally { lock.current = false; setBusy(false); }
   }
   if (account?.onboarding_complete && !busy) return <Navigate to={safeReturnTo()} replace />;
-  if (phase === 'identity') return <IdentitySelection onContinue={chooseRole} initialRole={data.identity} accountEmail={account?.email} error={error} {...accountActions} />;
+  if (phase === 'identity') return <IdentitySelection onContinue={chooseRole} initialRole={data.identity} accountEmail={account?.email || account?.phone_number} error={error} {...accountActions} />;
   const alerts = <>{error && <p role="alert" className="mb-5 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#e30000]">{error}</p>}{notice && <p role="status" className="mb-5 text-xs leading-6 text-[#6e6e73]">{notice}</p>}</>;
   if (phase === 'review') {
     const payload = setupPayload(data);
@@ -90,7 +90,7 @@ function ProductSetup() {
       ...(data.identity === 'teacher' ? [['Teaching context', {school:'School',higher_ed:'Higher education',university:'University',coaching:'Coaching',independent:'Independent teaching'}[data.teacher_category]], ['Subjects', data.teacher_subjects?.join(', ')]] : []),
       ...(data.identity === 'organization' ? [['Organization', data.org_name], ['Organization type', data.org_type]] : []), ['Goal or interest', data.career_goal]].filter(([, value]) => value);
     const ready = steps.every(step => setupStepReady(step, data, live));
-    return <OnboardingLayout title="Ready to start with Visionary?" subtitle="A quick check before we save your preferences to this account." step={total} totalSteps={total} stepLabels={labels} illustration="shield" accountEmail={account?.email}
+    return <OnboardingLayout title="Ready to start with Visionary?" subtitle="A quick check before we save your preferences to this account." step={total} totalSteps={total} stepLabels={labels} illustration="shield" accountEmail={account?.email || account?.phone_number}
       onBack={() => { setPhase('flow'); setCurrentStepId(steps.at(-1).id); }} onContinue={finish} canContinue={ready} {...accountActions} continueLabel="Start using Visionary">
       {alerts}
       <div className="mb-5 flex flex-wrap gap-4"><button type="button" onClick={() => setPhase('identity')} className="min-h-11 text-sm font-medium text-[#0066cc] hover:underline">Change role</button><button type="button" onClick={() => { setCurrentStepId('about'); setPhase('flow'); }} className="min-h-11 text-sm font-medium text-[#0066cc] hover:underline">Edit details</button></div>
@@ -99,7 +99,7 @@ function ProductSetup() {
       <p className="mt-5 text-xs leading-6 text-[#6e6e73]">{live ? 'Your account preferences are saved online. Learning activity is currently saved on this device.' : 'This local preview saves information in your browser. Use fictional details.'} Private activity is never automatically shared.</p>
     </OnboardingLayout>;
   }
-  return <OnboardingLayout step={index + 2} totalSteps={total} stepLabels={labels} title={current.title} subtitle={current.subtitle} illustration={current.illustration} accountEmail={account?.email}
+  return <OnboardingLayout step={index + 2} totalSteps={total} stepLabels={labels} title={current.title} subtitle={current.subtitle} illustration={current.illustration} accountEmail={account?.email || account?.phone_number}
     onBack={back} onContinue={next} canContinue={setupStepReady(current, data, live)} {...accountActions} optional={current.optional} onSkip={next}>
     {alerts}<ProductSetupFields key={`${current.id}:${data.education_stage || ''}`} step={current} data={data} updateData={updateData} live={live} />
   </OnboardingLayout>;

@@ -77,13 +77,17 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
     },
     // Phone sign-in across two steps: requestPhoneSignIn sends the SMS code and
     // returns the pending confirmation; confirmPhoneSignIn verifies the code and
-    // exchanges the SMS-verified identity for a server session. Until the backend
-    // grants phone-only identities a product session, this fails closed calmly.
-    requestPhoneSignIn: phone => transition(async expected => {
-      const confirmation = await identity.beginPhoneSignIn(phone, 'auth-recaptcha');
+    // exchanges the SMS-verified identity for a server session. Backend verified
+    // claims and availability policy remain authoritative for admission.
+    requestPhoneSignIn: (phone, verifierId) => transition(async expected => {
+      const confirmation = await identity.beginPhoneSignIn(phone, verifierId);
       check(expected);
       return { verification: 'phone-sms', confirmation };
     }),
+    cancelPhoneSignIn() {
+      if (signingIn) { ++generation; profile = null; }
+      identity.cancelPhoneSignIn?.();
+    },
     confirmPhoneSignIn: (confirmation, code) => transition(async expected => {
       if (!confirmation) throw authFlowError('auth/no-pending-verification');
       const user = await identity.confirmPhoneSignIn(confirmation, code); check(expected);
