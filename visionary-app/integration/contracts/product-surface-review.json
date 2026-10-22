@@ -1440,7 +1440,7 @@
       "profile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -2436,7 +2436,7 @@
       "profile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -2484,7 +2484,7 @@
       "profile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -2516,6 +2516,22 @@
         "POST /api/auth/onboarding/introduction",
         "PATCH /api/auth/profile",
         "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/components/auth/PhoneAuth.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
       ]
     }
   },

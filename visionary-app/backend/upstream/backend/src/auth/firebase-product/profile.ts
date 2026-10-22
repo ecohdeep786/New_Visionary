@@ -103,6 +103,7 @@ export function onboardingProfile(input: unknown) {
 export function publicProfile(uid: string, data: Record<string, any>) {
   const preferences = data.preferences || {};
   return { id: uid, email: data.email || '', full_name: data.full_name || '', ...data.profile,
+    phone_number: typeof data.identity?.phoneNumber === 'string' ? data.identity.phoneNumber : '',
     preferences, onboarding_complete: data.onboarding?.status === 'complete',
     getting_started_complete: data.onboarding?.introduction?.status !== 'pending',
     profile_version: data.version || 0, auth_source: 'firebase' };

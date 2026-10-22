@@ -7,7 +7,7 @@ export const signInMethods = Object.freeze({
   google: true,
   apple: false,
   microsoft: false,
-  mobile: false,
+  mobile: true, // UI availability also requires server flag and supported origin.
   organization: false,
 });
 

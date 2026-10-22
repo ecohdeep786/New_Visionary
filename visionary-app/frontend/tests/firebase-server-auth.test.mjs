@@ -130,6 +130,29 @@ test('duplicate submit cannot create a second identity request', async () => {
   await assert.rejects(auth.loginViaEmailPassword('adult@example.test', 'fixture-only'), error => error.code === 'auth/operation-in-progress');
   finish(user); await pending; assert.equal(attempts, 1);
 });
+
+test('leaving a pending phone verification cancels token exchange and clears the verifier', async () => {
+  let finish, exchanges = 0, disposed = 0, signedOut = 0;
+  const auth = createServerAuth({ request: async () => { exchanges++; return first; }, identity: {
+    confirmPhoneSignIn: () => new Promise(resolve => { finish = resolve; }),
+    cancelPhoneSignIn: () => { disposed++; }, logout: async () => { signedOut++; },
+  } });
+  const pending = auth.confirmPhoneSignIn({}, '123456');
+  auth.cancelPhoneSignIn(); finish({ ...user, phoneNumber: '+919999000001' });
+  await assert.rejects(pending, error => error.code === 'auth/account-changed');
+  assert.equal(exchanges, 0); assert.equal(disposed, 1); assert.equal(signedOut, 1); assert.equal(auth.currentProfile(), null);
+});
+
+test('phone confirmation exchanges identity and duplicate confirmation stays single-flight', async () => {
+  let finish, calls = 0;
+  const auth = createServerAuth({ request: async path => { assert.equal(path, '/session'); calls++; return first; }, identity: {
+    confirmPhoneSignIn: () => new Promise(resolve => { finish = resolve; }),
+  } });
+  const pending = auth.confirmPhoneSignIn({}, '123456');
+  await assert.rejects(auth.confirmPhoneSignIn({}, '123456'), error => error.code === 'auth/operation-in-progress');
+  finish({ ...user, emailVerified: false, phoneNumber: '+919999000001' });
+  assert.equal((await pending).id, first.id); assert.equal(calls, 1);
+});
 test('malformed profile cannot authenticate or change saved onboarding state', async () => {
   const auth = fixture(async () => ({ onboarding_complete: 'true' }));
   await assert.rejects(auth.me(), error => error.code === 'auth/profile-unavailable'); assert.equal(auth.currentProfile(), null);
