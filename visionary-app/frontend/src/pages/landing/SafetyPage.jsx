@@ -7,6 +7,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
@@ -19,8 +20,8 @@ const SAFETY_EMAIL = "safety@visionary.org.in";
 
 /* ═══ Link, pill and chip grammar — the approved public classes, verbatim ═══ */
 const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const chipPill = "inline-flex min-h-11 items-center rounded-full bg-[#f5f5f7] px-6 text-[15px] font-medium tracking-[0.24px] text-[#1d1d1f] transition-colors duration-200 hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+const chipPill = "inline-flex min-h-11 items-center rounded-full bg-[#f5f5f7] px-6 text-[16px] font-medium tracking-[0.24px] text-[#1d1d1f] transition-colors duration-200 hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
    motion-reduce safe). ═══ */
@@ -64,19 +65,19 @@ function DeviceFrame({ subject, title, className = "" }) {
 const PROTECTIONS = [
   {
     eyebrow: "Age-aware experiences", subject: "shield",
-    title: <>Safety that fits <span className="text-[#0066cc]">the learner.</span></>,
+    title: <>Safety that fits <span className="text-[#1d1d1f]">the learner.</span></>,
     copy: "Safety guidance and product boundaries follow the learner's age and context: a twelve-year-old and an adult professional see different guardrails for the same question.",
     visualSide: "right",
   },
   {
     eyebrow: "Safe by default", subject: "lock",
-    title: <>On from the <span className="text-[#0066cc]">first question.</span></>,
+    title: <>On from the <span className="text-[#1d1d1f]">first question.</span></>,
     copy: "Core safeguards are part of the experience from the beginning. Families and organizations can add boundaries, but the default is already safe.",
     visualSide: "left",
   },
   {
     eyebrow: "Private by design", subject: "eye",
-    title: <>Your memory is <span className="text-[#0066cc]">yours.</span></>,
+    title: <>Your memory is <span className="text-[#1d1d1f]">yours.</span></>,
     copy: "Parents follow progress through consent-based summaries. Organizations see patterns across cohorts, never an individual learner's answers. Details live in the privacy policy.",
     visualSide: "right",
   },
@@ -147,7 +148,7 @@ export default function SafetyPage() {
               Safe by design,<br />
               <span className="accent-gradient">for every learner.</span>
             </h1>
-            <p className="mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#6e6e73]">
+            <p className="mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
               Protection is on from the start. See how it works and what you control.
             </p>
             <nav aria-label="On this page" className="mt-10 flex flex-wrap gap-4">
@@ -163,7 +164,7 @@ export default function SafetyPage() {
         <section data-section="02-statement" aria-labelledby="statement-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[880px] text-center">
             <h2 id="statement-title" className="text-[clamp(24px,3vw,34px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#1d1d1f]">
-              The questions you ask every day, <span className="text-[#0066cc]">safer in all kinds of ways.</span>
+              The questions you ask every day, <span className="text-[#1d1d1f]">safer in all kinds of ways.</span>
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               {[ShieldCheck, Lock, Eye, Flag, UsersRound].map((Icon, i) => (
@@ -172,9 +173,14 @@ export default function SafetyPage() {
                 </span>
               ))}
             </div>
-            <p className="mx-auto mt-8 max-w-[640px] text-[15px] leading-[1.75] text-[#6e6e73]">
+            <p className="mx-auto mt-8 max-w-[640px] text-[16px] leading-[1.75] text-[#6e6e73]">
               You shouldn't have to configure safety. It should be there before you ask your first question, and visible enough to check.
             </p>
+            <div className="mt-9 flex justify-center">
+              <QuietLink href="#protections">
+                The protections, up close <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
+            </div>
           </Reveal>
         </section>
 
@@ -186,17 +192,22 @@ export default function SafetyPage() {
               {PROTECTIONS.map((row) => (
                 <div key={row.eyebrow} className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
                   <div className={row.visualSide === "left" ? "lg:order-2" : ""}>
-                    <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">{row.eyebrow}</p>
+                    <p className="apple-eyebrow text-[#6e6e73]">{row.eyebrow}</p>
                     <h3 className="mt-3 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#1d1d1f] sm:text-[36px]">
                       {row.title}
                     </h3>
-                    <p className="mt-4 max-w-[480px] text-[15px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">{row.copy}</p>
+                    <p className="mt-4 max-w-[480px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">{row.copy}</p>
                   </div>
                   <Reveal delay={120} className={row.visualSide === "left" ? "lg:order-1" : ""}>
                     <DeviceFrame subject={row.subject} title={row.eyebrow} />
                   </Reveal>
                 </div>
               ))}
+            </div>
+            <div className="mt-10">
+              <QuietLink href={`mailto:${SAFETY_EMAIL}?subject=${encodeURIComponent("Safety question")}`}>
+                Ask the safety team a question first <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
             </div>
           </Reveal>
         </section>
@@ -207,9 +218,9 @@ export default function SafetyPage() {
             <div className="mx-auto max-w-[760px] text-center">
               <h2 id="family-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#1d1d1f] sm:text-[44px]">
                 Set boundaries that are<br className="hidden sm:block" />
-                <span className="text-[#0066cc]"> right for your family.</span>
+                <span className="text-[#1d1d1f]"> right for your family.</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-[620px] text-[15px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-5 max-w-[620px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
                 We work directly with the realities of family learning: children in classrooms, parents who want visibility, and organizations that need patterns without privacy trade-offs.
               </p>
             </div>
@@ -219,7 +230,7 @@ export default function SafetyPage() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#6e6e73]">{eyebrow}</p>
+                  <p className="apple-eyebrow text-[#6e6e73]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#1d1d1f]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#6e6e73]">{copy}</p>
                   <div className="mt-4">
@@ -239,9 +250,9 @@ export default function SafetyPage() {
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
               <h2 id="reporting-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#1d1d1f] sm:text-[44px]">
-                Seen something wrong? <span className="text-[#0066cc]">Flag it.</span>
+                Seen something wrong? <span className="text-[#1d1d1f]">Flag it.</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-[600px] text-[15px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-5 max-w-[600px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
                 Reporting is one tap away everywhere in the product, and a person reads every report, not a queue.
               </p>
             </div>
@@ -251,7 +262,7 @@ export default function SafetyPage() {
                   <span className="flex h-[120px] w-[120px] items-center justify-center">
                     <SpotIllustration subject={subject} className="h-[88px] w-[88px]" title={eyebrow} />
                   </span>
-                  <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#6e6e73]">{eyebrow}</p>
+                  <p className="apple-eyebrow text-[#6e6e73]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#1d1d1f]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#6e6e73]">{copy}</p>
                   <div className="mt-4">
@@ -276,7 +287,7 @@ export default function SafetyPage() {
                     Three checks before you share anything.
                   </h2>
                   <div className="mt-4 max-w-[420px]">
-                    <p className="text-[15px] leading-[1.7] text-[#6e6e73]">
+                    <p className="text-[16px] leading-[1.7] text-[#6e6e73]">
                       Most safety problems start with a message that felt urgent. Slow down, run the checks, and stay in control of your account.
                     </p>
                   </div>
@@ -320,7 +331,7 @@ export default function SafetyPage() {
               <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f]">
                 Discover more ways we keep learning safe.
               </h2>
-              <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-[1.7] text-[#1d1d1f]">
+              <p className="mx-auto mt-4 max-w-[520px] text-[16px] leading-[1.7] text-[#1d1d1f]">
                 Tour the product's guardrails end to end, or write to the safety team directly. A human reads every message.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

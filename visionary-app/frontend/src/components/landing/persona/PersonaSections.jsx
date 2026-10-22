@@ -116,7 +116,7 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
     <div ref={revealRef} style={linked ? linkedReveal.style : undefined}>
       <p className="sr-only">{label}</p>
       <div className="px-6">
-        <p className="text-center text-[15px] font-normal" style={{ color: color.slate, ...revealStyle(entered, 0) }}>
+        <p className="text-center text-[16px] font-normal" style={{ color: color.slate, ...revealStyle(entered, 0) }}>
           {kicker}
         </p>
         <h2
@@ -139,7 +139,7 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
             own white with measured air. Clean, centered, calm. */}
         {copy && (
           <p
-            className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
+            className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17px]"
             style={{ color: color.slate, ...revealStyle(entered, 165) }}
           >
             {copy}
@@ -534,7 +534,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
                       <h4 className="text-[17px] font-semibold leading-[21px] tracking-[-0.01em]" style={{ color: color.ink }}>
                         {b.t}
                       </h4>
-                      <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[15px]" style={{ color: color.slate }}>
+                      <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[16px]" style={{ color: color.slate }}>
                         {b.c}
                       </p>
                       <Link
@@ -562,7 +562,7 @@ const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
       <h3 data-type="feature" className="whitespace-pre-line" style={{ color: color.ink }}>
         {step.title}
       </h3>
-      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: color.ink }}>
+      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: color.ink }}>
         {step.copy}
       </p>
     </div>
@@ -686,7 +686,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-3 rounded-full border px-8 py-3 font-normal tracking-[0] leading-[20px] text-[15px] transition-colors hover:bg-[#1d1d1f]/5"
+        className="flex items-center gap-3 rounded-full border px-8 py-3 font-normal tracking-[0] leading-[20px] text-[16px] transition-colors hover:bg-[#1d1d1f]/5"
         style={{ borderColor: `${color.ink}4D`, color: color.ink }}
       >
         {stages[active].name}
@@ -728,7 +728,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
 const ContinuityCard = React.memo(function ContinuityCard({ index, label, caption, text, imgClass = "", className = "", images }) {
   return (
     <div className={className}>
-      <p className="mb-6 text-center font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: color.ink }}>
+      <p className="mb-6 text-center font-normal tracking-[0] leading-[20px] text-[16px]" style={{ color: color.ink }}>
         {label}
       </p>
       <div className="relative overflow-hidden rounded-[30px]">
@@ -747,7 +747,7 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
           </span>
         </div>
       </div>
-      <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: color.ink }}>
+      <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[16px]" style={{ color: color.ink }}>
         {caption}
       </p>
     </div>
@@ -830,7 +830,7 @@ const TrustCard = React.memo(function TrustCard({ card, image }) {
       <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
         <div className="rounded-[20px] bg-white/95 p-5">
           <card.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: color.ink }} />
-          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: color.ink }}>{card.copy}</p>
+          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: color.ink }}>{card.copy}</p>
           <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" style={{ color: color.link }}>
             {card.link}
             <ChevronIcon className="h-3.5 w-3.5" />

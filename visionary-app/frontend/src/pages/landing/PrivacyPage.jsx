@@ -17,6 +17,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
@@ -40,7 +41,7 @@ const COLORS = {
 
 /* ═══ Link and pill grammar — the approved public classes, verbatim ═══ */
 const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -137,7 +138,7 @@ const FAQ = [
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
+      <div className="mb-3 apple-eyebrow" style={{ color: COLORS.grey }}>
         {number}
       </div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
@@ -235,7 +236,7 @@ export default function PrivacyPage() {
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
-                <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</div>
+                <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
                 <nav aria-label="Privacy policy sections">
                   <div className="space-y-1">
                     {SECTIONS.map((section) => {
@@ -274,11 +275,11 @@ export default function PrivacyPage() {
               <FadeReveal visible={heroVisible}>
                 <div className="pb-12 pt-2">
                   <div className="flex justify-center"><SpotIllustration subject="shield" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Privacy policy</p>
+                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Privacy policy</p>
                   <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                     Your learning is personal. <span className="accent-gradient">Privacy should be clear.</span>
                   </h1>
-                  <p className="mt-8 max-w-[760px] text-[17.5px] leading-[25px]" style={{ color: COLORS.grey }}>
+                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
                     This policy explains what information Visionary uses, why, who can see it, and how you can update, manage, or delete it.
                   </p>
 
@@ -298,7 +299,7 @@ export default function PrivacyPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Review your data</p>
-                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>Looking to see what is stored on this device?</p>
+                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>Looking to see what is stored on this device?</p>
                       <Link to="/dashboard/privacy" className={`mt-1.5 ${quietLink}`}>
                         Review data on this device
                         <ChevronIcon className="h-4 w-4" aria-hidden="true" />
@@ -321,8 +322,8 @@ export default function PrivacyPage() {
                     className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                   >
                     <span>
-                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
-                      <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
+                      <span className="block apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="mt-1 block text-[16px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
                   </button>
@@ -351,13 +352,13 @@ export default function PrivacyPage() {
 
                 {/* AT A GLANCE */}
                 <section className="py-12" aria-labelledby="privacy-summary-title">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Start here</p>
+                  <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="privacy-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
                       <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                         <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
-                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
+                        <span className="mt-5 flex items-center gap-2 text-[16px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
                         <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                       </a>
@@ -408,7 +409,7 @@ export default function PrivacyPage() {
                         <IconTile Icon={Icon} />
                         <div>
                           <h3 className="text-[17px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
-                          <p className="mt-1.5 max-w-[620px] text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
+                          <p className="mt-1.5 max-w-[620px] text-[16px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
                         </div>
                       </div>
                     ))}
@@ -430,7 +431,7 @@ export default function PrivacyPage() {
                       ["Service providers", "Trusted providers may process information only to operate, secure, support, or improve Visionary under appropriate contractual safeguards."],
                     ].map(([who, what], i, arr) => (
                       <div key={who} className={`py-5 ${i < arr.length - 1 ? "border-b border-[rgba(18,19,23,0.12)]" : ""}`}>
-                        <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
+                        <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
                         <p className="mt-1 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{what}</p>
                       </div>
                     ))}
@@ -510,7 +511,7 @@ export default function PrivacyPage() {
                   </div>
                   <div className="mt-6 flex flex-col gap-4 rounded-[30px] bg-[#f5f5f7] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
                     <div>
-                      <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>Send a privacy request</p>
+                      <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Send a privacy request</p>
                       <p className="mt-1 text-[14px] leading-6" style={{ color: COLORS.grey }}>{GRIEVANCE_OFFICER.response}</p>
                     </div>
                     <a href={`mailto:${GRIEVANCE_OFFICER.email}?subject=Privacy%20request`} className={`shrink-0 ${inkPill}`}>
@@ -531,7 +532,7 @@ export default function PrivacyPage() {
                       {["Review personal workspaces stored in this browser.", "Check whether a record is stored on-device or with your account.", "Ask the Grievance officer about access or deletion requests.", "Sign out of shared devices and review connected devices regularly."].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
-                          <span className="text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
+                          <span className="text-[16px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
                         </li>
                       ))}
                     </ul>
@@ -565,7 +566,7 @@ export default function PrivacyPage() {
                           <ChevronDown className={["h-4 w-4 shrink-0 transition-transform duration-200", openFaq === index ? "rotate-180" : ""].join(" ")} strokeWidth={1.8} style={{ color: COLORS.grey }} />
                         </button>
                         <div id={`privacy-faq-${index}`} role="region" aria-labelledby={`privacy-faq-trigger-${index}`} hidden={openFaq !== index}>
-                          <p className="pb-5 pr-8 text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{item.a}</p>
+                          <p className="pb-5 pr-8 text-[16px] leading-[1.7]" style={{ color: COLORS.grey }}>{item.a}</p>
                         </div>
                       </div>
                     ))}
@@ -579,7 +580,7 @@ export default function PrivacyPage() {
                     For questions about this policy or to submit a privacy grievance, contact the named Grievance officer. Include enough detail to identify the request, but do not send passwords or other secrets by email.
                   </Paragraph>
                   <div className="mt-8 max-w-[640px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-7">
-                    <p className="text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                    <p className="text-[16px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       {GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong>
                     </p>
                     <p className="mt-3">
@@ -611,7 +612,7 @@ export default function PrivacyPage() {
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[16px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -632,13 +633,26 @@ export default function PrivacyPage() {
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
-                    <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
+                    <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
                   <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+            clauses carry no per-module CTAs; the page ends with a way to
+            reach a person). */}
+        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+          <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
+            <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
+              Questions about this policy?
+            </p>
+            <QuietLink to="/contact" className="shrink-0">
+              Talk to a person <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+            </QuietLink>
           </div>
         </section>
       </main>

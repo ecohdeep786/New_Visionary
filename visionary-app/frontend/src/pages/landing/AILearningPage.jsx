@@ -165,7 +165,7 @@ function PricingPlansSection() {
           <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
             Plans for <span className="accent-gradient">every journey</span>.
           </h1>
-          <p className="mx-auto max-w-[760px] text-[17.5px] font-normal leading-[25px] text-[#6e6e73]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+          <p className="mx-auto max-w-[760px] text-[17px] font-normal leading-[25px] text-[#6e6e73]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
             Start free. Find the right fit for yourself, your family, or your organization.
           </p>
         </div>
@@ -199,7 +199,7 @@ function PricingPersonaSection() {
               <div className="mb-5 flex h-36 items-center justify-center overflow-hidden rounded-[18px] bg-white">
                 <img src={PERSONA_IMAGES[p.persona]} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
-              <p className="font-normal tracking-[0] leading-[1.4] text-[15px]" style={{ color: COLORS.grey }}>{p.persona}</p>
+              <p className="font-normal tracking-[0] leading-[1.4] text-[16px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
               <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
               {/* google.com card curve — tint sweeps into the white corner and the card's arrow floats in it with breath */}
@@ -264,7 +264,7 @@ function PricingTrustBand() {
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <Sparkles className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
-          <p className="text-center font-normal tracking-[0.24px] text-[15px]" style={{ color: COLORS.ink }}>
+          <p className="text-center font-normal tracking-[0.24px] text-[16px]" style={{ color: COLORS.ink }}>
             Cancel anytime · Your memory stays yours · Education discounts for students & teachers
           </p>
         </div>
@@ -297,7 +297,7 @@ function PricingFAQSection() {
                 </button>
                 <div id={`pricing-faq-answer-${i}`} aria-labelledby={`pricing-faq-question-${i}`} aria-hidden={open !== i} className={`grid transition-all duration-300 ease-google motion-reduce:transition-none ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                   <div className="overflow-hidden">
-                    <p className="max-w-[640px] pb-6 pr-8 text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{item.a}</p>
+                    <p className="max-w-[640px] pb-6 pr-8 text-[16px] leading-[1.65]" style={{ color: COLORS.grey }}>{item.a}</p>
                   </div>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
 import SpotIllustration from "@/components/landing/SpotIllustration";
@@ -244,7 +245,7 @@ function LandingProblemSection() {
                   <blockquote>
                     <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "22ch" }}>{slide.quote}</p>
                   </blockquote>
-                  <p className="mt-5 text-[15px] font-medium tracking-[0] leading-[20px]" style={{ color: BRAND.slate }}>{slide.persona}</p>
+                  <p className="mt-5 text-[16px] font-medium tracking-[0] leading-[20px]" style={{ color: BRAND.slate }}>{slide.persona}</p>
                 </figcaption>
               </div>
             </div>
@@ -291,6 +292,11 @@ function LandingPromiseSection() {
           What if your intelligence never forgot{" "}
           <span className="accent-gradient-on-dark">where you were?</span>
         </h2>
+        <div className="mt-12 flex justify-center">
+          <QuietLink to="/how-it-works" dark>
+            See how the loop remembers your place <ChevronRight className="h-4 w-4" aria-hidden="true" />
+          </QuietLink>
+        </div>
       </Reveal>
     </section>
   );
@@ -335,7 +341,7 @@ function LandingReturnSection() {
             <blockquote className="mt-[clamp(20px,2.6vw,32px)]">
               <p data-type="card-chapter" className="text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "30ch" }}>“A person should not have to start over every time life asks them to learn something new.”</p>
             </blockquote>
-            <figcaption className="mt-5 text-[15px] font-normal" style={{ color: BRAND.slate }}>
+            <figcaption className="mt-5 text-[16px] font-normal" style={{ color: BRAND.slate }}>
               Md Shahid Ali · Founder and CEO
             </figcaption>
           </figure>
@@ -453,7 +459,7 @@ function LandingSuiteSection() {
               <div className="flex flex-col justify-between px-4 py-4 sm:px-6 sm:py-6">
                 <div>
                   <h3 data-type="feature" style={{ color: BRAND.ink }}>{item.label}</h3>
-                  <p className="mt-2 max-w-[300px] text-[15px] leading-[1.6]" style={{ color: BRAND.graphite }}>{item.copy}</p>
+                  <p className="mt-2 max-w-[300px] text-[16px] leading-[1.6]" style={{ color: BRAND.graphite }}>{item.copy}</p>
                 </div>
                 <span aria-hidden="true" className="mt-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#f5f5f7] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none">
                   <ArrowRight className="h-4 w-4" style={{ color: BRAND.link }} />

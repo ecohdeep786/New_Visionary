@@ -167,17 +167,17 @@ export default function CommunityPage() {
             then the full-width fanned card strip with paging */}
         <section data-section="01-hero" className="relative overflow-hidden bg-white" style={{ paddingTop: "calc(64px + 40px)", paddingBottom: "40px" }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
-            <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#6e6e73]">Visionary communities</p>
+            <p data-type="label" className="text-center text-[#6e6e73]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
               <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
                 Communities and programs for everyone <span className="accent-gradient">learning together.</span>
               </h1>
-              <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#6e6e73]">
+              <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
                 Class-scoped spaces where learners, teachers, and families grow together, kept safe by teachers.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                   Find your community
                 </a>
                 <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
@@ -255,7 +255,7 @@ export default function CommunityPage() {
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
                 More ways to engage and learn
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 Keep your journey moving with the product and the people around it.
               </p>
             </div>

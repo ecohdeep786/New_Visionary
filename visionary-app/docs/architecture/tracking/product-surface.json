@@ -87,6 +87,7 @@
         "frontend/src/components/landing/LandingNav.jsx",
         "frontend/src/components/landing/LazyImage.jsx",
         "frontend/src/components/landing/NewPersona.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
@@ -220,6 +221,8 @@
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1330:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1348:15",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1358:15",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -227,9 +230,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/Landing.jsx:254:15",
-        "frontend/src/pages/Landing.jsx:358:17",
-        "frontend/src/pages/Landing.jsx:448:13"
+        "frontend/src/pages/Landing.jsx:255:15",
+        "frontend/src/pages/Landing.jsx:296:11",
+        "frontend/src/pages/Landing.jsx:364:17",
+        "frontend/src/pages/Landing.jsx:454:13"
       ],
       "operations": [
         "public-discovery"
@@ -1563,6 +1567,7 @@
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
         "frontend/src/components/landing/system/tokens.js",
@@ -1640,6 +1645,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -1647,15 +1654,16 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/CoachingPage.jsx:217:5",
-        "frontend/src/pages/landing/CoachingPage.jsx:235:9",
-        "frontend/src/pages/landing/CoachingPage.jsx:252:12",
-        "frontend/src/pages/landing/CoachingPage.jsx:483:9",
-        "frontend/src/pages/landing/CoachingPage.jsx:495:15",
-        "frontend/src/pages/landing/CoachingPage.jsx:552:13",
-        "frontend/src/pages/landing/CoachingPage.jsx:567:13",
-        "frontend/src/pages/landing/CoachingPage.jsx:599:11",
-        "frontend/src/pages/landing/CoachingPage.jsx:602:11"
+        "frontend/src/pages/landing/CoachingPage.jsx:218:5",
+        "frontend/src/pages/landing/CoachingPage.jsx:236:9",
+        "frontend/src/pages/landing/CoachingPage.jsx:253:12",
+        "frontend/src/pages/landing/CoachingPage.jsx:484:9",
+        "frontend/src/pages/landing/CoachingPage.jsx:496:15",
+        "frontend/src/pages/landing/CoachingPage.jsx:532:11",
+        "frontend/src/pages/landing/CoachingPage.jsx:559:13",
+        "frontend/src/pages/landing/CoachingPage.jsx:574:13",
+        "frontend/src/pages/landing/CoachingPage.jsx:606:11",
+        "frontend/src/pages/landing/CoachingPage.jsx:609:11"
       ],
       "operations": [
         "public-discovery"
@@ -1836,6 +1844,7 @@
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
         "frontend/src/components/landing/system/tokens.js",
@@ -1913,6 +1922,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -1920,15 +1931,18 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/DownloadPage.jsx:123:13",
-        "frontend/src/pages/landing/DownloadPage.jsx:140:13",
-        "frontend/src/pages/landing/DownloadPage.jsx:194:19",
-        "frontend/src/pages/landing/DownloadPage.jsx:202:19",
-        "frontend/src/pages/landing/DownloadPage.jsx:250:13",
-        "frontend/src/pages/landing/DownloadPage.jsx:253:17",
-        "frontend/src/pages/landing/DownloadPage.jsx:267:17",
-        "frontend/src/pages/landing/DownloadPage.jsx:359:11",
-        "frontend/src/pages/landing/DownloadPage.jsx:362:11"
+        "frontend/src/pages/landing/DownloadPage.jsx:124:13",
+        "frontend/src/pages/landing/DownloadPage.jsx:141:13",
+        "frontend/src/pages/landing/DownloadPage.jsx:195:19",
+        "frontend/src/pages/landing/DownloadPage.jsx:203:19",
+        "frontend/src/pages/landing/DownloadPage.jsx:218:11",
+        "frontend/src/pages/landing/DownloadPage.jsx:256:13",
+        "frontend/src/pages/landing/DownloadPage.jsx:259:17",
+        "frontend/src/pages/landing/DownloadPage.jsx:273:17",
+        "frontend/src/pages/landing/DownloadPage.jsx:312:9",
+        "frontend/src/pages/landing/DownloadPage.jsx:339:11",
+        "frontend/src/pages/landing/DownloadPage.jsx:375:11",
+        "frontend/src/pages/landing/DownloadPage.jsx:378:11"
       ],
       "operations": [
         "download-installation"
@@ -2207,6 +2221,7 @@
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
         "frontend/src/components/landing/system/tokens.js",
@@ -2282,6 +2297,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -2289,20 +2306,23 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/CareersPage.jsx:145:13",
-        "frontend/src/pages/landing/CareersPage.jsx:168:13",
-        "frontend/src/pages/landing/CareersPage.jsx:202:5",
-        "frontend/src/pages/landing/CareersPage.jsx:210:13",
-        "frontend/src/pages/landing/CareersPage.jsx:220:11",
-        "frontend/src/pages/landing/CareersPage.jsx:226:9",
-        "frontend/src/pages/landing/CareersPage.jsx:336:29",
-        "frontend/src/pages/landing/CareersPage.jsx:343:25",
-        "frontend/src/pages/landing/CareersPage.jsx:402:23",
-        "frontend/src/pages/landing/CareersPage.jsx:407:23",
-        "frontend/src/pages/landing/CareersPage.jsx:432:21",
-        "frontend/src/pages/landing/CareersPage.jsx:440:21",
-        "frontend/src/pages/landing/CareersPage.jsx:458:19",
-        "frontend/src/pages/landing/CareersPage.jsx:462:19"
+        "frontend/src/pages/landing/CareersPage.jsx:146:13",
+        "frontend/src/pages/landing/CareersPage.jsx:169:13",
+        "frontend/src/pages/landing/CareersPage.jsx:203:5",
+        "frontend/src/pages/landing/CareersPage.jsx:211:13",
+        "frontend/src/pages/landing/CareersPage.jsx:221:11",
+        "frontend/src/pages/landing/CareersPage.jsx:227:9",
+        "frontend/src/pages/landing/CareersPage.jsx:315:19",
+        "frontend/src/pages/landing/CareersPage.jsx:342:29",
+        "frontend/src/pages/landing/CareersPage.jsx:349:25",
+        "frontend/src/pages/landing/CareersPage.jsx:357:19",
+        "frontend/src/pages/landing/CareersPage.jsx:390:19",
+        "frontend/src/pages/landing/CareersPage.jsx:418:23",
+        "frontend/src/pages/landing/CareersPage.jsx:423:23",
+        "frontend/src/pages/landing/CareersPage.jsx:448:21",
+        "frontend/src/pages/landing/CareersPage.jsx:456:21",
+        "frontend/src/pages/landing/CareersPage.jsx:474:19",
+        "frontend/src/pages/landing/CareersPage.jsx:478:19"
       ],
       "operations": [
         "public-enquiry-careers-partners"
@@ -2323,6 +2343,7 @@
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
@@ -2401,6 +2422,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -2408,21 +2431,22 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:159:18",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:160:10",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:249:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:250:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:266:25",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:302:25",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:336:15",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:367:19",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:398:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:399:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:435:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:436:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:450:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:460:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:477:15"
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:218:13",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:247:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:248:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:264:25",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:274:15",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:305:25",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:339:15",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:355:15",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:375:19",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:406:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:407:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:443:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:444:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:458:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:468:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:485:15"
       ],
       "operations": [
         "public-updates-distribution"
@@ -2682,6 +2706,7 @@
         "frontend/src/components/landing/LandingFAQ.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
@@ -2765,6 +2790,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -2772,17 +2799,21 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/PartnersPage.jsx:173:9",
-        "frontend/src/pages/landing/PartnersPage.jsx:178:13",
-        "frontend/src/pages/landing/PartnersPage.jsx:190:9",
-        "frontend/src/pages/landing/PartnersPage.jsx:221:17",
-        "frontend/src/pages/landing/PartnersPage.jsx:227:17",
-        "frontend/src/pages/landing/PartnersPage.jsx:441:15",
-        "frontend/src/pages/landing/PartnersPage.jsx:447:15",
-        "frontend/src/pages/landing/PartnersPage.jsx:472:19",
-        "frontend/src/pages/landing/PartnersPage.jsx:486:15",
-        "frontend/src/pages/landing/PartnersPage.jsx:534:15",
-        "frontend/src/pages/landing/PartnersPage.jsx:541:15"
+        "frontend/src/pages/landing/PartnersPage.jsx:174:9",
+        "frontend/src/pages/landing/PartnersPage.jsx:179:13",
+        "frontend/src/pages/landing/PartnersPage.jsx:191:9",
+        "frontend/src/pages/landing/PartnersPage.jsx:222:17",
+        "frontend/src/pages/landing/PartnersPage.jsx:228:17",
+        "frontend/src/pages/landing/PartnersPage.jsx:273:15",
+        "frontend/src/pages/landing/PartnersPage.jsx:308:15",
+        "frontend/src/pages/landing/PartnersPage.jsx:417:13",
+        "frontend/src/pages/landing/PartnersPage.jsx:448:15",
+        "frontend/src/pages/landing/PartnersPage.jsx:462:15",
+        "frontend/src/pages/landing/PartnersPage.jsx:468:15",
+        "frontend/src/pages/landing/PartnersPage.jsx:493:19",
+        "frontend/src/pages/landing/PartnersPage.jsx:507:15",
+        "frontend/src/pages/landing/PartnersPage.jsx:555:15",
+        "frontend/src/pages/landing/PartnersPage.jsx:562:15"
       ],
       "operations": [
         "public-enquiry-careers-partners"
@@ -2925,6 +2956,7 @@
         "frontend/src/components/landing/LandingFAQ.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
@@ -3007,6 +3039,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -3014,18 +3048,19 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/ReferralPage.jsx:113:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:116:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:165:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:196:21",
-        "frontend/src/pages/landing/ReferralPage.jsx:200:21",
-        "frontend/src/pages/landing/ReferralPage.jsx:229:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:239:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:242:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:245:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:307:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:339:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:342:17"
+        "frontend/src/pages/landing/ReferralPage.jsx:114:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:117:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:166:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:197:21",
+        "frontend/src/pages/landing/ReferralPage.jsx:201:21",
+        "frontend/src/pages/landing/ReferralPage.jsx:230:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:240:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:243:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:246:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:278:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:313:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:345:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:348:17"
       ],
       "operations": [
         "referral-sharing"
@@ -3046,6 +3081,7 @@
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/ValuesStrip.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -3126,6 +3162,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -3134,16 +3172,18 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
-        "frontend/src/pages/landing/SafetyPage.jsx:154:15",
         "frontend/src/pages/landing/SafetyPage.jsx:155:15",
         "frontend/src/pages/landing/SafetyPage.jsx:156:15",
         "frontend/src/pages/landing/SafetyPage.jsx:157:15",
-        "frontend/src/pages/landing/SafetyPage.jsx:226:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:258:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:284:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:290:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:327:17",
-        "frontend/src/pages/landing/SafetyPage.jsx:333:17"
+        "frontend/src/pages/landing/SafetyPage.jsx:158:15",
+        "frontend/src/pages/landing/SafetyPage.jsx:180:15",
+        "frontend/src/pages/landing/SafetyPage.jsx:208:15",
+        "frontend/src/pages/landing/SafetyPage.jsx:237:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:269:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:295:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:301:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:338:17",
+        "frontend/src/pages/landing/SafetyPage.jsx:344:17"
       ],
       "operations": []
     },
@@ -3163,6 +3203,7 @@
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
         "frontend/src/components/landing/PolicyTabs.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/ValuesStrip.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -3244,6 +3285,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
         "frontend/src/components/landing/PolicyTabs.jsx:34:17",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -3252,21 +3295,22 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
-        "frontend/src/pages/landing/PrivacyPage.jsx:169:7",
-        "frontend/src/pages/landing/PrivacyPage.jsx:244:25",
-        "frontend/src/pages/landing/PrivacyPage.jsx:302:23",
-        "frontend/src/pages/landing/PrivacyPage.jsx:316:19",
-        "frontend/src/pages/landing/PrivacyPage.jsx:335:29",
-        "frontend/src/pages/landing/PrivacyPage.jsx:358:23",
-        "frontend/src/pages/landing/PrivacyPage.jsx:448:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:450:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:468:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:472:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:476:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:516:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:556:25",
-        "frontend/src/pages/landing/PrivacyPage.jsx:586:23",
-        "frontend/src/pages/landing/PrivacyPage.jsx:632:17"
+        "frontend/src/pages/landing/PrivacyPage.jsx:170:7",
+        "frontend/src/pages/landing/PrivacyPage.jsx:245:25",
+        "frontend/src/pages/landing/PrivacyPage.jsx:303:23",
+        "frontend/src/pages/landing/PrivacyPage.jsx:317:19",
+        "frontend/src/pages/landing/PrivacyPage.jsx:336:29",
+        "frontend/src/pages/landing/PrivacyPage.jsx:359:23",
+        "frontend/src/pages/landing/PrivacyPage.jsx:449:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:451:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:469:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:473:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:477:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:517:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:557:25",
+        "frontend/src/pages/landing/PrivacyPage.jsx:587:23",
+        "frontend/src/pages/landing/PrivacyPage.jsx:633:17",
+        "frontend/src/pages/landing/PrivacyPage.jsx:653:13"
       ],
       "operations": []
     },
@@ -3286,6 +3330,7 @@
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
         "frontend/src/components/landing/PolicyTabs.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
@@ -3366,6 +3411,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
         "frontend/src/components/landing/PolicyTabs.jsx:34:17",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -3373,14 +3420,15 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/TermsPage.jsx:146:7",
-        "frontend/src/pages/landing/TermsPage.jsx:220:25",
-        "frontend/src/pages/landing/TermsPage.jsx:276:23",
-        "frontend/src/pages/landing/TermsPage.jsx:290:19",
-        "frontend/src/pages/landing/TermsPage.jsx:309:29",
-        "frontend/src/pages/landing/TermsPage.jsx:332:23",
-        "frontend/src/pages/landing/TermsPage.jsx:471:21",
-        "frontend/src/pages/landing/TermsPage.jsx:518:17"
+        "frontend/src/pages/landing/TermsPage.jsx:147:7",
+        "frontend/src/pages/landing/TermsPage.jsx:221:25",
+        "frontend/src/pages/landing/TermsPage.jsx:277:23",
+        "frontend/src/pages/landing/TermsPage.jsx:291:19",
+        "frontend/src/pages/landing/TermsPage.jsx:310:29",
+        "frontend/src/pages/landing/TermsPage.jsx:333:23",
+        "frontend/src/pages/landing/TermsPage.jsx:472:21",
+        "frontend/src/pages/landing/TermsPage.jsx:519:17",
+        "frontend/src/pages/landing/TermsPage.jsx:539:13"
       ],
       "operations": []
     },
@@ -3400,6 +3448,7 @@
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
         "frontend/src/components/landing/PolicyTabs.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/ValuesStrip.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -3481,6 +3530,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
         "frontend/src/components/landing/PolicyTabs.jsx:34:17",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -3489,17 +3540,18 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
-        "frontend/src/pages/landing/SecurityPage.jsx:153:7",
-        "frontend/src/pages/landing/SecurityPage.jsx:227:25",
-        "frontend/src/pages/landing/SecurityPage.jsx:283:23",
-        "frontend/src/pages/landing/SecurityPage.jsx:297:19",
-        "frontend/src/pages/landing/SecurityPage.jsx:316:29",
-        "frontend/src/pages/landing/SecurityPage.jsx:339:23",
-        "frontend/src/pages/landing/SecurityPage.jsx:424:21",
-        "frontend/src/pages/landing/SecurityPage.jsx:512:21",
+        "frontend/src/pages/landing/SecurityPage.jsx:154:7",
+        "frontend/src/pages/landing/SecurityPage.jsx:228:25",
+        "frontend/src/pages/landing/SecurityPage.jsx:284:23",
+        "frontend/src/pages/landing/SecurityPage.jsx:298:19",
+        "frontend/src/pages/landing/SecurityPage.jsx:317:29",
+        "frontend/src/pages/landing/SecurityPage.jsx:340:23",
+        "frontend/src/pages/landing/SecurityPage.jsx:425:21",
         "frontend/src/pages/landing/SecurityPage.jsx:513:21",
-        "frontend/src/pages/landing/SecurityPage.jsx:522:21",
-        "frontend/src/pages/landing/SecurityPage.jsx:570:17"
+        "frontend/src/pages/landing/SecurityPage.jsx:514:21",
+        "frontend/src/pages/landing/SecurityPage.jsx:523:21",
+        "frontend/src/pages/landing/SecurityPage.jsx:571:17",
+        "frontend/src/pages/landing/SecurityPage.jsx:591:13"
       ],
       "operations": []
     },
@@ -3518,9 +3570,13 @@
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/ValuesStrip.jsx",
+        "frontend/src/components/landing/persona/PersonaSections.jsx",
+        "frontend/src/components/landing/system/hooks.js",
         "frontend/src/components/landing/system/tokens.js",
+        "frontend/src/components/landing/system/ui.jsx",
         "frontend/src/data/landingCategories.js",
         "frontend/src/pages/landing/AccessibilityPage.jsx"
       ],
@@ -3575,15 +3631,46 @@
         "frontend/src/components/landing/LandingNav.jsx:699:11",
         "frontend/src/components/landing/LandingNav.jsx:716:15",
         "frontend/src/components/landing/LandingNav.jsx:754:19",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:188:9",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:202:9",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:301:7",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:332:13",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:380:9",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:399:11",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:408:11",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:468:7",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:482:11",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:524:15",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:525:15",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:540:23",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:650:9",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:684:7",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:710:15",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:765:13",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:796:5",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
+        "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
+        "frontend/src/components/landing/system/ui.jsx:166:7",
+        "frontend/src/components/landing/system/ui.jsx:186:9",
+        "frontend/src/components/landing/system/ui.jsx:213:5",
+        "frontend/src/components/landing/system/ui.jsx:254:5",
+        "frontend/src/components/landing/system/ui.jsx:276:9",
+        "frontend/src/components/landing/system/ui.jsx:302:9",
+        "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:32:5",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:140:15",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:217:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:220:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:266:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:278:15",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:328:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:331:17"
+        "frontend/src/pages/landing/AccessibilityPage.jsx:34:5",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:146:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:172:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:209:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:235:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:238:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:284:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:296:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:333:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:351:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:354:17"
       ],
       "operations": []
     },
@@ -3603,6 +3690,7 @@
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav.jsx",
         "frontend/src/components/landing/PolicyTabs.jsx",
+        "frontend/src/components/landing/QuietLink.jsx",
         "frontend/src/components/landing/SpotIllustration.jsx",
         "frontend/src/components/landing/persona/PersonaSections.jsx",
         "frontend/src/components/landing/system/hooks.js",
@@ -3683,6 +3771,8 @@
         "frontend/src/components/landing/persona/PersonaSections.jsx:834:11",
         "frontend/src/components/landing/persona/PersonaSections.jsx:849:5",
         "frontend/src/components/landing/PolicyTabs.jsx:34:17",
+        "frontend/src/components/landing/QuietLink.jsx:10:18",
+        "frontend/src/components/landing/QuietLink.jsx:11:10",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -3690,16 +3780,17 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/CookiesPage.jsx:128:7",
-        "frontend/src/pages/landing/CookiesPage.jsx:225:25",
-        "frontend/src/pages/landing/CookiesPage.jsx:281:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:295:19",
-        "frontend/src/pages/landing/CookiesPage.jsx:314:29",
-        "frontend/src/pages/landing/CookiesPage.jsx:337:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:418:27",
-        "frontend/src/pages/landing/CookiesPage.jsx:429:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:473:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:522:17"
+        "frontend/src/pages/landing/CookiesPage.jsx:129:7",
+        "frontend/src/pages/landing/CookiesPage.jsx:226:25",
+        "frontend/src/pages/landing/CookiesPage.jsx:282:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:296:19",
+        "frontend/src/pages/landing/CookiesPage.jsx:315:29",
+        "frontend/src/pages/landing/CookiesPage.jsx:338:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:419:27",
+        "frontend/src/pages/landing/CookiesPage.jsx:430:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:474:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:523:17",
+        "frontend/src/pages/landing/CookiesPage.jsx:543:13"
       ],
       "operations": []
     },
@@ -38467,7 +38558,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "b3afdd1a579d0f13ed43d1d0059c5afe31bf6ad670192b8e0a3ace8131dab9f7",
+      "declarationSha256": "52d217959771d4d00a1bfb6b1a40aaad1e98538f580144d8b08b46ede12b433d",
       "routeIds": [
         "/about"
       ],
@@ -40065,7 +40156,7 @@
       ],
       "destination": "/help",
       "disabled": null,
-      "declarationSha256": "574443a37bf44ca1c1a0b07b906589830f3e4382a4f2c71885e9c7bf1c86e368",
+      "declarationSha256": "03ff922d60bd3fd75478cd2ed6d49feb02e0767bb44375544fe79fd68b920d52",
       "routeIds": [
         "/",
         "/student",
@@ -40120,7 +40211,7 @@
       ],
       "destination": "/login",
       "disabled": null,
-      "declarationSha256": "df645fd8dc9e3ca4c8ea8a2f5baf682be8c32a6aaf885a2b5ed12dce6a56c78e",
+      "declarationSha256": "5e315b3991e59af6225bc5d7e360130b4f8b53493c2b63e8ee66a50d27344be4",
       "routeIds": [
         "/",
         "/student",
@@ -40175,7 +40266,7 @@
       ],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "03e0d5a209351f777016e4d204f7691afaea6d65af71b56e9e56d909828c6181",
+      "declarationSha256": "a3535f6bf76250345d855e71e6eb5128fb7c84f59c1094b2ba5068454662d46d",
       "routeIds": [
         "/",
         "/student",
@@ -40656,6 +40747,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -40708,6 +40800,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -40758,6 +40851,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -40810,6 +40904,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -40862,6 +40957,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -40914,6 +41010,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -40966,6 +41063,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41016,6 +41114,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41066,6 +41165,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41111,6 +41211,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41156,6 +41257,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41201,6 +41303,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41253,6 +41356,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41282,7 +41386,7 @@
         "setOpen"
       ],
       "disabled": null,
-      "declarationSha256": "c2a5ac0961685c1fff75eed6dceca966b3b583b6a51be12cdc9c1468bed84025",
+      "declarationSha256": "0b916a8c6702923f7e67d37508e5b113364f97127f372c42726792ff4f36b055",
       "routeIds": [
         "/",
         "/student",
@@ -41305,6 +41409,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41358,6 +41463,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41410,6 +41516,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41462,6 +41569,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41507,6 +41615,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -41552,6 +41661,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -43256,6 +43366,83 @@
       "hostedVerified": false
     },
     {
+      "id": "frontend/src/components/landing/QuietLink.jsx:10:18",
+      "file": "frontend/src/components/landing/QuietLink.jsx",
+      "line": 10,
+      "column": 18,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "314ea1ea7f247b79f47e6bd5b064f9f5f844589e0c92659be7b73f2d50e8e40e",
+      "routeIds": [
+        "/",
+        "/how-it-works",
+        "/download",
+        "/careers",
+        "/research",
+        "/partners",
+        "/referral",
+        "/safety",
+        "/privacy",
+        "/terms",
+        "/security",
+        "/accessibility",
+        "/cookies"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Measured landing-system quiet-link primitive (B2/FAP-47): the one quiet next-step anatomy shared by door rows and header links. Client-side presentation and navigation only (router Link, plain anchors, optional mailto); callbacks are not attached. No server connection, data authority or educational coverage is claimed.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/landing/QuietLink.jsx:11:10",
+      "file": "frontend/src/components/landing/QuietLink.jsx",
+      "line": 11,
+      "column": 10,
+      "tag": "a",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{onClick}"
+        }
+      ],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "419ffcf524d3d13fdb5b474cb4bc95acaf255527985b52018cb0c4fcfb30bc0a",
+      "routeIds": [
+        "/",
+        "/how-it-works",
+        "/download",
+        "/careers",
+        "/research",
+        "/partners",
+        "/referral",
+        "/safety",
+        "/privacy",
+        "/terms",
+        "/security",
+        "/accessibility",
+        "/cookies"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Measured landing-system quiet-link primitive (B2/FAP-47): the one quiet next-step anatomy shared by door rows and header links. Client-side presentation and navigation only (router Link, plain anchors, optional mailto); callbacks are not attached. No server connection, data authority or educational coverage is claimed.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
       "id": "frontend/src/components/landing/system/ui.jsx:166:7",
       "file": "frontend/src/components/landing/system/ui.jsx",
       "line": 166,
@@ -43287,6 +43474,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -43332,6 +43520,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -43382,6 +43571,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -43432,6 +43622,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -43484,6 +43675,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -43536,6 +43728,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -43586,6 +43779,7 @@
         "/privacy",
         "/terms",
         "/security",
+        "/accessibility",
         "/cookies"
       ],
       "reviewProfile": "client-presentation",
@@ -68609,7 +68803,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "bc3aef332153ae8cebe2a25c379186ff0c5099a18880a9fdc5df258613e3c333",
+      "declarationSha256": "e3865c876fa2ffcb53512f95394c36407cd22d88e7a8d4240a255434f9e13b63",
       "routeIds": [
         "/about"
       ],
@@ -68773,9 +68967,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:32:5",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:34:5",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 32,
+      "line": 34,
       "column": 5,
       "tag": "a",
       "events": [],
@@ -68797,9 +68991,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:140:15",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:146:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 140,
+      "line": 146,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -68822,9 +69016,58 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:217:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:172:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 217,
+      "line": 172,
+      "column": 17,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "#sync",
+      "disabled": null,
+      "declarationSha256": "4633d448ec528e8ae8bb858e14914bbfdb75a42c455d4f123bc3e15096cdf694",
+      "routeIds": [
+        "/accessibility"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:209:19",
+      "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
+      "line": 209,
+      "column": 19,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "7ab526ca22e32c3c89519c07356cc19440f7edde46327b211cacef4cc7e7e1f0",
+      "routeIds": [
+        "/accessibility"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:235:19",
+      "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
+      "line": 235,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -68847,9 +69090,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:220:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:238:19",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 220,
+      "line": 238,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -68872,9 +69115,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:266:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:284:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 266,
+      "line": 284,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -68896,9 +69139,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:278:15",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:296:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 278,
+      "line": 296,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -68921,9 +69164,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:328:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:333:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 328,
+      "line": 333,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "mailto:accessibility@visionary.org.in",
+      "disabled": null,
+      "declarationSha256": "6ce1231861aa9fdb5934897d224c9aefb9cc28f3ea9b35fa3e3a64bfeb313654",
+      "routeIds": [
+        "/accessibility"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:351:17",
+      "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
+      "line": 351,
       "column": 17,
       "tag": "a",
       "events": [],
@@ -68946,9 +69214,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:331:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:354:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 331,
+      "line": 354,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -69160,9 +69428,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:145:13",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:146:13",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 145,
+      "line": 146,
       "column": 13,
       "tag": "a",
       "events": [
@@ -69192,9 +69460,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:168:13",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:169:13",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 168,
+      "line": 169,
       "column": 13,
       "tag": "a",
       "events": [
@@ -69224,9 +69492,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:202:5",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:203:5",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 202,
+      "line": 203,
       "column": 5,
       "tag": "form",
       "events": [
@@ -69253,9 +69521,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:210:13",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:211:13",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 210,
+      "line": 211,
       "column": 13,
       "tag": "select",
       "events": [
@@ -69284,9 +69552,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:220:11",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:221:11",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 220,
+      "line": 221,
       "column": 11,
       "tag": "input",
       "events": [
@@ -69315,9 +69583,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:226:9",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:227:9",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 226,
+      "line": 227,
       "column": 9,
       "tag": "button",
       "events": [],
@@ -69339,9 +69607,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:336:29",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:315:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 336,
+      "line": 315,
+      "column": 19,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "#teams",
+      "disabled": null,
+      "declarationSha256": "b092ebf7a253de55cfd1cad751d444f26ebb8ce2df90767ccf9370612e929dbc",
+      "routeIds": [
+        "/careers"
+      ],
+      "reviewProfile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "classificationReason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/CareersPage.jsx:342:29",
+      "file": "frontend/src/pages/landing/CareersPage.jsx",
+      "line": 342,
       "column": 29,
       "tag": "a",
       "events": [],
@@ -69363,9 +69656,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:343:25",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:349:25",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 343,
+      "line": 349,
       "column": 25,
       "tag": "Link",
       "events": [],
@@ -69388,9 +69681,58 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:402:23",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:357:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 402,
+      "line": 357,
+      "column": 19,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/about",
+      "disabled": null,
+      "declarationSha256": "398c22f0a9585cfc38573af2a294666b8d8d744b17bae5ec05701cf37315a808",
+      "routeIds": [
+        "/careers"
+      ],
+      "reviewProfile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "classificationReason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/CareersPage.jsx:390:19",
+      "file": "frontend/src/pages/landing/CareersPage.jsx",
+      "line": 390,
+      "column": 19,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "1e24d46c4755903e259111fc778704947be9424c4a01667b98f68a95f0583337",
+      "routeIds": [
+        "/careers"
+      ],
+      "reviewProfile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "classificationReason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/CareersPage.jsx:418:23",
+      "file": "frontend/src/pages/landing/CareersPage.jsx",
+      "line": 418,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -69412,9 +69754,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:407:23",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:423:23",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 407,
+      "line": 423,
       "column": 23,
       "tag": "a",
       "events": [
@@ -69445,9 +69787,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:432:21",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:448:21",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 432,
+      "line": 448,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -69469,9 +69811,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:440:21",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:456:21",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 440,
+      "line": 456,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -69494,9 +69836,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:458:19",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:474:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 458,
+      "line": 474,
       "column": 19,
       "tag": "a",
       "events": [],
@@ -69518,9 +69860,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:462:19",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:478:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 462,
+      "line": 478,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -69543,9 +69885,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:217:5",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:218:5",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 217,
+      "line": 218,
       "column": 5,
       "tag": "div",
       "events": [
@@ -69584,9 +69926,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:235:9",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:236:9",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 235,
+      "line": 236,
       "column": 9,
       "tag": "Link",
       "events": [],
@@ -69608,9 +69950,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:252:12",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:253:12",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 252,
+      "line": 253,
       "column": 12,
       "tag": "AuthMock",
       "events": [
@@ -69641,9 +69983,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:483:9",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:484:9",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 483,
+      "line": 484,
       "column": 9,
       "tag": "div",
       "events": [
@@ -69684,9 +70026,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:495:15",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:496:15",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 495,
+      "line": 496,
       "column": 15,
       "tag": "button",
       "events": [
@@ -69715,9 +70057,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:552:13",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:532:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 552,
+      "line": 532,
+      "column": 11,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/register",
+      "disabled": null,
+      "declarationSha256": "47e4b043614a073e0af9848dfbdd6fad09787dce5e3d2b596dc8340787a46c40",
+      "routeIds": [
+        "/how-it-works"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:559:13",
+      "file": "frontend/src/pages/landing/CoachingPage.jsx",
+      "line": 559,
       "column": 13,
       "tag": "button",
       "events": [
@@ -69746,9 +70113,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:567:13",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:574:13",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 567,
+      "line": 574,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -69770,9 +70137,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:599:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:606:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 599,
+      "line": 606,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -69795,9 +70162,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:602:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:609:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 602,
+      "line": 609,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -69897,7 +70264,7 @@
       ],
       "destination": "#learners",
       "disabled": null,
-      "declarationSha256": "354590f28fcd5ca83828eec7bea4fe19b9955b02bebdf11b83f6c6ef89bda852",
+      "declarationSha256": "de28a0b4531ce12030a800aa3f1d0554469831635c9289e9de213e157221a2a5",
       "routeIds": [
         "/community"
       ],
@@ -70344,9 +70711,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:128:7",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:129:7",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 128,
+      "line": 129,
       "column": 7,
       "tag": "Link",
       "events": [],
@@ -70368,9 +70735,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:225:25",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:226:25",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 225,
+      "line": 226,
       "column": 25,
       "tag": "button",
       "events": [
@@ -70399,9 +70766,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:281:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:282:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 281,
+      "line": 282,
       "column": 23,
       "tag": "button",
       "events": [
@@ -70430,9 +70797,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:295:19",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:296:19",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 295,
+      "line": 296,
       "column": 19,
       "tag": "button",
       "events": [
@@ -70461,9 +70828,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:314:29",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:315:29",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 314,
+      "line": 315,
       "column": 29,
       "tag": "button",
       "events": [
@@ -70494,9 +70861,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:337:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:338:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 337,
+      "line": 338,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -70518,9 +70885,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:418:27",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:419:27",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 418,
+      "line": 419,
       "column": 27,
       "tag": "button",
       "events": [
@@ -70547,9 +70914,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:429:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:430:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 429,
+      "line": 430,
       "column": 23,
       "tag": "button",
       "events": [
@@ -70576,9 +70943,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:473:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:474:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 473,
+      "line": 474,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -70601,9 +70968,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:522:17",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:523:17",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 522,
+      "line": 523,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -70625,9 +70992,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:123:13",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:543:13",
+      "file": "frontend/src/pages/landing/CookiesPage.jsx",
+      "line": 543,
+      "column": 13,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/contact",
+      "disabled": null,
+      "declarationSha256": "52bb827d4611c5d8b14fbe49bad36d6bba9927f311597a5bcbd350098c01091f",
+      "routeIds": [
+        "/cookies"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:124:13",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 123,
+      "line": 124,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -70650,9 +71042,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:140:13",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:141:13",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 140,
+      "line": 141,
       "column": 13,
       "tag": "button",
       "events": [
@@ -70679,9 +71071,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:194:19",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:195:19",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 194,
+      "line": 195,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -70703,9 +71095,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:202:19",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:203:19",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 202,
+      "line": 203,
       "column": 19,
       "tag": "button",
       "events": [],
@@ -70727,9 +71119,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:250:13",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:218:11",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 250,
+      "line": 218,
+      "column": 11,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/how-it-works",
+      "disabled": null,
+      "declarationSha256": "d317e3ca2a4dda258f0f4e7099f8cb43a15067d2944faaaf6c2f8f443988bef4",
+      "routeIds": [
+        "/download"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:256:13",
+      "file": "frontend/src/pages/landing/DownloadPage.jsx",
+      "line": 256,
       "column": 13,
       "tag": "form",
       "events": [
@@ -70756,9 +71173,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:253:17",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:259:17",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 253,
+      "line": 259,
       "column": 17,
       "tag": "input",
       "events": [
@@ -70788,9 +71205,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:267:17",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:273:17",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 267,
+      "line": 273,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -70812,9 +71229,59 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:359:11",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:312:9",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 359,
+      "line": 312,
+      "column": 9,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/contact",
+      "disabled": null,
+      "declarationSha256": "0bd5158fd954ab21aedcbf31f7bf93f900c42e4bfa539c28caf953e3013ea078",
+      "routeIds": [
+        "/download"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:339:11",
+      "file": "frontend/src/pages/landing/DownloadPage.jsx",
+      "line": 339,
+      "column": 11,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/help",
+      "disabled": null,
+      "declarationSha256": "91326f52eefa7ecf7feb7e5e8c7b3e63386acd1c63e8cff970fa0642eeabc7ec",
+      "routeIds": [
+        "/download"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:375:11",
+      "file": "frontend/src/pages/landing/DownloadPage.jsx",
+      "line": 375,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -70837,9 +71304,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:362:11",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:378:11",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 362,
+      "line": 378,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -70982,9 +71449,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:173:9",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:174:9",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 173,
+      "line": 174,
       "column": 9,
       "tag": "button",
       "events": [
@@ -71013,9 +71480,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:178:13",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:179:13",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 178,
+      "line": 179,
       "column": 13,
       "tag": "button",
       "events": [
@@ -71044,9 +71511,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:190:9",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:191:9",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 190,
+      "line": 191,
       "column": 9,
       "tag": "button",
       "events": [
@@ -71075,15 +71542,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:221:17",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:222:17",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 221,
+      "line": 222,
       "column": 17,
       "tag": "a",
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "141eb5602efa995c62d32c5f1cb0359792c800ab53219144d736ab78bd51d9bc",
+      "declarationSha256": "531cde6bd594cf44c3a415590cd8b11a01a58cdbb6f9142dc19f67ba7f0f53f9",
       "routeIds": [
         "/partners"
       ],
@@ -71099,9 +71566,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:227:17",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:228:17",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 227,
+      "line": 228,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71124,9 +71591,109 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:441:15",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:273:15",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 441,
+      "line": 273,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "#who",
+      "disabled": null,
+      "declarationSha256": "932ab18c32884b6f43ef68f440c03681a288964a5972e910bfcc535000cff4e9",
+      "routeIds": [
+        "/partners"
+      ],
+      "reviewProfile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "classificationReason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:308:15",
+      "file": "frontend/src/pages/landing/PartnersPage.jsx",
+      "line": 308,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "#includes",
+      "disabled": null,
+      "declarationSha256": "a35144e8ba369f10977db7b2380526f727f94890fe40bb76a2ded5020830f34d",
+      "routeIds": [
+        "/partners"
+      ],
+      "reviewProfile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "classificationReason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:417:13",
+      "file": "frontend/src/pages/landing/PartnersPage.jsx",
+      "line": 417,
+      "column": 13,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/contact",
+      "disabled": null,
+      "declarationSha256": "0bd5158fd954ab21aedcbf31f7bf93f900c42e4bfa539c28caf953e3013ea078",
+      "routeIds": [
+        "/partners"
+      ],
+      "reviewProfile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "classificationReason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:448:15",
+      "file": "frontend/src/pages/landing/PartnersPage.jsx",
+      "line": 448,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "#faq",
+      "disabled": null,
+      "declarationSha256": "c1dcf236199b2e5f20d0daca56ff653fdf2106ee70dd6b9cdd97d79448e9c83c",
+      "routeIds": [
+        "/partners"
+      ],
+      "reviewProfile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "classificationReason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:462:15",
+      "file": "frontend/src/pages/landing/PartnersPage.jsx",
+      "line": 462,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -71148,9 +71715,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:447:15",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:468:15",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 447,
+      "line": 468,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -71173,9 +71740,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:472:19",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:493:19",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 472,
+      "line": 493,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -71198,9 +71765,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:486:15",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:507:15",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 486,
+      "line": 507,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -71223,9 +71790,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:534:15",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:555:15",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 534,
+      "line": 555,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -71247,9 +71814,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PartnersPage.jsx:541:15",
+      "id": "frontend/src/pages/landing/PartnersPage.jsx:562:15",
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "line": 541,
+      "line": 562,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -71272,9 +71839,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:169:7",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:170:7",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 169,
+      "line": 170,
       "column": 7,
       "tag": "Link",
       "events": [],
@@ -71296,9 +71863,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:244:25",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:245:25",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 244,
+      "line": 245,
       "column": 25,
       "tag": "button",
       "events": [
@@ -71327,9 +71894,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:302:23",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:303:23",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 302,
+      "line": 303,
       "column": 23,
       "tag": "Link",
       "events": [],
@@ -71352,9 +71919,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:316:19",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:317:19",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 316,
+      "line": 317,
       "column": 19,
       "tag": "button",
       "events": [
@@ -71383,9 +71950,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:335:29",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:336:29",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 335,
+      "line": 336,
       "column": 29,
       "tag": "button",
       "events": [
@@ -71416,9 +71983,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:358:23",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:359:23",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 358,
+      "line": 359,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -71440,9 +72007,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:448:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:449:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 448,
+      "line": 449,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -71465,9 +72032,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:450:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:451:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 450,
+      "line": 451,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -71490,9 +72057,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:468:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:469:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 468,
+      "line": 469,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -71515,9 +72082,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:472:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:473:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 472,
+      "line": 473,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -71540,9 +72107,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:476:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:477:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 476,
+      "line": 477,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -71565,9 +72132,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:516:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:517:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 516,
+      "line": 517,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -71589,9 +72156,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:556:25",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:557:25",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 556,
+      "line": 557,
       "column": 25,
       "tag": "button",
       "events": [
@@ -71620,9 +72187,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:586:23",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:587:23",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 586,
+      "line": 587,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -71644,9 +72211,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:632:17",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:633:17",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 632,
+      "line": 633,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71668,9 +72235,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:113:15",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:653:13",
+      "file": "frontend/src/pages/landing/PrivacyPage.jsx",
+      "line": 653,
+      "column": 13,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/contact",
+      "disabled": null,
+      "declarationSha256": "52bb827d4611c5d8b14fbe49bad36d6bba9927f311597a5bcbd350098c01091f",
+      "routeIds": [
+        "/privacy"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:114:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 113,
+      "line": 114,
       "column": 15,
       "tag": "button",
       "events": [
@@ -71697,9 +72289,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:116:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:117:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 116,
+      "line": 117,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -71722,9 +72314,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:165:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:166:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 165,
+      "line": 166,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -71747,9 +72339,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:196:21",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:197:21",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 196,
+      "line": 197,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -71771,9 +72363,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:200:21",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:201:21",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 200,
+      "line": 201,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -71795,9 +72387,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:229:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:230:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 229,
+      "line": 230,
       "column": 15,
       "tag": "input",
       "events": [
@@ -71810,7 +72402,7 @@
         "event.currentTarget.select"
       ],
       "disabled": null,
-      "declarationSha256": "50c8ad5b605ded2251c3d1d12b7892df267f0db366aacd05cb1fb02d10eba494",
+      "declarationSha256": "332bfc3ad6cf49f7ccb3697900a9aba663ac1a96383e5ed74cf8ec5f33d7e378",
       "routeIds": [
         "/referral"
       ],
@@ -71826,9 +72418,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:239:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:240:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 239,
+      "line": 240,
       "column": 17,
       "tag": "button",
       "events": [
@@ -71855,9 +72447,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:242:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:243:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 242,
+      "line": 243,
       "column": 17,
       "tag": "button",
       "events": [
@@ -71884,9 +72476,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:245:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:246:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 245,
+      "line": 246,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71909,9 +72501,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:307:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:278:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 307,
+      "line": 278,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "mailto:hello@visionary.org.in?subject=Referral%20question",
+      "disabled": null,
+      "declarationSha256": "d81bca624430d393296f434c12f024bbf19c2dccde640407eedfa5684f96c667",
+      "routeIds": [
+        "/referral"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:313:17",
+      "file": "frontend/src/pages/landing/ReferralPage.jsx",
+      "line": 313,
       "column": 17,
       "tag": "a",
       "events": [],
@@ -71934,9 +72551,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:339:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:345:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 339,
+      "line": 345,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71959,9 +72576,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:342:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:348:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 342,
+      "line": 348,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71984,15 +72601,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:159:18",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:218:13",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 159,
-      "column": 18,
-      "tag": "Link",
+      "line": 218,
+      "column": 13,
+      "tag": "QuietLink",
       "events": [],
       "calls": [],
+      "destination": "#latest",
       "disabled": null,
-      "declarationSha256": "314ea1ea7f247b79f47e6bd5b064f9f5f844589e0c92659be7b73f2d50e8e40e",
+      "declarationSha256": "352adfbc8910b4de858e83880b9325326f39f95a8da4057fce96923e5fa09db3",
       "routeIds": [
         "/research"
       ],
@@ -72008,38 +72626,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:160:10",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:247:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 160,
-      "column": 10,
-      "tag": "a",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{onClick}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "419ffcf524d3d13fdb5b474cb4bc95acaf255527985b52018cb0c4fcfb30bc0a",
-      "routeIds": [
-        "/research"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:249:17",
-      "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 249,
+      "line": 247,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -72062,9 +72651,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:250:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:248:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 250,
+      "line": 248,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -72087,9 +72676,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:266:25",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:264:25",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 266,
+      "line": 264,
       "column": 25,
       "tag": "Link",
       "events": [],
@@ -72112,9 +72701,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:302:25",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:274:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 302,
+      "line": 274,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "#areas",
+      "disabled": null,
+      "declarationSha256": "6a267f5488485dadff4400592ec8508e2f3f77f37e0fc5a9282518a3ba608348",
+      "routeIds": [
+        "/research"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:305:25",
+      "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
+      "line": 305,
       "column": 25,
       "tag": "QuietLink",
       "events": [],
@@ -72136,9 +72750,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:336:15",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:339:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 336,
+      "line": 339,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -72161,9 +72775,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:367:19",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:355:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 367,
+      "line": 355,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/updates",
+      "disabled": null,
+      "declarationSha256": "32d21792e1ab3567665aa2e99832dbbec11b2b7b2783d82d0e6f2e1cf9dfc12d",
+      "routeIds": [
+        "/research"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:375:19",
+      "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
+      "line": 375,
       "column": 19,
       "tag": "QuietLink",
       "events": [],
@@ -72186,9 +72825,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:398:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:406:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 398,
+      "line": 406,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -72211,9 +72850,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:399:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:407:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 399,
+      "line": 407,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -72236,9 +72875,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:435:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:443:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 435,
+      "line": 443,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -72261,9 +72900,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:436:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:444:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 436,
+      "line": 444,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -72286,9 +72925,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:450:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:458:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 450,
+      "line": 458,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -72311,9 +72950,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:460:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:468:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 460,
+      "line": 468,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -72336,9 +72975,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:477:15",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:485:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 477,
+      "line": 485,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -72361,9 +73000,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:154:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:155:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 154,
+      "line": 155,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -72386,9 +73025,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:155:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:156:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 155,
+      "line": 156,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -72411,9 +73050,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:156:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:157:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 156,
+      "line": 157,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -72436,9 +73075,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:157:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:158:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 157,
+      "line": 158,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -72461,9 +73100,58 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:226:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:180:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 226,
+      "line": 180,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "#protections",
+      "disabled": null,
+      "declarationSha256": "18f4d87fc17f76e5a004b4d5d54acfea9f2864a95abfba1c6c8d80bb32b0963e",
+      "routeIds": [
+        "/safety"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:208:15",
+      "file": "frontend/src/pages/landing/SafetyPage.jsx",
+      "line": 208,
+      "column": 15,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "b55520347be0992c53524bba18127aa2cb018d2d632cfe3f38bf735f50eb0c22",
+      "routeIds": [
+        "/safety"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:237:21",
+      "file": "frontend/src/pages/landing/SafetyPage.jsx",
+      "line": 237,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -72485,9 +73173,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:258:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:269:21",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 258,
+      "line": 269,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -72509,9 +73197,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:284:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:295:21",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 284,
+      "line": 295,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -72533,9 +73221,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:290:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:301:21",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 290,
+      "line": 301,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -72558,9 +73246,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:327:17",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:338:17",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 327,
+      "line": 338,
       "column": 17,
       "tag": "a",
       "events": [],
@@ -72582,9 +73270,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:333:17",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:344:17",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 333,
+      "line": 344,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -72701,7 +73389,7 @@
         "setQ"
       ],
       "disabled": null,
-      "declarationSha256": "48a6313505d289bf354def5299797247b9575be6df75955afb928e445ffcb0f4",
+      "declarationSha256": "8133c721181a57bf1ab19a80f16591ca31c1a6c58a4c09c265bfa87cd66c7ba1",
       "routeIds": [
         "/help"
       ],
@@ -72764,7 +73452,7 @@
         "setTopicId"
       ],
       "disabled": null,
-      "declarationSha256": "a2390d831ec93cc6ed388addf9851b6825995baaf72a302988462103b98a7f6b",
+      "declarationSha256": "c0eb3e12a0412f3565061a35212d6d39203f91b6be191728295702f2113248eb",
       "routeIds": [
         "/help"
       ],
@@ -72869,7 +73557,7 @@
       "calls": [],
       "destination": "mailto:hello@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "2b883401f920ac85fd07a8ca7d20491396aa1f858c21f6c9c548df00917bdbb8",
+      "declarationSha256": "cef0e6ad70a4b7453a503e84e5e5e1c6b65857887f53b7600ba8d58409fb38f3",
       "routeIds": [
         "/help"
       ],
@@ -72894,7 +73582,7 @@
       "calls": [],
       "destination": "mailto:hello@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "f2e9d82fef65479717fe99dc63c8461b6269bbd88661b6b2351bdbdc6570964a",
+      "declarationSha256": "fdeb48567d0f98f247919394309f58ec7d28d5648e0fbbc9de1e13bf6fd81819",
       "routeIds": [
         "/help"
       ],
@@ -72919,7 +73607,7 @@
       "calls": [],
       "destination": "mailto:safety@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "87c7a19f6a4d605742aac7a1b4afe6d71e6ca067b39adb0601581376a36ef283",
+      "declarationSha256": "fc79575ceacb348e10663aba7f3dd64d39b26bd075bb4fbd4431599c882d714e",
       "routeIds": [
         "/help"
       ],
@@ -72935,9 +73623,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:153:7",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:154:7",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 153,
+      "line": 154,
       "column": 7,
       "tag": "Link",
       "events": [],
@@ -72959,9 +73647,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:227:25",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:228:25",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 227,
+      "line": 228,
       "column": 25,
       "tag": "button",
       "events": [
@@ -72990,9 +73678,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:283:23",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:284:23",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 283,
+      "line": 284,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -73015,9 +73703,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:297:19",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:298:19",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 297,
+      "line": 298,
       "column": 19,
       "tag": "button",
       "events": [
@@ -73046,9 +73734,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:316:29",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:317:29",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 316,
+      "line": 317,
       "column": 29,
       "tag": "button",
       "events": [
@@ -73079,9 +73767,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:339:23",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:340:23",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 339,
+      "line": 340,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -73103,9 +73791,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:424:21",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:425:21",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 424,
+      "line": 425,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -73113,31 +73801,6 @@
       "destination": "mailto:security@visionary.org.in",
       "disabled": null,
       "declarationSha256": "8bf3892868b92d0e2bbcdac06f6d10b9886c85047cff17e12c27799252b2f4ea",
-      "routeIds": [
-        "/security"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:512:21",
-      "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 512,
-      "column": 21,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "destination": "/login",
-      "disabled": null,
-      "declarationSha256": "50ca2bd346b79c8bcb1e101351b133cc8e35c5a83a0b91f764a47c2a8ba72781",
       "routeIds": [
         "/security"
       ],
@@ -73160,6 +73823,31 @@
       "tag": "Link",
       "events": [],
       "calls": [],
+      "destination": "/login",
+      "disabled": null,
+      "declarationSha256": "50ca2bd346b79c8bcb1e101351b133cc8e35c5a83a0b91f764a47c2a8ba72781",
+      "routeIds": [
+        "/security"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:514:21",
+      "file": "frontend/src/pages/landing/SecurityPage.jsx",
+      "line": 514,
+      "column": 21,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
       "destination": "/dashboard/settings",
       "disabled": null,
       "declarationSha256": "c87da624bd9e29d217c733968120fe213b6f4886fc7cabff70ad83ef8bbbf5d6",
@@ -73178,9 +73866,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:522:21",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:523:21",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 522,
+      "line": 523,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -73203,15 +73891,40 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:570:17",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:571:17",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 570,
+      "line": 571,
       "column": 17,
       "tag": "Link",
       "events": [],
       "calls": [],
       "disabled": null,
       "declarationSha256": "067ac365fb3c2779a939c0bae7edaacd368658b2421bd9a211774a000e4d84e1",
+      "routeIds": [
+        "/security"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:591:13",
+      "file": "frontend/src/pages/landing/SecurityPage.jsx",
+      "line": 591,
+      "column": 13,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/contact",
+      "disabled": null,
+      "declarationSha256": "52bb827d4611c5d8b14fbe49bad36d6bba9927f311597a5bcbd350098c01091f",
       "routeIds": [
         "/security"
       ],
@@ -73347,9 +74060,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:146:7",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:147:7",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 146,
+      "line": 147,
       "column": 7,
       "tag": "Link",
       "events": [],
@@ -73371,9 +74084,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:220:25",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:221:25",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 220,
+      "line": 221,
       "column": 25,
       "tag": "button",
       "events": [
@@ -73402,9 +74115,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:276:23",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:277:23",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 276,
+      "line": 277,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -73427,9 +74140,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:290:19",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:291:19",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 290,
+      "line": 291,
       "column": 19,
       "tag": "button",
       "events": [
@@ -73458,9 +74171,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:309:29",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:310:29",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 309,
+      "line": 310,
       "column": 29,
       "tag": "button",
       "events": [
@@ -73491,9 +74204,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:332:23",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:333:23",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 332,
+      "line": 333,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -73515,9 +74228,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:471:21",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:472:21",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 471,
+      "line": 472,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -73540,15 +74253,40 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TermsPage.jsx:518:17",
+      "id": "frontend/src/pages/landing/TermsPage.jsx:519:17",
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "line": 518,
+      "line": 519,
       "column": 17,
       "tag": "Link",
       "events": [],
       "calls": [],
       "disabled": null,
       "declarationSha256": "067ac365fb3c2779a939c0bae7edaacd368658b2421bd9a211774a000e4d84e1",
+      "routeIds": [
+        "/terms"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/TermsPage.jsx:539:13",
+      "file": "frontend/src/pages/landing/TermsPage.jsx",
+      "line": 539,
+      "column": 13,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/contact",
+      "disabled": null,
+      "declarationSha256": "52bb827d4611c5d8b14fbe49bad36d6bba9927f311597a5bcbd350098c01091f",
       "routeIds": [
         "/terms"
       ],
@@ -73573,7 +74311,7 @@
       "calls": [],
       "destination": "#signup",
       "disabled": null,
-      "declarationSha256": "a46886516cef15b48cd5a3147e39081c2889e20080480cbb2297f9aaec177d75",
+      "declarationSha256": "19e5f25a4b357f96436fcb124de421bcfb2c2544f58f76107e4d0d67a4ca2a98",
       "routeIds": [
         "/updates"
       ],
@@ -73834,7 +74572,7 @@
         "setName"
       ],
       "disabled": null,
-      "declarationSha256": "275b5eace56e155206588b58182e354e164919d413382a5c5461c223973c2aa1",
+      "declarationSha256": "32468a26065934d5093955bab6321455024fb35dd636b9e9526796220dc3d453",
       "routeIds": [
         "/updates"
       ],
@@ -73865,7 +74603,7 @@
         "setEmail"
       ],
       "disabled": null,
-      "declarationSha256": "8133eb539bb3fd8acd1a1b18194fbaf52f70eaa7f942e1519540ef1ccc299147",
+      "declarationSha256": "f56b0a22eaa588250b6943b194e57c702459c87f74804eb8f48ab4b368b3dab8",
       "routeIds": [
         "/updates"
       ],
@@ -74019,9 +74757,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:254:15",
+      "id": "frontend/src/pages/Landing.jsx:255:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 254,
+      "line": 255,
       "column": 15,
       "tag": "ProgressDots",
       "events": [
@@ -74048,9 +74786,34 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:358:17",
+      "id": "frontend/src/pages/Landing.jsx:296:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 358,
+      "line": 296,
+      "column": 11,
+      "tag": "QuietLink",
+      "events": [],
+      "calls": [],
+      "destination": "/how-it-works",
+      "disabled": null,
+      "declarationSha256": "3d6af93c8704a1c4848d947d8c951445b1761b6a0aff7f0b0913abcb76feb9ea",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:364:17",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 364,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -74072,9 +74835,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:448:13",
+      "id": "frontend/src/pages/Landing.jsx:454:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 448,
+      "line": 454,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -77704,7 +78467,7 @@
     },
     {
       "file": "frontend/src/components/landing/AboutUsHero.jsx",
-      "sourceSha256": "cfdcc8eaaebf8ec4e18c3e0f29f8dd3dfc395bd12af99509e90bb76551161601"
+      "sourceSha256": "05753a226db484ab0e86061033d8a399e956b81f42405050a560c73df2e5018e"
     },
     {
       "file": "frontend/src/components/landing/Breadcrumb.jsx",
@@ -77716,15 +78479,15 @@
     },
     {
       "file": "frontend/src/components/landing/LandingFAQ.jsx",
-      "sourceSha256": "a51eca637e8929f3cd57df3a75331905c278feb36f8265196d790905094c9b81"
+      "sourceSha256": "d1db2550053a25cfd7f2c8579f7b0c4915f0c7fa168243384a1b62d746622df8"
     },
     {
       "file": "frontend/src/components/landing/LandingFooter.jsx",
-      "sourceSha256": "97ef1681a847d1959c35bfd4867bd8de1b6b0d125bcb6f7d982ce05dc56b75ae"
+      "sourceSha256": "df7d4d71fb8a388ea935e969d9af1c5dd274e736961a9de4469b0b09450b15ba"
     },
     {
       "file": "frontend/src/components/landing/LandingNav.jsx",
-      "sourceSha256": "297e7471c7305b9987be8acb54d07bb84e450fa6aaf2862d74f2d33d1830f13d"
+      "sourceSha256": "3fd840d7c4d99af68d5e2d3f80e27c971c82fd50db2267523ba901d1d5e13c91"
     },
     {
       "file": "frontend/src/components/landing/LazyImage.jsx",
@@ -77736,15 +78499,19 @@
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
-      "sourceSha256": "bd67f9e386dbeb318b6f5d94da8e6688fa997dba7ada20ed20aa380ef63b597f"
+      "sourceSha256": "d628f42b5b1cbd1b3e94703438d4b9d6d8817a8f2bc57caa773a42ef019c3f74"
     },
     {
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "sourceSha256": "73acfd70f4e43d6cf57a20a2c280431ccde9100d38d431b42addb5d19ee7a472"
+      "sourceSha256": "abb7271c18d7303cd68da618d0de9716296368813b3216506cddc7442cf99429"
     },
     {
       "file": "frontend/src/components/landing/PolicyTabs.jsx",
       "sourceSha256": "c268e54182406a8cb836e4f493ea088dac76030d65a46bc62edf3ce9ff4786d4"
+    },
+    {
+      "file": "frontend/src/components/landing/QuietLink.jsx",
+      "sourceSha256": "a9b50e0e51072102ebc59b11ded72de1721aad76eb6c26d8a2a7dfc8bd8b8a7f"
     },
     {
       "file": "frontend/src/components/landing/SpotIllustration.jsx",
@@ -77768,7 +78535,7 @@
     },
     {
       "file": "frontend/src/components/landing/ValuesStrip.jsx",
-      "sourceSha256": "1a7d352618f23dcff8265424f9f69e8b694ea6b1d2173ecc5910955e5bb31916"
+      "sourceSha256": "8e2079cfa60eb40b482e11a1ec2e303a34bc57943f90bae5bbea5f4f60e67f4c"
     },
     {
       "file": "frontend/src/components/onboarding/ChipMultiSelect.jsx",
@@ -78548,23 +79315,23 @@
     },
     {
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "sourceSha256": "b0a8e20c0a0bed37f5ea3ad6145acc232df946073b6532787358d1e89be87c0b"
+      "sourceSha256": "23d1528a181c8d07378045c95e6a41cd1a1351864bbbd3073320bc611d6b0626"
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "2ebdfd2628ca4d216eb0515356af8024ecdd503a8b96f5350f4d3e6ba9a5f859"
+      "sourceSha256": "00535a94726f209176f8e779758f3da1ea638bc72d01e04e2c628bdc7625f71c"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "c063e465184579f3af057cde945f603d74394c7e62419c37c69d5e15fb09d159"
+      "sourceSha256": "07aee66fd0979c0bf895b3c7a6e051dca07dad959df485653b8cd1cf72bb5c01"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "sourceSha256": "cbc9fefb2fde34c9273b508d56fd2a595e3f97f5cf718157851cb994202276fa"
+      "sourceSha256": "3daf7d2ad3d1d46f6740ad9233b9d9e89c9d49c7f874894cb9c380e7413a713e"
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "sourceSha256": "988ee246d666129ddb49001fcb412793c9533d5267ec13a20160e1a96c335465"
+      "sourceSha256": "0de1e89955d122ed51e79c1c18d97b36b9b8043470bdca57b9d843a1e5c55a94"
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
@@ -78572,19 +79339,19 @@
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "4864bac24d54214dbdd02bad3951107f8b992e8b23acf9b36073f4ab969c8a82"
+      "sourceSha256": "6428893d5eb696546663470171b3be313adf457976f438943317df19ec0a5a92"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
-      "sourceSha256": "267adbd561f5c0152d45eb23758e0f8fde5cd5c1c3809818abe5b0e7f5b8c911"
+      "sourceSha256": "ed6142ef542ef9c9e1416bb66af81c98d2f86301bf42c21132f80f05deade31a"
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "sourceSha256": "cb068ce8b81f0e12d851d14e542d7ab0cb0b8f14d6027e30b2196cc569ea3cc0"
+      "sourceSha256": "bb31322e1564056c1b43d1fbab2fd4e30c124628d61b2945f028bc0c1e068964"
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "sourceSha256": "ad81e89f896db50874a7240dda04e0be21cac33f963979739768f2b53d53dc40"
+      "sourceSha256": "ec8c0a732c32c165df04948ba0c7f5a1df437a8d61a91b9e83f81f61be55fff1"
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
@@ -78596,31 +79363,31 @@
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "sourceSha256": "37d4bd51825acf4919e8a8325b272ea710a131a04929bcbf82d2f4eedcc31564"
+      "sourceSha256": "d69188501362d15e7f4910df74baa6d278e7e8bd90525e22f87de33c95fbb8e4"
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "0791401c54f5d8148a693cf807734317b8ec524c20d3f5693ebdb83c4c85e75f"
+      "sourceSha256": "37047492eb3c49dcfe92053cf33eb27c9de28bf4b3b3895a9e39f5c00ec7cf9f"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "sourceSha256": "318ae969ef9126d0d5a7637b4a7557124653614b7ab10c548a15c6a025da9d84"
+      "sourceSha256": "3c86f2a0f04367c48e0b465c96cead07d875245f80c4e3935f113fa17e414167"
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "sourceSha256": "d6264c400de20e821cf6f46511d0dc022d1bbf497c515899dbbd26a5a94282ad"
+      "sourceSha256": "1e6163024df704c59f077e31edba5d23813a88d1a73044d5a66838ded7eca2cc"
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "sourceSha256": "65eced9411bd3fa01f8645c5d2865124c8046a3b6d8e6dd1fae41823b34e8e55"
+      "sourceSha256": "40ece9b690a5364156212d7f651ca00450c72f0dfde0698d5bfb741ab35d82c0"
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "sourceSha256": "1482408388ff93c6bf03583b10c6a87c62a577a2793edf647788b33e0e1c09b0"
+      "sourceSha256": "5e10f51509c6844bc272044db34e7f466ac68ccd4c666be4136e4d82c4df45e7"
     },
     {
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "sourceSha256": "777707e4b518cb7351bec2eeca561edd5f7585597015f8e1c6ba4180bb5481a2"
+      "sourceSha256": "56a5a1ebdb4ac1a643fbbfd8e524ae167b837ed7ab8478d0e1511396202524b7"
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
@@ -78632,15 +79399,15 @@
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "sourceSha256": "55ff5da42b84318264945d09540fa16031c41fd42cc7e3240d1bef0ec89985e5"
+      "sourceSha256": "d1e6be3bc9a7260370026c24be78474ba8b4e0f25b624c3f6391137e46d85c7a"
     },
     {
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "sourceSha256": "4cb3c2987d12c224fb6c6512b8c47a4f5eef6b891a27f5ea53bb4d4b534cde83"
+      "sourceSha256": "589658199973ff9b94668daecaf5dd3f805271964648475014f941628d8b3ec0"
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "f3bdfca9c0580dd6270d79d9ca7564cc430295e55dc530ca4d4ada93be2839d1"
+      "sourceSha256": "1e6d0fa9878f958e668099a853e05f11f98885330cc6f0da2f47653fc470cfad"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -80142,6 +80909,16 @@
         "state": "connected",
         "execution": "client",
         "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+        "followUp": [
+          "SCOPE-06",
+          "PLAT-01"
+        ]
+      },
+      "frontend/src/components/landing/QuietLink.jsx": {
+        "profile": "client-presentation",
+        "state": "connected",
+        "execution": "client",
+        "reason": "Measured landing-system quiet-link primitive (B2/FAP-47): the one quiet next-step anatomy shared by door rows and header links. Client-side presentation and navigation only (router Link, plain anchors, optional mailto); callbacks are not attached. No server connection, data authority or educational coverage is claimed.",
         "followUp": [
           "SCOPE-06",
           "PLAT-01"
@@ -82135,13 +82912,13 @@
   "counts": {
     "routes": 68,
     "registeredEndpoints": 35,
-    "controlDeclarations": 1643,
-    "routeReachableDeclarations": 1491,
-    "controlFiles": 219,
+    "controlDeclarations": 1668,
+    "routeReachableDeclarations": 1516,
+    "controlFiles": 220,
     "states": {
-      "connected": 506,
+      "connected": 524,
       "preview": 931,
-      "missing": 52,
+      "missing": 59,
       "intentionally-unreleased": 154
     }
   }

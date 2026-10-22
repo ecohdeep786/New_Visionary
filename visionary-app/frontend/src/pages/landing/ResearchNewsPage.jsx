@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgHeroChip from "@/assets/student-higher.webp";
@@ -152,14 +153,6 @@ function Reveal({ children, className = "" }) {
   );
 }
 
-function QuietLink({ to, href, onClick, dark = false, children }) {
-  const cls = `inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4 ${
-    dark ? "text-white/85 hover:text-white" : "text-[#0066cc] hover:text-[#0066cc]"
-  } ${onClick ? "cursor-pointer" : ""}`;
-  if (to) return <Link to={to} className={cls}>{children}</Link>;
-  return <a href={href} onClick={onClick} className={cls}>{children}</a>;
-}
-
 export default function ResearchNewsPage() {
   return (
     <div className="page-research min-h-screen bg-white" style={{ fontFamily: fontStack }}>
@@ -210,7 +203,7 @@ export default function ResearchNewsPage() {
               </div>
             </div>
             <div className="relative overflow-hidden rounded-[30px] bg-[#1d1d1f] p-10 sm:p-14">
-              <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-white/60">Visionary Intelligence</p>
+              <p className="apple-eyebrow text-white/60">Visionary Intelligence</p>
               <h3 className="mt-6 max-w-[420px] text-[28px] font-normal leading-[1.2] tracking-[-0.02em] text-white sm:text-[36px]">
                 I am your Intelligence.
               </h3>
@@ -221,6 +214,11 @@ export default function ResearchNewsPage() {
               </div>
             </div>
           </Reveal>
+          <div className="mx-auto max-w-[1240px] px-0 mt-10">
+            <QuietLink href="#latest">
+              What the intelligence does today <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+            </QuietLink>
+          </div>
         </section>
 
         {/* QUOTE BAND — full-width photo band with dark overlay and the
@@ -272,6 +270,11 @@ export default function ResearchNewsPage() {
                 ))}
               </div>
             </div>
+            <div className="mt-10">
+              <QuietLink href="#areas">
+                The research areas, role by role <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
+            </div>
           </Reveal>
         </section>
 
@@ -283,7 +286,7 @@ export default function ResearchNewsPage() {
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
                 Our research drives real understanding.
               </h2>
-              <p className="mx-auto mt-4 max-w-[640px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[640px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 One intelligence, researched across every role the product serves — what it does for each person today, and what comes next.
               </p>
             </div>
@@ -295,7 +298,7 @@ export default function ResearchNewsPage() {
                       <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-contain object-bottom mix-blend-multiply" />
                     </div>
                     <div className={area.flip ? "lg:order-1" : ""}>
-                      <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">{area.role}</p>
+                      <p className="apple-eyebrow text-[#6e6e73]">{area.role}</p>
                       <h3 className="mt-3 text-[28px] font-normal leading-[1.15] tracking-[-0.025em] text-[#1d1d1f] sm:text-[36px]">{area.title}</h3>
                       <p className="mt-4 max-w-[480px] text-[16px] leading-[1.7] text-[#6e6e73]">{area.copy}</p>
                       <div className="mt-6">
@@ -342,11 +345,16 @@ export default function ResearchNewsPage() {
                     <img src={project.photo} alt={project.alt} loading="lazy" decoding="async" className="h-[190px] w-full object-cover" />
                     <div className="flex flex-1 flex-col p-6">
                       <h3 className="text-[21px] font-normal leading-[1.3] text-[#1d1d1f]">{project.title}</h3>
-                      <p className="mt-2 text-[15px] leading-[1.6] text-[#6e6e73]">{project.copy}</p>
+                      <p className="mt-2 text-[16px] leading-[1.6] text-[#6e6e73]">{project.copy}</p>
                     </div>
                   </article>
                 ))}
               </div>
+            </div>
+            <div className="mt-10">
+              <QuietLink to="/updates">
+                The same work, announced plainly <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
             </div>
           </Reveal>
         </section>
@@ -387,10 +395,10 @@ export default function ResearchNewsPage() {
                 <p className="text-[16px] leading-[1.75] text-[#6e6e73]">
                   The mentor began with a question, not a feature: why an explanation reaches one learner and misses another. It is why the product began, and why the research continues.
                 </p>
-                <p className="text-[15px] leading-[1.75] text-[#6e6e73]">
+                <p className="text-[16px] leading-[1.75] text-[#6e6e73]">
                   The method stays the same: begin with a learner need, turn it into a testable product question, design and observe, and share what the evidence supports, with methods and limits described clearly.
                 </p>
-                <p className="text-[15px] leading-[1.75] text-[#6e6e73]">
+                <p className="text-[16px] leading-[1.75] text-[#6e6e73]">
                   Visionary has not published formal research papers yet. When work is ready, this page will link to the method, contributors, evidence, and limitations so readers can assess the finding for themselves.
                 </p>
               </div>
@@ -401,7 +409,7 @@ export default function ResearchNewsPage() {
             </div>
             <div className="rounded-[30px] bg-[#f5f5f7] p-8 sm:p-10">
               <div className="flex items-center justify-between">
-                <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">The first question</p>
+                <p className="apple-eyebrow text-[#6e6e73]">The first question</p>
                 <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[13px] font-medium text-[#0066cc]">01</span>
               </div>
               <h3 className="mt-6 text-[28px] font-normal leading-[1.25] tracking-[-0.02em] text-[#1d1d1f]">
@@ -451,7 +459,7 @@ export default function ResearchNewsPage() {
                   <img src={imgFutureCommunity} alt="A teacher explaining an idea" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
                   <div className="flex flex-1 flex-col p-7 pb-16">
                     <h3 className="text-[23px] font-normal leading-[1.3] text-[#1d1d1f]">Join the community</h3>
-                    <p className="mt-2 text-[15px] leading-[1.65] text-[#6e6e73]">
+                    <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">
                       Learners, teachers, and parents use the product every day, and their experience is a primary source for every question on this page.
                     </p>
                   </div>
@@ -461,7 +469,7 @@ export default function ResearchNewsPage() {
                   <img src={imgFutureCareers} alt="A teammate at work in a shared space" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
                   <div className="flex flex-1 flex-col p-7 pb-16">
                     <h3 className="text-[23px] font-normal leading-[1.3] text-[#1d1d1f]">Work with us</h3>
-                    <p className="mt-2 text-[15px] leading-[1.65] text-[#6e6e73]">
+                    <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">
                       Help turn these questions into a product: research-minded people across engineering, design, and evidence.
                     </p>
                   </div>

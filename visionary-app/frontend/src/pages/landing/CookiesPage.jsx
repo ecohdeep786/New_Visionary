@@ -8,6 +8,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
@@ -30,7 +31,7 @@ const COLORS = {
 
 /* ═══ Link grammar — the approved public quiet link / ink pill, verbatim ═══ */
 const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -96,7 +97,7 @@ const SECTIONS = [
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
+      <div className="mb-3 apple-eyebrow" style={{ color: COLORS.grey }}>
         {number}
       </div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
@@ -216,7 +217,7 @@ export default function CookiesPage() {
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
-                <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</div>
+                <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
                 <nav aria-label="Cookie policy sections">
                   <div className="space-y-1">
                     {SECTIONS.map((section) => {
@@ -253,11 +254,11 @@ export default function CookiesPage() {
               <FadeReveal visible={heroVisible}>
                 <div className="pb-12 pt-2">
                   <div className="flex justify-center"><SpotIllustration subject="cookie" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Cookie policy</p>
+                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Cookie policy</p>
                   <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                     How we use cookies. And how <span className="accent-gradient">you control them.</span>
                   </h1>
-                  <p className="mt-8 max-w-[760px] text-[17.5px] leading-[25px]" style={{ color: COLORS.grey }}>
+                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
                     The short version, then the full list. Only what's needed, nothing extra, nothing sold.
                   </p>
 
@@ -277,7 +278,7 @@ export default function CookiesPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Manage cookies on this device</p>
-                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>Optional choices are saved in this browser only.</p>
+                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>Optional choices are saved in this browser only.</p>
                       <button type="button" onClick={() => scrollToSection("preferences")} className={`mt-1.5 ${quietLink}`}>
                         Set your cookie choices
                         <ChevronIcon className="h-4 w-4" aria-hidden="true" />
@@ -300,8 +301,8 @@ export default function CookiesPage() {
                     className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                   >
                     <span>
-                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
-                      <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
+                      <span className="block apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="mt-1 block text-[16px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
                   </button>
@@ -330,13 +331,13 @@ export default function CookiesPage() {
 
                 {/* AT A GLANCE */}
                 <section className="py-12" aria-labelledby="cookies-summary-title">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Start here</p>
+                  <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="cookies-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
                       <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                         <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
-                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
+                        <span className="mt-5 flex items-center gap-2 text-[16px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
                         <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                       </a>
@@ -394,7 +395,7 @@ export default function CookiesPage() {
                       ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent, and you can opt out anytime."],
                     ].map(([who, what], i, arr) => (
                       <div key={who} className={`py-5 ${i < arr.length - 1 ? "border-b border-[rgba(18,19,23,0.12)]" : ""}`}>
-                        <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
+                        <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
                         <p className="mt-1 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{what}</p>
                       </div>
                     ))}
@@ -454,7 +455,7 @@ export default function CookiesPage() {
                       ].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
-                          <span className="text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
+                          <span className="text-[16px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
                         </li>
                       ))}
                     </ul>
@@ -468,7 +469,7 @@ export default function CookiesPage() {
                     We're transparent about every cookie we use and why. If something isn't clear, reach out.
                   </Paragraph>
                   <div className="mt-8 max-w-[640px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-7">
-                    <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>Write to the team</p>
+                    <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Write to the team</p>
                     <p className="mt-3">
                       <a href="mailto:hello@visionary.org.in?subject=Cookie%20question" className={quietLink}>
                         hello@visionary.org.in
@@ -501,7 +502,7 @@ export default function CookiesPage() {
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[16px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -522,13 +523,26 @@ export default function CookiesPage() {
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
-                    <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
+                    <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
                   <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+            clauses carry no per-module CTAs; the page ends with a way to
+            reach a person). */}
+        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+          <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
+            <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
+              Questions about this policy?
+            </p>
+            <QuietLink to="/contact" className="shrink-0">
+              Talk to a person <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+            </QuietLink>
           </div>
         </section>
       </main>

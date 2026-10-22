@@ -322,12 +322,11 @@ h2.text-\[clamp\(20px\,2vw\,28px\)\] {
   letter-spacing: 0.011em !important;
 }
 
-/* ── Body-size law ── Apple body: 17px/1.47. Supporting 14, aux 16. */
-.text-\[15px\],
-.text-\[16\.5px\] { font-size: 16px !important; }
-.text-\[14\.5px\] { font-size: 14px !important; }
-.text-\[17px\],
-.text-\[17\.5px\] { font-size: 17px !important; }
+/* ── Body-size law ── retired in B2/FAP-47. Every public consumer was
+   re-authored onto the ladder tiers (15→16 aux, 16.5→16, 14.5→14, 17.5→17)
+   and the workspace voice is owned by workspace-typography.css, whose
+   .9375rem rem-key had been flattened to 16px by this law. ──
+════════════════════════════════════════════════════════════════════════ */
 
 /* ── H2 step law ────────────────────────────────────────────────────────
    Long-tail pages carry one-off h2 sizes (30–46px muddle). Snap any h2
@@ -432,18 +431,8 @@ h2.text-\[clamp\(40px\,5\.55vw\,80px\)\] {
   letter-spacing: -0.002em !important;
 }
 
-/* Apple labels: sentence-case bold 21-24px lead-ins (education-initiative
-   "label" tier, measured 21/21/24 at 600). Uppercase kickers stay retired;
-   their grey stays: Apple's own label ink. Public pages only — the
-   workspace keeps the previous law's values unchanged (pre-existing leak,
-   preserved verbatim: out of scope for FAP-34). */
-body:not(:has(.visionary-workspace)) main p.uppercase {
-  text-transform: none !important;
-  letter-spacing: 0.011em !important;
-  font-size: var(--fs-label) !important;
-  font-weight: 600 !important;
-  line-height: 1.19 !important;
-}
+/* The public mask retired; its values now live as the ladder's label role
+   in apple-typography.css (B2 / FAP-47). */
 body:has(.visionary-workspace) main p.uppercase {
   text-transform: none !important;
   letter-spacing: 0 !important;

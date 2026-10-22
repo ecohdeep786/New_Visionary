@@ -15,6 +15,7 @@ import {
 
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import QuietLink from "@/components/landing/QuietLink";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgHero from "@/assets/pro-face-main-1600w.webp";
 import imgStory from "@/assets/student-competitive.webp";
@@ -196,7 +197,7 @@ function HeroCard({ idPrefix = "hero" }) {
     window.location.href = `mailto:${CAREERS_EMAIL}?subject=${subject}&body=${body}`;
   };
 
-  const field = "h-12 w-full rounded-full bg-[#f5f5f7] px-5 text-[15px] text-[#1d1d1f] outline-none transition-colors placeholder:text-[#86868b] focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30";
+  const field = "h-12 w-full rounded-full bg-[#f5f5f7] px-5 text-[16px] text-[#1d1d1f] outline-none transition-colors placeholder:text-[#86868b] focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30";
 
   return (
     <form onSubmit={submit} noValidate>
@@ -286,7 +287,7 @@ export default function CareersPage() {
                   <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
                     Why Visionary
                   </h2>
-                  <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+                  <p className="mx-auto mt-4 max-w-[620px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                     We are a small team solving a real learning problem: helping someone turn confusion into understanding.
                   </p>
                 </div>
@@ -304,11 +305,16 @@ export default function CareersPage() {
                             <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                           </div>
                           <h3 className="mt-5 text-[19px] font-medium leading-[1.3] text-[#1d1d1f]">{item.title}</h3>
-                          <p className="mt-2 text-[15px] leading-[1.65] text-[#6e6e73]">{item.copy}</p>
+                          <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">{item.copy}</p>
                         </article>
                       );
                     })}
                   </div>
+                </div>
+                <div className="mt-10 flex justify-center">
+                  <QuietLink href="#teams">
+                    Meet the areas of work <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+                  </QuietLink>
                 </div>
               </Reveal>
             </section>
@@ -320,7 +326,7 @@ export default function CareersPage() {
                   <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
                     Teams
                   </h2>
-                  <p className="mx-auto mt-4 max-w-[640px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+                  <p className="mx-auto mt-4 max-w-[640px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                     Together, we build a product that helps people keep what they learn. These are areas of work, not advertised vacancies. Current openings, if any, are listed below.
                   </p>
                 </div>
@@ -331,7 +337,7 @@ export default function CareersPage() {
                         <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
                         <div className="flex flex-1 flex-col p-7 pb-16">
                           <h3 className="text-[28px] font-normal leading-[1.3] text-[#1d1d1f]">{area.title}</h3>
-                          <p className="mt-2 text-[15px] leading-[1.6] text-[#6e6e73]">{area.desc}</p>
+                          <p className="mt-2 text-[16px] leading-[1.6] text-[#6e6e73]">{area.desc}</p>
                           <div className="mt-auto pt-6">
                             <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent(`Careers — ${area.title}`)}`}
                               className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
@@ -347,6 +353,11 @@ export default function CareersPage() {
                     ))}
                   </div>
                 </div>
+                <div className="mt-10 flex justify-center">
+                  <QuietLink to="/about">
+                    The story behind the work <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+                  </QuietLink>
+                </div>
               </Reveal>
             </section>
             {/* HOW WE HIRE — the story-page pattern: full-column photograph,
@@ -358,7 +369,7 @@ export default function CareersPage() {
                     loading="lazy" decoding="async" className="aspect-[16/8] w-full object-cover" />
                 </div>
                 <div className="mx-auto max-w-[820px] text-center">
-                  <p className="mt-14 text-[13px] font-medium uppercase tracking-[0.18em] text-[#6e6e73]">How we hire</p>
+                  <p className="mt-14 apple-eyebrow text-[#6e6e73]">How we hire</p>
                   <h2 className="mt-5 text-[36px] font-normal leading-[1.1] tracking-[-0.035em] text-[#1d1d1f] sm:text-[48px]">
                     How to prepare for our hiring process
                   </h2>
@@ -371,10 +382,15 @@ export default function CareersPage() {
                     <li key={step.n} className="grid grid-cols-[48px_1fr] gap-4 border-b border-[rgba(18,19,23,0.12)] py-6 sm:grid-cols-[64px_240px_1fr] sm:gap-6">
                       <span className="text-[14px] font-medium tabular-nums text-[#0066cc]">{step.n}</span>
                       <h3 className="text-[19px] font-normal leading-[1.35] text-[#1d1d1f]">{step.title}</h3>
-                      <p className="col-start-2 text-[15px] leading-[1.65] text-[#6e6e73] sm:col-start-3">{step.copy}</p>
+                      <p className="col-start-2 text-[16px] leading-[1.65] text-[#6e6e73] sm:col-start-3">{step.copy}</p>
                     </li>
                   ))}
                 </ol>
+                <div className="mt-10 flex justify-center">
+                  <QuietLink href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Hiring process question — Visionary")}`}>
+                    Ask a hiring question <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+                  </QuietLink>
+                </div>
               </Reveal>
             </section>
 
@@ -385,7 +401,7 @@ export default function CareersPage() {
                   <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
                     Open roles
                   </h2>
-                  <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+                  <p className="mx-auto mt-4 max-w-[620px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                     This page is the single source for openings. When a role opens, it will be listed here first.
                   </p>
                 </div>
@@ -395,7 +411,7 @@ export default function CareersPage() {
                       <Briefcase className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                     </div>
                     <h3 className="mt-6 text-[28px] font-normal leading-[1.3] text-[#1d1d1f]">No public roles listed right now.</h3>
-                    <p className="mt-3 max-w-[560px] text-[15px] leading-[1.65] text-[#6e6e73]">
+                    <p className="mt-3 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73]">
                       There are no public vacancies at the moment. You can still introduce yourself: the work you share helps us know who to reach when something opens. Sending an introduction is not an application to a listed vacancy and does not guarantee a response.
                     </p>
                     <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2">
@@ -423,7 +439,7 @@ export default function CareersPage() {
                     A fair process starts with clarity.
                   </h2>
                 </div>
-                <div className="space-y-4 text-[15px] leading-[1.65] text-[#6e6e73]">
+                <div className="space-y-4 text-[16px] leading-[1.65] text-[#6e6e73]">
                   <p>
                     We want career information and conversations with our team to be clear and respectful. This page does not describe a formal interview process or published accommodation program.
                   </p>

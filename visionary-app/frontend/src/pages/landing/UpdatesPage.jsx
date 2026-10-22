@@ -94,17 +94,17 @@ export default function UpdatesPage() {
         {/* HERO — editorial statement: eyebrow, display heading, dek, two paths */}
         <section data-section="01-hero" className="px-6 pb-14 pt-10 sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
-            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">News &amp; updates</p>
+            <p data-type="label" className="text-[#6e6e73]">News &amp; updates</p>
             <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#1d1d1f]">
               What&rsquo;s <span className="accent-gradient">new</span> at Visionary.
             </h1>
-            <p className="mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#6e6e73]">
+            <p className="mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
               Product news, new languages, and launch updates as they land, with the date on each one.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#signup"
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
               >
                 Get updates by email
               </a>
@@ -156,7 +156,7 @@ export default function UpdatesPage() {
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-[680px]">
-                <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">The changes, by category</p>
+                <p className="apple-eyebrow text-[#6e6e73]">The changes, by category</p>
                 <h2 id="latest-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
                   Latest updates.
                 </h2>
@@ -202,7 +202,7 @@ export default function UpdatesPage() {
               </div>
             </div>
             {visibleUpdates.length === 0 && (
-              <p className="mt-10 text-center text-[15px] text-[#6e6e73]">No updates in this category yet.</p>
+              <p className="mt-10 text-center text-[16px] text-[#6e6e73]">No updates in this category yet.</p>
             )}
           </Reveal>
         </section>
@@ -212,7 +212,7 @@ export default function UpdatesPage() {
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative grid items-center gap-8 overflow-hidden rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
               <div>
-                <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Research &amp; learning</p>
+                <p className="apple-eyebrow text-[#6e6e73]">Research &amp; learning</p>
                 <h2 id="research-band-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#1d1d1f] sm:text-[38px]">
                   Evidence over claims.
                 </h2>
@@ -239,7 +239,7 @@ export default function UpdatesPage() {
         <section id="signup" aria-labelledby="signup-title" data-section="05-signup" className="scroll-mt-28 bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Stay in the loop</p>
+              <p className="apple-eyebrow text-[#6e6e73]">Stay in the loop</p>
               <h2 id="signup-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
                 Get updates by email.
               </h2>
@@ -302,7 +302,7 @@ export default function UpdatesPage() {
                         <input
                           id="updates-name" name="name" type="text" autoComplete="name" required value={name}
                           onChange={(event) => setName(event.target.value)}
-                          className="h-12 w-full rounded-full bg-[#f5f5f7] px-5 text-[15px] text-[#1d1d1f] outline-none transition-colors placeholder:text-[#86868b] focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30"
+                          className="h-12 w-full rounded-full bg-[#f5f5f7] px-5 text-[16px] text-[#1d1d1f] outline-none transition-colors placeholder:text-[#86868b] focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30"
                         />
                       </div>
                       <div>
@@ -310,7 +310,7 @@ export default function UpdatesPage() {
                         <input
                           id="updates-email" name="email" type="email" autoComplete="email" required value={email}
                           onChange={(event) => setEmail(event.target.value)}
-                          className="h-12 w-full rounded-full bg-[#f5f5f7] px-5 text-[15px] text-[#1d1d1f] outline-none transition-colors placeholder:text-[#86868b] focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30"
+                          className="h-12 w-full rounded-full bg-[#f5f5f7] px-5 text-[16px] text-[#1d1d1f] outline-none transition-colors placeholder:text-[#86868b] focus:bg-white focus:ring-2 focus:ring-[#0066cc]/30"
                         />
                       </div>
                     </div>
@@ -371,7 +371,7 @@ export default function UpdatesPage() {
         {/* CONTACT one-liner */}
         <section aria-label="Contact" data-section="06-contact" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex max-w-[1240px] flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-[15px] text-[#6e6e73]">Questions about updates?</p>
+            <p className="text-[16px] text-[#6e6e73]">Questions about updates?</p>
             <a
               href="mailto:hello@visionary.org.in"
               className="inline-flex min-h-11 w-fit items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"

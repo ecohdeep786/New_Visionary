@@ -8,6 +8,7 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
+import QuietLink from "@/components/landing/QuietLink";
 import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
@@ -99,11 +100,11 @@ function DownloadHeroSection() {
   return (
     <section ref={ref} data-section="01-hero" className="relative overflow-hidden px-6 pb-24 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
+        <p data-type="label" className="text-center" style={{ color: COLORS.grey }}>Download</p>
         <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
           Get <span className="accent-gradient">Visionary</span> on every device.
         </h1>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           On the phone, tablet or laptop you already own.
         </p>
 
@@ -159,9 +160,9 @@ function DownloadPlatformsSection() {
   return (
     <section ref={ref} id="platforms" data-section="02-platforms" className="relative scroll-mt-24 bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
+        <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>Supported platforms</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
-        <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>
           Use Visionary on the web today. Native apps are being prepared
           {detected ? (
             <> for your device, including <span style={{ color: COLORS.blue }}>{PLATFORMS.find((p) => p.id === detected)?.name}</span>.</>
@@ -212,6 +213,11 @@ function DownloadPlatformsSection() {
             );
           })}
           </div>
+        </div>
+        <div className="mt-10 flex justify-center">
+          <QuietLink to="/how-it-works">
+            See how the product works first <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+          </QuietLink>
         </div>
       </FadeReveal>
     </section>
@@ -299,9 +305,14 @@ function DownloadSyncSection() {
         <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
         on every other.
       </p>
-      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
+      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
         Conversations, progress, and context sync across web, desktop, and mobile, automatically and privately.
       </p>
+      <div className="mt-9 flex justify-center">
+        <QuietLink to="/contact">
+          Questions about your devices <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+        </QuietLink>
+      </div>
     </section>
   );
 }
@@ -312,7 +323,7 @@ function DownloadRequirementsSection() {
   return (
     <section ref={ref} data-section="04-requirements" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
+        <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>System requirements</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
         <div className="mx-auto mt-12 w-full max-w-[1240px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -323,6 +334,11 @@ function DownloadRequirementsSection() {
             </div>
           ))}
           </div>
+        </div>
+        <div className="mt-10 flex justify-center">
+          <QuietLink to="/help">
+            Setup guides live in the Help center <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+          </QuietLink>
         </div>
       </FadeReveal>
     </section>
@@ -337,7 +353,7 @@ function DownloadTrustBand() {
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
-          <p className="text-center font-normal tracking-[0.24px] text-[15px]" style={{ color: COLORS.ink }}>
+          <p className="text-center font-normal tracking-[0.24px] text-[16px]" style={{ color: COLORS.ink }}>
             Signed builds · Automatic updates · Your data stays yours on every device.
           </p>
         </div>

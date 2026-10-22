@@ -1163,7 +1163,7 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           <RevealItem idx={3}>
           {routeLinks?.length ? (
             <p
-              className={`mt-8 text-center font-normal tracking-[0] text-[15px] leading-[1.5] ${closing ? "text-white/50" : ""}`}
+              className={`mt-8 text-center font-normal tracking-[0] text-[16px] leading-[1.5] ${closing ? "text-white/50" : ""}`}
               style={closing ? undefined : { color: color.slate }}
             >
               See how it works for{" "}

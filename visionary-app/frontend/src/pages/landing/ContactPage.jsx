@@ -113,7 +113,7 @@ function ResourceCard({ Icon, label, title, to }) {
       <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
         <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
       </span>
-      <span className="mt-5 block text-[12px] font-medium uppercase tracking-[0.12em] text-[#6e6e73]">{label}</span>
+      <span className="mt-5 block apple-eyebrow text-[#6e6e73]">{label}</span>
       <h3 className="mt-1.5 max-w-[220px] text-[17px] font-medium leading-[1.4] text-[#1d1d1f]">{title}</h3>
       <span className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center" aria-hidden="true">
         <ArrowRight className="h-5 w-5 text-[#0066cc] transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transform-none" />
@@ -139,7 +139,7 @@ export default function ContactPage() {
             <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
               Guidance to <span className="accent-gradient">get you going</span> on Visionary
             </h1>
-            <p className="mx-auto mt-6 max-w-[680px] text-[17.5px] leading-[25px] text-[#6e6e73]">
+            <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[25px] text-[#6e6e73]">
               Find the answers and support you need to make the most of Visionary.
             </p>
             <div className="mt-8 flex justify-center">
@@ -171,7 +171,7 @@ export default function ContactPage() {
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[46px]">
                 {tab.heading}
               </h2>
-              <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[620px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 From how-to guides to safety and community, these resources help you make the most of Visionary.
               </p>
             </div>
@@ -198,7 +198,7 @@ export default function ContactPage() {
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[46px]">
                 Your questions answered
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 From the basics to beyond: information and support on the topics we hear most.
               </p>
               <div className="mt-6 flex justify-center">
@@ -246,7 +246,7 @@ export default function ContactPage() {
         <section id="routes" data-section="05-routes" className="scroll-mt-32 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Contact routes</p>
+              <p className="apple-eyebrow text-[#6e6e73]">Contact routes</p>
               <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">Start with what you need.</h2>
               <p className="mt-4 text-[16px] leading-[1.75] text-[#6e6e73]">Each option opens a message in your email app, addressed to the relevant team. {RESPONSE_TIMES.general}</p>
             </div>
@@ -257,7 +257,7 @@ export default function ContactPage() {
                     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
                       <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                     </span>
-                    <span className="mt-5 block text-[12px] font-medium uppercase tracking-[0.12em] text-[#6e6e73]">{category}</span>
+                    <span className="mt-5 block apple-eyebrow text-[#6e6e73]">{category}</span>
                     <h3 className="mt-1.5 text-[17px] font-medium leading-[1.35] text-[#1d1d1f]">{title}</h3>
                     <p className="mt-2 flex-1 text-[14px] leading-[1.6] text-[#6e6e73]">{description}</p>
                     <EmailLink email={email} subject={subject} className="mt-4">{email}</EmailLink>
@@ -272,12 +272,12 @@ export default function ContactPage() {
         <section id="grievance" data-section="06-grievance" className="scroll-mt-32 bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">Privacy grievance</p>
+              <p className="apple-eyebrow text-[#6e6e73]">Privacy grievance</p>
               <h2 className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#1d1d1f] sm:text-[38px]">A formal route for privacy concerns.</h2>
-              <p className="mt-4 max-w-[420px] text-[15px] leading-[1.75] text-[#6e6e73]">For a privacy grievance under India's DPDP Act, contact the named Grievance Officer directly.</p>
+              <p className="mt-4 max-w-[420px] text-[16px] leading-[1.75] text-[#6e6e73]">For a privacy grievance under India's DPDP Act, contact the named Grievance Officer directly.</p>
             </div>
             <div className="rounded-[20px] bg-white p-6 sm:p-8">
-              <span className="block text-[12px] font-medium uppercase tracking-[0.14em] text-[#6e6e73]">{GRIEVANCE_OFFICER.role}</span>
+              <span className="block apple-eyebrow text-[#6e6e73]">{GRIEVANCE_OFFICER.role}</span>
               <h3 className="mt-3 text-[28px] font-normal text-[#1d1d1f]">{GRIEVANCE_OFFICER.name}</h3>
               <p className="mt-3 max-w-[650px] text-[14px] leading-[1.7] text-[#6e6e73]">{GRIEVANCE_OFFICER.response}</p>
               <EmailLink email={GRIEVANCE_OFFICER.email} subject="Privacy grievance" className="mt-4" />

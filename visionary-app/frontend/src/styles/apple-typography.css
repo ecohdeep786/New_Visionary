@@ -199,7 +199,7 @@
     font-size: var(--fs-caption);
     font-weight: 600;
     line-height: var(--lh-caption);
-    letter-spacing: -0.01em;
+    letter-spacing: var(--track-meta);
     font-family: var(--font-public);
     text-transform: none !important;
   }
@@ -377,9 +377,11 @@
   letter-spacing: var(--track-meta) !important;
 }
 
-/* Quiet section tags and metadata use the heading weight role. */
+/* Quiet section tags and metadata use the heading weight role.
+   B2/FAP-47: the `.uppercase` arm is retired — public sites were re-authored
+   onto .apple-eyebrow / data-type="label"; the workspace's own p.uppercase law
+   lives in public-bridge.css and is out of scope here. */
 
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(p, span, div, button, label).uppercase,
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-eyebrow,
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-eyebrow {
   font-size: var(--fs-caption) !important;
@@ -387,6 +389,19 @@
   letter-spacing: var(--track-meta) !important;
   text-transform: none !important;
   font-weight: var(--weight-heading) !important;
+}
+
+/* Apple labels: sentence-case bold 21px lead-ins above hero statements
+   (education-initiative "label" tier, measured 21/21/24 at 600). B2 / FAP-47
+   codifies the resolved voice of the retired public uppercase-mask law:
+   opt-in per site via data-type, hero-adjacent kickers only. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) [data-type="label"] {
+  font-size: var(--fs-label) !important;
+  font-weight: 600 !important;
+  line-height: 1.19 !important;
+  letter-spacing: 0.011em !important;
+  text-transform: none !important;
 }
 
 /* Links and actions are a 17px role; embedded links inherit surrounding copy. */

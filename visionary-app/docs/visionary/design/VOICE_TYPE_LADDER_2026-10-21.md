@@ -1,4 +1,4 @@
-# Voice → type ladder (B1, FAP-46) — 2026-10-21
+# Voice → type ladder (B1, FAP-46 · extended by B2, FAP-47) — 2026-10-21
 
 **Law:** assign a `data-type` role, never a new page-specific font size. Every landing
 section carries roles from this page. Raw fluid sizes (`text-[clamp(…)]`) are retired
@@ -26,7 +26,9 @@ sections containing an h1 are deliberately outside the layer.
 | Body voice (chapter subs, spoken lines) | `body` | 17px · lh 1.19048 · track −0.022em · 400 | persona journey subs (18px), Premium chapter subs (18px), PersonaSections quote lines (17→21px) |
 | Value cards (name + line) | `value-title` / `value-body` | 19px · lh 1.210526 · track +0.012em | Landing value rows; Premium value grids (already adopted in A5) |
 | Promise/quote chapter statement | `card-chapter` | 48 / 40 / 32 · lh 1.0834 · track −0.009em · 600 | Landing promise quote (already adopted) |
-| Numbered kicker, eyebrows, attribute captions | — | out of B1 | **B2** re-titrates eyebrows (sentence-case kill) and caption/attribute patterns; existing bridge label/body-life fallbacks keep serving them meanwhile |
+| Hero-adjacent kicker + page-title lead-in | `label` (opt-in `data-type="label"`) | 21px flat · lh 1.19 · track 0.011em · 600 · **sentence-case** (measured from the education-initiative label tier the retired mask echoed) | **B2/FAP-47:** the eleven lead-ins (AboutUsHero + download/community/partners/updates/referral/accessibility strheroes, the four policy header p's) declare the role. The law legitimately lives *outside* the plain-section scope, so rhythm now carries root-level mirrors of the section-scoped voice tokens (`--fs-caption/--lh-caption/--track-meta/--weight-heading/--fs-meta`) — chrome asides/nav resolve the same values as in-section sites |
+| Quiet eyebrow (module tags, chips, aside/`th` headers, nav micro-labels) | `.apple-eyebrow` base class (a class, not a `data-type` role) | 12px · lh 1.333333 · track −0.016em · 600 · **sentence-case** | **B2/FAP-47:** every remaining public uppercase site converted (≈52 sites across the 20+ public files). Plain-section sites voice through the section law; aside/`th`/values-strip/nav chrome voice through the base class + the root token mirrors; blue "Our mission" eyebrow → grey (blue in headlines stays confined to the sanctioned moment). Career/tool chips keep their grey |
+| Numbered kicker, eyebrows, attribute captions | — | out of B1 | resolved in B2 — the two rows above are the law |
 | Scene word statements (meet/language overlay words) | `display` | 64 / 56 / 40 · lh 1.0 · track −0.009em · 600 | PersonaSections scene-overlay spans (the `40px,4.5vw,72px` rotating words) |
 | Footer wordmark (decorative, aria-hidden) | — | bespoke scene anatomy | LandingFooter's wordmark stays measured; roles return chapter-by-chapter in D-tasks if ever needed |
 
@@ -49,3 +51,26 @@ sections containing an h1 are deliberately outside the layer.
 - `scripts`-level rendered probe `b1-type-roles.mjs` — per route/width: zero headings
   without `data-type`, zero bridge-retag class matches, results in
   `artifacts/research/continuity-2026-10-21/b1-type-ladder/`.
+
+## B2 (FAP-47) — kicker codification receipts (2026-10-22)
+
+- **Retired laws.** The public `p.uppercase` section mask (was the 21px bridge voice)
+  and its caption-law arm are deleted; the public body-size law
+  (`.text-[15px]/[16.5px] → 16`, `.text-[14.5px] → 14`, `.text-[17px]/[17.5px] → 17`,
+  all `!important` over any authored responsive tier) is retired from
+  `public-bridge.css` — every public site that rode it was re-authored onto the
+  ladder first. Workspace voice is untouched as a law: its own rem key
+  (`workspace-typography.css`) becomes live for its last two `text-[15px]`
+  consumers (AchievementsCard, SubjectHeroBanner) that the bridge had flattened
+  to 16px — they now render 15px and scale, per that file's declared intent.
+- **Probe chain.** 24 routes banked before/after (1,101 tracked sites; every route
+  1:1-paired, 0 unresolved): the only deltas are the intended unifications
+  (≈25 span kickers 14→12 caption dial, aside/`th`/chips dialing, "Our mission"
+  blue→grey, tt flips) plus **one authored restoration**: the research hero
+  `sm:text-[18px]` line the bridge had pinned to 17 — visible 17→18 at desktop,
+  the page's own responsive intent. b3 dump after the law retirements = 2,413
+  sites, **0 regressions** against the b2 dump.
+- **Hand-forwards.** C1 persona-router card radius → token; C4 billing knob +
+  email-input geometry; rgba channel-form leaks (~397 hits) + box-shadow scans +
+  premium dark-scene anatomy (B3/D2); LandingFAQ's `clamp(22, 2.2vw, 32)` span
+  (tier-swept once already) pitched to B3.
