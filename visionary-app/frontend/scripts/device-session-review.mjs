@@ -69,6 +69,8 @@ try {
     const contexts = await Promise.all([browser.createBrowserContext(), peerBrowser.createBrowserContext()]);
     const pages = await Promise.all(contexts.map(async context => {
       const page = await context.newPage(); await page.setViewport({ width, height: 900 });
+      page.on('pageerror', error => console.error('Device review page error:', error.message));
+      page.on('console', message => { if (message.type() === 'error' && message.text().includes('Visionary Resilience Diagnostic')) console.error('Device review render error:', message.text()); });
       page.setDefaultNavigationTimeout(60000);
       await page.setRequestInterception(true);
       page.on('request', request => {

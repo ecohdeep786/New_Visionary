@@ -357,9 +357,9 @@
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
-        "frontend/src/components/SocialAuthButtons.jsx:40:7",
-        "frontend/src/components/SocialAuthButtons.jsx:43:7",
-        "frontend/src/components/SocialAuthButtons.jsx:46:7",
+        "frontend/src/components/SocialAuthButtons.jsx:41:7",
+        "frontend/src/components/SocialAuthButtons.jsx:44:7",
+        "frontend/src/components/SocialAuthButtons.jsx:47:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
         "frontend/src/pages/Login.jsx:163:13",
         "frontend/src/pages/Login.jsx:174:13",
@@ -492,9 +492,9 @@
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
-        "frontend/src/components/SocialAuthButtons.jsx:40:7",
-        "frontend/src/components/SocialAuthButtons.jsx:43:7",
-        "frontend/src/components/SocialAuthButtons.jsx:46:7",
+        "frontend/src/components/SocialAuthButtons.jsx:41:7",
+        "frontend/src/components/SocialAuthButtons.jsx:44:7",
+        "frontend/src/components/SocialAuthButtons.jsx:47:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
         "frontend/src/pages/Register.jsx:140:13",
         "frontend/src/pages/Register.jsx:151:13",
@@ -45628,9 +45628,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:40:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:41:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 40,
+      "line": 41,
       "column": 7,
       "tag": "button",
       "events": [
@@ -45668,9 +45668,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:43:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:44:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 43,
+      "line": 44,
       "column": 7,
       "tag": "button",
       "events": [],
@@ -45701,9 +45701,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:46:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:47:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 46,
+      "line": 47,
       "column": 7,
       "tag": "button",
       "events": [],
@@ -78245,7 +78245,7 @@
     },
     {
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "sourceSha256": "6485962f398aad442dc1b5659c274a7312de43b65c725be0c9ad26f275ffd8de"
+      "sourceSha256": "263cdd54021b61f22778fdc039497dbdaaf02ba093dd98fce268f75cdc6950d8"
     },
     {
       "file": "frontend/src/components/ui/accordion.jsx",
@@ -79057,7 +79057,7 @@
     },
     {
       "file": "frontend/src/pages/Register.jsx",
-      "sourceSha256": "5c0eac530e7412d4101bbdfcc48dd8a818d9150de67fc3a77f03c0fb18828ad0"
+      "sourceSha256": "fee99183f52a9c151f3d8a73d63a858edf5b1a22368dd596b781237f64cd3e20"
     },
     {
       "file": "frontend/src/pages/ResetPassword.jsx",

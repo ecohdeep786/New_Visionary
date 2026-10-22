@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Building2 } from 'lucide-react';
 import GoogleIcon from "@/components/GoogleIcon";
 import { useAuth } from '@/lib/AuthContext';
 import { useNavigate } from 'react-router-dom';

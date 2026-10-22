@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
-import { Mail, AlertCircle } from "lucide-react";
+import { Mail, Phone, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
 import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
