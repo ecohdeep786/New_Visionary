@@ -1,0 +1,78 @@
+{
+ "w1440": {
+  "width": 1440,
+  "pageOverflowX": 0,
+  "bodyOverflowers": 0,
+  "overflowScrollers": [],
+  "tableCols": 5,
+  "entRows": 11,
+  "firstCellVoice": {
+   "fs": "14px",
+   "fw": "400",
+   "ls": "normal",
+   "lh": "16.6667px",
+   "color": "rgb(29, 29, 31)"
+  },
+  "priceVoices": [],
+  "fineVoices": [],
+  "ctaPills": [],
+  "faq": {
+   "q": "Can I start free?",
+   "expanded": "false",
+   "afterClickExpanded": true
+  },
+  "stickyHeaderTopAtScroll": 1782
+ },
+ "w768": {
+  "width": 768,
+  "pageOverflowX": 0,
+  "bodyOverflowers": 0,
+  "overflowScrollers": [],
+  "tableCols": 5,
+  "entRows": 11,
+  "firstCellVoice": {
+   "fs": "14px",
+   "fw": "400",
+   "ls": "normal",
+   "lh": "16.6667px",
+   "color": "rgb(29, 29, 31)"
+  },
+  "priceVoices": [],
+  "fineVoices": [],
+  "ctaPills": [],
+  "faq": {
+   "q": "Can I start free?",
+   "expanded": "false",
+   "afterClickExpanded": true
+  }
+ },
+ "w390": {
+  "width": 390,
+  "pageOverflowX": 0,
+  "bodyOverflowers": 0,
+  "overflowScrollers": [],
+  "tableCols": 5,
+  "entRows": 11,
+  "firstCellVoice": {
+   "fs": "14px",
+   "fw": "400",
+   "ls": "normal",
+   "lh": "16.6667px",
+   "color": "rgb(29, 29, 31)"
+  },
+  "priceVoices": [],
+  "fineVoices": [],
+  "ctaPills": [],
+  "faq": {
+   "q": "Can I start free?",
+   "expanded": "false",
+   "afterClickExpanded": true
+  }
+ },
+ "billingSwitch": {
+  "annual": "",
+  "monthly": "",
+  "changed": false
+ },
+ "billingHref": null
+}

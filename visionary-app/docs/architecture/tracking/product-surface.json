@@ -2166,12 +2166,13 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/pages/landing/AILearningPage.jsx:76:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:133:7",
-        "frontend/src/pages/landing/AILearningPage.jsx:174:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:198:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:294:17",
-        "frontend/src/pages/landing/AILearningPage.jsx:321:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:324:11"
+        "frontend/src/pages/landing/AILearningPage.jsx:129:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:163:25",
+        "frontend/src/pages/landing/AILearningPage.jsx:207:15",
+        "frontend/src/pages/landing/AILearningPage.jsx:232:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:286:17",
+        "frontend/src/pages/landing/AILearningPage.jsx:315:11",
+        "frontend/src/pages/landing/AILearningPage.jsx:318:11"
       ],
       "operations": [
         "subscription-test-checkout",
@@ -69270,33 +69271,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:133:7",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:129:13",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 133,
-      "column": 7,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "9c2e118b4da26d67203333fed8316914c7f0014f14f53d3e3d3a808fd81c94cb",
-      "routeIds": [
-        "/pricing"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:174:13",
-      "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 174,
+      "line": 129,
       "column": 13,
       "tag": "BillingToggle",
       "events": [
@@ -69323,9 +69300,57 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:198:13",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:163:25",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 198,
+      "line": 163,
+      "column": 25,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "2cffe5911fc2b9f64d81ae283378149763ffc6cb02bc4a0ed52d4c7d656bcce2",
+      "routeIds": [
+        "/pricing"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:207:15",
+      "file": "frontend/src/pages/landing/AILearningPage.jsx",
+      "line": 207,
+      "column": 15,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "98042999e55748ab51bbe45ad4fff19208ed79ecb182fa627ae139064a634e82",
+      "routeIds": [
+        "/pricing"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:232:13",
+      "file": "frontend/src/pages/landing/AILearningPage.jsx",
+      "line": 232,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -69347,9 +69372,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:294:17",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:286:17",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 294,
+      "line": 286,
       "column": 17,
       "tag": "button",
       "events": [
@@ -69378,9 +69403,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:321:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:315:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 321,
+      "line": 315,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -69403,9 +69428,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:324:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:318:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 324,
+      "line": 318,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -79323,7 +79348,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "07aee66fd0979c0bf895b3c7a6e051dca07dad959df485653b8cd1cf72bb5c01"
+      "sourceSha256": "3aa4f2e0468ba2b6ad32c7badfa8eb18d89894d40a10b59bd0ac769db31418e3"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
@@ -82912,11 +82937,11 @@
   "counts": {
     "routes": 68,
     "registeredEndpoints": 35,
-    "controlDeclarations": 1668,
-    "routeReachableDeclarations": 1516,
+    "controlDeclarations": 1669,
+    "routeReachableDeclarations": 1517,
     "controlFiles": 220,
     "states": {
-      "connected": 524,
+      "connected": 525,
       "preview": 931,
       "missing": 59,
       "intentionally-unreleased": 154

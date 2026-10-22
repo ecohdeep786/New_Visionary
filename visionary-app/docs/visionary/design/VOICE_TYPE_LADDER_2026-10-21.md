@@ -1,4 +1,4 @@
-# Voice → type ladder (B1, FAP-46 · extended by B2, FAP-47) — 2026-10-21
+# Voice → type ladder (B1, FAP-46 · extended by B2, FAP-47 · B3, FAP-48) — 2026-10-21
 
 **Law:** assign a `data-type` role, never a new page-specific font size. Every landing
 section carries roles from this page. Raw fluid sizes (`text-[clamp(…)]`) are retired
@@ -74,3 +74,26 @@ sections containing an h1 are deliberately outside the layer.
   email-input geometry; rgba channel-form leaks (~397 hits) + box-shadow scans +
   premium dark-scene anatomy (B3/D2); LandingFAQ's `clamp(22, 2.2vw, 32)` span
   (tier-swept once already) pitched to B3.
+
+## B3 (FAP-48) — store-grade pricing table voices (2026-10-22)
+
+- **Store price** — `/pricing` plan columns (`data-b3="price"`):
+  28px · 500 · track −0.022em · lh 1.15 · ink. Fine print line (12px/18px grey,
+  the caption dial) carries the annual billed-yearly string, the free line, or
+  the per-person note — every string composed from `pricingConfig` fields only.
+- **Store entitlement rows** — 17px · lh 1.47 · track −0.022em · 400; the
+  feature label column speaks the same voice. Values are the `COMPARISON`
+  fixture verbatim (no word invented; booleans stay the quiet ✓/–). The
+  rendered truth-match probe compares all 11 rows against the fixture.
+- **Commerce-blue action** — the store pill: h-11 (44px), 17px · 500 ·
+  −0.011em, `#0066cc` base, `#0071e3` hover, pressed-scale grammar retained;
+  routing unchanged (`billingPath` for personal/family, config `to` otherwise).
+- **Sticky header band** — the plan-header row (`top-14`, under the fixed
+  `h-14` nav) carries the 21px/600 name, the 14px tagline, the price and the
+  action; below lg the table swipes in its `overflow-x-auto` wrapper with the
+  feature column pinned (`sticky left-0`), and at ≥lg the wrapper is
+  `overflow-visible` so the page scroll drives the sticky band.
+- **Hand-forward verdict.** LandingFAQ's pitched `clamp(22, 2.2vw, 32)` span
+  sits in its `variant="hero"` arm, which no routed page consumes (grep: zero
+  `variant="hero"` call sites) — left untouched; re-voice when a task adopts
+  the hero variant.
