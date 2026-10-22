@@ -43,6 +43,9 @@ const origin = await app.getUrl(); config.set('AUTH_PUBLIC_ORIGIN', origin);
 console.log('Device review: isolated server listening; launching browser');
 const output = path.join(root, 'artifacts/qa/kan34/device-sessions'); await fs.mkdir(output, { recursive: true });
 const browser = await puppeteer.launch({ headless: true });
+// Separate browser processes model two active devices. Two tabs in one browser
+// can hide each other when Radix restores focus after an issuer sign-out.
+const peerBrowser = await puppeteer.launch({ headless: true });
 console.log('Device review: browser started');
 const results = [];
 const authReads = new Map();
@@ -61,9 +64,10 @@ try {
     console.log(`Device review: ${width}px two-device scenario`);
     // Native auth_time uses seconds; a fresh sign-in must follow the cutoff.
     if (results.length) await new Promise(resolve => setTimeout(resolve, 1100));
-    const contexts = await Promise.all([browser.createBrowserContext(), browser.createBrowserContext()]);
+    const contexts = await Promise.all([browser.createBrowserContext(), peerBrowser.createBrowserContext()]);
     const pages = await Promise.all(contexts.map(async context => {
       const page = await context.newPage(); await page.setViewport({ width, height: 900 });
+      page.setDefaultNavigationTimeout(60000);
       await page.setRequestInterception(true);
       page.on('request', request => {
         const target = new URL(request.url());
@@ -77,26 +81,28 @@ try {
       assert.equal((await service.me(identity.uid)).onboarding_complete, false);
       const draftKey = `visionary_onboarding_${identity.uid}`;
       const seeded = await pages[0].evaluateOnNewDocument(key => localStorage.setItem(key, JSON.stringify({ phase: 'identity', data: { full_name: 'Unsaved fixture draft', identity: 'professional', preferred_language: 'English' } })), draftKey);
-      await pages[0].goto(`${origin}/dashboard/home`, { waitUntil: 'networkidle0' });
+      await pages[0].goto(`${origin}/dashboard/home`, { waitUntil: 'domcontentloaded' });
       await pages[0].removeScriptToEvaluateOnNewDocument(seeded.identifier);
+      await pages[0].waitForFunction(() => location.pathname === '/onboarding', { polling: 100 });
       assert.ok(authReads.get(pages[0]) > 0, 'Build the frontend with VITE_AUTH_MODE=firebase before this review');
-      await pages[0].waitForFunction(() => location.pathname === '/onboarding');
       await pages[0].bringToFront();
       const draftBefore = await pages[0].evaluate(key => localStorage.getItem(key), draftKey), observationsBefore = passiveReads.get(pages[0]) || 0;
       await service.completeOnboarding(identity.uid, { full_name: 'Session Review Adult', identity: 'professional', age_band: 'adult', preferred_language: 'English' });
       await service.completeIntroduction(identity.uid, {});
-      await pages[0].waitForFunction(() => location.pathname === '/dashboard/home', { timeout: 45000 });
+      await pages[0].waitForFunction(() => location.pathname === '/dashboard/home', { timeout: 45000, polling: 100 });
       assert.ok((passiveReads.get(pages[0]) || 0) > observationsBefore, 'Still-open onboarding must observe the other device completion');
       assert.equal(await pages[0].evaluate(key => localStorage.getItem(key), draftKey), draftBefore, 'Passive sync must preserve the unfinished local draft');
+      console.log('Device review: open onboarding synchronized and draft retained');
     }
     for (const page of pages) {
-      await page.goto(`${origin}/dashboard/home`, { waitUntil: 'networkidle0' });
+      await page.goto(`${origin}/dashboard/home`, { waitUntil: 'domcontentloaded' });
       await page.waitForSelector('header.workspace-topbar');
       assert.equal(new URL(page.url()).pathname, '/dashboard/home');
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     }
     // A returning device restores the same account without provider login.
-    await pages[1].reload({ waitUntil: 'networkidle0' }); await pages[1].waitForSelector('header.workspace-topbar');
+    await pages[1].reload({ waitUntil: 'domcontentloaded' }); await pages[1].waitForSelector('header.workspace-topbar');
+    console.log(`Device review: ${width}px shared dashboard and return session restored`);
     passiveOutage = true; const before = outageReads;
     await pages[1].bringToFront(); await pages[1].evaluate(() => window.dispatchEvent(new Event('focus')));
     await pages[1].waitForFunction(() => document.querySelector('header.workspace-topbar'));
@@ -104,25 +110,36 @@ try {
     while (outageReads === before && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 100));
     assert.ok(outageReads > before); await new Promise(resolve => setTimeout(resolve, 1800));
     assert.equal(new URL(pages[1].url()).pathname, '/dashboard/home');
+    console.log(`Device review: ${width}px passive outage preserved signed-in UI`);
     passiveOutage = false;
     await pages[0].bringToFront();
     await pages[0].click('button[aria-label="Open account menu"]');
     await pages[0].waitForSelector('[role="menuitem"]');
     await pages[0].screenshot({ path: path.join(output, `all-device-menu-${width}.png`), fullPage: true });
     await pages[1].bringToFront();
+    assert.equal(await pages[1].evaluate(() => document.hidden), false);
     const started = Date.now();
+    const previousVersion = rows.get(`visionary_accounts/${identity.uid}`).authSessionVersion || 0;
     // Keep the other device visible: its timer must discover revocation without
     // reloading or receiving a same-browser storage/broadcast event.
     await pages[0].evaluate(() => [...document.querySelectorAll('[role="menuitem"]')].find(item => item.textContent.trim() === 'Sign out on all devices').click());
-    await pages[0].waitForFunction(() => location.pathname === '/login');
-    await pages[1].waitForFunction(() => location.pathname === '/login', { timeout: 45000 });
+    await pages[0].waitForFunction(() => location.pathname === '/login', { polling: 100 });
+    assert.equal(rows.get(`visionary_accounts/${identity.uid}`).authSessionVersion, previousVersion + 1, 'The UI must commit all-device revocation, not local logout');
+    assert.equal(await pages[1].evaluate(() => document.hidden), false, 'The peer device must remain visible for timer observation');
+    try { await pages[1].waitForFunction(() => location.pathname === '/login', { timeout: 45000, polling: 100 }); }
+    catch (error) {
+      console.error('Peer device observation failed', JSON.stringify(await pages[1].evaluate(async () => ({ hidden: document.hidden, path: location.pathname, passiveStatus: (await fetch('/api/auth/me?passive=1', { cache: 'no-store' })).status }))));
+      await pages[1].screenshot({ path: path.join(output, `peer-observation-failed-${width}.png`), fullPage: true });
+      throw error;
+    }
     assert.ok(Date.now() - started < 45000);
     await pages[1].screenshot({ path: path.join(output, `other-device-signed-out-${width}.png`), fullPage: true });
     assert.equal((await service.me(identity.uid)).onboarding_complete, true);
+    console.log(`Device review: ${width}px both devices signed out`);
     results.push({ width, sharedProfile: true, newUserSetupOnly: true, reloadRestored: true, passiveOutagePreserved: true, globalLogout: true, otherDeviceObservedWithoutReload: true, providerAcceptance: false });
     await Promise.all(contexts.map(context => context.close()));
   }
   assert.equal([...rows.keys()].filter(key => /^visionary_accounts\/[^/]+$/.test(key)).length, 1);
   await fs.writeFile(path.join(output, 'results.json'), JSON.stringify({ results, hostedVerified: false }, null, 2));
   console.log(JSON.stringify({ passed: results.length, scenarios: results, hostedVerified: false }));
-} finally { await browser.close(); await app.close(); }
+} finally { await Promise.all([browser.close(), peerBrowser.close()]); await app.close(); }
