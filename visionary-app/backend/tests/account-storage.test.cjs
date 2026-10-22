@@ -67,7 +67,7 @@ test('an interrupted additive migration resumes without replacing the paid subsc
 
 test('account HTTP overview and paginated records are owner-bound, strip security fields and do not expose a Family payer invoice', async () => {
   const memory = billingMemory(), now = Date.now();
-  const auth = { getDatabase: () => memory.db, authenticate: async cookie => { if (cookie !== 'owner-cookie') throw new UnauthorizedException(); return { uid: 'owner', sessionId: 'device_a' }; }, me: async uid => ({ id: uid, full_name: 'Owner', onboarding_complete: true, getting_started_complete: true }) };
+  const auth = { getDatabase: () => memory.db, authenticate: async cookie => { if (cookie !== 'owner-cookie') throw new UnauthorizedException(); return { uid: 'owner', sessionId: 'device_a', authSessionVersion: 0 }; }, me: async uid => ({ id: uid, full_name: 'Owner', onboarding_complete: true, getting_started_complete: true }) };
   const billing = { account: async uid => ({ uid, plan: 'start', invoices: [] }) };
   auth.accountDetails = async uid => ({ profile: await auth.me(uid), identity: { uid }, onboarding: { status: 'complete' } });
   for (const id of ['device_a', 'device_b']) memory.rows.set(`visionary_accounts/owner/devices/${id}`, { uid: 'owner', firstSeenAt: Timestamp.fromMillis(now), lastSeenAt: Timestamp.fromMillis(now), expiresAt: Timestamp.fromMillis(now + 3600000), cookieHash: 'must-not-escape', userAgent: 'Fixture browser', observedIp: '127.0.0.1' });

@@ -3,7 +3,7 @@ import { popupProviderId } from './signInMethods.js';
 
 // Server identity and profile are authoritative; credentials are never persisted here.
 export function createServerAuth({ request, identity, notify = () => {} }) {
-  let profile = null, generation = 0, readSequence = 0, signingIn = false, pendingRead = null;
+  let profile = null, generation = 0, readSequence = 0, signingIn = false, pendingRead = null, pendingLogout = null, pendingLogoutAll = false;
   const check = expected => { if (generation !== expected) throw authFlowError('auth/account-changed'); };
   const save = (value, expected) => {
     check(expected);
@@ -13,7 +13,7 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
     profile = value; ++readSequence; return value;
   };
   const transition = async action => {
-    if (signingIn) throw authFlowError('auth/operation-in-progress');
+    if (signingIn || pendingLogout) throw authFlowError('auth/operation-in-progress');
     signingIn = true;
     const expected = ++generation;
     profile = null;
@@ -35,17 +35,17 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
   return {
     source: 'firebase',
     currentProfile: () => profile,
-    me() {
-      if (pendingRead?.generation === generation && pendingRead.sequence === readSequence) return pendingRead.promise;
+    me({ passive = false } = {}) {
+      if (pendingRead?.generation === generation && pendingRead.sequence === readSequence && pendingRead.passive === passive) return pendingRead.promise;
       const expected = generation, sequence = ++readSequence;
       const promise = (async () => {
       try {
-        const value = await request('/me'); check(expected);
+        const value = await request(passive ? '/me?passive=1' : '/me'); check(expected);
         if (sequence !== readSequence) throw authFlowError('auth/account-changed');
         return save(value, expected);
-      } catch (error) { if (generation === expected && sequence === readSequence) profile = null; throw error; }
+      } catch (error) { if (generation === expected && sequence === readSequence && (!passive || error.status === 401)) profile = null; throw error; }
       })();
-      pendingRead = { generation, sequence, promise };
+      pendingRead = { generation, sequence, passive, promise };
       const clear = () => { if (pendingRead?.promise === promise) pendingRead = null; };
       promise.then(clear, clear); return promise;
     },
@@ -101,13 +101,20 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       ++generation; profile = null;
       await identity.logout?.(); notify();
     },
-    async logout() {
+    logout({ allDevices = false } = {}) {
+      if (pendingLogout) return pendingLogoutAll === allDevices ? pendingLogout : Promise.reject(authFlowError('auth/operation-in-progress'));
       const previous = profile, expected = ++generation;
       profile = null;
-      try { await request('/logout', { method: 'POST', accountId: previous?.id, beforeSend: () => check(expected) }); }
+      const promise = (async () => {
+      try { await request(allDevices ? '/logout-all' : '/logout', { method: 'POST', accountId: previous?.id, beforeSend: () => check(expected) }); }
       catch (error) { if (generation === expected) profile = previous; throw error; }
       ++generation; profile = null; notify();
-      await identity.logout();
+      // Server revocation has succeeded. SDK cleanup cannot restore that session.
+      await Promise.resolve(identity.logout()).catch(() => {});
+      })();
+      pendingLogout = promise; pendingLogoutAll = allDevices;
+      const clear = () => { if (pendingLogout === promise) pendingLogout = null; };
+      promise.then(clear, clear); return promise;
     },
   };
 }

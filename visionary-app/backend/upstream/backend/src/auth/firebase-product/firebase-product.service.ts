@@ -7,11 +7,10 @@ import { onboardingProfile, publicProfile } from './profile';
 import { freeBillingAccount } from '../../billing/billing-account';
 import { ACCOUNT_STORAGE_VERSION, LEGACY_BILLING_ACCOUNTS, billingDocument, deviceDocument, deviceRecord, eventDocument, identitySnapshot } from './account-storage';
 import { accountDirectory, directoryDocument, directoryNeedsUpdate } from './account-directory';
+import { SESSION_ABSOLUTE_MS as ABSOLUTE_MS, accountSessionPolicy, sessionVersion, sessionIsLive } from './session-policy';
 
 // Durable device sign-in, bounded by Firebase's maximum session-cookie lifetime.
 // Passwords/SDK refresh tokens are never used as a browser-side login cache.
-const ABSOLUTE_MS = 14 * 24 * 60 * 60 * 1000;
-const IDLE_MS = 7 * 24 * 60 * 60 * 1000;
 const digest = (value: string) => createHash('sha256').update(value).digest('hex');
 const invalidAuth = new Set(['auth/argument-error', 'auth/invalid-argument', 'auth/invalid-id-token', 'auth/id-token-expired', 'auth/id-token-revoked', 'auth/invalid-session-cookie', 'auth/session-cookie-expired', 'auth/session-cookie-revoked', 'auth/user-disabled', 'auth/user-not-found']);
 const assertAccountUid = (uid: unknown) => {
@@ -60,7 +59,7 @@ export class FirebaseProductService implements OnModuleDestroy {
     const identity = await this.verified(() => this.admin.getAuth().verifyIdToken(idToken, true));
     assertAccountUid(identity.uid);
     const now = Date.now();
-    if (!identity.auth_time || now / 1000 - identity.auth_time > 300 || identity.auth_time > now / 1000 + 60) throw new UnauthorizedException('Sign in again before starting a session.');
+    if (!Number.isSafeInteger(identity.auth_time) || identity.auth_time < 1 || now / 1000 - identity.auth_time > 300 || identity.auth_time > Math.floor(now / 1000)) throw new UnauthorizedException('Wait a moment, then sign in again before starting a session.');
     // Unverified identities cannot create a product profile or a product session.
     if (!identity.email || !identity.email_verified) throw new UnauthorizedException('Verify your email before continuing.');
     await this.rateLimit('session-uid', identity.uid, 10);
@@ -82,6 +81,10 @@ export class FirebaseProductService implements OnModuleDestroy {
         const oldDevice = old?.uid === identity.uid ? (await tx.get(deviceDocument(db, identity.uid, digest(previous.device)))).data() : null;
         if (legacy?.exists || snapshot.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your account storage upgrade must finish before sign-in. Your saved details are retained.');
         const data = snapshot.exists ? snapshot.data() : { email: identity.email, full_name: identity.name || '', onboarding: { status: 'pending' }, version: 0, createdAt: Timestamp.fromMillis(now) };
+        const policy = accountSessionPolicy(data);
+        // Firebase auth_time has second precision. A sign-in in the same second
+        // must be repeated after that second; refreshing an old token is not login.
+        if (policy.cutoff && identity.auth_time <= policy.cutoff) throw new UnauthorizedException('Your devices were signed out. Wait a moment, then sign in again.');
         const refreshed = { ...data, uid: identity.uid, storageVersion: ACCOUNT_STORAGE_VERSION, identity: { ...data.identity, ...identitySnapshot(identity.uid, identity, now) }, email: identity.email, lastSignInAt: Timestamp.fromMillis(now) };
         if (billing.data()?.uid && billing.data().uid !== identity.uid) throw new ConflictException('Your billing identity needs recovery. No account changes were saved.');
         if (!billing.exists) tx.create(billingRef, freeBillingAccount(identity.uid, now));
@@ -93,7 +96,7 @@ export class FirebaseProductService implements OnModuleDestroy {
           tx.update(oldRef, { revokedAt: revoked.revokedAt });
           tx.set(deviceDocument(db, identity.uid, digest(previous.device)), deviceRecord(identity.uid, digest(previous.device), revoked, oldDevice));
         }
-        const sessionData = { uid: identity.uid, cookieHash: digest(cookie), lastSeen: now, createdAt: Timestamp.fromMillis(now), expires: now + ABSOLUTE_MS, expiresAt: Timestamp.fromMillis(now + ABSOLUTE_MS), provider: identity.firebase?.sign_in_provider || 'unknown', ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512) };
+        const sessionData = { uid: identity.uid, authSessionVersion: policy.version, cookieHash: digest(cookie), lastSeen: now, createdAt: Timestamp.fromMillis(now), expires: now + ABSOLUTE_MS, expiresAt: Timestamp.fromMillis(now + ABSOLUTE_MS), provider: identity.firebase?.sign_in_provider || 'unknown', ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512) };
         tx.create(session, sessionData);
         tx.create(deviceDocument(db, identity.uid, sessionId), deviceRecord(identity.uid, sessionId, sessionData));
         const event = db.collection('visionary_auth_events').doc();
@@ -111,21 +114,23 @@ export class FirebaseProductService implements OnModuleDestroy {
     const identity = await this.verified(() => this.admin.getAuth().verifySessionCookie(cookie, true));
     assertAccountUid(identity.uid);
     const sessionId = digest(device), now = Date.now();
-    await this.database(async () => {
+    const authSessionVersion = await this.database(async () => {
       const ref = this.db().collection('visionary_auth_sessions').doc(sessionId);
-      await this.db().runTransaction(async tx => {
+      return this.db().runTransaction(async tx => {
         const snapshot = await tx.get(ref), data = snapshot.data();
         const account = await tx.get(this.db().collection('visionary_accounts').doc(identity.uid));
         const deviceRef = deviceDocument(this.db(), identity.uid, sessionId), savedDevice = touch ? (await tx.get(deviceRef)).data() : null;
         if (account.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your account storage upgrade is in progress.');
-        if (!data || data.revokedAt || data.uid !== identity.uid || data.cookieHash !== digest(cookie) || !Number.isFinite(data.expires) || data.expires <= now || !Number.isFinite(data.lastSeen) || data.lastSeen > now + 60000 || now - data.lastSeen >= IDLE_MS) throw new UnauthorizedException('Your session ended. Sign in again.');
+        const policy = accountSessionPolicy(account.data());
+        if (!account.exists || !sessionIsLive(data, now) || data.uid !== identity.uid || data.cookieHash !== digest(cookie) || sessionVersion(data) !== policy.version) throw new UnauthorizedException('Your session ended. Sign in again.');
         if (touch) {
           tx.update(ref, { lastSeen: now });
           tx.set(deviceRef, deviceRecord(identity.uid, sessionId, { ...data, lastSeen: now }, savedDevice));
         }
+        return policy.version;
       });
     });
-    return { uid: identity.uid, sessionId };
+    return { uid: identity.uid, sessionId, authSessionVersion };
   }
   async me(uid: string) {
     return this.database(async () => {
@@ -149,12 +154,13 @@ export class FirebaseProductService implements OnModuleDestroy {
           introduction: { status: onboarding.introduction?.status || 'pending', completedAt: iso(onboarding.introduction?.completedAt) } } };
     });
   }
-  async completeOnboarding(uid: string, input: unknown) {
+  async completeOnboarding(uid: string, input: unknown, expectedSessionVersion?: number) {
     const profile = onboardingProfile(input);
     return this.database(async () => {
       const ref = this.db().collection('visionary_accounts').doc(uid);
       return this.db().runTransaction(async tx => {
         const snapshot = await tx.get(ref), current = snapshot.data();
+        if (expectedSessionVersion !== undefined && accountSessionPolicy(current).version !== expectedSessionVersion) throw new UnauthorizedException('Your session ended. Sign in again.');
         if (!current) throw new ConflictException('Your account profile is missing. Sign in again.');
         // Repeated completion / another device cannot reset the first completed profile.
         if (current.onboarding?.status === 'complete') return publicProfile(uid, current);
@@ -165,7 +171,7 @@ export class FirebaseProductService implements OnModuleDestroy {
       });
     });
   }
-  async updateProfile(uid: string, input: any) {
+  async updateProfile(uid: string, input: any, expectedSessionVersion?: number) {
     if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).some(k => !['full_name', 'preferences', 'expectedProfileName', 'expectedThemeColor'].includes(k))) throw new BadRequestException('Only display name and account accent may be edited here.');
     if (input.full_name !== undefined && (typeof input.full_name !== 'string' || !input.full_name.trim() || input.full_name.trim().length > 80)) throw new BadRequestException('Enter a name of 1 to 80 characters.');
     const theme = input.preferences?.theme_color;
@@ -174,6 +180,7 @@ export class FirebaseProductService implements OnModuleDestroy {
       const ref = this.db().collection('visionary_accounts').doc(uid);
       return this.db().runTransaction(async tx => {
         const snapshot = await tx.get(ref), current = snapshot.data();
+        if (expectedSessionVersion !== undefined && accountSessionPolicy(current).version !== expectedSessionVersion) throw new UnauthorizedException('Your session ended. Sign in again.');
         if (!current) throw new ConflictException('Your account profile is missing.');
         if (input.expectedProfileName !== undefined && (current.full_name || '') !== input.expectedProfileName) throw new ConflictException('Your display name changed. Load the saved name and retry.');
         if (input.expectedThemeColor !== undefined && (current.preferences?.theme_color || 'blue') !== input.expectedThemeColor) throw new ConflictException('Your account accent changed. Load the saved color and retry.');
@@ -184,17 +191,46 @@ export class FirebaseProductService implements OnModuleDestroy {
       });
     });
   }
-  async completeIntroduction(uid: string, input: unknown) {
+  async completeIntroduction(uid: string, input: unknown, expectedSessionVersion?: number) {
     if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).length) throw new BadRequestException('Send an empty introduction acknowledgement.');
     return this.database(async () => {
       const ref = this.db().collection('visionary_accounts').doc(uid);
       return this.db().runTransaction(async tx => {
         const snapshot = await tx.get(ref), current = snapshot.data();
+        if (expectedSessionVersion !== undefined && accountSessionPolicy(current).version !== expectedSessionVersion) throw new UnauthorizedException('Your session ended. Sign in again.');
         if (!current || current.onboarding?.status !== 'complete') throw new ConflictException('Finish account setup before acknowledging the introduction.');
         if (current.onboarding?.introduction?.status !== 'pending') return publicProfile(uid, current);
         const updated = { ...current, version: (current.version || 0) + 1,
           onboarding: { ...current.onboarding, introduction: { status: 'complete', completedAt: Timestamp.now() } } };
         tx.set(ref, updated); return publicProfile(uid, updated);
+      });
+    });
+  }
+  async logoutAll(cookie: string, device: string, expectedUid: string, metadata: { ip: string; userAgent: string }) {
+    if (!cookie || !/^[a-f0-9]{64}$/.test(device || '')) throw new UnauthorizedException('Sign in to continue.');
+    const identity = await this.verified(() => this.admin.getAuth().verifySessionCookie(cookie, true));
+    assertAccountUid(identity.uid);
+    if (expectedUid !== identity.uid) throw new ConflictException('The signed-in account changed. Reload before signing out.');
+    await this.rateLimit('logout-all', identity.uid, 5);
+    await this.database(async () => {
+      const db = this.db(), id = digest(device), accountRef = db.collection('visionary_accounts').doc(identity.uid);
+      const sessionRef = db.collection('visionary_auth_sessions').doc(id), deviceRef = deviceDocument(db, identity.uid, id);
+      await db.runTransaction(async tx => {
+        const account = await tx.get(accountRef), session = (await tx.get(sessionRef)).data(), savedDevice = (await tx.get(deviceRef)).data();
+        const policy = accountSessionPolicy(account.data()), now = Date.now();
+        if (!account.exists || !session || session.uid !== identity.uid || session.cookieHash !== digest(cookie)) throw new UnauthorizedException('Sign in again.');
+        // Lost-response retries only acknowledge this session's prior operation.
+        // They must never revoke a later sign-in with a newer epoch.
+        if (session.revokedAt && Number.isSafeInteger(session.globalSignOutVersion) && session.globalSignOutVersion > 0 && session.globalSignOutVersion <= policy.version) return;
+        if (!sessionIsLive(session, now) || sessionVersion(session) !== policy.version || policy.version >= Number.MAX_SAFE_INTEGER) throw new UnauthorizedException('Your session ended. Sign in again.');
+        const nextVersion = policy.version + 1, revokedAt = Timestamp.fromMillis(now);
+        tx.update(accountRef, { authSessionVersion: nextVersion, lastGlobalSignOutSecond: Math.max(policy.cutoff, Math.floor(now / 1000)) });
+        const revoked = { ...session, revokedAt, globalSignOutVersion: nextVersion };
+        tx.update(sessionRef, { revokedAt, globalSignOutVersion: nextVersion });
+        tx.set(deviceRef, deviceRecord(identity.uid, id, revoked, savedDevice));
+        const event = db.collection('visionary_auth_events').doc();
+        const data = { uid: identity.uid, sessionId: id, type: 'sign_out_all', ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512), createdAt: revokedAt };
+        tx.create(event, data); tx.create(eventDocument(db, identity.uid, event.id.split('/').at(-1)), data);
       });
     });
   }

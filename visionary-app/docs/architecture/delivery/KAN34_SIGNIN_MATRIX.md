@@ -217,3 +217,65 @@ while retaining desktop placement. The four compiled method scenarios now also
 require visible account navigation at both widths and follow it to the opposite
 auth route while preserving the original return destination. This latest layout
 delta must be included in the replacement exact-SHA source review.
+
+## 22 October continuation: account-wide device sessions
+
+The founder requests shared account/onboarding state, remembered sign-in and
+all-device sign-out. Each new device still authenticates initially. Firebase
+owns credentials; the product never stores a plaintext password. Existing
+cookies remain bounded to fourteen days absolute and seven days idle.
+
+The account now has a server-only session version and a global-sign-out second.
+Sign-in reads both while committing its session. Global sign-out atomically
+advances that version, records the cutoff and appends an audit event. Every
+subsequent protected admission compares the session's version to the account.
+Old Firebase ID tokens cannot exchange into the new version; future-dated auth
+times are denied. Firebase timestamps have second precision, so a fresh sign-in
+in the cutoff second must be repeated after that second. Lost-response retries
+acknowledge the original operation without revoking a later sign-in again.
+
+The dashboard explicitly offers **Sign out on all devices**. Onboarding's
+**Use a different account** retains local-device sign-out. Concurrent requests
+with different logout scopes fail explicitly. Profile/setup/introduction
+transactions recheck the admitted version before writing; already-admitted
+operations in other domains retain their existing transaction ordering.
+This operation ends Visionary sessions, not the person's Google account.
+
+Visible, signed-in clients observe `/api/auth/me?passive=1` every thirty seconds
+and on focus/visibility. Observation performs no session/device writes, issues
+no cookie and cannot keep an idle browser signed in. Trusted activity may touch
+the session separately. Background outages preserve the current UI; an actual
+401 ends it. Generation checks prevent delayed replies from restoring a logged
+out account or clearing a newer sign-in. Setup drafts remain UID-scoped, and
+completed server setup remains the first accepted result across devices.
+
+Device-list status uses the same seven-day idle rule and session version; the
+old thirty-minute list rule is removed. Revocation is enforced immediately at
+new server admission; another visible device converges on its next observation,
+normally within thirty seconds. A hidden device checks on return.
+
+The isolated real email fixture completed native reset, ordinary sign-in,
+synthetic adult setup, reload/new-tab restoration and explicit local sign-out
+on the prior `d87ea72e` source. The task-owned fixture is disabled and its refresh
+tokens revoked; original owner records were not changed. That closes the earlier
+new-password-sign-in gap for that source only. It does not certify this newer
+global-session candidate or its hosted deployment.
+
+Current local verification before dev synchronization: backend build and all
+102 backend tests pass; root check passes eighteen script tests, 558 frontend
+tests, lint, both TypeScript projects, layout/import checks, source audit and
+production build (58.39 seconds). The new compiled two-device harness is still
+being verified; no browser pass or new source approval is claimed here.
+
+Live sender read-back still reports `IN_PROGRESS`. Public DNS contains the
+Firebase ownership TXT and both required DKIM CNAMEs; the domain's SPF include
+resolves to both Google and Firebase senders. Preserve that combined SPF record;
+do not create a second SPF record or remove Google mail delivery. Existing live
+template edits remain unconfirmed after the previously recorded project-level
+edit restriction. No DNS or hosted-template change was made in this continuation.
+
+Rollback must retain account security versions and cutoff fields. Reverting to
+an image that ignores them can admit still-valid old cookies. Revoke affected
+Firebase sessions or use a reviewed compatibility image before such a rollback.
+Shortening a future cookie setting does not shorten already-issued cookies.
+Exact-SHA review, integrated checks and hosted release acceptance remain pending.

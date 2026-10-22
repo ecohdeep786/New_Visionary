@@ -88,7 +88,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <DropdownMenuItem onSelect={() => navigate('/dashboard/privacy')} className="workspace-account-item gap-3"><ShieldCheck aria-hidden="true" />{t("privacyConsent")}</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/support')} className="workspace-account-item gap-3"><HelpCircle aria-hidden="true" />{t("support")}</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={async () => { try { await logout(); navigate("/login", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />{t("signOut")}</DropdownMenuItem>
+        <DropdownMenuItem onSelect={async () => { try { await logout({ allDevices: true }); navigate("/login", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />Sign out on all devices</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
     <Dialog open={searchOpen} onOpenChange={setSearchOpen}>

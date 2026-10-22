@@ -17492,7 +17492,7 @@
       "controller": "AccountController",
       "handler": "devices",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 30,
+      "line": 31,
       "column": 3
     },
     {
@@ -17519,7 +17519,7 @@
       "controller": "AccountController",
       "handler": "invoices",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 43,
+      "line": 44,
       "column": 3
     },
     {
@@ -17609,7 +17609,7 @@
       "controller": "AccountController",
       "handler": "overview",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 14,
+      "line": 15,
       "column": 3
     },
     {
@@ -17627,7 +17627,16 @@
       "controller": "FirebaseProductController",
       "handler": "logout",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 37,
+      "line": 45,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/logout-all",
+      "controller": "FirebaseProductController",
+      "handler": "logoutAll",
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 40,
       "column": 3
     },
     {
@@ -17645,7 +17654,7 @@
       "controller": "FirebaseProductController",
       "handler": "onboarding",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 28,
+      "line": 31,
       "column": 3
     },
     {
@@ -17654,7 +17663,7 @@
       "controller": "FirebaseProductController",
       "handler": "introduction",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 34,
+      "line": 37,
       "column": 3
     },
     {
@@ -17663,7 +17672,7 @@
       "controller": "FirebaseProductController",
       "handler": "profile",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 31,
+      "line": 34,
       "column": 3
     },
     {
@@ -26414,7 +26423,7 @@
       "events": [
         {
           "event": "onSelect",
-          "expression": "{async () => { try { await logout(); navigate(\"/login\", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }}"
+          "expression": "{async () => { try { await logout({ allDevices: true }); navigate(\"/login\", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }}"
         }
       ],
       "calls": [
@@ -26424,7 +26433,7 @@
         "toast"
       ],
       "disabled": null,
-      "declarationSha256": "366c13fd7b04f1aea9526856f012dec844fc5b9c1644f4831dd5dc083b029f49",
+      "declarationSha256": "3100e7a0f5aa91499cf9137355e2ccc75d84e2faeca1f5f918b0d8a66df7030c",
       "routeIds": [
         "/dashboard",
         "/dashboard#index",
@@ -76129,7 +76138,7 @@
     },
     {
       "file": "frontend/src/api/firebase/serverAuth.js",
-      "sourceSha256": "419d0819cb2743cd5d6a97539f9febc95656c2520825b51348210cdc8f7e443b"
+      "sourceSha256": "5b1e35d40a1544f4523ba7b0e0c257370de6b72b1f9ec669934eaf7dbedde7b1"
     },
     {
       "file": "frontend/src/api/firebase/signInMethods.js",
@@ -76289,7 +76298,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/DashboardTopbar.jsx",
-      "sourceSha256": "cdb7765bbf2e3aead183310d2ef673da5321b4e686367d04fbfe45e1ecbe1191"
+      "sourceSha256": "14ce5aa646c883e19440eb29d10fa43aa3ffb67011e5694c48f7feb2fd7051d8"
     },
     {
       "file": "frontend/src/components/dashboard/DataDiagramRepresentation.jsx",
@@ -77029,7 +77038,7 @@
     },
     {
       "file": "frontend/src/lib/AuthContext.jsx",
-      "sourceSha256": "faa3b233d351ecdc2780728efe80be06d092be7c803af11ca9e539420afc21da"
+      "sourceSha256": "2407b7ebe89c2bd3adfdd1a346382b4c55637a6dcab7fd452ab4f8e5565a7175"
     },
     {
       "file": "frontend/src/lib/authErrors.js",
@@ -77771,11 +77780,11 @@
   "backendSources": [
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "sourceSha256": "20261356d1fe76dba161dc66ee571e204194291823cb41e5dda5205547328b42"
+      "sourceSha256": "ee6270ae4bb3e751dd58eda36eca7d8f9bd32044014f23637195e4f63ae13f80"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "sourceSha256": "abb0b8cb22fe8f9e1f045e152b4a853f5cdd4614c057102651fb2a1f3cd04c8c"
+      "sourceSha256": "7929ba903f02a155ceb36773a73a24caf3b0a6c338b1d675952d71c02f1d7cc2"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
@@ -81047,7 +81056,7 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 35,
+    "registeredEndpoints": 36,
     "controlDeclarations": 1623,
     "routeReachableDeclarations": 1465,
     "controlFiles": 219,
