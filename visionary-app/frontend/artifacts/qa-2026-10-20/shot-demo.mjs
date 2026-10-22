@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server', '--allow-file-access-from-files'] });
+const ctx = await browser.newContext({ viewport: { width: 1500, height: 1200 }, deviceScaleFactor: 1.6 });
+const page = await ctx.newPage();
+await page.goto('file:///C:/Users/Administrator/New_Visionary/visionary-app/frontend/artifacts/qa-2026-10-20/type-scale-demo.html');
+await page.waitForTimeout(1200);
+const fontsOk = await page.evaluate(() => document.fonts.status + '|' + (document.fonts.check('16px GS') ? 'GS-loaded' : 'GS-missing'));
+await page.waitForTimeout(400);
+await page.screenshot({ path: 'artifacts/qa-2026-10-20/evidence/type-scale-demo.jpeg', type: 'jpeg', quality: 72, fullPage: true });
+console.log('fonts:', fontsOk);
+await browser.close();

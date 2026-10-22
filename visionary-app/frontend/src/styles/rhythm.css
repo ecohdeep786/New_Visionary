@@ -9,16 +9,37 @@
   --fs-h2: clamp(2.5rem, 4.45vw, 4rem); /* Apple section H2: 64px/56px/40px */
   --fs-h3: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
   --fs-body: 1.0625rem; /* Apple body: 17px-21px */
-  --fs-lead: clamp(1.125rem, 1rem + 0.65vw, 1.5rem); /* Apple chapter intro: 24px/21px/21px */
+  --fs-lead: clamp(1.1875rem, 1rem + 0.65vw, 1.5rem); /* Apple chapter intro: 24px/21px/19px */
+  --fs-card-title: clamp(1.75rem, 2.2vw, 2.5rem); /* Apple card headline: 40px/32px/28px */
+  --fs-label: 1.3125rem; /* Apple label: 21px */
+
+  /* Hero tokens live at :root: the 01-hero stage is intentionally outside
+     rhythm's section :where() scope (the fixed hero keeps its own geometry),
+     so cast/persona heroes read these complements directly (FAP-34). */
+  --fs-hero-eyebrow: 3.5rem; /* desktop 56px */
+  --fs-hero-headline: 8.75rem; /* desktop 140px */
+
+  /* Category-hero tokens — the apple.com/apple-vision-pro hero, measured
+     2026-10-20 (artifacts/qa-2026-10-20/hero-measure.json + vp-lockup.mjs):
+     the focal element is the h1 wordmark lockup, 43px tall on phones and
+     62px from 734px up (letters ~44–46px cap height) — a 64px Google Sans
+     statement lands on the same visual mass; the tagline steps 17/24/28 at
+     600 like Apple's. The main landing hero keeps the education ladder. */
+  --fs-category-statement: 4rem; /* desktop 64px — syncs to the 62px lockup */
+  --lh-category-statement: 1.08;
+  --track-category-statement: -0.009em; /* section-head curve at 64 */
+  --fs-category-tagline: 1.75rem; /* desktop 28px */
+  --lh-category-tagline: 1.14;
+  --track-category-tagline: 0.007em;
   --lh-display: 1; /* Apple hero headline: 1.0 line-height */
   --lh-body: 1.19048; /* Apple display body: 25px/21px */
   --radius-control: 999px;
   --radius-media: 12px;
   --radius-surface: 12px;
-  --line-subtle: #dadce0;
-  --surface-soft: #f8f9fa;
-  --surface-blue: #e8f0fe;
-  --accent-blue: #0b57d0;
+  --line-subtle: #d2d2d7;
+  --surface-soft: #f5f5f7;
+  --surface-blue: rgba(0,102,204,0.10);
+  --accent-blue: #0066cc;
 
   /* ratio-locked intra-unit gaps (L1): gap = the heading's own size × its frozen desktop ratio */
   --gap-eyebrow-title: calc(var(--fs-h3) * 0.5);
@@ -61,6 +82,71 @@ main h2 + p.mt-6 {
   margin-top: var(--gap-title-sub-display) !important;
 }
 
+/* Hero token complements — mirror the section-scope media blocks so the
+   01-hero stage (outside that scope) steps 140/96/64 like Apple's hero. */
+@media (max-width: 1068px) {
+  :root {
+    --fs-hero-eyebrow: 2.5rem; /* tablet 40px */
+    --fs-hero-headline: 6rem; /* tablet 96px */
+  }
+}
+
+@media (max-width: 734px) {
+  :root {
+    --fs-hero-eyebrow: 2.5rem; /* phone 40px */
+    --fs-hero-headline: 4rem; /* phone 64px */
+  }
+}
+
+/* Category-hero complements — the Vision Pro steps for the persona pages
+   (out of the section scope, so they live at :root like the cast tokens). */
+@media (max-width: 1068px) {
+  :root {
+    --fs-category-statement: 3.5rem; /* tablet 56px — matches the 62px lockup */
+    --lh-category-statement: 1.1;
+    --track-category-statement: 0em;
+    --fs-category-tagline: 1.5rem; /* tablet 24px */
+    --lh-category-tagline: 1.17;
+    --track-category-tagline: 0.009em;
+  }
+}
+
+@media (max-width: 734px) {
+  :root {
+    --fs-category-statement: 2.5rem; /* phone 40px — matches the 43px lockup */
+    --lh-category-statement: 1.14;
+    --track-category-statement: 0.007em;
+    --fs-category-tagline: 1.0625rem; /* phone 17px */
+    --lh-category-tagline: 1.24;
+    /* Apple SF sets -0.022em here; Google Sans reads wider, so the accepted
+       spec halves negative tracking at reading sizes (see type-btn/body). */
+    --track-category-tagline: -0.011em;
+  }
+}
+
+/* The persona product-page statement (Vision Pro's foundation headline).
+   Apple renders it 700 on phones and 600 from 734px up — the one deliberate
+   device-state weight change in their system. */
+.category-hero-statement {
+  font-size: var(--fs-category-statement) !important;
+  line-height: var(--lh-category-statement) !important;
+  letter-spacing: var(--track-category-statement) !important;
+  font-weight: 600;
+}
+
+.category-hero-tagline {
+  font-size: var(--fs-category-tagline) !important;
+  line-height: var(--lh-category-tagline) !important;
+  letter-spacing: var(--track-category-tagline) !important;
+  font-weight: 600;
+}
+
+@media (max-width: 734px) {
+  .category-hero-statement {
+    font-weight: 700; /* Vision Pro phone state */
+  }
+}
+
 /* eyebrow → h2 pairs keep their desktop 16px at 1440 but scale with the type */
 main p + h2.mt-4 {
   margin-top: var(--gap-eyebrow-title-display) !important;
@@ -86,14 +172,20 @@ main p + h2.mt-4 {
    1440 / 820 / 390px. Scoped to content sections so the fixed hero and the
    internal workspace retain their established tokens and geometry. */
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
-  --fs-display: 4.5rem;
+  --fs-display: 4rem; /* FAP-34: chapter statements cap at 64 like section heads — the 4.5rem (72px) value predates the accepted Apple ladder */
   --fs-product-section: 3.5rem;
   --fs-h2: 4rem;
   --fs-h3: 1.75rem;
   --fs-body: 1.0625rem;
   --fs-lead: 1.5rem;
+  --fs-card-title: 2.5rem; /* Apple card headline: 40px */
+  --fs-label: 1.5rem; /* Apple label: 24px */
   --fs-editorial-lead: 1.5rem;
-  --fs-emphasis: 5rem;
+  /* FAP-34: the old 80px statement tier is retired — the accepted Apple
+     ladder has no 80px tier and section heads never exceed 64 (spec:
+     APPLE_TYPE_SCALE_SPEC_2026-10-20). Emphasis keeps its tighter
+     statement leading/tracking voice at the section-head size. */
+  --fs-emphasis: var(--fs-h2);
   --fs-card-name: 1.0625rem;
   --fs-large-card: 2.5rem;
   --fs-story-card: 3rem;
@@ -183,11 +275,13 @@ main p + h2.mt-4 {
     --fs-h2: 3.5rem;
     --fs-h3: 1.5rem;
     --fs-editorial-lead: 1.3125rem;
-    --fs-emphasis: 4rem;
+    --fs-emphasis: var(--fs-h2); /* FAP-34: statement tier = section tier (56px) */
     --fs-card-name: 1.0625rem;
     --fs-large-card: 2rem;
     --fs-story-card: 2.5rem;
     --fs-card-chapter: 2.5rem;
+    --fs-card-title: 2rem; /* Apple card headline: 32px */
+    --fs-label: 1.3125rem; /* Apple label: 21px */
     --lh-card-chapter: 1.1;
     --lh-display: 1;
     --lh-product-section: 1.083333;
@@ -231,11 +325,13 @@ main p + h2.mt-4 {
     --fs-product-section: 2.5rem;
     --fs-h2: 2.5rem;
     --fs-h3: 1.3125rem;
-    --fs-emphasis: 2.5rem;
+    --fs-emphasis: var(--fs-h2); /* FAP-34: statement tier = section tier (40px) */
     --fs-card-name: 1.0625rem;
     --fs-large-card: 1.75rem;
     --fs-story-card: 1.75rem;
     --fs-card-chapter: 2rem;
+    --fs-card-title: 1.75rem; /* Apple card headline: 28px */
+    --fs-label: 1.3125rem; /* Apple label: 21px */
     --lh-card-chapter: 1.125;
     --fs-editorial-body: 1.1875rem;
     --lh-editorial-body: 1.210526;

@@ -1,0 +1,730 @@
+{
+  "390": {
+    "docH": 11009,
+    "heroTitle": {
+      "tag": "span",
+      "size": 42,
+      "weight": "500",
+      "lh": 44.1,
+      "ls": "-0.63px",
+      "w": 308,
+      "h": 44,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(18, 19, 23)"
+    },
+    "heroButtons": [
+      {
+        "text": "Start learning",
+        "size": 16,
+        "h": 48,
+        "radius": "9999px",
+        "bg": "rgb(18, 19, 23)",
+        "pad": "0px 20px"
+      },
+      {
+        "text": "See how it works",
+        "size": 18,
+        "h": 22,
+        "radius": "0px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px"
+      },
+      {
+        "text": "Students",
+        "size": 12,
+        "h": 36,
+        "radius": "9999px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px 12px"
+      }
+    ],
+    "audienceRail": {
+      "size": 12,
+      "weight": "400",
+      "color": "rgb(110, 110, 115)",
+      "h": 36,
+      "pad": "0px 12px",
+      "gap": "4px"
+    },
+    "cast": {
+      "count": 5,
+      "w": 192,
+      "h": 192
+    },
+    "bandTitle": {
+      "tag": "span",
+      "size": 32,
+      "weight": "600",
+      "lh": 36,
+      "ls": "-0.288px",
+      "w": 253,
+      "h": 40,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgba(0, 0, 0, 0)"
+    },
+    "bandSub": {
+      "tag": "p",
+      "size": 24,
+      "weight": "600",
+      "lh": 28,
+      "ls": "0.264px",
+      "w": 342,
+      "h": 56,
+      "lines": 2,
+      "align": "center",
+      "mt": "16.8px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "bandPill": {
+      "text": "See how it works",
+      "size": 17,
+      "h": 48,
+      "radius": "9999px",
+      "bg": "rgb(255, 255, 255)"
+    },
+    "stage": {
+      "w": 342,
+      "h": 342
+    },
+    "promiseTitle": {
+      "tag": "h2",
+      "size": 32,
+      "weight": "600",
+      "lh": 36,
+      "ls": "-0.288px",
+      "w": 342,
+      "h": 144,
+      "lines": 4,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "returnQuote": null,
+    "trustTitle": {
+      "tag": "h2",
+      "size": 40,
+      "weight": "600",
+      "lh": 44,
+      "ls": "0.16px",
+      "w": 302,
+      "h": 88,
+      "lines": 2,
+      "align": "start",
+      "mt": "0px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "trustLead": {
+      "tag": "p",
+      "size": 17,
+      "weight": "400",
+      "lh": 20.2,
+      "ls": "-0.374px",
+      "w": 302,
+      "h": 61,
+      "lines": 3,
+      "align": "start",
+      "mt": "16.8px",
+      "color": "rgb(95, 99, 104)"
+    },
+    "trustValue": {
+      "tag": "h3",
+      "size": 19,
+      "weight": "600",
+      "lh": 23,
+      "ls": "0.228px",
+      "w": 242,
+      "h": 23,
+      "lines": 1,
+      "align": "start",
+      "mt": "0px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "ctaTitle": {
+      "tag": "h2",
+      "size": 32,
+      "weight": "600",
+      "lh": 36,
+      "ls": "-0.288px",
+      "w": 342,
+      "h": 72,
+      "lines": 2,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "exploreTitle": {
+      "tag": "h2",
+      "size": 32,
+      "weight": "600",
+      "lh": 36,
+      "ls": "-0.288px",
+      "w": 342,
+      "h": 72,
+      "lines": 2,
+      "align": "start",
+      "mt": "16px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "nav": {
+      "h": 56,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": 16
+    },
+    "footer": {
+      "h": 1160,
+      "bg": "rgb(245, 245, 247)",
+      "linkSize": 12,
+      "cols": 6
+    }
+  },
+  "834": {
+    "docH": 10043,
+    "heroTitle": {
+      "tag": "span",
+      "size": 46.3,
+      "weight": "500",
+      "lh": 48.6,
+      "ls": "-0.694305px",
+      "w": 340,
+      "h": 49,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(18, 19, 23)"
+    },
+    "heroButtons": [
+      {
+        "text": "Start learning",
+        "size": 16,
+        "h": 48,
+        "radius": "9999px",
+        "bg": "rgb(18, 19, 23)",
+        "pad": "0px 28px"
+      },
+      {
+        "text": "See how it works",
+        "size": 18,
+        "h": 22,
+        "radius": "0px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px"
+      },
+      {
+        "text": "Students",
+        "size": 12,
+        "h": 36,
+        "radius": "9999px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px 12px"
+      }
+    ],
+    "audienceRail": {
+      "size": 12,
+      "weight": "500",
+      "color": "rgb(18, 19, 23)",
+      "h": 36,
+      "pad": "0px 12px",
+      "gap": "4px"
+    },
+    "cast": {
+      "count": 5,
+      "w": 220,
+      "h": 220
+    },
+    "bandTitle": {
+      "tag": "span",
+      "size": 48,
+      "weight": "600",
+      "lh": 52,
+      "ls": "-0.432px",
+      "w": 379,
+      "h": 60,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgba(0, 0, 0, 0)"
+    },
+    "bandSub": {
+      "tag": "p",
+      "size": 24,
+      "weight": "600",
+      "lh": 28,
+      "ls": "0.264px",
+      "w": 551,
+      "h": 28,
+      "lines": 1,
+      "align": "center",
+      "mt": "16.8px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "bandPill": {
+      "text": "See how it works",
+      "size": 17,
+      "h": 48,
+      "radius": "9999px",
+      "bg": "rgb(255, 255, 255)"
+    },
+    "stage": {
+      "w": 560,
+      "h": 560
+    },
+    "promiseTitle": {
+      "tag": "h2",
+      "size": 40,
+      "weight": "600",
+      "lh": 44,
+      "ls": "-0.36px",
+      "w": 524,
+      "h": 132,
+      "lines": 3,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "returnQuote": null,
+    "trustTitle": {
+      "tag": "h2",
+      "size": 56,
+      "weight": "600",
+      "lh": 60.8,
+      "ls": "normal",
+      "w": 612,
+      "h": 122,
+      "lines": 2,
+      "align": "start",
+      "mt": "0px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "trustLead": {
+      "tag": "p",
+      "size": 17,
+      "weight": "400",
+      "lh": 20.2,
+      "ls": "-0.374px",
+      "w": 373,
+      "h": 40,
+      "lines": 2,
+      "align": "start",
+      "mt": "16.8px",
+      "color": "rgb(95, 99, 104)"
+    },
+    "trustValue": {
+      "tag": "h3",
+      "size": 19,
+      "weight": "600",
+      "lh": 23,
+      "ls": "0.228px",
+      "w": 286,
+      "h": 23,
+      "lines": 1,
+      "align": "start",
+      "mt": "20px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "ctaTitle": {
+      "tag": "h2",
+      "size": 48,
+      "weight": "600",
+      "lh": 52,
+      "ls": "-0.432px",
+      "w": 755,
+      "h": 52,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "exploreTitle": {
+      "tag": "h2",
+      "size": 40,
+      "weight": "600",
+      "lh": 44,
+      "ls": "-0.36px",
+      "w": 524,
+      "h": 88,
+      "lines": 2,
+      "align": "start",
+      "mt": "16px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "nav": {
+      "h": 56,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": 16
+    },
+    "footer": {
+      "h": 836,
+      "bg": "rgb(245, 245, 247)",
+      "linkSize": 12,
+      "cols": 7
+    }
+  },
+  "1024": {
+    "docH": 8878,
+    "heroTitle": {
+      "tag": "span",
+      "size": 56.8,
+      "weight": "500",
+      "lh": 59.7,
+      "ls": "-0.85248px",
+      "w": 417,
+      "h": 60,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(18, 19, 23)"
+    },
+    "heroButtons": [
+      {
+        "text": "Start learning",
+        "size": 16,
+        "h": 48,
+        "radius": "9999px",
+        "bg": "rgb(18, 19, 23)",
+        "pad": "0px 28px"
+      },
+      {
+        "text": "See how it works",
+        "size": 18,
+        "h": 22,
+        "radius": "0px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px"
+      },
+      {
+        "text": "Students",
+        "size": 12,
+        "h": 36,
+        "radius": "9999px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px 12px"
+      }
+    ],
+    "audienceRail": {
+      "size": 12,
+      "weight": "500",
+      "color": "rgb(18, 19, 23)",
+      "h": 36,
+      "pad": "0px 12px",
+      "gap": "4px"
+    },
+    "cast": {
+      "count": 5,
+      "w": 188,
+      "h": 188
+    },
+    "bandTitle": {
+      "tag": "span",
+      "size": 48,
+      "weight": "600",
+      "lh": 52,
+      "ls": "-0.432px",
+      "w": 379,
+      "h": 60,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgba(0, 0, 0, 0)"
+    },
+    "bandSub": {
+      "tag": "p",
+      "size": 24,
+      "weight": "600",
+      "lh": 28,
+      "ls": "0.264px",
+      "w": 551,
+      "h": 28,
+      "lines": 1,
+      "align": "center",
+      "mt": "16.8px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "bandPill": {
+      "text": "See how it works",
+      "size": 17,
+      "h": 48,
+      "radius": "9999px",
+      "bg": "rgb(255, 255, 255)"
+    },
+    "stage": {
+      "w": 560,
+      "h": 560
+    },
+    "promiseTitle": {
+      "tag": "h2",
+      "size": 40,
+      "weight": "600",
+      "lh": 44,
+      "ls": "-0.36px",
+      "w": 524,
+      "h": 132,
+      "lines": 3,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "returnQuote": null,
+    "trustTitle": {
+      "tag": "h2",
+      "size": 56,
+      "weight": "600",
+      "lh": 60.8,
+      "ls": "normal",
+      "w": 564,
+      "h": 122,
+      "lines": 2,
+      "align": "start",
+      "mt": "0px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "trustLead": {
+      "tag": "p",
+      "size": 17,
+      "weight": "400",
+      "lh": 20.2,
+      "ls": "-0.374px",
+      "w": 373,
+      "h": 40,
+      "lines": 2,
+      "align": "start",
+      "mt": "16.8px",
+      "color": "rgb(95, 99, 104)"
+    },
+    "trustValue": {
+      "tag": "h3",
+      "size": 19,
+      "weight": "600",
+      "lh": 23,
+      "ls": "0.228px",
+      "w": 254,
+      "h": 23,
+      "lines": 1,
+      "align": "start",
+      "mt": "20px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "ctaTitle": {
+      "tag": "h2",
+      "size": 48,
+      "weight": "600",
+      "lh": 52,
+      "ls": "-0.432px",
+      "w": 755,
+      "h": 52,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "exploreTitle": {
+      "tag": "h2",
+      "size": 40,
+      "weight": "600",
+      "lh": 44,
+      "ls": "-0.36px",
+      "w": 524,
+      "h": 88,
+      "lines": 2,
+      "align": "start",
+      "mt": "16px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "nav": {
+      "h": 56,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": 16
+    },
+    "footer": {
+      "h": 536,
+      "bg": "rgb(245, 245, 247)",
+      "linkSize": 12,
+      "cols": 9
+    }
+  },
+  "1440": {
+    "docH": 9259,
+    "heroTitle": {
+      "tag": "span",
+      "size": 64,
+      "weight": "500",
+      "lh": 67.2,
+      "ls": "-0.96px",
+      "w": 470,
+      "h": 67,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(18, 19, 23)"
+    },
+    "heroButtons": [
+      {
+        "text": "Start learning",
+        "size": 16,
+        "h": 48,
+        "radius": "9999px",
+        "bg": "rgb(18, 19, 23)",
+        "pad": "0px 28px"
+      },
+      {
+        "text": "See how it works",
+        "size": 18,
+        "h": 22,
+        "radius": "0px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px"
+      },
+      {
+        "text": "Students",
+        "size": 12,
+        "h": 36,
+        "radius": "9999px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "pad": "0px 12px"
+      }
+    ],
+    "audienceRail": {
+      "size": 12,
+      "weight": "500",
+      "color": "rgb(18, 19, 23)",
+      "h": 36,
+      "pad": "0px 12px",
+      "gap": "4px"
+    },
+    "cast": {
+      "count": 5,
+      "w": 265,
+      "h": 265
+    },
+    "bandTitle": {
+      "tag": "span",
+      "size": 56,
+      "weight": "600",
+      "lh": 60,
+      "ls": "-0.504px",
+      "w": 443,
+      "h": 70,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgba(0, 0, 0, 0)"
+    },
+    "bandSub": {
+      "tag": "p",
+      "size": 24,
+      "weight": "600",
+      "lh": 28,
+      "ls": "0.264px",
+      "w": 551,
+      "h": 28,
+      "lines": 1,
+      "align": "center",
+      "mt": "19.2px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "bandPill": {
+      "text": "See how it works",
+      "size": 17,
+      "h": 48,
+      "radius": "9999px",
+      "bg": "rgb(255, 255, 255)"
+    },
+    "stage": {
+      "w": 560,
+      "h": 560
+    },
+    "promiseTitle": {
+      "tag": "h2",
+      "size": 48,
+      "weight": "600",
+      "lh": 52,
+      "ls": "-0.432px",
+      "w": 629,
+      "h": 156,
+      "lines": 3,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "returnQuote": null,
+    "trustTitle": {
+      "tag": "h2",
+      "size": 64,
+      "weight": "600",
+      "lh": 68,
+      "ls": "-0.576px",
+      "w": 557,
+      "h": 136,
+      "lines": 2,
+      "align": "start",
+      "mt": "0px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "trustLead": {
+      "tag": "p",
+      "size": 17,
+      "weight": "400",
+      "lh": 20.2,
+      "ls": "-0.374px",
+      "w": 239,
+      "h": 81,
+      "lines": 4,
+      "align": "start",
+      "mt": "19.2px",
+      "color": "rgb(95, 99, 104)"
+    },
+    "trustValue": {
+      "tag": "h3",
+      "size": 19,
+      "weight": "600",
+      "lh": 23,
+      "ls": "0.228px",
+      "w": 398,
+      "h": 23,
+      "lines": 1,
+      "align": "start",
+      "mt": "20px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "ctaTitle": {
+      "tag": "h2",
+      "size": 56,
+      "weight": "600",
+      "lh": 60,
+      "ls": "-0.504px",
+      "w": 881,
+      "h": 60,
+      "lines": 1,
+      "align": "center",
+      "mt": "0px",
+      "color": "rgb(245, 245, 247)"
+    },
+    "exploreTitle": {
+      "tag": "h2",
+      "size": 48,
+      "weight": "600",
+      "lh": 52,
+      "ls": "-0.432px",
+      "w": 629,
+      "h": 104,
+      "lines": 2,
+      "align": "start",
+      "mt": "16px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "nav": {
+      "h": 56,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": 16
+    },
+    "footer": {
+      "h": 536,
+      "bg": "rgb(245, 245, 247)",
+      "linkSize": 12,
+      "cols": 9
+    }
+  }
+}

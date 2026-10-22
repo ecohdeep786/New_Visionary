@@ -45,6 +45,7 @@ const output = path.join(root, 'artifacts/qa/kan34/device-sessions'); await fs.m
 const browser = await puppeteer.launch({ headless: true });
 console.log('Device review: browser started');
 const results = [];
+const authReads = new Map();
 const seed = async context => {
   const csrfResponse = await fetch(`${origin}/api/auth/csrf`), csrf = await csrfResponse.json();
   const csrfCookie = csrfResponse.headers.getSetCookie()[0].split(';')[0];
@@ -63,12 +64,17 @@ try {
     const pages = await Promise.all(contexts.map(async context => {
       const page = await context.newPage(); await page.setViewport({ width, height: 900 });
       await page.setRequestInterception(true);
-      page.on('request', request => new URL(request.url()).origin === origin ? request.continue() : request.abort());
+      page.on('request', request => {
+        const target = new URL(request.url());
+        if (target.origin === origin && target.pathname === '/api/auth/me') authReads.set(page, (authReads.get(page) || 0) + 1);
+        return target.origin === origin ? request.continue() : request.abort();
+      });
       await seed(context); return page;
     }));
     if (!results.length) {
       assert.equal((await service.me(identity.uid)).onboarding_complete, false);
       await pages[0].goto(`${origin}/dashboard/home`, { waitUntil: 'networkidle0' });
+      assert.ok(authReads.get(pages[0]) > 0, 'Build the frontend with VITE_AUTH_MODE=firebase before this review');
       await pages[0].waitForFunction(() => location.pathname === '/onboarding');
       await service.completeOnboarding(identity.uid, { full_name: 'Session Review Adult', identity: 'professional', age_band: 'adult', preferred_language: 'English' });
       await service.completeIntroduction(identity.uid, {});

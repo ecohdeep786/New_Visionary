@@ -36,7 +36,7 @@ export default function ForgotPassword() {
       title="Reset your Visionary password"
       supportingText="Enter your account email to request a password reset link."
       footer={
-        <Link to="/login" className="flex items-center gap-1 text-[#4285F4] font-medium hover:underline">
+        <Link to="/login" className="flex items-center gap-1 text-[#0066cc] font-medium hover:underline">
           <ArrowLeft className="w-3 h-3" /> Back to sign in
         </Link>
       }
@@ -44,20 +44,20 @@ export default function ForgotPassword() {
       {error && <p role="alert" className="mb-4 text-sm text-[#b3261e]">{error}</p>}
       {sent ? (
         <div key="success" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col items-center gap-6 text-center">
-          <div className="w-14 h-14 rounded-full bg-[#e6f4ea] flex items-center justify-center">
+          <div className="w-14 h-14 rounded-full bg-[rgba(52,199,89,0.12)] flex items-center justify-center">
             <CheckCircle2 className="w-7 h-7 text-[#137333]" />
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="text-2xl font-normal text-[#121317]">Check your email</h2>
-            <p className="text-sm text-[#5f6368] leading-relaxed max-w-sm">
-              If an account exists for <span className="font-medium text-[#121317]">{email}</span>, you'll receive a password reset link shortly.
+            <h2 className="text-2xl font-normal text-[#1d1d1f]">Check your email</h2>
+            <p className="text-sm text-[#6e6e73] leading-relaxed max-w-sm">
+              If an account exists for <span className="font-medium text-[#1d1d1f]">{email}</span>, you'll receive a password reset link shortly.
             </p>
           </div>
           <Link to="/login" className={primaryBtnAutoClass}>Back to sign in</Link>
-          <button className="text-sm text-[#4285F4]" onClick={() => { setSent(false); setError(''); }}>Use a different email</button>
-          <p className="text-sm text-[#5f6368]">
+          <button className="text-sm text-[#0066cc]" onClick={() => { setSent(false); setError(''); }}>Use a different email</button>
+          <p className="text-sm text-[#6e6e73]">
             Don't have an account?{" "}
-            <Link to="/register" className="text-[#4285F4] font-medium hover:underline">Sign up</Link>
+            <Link to="/register" className="text-[#0066cc] font-medium hover:underline">Sign up</Link>
           </p>
         </div>
       ) : (
@@ -77,7 +77,7 @@ export default function ForgotPassword() {
             />
             <ActionRow
               left={
-                <Link to="/register" className="text-sm text-[#4285F4] font-medium hover:underline">
+                <Link to="/register" className="text-sm text-[#0066cc] font-medium hover:underline">
                   Don't have an account?
                 </Link>
               }

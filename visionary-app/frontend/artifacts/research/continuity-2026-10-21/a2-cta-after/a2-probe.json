@@ -1,0 +1,318 @@
+{
+  "probedAt": "2026-10-21T15:56:41.578Z",
+  "lawsChecked": {
+    "download": [
+      {
+        "text": "",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Open Visionary",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "See platforms",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Open in browser",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Windows app coming soon",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.374px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Mac app coming soon",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.374px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Linux app coming soon",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.374px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "iOS app coming soon",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.374px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Android app coming soon",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.374px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Prepare email request",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.374px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Continue on web",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": true
+      }
+    ],
+    "pricing": [
+      {
+        "text": "",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Annual\n2 months free",
+        "h": 40,
+        "fs": "14px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "20px",
+        "tracking": "normal",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Start for free",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Get Personal",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Get Family",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Contact Visionary",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgba(0, 0, 0, 0.08)",
+        "ringCls": true,
+        "full": false
+      },
+      {
+        "text": "Get started",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "21px",
+        "tracking": "-0.187px",
+        "bg": "rgb(29, 29, 31)",
+        "ringCls": true,
+        "full": true
+      }
+    ],
+    "signin": [
+      {
+        "text": "Continue with Mobile Num",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "0px",
+        "tracking": "-0.187px",
+        "bg": "rgb(0, 113, 227)",
+        "ringCls": true,
+        "full": true
+      },
+      {
+        "text": "Continue with Email",
+        "h": 44,
+        "fs": "17px",
+        "fw": "500",
+        "radius": 9999,
+        "px": "0px",
+        "tracking": "-0.187px",
+        "bg": "rgb(255, 255, 255)",
+        "ringCls": true,
+        "full": true
+      }
+    ]
+  },
+  "violations": [
+    {
+      "route": "pricing",
+      "text": "Annual\n2 months free",
+      "h": 40,
+      "fs": "14px",
+      "fw": "500",
+      "radius": 9999,
+      "px": "20px",
+      "tracking": "normal",
+      "bg": "rgb(29, 29, 31)",
+      "ringCls": true,
+      "full": false,
+      "fails": [
+        "h=40",
+        "fs=14px",
+        "px=20px"
+      ]
+    }
+  ],
+  "captures": [
+    {
+      "route": "/download",
+      "width": 1440,
+      "status": "ok"
+    },
+    {
+      "route": "/pricing",
+      "width": 1440,
+      "status": "ok"
+    },
+    {
+      "route": "/signin",
+      "width": 1440,
+      "status": "ok"
+    },
+    {
+      "route": "/download",
+      "width": 1024,
+      "status": "ok"
+    },
+    {
+      "route": "/pricing",
+      "width": 1024,
+      "status": "ok"
+    },
+    {
+      "route": "/signin",
+      "width": 1024,
+      "status": "ok"
+    },
+    {
+      "route": "/download",
+      "width": 390,
+      "status": "ok"
+    },
+    {
+      "route": "/pricing",
+      "width": 390,
+      "status": "ok"
+    },
+    {
+      "route": "/signin",
+      "width": 390,
+      "status": "ok"
+    }
+  ]
+}

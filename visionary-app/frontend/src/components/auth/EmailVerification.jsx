@@ -21,10 +21,10 @@ export default function EmailVerification({ email, onVerified, initialMessage = 
   };
   return <div className="flex flex-col gap-6" aria-busy={busy}>
     <h2 className="text-2xl font-normal">Confirm your email address</h2>
-    <p className="text-sm text-[#5f6368]">Check {email} for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification.</p>
+    <p className="text-sm text-[#6e6e73]">Check {email} for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification.</p>
     {message && <p role="status" className="text-sm">{message}</p>}
     <button className={primaryBtnAutoClass} disabled={busy} onClick={() => act(true)}>{busy ? <Spinner /> : 'I verified my email'}</button>
-    <button className="text-sm text-[#4285F4]" disabled={busy || cooldown > 0} onClick={() => act(false)}>{cooldown ? 'Resend available in ' + cooldown + 's' : 'Resend verification link'}</button>
-    <Link to="/login" state={{ email }} className="text-sm text-[#4285F4] hover:underline">Sign in again</Link>
+    <button className="text-sm text-[#0066cc]" disabled={busy || cooldown > 0} onClick={() => act(false)}>{cooldown ? 'Resend available in ' + cooldown + 's' : 'Resend verification link'}</button>
+    <Link to="/login" state={{ email }} className="text-sm text-[#0066cc] hover:underline">Sign in again</Link>
   </div>;
 }

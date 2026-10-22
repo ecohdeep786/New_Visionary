@@ -1,0 +1,219 @@
+{
+  "errors": [],
+  "warnings": [],
+  "pages": [
+    {
+      "route": "home",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 0,
+      "font": "Google Sans"
+    },
+    {
+      "route": "learn",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Your learning outline",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "classes",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 0,
+      "font": "Google Sans"
+    },
+    {
+      "route": "practice",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Your next practice",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "build",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "subscription",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Plans & usage",
+      "h": 990,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "explore",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Explore cube volume in your lesson",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "support",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Help with your workspace",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "settings",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Make Guide work for you",
+      "h": 1442,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "profile",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Your profile",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "connections",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Connections",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 13,
+      "font": "Google Sans"
+    },
+    {
+      "route": "progress",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Your learning evidence",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "prepare",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Welcome back, Ria.",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "library",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Welcome back, Ria.",
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "reports",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 0,
+      "font": "Google Sans"
+    },
+    {
+      "route": "notifications",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 0,
+      "font": "Google Sans"
+    },
+    {
+      "route": "personalization",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 0,
+      "font": "Google Sans"
+    },
+    {
+      "route": "privacy",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 0,
+      "font": "Google Sans"
+    },
+    {
+      "route": "audit",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false,
+      "sidebarLinks": 12,
+      "font": "Google Sans"
+    },
+    {
+      "route": "teacher/classes",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false
+    },
+    {
+      "route": "teacher/people",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Workspace unavailable",
+      "h": 900,
+      "overflowX": false
+    },
+    {
+      "route": "teacher/curriculum",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Workspace unavailable",
+      "h": 900,
+      "overflowX": false
+    },
+    {
+      "route": "teacher/analytics",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Workspace unavailable",
+      "h": 900,
+      "overflowX": false
+    },
+    {
+      "route": "teacher/insights",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": "Workspace unavailable",
+      "h": 900,
+      "overflowX": false
+    },
+    {
+      "route": "teacher/cohorts",
+      "title": "Visionary — Learn, Ask, Build",
+      "firstHeading": null,
+      "h": 900,
+      "overflowX": false
+    }
+  ]
+}

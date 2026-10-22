@@ -1,0 +1,3739 @@
+{
+  "apple-home@1440": {
+    "vw": 1440,
+    "docH": 13471,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(255, 255, 255, 0.8)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 2100,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "iPhone Duo",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 281,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get up to 3% Daily Cash back with every purchase.",
+          "size": 28,
+          "weight": "400",
+          "lh": 32,
+          "ls": "0.196px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 601,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 3
+      },
+      {
+        "band": "section section-promo",
+        "h": 1764,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 702,
+        "gutter": 369,
+        "contentLeft": 12,
+        "heading": {
+          "tag": "h3",
+          "text": "Apple Upgrade",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "4px",
+          "w": 248,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The most accurate heart rate sensing in a wearable.2",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "3px",
+          "w": 330,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 122,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section-endless-entertainment-gallery",
+        "h": 957,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Endless entertainment.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(0, 0, 0)",
+          "mt": "0px",
+          "w": 1440,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "DramaBased on the true story of the thrilling quest to summit Everest ",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 699,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 135,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 135,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 159,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 135,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 177,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 135,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 6
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 8512,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 17
+    }
+  },
+  "apple-home@1024": {
+    "vw": 1024,
+    "docH": 12889,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(255, 255, 255, 0.8)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 1974,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "iPhone Duo",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.096px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 242,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get up to 3% Daily Cash back with every purchase.",
+          "size": 24,
+          "weight": "400",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 517,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 3
+      },
+      {
+        "band": "section section-promo",
+        "h": 1494,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 494,
+        "gutter": 265,
+        "contentLeft": 12,
+        "heading": {
+          "tag": "h3",
+          "text": "Apple Upgrade",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.064px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "4px",
+          "w": 225,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The most accurate heart rate sensing in a wearable.2",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "4px",
+          "w": 245,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 122,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section-endless-entertainment-gallery",
+        "h": 771,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Endless entertainment.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.128px",
+          "color": "rgb(0, 0, 0)",
+          "mt": "0px",
+          "w": 1024,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "DramaBased on the true story of the thrilling quest to summit Everest ",
+          "size": 17,
+          "weight": "400",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 494,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 128,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          },
+          {
+            "w": 142,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 2
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 8512,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 17
+    }
+  },
+  "apple-home@834": {
+    "vw": 834,
+    "docH": 14573,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(255, 255, 255, 0.8)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 1974,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "iPhone Duo",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.096px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 242,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get up to 3% Daily Cash back with every purchase.",
+          "size": 24,
+          "weight": "400",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 517,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          },
+          {
+            "w": 131,
+            "h": 44,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "11px 21px 11px 21px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 3
+      },
+      {
+        "band": "section section-promo",
+        "h": 1494,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 399,
+        "gutter": 218,
+        "contentLeft": 12,
+        "heading": {
+          "tag": "h3",
+          "text": "Apple Upgrade",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.064px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "4px",
+          "w": 225,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The most accurate heart rate sensing in a wearable.2",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "4px",
+          "w": 245,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 122,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section-endless-entertainment-gallery",
+        "h": 771,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Endless entertainment.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.128px",
+          "color": "rgb(0, 0, 0)",
+          "mt": "0px",
+          "w": 834,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "DramaBased on the true story of the thrilling quest to summit Everest ",
+          "size": 17,
+          "weight": "400",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 494,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 128,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          },
+          {
+            "w": 142,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 2
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 10196,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 17
+    }
+  },
+  "apple-home@390": {
+    "vw": 390,
+    "docH": 27926,
+    "nav": {
+      "h": 48,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": {
+        "size": 19,
+        "weight": "600",
+        "ls": "0.228px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 1524,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "iPhone Duo",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.064px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 163,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get up to 3% Daily Cash back with every purchase.",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 260,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-promo",
+        "h": 3060,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h3",
+          "text": "Apple Upgrade",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.064px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "4px",
+          "w": 225,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The most accurate heart rate sensing in a wearable.2",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "4px",
+          "w": 245,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 122,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(0, 113, 227)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section-endless-entertainment-gallery",
+        "h": 896,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Endless entertainment.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.128px",
+          "color": "rgb(0, 0, 0)",
+          "mt": "0px",
+          "w": 390,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "DramaBased on the true story of the thrilling quest to summit Everest ",
+          "size": 17,
+          "weight": "400",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 245,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 128,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          },
+          {
+            "w": 142,
+            "h": 36,
+            "radius": "980px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "8px 15px 8px 15px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 2
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 22239,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 11
+    }
+  },
+  "education-initiative@1440": {
+    "vw": 1440,
+    "docH": 7945,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(22, 22, 23, 0.8)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(255, 255, 255, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero loaded",
+        "h": 900,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Education moves learners, leaders, innovators, communities and everyon",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 1,
+          "lines": 9
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-intro",
+        "h": 335,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "143px",
+        "padBottom": "0px",
+        "spine": 860,
+        "gutter": 290,
+        "contentLeft": 290,
+        "heading": null,
+        "lead": {
+          "tag": "p",
+          "text": "Education is essential to creating a more equitable world. So we’re wo",
+          "size": 28,
+          "weight": "600",
+          "lh": 32,
+          "ls": "0.196px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 860,
+          "lines": 6
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-educators stories-section",
+        "h": 953,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "Standing alongside educators to move learning forward.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 830,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We work closely with educators to engage and inspire learners — and in",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 980,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-opportunities stories-section",
+        "h": 953,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "Equipping today’s learners for tomorrow’s opportunities.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 840,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We’re helping to prepare people of all ages with creative learning, sk",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 770,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-equity stories-section",
+        "h": 973,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "20px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "Advancing equity through education.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 550,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We partner with and support Black, Hispanic/Latinx and Indigenous comm",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 800,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 980,
+            "h": 516,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-router",
+        "h": 1953,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "140px",
+        "padBottom": "150px",
+        "spine": 980,
+        "gutter": 230,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "Our work in education doesn’t end here.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 720,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Apple has partnered with Malala Fund since 2018, when we became the or",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 400,
+          "lines": 8
+        },
+        "cards": [
+          {
+            "w": 980,
+            "h": 652,
+            "radius": "40px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Striving for a world where all girls can learn and choose their future",
+              "size": 40,
+              "weight": "600",
+              "lh": 44,
+              "ls": "normal",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 400,
+              "lines": 4
+            }
+          },
+          {
+            "w": 307,
+            "h": 773,
+            "radius": "40px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "K–12 Education",
+              "size": 40,
+              "weight": "600",
+              "lh": 44,
+              "ls": "normal",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 203,
+              "lines": 2
+            }
+          },
+          {
+            "w": 307,
+            "h": 773,
+            "radius": "40px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "University Students",
+              "size": 40,
+              "weight": "600",
+              "lh": 44,
+              "ls": "normal",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 203,
+              "lines": 2
+            }
+          },
+          {
+            "w": 307,
+            "h": 773,
+            "radius": "40px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Higher Education",
+              "size": 40,
+              "weight": "600",
+              "lh": 44,
+              "ls": "normal",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 203,
+              "lines": 2
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section section-newsroom",
+        "h": 738,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "140px",
+        "padBottom": "0px",
+        "spine": 980,
+        "gutter": 230,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "More from Apple on education.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 980,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values",
+        "h": 598,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "Our values lead the way.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 980,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We prioritise providing safe, respectful and supportive workplaces for",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "15.2px",
+          "w": 450,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 547,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 15
+    }
+  },
+  "education-initiative@1024": {
+    "vw": 1024,
+    "docH": 8545,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(22, 22, 23, 0.8)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(255, 255, 255, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero loaded",
+        "h": 768,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Education moves learners, leaders, innovators, communities and everyon",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 1,
+          "lines": 9
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-intro",
+        "h": 318,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "122px",
+        "padBottom": "0px",
+        "spine": 600,
+        "gutter": 212,
+        "contentLeft": 212,
+        "heading": null,
+        "lead": {
+          "tag": "p",
+          "text": "Education is essential to creating a more equitable world. So we’re wo",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 600,
+          "lines": 7
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-educators stories-section",
+        "h": 953,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "Standing alongside educators to move learning forward.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 500,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We work closely with educators to engage and inspire learners — and in",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 520,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-opportunities stories-section",
+        "h": 903,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "Equipping today’s learners for tomorrow’s opportunities.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We’re helping to prepare people of all ages with creative learning, sk",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 692,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-equity stories-section",
+        "h": 863,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "20px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "Advancing equity through education.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 500,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We partner with and support Black, Hispanic/Latinx and Indigenous comm",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 520,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-router",
+        "h": 2832,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 692,
+        "gutter": 166,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "Our work in education doesn’t end here.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 540,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Apple has partnered with Malala Fund since 2018, when we became the or",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 277,
+          "lines": 12
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 759,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Striving for a world where all girls can learn and choose their future",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 277,
+              "lines": 4
+            }
+          },
+          {
+            "w": 692,
+            "h": 530,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "K–12 Education",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 628,
+              "lines": 1
+            }
+          },
+          {
+            "w": 692,
+            "h": 530,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "University Students",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 628,
+              "lines": 1
+            }
+          },
+          {
+            "w": 692,
+            "h": 530,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Higher Education",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 628,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section section-newsroom",
+        "h": 729,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "140px",
+        "padBottom": "0px",
+        "spine": 692,
+        "gutter": 166,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "More from Apple on education.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 2
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values",
+        "h": 613,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "Our values lead the way.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We prioritise providing safe, respectful and supportive workplaces for",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "15.2px",
+          "w": 306,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 547,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 15
+    }
+  },
+  "education-initiative@834": {
+    "vw": 834,
+    "docH": 8792,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(22, 22, 23, 0.8)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(255, 255, 255, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero loaded",
+        "h": 1112,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Education moves learners, leaders, innovators, communities and everyon",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 1,
+          "lines": 9
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-intro",
+        "h": 318,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "122px",
+        "padBottom": "0px",
+        "spine": 600,
+        "gutter": 117,
+        "contentLeft": 117,
+        "heading": null,
+        "lead": {
+          "tag": "p",
+          "text": "Education is essential to creating a more equitable world. So we’re wo",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 600,
+          "lines": 7
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-educators stories-section",
+        "h": 953,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "Standing alongside educators to move learning forward.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 500,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We work closely with educators to engage and inspire learners — and in",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 520,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-opportunities stories-section",
+        "h": 903,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "Equipping today’s learners for tomorrow’s opportunities.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We’re helping to prepare people of all ages with creative learning, sk",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 692,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-equity stories-section",
+        "h": 863,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "20px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "Advancing equity through education.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 500,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We partner with and support Black, Hispanic/Latinx and Indigenous comm",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 520,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 692,
+            "h": 430,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-router",
+        "h": 2832,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 692,
+        "gutter": 71,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "Our work in education doesn’t end here.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 540,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Apple has partnered with Malala Fund since 2018, when we became the or",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 277,
+          "lines": 12
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 759,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Striving for a world where all girls can learn and choose their future",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 277,
+              "lines": 4
+            }
+          },
+          {
+            "w": 692,
+            "h": 530,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "K–12 Education",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 628,
+              "lines": 1
+            }
+          },
+          {
+            "w": 692,
+            "h": 530,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "University Students",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 628,
+              "lines": 1
+            }
+          },
+          {
+            "w": 692,
+            "h": 530,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Higher Education",
+              "size": 32,
+              "weight": "600",
+              "lh": 36,
+              "ls": "0.128px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 628,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section section-newsroom",
+        "h": 729,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "140px",
+        "padBottom": "0px",
+        "spine": 692,
+        "gutter": 71,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "More from Apple on education.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 2
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values",
+        "h": 613,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "Our values lead the way.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We prioritise providing safe, respectful and supportive workplaces for",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "15.2px",
+          "w": 306,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 567,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 15
+    }
+  },
+  "education-initiative@390": {
+    "vw": 390,
+    "docH": 9008,
+    "nav": {
+      "h": 48,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": {
+        "size": 19,
+        "weight": "600",
+        "ls": "0.228px",
+        "color": "rgba(255, 255, 255, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero loaded",
+        "h": 844,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Education moves learners, leaders, innovators, communities and everyon",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 1,
+          "lines": 9
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-intro",
+        "h": 475,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "200px",
+        "padBottom": "0px",
+        "spine": 330,
+        "gutter": 30,
+        "contentLeft": 30,
+        "heading": null,
+        "lead": {
+          "tag": "p",
+          "text": "Education is essential to creating a more equitable world. So we’re wo",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 330,
+          "lines": 11
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-educators stories-section",
+        "h": 939,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 30,
+        "heading": {
+          "tag": "h2",
+          "text": "Standing alongside educators to move learning forward.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 330,
+          "lines": 4
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We work closely with educators to engage and inspire learners — and in",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 330,
+          "lines": 6
+        },
+        "cards": [
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-opportunities stories-section",
+        "h": 914,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 30,
+        "heading": {
+          "tag": "h2",
+          "text": "Equipping today’s learners for tomorrow’s opportunities.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 330,
+          "lines": 4
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We’re helping to prepare people of all ages with creative learning, sk",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 330,
+          "lines": 5
+        },
+        "cards": [
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-equity stories-section",
+        "h": 865,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "20px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 30,
+        "heading": {
+          "tag": "h2",
+          "text": "Advancing equity through education.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 330,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We partner with and support Black, Hispanic/Latinx and Indigenous comm",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 330,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 275,
+            "h": 400,
+            "radius": "30px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "section section-router",
+        "h": 2797,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 315,
+        "gutter": 38,
+        "contentLeft": 38,
+        "heading": {
+          "tag": "h2",
+          "text": "Our work in education doesn’t end here.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 315,
+          "lines": 4
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Apple has partnered with Malala Fund since 2018, when we became the or",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 252,
+          "lines": 12
+        },
+        "cards": [
+          {
+            "w": 315,
+            "h": 787,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "70px 31.5px 64px 31.5px",
+            "type": {
+              "tag": "h3",
+              "text": "Striving for a world where all girls can learn and choose their future",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 252,
+              "lines": 4
+            }
+          },
+          {
+            "w": 315,
+            "h": 511,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "K–12 Education",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 267,
+              "lines": 1
+            }
+          },
+          {
+            "w": 315,
+            "h": 511,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "University Students",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 267,
+              "lines": 1
+            }
+          },
+          {
+            "w": 315,
+            "h": 511,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Higher Education",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 267,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "section section-newsroom",
+        "h": 959,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "120px",
+        "padBottom": "0px",
+        "spine": 330,
+        "gutter": 30,
+        "contentLeft": 30,
+        "heading": {
+          "tag": "h2",
+          "text": "More from Apple on education.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 330,
+          "lines": 2
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values",
+        "h": 576,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 30,
+        "heading": {
+          "tag": "h2",
+          "text": "Our values lead the way.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 330,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "We prioritise providing safe, respectful and supportive workplaces for",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "15.2px",
+          "w": 280,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 646,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 10
+    }
+  },
+  "vision-pro@1440": {
+    "vw": 1440,
+    "docH": 32700,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 1800,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Apple Vision Pro",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 1260,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-foundation will-change",
+        "h": 900,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 970,
+        "gutter": 235,
+        "contentLeft": 235,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-design",
+        "h": 2129,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Take a closer look.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 817,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Apple Vision Pro is the result of decades of high‑performance, mobile,",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 697,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-experiences",
+        "h": 13118,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Entertainment",
+          "size": 24,
+          "weight": "700",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(255, 255, 255)",
+          "mt": "0px",
+          "w": 724,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Transform any room into your own personal theater — with more pixels t",
+          "size": 21,
+          "weight": "600",
+          "lh": 29,
+          "ls": "0.231px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 820,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-visionos",
+        "h": 2425,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "visionOS",
+          "size": 24,
+          "weight": "700",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(255, 255, 255)",
+          "mt": "0px",
+          "w": 980,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Built on the foundation of macOS, iOS, and iPadOS, visionOS enables po",
+          "size": 21,
+          "weight": "600",
+          "lh": 29,
+          "ls": "0.231px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 820,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-technology theme-dark spacer-top",
+        "h": 7788,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "180px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "Technology",
+          "size": 24,
+          "weight": "700",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 817,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The custom micro‑OLED display system features 23 million pixels, deliv",
+          "size": 21,
+          "weight": "600",
+          "lh": 29,
+          "ls": "0.231px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "40px",
+          "w": 653,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values spacer-top",
+        "h": 1607,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "180px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 230,
+        "heading": {
+          "tag": "h2",
+          "text": "Values",
+          "size": 24,
+          "weight": "700",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 980,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Use Optic ID to authorize purchases and unlock passwords with the uniq",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 697,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-routers",
+        "h": 1727,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Apple Vision Pro accessories.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 550,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The opportunities for what developers can dream up and build for Apple",
+          "size": 24,
+          "weight": "400",
+          "lh": 32,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 898,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 1416,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 18
+    }
+  },
+  "vision-pro@1024": {
+    "vw": 1024,
+    "docH": 26990,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 1536,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Apple Vision Pro",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 896,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-foundation will-change",
+        "h": 768,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 692,
+        "gutter": 166,
+        "contentLeft": 166,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-design",
+        "h": 1782,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Take a closer look.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.144px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 519,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Apple Vision Pro is the result of decades of high‑performance, mobile,",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 588,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-experiences",
+        "h": 11017,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Entertainment",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(255, 255, 255)",
+          "mt": "0px",
+          "w": 587,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Transform any room into your own personal theater — with more pixels t",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-visionos",
+        "h": 2049,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "visionOS",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(255, 255, 255)",
+          "mt": "0px",
+          "w": 625,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Built on the foundation of macOS, iOS, and iPadOS, visionOS enables po",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-technology theme-dark spacer-top",
+        "h": 6158,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "130px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "Technology",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 577,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The custom micro‑OLED display system features 23 million pixels, deliv",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "22px",
+          "w": 577,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values spacer-top",
+        "h": 1362,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "130px",
+        "padBottom": "10px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 166,
+        "heading": {
+          "tag": "h2",
+          "text": "Values",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Use Optic ID to authorize purchases and unlock passwords with the uniq",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 588,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-routers",
+        "h": 1073,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Apple Vision Pro accessories.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.128px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 384,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The opportunities for what developers can dream up and build for Apple",
+          "size": 17,
+          "weight": "400",
+          "lh": 25,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "13.6px",
+          "w": 577,
+          "lines": 5
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 1416,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 18
+    }
+  },
+  "vision-pro@834": {
+    "vw": 834,
+    "docH": 31779,
+    "nav": {
+      "h": 44,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": {
+        "size": 17,
+        "weight": "600",
+        "ls": "-0.374px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 2224,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Apple Vision Pro",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 730,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-foundation will-change",
+        "h": 1112,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 692,
+        "gutter": 71,
+        "contentLeft": 71,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-design",
+        "h": 2126,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Take a closer look.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.144px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 519,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Apple Vision Pro is the result of decades of high‑performance, mobile,",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 588,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-experiences",
+        "h": 13425,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Entertainment",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(255, 255, 255)",
+          "mt": "0px",
+          "w": 587,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Transform any room into your own personal theater — with more pixels t",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-visionos",
+        "h": 2393,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "visionOS",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(255, 255, 255)",
+          "mt": "0px",
+          "w": 625,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Built on the foundation of macOS, iOS, and iPadOS, visionOS enables po",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-technology theme-dark spacer-top",
+        "h": 6739,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "130px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "Technology",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 577,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The custom micro‑OLED display system features 23 million pixels, deliv",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "22px",
+          "w": 577,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values spacer-top",
+        "h": 1362,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "130px",
+        "padBottom": "10px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 71,
+        "heading": {
+          "tag": "h2",
+          "text": "Values",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Use Optic ID to authorize purchases and unlock passwords with the uniq",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 588,
+          "lines": 4
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-routers",
+        "h": 1020,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Apple Vision Pro accessories.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.128px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 313,
+          "lines": 4
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The opportunities for what developers can dream up and build for Apple",
+          "size": 17,
+          "weight": "400",
+          "lh": 25,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "13.6px",
+          "w": 577,
+          "lines": 5
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 1548,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 18
+    }
+  },
+  "vision-pro@390": {
+    "vw": 390,
+    "docH": 22642,
+    "nav": {
+      "h": 48,
+      "bg": "rgba(0, 0, 0, 0)",
+      "linkSize": {
+        "size": 19,
+        "weight": "600",
+        "ls": "0.228px",
+        "color": "rgba(0, 0, 0, 0.8)"
+      }
+    },
+    "bands": [
+      {
+        "band": "section section-hero",
+        "h": 1688,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "Apple Vision Pro",
+          "size": 34,
+          "weight": "600",
+          "lh": 50,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-foundation ",
+        "h": 844,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 366.59375,
+        "gutter": 12,
+        "contentLeft": 12,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-design",
+        "h": 1146,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Take a closer look.",
+          "size": 32,
+          "weight": "600",
+          "lh": 40,
+          "ls": "0.128px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-experiences",
+        "h": 8059,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Entertainment",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Transform any room into your own personal theater — with more pixels t",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 8
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-visionos",
+        "h": 1632,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "visionOS",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Built on the foundation of macOS, iOS, and iPadOS, visionOS enables po",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 8
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-technology theme-dark spacer-top",
+        "h": 5094,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "110px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "Technology",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The custom micro‑OLED display system features 23 million pixels, deliv",
+          "size": 17,
+          "weight": "600",
+          "lh": 21,
+          "ls": "-0.374px",
+          "color": "rgb(134, 134, 139)",
+          "mt": "20px",
+          "w": 341,
+          "lines": 6
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-values spacer-top",
+        "h": 1285,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "110px",
+        "padBottom": "25px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "Values",
+          "size": 19,
+          "weight": "700",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 341,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "section section-routers",
+        "h": 1458,
+        "bg": "rgba(0, 0, 0, 0)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Apple Vision Pro accessories.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "0.128px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 299,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "The opportunities for what developers can dream up and build for Apple",
+          "size": 17,
+          "weight": "400",
+          "lh": 25,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "13.6px",
+          "w": 299,
+          "lines": 10
+        },
+        "cards": [],
+        "cardRowCount": 0
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "h": 2280,
+      "pad": "0px",
+      "linkSize": 12,
+      "cols": 12
+    }
+  }
+}

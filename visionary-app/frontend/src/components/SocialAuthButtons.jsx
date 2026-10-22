@@ -34,7 +34,7 @@ export default function SocialAuthButtons() {
   };
 
   const btnClass =
-    "w-12 h-12 rounded-xl border border-[#dadce0] bg-white flex items-center justify-center enabled:hover:bg-[#121317]/5 enabled:hover:shadow-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all";
+    "w-12 h-12 rounded-xl border border-[#d2d2d7] bg-white flex items-center justify-center enabled:hover:bg-[#f5f5f7] enabled:hover:shadow-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all";
 
   return (
     <div><div className="flex items-center justify-center gap-3">
@@ -45,8 +45,8 @@ export default function SocialAuthButtons() {
         <MicrosoftIcon className="w-5 h-5" />
       </button>
       <button type="button" disabled={!signInMethods.organization} className={btnClass} aria-label="Organization sign-in unavailable" aria-describedby="unavailable-social-methods">
-        <Building2 className="w-5 h-5 text-[#5f6368]" />
+        <Building2 className="w-5 h-5 text-[#6e6e73]" />
       </button>
-    </div><p id="unavailable-social-methods" className="mt-3 text-xs text-[#5f6368] text-center">Microsoft and organization sign-in are unavailable. Use email or Google.</p>{error && <p role="alert" className="mt-3 text-sm text-[#b3261e]">{error}</p>}</div>
+    </div><p id="unavailable-social-methods" className="mt-3 text-xs text-[#6e6e73] text-center">Microsoft and organization sign-in are unavailable. Use email or Google.</p>{error && <p role="alert" className="mt-3 text-sm text-[#b3261e]">{error}</p>}</div>
   );
 }

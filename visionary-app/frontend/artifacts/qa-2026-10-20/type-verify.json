@@ -1,0 +1,847 @@
+{
+  "home": {
+    "390": {
+      "heroPx": 64,
+      "h2": "40/600/1.1/-0.020",
+      "h3": "21/600/1.19/0.011",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "40/600/1.1/-0.020"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "21/600/1.19/0.011"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "768": {
+      "heroPx": 96,
+      "h2": "56/600/1.06/-0.009",
+      "h3": "24/600/1.17/0.009",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 56,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 96
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "56/600/1.06/-0.009"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "24/600/1.17/0.009"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "1440": {
+      "heroPx": 140,
+      "h2": "64/600/1.05/-0.015",
+      "h3": "28/600/1.14/0.007",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 64,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 140
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "64/600/1.05/-0.015"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "28/600/1.14/0.007"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    }
+  },
+  "student": {
+    "390": {
+      "heroPx": 40,
+      "h2": "40/600/1/n",
+      "h3": "21/600/1.19/0.011",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "40/600/1/n"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "21/600/1.19/0.011"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "768": {
+      "heroPx": 56,
+      "h2": "56/600/1/-0.005",
+      "h3": "24/600/1.17/0.009",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 56,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "56/600/1/-0.005"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "24/600/1.17/0.009"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "1440": {
+      "heroPx": 64,
+      "h2": "64/600/1/-0.009",
+      "h3": "28/600/1.14/0.007",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 64,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "64/600/1/-0.009"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "28/600/1.14/0.007"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    }
+  },
+  "teacher": {
+    "390": {
+      "heroPx": 40,
+      "h2": "40/600/1/n",
+      "h3": "21/600/1.19/0.011",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "40/600/1/n"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "21/600/1.19/0.011"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "768": {
+      "heroPx": 56,
+      "h2": "56/600/1/-0.005",
+      "h3": "24/600/1.17/0.009",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 56,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "56/600/1/-0.005"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "24/600/1.17/0.009"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "1440": {
+      "heroPx": 64,
+      "h2": "64/600/1/-0.009",
+      "h3": "28/600/1.14/0.007",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 64,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "64/600/1/-0.009"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "28/600/1.14/0.007"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    }
+  },
+  "pricing": {
+    "390": {
+      "heroPx": 40,
+      "h2": "40/600/1/n",
+      "h3": "24/600/1.12/0.009",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "40/600/1/n"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "24/600/1.12/0.009"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "768": {
+      "heroPx": 56,
+      "h2": "56/600/1/-0.005",
+      "h3": "24/600/1.12/0.009",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 56,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "56/600/1/-0.005"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "24/600/1.12/0.009"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "1440": {
+      "heroPx": 64,
+      "h2": "64/600/1/-0.009",
+      "h3": "24/600/1.12/0.009",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 64,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "64/600/1/-0.009"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "24/600/1.12/0.009"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    }
+  },
+  "help": {
+    "390": {
+      "heroPx": 40,
+      "h2": null,
+      "h3": null,
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "768": {
+      "heroPx": 40,
+      "h2": null,
+      "h3": null,
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "1440": {
+      "heroPx": 64,
+      "h2": null,
+      "h3": null,
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 64,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    }
+  },
+  "security": {
+    "390": {
+      "heroPx": 40,
+      "h2": "21/600/1.19/0.011",
+      "h3": "17/600/1.24/-0.022",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "21/600/1.19/0.011"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "17/600/1.24/-0.022"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "768": {
+      "heroPx": 56,
+      "h2": "24/600/1.17/0.009",
+      "h3": "17/600/1.24/-0.022",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 56,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "24/600/1.17/0.009"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "17/600/1.24/-0.022"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "1440": {
+      "heroPx": 64,
+      "h2": "28/600/1.14/0.007",
+      "h3": "17/600/1.24/-0.022",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 64,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "28/600/1.14/0.007"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "17/600/1.24/-0.022"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    }
+  },
+  "about": {
+    "390": {
+      "heroPx": 40,
+      "h2": "40/600/1/n",
+      "h3": "17/600/1.19/0.011",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 40,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 40
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "40/600/1/n"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "17/600/1.19/0.011"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "768": {
+      "heroPx": 56,
+      "h2": "56/600/1/-0.005",
+      "h3": "17/600/1.19/0.011",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 56,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 56
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "56/600/1/-0.005"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "17/600/1.19/0.011"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    },
+    "1440": {
+      "heroPx": 64,
+      "h2": "64/600/1/-0.009",
+      "h3": "17/600/1.17/0.009",
+      "navMode": null,
+      "bodyMode": 17,
+      "maxMain": 64,
+      "overflow": 0,
+      "checks": [
+        {
+          "label": "hero<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "maxText<=cap",
+          "ok": true,
+          "got": 64
+        },
+        {
+          "label": "h2-on-ladder",
+          "ok": true,
+          "got": "64/600/1/-0.009"
+        },
+        {
+          "label": "h3-on-ladder",
+          "ok": true,
+          "got": "17/600/1.17/0.009"
+        },
+        {
+          "label": "body",
+          "ok": true,
+          "got": 17
+        },
+        {
+          "label": "overflow",
+          "ok": true,
+          "got": 0
+        }
+      ]
+    }
+  }
+}

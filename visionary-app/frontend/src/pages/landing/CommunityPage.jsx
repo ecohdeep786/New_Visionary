@@ -22,7 +22,7 @@ import imgM11 from "@/assets/student-higher.webp";
 import imgM12 from "@/assets/organization-problem-1-1600w.webp";
 import { fontStack } from "@/components/landing/system/tokens";
 
-/* ═══ Tokens — the public dialect (#121317 ink, #0b57d0 actions, #f5f5f7
+/* ═══ Tokens — the public dialect (#1d1d1f ink, #0066cc actions, #f5f5f7
    trays, white rounded-[20px] cards, ink pills). ═══ */
 
 /* Dual-row image marquee — the company-info-top pattern: rows circulating
@@ -76,47 +76,47 @@ const AREAS = [
   {
     id: "learners",
     icon: UsersRound,
-    tint: "#e8f0fe",
-    iconColor: "#0b57d0",
+    tint: "rgba(0,102,204,0.10)",
+    iconColor: "#0066cc",
     title: "Communities for learners",
     copy: "Class-scoped spaces to discuss, ask, and share what you build. Only the people in your class are inside, and nothing leaves it.",
     cards: [
-      { title: "Class discussions", copy: "Ask and discuss with the people you learn with every day. The space is scoped to your class and kept separate from private work.", to: "/student", subject: "ask", tint: "#e8f0fe" },
-      { title: "Share what you build", copy: "Post projects from Build and see classmates' work in the same space. Real work, not noise.", to: "/student", subject: "build", tint: "#f8f9fa" },
+      { title: "Class discussions", copy: "Ask and discuss with the people you learn with every day. The space is scoped to your class and kept separate from private work.", to: "/student", subject: "ask", tint: "rgba(0,102,204,0.10)" },
+      { title: "Share what you build", copy: "Post projects from Build and see classmates' work in the same space. Real work, not noise.", to: "/student", subject: "build", tint: "#f5f5f7" },
     ],
   },
   {
     id: "teachers",
     icon: ShieldCheck,
-    tint: "#f8f9fa",
-    iconColor: "#4285F4",
+    tint: "#f5f5f7",
+    iconColor: "#0066cc",
     title: "Guided by teachers",
     copy: "Teachers keep the space safe with moderation built in: reports and rate limits are part of the space, not bolted on afterwards.",
     cards: [
-      { title: "Moderation built in", copy: "Reports reach the teacher with rate limits, so misuse can't flood the space. The teacher reviews and acts.", to: "/teacher", subject: "shield", tint: "#f8f9fa" },
-      { title: "Reviewed, then shared", copy: "Reported content waits for the teacher's review, so nothing spreads through the class unreviewed.", to: "/teacher", subject: "flag", tint: "#f8f9fa" },
+      { title: "Moderation built in", copy: "Reports reach the teacher with rate limits, so misuse can't flood the space. The teacher reviews and acts.", to: "/teacher", subject: "shield", tint: "#f5f5f7" },
+      { title: "Reviewed, then shared", copy: "Reported content waits for the teacher's review, so nothing spreads through the class unreviewed.", to: "/teacher", subject: "flag", tint: "#f5f5f7" },
     ],
     flip: true,
   },
   {
     id: "families",
     icon: HeartHandshake,
-    tint: "#f8f9fa",
-    iconColor: "#4285F4",
+    tint: "#f5f5f7",
+    iconColor: "#0066cc",
     title: "For families and organizations",
     copy: "Community visibility follows consent — families and institutions see what their role allows, and never a learner's private work.",
     cards: [
-      { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner's consent allows, and nothing more renders anywhere.", to: "/parent", subject: "lock", tint: "#f8f9fa" },
-      { title: "Cohort spaces", copy: "Organization cohorts share institution-scoped spaces: insight across the group without exposing any individual.", to: "/organization", subject: "community", tint: "#f8f9fa" },
+      { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner's consent allows, and nothing more renders anywhere.", to: "/parent", subject: "lock", tint: "#f5f5f7" },
+      { title: "Cohort spaces", copy: "Organization cohorts share institution-scoped spaces: insight across the group without exposing any individual.", to: "/organization", subject: "community", tint: "#f5f5f7" },
     ],
   },
 ];
 
 /* More ways to engage — real destinations. */
 const MORE = [
-  { title: "Get updates", copy: "Follow what is changing across the product, one honest update at a time.", to: "/updates", subject: "updates", tint: "#f8f9fa" },
-  { title: "Explore how it works", copy: "See the loop the communities grow around: learn, ask, practise, build.", to: "/how-it-works", subject: "loop", tint: "#e8f0fe" },
-  { title: "Get help", copy: "Clear answers when something is unclear, from setup to safety.", to: "/help", subject: "help", tint: "#f8f9fa" },
+  { title: "Get updates", copy: "Follow what is changing across the product, one honest update at a time.", to: "/updates", subject: "updates", tint: "#f5f5f7" },
+  { title: "Explore how it works", copy: "See the loop the communities grow around: learn, ask, practise, build.", to: "/how-it-works", subject: "loop", tint: "rgba(0,102,204,0.10)" },
+  { title: "Get help", copy: "Clear answers when something is unclear, from setup to safety.", to: "/help", subject: "help", tint: "#f5f5f7" },
 ];
 
 /* FAQs — real behavior, no invented policies. */
@@ -167,20 +167,20 @@ export default function CommunityPage() {
             then the full-width fanned card strip with paging */}
         <section data-section="01-hero" className="relative overflow-hidden bg-white" style={{ paddingTop: "calc(64px + 40px)", paddingBottom: "40px" }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
-            <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Visionary communities</p>
+            <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#6e6e73]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
-              <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]">
+              <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
                 Communities and programs for everyone <span className="accent-gradient">learning together.</span>
               </h1>
-              <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#5f6368]">
+              <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#6e6e73]">
                 Class-scoped spaces where learners, teachers, and families grow together, kept safe by teachers.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                   Find your community
                 </a>
-                <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                   Community safety
                   <ChevronIcon className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -198,7 +198,7 @@ export default function CommunityPage() {
             {ANCHORS.map((anchor) => (
               <a key={anchor.id} href={`#${anchor.id}`}
                 onClick={(event) => { event.preventDefault(); scrollToSection(anchor.id); }}
-                className="shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#5f6368] transition-colors hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                className="shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transition-colors hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                 {anchor.label}
               </a>
             ))}
@@ -210,10 +210,10 @@ export default function CommunityPage() {
         <section data-section="02-find" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="relative mx-auto max-w-[720px] text-center">
             <svg aria-hidden="true" viewBox="0 0 120 60" className="absolute -right-16 -top-8 hidden h-14 w-28 lg:block">
-              <path d="M8 50 C 40 12, 78 8, 112 22" fill="none" stroke="#4285F4" strokeWidth="5" strokeLinecap="round" />
-              <path d="M20 56 C 52 30, 88 26, 114 38" fill="none" stroke="#fbbc04" strokeWidth="5" strokeLinecap="round" />
+              <path d="M8 50 C 40 12, 78 8, 112 22" fill="none" stroke="#0066cc" strokeWidth="5" strokeLinecap="round" />
+              <path d="M20 56 C 52 30, 88 26, 114 38" fill="none" stroke="#ff9500" strokeWidth="5" strokeLinecap="round" />
             </svg>
-            <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
+            <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
               Find a community that's right for you
             </h2>
           </Reveal>
@@ -221,24 +221,24 @@ export default function CommunityPage() {
             {AREAS.map((area) => (
               <div key={area.id} id={area.id} className="scroll-mt-36 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
                 <div className="lg:sticky lg:top-40 lg:self-start">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0b57d0]">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
                     <area.icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <h3 className="mt-5 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317]">{area.title}</h3>
-                  <p className="mt-4 max-w-[380px] text-[16px] leading-[1.7] text-[#5f6368]">{area.copy}</p>
+                  <h3 className="mt-5 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#1d1d1f]">{area.title}</h3>
+                  <p className="mt-4 max-w-[380px] text-[16px] leading-[1.7] text-[#6e6e73]">{area.copy}</p>
                 </div>
                 <div className="rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-8">
                   <div className="grid gap-3 sm:grid-cols-2">
                     {area.cards.map((card) => (
-                      <Link key={card.title} to={card.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                      <Link key={card.title} to={card.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                         <div className="flex h-[150px] items-center justify-center">
                           <SpotIllustration subject={card.subject} className="h-24 w-24" />
                         </div>
                         <div className="flex flex-1 flex-col p-6 pb-16">
-                          <h4 className="text-[18px] font-semibold leading-[1.35] text-[#121317]">{card.title}</h4>
-                          <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{card.copy}</p>
+                          <h4 className="text-[18px] font-semibold leading-[1.35] text-[#1d1d1f]">{card.title}</h4>
+                          <p className="mt-2 text-[14px] leading-[1.6] text-[#6e6e73]">{card.copy}</p>
                         </div>
-                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                       </Link>
                     ))}
                   </div>
@@ -252,24 +252,24 @@ export default function CommunityPage() {
         <section id="more" data-section="03-more" className="scroll-mt-36 bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
                 More ways to engage and learn
               </h2>
-              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
                 Keep your journey moving with the product and the people around it.
               </p>
             </div>
             <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {MORE.map((item) => (
-                <Link key={item.title} to={item.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                <Link key={item.title} to={item.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex h-[160px] items-center justify-center">
                     <SpotIllustration subject={item.subject} className="h-24 w-24" />
                   </div>
                   <div className="flex flex-1 flex-col p-6 pb-16">
-                    <h3 className="text-[20px] font-medium leading-[1.3] text-[#121317]">{item.title}</h3>
-                    <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{item.copy}</p>
+                    <h3 className="text-[20px] font-medium leading-[1.3] text-[#1d1d1f]">{item.title}</h3>
+                    <p className="mt-2 text-[14px] leading-[1.6] text-[#6e6e73]">{item.copy}</p>
                   </div>
-                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               ))}
             </div>
@@ -279,7 +279,7 @@ export default function CommunityPage() {
         {/* FAQ — the reference's accordion with circular controls */}
         <section id="faq" data-section="04-faq" className="scroll-mt-36 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[840px]">
-            <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
+            <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
               Have questions? We've got answers.
             </h2>
             <LandingFAQ faqs={FAQS} defaultOpen={0} />
@@ -289,17 +289,17 @@ export default function CommunityPage() {
         {/* CLOSING CTA */}
         <section data-section="05-closing" className="bg-[#f5f5f7] px-6 text-center sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[720px]">
-            <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
+            <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
               Bring your class together.
             </h2>
-            <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.65] text-[#5f6368] sm:text-[17px]">
+            <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[17px]">
               Communities grow around real learning. Start with the loop, and the space builds itself around it.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link to="/register" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto">
+              <Link to="/register" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
                 Get started
               </Link>
-              <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+              <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                 Read community safety
                 <ChevronIcon className="h-4 w-4" aria-hidden="true" />
               </Link>
