@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import { createServerAuth } from '../src/api/firebase/serverAuth.js';
 import { authDestination } from '../src/lib/authReturnTo.js';
 
-const user = { emailVerified: true, getIdToken: async () => 'fictional-id-token' };
+const user = { uid: 'fixture-a', emailVerified: true, getIdToken: async () => 'fictional-id-token' };
 const first = { id: 'fixture-a', onboarding_complete: false }, complete = { ...first, onboarding_complete: true };
-const fixture = request => createServerAuth({ request, identity: { login: async () => user, register: async () => user, provider: async () => user, sendVerification: async () => {}, logout: async () => {}, reloadCurrent: async () => user } });
+const fixture = request => createServerAuth({ request, identity: { login: async () => user, register: async () => user, provider: async () => user, sendVerification: async () => {}, logout: async () => {}, reloadUser: async user => user } });
 
 test('passive observation survives an outage but clears a server-revoked session', async () => {
   let status = 0; const paths = [];
@@ -112,7 +112,7 @@ test('failed server logout remains recoverable and does not report success', asy
 test('verification delivery failure can recover the newly created identity without a second signup', async () => {
   let registrations = 0;
   const auth = createServerAuth({ request: async () => first, identity: {
-    register: async () => { registrations++; return user; }, sendVerification: async () => { throw new Error('Delivery unavailable'); }, reloadCurrent: async () => user,
+    register: async () => { registrations++; return user; }, sendVerification: async () => { throw new Error('Delivery unavailable'); }, reloadUser: async user => user,
   } });
   await assert.rejects(auth.register({ email: 'adult@example.test', password: 'fixture-only' }), error => error.registrationCreated === true);
   assert.deepEqual(await auth.verifyEmail(), first); assert.equal(registrations, 1);
@@ -129,6 +129,97 @@ test('duplicate submit cannot create a second identity request', async () => {
   const pending = auth.loginViaEmailPassword('adult@example.test', 'fixture-only');
   await assert.rejects(auth.loginViaEmailPassword('adult@example.test', 'fixture-only'), error => error.code === 'auth/operation-in-progress');
   finish(user); await pending; assert.equal(attempts, 1);
+});
+
+test('leaving a pending phone verification cancels token exchange and clears the verifier', async () => {
+  let finish, exchanges = 0, disposed = 0, signedOut = 0;
+  const auth = createServerAuth({ request: async () => { exchanges++; return first; }, identity: {
+    confirmPhoneSignIn: () => new Promise(resolve => { finish = resolve; }),
+    cancelPhoneSignIn: () => { disposed++; }, logout: async () => { signedOut++; },
+  } });
+  const pending = auth.confirmPhoneSignIn({}, '123456');
+  auth.cancelPhoneSignIn(); finish({ ...user, phoneNumber: '+919999000001' });
+  await assert.rejects(pending, error => error.code === 'auth/account-changed');
+  assert.equal(exchanges, 0); assert.equal(disposed, 1); assert.equal(signedOut, 0); assert.equal(auth.currentProfile(), null);
+});
+
+test('a disposed CAPTCHA that never settles cannot block a subsequent email sign-in', { timeout: 1000 }, async () => {
+  let disposed = 0;
+  const auth = createServerAuth({ request: async () => first, identity: {
+    beginPhoneSignIn: () => new Promise(() => {}), cancelPhoneSignIn: () => { disposed++; }, login: async () => user,
+  } });
+  const pending = auth.requestPhoneSignIn('+919999000001', 'fixture-container');
+  const rejected = assert.rejects(pending, error => error.code === 'auth/account-changed');
+  auth.cancelPhoneSignIn(); await rejected;
+  assert.equal((await auth.loginViaEmailPassword('fixture@example.test', 'fixture-only')).id, first.id);
+  assert.equal(disposed, 1);
+});
+
+test('late cancelled phone confirmation cannot unlock or sign out a newer identity operation', async () => {
+  let finishPhone, finishEmail, cleanups = 0, exchanges = 0;
+  const auth = createServerAuth({ request: async () => { exchanges++; return first; }, identity: {
+    confirmPhoneSignIn: () => new Promise(resolve => { finishPhone = resolve; }),
+    login: () => new Promise(resolve => { finishEmail = resolve; }), logout: async () => { cleanups++; },
+  } });
+  const old = auth.confirmPhoneSignIn({}, '123456'), rejected = assert.rejects(old, error => error.code === 'auth/account-changed');
+  auth.cancelPhoneSignIn(); await rejected;
+  const current = auth.loginViaEmailPassword('fixture@example.test', 'fixture-only');
+  finishPhone({ ...user, phoneNumber: '+919999000001' });
+  await new Promise(resolve => setImmediate(resolve));
+  await assert.rejects(auth.loginViaEmailPassword('duplicate@example.test', 'fixture-only'), error => error.code === 'auth/operation-in-progress');
+  assert.equal(cleanups, 0); assert.equal(exchanges, 0);
+  finishEmail(user); assert.equal((await current).id, first.id);
+  assert.equal(exchanges, 1); assert.equal(cleanups, 0);
+});
+
+test('phone cancellation cannot abandon a submitted session cookie mutation or admit a new identity over it', async () => {
+  let submit, finish, cookie = false;
+  const submitted = new Promise(resolve => { submit = resolve; });
+  const auth = createServerAuth({ request: async path => {
+    if (path === '/session') { submit(); return new Promise(resolve => { finish = () => { cookie = true; resolve(first); }; }); }
+    assert.equal(path, '/me'); assert.equal(cookie, true); return first;
+  }, identity: { confirmPhoneSignIn: async () => ({ ...user, phoneNumber: '+919999000001' }), login: async () => user } });
+  const pending = auth.confirmPhoneSignIn({}, '123456'); await submitted;
+  auth.cancelPhoneSignIn();
+  await assert.rejects(auth.loginViaEmailPassword('new@example.test', 'fixture-only'), error => error.code === 'auth/operation-in-progress');
+  finish(); assert.equal((await pending).id, first.id);
+  assert.equal(auth.currentProfile().id, first.id); assert.equal((await auth.me()).id, first.id);
+});
+
+for (const entry of ['register', 'login']) test(`cancelled phone SDK state cannot replace the pending ${entry} email identity`, async () => {
+  let current, finishPhone;
+  const phone = { uid: 'cancelled-phone', emailVerified: false, phoneNumber: '+919999000001', getIdToken: async () => 'phone-token' };
+  const email = { uid: 'pending-email', emailVerified: false, getIdToken: async () => 'email-token' }, sent = [];
+  const auth = createServerAuth({ request: async (path, options) => {
+    assert.equal(path, '/session'); assert.equal(options.body.idToken, 'email-token');
+    return { id: email.uid, onboarding_complete: false };
+  }, identity: {
+    confirmPhoneSignIn: () => new Promise(resolve => { finishPhone = () => { current = phone; resolve(phone); }; }),
+    register: async () => { current = email; return email; }, login: async () => { current = email; return email; },
+    reloadUser: async bound => { assert.equal(bound, email); bound.emailVerified = true; return bound; },
+    reloadCurrent: async () => current, current: async () => current,
+    sendVerification: async bound => { sent.push(bound.uid); },
+  } });
+  const old = auth.confirmPhoneSignIn({}, '123456'), rejected = assert.rejects(old, error => error.code === 'auth/account-changed');
+  auth.cancelPhoneSignIn(); await rejected;
+  if (entry === 'register') await auth.register({ email: 'pending@example.test', password: 'fixture-only' });
+  else await assert.rejects(auth.loginViaEmailPassword('pending@example.test', 'fixture-only'), error => error.code === 'auth/email-not-verified');
+  finishPhone(); await new Promise(resolve => setImmediate(resolve));
+  assert.equal(current.uid, phone.uid, 'Model the SDK global currentUser being overwritten by the late confirmation');
+  await auth.resendVerification(); assert.equal(sent.at(-1), email.uid);
+  assert.equal((await auth.verifyEmail()).id, email.uid);
+  assert.equal(auth.currentProfile().id, email.uid);
+});
+
+test('phone confirmation exchanges identity and duplicate confirmation stays single-flight', async () => {
+  let finish, calls = 0;
+  const auth = createServerAuth({ request: async path => { assert.equal(path, '/session'); calls++; return first; }, identity: {
+    confirmPhoneSignIn: () => new Promise(resolve => { finish = resolve; }),
+  } });
+  const pending = auth.confirmPhoneSignIn({}, '123456');
+  await assert.rejects(auth.confirmPhoneSignIn({}, '123456'), error => error.code === 'auth/operation-in-progress');
+  finish({ ...user, emailVerified: false, phoneNumber: '+919999000001' });
+  assert.equal((await pending).id, first.id); assert.equal(calls, 1);
 });
 test('malformed profile cannot authenticate or change saved onboarding state', async () => {
   const auth = fixture(async () => ({ onboarding_complete: 'true' }));

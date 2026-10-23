@@ -10,7 +10,7 @@ const { FirebaseAdminService } = requireBackend('./dist/src/auth/firebase/fireba
 const { FirebaseProductController } = requireBackend('./dist/src/auth/firebase-product/firebase-product.controller.js');
 const { FirebaseProductService } = requireBackend('./dist/src/auth/firebase-product/firebase-product.service.js');
 const { memoryFirestore } = require('./fixtures/firestore-memory.cjs');
-const config = new ConfigService({ FIREBASE_PROJECT_ID: 'demo-visionary-auth', FIREBASE_PROJECT_KIND: 'emulator', FIREBASE_AUTH_EMULATOR_HOST: '127.0.0.1:9099', AUTH_PUBLIC_ORIGIN: 'http://127.0.0.1:5175', AUTH_RATE_LIMIT_KEY: 'fixture-only-auth-limit-secret-not-for-production' });
+const config = new ConfigService({ FIREBASE_PROJECT_ID: 'demo-visionary-auth', FIREBASE_PROJECT_KIND: 'emulator', FIREBASE_AUTH_EMULATOR_HOST: '127.0.0.1:9099', AUTH_PUBLIC_ORIGIN: 'http://127.0.0.1:5175', AUTH_PHONE_SIGNIN_ENABLED: 'true', AUTH_GLOBAL_LOGOUT_ENABLED: 'true', AUTH_RATE_LIMIT_KEY: 'fixture-only-auth-limit-secret-not-for-production' });
 const admin = new FirebaseAdminService(config), service = new FirebaseProductService(admin, config), memory = memoryFirestore();
 service.db = () => memory.db;
 class FixtureModule {}

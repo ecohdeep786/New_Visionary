@@ -37,7 +37,7 @@ export function AuthDivider() {
   );
 }
 
-export function BackButton({ onClick = undefined, to = undefined, label = "Back" }) {
+export function BackButton({ onClick = undefined, to = undefined, label = "Back", disabled = false }) {
   const className = "flex items-center gap-1.5 text-sm text-[#0066cc] font-medium hover:underline self-start mb-6";
   if (to) {
     return (
@@ -47,7 +47,7 @@ export function BackButton({ onClick = undefined, to = undefined, label = "Back"
     );
   }
   return (
-    <button type="button" onClick={onClick} className={className}>
+    <button type="button" onClick={onClick} disabled={disabled} className={className}>
       <ArrowLeft className="w-4 h-4" /> {label}
     </button>
   );

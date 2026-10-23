@@ -89,7 +89,7 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "In Progress",
+      "status": "To Do",
       "scope": "Connected coverage candidate independently reviewed for technical compatibility; full real source/version/rights acceptance remains open. Founder defers source discussion on 21 October 2026.",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix",
       "branch": "codex/codex-kan-29-coverage-matrix",
@@ -102,7 +102,8 @@
       "jiraTransitionId": "21",
       "review": {
         "state": "not-submitted"
-      }
+      },
+      "resumeCondition": "Founder requested KAN-34 completion first; KAN-29 remains open with its existing checkout/evidence preserved. Book/edition/language/licence discussion is deferred."
     },
     {
       "sourceId": "AI-11",
@@ -341,9 +342,9 @@
       "jiraReturnedStatus": "Done",
       "jiraTransitionId": "51",
       "cleanup": {
-        "state": "blocked-by-automatic-approval-review",
-        "removed": false,
-        "reason": "Combined cleanup and narrower literal dependency-junction removal rejected: blocked by policy. No workaround deletion performed.",
+        "state": "removed-after-verified-preservation",
+        "removed": true,
+        "reason": "Completed source and review evidence accepted on dev/main; required ignored configuration/evidence preserved with SHA256 verification before exact checkout removal.",
         "primaryDependenciesRetained": true,
         "sourceAndReviewRefsRetained": true,
         "worktrees": [
@@ -354,7 +355,9 @@
         "preservedBytes": 118332,
         "evidenceRoot": "artifacts/qa/kan145-closeout-20261020",
         "manifest": "preserved-files.json",
-        "jiraCommentId": "10062"
+        "jiraCommentId": "10062",
+        "previousCheckpoint": "blocked-by-automatic-approval-review",
+        "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-22.json"
       },
       "enablerScopeAccepted": true
     },
@@ -420,9 +423,9 @@
       "jiraReturnedStatus": "Done",
       "jiraTransitionId": "51",
       "cleanup": {
-        "state": "blocked-by-automatic-approval-review",
-        "removed": false,
-        "reason": "Combined cleanup and narrower literal dependency-junction removal rejected: blocked by policy. No workaround deletion performed.",
+        "state": "removed-after-verified-preservation",
+        "removed": true,
+        "reason": "Completed source and review evidence accepted on dev/main; required ignored configuration/evidence preserved with SHA256 verification before exact checkout removal.",
         "primaryDependenciesRetained": true,
         "sourceAndReviewRefsRetained": true,
         "worktrees": [
@@ -433,7 +436,9 @@
         "preservedBytes": 310136,
         "evidenceRoot": "artifacts/qa/kan146-closeout-20261020",
         "manifest": "preserved-files.json",
-        "deletionAttemptOnThisTask": false
+        "deletionAttemptOnThisTask": false,
+        "previousCheckpoint": "blocked-by-automatic-approval-review",
+        "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-22.json"
       }
     },
     {
@@ -468,44 +473,40 @@
       "jiraKey": "KAN-34",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
       "status": "Testing",
-      "scope": "Email/Google web sign-in, native Firebase verification links, remembered server-owned sessions, shared account/onboarding, and account-wide Visionary sign-out. Apple removed from web by founder. Device-local learning and linked hosted/provider gates retain their explicit boundaries.",
+      "scope": "Accepted email/Google/remembered-device/global-session base plus founder-requested real phone SMS sign-in/sign-up extension. Expanded phone source review and hosted acceptance remain open.",
       "branch": "codex/codex-kan-34-signin-matrix",
       "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
       "implementer": "Codex",
       "review": {
-        "state": "approved-source-and-two-stage-release-procedure",
+        "state": "approved-source-and-rollout-native-sms-pending",
         "reviewer": "/root/kan34_release_review",
-        "exactReviewedCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
-        "report": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
-        "reportCommit": "a333955c8a35e1fa1072610d3e5e640321dad7d4",
-        "independentAuthAndGcpTests": 65,
-        "independentRenderLint": true,
-        "compiledBrowserReceiptsInspected": 14,
+        "exactReviewedCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
+        "report": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
+        "reportCommit": "1398227ae1001db8626ac5916f20f50fab7038d0",
         "fullFeatureAccepted": false,
-        "hostedAcceptancePending": true
+        "hostedPhoneAcceptancePending": true
       },
-      "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
-      "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/17",
-      "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39820287068",
+      "implementationCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
+      "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/19",
+      "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39908224000",
       "sourceCiConclusion": "success",
-      "handoff": "docs/architecture/delivery/KAN34_SIGNIN_MATRIX.md",
-      "jiraResumeCommentId": "10122",
+      "handoff": "docs/architecture/delivery/KAN34_PHONE_AUTH_REVIEW.md",
+      "jiraResumeCommentId": "10126",
       "checks": {
         "backendBuild": true,
-        "backendTests": 104,
-        "frontendTests": 617,
+        "backendTests": 107,
+        "frontendTests": 624,
         "scriptTests": 18,
-        "gcpJavascriptTests": 26,
+        "gcpJavascriptTests": 27,
         "rootCheck": true,
-        "rootCheckEvidence": "Local root check at d3b3ba32; final445 import repair separately linted/rebuilt, all14 compiled browser cases pass, and final445 GitHub CI reruns full root check.",
         "lint": true,
         "typecheck": true,
         "firebaseModeBuild": true,
-        "finalFirebaseBuildSeconds": 28.17,
-        "compiledBrowserScenarios": 14,
-        "compiledBrowserEnvironment": "Fictional identity/store, compiled frontend and Nest service. Four methods, six onboarding recovery, two enabled global-logout device cases and two disabled compatibility-stage local-logout cases.",
-        "realProviderAcceptance": false,
+        "finalFirebaseBuildSeconds": 25.86,
+        "phoneEmulatorBrowserScenarios": 8,
+        "emailEmulatorBrowserScenarios": 11,
+        "realPhoneSmsAcceptance": false,
         "failed": 0
       },
       "hostedAcceptance": false,
@@ -538,7 +539,7 @@
           "idleDays": 7,
           "authority": "server-verified-HttpOnly-cookie-plus-device-record",
           "sdkTokenPersistence": "memory-only",
-          "deployed": false,
+          "deployed": true,
           "globalLogout": true,
           "passiveVisibleObservationSeconds": 30,
           "passiveObservationTouchesIdle": false
@@ -582,16 +583,60 @@
       },
       "integration": {
         "remotePublished": false,
-        "commit": null
+        "commit": null,
+        "acceptedBaseCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23"
       },
-      "synchronizedDevCommit": "37934ceef147834c7da48f3a6e154b3a8cd794fc",
-      "sourceCiCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+      "synchronizedDevCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+      "sourceCiCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
       "releasePlan": {
-        "procedure": "two-stage-main-only-compatibility-rollout",
-        "firstDeploymentGlobalSignOut": false,
-        "activationRequiresVerifiedPolicyAwareFallback": true,
+        "procedure": "main-only-reviewed-phone-extension",
+        "policyAwareRollback": "1ae078dc469846246bb5571717e39a6afe7a402e",
         "epochEnforcementAlwaysEnabled": true,
-        "deployed": false
+        "phoneDeployed": false,
+        "freshPhoneSignInUnavailableOnRollback": true
+      },
+      "acceptedBase": {
+        "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+        "review": {
+          "state": "approved-source-and-two-stage-release-procedure",
+          "reviewer": "/root/kan34_release_review",
+          "exactReviewedCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+          "report": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
+          "reportCommit": "a333955c8a35e1fa1072610d3e5e640321dad7d4",
+          "independentAuthAndGcpTests": 65,
+          "independentRenderLint": true,
+          "compiledBrowserReceiptsInspected": 14,
+          "fullFeatureAccepted": false,
+          "hostedAcceptancePending": true
+        },
+        "checks": {
+          "backendBuild": true,
+          "backendTests": 104,
+          "frontendTests": 617,
+          "scriptTests": 18,
+          "gcpJavascriptTests": 26,
+          "rootCheck": true,
+          "rootCheckEvidence": "Local root check at d3b3ba32; final445 import repair separately linted/rebuilt, all14 compiled browser cases pass, and final445 GitHub CI reruns full root check.",
+          "lint": true,
+          "typecheck": true,
+          "firebaseModeBuild": true,
+          "finalFirebaseBuildSeconds": 28.17,
+          "compiledBrowserScenarios": 14,
+          "compiledBrowserEnvironment": "Fictional identity/store, compiled frontend and Nest service. Four methods, six onboarding recovery, two enabled global-logout device cases and two disabled compatibility-stage local-logout cases.",
+          "realProviderAcceptance": false,
+          "failed": 0
+        },
+        "devIntegrationCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+        "mainCommit": "1ae078dc469846246bb5571717e39a6afe7a402e",
+        "hostedAcceptance": true,
+        "evidence": "docs/architecture/delivery/evidence/KAN34_HOSTED_AUTH_2026-10-22.json",
+        "independentHostedReviewCommit": "95a6bb00fd0825e03972d43d479040ae9c09570c"
+      },
+      "phoneSourceCi": {
+        "commit": "24663e2199c9ffeeffa80e5946429684a0caa2cd",
+        "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39830621424",
+        "conclusion": "success",
+        "approval": false
       }
     }
   ]

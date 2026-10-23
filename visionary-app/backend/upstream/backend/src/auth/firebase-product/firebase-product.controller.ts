@@ -8,6 +8,8 @@ import { ProductRequestAuthority } from './request-authority';
 @Controller('auth')
 export class FirebaseProductController extends ProductRequestAuthority {
   constructor(service: FirebaseProductService, config: ConfigService) { super(service, config); }
+  @Get('methods')
+  methods() { return this.service.signInMethods(); }
   @Get('csrf')
   getCsrf(@Res({ passthrough: true }) res: Response) {
     const token = randomBytes(32).toString('hex');

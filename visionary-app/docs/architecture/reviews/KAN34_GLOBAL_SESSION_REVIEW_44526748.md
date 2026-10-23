@@ -180,3 +180,119 @@ Jira transition/comment receipt: pending integrator update; no Done is asserted.
 Worktree removal follows accepted/pushed integration and actual Jira Done after
 required evidence/configuration preservation. No next dependent implementation
 task is accepted or started by this review.
+
+## Hosted acceptance addendum — 22 October 2026, 17:39 UTC
+
+Reviewer: `/root/kan34_release_review`. I independently accept responsibility for
+this closeout audit. This dated addendum supersedes the earlier pending hosted
+acceptance statement for the released email/Google/session scope only. It does
+not change implementation or retrospectively describe fictional tests as hosted.
+
+**Hosted acceptance decision: approved for the released KAN-34 scope. No blocking
+finding remains for its recorded completion.** The integrator may record the
+accepted result, move KAN-34 to Done, verify that actual transition and pushed
+closeout receipt, preserve required local evidence/configuration, then retire the
+completed task/reviewer worktrees. Those administrative actions are not asserted
+as already complete by this report.
+
+### Delivered source and actual rollout
+
+- Dev PR [17](https://github.com/ecohdeep786/New_Visionary/pull/17) integrated as
+  `54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23`; main PR
+  [18](https://github.com/ecohdeep786/New_Visionary/pull/18) integrated as
+  `1ae078dc469846246bb5571717e39a6afe7a402e`. I independently fetched the refs and
+  verified both complete trees are `84a2a08c5c2f500fa63372493250e420350411ef`.
+  Only the review, delivery note and execution receipt differ from the exact
+  reviewed source `44526748`; no runtime source changed after approval.
+- Integration checks [39821768315](https://github.com/ecohdeep786/New_Visionary/actions/runs/39821768315)
+  and release-PR checks [39821808453](https://github.com/ecohdeep786/New_Visionary/actions/runs/39821808453)
+  were reported successful by the integrator. I inspected the downloaded actual
+  publication/deployment artifacts for both production stages below.
+- Stage one [39822077619](https://github.com/ecohdeep786/New_Visionary/actions/runs/39822077619)
+  deployed `visionary-product-g1ae078dc4698-39822077619-1`, policy v1 with global
+  sign-out disabled, retaining legacy `7aee2324` as its rollback. Its image digest
+  is `sha256:2f5f8e3d5d8c998115f9eb386d548109345f0ba8385c32bcdef8a4b2013c5610`.
+- Stage two [39822825126](https://github.com/ecohdeep786/New_Visionary/actions/runs/39822825126)
+  deployed `visionary-product-g1ae078dc4698-39822825126-1`, policy v1 with global
+  sign-out enabled. Its verified fallback is the policy-v1, action-disabled stage
+  one revision. Its image digest is
+  `sha256:e651bff799a7b02efe34eb9643f9cbaaa3d6c59f89c15db17ec681d4bef33595`.
+  Both published-image digests match their deployment receipts. Distinct image
+  digests for the same main SHA are recorded rather than treated as identical
+  builds.
+
+The safe deployment artifacts are
+`artifacts/qa/kan34/12445182237-deployed-release.json` and
+`artifacts/qa/kan34/12445317414-deployed-release.json`, with their corresponding
+published-release JSON, in the implementation checkout. Both receipts report
+verified success and explicitly retain candidate/previous policy states. The
+policy-aware fallback was deployed and verified; an actual traffic rollback after
+this activation was not claimed or exercised as part of this addendum. The prior
+failure/rollback tests and prohibition on reverting to legacy code still apply.
+
+### Independent public verification and native evidence audit
+
+At 17:37 UTC I independently ran `publicChecks` from the reviewed release helper
+against canonical `https://visionary.org.in`, expected source
+`1ae078dc469846246bb5571717e39a6afe7a402e` and policy
+`{version:1, globalSignOut:true}`. It exited 0. A separate health fetch returned
+HTTP 200, `Cache-Control: no-store`, the expected source header and that exact
+policy. This checks canonical login/API boundaries, anonymous denials, secure
+host-prefixed CSRF cookie, exact-origin/CSRF behavior and health provenance. It
+does not infer the native user journey from an anonymous health response.
+
+I separately audited the implementer's sanitized native receipts and log:
+
+- Real canonical email sign-in restored completed setup, survived reload and
+  returned to the same saved account. During the disabled compatibility stage,
+  local sign-out retained an independently signed-in peer. Native canonical
+  Google OAuth restored the original account's pending onboarding, followed by
+  local account switching; no owner credentials or onboarding were changed and
+  no global owner sign-out was performed. The Google observation is explicitly
+  captured in `live/hosted-google.json`.
+- `live/hosted-native-peers.json` and `hosted-native-peers.log` attest two
+  independent canonical cookie jars authenticated through native Firebase, not
+  an emulator. After the actual production UI global sign-out, both peers were
+  rejected with HTTP 401. These are native production backend/session results;
+  the 14 compiled browser cases remain separately labeled fictional.
+- `live/before-hosted-logout.json` -> `live/after-hosted-logout.json` records
+  account session epoch 1 -> 2 while profile version stays 2 and completed
+  onboarding/introduction stay complete. The integrator additionally observed
+  safe wrong-password UI and a fresh post-revocation login restoring that same
+  account. The independently supplied local peer then showed sign-in after
+  canonical global sign-out. I accept those explicitly attributed UI observations
+  together with the native datastore/session receipts; I did not repeat credential
+  entry or inspect private fixture data.
+- `live/fixture-cleanup.json` and `live/final-cleanup.json` prove final epoch 3,
+  the task-owned fixture disabled, refresh-token revocation requested, profile
+  version/setup retained, no deletion and no original-account changes. Logs say
+  credentials were not logged. I did not open private fixture JSON or credentials.
+- I inspected the anonymous hosted `production-login.jpg` retained under the
+  local `Visionary-local/kan34-2026-10-22` evidence folder: the deployed email and
+  Google UI renders, Apple is absent and other methods are honestly unavailable.
+
+### Accepted boundary and completion record
+
+I independently read live KAN-34: status is still Testing at this audit and its
+requirement includes phone/SSO **if offered**. Released email/password, Google,
+Firebase verification links, remembered server sessions, account/setup continuity
+and global Visionary session sign-out now have the required source, integration,
+hosted and native-provider evidence. The disabled methods are not offered as
+working released methods. This supports Done for that explicit scope, without
+closing every linked product/provider/privacy/load/AGI gate.
+
+Firebase custom sender-domain verification remains `IN_PROGRESS`, with the
+integrator's current request checkpoint `2026-10-22T16:44:51Z`. Custom email-template
+writes were rejected by the provider and are not claimed applied. These remain
+explicit open provider-configuration follow-ups; existing delivered Firebase
+verification/reset links continue to be the accepted release flow. Do not mark
+the custom domain/templates complete, promise automatic verification, or erase
+their follow-up record when closing KAN-34. Phone, Microsoft and organization
+provider acceptance, deferred KAN-29 content, device-local learning limitations,
+and other linked release gates retain their prior open/unavailable boundaries.
+
+The integrator must now publish this report and the actual hosted receipts in
+the execution/Jira closeout record, retain the explicit remaining configuration
+gates, verify Jira Done, and preserve necessary ignored evidence/configuration
+before removing completed worktrees. This addendum is report-only; it requires
+no additional application deployment.

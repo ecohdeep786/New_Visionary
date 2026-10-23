@@ -12,8 +12,7 @@ const request = createAuthTransport();
 const identity = {
   login: async (email, password) => (await signInWithEmailAndPassword(getFirebaseAuthClient(), email, password)).user,
   register: async (email, password) => (await createUserWithEmailAndPassword(getFirebaseAuthClient(), email, password)).user,
-  current: async () => getFirebaseAuthClient().currentUser,
-  async reloadCurrent() { const user = getFirebaseAuthClient().currentUser; if (user) await reload(user); return user; },
+  async reloadUser(user) { await reload(user); return user; },
   async sendVerification(user) {
     if (Date.now() - (pendingVerificationTimes.get(user.uid) || 0) < 60000) throw authFlowError('auth/verification-cooldown');
     await sendEmailVerification(user, { url: `${window.location.origin}/login`, handleCodeInApp: false });
@@ -29,10 +28,12 @@ const identity = {
   // Auth Emulator and kept on the client otherwise.
   async beginPhoneSignIn(phoneE164, reCAPTCHAContainerId) {
     const auth = getFirebaseAuthClient();
+    if (auth.emulatorConfig) auth.settings.appVerificationDisabledForTesting = true;
     if (phoneVerifier) { try { phoneVerifier.clear(); } catch { /* a verifier on another page can be rebuilt */ } phoneVerifier = null; }
     phoneVerifier = new RecaptchaVerifier(auth, reCAPTCHAContainerId, { size: 'invisible' });
     return (await signInWithPhoneNumber(auth, phoneE164, phoneVerifier));
   },
+  cancelPhoneSignIn() { if (phoneVerifier) { try { phoneVerifier.clear(); } catch { /* Already disposed. */ } phoneVerifier = null; } },
   confirmPhoneSignIn: async (confirmation, code) => (await confirmation.confirm(code)).user,
   resetRequest: email => sendPasswordResetEmail(getFirebaseAuthClient(), email, { url: `${window.location.origin}/login` }),
   reset: (code, password) => confirmPasswordReset(getFirebaseAuthClient(), code, password),
