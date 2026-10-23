@@ -41,7 +41,7 @@ export default function Login() {
   }
 
   const checkEmailExists = async (emailToCheck) => {
-    if (import.meta.env.DEV || base44.auth.source === 'firebase') return true;
+    if (base44.auth.source === 'firebase') return true;
     try {
       const users = await base44.entities.User.filter({ email: emailToCheck });
       return users && users.length > 0;
