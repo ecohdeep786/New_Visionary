@@ -12,7 +12,7 @@ import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system) ═══ */
 const COLORS = {
-  ink: "#1d1d1f", surface: "#F5F6F8", blue: "#0066cc", grey: "#6e6e73",
+  ink: "#1d1d1f", surface: "#f5f5f7", blue: "#0066cc", grey: "#6e6e73",
   lightGrey: "#86868b", mist: "#d2d2d7", white: "#ffffff",
 };
 

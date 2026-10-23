@@ -78,7 +78,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
             type="button"
             aria-pressed={active}
             onClick={() => onChange(b)}
-            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
+            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
           >
             {b === "monthly" ? "Monthly" : "Annual"}
             {b === "annual" && (
@@ -163,7 +163,7 @@ function PricingStoreSection() {
                         <Link
                           data-b3="cta"
                           to={["personal", "family"].includes(p.id) ? billingPath(p.id, billing) : p.to}
-                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#0059b4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                         >
                           {p.cta}
                         </Link>
@@ -207,7 +207,7 @@ function PricingStoreSection() {
               <Link
                 data-b3="cta"
                 to={institution.to}
-                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#0059b4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
               >
                 {institution.cta}
               </Link>

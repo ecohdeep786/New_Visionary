@@ -1,0 +1,331 @@
+diff --git a/visionary-app/frontend/src/components/landing/LandingFAQ.jsx b/visionary-app/frontend/src/components/landing/LandingFAQ.jsx
+index 0935265e..572ef8cf 100644
+--- a/visionary-app/frontend/src/components/landing/LandingFAQ.jsx
++++ b/visionary-app/frontend/src/components/landing/LandingFAQ.jsx
+@@ -62,7 +62,7 @@ export default function LandingFAQ({
+             type="button"
+             onClick={toggleAll}
+             aria-expanded={allOpen}
+-            className="inline-flex min-h-11 items-center gap-2 rounded-sm px-2 text-[14px] font-medium text-[#0066cc] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
++            className="inline-flex min-h-11 items-center gap-2 rounded-sm px-2 text-[14px] font-medium text-[#0066cc] transition-colors hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
+           >
+             {allOpen ? collapseAllLabel : expandAllLabel}
+             <Plus className={`h-4 w-4 transition-transform duration-200 ${allOpen ? "rotate-45" : ""}`} aria-hidden="true" />
+@@ -114,7 +114,7 @@ export default function LandingFAQ({
+           }
+ 
+           return (
+-            <div key={faq.q || index} className="overflow-hidden rounded-2xl border border-[#e8eaed] bg-white">
++            <div key={faq.q || index} className="overflow-hidden rounded-2xl border border-[#d2d2d7] bg-white">
+               <button
+                 id={triggerId}
+                 type="button"
+diff --git a/visionary-app/frontend/src/components/landing/LandingNav.jsx b/visionary-app/frontend/src/components/landing/LandingNav.jsx
+index 9b625f8b..fa159b4a 100644
+--- a/visionary-app/frontend/src/components/landing/LandingNav.jsx
++++ b/visionary-app/frontend/src/components/landing/LandingNav.jsx
+@@ -276,7 +276,7 @@ export default function LandingNav() {
+       {/* Skip link — first focusable element, Google/US-WAG convention */}
+       <a
+         href="#main"
+-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-10 focus:items-center focus:rounded-full focus:bg-[#1d1d1f] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
++        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-11 focus:items-center focus:rounded-full focus:bg-[#1d1d1f] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
+       >
+         Skip to main content
+       </a>
+diff --git a/visionary-app/frontend/src/components/landing/LazyImage.jsx b/visionary-app/frontend/src/components/landing/LazyImage.jsx
+index fc509b99..2f893230 100644
+--- a/visionary-app/frontend/src/components/landing/LazyImage.jsx
++++ b/visionary-app/frontend/src/components/landing/LazyImage.jsx
+@@ -14,7 +14,7 @@ import React, { useState, useEffect, useRef } from "react";
+  *   style      — inline styles for the placeholder frame
+  *   eager      — if true, load immediately (above-fold hero images)
+  *   fetchPriority — passed to the img (e.g. "high")
+- *   placeholderBg — background color for the loading placeholder (default: #f3f4f6)
++ *   placeholderBg — background color for the loading placeholder (default: #f5f5f7)
+  */
+ export default function LazyImage({
+   src,
+@@ -25,7 +25,7 @@ export default function LazyImage({
+   style,
+   eager = false,
+   fetchPriority,
+-  placeholderBg = "#f3f4f6",
++  placeholderBg = "#f5f5f7",
+   ...rest
+ }) {
+   const [loaded, setLoaded] = useState(false);
+diff --git a/visionary-app/frontend/src/components/landing/persona/PersonaSections.jsx b/visionary-app/frontend/src/components/landing/persona/PersonaSections.jsx
+index 24d9c517..b7eb84aa 100644
+--- a/visionary-app/frontend/src/components/landing/persona/PersonaSections.jsx
++++ b/visionary-app/frontend/src/components/landing/persona/PersonaSections.jsx
+@@ -382,7 +382,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
+           aria-label={playing ? "Pause the journey" : "Play the journey"}
+           aria-pressed={!playing}
+           onClick={() => setPlaying((v) => !v)}
+-          className="flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++          className="flex h-11 w-11 items-center justify-center text-[#1d1d1f] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+         >
+           {playing ? (
+             <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
+@@ -401,7 +401,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
+             aria-label={`Previous ${label}`}
+             disabled={active === 0}
+             onClick={() => stepTo(active - 1)}
+-            className={`flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
++            className={`flex h-11 w-11 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+           >
+             <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
+           </button>
+@@ -410,7 +410,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
+             aria-label={`Next ${label}`}
+             disabled={active === stages.length - 1}
+             onClick={() => stepTo(active + 1)}
+-            className={`flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
++            className={`flex h-11 w-11 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+           >
+             <ChevronIcon className="h-[18px] w-[18px]" />
+           </button>
+@@ -484,7 +484,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals,
+             type="button"
+             onClick={onClose}
+             aria-label="Close"
+-            className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++            className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+           >
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
+               <path d="M6 6l12 12M18 6L6 18" />
+@@ -712,7 +712,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
+                 role="option"
+                 aria-selected={i === active}
+                 onClick={() => { onSelect(i); setOpen(false); }}
+-                className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[#rgba(0,102,204,0.10)] font-medium" : "font-normal hover:bg-[#1d1d1f]/5"}`}
++                className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[rgba(0,102,204,0.10)] font-medium" : "font-normal hover:bg-[#1d1d1f]/5"}`}
+                 style={{ color: color.ink }}
+               >
+                 {s.name}
+diff --git a/visionary-app/frontend/src/components/landing/persona/PremiumPersonaSections.jsx b/visionary-app/frontend/src/components/landing/persona/PremiumPersonaSections.jsx
+index 052e2b40..15ff29fd 100644
+--- a/visionary-app/frontend/src/components/landing/persona/PremiumPersonaSections.jsx
++++ b/visionary-app/frontend/src/components/landing/persona/PremiumPersonaSections.jsx
+@@ -63,7 +63,7 @@ const INTELLIGENCE_CLIPS = [null, null, null, null];
+    technology-chapter stage: near-black field, blue glow breathing behind,
+    hairline white rings, frost core, glowing blue satellites. */
+ function IntelligenceBeats({ index, label }) {
+-  const core = "#f5f7fa", blue = "#2997ff", hairline = "rgba(255,255,255,0.14)", track = "rgba(255,255,255,0.12)";
++  const core = "#f5f5f7", blue = "#2997ff", hairline = "rgba(255,255,255,0.14)", track = "rgba(255,255,255,0.12)";
+   const stage = { background: "radial-gradient(58% 52% at 50% 44%, rgba(0,102,204,0.2) 0%, rgba(0,102,204,0.06) 46%, rgba(13,16,23,0) 74%)" };
+   if (index === 0) {
+     return (
+@@ -219,7 +219,7 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
+       <h3
+         data-type="feature-heading"
+         className="mt-4 whitespace-pre-line"
+-        style={{ color: "#f5f7fa", maxWidth: "35ch" }}
++        style={{ color: "#f5f5f7", maxWidth: "35ch" }}
+       >
+         {step.title}
+       </h3>
+@@ -449,7 +449,7 @@ const PremiumPlayPause = React.memo(function PremiumPlayPause({ playing, onClick
+       aria-label={playing ? `Pause the ${labelPrefix}` : `Play the ${labelPrefix}`}
+       aria-pressed={!playing}
+       onClick={onClick}
+-      className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++      className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+     >
+       {playing ? (
+         <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
+@@ -572,7 +572,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language",
+                   type="button"
+                   aria-label="Previous language"
+                   onClick={() => step(-1)}
+-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                 >
+                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
+                 </button>
+@@ -580,7 +580,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language",
+                   type="button"
+                   aria-label="Next language"
+                   onClick={() => step(1)}
+-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                 >
+                   <ChevronIcon className="h-[18px] w-[18px]" />
+                 </button>
+@@ -750,7 +750,7 @@ const PremiumPlayPauseButton = React.memo(function PremiumPlayPauseButton({ play
+       aria-label={playing ? `Pause the ${label}` : `Play the ${label}`}
+       aria-pressed={!playing}
+       onClick={onClick}
+-      className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++      className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+     >
+       {playing ? (
+         <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
+@@ -873,7 +873,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading,
+                   type="button"
+                   aria-label="Previous stages"
+                   onClick={() => step(-1)}
+-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                 >
+                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
+                 </button>
+@@ -881,7 +881,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading,
+                   type="button"
+                   aria-label="Next stages"
+                   onClick={() => step(1)}
+-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                 >
+                   <ChevronIcon className="h-[18px] w-[18px]" />
+                 </button>
+@@ -1350,7 +1350,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
+                 aria-label="Previous destinations"
+                 onClick={() => scrollByCard(-1)}
+                 disabled={!canPrev}
+-                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                 style={{ borderColor: `${color.ink}33`, color: `${color.ink}99` }}
+               >
+                 <ChevronIcon direction="left" className="h-4 w-4" />
+@@ -1360,7 +1360,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
+                 aria-label="Next destinations"
+                 onClick={() => scrollByCard(1)}
+                 disabled={!canNext}
+-                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                 style={{ borderColor: `${color.ink}33`, color: `${color.ink}99` }}
+               >
+                 <ChevronIcon className="h-4 w-4" />
+diff --git a/visionary-app/frontend/src/pages/landing/AILearningPage.jsx b/visionary-app/frontend/src/pages/landing/AILearningPage.jsx
+index 2f69362b..7732449e 100644
+--- a/visionary-app/frontend/src/pages/landing/AILearningPage.jsx
++++ b/visionary-app/frontend/src/pages/landing/AILearningPage.jsx
+@@ -78,7 +78,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
+             type="button"
+             aria-pressed={active}
+             onClick={() => onChange(b)}
+-            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
++            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
+           >
+             {b === "monthly" ? "Monthly" : "Annual"}
+             {b === "annual" && (
+@@ -163,7 +163,7 @@ function PricingStoreSection() {
+                         <Link
+                           data-b3="cta"
+                           to={["personal", "family"].includes(p.id) ? billingPath(p.id, billing) : p.to}
+-                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#0059b4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                         >
+                           {p.cta}
+                         </Link>
+@@ -207,7 +207,7 @@ function PricingStoreSection() {
+               <Link
+                 data-b3="cta"
+                 to={institution.to}
+-                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#0059b4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
++                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+               >
+                 {institution.cta}
+               </Link>
+diff --git a/visionary-app/frontend/src/pages/landing/CookiesPage.jsx b/visionary-app/frontend/src/pages/landing/CookiesPage.jsx
+index 7a5d1cdc..46b776ca 100644
+--- a/visionary-app/frontend/src/pages/landing/CookiesPage.jsx
++++ b/visionary-app/frontend/src/pages/landing/CookiesPage.jsx
+@@ -22,7 +22,7 @@ const COLORS = {
+   mist: "#d2d2d7",
+   border: "#d2d2d7",
+   soft: "#f5f5f7",
+-  canvas: "#f7f8fa",
++  canvas: "#f5f5f7",
+   blue: "#0066cc",
+   navy: "#0066cc",
+   white: "#ffffff",
+diff --git a/visionary-app/frontend/src/pages/landing/PrivacyPage.jsx b/visionary-app/frontend/src/pages/landing/PrivacyPage.jsx
+index 0eec526b..af35d7fb 100644
+--- a/visionary-app/frontend/src/pages/landing/PrivacyPage.jsx
++++ b/visionary-app/frontend/src/pages/landing/PrivacyPage.jsx
+@@ -32,7 +32,7 @@ const COLORS = {
+   mist: "#d2d2d7",
+   border: "#d2d2d7",
+   soft: "#f5f5f7",
+-  canvas: "#f7f8fa",
++  canvas: "#f5f5f7",
+   blue: "#0066cc",
+   navy: "#0066cc",
+   white: "#ffffff",
+diff --git a/visionary-app/frontend/src/pages/landing/SchoolPage.jsx b/visionary-app/frontend/src/pages/landing/SchoolPage.jsx
+index 33774bf7..2acfa231 100644
+--- a/visionary-app/frontend/src/pages/landing/SchoolPage.jsx
++++ b/visionary-app/frontend/src/pages/landing/SchoolPage.jsx
+@@ -12,7 +12,7 @@ import { fontStack } from "@/components/landing/system/tokens";
+ 
+ /* ═══ TOKENS (one system) ═══ */
+ const COLORS = {
+-  ink: "#1d1d1f", surface: "#F5F6F8", blue: "#0066cc", grey: "#6e6e73",
++  ink: "#1d1d1f", surface: "#f5f5f7", blue: "#0066cc", grey: "#6e6e73",
+   lightGrey: "#86868b", mist: "#d2d2d7", white: "#ffffff",
+ };
+ 
+diff --git a/visionary-app/frontend/src/pages/landing/SecurityPage.jsx b/visionary-app/frontend/src/pages/landing/SecurityPage.jsx
+index c0291296..7b9d5496 100644
+--- a/visionary-app/frontend/src/pages/landing/SecurityPage.jsx
++++ b/visionary-app/frontend/src/pages/landing/SecurityPage.jsx
+@@ -23,7 +23,7 @@ const COLORS = {
+   mist: "#d2d2d7",
+   border: "#d2d2d7",
+   soft: "#f5f5f7",
+-  canvas: "#f7f8fa",
++  canvas: "#f5f5f7",
+   blue: "#0066cc",
+   navy: "#0066cc",
+   white: "#ffffff",
+diff --git a/visionary-app/frontend/src/pages/landing/TermsPage.jsx b/visionary-app/frontend/src/pages/landing/TermsPage.jsx
+index cf1d7a7a..616511e3 100644
+--- a/visionary-app/frontend/src/pages/landing/TermsPage.jsx
++++ b/visionary-app/frontend/src/pages/landing/TermsPage.jsx
+@@ -22,7 +22,7 @@ const COLORS = {
+   mist: "#d2d2d7",
+   border: "#d2d2d7",
+   soft: "#f5f5f7",
+-  canvas: "#f7f8fa",
++  canvas: "#f5f5f7",
+   blue: "#0066cc",
+   navy: "#0066cc",
+   white: "#ffffff",
+diff --git a/visionary-app/frontend/src/pages/landing/UpdatesPage.jsx b/visionary-app/frontend/src/pages/landing/UpdatesPage.jsx
+index 18a7ed43..608f2c12 100644
+--- a/visionary-app/frontend/src/pages/landing/UpdatesPage.jsx
++++ b/visionary-app/frontend/src/pages/landing/UpdatesPage.jsx
+@@ -324,7 +324,7 @@ export default function UpdatesPage() {
+                             <button
+                               key={category.id} type="button" aria-pressed={active}
+                               onClick={() => setSelected((current) => (current.includes(category.id) ? current.filter((item) => item !== category.id) : [...current, category.id]))}
+-                              className="inline-flex min-h-9 items-center gap-2 rounded-full bg-[#f5f5f7] px-4 text-[13px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
++                              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#f5f5f7] px-4 text-[13px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
+                             >
+                               {active && <Check className="h-3.5 w-3.5" strokeWidth={2.4} style={{ color: "#0066cc" }} aria-hidden="true" />}
+                               {category.label}
+diff --git a/visionary-app/frontend/src/styles/public-icons.css b/visionary-app/frontend/src/styles/public-icons.css
+index 7f5455a6..2866c63f 100644
+--- a/visionary-app/frontend/src/styles/public-icons.css
++++ b/visionary-app/frontend/src/styles/public-icons.css
+@@ -9,7 +9,7 @@
+   --icon-medium: 1.25rem;
+   --icon-feature: 1.5rem;
+   --icon-large: 2.5rem;
+-  --icon-control-size: 2.25rem;
++  --icon-control-size: 2.75rem;
+   --icon-control-glyph: 1.5rem;
+   --icon-plus: 1.25rem;
+   --icon-stroke: 1.75;
+@@ -80,7 +80,7 @@
+   stroke-width: var(--icon-control-stroke);
+ }
+ 
+-/* The story card plus is a 20px glyph in a 36px circle; the story remains
++/* The story card plus is a 20px glyph in a 44px circle; the story remains
+    the click target. Size the affordance, never the entire image button. */
+ #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-card-control {
+   width: var(--icon-control-size) !important;

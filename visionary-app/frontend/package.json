@@ -13,7 +13,8 @@
     "test": "node --test --test-concurrency=2 tests/*.test.mjs",
     "qa:navigation": "node scripts/navigation-quality-review.mjs",
     "qa:fonts": "node scripts/font-surface-review.mjs",
-    "qa:design": "node scripts/design-quality-review.mjs"
+    "qa:design": "node scripts/design-quality-review.mjs",
+    "qa:continuity": "node scripts/qa-continuity.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",

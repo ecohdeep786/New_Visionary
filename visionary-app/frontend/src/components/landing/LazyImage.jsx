@@ -14,7 +14,7 @@ import React, { useState, useEffect, useRef } from "react";
  *   style      — inline styles for the placeholder frame
  *   eager      — if true, load immediately (above-fold hero images)
  *   fetchPriority — passed to the img (e.g. "high")
- *   placeholderBg — background color for the loading placeholder (default: #f3f4f6)
+ *   placeholderBg — background color for the loading placeholder (default: #f5f5f7)
  */
 export default function LazyImage({
   src,
@@ -25,7 +25,7 @@ export default function LazyImage({
   style,
   eager = false,
   fetchPriority,
-  placeholderBg = "#f3f4f6",
+  placeholderBg = "#f5f5f7",
   ...rest
 }) {
   const [loaded, setLoaded] = useState(false);

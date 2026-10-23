@@ -1,0 +1,108 @@
+{
+  "renderCheck": {
+    "method": "Desktop-browser DOM measurement plus viewport screenshots. devicePixelRatio 1.31, innerWidth 1724, PNG saved at maxWidth 1440 (founder's active-tab display scale). 1.2 s settle after each scroll so entrance animations finish; measurements use offsetWidth/offsetHeight/getComputedStyle (transform-proof).",
+    "servers": {
+      "after": "http://localhost:5174 - sanctioned worktree dev server (vite 6.4.3, worktree frontend/node_modules) serving the FIXED tree including the public-icons.css render fix",
+      "before": "http://127.0.0.1:5173 - primary checkout dev server serving HEAD 592d4752 (pre-fix state; the task's changes existed only as uncommitted worktree edits, so HEAD = before)"
+    },
+    "afterState": {
+      "studentPage": {
+        "selector": "carousel/gallery buttons (aria-label contains journey|language|stage|destination)",
+        "matchCount": 11,
+        "offsetWidthHeightUnique": [44],
+        "computedHeightUnique": ["43.99px (= 44px at 0.9997 rounding of the dev CSS pipeline)"],
+        "clustersAtPageY": [3502, 8352],
+        "note": "Play/Pause/Previous/Next on Learning stages, languages, journey stages and destinations carousels; includes the h-11 replacements (4 PersonaSections + 6 PremiumPersona h-9 + 2 PremiumPersona h-10)."
+      },
+      "teacherPage": {
+        "matchCount": 11,
+        "offsetWidthHeightUnique": [44],
+        "computedHeightUnique": ["43.99px"],
+        "clustersAtPageY": [3522, 8372]
+      },
+      "updatesPage": {
+        "selector": ".min-h-11 (rows below y=4000)",
+        "matchCount": 12,
+        "offsetHeightUnique": [44],
+        "keyRows": [
+          { "label": "Browse the latest", "oh": 44, "y": 453 },
+          { "label": "See how the loop works", "oh": 44, "y": 1019 },
+          { "label": "All / Product updates / Languages and access / Research and learning / Community and events", "oh": 44, "y": 1535 },
+          { "label": "email-form chips Product updates / Languages and access / Research and learning / Community and events", "oh": 44, "y": 3797 }
+        ]
+      },
+      "aiLearningPageRouteSlashPricing": {
+        "selector": ".min-h-11 (plan tabs; rows below y=3000)",
+        "matchCount": 2,
+        "offsetHeightUnique": [44],
+        "rows": [
+          { "label": "Monthly", "oh": 44, "y": 456 },
+          { "label": "Annual (2 months free)", "oh": 44, "y": 456 }
+        ]
+      }
+    },
+    "beforeState": {
+      "studentPage": {
+        "matchCount": 11,
+        "offsetWidthHeightUnique": [36],
+        "computedHeightUnique": ["36px"],
+        "clustersAtPageY": [3502, 8344]
+      },
+      "teacherPage": {
+        "matchCount": 11,
+        "offsetWidthHeightUnique": [36],
+        "clustersAtPageY": [3522, 8364]
+      },
+      "updatesPage": {
+        "selector": ".min-h-9 (rows below y=4000)",
+        "matchCount": 4,
+        "offsetHeightUnique": [36],
+        "rows": [
+          { "label": "Product updates", "oh": 36, "y": 3797 },
+          { "label": "Languages and access", "oh": 36, "y": 3797 },
+          { "label": "Research and learning", "oh": 36, "y": 3797 },
+          { "label": "Community and events", "oh": 36, "y": 3797 }
+        ],
+        "note": "Only the email 'You will receive' chips carried min-h-9 at HEAD. The top filter chip row and the two CTA chips already used min-h-11 (verified against HEAD source), so they are not part of this delta."
+      },
+      "aiLearningPageRouteSlashPricing": {
+        "selector": ".min-h-10 (plan tabs)",
+        "matchCount": 2,
+        "offsetHeightUnique": [40],
+        "computedHeightUnique": ["39.99px"],
+        "rows": [
+          { "label": "Monthly", "oh": 40, "y": 456 },
+          { "label": "Annual (2 months free)", "oh": 40, "y": 456 }
+        ]
+      }
+    },
+    "renderGapFinding": {
+      "summary": "After the 15 JSX tap-target fixes the source tokens read h-11 w-11 / min-h-11 and the token-based law scanner passed, but rendering still measured 36x36 on persona carousel buttons. A fresh probe div with class h-11 w-11 appended to body measured 44, so the base utility was correct; the defeat was local to the landing control selectors.",
+      "cause": "frontend/src/styles/public-icons.css pins width/height/min-width/min-height of public icon controls to var(--icon-control-size) with !important at ID-level specificity (#main:not(...) :where(section:not(...)) :is(button...)). --icon-control-size was 2.25rem (36px). The !important layer even nullified an inline style height:44px override test (offsetHeight stayed 36).",
+      "symptomDetail": "Element classList contained h-11 w-11 (post-fix), computed height was 35.9971px; cascade dump showed matched rules: (.h-11 -> 2.75rem) BELOW the winning (#main... -> var(--icon-control-size) = 2.25rem) rule.",
+      "fix": "Raised the design-system control size at its single definition point: --icon-control-size: 2.25rem -> 2.75rem (44px) in public-icons.css, and updated its comment to match. Glyph tokens (--icon-control-glyph 1.5rem, --icon-plus 1.25rem) are untouched, so icon art stays 24px in a 44px circle.",
+      "healsBeyondThe15": "The same var drives every public carousel/gallery/story-plus/dialog-close control, so other public pages whose buttons already carried h-11 tokens but rendered 36 are healed by the same change (render-gap class, not visible to a token-based scanner).",
+      "scannerBlindSpot": "qa-continuity's tap-target law reads class tokens in source; CSS --icon-control-size !important overrides are invisible to it. Recorded as the known render-truth gap of this task; future proposal: extend the scanner to (a) collect --icon-control-size from public-icons.css and fail if below 2.75rem, and (b) optional runtime verification pass (already sketched in the dialogue) measuring computed control sizes on rendered pages.",
+      "verificationAfterFix": "Re-measured on the after server: student 11/11 arrows 44x44 (43.99 computed), teacher 11/11 arrows 44x44; update chips and pricing tabs unchanged at 44. Screenshots below confirm the visual delta."
+    },
+    "screenshots": {
+      "condition": "Paired frames: both states shot at the same scroll anchor (cluster top - 280 px) after a 1.2 s settle.",
+      "after": [
+        { "file": "screens/after/student-carousel-hero-44.png", "scrolledTo": 3222, "anchorY": 3502 },
+        { "file": "screens/after/student-carousel-voice-44.png", "scrolledTo": 8052, "anchorY": 8352 },
+        { "file": "screens/after/teacher-carousel-hero-44.png", "scrolledTo": 3242, "anchorY": 3522 },
+        { "file": "screens/after/teacher-carousel-voice-44.png", "scrolledTo": 8092, "anchorY": 8372 },
+        { "file": "screens/after/updates-email-chips-44.png", "scrolledTo": 3517, "anchorY": 3797 },
+        { "file": "screens/after/ai-learning-plan-tabs-44.png", "scrolledTo": 176, "anchorY": 456 }
+      ],
+      "before": [
+        { "file": "screens/before/student-carousel-hero-36.png", "scrolledTo": 3222, "anchorY": 3502 },
+        { "file": "screens/before/student-carousel-voice-36.png", "scrolledTo": 8044, "anchorY": 8344 },
+        { "file": "screens/before/teacher-carousel-hero-36.png", "scrolledTo": 3242, "anchorY": 3522 },
+        { "file": "screens/before/teacher-carousel-voice-36.png", "scrolledTo": 8084, "anchorY": 8364 },
+        { "file": "screens/before/updates-email-chips-36.png", "scrolledTo": 3517, "anchorY": 3797 },
+        { "file": "screens/before/ai-learning-plan-tabs-40.png", "scrolledTo": 176, "anchorY": 456 }
+      ]
+    }
+  }
+}

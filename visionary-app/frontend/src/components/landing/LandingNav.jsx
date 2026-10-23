@@ -276,7 +276,7 @@ export default function LandingNav() {
       {/* Skip link — first focusable element, Google/US-WAG convention */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-10 focus:items-center focus:rounded-full focus:bg-[#1d1d1f] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-11 focus:items-center focus:rounded-full focus:bg-[#1d1d1f] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
       >
         Skip to main content
       </a>
