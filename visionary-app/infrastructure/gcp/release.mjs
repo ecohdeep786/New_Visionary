@@ -32,6 +32,7 @@ export function releaseEnvironment(commit, globalSignOut = false) {
     FIREBASE_PROJECT_ID: production.project, FIREBASE_PROJECT_KIND: 'production', FIRESTORE_DATABASE_ID: 'default',
     FIREBASE_AUTH_DOMAIN: production.authDomain, BILLING_MODE: 'test', VISIONARY_RELEASE_COMMIT: commit,
     AUTH_SESSION_POLICY_VERSION: '1', AUTH_GLOBAL_LOGOUT_ENABLED: globalSignOut === true ? 'true' : 'false',
+    AUTH_PHONE_SIGNIN_ENABLED: 'true',
   };
 }
 export function revisionAuthPolicy(revision) {
@@ -85,9 +86,17 @@ export async function probe(origin, path, commit, fetcher = fetch) {
       body.status !== 'ok' || (path === '/__deploy-check' && body.forwardedForSanitized !== true)) throw Error('Release health/provenance/proxy-boundary check failed.');
   return body;
 }
-export async function publicChecks(commit, fetcher = fetch, expectedPolicy) {
+export async function publicChecks(commit, fetcher = fetch, expectedPolicy, expectedMethods) {
   const health = await probe(production.origin, '/api/health', commit, fetcher);
   if (expectedPolicy) verifyAuthPolicy(health, expectedPolicy);
+  // A pre-phone rollback image has no methods endpoint. Only the new release
+  // is required to serve this contract; fallback still runs its own boundaries.
+  if (expectedMethods) {
+    const methods = await fetcher(production.origin + '/api/auth/methods', { redirect: 'manual', signal: AbortSignal.timeout(15000) });
+    if (methods.status !== 200 || methods.headers.get('cache-control') !== 'no-store' || methods.headers.get('x-visionary-revision') !== commit) throw Error('Sign-in methods boundary verification failed.');
+    const actual = await methods.json();
+    if (Object.entries(expectedMethods).some(([name, enabled]) => actual[name] !== enabled)) throw Error('Sign-in methods availability verification failed.');
+  }
   for (const [path, status, type] of [['/login', 200, 'text/html'], ['/api/auth/me', 401, 'application/json'], ['/api/account/overview', 401, 'application/json'], ['/api/__unknown-release-probe', 404, 'application/json']]) {
     const response = await fetcher(production.origin + path, { redirect: 'manual', signal: AbortSignal.timeout(15000) });
     if (response.status !== status || response.headers.get('x-visionary-revision') !== commit || !response.headers.get('content-type')?.includes(type) ||
@@ -304,7 +313,7 @@ async function cli(mode) {
     deploy: policy => gcloud(releaseDeployArgs({ commit, image, suffix, ...policy })),
     baselineProbe: sha => probe(production.origin, '/api/health', sha),
     moveTraffic, candidateProbe: () => probe(production.origin, '/__deploy-check', commit),
-    canonicalChecks: (sha, policy) => publicChecks(sha || commit, fetch, policy),
+    canonicalChecks: (sha, policy) => publicChecks(sha || commit, fetch, policy, !sha || sha === commit ? { email: true, google: true, phone: true } : undefined),
   });
   writeFileSync('deployed-release.json', JSON.stringify(receipt, null, 2) + '\n');
 }

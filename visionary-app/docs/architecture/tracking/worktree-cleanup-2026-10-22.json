@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-22",
+  "scope": "Completed KAN-145 and KAN-146 task and review checkout retirement",
+  "jiraStatusesVerified": { "KAN-145": "Done", "KAN-146": "Done" },
+  "acceptedDev": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+  "acceptedMain": "1ae078dc469846246bb5571717e39a6afe7a402e",
+  "sourceAndReviewRefsRetained": true,
+  "reviewBlobsVerifiedAgainstMain": true,
+  "removed": [
+    "deepseek-kan-145-knowledge-projection",
+    "qa-review-kan-145-knowledge-projection",
+    "deepseek-kan-146-teaching-loop",
+    "qa-review-kan-146-teaching-loop"
+  ],
+  "preservation": {
+    "root": "C:/Users/Administrator/Visionary-local/completed-worktrees-2026-10-22",
+    "manifest": "preserved-files.json",
+    "sha256Verified": true,
+    "files": 63,
+    "bytes": 922588,
+    "privateFilesCommitted": false
+  },
+  "sharedDependencyJunctionsUnlinkedWithoutFollowingTargets": true,
+  "primaryFrontendAndBackendDependenciesRetained": true,
+  "remainingCleanup": "After expanded KAN-34 acceptance, preserve local evidence/configuration and retire old unused task/review checkouts. Retain latest main/dev/beta and KAN-29. No next implementation task has started."
+}

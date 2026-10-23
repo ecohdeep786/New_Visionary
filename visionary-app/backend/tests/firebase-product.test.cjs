@@ -1,4 +1,4 @@
-const test = require('node:test'), assert = require('node:assert/strict'), { createHash } = require('node:crypto');
+const test = require('node:test'), assert = require('node:assert/strict'), { createHash, randomUUID } = require('node:crypto');
 const path = require('node:path'), { createRequire } = require('node:module');
 const req = createRequire(path.resolve(__dirname, '../upstream/backend/package.json'));
 const { ConfigService } = req('@nestjs/config');
@@ -24,6 +24,69 @@ function fixture() {
 }
 const setup = { full_name: 'Fixture Adult', identity: 'student', education_stage: 'higher_ed', age_band: 'adult', subjects: ['Mathematics'], institution_type: 'college', degree_program: 'B.Sc', department: 'Mathematics', semester: 'Semester 1', career_goal: 'research' };
 const metadata = { ip: '127.0.0.1', userAgent: 'Fixture browser' };
+
+test('verified phone identities create one UID profile without email or stored credentials, and return to saved setup', async t => {
+  const f = fixture(), get = f.service.config.get.bind(f.service.config);
+  t.mock.method(f.service.config, 'get', key => key === 'AUTH_PHONE_SIGNIN_ENABLED' ? 'true' : get(key));
+  delete f.identity.email; delete f.identity.email_verified;
+  f.identity.phone_number = '+919000000001';
+  f.identity.firebase = { sign_in_provider: 'phone', identities: { phone: [f.identity.phone_number] } };
+  const first = await f.service.signIn('verified-phone-token', metadata);
+  assert.equal(first.profile.email, ''); assert.equal(first.profile.phone_number, f.identity.phone_number);
+  assert.equal(first.profile.onboarding_complete, false);
+  await f.service.completeOnboarding(f.identity.uid, { full_name: 'Phone fixture', identity: 'professional', age_band: 'adult', preferred_language: 'English' });
+  const returning = await f.service.signIn('verified-phone-token', metadata);
+  assert.equal(returning.profile.id, first.profile.id); assert.equal(returning.profile.onboarding_complete, true);
+  const account = f.rows.get(`visionary_accounts/${f.identity.uid}`);
+  assert.equal(account.identity.emailVerified, false);
+  assert.equal(account.identity.phoneNumber, f.identity.phone_number);
+  assert.equal(account.identity.provider, 'phone');
+  assert.deepEqual(Object.keys(account).filter(key => /password|salt|verificationCode|idToken|refreshToken/i.test(key)), []);
+  assert.equal([...f.rows.keys()].filter(key => /^visionary_accounts\/[^/]+$/.test(key)).length, 1);
+  assert.equal((await f.service.authenticate(returning.cookie, returning.device, false)).uid, f.identity.uid);
+});
+
+test('phone admission fails closed before account writes for disabled, unverified or mismatched provider claims', async t => {
+  const f = fixture(), get = f.service.config.get.bind(f.service.config); let enabled = false;
+  t.mock.method(f.service.config, 'get', key => key === 'AUTH_PHONE_SIGNIN_ENABLED' ? (enabled ? 'true' : 'false') : get(key));
+  delete f.identity.email; delete f.identity.email_verified;
+  f.identity.phone_number = '+919000000001';
+  f.identity.firebase = { sign_in_provider: 'phone', identities: { phone: [f.identity.phone_number] } };
+  await assert.rejects(f.service.signIn('phone-disabled', metadata), e => e.getStatus() === 503);
+  enabled = true;
+  for (const malformed of [undefined, [], ['+919000000002']]) {
+    f.identity.firebase.identities.phone = malformed;
+    await assert.rejects(f.service.signIn('unverified-phone', metadata), e => e.getStatus() === 401);
+  }
+  f.identity.firebase = { sign_in_provider: 'password', identities: { phone: [f.identity.phone_number] } };
+  await assert.rejects(f.service.signIn('unverified-email-with-phone', metadata), e => e.getStatus() === 401);
+  assert.equal(f.rows.size, 0);
+});
+
+test('phone verification cannot claim an email-addressed Family invitation without verified email', async t => {
+  const f = fixture(), get = f.service.config.get.bind(f.service.config);
+  t.mock.method(f.service.config, 'get', key => key === 'AUTH_PHONE_SIGNIN_ENABLED' ? 'true' : get(key));
+  Object.assign(f.identity, { email: 'recipient@example.test', email_verified: false, phone_number: '+919000000001',
+    firebase: { sign_in_provider: 'phone', identities: { phone: ['+919000000001'] } } });
+  const signed = await f.service.signIn('phone-with-unverified-email', metadata);
+  assert.equal(signed.profile.email, '');
+  assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).email, '');
+  await f.service.completeOnboarding(f.identity.uid, { full_name: 'Phone fixture', identity: 'professional', age_band: 'adult', preferred_language: 'English' });
+  const { BillingService } = req('./dist/src/billing/billing.service.js');
+  const billing = new BillingService({ safely: operation => operation(), db: () => f.db }, {}, f.service);
+  const token = randomUUID(), key = `visionary_billing_test_invitations/${token}`;
+  f.rows.set(key, { email: f.identity.email, status: 'pending', expiresAt: Date.now() + 60000, ownerName: 'Fixture payer' });
+  await assert.rejects(billing.familyInvitation(f.identity.uid, token), e => e.getStatus() === 404);
+  await assert.rejects(billing.acceptFamily(f.identity.uid, { invitationId: token }), e => e.getStatus() === 404);
+  assert.equal(f.rows.get(key).status, 'pending');
+  f.identity.email_verified = true;
+  await f.service.signIn('phone-with-verified-email', metadata);
+  assert.equal((await billing.familyInvitation(f.identity.uid, token)).ownerName, 'Fixture payer');
+  f.identity.email_verified = false;
+  await f.service.signIn('phone-email-no-longer-verified', metadata);
+  assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).email, '');
+  await assert.rejects(billing.familyInvitation(f.identity.uid, token), e => e.getStatus() === 404);
+});
 
 test('compatibility rollout disables new revocations while continuing to reject revoked sessions and tokens', async t => {
   let now = Date.now(); t.mock.method(Date, 'now', () => now);

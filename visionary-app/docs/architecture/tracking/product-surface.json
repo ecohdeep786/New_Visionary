@@ -298,10 +298,12 @@
         "frontend/src/components/auth/BillingAuthNotice.jsx",
         "frontend/src/components/auth/EmailVerification.jsx",
         "frontend/src/components/auth/LanguageSelector.jsx",
+        "frontend/src/components/auth/PhoneAuth.jsx",
         "frontend/src/components/ui/input-otp.jsx",
         "frontend/src/domain/curriculumTemplate.ts",
         "frontend/src/domain/lessonObjective.ts",
         "frontend/src/domain/workspace.ts",
+        "frontend/src/hooks/useSignInMethods.js",
         "frontend/src/lib/AuthContext.jsx",
         "frontend/src/lib/assignmentAvailability.js",
         "frontend/src/lib/auth-context.js",
@@ -354,47 +356,45 @@
         "frontend/src/components/auth/EmailVerification.jsx:28:5",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/PhoneAuth.jsx:49:5",
+        "frontend/src/components/auth/PhoneAuth.jsx:52:21",
+        "frontend/src/components/auth/PhoneAuth.jsx:54:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:57:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:58:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:59:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:60:15",
+        "frontend/src/components/auth/PhoneAuth.jsx:61:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:64:7",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
-        "frontend/src/components/SocialAuthButtons.jsx:41:7",
-        "frontend/src/components/SocialAuthButtons.jsx:44:7",
-        "frontend/src/components/SocialAuthButtons.jsx:47:7",
+        "frontend/src/components/SocialAuthButtons.jsx:27:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
-        "frontend/src/pages/Login.jsx:163:13",
-        "frontend/src/pages/Login.jsx:174:13",
-        "frontend/src/pages/Login.jsx:181:35",
-        "frontend/src/pages/Login.jsx:186:15",
-        "frontend/src/pages/Login.jsx:190:13",
-        "frontend/src/pages/Login.jsx:193:31",
-        "frontend/src/pages/Login.jsx:202:15",
-        "frontend/src/pages/Login.jsx:204:15",
-        "frontend/src/pages/Login.jsx:207:15",
-        "frontend/src/pages/Login.jsx:217:13",
-        "frontend/src/pages/Login.jsx:224:19",
-        "frontend/src/pages/Login.jsx:230:13",
-        "frontend/src/pages/Login.jsx:231:15",
-        "frontend/src/pages/Login.jsx:243:19",
-        "frontend/src/pages/Login.jsx:248:17",
-        "frontend/src/pages/Login.jsx:259:13",
-        "frontend/src/pages/Login.jsx:261:13",
-        "frontend/src/pages/Login.jsx:262:15",
-        "frontend/src/pages/Login.jsx:275:19",
-        "frontend/src/pages/Login.jsx:280:17",
-        "frontend/src/pages/Login.jsx:291:13",
-        "frontend/src/pages/Login.jsx:298:17",
-        "frontend/src/pages/Login.jsx:303:15",
-        "frontend/src/pages/Login.jsx:308:15",
-        "frontend/src/pages/Login.jsx:311:15",
-        "frontend/src/pages/Login.jsx:321:13",
-        "frontend/src/pages/Login.jsx:323:13",
-        "frontend/src/pages/Login.jsx:324:15",
-        "frontend/src/pages/Login.jsx:334:19",
-        "frontend/src/pages/Login.jsx:339:17",
-        "frontend/src/pages/Login.jsx:361:15",
-        "frontend/src/pages/Login.jsx:374:17",
-        "frontend/src/pages/Login.jsx:379:15",
-        "frontend/src/pages/Login.jsx:385:15"
+        "frontend/src/pages/Login.jsx:113:13",
+        "frontend/src/pages/Login.jsx:124:13",
+        "frontend/src/pages/Login.jsx:131:35",
+        "frontend/src/pages/Login.jsx:132:28",
+        "frontend/src/pages/Login.jsx:136:13",
+        "frontend/src/pages/Login.jsx:137:30",
+        "frontend/src/pages/Login.jsx:143:15",
+        "frontend/src/pages/Login.jsx:145:15",
+        "frontend/src/pages/Login.jsx:148:15",
+        "frontend/src/pages/Login.jsx:158:13",
+        "frontend/src/pages/Login.jsx:165:19",
+        "frontend/src/pages/Login.jsx:171:13",
+        "frontend/src/pages/Login.jsx:172:15",
+        "frontend/src/pages/Login.jsx:184:19",
+        "frontend/src/pages/Login.jsx:189:17",
+        "frontend/src/pages/Login.jsx:200:13",
+        "frontend/src/pages/Login.jsx:202:13",
+        "frontend/src/pages/Login.jsx:203:15",
+        "frontend/src/pages/Login.jsx:216:19",
+        "frontend/src/pages/Login.jsx:221:17",
+        "frontend/src/pages/Login.jsx:232:13",
+        "frontend/src/pages/Login.jsx:239:17",
+        "frontend/src/pages/Login.jsx:244:15",
+        "frontend/src/pages/Login.jsx:249:15",
+        "frontend/src/pages/Login.jsx:252:15"
       ],
       "operations": [
         "auth-session-profile",
@@ -432,11 +432,13 @@
         "frontend/src/components/auth/BillingAuthNotice.jsx",
         "frontend/src/components/auth/EmailVerification.jsx",
         "frontend/src/components/auth/LanguageSelector.jsx",
+        "frontend/src/components/auth/PhoneAuth.jsx",
         "frontend/src/components/ui/input-otp.jsx",
         "frontend/src/components/ui/use-toast.jsx",
         "frontend/src/domain/curriculumTemplate.ts",
         "frontend/src/domain/lessonObjective.ts",
         "frontend/src/domain/workspace.ts",
+        "frontend/src/hooks/useSignInMethods.js",
         "frontend/src/lib/AuthContext.jsx",
         "frontend/src/lib/assignmentAvailability.js",
         "frontend/src/lib/auth-context.js",
@@ -489,18 +491,26 @@
         "frontend/src/components/auth/EmailVerification.jsx:28:5",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
         "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/PhoneAuth.jsx:49:5",
+        "frontend/src/components/auth/PhoneAuth.jsx:52:21",
+        "frontend/src/components/auth/PhoneAuth.jsx:54:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:57:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:58:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:59:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:60:15",
+        "frontend/src/components/auth/PhoneAuth.jsx:61:7",
+        "frontend/src/components/auth/PhoneAuth.jsx:64:7",
         "frontend/src/components/AuthLayout.jsx:78:11",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
-        "frontend/src/components/SocialAuthButtons.jsx:41:7",
-        "frontend/src/components/SocialAuthButtons.jsx:44:7",
-        "frontend/src/components/SocialAuthButtons.jsx:47:7",
+        "frontend/src/components/SocialAuthButtons.jsx:27:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
-        "frontend/src/pages/Register.jsx:140:13",
-        "frontend/src/pages/Register.jsx:151:13",
-        "frontend/src/pages/Register.jsx:158:35",
-        "frontend/src/pages/Register.jsx:162:13",
+        "frontend/src/pages/Register.jsx:142:13",
+        "frontend/src/pages/Register.jsx:153:13",
+        "frontend/src/pages/Register.jsx:160:35",
+        "frontend/src/pages/Register.jsx:161:28",
         "frontend/src/pages/Register.jsx:165:13",
+        "frontend/src/pages/Register.jsx:168:30",
         "frontend/src/pages/Register.jsx:174:15",
         "frontend/src/pages/Register.jsx:176:15",
         "frontend/src/pages/Register.jsx:184:13",
@@ -17910,7 +17920,7 @@
       "controller": "FirebaseProductController",
       "handler": "getCsrf",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 11,
+      "line": 13,
       "column": 3
     },
     {
@@ -17919,7 +17929,7 @@
       "controller": "FirebaseProductController",
       "handler": "logout",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 45,
+      "line": 47,
       "column": 3
     },
     {
@@ -17928,7 +17938,7 @@
       "controller": "FirebaseProductController",
       "handler": "logoutAll",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 40,
+      "line": 42,
       "column": 3
     },
     {
@@ -17937,7 +17947,16 @@
       "controller": "FirebaseProductController",
       "handler": "me",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 27,
+      "line": 29,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/methods",
+      "controller": "FirebaseProductController",
+      "handler": "methods",
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 11,
       "column": 3
     },
     {
@@ -17946,7 +17965,7 @@
       "controller": "FirebaseProductController",
       "handler": "onboarding",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 31,
+      "line": 33,
       "column": 3
     },
     {
@@ -17955,7 +17974,7 @@
       "controller": "FirebaseProductController",
       "handler": "introduction",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 37,
+      "line": 39,
       "column": 3
     },
     {
@@ -17964,7 +17983,7 @@
       "controller": "FirebaseProductController",
       "handler": "profile",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 34,
+      "line": 36,
       "column": 3
     },
     {
@@ -17973,7 +17992,7 @@
       "controller": "FirebaseProductController",
       "handler": "login",
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "line": 16,
+      "line": 18,
       "column": 3
     },
     {
@@ -18528,8 +18547,8 @@
         }
       ],
       "calls": [],
-      "disabled": null,
-      "declarationSha256": "31070f3bc14b93072870e788c2e322900c76e011d501b3e783308264998e03b7",
+      "disabled": "disabled={disabled}",
+      "declarationSha256": "8749f49ecae3e0127622bef3e8afb6ad160665ee6f450c9067ca5ecef0bc422c",
       "routeIds": [
         "/login",
         "/register",
@@ -18938,6 +18957,321 @@
         "PLAT-01"
       ],
       "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:49:5",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 49,
+      "column": 5,
+      "tag": "BackButton",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{onBack}"
+        }
+      ],
+      "calls": [],
+      "disabled": "disabled={busy}",
+      "declarationSha256": "8fab371cdbcc084e3e97eb7092d420a9cfa585167d4eed7d200bd2a187a6e004",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:52:21",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 52,
+      "column": 21,
+      "tag": "form",
+      "events": [
+        {
+          "event": "onSubmit",
+          "expression": "{confirmCode}"
+        }
+      ],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "c4fe3160a849c6d84abc21a9d95a71deb70c6e5596d4b767301ff3989e80e029",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:54:7",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 54,
+      "column": 7,
+      "tag": "InputOTP",
+      "events": [
+        {
+          "event": "onChange",
+          "expression": "{value => setCode(value.replace(/\\D/g, '').slice(0, 6))}"
+        }
+      ],
+      "calls": [
+        "setCode",
+        "value.replace",
+        "value.replace(/\\D/g, '').slice"
+      ],
+      "disabled": "disabled={busy}",
+      "declarationSha256": "e9170c643b52461007da79e93a9b4f05cbacc0b1ceb3e127bde4e3efd2043642",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:57:7",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 57,
+      "column": 7,
+      "tag": "button",
+      "events": [],
+      "calls": [],
+      "disabled": "disabled={busy || code.length !== 6}",
+      "declarationSha256": "53cbbce2e111092a903087a50cb3548d23ebe66a4ca65420ccdc19a96616f75b",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:58:7",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 58,
+      "column": 7,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{requestCode}"
+        }
+      ],
+      "calls": [],
+      "disabled": "disabled={busy || retrySeconds > 0}",
+      "declarationSha256": "ebb36484ebeb152c21c36e2f0cae0a9a4ea80f7d3bc723572c62bd820838f56b",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:59:7",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 59,
+      "column": 7,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => { setConfirmation(null); setCode(''); setError(''); }}"
+        }
+      ],
+      "calls": [
+        "setCode",
+        "setConfirmation",
+        "setError"
+      ],
+      "disabled": "disabled={busy}",
+      "declarationSha256": "bd11efc4bd0883d1a8f999336556de05ac8e2578b7c2076eef9d5324acee076a",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:60:15",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 60,
+      "column": 15,
+      "tag": "form",
+      "events": [
+        {
+          "event": "onSubmit",
+          "expression": "{requestCode}"
+        }
+      ],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "36924e15c603732ef4a5b5da061ac11266d7ee23c6f43bc07f009b39314719f4",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:61:7",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 61,
+      "column": 7,
+      "tag": "InputField",
+      "events": [
+        {
+          "event": "onChange",
+          "expression": "{event => setPhone(event.target.value)}"
+        }
+      ],
+      "calls": [
+        "setPhone"
+      ],
+      "disabled": "disabled={busy}",
+      "declarationSha256": "d1855d8a035b0b4631fac46570a84887d6608766d34f6addd985b32493c58db4",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/auth/PhoneAuth.jsx:64:7",
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "line": 64,
+      "column": 7,
+      "tag": "button",
+      "events": [],
+      "calls": [],
+      "disabled": "disabled={busy || retrySeconds > 0}",
+      "declarationSha256": "33d0e65a36f8c9d4146b2c717d14d0b51d61ecc76628e26c94006d8db08d595f",
+      "routeIds": [
+        "/login",
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ],
       "hostedVerified": false
     },
     {
@@ -45628,9 +45962,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:41:7",
+      "id": "frontend/src/components/SocialAuthButtons.jsx:27:7",
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 41,
+      "line": 27,
       "column": 7,
       "tag": "button",
       "events": [
@@ -45643,7 +45977,7 @@
         "handleSocial"
       ],
       "disabled": "disabled={busy || !signInMethods.google}",
-      "declarationSha256": "790cb3f9fb97f53d6ad4e906a84440a27a1cc696225d3fb27f252115789d4873",
+      "declarationSha256": "6052e294eeadf85d799f594afe3c3ec12fdd9885a921ac38b7ec3f75bb5c8995",
       "routeIds": [
         "/login",
         "/register"
@@ -45651,73 +45985,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:44:7",
-      "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 44,
-      "column": 7,
-      "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": "disabled={!signInMethods.microsoft}",
-      "declarationSha256": "784a44b966b4d1509c41bc79e8e8154ee2da81f680565ded42abf0313a699f4a",
-      "routeIds": [
-        "/login",
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/SocialAuthButtons.jsx:47:7",
-      "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "line": 47,
-      "column": 7,
-      "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": "disabled={!signInMethods.organization}",
-      "declarationSha256": "1f954ce54c0f160f5032fa49e2f5cba23f0a9e3ffa8954a0cbb454b76a1e69b6",
-      "routeIds": [
-        "/login",
-        "/register"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -74950,9 +75218,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:163:13",
+      "id": "frontend/src/pages/Login.jsx:113:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 163,
+      "line": 113,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -74965,7 +75233,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -74982,9 +75250,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:174:13",
+      "id": "frontend/src/pages/Login.jsx:124:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 174,
+      "line": 124,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -74997,7 +75265,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75014,9 +75282,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:181:35",
+      "id": "frontend/src/pages/Login.jsx:131:35",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 181,
+      "line": 131,
       "column": 35,
       "tag": "EmailVerification",
       "events": [
@@ -75037,7 +75305,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75054,30 +75322,27 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:186:15",
+      "id": "frontend/src/pages/Login.jsx:132:28",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 186,
-      "column": 15,
-      "tag": "button",
+      "line": 132,
+      "column": 28,
+      "tag": "PhoneAuth",
       "events": [
         {
-          "event": "onClick",
-          "expression": "{() => { setError(\"\"); setView(\"mobile\"); }}"
+          "event": "onBack",
+          "expression": "{goToMethods}"
         }
       ],
-      "calls": [
-        "setError",
-        "setView"
-      ],
+      "calls": [],
       "disabled": null,
-      "declarationSha256": "cfd8344f096f765ff1287416e17a69174813ff8055cfd22c5def45c24ccec38e",
+      "declarationSha256": "61d842747d66a8b9de6ec4f069270acfc793ca9562c1ca38146f771e2e46b25e",
       "routeIds": [
         "/login"
       ],
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75094,15 +75359,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:190:13",
+      "id": "frontend/src/pages/Login.jsx:136:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 190,
+      "line": 136,
       "column": 13,
       "tag": "button",
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => { setError(\"\"); setView(\"email\"); }}"
+          "expression": "{() => { setError(''); setView('email'); }}"
         }
       ],
       "calls": [
@@ -75110,14 +75375,14 @@
         "setView"
       ],
       "disabled": null,
-      "declarationSha256": "3303f74fdca0939acdba6e31f6ab9907ad73975b9853c0881e5ade5a7220a3eb",
+      "declarationSha256": "5b65d90b484ba1b80cc503b053df22c531bbb85603d0b64b5d4d669e4ab657dd",
       "routeIds": [
         "/login"
       ],
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75134,22 +75399,29 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:193:31",
+      "id": "frontend/src/pages/Login.jsx:137:30",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 193,
-      "column": 31,
+      "line": 137,
+      "column": 30,
       "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": "disabled={!signInMethods.mobile}",
-      "declarationSha256": "8b724bd206496aba384a8d3445409fa3d8e99f70e8c0fdf98dabad2e9394fde3",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => setView('phone')}"
+        }
+      ],
+      "calls": [
+        "setView"
+      ],
+      "disabled": null,
+      "declarationSha256": "7627c5df7005bca555f4b907baeeb89d8010f7945561a0dbf634ee716fafd926",
       "routeIds": [
         "/login"
       ],
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75166,9 +75438,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:202:15",
+      "id": "frontend/src/pages/Login.jsx:143:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 202,
+      "line": 143,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -75182,7 +75454,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75199,9 +75471,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:204:15",
+      "id": "frontend/src/pages/Login.jsx:145:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 204,
+      "line": 145,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -75215,7 +75487,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75232,9 +75504,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:207:15",
+      "id": "frontend/src/pages/Login.jsx:148:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 207,
+      "line": 148,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -75248,7 +75520,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75265,9 +75537,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:217:13",
+      "id": "frontend/src/pages/Login.jsx:158:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 217,
+      "line": 158,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -75285,7 +75557,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75302,9 +75574,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:224:19",
+      "id": "frontend/src/pages/Login.jsx:165:19",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 224,
+      "line": 165,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -75317,7 +75589,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75334,9 +75606,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:230:13",
+      "id": "frontend/src/pages/Login.jsx:171:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 230,
+      "line": 171,
       "column": 13,
       "tag": "form",
       "events": [
@@ -75354,7 +75626,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75371,9 +75643,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:231:15",
+      "id": "frontend/src/pages/Login.jsx:172:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 231,
+      "line": 172,
       "column": 15,
       "tag": "InputField",
       "events": [
@@ -75393,7 +75665,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75410,9 +75682,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:243:19",
+      "id": "frontend/src/pages/Login.jsx:184:19",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 243,
+      "line": 184,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -75426,7 +75698,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75443,9 +75715,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:248:17",
+      "id": "frontend/src/pages/Login.jsx:189:17",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 248,
+      "line": 189,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -75458,7 +75730,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75475,9 +75747,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:259:13",
+      "id": "frontend/src/pages/Login.jsx:200:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 259,
+      "line": 200,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -75497,7 +75769,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75514,9 +75786,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:261:13",
+      "id": "frontend/src/pages/Login.jsx:202:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 261,
+      "line": 202,
       "column": 13,
       "tag": "form",
       "events": [
@@ -75534,7 +75806,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75551,9 +75823,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:262:15",
+      "id": "frontend/src/pages/Login.jsx:203:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 262,
+      "line": 203,
       "column": 15,
       "tag": "GooglePasswordField",
       "events": [
@@ -75573,7 +75845,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75590,9 +75862,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:275:19",
+      "id": "frontend/src/pages/Login.jsx:216:19",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 275,
+      "line": 216,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -75606,7 +75878,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75623,9 +75895,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:280:17",
+      "id": "frontend/src/pages/Login.jsx:221:17",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 280,
+      "line": 221,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -75638,7 +75910,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75655,9 +75927,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:291:13",
+      "id": "frontend/src/pages/Login.jsx:232:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 291,
+      "line": 232,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -75679,7 +75951,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75696,9 +75968,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:298:17",
+      "id": "frontend/src/pages/Login.jsx:239:17",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 298,
+      "line": 239,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -75712,7 +75984,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75729,9 +76001,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:303:15",
+      "id": "frontend/src/pages/Login.jsx:244:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 303,
+      "line": 244,
       "column": 15,
       "tag": "button",
       "events": [
@@ -75753,7 +76025,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75770,9 +76042,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:308:15",
+      "id": "frontend/src/pages/Login.jsx:249:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 308,
+      "line": 249,
       "column": 15,
       "tag": "button",
       "events": [
@@ -75790,7 +76062,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -75807,9 +76079,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:311:15",
+      "id": "frontend/src/pages/Login.jsx:252:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 311,
+      "line": 252,
       "column": 15,
       "tag": "button",
       "events": [
@@ -75827,338 +76099,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:321:13",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 321,
-      "column": 13,
-      "tag": "BackButton",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "9e3f5034a6f7cb89bab8b4a39827d6eebaf277b95b36489b1854a8e20630dd94",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:323:13",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 323,
-      "column": 13,
-      "tag": "form",
-      "events": [
-        {
-          "event": "onSubmit",
-          "expression": "{handlePhoneRequest}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "21331cc1bbd81a9587a6229ef6350292ed1cbcf022120d6bb5ebf3631477c5e8",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:324:15",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 324,
-      "column": 15,
-      "tag": "PhoneInput",
-      "events": [
-        {
-          "event": "onChange",
-          "expression": "{setPhone}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "1f68d398929de6333e8fe4684c359755c669606f635770f0bf3801853206a64c",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:334:19",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 334,
-      "column": 19,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{goToMethods}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "2f996505a99a7ec32a4d596c71c71213d7c3994e8e0fed4b66eb25cee716096d",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:339:17",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 339,
-      "column": 17,
-      "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": "disabled={loading}",
-      "declarationSha256": "97949c8704bbbe02f8b565377dc485fcabcd1885ca39fcc23766b85b10ae2190",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:361:15",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 361,
-      "column": 15,
-      "tag": "InputOTP",
-      "events": [
-        {
-          "event": "onChange",
-          "expression": "{setOtpCode}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "daa0d045fa6777d220a8f6da1836f543cd691d725a363e134891a8231b641196",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:374:17",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 374,
-      "column": 17,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => { setError(\"\"); setView(\"mobile\"); }}"
-        }
-      ],
-      "calls": [
-        "setError",
-        "setView"
-      ],
-      "disabled": "disabled={loading}",
-      "declarationSha256": "ef2834ed93041bc0beb38de472330b2cb44a531628bcd9c274dc298db2d12504",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:379:15",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 379,
-      "column": 15,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{handlePhoneConfirm}"
-        }
-      ],
-      "calls": [],
-      "disabled": "disabled={loading || otpCode.length < 6}",
-      "declarationSha256": "1714d894c09adc678a0be4e08f79fbbcdc44efcc7855027ad9d4360e321b1656",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
-      "followUp": [
-        "SCOPE-07",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [
-        "GET /api/auth/csrf",
-        "POST /api/auth/logout",
-        "GET /api/auth/me",
-        "POST /api/auth/onboarding",
-        "POST /api/auth/onboarding/introduction",
-        "PATCH /api/auth/profile",
-        "POST /api/auth/session"
-      ],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Login.jsx:385:15",
-      "file": "frontend/src/pages/Login.jsx",
-      "line": 385,
-      "column": 15,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{handlePhoneRequest}"
-        }
-      ],
-      "calls": [],
-      "disabled": "disabled={loading}",
-      "declarationSha256": "1797c8f98e66035ed210a7aff6b304dbdea2316bd4828bf2c009ae7bbe7cf762",
-      "routeIds": [
-        "/login"
-      ],
-      "reviewProfile": "configured-account-flow",
-      "state": "connected",
-      "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76246,7 +76187,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7a39f1958d4705ceef4b6a79572bc0137846692c5bceae767a134c216058fbab",
+      "declarationSha256": "0eb7cf6328c4e4becec30971b1a8d4e9e0f06167fbd122d852692fd5c1c5589d",
       "routeIds": [
         "/onboarding"
       ],
@@ -76291,7 +76232,7 @@
         "steps.at"
       ],
       "disabled": null,
-      "declarationSha256": "b8e29b46f3ea4171b8685481585bbc1451068eb9e6fa41c4ef11169c97c43fe5",
+      "declarationSha256": "ee46e9660912cdfa028a159aefce1ec5f50a5a9e07559d1936bc40507834efcd",
       "routeIds": [
         "/onboarding"
       ],
@@ -76415,7 +76356,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "e3d889df9c65a9f570a713e1ef91981711035e2f2a31d749952bdc92737fe8be",
+      "declarationSha256": "28cc96adf9ed60f257508c9b577d5590f4810ed18d18b44c847be0ffb646ec99",
       "routeIds": [
         "/onboarding"
       ],
@@ -76439,9 +76380,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:140:13",
+      "id": "frontend/src/pages/Register.jsx:142:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 140,
+      "line": 142,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -76454,7 +76395,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76471,9 +76412,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:151:13",
+      "id": "frontend/src/pages/Register.jsx:153:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 151,
+      "line": 153,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -76486,7 +76427,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76503,9 +76444,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:158:35",
+      "id": "frontend/src/pages/Register.jsx:160:35",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 158,
+      "line": 160,
       "column": 35,
       "tag": "EmailVerification",
       "events": [
@@ -76526,7 +76467,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76543,30 +76484,29 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:162:13",
+      "id": "frontend/src/pages/Register.jsx:161:28",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 162,
-      "column": 13,
-      "tag": "button",
+      "line": 161,
+      "column": 28,
+      "tag": "PhoneAuth",
       "events": [
         {
-          "event": "onClick",
-          "expression": "{() => { setError(\"\"); setView(\"email\"); }}"
+          "event": "onBack",
+          "expression": "{() => setView('methods')}"
         }
       ],
       "calls": [
-        "setError",
         "setView"
       ],
       "disabled": null,
-      "declarationSha256": "237a1ca8693c1b3d901f6e6e2806641ac0fe63f5f8b02a42be4a6a057b95872b",
+      "declarationSha256": "40c319cc9d2c43e1837cbcfa9820b40ae25a7e3fd69d16aea35f97d54624f699",
       "routeIds": [
         "/register"
       ],
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76588,17 +76528,64 @@
       "line": 165,
       "column": 13,
       "tag": "button",
-      "events": [],
-      "calls": [],
-      "disabled": "disabled={!signInMethods.mobile}",
-      "declarationSha256": "8b724bd206496aba384a8d3445409fa3d8e99f70e8c0fdf98dabad2e9394fde3",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => { setError(\"\"); setView(\"email\"); }}"
+        }
+      ],
+      "calls": [
+        "setError",
+        "setView"
+      ],
+      "disabled": null,
+      "declarationSha256": "237a1ca8693c1b3d901f6e6e2806641ac0fe63f5f8b02a42be4a6a057b95872b",
       "routeIds": [
         "/register"
       ],
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Register.jsx:168:30",
+      "file": "frontend/src/pages/Register.jsx",
+      "line": 168,
+      "column": 30,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => setView('phone')}"
+        }
+      ],
+      "calls": [
+        "setView"
+      ],
+      "disabled": null,
+      "declarationSha256": "7627c5df7005bca555f4b907baeeb89d8010f7945561a0dbf634ee716fafd926",
+      "routeIds": [
+        "/register"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76631,7 +76618,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76664,7 +76651,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76701,7 +76688,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76733,7 +76720,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76770,7 +76757,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76809,7 +76796,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76841,7 +76828,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76880,7 +76867,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76917,7 +76904,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76956,7 +76943,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -76995,7 +76982,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -77027,7 +77014,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -77060,7 +77047,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -77092,7 +77079,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -77129,7 +77116,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -77166,7 +77153,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -77203,7 +77190,7 @@
       "reviewProfile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "classificationReason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -77597,7 +77584,7 @@
     },
     {
       "file": "frontend/src/api/firebase/authAdapter.js",
-      "sourceSha256": "6c32a35ea8abf23368e8d00974fb169de80f01fc34f09b37c0686fe9129c40ee"
+      "sourceSha256": "d89eb59450704f9dfd6a19e96ffff3dc233e2d7b6d668ff86238d1b51ccf94fe"
     },
     {
       "file": "frontend/src/api/firebase/authTransport.js",
@@ -77613,11 +77600,11 @@
     },
     {
       "file": "frontend/src/api/firebase/serverAuth.js",
-      "sourceSha256": "e02232173d1837b5b5bb497124397919292a60c444169f26f446c9a83df1470e"
+      "sourceSha256": "6f3590dafda832af8519e2d4180ebc713f9633917027cf3b59e7342a246c955b"
     },
     {
       "file": "frontend/src/api/firebase/signInMethods.js",
-      "sourceSha256": "9c1c14204ccb8e10adcc9cf0650f99f3e6e92ce088c8473178b806ff25feedc3"
+      "sourceSha256": "4b2f3ccd63cd11ee2325e038a2899e6623b3bc0f9e8fd749cd30adfe353c5033"
     },
     {
       "file": "frontend/src/api/previewPermissions.js",
@@ -77629,7 +77616,7 @@
     },
     {
       "file": "frontend/src/components/auth/AuthUI.jsx",
-      "sourceSha256": "61d81c83e5be91f09f285b63a7d06f292c12327e811b054abde96b80562ee129"
+      "sourceSha256": "5d137067e0de19fc7ff8db3c6bbecd588ba521a725cce7fe737d8c71ea7d7342"
     },
     {
       "file": "frontend/src/components/auth/BillingAuthNotice.jsx",
@@ -77642,6 +77629,10 @@
     {
       "file": "frontend/src/components/auth/LanguageSelector.jsx",
       "sourceSha256": "4f0fb72fca4fe8aded61be8b471320f0c9a6c7ec2fff73e8063071074118899a"
+    },
+    {
+      "file": "frontend/src/components/auth/PhoneAuth.jsx",
+      "sourceSha256": "9ea05531794d8c0b4a8f8b83fd018236a71bd98f089206ed8fe3ac200c22f630"
     },
     {
       "file": "frontend/src/components/AuthLayout.jsx",
@@ -77773,7 +77764,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/DashboardTopbar.jsx",
-      "sourceSha256": "2dc35fc0afe2a9ac4b39fcf0d20805945586a1000031510643758f894133a058"
+      "sourceSha256": "f3adb210a4128bd65c7d6de853bf90ef7b2550a05b6caf443238e7b590f0accd"
     },
     {
       "file": "frontend/src/components/dashboard/DataDiagramRepresentation.jsx",
@@ -78245,7 +78236,7 @@
     },
     {
       "file": "frontend/src/components/SocialAuthButtons.jsx",
-      "sourceSha256": "263cdd54021b61f22778fdc039497dbdaaf02ba093dd98fce268f75cdc6950d8"
+      "sourceSha256": "b40b037ff424c15207c8e298d248519a209103c9bf498f266c6114fa3c1a11ad"
     },
     {
       "file": "frontend/src/components/ui/accordion.jsx",
@@ -78488,6 +78479,10 @@
       "sourceSha256": "89d4bcdf69621507fcaaaf75bfe51b953ea46a93013f169b24e4bc65c4a6cd56"
     },
     {
+      "file": "frontend/src/hooks/useSignInMethods.js",
+      "sourceSha256": "8243253124923406356d86e3374faf78943bb7d15d87aba5d94f5ee834f2bed4"
+    },
+    {
       "file": "frontend/src/hooks/useStudentData.js",
       "sourceSha256": "64293b99f7f035244c098079bc89efea4541ea1a61f9a6d85b81558fddd7567a"
     },
@@ -78521,7 +78516,7 @@
     },
     {
       "file": "frontend/src/lib/authErrors.js",
-      "sourceSha256": "c69a4d6f76b3a11cf70783f99fb8b9995452d5bbb40de68000727001ebcf60df"
+      "sourceSha256": "11261d036e7931070310c00bbe7463bab3354d4af1b1cf8505fe866683bc23cf"
     },
     {
       "file": "frontend/src/lib/authReturnTo.js",
@@ -79045,7 +79040,7 @@
     },
     {
       "file": "frontend/src/pages/Login.jsx",
-      "sourceSha256": "1a2f5d1c38bc9e22a9d45a00039f5e60026dcdf9a8c2f0519a4c8d21a1438465"
+      "sourceSha256": "b613eba4375b480e33ac8418444282c06f2e9bb2bcc3aea0d9293bf9b57c1581"
     },
     {
       "file": "frontend/src/pages/OAuthConsent.jsx",
@@ -79053,11 +79048,11 @@
     },
     {
       "file": "frontend/src/pages/Onboarding.jsx",
-      "sourceSha256": "657e0869ee7e82f680bc9e79e98978a02dd7c11db1d69949689fba0793b1114e"
+      "sourceSha256": "9246eeb264d68cb1a7c2b958fa74cd9bad412e8e77c56c672aedc036a50a1a20"
     },
     {
       "file": "frontend/src/pages/Register.jsx",
-      "sourceSha256": "fee99183f52a9c151f3d8a73d63a858edf5b1a22368dd596b781237f64cd3e20"
+      "sourceSha256": "967beb227bcf236a4cceefb7f5cf79d8290beb4fc46c057ce3f9b4ba91befc0d"
     },
     {
       "file": "frontend/src/pages/ResetPassword.jsx",
@@ -79263,7 +79258,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
-      "sourceSha256": "7929ba903f02a155ceb36773a73a24caf3b0a6c338b1d675952d71c02f1d7cc2"
+      "sourceSha256": "3050132ac3eeb7ceadb584712c4e9e44ebdfd44e0c9920c7f0a97a7734605a55"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
@@ -80732,7 +80727,7 @@
         "profile": "configured-account-flow",
         "state": "connected",
         "execution": "server",
-        "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+        "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
         "followUp": [
           "SCOPE-07",
           "PLAT-01"
@@ -81728,7 +81723,7 @@
         "profile": "configured-account-flow",
         "state": "connected",
         "execution": "server",
-        "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+        "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
         "followUp": [
           "SCOPE-07",
           "PLAT-01"
@@ -81776,7 +81771,7 @@
         "profile": "configured-account-flow",
         "state": "connected",
         "execution": "server",
-        "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+        "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
         "followUp": [
           "SCOPE-07",
           "PLAT-01"
@@ -81808,6 +81803,22 @@
           "POST /api/auth/onboarding/introduction",
           "PATCH /api/auth/profile",
           "POST /api/auth/session"
+        ]
+      },
+      "frontend/src/components/auth/PhoneAuth.jsx": {
+        "profile": "configured-account-flow",
+        "state": "connected",
+        "execution": "server",
+        "reason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
+        "followUp": [
+          "SCOPE-07",
+          "PLAT-01"
+        ],
+        "endpoints": [
+          "GET /api/auth/methods",
+          "GET /api/auth/csrf",
+          "POST /api/auth/session",
+          "GET /api/auth/me"
         ]
       }
     },
@@ -82545,12 +82556,12 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 36,
-    "controlDeclarations": 1657,
-    "routeReachableDeclarations": 1505,
-    "controlFiles": 220,
+    "registeredEndpoints": 37,
+    "controlDeclarations": 1656,
+    "routeReachableDeclarations": 1504,
+    "controlFiles": 221,
     "states": {
-      "connected": 513,
+      "connected": 512,
       "preview": 931,
       "missing": 59,
       "intentionally-unreleased": 154
