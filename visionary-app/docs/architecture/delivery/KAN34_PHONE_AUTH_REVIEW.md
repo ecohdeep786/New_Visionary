@@ -47,3 +47,8 @@ Final cancellation boundary: only the SDK/CAPTCHA phase is cancellable by leavin
 ## Frozen candidate verification
 
 Exact source 3bf8aa9862892567d2dbed44d6d838a2d33bf98b: all624 frontend,107 backend,18 script and27 GCP tests pass; full rootcheck, Firebase-mode build25.86s and all8 phone plus11 email/reset SDK/emulator browser cases pass. [Source CI](https://github.com/ecohdeep786/New_Visionary/actions/runs/39908224000) succeeds. [Separate source/rollout decision](../reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md) is recorded by the reviewer; native hosted SMS is still pending. Review-only and factual evidence updates do not expand source approval to later runtime changes.
+
+
+## Native hosted acceptance and Jira closeout
+
+Native production SMS verification, new-account setup/introduction, remembered reload, same-UID returning login and global sign-out epochs 0→1→2 passed on main `a0d24fdf`. The separate reviewer accepted the bounded hosted release in report commit `893a322444d8971a0c7ad2c2fc9b686982770ac1`; see the [hosted receipt](evidence/KAN34_HOSTED_PHONE_2026-10-23.json). Live Jira returned Done and was read back as Done on 23 October (comment10138). PR21 publishes documentation-only closeout; its actual checks and cleanup inventory remain subsequent factual receipts. No runtime change or custom mail-domain/template completion is asserted.

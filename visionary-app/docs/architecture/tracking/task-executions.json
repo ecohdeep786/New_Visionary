@@ -472,20 +472,22 @@
       "sourceId": "SCOPE-07",
       "jiraKey": "KAN-34",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
-      "status": "Testing",
-      "scope": "Accepted email/Google/remembered-device/global-session base plus founder-requested real phone SMS sign-in/sign-up extension. Expanded phone source review and hosted acceptance remain open.",
+      "status": "Done",
+      "scope": "Accepted released email/Google/phone sign-in, secure server-owned remembered sessions, saved onboarding and global sign-out; native production phone closeout independently accepted. Custom sender-domain/templates and broad security/load/MFA coverage remain separate.",
       "branch": "codex/codex-kan-34-signin-matrix",
       "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
       "implementer": "Codex",
       "review": {
-        "state": "approved-source-and-rollout-native-sms-pending",
+        "state": "approved-source-and-hosted-release",
         "reviewer": "/root/kan34_release_review",
         "exactReviewedCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
         "report": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
         "reportCommit": "1398227ae1001db8626ac5916f20f50fab7038d0",
-        "fullFeatureAccepted": false,
-        "hostedPhoneAcceptancePending": true
+        "fullFeatureAccepted": true,
+        "hostedPhoneAcceptancePending": false,
+        "hostedReport": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
+        "hostedReportCommit": "893a322444d8971a0c7ad2c2fc9b686982770ac1"
       },
       "implementationCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
       "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/19",
@@ -506,11 +508,11 @@
         "finalFirebaseBuildSeconds": 25.86,
         "phoneEmulatorBrowserScenarios": 8,
         "emailEmulatorBrowserScenarios": 11,
-        "realPhoneSmsAcceptance": false,
+        "realPhoneSmsAcceptance": true,
         "failed": 0
       },
-      "hostedAcceptance": false,
-      "fullFeatureAccepted": false,
+      "hostedAcceptance": true,
+      "fullFeatureAccepted": true,
       "liveContinuation": {
         "date": "2026-10-22",
         "localRealFirebaseGoogle": true,
@@ -582,9 +584,11 @@
         }
       },
       "integration": {
-        "remotePublished": false,
-        "commit": null,
-        "acceptedBaseCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23"
+        "remotePublished": true,
+        "commit": "98b11ad4282889bd7ce7a864a24fe747fd6acbfe",
+        "acceptedBaseCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39909053089",
+        "ciConclusion": "success"
       },
       "synchronizedDevCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
       "sourceCiCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
@@ -592,7 +596,7 @@
         "procedure": "main-only-reviewed-phone-extension",
         "policyAwareRollback": "1ae078dc469846246bb5571717e39a6afe7a402e",
         "epochEnforcementAlwaysEnabled": true,
-        "phoneDeployed": false,
+        "phoneDeployed": true,
         "freshPhoneSignInUnavailableOnRollback": true
       },
       "acceptedBase": {
@@ -637,6 +641,37 @@
         "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39830621424",
         "conclusion": "success",
         "approval": false
+      },
+      "mainRelease": {
+        "commit": "a0d24fdf587bc1c9af0a90061bcc1b55089349ee",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/20",
+        "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39909298035",
+        "conclusion": "success",
+        "evidence": "docs/architecture/delivery/evidence/KAN34_HOSTED_PHONE_2026-10-23.json"
+      },
+      "jiraDone": {
+        "date": "2026-10-23",
+        "transitionId": 51,
+        "returnedStatus": "Done",
+        "readBackStatus": "Done",
+        "commentId": "10138"
+      },
+      "closeoutPublication": {
+        "scope": "Documentation only; unchanged runtime",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/21",
+        "state": "pending checked publication"
+      },
+      "worktreeCleanup": {
+        "state": "eligible after checked closeout publication",
+        "requiredLocalEvidencePreserved": true,
+        "preservationRoot": "C:/Users/Administrator/Visionary-local/completed-worktrees-2026-10-23",
+        "retainedRefs": [
+          "main",
+          "dev",
+          "beta",
+          "KAN-29"
+        ],
+        "actualRemovalReceipt": "Record actual inventory and removal in Jira after cleanup; this checkpoint does not assert future removal"
       }
     }
   ]

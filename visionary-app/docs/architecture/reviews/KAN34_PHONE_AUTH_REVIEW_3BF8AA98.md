@@ -162,3 +162,105 @@ Custom mail-domain verification and unapplied template changes retain their
 separate open configuration boundaries. KAN-29 remains deferred. Account linking,
 MFA/load/security-equivalence and unrelated feature/privacy/billing gates are not
 approved by this source review. No next dependent task is started or accepted.
+
+## Hosted phone acceptance addendum — 23 October 2026, 06:26 UTC
+
+Reviewer: `/root/kan34_release_review`. I independently accept responsibility for
+this closeout audit. **Decision: approved for the released KAN-34 phone scope.**
+The native hosted gate left pending above is now met by the recorded production
+journey and state receipts. No remaining blocking finding was identified. This
+does not imply that I personally watched SMS arrive or entered a live code: those
+UI/provider observations belong to the implementer; my independent checks and
+evidence audit are distinguished below.
+
+### Delivered implementation and independent public checks
+
+The approved runtime implementation remains
+`3bf8aa9862892567d2dbed44d6d838a2d33bf98b`, integrated into dev
+`98b11ad4282889bd7ce7a864a24fe747fd6acbfe` and main
+`a0d24fdf587bc1c9af0a90061bcc1b55089349ee`. I independently fetched those refs and
+verified dev/main have the same complete tree
+`02f944a1c7071ed164092de4c903365263257186`. Runtime paths match the exact approved
+source; only review/delivery/execution metadata changed after source approval.
+
+I independently ran the reviewed release helper's `publicChecks` against canonical
+`https://visionary.org.in` with expected main `a0d24fdf`, policy v1/global sign-out
+enabled and email/Google/phone all available. It exited 0. This verifies source,
+health/cache boundaries, login/API responses, anonymous denials and the secure
+CSRF/exact-origin boundaries without creating a user or requesting SMS. A separate
+canonical login/CSP read returned HTTP 200 with the expected source and confirmed
+scoped Google/gstatic reCAPTCHA resources without wildcard or inline script
+permission. These public checks are independent of the implementer's native
+account observations.
+
+I inspected actual published/deployed artifact `12481859334` from successful
+[automatic GCP run 39909298035](https://github.com/ecohdeep786/New_Visionary/actions/runs/39909298035).
+Both receipts identify main `a0d24fdf`, revision
+`visionary-product-ga0d24fdf587b-39909298035-1` and matching immutable image
+`sha256:8cd875f639cc484a96ea0b85d455e98c0533995904dda32766d267d469d56553`.
+The verified fallback is the earlier policy-v1/global-enabled main `1ae078dc`
+revision. Its lack of fresh phone sign-in remains the documented recovery
+limitation; live traffic rollback was not exercised or claimed in this closeout.
+
+### Native journey and guarded state receipts
+
+I audited committed factual receipt
+[KAN34_HOSTED_PHONE_2026-10-23.json](../delivery/evidence/KAN34_HOSTED_PHONE_2026-10-23.json)
+at `42f487794998d2ad596f385297217871e09fa98d`, including its explicit native-versus-
+emulator and multi-device boundaries. I independently checked that this receipt
+commit changes no runtime paths.
+
+The implementer observed actual production Firebase SMS verification for the
+founder-authorized dedicated number: a new account reached onboarding, saved the
+clearly named adult Professional QA setup/introduction, and resumed Home on reload
+without another SMS. Following global sign-out, a second fresh native SMS sign-in
+returned to Home on the same UID with no repeated onboarding, survived reload,
+then completed a final UI global sign-out. This is recorded as native production
+evidence, not inferred from the earlier demo emulator workflow.
+
+The guarded local receipts inspected independently are
+`artifacts/qa/kan34/live/phone-before-logout.json`, `phone-after-logout.json`,
+`phone-returning.json` and `phone-final-logout.json` in the worker checkout.
+They consistently record the native phone provider, same-UID comparison, completed
+setup/introduction and profile version 2. The account session epoch advances
+0 -> 1 at the first global sign-out, remains 1 for the returning sign-in, and
+advances to 2 at final sign-out. No trusted email is fabricated. The phone account
+is preserved **enabled**, not deleted or claimed disabled; the final global
+sign-out invalidates its previously issued product sessions. This differs from
+the earlier disposable email-fixture cleanup and is recorded explicitly.
+
+The implementer retained onboarding/remembered/returning screenshots outside Git
+under `Visionary-local/kan34-2026-10-23`. I did not inspect the private number, SMS
+codes, UID comparison marker, credentials or cookie material. I accept the
+attributed native observation together with the consistent guarded records and
+independent deployed-source checks. Two physical phones were not tested. Phone
+peer invalidation remains covered by the real-SDK/emulator two-session test and
+the shared session engine's earlier independent hosted cookie-jar revocation
+receipt; this addendum does not invent a new two-physical-phone result.
+
+### Completion decision and factual closeout path
+
+The expanded released email/Google/phone and remembered/global-session scope now
+has separate source approval, accepted integration, automatic main deployment,
+canonical boundaries and native provider evidence. I independently read live
+KAN-34 at this audit: it remains **Testing**, so no Done transition or worktree
+removal is asserted as already completed here.
+
+I approve the integrator's factual closeout path: publish this report, the committed
+hosted receipt and actual dev/main identities; record the returned Jira Done
+transition; update the execution/receipt fields without changing runtime; then
+publish checked documentation-only closeout. Documentation commits that trigger
+the main workflow still need their actual CI/release result and final canonical
+source check recorded. No additional runtime review or repeated SMS is implied
+when the runtime blobs remain unchanged. Retire completed KAN-34 worktrees only
+after the closeout is pushed, actual Done is verified and required ignored
+configuration/evidence has been preserved. The integrator reports its local
+backup was byte-verified outside Git; I did not independently re-audit that backup.
+
+Custom Firebase sender-domain verification remains an explicit pending provider
+gate, and previously rejected custom email-template changes are not claimed
+applied. The selected native Firebase email-link flow and existing base evidence
+retain their accepted scope. Account linking, MFA/load/availability or broad
+Google/Apple parity are not approved. Deferred KAN-29 and unrelated task/archive
+acceptance remain unchanged. This addendum is report-only and authorizes no new
+implementation task or protected-record mutation.
