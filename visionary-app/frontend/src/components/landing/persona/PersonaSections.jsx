@@ -382,7 +382,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
           aria-label={playing ? "Pause the journey" : "Play the journey"}
           aria-pressed={!playing}
           onClick={() => setPlaying((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+          className="flex h-11 w-11 items-center justify-center text-[#1d1d1f] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
         >
           {playing ? (
             <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -401,7 +401,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
             aria-label={`Previous ${label}`}
             disabled={active === 0}
             onClick={() => stepTo(active - 1)}
-            className={`flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+            className={`flex h-11 w-11 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
           >
             <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
           </button>
@@ -410,7 +410,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
             aria-label={`Next ${label}`}
             disabled={active === stages.length - 1}
             onClick={() => stepTo(active + 1)}
-            className={`flex h-9 w-9 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+            className={`flex h-11 w-11 items-center justify-center text-[#1d1d1f] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
           >
             <ChevronIcon className="h-[18px] w-[18px]" />
           </button>
@@ -484,7 +484,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+            className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" />
@@ -712,7 +712,7 @@ const StageDropdown = React.memo(function StageDropdown({ stages, active, onSele
                 role="option"
                 aria-selected={i === active}
                 onClick={() => { onSelect(i); setOpen(false); }}
-                className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[#rgba(0,102,204,0.10)] font-medium" : "font-normal hover:bg-[#1d1d1f]/5"}`}
+                className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[rgba(0,102,204,0.10)] font-medium" : "font-normal hover:bg-[#1d1d1f]/5"}`}
                 style={{ color: color.ink }}
               >
                 {s.name}

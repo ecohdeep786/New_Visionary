@@ -63,7 +63,7 @@ const INTELLIGENCE_CLIPS = [null, null, null, null];
    technology-chapter stage: near-black field, blue glow breathing behind,
    hairline white rings, frost core, glowing blue satellites. */
 function IntelligenceBeats({ index, label }) {
-  const core = "#f5f7fa", blue = "#2997ff", hairline = "rgba(255,255,255,0.14)", track = "rgba(255,255,255,0.12)";
+  const core = "#f5f5f7", blue = "#2997ff", hairline = "rgba(255,255,255,0.14)", track = "rgba(255,255,255,0.12)";
   const stage = { background: "radial-gradient(58% 52% at 50% 44%, rgba(0,102,204,0.2) 0%, rgba(0,102,204,0.06) 46%, rgba(13,16,23,0) 74%)" };
   if (index === 0) {
     return (
@@ -219,7 +219,7 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
       <h3
         data-type="feature-heading"
         className="mt-4 whitespace-pre-line"
-        style={{ color: "#f5f7fa", maxWidth: "35ch" }}
+        style={{ color: "#f5f5f7", maxWidth: "35ch" }}
       >
         {step.title}
       </h3>
@@ -449,7 +449,7 @@ const PremiumPlayPause = React.memo(function PremiumPlayPause({ playing, onClick
       aria-label={playing ? `Pause the ${labelPrefix}` : `Play the ${labelPrefix}`}
       aria-pressed={!playing}
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+      className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
     >
       {playing ? (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -572,7 +572,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                   type="button"
                   aria-label="Previous language"
                   onClick={() => step(-1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
                 </button>
@@ -580,7 +580,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                   type="button"
                   aria-label="Next language"
                   onClick={() => step(1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon className="h-[18px] w-[18px]" />
                 </button>
@@ -750,7 +750,7 @@ const PremiumPlayPauseButton = React.memo(function PremiumPlayPauseButton({ play
       aria-label={playing ? `Pause the ${label}` : `Play the ${label}`}
       aria-pressed={!playing}
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+      className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
     >
       {playing ? (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -873,7 +873,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
                   type="button"
                   aria-label="Previous stages"
                   onClick={() => step(-1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
                 </button>
@@ -881,7 +881,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
                   type="button"
                   aria-label="Next stages"
                   onClick={() => step(1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                  className="flex h-11 w-11 items-center justify-center text-[#1d1d1f]/60 transition-[color,transform] duration-150 hover:text-[#1d1d1f] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon className="h-[18px] w-[18px]" />
                 </button>
@@ -1350,7 +1350,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
                 aria-label="Previous destinations"
                 onClick={() => scrollByCard(-1)}
                 disabled={!canPrev}
-                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 style={{ borderColor: `${color.ink}33`, color: `${color.ink}99` }}
               >
                 <ChevronIcon direction="left" className="h-4 w-4" />
@@ -1360,7 +1360,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
                 aria-label="Next destinations"
                 onClick={() => scrollByCard(1)}
                 disabled={!canNext}
-                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                 style={{ borderColor: `${color.ink}33`, color: `${color.ink}99` }}
               >
                 <ChevronIcon className="h-4 w-4" />

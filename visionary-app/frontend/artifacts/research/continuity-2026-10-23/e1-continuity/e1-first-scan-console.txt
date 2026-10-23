@@ -1,0 +1,29 @@
+qa:continuity [BEFORE the E1/D2 fixes] - console transcript rendered from e1-first-scan.json (same run, byte-faithful failure list)
+  files scanned: 42
+  FAIL: 26 law failures:
+    [tap-target-44px] src/pages/landing/AILearningPage.jsx:76 h-10
+    [unknown-law-hex] src/pages/landing/AILearningPage.jsx carries #0059b4 — law value or new leak?
+    [unknown-law-hex] src/pages/landing/CookiesPage.jsx carries #f7f8fa — law value or new leak?
+    [unknown-law-hex] src/pages/landing/PrivacyPage.jsx carries #f7f8fa — law value or new leak?
+    [unknown-law-hex] src/pages/landing/SchoolPage.jsx carries #f5f6f8 — law value or new leak?
+    [unknown-law-hex] src/pages/landing/SecurityPage.jsx carries #f7f8fa — law value or new leak?
+    [unknown-law-hex] src/pages/landing/TermsPage.jsx carries #f7f8fa — law value or new leak?
+    [tap-target-44px] src/pages/landing/UpdatesPage.jsx:324 h-9
+    [unknown-law-hex] src/components/landing/LandingFAQ.jsx carries #1765cc — law value or new leak?
+    [unknown-law-hex] src/components/landing/LandingFAQ.jsx carries #e8eaed — law value or new leak?
+    [tap-target-44px] src/components/landing/LandingNav.jsx:277 focus:h-10
+    [unknown-law-hex] src/components/landing/LazyImage.jsx carries #f3f4f6 — law value or new leak?
+    [tap-target-44px] src/components/landing/persona/PersonaSections.jsx:380 h-9
+    [tap-target-44px] src/components/landing/persona/PersonaSections.jsx:399 h-9
+    [tap-target-44px] src/components/landing/persona/PersonaSections.jsx:408 h-9
+    [tap-target-44px] src/components/landing/persona/PersonaSections.jsx:482 h-9
+    [invalid-rba-artifact] src/components/landing/persona/PersonaSections.jsx carries an invalid #rgba( artifact
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:447 h-9
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:571 h-9
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:579 h-9
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:748 h-9
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:872 h-9
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:880 h-9
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:1348 h-10
+    [tap-target-44px] src/components/landing/persona/PremiumPersonaSections.jsx:1358 h-10
+    [unknown-law-hex] src/components/landing/persona/PremiumPersonaSections.jsx carries #f5f7fa — law value or new leak?

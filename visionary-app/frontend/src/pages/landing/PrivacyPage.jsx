@@ -32,7 +32,7 @@ const COLORS = {
   mist: "#d2d2d7",
   border: "#d2d2d7",
   soft: "#f5f5f7",
-  canvas: "#f7f8fa",
+  canvas: "#f5f5f7",
   blue: "#0066cc",
   navy: "#0066cc",
   white: "#ffffff",
