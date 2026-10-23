@@ -11,11 +11,17 @@
   "releaseArtifactId": "12481859334",
   "revision": "visionary-product-ga0d24fdf587b-39909298035-1",
   "imageDigest": "sha256:8cd875f639cc484a96ea0b85d455e98c0533995904dda32766d267d469d56553",
-  "authPolicy": { "version": 1, "globalSignOut": true },
+  "authPolicy": {
+    "version": 1,
+    "globalSignOut": true
+  },
   "rollback": {
     "compatiblePreviousCommit": "1ae078dc469846246bb5571717e39a6afe7a402e",
     "revision": "visionary-product-g1ae078dc4698-39822825126-1",
-    "authPolicy": { "version": 1, "globalSignOut": true },
+    "authPolicy": {
+      "version": 1,
+      "globalSignOut": true
+    },
     "liveTrafficRollbackExercised": false,
     "limitation": "Previous release does not offer fresh phone sign-in"
   },
@@ -43,11 +49,34 @@
     "sessionEpoch": 2,
     "trustedEmailPresent": false
   },
-  "publicChecks": { "exactMainCommit": true, "authPolicy": true, "email": true, "google": true, "phone": true, "scopedRecaptchaCsp": true },
+  "publicChecks": {
+    "exactMainCommit": true,
+    "authPolicy": true,
+    "email": true,
+    "google": true,
+    "phone": true,
+    "scopedRecaptchaCsp": true
+  },
   "multiDeviceBoundary": "Phone peer-session global invalidation passed the real SDK/emulator browser suite; independent hosted API cookie-jar revocation is retained in the base auth receipt. Two physical phones were not tested.",
   "sourceReview": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
-  "hostedCloseoutReview": "pending separate reviewer",
+  "hostedCloseoutReview": {
+    "state": "accepted",
+    "reviewer": "/root/kan34_release_review",
+    "report": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
+    "reportCommit": "893a322444d8971a0c7ad2c2fc9b686982770ac1",
+    "nativeObservationAttribution": "Root observed SMS/UI; separate reviewer audited sanitized records and actual deployed source/release boundaries"
+  },
   "privateEvidence": "Screenshots and guarded read-only state receipts preserved outside tracked product source; no codes, number, UID, credentials or cookies included",
-  "remainingGates": ["Firebase custom mail domain remains pending provider DNS verification", "No claim of broad Google/Apple security, MFA, load or availability parity"],
-  "protectedRecordsOrCredentialsIncluded": false
+  "remainingGates": [
+    "Firebase custom mail domain remains pending provider DNS verification",
+    "No claim of broad Google/Apple security, MFA, load or availability parity"
+  ],
+  "protectedRecordsOrCredentialsIncluded": false,
+  "jiraDone": {
+    "date": "2026-10-23",
+    "transitionId": 51,
+    "returnedStatus": "Done",
+    "readBackStatus": "Done",
+    "commentId": "10138"
+  }
 }
