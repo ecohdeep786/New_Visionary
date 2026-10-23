@@ -29,3 +29,12 @@ Independent exact-SHA review, published dev integration and CI precede main prom
 Real Firebase configuration read: phone enabled; SMS region allowlist IN. This inventory is not delivery acceptance. A dedicated real Indian number, human CAPTCHA when challenged, SMS receipt/confirmation on the canonical HTTPS origin and same-UID return/cleanup are still required. No full Google/Apple security-equivalence or MFA claim is made.
 
 Custom mail domain verification remains pending; the selected native Firebase email verification-link flow works independently. Previously rejected email-template writes are not claimed applied. KAN-34 stays open until its expanded hosted acceptance is met. KAN-29 remains open for the next founder discussion. Retire completed/unused worktrees only after accepted KAN-34 delivery, preserving required local configuration/evidence and pushed history; create each next task checkout when work starts.
+
+## Independent review repairs (23 October)
+
+Candidate24663e21 was not approved. The independent reviewer reproduced two blockers before any phone merge or deployment:
+
+- A disposed CAPTCHA may never settle its SDK promise, keeping the shared sign-in lock held. Transitions now own their lock and a cancellation promise. Leaving a phone flow immediately settles its caller and releases that operation only; late work still fails generation checks and cannot unlock or sign out a newer identity. Regressions cover an SDK promise that never settles, a subsequent email sign-in, and late phone confirmation while a newer identity is pending.
+- A phone-verified identity can carry an unverified linked email. Canonical account email is now populated only from a currently verified Firebase email claim and cleared otherwise, including returning sign-ins. Public profile projection independently enforces verified-email authority after preference fields. A compiled phone-auth-to-billing regression rejects invitation viewing and acceptance for unverified email, permits verified email, then rejects again after verification authority is removed. This preserves the existing email-addressed grant boundary without adding automatic provider linking.
+
+The replacement candidate requires renewed exact-SHA review and CI. Prior619-test results are superseded by621 frontend tests after the cancellation regressions. Hosted SMS remains pending; the founder has supplied a dedicated test number privately, which is excluded from source, evidence and Jira.

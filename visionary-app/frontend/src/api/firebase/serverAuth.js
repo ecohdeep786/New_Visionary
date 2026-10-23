@@ -3,7 +3,7 @@ import { popupProviderId } from './signInMethods.js';
 
 // Server identity and profile are authoritative; credentials are never persisted here.
 export function createServerAuth({ request, identity, notify = () => {} }) {
-  let profile = null, generation = 0, readSequence = 0, signingIn = false, pendingRead = null, pendingLogout = null, pendingLogoutAll = false;
+  let profile = null, generation = 0, readSequence = 0, signingIn = null, pendingRead = null, pendingLogout = null, pendingLogoutAll = false;
   const check = expected => { if (generation !== expected) throw authFlowError('auth/account-changed'); };
   const save = (value, expected) => {
     check(expected);
@@ -12,15 +12,23 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
     }
     profile = value; ++readSequence; return value;
   };
-  const transition = async action => {
+  const transition = async (action, kind = 'identity') => {
     if (signingIn || pendingLogout) throw authFlowError('auth/operation-in-progress');
-    signingIn = true;
     const expected = ++generation;
+    let rejectCancelled;
+    const cancelled = new Promise((_, reject) => { rejectCancelled = reject; });
+    const operation = { kind, cancel: rejectCancelled };
+    signingIn = operation;
     profile = null;
-    try { return await action(expected); }
+    try { return await Promise.race([action(expected), cancelled]); }
     finally {
-      if (generation !== expected) await Promise.resolve(identity.logout?.()).catch(() => {});
-      signingIn = false;
+      // A disposed reCAPTCHA may never settle its SDK promise. Cancellation
+      // releases only its own operation; a stale finally cannot unlock or sign
+      // out a newer identity. Late work still fails the generation checks.
+      if (signingIn === operation) {
+        if (generation !== expected) await Promise.resolve(identity.logout?.()).catch(() => {});
+        signingIn = null;
+      }
     }
   };
   const exchange = async (user, expected) => {
@@ -83,9 +91,13 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       const confirmation = await identity.beginPhoneSignIn(phone, verifierId);
       check(expected);
       return { verification: 'phone-sms', confirmation };
-    }),
+    }, 'phone'),
     cancelPhoneSignIn() {
-      if (signingIn) { ++generation; profile = null; }
+      if (signingIn?.kind === 'phone') {
+        const operation = signingIn;
+        ++generation; profile = null; signingIn = null;
+        operation.cancel(authFlowError('auth/account-changed'));
+      }
       identity.cancelPhoneSignIn?.();
     },
     confirmPhoneSignIn: (confirmation, code) => transition(async expected => {
@@ -96,7 +108,7 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
         if (error?.status === 401 || error?.status === 403) throw authFlowError('auth/phone-sign-in-unavailable');
         throw error;
       }
-    }),
+    }, 'phone'),
     async completeOnboarding(data) {
       const expected = generation, accountId = profile?.id;
       if (!accountId) throw authFlowError('auth/profile-unavailable');

@@ -140,7 +140,36 @@ test('leaving a pending phone verification cancels token exchange and clears the
   const pending = auth.confirmPhoneSignIn({}, '123456');
   auth.cancelPhoneSignIn(); finish({ ...user, phoneNumber: '+919999000001' });
   await assert.rejects(pending, error => error.code === 'auth/account-changed');
-  assert.equal(exchanges, 0); assert.equal(disposed, 1); assert.equal(signedOut, 1); assert.equal(auth.currentProfile(), null);
+  assert.equal(exchanges, 0); assert.equal(disposed, 1); assert.equal(signedOut, 0); assert.equal(auth.currentProfile(), null);
+});
+
+test('a disposed CAPTCHA that never settles cannot block a subsequent email sign-in', { timeout: 1000 }, async () => {
+  let disposed = 0;
+  const auth = createServerAuth({ request: async () => first, identity: {
+    beginPhoneSignIn: () => new Promise(() => {}), cancelPhoneSignIn: () => { disposed++; }, login: async () => user,
+  } });
+  const pending = auth.requestPhoneSignIn('+919999000001', 'fixture-container');
+  const rejected = assert.rejects(pending, error => error.code === 'auth/account-changed');
+  auth.cancelPhoneSignIn(); await rejected;
+  assert.equal((await auth.loginViaEmailPassword('fixture@example.test', 'fixture-only')).id, first.id);
+  assert.equal(disposed, 1);
+});
+
+test('late cancelled phone confirmation cannot unlock or sign out a newer identity operation', async () => {
+  let finishPhone, finishEmail, cleanups = 0, exchanges = 0;
+  const auth = createServerAuth({ request: async () => { exchanges++; return first; }, identity: {
+    confirmPhoneSignIn: () => new Promise(resolve => { finishPhone = resolve; }),
+    login: () => new Promise(resolve => { finishEmail = resolve; }), logout: async () => { cleanups++; },
+  } });
+  const old = auth.confirmPhoneSignIn({}, '123456'), rejected = assert.rejects(old, error => error.code === 'auth/account-changed');
+  auth.cancelPhoneSignIn(); await rejected;
+  const current = auth.loginViaEmailPassword('fixture@example.test', 'fixture-only');
+  finishPhone({ ...user, phoneNumber: '+919999000001' });
+  await new Promise(resolve => setImmediate(resolve));
+  await assert.rejects(auth.loginViaEmailPassword('duplicate@example.test', 'fixture-only'), error => error.code === 'auth/operation-in-progress');
+  assert.equal(cleanups, 0); assert.equal(exchanges, 0);
+  finishEmail(user); assert.equal((await current).id, first.id);
+  assert.equal(exchanges, 1); assert.equal(cleanups, 0);
 });
 
 test('phone confirmation exchanges identity and duplicate confirmation stays single-flight', async () => {
