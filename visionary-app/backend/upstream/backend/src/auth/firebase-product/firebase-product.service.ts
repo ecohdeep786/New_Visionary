@@ -69,6 +69,9 @@ export class FirebaseProductService implements OnModuleDestroy {
     if (!Number.isSafeInteger(identity.auth_time) || identity.auth_time < 1 || now / 1000 - identity.auth_time > 300 || identity.auth_time > Math.floor(now / 1000)) throw new UnauthorizedException('Wait a moment, then sign in again before starting a session.');
     // Unverified identities cannot create a product profile or a product session.
     admitProductIdentity(identity, this.signInMethods().phone);
+    // Phone verification does not establish ownership of a linked email.
+    // Email-addressed grants consume only this verified canonical authority.
+    const trustedEmail = identity.email_verified === true && typeof identity.email === 'string' ? identity.email : '';
     // Old signed tokens must not consume a newly authenticated device's budget.
     // The commit transaction repeats this check to close concurrent sign-out.
     const admissionPolicy = await this.database(async () => accountSessionPolicy((await this.db().collection('visionary_accounts').doc(identity.uid).get()).data()));
@@ -91,12 +94,12 @@ export class FirebaseProductService implements OnModuleDestroy {
         const old = oldRef ? (await tx.get(oldRef)).data() : null;
         const oldDevice = old?.uid === identity.uid ? (await tx.get(deviceDocument(db, identity.uid, digest(previous.device)))).data() : null;
         if (legacy?.exists || snapshot.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your account storage upgrade must finish before sign-in. Your saved details are retained.');
-        const data = snapshot.exists ? snapshot.data() : { email: identity.email || '', full_name: identity.name || '', onboarding: { status: 'pending' }, version: 0, createdAt: Timestamp.fromMillis(now) };
+        const data = snapshot.exists ? snapshot.data() : { email: trustedEmail, full_name: identity.name || '', onboarding: { status: 'pending' }, version: 0, createdAt: Timestamp.fromMillis(now) };
         const policy = accountSessionPolicy(data);
         // Firebase auth_time has second precision. A sign-in in the same second
         // must be repeated after that second; refreshing an old token is not login.
         if (policy.cutoff && identity.auth_time <= policy.cutoff) throw new UnauthorizedException('Your devices were signed out. Wait a moment, then sign in again.');
-        const refreshed = { ...data, uid: identity.uid, storageVersion: ACCOUNT_STORAGE_VERSION, identity: { ...data.identity, ...identitySnapshot(identity.uid, identity, now) }, email: identity.email || data.email || '', lastSignInAt: Timestamp.fromMillis(now) };
+        const refreshed = { ...data, uid: identity.uid, storageVersion: ACCOUNT_STORAGE_VERSION, identity: { ...data.identity, ...identitySnapshot(identity.uid, identity, now) }, email: trustedEmail, lastSignInAt: Timestamp.fromMillis(now) };
         if (billing.data()?.uid && billing.data().uid !== identity.uid) throw new ConflictException('Your billing identity needs recovery. No account changes were saved.');
         if (!billing.exists) tx.create(billingRef, freeBillingAccount(identity.uid, now));
         else if (!billing.data().uid || !billing.data().basePlan) tx.set(billingRef, { ...billing.data(), uid: identity.uid, basePlan: 'start', schemaVersion: 1 });

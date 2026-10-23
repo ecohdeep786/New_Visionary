@@ -1,4 +1,4 @@
-const test = require('node:test'), assert = require('node:assert/strict'), { createHash } = require('node:crypto');
+const test = require('node:test'), assert = require('node:assert/strict'), { createHash, randomUUID } = require('node:crypto');
 const path = require('node:path'), { createRequire } = require('node:module');
 const req = createRequire(path.resolve(__dirname, '../upstream/backend/package.json'));
 const { ConfigService } = req('@nestjs/config');
@@ -61,6 +61,31 @@ test('phone admission fails closed before account writes for disabled, unverifie
   f.identity.firebase = { sign_in_provider: 'password', identities: { phone: [f.identity.phone_number] } };
   await assert.rejects(f.service.signIn('unverified-email-with-phone', metadata), e => e.getStatus() === 401);
   assert.equal(f.rows.size, 0);
+});
+
+test('phone verification cannot claim an email-addressed Family invitation without verified email', async t => {
+  const f = fixture(), get = f.service.config.get.bind(f.service.config);
+  t.mock.method(f.service.config, 'get', key => key === 'AUTH_PHONE_SIGNIN_ENABLED' ? 'true' : get(key));
+  Object.assign(f.identity, { email: 'recipient@example.test', email_verified: false, phone_number: '+919000000001',
+    firebase: { sign_in_provider: 'phone', identities: { phone: ['+919000000001'] } } });
+  const signed = await f.service.signIn('phone-with-unverified-email', metadata);
+  assert.equal(signed.profile.email, '');
+  assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).email, '');
+  await f.service.completeOnboarding(f.identity.uid, { full_name: 'Phone fixture', identity: 'professional', age_band: 'adult', preferred_language: 'English' });
+  const { BillingService } = req('./dist/src/billing/billing.service.js');
+  const billing = new BillingService({ safely: operation => operation(), db: () => f.db }, {}, f.service);
+  const token = randomUUID(), key = `visionary_billing_test_invitations/${token}`;
+  f.rows.set(key, { email: f.identity.email, status: 'pending', expiresAt: Date.now() + 60000, ownerName: 'Fixture payer' });
+  await assert.rejects(billing.familyInvitation(f.identity.uid, token), e => e.getStatus() === 404);
+  await assert.rejects(billing.acceptFamily(f.identity.uid, { invitationId: token }), e => e.getStatus() === 404);
+  assert.equal(f.rows.get(key).status, 'pending');
+  f.identity.email_verified = true;
+  await f.service.signIn('phone-with-verified-email', metadata);
+  assert.equal((await billing.familyInvitation(f.identity.uid, token)).ownerName, 'Fixture payer');
+  f.identity.email_verified = false;
+  await f.service.signIn('phone-email-no-longer-verified', metadata);
+  assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).email, '');
+  await assert.rejects(billing.familyInvitation(f.identity.uid, token), e => e.getStatus() === 404);
 });
 
 test('compatibility rollout disables new revocations while continuing to reject revoked sessions and tokens', async t => {

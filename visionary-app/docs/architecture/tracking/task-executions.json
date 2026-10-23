@@ -479,24 +479,32 @@
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
       "implementer": "Codex",
       "review": {
-        "state": "pending-phone-extension",
-        "previousApprovalDoesNotCoverPhone": true
+        "state": "pending-replacement-review",
+        "reviewer": "/root/kan34_release_review",
+        "rejectedCandidate": "24663e2199c9ffeeffa80e5946429684a0caa2cd",
+        "findings": [
+          "Disposed CAPTCHA leaves sign-in locked while SDK promise never settles",
+          "Unverified linked email must not grant email-addressed invitation authority"
+        ],
+        "findingsRepaired": true
       },
       "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
-      "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/17",
+      "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/19",
       "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39820287068",
       "sourceCiConclusion": "success",
       "handoff": "docs/architecture/delivery/KAN34_PHONE_AUTH_REVIEW.md",
       "jiraResumeCommentId": "10126",
       "checks": {
         "backendBuild": true,
-        "backendTests": 106,
-        "frontendTests": 619,
+        "backendTests": 107,
+        "frontendTests": 621,
         "scriptTests": 18,
         "gcpJavascriptTests": 27,
         "rootCheck": true,
         "phoneEmulatorBrowserScenarios": 8,
-        "realPhoneSmsAcceptance": false
+        "realPhoneSmsAcceptance": false,
+        "finalRepairedRootCheck": "running",
+        "finalRepairedEmailBrowser": "running"
       },
       "hostedAcceptance": false,
       "fullFeatureAccepted": false,
@@ -621,6 +629,12 @@
         "hostedAcceptance": true,
         "evidence": "docs/architecture/delivery/evidence/KAN34_HOSTED_AUTH_2026-10-22.json",
         "independentHostedReviewCommit": "95a6bb00fd0825e03972d43d479040ae9c09570c"
+      },
+      "phoneSourceCi": {
+        "commit": "24663e2199c9ffeeffa80e5946429684a0caa2cd",
+        "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39830621424",
+        "conclusion": "success",
+        "approval": false
       }
     }
   ]
