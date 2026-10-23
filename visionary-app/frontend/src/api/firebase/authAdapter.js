@@ -12,8 +12,7 @@ const request = createAuthTransport();
 const identity = {
   login: async (email, password) => (await signInWithEmailAndPassword(getFirebaseAuthClient(), email, password)).user,
   register: async (email, password) => (await createUserWithEmailAndPassword(getFirebaseAuthClient(), email, password)).user,
-  current: async () => getFirebaseAuthClient().currentUser,
-  async reloadCurrent() { const user = getFirebaseAuthClient().currentUser; if (user) await reload(user); return user; },
+  async reloadUser(user) { await reload(user); return user; },
   async sendVerification(user) {
     if (Date.now() - (pendingVerificationTimes.get(user.uid) || 0) < 60000) throw authFlowError('auth/verification-cooldown');
     await sendEmailVerification(user, { url: `${window.location.origin}/login`, handleCodeInApp: false });

@@ -77584,7 +77584,7 @@
     },
     {
       "file": "frontend/src/api/firebase/authAdapter.js",
-      "sourceSha256": "ba6669662c364a5c1ad6fb081c58c6d457ee639601de7c4d11810eacec06b713"
+      "sourceSha256": "d89eb59450704f9dfd6a19e96ffff3dc233e2d7b6d668ff86238d1b51ccf94fe"
     },
     {
       "file": "frontend/src/api/firebase/authTransport.js",
@@ -77600,7 +77600,7 @@
     },
     {
       "file": "frontend/src/api/firebase/serverAuth.js",
-      "sourceSha256": "45e45889ea35160fb5eec0cf3775fd7cdf98600a45f2a0b79f18e8ce2006eee1"
+      "sourceSha256": "9bfff5ed21810762edc3e62e2ca8f342bd267e7ec5c94d50eb2b383fc63a0faf"
     },
     {
       "file": "frontend/src/api/firebase/signInMethods.js",

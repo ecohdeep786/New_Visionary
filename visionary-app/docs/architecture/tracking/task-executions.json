@@ -479,14 +479,16 @@
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
       "implementer": "Codex",
       "review": {
-        "state": "pending-replacement-review",
+        "state": "pending-bound-email-identity-review",
         "reviewer": "/root/kan34_release_review",
-        "rejectedCandidate": "24663e2199c9ffeeffa80e5946429684a0caa2cd",
+        "rejectedCandidate": "4a3a5406cc3fdbad74f9052fd73f794c93b670a3",
         "findings": [
           "Disposed CAPTCHA leaves sign-in locked while SDK promise never settles",
-          "Unverified linked email must not grant email-addressed invitation authority"
+          "Unverified linked email must not grant email-addressed invitation authority",
+          "Late cancelled phone SDK currentUser must not replace pending email verification or resend identity"
         ],
-        "findingsRepaired": true
+        "findingsRepaired": true,
+        "earlierRejectedCandidate": "24663e2199c9ffeeffa80e5946429684a0caa2cd"
       },
       "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
       "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/19",
@@ -503,8 +505,10 @@
         "rootCheck": true,
         "phoneEmulatorBrowserScenarios": 8,
         "realPhoneSmsAcceptance": false,
-        "finalRepairedRootCheck": "running",
-        "finalRepairedEmailBrowser": "running"
+        "finalRepairedRootCheck": "running-bound-email-candidate",
+        "finalRepairedEmailBrowser": "running-bound-email-candidate",
+        "expectedFinalFrontendTests": 623,
+        "boundEmailIdentityAuthCasesPassed": 28
       },
       "hostedAcceptance": false,
       "fullFeatureAccepted": false,
