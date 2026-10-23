@@ -172,6 +172,20 @@ test('late cancelled phone confirmation cannot unlock or sign out a newer identi
   assert.equal(exchanges, 1); assert.equal(cleanups, 0);
 });
 
+test('phone cancellation cannot abandon a submitted session cookie mutation or admit a new identity over it', async () => {
+  let submit, finish, cookie = false;
+  const submitted = new Promise(resolve => { submit = resolve; });
+  const auth = createServerAuth({ request: async path => {
+    if (path === '/session') { submit(); return new Promise(resolve => { finish = () => { cookie = true; resolve(first); }; }); }
+    assert.equal(path, '/me'); assert.equal(cookie, true); return first;
+  }, identity: { confirmPhoneSignIn: async () => ({ ...user, phoneNumber: '+919999000001' }), login: async () => user } });
+  const pending = auth.confirmPhoneSignIn({}, '123456'); await submitted;
+  auth.cancelPhoneSignIn();
+  await assert.rejects(auth.loginViaEmailPassword('new@example.test', 'fixture-only'), error => error.code === 'auth/operation-in-progress');
+  finish(); assert.equal((await pending).id, first.id);
+  assert.equal(auth.currentProfile().id, first.id); assert.equal((await auth.me()).id, first.id);
+});
+
 for (const entry of ['register', 'login']) test(`cancelled phone SDK state cannot replace the pending ${entry} email identity`, async () => {
   let current, finishPhone;
   const phone = { uid: 'cancelled-phone', emailVerified: false, phoneNumber: '+919999000001', getIdToken: async () => 'phone-token' };
