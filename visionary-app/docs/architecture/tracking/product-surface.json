@@ -370,31 +370,31 @@
         "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/SocialAuthButtons.jsx:27:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
-        "frontend/src/pages/Login.jsx:125:13",
+        "frontend/src/pages/Login.jsx:113:13",
+        "frontend/src/pages/Login.jsx:124:13",
+        "frontend/src/pages/Login.jsx:131:35",
+        "frontend/src/pages/Login.jsx:132:28",
         "frontend/src/pages/Login.jsx:136:13",
-        "frontend/src/pages/Login.jsx:143:35",
-        "frontend/src/pages/Login.jsx:144:28",
-        "frontend/src/pages/Login.jsx:148:13",
-        "frontend/src/pages/Login.jsx:149:30",
-        "frontend/src/pages/Login.jsx:155:15",
-        "frontend/src/pages/Login.jsx:157:15",
-        "frontend/src/pages/Login.jsx:160:15",
-        "frontend/src/pages/Login.jsx:170:13",
-        "frontend/src/pages/Login.jsx:177:19",
-        "frontend/src/pages/Login.jsx:183:13",
-        "frontend/src/pages/Login.jsx:184:15",
-        "frontend/src/pages/Login.jsx:196:19",
-        "frontend/src/pages/Login.jsx:201:17",
-        "frontend/src/pages/Login.jsx:212:13",
-        "frontend/src/pages/Login.jsx:214:13",
-        "frontend/src/pages/Login.jsx:215:15",
-        "frontend/src/pages/Login.jsx:228:19",
-        "frontend/src/pages/Login.jsx:233:17",
-        "frontend/src/pages/Login.jsx:244:13",
-        "frontend/src/pages/Login.jsx:251:17",
-        "frontend/src/pages/Login.jsx:256:15",
-        "frontend/src/pages/Login.jsx:261:15",
-        "frontend/src/pages/Login.jsx:264:15"
+        "frontend/src/pages/Login.jsx:137:30",
+        "frontend/src/pages/Login.jsx:143:15",
+        "frontend/src/pages/Login.jsx:145:15",
+        "frontend/src/pages/Login.jsx:148:15",
+        "frontend/src/pages/Login.jsx:158:13",
+        "frontend/src/pages/Login.jsx:165:19",
+        "frontend/src/pages/Login.jsx:171:13",
+        "frontend/src/pages/Login.jsx:172:15",
+        "frontend/src/pages/Login.jsx:184:19",
+        "frontend/src/pages/Login.jsx:189:17",
+        "frontend/src/pages/Login.jsx:200:13",
+        "frontend/src/pages/Login.jsx:202:13",
+        "frontend/src/pages/Login.jsx:203:15",
+        "frontend/src/pages/Login.jsx:216:19",
+        "frontend/src/pages/Login.jsx:221:17",
+        "frontend/src/pages/Login.jsx:232:13",
+        "frontend/src/pages/Login.jsx:239:17",
+        "frontend/src/pages/Login.jsx:244:15",
+        "frontend/src/pages/Login.jsx:249:15",
+        "frontend/src/pages/Login.jsx:252:15"
       ],
       "operations": [
         "auth-session-profile",
@@ -75218,9 +75218,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:125:13",
+      "id": "frontend/src/pages/Login.jsx:113:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 125,
+      "line": 113,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -75250,9 +75250,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:136:13",
+      "id": "frontend/src/pages/Login.jsx:124:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 136,
+      "line": 124,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -75282,9 +75282,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:143:35",
+      "id": "frontend/src/pages/Login.jsx:131:35",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 143,
+      "line": 131,
       "column": 35,
       "tag": "EmailVerification",
       "events": [
@@ -75322,9 +75322,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:144:28",
+      "id": "frontend/src/pages/Login.jsx:132:28",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 144,
+      "line": 132,
       "column": 28,
       "tag": "PhoneAuth",
       "events": [
@@ -75359,9 +75359,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:148:13",
+      "id": "frontend/src/pages/Login.jsx:136:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 148,
+      "line": 136,
       "column": 13,
       "tag": "button",
       "events": [
@@ -75399,9 +75399,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:149:30",
+      "id": "frontend/src/pages/Login.jsx:137:30",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 149,
+      "line": 137,
       "column": 30,
       "tag": "button",
       "events": [
@@ -75438,9 +75438,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:155:15",
+      "id": "frontend/src/pages/Login.jsx:143:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 155,
+      "line": 143,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -75471,9 +75471,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:157:15",
+      "id": "frontend/src/pages/Login.jsx:145:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 157,
+      "line": 145,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -75504,9 +75504,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:160:15",
+      "id": "frontend/src/pages/Login.jsx:148:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 160,
+      "line": 148,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -75537,9 +75537,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:170:13",
+      "id": "frontend/src/pages/Login.jsx:158:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 170,
+      "line": 158,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -75574,9 +75574,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:177:19",
+      "id": "frontend/src/pages/Login.jsx:165:19",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 177,
+      "line": 165,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -75606,9 +75606,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:183:13",
+      "id": "frontend/src/pages/Login.jsx:171:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 183,
+      "line": 171,
       "column": 13,
       "tag": "form",
       "events": [
@@ -75643,9 +75643,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:184:15",
+      "id": "frontend/src/pages/Login.jsx:172:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 184,
+      "line": 172,
       "column": 15,
       "tag": "InputField",
       "events": [
@@ -75682,9 +75682,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:196:19",
+      "id": "frontend/src/pages/Login.jsx:184:19",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 196,
+      "line": 184,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -75715,9 +75715,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:201:17",
+      "id": "frontend/src/pages/Login.jsx:189:17",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 201,
+      "line": 189,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -75747,9 +75747,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:212:13",
+      "id": "frontend/src/pages/Login.jsx:200:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 212,
+      "line": 200,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -75786,9 +75786,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:214:13",
+      "id": "frontend/src/pages/Login.jsx:202:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 214,
+      "line": 202,
       "column": 13,
       "tag": "form",
       "events": [
@@ -75823,9 +75823,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:215:15",
+      "id": "frontend/src/pages/Login.jsx:203:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 215,
+      "line": 203,
       "column": 15,
       "tag": "GooglePasswordField",
       "events": [
@@ -75862,9 +75862,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:228:19",
+      "id": "frontend/src/pages/Login.jsx:216:19",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 228,
+      "line": 216,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -75895,9 +75895,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:233:17",
+      "id": "frontend/src/pages/Login.jsx:221:17",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 233,
+      "line": 221,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -75927,9 +75927,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:244:13",
+      "id": "frontend/src/pages/Login.jsx:232:13",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 244,
+      "line": 232,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -75968,9 +75968,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:251:17",
+      "id": "frontend/src/pages/Login.jsx:239:17",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 251,
+      "line": 239,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -76001,9 +76001,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:256:15",
+      "id": "frontend/src/pages/Login.jsx:244:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 256,
+      "line": 244,
       "column": 15,
       "tag": "button",
       "events": [
@@ -76042,9 +76042,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:261:15",
+      "id": "frontend/src/pages/Login.jsx:249:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 261,
+      "line": 249,
       "column": 15,
       "tag": "button",
       "events": [
@@ -76079,9 +76079,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Login.jsx:264:15",
+      "id": "frontend/src/pages/Login.jsx:252:15",
       "file": "frontend/src/pages/Login.jsx",
-      "line": 264,
+      "line": 252,
       "column": 15,
       "tag": "button",
       "events": [
@@ -79040,7 +79040,7 @@
     },
     {
       "file": "frontend/src/pages/Login.jsx",
-      "sourceSha256": "716633b645c5c22f41c753db193c95e67d9204af7b429e14e97579b8f7c5356c"
+      "sourceSha256": "b613eba4375b480e33ac8418444282c06f2e9bb2bcc3aea0d9293bf9b57c1581"
     },
     {
       "file": "frontend/src/pages/OAuthConsent.jsx",

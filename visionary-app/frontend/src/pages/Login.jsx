@@ -76,19 +76,7 @@ export default function Login() {
     setError("");
     setLoading(true);
     try {
-      let profile;
-      // Temporary localhost tester: remove this branch and VITE_LOCAL_TEST_* when finished.
-      if (import.meta.env.DEV && ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname) && import.meta.env.VITE_LOCAL_TEST_LOGIN === 'true') {
-        const testerEmail = import.meta.env.VITE_LOCAL_TEST_EMAIL;
-        const testerPassword = import.meta.env.VITE_LOCAL_TEST_PASSWORD;
-        if (!testerEmail || !testerPassword || email.trim().toLowerCase() !== testerEmail || password !== testerPassword) {
-          throw Object.assign(new Error('The email or password is incorrect.'), { code: 'auth/invalid-credential' });
-        }
-        // Keep the normal server session so connected product APIs still work.
-        profile = await signInViaEmailPassword(testerEmail, password);
-      } else {
-        profile = await signInViaEmailPassword(email, password);
-      }
+      const profile = await signInViaEmailPassword(email, password);
       navigate(authDestination(profile), { replace: true });
     } catch (err) {
       setError(authErrorMessage(err, 'Sign-in could not finish. Please try again.'));

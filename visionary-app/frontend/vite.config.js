@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
 const securityHeaders = {
@@ -29,20 +29,14 @@ const productionSecurityHeaders = {
   ].join('; '),
 }
 
-export default defineConfig(({ command, mode, isPreview }) => {
+export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
-  const localTester = command === 'serve' && !isPreview && !isProd && loadEnv(mode, fileURLToPath(new URL('.', import.meta.url)), 'VITE_LOCAL_TEST_').VITE_LOCAL_TEST_LOGIN === 'true';
   const authApiTarget = process.env.VISIONARY_AUTH_TEST_PROXY || 'http://127.0.0.1:3001';
   if (process.env.VISIONARY_AUTH_TEST_PROXY && (isProd || !process.env.VITE_FIREBASE_PROJECT_ID?.startsWith('demo-') || !/^http:\/\/127\.0\.0\.1:\d{1,5}$/.test(authApiTarget))) throw new Error('The test auth proxy requires a development demo project and loopback target.');
   return {
-    plugins: [react(), ...(localTester ? [{
-      name: 'temporary-localhost-tester',
-      configResolved(config) {
-        if (!['localhost', '127.0.0.1', '::1'].includes(config.server.host)) throw new Error('Temporary tester credentials require a loopback-only Vite host. Remove --host overrides that expose the server.');
-      },
-    }] : [])],
+    plugins: [react()],
     server: {
-      host: localTester ? '127.0.0.1' : '0.0.0.0',
+      host: '0.0.0.0',
       headers: securityHeaders,
       proxy: { '/api': { target: authApiTarget, changeOrigin: false } },
       watch: {
