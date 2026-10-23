@@ -22,7 +22,7 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
     const expected = ++generation;
     let rejectCancelled;
     const cancelled = new Promise((_, reject) => { rejectCancelled = reject; });
-    const operation = { kind, cancel: rejectCancelled };
+    const operation = { kind, cancel: rejectCancelled, generation: expected, phase: 'identity' };
     signingIn = operation;
     profile = null;
     try { return await Promise.race([action(expected), cancelled]); }
@@ -44,6 +44,10 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
     if (!user.emailVerified && !phoneVerified) throw authFlowError('auth/email-not-verified');
     const idToken = await user.getIdToken(true);
     check(expected);
+    // An HTTP exchange can commit Set-Cookie even after the form unmounts.
+    // From this point retain ownership and settle the real server outcome;
+    // only the preceding SDK/CAPTCHA phase can be abandoned by the form.
+    if (signingIn?.generation === expected) signingIn.phase = 'session';
     const value = await request('/session', { method: 'POST', body: { idToken }, beforeSend: () => check(expected) });
     if (user.uid && value?.id !== user.uid) throw Object.assign(authFlowError('auth/profile-unavailable'), { status: 503 });
     const saved = save(value, expected); notify(); return saved;
@@ -110,7 +114,7 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       return { verification: 'phone-sms', confirmation };
     }, 'phone'),
     cancelPhoneSignIn() {
-      if (signingIn?.kind === 'phone') {
+      if (signingIn?.kind === 'phone' && signingIn.phase === 'identity') {
         const operation = signingIn;
         ++generation; profile = null; signingIn = null;
         operation.cancel(authFlowError('auth/account-changed'));

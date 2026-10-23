@@ -77600,7 +77600,7 @@
     },
     {
       "file": "frontend/src/api/firebase/serverAuth.js",
-      "sourceSha256": "9bfff5ed21810762edc3e62e2ca8f342bd267e7ec5c94d50eb2b383fc63a0faf"
+      "sourceSha256": "6f3590dafda832af8519e2d4180ebc713f9633917027cf3b59e7342a246c955b"
     },
     {
       "file": "frontend/src/api/firebase/signInMethods.js",
