@@ -16,7 +16,11 @@ Live KAN-35 was read during review. Its requirement is to **specify** per-route 
 
 ## Findings and decision
 
-**Decision: approved for the exact implementation above as a contract enabler. Verification result: passed for the independent checks below. No blocking correctness or scope defect was found.** Relevant backend/frontend regression and integrated-result verification remain the integrator's responsibility before publishing dev and recording Jira Done. Approval does not cover later implementation commits or conflict resolutions.
+**Decision: changes requested for the exact implementation above. Verification result: the 40 existing checks passed, but the response-error attribution finding below remains open.** A new exact candidate and independent review are required. Relevant backend/frontend regression and integrated-result verification remain the integrator's responsibility before publishing dev and recording Jira Done. No runtime or hosted acceptance is approved.
+
+The initial report commit `e9921ea7ee661fa205e010f0744fd85dc63b21df` recorded approval before a directional error-semantics issue was raised by the integrator and reproduced by this reviewer. That initial decision is superseded by this changes-requested decision; it must not be used to integrate the old candidate.
+
+**R1 (P2): distinguish generated response failures from client request failures.** In `scripts/request-limits.mjs`, `checkJson('existing-json', 'x'.repeat(policy.profiles['existing-json'].responseBytes + 1), 'response')` returns `{ok:false,code:'PAYLOAD_TOO_LARGE',status:413}`. The evaluator accepts a response direction but maps this generated-output failure to the request-size status. Malformed/structurally oversized response values similarly receive request-side 400 outcomes. Specify bounded server-unavailable/invalid-response outcomes for response-side failures and retain 413/400 for request rejection; add directional status/code assertions. This is a contract correctness issue even though no runtime consumes the helper yet.
 
 The policy names the actual enforced subset separately from proposed caps, marks runtime enforcement unchanged and leaves existing validators authoritative. Inspection confirmed that only the script tests import the evaluator. No controller, parser registration, client transport, schema, storage, provider or product journey changes in this candidate.
 
