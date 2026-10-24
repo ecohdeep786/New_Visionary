@@ -23,14 +23,15 @@ function bounded(value, profile, depth = 0) {
 export function validateWire(name, wire) {
   const validator = validators.get(name);
   if (!validator || !manifest.operations[name]) return { ok: false, code: 'UNSUPPORTED_OPERATION' };
-  if (typeof wire !== 'string') return { ok: false, code: 'INVALID_REQUEST' };
-  const profile = limits.profiles[manifest.operations[name]];
   const response = ['ResourcePage','PackManifest','StageMapping','ProfileSnapshot','ActivityProposal','CommitReceipt','AcceptedRun','Error','ChangeEvent','StreamEvent','VoiceTranscript'].includes(name);
+  const invalid = response ? 'UNAVAILABLE' : 'INVALID_REQUEST';
+  if (typeof wire !== 'string') return { ok: false, code: invalid };
+  const profile = limits.profiles[manifest.operations[name]];
   const cap = name === 'StreamEvent' ? limits.stream.eventBytes - limits.stream.framingBytes : response ? profile.responseBytes : profile.requestBytes;
   if (Buffer.byteLength(wire, 'utf8') > cap) return { ok: false, code: response ? 'UNAVAILABLE' : 'PAYLOAD_TOO_LARGE' };
   let value;
-  try { value = JSON.parse(wire); } catch { return { ok: false, code: 'INVALID_REQUEST' }; }
-  if (!bounded(value, profile) || !validator(value)) return { ok: false, code: 'INVALID_REQUEST' };
+  try { value = JSON.parse(wire); } catch { return { ok: false, code: invalid }; }
+  if (!bounded(value, profile) || !validator(value)) return { ok: false, code: invalid };
   return { ok: true, value };
 }
 

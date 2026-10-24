@@ -128,6 +128,14 @@ test('errors are bounded, typed, cannot echo arbitrary data', () => {
     assert.equal(validate('Error', { ...fixtures.Error, ...change }).ok, false);
   }
 });
+test('generated response failure is server unavailable; malformed client input remains invalid', () => {
+  for (const name of ['ResourcePage','PackManifest','StageMapping','ProfileSnapshot','ActivityProposal','CommitReceipt','AcceptedRun','Error','ChangeEvent','StreamEvent','VoiceTranscript']) {
+    for (const wire of [undefined, '{', 'null', '{}', JSON.stringify({ ...fixtures[name], actorUid: 'forged' })]) {
+      assert.deepEqual(validateWire(name, wire), { ok: false, code: 'UNAVAILABLE' });
+    }
+  }
+  assert.deepEqual(validateWire('ProjectDraft', '{}'), { ok: false, code: 'INVALID_REQUEST' });
+});
 test('OpenAPI uses standalone component refs, explicit draft security and all path parameters', () => {
   assert.equal(openapi.openapi, '3.1.1');
   assert.equal(JSON.stringify(openapi).includes('#/$defs/'), false);
