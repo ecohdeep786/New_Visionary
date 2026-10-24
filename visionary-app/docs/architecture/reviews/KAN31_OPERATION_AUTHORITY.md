@@ -1,0 +1,57 @@
+# KAN-31 / SCOPE-04 — operation authority and owning stores
+
+24 October 2026. Implementer: Codex backend executor. Branch `codex/codex-kan-31-authority-audit`, fresh base accepted dev `64a2cecb39d8f039151b6b459157a7415e183887`. This replaces the interrupted, unimplemented prior execution instance without reusing or resetting its branch.
+
+## Acceptance scope
+
+This delivers a **source-audited authority/store mapping and regression enabler**. The requirement is to map operations, including lists, downloads, exports, background jobs and support. This change installs no new permission service or domain endpoint. Its accepted scope can complete after separate exact-SHA review, checks and published dev integration; that does not complete source licensing, policy, membership, connected domain or hosted release gates.
+
+The machine-readable [operation-authority.v1.json](../../../integration/contracts/operation-authority.v1.json) covers all 37 current Nest controller method/path pairs, six production infrastructure method/path pairs, 12 unregistered KAN-30 OpenAPI write paths, 16 future operation families and all 32 dated product-surface groups. Each entry references a profile defining actor, workspace, object, source, consent/purpose and owning store. Future stores and requirements are explicitly proposed. Current Firestore ownership is not replaced by the imported Prisma schema or a second SQL account/profile authority.
+
+## Current authority and important limits
+
+| Surface | Source-observed authority and owner | Limits retained |
+| --- | --- | --- |
+| Methods/catalog and health/probes | Public bounded configuration/status; no private object authority or durable store. Production GET handlers also service HEAD. CSRF bootstrap only sets browser token/cookie. | A successful probe, CSRF token or provider inventory is not sign-in, source permission or feature acceptance. Static SPA/assets are outside the controller JSON route count. |
+| Sign-in and current profile | Firebase verifies ID token/session, device binding, admission and revocation/epoch policy; server UID owns Firestore account/session/device records. `/auth/me` uses current session/device without expected-account header. | Onboarding role/category is self-report, not institution/guardian membership. Provider acceptance and policy remain separately scoped. |
+| Profile/onboarding, account lists and feedback | Browser commands compare expected account and require exact Origin/CSRF. Account/device/invoice and feedback reads are bounded within UID-derived paths. | Read paths may update operational state/backfill billing; a read classification does not promise zero writes. No staff, guardian, employer or Family-payer read is granted by these surfaces. Feedback is not emergency handling or training consent. |
+| Local and global sign-out | Local sign-out uses CSRF and a device lookup matched against expected UID **or** cookie hash, with absent/invalid-device no-op; it is not the ordinary fully authenticated writer helper. Global sign-out additionally verifies session/device/account and transaction epoch/cutoff/replay state. | These distinct source behaviors must not be flattened into a claim that every auth POST runs `commandAccount`. Compatibility and session revocation cannot be reset during recovery. |
+| Browser test billing / Family | Browser reader/writer helpers use server session/device/account, CSRF for writes and rate limits. Firestore test billing and provider-verified payment facts own benefits; invoice/seat ownership and invitation email/expiry/status are checked in service logic. | Test benefits are not guardian, school or private-learning access. Provider test/live and commercial acceptance stay separate. |
+| Reconciliation and webhooks | Scheduled HTTP reconciliation checks the configured job credential; the local timer is an internal process trigger. Webhooks check HMAC over exact raw bytes, event identity/digest and server merchant/payment/subscription mapping. Firestore due queue/events/leases govern work. | Browser cookies do not authorize job execution; HMAC is not CSRF; an unmapped payment event grants nothing. Queue or provider payload cannot choose educational authority. No new service identity or hosted scheduler qualification is installed. |
+| Durable learning | Current browser session/device/account and CSRF precede commands. UID-nested Firestore sessions/commands/check state/assessments enforce owner record scope, expected revisions, command replay and stored source/criteria consistency. | **Workspace/source/provider IDs are client-supplied bounded tags, not verified workspace membership or approved content rights.** Authored present-check input includes prompt/options/answerIndex; later server scoring of that stored key does not establish trusted curriculum/rubric provenance. |
+| Knowledge projections | Current account owns a saved assessment-derived projection/command/receipt/outbox transaction; read scope pins workspace/concept/source/criteria/model. | Source/rubric authority and educational calibration remain open; pKnown is not assessed mastery. No cross-user summary permission is added. |
+
+Source evidence includes the six registered controllers, their module/entrypoints, shared request authority, auth/session/admission and account storage, billing/feedback/learning/knowledge services, production HTTP composition and inherited contract inventories. Exact LF-normalized SHA-256 fingerprints make relevant source changes visible. Refer to the generated manifest for file paths and current operation-by-operation assignments; protected reads, browser writes, job credentials, raw webhook signatures and sign-out exceptions have separate profiles.
+
+## Required future boundaries
+
+- Lists, project/revision/status/event reads and private downloads reauthorize current UID/workspace/object/action. A cursor, signed URL, cached capability or queue event never supplies a grant.
+- Files/assets/offline packs require source rights, approved media/purpose, private quarantine/finalize and current issuance/download authority. Offline bytes may remain readable after withdrawal; reconnect rechecks authority and original command/revision without trusting a local pass flag.
+- Export/deletion and other jobs reload current account/tenant/subject/source/consent and command/revision before execution and delivery, with owning-store receipt/outbox and bounded recovery. No cross-store atomic transaction is assumed.
+- Teacher/classroom, guardian summaries and organization/employer shares need distinct verified grants. Billing does not create a guardian relationship; institutional membership does not expose private coaching/doubts. Self-summary does not require guardian status. Shared summaries require current audience/purpose/relationship/consent and freshness.
+- Stage transitions require one selected profile owner, exact mapping/profile/policy/source revisions and action-specific confirmation. Undo/postpone must not restore a snapshot over later work. Personal goals/coaching have a separate private boundary.
+- Support/operator access requires approved strong/step-up identity, case-scoped capability, reason/audit and accepted disclosure rules. Optional feedback is not an emergency channel or permission for an unrestricted account dump.
+- Voice/model/activity output is a proposal. Interim/final transcript, event completion, cancellation acknowledgement or a schema-valid receipt cannot create permission, scored evidence or a durable commit.
+
+These are required target boundaries, not implemented grants. [KAN-29](https://visionary-team.atlassian.net/browse/KAN-29) retains source/publication decisions; [KAN-32](https://visionary-team.atlassian.net/browse/KAN-32) and PRIV/SAFE/release tickets retain substantive policies, human ownership and operational acceptance. [KAN-30](https://visionary-team.atlassian.net/browse/KAN-30) still requires accepted source and policy choices before affected contract freeze. KAN-33 retains synthetic-to-real source/rubric qualification. Mapping those missing requirements is not implementing them.
+
+## Reproduce and maintain
+
+```powershell
+node scripts/authority-audit.mjs
+node --test scripts/tests/authority-audit.test.mjs
+```
+
+The CLI is dependency-free and does not initialize Firebase, call providers or load credentials. Root `npm run check` includes the 19 new audit tests alongside existing component checks. `node scripts/authority-audit.mjs --write` explicitly regenerates the reviewed manifest after an intentional source/mapping change; it is **not reviewer approval**. Fingerprints normalize only CRLF to LF, so Windows/Linux checkouts agree. Generated object ordering is deterministic; avoid manual edits to JSON.
+
+Route extraction supports the reviewed literal Nest decorator form; unsupported known HTTP decorators or new/removed routes fail closed. It checks this reviewed controller/module set, not an arbitrary TypeScript import graph. Fingerprints detect changes to the reviewed module/entrypoint/helper/service set, including guard removal, and require semantic re-review. They do not prove control-flow authorization or replace runtime tests. The dated product-surface group's state is retained only as checkpoint metadata and cannot certify current provider/permission availability.
+
+Mutation regressions remove/duplicate operations, downgrade protected readers to public, substitute browser authority for worker credentials, promote client workspace tags to membership, erase source/consent gaps and invent SQL/current implementation. Source injections add/remove routes, introduce unsupported decorator syntax and remove the Origin check; the inventory rejects the drift. These are **inventory/compatibility failures**, not synthetic credentials proving server authorization. Existing compiled backend tests supply separate current HTTP/session/owner/command failure evidence; hosted/role/source/two-device acceptance remains with linked tasks.
+
+## Review handoff
+
+Acceptance criteria → evidence: operation and store completeness → generated manifest plus source/module/contract set equality; current/required grant separation → profile matrix and explicit gaps; lists/files/exports/workers/support → dedicated future families/profiles; meaningful failures → 19 drift/semantic-boundary tests and existing relevant backend regressions; compatibility → no frontend/runtime/store/migration edits and current pipeline verification.
+
+Owned paths: this report, `integration/contracts/operation-authority.v1.json`, `scripts/authority-audit.mjs`, `scripts/tests/authority-audit.test.mjs` and narrow test registration in `scripts/check.mjs`. A separate reviewer owns its independent report. Exact candidate, commands/results/CI, reviewed decision, dev integration and native Jira receipt are recorded after actual execution. Reviewer approval and verification are pending at initial handoff; the implementer cannot self-approve.
+
+Frontend/API/store/ML/cache/device changes: none. Before/after anonymous product screenshots document preservation only; the generated inventory and failing drift probes show the enabler change. No private account/learner records are accessed. Recovery is a scoped source/manifest/check revert; no migration or persistent product state changes. Full feature, source/policy, provider/privacy, hosted and main release gates remain open after enabler acceptance.
