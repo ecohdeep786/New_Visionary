@@ -29,6 +29,8 @@ Pagination has a 20-item default and 50-item maximum. A proposed response-byte b
 
 Proposed streams cap framed events at 8 KiB, 256 events and 1 MiB total, with an 18 s total and 10 s idle budget. The evaluator reserves 256 bytes per event for framing; runtime must count actual framed bytes, including heartbeats. Complete events cannot claim durable commit. Disconnect/cancellation/timeout preserve partial output as an uncommitted draft, abort downstream work, and require current authority/receipt refetch. No stream endpoint is added here. Voice chunk/session and private file sizes remain separate policy gates.
 
+The implementer's review pass corrected response-limit handling: request overflow proposes 413 before side effects, while invalid/oversize generated responses propose a bounded 503. A failed response after a write is an unknown outcome and requires receipt/status lookup before replay. Tests distinguish both directions; a client-input error must not blame the user for oversized server output.
+
 ## Acceptance and evidence
 
 | Criterion | Evidence | Scope |

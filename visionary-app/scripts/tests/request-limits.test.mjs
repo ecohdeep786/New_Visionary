@@ -107,6 +107,9 @@ test('long project/submission body fits proposed route but cannot pass existing 
   assert.equal(checkText('project-revision', 'body', '\ud800').ok, false);
   assert.equal(checkJson('missing', '{}').ok, false);
   assert.equal(checkJson('existing-json', '{').ok, false);
+  assert.equal(checkJson('existing-json', '{', 'response').status, 503);
+  assert.equal(checkJson('existing-json', exactJsonBytes(262145), 'response').status, 503);
+  assert.equal(checkJson('existing-json', exactJsonBytes(24577)).status, 413);
   assert.equal(checkJson('existing-json', Buffer.from([0x7b, 0x22, 0xff, 0x22, 0x3a, 0x30, 0x7d])).ok, false);
 });
 

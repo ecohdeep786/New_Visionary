@@ -10,10 +10,12 @@ const fail = (code, status) => ({ ok: false, code, status });
 export function checkJson(profileId, wire, direction = 'request') {
   const profile = policy.profiles[profileId];
   if (!profile || !['request', 'response'].includes(direction)) return fail('UNKNOWN_CONTRACT', 400);
-  if (!(typeof wire === 'string' || Buffer.isBuffer(wire))) return fail('INVALID_JSON', 400);
-  if (Buffer.byteLength(wire) > profile[`${direction}Bytes`]) return fail('PAYLOAD_TOO_LARGE', 413);
+  const invalid = () => direction === 'response' ? fail('INVALID_RESPONSE', 503) : fail('INVALID_JSON', 400);
+  if (!(typeof wire === 'string' || Buffer.isBuffer(wire))) return invalid();
+  if (Buffer.byteLength(wire) > profile[`${direction}Bytes`]) return direction === 'response'
+    ? fail('RESPONSE_LIMIT', 503) : fail('PAYLOAD_TOO_LARGE', 413);
   let value;
-  try { value = JSON.parse(Buffer.isBuffer(wire) ? new TextDecoder('utf-8', { fatal: true }).decode(wire) : wire); } catch { return fail('INVALID_JSON', 400); }
+  try { value = JSON.parse(Buffer.isBuffer(wire) ? new TextDecoder('utf-8', { fatal: true }).decode(wire) : wire); } catch { return invalid(); }
   function walk(item, depth) {
     if (depth > profile.depth) return false;
     if (!item || typeof item !== 'object') return true;
@@ -21,7 +23,7 @@ export function checkJson(profileId, wire, direction = 'request') {
     const maximum = Array.isArray(item) ? profile.arrayItems : profile.objectKeys;
     return values.length <= maximum && values.every(child => walk(child, depth + 1));
   }
-  if (!walk(value, 0)) return fail('STRUCTURE_LIMIT', 400);
+  if (!walk(value, 0)) return direction === 'response' ? fail('RESPONSE_LIMIT', 503) : fail('STRUCTURE_LIMIT', 400);
   return { ok: true };
 }
 
