@@ -28,12 +28,17 @@ jobs:
           cache-dependency-path: |
             visionary-app/frontend/package-lock.json
             visionary-app/infrastructure/gcp/runtime/package-lock.json
+            visionary-app/integration/contracts/v1/package-lock.json
       - run: npm ci --ignore-scripts --no-audit --no-fund
         working-directory: visionary-app/frontend
       - run: npm ci --ignore-scripts --no-audit --no-fund
         working-directory: visionary-app/infrastructure/gcp/runtime
       - run: npm audit --omit=dev --audit-level=high
         working-directory: visionary-app/infrastructure/gcp/runtime
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: visionary-app/integration/contracts/v1
+      - run: npm audit --omit=dev --audit-level=high
+        working-directory: visionary-app/integration/contracts/v1
       - run: npm run check
       - run: node scripts/production-check.mjs
       - run: node --test infrastructure/gcp/tests/*.test.mjs
