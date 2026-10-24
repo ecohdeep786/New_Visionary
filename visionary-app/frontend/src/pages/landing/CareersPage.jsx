@@ -96,7 +96,7 @@ function useRevealOnce() {
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <div ref={ref} className={`${className} transition-all duration-700 ease-google motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+    <div ref={ref} className={`${className} transition-all duration-700 ease-apple motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
       {children}
     </div>
   );

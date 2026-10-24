@@ -1,0 +1,537 @@
+{
+  "generatedAt": "2026-10-24T05:33:10.489Z",
+  "lawVersion": "D1-2026-10-24",
+  "scannedFiles": 403,
+  "curve": "cubic-bezier(0.16, 1, 0.3, 1)",
+  "durationScale": {
+    "fast": "180ms",
+    "base": "280ms",
+    "slow": "420ms",
+    "statement": "650ms",
+    "cinematic": "900ms"
+  },
+  "failures": [
+    {
+      "law": "curve-law",
+      "detail": "src/App.css:8 transition: missing-curve"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/App.css:128 transition: missing-curve"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/dashboard/BreathingExercise.jsx:47 carries the ease-in-out utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/dashboard/BreathingExercise.jsx:56 carries the ease-in-out utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:54 animation: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:73 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:73 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:73 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:79 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:79 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:90 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:156 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:204 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:204 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:204 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:223 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:244 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:253 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:380 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace-design.css:380 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:95 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:95 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:173 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:173 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:174 animation: banned-curve (cubic-bezier(0.2,0,0,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:212 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:221 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:221 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:239 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:239 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:265 animation: banned-curve (ease-in-out)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/dashboard/workspace.css:268 animation: banned-curve (ease-in-out)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/cast.css:76 animation-timing-function: banned-curve (ease)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/LandingFAQ.jsx:106 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/NewPersona.jsx:250 animation: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/NewPersona.jsx:278 animation: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/NewPersona.jsx:365 animation: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/NewPersona.jsx:452 animation: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:50 transition: missing-curve"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:50 transition: missing-curve"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:319 transition: missing-curve"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:319 transition: missing-curve"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:478 animation: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:44 APPLE_REVEAL_EASE constant does not hold the law curve (cubic-bezier(0.22, 1, 0.36, 1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:905 SCROLL_REVEAL_EASE constant does not hold the law curve (cubic-bezier(0.22, 1, 0.36, 1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:812 animate-[]: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:344 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:776 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:800 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:852 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:855 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PersonaSections.jsx:893 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/components/landing/persona/PremiumPersonaSections.jsx:561 animation: banned-curve (ease-in-out)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PremiumPersonaSections.jsx:425 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PremiumPersonaSections.jsx:664 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PremiumPersonaSections.jsx:1217 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/components/landing/persona/PremiumPersonaSections.jsx:1226 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:20 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:59 animation: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:490 animation: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:508 transition: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:508 transition: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:535 transition: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:535 transition: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/index.css:554 transition: banned-curve (cubic-bezier(0.22,1,0.36,1))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/pages/dashboard/Explore.jsx:78 transition: banned-curve (ease)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/AboutUsPage.jsx:73 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/AccessibilityPage.jsx:25 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/AILearningPage.jsx:57 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/AILearningPage.jsx:292 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/AILearningPage.jsx:312 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/CareersPage.jsx:99 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/CoachingPage.jsx:89 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/CoachingPage.jsx:603 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/CommunityPage.jsx:149 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/ContactPage.jsx:99 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/CookiesPage.jsx:59 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/DownloadPage.jsx:67 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/DownloadPage.jsx:303 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/DownloadPage.jsx:308 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/DownloadPage.jsx:370 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/PartnersPage.jsx:41 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/PartnersPage.jsx:142 carries the ease-out utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/PrivacyPage.jsx:69 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/ReferralPage.jsx:41 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/ResearchNewsPage.jsx:150 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/SafetyPage.jsx:45 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/SchoolPage.jsx:42 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/SchoolPage.jsx:134 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/SecurityPage.jsx:61 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/TermsPage.jsx:58 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "ease-class-law",
+      "detail": "src/pages/landing/UpdatesPage.jsx:37 carries the ease-google utility class (use the bare transition utilities — config routes them to the law curve)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/guide-premium.css:15 transition: missing-curve"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/guide-premium.css:15 transition: missing-curve"
+    },
+    {
+      "law": "retired-curve-var",
+      "detail": "src/styles/premium.css defines or references the retired --ease-spring / --ease-google curve"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/premium.css:49 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/premium.css:49 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/premium.css:94 transition: banned-curve (ease)"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/premium.css re-defines --ease-out-apple (curve home is src/styles/tokens.css)"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/premium.css re-defines --motion-duration-fast"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/premium.css re-defines --motion-duration-base"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/premium.css re-defines --motion-duration-slow"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/premium.css re-defines --motion-duration-statement"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/premium.css re-defines --motion-duration-cinematic"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/public-system.css:98 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/public-system.css:98 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/public-system.css:98 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/public-system.css:98 transition: banned-curve (ease)"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/workspace-premium.css:114 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "curve-law",
+      "detail": "src/styles/workspace-premium.css:114 transition: non-law-curve-var (var(--v-motion))"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/tokens.css defines --ease-out-apple 0x (expected exactly 1)"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/tokens.css defines --motion-duration-fast 0x (expected exactly 1)"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/tokens.css defines --motion-duration-base 0x (expected exactly 1)"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/tokens.css defines --motion-duration-slow 0x (expected exactly 1)"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/tokens.css defines --motion-duration-statement 0x (expected exactly 1)"
+    },
+    {
+      "law": "single-token-home",
+      "detail": "src/styles/tokens.css defines --motion-duration-cinematic 0x (expected exactly 1)"
+    },
+    {
+      "law": "tailwind-motion-law",
+      "detail": "tailwind.config.js: transitionTimingFunction.DEFAULT must resolve to var(--ease-out-apple)"
+    },
+    {
+      "law": "tailwind-motion-law",
+      "detail": "tailwind.config.js: transitionTimingFunction.linear redirect missing"
+    },
+    {
+      "law": "tailwind-motion-law",
+      "detail": "tailwind.config.js: transitionTimingFunction.in redirect missing"
+    },
+    {
+      "law": "tailwind-motion-law",
+      "detail": "tailwind.config.js: transitionTimingFunction.out redirect missing"
+    },
+    {
+      "law": "tailwind-motion-law",
+      "detail": "tailwind.config.js: transitionTimingFunction.in-out redirect missing"
+    },
+    {
+      "law": "tailwind-motion-law",
+      "detail": "tailwind.config.js: transitionTimingFunction block carries a raw cubic-bezier (route every key through var(--ease-out-apple))"
+    },
+    {
+      "law": "tailwind-motion-law",
+      "detail": "tailwind.config.js: generated accordion animations must carry var(--ease-out-apple)"
+    }
+  ],
+  "durationHistogram": {
+    "0.3s": 4,
+    "180ms": 5,
+    "160ms": 1,
+    "120ms": 2,
+    "0.15s": 2,
+    "0.7s": 4,
+    "18s": 3,
+    "2s": 2,
+    "5s": 1,
+    "2.1s": 1,
+    "70s": 1,
+    "0.9s": 10,
+    "1.15s": 1,
+    "0.85s": 2,
+    "1500ms": 1,
+    "0.4s": 2,
+    "1.2s": 1,
+    "1.4s": 1,
+    "0.55s": 1,
+    "1.1s": 1,
+    "100ms": 1,
+    "60s": 2,
+    "15s": 2,
+    "0.5s": 2,
+    "0.2s": 2,
+    "0.45s": 1,
+    "0.6s": 2,
+    "0.42s": 1
+  }
+}

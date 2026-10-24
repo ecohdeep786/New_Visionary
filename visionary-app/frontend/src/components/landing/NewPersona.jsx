@@ -247,7 +247,7 @@ export default function NewPersona({
                         key={animatedIndex}
                         className="apple-anim accent-gradient block whitespace-nowrap"
                         style={{
-                          animation: "heroLineUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                          animation: "heroLineUp var(--motion-duration-cinematic) var(--ease-out-apple) both",
                           paddingBottom: "0.05em",
                           lineHeight: "var(--fs-hero-headline)",
                           /* the fitted one-voice size survives the per-word
@@ -275,7 +275,7 @@ export default function NewPersona({
                         ref={wordRef}
                         className="apple-anim accent-gradient block whitespace-nowrap"
                         style={{
-                          animation: "heroLineUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                          animation: "heroLineUp var(--motion-duration-cinematic) var(--ease-out-apple) both",
                           paddingBottom: "0.05em",
                           lineHeight: "var(--fs-hero-headline)"
                         }}
@@ -362,7 +362,7 @@ export default function NewPersona({
                   style={{
                     width: `calc(var(--cast-h) * ${m.slotW})`,
                     height: `calc(var(--cast-h) * ${m.slotH})`,
-                    animation: "figIn 1.15s cubic-bezier(0.22,1,0.36,1) both",
+                    animation: "figIn var(--motion-duration-cinematic) var(--ease-out-apple) both",
                     animationDelay: `${260 + i * 70}ms`,
                     transformOrigin: "50% 100%",
                   }}
@@ -449,7 +449,7 @@ export default function NewPersona({
               <span
                 key={index}
                 className="apple-anim accent-gradient inline-block"
-                style={{ animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both" }}
+                style={{ animation: "heroFadeUp var(--motion-duration-slow) var(--ease-out-apple) both" }}
               >
                 {words[index]}
               </span>

@@ -9,6 +9,18 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  		/* D1 motion law: every Tailwind transition-* utility resolves on the one
+  		   product curve (tokens.css --ease-out-apple), never the framework
+  		   default cubic-bezier(0.4,0,0.2,1). Finer steps use ease-apple classes
+  		   that point at the same token. */
+  		transitionTimingFunction: {
+  			DEFAULT: 'var(--ease-out-apple)',
+  			apple: 'var(--ease-out-apple)',
+  			linear: 'linear',
+  			in: 'var(--ease-out-apple)',
+  			out: 'var(--ease-out-apple)',
+  			'in-out': 'var(--ease-out-apple)'
+  		},
   		colors: {
 
 		  			background: 'hsl(var(--background))',
@@ -133,8 +145,8 @@ module.exports = {
   			}
   		},
   		animation: {
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-down': 'accordion-down 0.2s var(--ease-out-apple)',
+  			'accordion-up': 'accordion-up 0.2s var(--ease-out-apple)'
   		},
   		
   		
@@ -287,9 +299,6 @@ module.exports = {
   			
   			'figma-plus-jakarta-sans': ['"Plus Jakarta Sans"', 'sans-serif'],
   			
-  		},
-  		transitionTimingFunction: {
-  			'google': 'cubic-bezier(0.22, 1, 0.36, 1)',
   		},
   	}
   },

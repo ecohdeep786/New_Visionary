@@ -44,7 +44,7 @@ export default function BreathingExercise() {
         aria-label="Toggle breathing exercise"
       >
         <div
-          className="absolute inset-0 rounded-full transition-transform ease-in-out"
+          className="absolute inset-0 rounded-full transition-transform"
           style={{
             transform: active ? `scale(${breatheScale})` : "scale(1)",
             transitionDuration: `${phase.duration}ms`,
@@ -53,7 +53,7 @@ export default function BreathingExercise() {
           }}
         />
         <div
-          className="absolute inset-0 rounded-full transition-transform ease-in-out"
+          className="absolute inset-0 rounded-full transition-transform"
           style={{
             transform: active ? `scale(${breatheScale * 0.75})` : "scale(0.6)",
             transitionDuration: `${phase.duration}ms`,

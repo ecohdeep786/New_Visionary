@@ -14,7 +14,8 @@
     "qa:navigation": "node scripts/navigation-quality-review.mjs",
     "qa:fonts": "node scripts/font-surface-review.mjs",
     "qa:design": "node scripts/design-quality-review.mjs",
-    "qa:continuity": "node scripts/qa-continuity.mjs"
+    "qa:continuity": "node scripts/qa-continuity.mjs",
+    "qa:motion": "node scripts/qa-motion.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",

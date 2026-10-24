@@ -14,19 +14,10 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Apple's resolve-out curve plus a spring with weight — the two easings
-     every premium transition on the public site shares. */
-  --ease-out-apple: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.22, 1.4, 0.36, 1);
-  --ease-google: cubic-bezier(0.22, 1, 0.36, 1);
-
-  /* Motion duration scale — micro-interactions fast, reveals calm,
-     statements cinematic. Nothing on the page runs past 1s. */
-  --motion-duration-fast: 180ms;
-  --motion-duration-base: 280ms;
-  --motion-duration-slow: 420ms;
-  --motion-duration-statement: 650ms;
-  --motion-duration-cinematic: 900ms;
+  /* Motion tokens live in tokens.css since D1: ONE curve (--ease-out-apple)
+     and ONE duration scale, enforced by qa-motion.mjs. This sheet consumes
+     them; the earlier --ease-spring (bounce) and --ease-google (duplicate)
+     curves are retired and must not reappear. */
 
   /* Dark cinematic scene tokens */
   --scene-ink: #0a0d14;
@@ -47,10 +38,10 @@
    existing pill; the pill's own colors stay authoritative. */
 .btn-premium {
   transition:
-    transform 0.5s var(--ease-out-apple),
-    box-shadow 0.5s var(--ease-out-apple),
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+    transform var(--motion-duration-slow) var(--ease-out-apple),
+    box-shadow var(--motion-duration-slow) var(--ease-out-apple),
+    background-color var(--motion-duration-fast) var(--ease-out-apple),
+    border-color var(--motion-duration-fast) var(--ease-out-apple);
   will-change: transform;
 }
 .btn-premium:hover {
@@ -75,7 +66,7 @@
 }
 /* the trailing arrow leans into the action */
 .btn-arrow {
-  transition: transform 0.45s var(--ease-out-apple);
+  transition: transform var(--motion-duration-slow) var(--ease-out-apple);
 }
 .btn-premium:hover .btn-arrow,
 .group:hover .btn-arrow {
@@ -92,9 +83,9 @@
   border-radius: 24px;
   background: #ffffff;
   transition:
-    transform 0.6s var(--ease-out-apple),
-    box-shadow 0.6s var(--ease-out-apple),
-    border-color 0.3s ease;
+    transform var(--motion-duration-statement) var(--ease-out-apple),
+    box-shadow var(--motion-duration-statement) var(--ease-out-apple),
+    border-color var(--motion-duration-slow) var(--ease-out-apple);
 }
 .bento-card:hover {
   transform: translateY(-4px);
@@ -141,13 +132,13 @@
    the site's g-card system. A quiet scrim dims the page behind it. */
 .mega-scrim {
   background: rgba(18, 19, 23, 0.24);
-  animation: megaScrimIn 0.4s var(--ease-out-apple) both;
+  animation: megaScrimIn var(--motion-duration-slow) var(--ease-out-apple) both;
 }
 .mega-sheet {
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: saturate(1.8) blur(24px);
   -webkit-backdrop-filter: saturate(1.8) blur(24px);
-  animation: megaSheetIn 0.42s var(--ease-out-apple) both;
+  animation: megaSheetIn var(--motion-duration-slow) var(--ease-out-apple) both;
 }
 @keyframes megaScrimIn {
   from { opacity: 0; }

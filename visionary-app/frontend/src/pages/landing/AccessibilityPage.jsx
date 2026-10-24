@@ -22,7 +22,7 @@ function Reveal({ children, className = "", delay = 0 }) {
   return (
     <div
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${className}`}
+      className={`transition-[opacity,transform] duration-700 ease-apple motion-reduce:transition-none ${className}`}
     >
       {children}
     </div>
