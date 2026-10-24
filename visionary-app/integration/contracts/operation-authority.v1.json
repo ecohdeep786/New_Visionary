@@ -1,0 +1,1406 @@
+{
+  "schemaVersion": 1,
+  "jiraKey": "KAN-31",
+  "baseCommit": "64a2cecb39d8f039151b6b459157a7415e183887",
+  "scope": "Source-audited operation authority and store ownership enabler; not runtime authorization or contract freeze",
+  "runtimeEnforcementChanged": false,
+  "proposedAuthorityImplemented": false,
+  "inventoryRules": [
+    "Controller registration is current source evidence; all other proposed grants require implementation and acceptance.",
+    "UI groups retain dated checkpoint metadata only; their state is not current runtime/provider acceptance.",
+    "Source fingerprints normalize CRLF to LF; drift requires renewed semantic review. Regeneration is not approval.",
+    "No client UID/role/workspace/consent flag, preview guard, signed URL, queue event, payer status or ML output independently grants authority."
+  ],
+  "stores": {
+    "none": {
+      "state": "observed",
+      "authority": "No durable owning store for this operation; public config/static output or CSRF cookie only"
+    },
+    "auth": {
+      "state": "observed",
+      "authority": "Firebase Auth verifies identity; Firestore visionary_accounts/{uid}, UID devices/authEvents, server session lookup and auth operational counters/events; IAM Admin SDK, not browser rules"
+    },
+    "billing": {
+      "state": "observed",
+      "authority": "Firestore visionary_accounts/{uid}/billing/test plus commands/invoices; separate test queue, subscription/payment/event/invitation/membership indexes; provider verifies external payment facts"
+    },
+    "feedback": {
+      "state": "observed",
+      "authority": "Firestore UID-nested feedback/commands and admission counters through current account authority"
+    },
+    "learning": {
+      "state": "observed",
+      "authority": "Firestore visionary_accounts/{uid}/learningSessions with checks/assessments and learningCommands; owning transaction, no SQL cutover implied"
+    },
+    "knowledge": {
+      "state": "observed",
+      "authority": "Firestore UID-nested knowledgeCommands/Receipts/Projections/Outbox; calibrated metadata is not a second learner-evidence owner"
+    },
+    "domain": {
+      "state": "proposed",
+      "authority": "Selected reviewed owning domain store pending DATA-01 and authority/policy acceptance; legacy imported Prisma schema is not deployed authority"
+    },
+    "privateObjects": {
+      "state": "proposed",
+      "authority": "Private object bytes plus owning-domain metadata; no upload/download service installed by this inventory"
+    },
+    "jobs": {
+      "state": "proposed",
+      "authority": "Owning-domain transactional outbox/job receipt plus scoped worker orchestration; no independent queue authorization or cross-store transaction assumed"
+    },
+    "profileTarget": {
+      "state": "proposed",
+      "authority": "One profile owning store must be selected; existing UID account remains Firestore and future account projections do not create dual mutable authority"
+    }
+  },
+  "profiles": {
+    "public": {
+      "actor": "Anonymous public caller; no authenticated identity inferred",
+      "workspace": "No workspace grant",
+      "object": "Public methods/catalog/static status only",
+      "source": "No private content/source access",
+      "consent": "No private-data consent inferred",
+      "stores": [
+        "none"
+      ],
+      "state": "observed"
+    },
+    "csrf": {
+      "actor": "Anonymous bootstrap; random CSRF cookie/token is not identity",
+      "workspace": "No workspace grant",
+      "object": "Current browser CSRF cookie only",
+      "source": "Not applicable",
+      "consent": "Not consent to product/provider processing",
+      "stores": [
+        "none"
+      ],
+      "state": "observed"
+    },
+    "exchange": {
+      "actor": "Firebase-verified ID token, current identity admission and rate limits; existing cookie/device binding retained",
+      "workspace": "Onboarding role/preferences grant no verified membership",
+      "object": "Verified UID account/session/device; current session-policy epoch/cutoff",
+      "source": "No educational source grant",
+      "consent": "No guardian or model-processing consent inferred",
+      "stores": [
+        "auth"
+      ],
+      "state": "observed"
+    },
+    "sessionRead": {
+      "actor": "Verified current session AND device; /me does not require expected-account header",
+      "workspace": "No workspace membership inferred",
+      "object": "Server-derived UID profile only",
+      "source": "No source grant",
+      "consent": "No relationship consent inferred",
+      "stores": [
+        "auth"
+      ],
+      "state": "observed"
+    },
+    "ownerRead": {
+      "actor": "Verified current session/device and compared X-Visionary-Account hint",
+      "workspace": "Account-level only; no workspace grant",
+      "object": "UID-derived account/device/invoice records; cursors stay within owner collection",
+      "source": "No educational source grant",
+      "consent": "No staff/guardian/payer-to-learning grant",
+      "stores": [
+        "auth",
+        "billing"
+      ],
+      "state": "observed"
+    },
+    "ownerWrite": {
+      "actor": "Verified current session/device, expected-account match, exact Origin and CSRF; rate limits",
+      "workspace": "Self-reported role/workspace preferences are not membership",
+      "object": "UID-owned profile/onboarding with transaction session-version check",
+      "source": "No educational source grant",
+      "consent": "No guardian/organization proof inferred",
+      "stores": [
+        "auth"
+      ],
+      "state": "observed"
+    },
+    "logout": {
+      "actor": "Exact Origin/CSRF; device lookup plus expected UID OR matching cookie hash; no-op for absent/invalid device",
+      "workspace": "No workspace grant",
+      "object": "Only selected device/session revocation and cookie cleanup; not ordinary full-session authentication",
+      "source": "Not applicable",
+      "consent": "No grant; revocation only",
+      "stores": [
+        "auth"
+      ],
+      "state": "observed"
+    },
+    "logoutAll": {
+      "actor": "Enabled action, verified session cookie/device binding and expected UID; transaction epoch and replay checks",
+      "workspace": "No workspace grant",
+      "object": "Current UID session-policy epoch/cutoff, device/session revocation and auth events",
+      "source": "Not applicable",
+      "consent": "No grant; revocation only",
+      "stores": [
+        "auth"
+      ],
+      "state": "observed"
+    },
+    "billingRead": {
+      "actor": "Verified current session/device plus expected-account match; passive read",
+      "workspace": "Billing account, not educational workspace",
+      "object": "Current UID billing/test and owner invoice; Family invitation reads also match verified payer email/expiry/status",
+      "source": "No educational source access",
+      "consent": "Family billing benefit is not guardian/learning-data consent",
+      "stores": [
+        "billing",
+        "auth"
+      ],
+      "state": "observed"
+    },
+    "billingWrite": {
+      "actor": "Browser writer helper requires current session/device/account, Origin/CSRF and billing rate limit",
+      "workspace": "No educational workspace grant",
+      "object": "Server UID payer/test subscription or owned Family seats; recipient acceptance checks addressed verified email and current seat state",
+      "source": "No educational source access",
+      "consent": "Billing agreement/seat acceptance does not prove guardian relationship",
+      "stores": [
+        "billing",
+        "auth"
+      ],
+      "state": "observed"
+    },
+    "billingJob": {
+      "actor": "Configured reconciliation credential checked by provider.authorizeReconciliation; browser cookies are insufficient",
+      "workspace": "No caller-selected tenant/workspace grant",
+      "object": "Server due queue, UID-owned test billing and transactional leases; bounded reconciliation",
+      "source": "No learning source access",
+      "consent": "No private educational access or support impersonation",
+      "stores": [
+        "billing"
+      ],
+      "state": "observed"
+    },
+    "billingWebhook": {
+      "actor": "HMAC over exact raw bytes, bounded event ID/digest; test merchant mapping; no browser CSRF requirement",
+      "workspace": "No caller-selected workspace/UID",
+      "object": "Server subscription/payment mapping, deduplicated provider event and due queue; unmapped event grants nothing",
+      "source": "No educational source access",
+      "consent": "Provider event is not guardian/learning consent",
+      "stores": [
+        "billing"
+      ],
+      "state": "observed"
+    },
+    "feedbackRead": {
+      "actor": "Current session/device and expected-account match",
+      "workspace": "Account-level only",
+      "object": "Only UID-owned feedback page; bounded UUID cursor; no operator listing",
+      "source": "No source/private lesson disclosure grant",
+      "consent": "Feedback is not training consent or an emergency/support case",
+      "stores": [
+        "feedback"
+      ],
+      "state": "observed"
+    },
+    "feedbackWrite": {
+      "actor": "Current session/device/account, exact Origin/CSRF; service admission and command identity",
+      "workspace": "Account-level only",
+      "object": "Only UID-owned optional feedback, command receipt and counters",
+      "source": "No source grant",
+      "consent": "No automatic Jira export, model training or staff/guardian read",
+      "stores": [
+        "feedback"
+      ],
+      "state": "observed"
+    },
+    "learningRead": {
+      "actor": "Current session/device and expected-account match",
+      "workspace": "workspaceId is an owner-collection filter/tag, not a verified membership grant",
+      "object": "UID-nested learning sessions; stored UID checked; no raw answer-key projection",
+      "source": "Stored source/criteria versions bind record consistency; published rights/withdrawal authority remains missing",
+      "consent": "No teacher/guardian/employer access or consent grant",
+      "stores": [
+        "learning"
+      ],
+      "state": "observed"
+    },
+    "learningWrite": {
+      "actor": "Current session/device/account plus Origin/CSRF",
+      "workspace": "Owner records only; workspace tag consistency is not membership proof",
+      "object": "UID-nested session/command/assessment transaction, expected revision and replay fingerprint; server scores stored authored key",
+      "source": "Source/provider/criteria references and authored check input are bounded client input; no independent approved-source authority is established",
+      "consent": "No shared-classroom/guardian/model-provider consent established",
+      "stores": [
+        "learning"
+      ],
+      "state": "observed"
+    },
+    "knowledgeRead": {
+      "actor": "Current session/device and expected-account match",
+      "workspace": "Owner projection scoped by workspace/concept/source/criteria; no verified membership added",
+      "object": "UID-nested knowledge projection or selected model metadata; pKnown is not assessed mastery",
+      "source": "Exact source/criteria/model compatibility, not published-source licensing",
+      "consent": "No cross-user reporting or model-data permission",
+      "stores": [
+        "knowledge"
+      ],
+      "state": "observed"
+    },
+    "knowledgeWrite": {
+      "actor": "Current session/device/account and Origin/CSRF",
+      "workspace": "Scope derived from owned saved session/assessment; consistency checked",
+      "object": "Owned immutable assessment receipt to projection/command/receipt/outbox transaction; bounded replay/rebuild checks",
+      "source": "Pins stored source/criteria/model revisions; authoritative source/criteria service still gated",
+      "consent": "No cross-user or training permission",
+      "stores": [
+        "knowledge",
+        "learning"
+      ],
+      "state": "observed"
+    },
+    "domain": {
+      "actor": "REQUIRED: server-verified UID/session, expected account, action-specific admission; writes require Origin/CSRF",
+      "workspace": "REQUIRED: current verified membership/capability, never preview role or caller workspaceId",
+      "object": "REQUIRED: current owner/object/action and exact revision/digest; reauthorize duplicate and in-flight work",
+      "source": "REQUIRED: current published source/version/rights and permitted action; withdrawal checked",
+      "consent": "REQUIRED: current purpose/relationship/consent/entitlement; payment is not a role",
+      "stores": [
+        "domain"
+      ],
+      "state": "proposed"
+    },
+    "privateFile": {
+      "actor": "REQUIRED: current authenticated UID and permitted action; signed URL possession alone is insufficient",
+      "workspace": "REQUIRED: current workspace/object/source authority",
+      "object": "REQUIRED: private object/asset/export ownership, quarantine/finalize checks; reauthorize downloads and issuance",
+      "source": "REQUIRED: approved media/source rights and permitted offline/export use",
+      "consent": "REQUIRED: purpose/consent, expiry/revocation; downloaded bytes have residual-access limits",
+      "stores": [
+        "domain",
+        "privateObjects"
+      ],
+      "state": "proposed"
+    },
+    "privateJob": {
+      "actor": "REQUIRED: verified queue/service identity, scoped operation and accountable operator where applicable",
+      "workspace": "REQUIRED: reload original current owner/workspace/action; never authorize by queue payload",
+      "object": "REQUIRED: owning-store receipt/outbox, immutable command identity, revision and cancellation; no cross-store ACID claim",
+      "source": "REQUIRED: source/rights recheck at execution and delivery",
+      "consent": "REQUIRED: current purpose/consent/entitlement; expired/revoked work cannot commit",
+      "stores": [
+        "domain",
+        "jobs"
+      ],
+      "state": "proposed"
+    },
+    "profileStage": {
+      "actor": "REQUIRED: current verified UID and action-specific confirmation; inferred stage is only a suggestion",
+      "workspace": "REQUIRED: own personal profile; institution/guardian/employer grants stay separate",
+      "object": "REQUIRED: one selected profile owning store, exact profile/mapping/receipt revision; undo/postpone cannot erase later work",
+      "source": "REQUIRED: accepted immutable source/criteria mapping and current publication rights",
+      "consent": "REQUIRED: current admission/relationship/purpose/consent; no automatic promotion",
+      "stores": [
+        "profileTarget"
+      ],
+      "state": "proposed"
+    },
+    "privateCoaching": {
+      "actor": "REQUIRED: current verified UID acting on own private goal; teaching role does not grant another person access",
+      "workspace": "REQUIRED: current personal scope; institutional membership does not expose private coaching",
+      "object": "REQUIRED: UID-owned goal/history and exact revision; any separately shared summary needs current audience/purpose authorization",
+      "source": "REQUIRED: accepted source/evidence rights for any grounded recommendation",
+      "consent": "REQUIRED: private purpose by default; no automatic publication, employer/guardian disclosure or model-data permission",
+      "stores": [
+        "domain"
+      ],
+      "state": "proposed"
+    },
+    "guardian": {
+      "actor": "REQUIRED: verified guardian identity and permitted relationship, not a payer/role string",
+      "workspace": "REQUIRED: current approved relationship scope; no blanket child workspace access",
+      "object": "REQUIRED: purpose/audience/freshness-limited summary; no raw private doubts or private chat access",
+      "source": "REQUIRED: current source/summary evidence rights",
+      "consent": "REQUIRED: verified, unexpired and revocable relationship/consent; safeguarding disclosure rules",
+      "stores": [
+        "domain"
+      ],
+      "state": "proposed"
+    },
+    "institution": {
+      "actor": "REQUIRED: verified role-appropriate learner/teacher/org/employer actor and action capability",
+      "workspace": "REQUIRED: current class/org/workspace membership; claimed category or admin UI is insufficient",
+      "object": "REQUIRED: fixed assignment/submission ownership or explicitly shared professional object; no personal/private-learning dump",
+      "source": "REQUIRED: approved publication/source/rubric and withdrawal scope",
+      "consent": "REQUIRED: role-specific purpose, consent and aggregate suppression; private coaching stays private",
+      "stores": [
+        "domain"
+      ],
+      "state": "proposed"
+    },
+    "support": {
+      "actor": "REQUIRED: approved strong/step-up operator identity, scoped capability and audited reason",
+      "workspace": "REQUIRED: case-specific tenant/subject access, no default impersonation",
+      "object": "REQUIRED: bounded case/export/redacted diagnostic access; no unrestricted account dump",
+      "source": "REQUIRED: disclosure/minimization policy; no implicit source reuse",
+      "consent": "REQUIRED: accepted support/safeguarding purpose and applicable consent/exception policy; feedback is not emergency coverage",
+      "stores": [
+        "domain",
+        "jobs"
+      ],
+      "state": "proposed"
+    }
+  },
+  "registered": [
+    {
+      "route": "GET /api/account/devices",
+      "profile": "ownerRead",
+      "controller": "AccountController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/feedback",
+      "profile": "feedbackRead",
+      "controller": "FeedbackController",
+      "sourceFile": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/invoices",
+      "profile": "ownerRead",
+      "controller": "AccountController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/learning/knowledge/models",
+      "profile": "knowledgeRead",
+      "controller": "KnowledgeProjectionController",
+      "sourceFile": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/learning/knowledge/projections",
+      "profile": "knowledgeRead",
+      "controller": "KnowledgeProjectionController",
+      "sourceFile": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/learning/sessions",
+      "profile": "learningRead",
+      "controller": "LearningController",
+      "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/learning/sessions/:sessionId",
+      "profile": "learningRead",
+      "controller": "LearningController",
+      "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/overview",
+      "profile": "ownerRead",
+      "controller": "AccountController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/auth/csrf",
+      "profile": "csrf",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/auth/me",
+      "profile": "sessionRead",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/auth/methods",
+      "profile": "public",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/billing/account",
+      "profile": "billingRead",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/billing/catalog",
+      "profile": "public",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/billing/family/invitations/:id",
+      "profile": "billingRead",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/billing/invoices/:id",
+      "profile": "billingRead",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "PATCH /api/auth/profile",
+      "profile": "ownerWrite",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/feedback",
+      "profile": "feedbackWrite",
+      "controller": "FeedbackController",
+      "sourceFile": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/learning/knowledge/project",
+      "profile": "knowledgeWrite",
+      "controller": "KnowledgeProjectionController",
+      "sourceFile": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/learning/sessions",
+      "profile": "learningWrite",
+      "controller": "LearningController",
+      "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/learning/sessions/:sessionId/assessments",
+      "profile": "learningWrite",
+      "controller": "LearningController",
+      "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/learning/sessions/:sessionId/cancel",
+      "profile": "learningWrite",
+      "controller": "LearningController",
+      "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/learning/sessions/:sessionId/checks",
+      "profile": "learningWrite",
+      "controller": "LearningController",
+      "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/auth/logout",
+      "profile": "logout",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/auth/logout-all",
+      "profile": "logoutAll",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/auth/onboarding",
+      "profile": "ownerWrite",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/auth/onboarding/introduction",
+      "profile": "ownerWrite",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/auth/session",
+      "profile": "exchange",
+      "controller": "FirebaseProductController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/cancel",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/checkouts",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/family/accept",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/family/invitations",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/family/leave",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/family/remove",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/jobs/reconcile",
+      "profile": "billingJob",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/sync",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/verify",
+      "profile": "billingWrite",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/billing/webhooks/razorpay",
+      "profile": "billingWebhook",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    }
+  ],
+  "infrastructure": [
+    {
+      "route": "GET /healthz",
+      "profile": "public",
+      "sourceFile": "backend/upstream/backend/src/platform/production-http.ts",
+      "exposure": "production-public-fixed-shape"
+    },
+    {
+      "route": "HEAD /healthz",
+      "profile": "public",
+      "sourceFile": "backend/upstream/backend/src/platform/production-http.ts",
+      "exposure": "production-public-fixed-shape"
+    },
+    {
+      "route": "GET /api/health",
+      "profile": "public",
+      "sourceFile": "backend/upstream/backend/src/platform/production-http.ts",
+      "exposure": "production-public-fixed-shape"
+    },
+    {
+      "route": "HEAD /api/health",
+      "profile": "public",
+      "sourceFile": "backend/upstream/backend/src/platform/production-http.ts",
+      "exposure": "production-public-fixed-shape"
+    },
+    {
+      "route": "GET /__deploy-check",
+      "profile": "public",
+      "sourceFile": "backend/upstream/backend/src/platform/production-http.ts",
+      "exposure": "production-public-fixed-shape"
+    },
+    {
+      "route": "HEAD /__deploy-check",
+      "profile": "public",
+      "sourceFile": "backend/upstream/backend/src/platform/production-http.ts",
+      "exposure": "production-public-fixed-shape"
+    }
+  ],
+  "proposed": [
+    {
+      "route": "PUT /api/v1/projects/{projectId}/draft",
+      "operationId": "ProjectDraft",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/submissions/{submissionId}/revisions",
+      "operationId": "SubmissionRevision",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/teaching/turns",
+      "operationId": "TeachingTurn",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/files/intents",
+      "operationId": "FileIntent",
+      "profile": "privateFile",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/proposals/{proposalId}/decisions",
+      "operationId": "ProposalDecision",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/voice/sessions",
+      "operationId": "VoiceSession",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/voice/chunks",
+      "operationId": "VoiceChunk",
+      "profile": "privateFile",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/cancellations",
+      "operationId": "Cancel",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/offline/replay",
+      "operationId": "OfflineReplay",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/profile/stage-events",
+      "operationId": "StageEvent",
+      "profile": "profileStage",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/coaching/goals",
+      "operationId": "CoachingGoal",
+      "profile": "privateCoaching",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    },
+    {
+      "route": "POST /api/v1/summaries",
+      "operationId": "SummaryRequest",
+      "profile": "domain",
+      "exposure": "draft-not-registered",
+      "sourceFile": "integration/contracts/v1/openapi.json"
+    }
+  ],
+  "future": [
+    {
+      "operation": "project.list-and-revision-read",
+      "profile": "domain",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "source.catalog-and-publication",
+      "profile": "domain",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "private.asset-upload-finalize-download",
+      "profile": "privateFile",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "export.request-status",
+      "profile": "domain",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "export.worker-execute",
+      "profile": "privateJob",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "export.download",
+      "profile": "privateFile",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "run.status-events-cancel",
+      "profile": "domain",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "queue.execute-reconcile-deliver",
+      "profile": "privateJob",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "support.case-read-or-triage",
+      "profile": "support",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "classroom.publish-submit-review",
+      "profile": "institution",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "guardian.summary-create-read-revoke",
+      "profile": "guardian",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "organization-or-employer.explicit-share",
+      "profile": "institution",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "offline.pack-issue-download-reconnect",
+      "profile": "privateFile",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "profile.stage-mapping-transition-undo",
+      "profile": "profileStage",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "coaching.private-goal-summary",
+      "profile": "privateCoaching",
+      "exposure": "unregistered-required-boundary"
+    },
+    {
+      "operation": "model.teaching-voice-activity-proposal",
+      "profile": "domain",
+      "exposure": "unregistered-required-boundary"
+    }
+  ],
+  "productGroups": [
+    {
+      "id": "public-discovery",
+      "profile": "public",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "SCOPE-02",
+        "PRIV-07"
+      ]
+    },
+    {
+      "id": "public-enquiry-careers-partners",
+      "profile": "public",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "PRIV-07"
+      ]
+    },
+    {
+      "id": "public-updates-distribution",
+      "profile": "public",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "PRIV-07",
+        "CONTENT-05"
+      ]
+    },
+    {
+      "id": "download-installation",
+      "profile": "public",
+      "datedCheckpointClassification": "intentionally-unreleased",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "PRIV-07",
+        "ACCEPT-05"
+      ]
+    },
+    {
+      "id": "referral-sharing",
+      "profile": "public",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "PRIV-07"
+      ]
+    },
+    {
+      "id": "auth-session-profile",
+      "profile": "exchange",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ],
+      "followUpSourceIds": [
+        "SCOPE-07",
+        "DATA-04",
+        "PLAT-01"
+      ]
+    },
+    {
+      "id": "phone-organization-sso-qualification",
+      "profile": "exchange",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "SCOPE-07"
+      ]
+    },
+    {
+      "id": "school-guardian-admission",
+      "profile": "guardian",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "DATA-04",
+        "ROLE-04",
+        "SCOPE-02"
+      ]
+    },
+    {
+      "id": "account-records-devices",
+      "profile": "ownerRead",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [
+        "GET /api/account/devices",
+        "GET /api/account/invoices",
+        "GET /api/account/overview"
+      ],
+      "followUpSourceIds": [
+        "PRIV-01",
+        "PLAT-01"
+      ]
+    },
+    {
+      "id": "subscription-test-checkout",
+      "profile": "billingWrite",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [
+        "GET /api/billing/account",
+        "POST /api/billing/cancel",
+        "GET /api/billing/catalog",
+        "POST /api/billing/checkouts",
+        "POST /api/billing/family/accept",
+        "POST /api/billing/family/invitations",
+        "GET /api/billing/family/invitations/:id",
+        "POST /api/billing/family/leave",
+        "POST /api/billing/family/remove",
+        "GET /api/billing/invoices/:id",
+        "POST /api/billing/jobs/reconcile",
+        "POST /api/billing/sync",
+        "POST /api/billing/verify",
+        "POST /api/billing/webhooks/razorpay"
+      ],
+      "followUpSourceIds": [
+        "BILL-01",
+        "BILL-02",
+        "BILL-08"
+      ]
+    },
+    {
+      "id": "test-invoice-and-family",
+      "profile": "billingRead",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [
+        "POST /api/billing/family/accept",
+        "POST /api/billing/family/invitations",
+        "GET /api/billing/family/invitations/:id",
+        "POST /api/billing/family/leave",
+        "POST /api/billing/family/remove",
+        "GET /api/billing/invoices/:id"
+      ],
+      "followUpSourceIds": [
+        "BILL-03",
+        "BILL-04",
+        "ROLE-04"
+      ]
+    },
+    {
+      "id": "feedback-receipt",
+      "profile": "feedbackWrite",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [
+        "POST /api/account/feedback"
+      ],
+      "followUpSourceIds": [
+        "PRIV-05"
+      ]
+    },
+    {
+      "id": "workspace-role-switching",
+      "profile": "domain",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "DATA-03",
+        "DATA-04",
+        "SYNC-02"
+      ]
+    },
+    {
+      "id": "content-catalog-source-choice",
+      "profile": "domain",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "CONTENT-01",
+        "CONTENT-03",
+        "CONTENT-08",
+        "LEARN-01"
+      ]
+    },
+    {
+      "id": "learning-check-practice-progress",
+      "profile": "learningWrite",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "LEARN-02",
+        "LEARN-09",
+        "LEARN-10",
+        "SYNC-02"
+      ]
+    },
+    {
+      "id": "durable-teaching-loop-sessions",
+      "profile": "learningWrite",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [
+        "GET /api/account/learning/sessions",
+        "POST /api/account/learning/sessions",
+        "GET /api/account/learning/sessions/:sessionId",
+        "POST /api/account/learning/sessions/:sessionId/checks",
+        "POST /api/account/learning/sessions/:sessionId/assessments",
+        "POST /api/account/learning/sessions/:sessionId/cancel"
+      ],
+      "followUpSourceIds": [
+        "LEARN-08",
+        "LEARN-09",
+        "LEARN-10",
+        "SYNC-01",
+        "SYNC-02"
+      ]
+    },
+    {
+      "id": "ask-guide-model-turn",
+      "profile": "domain",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "AI-01",
+        "AI-14",
+        "AI-13"
+      ]
+    },
+    {
+      "id": "voice-and-visual-learning",
+      "profile": "domain",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "AI-17",
+        "AI-18",
+        "AI-16",
+        "ACCEPT-05"
+      ]
+    },
+    {
+      "id": "learn-to-build-private-project",
+      "profile": "domain",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "BUILD-01",
+        "BUILD-04",
+        "BUILD-08"
+      ]
+    },
+    {
+      "id": "build-execution-public-apps",
+      "profile": "domain",
+      "datedCheckpointClassification": "intentionally-unreleased",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "BUILD-09",
+        "LATER-01"
+      ]
+    },
+    {
+      "id": "stage-change-bridge-continuity",
+      "profile": "profileStage",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "LEARN-14",
+        "DATA-06"
+      ]
+    },
+    {
+      "id": "teacher-private-growth",
+      "profile": "privateCoaching",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "ROLE-10",
+        "AI-15"
+      ]
+    },
+    {
+      "id": "classroom-assignment-submission",
+      "profile": "institution",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "ROLE-01",
+        "ROLE-02",
+        "ROLE-03"
+      ]
+    },
+    {
+      "id": "parent-support-and-summary",
+      "profile": "guardian",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "ROLE-04",
+        "ROLE-05"
+      ]
+    },
+    {
+      "id": "professional-career-and-portfolio",
+      "profile": "domain",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "ROLE-07",
+        "BUILD-06"
+      ]
+    },
+    {
+      "id": "organization-governance",
+      "profile": "institution",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "ROLE-06",
+        "ROLE-07",
+        "ROLE-08"
+      ]
+    },
+    {
+      "id": "privacy-memory-export",
+      "profile": "domain",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "PRIV-01",
+        "PRIV-02",
+        "PRIV-03"
+      ]
+    },
+    {
+      "id": "notifications-and-support-delivery",
+      "profile": "domain",
+      "datedCheckpointClassification": "preview",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "PRIV-04",
+        "PRIV-05",
+        "JOB-01"
+      ]
+    },
+    {
+      "id": "equitable-free-paid-continuity",
+      "profile": "billingRead",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "SCOPE-09",
+        "BILL-04",
+        "AI-07"
+      ]
+    },
+    {
+      "id": "offline-and-two-device-learning",
+      "profile": "privateFile",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "SYNC-01",
+        "SYNC-02",
+        "LEARN-13"
+      ]
+    },
+    {
+      "id": "account-records-ui-binding",
+      "profile": "ownerRead",
+      "datedCheckpointClassification": "missing",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [],
+      "followUpSourceIds": [
+        "SCOPE-03",
+        "PRIV-01"
+      ]
+    },
+    {
+      "id": "knowledge-projection-calibration",
+      "profile": "knowledgeWrite",
+      "datedCheckpointClassification": "connected",
+      "currentAuthorityNotEstablishedByCheckpoint": true,
+      "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
+      "registeredRoutes": [
+        "POST /api/account/learning/knowledge/project",
+        "GET /api/account/learning/knowledge/projections",
+        "GET /api/account/learning/knowledge/models"
+      ],
+      "followUpSourceIds": [
+        "LEARN-10",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "id": "membership-source",
+      "gates": [
+        "KAN-29",
+        "KAN-30",
+        "KAN-32"
+      ],
+      "detail": "Current learning UID ownership and workspace/source/criteria consistency do not establish verified workspace membership, published-source rights or withdrawal/relationship/consent enforcement."
+    },
+    {
+      "id": "criteria-provenance",
+      "gates": [
+        "KAN-29",
+        "KAN-33"
+      ],
+      "detail": "Current present-check DTO accepts bounded authored prompt/options/answerIndex; storing/scoring that input is not authoritative source/rubric provenance or assessed educational validity."
+    },
+    {
+      "id": "future-authority",
+      "gates": [
+        "KAN-30",
+        "KAN-32"
+      ],
+      "detail": "New domain/read/list/file/export/support/voice/offline/stage operations need current action-specific authority, owning-store transactions and hosted/two-device negative evidence; none is registered by this inventory."
+    },
+    {
+      "id": "staff-and-policy",
+      "gates": [
+        "KAN-110",
+        "KAN-114",
+        "KAN-116",
+        "KAN-129",
+        "KAN-151"
+      ],
+      "detail": "Human ownership, retention/deletion, provider purpose, staff step-up/audit, safeguarding and incident/release acceptance stay separately gated."
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "sha256Lf": "3050132ac3eeb7ceadb584712c4e9e44ebdfd44e0c9920c7f0a97a7734605a55"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "sha256Lf": "ee6270ae4bb3e751dd58eda36eca7d8f9bd32044014f23637195e4f63ae13f80"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "sha256Lf": "ebe6085120e810e6b3d02213fa4f690ae32a6fb886f48075766f6dd9b39ba19e"
+    },
+    {
+      "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "sha256Lf": "65f077538052d5d15bf79fda17dc3a38941f06db97f147137920a3fa99774dff"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "sha256Lf": "b8effc28a75c276503f1a9ca67c0c9eabdee787cf71a236fc74cf377f9ffe4a7"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "sha256Lf": "84520838bc7477cdb606a67457f73630172f0d8ceecd2d6d3b05e240d65c9ff8"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
+      "sha256Lf": "83762ac31d426eda4ce6041de30c4c5598bdb93005b3d3805f2cd842e5335638"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/request-authority.ts",
+      "sha256Lf": "01b3589e243f5497cf5c824766f863ead7ef3770f0d1f5e658ba13e04592e1e1"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.service.ts",
+      "sha256Lf": "0bff953d340c7cafdd7b632faffb458b8abee99d8a221f3f2be1d201e0b14d12"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account-storage.ts",
+      "sha256Lf": "7d27f25cc9d8bac466abb588688533a85d752098211c50caa5fd31d5f3a9ee3f"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/session-policy.ts",
+      "sha256Lf": "6df9d7cc861abd43b88bada2c513e22ce376d6e0381ae72d41f478c02f3be23e"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/identity-admission.ts",
+      "sha256Lf": "b62c9f2f494f6dd2bc62f9a9e546c94b0edabf49de770f93b19731ed1474d51e"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.service.ts",
+      "sha256Lf": "1f165a6e2fe6b7d979bec3a483be3900bc20f42794dcde8ffe4b203f331779e9"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.repository.ts",
+      "sha256Lf": "0ca783a7c156a4c8ce39cc69299b6e3e8298500151115d4f582284073f8d6c6d"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/razorpay.provider.ts",
+      "sha256Lf": "ed79a2564e1f4ea51ef97ea54aafe35f102c961964d745560956deeef5525b6d"
+    },
+    {
+      "file": "backend/upstream/backend/src/feedback/feedback.service.ts",
+      "sha256Lf": "8ac8c5f05dfb90d193a06e6e2b1404b0ad13da14814a815111f93180138a49bf"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.service.ts",
+      "sha256Lf": "826a06bd31cbacffd29da2e42459e62a58f9e3440844a37382f2cf7b8d44e789"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.contract.ts",
+      "sha256Lf": "8ed3a74736de0ade09a49b53163d3be15dda8038c50f36be61d2b72963943ad4"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.service.ts",
+      "sha256Lf": "f1c210da74d220b8c73f93d8f9d3a10d50ba6a5065f5494c288485b2af6632fe"
+    },
+    {
+      "file": "backend/upstream/backend/src/main-auth.ts",
+      "sha256Lf": "6e90518e1fa053504ce2f73ddff15eed432e846dbbbc040a476454dbf4adc52d"
+    },
+    {
+      "file": "backend/upstream/backend/src/platform/production-http.ts",
+      "sha256Lf": "183b85f00ea99d915e5dd80a55f4fc4eb61033d16e5506089cbceb473c360c4f"
+    },
+    {
+      "file": "integration/contracts/product-surface-review.json",
+      "sha256Lf": "3a751105cb525eca0c6caae4f9520e9e51533e4fa2afbcf23dd17d31f89d4270"
+    },
+    {
+      "file": "integration/contracts/request-limits.v1.json",
+      "sha256Lf": "152e09a48ca1da0382e70c66bff6404fc972b0c07c5374b2debdb0a487222a02"
+    },
+    {
+      "file": "integration/contracts/v1/openapi.json",
+      "sha256Lf": "55efa187e5a1b150a7a1b0de2cddfa5416beede2141d14daaea5e460c8611c3e"
+    }
+  ]
+}
