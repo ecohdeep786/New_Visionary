@@ -2,14 +2,14 @@
 
 24 October 2026. Source ID SCOPE-08. Implementer: Codex backend executor, chat `01a16c45-13e0-7af2-becc-edeca7a281cb`.
 
-This candidate delivers a proposed, executable limit contract and runtime enforcement handoff. It changes no product runtime or frontend journey. It does not freeze KAN-30 schemas, establish KAN-31 authority, or complete ingress/load/hosted acceptance. Separate review is pending; the implementer claims no approval.
+This candidate delivers a proposed, executable limit contract and runtime enforcement handoff. Verification also identified existing deployed parser dependency advisories, requiring compatible dependency corrections before integration. Product routes, JSON byte caps and frontend journeys stay unchanged. It does not freeze KAN-30 schemas, establish KAN-31 authority, or complete ingress/load/hosted acceptance. Separate review of the dependency correction is pending; earlier approval covers only implementation `c785248a`.
 
 ## Ownership and candidate
 
 - Base: verified `origin/dev` at `0306703e7eabb996cfdd3f13d12b655a1899fa2b`, containing current `origin/main` (`592d47527d2fd8d414041aace2393b7c0d7b7898`).
 - Branch: `codex/codex-kan-35-request-limits`.
 - Checkout: `C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-35-request-limits` (product in `visionary-app/`). Branch creation and push verified against the remote ref.
-- Owns `integration/contracts/request-limits.v1.json`, `request-limits.examples.json`, `scripts/request-limits.mjs`, `scripts/tests/request-limits.test.mjs`, the single test-registration line in `scripts/check.mjs` and this report. Existing auth/runtime/schema/frontend/infrastructure and other owners' contracts remain read-only.
+- Owns `integration/contracts/request-limits.v1.json`, `request-limits.examples.json`, `scripts/request-limits.mjs`, `scripts/tests/request-limits.test.mjs`, the single test-registration line in `scripts/check.mjs` and this report. Jira comment `10169` extends ownership to the two `infrastructure/gcp/runtime/package*.json` files for compatible parser security corrections; the added `infrastructure/gcp/tests/request-parser.test.mjs` verifies actual middleware behavior in an isolated local process. Existing auth/controller/schema/frontend and other owners' contracts remain read-only.
 - Jira ownership receipt: comment `10164`. Live board check found no backend Testing issues. KAN-31 already had a worker claim; this task was explicitly unclaimed preparation (comment `10145`).
 - No native blocking task links were present in the initial KAN-35 board result. The current preparation addendum allows independent work; runtime adoption waits for accepted schema/authority/file policy and scope ownership.
 
@@ -31,6 +31,12 @@ Proposed streams cap framed events at 8 KiB, 256 events and 1 MiB total, with an
 
 The implementer's review pass corrected response-limit handling: request overflow proposes 413 before side effects, while invalid/oversize generated responses propose a bounded 503. A failed response after a write is an unknown outcome and requires receipt/status lookup before replay. Tests distinguish both directions; a client-input error must not blame the user for oversized server output.
 
+## CI security correction
+
+[PR #23](https://github.com/ecohdeep786/New_Visionary/pull/23) initially failed its unchanged `npm audit --omit=dev --audit-level=high` gate in [run 40066021726](https://github.com/ecohdeep786/New_Visionary/actions/runs/40066021726). It reported three high and three moderate affected dependency entries; build/test steps were skipped, not passed. The two underlying high advisories affect the existing overrides: [body-parser GHSA-27r3-jxmh-p828](https://github.com/expressjs/body-parser/security/advisories/GHSA-27r3-jxmh-p828) (patched in 1.20.9) and [multer GHSA-q7qp-rjg7-q26m](https://github.com/expressjs/multer/security/advisories/GHSA-q7qp-rjg7-q26m) (patched in 2.5.0). The proposed correction keeps Nest 10 and body-parser 1.x; multer 2.4 to 2.5 is a compatible minor security update. No automatic force upgrade or security gate relaxation is allowed. Registry lock generation, renewed exact-SHA review and fresh CI remain required before any acceptance claim.
+
+The new deployed-lock middleware regression runs in an isolated child process: normal JSON at 24 KiB and raw webhook at 256 KiB, each below/at/above; exact raw-body signature versus reserialized bytes; expanded gzip byte cap; malformed gzip trailing bytes followed by a healthy request to detect process termination. This is framework/dependency evidence, not a live payment/Firebase or full hosted-product test. No multipart upload endpoint is introduced; deployed lock audit covers the multer pin while future upload behavior retains its separate gate.
+
 ## Acceptance and evidence
 
 | Criterion | Evidence | Scope |
@@ -49,4 +55,4 @@ Initial contract run: `node --test scripts/tests/request-limits.test.mjs`, exit 
 
 Reviewer: pending, must differ from implementer. Candidate SHA is the pushed commit accompanying this report; Jira records its full identity rather than a self-referential hash inside this file. Reviewer must inspect exact candidate, tests and compatibility with current `dev`. Verification and published `dev` integration are pending. KAN-35 remains open until that accepted scope and actual Jira transition are recorded. No next implementation task starts before acceptance.
 
-Rollback for this enabler is removal/reversion of its five additive files and one check registration; no migrations, configuration, provider calls, protected records, deployed assets or product routes change. KAN-30 contract freeze, KAN-31 authority, runtime parser/response/deadline/stream enforcement, file policy, hosted/load/provider/privacy and connected product acceptance stay open. Main promotion remains the founder's separate release decision.
+Rollback for the contract/check additions is a source revert; dependency corrections additionally revert the two runtime package files together and rebuild/retest the image, retaining the advisory risk explicitly. No migration, provider call, protected record or product route changes. KAN-30 contract freeze, KAN-31 authority, actual limit/response/deadline/stream enforcement, file policy, hosted/load/provider/privacy and connected product acceptance stay open. Main promotion remains the founder's separate release decision.
