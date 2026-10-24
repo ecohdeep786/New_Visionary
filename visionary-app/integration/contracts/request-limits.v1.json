@@ -82,6 +82,12 @@
     "mentor.turn": "teaching-turn",
     "file.upload.intent": "file-intent"
   },
+  "infrastructureSurfaces": {
+    "routes": ["GET /healthz", "HEAD /healthz", "GET /api/health", "HEAD /api/health", "GET /__deploy-check", "HEAD /__deploy-check"],
+    "observedRequestJsonBytes": 24576,
+    "proposedResponseJsonBytes": 4096,
+    "rule": "currentRoutes enumerates only the 37 Nest controller routes. Production additionally registers these fixed-shape health/probe responses (HEAD has no response body). They retain global JSON parser ingress; probe-specific trust checks remain authoritative. Static assets and SPA fallback are non-JSON surfaces outside proposed JSON response caps. Proxy/edge/header/query/time budgets remain separate gates. No whole-operation server timer is installed by the production composition."
+  },
   "pagination": { "defaultItems": 20, "maxItems": 50, "cursorBytes": 512, "rule": "Server-issued opaque cursor bound to current UID/workspace/filter/order and expiry; legacy routes retain their current cursor formats. Apply response byte cap as well as item cap, with stable continuation and explicit unavailable state if one item cannot fit." },
   "stream": { "state": "proposed-unregistered", "eventBytes": 8192, "framingBytes": 256, "maxEvents": 256, "totalBytes": 1048576, "deadlineMs": 18000, "idleMs": 10000, "rule": "Count all frames, heartbeats and UTF-8 framing bytes; apply backpressure. On timeout/disconnect/cancel, abort downstream work and retain partial output only as an uncommitted draft. Complete event is observation only; refetch authorized durable receipt before claiming save. Resume requires current authority and bounded server cursor; expired cursor requires refetch." },
   "files": { "inlineBase64Allowed": false, "rule": "No file bytes in JSON. Future authenticated upload intent specifies approved MIME, bounded byte size, digest and expiry, then private quarantine upload, verification/scan and owner-authorized finalize. Media/MIME and size policy require separate accepted file/voice scope; do not issue URLs until accepted. Downloads reauthorize current rights and disclose offline residual access." },

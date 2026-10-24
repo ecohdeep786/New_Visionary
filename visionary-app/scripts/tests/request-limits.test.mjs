@@ -33,6 +33,12 @@ test('policy proposals remain distinct from observed enforcement and cover regis
   for (const profile of Object.values({ ...policy.currentRoutes, ...policy.proposedOperations })) assert.ok(policy.profiles[profile]);
   assert.equal(policy.currentRoutes['POST /api/billing/webhooks/razorpay'], 'webhook');
   assert.equal(policy.files.inlineBase64Allowed, false);
+  const production = read(`${backend}platform/production-http.ts`);
+  for (const route of ['/healthz', '/api/health', '/__deploy-check']) assert.ok(production.includes(`'${route}'`));
+  assert.deepEqual(policy.infrastructureSurfaces.routes.slice().sort(), [
+    'GET /healthz', 'HEAD /healthz', 'GET /api/health', 'HEAD /api/health', 'GET /__deploy-check', 'HEAD /__deploy-check',
+  ].sort());
+  assert.equal(policy.infrastructureSurfaces.observedRequestJsonBytes, 24576);
 });
 
 test('observed parser order, byte budgets, field units and deadline stay source-grounded', () => {
@@ -40,6 +46,10 @@ test('observed parser order, byte budgets, field units and deadline stay source-
   const raw = startup.indexOf("raw({ type: 'application/json', limit: '256kb' })");
   const json = startup.indexOf("json({ limit: '24kb' })");
   assert.ok(raw >= 0 && json > raw);
+  const production = read(`${backend}platform/production-http.ts`);
+  const productionRaw = production.indexOf("raw({ type: 'application/json', limit: '256kb' })");
+  const productionJson = production.indexOf("json({ limit: '24kb' })");
+  assert.ok(productionRaw >= 0 && productionJson > productionRaw, 'Production parser budgets/order changed');
   assert.equal(policy.observed.normalJsonBytes, 24 * 1024);
   assert.equal(policy.observed.webhookRawBytes, 256 * 1024);
   assert.match(read('frontend/src/api/firebase/authTransport.js'), /timeoutMs = 20000/);
