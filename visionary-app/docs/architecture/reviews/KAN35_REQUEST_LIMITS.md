@@ -2,7 +2,7 @@
 
 24 October 2026. Source ID SCOPE-08. Implementer: Codex backend executor, chat `01a16c45-13e0-7af2-becc-edeca7a281cb`.
 
-This candidate delivers a proposed, executable limit contract and runtime enforcement handoff. Verification also identified existing deployed parser dependency advisories, requiring compatible dependency corrections before integration. Product routes, JSON byte caps and frontend journeys stay unchanged. It does not freeze KAN-30 schemas, establish KAN-31 authority, or complete ingress/load/hosted acceptance. Separate review of the dependency correction is pending; earlier approval covers only implementation `c785248a`.
+This candidate delivers a proposed, executable limit contract and runtime enforcement handoff. Verification also identified existing deployed parser dependency advisories, corrected with compatible dependency updates. Product routes, JSON byte caps and frontend journeys stay unchanged. It does not freeze KAN-30 schemas, establish KAN-31 authority, or complete ingress/load/hosted acceptance. Separate review approves exact implementation `bcdbe4e7d7048662d2cbe7e6ee5975582e2b8437`; earlier decisions are superseded as recorded in the independent report.
 
 ## Ownership and candidate
 
@@ -35,7 +35,7 @@ The implementer's review pass corrected response-limit handling: request overflo
 
 ## CI security correction
 
-[PR #23](https://github.com/ecohdeep786/New_Visionary/pull/23) initially failed its unchanged `npm audit --omit=dev --audit-level=high` gate in [run 40066021726](https://github.com/ecohdeep786/New_Visionary/actions/runs/40066021726). It reported three high and three moderate affected dependency entries; build/test steps were skipped, not passed. The two underlying high advisories affect the existing overrides: [body-parser GHSA-27r3-jxmh-p828](https://github.com/expressjs/body-parser/security/advisories/GHSA-27r3-jxmh-p828) (patched in 1.20.9) and [multer GHSA-q7qp-rjg7-q26m](https://github.com/expressjs/multer/security/advisories/GHSA-q7qp-rjg7-q26m) (patched in 2.5.0). The proposed correction keeps Nest 10 and body-parser 1.x; multer 2.4 to 2.5 is a compatible minor security update. No automatic force upgrade or security gate relaxation is allowed. Registry lock generation, renewed exact-SHA review and fresh CI remain required before any acceptance claim.
+[PR #23](https://github.com/ecohdeep786/New_Visionary/pull/23) initially failed its unchanged `npm audit --omit=dev --audit-level=high` gate in [run 40066021726](https://github.com/ecohdeep786/New_Visionary/actions/runs/40066021726). It reported three high and three moderate affected dependency entries; build/test steps were skipped, not passed. The two underlying high advisories affect the existing overrides: [body-parser GHSA-27r3-jxmh-p828](https://github.com/expressjs/body-parser/security/advisories/GHSA-27r3-jxmh-p828) (patched in 1.20.9) and [multer GHSA-q7qp-rjg7-q26m](https://github.com/expressjs/multer/security/advisories/GHSA-q7qp-rjg7-q26m) (patched in 2.5.0). The accepted correction keeps Nest 10 and body-parser 1.x; multer 2.4 to 2.5 is a compatible minor security update. No force upgrade or security gate relaxation was used. Registry lock generation, renewed exact-SHA review and candidate CI succeeded. Final deployed-lock audit has zero high/critical and four moderate findings; it is not vulnerability-free.
 
 The new deployed-lock middleware regression runs in an isolated child process: normal JSON at 24 KiB and raw webhook at 256 KiB, each below/at/above; exact raw-body signature versus reserialized bytes; expanded gzip byte cap; malformed gzip trailing bytes followed by a healthy request to detect process termination. This is framework/dependency evidence, not a live payment/Firebase or full hosted-product test. No multipart upload endpoint is introduced; deployed lock audit covers the multer pin while future upload behavior retains its separate gate.
 
@@ -51,10 +51,22 @@ The new deployed-lock middleware regression runs in an isolated child process: n
 | Safe retry | Reauthorization, unchanged command/payload and receipt-first unknown outcomes | Proposed recovery contract |
 | Frontend/API/store/job/device outcome | N/A to contract-only change; runtime entrypoints and journeys unchanged | Existing regression checks only |
 
-Initial contract run: `node --test scripts/tests/request-limits.test.mjs`, exit 0, 40 tests passed. `npm run product:verify-layout` and `npm run product:verify-imports` both passed (3,842 import files, three recorded patches). Backend/frontend build and regression results are recorded after completion in the verification section below. The source inventories are not hosted verification.
+Initial and final local contract runs: `node --test scripts/tests/request-limits.test.mjs`, exit 0, 40 tests passed. `npm run product:verify-layout` and `npm run product:verify-imports` both passed (3,842 import files, three recorded patches). The source inventories are not hosted verification.
+
+### Final candidate verification
+
+[Linux CI run 40066737852](https://github.com/ecohdeep786/New_Visionary/actions/runs/40066737852), head `bcdbe4e7d7048662d2cbe7e6ee5975582e2b8437`, checks job `120791477613`, completed successfully at 05:35:02 UTC on 24 October 2026. Every required step exited 0:
+
+- `npm run check`: layout/import/continuity/audit, 63 script tests, frontend lint/typecheck, 624 frontend tests and production build.
+- `node scripts/production-check.mjs`: deployed-lock product and test compilation; 99 backend regressions passed, zero failures.
+- `node --test infrastructure/gcp/tests/*.test.mjs`: 28 tests passed, including the new parser child-process/HTTP regression.
+- `python3 -m unittest discover -s infrastructure/gcp/tests -p '*_test.py'`: 11 passed.
+- `npm audit --omit=dev --audit-level=high`: passed; zero high/critical and four moderate findings.
+
+Environment: GitHub Ubuntu 24.04 / Node 24.21.0 with independent frontend/deployed-runtime locks. Production deployment job was skipped. Parent and reviewer independently read the exact CI head/step conclusions; the reviewer also independently ran 40 contract tests and the lock audit locally. Local full backend/frontend installations were interrupted after excessive setup time; no local full build/install success is claimed. Accepted build/regression evidence is Linux CI, without hosted product acceptance.
 
 ## Review, integration and remaining gates
 
-Reviewer: pending, must differ from implementer. Candidate SHA is the pushed commit accompanying this report; Jira records its full identity rather than a self-referential hash inside this file. Reviewer must inspect exact candidate, tests and compatibility with current `dev`. Verification and published `dev` integration are pending. KAN-35 remains open until that accepted scope and actual Jira transition are recorded. No next implementation task starts before acceptance.
+Reviewer: `/root/kan35_independent_review`, different from implementer. Approved implementation: `bcdbe4e7d7048662d2cbe7e6ee5975582e2b8437`; final report commit `46c7837eeb804304cfc679efa2883eb40cb09808`, retained in [KAN35_INDEPENDENT_REVIEW.md](KAN35_INDEPENDENT_REVIEW.md). The code/dependency scope is frozen at that reviewed commit; subsequent report/verification commits contain evidence only. At this pre-integration handoff, candidate verification passed and published `dev` integration/Jira completion remain pending. The actual integration commit, integrated checks and returned Jira transition are recorded in the ticket before closure. No next implementation task starts before acceptance.
 
 Rollback for the contract/check additions is a source revert; dependency corrections additionally revert the two runtime package files together and rebuild/retest the image, retaining the advisory risk explicitly. No migration, provider call, protected record or product route changes. KAN-30 contract freeze, KAN-31 authority, actual limit/response/deadline/stream enforcement, file policy, hosted/load/provider/privacy and connected product acceptance stay open. Main promotion remains the founder's separate release decision.
