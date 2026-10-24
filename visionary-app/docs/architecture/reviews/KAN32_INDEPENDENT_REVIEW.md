@@ -6,9 +6,9 @@
 
 Implementer: Codex backend executor on `codex/codex-kan-32-policy-owners`. Independent reviewer/verifier: separate Codex agent `/root/kan32_independent_review`, which explicitly accepted responsibility and did not implement or edit the packet.
 
-**Exact reviewed implementation: `8d031711f49c3235d699cfbdccef1a3cea5dc9bf`. Decision: approved for draft-only dev integration. Verification: passed for the focused document/source checks below; no blocking document defect found.** Base and current remote dev at review: `43ce3f5a12f6f541ee89603bfc24d43c87a7630c`. Relevant later source changes or conflicts require renewed review. The integrator must verify and record the actual published dev result; this report does not perform integration or a Jira transition.
+**Exact reviewed implementation: `f365061c9beaaec5f0168d8a2bb4d3c237606872`. Decision: approved for draft-only dev integration. Verification: passed for the focused document/source checks below; no blocking document defect found.** Base and current remote dev at review: `43ce3f5a12f6f541ee89603bfc24d43c87a7630c`. Relevant later source changes or conflicts require renewed review. The integrator must verify and record the actual published dev result; this report does not perform integration or a Jira transition.
 
-Fresh review checkout: `C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/qa-review-kan-32-policy-owners`, branch `codex/qa-review-kan-32-policy-owners`, created at the exact candidate and pushed with matching remote ref. Reviewer owns only this report. No runtime, frontend, shared manifest/log, configuration, provider call or protected record was changed or accessed.
+Fresh review checkout: `C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/qa-review-kan-32-policy-owners`, branch `codex/qa-review-kan-32-policy-owners`, created at initial candidate `8d031711f49c3235d699cfbdccef1a3cea5dc9bf` and pushed with matching remote ref, then advanced by merging the replacement candidate after reviewing its sole two-line packet addition. Reviewer owns only this report. No runtime, frontend, shared manifest/log, configuration, provider call or protected record was changed or accessed.
 
 ## Requirement and source assessment
 
@@ -28,7 +28,7 @@ Environment: fresh Windows/PowerShell review checkout, existing Node runtime; no
 
 | Command or independent inspection | Result |
 | --- | --- |
-| Exact HEAD and base-to-candidate changed-file assertions | Exit 0; exact candidate matched; one changed source file, the packet only |
+| Exact candidate content and base-to-candidate changed-file assertions | Exit 0; candidate file content matched; one changed source file, the packet only |
 | Node consistency check over candidate Markdown | Exit 0; all ten relative links resolve; eight unique sequential OWN role rows; required subject coverage and explicit pending/non-enforcement states present |
 | Independent source-boundary assertions | Exit 0; unchanged component trees (five), KAN-30 frozen=false, actual provider test-key guard, feedback no-purge/non-emergency boundaries and VATS no-default-training boundary confirmed |
 | Live Jira issue and comment inspection | Required preparation scope and claim confirmed; all 18 linked gate identities verified; no founder nominations inferred |
@@ -41,7 +41,7 @@ No runtime/hosted/authority/retention/provider/commercial outcome, product scree
 
 ## Remaining acceptance and recovery
 
-Before integration, the integrator should complete the packet's promised coordinating Jira receipt listing **OWN-01 through OWN-08 as pending nominations**, with links to their existing blockers. The initial worker claim alone did not enumerate these role IDs at the review read. This is an execution receipt to publish, not a new owner assignment or a blocking source defect.
+Coordinating Jira receipt `10184` now enumerates **OWN-01 through OWN-08 as pending nominations** and records the founder's engineering-review direction without inferring blanket policy approval or incident coverage. The reviewer independently inspected that receipt. The replacement candidate's only packet addition accurately records the same limited review direction; it does not assign policy people, appoint a backup or approve substantive policy. No further nomination question is required by this review.
 
 Founder nomination/acceptance is still required to satisfy the owner-assignment outcome. **Full KAN-32 must remain open/Testing while that required acceptance is absent.** This draft approval neither names accountable humans nor approves data-class retention, source rights, model/provider use, safeguarding, commercial terms, incident coverage or production launch. KAN-29 source decisions, KAN-31 authority and applicable KAN-32 policy choices remain necessary before affected KAN-30 freeze; no dependent runtime work is unblocked by this report alone.
 

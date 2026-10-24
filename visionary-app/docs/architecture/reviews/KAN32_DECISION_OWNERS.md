@@ -10,6 +10,8 @@ Nominate a person or explicit delegate for each role in the table. One person ma
 
 For each nomination retain: role ID, accountable person's name, accepted responsibility, backup/delegate where applicable, decision date and a Jira/decision receipt. Private contact details, credentials and learner records do not belong here. Until the founder supplies that receipt, the actual accountable person and acceptance date are **pending**.
 
+Founder response on 24 October 2026: Codex may perform engineering review and the founder will review before proceeding. This assigns the packet's engineering review to Codex and records intended founder review; it does not nominate people for every policy role, appoint an incident backup or approve policy substance. A separate Codex reviewer is checking the exact packet commit. No further nomination is inferred from that response.
+
 | ID | Proposed accountable role; actual person pending | Decision/evidence the owner must obtain | Existing downstream gate | Current boundary while unresolved |
 | --- | --- | --- | --- | --- |
 | OWN-01 | Content rights and source publication approver | Exact source/provider/version/language, permitted audiences and uses, publication/withdrawal receipt; explicit rights for ingestion, embeddings, derivatives, embeds and downloaded packs | [KAN-29](https://visionary-team.atlassian.net/browse/KAN-29), [KAN-60](https://visionary-team.atlassian.net/browse/KAN-60), [KAN-66](https://visionary-team.atlassian.net/browse/KAN-66), [KAN-153](https://visionary-team.atlassian.net/browse/KAN-153) | No new released source, generated official syllabus, public publishing or inferred rights from a sample file |
