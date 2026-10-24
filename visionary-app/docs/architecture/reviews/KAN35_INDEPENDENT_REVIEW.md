@@ -6,21 +6,21 @@
 
 - Implementer: Codex backend executor, chat `01a16c45-13e0-7af2-becc-edeca7a281cb`.
 - Reviewer/verifier: separate Codex agent `/root/kan35_independent_review`. I explicitly accept independent review responsibility; I did not implement or modify the candidate.
-- Reviewed implementation: `a3d0ac63f4ac1d52b66cee4518f0d01130bfb792` on `codex/codex-kan-35-request-limits`.
+- Reviewed implementation: `c785248afdef95df3c5b40d29d5b3aeed5bd553a` on `codex/codex-kan-35-request-limits`.
 - Reviewed base and currently published dev at review: `0306703e7eabb996cfdd3f13d12b655a1899fa2b`.
-- Review range: `0306703e7eabb996cfdd3f13d12b655a1899fa2b..a3d0ac63f4ac1d52b66cee4518f0d01130bfb792`, all six changed files.
-- Independent checkout: `C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/qa-review-kan-35-request-limits`, created from the exact candidate for this existing task review, branch `codex/qa-review-kan-35-request-limits`. Initial branch push succeeded and remote candidate ref was verified.
+- Review range: `0306703e7eabb996cfdd3f13d12b655a1899fa2b..c785248afdef95df3c5b40d29d5b3aeed5bd553a`, all six changed files, including independent re-review of the four-file correction from initial candidate `a3d0ac63f4ac1d52b66cee4518f0d01130bfb792`.
+- Independent checkout: `C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/qa-review-kan-35-request-limits`, created from the initial candidate for this existing task review, branch `codex/qa-review-kan-35-request-limits`. Initial branch push succeeded and remote ref was verified. The replacement candidate was fetched/merged without conflicts into this review-only branch; the only difference from the replacement candidate is this report.
 - Review ownership: this report only. Runtime, implementation files, frontend, execution receipts and Jira status were not changed by the reviewer.
 
 Live KAN-35 was read during review. Its requirement is to **specify** per-route JSON/stream limits, reconcile the existing 24 KiB parser with bounded project/submission text and exclude file/base64 bodies. Jira was In Progress at that read; review publication and verification do not themselves transition it. The execution registry contains no prior KAN-35 acceptance receipt. KAN-30 schema freeze and KAN-31 authority remain separate adoption prerequisites; this candidate does not claim them.
 
 ## Findings and decision
 
-**Decision: changes requested for the exact implementation above. Verification result: the 40 existing checks passed, but the response-error attribution finding below remains open.** A new exact candidate and independent review are required. Relevant backend/frontend regression and integrated-result verification remain the integrator's responsibility before publishing dev and recording Jira Done. No runtime or hosted acceptance is approved.
+**Decision: approved for exact candidate `c785248afdef95df3c5b40d29d5b3aeed5bd553a` as a contract enabler, conditional on the integrator's pending build/regression and integrated-result verification before publishing dev and recording Jira Done. Verification result: passed for the independent contract/source checks below.** R1 is resolved; no blocking finding remains in this scoped candidate. Approval does not cover later implementation commits, conflict resolutions, runtime or hosted acceptance.
 
-The initial report commit `e9921ea7ee661fa205e010f0744fd85dc63b21df` recorded approval before a directional error-semantics issue was raised by the integrator and reproduced by this reviewer. That initial decision is superseded by this changes-requested decision; it must not be used to integrate the old candidate.
+The initial report commit `e9921ea7ee661fa205e010f0744fd85dc63b21df` recorded approval of the old candidate before a directional error-semantics issue was raised by the integrator and reproduced by this reviewer. Changes-requested report `3726b7fcad729e9ede96c80a78344f88454c9daa` superseded that initial decision. Both earlier decisions are history only; the current approval applies exclusively to the corrected candidate named above.
 
-**R1 (P2): distinguish generated response failures from client request failures.** In `scripts/request-limits.mjs`, `checkJson('existing-json', 'x'.repeat(policy.profiles['existing-json'].responseBytes + 1), 'response')` returns `{ok:false,code:'PAYLOAD_TOO_LARGE',status:413}`. The evaluator accepts a response direction but maps this generated-output failure to the request-size status. Malformed/structurally oversized response values similarly receive request-side 400 outcomes. Specify bounded server-unavailable/invalid-response outcomes for response-side failures and retain 413/400 for request rejection; add directional status/code assertions. This is a contract correctness issue even though no runtime consumes the helper yet.
+**R1 (P2), resolved: distinguish generated response failures from client request failures.** The initial evaluator returned request-side 413 for oversized generated response bodies and 400 for invalid response JSON/structure. The corrected evaluator returns bounded `RESPONSE_LIMIT`/503 for response byte/structure overflow and `INVALID_RESPONSE`/503 for malformed, invalid UTF-8 or non-wire responses; request rejection retains 413/400. Contract error metadata and the handoff now document the distinction and receipt-first recovery after an unknown write outcome. The expanded suite and 63 additional independent status/code assertions across all nine profiles passed. No runtime consumes the helper yet.
 
 The policy names the actual enforced subset separately from proposed caps, marks runtime enforcement unchanged and leaves existing validators authoritative. Inspection confirmed that only the script tests import the evaluator. No controller, parser registration, client transport, schema, storage, provider or product journey changes in this candidate.
 
@@ -41,11 +41,12 @@ These limitations do not block the scoped specification enabler because both the
 
 ## Independently executed evidence
 
-Environment: Windows PowerShell, Node `v24.19.0`, fresh independent review checkout; synthetic data only. Commands were run on 24 October 2026 against the exact candidate before adding this report.
+Environment: Windows PowerShell, Node `v24.19.0`, fresh independent review checkout; synthetic data only. Commands were run on 24 October 2026. The 40-test suite was independently run on both candidates; the final suite and directional assertions used the corrected candidate's exact implementation, with only this report additionally present.
 
 | Command / inspected criterion | Result |
 | --- | --- |
 | `node --test scripts/tests/request-limits.test.mjs` | Exit 0; 40 passed, 0 failed/skipped/cancelled. Includes all profile request/response byte boundaries, multilingual text, structure, malformed JSON/UTF-8, pagination, long-body/global-parser mismatch, stream and retry fixtures. |
+| Independent `node --input-type=module -e` directional assertions | Exit 0; 63 assertions passed across nine profiles: malformed JSON, malformed UTF-8, wrong wire type, oversize bytes and excess array items produce response-side 503 with the expected public code; oversize and malformed requests retain 413/400 and their codes. |
 | `node scripts/verify-layout.mjs` | Exit 0; component roots separated. |
 | `node scripts/verify-imports.mjs` | Exit 0; 3,842 imported files match baseline plus three recorded patches / ten changed files; credential files excluded. |
 | `git diff --check` over the exact review range | Exit 0; no whitespace errors. |
