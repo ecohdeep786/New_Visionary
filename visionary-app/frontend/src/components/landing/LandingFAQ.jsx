@@ -103,7 +103,7 @@ export default function LandingFAQ({
                   aria-labelledby={triggerId}
                   /* visibility (not display) keeps the grid-rows animation while
                      removing the closed answer from the a11y tree and selection */
-                  className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}
+                  className={`grid transition-all duration-500 ease-apple ${open ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}
                 >
                   <div className="overflow-hidden">
                     <p className="max-w-[1240px] pt-8 text-[16px] leading-[1.6]" style={{ color: "#1d1d1f" }}>{faq.a}</p>

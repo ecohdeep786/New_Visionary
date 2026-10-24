@@ -92,7 +92,7 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
 .visionary-workspace .v-list-row > :first-child{min-width:0;overflow-wrap:anywhere}
 .visionary-workspace .v-list-row > .v-button{flex-shrink:0}
 .visionary-workspace .v-page > header p{max-width:72ch}
-.visionary-workspace .v-field{transition:border-color 120ms ease,box-shadow 120ms ease}
+.visionary-workspace .v-field{transition:border-color 120ms var(--ease-out-apple),box-shadow 120ms var(--ease-out-apple)}
 .visionary-workspace .v-field:hover{border-color:var(--v-text)}
 .guide-composer:focus-within{border-color:var(--v-action);box-shadow:0 0 0 1px var(--v-action)}
 .guide-mobile-tabs [aria-selected="true"]{background:var(--v-soft);color:var(--v-action);border-color:transparent}
@@ -170,8 +170,8 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
   justify-content: center;
   border-radius: 9999px;
   overflow: visible;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  animation: v-orb-in 0.7s cubic-bezier(0.2, 0, 0, 1) 1;
+  transition: transform 0.15s var(--ease-out-apple), box-shadow 0.15s var(--ease-out-apple);
+  animation: v-orb-in 0.7s var(--ease-out-apple) 1;
 }
 .v-audio-orb-button.v-audio-girl { border-radius: 12px; width: 3.5rem; }
 .v-audio-orb-button:hover { transform: scale(1.05); }
@@ -209,7 +209,7 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
 .workspace-shell{background:#fff}
 .workspace-shell>header{border-bottom:1px solid var(--v-border)}
 .workspace-shell .workspace-surface{border:0;border-radius:0;box-shadow:none}
-.workspace-search-trigger{border:1px solid transparent;transition:background .18s ease}
+.workspace-search-trigger{border:1px solid transparent;transition:background .18s var(--ease-out-apple)}
 .workspace-search-trigger:hover{background:#e8f0fd}
 .workspace-search-shortcut{border:1px solid var(--v-border);border-radius:4px;padding:2px 6px;background:#fff;color:#5f6368;font-family:inherit}
 .workspace-nav-divider{height:1px;margin:16px 8px 8px;background:var(--v-border)}
@@ -218,7 +218,7 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
 .workspace-nav-link[aria-current="page"]{background:var(--v-soft)}
 .workspace-nav-link:focus-visible{outline-offset:0}
 .visionary-workspace .v-card{border-radius:16px}
-.visionary-workspace .v-button{transition:background .18s ease,border-color .18s ease}
+.visionary-workspace .v-button{transition:background .18s var(--ease-out-apple),border-color .18s var(--ease-out-apple)}
 .v-home-header{flex-direction:row;align-items:flex-start;justify-content:space-between;gap:20px}
 .v-home-local-label{flex:none;display:inline-flex;align-items:center;min-height:32px;color:var(--v-muted);font-size:12px}
 .v-home-priority{display:block;min-height:0;border:1px solid var(--v-border);border-radius:16px;background:#f8fafd;padding:28px 32px}
@@ -236,7 +236,7 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
 .workspace-presence-anchor.is-expanded{left:92px}
 .v-audio-orb-button,.v-audio-orb-button.v-audio-girl{width:72px;height:76px;flex-direction:column;gap:2px;border-radius:18px;background:transparent}
 .v-audio-orb-button:hover{transform:none}
-.v-audio-glyph{position:relative;display:block;width:52px;height:52px;flex:none;border:1px solid #d4e4fb;border-radius:50%;background:#f2f7ff;box-shadow:0 5px 16px rgb(25 103 210 / .13);transition:box-shadow .2s ease,transform .2s ease}
+.v-audio-glyph{position:relative;display:block;width:52px;height:52px;flex:none;border:1px solid #d4e4fb;border-radius:50%;background:#f2f7ff;box-shadow:0 5px 16px rgb(25 103 210 / .13);transition:box-shadow .2s var(--ease-out-apple),transform .2s var(--ease-out-apple)}
 .v-audio-orb-button.v-audio-girl .v-audio-glyph{border-radius:15px}
 .v-audio-orb-button:hover .v-audio-glyph{transform:translateY(-2px);box-shadow:0 8px 20px rgb(25 103 210 / .22)}
 .v-audio-orb-button[data-audio-state="listening"] .v-audio-glyph{box-shadow:0 0 0 4px #d2e3fc,0 8px 22px rgb(25 103 210 / .27)}
@@ -262,10 +262,10 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
 .workspace-voice-intro{margin-top:11px;color:#5f6368;font-size:13px;line-height:1.55}
 .workspace-voice-preview{position:relative;display:grid;height:158px;overflow:hidden;place-items:center;margin-top:16px;border:1px solid #d9e6f8;border-radius:20px;background:radial-gradient(circle at 50% 85%,#e3efff 0,#f6faff 66%,#fff 100%)}
 .workspace-voice-preview-glow{position:absolute;width:170px;height:100px;bottom:-54px;border-radius:50%;background:#99c4fa;filter:blur(26px);opacity:.38}
-.workspace-voice-preview-orb{position:relative;display:block;width:104px;height:104px;border:1px solid #c2dcff;border-radius:50%;background:radial-gradient(circle at 38% 28%,#fff 0,#e0f2ff 18%,#8ebaf8 53%,#2d73e3 87%);box-shadow:inset -9px -12px 22px rgb(15 67 173 / .25),0 16px 30px rgb(40 105 205 / .22);animation:v-voice-breathe 5s ease-in-out infinite}
+.workspace-voice-preview-orb{position:relative;display:block;width:104px;height:104px;border:1px solid #c2dcff;border-radius:50%;background:radial-gradient(circle at 38% 28%,#fff 0,#e0f2ff 18%,#8ebaf8 53%,#2d73e3 87%);box-shadow:inset -9px -12px 22px rgb(15 67 173 / .25),0 16px 30px rgb(40 105 205 / .22);animation:v-voice-breathe 5s var(--ease-out-apple) infinite}
 .workspace-voice-preview-orb::after{content:'';position:absolute;inset:17px 9px 48px 15px;border-radius:50%;background:rgb(255 255 255 / .65);filter:blur(11px)}
 .workspace-voice-preview-bars{position:relative;display:none;align-items:center;justify-content:center;gap:9px;height:92px}
-.workspace-voice-preview-bars i{display:block;width:16px;height:54px;border-radius:999px;background:linear-gradient(#bbd8ff,var(--v-action) 70%,#2469d7);box-shadow:0 7px 15px rgb(66 133 244 / .28);animation:v-voice-bars 2.1s ease-in-out infinite}
+.workspace-voice-preview-bars i{display:block;width:16px;height:54px;border-radius:999px;background:linear-gradient(#bbd8ff,var(--v-action) 70%,#2469d7);box-shadow:0 7px 15px rgb(66 133 244 / .28);animation:v-voice-bars 2.1s var(--ease-out-apple) infinite}
 .workspace-voice-preview-bars i:nth-child(1){height:43px;animation-delay:-.25s}
 .workspace-voice-preview-bars i:nth-child(2){height:63px;animation-delay:-1s}
 .workspace-voice-preview-bars i:nth-child(3){height:81px;animation-delay:-.5s}

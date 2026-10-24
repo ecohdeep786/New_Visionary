@@ -18,6 +18,7 @@
     "frontend:qa:navigation": "node scripts/frontend.mjs qa:navigation",
     "frontend:qa:fonts": "node scripts/frontend.mjs qa:fonts",
     "frontend:qa:design": "node scripts/frontend.mjs qa:design",
+    "frontend:qa:motion": "node scripts/frontend.mjs qa:motion",
     "product:doctor": "node scripts/product.mjs doctor",
     "product:verify-layout": "node scripts/verify-layout.mjs",
     "product:verify-imports": "node scripts/verify-imports.mjs",

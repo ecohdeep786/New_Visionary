@@ -54,7 +54,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -265,7 +265,7 @@ function PricingTrustBand() {
   );
 }
 
-/* ═══ 05 · FAQ — the shared accordion resolve curve (grid-rows + ease-google ═══ */
+/* ═══ 05 · FAQ — the shared accordion resolve curve (grid-rows + ease-apple ═══ */
 function PricingFAQSection() {
   const { ref, visible } = useRevealOnce();
   const [open, setOpen] = useState(-1);
@@ -289,7 +289,7 @@ function PricingFAQSection() {
                 </button>
                 {/* visibility (not display) keeps the grid-rows resolve while
                     the collapsed row stays out of the tab/a11y order */}
-                <div id={`pricing-faq-answer-${i}`} aria-labelledby={`pricing-faq-question-${i}`} aria-hidden={open !== i} className={`grid transition-all duration-500 ease-google motion-reduce:transition-none ${open === i ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}>
+                <div id={`pricing-faq-answer-${i}`} aria-labelledby={`pricing-faq-question-${i}`} aria-hidden={open !== i} className={`grid transition-all duration-500 ease-apple motion-reduce:transition-none ${open === i ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}>
                   <div className="overflow-hidden">
                     <p className="max-w-[640px] pb-6 pr-8 text-[16px] leading-[1.65]" style={{ color: COLORS.grey }}>{item.a}</p>
                   </div>
@@ -309,7 +309,7 @@ function PricingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">

@@ -75,7 +75,7 @@ function LegacyExplore() {
           height: size,
           transformStyle: "preserve-3d",
           transform: `rotateX(-22deg) rotateY(${rotation}deg)`,
-          transition: "transform 100ms ease"
+          transition: "transform var(--motion-duration-fast) var(--ease-out-apple)"
         }}>{faces.map((f, i) => <div key={f} style={{
             position: "absolute",
             width: size,

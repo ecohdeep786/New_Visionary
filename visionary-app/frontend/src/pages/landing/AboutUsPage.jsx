@@ -70,7 +70,7 @@ function useReveal() {
 
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useReveal();
-  return <div ref={ref} className={`${className} transition duration-700 ease-google motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
+  return <div ref={ref} className={`${className} transition duration-700 ease-apple motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
 }
 
 function Eyebrow({ children }) {

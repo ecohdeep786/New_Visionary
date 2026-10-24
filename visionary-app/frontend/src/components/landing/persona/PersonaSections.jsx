@@ -41,13 +41,12 @@ const STRUGGLE_MASK = {
    resolve-out curve. Blocks keep their layout while hidden (no collapse),
    the observer fires once, and the global reduced-motion contract snaps the
    transition to instant. This is the "scroll, then the text appears" beat. */
-const APPLE_REVEAL_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 function revealStyle(entered, delay) {
   return {
     opacity: entered ? 1 : 0,
     transform: entered ? "none" : "translateY(26px)",
-    transition: `opacity 0.9s ${APPLE_REVEAL_EASE}, transform 0.9s ${APPLE_REVEAL_EASE}`,
+    transition: `opacity var(--motion-duration-cinematic) var(--ease-out-apple), transform var(--motion-duration-cinematic) var(--ease-out-apple)`,
     transitionDelay: `${delay}ms`,
     willChange: "opacity, transform",
   };
@@ -316,7 +315,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
               style={{
                 opacity: reveal.entered ? 1 : 0,
                 transform: reveal.entered ? "none" : "translateY(24px)",
-                transition: `opacity 0.85s ${APPLE_REVEAL_EASE}, transform 0.85s ${APPLE_REVEAL_EASE}`,
+                transition: `opacity var(--motion-duration-statement) var(--ease-out-apple), transform var(--motion-duration-statement) var(--ease-out-apple)`,
                 transitionDelay: `${140 + i * 80}ms`,
               }}
             >
@@ -327,7 +326,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                   next story at the viewport edge. */}
               <figure role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
                 className="relative m-0 w-[275px] min-[735px]:w-[692px] min-[1069px]:w-[980px]"
-                style={{ opacity: i === active ? 1 : 0.45, transition: "opacity 1500ms" }}
+                style={{ opacity: i === active ? 1 : 0.45, transition: "opacity 1500ms var(--ease-out-apple)" }}
               >
             <button
               type="button"
@@ -341,7 +340,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 loading="eager"
                 decoding="async"
                 draggable="false"
-                className="aspect-[11/16] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02] min-[735px]:aspect-[692/430] min-[1069px]:aspect-[1.9]"
+                className="aspect-[11/16] w-full select-none object-cover transition-transform duration-500 ease-apple group-hover:scale-[1.02] min-[735px]:aspect-[692/430] min-[1069px]:aspect-[1.9]"
               />
               {/* Apple's exact bottom smoke: transparent → rgba(0,0,0,0.7)
                   across the lower ~53% of the card (66% on the portrait mobile
@@ -475,7 +474,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
 
       <div
         className="relative mx-auto my-4 max-h-[calc(100vh-32px)] w-full max-w-[1080px] overflow-hidden rounded-[30px] bg-white"
-        style={{ animation: "heroFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both" }}
+        style={{ animation: "heroFadeUp 0.4s var(--ease-out-apple) both" }}
       >
         <div className="max-h-[calc(100vh-32px)] overflow-y-auto">
           {/* the close — Apple's bare modal glyph, top-right over the media */}
@@ -773,7 +772,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
                 strokeWidth={2.5}
               />
             </button>
-            <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+            <div className={`grid transition-all duration-500 ease-apple ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
                 <p className="max-w-[520px] pt-6 font-normal tracking-[0] leading-[1.5] text-[18px]" style={{ color: color.slate }}>
                   {tab.copy}
@@ -797,7 +796,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       type={isInteractive ? "button" : undefined}
       onClick={isInteractive ? () => onOpen(category) : undefined}
       aria-label={isInteractive ? `Open ${text}` : undefined}
-      className={`relative block overflow-hidden rounded-[30px] text-left ${isInteractive ? "cursor-pointer border-0 bg-transparent outline-none transition-transform duration-300 ease-google hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4" : ""} ${className}`}
+      className={`relative block overflow-hidden rounded-[30px] text-left ${isInteractive ? "cursor-pointer border-0 bg-transparent outline-none transition-transform duration-300 ease-apple hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4" : ""} ${className}`}
     >
       <img
         src={images[index % images.length]}
@@ -809,7 +808,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       {/* scrim — guarantees white type contrast on any photo */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/55 via-[#1d1d1f]/20 to-transparent" aria-hidden="true" />
       <div className="absolute inset-0 flex items-center justify-center px-4">
-        <span key={text} data-type="display" className="text-center text-white animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
+        <span key={text} data-type="display" className="text-center text-white animate-[heroFadeUp_0.9s_var(--ease-out-apple)]">
           {text}
         </span>
       </div>
@@ -849,10 +848,10 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
     <Link
       to={`/${category.slug}`}
       data-card
-      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-google hover:-translate-y-1 sm:w-[372px]"
+      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[372px]"
     >
       <div className="media-settle relative aspect-square overflow-hidden">
-        <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="h-full w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
+        <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="h-full w-full select-none object-cover transition-transform duration-500 ease-apple group-hover:scale-[1.04]" />
       </div>
       <div className="p-7 lg:p-8">
         <h3 data-type="feature" className="text-balance" style={{ color: color.ink, maxWidth: "18ch" }}>
@@ -890,19 +889,19 @@ const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9", style }
 
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
 });
 
 /* Apple's scroll-reveal chapter: after the hero, sections enter the viewport
-   and their type/photography rise in place, one element at a time, on Apple's
-   resolve-out curve (cubic-bezier(0.22,1,0.36,1)). Staggers children via
-   :global(.reveal-item > *) so a heading + sub + image each wait their beat —
-   the "scroll, then the text appears" cadence. The observer fires once; the
-   global reduced-motion contract snaps the transition to instant. */
-const SCROLL_REVEAL_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+   and their type/photography rise in place, one element at a time, on the
+   product resolve-out curve (--ease-out-apple in tokens.css — D1 motion law).
+   Staggers children via :global(.reveal-item > *) so a heading + sub + image
+   each wait their beat — the "scroll, then the text appears" cadence. The
+   observer fires once; the global reduced-motion contract snaps the
+   transition to instant. */
 
 /* RevealItem wraps one piece of a staggered scroll-reveal chapter so the
    resolve-out stagger targets each element individually. The index drives a
@@ -929,7 +928,6 @@ const ScrollReveal = React.memo(function ScrollReveal({ children, className = ""
       ref={ref}
       className={`scroll-reveal ${entered ? "in-view" : ""} ${className}`}
       style={{
-        ["--reveal-ease"]: SCROLL_REVEAL_EASE,
         ["--reveal-base-delay"]: `${baseDelay}ms`,
       }}
     >

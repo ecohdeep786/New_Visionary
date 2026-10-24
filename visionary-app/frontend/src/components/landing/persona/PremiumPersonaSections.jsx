@@ -184,7 +184,7 @@ const IntelligenceFrame = React.memo(function IntelligenceFrame({ steps, active,
             transform: i === active ? "none" : "scale(0.97)",
             transition: reduced
               ? "none"
-              : "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)",
+              : "opacity var(--motion-duration-statement) var(--ease-out-apple), transform var(--motion-duration-statement) var(--ease-out-apple)",
           }}
         >
           {INTELLIGENCE_CLIPS[i] ? (
@@ -355,7 +355,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
                 className="w-full"
                 style={{
                   opacity: active === i ? 1 : 0.4,
-                  transition: "opacity 0.7s cubic-bezier(0.16,1,0.3,1)",
+                  transition: "opacity var(--motion-duration-statement) var(--ease-out-apple)",
                 }}
               >
                 <IntelligenceDrawer step={s} index={i} total={steps.length} active={active === i} />
@@ -422,7 +422,7 @@ const PremiumOrbitDots = React.memo(function PremiumOrbitDots({ chips, activeInd
         <circle cx="50" cy="50" r="49.75" fill="none" stroke={color.ink} strokeOpacity="0.12" strokeWidth="0.25" />
       </svg>
       {/* the rotating dot ring */}
-      <div className="absolute inset-0 transition-transform ease-google" style={{ transform: `rotate(${rotation}deg)`, transitionDuration: reduced ? "0ms" : "700ms" }}>
+      <div className="absolute inset-0 transition-transform ease-apple" style={{ transform: `rotate(${rotation}deg)`, transitionDuration: reduced ? "0ms" : "700ms" }}>
         {chips.map((c, i) => {
           const isActive = i === activeIndex;
           return (
@@ -558,7 +558,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
                 </p>
                 <div className="mt-5 flex items-end justify-center gap-1.5" aria-hidden="true">
                   {["#1d1d1f", "#0066cc", "#1d1d1f", "#1d1d1f"].map((c, i) => (
-                    <span key={i} className="h-6 w-1.5 rounded-full" style={{ backgroundColor: c, opacity: i === 1 ? 1 : 0.22, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+                    <span key={i} className="h-6 w-1.5 rounded-full" style={{ backgroundColor: c, opacity: i === 1 ? 1 : 0.22, transformOrigin: "center", animation: `voiceDot 1.2s var(--ease-out-apple) ${i * 0.15}s infinite` }} />
                   ))}
                 </div>
               </div>
@@ -661,7 +661,7 @@ function PremiumAchievementSection({ heading, tabs, images }) {
                           strokeWidth={2.5}
                         />
                       </button>
-                      <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                      <div className={`grid transition-all duration-500 ease-apple ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                         <div className="overflow-hidden">
                           <p
                             className="pb-9 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
@@ -1214,7 +1214,7 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
       to={`/${category.slug}`}
       data-card
       aria-label={`Learn more about ${category.chip}`}
-      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-google hover:-translate-y-1 sm:w-[372px]"
+      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[372px]"
     >
       <div className="media-settle relative aspect-square overflow-hidden">
         <img
@@ -1223,7 +1223,7 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
           loading="lazy"
           decoding="async"
           draggable="false"
-          className="h-full w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]"
+          className="h-full w-full select-none object-cover transition-transform duration-500 ease-apple group-hover:scale-[1.04]"
         />
       </div>
       <div className="p-7 lg:p-8">

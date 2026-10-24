@@ -96,7 +96,7 @@ const FAQS = [
 
 /* ═══ Motion — the shared reveal grammar ═══ */
 function Reveal({ children, className = "" }) {
-  return <div className={`transition duration-700 ease-google ${className}`}>{children}</div>;
+  return <div className={`transition duration-700 ease-apple ${className}`}>{children}</div>;
 }
 
 function EmailLink({ email, subject, children = email, className = "" }) {

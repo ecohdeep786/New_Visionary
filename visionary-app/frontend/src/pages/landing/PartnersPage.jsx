@@ -38,7 +38,7 @@ function Reveal({ children, className = "", delay = 0 }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${
+      className={`transition-[opacity,transform] duration-700 ease-apple motion-reduce:transition-none ${
         shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
@@ -139,7 +139,7 @@ function WhatCarousel() {
     <div role="region" aria-roledescription="carousel" aria-label="What a Visionary partnership is">
       <div className="overflow-hidden" aria-live="polite">
         <div
-          className="flex transition-transform duration-500 ease-out motion-reduce:transition-none"
+          className="flex transition-transform duration-500 motion-reduce:transition-none"
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {SLIDES.map((slide, i) => (

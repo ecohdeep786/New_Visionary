@@ -103,3 +103,27 @@ body:has(.visionary-workspace, [data-font-surface="product"]),
   --font-brand: var(--font-product);
   font-family: var(--font-product);
 }
+
+/* ─── Motion law (D1, 2026-10-24) ─────────────────────────────────────────
+   One curve, one duration scale, everywhere on the product surface:
+
+   • --ease-out-apple is THE resolve-out curve for every transition and
+     entrance animation. No other cubic-bezier is permitted in source.
+   • Bounce/elastic curves (overshoot beyond the 0–1 output range) are
+     banned outright.
+   • One five-step duration scale: fast 180 / base 280 / slow 420 /
+     statement 650 / cinematic 900.
+   • `linear` is legal only on self-running indicators (spinner, marquee,
+     progress) — an `infinite` or WheelMask-style non-interactive loop.
+   • prefers-reduced-motion: reduce collapses motion to static-and-visible.
+     The global contract lives in index.css; per-sheet contracts in
+     premium.css, workspace.css, workspace-design.css and cast.css.
+   qa-motion.mjs (npm run qa:motion; in check) enforces these laws. */
+:root {
+  --ease-out-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-duration-fast: 180ms;
+  --motion-duration-base: 280ms;
+  --motion-duration-slow: 420ms;
+  --motion-duration-statement: 650ms;
+  --motion-duration-cinematic: 900ms;
+}
