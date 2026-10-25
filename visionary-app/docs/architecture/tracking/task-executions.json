@@ -795,6 +795,22 @@
           }
         ]
       }
+    },
+    {
+      "sourceId": "FAP-D3",
+      "jiraKey": "FAP-55",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-55",
+      "status": "In Progress",
+      "startAt": "2026-10-25T06:12:20.761Z",
+      "scope": "D3 performance + image law: hero art AVIF/WebP with measured density, LazyImage everywhere, bundle split of F10 monoliths into per-section modules, LCP <2.5s on Fast3G landing; AC vite build budget recorded + LCP pass recorded",
+      "branch": "opencode/fap-d3-performance",
+      "base": "beta@33add5121a567e9e45fa0c2da414c90d21fcb5fd (verified after D2 delivery record merge)",
+      "progress": [
+        {
+          "at": "2026-10-25T06:12:20.762Z",
+          "item": "task started per founder-ordered continuous progression from delivered D2 (FAP-54 in Testing awaiting reviewer); worktree opencode-fap-d3-performance from verified beta; Jira FAP-55 Idea->To Do->In Progress with start comment 10210; next: image inventory + LCP baseline on Fast3G"
+        }
+      ]
     }
   ]
 }
