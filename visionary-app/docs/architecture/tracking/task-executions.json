@@ -721,9 +721,16 @@
         "acceptance": "Existing product regression only; no new workspace transport or shared SQL migration activated"
       },
       "integration": {
-        "state": "pending final reviewed-head CI and published dev merge",
+        "state": "accepted scoped preparation; full ticket remains open",
         "acceptedBaseCommit": "9d6d2b5b0e97213ff2e8778c2a1d7469d8df554e",
-        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/27"
+        "commit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+        "reviewedFinalHead": "f4b48a1557a95fa80c3db866a23bf6b29c11cee0",
+        "finalReviewJiraCommentId": "10227",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/27",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40199709861",
+        "ciConclusion": "success",
+        "jiraCommentId": "10229",
+        "remotePublished": true
       },
       "fullFeatureAccepted": false,
       "linkedProductGatesRemainOpen": true,
@@ -738,6 +745,73 @@
         "state": "not eligible: full ticket remains open",
         "worker": "deepseek-kan-36-data-ddl",
         "reviewer": "qa-review-kan-36-data-ddl"
+      }
+    },
+    {
+      "sourceId": "DATA-02",
+      "jiraKey": "KAN-37",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-37",
+      "status": "Testing",
+      "scope": "Real PostgreSQL migration/backfill development preparation restricted to disposable loopback synthetic databases",
+      "branch": "codex/deepseek-kan-37-data-migrations",
+      "baseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+      "review": {
+        "state": "approved-scoped-preparation",
+        "reviewer": "/root/kan36_rework_reviewer",
+        "approvedCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "report": "docs/architecture/reviews/KAN37_REWORK_INDEPENDENT_REVIEW.md",
+        "reason": "Corrected transaction control, registry order and runtime grant/delegation findings; approval covers disposable PostgreSQL preparation only."
+      },
+      "checks": {
+        "priorCompletePostgresqlTests": 51,
+        "priorCheckedCommit": "36c6fed47722265b484c8dedbcd1ff52d6bbc51b",
+        "runtimeAndProvenanceTests": 8,
+        "finalDelegatedRoleRegression": true,
+        "finalCompleteCheck": "passed independently: 52 PostgreSQL plus eight runtime/provenance tests; final review-containing head and dev integration still require checks",
+        "postgresqlTests": 52,
+        "independentAdditionalPostgresqlProbes": 11,
+        "independentFocusedCompile": true,
+        "failed": 0,
+        "checkedCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40203665311",
+        "ciCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "ciConclusion": "success",
+        "priorLocalTimeoutAttempts": "Recorded in independent report; final rerun passed without weakening deadlines",
+        "environment": "PostgreSQL16.15, disposable synthetic loopback database, real distinct roles; no product records"
+      },
+      "localProductVerification": {
+        "browser": "User signed-in in-app browser",
+        "routes": [
+          "Home",
+          "Learn",
+          "Ask",
+          "Practice",
+          "Build",
+          "Privacy"
+        ],
+        "sessionReload": true,
+        "mobileHome": "390x844 visually passed; viewport reset",
+        "report": "docs/architecture/delivery/KAN37_LOCAL_BROWSER_VERIFICATION.md",
+        "jiraCommentId": "10232",
+        "acceptance": "Existing Firebase product regression; migrations/backfills remain disconnected and are separately PostgreSQL-tested"
+      },
+      "integration": {
+        "state": "pending exact final-source approval, final-head CI and published dev integration",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/28"
+      },
+      "fullFeatureAccepted": false,
+      "linkedProductGatesRemainOpen": true,
+      "remainingGates": [
+        "Full DATA-02 and phase-wide server authority acceptance",
+        "Cloud SQL identity provisioning and operational migration/backfill/rollback acceptance",
+        "Full KAN-36 models and affected source/policy decisions",
+        "Connected feature and two-device recovery acceptance",
+        "Hosted/privacy/release acceptance"
+      ],
+      "worktreeCleanup": {
+        "state": "not eligible: full ticket remains open",
+        "worker": "deepseek-kan-37-data-migrations",
+        "reviewer": "qa-review-kan-37-data-migrations"
       }
     }
   ]

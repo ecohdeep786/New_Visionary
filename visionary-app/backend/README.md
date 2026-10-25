@@ -1,5 +1,34 @@
 # Application backend
 
+## Migration and backfill preparation (KAN-37)
+
+The same root `npm run data:check` also compiles `tsconfig.data.json` and runs
+the DATA-02 PostgreSQL suites. The disposable test database setup role needs
+CREATE ROLE and CREATE SCHEMA solely to provision isolated synthetic fixtures.
+Each fixture creates a distinct non-superuser migration schema owner and a
+runtime role without schema CREATE or migration-ledger access, then removes
+only its own verified schema/roles. Never use product credentials for this command.
+
+`src/data` exposes `canonicalMigrations(backendRoot)`, `PostgresMigrationStore`,
+`MigrationRunner` and `BackfillRunner`. The store requires explicit migration/runtime
+URLs, actual matching role names and schema; it refuses hosted or non-synthetic
+database URLs. There is no automatic startup migration, deployment command or
+production adapter. `applyAll()` binds execution to verified database identities;
+an `appliedBy` string or confirmation flag is not permission.
+
+Migration artifact hashes cover up/down SQL and metadata; physical schema fingerprints
+detect compatibility drift. DDL and receipts share a locked transaction. Rollback
+is limited to a registered reversible last migration over an empty synthetic domain;
+the DATA-01 baseline is irreversible. Backfills use durable page transactions and
+per-key receipts, enforce page/row/batch/time limits, and return resumable state.
+Writers must use only their supplied transaction; external side effects are not covered.
+The caller supplies a stable 64-character SHA-256 definition for its source/writer
+contract and must not reuse it when semantics change.
+
+Read [the replacement handoff](../docs/architecture/delivery/KAN37_DDL_REVIEW.md)
+for the exact acceptance boundary. Hosted identities, existing-record migrations,
+connected feature outcomes and production rollout remain separate gates.
+
 ## Domain preparation verification (KAN-36)
 
 `npm run data:check` at the product root validates/generates the locked Prisma client,
