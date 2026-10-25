@@ -8,5 +8,9 @@
     "sourceMap": false,
     "incremental": false
   },
-  "include": ["src/data/**/*.ts"]
+  "include": [
+    "src/concurrency/concurrency-types.ts",
+    "src/concurrency/concurrency-store.ts",
+    "src/concurrency/concurrency.service.ts"
+  ]
 }
