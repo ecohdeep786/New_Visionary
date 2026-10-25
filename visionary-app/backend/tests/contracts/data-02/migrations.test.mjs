@@ -156,3 +156,18 @@ test('transaction/session control and multi-command escape artifacts fail before
   await assert.rejects(new MigrationRunner(f.store(),[v2,...base]).applyAll(),/ascending/);
   await assert.rejects(new MigrationRunner(f.store(),[]).applyAll(),/no migrations/);
 }));
+
+test('runtime control-table writes and sequence mutation privileges fail closed',()=>fixture(async f=>{
+  await new MigrationRunner(f.store(),canonical()).applyAll();
+  await f.admin.$executeRawUnsafe('GRANT INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER ON "'+f.schema+'"."_visionary_migrations" TO "'+f.runtimeRole+'"');
+  await assert.rejects(new MigrationRunner(f.store(),canonical()).applyAll(),/RUNTIME_CONTROL_WRITE_DENIED/);
+  await f.admin.$executeRawUnsafe('REVOKE ALL ON "'+f.schema+'"."_visionary_migrations" FROM "'+f.runtimeRole+'"');
+  await f.admin.$executeRawUnsafe('GRANT UPDATE ON SEQUENCE "'+f.schema+'"."_visionary_migrations_sequence_seq" TO "'+f.runtimeRole+'"');
+  await assert.rejects(new MigrationRunner(f.store(),canonical()).applyAll(),/RUNTIME_CONTROL_WRITE_DENIED/);
+}));
+
+test('first-use runtime default control-table grants are seen before commit and roll back DDL',()=>fixture(async f=>{
+  await f.db.$executeRawUnsafe('ALTER DEFAULT PRIVILEGES IN SCHEMA "'+f.schema+'" GRANT INSERT ON TABLES TO "'+f.runtimeRole+'"');
+  await assert.rejects(new MigrationRunner(f.store(),canonical()).applyAll(),/RUNTIME_CONTROL_WRITE_DENIED/);
+  assert.equal((await f.admin.$queryRawUnsafe('SELECT tablename FROM pg_tables WHERE schemaname=$1',f.schema)).length,0);
+}));

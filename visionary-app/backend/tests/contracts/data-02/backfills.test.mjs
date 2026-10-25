@@ -112,3 +112,10 @@ test('lost batch commit acknowledgement resumes from durable rows and completion
   const result=await new BackfillRunner(f.store(),source(rows),f.write).run(options);
   assert.equal(result.done,true);assert.equal(result.processed,5);assert.equal(result.batches,0);assert.equal((await f.rows()).length,5);
 }));
+
+test('new backfill metadata with runtime default grants rolls back its writer before commit',()=>fixture(async f=>{
+  await f.db.$executeRawUnsafe('ALTER DEFAULT PRIVILEGES IN SCHEMA "'+f.schema+'" GRANT UPDATE ON TABLES TO "'+f.runtimeRole+'"');
+  await assert.rejects(new BackfillRunner(f.store(),source(rows),f.write).run(options),/RUNTIME_CONTROL_WRITE_DENIED/);
+  assert.equal((await f.rows()).length,0);
+  assert.equal((await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='_visionary_backfills'",f.schema)).length,0);
+}));

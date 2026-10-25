@@ -15,15 +15,25 @@ export class PostgresMigrationStore {
   }
   async close(){await Promise.all([this.migration.$disconnect(),this.runtime.$disconnect()]);}
   private async runtimeIdentity():Promise<void>{
-    const rows=await this.runtime.$queryRawUnsafe<any[]>(`SELECT current_user AS role,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolbypassrls,
-      has_schema_privilege(current_user,$1,'CREATE') AS ddl,pg_has_role(current_user,$2,'MEMBER') AS migration_member
-      ,has_database_privilege(current_user,current_database(),'CREATE') AS database_ddl
+    const [identity]=await this.runtime.$queryRawUnsafe<{role:string}[]>('SELECT current_user AS role');
+    if(identity?.role!==this.config.runtimeRole)throw Error('RUNTIME_IDENTITY_DENIED');
+    await this.runtimePrivileges(this.runtime);
+  }
+  private async runtimePrivileges(query:Pick<DataTransaction,'$queryRawUnsafe'>):Promise<void>{
+    const rows=await query.$queryRawUnsafe<any[]>(`SELECT r.rolname AS role,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolbypassrls,
+      has_schema_privilege(r.oid,$1,'CREATE') AS ddl,pg_has_role(r.oid,$2,'MEMBER') AS migration_member
+      ,has_database_privilege(r.oid,current_database(),'CREATE') AS database_ddl
       ,EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
-        WHERE n.nspname=$1 AND pg_has_role(current_user,c.relowner,'MEMBER')) AS owns_objects
-      FROM pg_roles r WHERE r.rolname=current_user`,this.config.schema,this.config.migrationRole);
+        WHERE n.nspname=$1 AND pg_has_role(r.oid,c.relowner,'MEMBER')) AS owns_objects
+      ,EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+        WHERE n.nspname=$1 AND left(c.relname,11)='_visionary_' AND CASE
+          WHEN c.relkind IN ('r','p') THEN has_table_privilege(r.oid,c.oid,'INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER')
+          WHEN c.relkind='S' THEN has_sequence_privilege(r.oid,c.oid,'USAGE,UPDATE') ELSE FALSE END) AS control_writes
+      FROM pg_roles r WHERE r.rolname=$3`,this.config.schema,this.config.migrationRole,this.config.runtimeRole);
     const r=rows[0];
     if(!r||r.role!==this.config.runtimeRole||r.rolsuper||r.rolcreatedb||r.rolcreaterole||r.rolbypassrls||r.ddl||r.database_ddl||r.migration_member||r.owns_objects)
       throw Error('RUNTIME_IDENTITY_DENIED');
+    if(r.control_writes)throw Error('RUNTIME_CONTROL_WRITE_DENIED');
   }
   async transaction<T>(work:(tx:DataTransaction)=>Promise<T>,timeout=15000):Promise<T>{
     await this.runtimeIdentity();
@@ -40,7 +50,11 @@ export class PostgresMigrationStore {
         sequence BIGSERIAL PRIMARY KEY,version INTEGER NOT NULL,name TEXT NOT NULL,checksum TEXT NOT NULL,"schemaDigest" TEXT NOT NULL,
         status TEXT NOT NULL CHECK(status IN ('applied','rolled_back')),"appliedBy" TEXT NOT NULL DEFAULT current_user,
         "appliedAt" TIMESTAMPTZ NOT NULL DEFAULT clock_timestamp())`);
-      return work(tx);
+      const result=await work(tx);
+      // Check explicit runtime-role privileges inside this transaction: newly
+      // created tables and their default grants are invisible to other sessions.
+      await this.runtimePrivileges(tx);
+      return result;
     },{maxWait:timeout,timeout});
   }
   async appliedReceipts(tx:DataTransaction):Promise<MigrationReceipt[]>{
