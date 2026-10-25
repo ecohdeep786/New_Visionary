@@ -8,5 +8,9 @@
     "sourceMap": false,
     "incremental": false
   },
-  "include": ["src/data/**/*.ts"]
+  "include": [
+    "src/admission/admission-types.ts",
+    "src/admission/admission-store.ts",
+    "src/admission/admission.service.ts"
+  ]
 }
