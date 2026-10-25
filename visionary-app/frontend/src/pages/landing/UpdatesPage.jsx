@@ -360,7 +360,7 @@ export default function UpdatesPage() {
 
             <p className="mt-8 max-w-[880px] text-[13px] leading-[1.6] text-[#6e6e73]">
               We use your information according to the Visionary{" "}
-              <Link to="/privacy" className="rounded-sm text-[#0066cc] underline-offset-2 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
+              <Link to="/privacy" className="relative after:absolute after:-inset-y-3 after:-inset-x-2 rounded-sm text-[#0066cc] underline-offset-2 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                 Privacy Policy
               </Link>
               .

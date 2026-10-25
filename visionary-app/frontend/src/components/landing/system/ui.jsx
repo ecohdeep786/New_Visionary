@@ -305,7 +305,7 @@ export function ProgressDots({ total, active, onSelect, label = "Carousel slides
           aria-label={`Go to slide ${i + 1}`}
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-[18px] after:-inset-x-[18px] after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
             i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"
           }`}
           style={{

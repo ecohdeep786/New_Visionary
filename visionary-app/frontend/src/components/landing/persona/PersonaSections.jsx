@@ -204,7 +204,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
           aria-label={`Go to challenge ${i + 1}`}
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 after:absolute after:-inset-y-[18px] after:-inset-x-[18px] after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? color.ink : `${color.ink}33` }}
         />
       ))}

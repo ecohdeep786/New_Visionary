@@ -159,7 +159,7 @@ export default function ContactPage() {
                 {TABS.map((t) => (
                   <button key={t.id} type="button" role="tab" aria-selected={activeTab === t.id}
                     onClick={() => setActiveTab(t.id)}
-                    className={`shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
+                    className={`shrink-0 rounded-full px-5 py-3 text-[14px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
                       activeTab === t.id ? "bg-white text-[#1d1d1f] shadow-[0_1px_3px_rgba(18,19,23,0.08)]" : "text-[#6e6e73] hover:text-[#1d1d1f]"
                     }`}>
                     {t.label}
@@ -294,7 +294,7 @@ export default function ContactPage() {
             </div>
             <div>
               <h2 className="text-[20px] font-medium text-[#1d1d1f]">Keep sensitive details out</h2>
-              <p className="mt-3 text-[14px] leading-[1.75] text-[#6e6e73]">Do not include passwords, payment card details, or sensitive learner information in an email. For information about personal data, read the <Link to="/privacy" className="font-medium text-[#0066cc] underline-offset-2 hover:underline">Privacy policy</Link>.</p>
+              <p className="mt-3 text-[14px] leading-[1.75] text-[#6e6e73]">Do not include passwords, payment card details, or sensitive learner information in an email. For information about personal data, read the <Link to="/privacy" className="relative after:absolute after:-inset-y-3 after:-inset-x-2 font-medium text-[#0066cc] underline-offset-2 hover:underline">Privacy policy</Link>.</p>
             </div>
           </Reveal>
         </section>

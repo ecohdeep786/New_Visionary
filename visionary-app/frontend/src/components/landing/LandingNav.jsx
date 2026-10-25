@@ -94,7 +94,7 @@ const navLink = (active) =>
 
 /* Icon-only button — borderless, a quiet gray wash on hover */
 const iconBtn = (active = false) =>
-  `flex h-11 w-11 items-center justify-center rounded-full transition-colors ${FOCUS_RING} ${
+  `flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors ${FOCUS_RING} ${
     active ? "bg-[#1d1d1f]/5" : "hover:bg-[#1d1d1f]/5"
   }`;
 
@@ -297,7 +297,7 @@ export default function LandingNav() {
           <Link
             to="/"
             aria-label="Visionary home"
-            className={`shrink-0 rounded-full ${FOCUS_RING}`}
+            className={`shrink-0 relative rounded-full after:absolute after:-inset-y-2 after:-inset-x-7 ${FOCUS_RING}`}
           >
             <VisionaryLogo />
           </Link>

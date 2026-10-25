@@ -168,7 +168,7 @@ function MobileRail({ active }) {
           return (
             <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
               onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
-              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
+              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-3 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
                 isActive ? "bg-[#f5f5f7] font-medium text-[#0066cc]" : "text-[#1d1d1f] hover:text-[#1d1d1f]"
               }`}>
               <Icon className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
@@ -346,7 +346,7 @@ export default function CareersPage() {
                             </a>
                           </div>
                         </div>
-                        <Link to="/about" aria-label={`Learn more about ${area.title}`} className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center">
+                        <Link to="/about" aria-label={`Learn more about ${area.title}`} className="absolute bottom-1.5 right-1.5 flex h-11 w-11 items-center justify-center">
                           <ArrowRight className="h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                         </Link>
                       </article>
@@ -445,7 +445,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     If you need an accessible format or an adjustment to a hiring conversation, email{" "}
-                    <a className="rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
+                    <a className="relative after:absolute after:-inset-y-3 after:-inset-x-2 rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                       href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Accessibility request (Careers)")}`}>
                       careers@visionary.org.in
                     </a>{" "}
@@ -453,7 +453,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     For accessibility information about the product, visit{" "}
-                    <Link className="rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" to="/accessibility">
+                    <Link className="relative after:absolute after:-inset-y-3 after:-inset-x-2 rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" to="/accessibility">
                       Visionary accessibility
                     </Link>.
                   </p>

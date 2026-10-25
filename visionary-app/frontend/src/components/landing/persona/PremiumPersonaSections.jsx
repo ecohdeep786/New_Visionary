@@ -376,7 +376,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
                   aria-label={`Go to step ${i + 1}: ${s.title}`}
                   aria-pressed={i === active}
                   onClick={() => scrollToBeat(i)}
-                  className="relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-4 after:-inset-x-3 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2997ff] focus-visible:ring-offset-2"
+                  className="relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-[18px] after:-inset-x-[18px] after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2997ff] focus-visible:ring-offset-2"
                   style={{ width: i === active ? 40 : 8, backgroundColor: i === active ? "#2997ff" : "rgba(245,247,250,0.3)" }}
                 />
               ))}
@@ -532,7 +532,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
           <div className="mt-5 flex justify-center">
             <Link
               to="/how-it-works"
-              className="inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+              className="relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               Learn more
               <ChevronIcon className="h-4 w-4" />
@@ -895,7 +895,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
           <div className="mt-10 flex justify-center px-6 lg:mt-12">
             <Link
               to={linkTo}
-              className="inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+              className="relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               {linkLabel}
               <ChevronIcon className="h-4 w-4" />
@@ -1000,7 +1000,7 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
                         <Link
                           to={value.to}
                           aria-label={`Learn more about ${value.title.toLowerCase()}`}
-                          className="mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                          className="mt-3 relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                         >
                           Learn more
                           <ChevronIcon className="h-4 w-4" />
@@ -1038,7 +1038,7 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
                     <Link
                       to={value.to}
                       aria-label={`Learn more about ${value.title.toLowerCase()}`}
-                      className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                      className="mt-4 relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                     >
                       Learn more
                       <ChevronIcon className="h-4 w-4" />
@@ -1171,7 +1171,7 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
                 <React.Fragment key={route.to}>
                   <Link
                     to={route.to}
-                    className={`rounded font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
+                    className={`relative after:absolute after:-inset-y-3 after:-inset-x-1.5 rounded font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
                       closing ? "text-[#2997ff] hover:text-[#6bb6ff]" : "text-[#0066cc] hover:text-[#0071e3]"
                     }`}
                   >

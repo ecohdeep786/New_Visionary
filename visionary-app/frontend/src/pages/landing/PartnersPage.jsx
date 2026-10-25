@@ -182,7 +182,7 @@ function WhatCarousel() {
               aria-selected={i === index}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => setIndex(i)}
-              className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
+              className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-[18px] after:-inset-x-[18px] after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
                 i === index ? "w-6 bg-[#0066cc]" : "w-2 bg-[#d2d2d7] hover:bg-[#86868b]"
               }`}
             />

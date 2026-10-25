@@ -673,6 +673,120 @@
         ],
         "actualRemovalReceipt": "Record actual inventory and removal in Jira after cleanup; this checkpoint does not assert future removal"
       }
+    },
+    {
+      "sourceId": "FAP-D1",
+      "jiraKey": "FAP-53",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-53",
+      "status": "Testing",
+      "verifiedAt": "2026-10-24T06:25:28.874Z",
+      "scope": "D1 one motion law: --ease-out-apple curve + 180/280/420/650/900ms duration scale on the single token home; enforced end-to-end by qa-motion across 403 source files and scripts/tests/motion-law.test.mjs",
+      "branch": "opencode/fap-d1-motion",
+      "implementationCommits": [
+        "af6a80472f6d93d22abc41f7f141ad966a902363"
+      ],
+      "betaIntegration": {
+        "mergeCommit": "4dc833dd",
+        "pushedAndVerified": true,
+        "protocol": "founder-amended: agents merge task lane into beta and push; no beta<->dev merges by agents; dev untouched"
+      },
+      "checks": {
+        "fullCheck": "green (verify-layout, verify-imports, qa-continuity, qa-motion, script tests, lint, both typechecks, 624/624 tests, vite build 47.63s)",
+        "frontendTests": 624,
+        "qaMotionReceiptPair": {
+          "before": 123,
+          "after": 0,
+          "files": 403
+        }
+      },
+      "scopeAuditRebaseline": {
+        "routes": 512,
+        "controlDeclarations": 931,
+        "controlFiles": 219,
+        "registeredEndpoints": 26,
+        "reviewedOperationGroups": 30,
+        "drift": "identical to E1 baseline (zero drift); baselines included in af6a8047"
+      },
+      "artifacts": [
+        "frontend/artifacts/research/continuity-2026-10-24/d1-motion/D1_EVIDENCE.md",
+        "frontend/artifacts/research/continuity-2026-10-24/d1-motion/d1-before-scan.json",
+        "frontend/artifacts/research/continuity-2026-10-24/d1-motion/d1-after-scan.json",
+        "frontend/artifacts/research/continuity-2026-10-24/APPLE_BENCHMARK_STUDY_2026-10-23.md"
+      ],
+      "review": {
+        "state": "pending-reviewer-acceptance",
+        "implementer": "opencode",
+        "reviewer": null,
+        "candidateCommit": "af6a8047",
+        "jiraCommentId": "10175",
+        "note": "D-095 pending review lives in Jira Testing; Done requires a separate reviewer recording the exact reviewed commit. Founder-ordered continuous-progression tension recorded in D1_EVIDENCE.md"
+      },
+      "jira": {
+        "transitions": [
+          {
+            "id": 41,
+            "to": "Testing",
+            "status": 204,
+            "at": "2026-10-24T06:25:28.874Z",
+            "commentId": 10175
+          }
+        ]
+      }
+    },
+    {
+      "sourceId": "FAP-D2",
+      "jiraKey": "FAP-54",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-54",
+      "status": "In Progress",
+      "startAt": "2026-10-24T06:25:28.874Z",
+      "scope": "D2 responsive + tap targets: full public sweep at 320/390/768/1024/1440 with zero overflow, 44px tap-target law (static qa-taps + rendered receipts), onboarding labels >=12px, hero stacks verified at 390, 200% font re-run",
+      "branch": "opencode/fap-d2-responsive",
+      "base": "beta@4dc833dd (verified before branching; deviation from origin/dev 0306703e documented per founder-amended beta integration lane)",
+      "progress": [
+        {
+          "at": "2026-10-24T06:25:28.874Z",
+          "item": "static law scanner frontend/scripts/qa-taps.mjs (tap law + hit-union accounting + label law + 3-entry exception register) green: 245 interactive controls / 90 files; wired into frontend qa:taps, product frontend:qa:taps, scripts/check.mjs; scripts/tests/tap-law.test.mjs 13/13"
+        },
+        {
+          "at": "2026-10-24T06:25:28.874Z",
+          "item": "source fixes: CareersPage 32px icon Link -> 44px box (icon position preserved), CookiesPage switch -> 64x44 hit wrapper with unchanged 28x48 visual pill (+ law-curve durations), four dot rows -> >=44px pseudo hit unions (PersonaSections, PremiumPersonaSections x2, system/ui ProgressDots, PartnersPage tab strip)"
+        },
+        {
+          "at": "2026-10-24T06:25:28.874Z",
+          "item": "next: rendered 320/390/768/1024/1440 sweep with receipts into frontend/artifacts/research/continuity-2026-10-24/d2-responsive/, hero stack at 390 verification, 200% font sweep, then full npm run check + beta merge per amended protocol"
+        },
+        {
+          "at": "2026-10-25T11:30:00.000Z",
+          "item": "harness decision: dev-server boots flaked on cold module waterfall (~105 resources) -> rendered sweep measured against production build via vite preview 4173 (deterministic ~0.4-1.5s boots); router context via src-less iframe inheriting parent pathname (top-level navigate per route), no replaceState shim; ledger persisted in localStorage['d2sweep'] across navigations; dpr 1.31 so css-44 raw-reads 43.9886 -> threshold 43.9 with raw 2-decimal values"
+        },
+        {
+          "at": "2026-10-25T11:30:00.000Z",
+          "item": "rendered sweep BEFORE fix batch: 24 public routes x 5 widths = 120 rows, 0 horizontal-overflow combos, 0 dead boots; 98 unique sub-44 signatures across ~10 component classes (breadcrumb 13px links, legal chips, policy sidebars, /help chips, /how-it-works chips + CTA, persona Learn-more text links, community/careers/contact pills, home route links, nav logo 28px, hamburger flex-squeeze w30)"
+        },
+        {
+          "at": "2026-10-25T11:30:00.000Z",
+          "item": "fix batch landed in 13 files (Breadcrumb, PolicyTabs, Privacy/Terms/Security/CookiesPage sidebar + privacy links, SchoolPage /help chips, CoachingPage CTA + story chips + walks, PremiumPersonaSections 6 link sites, AboutUsPage link component, CommunityPage, ContactPage pills + link, CareersPage pills + links, UpdatesPage link, LandingNav iconBtn shrink-0 + logo union, CookiesPage class disambiguation) -> tap unions via relative after:absolute after:-inset-y-3 (nav logo after:-inset-y-2 after:-inset-x-7); no visual anatomy change"
+        },
+        {
+          "at": "2026-10-25T11:30:00.000Z",
+          "item": "rendered sweep AFTER fix batch: 120 rows, 0 violations (no under44, no overflow); 200% root font (32px) x 18 routes x 320/390 = 36 combos with 0 overflow; hero stacks verified at 390 (visible h1 fits, clipped:false, on all checked routes); receipts: d2-sweep-rendered-2026-10-25.json (before), d2-sweep-rendered-2026-10-25-after.json (after), font-200-hero-390-2026-10-25.json, D2_EVIDENCE.md (PNG screenshots unavailable - desktop browser window not visible this session)"
+        },
+        {
+          "at": "2026-10-25T11:30:00.000Z",
+          "item": "next: full npm run check, commit+d push task branch, beta merge --no-ff + push + verify per amended protocol; FAP-54 remains In Progress; separate reviewer records exact reviewed commit before Done (D-095); founder-ordered continuous progression continues toward D3 while review pends"
+        }
+      ],
+      "jira": {
+        "transitions": [
+          {
+            "id": 31,
+            "to": "In Progress",
+            "status": 204,
+            "at": "2026-10-24T06:25:28.874Z",
+            "commentId": 10176
+          }
+        ]
+      }
     }
   ]
 }

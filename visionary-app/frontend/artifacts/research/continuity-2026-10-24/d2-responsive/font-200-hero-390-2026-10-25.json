@@ -1,0 +1,22 @@
+{
+  "captured": "2026-10-25",
+  "origin": "http://localhost:4173 (production build via vite preview)",
+  "harness": "about:blank iframe + document.write(production shell); router inherits parent pathname; dpr=1.31 so css 44px raw-reads 43.9886 — threshold 43.9",
+  "passes": [
+    {
+      "pass": "200% root font (documentElement.fontSize='32px')",
+      "widths": [320, 390],
+      "routes": ["/", "/pricing", "/careers", "/student", "/teacher", "/parent", "/professional", "/organization", "/how-it-works", "/contact", "/community", "/help", "/privacy", "/terms", "/security", "/cookies", "/about", "/updates"],
+      "result": "0 of 36 combos with horizontal root overflow (scrollWidth == clientWidth at every combo)",
+      "note": "pricing plan table is a structured scroll rail (min-w inside parent scroller) and the careers pill rail is an intentional overflow-X scroller — both contained, root does not scroll"
+    },
+    {
+      "pass": "hero stack verification",
+      "widths": [320, 390],
+      "routes": ["/", "/student", "/teacher", "/parent", "/professional", "/organization", "/how-it-works", "/contact", "/community", "/help", "/privacy", "/terms", "/security", "/cookies", "/about", "/updates"],
+      "result": "visible h1 fits the viewport on every route at 320 and 390 (e.g. / hero h1 w=204.8 right=259.6 at 320; persona heroes right=275.6 at 320 / right=345.9 at 390); no hero node crosses the right edge (hero roots report clipped:false)",
+      "note": "each landing page also carries a hidden overlay h1 variant (display:none ancestor) — excluded by the visible-filter; fs stays px-defined (40px) while rem chrome scales at 200%"
+    }
+  ],
+  "receiptLimitation": "PNG visual captures were unavailable this session: browser.screenshot requires a visible desktop browser window and none was visible during the run; rendered JSON ledgers (this file + d2-sweep-rendered-2026-10-25[-after].json) carry the rendered evidence."
+}

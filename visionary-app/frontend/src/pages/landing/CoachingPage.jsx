@@ -237,7 +237,7 @@ function AuthMock({ state, onPause, onResume }) {
           key={`btn-${state}`}
           to={isSignIn ? "/login" : "/register"}
           aria-label={isSignIn ? "Sign in to Visionary" : "Create a free Visionary account"}
-          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f]"
+          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3.5 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f]"
           style={{ backgroundColor: COLORS.blue }}
         >
           {isSignIn ? "Sign in" : "Create account"}
@@ -498,7 +498,7 @@ function HowLoopSection() {
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActive(i)}
-                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${isActive ? "bg-[#1d1d1f] text-white" : "text-[#6e6e73] hover:bg-white"}`}
+                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-3 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${isActive ? "bg-[#1d1d1f] text-white" : "text-[#6e6e73] hover:bg-white"}`}
               >
                 <st.Icon className="h-4 w-4" strokeWidth={1.8} />
                 {st.label}
@@ -571,7 +571,7 @@ function HowDifferentPeopleSection() {
               {scenario.ui}
             </p>
             <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{scenario.outcome}</p>
-            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
+            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
               See the {scenario.tab.toLowerCase()} page
               <ChevronIcon className="h-4 w-4" />
             </Link>

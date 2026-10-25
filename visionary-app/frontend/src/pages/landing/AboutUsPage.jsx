@@ -78,7 +78,7 @@ function Eyebrow({ children }) {
 }
 
 function ArrowLink({ to, children, className = "", style }) {
-  return <Link to={to} style={style} className={`group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}>{children}<ChevronIcon className="h-4 w-4" /></Link>;
+  return <Link to={to} style={style} className={`group relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}>{children}<ChevronIcon className="h-4 w-4" /></Link>;
 }
 
 function MissionSection() {
