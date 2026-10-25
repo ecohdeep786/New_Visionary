@@ -1,141 +1,63 @@
-// DATA-02 — migration runner: preflight, ordered apply, verify, rollback.
-//
-// Production/rollback rules encoded here:
-//   - Domain tables must be empty (synthetic staging) before a first apply,
-//     unless the operator explicitly confirms continue-from-existing.
-//   - Applied history is immutable: a changed checksum or a removed/renamed
-//     past migration is drift and blocked.
-//   - Prerequisites must be applied before a migration; gaps are refused.
-//   - Only the last applied, explicitly reversible migration may be rolled
-//     back, and only with the same empty-staging/confirmation guard.
-//   - Every outcome is recorded as an append-only ledger receipt.
-import type { ApplyingResult, MigrationReceipt, ApplyOptions, RegisteredMigration, VerifyResult } from './migration-types';
-import type { MigrationStore } from './migration-store';
-
-const now = () => new Date().toISOString();
-
+import { migrationChecksum } from './migration-registry';
+import { DataTransaction, PostgresMigrationStore } from './migration-store';
+import type { RegisteredMigration,ApplyingResult,VerifyResult } from './migration-types';
 export class MigrationRunner {
-  constructor(private readonly store: MigrationStore, private readonly migrations: readonly RegisteredMigration[]) {}
-
-  private ordered() {
-    return [...this.migrations].sort((a, b) => a.version - b.version);
+  private readonly migrations:RegisteredMigration[];
+  constructor(private readonly store:PostgresMigrationStore,migrations:readonly RegisteredMigration[]){
+    this.migrations=JSON.parse(JSON.stringify(migrations));
   }
-
-  private async driftIssues(): Promise<string[]> {
-    const issues: string[] = [];
-    const applied = await this.store.appliedReceipts();
-    for (const receipt of applied) {
-      const entry = this.migrations.find((m) => m.version === receipt.version);
-      if (!entry) {
-        issues.push(`applied version ${receipt.version} (${receipt.name}) is no longer registered`);
-        continue;
-      }
-      if (entry.checksum !== receipt.checksum) {
-        issues.push(`checksum drift on version ${receipt.version} (${entry.name}): applied history no longer matches the registry`);
-      }
-    }
-    return issues;
-  }
-
-  /** Refuse obvious corruption before any statement runs. */
-  async preflight(): Promise<string[]> {
-    const issues: string[] = [];
-    const ordered = this.ordered();
-    if (ordered.length === 0) issues.push('no migrations registered');
-    const seen = new Set<number>();
-    for (const m of ordered) {
-      if (seen.has(m.version)) issues.push(`duplicate version ${m.version}`);
+  private async issues(tx:DataTransaction):Promise<string[]>{
+    const issues:string[]=[],seen=new Set<number>();
+    for(const m of this.migrations){
+      if(!Number.isSafeInteger(m.version)||m.version<1||seen.has(m.version))issues.push('invalid/duplicate version');
+      if(!m.name||!m.statements.length||migrationChecksum(m)!==m.checksum)issues.push('artifact checksum invalid');
+      if(m.reversible&&!m.down?.length)issues.push('rollback artifact missing');
+      if(m.requires.some(v=>v>=m.version||!seen.has(v)))issues.push('invalid prerequisite order');
       seen.add(m.version);
-      for (const prereq of m.requires) {
-        if (!seen.has(prereq) && !(await this.store.appliedReceipts()).some((r) => r.version === prereq)) {
-          issues.push(`missing prerequisite version ${prereq} for ${m.name}`);
-        }
-      }
     }
-    issues.push(...(await this.driftIssues()));
+    const receipts=await this.store.appliedReceipts(tx),applied=new Set(receipts.map(r=>r.version));
+    for(const r of await this.store.history(tx)){
+      const m=this.migrations.find(x=>x.version===r.version);
+      if(!m||m.name!==r.name||m.checksum!==r.checksum)issues.push('applied migration drift');
+    }
+    for(const r of receipts){const m=this.migrations.find(x=>x.version===r.version);
+      if(m?.requires.some(v=>!applied.has(v)))issues.push('applied prerequisite missing');}
+    if(receipts.length&&receipts[receipts.length-1].schemaDigest!==await this.store.schemaDigest(tx))issues.push('physical schema drift');
     return issues;
   }
-
-  /** Apply every pending migration in ascending order with an outcome ledger. */
-  async applyAll(options: ApplyOptions): Promise<ApplyingResult> {
-    const issues = await this.preflight();
-    if (issues.length > 0) throw new Error(`MIGRATION_PREFLIGHT_FAILED: ${issues.join('; ')}`);
-
-    await this.store.ensureLedger();
-    const applied = await this.store.appliedReceipts();
-    const appliedVersions = new Set(applied.map((r) => r.version));
-    const isEmpty = await this.store.isDomainEmpty();
-
-    // First apply against a domain that already has data is refused unless the
-    // operator explicitly confirmed this (empty synthetic staging rule).
-    if (appliedVersions.size === 0 && !isEmpty && !options.stagingConfirmed) {
-      throw new Error('NON_EMPTY_REQUIRES_CONFIRMATION: empty synthetic staging is required before touching existing records.');
-    }
-
-    const result: ApplyingResult = { applied: 0, skipped: 0, receipts: [] };
-    for (const m of this.ordered()) {
-      if (appliedVersions.has(m.version)) {
-        result.skipped += 1;
-        result.receipts.push(await this.store.appliedReceipts().then((r) => r.find((x) => x.version === m.version)!));
-        continue;
+  async applyAll():Promise<ApplyingResult>{
+    return this.store.transaction(async tx=>{
+      const issues=await this.issues(tx);if(issues.length)throw Error('MIGRATION_PREFLIGHT_FAILED: '+issues.join('; '));
+      const receipts=await this.store.appliedReceipts(tx),applied=new Set(receipts.map(r=>r.version));
+      const pending=this.migrations.filter(m=>!applied.has(m.version));
+      // No boolean override can authorize retained-record mutation.
+      if(pending.length&&!(await this.store.isDomainEmpty(tx)))throw Error('NON_EMPTY_STAGING_DENIED');
+      for(const m of pending){
+        if(m.requires.some(v=>!applied.has(v)))throw Error('PREREQUISITE_MISSING');
+        for(const sql of m.statements)await tx.$executeRawUnsafe(sql);
+        await this.store.recordReceipt(tx,m,'applied');applied.add(m.version);
       }
-      for (const prereq of m.requires) {
-        if (!appliedVersions.has(prereq)) throw new Error(`PREREQUISITE_MISSING: version ${prereq} must precede version ${m.version}.`);
-      }
-      const startedAt = Date.now();
-      for (const statement of m.statements) await this.store.exec(statement);
-      const receipt: MigrationReceipt = {
-        version: m.version,
-        name: m.name,
-        checksum: m.checksum,
-        appliedAt: now(),
-        appliedBy: options.appliedBy,
-        status: 'applied',
-        reason: `applied in ${Date.now() - startedAt}ms`,
-      };
-      await this.store.recordReceipt(receipt);
-      result.applied += 1;
-      result.receipts.push(receipt);
-      appliedVersions.add(m.version);
-    }
-    return result;
+      return {applied:pending.length,skipped:receipts.length,receipts:await this.store.appliedReceipts(tx)};
+    });
   }
-
-  /** Re-check applied history against the registry after the run. */
-  async verify(): Promise<VerifyResult> {
-    const issues = await this.preflight();
-    const applied = await this.store.appliedReceipts();
-    const appliedVersions = new Set(applied.map((r) => r.version));
-    for (const m of this.ordered()) {
-      if (!appliedVersions.has(m.version)) issues.push(`version ${m.version} (${m.name}) not applied`);
-    }
-    return { consistent: issues.length === 0, issues };
+  async verify():Promise<VerifyResult>{
+    return this.store.transaction(async tx=>{
+      const issues=await this.issues(tx),applied=new Set((await this.store.appliedReceipts(tx)).map(r=>r.version));
+      for(const m of this.migrations)if(!applied.has(m.version))issues.push('migration not applied: '+m.version);
+      return {consistent:!issues.length,issues};
+    });
   }
-
-  /**
-   * Roll back exactly one applied, reversible migration (the newest). Refuses
-   * rolling back a non-reversible migration or skipping intermediate versions;
-   * the same staging confirmation guard applies to destructive steps.
-   */
-  async rollbackLast(options: ApplyOptions): Promise<MigrationReceipt> {
-    const applied = (await this.store.appliedReceipts()).filter((r) => r.status === 'applied');
-    if (applied.length === 0) throw new Error('NOTHING_TO_ROLLBACK: no applied migrations.');
-    const newest = applied[applied.length - 1];
-    const entry = this.migrations.find((m) => m.version === newest.version);
-    if (!entry) throw new Error('ROLLBACK_DENIED: the newest applied migration is no longer registered.');
-    if (!entry.reversible || !entry.down) throw new Error('ROLLBACK_DENIED: migration is not reversible (would delete retained domain data).');
-    if (!(await this.store.isDomainEmpty()) && !options.stagingConfirmed) {
-      throw new Error('NON_EMPTY_REQUIRES_CONFIRMATION: empty synthetic staging is required before rolling back over existing records.');
-    }
-    for (const statement of entry.down) await this.store.exec(statement);
-    const receipt: MigrationReceipt = {
-      ...newest,
-      appliedAt: now(),
-      appliedBy: options.appliedBy,
-      status: 'rolled_back',
-      reason: 'explicit staged rollback',
-    };
-    await this.store.recordReceipt(receipt);
-    return receipt;
+  async rollbackLast(){
+    return this.store.transaction(async tx=>{
+      const issues=await this.issues(tx);if(issues.length)throw Error('MIGRATION_PREFLIGHT_FAILED: '+issues.join('; '));
+      const receipts=await this.store.appliedReceipts(tx),latest=receipts[receipts.length-1];
+      if(!latest)throw Error('NOTHING_TO_ROLLBACK');
+      const m=this.migrations.find(x=>x.version===latest.version)!;
+      if(!m.reversible||!m.down?.length)throw Error('ROLLBACK_DENIED');
+      if(!(await this.store.isDomainEmpty(tx)))throw Error('NON_EMPTY_STAGING_DENIED');
+      for(const sql of m.down)await tx.$executeRawUnsafe(sql);
+      await this.store.recordReceipt(tx,m,'rolled_back');
+      return {...latest,status:'rolled_back' as const};
+    });
   }
 }

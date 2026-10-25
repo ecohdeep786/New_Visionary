@@ -1,84 +1,34 @@
-// DATA-02 — versioned migration registry and integrity checks.
-//
-// The registry is the single ordered, checksummed catalogue of product schema
-// migrations. Version 1 mirrors the DATA-01 reviewed workspace-domain DDL so
-// the machinery is validated against the real target shape; the canonical SQL
-// file remains in prisma/migrations (single source of truth at integration).
-// Any change to a released migration changes its checksum and is refused as
-// drift — the registry never silently re-applies or rewrites applied history.
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import type { RegisteredMigration } from './migration-types';
-
-export function migrationChecksum(statements: readonly string[]): string {
-  return createHash('sha256').update(statements.join('\n--- migration step ---\n')).digest('hex');
+export function migrationChecksum(m:Omit<RegisteredMigration,'checksum'>):string {
+  return createHash('sha256').update(JSON.stringify({version:m.version,name:m.name,requires:m.requires,
+    statements:m.statements,down:m.down??[],reversible:m.reversible})).digest('hex');
 }
-
-const DATA_01_PERSONS =
-  'CREATE TABLE IF NOT EXISTS persons (uid TEXT NOT NULL, createdAt TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, updatedAt TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT persons_pkey PRIMARY KEY (uid));';
-const DATA_01_WORKSPACES =
-  'CREATE TABLE IF NOT EXISTS workspaces (id TEXT NOT NULL, uid TEXT NOT NULL, name TEXT NOT NULL, slug TEXT NOT NULL, description TEXT, isPersonal BOOLEAN NOT NULL DEFAULT FALSE, createdAt TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, updatedAt TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT workspaces_pkey PRIMARY KEY (id), CONSTRAINT workspaces_slug_key UNIQUE (slug));';
-const DATA_01_MEMBERSHIPS =
-  'CREATE TABLE IF NOT EXISTS workspace_memberships (id TEXT NOT NULL, uid TEXT NOT NULL, workspaceId TEXT NOT NULL, role TEXT NOT NULL DEFAULT \'MEMBER\', source TEXT NOT NULL, sourceVersion TEXT NOT NULL DEFAULT \'v1\', joinedAt TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, updatedAt TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT workspace_memberships_pkey PRIMARY KEY (id), CONSTRAINT workspace_memberships_uid_workspaceId_key UNIQUE (uid, workspaceId));';
-const DATA_01_COMMAND_RESULTS =
-  'CREATE TABLE IF NOT EXISTS command_results (id TEXT NOT NULL, uid TEXT NOT NULL, commandId TEXT NOT NULL, kind TEXT NOT NULL, payloadDigest TEXT NOT NULL, status TEXT NOT NULL DEFAULT \'PENDING\', CONSTRAINT command_results_pkey PRIMARY KEY (id), CONSTRAINT command_results_commandId_key UNIQUE (commandId));';
-const DATA_01_OUTBOX =
-  'CREATE TABLE IF NOT EXISTS outbox_events (id TEXT NOT NULL, uid TEXT NOT NULL, topic TEXT NOT NULL, payload JSONB NOT NULL, cursor TEXT NOT NULL, status TEXT NOT NULL DEFAULT \'PENDING\', createdAt TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT outbox_events_pkey PRIMARY KEY (id));';
-
-const V1_STATEMENTS = [
-  DATA_01_PERSONS,
-  DATA_01_WORKSPACES,
-  DATA_01_MEMBERSHIPS,
-  DATA_01_COMMAND_RESULTS,
-  DATA_01_OUTBOX,
-];
-
-const V2_STATEMENTS = [
-  'ALTER TABLE command_results ADD COLUMN IF NOT EXISTS revision INTEGER NOT NULL DEFAULT 1;',
-  'ALTER TABLE outbox_events ADD COLUMN IF NOT EXISTS dispatchedAt TIMESTAMP(3);',
-];
-
-// V2 is reversible (drops the two additive columns); V1 is not reversible
-// because removing the domain tables would be an unreviewed destructive step.
-export const MIGRATIONS: readonly RegisteredMigration[] = [
-  {
-    version: 1,
-    name: 'data-01-workspace-domain',
-    checksum: migrationChecksum(V1_STATEMENTS),
-    requires: [],
-    statements: V1_STATEMENTS,
-    reversible: false,
-  },
-  {
-    version: 2,
-    name: 'data-02-command-integrity',
-    checksum: migrationChecksum(V2_STATEMENTS),
-    requires: [1],
-    statements: V2_STATEMENTS,
-    down: ['ALTER TABLE command_results DROP COLUMN IF EXISTS revision;', 'ALTER TABLE outbox_events DROP COLUMN IF EXISTS dispatchedAt;'],
-    reversible: true,
-  },
-];
-
-export function orderedMigrations(): RegisteredMigration[] {
-  return [...MIGRATIONS].sort((a, b) => a.version - b.version);
+export function registerMigration(m:Omit<RegisteredMigration,'checksum'>):RegisteredMigration {
+  return {...m,checksum:migrationChecksum(m)};
 }
-
-export function byVersion(migrations: readonly RegisteredMigration[], version: number): RegisteredMigration | undefined {
-  return migrations.find((m) => m.version === version);
-}
-
-export function missingPrerequisites(migrations: readonly RegisteredMigration[], version: number): number[] {
-  const target = byVersion(migrations, version);
-  if (!target) return [version];
-  const known = new Set(migrations.map((m) => m.version));
-  return target.requires.filter((r) => !known.has(r));
-}
-
-export function hasDuplicateVersions(migrations: readonly RegisteredMigration[]): boolean {
-  const seen = new Set<number>();
-  for (const m of migrations) {
-    if (seen.has(m.version)) return true;
-    seen.add(m.version);
+/** Split without splitting quoted identifiers, strings, comments or dollar bodies. */
+export function splitSql(sql:string):string[] {
+  const out:string[]=[];let start=0,i=0,quote='',dollar='',block=0,line=false;
+  while(i<sql.length){
+    const c=sql[i],n=sql[i+1];
+    if(line){if(c==='\n')line=false;i++;continue;}
+    if(block){if(c==='/'&&n==='*'){block++;i+=2;}else if(c==='*'&&n==='/'){block--;i+=2;}else i++;continue;}
+    if(dollar){if(sql.startsWith(dollar,i)){i+=dollar.length;dollar='';}else i++;continue;}
+    if(quote){if(c===quote){if(n===quote)i+=2;else{quote='';i++;}}else i++;continue;}
+    if(c==='-'&&n==='-'){line=true;i+=2;continue;}
+    if(c==='/'&&n==='*'){block=1;i+=2;continue;}
+    if(c==="'"||c==='"'){quote=c;i++;continue;}
+    if(c==='$'){const tag=/^\$(?:[A-Za-z_][A-Za-z0-9_]*)?\$/.exec(sql.slice(i));if(tag){dollar=tag[0];i+=dollar.length;continue;}}
+    if(c===';'){if(sql.slice(start,i).trim())out.push(sql.slice(start,i).trim());start=i+1;}i++;
   }
-  return false;
+  if(quote||dollar||block)throw Error('INVALID_SQL_ARTIFACT');
+  if(sql.slice(start).trim())out.push(sql.slice(start).trim());
+  return out;
+}
+export function canonicalMigrations(backendRoot:string):readonly RegisteredMigration[] {
+  const sql=readFileSync(resolve(backendRoot,'prisma/migrations/20261024000001_data_01_workspaces/migration.sql'),'utf8');
+  return [registerMigration({version:1,name:'data-01-workspace-domain',requires:[],statements:splitSql(sql),reversible:false})];
 }

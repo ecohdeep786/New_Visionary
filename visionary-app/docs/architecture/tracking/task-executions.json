@@ -721,9 +721,16 @@
         "acceptance": "Existing product regression only; no new workspace transport or shared SQL migration activated"
       },
       "integration": {
-        "state": "pending final reviewed-head CI and published dev merge",
+        "state": "accepted scoped preparation; full ticket remains open",
         "acceptedBaseCommit": "9d6d2b5b0e97213ff2e8778c2a1d7469d8df554e",
-        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/27"
+        "commit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+        "reviewedFinalHead": "f4b48a1557a95fa80c3db866a23bf6b29c11cee0",
+        "finalReviewJiraCommentId": "10227",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/27",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40199709861",
+        "ciConclusion": "success",
+        "jiraCommentId": "10229",
+        "remotePublished": true
       },
       "fullFeatureAccepted": false,
       "linkedProductGatesRemainOpen": true,
