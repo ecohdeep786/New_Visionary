@@ -145,3 +145,14 @@ test('compatibility verification rejects physical schema drift before apply or r
   assert.ok((await r.verify()).issues.includes('physical schema drift'));
   await assert.rejects(r.applyAll(),/physical schema drift/);await assert.rejects(r.rollbackLast(),/physical schema drift/);
 }));
+
+test('transaction/session control and multi-command escape artifacts fail before any DDL',()=>fixture(async f=>{
+  for(const escape of ['COMMIT','END','ROLLBACK','SET ROLE '+f.runtimeRole,'DO $$ BEGIN COMMIT; END $$','CREATE TABLE escaped_more(id TEXT); COMMIT','/* lead */ COMMIT','-- lead\nCOMMIT']){
+    const m=registerMigration({version:1,name:'synthetic-escape',requires:[],statements:['CREATE TABLE escape_probe(id TEXT)',escape,'INSERT INTO missing_probe VALUES(1)'],reversible:false});
+    await assert.rejects(new MigrationRunner(f.store(),[m]).applyAll(),/PREFLIGHT/);
+    assert.equal((await f.admin.$queryRawUnsafe('SELECT tablename FROM pg_tables WHERE schemaname=$1',f.schema)).length,0);
+  }
+  const base=canonical(),v2=registerMigration({version:2,name:'synthetic-independent',requires:[],statements:['CREATE TABLE order_probe(id TEXT)'],reversible:false});
+  await assert.rejects(new MigrationRunner(f.store(),[v2,...base]).applyAll(),/ascending/);
+  await assert.rejects(new MigrationRunner(f.store(),[]).applyAll(),/no migrations/);
+}));
