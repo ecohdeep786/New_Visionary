@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": ".",
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": false,
+    "incremental": false
+  },
+  "include": [
+    "src/commands/command-types.ts",
+    "src/commands/command-store.ts",
+    "src/commands/command.service.ts"
+  ]
+}
