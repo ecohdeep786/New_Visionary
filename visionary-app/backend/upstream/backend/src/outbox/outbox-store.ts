@@ -1,9 +1,20 @@
-// JOB-01 — outbox/job store contract + in-memory synthetic implementation.
+// JOB-01/JOB-02 — outbox/job store contract + in-memory synthetic implementation.
 // The Cloud SQL adapter implements the same surface over the DATA-01
-// outbox_events / job_attempts tables. Durable cursor + facsimacked state lets
-// the enabler reproduce commit/dispatch/ack crash recovery without a live DB.
+// outbox_events / command_results rows. Durable cursor, lease ownership and
+// attempt tokens let the enabler reproduce commit/dispatch/ack crash recovery
+// and lease/fencing/sweeper behavior without a live DB.
 import type { BackoffPolicy, Job, JobState, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
+
+/** Outcome of a fenced/conditional state transition. */
+export type JobWriteResult =
+  | { ok: true; job: Job }
+  | { ok: false; reason: 'not_found' | 'conflict' | 'fenced' };
+
+/** Patchable job fields (all durable store columns the enabler may set). */
+export type JobPatch = Partial<
+  Pick<Job, 'state' | 'attempt' | 'claimedUntil' | 'leaseToken' | 'attemptToken' | 'cleanupAttempts' | 'cleanupError' | 'runBy' | 'completedAt' | 'cancellationToken' | 'lastError' | 'nextAttemptAt'>
+>;
 
 export interface OutboxStore {
   // ---- outbox_events ----
@@ -15,7 +26,18 @@ export interface OutboxStore {
   createJob(job: Job): Promise<void>;
   jobById(id: string): Promise<Job | null>;
   jobsInQueue(queue: string): Promise<Job[]>;
-  updateJob(id: string, patch: Partial<Pick<Job, 'state' | 'attempt' | 'claimedUntil' | 'completedAt' | 'cancellationToken' | 'lastError'>> & { lastError?: string }): Promise<Job | null>;
+  updateJob(id: string, patch: JobPatch): Promise<Job | null>;
+  /**
+   * Fenced, conditional transition. Applies `patch` only when the row's current
+   * state is in `from` AND its lease token matches `expectedToken` (when
+   * non-null). This is the single enforcement point for attempt fencing: a stale
+   * worker whose token no longer matches cannot mutably complete a job.
+   */
+  transition(id: string, from: JobState[], expectedToken: string | null, patch: JobPatch): Promise<JobWriteResult>;
+  /** Jobs in specific states (sweeper scan for orphaned stuck work). */
+  jobsInStates(states: JobState[]): Promise<Job[]>;
+  /** Jobs whose lease expired before `nowIso` (stuck runners to reclaim). */
+  staleClaimedJobs(nowIso: string): Promise<Job[]>;
   /** Per-workload queues that hold runnable jobs. */
   queues(): Promise<string[]>;
   /** Client-supplied uid and queue must align with the owning store (server-side). */
@@ -55,12 +77,30 @@ export class InMemoryOutboxStore implements OutboxStore {
   async createJob(job: Job): Promise<void> { this.jobs.set(job.id, job); }
   async jobById(id: string): Promise<Job | null> { return this.jobs.get(id) ?? null; }
   async jobsInQueue(queue: string): Promise<Job[]> { return [...this.jobs.values()].filter((j) => j.queue === queue); }
-  async updateJob(id: string, patch): Promise<Job | null> {
+  async updateJob(id: string, patch: JobPatch): Promise<Job | null> {
     const cur = this.jobs.get(id);
     if (!cur) return null;
     const next = { ...cur, ...patch } as Job;
     this.jobs.set(id, next);
     return next;
+  }
+  async transition(id: string, from: JobState[], expectedToken: string | null, patch: JobPatch): Promise<JobWriteResult> {
+    const cur = this.jobs.get(id);
+    if (!cur) return { ok: false, reason: 'not_found' };
+    if (!from.includes(cur.state)) return { ok: false, reason: 'conflict' };
+    if (expectedToken !== null && cur.leaseToken !== expectedToken) return { ok: false, reason: 'fenced' };
+    const next = { ...cur, ...patch } as Job;
+    this.jobs.set(id, next);
+    return { ok: true, job: next };
+  }
+  async jobsInStates(states: JobState[]): Promise<Job[]> {
+    return [...this.jobs.values()].filter((j) => states.includes(j.state));
+  }
+  async staleClaimedJobs(nowIso: string): Promise<Job[]> {
+    const now = Date.parse(nowIso);
+    return [...this.jobs.values()].filter(
+      (j) => (j.state === 'CLAIMED' || j.state === 'RUNNING') && j.claimedUntil !== null && Date.parse(j.claimedUntil) < now,
+    );
   }
   async queues(): Promise<string[]> {
     return [...new Set([...this.jobs.values()].map((j) => j.queue))];

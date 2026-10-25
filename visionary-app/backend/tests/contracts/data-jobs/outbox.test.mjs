@@ -128,8 +128,11 @@ test('JOB-01 queues: jobs route to their per-workload queue and a cancelled job 
   const queues = await d.queues();
   assert.ok(queues.includes('uid-1:learning'));
   const job = await d.enqueue('uid-1', 'uid-1:documents', 'documents.export');
+  const claim = await d.claim(job.id, 60_000); // JOB-02: claim mints a lease + attempt token
+  await d.startRun(job.id, claim);
   await d.cancel(job.id);
-  await d.runJob(job.id); // fencing: cancelled job is not run
+  // JOB-02 fencing: a cancelled job's holder is fenced and can never run/complete it.
+  await assert.rejects(d.complete(job.id, { leaseToken: claim.leaseToken, attemptToken: claim.attemptToken }), (e) => e.code === 'fenced');
   const after = await s.jobById(job.id);
   assert.equal(after.state, 'CANCELLED');
 });

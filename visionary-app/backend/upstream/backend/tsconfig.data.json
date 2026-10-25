@@ -11,6 +11,7 @@
   "include": [
     "src/outbox/outbox-types.ts",
     "src/outbox/outbox-store.ts",
-    "src/outbox/outbox.dispatcher.ts"
+    "src/outbox/outbox.dispatcher.ts",
+    "src/outbox/outbox.sweeper.ts"
   ]
 }
