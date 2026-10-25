@@ -8,5 +8,9 @@
     "sourceMap": false,
     "incremental": false
   },
-  "include": ["src/data/**/*.ts"]
+  "include": [
+    "src/outbox/outbox-types.ts",
+    "src/outbox/outbox-store.ts",
+    "src/outbox/outbox.dispatcher.ts"
+  ]
 }
