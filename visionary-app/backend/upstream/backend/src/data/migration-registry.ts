@@ -9,6 +9,24 @@ export function migrationChecksum(m:Omit<RegisteredMigration,'checksum'>):string
 export function registerMigration(m:Omit<RegisteredMigration,'checksum'>):RegisteredMigration {
   return {...m,checksum:migrationChecksum(m)};
 }
+/** This preparation supports transactional domain DDL and synthetic INSERTs only.
+ * Session/transaction control, role changes, CALL/DO and arbitrary multi-command
+ * scripts cannot be allowed to escape the runner's owning transaction. */
+export function assertTransactionalStatement(sql:string):void {
+  if(typeof sql!=='string'||splitSql(sql).length!==1)throw Error('UNSUPPORTED_MIGRATION_STATEMENT');
+  let prefix=sql.trimStart();
+  for(;;){
+    if(prefix.startsWith('--')){const end=prefix.indexOf('\n');prefix=end<0?'':prefix.slice(end+1).trimStart();continue;}
+    if(prefix.startsWith('/*')){
+      let depth=1,i=2;
+      while(i<prefix.length&&depth){if(prefix.slice(i,i+2)==='/*'){depth++;i+=2;}else if(prefix.slice(i,i+2)==='*/'){depth--;i+=2;}else i++;}
+      if(depth)throw Error('UNSUPPORTED_MIGRATION_STATEMENT');prefix=prefix.slice(i).trimStart();continue;
+    }
+    break;
+  }
+  if(!/^(?:CREATE\s+(?:UNIQUE\s+)?(?:TABLE|INDEX|TYPE)\b|ALTER\s+TABLE\b|DROP\s+(?:TABLE|INDEX|TYPE)\b|INSERT\s+INTO\b)/i.test(prefix))
+    throw Error('UNSUPPORTED_MIGRATION_STATEMENT');
+}
 /** Split without splitting quoted identifiers, strings, comments or dollar bodies. */
 export function splitSql(sql:string):string[] {
   const out:string[]=[];let start=0,i=0,quote='',dollar='',block=0,line=false;

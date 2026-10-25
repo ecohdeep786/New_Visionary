@@ -1,4 +1,4 @@
-import { migrationChecksum } from './migration-registry';
+import { migrationChecksum,assertTransactionalStatement } from './migration-registry';
 import { DataTransaction, PostgresMigrationStore } from './migration-store';
 import type { RegisteredMigration,ApplyingResult,VerifyResult } from './migration-types';
 export class MigrationRunner {
@@ -7,12 +7,17 @@ export class MigrationRunner {
     this.migrations=JSON.parse(JSON.stringify(migrations));
   }
   private async issues(tx:DataTransaction):Promise<string[]>{
-    const issues:string[]=[],seen=new Set<number>();
+    const issues:string[]=[],seen=new Set<number>();let previous=0;
+    if(!this.migrations.length)issues.push('no migrations registered');
     for(const m of this.migrations){
       if(!Number.isSafeInteger(m.version)||m.version<1||seen.has(m.version))issues.push('invalid/duplicate version');
+      if(m.version<=previous)issues.push('registry must be in ascending version order');previous=m.version;
       if(!m.name||!m.statements.length||migrationChecksum(m)!==m.checksum)issues.push('artifact checksum invalid');
       if(m.reversible&&!m.down?.length)issues.push('rollback artifact missing');
       if(m.requires.some(v=>v>=m.version||!seen.has(v)))issues.push('invalid prerequisite order');
+      for(const sql of [...m.statements,...(m.down??[])]){
+        try{assertTransactionalStatement(sql);}catch{issues.push('unsupported migration statement');}
+      }
       seen.add(m.version);
     }
     const receipts=await this.store.appliedReceipts(tx),applied=new Set(receipts.map(r=>r.version));
@@ -57,7 +62,7 @@ export class MigrationRunner {
       if(!(await this.store.isDomainEmpty(tx)))throw Error('NON_EMPTY_STAGING_DENIED');
       for(const sql of m.down)await tx.$executeRawUnsafe(sql);
       await this.store.recordReceipt(tx,m,'rolled_back');
-      return {...latest,status:'rolled_back' as const};
+      const history=await this.store.history(tx);return history[history.length-1];
     });
   }
 }
