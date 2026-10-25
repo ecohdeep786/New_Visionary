@@ -171,3 +171,25 @@ test('first-use runtime default control-table grants are seen before commit and 
   await assert.rejects(new MigrationRunner(f.store(),canonical()).applyAll(),/RUNTIME_CONTROL_WRITE_DENIED/);
   assert.equal((await f.admin.$queryRawUnsafe('SELECT tablename FROM pg_tables WHERE schemaname=$1',f.schema)).length,0);
 }));
+
+test('NOINHERIT delegated role cannot bypass runtime control-table or DDL checks with SET ROLE',()=>fixture(async f=>{
+  await new MigrationRunner(f.store(),canonical()).applyAll();
+  const delegated='data02d_'+f.schema.slice(7);
+  await f.admin.$executeRawUnsafe('CREATE ROLE "'+delegated+'" NOLOGIN');
+  try{
+    await f.admin.$executeRawUnsafe('ALTER ROLE "'+f.runtimeRole+'" NOINHERIT');
+    await f.admin.$executeRawUnsafe('GRANT "'+delegated+'" TO "'+f.runtimeRole+'"');
+    await f.admin.$executeRawUnsafe('GRANT USAGE ON SCHEMA "'+f.schema+'" TO "'+delegated+'"');
+    await f.admin.$executeRawUnsafe('GRANT UPDATE ON "'+f.schema+'"."_visionary_migrations" TO "'+delegated+'"');
+    assert.equal((await f.runtime.$queryRawUnsafe("SELECT has_table_privilege(current_user,'_visionary_migrations','UPDATE') AS allowed"))[0].allowed,false);
+    await f.runtime.$transaction(async tx=>{await tx.$executeRawUnsafe('SET LOCAL ROLE "'+delegated+'"');await tx.$executeRawUnsafe('UPDATE "_visionary_migrations" SET status=$1','applied');});
+    await assert.rejects(new MigrationRunner(f.store(),canonical()).applyAll(),/RUNTIME_CONTROL_WRITE_DENIED/);
+    await f.admin.$executeRawUnsafe('REVOKE ALL ON "'+f.schema+'"."_visionary_migrations" FROM "'+delegated+'"');
+    await f.admin.$executeRawUnsafe('GRANT CREATE ON SCHEMA "'+f.schema+'" TO "'+delegated+'"');
+    await assert.rejects(new MigrationRunner(f.store(),canonical()).applyAll(),/RUNTIME_IDENTITY_DENIED/);
+  }finally{
+    await f.admin.$executeRawUnsafe('REVOKE ALL ON "'+f.schema+'"."_visionary_migrations" FROM "'+delegated+'"');
+    await f.admin.$executeRawUnsafe('REVOKE ALL ON SCHEMA "'+f.schema+'" FROM "'+delegated+'"');
+    await f.admin.$executeRawUnsafe('DROP ROLE "'+delegated+'"');
+  }
+}));
