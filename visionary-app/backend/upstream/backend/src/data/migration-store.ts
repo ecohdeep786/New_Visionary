@@ -25,13 +25,18 @@ export class PostgresMigrationStore {
       ,has_database_privilege(r.oid,current_database(),'CREATE') AS database_ddl
       ,EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
         WHERE n.nspname=$1 AND pg_has_role(r.oid,c.relowner,'MEMBER')) AS owns_objects
+      ,EXISTS(SELECT 1 FROM pg_roles delegated WHERE pg_has_role(r.oid,delegated.oid,'MEMBER')
+        AND (delegated.rolsuper OR delegated.rolcreatedb OR delegated.rolcreaterole OR delegated.rolbypassrls
+          OR has_schema_privilege(delegated.oid,$1,'CREATE')
+          OR has_database_privilege(delegated.oid,current_database(),'CREATE'))) AS delegated_authority
       ,EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
-        WHERE n.nspname=$1 AND left(c.relname,11)='_visionary_' AND CASE
-          WHEN c.relkind IN ('r','p') THEN has_table_privilege(r.oid,c.oid,'INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER')
-          WHEN c.relkind='S' THEN has_sequence_privilege(r.oid,c.oid,'USAGE,UPDATE') ELSE FALSE END) AS control_writes
+        WHERE n.nspname=$1 AND left(c.relname,11)='_visionary_' AND EXISTS(
+          SELECT 1 FROM pg_roles delegated WHERE pg_has_role(r.oid,delegated.oid,'MEMBER') AND CASE
+            WHEN c.relkind IN ('r','p') THEN has_table_privilege(delegated.oid,c.oid,'INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER')
+            WHEN c.relkind='S' THEN has_sequence_privilege(delegated.oid,c.oid,'USAGE,UPDATE') ELSE FALSE END)) AS control_writes
       FROM pg_roles r WHERE r.rolname=$3`,this.config.schema,this.config.migrationRole,this.config.runtimeRole);
     const r=rows[0];
-    if(!r||r.role!==this.config.runtimeRole||r.rolsuper||r.rolcreatedb||r.rolcreaterole||r.rolbypassrls||r.ddl||r.database_ddl||r.migration_member||r.owns_objects)
+    if(!r||r.role!==this.config.runtimeRole||r.rolsuper||r.rolcreatedb||r.rolcreaterole||r.rolbypassrls||r.ddl||r.database_ddl||r.migration_member||r.owns_objects||r.delegated_authority)
       throw Error('RUNTIME_IDENTITY_DENIED');
     if(r.control_writes)throw Error('RUNTIME_CONTROL_WRITE_DENIED');
   }
