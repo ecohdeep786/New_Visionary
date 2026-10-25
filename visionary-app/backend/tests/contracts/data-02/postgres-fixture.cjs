@@ -16,7 +16,8 @@ async function stagingDatabase(){
   const db=client(config.migrationUrl),runtime=client(config.runtimeUrl);
   return {admin,db,runtime,schema,migrationRole,runtimeRole,config,store,async grantRuntime(){
     await admin.$executeRawUnsafe('GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA "'+schema+'" TO "'+runtimeRole+'"');
-    await admin.$executeRawUnsafe('GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA "'+schema+'" TO "'+runtimeRole+'"');
+    const sequences=await admin.$queryRawUnsafe("SELECT sequencename FROM pg_sequences WHERE schemaname=$1 AND left(sequencename,11)<>'_visionary_'",schema);
+    for(const sequence of sequences)await admin.$executeRawUnsafe('GRANT USAGE,SELECT ON SEQUENCE "'+schema+'"."'+sequence.sequencename+'" TO "'+runtimeRole+'"');
     // Migration/backfill receipts are not runtime-owned state.
     for(const name of ['_visionary_migrations','_visionary_backfills','_visionary_backfill_rows','_visionary_backfill_cursors'])
       await admin.$executeRawUnsafe('REVOKE ALL ON TABLE "'+schema+'"."'+name+'" FROM "'+runtimeRole+'"').catch(e=>{if(!String(e).includes('does not exist'))throw e;});
