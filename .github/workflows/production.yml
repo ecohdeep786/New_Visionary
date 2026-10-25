@@ -59,6 +59,11 @@ jobs:
       - run: npm run data:check
         env:
           DATA_TEST_DATABASE_URL: postgresql://postgres:synthetic-ci-only@127.0.0.1:5432/visionary_data_test_ci
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: visionary-app/infrastructure/gcp/data-job
+      - run: npm audit --omit=dev --audit-level=high
+        working-directory: visionary-app/infrastructure/gcp/data-job
+      - run: node infrastructure/gcp/data-job/check-image.mjs
       - run: node scripts/production-check.mjs
       - run: node --test infrastructure/gcp/tests/*.test.mjs
       - run: python3 -m unittest discover -s infrastructure/gcp/tests -p '*_test.py'
@@ -102,6 +107,7 @@ jobs:
           project_id: visionary-research
       - id: publish
         run: node infrastructure/gcp/release.mjs publish
+      - run: node infrastructure/gcp/data-job/publish-image.mjs
       - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'
         run: node infrastructure/gcp/release.mjs deploy
         env:
@@ -113,6 +119,7 @@ jobs:
           name: main-release-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             visionary-app/published-release.json
+            visionary-app/published-data-job.json
             visionary-app/deployed-release.json
           if-no-files-found: ignore
           retention-days: 30
