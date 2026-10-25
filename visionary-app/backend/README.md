@@ -1,5 +1,40 @@
 # Application backend
 
+## Domain preparation verification (KAN-36)
+
+`npm run data:check` at the product root validates/generates the locked Prisma client,
+checks canonical domain DDL, compiles the actual workspace repository and runs its
+PostgreSQL tests. Install `backend/upstream/backend` dependencies from its lock first
+(`npm ci --ignore-scripts --no-audit --no-fund` in that directory). This check is a
+required, separate CI step; ordinary frontend `npm run check` retains its existing scope.
+
+Set `DATA_TEST_DATABASE_URL` to a **disposable loopback** PostgreSQL database whose
+name starts `visionary_data_test_`. Tests create fresh uniquely named schemas and
+drop only those schemas after checking their absolute logical boundary. They refuse
+hosted URLs and other database names. Do not use product credentials or real records.
+CI provisions an isolated PostgreSQL 16 service with explicitly synthetic credentials.
+For Windows, an isolated PostgreSQL binary distribution can be obtained through the
+[official PostgreSQL download page](https://www.postgresql.org/download/windows/);
+no Windows service or cloud resource is needed for these tests.
+
+`node scripts/domain-ddl.mjs --write` regenerates only the proposed DATA-01 migration
+from its marked section in `prisma/schema.prisma`. The generator also records the
+explicit PostgreSQL-only personal-workspace and account-wide-consent partial indexes
+and positive command revision constraint. `data:check` refuses drift. Domain migration
+SQL is not applied by product startup or dependency installation. Legacy account/plan
+tables are excluded from this generated domain migration; Firestore keeps current
+account/profile/billing authority. The disconnected workspace controller/module is
+not registered in either the connected product or legacy app.
+
+This is workspace-domain **development preparation**, not full DATA-01 acceptance.
+Original source/release, session/evidence, classroom/project and lifelong schema scope,
+source/admission/policy decisions and connected/hosted/erasure acceptance remain open.
+Invitation and consent helpers are not a complete product permission system. General
+conditional domain mutations and their revision protocol remain DATA-06 work; the
+unsafe unused generic receipt mutator was removed because it could alter receipts
+without a domain transaction. The create command commits an immutable result and
+rechecks ownership/erasure on replay. No new product route is activated by this work.
+
 D-091 [calendar and component handoff](../docs/architecture/DELIVERY_CALENDAR.md) schedule contracts before backend data/authority, then jobs/files, source, learning/Build and linked-role integrations. Work stays under the existing pinned/product-owned boundaries with explicit patch provenance; no wholesale source deletion or automatic migration occurs. All dates are forecasts pending actual acceptance.
 
 D-090 [lifelong delivery contract](../integration/LIFELONG_EDUCATION_CONTRACT.md) defines the proposed owned profile/stage/mapping/receipt flow, reviewed admission/relationship boundaries and teacher/parent delivery acceptance. All 145 source tasks remain mapped to the current architecture; this contract/registry pass registers no controller, migration or new runtime benefit.
