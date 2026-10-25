@@ -329,6 +329,7 @@ enum JobStatus {
   FAILED
 }
 
+// DATA-01 domain schema starts here.
 // ─── Workspaces (DATA-01 / SCOPE-04) ────────────────────────────────────────────
 //
 // PostgreSQL owns domain/membership/evidence/run state, linked by the canonical
@@ -340,12 +341,14 @@ enum JobStatus {
 /// session — the single join key to Firestore accounts. SQL stores no password
 /// hashes, payment secrets, or billing authority.
 model Person {
-  uid            String              @id @db.Clm
+  uid            String              @id
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt
 
   workspaces     WorkspaceMembership[]
-  invitations    Invitation[]
+  ownedWorkspaces Workspace[]
+  acceptedInvitations Invitation[] @relation("AcceptedInvitation")
+  deletionTombstones DeletionTombstone[]
   shareGrants    ShareGrant[]
   consentGrants  ConsentGrant[]
   commandResults CommandResult[]
@@ -370,7 +373,11 @@ model Workspace {
   owner       Person                @relation(fields: [uid], references: [uid], onDelete: Cascade)
   memberships WorkspaceMembership[]
   invitations Invitation[]
-  shareGrants ShareGrant[]
+  commandResults CommandResult[]
+  outboxEvents OutboxEvent[]
+  auditEvents AuditEvent[]
+
+  @@index([uid])
 
   @@map("workspaces")
 }
@@ -412,15 +419,17 @@ model Invitation {
   workspaceId String
   email       String
   role        WorkspaceRole     @default(MEMBER)
-  tokenHash   String?           // bcrypt-style hash of the invite token
+  tokenHash   String? @unique   // SHA-256 of the one-time invite token
   status      InvitationStatus  @default(PENDING)
   expiresAt   DateTime
   issuedAt    DateTime?
   acceptedAt  DateTime?
+  acceptedByUid String?
   revokedAt   DateTime?
   createdAt   DateTime          @default(now())
 
   workspace   Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  acceptedBy  Person? @relation("AcceptedInvitation", fields: [acceptedByUid], references: [uid], onDelete: SetNull)
 
   @@unique([workspaceId, email])
   @@index([email])
@@ -500,6 +509,7 @@ model CommandResult {
   revision     Int           @default(1)  // expected revision for conditional writes
 
   person       Person        @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  workspace    Workspace?    @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
 
   @@index([uid])
   @@index([kind])
@@ -527,13 +537,14 @@ model OutboxEvent {
   workspaceId   String?
   topic         String      // e.g. "workspace.membership", "consent.revoked"
   payload       Json
-  cursor        String      // ordered revision cursor for the owning scope
+  cursor        BigInt      @unique @default(autoincrement()) // durable cursor; repository serializes events per UID
   status        OutboxStatus @default(PENDING)
   createdAt     DateTime    @default(now())
   dispatchedAt  DateTime?
   failureReason String?
 
   person        Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  workspace     Workspace?  @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
 
   @@index([uid, cursor])
   @@index([status])
@@ -568,6 +579,7 @@ model AuditEvent {
   createdAt   DateTime     @default(now())
 
   person      Person       @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  workspace   Workspace?   @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
 
   @@index([uid, createdAt])
   @@index([operation, createdAt])
@@ -594,6 +606,8 @@ model DeletionTombstone {
   reason      String?
   createdAt   DateTime @default(now())
   expiresAt   DateTime?  // null = permanent tombstone
+
+  person Person @relation(fields: [uid], references: [uid], onDelete: Restrict)
 
   @@unique([uid, resourceType, resourceId])
   @@index([expiresAt])
