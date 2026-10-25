@@ -673,6 +673,79 @@
         ],
         "actualRemovalReceipt": "Record actual inventory and removal in Jira after cleanup; this checkpoint does not assert future removal"
       }
+    },
+    {
+      "sourceId": "DATA-01",
+      "jiraKey": "KAN-36",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-36",
+      "status": "Testing",
+      "scope": "Independently approved workspace-domain development preparation only; full DATA-01 remains open",
+      "branch": "codex/deepseek-kan-36-data-ddl",
+      "implementationCommits": [
+        "5297f4621ad69c0d0d8dfd55227000b7560411d5"
+      ],
+      "review": {
+        "state": "approved-scoped-preparation",
+        "reviewer": "/root/kan36_rework_reviewer",
+        "approvedCommit": "5297f4621ad69c0d0d8dfd55227000b7560411d5",
+        "reviewedHandoffCommit": "6b26c5a97ac17b43396d231723c0f241fed265bf",
+        "reportCommit": "ab91f07a3fd3b14325a600b89cf34023e296d118",
+        "report": "docs/architecture/reviews/KAN36_REWORK_INDEPENDENT_REVIEW.md"
+      },
+      "checks": {
+        "postgresqlRepositoryTests": 20,
+        "runtimeAndProvenanceTests": 8,
+        "independentAdditionalPostgresqlProbes": 6,
+        "failed": 0,
+        "canonicalDdl": true,
+        "focusedCompile": true,
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40172068727",
+        "ciCommit": "ab91f07a3fd3b14325a600b89cf34023e296d118",
+        "ciConclusion": "success"
+      },
+      "localProductVerification": {
+        "date": "2026-10-25",
+        "browser": "User signed-in in-app browser",
+        "routes": [
+          "Home",
+          "Learn",
+          "Ask",
+          "Practice",
+          "Build",
+          "Privacy"
+        ],
+        "sessionReload": true,
+        "mobileHome": "390x844 visually passed; viewport reset",
+        "report": "docs/architecture/delivery/KAN36_LOCAL_BROWSER_VERIFICATION.md",
+        "jiraCommentId": "10226",
+        "acceptance": "Existing product regression only; no new workspace transport or shared SQL migration activated"
+      },
+      "integration": {
+        "state": "accepted scoped preparation; full ticket remains open",
+        "acceptedBaseCommit": "9d6d2b5b0e97213ff2e8778c2a1d7469d8df554e",
+        "commit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+        "reviewedFinalHead": "f4b48a1557a95fa80c3db866a23bf6b29c11cee0",
+        "finalReviewJiraCommentId": "10227",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/27",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40199709861",
+        "ciConclusion": "success",
+        "jiraCommentId": "10229",
+        "remotePublished": true
+      },
+      "fullFeatureAccepted": false,
+      "linkedProductGatesRemainOpen": true,
+      "remainingGates": [
+        "Full original DATA-01 source/release/session/evidence/classroom/project/lifelong scope",
+        "Affected KAN-29/30/32/33 source/policy acceptance",
+        "KAN-37 durable migrations/backfills and runtime/migration identities",
+        "Connected provisioning/invitation/consent/revision/deletion flows",
+        "Applicable hosted and release acceptance"
+      ],
+      "worktreeCleanup": {
+        "state": "not eligible: full ticket remains open",
+        "worker": "deepseek-kan-36-data-ddl",
+        "reviewer": "qa-review-kan-36-data-ddl"
+      }
     }
   ]
 }

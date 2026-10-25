@@ -1,82 +1,82 @@
-// DATA-02 — durable migration ledger / store contract.
-//
-// The store is the bridge to Cloud SQL PostgreSQL (runtime + migration roles).
-// In this enabler it is an in-memory synthetic store that emulates the ledger
-// table, domain tables and statement execution, exactly as the repo's other
-// contract tests use in-memory Firestore fixtures. The real adapter (Prisma/
-// pg driver with a separate migration connection) is wired behind this same
-// interface during integration; nothing here touches a live database.
+import { PrismaClient, Prisma } from '@prisma/client';
+import { createHash } from 'node:crypto';
+import { assertSeparateIdentities, quoteIdentifier, IdentityConfig } from './migration-identities';
 import type { MigrationReceipt } from './migration-types';
-
-export interface MigrationStore {
-  ensureLedger(): Promise<void>;
-  appliedReceipts(): Promise<MigrationReceipt[]>;
-  recordReceipt(receipt: MigrationReceipt): Promise<void>;
-  /** Highest applied version (0 when the ledger is empty). */
-  schemaVersion(): Promise<number>;
-  /** True only when every tracked domain table has zero rows. Used to enforce
-   *  the "empty synthetic staging before touching existing records" rule. */
-  isDomainEmpty(): Promise<boolean>;
-  /** Execute one DDL/DML statement under the caller's identity. */
-  exec(statement: string): Promise<void>;
-}
-
-function tableNameOf(statement: string): string | null {
-  const m = /CREATE TABLE(?:\s+IF NOT EXISTS)?(?:\s+"?([A-Za-z_][A-Za-z0-9_]*)"?)/.exec(statement);
-  return m ? m[1].toLowerCase() : null;
-}
-
-/** Synthetic in-memory store. `failOn` lets a test inject an outage mid-run to
- *  prove bounded resume behaviour (never loses work, never double-applies). */
-export class InMemoryMigrationStore implements MigrationStore {
-  /** Current applied state per version (maps receive replaced markers on
-   *  re-apply; the append-only record of every outcome lives in `history`). */
-  readonly ledger = new Map<number, MigrationReceipt>();
-  /** Append-only record of every outcome (applied/rejected/rolled_back). */
-  readonly history: MigrationReceipt[] = [];
-  readonly tables = new Map<string, Array<Record<string, unknown>>>();
-  readonly executed: string[] = [];
-  failOn: string | null = null;
-
-  constructor(trackedTables: readonly string[] = ['persons', 'workspaces']) {
-    for (const t of trackedTables) this.tables.set(t.toLowerCase(), []);
+export type DataTransaction=Prisma.TransactionClient;
+/** Real PostgreSQL adapter. No labels or Map can substitute for database identity. */
+export class PostgresMigrationStore {
+  readonly migration:PrismaClient; readonly runtime:PrismaClient;
+  readonly config:Readonly<IdentityConfig>;
+  constructor(config:IdentityConfig){
+    assertSeparateIdentities(config);
+    this.config=Object.freeze({...config});
+    this.migration=new PrismaClient({datasources:{db:{url:config.migrationUrl}}});
+    this.runtime=new PrismaClient({datasources:{db:{url:config.runtimeUrl}}});
   }
-
-  async ensureLedger(): Promise<void> {
-    if (!this.tables.has('schema_migrations')) this.tables.set('schema_migrations', []);
+  async close(){await Promise.all([this.migration.$disconnect(),this.runtime.$disconnect()]);}
+  private async runtimeIdentity():Promise<void>{
+    const rows=await this.runtime.$queryRawUnsafe<any[]>(`SELECT current_user AS role,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolbypassrls,
+      has_schema_privilege(current_user,$1,'CREATE') AS ddl,pg_has_role(current_user,$2,'MEMBER') AS migration_member
+      ,has_database_privilege(current_user,current_database(),'CREATE') AS database_ddl
+      ,EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+        WHERE n.nspname=$1 AND pg_has_role(current_user,c.relowner,'MEMBER')) AS owns_objects
+      FROM pg_roles r WHERE r.rolname=current_user`,this.config.schema,this.config.migrationRole);
+    const r=rows[0];
+    if(!r||r.role!==this.config.runtimeRole||r.rolsuper||r.rolcreatedb||r.rolcreaterole||r.rolbypassrls||r.ddl||r.database_ddl||r.migration_member||r.owns_objects)
+      throw Error('RUNTIME_IDENTITY_DENIED');
   }
-
-  async appliedReceipts(): Promise<MigrationReceipt[]> {
-    return [...this.ledger.values()]
-      .filter((r) => r.status === 'applied')
-      .sort((a, b) => a.version - b.version);
+  async transaction<T>(work:(tx:DataTransaction)=>Promise<T>,timeout=15000):Promise<T>{
+    await this.runtimeIdentity();
+    return this.migration.$transaction(async tx=>{
+      const rows=await tx.$queryRawUnsafe<any[]>(`SELECT current_user AS role,r.rolsuper,r.rolcreatedb,r.rolcreaterole,
+        n.nspowner::regrole::text AS owner FROM pg_roles r JOIN pg_namespace n ON n.nspname=$1 WHERE r.rolname=current_user`,this.config.schema);
+      const r=rows[0];
+      if(!r||r.role!==this.config.migrationRole||r.owner!==r.role||r.rolsuper||r.rolcreatedb||r.rolcreaterole)
+        throw Error('MIGRATION_IDENTITY_DENIED');
+      await tx.$queryRawUnsafe("SELECT set_config('search_path',$1,true)",quoteIdentifier(this.config.schema));
+      await tx.$queryRawUnsafe("SELECT set_config('statement_timeout',$1,true)",String(Math.max(1,timeout-1000)));
+      await tx.$queryRawUnsafe("SELECT pg_advisory_xact_lock(hashtextextended($1,0))::text",this.config.schema+':visionary-data');
+      await tx.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "_visionary_migrations" (
+        sequence BIGSERIAL PRIMARY KEY,version INTEGER NOT NULL,name TEXT NOT NULL,checksum TEXT NOT NULL,"schemaDigest" TEXT NOT NULL,
+        status TEXT NOT NULL CHECK(status IN ('applied','rolled_back')),"appliedBy" TEXT NOT NULL DEFAULT current_user,
+        "appliedAt" TIMESTAMPTZ NOT NULL DEFAULT clock_timestamp())`);
+      return work(tx);
+    },{maxWait:timeout,timeout});
   }
-
-  async recordReceipt(receipt: MigrationReceipt): Promise<void> {
-    this.history.push(receipt);
-    this.ledger.set(receipt.version, receipt);
+  async appliedReceipts(tx:DataTransaction):Promise<MigrationReceipt[]>{
+    const rows=await tx.$queryRawUnsafe<any[]>(`SELECT DISTINCT ON(version) version,name,checksum,"schemaDigest",status,"appliedBy","appliedAt"
+      FROM "_visionary_migrations" ORDER BY version,sequence DESC`);
+    return rows.filter(r=>r.status==='applied').map(r=>({...r,appliedAt:r.appliedAt.toISOString()}));
   }
-
-  async schemaVersion(): Promise<number> {
-    const applied = [...this.ledger.values()].filter((r) => r.status === 'applied').map((r) => r.version);
-    return applied.length ? Math.max(...applied) : 0;
+  async history(tx:DataTransaction):Promise<MigrationReceipt[]>{
+    const rows=await tx.$queryRawUnsafe<any[]>(`SELECT version,name,checksum,"schemaDigest",status,"appliedBy","appliedAt" FROM "_visionary_migrations" ORDER BY sequence`);
+    return rows.map(r=>({...r,appliedAt:r.appliedAt.toISOString()}));
   }
-
-  async isDomainEmpty(): Promise<boolean> {
-    for (const [name, rows] of this.tables) {
-      if (name === 'schema_migrations') continue;
-      if (rows.length > 0) return false;
+  async recordReceipt(tx:DataTransaction,m:{version:number;name:string;checksum:string},status:'applied'|'rolled_back'):Promise<void>{
+    await tx.$executeRawUnsafe(`INSERT INTO "_visionary_migrations" (version,name,checksum,status,"schemaDigest") VALUES($1,$2,$3,$4,$5)`,m.version,m.name,m.checksum,status,await this.schemaDigest(tx));
+  }
+  async schemaDigest(tx:DataTransaction):Promise<string>{
+    const columns=await tx.$queryRawUnsafe<any[]>(`SELECT c.relname,a.attname,format_type(a.atttypid,a.atttypmod) AS type,
+      a.attnotnull,pg_get_expr(d.adbin,d.adrelid) AS default_expression FROM pg_class c
+      JOIN pg_namespace n ON n.oid=c.relnamespace JOIN pg_attribute a ON a.attrelid=c.oid
+      LEFT JOIN pg_attrdef d ON d.adrelid=c.oid AND d.adnum=a.attnum
+      WHERE n.nspname=$1 AND c.relkind='r' AND left(c.relname,11)<>'_visionary_' AND a.attnum>0 AND NOT a.attisdropped
+      ORDER BY c.relname,a.attnum`,this.config.schema);
+    const constraints=await tx.$queryRawUnsafe<any[]>(`SELECT c.relname,k.conname,pg_get_constraintdef(k.oid) AS definition
+      FROM pg_constraint k JOIN pg_class c ON c.oid=k.conrelid JOIN pg_namespace n ON n.oid=c.relnamespace
+      WHERE n.nspname=$1 AND left(c.relname,11)<>'_visionary_' ORDER BY c.relname,k.conname`,this.config.schema);
+    const indexes=await tx.$queryRawUnsafe<any[]>(`SELECT tablename,indexname,indexdef FROM pg_indexes
+      WHERE schemaname=$1 AND left(tablename,11)<>'_visionary_' ORDER BY tablename,indexname`,this.config.schema);
+    const enums=await tx.$queryRawUnsafe<any[]>(`SELECT t.typname,e.enumlabel FROM pg_type t JOIN pg_enum e ON e.enumtypid=t.oid
+      JOIN pg_namespace n ON n.oid=t.typnamespace WHERE n.nspname=$1 ORDER BY t.typname,e.enumsortorder`,this.config.schema);
+    return createHash('sha256').update(JSON.stringify({columns,constraints,indexes,enums})).digest('hex');
+  }
+  async isDomainEmpty(tx:DataTransaction):Promise<boolean>{
+    const tables=await tx.$queryRawUnsafe<{tablename:string}[]>(`SELECT tablename FROM pg_tables WHERE schemaname=$1 AND left(tablename,11)<>'_visionary_'`,this.config.schema);
+    for(const t of tables){
+      const r=await tx.$queryRawUnsafe<any[]>(`SELECT EXISTS(SELECT 1 FROM ${quoteIdentifier(t.tablename)} LIMIT 1) AS present`);
+      if(r[0].present)return false;
     }
     return true;
-  }
-
-  async exec(statement: string): Promise<void> {
-    if (this.failOn && statement.includes(this.failOn)) {
-      this.failOn = null; // inject once, then restore healthy behaviour
-      throw new Error('SIMULATED_OUTAGE: statement did not complete.');
-    }
-    this.executed.push(statement);
-    const table = tableNameOf(statement);
-    if (table && !this.tables.has(table)) this.tables.set(table, []);
   }
 }

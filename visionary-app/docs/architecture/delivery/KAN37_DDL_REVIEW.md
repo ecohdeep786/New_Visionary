@@ -1,74 +1,29 @@
-# KAN-37 (DATA-02) — Versioned migrations, identity separation, backfills, rollback
+# KAN-37 / DATA-02 replacement handoff
 
-```text
-Jira key / source ID: KAN-37 (DATA-02)
-Acceptance scope: preparation / enabler (migration + backfill machinery, tested
-                 against in-memory synthetic staging; NOT wired into the connected
-                 runtime; no migration applied to any shared database)
-Implementer: deepseek (senior principal backend engineer, under codex)
-Reviewer: Pending — separate exact-SHA review required; not pre-assigned
-Worker branch / base commit / candidate head:
-                 branch codex/deepseek-kan-37-data-migrations
-                 base 9d6d2b5b0e97213ff2e8778c2a1d7469d8df554e (origin/dev)
-                 candidate head <filled at commit>
-Current dev commit: origin/dev 9d6d2b5b (unchanged by this branch)
-Owned files:
-  - backend/upstream/backend/src/data/migration-types.ts
-  - backend/upstream/backend/src/data/migration-identities.ts
-  - backend/upstream/backend/src/data/migration-store.ts
-  - backend/upstream/backend/src/data/migration-registry.ts
-  - backend/upstream/backend/src/data/migration-runner.ts
-  - backend/upstream/backend/src/data/backfill-runner.ts
-  - backend/upstream/backend/src/data/index.ts
-  - backend/upstream/backend/tsconfig.data.json
-  - backend/tests/contracts/data-02/migrations.test.mjs (12 tests)
-  - docs/architecture/delivery/KAN37_DDL_REVIEW.md (this handoff)
-Prerequisites: KAN-36 (DATA-01) under Testing; not merged — DATA-02 prepares the
-               machinery; the reviewed DATA-01 DDL is registered as version 1
-               here for validation. No shared prisma/migrations file was modified.
+25 October 2026. Implementer: Codex /root, taking over the existing DeepSeek task at founder direction. Branch: codex/deepseek-kan-37-data-migrations; existing worker checkout retained. Accepted base: 27ba46b73e08071049c36f7999ddf0367e50738d (published dev; KAN-36 integration CI40199709861 passed). Exact replacement source commit is recorded in the subsequent Jira review submission; this document is part of that source.
 
-Acceptance criteria → evidence (each verified by an in-repo test):
-- Versioned migrations → registry with ascending unique versions, checksummed
-  (test: registry unique/ascending/checksummed; applyAll applies in order).
-- Ordering/prerequisite compatibility → preflight refuses a missing prerequisite
-  before any statement runs (test: missing prerequisite refused).
-- Idempotent apply → re-running applies zero new migrations, stays consistent
-  (test: applyAll idempotent).
-- No double-apply after outage → injected mid-run outage, resume completes with
-  no duplicate ledger state (test: mid-run outage resumes).
-- Checksum drift (changed past migration) detected → refused (test: drift).
-- Empty-synthetic-staging rule → first non-confirmed apply against non-empty
-  domain refused; explicit staged confirmation allows it (test: deny + confirm).
-- Separate migration/runtime identities → distinct connection + role enforced;
-  migration purpose required; runtime identity denied (test: identity separation).
-- Bounded resumable backfills → 500-row batches, persisted cursor, crash
-  mid-batch, resume completes 1200 rows with no duplicates; already-done run is
-  a no-op; batch bounds enforced (tests: backfill resume + bounds).
-- Rollback → newest reversible migration rolls back and history records the
-  rolled_back receipt; non-reversible refused; destructive rollback over
-  existing records refused without confirmation (tests: rollback + destructive).
-- GCP/budget stance → migrations are one-off review-approved jobs (not an
-  always-on service), backfill batch ceiling caps Cloud SQL load; no new cloud
-  resource, no always-on workload, nothing deployed.
+Acceptance requested: **bounded PostgreSQL development preparation in disposable synthetic staging**. Full DATA-02, phase-wide authorization, platform identities and connected/hosted release acceptance remain open. This adapter refuses hosted URLs and databases outside the loopback visionary_data_test naming boundary. No shared database or real product records are touched. No product startup/controller imports this machinery.
 
-Commands / results:
-  - node --test backend/tests/contracts/data-02/migrations.test.mjs → 12 pass, 0 fail
-  - node --test scripts/tests/backend-runtime.test.mjs → 3 pass, 0 fail
-  - combined 15 / 0
-  - npm run product:verify-layout → PASS
-  - tsc (tsconfig.data.json) → exit 0 (compiled with @types/node where CI installs it)
-  Environment: backend/upstream/backend worktree, compiled dist via focused
-  tsconfig, in-memory synthetic store (no live Postgres/Cloud SQL touched).
+## Corrections and actual behavior
 
-Remaining defects / limitations / linked open gates:
-  - No live Cloud SQL was used; the store is the in-memory synthetic bridge. The
-    real adapter (separate migration connection/role against Cloud SQL) is
-    wired at integration under PLAT/TEST work; hosted/migration-apply acceptance
-    remains open (DATA-02 does not close DATA-01, KAN-38..44 or PLAT gates).
-  - Registry version 1 mirrors the DATA-01 DDL for validation; canonical SQL
-    remains in prisma/migrations (single source of truth) and is adopted at
-    integration when KAN-36 is accepted — no shared migration file was edited.
-Hosted / migration / rollback evidence: none performed; this is review-only.
-Reviewer decision / verification / dev integration: pending — cannot self-approve.
-Next dependent task: KAN-38 (DATA-03) → idempotent personal workspace provisioning.
-```
+The previous Map-based SQL simulator and duplicated five-table registry are replaced by a real Prisma/PostgreSQL adapter and the single reviewed DATA-01 SQL artifact. The baseline contains all ten domain tables, enum types, foreign keys and indexes. It is non-reversible. The former second migration which redundantly added existing fields and dropped baseline fields is removed; rollback tests use explicitly synthetic additive migrations instead.
+
+The adapter verifies both actual PostgreSQL connections. Runtime must be the configured distinct role, lack schema/database CREATE, privileged role flags, migration-role membership and ownership of schema objects. Migration execution must use the configured non-superuser schema owner. Caller strings cannot establish identity. Artifact validation binds version, name, prerequisites, every up/down statement and reversibility. Applied and rolled-back history remains immutable against changed registry artifacts.
+
+A schema-specific advisory transaction lock serializes runners. All pending DDL and append-only receipts commit in one transaction; a receipt failure rolls back SQL. Interrupted or ambiguously acknowledged commits are reconciled by durable ledger read-back on a new connection/process. Verification fingerprints actual table columns/defaults, constraints, indexes and enum values; physical drift blocks further apply/rollback. This is compatibility evidence for this schema, not a proof of all production client or query compatibility.
+
+Any pending DDL or rollback over retained domain rows is denied. There is no boolean confirmation override. Only the newest explicitly reversible migration can be rolled back; the canonical baseline cannot. No nontransactional migration facility is provided.
+
+Backfills persist run definition, cursor, per-key payload digest and checkpoint in PostgreSQL. Each page's database writer, deduplication receipts and checkpoint share a transaction. Concurrent runs serialize; stable duplicate keys skip the actual writer, while changed payload/definition is refused. Row/page/batch/time budgets, cursor progress/cycles and cancellation are checked. A bounded invocation returns done=false when resumable work remains. The writer must use the provided transaction; external provider calls or side effects are outside this guarantee and are not authorized by the API. Sources must supply stable pages and a versioned immutable definition.
+
+## Verification and review
+
+Root npm run data:check now compiles both workspace and data code and runs both PostgreSQL suites in the existing required CI step. Separate dependencies/locks and the upstream schema patch chain remain unchanged. Tests execute compiled product classes against isolated PostgreSQL schemas and real distinct roles, not copied runner or writer implementations.
+
+Coverage includes canonical schema/repository compatibility; runtime DML versus denied DDL/receipt writes; identity misconfiguration and role membership; middle-SQL and receipt failure atomicity; concurrent apply; a fresh child process reading durable history; lost commit acknowledgements; stale/renamed/up/down/history and physical schema drift; physical rollback and retained-row denial. Backfill coverage includes bounded resume, actual non-idempotent INSERT writer, row/receipt/checkpoint atomicity, marker outage, duplicate/drift, oversized pages, stalled/cyclic cursors across invocations, definition changes, cancellation, hanging source, concurrent completion and row budgets.
+
+Local commands and final counts, separate exact-SHA reviewer decision, actual signed-in product browser regression, final CI and integration are recorded in the review report/Jira. None is pre-approved by this handoff. Test environment: native PostgreSQL16.15 on loopback, guarded disposable visionary_data_test_local database, fresh test roles/schemas; Node24.19 and locked Prisma5.22. Product Firebase configuration and records are separate and never supplied to migration tests.
+
+## Remaining gates
+
+KAN-36's full model/source/policy scope and phase prerequisites remain open. Cloud SQL IAM/role provisioning, production configuration, hosted migrations/backfills, source mapping, deployment/operational rollback, retention/privacy and connected two-device product flows require their own acceptance. No existing account/profile/billing authority is migrated. This work does not activate KAN-38..44 or approve their implementations. Keep KAN-37 open until all required scope is accepted; a scoped dev merge is not full Done or completed-worktree cleanup.

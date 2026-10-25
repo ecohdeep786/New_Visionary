@@ -1,0 +1,293 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index 140d330d..cc80edf4 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -328,3 +328,288 @@ enum JobStatus {
+   COMPLETED
+   FAILED
+ }
++
++// DATA-01 domain schema starts here.
++// ─── Workspaces (DATA-01 / SCOPE-04) ────────────────────────────────────────────
++//
++// PostgreSQL owns domain/membership/evidence/run state, linked by the canonical
++// Firebase UID (Person.uid). Firestore retains authority for account/billing/
++// profile; SQL does NOT duplicate or replace those fields. Each domain command
++// is server-authorized and transactionally scoped.
++
++/// Canonical person reference. The `uid` is the Firebase UID from the verified
++/// session — the single join key to Firestore accounts. SQL stores no password
++/// hashes, payment secrets, or billing authority.
++model Person {
++  uid            String              @id
++  createdAt      DateTime            @default(now())
++  updatedAt      DateTime            @updatedAt
++
++  workspaces     WorkspaceMembership[]
++  ownedWorkspaces Workspace[]
++  acceptedInvitations Invitation[] @relation("AcceptedInvitation")
++  deletionTombstones DeletionTombstone[]
++  shareGrants    ShareGrant[]
++  consentGrants  ConsentGrant[]
++  commandResults CommandResult[]
++  auditEvents    AuditEvent[]
++  outboxEvents   OutboxEvent[]
++
++  @@map("persons")
++}
++
++/// A workspace owned by one UID and shared with members via memberships.
++/// The owning UID is authoritative; memberships carry per-member roles/purposes.
++model Workspace {
++  id          String                @id @default(cuid())
++  uid         String                // owner UID — links to Firestore person via Person.uid
++  name        String
++  slug        String                @unique
++  description   String?
++  isPersonal  Boolean               @default(false)
++  createdAt   DateTime              @default(now())
++  updatedAt   DateTime              @updatedAt
++
++  owner       Person                @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  memberships WorkspaceMembership[]
++  invitations Invitation[]
++  commandResults CommandResult[]
++  outboxEvents OutboxEvent[]
++  auditEvents AuditEvent[]
++
++  @@index([uid])
++
++  @@map("workspaces")
++}
++
++/// Explicit membership linking a person to a workspace with a role/purpose.
++/// Unique constraint prevents duplicate membership; source/version are tracked.
++model WorkspaceMembership {
++  id            String        @id @default(cuid())
++  uid           String
++  workspaceId   String
++  role          WorkspaceRole @default(MEMBER)
++  source        String        // e.g. "invitation", "direct"
++  sourceVersion String        @default("v1")
++  purpose       String?
++  consentVersion String?
++  joinedAt      DateTime      @default(now())
++  updatedAt     DateTime      @updatedAt
++
++  person      Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace   Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
++
++  @@unique([uid, workspaceId])
++  @@index([workspaceId])
++  @@map("workspace_memberships")
++}
++
++enum WorkspaceRole {
++  OWNER
++  ADMIN
++  MEMBER
++  GUEST
++}
++
++/// Invitations to join a workspace. A role picker, email match, guessed ID or
++/// browser record cannot establish permission (see DATA-04). Token is a one-time
++/// use hash verified server-side.
++model Invitation {
++  id          String            @id @default(cuid())
++  workspaceId String
++  email       String
++  role        WorkspaceRole     @default(MEMBER)
++  tokenHash   String? @unique   // SHA-256 of the one-time invite token
++  status      InvitationStatus  @default(PENDING)
++  expiresAt   DateTime
++  issuedAt    DateTime?
++  acceptedAt  DateTime?
++  acceptedByUid String?
++  revokedAt   DateTime?
++  createdAt   DateTime          @default(now())
++
++  workspace   Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
++  acceptedBy  Person? @relation("AcceptedInvitation", fields: [acceptedByUid], references: [uid], onDelete: SetNull)
++
++  @@unique([workspaceId, email])
++  @@index([email])
++  @@map("invitations")
++}
++
++enum InvitationStatus {
++  PENDING
++  ISSUED
++  ACCEPTED
++  REVOKED
++  EXPIRED
++}
++
++/// Consent/share purpose grants. Each grant is purpose-scoped with explicit
++/// expiry/revocation. Revocation must affect pending jobs, caches and newly
++/// requested downloads (see DATA-05).
++model ConsentGrant {
++  id              String   @id @default(cuid())
++  uid             String
++  purpose         String   // e.g. "learning-evidence", "workspace-share"
++  resourceId      String?  // null = account-wide for this purpose
++  grantedAt       DateTime @default(now())
++  expiresAt       DateTime?
++  revokedAt       DateTime?
++  version         String   // policy version at grant time
++  consentVersion  String
++
++  person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
++
++  @@unique([uid, purpose, resourceId, consentVersion])
++  @@index([uid])
++  @@index([purpose])
++  @@map("consent_grants")
++}
++
++/// Share grants for explicit resource-level sharing (e.g. project/portfolio
++/// share). Revoking consent must not revive old shares (see DATA-05).
++model ShareGrant {
++  id              String   @id @default(cuid())
++  uid             String
++  resourceType    String   // e.g. "project", "workspace", "report"
++  resourceId      String
++  grantedToUid    String?  // null = public within scope
++  purpose         String   // e.g. "portfolio-share", "summary-share"
++  scope           String   // e.g. "view", "comment", "full"
++  grantedAt       DateTime @default(now())
++  expiresAt       DateTime?
++  revokedAt       DateTime?
++  consentVersion  String
++
++  person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
++
++  @@unique([uid, resourceType, resourceId, purpose, consentVersion])
++  @@index([resourceType, resourceId])
++  @@index([grantedToUid])
++  @@map("share_grants")
++}
++
++// ─── Command receipts (DATA-06) ────────────────────────────────────────────────
++
++/// Server-authorized command results with idempotency. Rejects the same command
++/// key with a changed payload (duplicate-command case). Unique constraint on
++/// commandId enforces idempotency; payloadDigest detects changed payloads.
++model CommandResult {
++  id           String        @id @default(cuid())
++  uid          String
++  commandId    String        @unique  // stable client-generated command key
++  kind         String        // e.g. "workspace:create", "learning:start"
++  payloadDigest String        // sha256 of the command payload for change detection
++  workspaceId  String?       // null when account-scoped
++  status       CommandStatus  @default(PENDING)
++  resultJson   Json?         // committed result snapshot; null on failure
++  error        String?       // error class/message on failure
++  attemptedAt  DateTime      @default(now())
++  committedAt  DateTime?     // null until the command commits successfully
++  revision     Int           @default(1)  // expected revision for conditional writes
++
++  person       Person        @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace    Workspace?    @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
++
++  @@index([uid])
++  @@index([kind])
++  @@index([committedAt])
++  @@map("command_results")
++}
++
++enum CommandStatus {
++  PENDING
++  COMMITTED
++  FAILED
++  DUPLICATE
++  CONFLICT
++}
++
++// ─── Outbox (SYNC-01) ────────────────────────────────────────────────────────────
++
++/// Durable outbox events for authorized change/run observation across
++/// account, billing and every released workspace domain. Each event records
++/// the owning UID and workspace scope; consumers observe via bounded polling/SSE
++/// with replay/refetch/refetch semantics.
++model OutboxEvent {
++  id            String      @id @default(cuid())
++  uid           String
++  workspaceId   String?
++  topic         String      // e.g. "workspace.membership", "consent.revoked"
++  payload       Json
++  cursor        BigInt      @unique @default(autoincrement()) // durable cursor; repository serializes events per UID
++  status        OutboxStatus @default(PENDING)
++  createdAt     DateTime    @default(now())
++  dispatchedAt  DateTime?
++  failureReason String?
++
++  person        Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace     Workspace?  @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
++
++  @@index([uid, cursor])
++  @@index([status])
++  @@index([createdAt])
++  @@index([workspaceId])
++  @@map("outbox_events")
++}
++
++enum OutboxStatus {
++  PENDING
++  DISPATCHED
++  FAILED
++}
++
++// ─── Audit (PRIV-01/PRIV-03) ────────────────────────────────────────────────────
++
++/// Immutable audit events for security-sensitive operations. Retains the
++/// owning UID and workspace scope; private details are redacted. IP addresses
++/// have their last octet zeroed for IPv4.
++model AuditEvent {
++  id          String       @id @default(cuid())
++  uid         String
++  workspaceId String?
++  operation   String       // e.g. "consent.grant", "workspace.invite.revoke"
++  actorType   String       // "user", "system", "operator"
++  actorUid    String?      // present when actor != subject uid
++  resourceType String
++  resourceId   String?
++  outcome     AuditOutcome
++  ip          String?      // redacted: last octet zeroed for IPv4
++  userAgent   String?      // truncated, redacted
++  createdAt   DateTime     @default(now())
++
++  person      Person       @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace   Workspace?   @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
++
++  @@index([uid, createdAt])
++  @@index([operation, createdAt])
++  @@index([workspaceId, createdAt])
++  @@map("audit_events")
++}
++
++enum AuditOutcome {
++  SUCCESS
++  DENIED
++  FAILED
++}
++
++// ─── Deletion tombstones (PRIV-02/PRIV-03) ──────────────────────────────────────
++
++/// Deletion tombstone record. Used by PRIV-02/PRIV-03 to prevent revive of
++/// erased derived records even after backup restore. Unique constraint
++/// ensures a tombstone cannot be silently overwritten.
++model DeletionTombstone {
++  id          String   @id @default(cuid())
++  uid         String
++  resourceType String
++  resourceId   String
++  reason      String?
++  createdAt   DateTime @default(now())
++  expiresAt   DateTime?  // null = permanent tombstone
++
++  person Person @relation(fields: [uid], references: [uid], onDelete: Restrict)
++
++  @@unique([uid, resourceType, resourceId])
++  @@index([expiresAt])
++  @@map("deletion_tombstones")
++}

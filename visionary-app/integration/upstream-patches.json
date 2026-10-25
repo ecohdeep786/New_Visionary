@@ -90,6 +90,22 @@
           "afterSha256": "186c229ae7860e09b5851993177a582f3237298e477aa9ae9a04fb15bc154459"
         }
       ]
+    },
+    {
+      "id": "2026-10-25-data-01-schema",
+      "date": "2026-10-25",
+      "decision": "Founder-authorized KAN-36 rework",
+      "reason": "Reviewed canonical UID workspace-domain schema preparation; Firestore account/billing and connected runtime remain authoritative and unchanged. Source/policy/hosted gates remain open.",
+      "diff": "integration/upstream-patches/2026-10-25-data-01-schema.patch",
+      "diffSha256": "68dafca8f9312541e47ecd9fe1917db25f7017b0ddf5b4e15c034f245ba8d40e",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "f1f7683a9bee83650387a8c116e8acd508a8a9150b0b2cfb62ac99cbd5d87713",
+          "afterSha256": "10c22a2e2bfede742ece5db5dee356d5a584f1d75bc55422f23f01fa511ae087"
+        }
+      ]
     }
   ]
 }
