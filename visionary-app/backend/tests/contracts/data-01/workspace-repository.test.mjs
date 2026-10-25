@@ -1,433 +1,124 @@
-/**
- * DATA-01 — Workspace repository behavior tests.
- *
- * Tests the WorkspaceRepository logic using an in-memory mock that simulates
- * the Prisma client behavior. Verifies:
- *   - Wrong-owner/reference cases are denied
- *   - Duplicate command keys with same payload are idempotent
- *   - Duplicate command keys with changed payload are rejected
- *   - Stale revision / conflict detection works
- *   - Consent revocation blocks operations
- *   - SQL does not duplicate Firestore account authority
- */
-import test from 'node:test';
+import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import fixture from './postgres-fixture.cjs';
+const { WorkspaceRepository } = fixture.req('./dist/src/workspaces/workspace.repository.js');
+let env, db, repo, ws;
+const input = (suffix, extra = {}) => ({ name: 'Synthetic ' + suffix, slug: 'workspace-' + suffix, commandId: 'cmd-' + suffix, ...extra });
+before(async () => { env = await fixture.domainDatabase(); db = env.db; repo = new WorkspaceRepository(db); });
+after(async () => { if (env) await env.close(); });
 
-const digest = (value) => createHash('sha256').update(value).digest('hex');
-
-// Lightweight in-memory Prisma mock for WorkspaceRepository
-class MockWorkspaceRepository {
-  // Storage
-  persons = new Map();        // uid -> { uid, createdAt, updatedAt }
-  workspaces = new Map();     // id -> { id, uid, name, slug, ... }
-  memberships = new Map();    // `${uid}-${workspaceId}` -> { uid, workspaceId, role, ... }
-  invitations = new Map();    // id -> { id, workspaceId, email, tokenHash, status, ... }
-  commandResults = new Map(); // commandId -> { uid, commandId, kind, payloadDigest, ... }
-  consentGrants = new Map();  // `${uid}-${purpose}-${resourceId}-${consentVersion}` -> { ... }
-  outboxEvents = [];          // array of { uid, workspaceId, topic, payload, cursor }
-  auditEvents = [];           // array of { uid, operation, ... }
-
-  // Helpers
-  findWorkspace(slug) {
-    for (const ws of this.workspaces.values()) {
-      if (ws.slug === slug) return ws;
-    }
-    return null;
+test('actual repository atomically commits workspace, membership, immutable receipt, audit and outbox', async () => {
+  ws = await repo.createWorkspace('owner', input('base'));
+  assert.equal((await db.commandResult.findUnique({ where: { commandId: 'cmd-base' } })).workspaceId, ws.id);
+  assert.equal(await db.workspaceMembership.count({ where: { workspaceId: ws.id, role: 'OWNER' } }), 1);
+  assert.equal(await db.outboxEvent.count({ where: { workspaceId: ws.id } }), 1);
+  assert.equal(await db.auditEvent.count({ where: { workspaceId: ws.id } }), 1);
+});
+test('actual repository rejects changed executed fields even with unchanged caller payload', async () => {
+  assert.deepEqual(await repo.createWorkspace('owner', input('base')), ws);
+  for (const change of [{ name: 'Changed' }, { slug: 'other' }, { description: 'Changed' }, { isPersonal: true }]) {
+    await assert.rejects(repo.createWorkspace('owner', input('base', { ...change, payload: {} })), /changed payload/);
   }
-
-  // Repository methods (mirrors workspace.repository.ts logic)
-
-  async ensurePerson(uid) {
-    if (!this.persons.has(uid)) {
-      this.persons.set(uid, { uid, createdAt: new Date(), updatedAt: new Date() });
-    }
-  }
-
-  async createWorkspace(uid, input) {
-    if (!input.slug || !/^[a-z0-9-]+$/i.test(input.slug)) {
-      throw new Error('BAD_REQUEST: Workspace slug invalid');
-    }
-    await this.ensurePerson(uid);
-
-    // Idempotency: check commandId if provided
-    if (input.commandId) {
-      const existing = this.commandResults.get(input.commandId);
-      if (existing) {
-        if (existing.uid !== uid) throw new Error('FORBIDDEN: Command belongs to another account');
-        if (existing.payloadDigest !== digest(JSON.stringify(input.payload ?? {}))) {
-          throw new Error('CONFLICT: Same command key with changed payload');
-        }
-        // Duplicate with same payload — idempotent
-        const existingWs = this.findWorkspace(input.slug);
-        if (existingWs && existingWs.uid === uid) return existingWs;
-      }
-    }
-
-    // Check unique slug
-    if (this.findWorkspace(input.slug)) {
-      throw new Error('CONFLICT: Workspace slug already exists');
-    }
-
-    const id = `ws_${this.workspaces.size + 1}`;
-    const now = new Date();
-    const workspace = {
-      id,
-      uid,
-      name: input.name,
-      slug: input.slug,
-      description: input.description ?? null,
-      isPersonal: input.isPersonal ?? false,
-      createdAt: now,
-      updatedAt: now,
-    };
-    this.workspaces.set(id, workspace);
-
-    // Membership
-    this.memberships.set(`${uid}-${id}`, {
-      uid,
-      workspaceId: id,
-      role: 'OWNER',
-      source: 'direct',
-      joinedAt: now,
-      updatedAt: now,
-    });
-
-    // Command result
-    if (input.commandId) {
-      this.commandResults.set(input.commandId, {
-        uid,
-        commandId: input.commandId,
-        kind: 'workspace:create',
-        payloadDigest: digest(JSON.stringify(input.payload ?? {})),
-        workspaceId: id,
-        status: 'COMMITTED',
-        committedAt: now,
-        revision: 1,
-      });
-    }
-
-    // Outbox
-    this.outboxEvents.push({
-      uid,
-      workspaceId: id,
-      topic: 'workspace.created',
-      payload: { workspaceId: id, name: input.name, slug: input.slug },
-      cursor: `${Date.now()}`,
-      status: 'PENDING',
-    });
-
-    // Audit
-    this.auditEvents.push({
-      uid,
-      workspaceId: id,
-      operation: 'workspace.create',
-      actorType: 'user',
-      resourceType: 'workspace',
-      resourceId: id,
-      outcome: 'SUCCESS',
-    });
-
-    return workspace;
-  }
-
-  async assertOwnership(workspaceId, uid) {
-    const ws = this.workspaces.get(workspaceId);
-    if (!ws) throw new Error('NOT_FOUND: Workspace not found');
-    if (ws.uid !== uid) throw new Error('FORBIDDEN: Not the workspace owner');
-  }
-
-  async assertMembership(workspaceId, uid, minRole) {
-    const ws = this.workspaces.get(workspaceId);
-    if (!ws) throw new Error('NOT_FOUND: Workspace not found');
-    if (ws.uid === uid) return; // owner
-    const membership = this.memberships.get(`${uid}-${workspaceId}`);
-    if (!membership) throw new Error('FORBIDDEN: Not a member');
-    if (minRole) {
-      const rank = { GUEST: 0, MEMBER: 1, ADMIN: 2, OWNER: 3 };
-      if (rank[membership.role] < rank[minRole]) {
-        throw new Error(`FORBIDDEN: Requires ${minRole} or higher`);
-      }
-    }
-  }
-
-  async acceptInvitation(uid, token) {
-    const tokenHash = digest(token);
-    const invitation = Array.from(this.invitations.values()).find(
-      (inv) => inv.tokenHash === tokenHash && inv.status === 'ISSUED',
-    );
-    if (!invitation) throw new Error('NOT_FOUND: Invitation not found or used');
-    if (invitation.expiresAt < new Date()) throw new Error('FORBIDDEN: Invitation expired');
-    if (invitation.revokedAt) throw new Error('FORBIDDEN: Invitation revoked');
-
-    await this.ensurePerson(uid);
-    this.invitations.set(invitation.id, { ...invitation, status: 'ACCEPTED', acceptedAt: new Date() });
-
-    this.memberships.set(`${uid}-${invitation.workspaceId}`, {
-      uid,
-      workspaceId: invitation.workspaceId,
-      role: invitation.role,
-      source: 'invitation',
-      joinedAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    return { workspaceId: invitation.workspaceId, role: invitation.role };
-  }
-
-  // Domain command with idempotency + revision check
-  async presentCheck(uid, workspaceId, sessionId, input) {
-    await this.assertMembership(workspaceId, uid);
-
-    const commandId = input.commandId;
-    const payloadDigest = digest(JSON.stringify(input));
-
-    // Idempotency: check for existing command result
-    const existing = this.commandResults.get(commandId);
-    if (existing) {
-      if (existing.uid !== uid) throw new Error('FORBIDDEN: Command belongs to another account');
-      if (existing.payloadDigest !== payloadDigest) {
-        throw new Error('CONFLICT: Same command key with changed payload');
-      }
-      // Duplicate — return existing
-      return { ...existing, idempotent: true };
-    }
-
-    // Stale revision check
-    if (input.expectedRevision !== undefined) {
-      const last = Array.from(this.commandResults.values())
-        .filter((r) => r.workspaceId === workspaceId && r.kind === 'learning:present')
-        .sort((a, b) => b.revision - a.revision)[0];
-      if (last && last.revision !== input.expectedRevision) {
-        throw new Error('CONFLICT: Expected changed on another device or tab');
-      }
-    }
-
-    // Commit
-    const now = new Date();
-    const record = {
-      uid,
-      commandId,
-      kind: 'learning:present',
-      payloadDigest,
-      workspaceId,
-      status: 'COMMITTED',
-      committedAt: now,
-      revision: (existing?.revision ?? 0) + 1,
-    };
-    this.commandResults.set(commandId, record);
-    return record;
-  }
-
-  async grantConsent(uid, purpose, consentVersion, resourceId) {
-    await this.ensurePerson(uid);
-    const key = `${uid}-${purpose}-${resourceId ?? 'null'}-${consentVersion}`;
-    if (this.consentGrants.has(key)) {
-      throw new Error('CONFLICT: Active consent grant already exists for this purpose/version');
-    }
-    this.consentGrants.set(key, {
-      uid,
-      purpose,
-      resourceId: resourceId ?? null,
-      consentVersion,
-      grantedAt: new Date(),
-      expiresAt: null,
-      revokedAt: null,
-    });
-    return { ok: true };
-  }
-
-  async revokeConsent(uid, purpose, resourceId) {
-    for (const [key, grant] of this.consentGrants) {
-      if (grant.uid === uid && grant.purpose === purpose &&
-          (resourceId ? grant.resourceId === resourceId : grant.resourceId === null)) {
-        this.consentGrants.set(key, { ...grant, revokedAt: new Date() });
-        return true;
-      }
-    }
-    return false;
-  }
-
-  async assertConsent(uid, purpose, resourceId, consentVersion) {
-    const key = `${uid}-${purpose}-${resourceId ?? 'null'}-${consentVersion ?? ''}`;
-    const grant = this.consentGrants.get(key);
-    if (!grant) throw new Error('FORBIDDEN: No consent grant found');
-    if (grant.revokedAt) throw new Error('FORBIDDEN: Consent has been revoked');
-    if (grant.expiresAt && grant.expiresAt < new Date()) throw new Error('FORBIDDEN: Consent expired');
-  }
+  await assert.rejects(repo.createWorkspace('other', input('base')), /another account/);
+  assert.equal(await db.outboxEvent.count({ where: { workspaceId: ws.id } }), 1);
+});
+test('first-ever concurrent UID provisioning retries produce one committed workspace', async () => {
+  const results = await Promise.all(Array.from({ length: 4 }, () => repo.createWorkspace('first-use', input('concurrent'))));
+  assert.equal(new Set(results.map((r) => r.id)).size, 1);
+  assert.equal(await db.commandResult.count({ where: { uid: 'first-use' } }), 1);
+});
+test('actual repository translates slug conflicts without partial domain writes', async () => {
+  await assert.rejects(repo.createWorkspace('different', input('base', { commandId: 'different-command' })), /already exists/);
+  assert.equal(await db.workspace.count({ where: { uid: 'different' } }), 0);
+  assert.equal(await db.commandResult.count({ where: { uid: 'different' } }), 0);
+});
+test('actual repository denies wrong ownership, unknown roles and forged OWNER membership', async () => {
+  await assert.rejects(repo.assertOwnership(ws.id, 'different'), /permission/);
+  await db.workspaceMembership.create({ data: { uid: 'different', workspaceId: ws.id, role: 'OWNER', source: 'synthetic-corruption' } });
+  await assert.rejects(repo.assertMembership(ws.id, 'different', 'ADMIN'), /membership/);
+  const corrupt = new WorkspaceRepository({ workspace: { findUnique: async () => ({ uid: 'owner' }) }, deletionTombstone: { findUnique: async () => null },
+    workspaceMembership: { findUnique: async () => ({ role: 'UNKNOWN' }) } });
+  await assert.rejects(corrupt.assertMembership(ws.id, 'different', 'ADMIN'), /membership/);
+});
+test('actual repository checks exact consent version, expiry and revocation', async () => {
+  const grant = await db.consentGrant.create({ data: { uid: 'owner', purpose: 'synthetic-learning', version: 'policy-1', consentVersion: 'v1' } });
+  await repo.assertConsent('owner', 'synthetic-learning', undefined, 'v1');
+  await assert.rejects(repo.assertConsent('owner', 'synthetic-learning', undefined, 'v2'), /consent/);
+  await assert.rejects(repo.assertConsent('owner', 'synthetic-learning'), /policy version/);
+  await db.consentGrant.update({ where: { id: grant.id }, data: { revokedAt: new Date() } });
+  await assert.rejects(repo.assertConsent('owner', 'synthetic-learning', undefined, 'v1'), /revoked/);
+});
+async function invite(token, extra = {}) {
+  return db.invitation.create({ data: { workspaceId: ws.id, email: token + '@example.invalid', tokenHash: createHash('sha256').update(token).digest('hex'),
+    role: 'MEMBER', status: 'ISSUED', expiresAt: new Date(Date.now() + 60000), ...extra } });
 }
-
-// ─── Tests ─────────────────────────────────────────────────────────────────────
-
-test('DATA-01 wrong-owner workspace access is denied', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('user-a');
-  await repo.ensurePerson('user-b');
-
-  const ws = await repo.createWorkspace('user-a', { name: 'A-Workspace', slug: 'a-workspace' });
-
-  // user-b tries to access user-a's workspace → denied
-  await assert.rejects(
-    repo.assertOwnership(ws.id, 'user-b'),
-    { message: 'FORBIDDEN: Not the workspace owner' },
-  );
+test('actual PostgreSQL invitation claim admits one concurrent account and makes same-account retry idempotent', async () => {
+  const token = 'synthetic-concurrent-invite'; await invite(token);
+  const outcomes = await Promise.allSettled(['invitee-one','invitee-two'].map((uid) => repo.acceptInvitation(uid, token)));
+  assert.equal(outcomes.filter((r) => r.status === 'fulfilled').length, 1);
+  const invitation = await db.invitation.findUnique({ where: { tokenHash: createHash('sha256').update(token).digest('hex') } });
+  const count = await db.outboxEvent.count();
+  await repo.acceptInvitation(invitation.acceptedByUid, token);
+  assert.equal(await db.outboxEvent.count(), count);
+  const loser = invitation.acceptedByUid === 'invitee-one' ? 'invitee-two' : 'invitee-one';
+  await assert.rejects(repo.acceptInvitation(loser, token), /already used/);
 });
-
-test('DATA-01 duplicate command key with same payload is idempotent', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('user-a');
-
-  const input = {
-    name: 'Test Workspace',
-    slug: 'test-workspace',
-    commandId: 'cmd-123',
-    payload: { source: 'web' },
-  };
-
-  const ws1 = await repo.createWorkspace('user-a', input);
-  const ws2 = await repo.createWorkspace('user-a', input);
-
-  assert.equal(ws1.id, ws2.id, 'Idempotent retry should return the same workspace');
+test('actual invitation expiry, revocation and OWNER grant are denied', async () => {
+  for (const [token, extra] of [['synthetic-expired-invite',{expiresAt:new Date(0)}],['synthetic-revoked-invite',{revokedAt:new Date()}],['synthetic-owner-invite',{role:'OWNER'}]]) {
+    await invite(token, extra); await assert.rejects(repo.acceptInvitation('invited', token), /expired|revoked|role/);
+  }
 });
-
-test('DATA-01 duplicate command key with changed payload is rejected', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('user-a');
-
-  await repo.createWorkspace('user-a', {
-    name: 'First',
-    slug: 'first',
-    commandId: 'cmd-456',
-    payload: { source: 'web' },
+test('owner self-invitations are rejected without consuming the invitation', async () => {
+  const token = 'synthetic-self-invitation'; const invitation = await invite(token);
+  await assert.rejects(repo.acceptInvitation('owner', token), /owner cannot accept/);
+  assert.equal((await db.invitation.findUnique({ where: { id: invitation.id } })).status, 'ISSUED');
+});
+test('accepting a token cannot launder a forged OWNER membership', async () => {
+  const token = 'synthetic-forged-owner-row'; const invitation = await invite(token);
+  await assert.rejects(repo.acceptInvitation('different', token), /invalid role/);
+  assert.equal((await db.invitation.findUnique({ where: { id: invitation.id } })).status, 'ISSUED');
+});
+test('revocation wins over a stale invitation read while its conditional claim is waiting', async () => {
+  const token = 'synthetic-accept-revoke-race'; const invitation = await invite(token);
+  let release, claimReached;
+  const gate = new Promise((r) => { release = r; });
+  const claim = new Promise((r) => { claimReached = r; });
+  let locked;
+  const lock = new Promise((r) => { locked = r; });
+  const revoke = db.$transaction(async (tx) => {
+    await tx.invitation.update({ where: { id: invitation.id }, data: { status: 'REVOKED', revokedAt: new Date() } });
+    locked(); await gate;
   });
-
-  // Same commandId but different payload → conflict
-  await assert.rejects(
-    repo.createWorkspace('user-a', {
-      name: 'Second',
-      slug: 'second',
-      commandId: 'cmd-456',
-      payload: { source: 'api', different: true },
-    }),
-    { message: 'CONFLICT: Same command key with changed payload' },
-  );
+  await lock;
+  const observed = db.$extends({ query: { invitation: { async updateMany({ args, query }) { claimReached(); return query(args); } } } });
+  const accept = new WorkspaceRepository(observed).acceptInvitation('race-user', token);
+  const settled = accept.then(() => null, (error) => error);
+  await claim; release(); await revoke;
+  assert.match((await settled).message, /revoked/);
+  assert.equal(await db.workspaceMembership.count({ where: { uid: 'race-user' } }), 0);
 });
-
-test('DATA-01 stale revision / concurrent edit conflict', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('user-a');
-
-  const sessionId = 'sess-1';
-  const ws = await repo.createWorkspace('user-a', { name: 'RevTest', slug: 'rev-test' });
-
-  // First check at revision 1
-  const r1 = await repo.presentCheck('user-a', ws.id, sessionId, {
-    commandId: 'check-1',
-    expectedRevision: 0,
-    answer: 'A',
-    prompt: 'What is 2+2?',
-  });
-
-  // Second check at wrong revision → conflict
-  await assert.rejects(
-    repo.presentCheck('user-a', ws.id, sessionId, {
-      commandId: 'check-2',
-      expectedRevision: 0, // stale — should be 1
-      answer: 'B',
-      prompt: 'What is 3+3?',
-    }),
-    { message: /CONFLICT: Expected changed/ },
-  );
+test('erased workspaces cannot be replayed, authorized or listed', async () => {
+  const erased = await repo.createWorkspace('owner', input('erased'));
+  await db.deletionTombstone.create({ data: { uid: 'owner', resourceType: 'workspace', resourceId: erased.id, expiresAt: new Date(0) } });
+  await assert.rejects(repo.createWorkspace('owner', input('erased')), /no longer available/);
+  await assert.rejects(repo.assertMembership(erased.id, 'owner'), /no longer available/);
+  assert.ok(!(await repo.listWorkspaces('owner')).some((r) => r.id === erased.id));
 });
-
-test('DATA-01 consent revocation blocks subsequent operations', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('user-a');
-
-  await repo.grantConsent('user-a', 'learning-evidence', 'v1');
-
-  // Before revocation: consent is active
-  await repo.assertConsent('user-a', 'learning-evidence', null, 'v1');
-
-  // Revoke
-  await repo.revokeConsent('user-a', 'learning-evidence', null);
-
-  // After revocation: operation is blocked
-  await assert.rejects(
-    repo.assertConsent('user-a', 'learning-evidence', null, 'v1'),
-    { message: 'FORBIDDEN: Consent has been revoked' },
-  );
-});
-
-test('DATA-01 command from one user cannot be replayed by another', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('user-a');
-  await repo.ensurePerson('user-b');
-
-  await repo.createWorkspace('user-a', {
-    name: 'Private',
-    slug: 'private-space',
-    commandId: 'cmd-private',
-    payload: { secret: 'data' },
-  });
-
-  // user-b tries to reuse user-a's commandId → forbidden
-  await assert.rejects(
-    repo.createWorkspace('user-b', {
-      name: 'Stolen',
-      slug: 'stolen-space',
-      commandId: 'cmd-private',
-      payload: { secret: 'data' },
-    }),
-    { message: 'FORBIDDEN: Command belongs to another account' },
-  );
-});
-
-test('DATA-01 membership role escalation is denied for non-owner', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('owner');
-  await repo.ensurePerson('member');
-
-  const ws = await repo.createWorkspace('owner', { name: 'RoleTest', slug: 'role-test' });
-
-  // Grant member role (use the correct key format: `${uid}-${workspaceId}`)
-  const membershipKey = `member-${ws.id}`;
-  repo.memberships.set(membershipKey, {
-    uid: 'member', workspaceId: ws.id, role: 'MEMBER',
-    source: 'direct', joinedAt: new Date(), updatedAt: new Date(),
-  });
-
-  // Member cannot perform OWNER-level action
-  await assert.rejects(
-    () => repo.assertMembership(ws.id, 'member', 'OWNER'),
-    { message: 'FORBIDDEN: Requires OWNER or higher' },
-  );
-
-  // But can perform MEMBER-level action
-  await repo.assertMembership(ws.id, 'member', 'MEMBER');
-});
-
-test('DATA-01 workspace slug uniqueness is enforced', async () => {
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('user-a');
-
-  await repo.createWorkspace('user-a', { name: 'First', slug: 'unique-slug' });
-  await assert.rejects(
-    repo.createWorkspace('user-a', { name: 'Second', slug: 'unique-slug' }),
-    { message: 'CONFLICT: Workspace slug already exists' },
-  );
-});
-
-test('DATA-01 SQL persons table does not store auth fields', async () => {
-  // This test verifies the principle that SQL does not duplicate Firestore auth
-  const repo = new MockWorkspaceRepository();
-  await repo.ensurePerson('firebase-uid-123');
-
-  const person = repo.persons.get('firebase-uid-123');
-  assert.equal(person.uid, 'firebase-uid-123');
-  // No email, password, plan, subscription fields
-  assert.equal(person.email, undefined);
-  assert.equal(person.passwordHash, undefined);
-  assert.equal(person.plan, undefined);
-  assert.equal(person.subscription, undefined);
+test('separate connections serialize per-UID commit order with durable unique sequence cursors', async () => {
+  let release, created;
+  const gate = new Promise((r) => { release = r; }); const paused = new Promise((r) => { created = r; });
+  const firstClient = env.client(); const secondClient = env.client();
+  try {
+    const first = firstClient.$extends({ query: { outboxEvent: { async create({ args, query }) { const event = await query(args); created(); await gate; return event; } } } });
+    const one = new WorkspaceRepository(first).createWorkspace('cursor-owner', input('cursor-one'));
+    await paused;
+    const two = new WorkspaceRepository(secondClient).createWorkspace('cursor-owner', input('cursor-two'));
+    assert.equal(await db.outboxEvent.count({ where: { uid: 'cursor-owner' } }), 0);
+    release(); await Promise.all([one,two]);
+    const events = await db.outboxEvent.findMany({ where: { uid: 'cursor-owner' }, orderBy: { cursor: 'asc' } });
+    assert.equal(events.length, 2); assert.ok(events[1].cursor > events[0].cursor);
+    assert.equal(events[0].payload.slug, 'workspace-cursor-one');
+    assert.equal(events[1].payload.slug, 'workspace-cursor-two');
+  } finally { release(); await firstClient.$disconnect(); await secondClient.$disconnect(); }
 });

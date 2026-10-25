@@ -1,293 +1,165 @@
 import { Injectable, ConflictException, NotFoundException, ForbiddenException, BadRequestException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { createHash } from 'node:crypto';
 
-const digest = (value: string) => createHash('sha256').update(value).digest('hex');
+type Store = Prisma.TransactionClient;
+type Role = 'OWNER' | 'ADMIN' | 'MEMBER' | 'GUEST';
+const ranks: Record<Role, number> = { GUEST: 0, MEMBER: 1, ADMIN: 2, OWNER: 3 };
+const knownRole = (role: unknown): role is Role => typeof role === 'string' && Object.prototype.hasOwnProperty.call(ranks, role);
+const digest = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+export interface WorkspaceInput {
+  name: string; slug: string; description?: string; isPersonal?: boolean; commandId: string;
+}
 
-/**
- * DATA-01 / SCOPE-04 repository for workspace domain state.
- *
- * PostgreSQL owns workspace/membership/consent/outbox state, linked by the
- * canonical Firebase UID (Person.uid). This repository never trusts a client-
- * supplied UID — every write is scoped to the verified server UID. It rejects
- * duplicate command keys with changed payloads, and demonstrates correct
- * wrong-owner/reference, stale-revision, and consent-revocation behavior.
- */
+/** Unwired domain repository. Callers must supply a verified server UID.
+ * Account/profile/billing authority stays in Firestore. This class does not
+ * establish admission, source rights or guardian permissions for any caller. */
 @Injectable()
 export class WorkspaceRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  /** Ensure a Person row exists for the UID. SQL does not store account/
-   *  billing fields — it references the Firestore UID as a foreign key. */
   async ensurePerson(uid: string): Promise<void> {
-    await this.prisma.person.upsert({
-      where: { uid },
-      update: { updatedAt: new Date() },
-      create: { uid },
-    });
+    if (typeof uid !== 'string' || !uid || uid.length > 128) throw new BadRequestException('Invalid account reference.');
+    await this.prisma.person.upsert({ where: { uid }, update: { updatedAt: new Date() }, create: { uid } });
   }
 
-  /** Verify the UID owns the workspace. Throws ForbiddenException for a
-   *  wrong-owner reference. */
-  async assertOwnership(workspaceId: string, uid: string): Promise<void> {
-    const ws = await this.prisma.workspace.findUnique({
-      where: { id: workspaceId },
-      select: { uid: true },
-    });
-    if (ws === null) throw new NotFoundException('Workspace not found.');
-    if (ws.uid !== uid) throw new ForbiddenException('You do not have permission to access this workspace.');
-  }
-
-  /** Verify the UID has an active membership (role) in the workspace. */
-  async assertMembership(workspaceId: string, uid: string, minRole?: 'OWNER' | 'ADMIN' | 'MEMBER' | 'GUEST'): Promise<void> {
-    const ws = await this.prisma.workspace.findUnique({ where: { id: workspaceId }, select: { uid: true } });
-    if (ws === null) throw new NotFoundException('Workspace not found.');
-    if (ws.uid === uid) return; // owner always has access
-    const membership = await this.prisma.workspaceMembership.findFirst({
-      where: { uid, workspaceId },
-      select: { role: true },
-    });
-    if (membership === null) throw new ForbiddenException('You are not a member of this workspace.');
-    if (minRole !== undefined) {
-      const rank = { GUEST: 0, MEMBER: 1, ADMIN: 2, OWNER: 3 }[membership.role as keyof typeof WorkspaceRoleRank];
-      const required = WorkspaceRoleRank[minRole];
-      if (rank < required) throw new ForbiddenException(`Requires role ${minRole} or higher.`);
+  private async notErased(tx: Store, uid: string, id: string): Promise<void> {
+    // A marker remains authoritative until explicitly retired by approved
+    // retention policy. Time alone must not revive an erased resource.
+    if (await tx.deletionTombstone.findUnique({ where: { uid_resourceType_resourceId: { uid, resourceType: 'workspace', resourceId: id } } })) {
+      throw new ForbiddenException('Workspace is no longer available.');
     }
   }
 
-  /** Verify an unexpired, non-revoked consent grant exists for the purpose. */
-  async assertConsent(uid: string, purpose: string, resourceId?: string, consentVersion?: string): Promise<void> {
-    const existing = await this.prisma.consentGrant.findFirst({
-      where: {
-        uid,
-        purpose,
-        resourceId: resourceId ?? null,
-        ...(consentVersion ? { consentVersion } : {}),
-        revokedAt: null,
-        OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }],
-      },
-    });
-    if (existing === null) throw new ForbiddenException('Required consent has not been granted or has been revoked.');
+  private async owned(tx: Store, workspaceId: string, uid: string): Promise<void> {
+    const ws = await tx.workspace.findUnique({ where: { id: workspaceId }, select: { uid: true } });
+    if (!ws) throw new NotFoundException('Workspace not found.');
+    if (ws.uid !== uid) throw new ForbiddenException('You do not have permission to access this workspace.');
+    await this.notErased(tx, ws.uid, workspaceId);
   }
 
-  /** Check that a command key is not already committed with a different payload.
-   *  Returns "duplicate" if same payload (safe retry), throws ConflictException
-   *  if the payload digest differs (reject same command key with changed payload). */
+  async assertOwnership(workspaceId: string, uid: string): Promise<void> {
+    await this.owned(this.prisma, workspaceId, uid);
+  }
+
+  async assertMembership(workspaceId: string, uid: string, minRole: Role = 'GUEST'): Promise<void> {
+    if (!knownRole(minRole)) throw new ForbiddenException('Unknown required role.');
+    const ws = await this.prisma.workspace.findUnique({ where: { id: workspaceId }, select: { uid: true } });
+    if (!ws) throw new NotFoundException('Workspace not found.');
+    await this.notErased(this.prisma, ws.uid, workspaceId);
+    if (ws.uid === uid) return;
+    const membership = await this.prisma.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId } } });
+    if (!membership || !knownRole(membership.role) || membership.role === 'OWNER' || ranks[membership.role] < ranks[minRole]) {
+      throw new ForbiddenException('Required workspace membership is unavailable.');
+    }
+  }
+
+  async assertConsent(uid: string, purpose: string, resourceId?: string, consentVersion?: string): Promise<void> {
+    if (!purpose || !consentVersion) throw new ForbiddenException('An explicit purpose and policy version are required.');
+    const grant = await this.prisma.consentGrant.findFirst({ where: {
+      uid, purpose, resourceId: resourceId ?? null, consentVersion, revokedAt: null,
+      OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }],
+    } });
+    if (!grant) throw new ForbiddenException('Required consent is unavailable or revoked.');
+  }
+
+  private checkReceipt(existing: { uid: string; kind: string; payloadDigest: string }, uid: string, kind: string, hash: string): void {
+    if (existing.uid !== uid) throw new ForbiddenException('This command belongs to another account.');
+    if (existing.kind !== kind || existing.payloadDigest !== hash) throw new ConflictException('Rejected: same command key with a changed payload or operation.');
+  }
+
   async checkCommandConflict(commandId: string, payloadDigest: string, uid: string, kind: string): Promise<'new' | 'duplicate'> {
     const existing = await this.prisma.commandResult.findUnique({ where: { commandId } });
-    if (existing === null) return 'new';
-    if (existing.uid !== uid) throw new ForbiddenException('This command belongs to another account.');
-    if (existing.kind !== kind) throw new ConflictException('Command key reused with a different operation.');
-    if (existing.payloadDigest !== payloadDigest) throw new ConflictException('Rejected: same command key with a changed payload.');
+    if (!existing) return 'new';
+    this.checkReceipt(existing, uid, kind, payloadDigest);
     return 'duplicate';
   }
 
-  /** Record a command result. Uses a transaction to ensure atomicity. */
-  async recordCommand(
-    uid: string,
-    commandId: string,
-    kind: string,
-    payload: unknown,
-    status: 'COMMITTED' | 'FAILED' | 'PENDING',
-    resultJson?: unknown,
-    error?: string,
-    workspaceId?: string,
-    revision: number = 1,
-  ): Promise<void> {
-    const payloadDigest = digest(JSON.stringify(payload));
-    await this.prisma.$transaction(async (tx) => {
-      // Re-verify the conflict inside the transaction
-      const existing = await tx.commandResult.findUnique({ where: { commandId } });
-      if (existing !== null) {
-        if (existing.uid !== uid) throw new ForbiddenException('This command belongs to another account.');
-        if (existing.payloadDigest !== payloadDigest) throw new ConflictException('Rejected: same command key with a changed payload.');
-        // Duplicate with same payload — idempotent, update status only
-        if (status === 'COMMITTED' && existing.status !== 'COMMITTED') {
-          await tx.commandResult.update({
-            where: { commandId },
-            data: { status: 'COMMITTED', resultJson: resultJson ?? undefined, committedAt: new Date() },
-          });
+  private input(input: WorkspaceInput): { name: string; slug: string; description: string | null; isPersonal: boolean } {
+    if (!input || typeof input.name !== 'string' || !input.name.trim() || input.name.length > 120 ||
+        typeof input.slug !== 'string' || !/^[a-z0-9][a-z0-9-]{0,79}$/.test(input.slug) ||
+        typeof input.commandId !== 'string' || !/^[A-Za-z0-9_:-]{1,128}$/.test(input.commandId) ||
+        (input.description !== undefined && (typeof input.description !== 'string' || input.description.length > 1000)) ||
+        (input.isPersonal !== undefined && typeof input.isPersonal !== 'boolean')) {
+      throw new BadRequestException('Use bounded workspace fields and a stable command key.');
+    }
+    return { name: input.name, slug: input.slug, description: input.description ?? null, isPersonal: input.isPersonal ?? false };
+  }
+
+  async createWorkspace(uid: string, input: WorkspaceInput) {
+    const fields = this.input(input);
+    const hash = digest({ kind: 'workspace:create', uid, ...fields });
+    await this.ensurePerson(uid);
+    try {
+      return await this.prisma.$transaction(async (tx) => {
+        // Serialize commands/events for this UID through its canonical anchor.
+        // A later event cannot allocate its sequence cursor before this commits.
+        await tx.person.update({ where: { uid }, data: { updatedAt: new Date() } });
+        const prior = await tx.commandResult.findUnique({ where: { commandId: input.commandId } });
+        if (prior) {
+          this.checkReceipt(prior, uid, 'workspace:create', hash);
+          if (prior.status !== 'COMMITTED' || !prior.workspaceId || !prior.resultJson) throw new ConflictException('Command is not a committed workspace result.');
+          await this.owned(tx, prior.workspaceId, uid);
+          return prior.resultJson as { id: string; uid: string; name: string; slug: string; isPersonal: boolean };
         }
-        return;
-      }
-      await tx.commandResult.create({
-        data: {
-          uid,
-          commandId,
-          kind,
-          payloadDigest,
-          workspaceId: workspaceId ?? undefined,
-          status,
-          resultJson,
-          error,
-          revision,
-          committedAt: status === 'COMMITTED' ? new Date() : undefined,
-        },
+        const created = await tx.workspace.create({ data: { uid, ...fields } });
+        const result = { id: created.id, uid, name: created.name, slug: created.slug, isPersonal: created.isPersonal };
+        await tx.workspaceMembership.create({ data: { uid, workspaceId: created.id, role: 'OWNER', source: 'direct' } });
+        await tx.commandResult.create({ data: { uid, commandId: input.commandId, kind: 'workspace:create', payloadDigest: hash,
+          workspaceId: created.id, status: 'COMMITTED', committedAt: new Date(), revision: 1, resultJson: result } });
+        await tx.outboxEvent.create({ data: { uid, workspaceId: created.id, topic: 'workspace.created', payload: result } });
+        await tx.auditEvent.create({ data: { uid, workspaceId: created.id, operation: 'workspace.create', actorType: 'user',
+          resourceType: 'workspace', resourceId: created.id, outcome: 'SUCCESS' } });
+        return result;
       });
-    });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') throw new ConflictException('Workspace or command already exists.');
+      throw error;
+    }
   }
 
-  /** Create a workspace. Verifies UID via ensurePerson first. */
-  async createWorkspace(uid: string, input: {
-    name: string;
-    slug: string;
-    description?: string;
-    isPersonal?: boolean;
-    commandId?: string;
-    payload?: unknown;
-  }): Promise<{ id: string; uid: string; name: string; slug: string; isPersonal: boolean }> {
-    if (!input.slug || !/^[a-z0-9-]+$/i.test(input.slug)) {
-      throw new BadRequestException('Workspace slug must contain only alphanumeric characters and hyphens.');
-    }
-    await this.ensurePerson(uid);
-
-    // Idempotency: if a commandId is provided, check for duplicates
-    if (input.commandId) {
-      const conflict = await this.checkCommandConflict(input.commandId, digest(JSON.stringify(input.payload ?? {})), uid, 'workspace:create');
-      if (conflict === 'duplicate') {
-        // Idempotent retry — return the existing workspace
-        const existing = await this.prisma.workspace.findUnique({ where: { slug: input.slug } });
-        if (existing && existing.uid === uid) return existing;
-      }
-    }
-
-    const workspace = await this.prisma.$transaction(async (tx) => {
-      const created = await tx.workspace.create({
-        data: {
-          uid,
-          name: input.name,
-          slug: input.slug,
-          description: input.description,
-          isPersonal: input.isPersonal ?? false,
-        },
-      });
-      // Record the command
-      if (input.commandId) {
-        await tx.commandResult.create({
-          data: {
-            uid,
-            commandId: input.commandId,
-            kind: 'workspace:create',
-            payloadDigest: digest(JSON.stringify(input.payload ?? {})),
-            workspaceId: created.id,
-            status: 'COMMITTED',
-            committedAt: new Date(),
-            revision: 1,
-          },
-        });
-      }
-      // Create owner membership
-      await tx.workspaceMembership.create({
-        data: { uid, workspaceId: created.id, role: 'OWNER', source: 'direct' },
-      });
-      // Create outbox event
-      await tx.outboxEvent.create({
-        data: {
-          uid,
-          workspaceId: created.id,
-          topic: 'workspace.created',
-          payload: { workspaceId: created.id, name: created.name, slug: created.slug },
-          cursor: `${Date.now()}`,
-        },
-      });
-      // Create audit event
-      await tx.auditEvent.create({
-        data: {
-          uid,
-          workspaceId: created.id,
-          operation: 'workspace.create',
-          actorType: 'user',
-          resourceType: 'workspace',
-          resourceId: created.id,
-          outcome: 'SUCCESS',
-        },
-      });
-      return created;
-    });
-
-    return { id: workspace.id, uid: workspace.uid, name: workspace.name, slug: workspace.slug, isPersonal: workspace.isPersonal };
-  }
-
-  /** Accept an invitation. Verifies token and ownership. */
   async acceptInvitation(uid: string, token: string): Promise<{ workspaceId: string; role: string }> {
-    if (!token || token.length < 16) {
-      throw new BadRequestException('Use a valid invitation token.');
-    }
+    if (typeof token !== 'string' || token.length < 16 || token.length > 256) throw new BadRequestException('Use a valid invitation token.');
     await this.ensurePerson(uid);
-
-    const tokenHash = digest(token);
-    const invitation = await this.prisma.invitation.findFirst({
-      where: { tokenHash, status: 'ISSUED' },
-      include: { workspace: true },
-    });
-    if (invitation === null) throw new NotFoundException('Invitation not found or already used.');
-    if (invitation.expiresAt < new Date()) throw new ForbiddenException('Invitation has expired.');
-    if (invitation.revokedAt !== null) throw new ForbiddenException('Invitation has been revoked.');
-
     return this.prisma.$transaction(async (tx) => {
-      // Accept the invitation
-      await tx.invitation.update({
-        where: { id: invitation.id },
-        data: { status: 'ACCEPTED', acceptedAt: new Date() },
-      });
-      // Create membership
-      await tx.workspaceMembership.create({
-        data: {
-          uid,
-          workspaceId: invitation.workspaceId,
-          role: invitation.role,
-          source: 'invitation',
-        },
-      });
-      // Audit
-      await tx.auditEvent.create({
-        data: {
-          uid,
-          workspaceId: invitation.workspaceId,
-          operation: 'invitation.accept',
-          actorType: 'user',
-          resourceType: 'invitation',
-          resourceId: invitation.id,
-          outcome: 'SUCCESS',
-        },
-      });
-      // Outbox
-      await tx.outboxEvent.create({
-        data: {
-          uid,
-          workspaceId: invitation.workspaceId,
-          topic: 'workspace.membership.add',
-          payload: { workspaceId: invitation.workspaceId, uid, role: invitation.role },
-          cursor: `${Date.now()}`,
-        },
-      });
-      return { workspaceId: invitation.workspaceId, role: invitation.role };
+      await tx.person.update({ where: { uid }, data: { updatedAt: new Date() } });
+      const tokenHash = createHash('sha256').update(token).digest('hex');
+      const invitation = await tx.invitation.findUnique({ where: { tokenHash }, include: { workspace: true } });
+      if (!invitation) throw new NotFoundException('Invitation is unavailable.');
+      await this.notErased(tx, invitation.workspace.uid, invitation.workspaceId);
+      if (invitation.workspace.uid === uid) throw new ForbiddenException('The owner cannot accept an invitation to their own workspace.');
+      if (invitation.status === 'ACCEPTED' && invitation.acceptedByUid === uid) {
+        const member = await tx.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: invitation.workspaceId } } });
+        if (!member || !knownRole(member.role) || member.role === 'OWNER') throw new ForbiddenException('Membership is no longer available.');
+        return { workspaceId: invitation.workspaceId, role: member.role };
+      }
+      if (invitation.role === 'OWNER' || !knownRole(invitation.role)) throw new ForbiddenException('Invitation cannot grant that role.');
+      const claimed = await tx.invitation.updateMany({ where: { id: invitation.id, status: 'ISSUED', revokedAt: null, expiresAt: { gt: new Date() } },
+        data: { status: 'ACCEPTED', acceptedAt: new Date(), acceptedByUid: uid } });
+      if (claimed.count !== 1) throw new ForbiddenException('Invitation expired, revoked, or already used.');
+      // Existing membership is never silently promoted by accepting a token.
+      const member = await tx.workspaceMembership.upsert({ where: { uid_workspaceId: { uid, workspaceId: invitation.workspaceId } }, update: {},
+        create: { uid, workspaceId: invitation.workspaceId, role: invitation.role, source: 'invitation' } });
+      if (!knownRole(member.role) || member.role === 'OWNER') throw new ForbiddenException('Existing membership has an invalid role.');
+      await tx.auditEvent.create({ data: { uid, workspaceId: invitation.workspaceId, operation: 'invitation.accept', actorType: 'user',
+        resourceType: 'invitation', resourceId: invitation.id, outcome: 'SUCCESS' } });
+      await tx.outboxEvent.create({ data: { uid, workspaceId: invitation.workspaceId, topic: 'workspace.membership.add',
+        payload: { workspaceId: invitation.workspaceId, uid, role: member.role } } });
+      return { workspaceId: invitation.workspaceId, role: member.role };
     });
   }
 
-  /** List memberships for a UID. */
-  async listWorkspaces(uid: string): Promise<Array<{
-    id: string; name: string; slug: string; role: string; source: string; joinedAt: Date;
-  }>> {
-    const rows = await this.prisma.workspaceMembership.findMany({
-      where: { uid },
-      include: { workspace: { select: { id: true, name: true, slug: true } } },
-      orderBy: { joinedAt: 'desc' },
-    });
-    return rows.map((r) => ({
-      id: r.workspace.id,
-      name: r.workspace.name,
-      slug: r.workspace.slug,
-      role: r.role,
-      source: r.source,
-      joinedAt: r.joinedAt,
-    }));
+  async listWorkspaces(uid: string) {
+    const rows = await this.prisma.workspaceMembership.findMany({ where: { uid }, include: { workspace: true }, orderBy: { joinedAt: 'desc' } });
+    const visible = [];
+    for (const row of rows) {
+      if (!knownRole(row.role) || (row.role === 'OWNER' && row.workspace.uid !== uid)) continue;
+      const tombstone = await this.prisma.deletionTombstone.findUnique({ where: { uid_resourceType_resourceId: {
+        uid: row.workspace.uid, resourceType: 'workspace', resourceId: row.workspaceId } } });
+      if (!tombstone) visible.push({ id: row.workspace.id, name: row.workspace.name, slug: row.workspace.slug,
+        role: row.role, source: row.source, joinedAt: row.joinedAt });
+    }
+    return visible;
   }
 }
-
-const WorkspaceRoleRank = {
-  GUEST: 0,
-  MEMBER: 1,
-  ADMIN: 2,
-  OWNER: 3,
-} as const;

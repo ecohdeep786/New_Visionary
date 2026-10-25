@@ -11,7 +11,6 @@ import { SubjectsModule } from "./subjects/subjects.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { RedisModule } from "./redis/redis.module";
 import { HealthModule } from "./health/health.module";
-import { WorkspacesModule } from "./workspaces/workspaces.module";
 
 @Module({
   imports: [
@@ -27,7 +26,6 @@ import { WorkspacesModule } from "./workspaces/workspaces.module";
     DocumentsModule,
     JobsModule,
     HealthModule,
-    WorkspacesModule,
   ],
 })
 export class AppModule {}
