@@ -1,0 +1,5513 @@
+{
+ "captured": "2026-10-25T05:32:25.944Z",
+ "origin": "http://localhost:4173",
+ "viewport": [
+  2346,
+  1320
+ ],
+ "dpr": 1.309999942779541,
+ "rows": [
+  {
+   "route": "/",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 73,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about securit",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about accessi",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Students",
+     "w": 65.65,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Teachers",
+     "w": 65.61,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Parents",
+     "w": 55.13,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Professionals",
+     "w": 96.2,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Organizations",
+     "w": 102.34,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    }
+   ]
+  },
+  {
+   "route": "/",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 73,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about securit",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about accessi",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Students",
+     "w": 65.65,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Teachers",
+     "w": 65.61,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Parents",
+     "w": 55.13,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Professionals",
+     "w": 96.2,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Organizations",
+     "w": 102.34,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    }
+   ]
+  },
+  {
+   "route": "/",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 74,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about securit",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about accessi",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Students",
+     "w": 65.65,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Teachers",
+     "w": 65.61,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Parents",
+     "w": 55.13,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Professionals",
+     "w": 96.2,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Organizations",
+     "w": 102.34,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    }
+   ]
+  },
+  {
+   "route": "/",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 74,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about securit",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about accessi",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Students",
+     "w": 65.65,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Teachers",
+     "w": 65.61,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Parents",
+     "w": 55.13,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Professionals",
+     "w": 96.2,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Organizations",
+     "w": 102.34,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    }
+   ]
+  },
+  {
+   "route": "/",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 80,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about securit",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about accessi",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-3 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Students",
+     "w": 65.65,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Teachers",
+     "w": 65.61,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Parents",
+     "w": 55.13,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Professionals",
+     "w": 96.2,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    },
+    {
+     "t": "Organizations",
+     "w": 102.34,
+     "h": 21.37,
+     "cls": "rounded font-medium transition-colors duration-200 focus-visible:outline-none fo"
+    }
+   ]
+  },
+  {
+   "route": "/student",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 77,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 266.51,
+     "h": 40.46,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/student",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 77,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/student",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/student",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/student",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 88,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/teacher",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 266.51,
+     "h": 40.46,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/teacher",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/teacher",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 79,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/teacher",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 89,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/parent",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 266.51,
+     "h": 40.46,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/parent",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/parent",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 79,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/parent",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 79,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/parent",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 89,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/help",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 50,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "password",
+     "w": 104.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "install",
+     "w": 79.32,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "cancel",
+     "w": 84.33,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "privacy",
+     "w": 89.24,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "report",
+     "w": 82.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    }
+   ]
+  },
+  {
+   "route": "/help",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 50,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "password",
+     "w": 104.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "install",
+     "w": 79.32,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "cancel",
+     "w": 84.33,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "privacy",
+     "w": 89.24,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "report",
+     "w": 82.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    }
+   ]
+  },
+  {
+   "route": "/help",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 51,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "password",
+     "w": 104.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "install",
+     "w": 79.32,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "cancel",
+     "w": 84.33,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "privacy",
+     "w": 89.24,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "report",
+     "w": 82.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    }
+   ]
+  },
+  {
+   "route": "/help",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 51,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "password",
+     "w": 104.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "install",
+     "w": 79.32,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "cancel",
+     "w": 84.33,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "privacy",
+     "w": 89.24,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "report",
+     "w": 82.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    }
+   ]
+  },
+  {
+   "route": "/help",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "password",
+     "w": 104.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "install",
+     "w": 79.32,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "cancel",
+     "w": 84.33,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "privacy",
+     "w": 89.24,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    },
+    {
+     "t": "report",
+     "w": 82.85,
+     "h": 38.51,
+     "cls": "rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px]"
+    }
+   ]
+  },
+  {
+   "route": "/professional",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 266.51,
+     "h": 40.46,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/professional",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 78,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/professional",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 79,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/professional",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 79,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/professional",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 89,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/how-it-works",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 53,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Create a free Visionary ",
+     "w": 186.52,
+     "h": 43.03,
+     "cls": "hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text"
+    },
+    {
+     "t": "Goal",
+     "w": 90.91,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check",
+     "w": 101.55,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Teach",
+     "w": 97.84,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Ask",
+     "w": 84.15,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check again",
+     "w": 137.71,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Practise",
+     "w": 111.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Build",
+     "w": 91.72,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Reflect",
+     "w": 105.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "See the student page",
+     "w": 178.2,
+     "h": 20.23,
+     "cls": "mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0]"
+    }
+   ]
+  },
+  {
+   "route": "/how-it-works",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 53,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Create a free Visionary ",
+     "w": 256.75,
+     "h": 43.03,
+     "cls": "hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text"
+    },
+    {
+     "t": "Goal",
+     "w": 90.91,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check",
+     "w": 101.55,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Teach",
+     "w": 97.84,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Ask",
+     "w": 84.15,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check again",
+     "w": 137.71,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Practise",
+     "w": 111.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Build",
+     "w": 91.72,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Reflect",
+     "w": 105.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "See the student page",
+     "w": 178.2,
+     "h": 20.23,
+     "cls": "mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0]"
+    }
+   ]
+  },
+  {
+   "route": "/how-it-works",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 54,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Create a free Visionary ",
+     "w": 344,
+     "h": 43.03,
+     "cls": "hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text"
+    },
+    {
+     "t": "Goal",
+     "w": 90.91,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check",
+     "w": 101.55,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Teach",
+     "w": 97.84,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Ask",
+     "w": 84.15,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check again",
+     "w": 137.71,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Practise",
+     "w": 111.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Build",
+     "w": 91.72,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Reflect",
+     "w": 105.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "See the student page",
+     "w": 178.2,
+     "h": 20.23,
+     "cls": "mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0]"
+    }
+   ]
+  },
+  {
+   "route": "/how-it-works",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 54,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Create a free Visionary ",
+     "w": 344,
+     "h": 43.03,
+     "cls": "hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text"
+    },
+    {
+     "t": "Goal",
+     "w": 90.91,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check",
+     "w": 101.55,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Teach",
+     "w": 97.84,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Ask",
+     "w": 84.15,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check again",
+     "w": 137.71,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Practise",
+     "w": 111.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Build",
+     "w": 91.72,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Reflect",
+     "w": 105.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "See the student page",
+     "w": 178.2,
+     "h": 20.23,
+     "cls": "mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0]"
+    }
+   ]
+  },
+  {
+   "route": "/how-it-works",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 60,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Create a free Visionary ",
+     "w": 417.47,
+     "h": 43.03,
+     "cls": "hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text"
+    },
+    {
+     "t": "Goal",
+     "w": 90.91,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check",
+     "w": 101.55,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Teach",
+     "w": 97.84,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Ask",
+     "w": 84.15,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Check again",
+     "w": 137.71,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Practise",
+     "w": 111.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Build",
+     "w": 91.72,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "Reflect",
+     "w": 105.09,
+     "h": 39.99,
+     "cls": "flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-["
+    },
+    {
+     "t": "See the student page",
+     "w": 178.2,
+     "h": 20.23,
+     "cls": "mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0]"
+    }
+   ]
+  },
+  {
+   "route": "/organization",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 76,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 266.51,
+     "h": 40.46,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/organization",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 76,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/organization",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 77,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/organization",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 77,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/organization",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 87,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  },
+  {
+   "route": "/download",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 49,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/download",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 49,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/download",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 51,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/download",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 51,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/download",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/about",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 114,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "See how it works",
+     "w": 144.7,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    },
+    {
+     "t": "See how Visionary works",
+     "w": 202.29,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    }
+   ]
+  },
+  {
+   "route": "/about",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 114,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "See how it works",
+     "w": 144.7,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    },
+    {
+     "t": "See how Visionary works",
+     "w": 202.29,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    }
+   ]
+  },
+  {
+   "route": "/about",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 115,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "See how it works",
+     "w": 144.7,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    },
+    {
+     "t": "See how Visionary works",
+     "w": 202.29,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    }
+   ]
+  },
+  {
+   "route": "/about",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 115,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "See how it works",
+     "w": 144.7,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    },
+    {
+     "t": "See how Visionary works",
+     "w": 202.29,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    }
+   ]
+  },
+  {
+   "route": "/about",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 121,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "See how it works",
+     "w": 144.7,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    },
+    {
+     "t": "See how Visionary works",
+     "w": 202.29,
+     "h": 20.23,
+     "cls": "group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium "
+    }
+   ]
+  },
+  {
+   "route": "/pricing",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 54,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/pricing",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 54,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/pricing",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 56,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/pricing",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 56,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/pricing",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 62,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/careers",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 62,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 89.07,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Why us",
+     "w": 95.6,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Teams",
+     "w": 90.37,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "How we hire",
+     "w": 127.35,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Open roles",
+     "w": 119.5,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Contact",
+     "w": 101.54,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "careers@visionary.org.in",
+     "w": 178.28,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    },
+    {
+     "t": "Visionary accessibility",
+     "w": 157.84,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    }
+   ]
+  },
+  {
+   "route": "/careers",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 62,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 89.07,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Why us",
+     "w": 95.6,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Teams",
+     "w": 90.37,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "How we hire",
+     "w": 127.35,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Open roles",
+     "w": 119.5,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Contact",
+     "w": 101.54,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "careers@visionary.org.in",
+     "w": 178.28,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    },
+    {
+     "t": "Visionary accessibility",
+     "w": 157.84,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    }
+   ]
+  },
+  {
+   "route": "/careers",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 63,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 89.07,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Why us",
+     "w": 95.6,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Teams",
+     "w": 90.37,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "How we hire",
+     "w": 127.35,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Open roles",
+     "w": 119.5,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Contact",
+     "w": 101.54,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "careers@visionary.org.in",
+     "w": 178.28,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    },
+    {
+     "t": "Visionary accessibility",
+     "w": 157.84,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    }
+   ]
+  },
+  {
+   "route": "/careers",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 63,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 89.07,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Why us",
+     "w": 95.6,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Teams",
+     "w": 90.37,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "How we hire",
+     "w": 127.35,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Open roles",
+     "w": 119.5,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "Contact",
+     "w": 101.54,
+     "h": 36.99,
+     "cls": "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transiti"
+    },
+    {
+     "t": "careers@visionary.org.in",
+     "w": 178.28,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    },
+    {
+     "t": "Visionary accessibility",
+     "w": 157.84,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    }
+   ]
+  },
+  {
+   "route": "/careers",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 69,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "careers@visionary.org.in",
+     "w": 178.28,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    },
+    {
+     "t": "Visionary accessibility",
+     "w": 157.84,
+     "h": 21.37,
+     "cls": "rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-v"
+    }
+   ]
+  },
+  {
+   "route": "/research",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/research",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/research",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/research",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/research",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 65,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/community",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 58,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "For learners",
+     "w": 109.21,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "With teachers",
+     "w": 122.66,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "Families & organizations",
+     "w": 188.06,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "More ways",
+     "w": 101.68,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "FAQ",
+     "w": 59.24,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    }
+   ]
+  },
+  {
+   "route": "/community",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 58,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "For learners",
+     "w": 109.21,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "With teachers",
+     "w": 122.66,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "Families & organizations",
+     "w": 188.06,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "More ways",
+     "w": 101.68,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "FAQ",
+     "w": 59.24,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    }
+   ]
+  },
+  {
+   "route": "/community",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 60,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "For learners",
+     "w": 109.21,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "With teachers",
+     "w": 122.66,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "Families & organizations",
+     "w": 188.06,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "More ways",
+     "w": 101.68,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "FAQ",
+     "w": 59.24,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    }
+   ]
+  },
+  {
+   "route": "/community",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 60,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "For learners",
+     "w": 109.21,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "With teachers",
+     "w": 122.66,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "Families & organizations",
+     "w": 188.06,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "More ways",
+     "w": 101.68,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "FAQ",
+     "w": 59.24,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    }
+   ]
+  },
+  {
+   "route": "/community",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 66,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "For learners",
+     "w": 109.21,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "With teachers",
+     "w": 122.66,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "Families & organizations",
+     "w": 188.06,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "More ways",
+     "w": 101.68,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    },
+    {
+     "t": "FAQ",
+     "w": 59.24,
+     "h": 36.99,
+     "cls": "shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transitio"
+    }
+   ]
+  },
+  {
+   "route": "/contact",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 64,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Students",
+     "w": 96.49,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Teachers",
+     "w": 96.43,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Parents",
+     "w": 87.71,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Professionals",
+     "w": 123.19,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Organizations",
+     "w": 128.28,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 98.75,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] underline-offset-2 hover:underline"
+    }
+   ]
+  },
+  {
+   "route": "/contact",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 64,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Students",
+     "w": 96.49,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Teachers",
+     "w": 96.43,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Parents",
+     "w": 87.71,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Professionals",
+     "w": 123.19,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Organizations",
+     "w": 128.28,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 98.75,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] underline-offset-2 hover:underline"
+    }
+   ]
+  },
+  {
+   "route": "/contact",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 66,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Students",
+     "w": 96.49,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Teachers",
+     "w": 96.43,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Parents",
+     "w": 87.71,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Professionals",
+     "w": 123.19,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Organizations",
+     "w": 128.28,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 98.75,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] underline-offset-2 hover:underline"
+    }
+   ]
+  },
+  {
+   "route": "/contact",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 66,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Students",
+     "w": 96.49,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Teachers",
+     "w": 96.43,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Parents",
+     "w": 87.71,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Professionals",
+     "w": 123.19,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Organizations",
+     "w": 128.28,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 98.75,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] underline-offset-2 hover:underline"
+    }
+   ]
+  },
+  {
+   "route": "/contact",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 72,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Students",
+     "w": 96.49,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Teachers",
+     "w": 96.43,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Parents",
+     "w": 87.71,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Professionals",
+     "w": 123.19,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Organizations",
+     "w": 128.28,
+     "h": 39.99,
+     "cls": "shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-v"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 98.75,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] underline-offset-2 hover:underline"
+    }
+   ]
+  },
+  {
+   "route": "/partners",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/partners",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/partners",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 61,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/partners",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 61,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/partners",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 67,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "About",
+     "w": 39.62,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/updates",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 55,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy Policy",
+     "w": 97.96,
+     "h": 21.37,
+     "cls": "rounded-sm text-[#0066cc] underline-offset-2 transition-colors hover:underline f"
+    }
+   ]
+  },
+  {
+   "route": "/updates",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 55,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy Policy",
+     "w": 97.96,
+     "h": 21.37,
+     "cls": "rounded-sm text-[#0066cc] underline-offset-2 transition-colors hover:underline f"
+    }
+   ]
+  },
+  {
+   "route": "/updates",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy Policy",
+     "w": 97.96,
+     "h": 21.37,
+     "cls": "rounded-sm text-[#0066cc] underline-offset-2 transition-colors hover:underline f"
+    }
+   ]
+  },
+  {
+   "route": "/updates",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy Policy",
+     "w": 97.96,
+     "h": 21.37,
+     "cls": "rounded-sm text-[#0066cc] underline-offset-2 transition-colors hover:underline f"
+    }
+   ]
+  },
+  {
+   "route": "/updates",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 63,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy Policy",
+     "w": 97.96,
+     "h": 21.37,
+     "cls": "rounded-sm text-[#0066cc] underline-offset-2 transition-colors hover:underline f"
+    }
+   ]
+  },
+  {
+   "route": "/referral",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/referral",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/referral",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/referral",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/referral",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 65,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/safety",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 55,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/safety",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 55,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/safety",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/safety",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/safety",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 63,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "How it works",
+     "w": 82.44,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/privacy",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 68,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Privacy settings",
+     "w": 241.7,
+     "h": 41.6,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    },
+    {
+     "t": "Grievance officer",
+     "w": 127.9,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    }
+   ]
+  },
+  {
+   "route": "/privacy",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 68,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Privacy settings",
+     "w": 114.81,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    },
+    {
+     "t": "Grievance officer",
+     "w": 127.9,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    }
+   ]
+  },
+  {
+   "route": "/privacy",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 69,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Privacy settings",
+     "w": 114.81,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    },
+    {
+     "t": "Grievance officer",
+     "w": 127.9,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    }
+   ]
+  },
+  {
+   "route": "/privacy",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 69,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Privacy settings",
+     "w": 114.81,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    },
+    {
+     "t": "Grievance officer",
+     "w": 127.9,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    }
+   ]
+  },
+  {
+   "route": "/privacy",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 84,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "01What we collect",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "02Why we use it",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "03Who can see it",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "04Your controls",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "05How we protect it",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "06Access and deletion re",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "07How long we keep it",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "08Younger learners",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "09Common questions",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "10Contact and grievances",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "Privacy settings",
+     "w": 114.81,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    },
+    {
+     "t": "Grievance officer",
+     "w": 127.9,
+     "h": 21.37,
+     "cls": "font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visi"
+    }
+   ]
+  },
+  {
+   "route": "/terms",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 52,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/terms",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 52,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/terms",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 54,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/terms",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 54,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/terms",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 71,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "01Who can use Visionary",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "02What you can do",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "03What you cannot do",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "04What we provide",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "05Your content",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "06Your account",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "10Disclaimers and respon",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "11Governing law and disp",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "12Contact",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    }
+   ]
+  },
+  {
+   "route": "/security",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/security",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 59,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/security",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 61,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/security",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 61,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/security",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 76,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "01Your information",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "02Protected as it moves",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "03Protected when stored",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "04Access is controlled",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "05Your control matters",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "06Security is ongoing",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "07When something goes wr",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "08Our security commitmen",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "09Sync devices",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "10Contact",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    }
+   ]
+  },
+  {
+   "route": "/accessibility",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 60,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/accessibility",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 60,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/accessibility",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 62,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/accessibility",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 62,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/accessibility",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 68,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    }
+   ]
+  },
+  {
+   "route": "/cookies",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 55,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Open menu",
+     "w": 30,
+     "h": 43.99,
+     "cls": "flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/cookies",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 55,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/cookies",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/cookies",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 57,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    }
+   ]
+  },
+  {
+   "route": "/cookies",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 68,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Home",
+     "w": 38.66,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy",
+     "w": 46.4,
+     "h": 21,
+     "cls": "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-"
+    },
+    {
+     "t": "Privacy policy",
+     "w": 131.45,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Terms of service",
+     "w": 148.4,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Cookies",
+     "w": 93.57,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "Security",
+     "w": 94.58,
+     "h": 40.99,
+     "cls": "shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium trac"
+    },
+    {
+     "t": "01What cookies are",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "02What we use and why",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "03The types we use",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "04Your choices and contr",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "05Managing cookies",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    },
+    {
+     "t": "06Questions and contact",
+     "w": 248,
+     "h": 36.28,
+     "cls": "group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-"
+    }
+   ]
+  },
+  {
+   "route": "/teacher",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 79,
+   "under44": [
+    {
+     "t": "Visionary home",
+     "w": 109.17,
+     "h": 27.99,
+     "cls": "shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visi"
+    },
+    {
+     "t": "Learn more",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "See how Visionary keeps ",
+     "w": 298,
+     "h": 20.23,
+     "cls": "inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#006"
+    },
+    {
+     "t": "Learn more about privacy",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about safety",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    },
+    {
+     "t": "Learn more about respons",
+     "w": 105.71,
+     "h": 20.23,
+     "cls": "mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-"
+    }
+   ]
+  }
+ ]
+}

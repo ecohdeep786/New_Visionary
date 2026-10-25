@@ -206,7 +206,7 @@ export default function SchoolPage() {
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 {SUGGESTIONS.map((s) => (
                   <button key={s} type="button" onClick={() => { setQ(s); setTopicId(null); }}
-                    className="rounded-full border bg-white px-5 py-2 font-normal tracking-[0.24px] text-[13px] transition-colors hover:border-[#0066cc]"
+                    className="rounded-full border bg-white px-5 py-3 font-normal tracking-[0.24px] text-[13px] transition-colors hover:border-[#0066cc]"
                     style={{ borderColor: COLORS.mist, color: COLORS.grey }}>
                     {s}
                   </button>

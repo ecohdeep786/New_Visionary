@@ -198,7 +198,7 @@ export default function CommunityPage() {
             {ANCHORS.map((anchor) => (
               <a key={anchor.id} href={`#${anchor.id}`}
                 onClick={(event) => { event.preventDefault(); scrollToSection(anchor.id); }}
-                className="shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transition-colors hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
+                className="shrink-0 rounded-full px-4 py-3 text-[14px] font-medium text-[#6e6e73] transition-colors hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                 {anchor.label}
               </a>
             ))}

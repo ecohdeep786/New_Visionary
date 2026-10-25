@@ -228,7 +228,7 @@ export default function CookiesPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
                           <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
                           <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
@@ -418,10 +418,14 @@ export default function CookiesPage() {
                           </div>
                           <button
                             type="button" role="switch" aria-label={`${row.label} cookies`} aria-checked={row.value} disabled={row.disabled} onClick={row.onChange}
-                            className="relative h-7 w-12 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] disabled:cursor-not-allowed"
-                            style={{ backgroundColor: row.value ? COLORS.ink : "#d2d2d7" }}
+                            className="relative flex h-11 w-[64px] shrink-0 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 disabled:cursor-not-allowed"
                           >
-                            <span className={`absolute top-1 h-5 w-5 rounded-full bg-white transition-transform ${row.value ? "left-6" : "left-1"}`} />
+                            <span
+                              className="relative h-7 w-12 rounded-full transition-colors motion-reduce:transition-none [transition-duration:var(--motion-duration-fast)]"
+                              style={{ backgroundColor: row.value ? COLORS.ink : "#d2d2d7" }}
+                            >
+                              <span className={`absolute top-1 left-1 h-5 w-5 rounded-full bg-white transition-transform motion-reduce:transition-none [transition-duration:var(--motion-duration-fast)] ${row.value ? "translate-x-5" : "translate-x-0"}`} />
+                            </span>
                           </button>
                         </div>
                       ))}
