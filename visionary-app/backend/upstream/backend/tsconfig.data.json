@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": ".",
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": false,
+    "incremental": false
+  },
+  "include": [
+    "src/invitations/invitation-types.ts",
+    "src/invitations/invitation-store.ts",
+    "src/invitations/invitation.service.ts"
+  ]
+}
