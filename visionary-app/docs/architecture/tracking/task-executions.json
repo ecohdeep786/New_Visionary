@@ -756,16 +756,27 @@
       "branch": "codex/deepseek-kan-37-data-migrations",
       "baseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
       "review": {
-        "state": "pending corrected exact-SHA independent review",
+        "state": "approved-scoped-preparation",
         "reviewer": "/root/kan36_rework_reviewer",
-        "reason": "Earlier candidates exposed transaction control, unsorted registry and runtime grant/delegation gaps; corrected source requires new approval."
+        "approvedCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "report": "docs/architecture/reviews/KAN37_REWORK_INDEPENDENT_REVIEW.md",
+        "reason": "Corrected transaction control, registry order and runtime grant/delegation findings; approval covers disposable PostgreSQL preparation only."
       },
       "checks": {
         "priorCompletePostgresqlTests": 51,
         "priorCheckedCommit": "36c6fed47722265b484c8dedbcd1ff52d6bbc51b",
         "runtimeAndProvenanceTests": 8,
         "finalDelegatedRoleRegression": true,
-        "finalCompleteCheck": "pending final-head CI; separate reviewer verification required",
+        "finalCompleteCheck": "passed independently: 52 PostgreSQL plus eight runtime/provenance tests; final review-containing head and dev integration still require checks",
+        "postgresqlTests": 52,
+        "independentAdditionalPostgresqlProbes": 11,
+        "independentFocusedCompile": true,
+        "failed": 0,
+        "checkedCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40203665311",
+        "ciCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "ciConclusion": "success",
+        "priorLocalTimeoutAttempts": "Recorded in independent report; final rerun passed without weakening deadlines",
         "environment": "PostgreSQL16.15, disposable synthetic loopback database, real distinct roles; no product records"
       },
       "localProductVerification": {
