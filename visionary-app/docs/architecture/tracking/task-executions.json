@@ -737,7 +737,7 @@
       "sourceId": "FAP-D2",
       "jiraKey": "FAP-54",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-54",
-      "status": "In Progress",
+      "status": "Testing",
       "startAt": "2026-10-24T06:25:28.874Z",
       "scope": "D2 responsive + tap targets: full public sweep at 320/390/768/1024/1440 with zero overflow, 44px tap-target law (static qa-taps + rendered receipts), onboarding labels >=12px, hero stacks verified at 390, 200% font re-run",
       "branch": "opencode/fap-d2-responsive",
@@ -774,6 +774,14 @@
         {
           "at": "2026-10-25T11:30:00.000Z",
           "item": "next: full npm run check, commit+d push task branch, beta merge --no-ff + push + verify per amended protocol; FAP-54 remains In Progress; separate reviewer records exact reviewed commit before Done (D-095); founder-ordered continuous progression continues toward D3 while review pends"
+        },
+        {
+          "at": "2026-10-25T12:45:00.000Z",
+          "item": "surface audit drift (fix batch changed link classNames/geometry) resolved per the check error's own prescription: npm run scope:audit:write -> product-surface.json refreshed (97/97 pure line-number remap confined to Breadcrumb.jsx (+1 comment line) and CookiesPage.jsx (+4 switch-wrapper lines); no route/endpoint/state semantics changed) -> full npm run check re-run: every law stage green (roots separation, import baseline 3842 files, qa:continuity all recorded public-surface laws, qa:motion 403 files, qa:taps 245 controls, 52/52 script tests incl. tap-law, surface audit clean, 624/624 vitest, production build 52.26s)"
+        },
+        {
+          "at": "2026-10-25T12:45:00.000Z",
+          "item": "delivered: task branch opencode/fap-d2-responsive commit e486bd38bb1a6fee9d7b10013cf5db9d2d87bde3 'opencode FAP-D2: responsive + 44px tap-target law...' pushed and remote verified; beta merged --no-ff as 794025c1eef975d573f23b5821cfb373894ecabd and pushed (origin/beta verified e486bd38->794025c1); Jira FAP-54 progress comment 10208 posted live + delivery record + transition In Progress->Testing (41); D-095: pending separate reviewer recording exact reviewed commit before Done"
         }
       ],
       "jira": {
