@@ -8,5 +8,5 @@
     "sourceMap": false,
     "incremental": false
   },
-  "include": ["src/workspaces/**/*.ts"]
+  "include": ["src/data/**/*.ts"]
 }

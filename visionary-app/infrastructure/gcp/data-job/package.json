@@ -1,0 +1,8 @@
+{
+  "name": "visionary-data-job",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": ">=24 <25" },
+  "dependencies": { "@prisma/client": "5.22.0" },
+  "devDependencies": { "prisma": "5.22.0", "typescript": "5.9.3", "@types/node": "24.10.1" }
+}

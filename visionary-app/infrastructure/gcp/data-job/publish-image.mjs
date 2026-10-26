@@ -1,0 +1,17 @@
+import {execFileSync} from 'node:child_process';
+import {writeFileSync} from 'node:fs';
+import {trustedRun,production} from '../release.mjs';
+const source=trustedRun(process.env);
+const remote=execFileSync('git',['ls-remote','origin','refs/heads/main'],{encoding:'utf8'}).split(/\s+/)[0];
+if(remote!==source)throw Error('Stale source cannot publish a migration image.');
+const image=production.image.replace(/\/product$/,'/data-job'),tag=image+':'+source;
+execFileSync(process.execPath,['infrastructure/gcp/data-job/check-image.mjs'],{stdio:'inherit',timeout:720000});
+const publishHead=execFileSync('git',['ls-remote','origin','refs/heads/main'],{encoding:'utf8'}).split(/\s+/)[0];
+if(publishHead!==source)throw Error('Source was superseded while checking the migration image.');
+execFileSync('gcloud',['auth','configure-docker','asia-south1-docker.pkg.dev','--quiet'],{stdio:'inherit',timeout:60000});
+execFileSync('docker',['tag','visionary-data-job-check:'+source,tag],{stdio:'inherit',timeout:30000});
+execFileSync('docker',['push',tag],{stdio:'inherit',timeout:300000});
+const digest=execFileSync('gcloud',['artifacts','docker','images','describe',tag,'--project='+production.project,'--format=value(image_summary.digest)'],{encoding:'utf8',timeout:60000}).trim();
+if(!/^sha256:[a-f0-9]{64}$/.test(digest))throw Error('Immutable migration image digest required.');
+writeFileSync('published-data-job.json',JSON.stringify({sourceCommit:source,image:image+'@'+digest,jobExecuted:false},null,2)+'\n');
+console.log('Published immutable migration image; no migration job was deployed or executed.');

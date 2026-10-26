@@ -673,6 +673,221 @@
         ],
         "actualRemovalReceipt": "Record actual inventory and removal in Jira after cleanup; this checkpoint does not assert future removal"
       }
+    },
+    {
+      "sourceId": "DATA-01",
+      "jiraKey": "KAN-36",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-36",
+      "status": "Testing",
+      "scope": "Independently approved workspace-domain development preparation only; full DATA-01 remains open",
+      "branch": "codex/deepseek-kan-36-data-ddl",
+      "implementationCommits": [
+        "5297f4621ad69c0d0d8dfd55227000b7560411d5"
+      ],
+      "review": {
+        "state": "approved-scoped-preparation",
+        "reviewer": "/root/kan36_rework_reviewer",
+        "approvedCommit": "5297f4621ad69c0d0d8dfd55227000b7560411d5",
+        "reviewedHandoffCommit": "6b26c5a97ac17b43396d231723c0f241fed265bf",
+        "reportCommit": "ab91f07a3fd3b14325a600b89cf34023e296d118",
+        "report": "docs/architecture/reviews/KAN36_REWORK_INDEPENDENT_REVIEW.md"
+      },
+      "checks": {
+        "postgresqlRepositoryTests": 20,
+        "runtimeAndProvenanceTests": 8,
+        "independentAdditionalPostgresqlProbes": 6,
+        "failed": 0,
+        "canonicalDdl": true,
+        "focusedCompile": true,
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40172068727",
+        "ciCommit": "ab91f07a3fd3b14325a600b89cf34023e296d118",
+        "ciConclusion": "success"
+      },
+      "localProductVerification": {
+        "date": "2026-10-25",
+        "browser": "User signed-in in-app browser",
+        "routes": [
+          "Home",
+          "Learn",
+          "Ask",
+          "Practice",
+          "Build",
+          "Privacy"
+        ],
+        "sessionReload": true,
+        "mobileHome": "390x844 visually passed; viewport reset",
+        "report": "docs/architecture/delivery/KAN36_LOCAL_BROWSER_VERIFICATION.md",
+        "jiraCommentId": "10226",
+        "acceptance": "Existing product regression only; no new workspace transport or shared SQL migration activated"
+      },
+      "integration": {
+        "state": "accepted scoped preparation; full ticket remains open",
+        "acceptedBaseCommit": "9d6d2b5b0e97213ff2e8778c2a1d7469d8df554e",
+        "commit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+        "reviewedFinalHead": "f4b48a1557a95fa80c3db866a23bf6b29c11cee0",
+        "finalReviewJiraCommentId": "10227",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/27",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40199709861",
+        "ciConclusion": "success",
+        "jiraCommentId": "10229",
+        "remotePublished": true
+      },
+      "fullFeatureAccepted": false,
+      "linkedProductGatesRemainOpen": true,
+      "remainingGates": [
+        "Full original DATA-01 source/release/session/evidence/classroom/project/lifelong scope",
+        "Affected KAN-29/30/32/33 source/policy acceptance",
+        "KAN-37 durable migrations/backfills and runtime/migration identities",
+        "Connected provisioning/invitation/consent/revision/deletion flows",
+        "Applicable hosted and release acceptance"
+      ],
+      "worktreeCleanup": {
+        "state": "not eligible: full ticket remains open",
+        "worker": "deepseek-kan-36-data-ddl",
+        "reviewer": "qa-review-kan-36-data-ddl"
+      }
+    },
+    {
+      "sourceId": "DATA-02",
+      "jiraKey": "KAN-37",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-37",
+      "status": "Rework",
+      "scope": "Local DATA-02 enabler: versioned PostgreSQL migrations, distinct identities, durable bounded backfills, compatibility and rollback guards; production-capable job packaged. Hosted/domain/release acceptance remains open.",
+      "branch": "codex/deepseek-kan-37-data-migrations",
+      "baseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+      "review": {
+        "state": "approved-scoped-preparation",
+        "reviewer": "/root/kan36_rework_reviewer",
+        "approvedCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "report": "docs/architecture/reviews/KAN37_REWORK_INDEPENDENT_REVIEW.md",
+        "reason": "Corrected transaction control, registry order and runtime grant/delegation findings; approval covers disposable PostgreSQL preparation only."
+      },
+      "checks": {
+        "priorCompletePostgresqlTests": 51,
+        "priorCheckedCommit": "36c6fed47722265b484c8dedbcd1ff52d6bbc51b",
+        "runtimeAndProvenanceTests": 8,
+        "finalDelegatedRoleRegression": true,
+        "finalCompleteCheck": "passed independently: 52 PostgreSQL plus eight runtime/provenance tests; final review-containing head and dev integration still require checks",
+        "postgresqlTests": 52,
+        "independentAdditionalPostgresqlProbes": 11,
+        "independentFocusedCompile": true,
+        "failed": 0,
+        "checkedCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40203665311",
+        "ciCommit": "6639a4dd9c211a669573bb960a1f27e8761b928c",
+        "ciConclusion": "success",
+        "priorLocalTimeoutAttempts": "Recorded in independent report; final rerun passed without weakening deadlines",
+        "environment": "PostgreSQL16.15, disposable synthetic loopback database, real distinct roles; no product records"
+      },
+      "localProductVerification": {
+        "browser": "User signed-in in-app browser",
+        "routes": [
+          "Home",
+          "Learn",
+          "Ask",
+          "Practice",
+          "Build",
+          "Privacy"
+        ],
+        "sessionReload": true,
+        "mobileHome": "390x844 visually passed; viewport reset",
+        "report": "docs/architecture/delivery/KAN37_LOCAL_BROWSER_VERIFICATION.md",
+        "jiraCommentId": "10232",
+        "acceptance": "Existing Firebase product regression; migrations/backfills remain disconnected and are separately PostgreSQL-tested"
+      },
+      "integration": {
+        "state": "accepted bounded PostgreSQL preparation; production integration remains Rework",
+        "commit": "65045d72976b629336a150fa18aa32d73537a3bd",
+        "reviewedFinalHead": "aacf1bafb4f2e9fbbc151046f886e401a89f3226",
+        "acceptedBaseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/28",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40204197741",
+        "ciConclusion": "success",
+        "remotePublished": true,
+        "jiraCommentId": "10236"
+      },
+      "fullFeatureAccepted": false,
+      "linkedProductGatesRemainOpen": true,
+      "remainingGates": [
+        "Full DATA-02 and phase-wide server authority acceptance",
+        "Cloud SQL identity provisioning and operational migration/backfill/rollback acceptance",
+        "Full KAN-36 models and affected source/policy decisions",
+        "Connected feature and two-device recovery acceptance",
+        "Hosted/privacy/release acceptance"
+      ],
+      "worktreeCleanup": {
+        "state": "not eligible: full ticket remains open",
+        "worker": "deepseek-kan-37-data-migrations",
+        "reviewer": "qa-review-kan-37-data-migrations"
+      },
+      "productionAlignment": {
+        "state": "Production-capable migration job exact-source review and container checks accepted; final dev integration pending; hosted and full-ticket gates open",
+        "observedSourceGaps": [
+          "Product HTTP/domain import graph does not activate new SQL workspace persistence (KAN-38 ownership)",
+          "Hosted Cloud SQL provisioning, IAM/SQL roles and actual staging/production execution not accepted",
+          "Named operational backfill CLI/registry and retained-record expand/backfill/switch rollout remain open",
+          "No connected ML or two-device SQL outcome established"
+        ],
+        "liveInventory": "In-app console showed Cloud SQL setup screen and visionary-product in asia-south1; no new resource or grant created. Local real Firebase Auth and Firestore read-only checks passed on26October2026.",
+        "mainPromoted": false,
+        "hostedAccepted": false
+      },
+      "productionJobContinuation": {
+        "sourceCommit": "52279b91e852f6135abd2763b6872d0c0c6f55d0",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/29",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40281324192",
+        "ciConclusion": "success",
+        "localPostgresqlTests": 59,
+        "localInfrastructureTests": 31,
+        "containerExecution": "Real compiled non-root image: isolated PostgreSQL Unix socket staging apply/verify/replay, pinned-receipt production-mode apply/verify, irreversible rollback denied and state preserved. No GCP resource or customer data.",
+        "review": {
+          "state": "approved-scoped-production-job",
+          "reviewer": "/root/kan37_final_review",
+          "approvedCommit": "52279b91e852f6135abd2763b6872d0c0c6f55d0",
+          "reportCommit": "69fc8645159500884b98d62be32025e19dd5d07b",
+          "report": "docs/architecture/reviews/KAN37_PRODUCTION_JOB_INDEPENDENT_REVIEW.md",
+          "independentAdversarialProbes": 5
+        },
+        "budget": "On-demand job only; tasks1 parallelism1 retries0 timeout300s cpu1 memory512Mi. Existing product release min0/max1. No SQL instance, scheduler, ML/GPU endpoint or IAM grant created. Cloud SQL explicit start/stop required and residual storage/IP charges remain.",
+        "fullTicketAccepted": false,
+        "productRegression": {
+          "date": "2026-10-26",
+          "browser": "User signed-in in-app browser",
+          "routes": [
+            "Home",
+            "Learn",
+            "Ask",
+            "Practice",
+            "Build",
+            "Privacy"
+          ],
+          "sessionReload": true,
+          "configuration": "Restored existing ignored primary Firebase configuration; real Firebase Auth and Firestore read-only probes passed. No credentials displayed or committed.",
+          "scope": "Existing product regression only; SQL/domain activation and ML acceptance remain open."
+        },
+        "integration": {
+          "commit": "0a775cae343d75a8eb5ca6e7c3c5522068ae216c",
+          "approvedFinalHead": "009abc752cec8f6e9d18369fe673cd14584bedf9",
+          "finalHeadCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40282335470",
+          "integratedCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40282594015",
+          "ciConclusion": "success",
+          "remotePublished": true
+        }
+      },
+      "localFirstCloseout": {
+        "state": "pending exact-candidate review and dev integration",
+        "date": "2026-10-26",
+        "authority": "Founder local-first direction; Jira comment10249",
+        "report": "docs/architecture/delivery/KAN37_LOCAL_ENABLER_ACCEPTANCE.md",
+        "environmentPolicy": "docs/architecture/delivery/LOCAL_FIRST_DELIVERY.md",
+        "runtimeSourceCommit": "0a775cae343d75a8eb5ca6e7c3c5522068ae216c",
+        "postgresqlTests": 59,
+        "infrastructureJavascriptTests": 31,
+        "infrastructurePythonTests": 11,
+        "localPostgresqlStoppedAfterTests": true,
+        "cloudDevelopmentProvisioning": "deferred; no instance created",
+        "fullFeatureAccepted": false
+      }
     }
   ]
 }
