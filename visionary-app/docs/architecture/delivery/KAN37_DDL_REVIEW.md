@@ -1,5 +1,11 @@
 # KAN-37 / DATA-02 replacement handoff
 
+Current acceptance scope, 26 October 2026: the founder has directed local-first
+implementation and dev acceptance, with GCP setup and provider verification
+retained for release preparation. See [the current local enabler handoff](KAN37_LOCAL_ENABLER_ACCEPTANCE.md)
+and [environment boundary](LOCAL_FIRST_DELIVERY.md). The dated continuation below
+retains its historical review state; it is not the current closeout decision.
+
 25 October 2026. Implementer: Codex /root, taking over the existing DeepSeek task at founder direction. Branch: codex/deepseek-kan-37-data-migrations; existing worker checkout retained. Accepted base: 27ba46b73e08071049c36f7999ddf0367e50738d (published dev; KAN-36 integration CI40199709861 passed). Exact replacement source commit is recorded in the subsequent Jira review submission; this document is part of that source.
 
 Previous accepted scope: bounded PostgreSQL development preparation, independently reviewed at6639a4dd and integrated into dev65045d72. The current continuation adds a production-capable Cloud SQL target and separate migration job, following founder direction. Full DATA-02, phase-wide authority and hosted acceptance remain open until this continuation's exact-source/container review and required resource acceptance. No shared database or real product records are touched. No product startup/controller imports migration credentials or executes migrations.

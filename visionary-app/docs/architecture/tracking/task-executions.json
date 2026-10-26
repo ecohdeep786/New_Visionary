@@ -752,7 +752,7 @@
       "jiraKey": "KAN-37",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-37",
       "status": "Rework",
-      "scope": "Versioned PostgreSQL migration/backfill framework plus separately packaged production-capable Cloud SQL migration job; hosted rollout and connected domain acceptance remain open",
+      "scope": "Local DATA-02 enabler: versioned PostgreSQL migrations, distinct identities, durable bounded backfills, compatibility and rollback guards; production-capable job packaged. Hosted/domain/release acceptance remains open.",
       "branch": "codex/deepseek-kan-37-data-migrations",
       "baseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
       "review": {
@@ -864,7 +864,29 @@
           "sessionReload": true,
           "configuration": "Restored existing ignored primary Firebase configuration; real Firebase Auth and Firestore read-only probes passed. No credentials displayed or committed.",
           "scope": "Existing product regression only; SQL/domain activation and ML acceptance remain open."
+        },
+        "integration": {
+          "commit": "0a775cae343d75a8eb5ca6e7c3c5522068ae216c",
+          "approvedFinalHead": "009abc752cec8f6e9d18369fe673cd14584bedf9",
+          "finalHeadCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40282335470",
+          "integratedCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40282594015",
+          "ciConclusion": "success",
+          "remotePublished": true
         }
+      },
+      "localFirstCloseout": {
+        "state": "pending exact-candidate review and dev integration",
+        "date": "2026-10-26",
+        "authority": "Founder local-first direction; Jira comment10249",
+        "report": "docs/architecture/delivery/KAN37_LOCAL_ENABLER_ACCEPTANCE.md",
+        "environmentPolicy": "docs/architecture/delivery/LOCAL_FIRST_DELIVERY.md",
+        "runtimeSourceCommit": "0a775cae343d75a8eb5ca6e7c3c5522068ae216c",
+        "postgresqlTests": 59,
+        "infrastructureJavascriptTests": 31,
+        "infrastructurePythonTests": 11,
+        "localPostgresqlStoppedAfterTests": true,
+        "cloudDevelopmentProvisioning": "deferred; no instance created",
+        "fullFeatureAccepted": false
       }
     }
   ]
