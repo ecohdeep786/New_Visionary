@@ -35,7 +35,9 @@ try{
   docker(['volume','create',volume]);
   docker(['run','--rm','--network=none','--mount','type=volume,source='+volume+',target=/socket','--entrypoint','sh',postgres,'-c','chmod 1777 /socket']);
   docker(['run','--detach','--name',server,'--network=none','--mount','type=volume,source='+volume+',target='+socket+',volume-nocopy',
-    '--env','POSTGRES_PASSWORD=synthetic-image-only',postgres,'-c','unix_socket_directories='+socket]);
+    // The official entrypoint initializes via its default local socket. Keep
+    // that socket as well as the shared test socket during initialization.
+    '--env','POSTGRES_PASSWORD=synthetic-image-only',postgres,'-c','unix_socket_directories=/var/run/postgresql,'+socket]);
   let ready=false,lastReadiness='';
   for(let attempt=0;attempt<45;attempt++){
     // The official image first starts a temporary initialization server. Wait
