@@ -13,6 +13,9 @@
     "src/outbox/outbox-store.ts",
     "src/outbox/outbox.dispatcher.ts",
     "src/outbox/outbox.limits.ts",
-    "src/outbox/outbox.sweeper.ts"
+    "src/outbox/outbox.sweeper.ts",
+    "src/file/file-types.ts",
+    "src/file/file-store.ts",
+    "src/file/upload.service.ts"
   ]
 }
