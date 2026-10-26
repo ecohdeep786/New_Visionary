@@ -1,13 +1,15 @@
-// JOB-01/JOB-02 — owning-store outbox dispatch and durable job delivery.
+// JOB-01/JOB-02/JOB-03 — owning-store outbox dispatch and durable job delivery.
 //
 // Mirrors the DATA-01 outbox_events / command_results shape so the enabler maps
 // 1:1 onto Prisma rows at integration. Covers: owning-store outbox dispatch,
 // private authenticated task delivery shims, per-workload queues, bounded
 // retry/backoff, idempotent completion, recovery after commit/dispatch/ack
-// crashes (JOB-01), plus leases, attempt fencing, deadlines, cancellation,
-// quarantine of failed cleanup and a sweeper for orphaned/stuck work (JOB-02).
-// A socket/event/lease is never authority on its own; delivery always resolves
-// durable owning-store state.
+// crashes (JOB-01), leases, attempt fencing, deadlines, cancellation, quarantine
+// of failed cleanup and a sweeper for orphaned/stuck work (JOB-02), plus
+// per-user/workspace and fleet admission limits, queue fairness, provider
+// budgets, retry ceilings and durable status/events with replay/refetch
+// semantics (JOB-03). A socket/event/lease/budget is never authority on its
+// own; delivery always resolves durable owning-store state.
 
 /** Mirrors the DATA-01 OutboxStatus enum. */
 export type OutboxStatus = 'PENDING' | 'DISPATCHED' | 'FAILED' | 'DONE';
@@ -100,3 +102,55 @@ export interface LeasePolicy {
 export const DEFAULT_BACKOFF: BackoffPolicy = { maxAttempts: 5, baseDelayMs: 200, multiplier: 2, maxDelayMs: 60_000 };
 
 export const DEFAULT_LEASE: LeasePolicy = { leaseMs: 30_000, maxCleanupAttempts: 3 };
+
+// ---- JOB-03 — admission limits, queue fairness, provider budgets, status/events ----
+
+/**
+ * Admission limits for jobs. All counts are of jobs in a live state
+ * (CLAIMED/RUNNING) at the moment of admission; a refused enqueue returns an
+ * admission denial instead of over-subscribing a user, workspace or the fleet.
+ */
+export interface AdmissionLimits {
+  /** Max live (CLAIMED/RUNNING) jobs admitted for one uid at once. */
+  perUserMax: number;
+  /** Max live jobs admitted for one workspaceId at once (per UID scope). */
+  perWorkspaceMax: number;
+  /** Max live jobs admitted across the whole fleet at once. */
+  fleetMax: number;
+}
+
+export const DEFAULT_ADMISSION: AdmissionLimits = { perUserMax: 4, perWorkspaceMax: 8, fleetMax: 100 };
+
+/** Outcome of an admission check against the policy. */
+export type AdmissionDecision = { ok: true; reason: 'admitted' } | { ok: false; reason: 'per_user' | 'per_workspace' | 'fleet'; limit: number; used: number };
+
+/**
+ * Provider budget: a hard ceiling on the number of provider-bound executions a
+ * workload may be admitted within a window. Enforced at enqueue, like the other
+ * admission categories, so a provider cannot be over-subscribed.
+ */
+export interface ProviderBudget {
+  /** Durable key, e.g. `claude`, `openai`, or the own-model provider id. */
+  provider: string;
+  /** Total executions this provider may be asked to run in the window. */
+  maxExecutions: number;
+  /** Executions already committed against this provider in the window. */
+  usedExecutions: number;
+}
+
+/** JOB-03 durable status/change events for a job, keyed by a per-job cursor. */
+export type JobEventType = 'queued' | 'claimed' | 'running' | 'done' | 'failed' | 'cancelled' | 'quarantined' | 'updated';
+
+export interface JobEvent {
+  /** Owning uid; the event is only readable by that uid (or authorized device). */
+  uid: string;
+  workspaceId: string | null;
+  jobId: string;
+  queue: string;
+  type: JobEventType;
+  /** Opaque, monotonically increasing scoped cursor for replay/refetch ordering. */
+  cursor: number;
+  createdAt: string;
+  /** Compact structured detail (state, reason) — never echoes arbitrary bytes. */
+  payload: { state?: JobState; reason?: string } | null;
+}

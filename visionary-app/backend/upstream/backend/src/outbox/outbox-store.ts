@@ -3,7 +3,7 @@
 // outbox_events / command_results rows. Durable cursor, lease ownership and
 // attempt tokens let the enabler reproduce commit/dispatch/ack crash recovery
 // and lease/fencing/sweeper behavior without a live DB.
-import type { BackoffPolicy, Job, JobState, OutboxEvent, OutboxStatus } from './outbox-types';
+import type { BackoffPolicy, Job, JobEvent, JobState, OutboxEvent, OutboxStatus, ProviderBudget } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
 
 /** Outcome of a fenced/conditional state transition. */
@@ -42,11 +42,25 @@ export interface OutboxStore {
   queues(): Promise<string[]>;
   /** Client-supplied uid and queue must align with the owning store (server-side). */
   assertAuthorized(uid: string, queue: string): Promise<boolean>;
+  // ---- JOB-03 — admission counts + provider budgets + durable job events ----
+  /** Count live (CLAIMED/RUNNING) jobs by uid / workspace / fleet for admission checks. */
+  liveJobCounts(): Promise<{ perUid: Map<string, number>; perWorkspace: Map<string, number>; fleet: number }>;
+  setProviderBudget(budget: ProviderBudget): Promise<void>;
+  providerBudget(provider: string): Promise<ProviderBudget | null>;
+  commitProviderExecution(provider: string, units?: number): Promise<ProviderBudget>;
+  appendJobEvent(event: JobEvent): Promise<JobEvent>;
+  /** Replay/refetch: events for one job after `afterCursor`. */
+  jobEventsAfter(jobId: string, afterCursor: number, limit?: number): Promise<JobEvent[]>;
+  jobEventsAll(jobId: string): Promise<JobEvent[]>;
 }
 
 export class InMemoryOutboxStore implements OutboxStore {
   readonly outbox = new Map<number, OutboxEvent>();
   readonly jobs = new Map<string, Job>();
+  /** Durable JOB-03 job events, ordered per job by cursor. */
+  readonly jobEvents = new Map<string, JobEvent[]>();
+  /** Provider budgets keyed by provider id. */
+  readonly providerBudgets = new Map<string, ProviderBudget>();
   /** Simulate an ack crash: the dispatch claim applied, but the DONE ack is lost. */
   failDispatchAfterWrite = false;
   crashOnAppend = false;
@@ -109,6 +123,51 @@ export class InMemoryOutboxStore implements OutboxStore {
     // Server-side rule: a queue name is only valid when it carries the owning
     // editorial uid namespace. This is the enabler's authority shim.
     return queue.startsWith(`${uid}:`) || queue === `global:${uid}`;
+  }
+
+  // ---- JOB-03 — admission counts + provider budgets + durable job events ----
+
+  async liveJobCounts(): Promise<{ perUid: Map<string, number>; perWorkspace: Map<string, number>; fleet: number }> {
+    const perUid = new Map<string, number>();
+    const perWorkspace = new Map<string, number>();
+    let fleet = 0;
+    for (const j of this.jobs.values()) {
+      if (j.state !== 'CLAIMED' && j.state !== 'RUNNING') continue;
+      fleet += 1;
+      perUid.set(j.uid, (perUid.get(j.uid) ?? 0) + 1);
+      if (j.workspaceId) perWorkspace.set(j.workspaceId, (perWorkspace.get(j.workspaceId) ?? 0) + 1);
+    }
+    return { perUid, perWorkspace, fleet };
+  }
+
+  async setProviderBudget(budget: ProviderBudget): Promise<void> {
+    this.providerBudgets.set(budget.provider, budget);
+  }
+  async providerBudget(provider: string): Promise<ProviderBudget | null> {
+    return this.providerBudgets.get(provider) ?? null;
+  }
+  async commitProviderExecution(provider: string, units = 1): Promise<ProviderBudget> {
+    const cur = this.providerBudgets.get(provider) ?? { provider, maxExecutions: Infinity, usedExecutions: 0 };
+    const next = { ...cur, usedExecutions: cur.usedExecutions + units };
+    this.providerBudgets.set(provider, next);
+    return next;
+  }
+
+  async appendJobEvent(event: JobEvent): Promise<JobEvent> {
+    const list = this.jobEvents.get(event.jobId) ?? [];
+    const cursor = (list[list.length - 1]?.cursor ?? 0) + 1; // durable per-job ordering
+    const stored = { ...event, cursor };
+    list.push(stored);
+    this.jobEvents.set(event.jobId, list);
+    return stored;
+  }
+  /** Replay/refetch: events for one job after `afterCursor` (opaque scoped cursor). */
+  async jobEventsAfter(jobId: string, afterCursor: number, limit = 100): Promise<JobEvent[]> {
+    const list = this.jobEvents.get(jobId) ?? [];
+    return list.filter((e) => e.cursor > afterCursor).slice(0, limit);
+  }
+  async jobEventsAll(jobId: string): Promise<JobEvent[]> {
+    return this.jobEvents.get(jobId) ?? [];
   }
 }
 

@@ -1,4 +1,4 @@
-// JOB-01/JOB-02 — owning-store outbox dispatcher and job lease runner.
+// JOB-01/JOB-02/JOB-03 — owning-store outbox dispatcher and job lease runner.
 //
 // JOB-01 guarantees (retained here):
 //   - commit safety: an event appended to the owning store is never lost; a
@@ -20,16 +20,23 @@
 //     refused, so a cancelled/reclaimed job can never be completed by a zombie.
 //   - deadlines: `runBy` is a hard horizon; jobs not DONE by runBy are reclaimed
 //     by the sweeper, never executed.
-//   - cancellation: `cancel` fences CLAIMED/RUNNGING jobs at the store level.
+//   - cancellation: `cancel` fences CLAIMED/RUNNING jobs at the store level.
 //   - quarantine of failed cleanup: a run whose cleanup keeps failing is retried
 //     a bounded number of times and then QUARANTINED, never silently dropped.
+//
+// JOB-03 adds (implemented here):
+//   - admission limits + provider budgets are enforced at `enqueue` through the
+//     optional OutboxLimits runner; a refused enqueue never enters the queue.
+//   - every job transition records a durable JobEvent through OutboxLimits so
+//     devices can replay/refetch authorized state.
 import type { BackoffPolicy, Job, JobState, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
 import type { JobPatch, JobWriteResult, OutboxStore } from './outbox-store';
 import { backoffDelay } from './outbox-store';
+import { AdmissionError, type OutboxLimits } from './outbox.limits';
 
 export class JobPolicyError extends Error {
-  constructor(public readonly code: 'unauthorized_queue' | 'unknown_event' | 'unknown_job' | 'fenced' | 'conflict' | 'recovered' | 'quarantined' | 'deadline_exceeded') {
+  constructor(public readonly code: 'unauthorized_queue' | 'unknown_event' | 'unknown_job' | 'fenced' | 'conflict' | 'recovered' | 'quarantined' | 'deadline_exceeded' | 'admission' | 'admission_per_user' | 'admission_per_workspace' | 'admission_fleet' | 'provider_budget') {
     super(code);
   }
 }
@@ -40,8 +47,19 @@ export interface JobClaim {
   attemptToken: string;
 }
 
+/** Enqueue opts (JOB-03): workspace scope + optional provider budget check. */
+export interface EnqueueOpts {
+  runBy?: string | null;
+  workspaceId?: string | null;
+  provider?: string | null;
+}
+
 export class OutboxDispatcher {
-  constructor(private readonly store: OutboxStore, private readonly policy: BackoffPolicy = DEFAULT_BACKOFF) {}
+  constructor(
+    private readonly store: OutboxStore,
+    private readonly policy: BackoffPolicy = DEFAULT_BACKOFF,
+    private readonly limits: OutboxLimits | null = null,
+  ) {}
 
   /**
    * Dispatch the next batch of pending outbox events. Delivers at most once per
@@ -94,14 +112,23 @@ export class OutboxDispatcher {
     await this.store.markOutbox(cursor, { status: 'DONE' }).catch(() => undefined);
   }
 
-  /** Enqueue a job into a per-workload queue, validating the client uid owns it. */
-  async enqueue(uid: string, queue: string, kind: string, opts: { runBy?: string | null } = {}): Promise<Job> {
+  /** Enqueue a job into a per-workload queue, validating the client owns the queue and admission limits allow it. */
+  async enqueue(uid: string, queue: string, kind: string, opts: EnqueueOpts = {}): Promise<Job> {
     const authorized = await this.store.assertAuthorized(uid, queue);
     if (!authorized) throw new JobPolicyError('unauthorized_queue');
+    const scope: Pick<Job, 'uid' | 'workspaceId'> = { uid, workspaceId: opts.workspaceId ?? null };
+    if (this.limits) {
+      try {
+        await this.limits.assertAdmissible(scope, opts.provider ?? null);
+      } catch (e) {
+        if (e instanceof AdmissionError) throw new JobPolicyError(e.code as JobPolicyError['code']);
+        throw e;
+      }
+    }
     const job: Job = {
       id: `job_${Date.now()}_${Math.floor(Math.random() * 1e6)}`,
       uid,
-      workspaceId: null,
+      workspaceId: scope.workspaceId,
       queue,
       kind,
       state: 'PENDING',
@@ -120,6 +147,10 @@ export class OutboxDispatcher {
       nextAttemptAt: null,
     };
     await this.store.createJob(job);
+    if (this.limits) {
+      await this.limits.recordEvent(job, 'queued');
+      if (opts.provider) await this.limits.commitProvider(opts.provider);
+    }
     return job;
   }
 
@@ -146,6 +177,7 @@ export class OutboxDispatcher {
       attemptToken,
     });
     if (!result.ok) throw this.fromWriteResult(result, 'claim');
+    if (this.limits) await this.limits.recordEvent(result.job, 'claimed');
     return { job: result.job, leaseToken, attemptToken };
   }
 
@@ -163,6 +195,7 @@ export class OutboxDispatcher {
   async startRun(id: string, holder: Pick<JobClaim, 'leaseToken'>, now: string | null = null): Promise<Job> {
     const result = await this.store.transition(id, ['CLAIMED'], holder.leaseToken, { state: 'RUNNING' });
     if (!result.ok) throw this.fromWriteResult(result, 'startRun');
+    if (this.limits) await this.limits.recordEvent(result.job, 'running');
     return result.job;
   }
 
@@ -195,6 +228,7 @@ export class OutboxDispatcher {
       if (reloaded?.state === 'DONE') return reloaded; // lost a race, someone finished first — idempotent
       throw this.fromWriteResult(result, 'complete');
     }
+    if (this.limits) await this.limits.recordEvent(result.job, 'done');
     return result.job;
   }
 
@@ -224,6 +258,7 @@ export class OutboxDispatcher {
         };
     const result = await this.store.transition(jobId, ['CLAIMED', 'RUNNING', 'PENDING'], holder.leaseToken, patch);
     if (!result.ok) throw this.fromWriteResult(result, 'fail');
+    if (this.limits) await this.limits.recordEvent(result.job, result.job.state === 'QUARANTINED' ? 'quarantined' : 'failed', error);
     return result.job;
   }
 
@@ -242,6 +277,7 @@ export class OutboxDispatcher {
       if (fresh?.state === 'CANCELLED' || fresh?.state === 'DONE') return fresh; // idempotent
       throw this.fromWriteResult(result, 'cancel');
     }
+    if (this.limits) await this.limits.recordEvent(result.job, 'cancelled');
     return result.job;
   }
 
