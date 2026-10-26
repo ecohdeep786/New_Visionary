@@ -15,6 +15,7 @@ export function migrationJobPlan({environment,instance,database,schema,source,im
   if(migrationSecret===runtimeSecret)throw Error('Distinct credential secrets required.');
   if(environment==='production'&&!/^[a-f0-9]{64}$/.test(receiptSha??''))throw Error('Pinned staging receipt hash required.');
   const connection=production.project+':'+production.region+':'+instance;
+  if(Buffer.byteLength('/cloudsql/'+connection+'/.s.PGSQL.5432','utf8')>107)throw Error('Cloud SQL Unix socket path exceeds Linux limit.');
   const env={DATA_DATABASE_MODE:environment,DATA_GCP_PROJECT:production.project,DATA_GCP_REGION:production.region,
     DATA_CLOUD_SQL_INSTANCE:instance,DATA_DATABASE_NAME:database,DATA_DATABASE_SCHEMA:schema,
     DATA_MIGRATION_ROLE:migrationRole,DATA_RUNTIME_ROLE:runtimeRole,DATA_MIGRATION_APPROVED_SHA:source};

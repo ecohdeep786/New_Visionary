@@ -4,7 +4,11 @@ This is a separate production-capable image for DATA-02, not a product HTTP
 startup hook. It compiles the actual reviewed migration/backfill modules with
 an independent minimal lock, generates the Prisma client and includes only the
 canonical domain migration. It does not copy legacy migrations/seeds or Firebase
-credentials. CI builds the image and checks offline plan/admission behavior.
+credentials. CI builds the image, checks offline admission, and executes the
+compiled entrypoint against disposable PostgreSQL over an isolated Unix socket.
+The image test performs staging apply/verify/replay and production-mode
+apply/verify using the real pinned staging receipt, then checks rollback denial.
+It does not prove hosted Cloud SQL acceptance.
 The trusted main workflow publishes its immutable digest in
 `published-data-job.json`; it does not deploy or execute a database job.
 
@@ -33,9 +37,38 @@ minute task limit. Apply remains transaction-bounded internally. An interrupted
 job must reconcile the ledger through verify/retry, not blindly repeat external
 effects. Image publication, job deployment and job execution remain distinct.
 
+## Budget and idle operation
+
+Founder instruction on 26 October 2026: keep spending low and optional services
+off when unused. This migration workload is an explicitly invoked Cloud Run Job,
+with no scheduler, resident worker, minimum instance or automatic retry. A deployed
+job definition does not keep a migration process running between executions.
+The product release configuration already uses minimum zero/maximum one Cloud
+Run instances and request-based CPU. Do not add a warm instance, periodic keepalive,
+ML/GPU endpoint, replica or dedicated staging instance without a reviewed need.
+
+Cloud SQL does not automatically start on an application connection. An idle
+non-production instance can be stopped explicitly and must be started and checked
+before a job runs. Stopping suspends instance charges but storage and IP charges
+continue. Never stop a shared instance while the live product, another job or an
+active test depends on it. A production database shutdown therefore needs an
+availability plan; automatically stopping it from this migration process would
+create outages and race other users. The job identity receives no instance-admin
+permission, and this change creates no database or paid service.
+
+Before hosted acceptance, record the exact instance/tier/storage and expected
+usage budget, dependency ownership, start/readiness/stop procedure and residual
+idle charges. Prefer an existing approved instance with a separate synthetic
+staging database when appropriate. Start only for the agreed verification window,
+reconcile executions and connections, then stop an exclusively owned test instance.
+Do not disable service APIs as a substitute for stopping compute.
+
+Provider reference checked in the in-app browser:
+https://docs.cloud.google.com/sql/docs/postgres/start-stop-restart-instance
+
 Hosted execution requires `VISIONARY_RELEASE_COMMIT` to equal
 `DATA_MIGRATION_APPROVED_SHA`. Production additionally requires a verified staging
-receipt with matching source/artifact/instance, a separate synthetic staging
+receipt with matching source/artifact/instance/schema, a separate synthetic staging
 database, exact applied versions and a verification date within seven days. Its
 exact bytes are pinned by `DATA_STAGING_RECEIPT_SHA256` and mounted read-only at
 `DATA_STAGING_RECEIPT_PATH`. The release operator must retain/review the real

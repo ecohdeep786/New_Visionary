@@ -29,6 +29,7 @@ export function assertCloudSqlUrl(raw:string,target:CloudSqlTarget):URL {
     ||!/^[-a-z][a-z0-9-]{0,61}[a-z0-9]$/.test(target.instance)||!/^[a-z][a-z0-9_]{0,62}$/.test(target.database))
     throw Error('CLOUD_SQL_TARGET_INVALID');
   const socket='/cloudsql/'+target.project+':'+target.region+':'+target.instance;
+  if(Buffer.byteLength(socket+'/.s.PGSQL.5432','utf8')>107)throw Error('CLOUD_SQL_SOCKET_TOO_LONG');
   const allowed=new Set(['host','schema','connection_limit','pool_timeout','connect_timeout']);
   if(!['postgres:','postgresql:'].includes(u.protocol)||u.hostname!=='localhost'||(u.port&&u.port!=='5432')||u.hash
     ||u.pathname!=='/'+target.database||u.searchParams.get('host')!==socket

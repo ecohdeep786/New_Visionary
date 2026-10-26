@@ -16,5 +16,5 @@ test('production requires pinned staging evidence and environment-specific secre
   for(const bad of [{receiptSha:undefined},{receiptSecret:undefined},{runtimeSecret:'visionary-data-staging-runtime-url:1'},{migrationSecret:'visionary-data-production-migration-url:latest'},{runtimeSecret:p.migrationSecret},{image:p.image.replace('@sha256:',':')}])assert.throws(()=>migrationJobPlan({...p,...bad}));
 });
 test('job target refuses unintended database, schema, source or SQL identity',()=>{
-  for(const bad of [{database:'visionary_product'},{schema:'public;drop schema public'},{source:'main'},{runtimeRole:'postgres;SET ROLE owner'},{runtimeRole:'staging_migrator'}])assert.throws(()=>migrationJobPlan({...input(),...bad}));
+  for(const bad of [{database:'visionary_product'},{schema:'public;drop schema public'},{source:'main'},{runtimeRole:'postgres;SET ROLE owner'},{runtimeRole:'staging_migrator'},{instance:'a'.repeat(63)}])assert.throws(()=>migrationJobPlan({...input(),...bad}));
 });

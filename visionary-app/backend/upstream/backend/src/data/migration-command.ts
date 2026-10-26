@@ -33,7 +33,7 @@ export function assertProductionAdmission(env:Environment,config:IdentityConfig,
   if(receipt.environment!=='staging'||receipt.sourceCommit!==env.VISIONARY_RELEASE_COMMIT||receipt.registryDigest!==registryDigest
     ||receipt.project!==config.cloudSql.project||receipt.region!==config.cloudSql.region||receipt.instance!==config.cloudSql.instance
     ||receipt.database===config.cloudSql.database||!/^visionary_data_staging(?:_|$)/.test(receipt.database??'')
-    ||receipt.status!=='verified'||!Array.isArray(receipt.appliedVersions)||receipt.appliedVersions.length!==1||receipt.appliedVersions[0]!==1
+    ||receipt.schema!==config.schema||receipt.status!=='verified'||!Array.isArray(receipt.appliedVersions)||receipt.appliedVersions.length!==1||receipt.appliedVersions[0]!==1
     ||!Number.isFinite(age)||age<0||age>7*24*60*60*1000)throw Error('STAGING_RECEIPT_INVALID');
 }
 
@@ -46,13 +46,13 @@ export async function runMigrationCommand(command:string,env:Environment,backend
   const store=new PostgresMigrationStore(config),runner=new MigrationRunner(store,registry);
   try{
     if(command==='apply')await runner.applyAll();
-    if(command==='rollback')await runner.rollbackLast();
-    const result=await runner.verify();
+    const rollback=command==='rollback'?await runner.rollbackLast():undefined;
+    const result=await runner.verify(rollback?.remainingVersions);
     if(!result.consistent)throw Error('MIGRATION_VERIFICATION_FAILED');
     // Receipt is useful only after actual database verification. The release
     // operator retains and pins its exact bytes; this is not a signature.
     return {status:'verified',environment:config.cloudSql?.environment??'synthetic',sourceCommit:env.VISIONARY_RELEASE_COMMIT,
-      registryDigest,...config.cloudSql,schema:config.schema,appliedVersions:registry.map(m=>m.version),verifiedAt:new Date().toISOString()};
+      registryDigest,...config.cloudSql,schema:config.schema,appliedVersions:rollback?.remainingVersions??registry.map(m=>m.version),verifiedAt:new Date().toISOString()};
   }finally{await store.close();}
 }
 

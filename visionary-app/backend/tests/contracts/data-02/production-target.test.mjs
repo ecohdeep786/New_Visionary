@@ -9,7 +9,7 @@ const target={environment:'production',project:'visionary-research',region:'asia
 function url(role='visionary_runtime',t=target){const u=new URL('postgresql://localhost/'+t.database);u.username=role;u.searchParams.set('schema','product');u.searchParams.set('host','/cloudsql/'+t.project+':'+t.region+':'+t.instance);u.searchParams.set('connection_limit','2');u.searchParams.set('pool_timeout','10');u.searchParams.set('connect_timeout','10');return String(u);}
 const config=()=>({migrationUrl:url('visionary_migrator'),runtimeUrl:url(),migrationRole:'visionary_migrator',runtimeRole:'visionary_runtime',schema:'product',cloudSql:{...target}});
 const source='a'.repeat(40),digest='b'.repeat(64),sha=s=>createHash('sha256').update(s).digest('hex');
-const receipt=()=>JSON.stringify({environment:'staging',sourceCommit:source,registryDigest:digest,project:target.project,region:target.region,instance:target.instance,database:'visionary_data_staging_kan37',status:'verified',appliedVersions:[1],verifiedAt:new Date().toISOString()});
+const receipt=()=>JSON.stringify({environment:'staging',sourceCommit:source,registryDigest:digest,project:target.project,region:target.region,instance:target.instance,database:'visionary_data_staging_kan37',schema:'product',status:'verified',appliedVersions:[1],verifiedAt:new Date().toISOString()});
 
 test('Cloud SQL target requires exact project, region, instance socket, database and bounded pools',()=>{
   assert.doesNotThrow(()=>assertSeparateIdentities(config()));
@@ -18,6 +18,7 @@ test('Cloud SQL target requires exact project, region, instance socket, database
   }
   assert.throws(()=>assertCloudSqlUrl(url(),{...target,project:'visionary-fd6d2'}));
   assert.throws(()=>assertCloudSqlUrl(url(),{...target,region:'us-central1'}));
+  const long={...target,instance:'a'.repeat(63)};assert.throws(()=>assertCloudSqlUrl(url('runtime',long),long),/SOCKET_TOO_LONG/);
 });
 
 test('synthetic test guards cannot be redirected through a socket, options or duplicate query key',()=>{
@@ -39,7 +40,7 @@ test('production command requires pinned exact-source verified staging receipt b
   const c=config(),bytes=receipt(),env={VISIONARY_RELEASE_COMMIT:source,DATA_MIGRATION_APPROVED_SHA:source,DATA_STAGING_RECEIPT_SHA256:sha(bytes)};
   assert.doesNotThrow(()=>assertProductionAdmission(env,c,digest,bytes));
   for(const e of [{...env,DATA_MIGRATION_APPROVED_SHA:'c'.repeat(40)},{...env,DATA_STAGING_RECEIPT_SHA256:'0'.repeat(64)}])assert.throws(()=>assertProductionAdmission(e,c,digest,bytes));
-  for(const fields of [{sourceCommit:'c'.repeat(40)},{registryDigest:'c'.repeat(64)},{environment:'production'},{database:target.database},{instance:'different-instance'},{verifiedAt:'2000-01-01T00:00:00Z'},{appliedVersions:[]},{status:'pending'}]){
+  for(const fields of [{sourceCommit:'c'.repeat(40)},{registryDigest:'c'.repeat(64)},{environment:'production'},{database:target.database},{schema:'another_schema'},{instance:'different-instance'},{verifiedAt:'2000-01-01T00:00:00Z'},{appliedVersions:[]},{status:'pending'}]){
     const changed=JSON.stringify({...JSON.parse(bytes),...fields});assert.throws(()=>assertProductionAdmission({...env,DATA_STAGING_RECEIPT_SHA256:sha(changed)},c,digest,changed),/STAGING/);
   }
 });

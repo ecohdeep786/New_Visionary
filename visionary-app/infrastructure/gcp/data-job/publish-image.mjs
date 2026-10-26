@@ -6,6 +6,8 @@ const remote=execFileSync('git',['ls-remote','origin','refs/heads/main'],{encodi
 if(remote!==source)throw Error('Stale source cannot publish a migration image.');
 const image=production.image.replace(/\/product$/,'/data-job'),tag=image+':'+source;
 execFileSync(process.execPath,['infrastructure/gcp/data-job/check-image.mjs'],{stdio:'inherit',timeout:720000});
+const publishHead=execFileSync('git',['ls-remote','origin','refs/heads/main'],{encoding:'utf8'}).split(/\s+/)[0];
+if(publishHead!==source)throw Error('Source was superseded while checking the migration image.');
 execFileSync('gcloud',['auth','configure-docker','asia-south1-docker.pkg.dev','--quiet'],{stdio:'inherit',timeout:60000});
 execFileSync('docker',['tag','visionary-data-job-check:'+source,tag],{stdio:'inherit',timeout:30000});
 execFileSync('docker',['push',tag],{stdio:'inherit',timeout:300000});
