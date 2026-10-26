@@ -16,6 +16,9 @@
     "src/outbox/outbox.sweeper.ts",
     "src/file/file-types.ts",
     "src/file/file-store.ts",
-    "src/file/upload.service.ts"
+    "src/file/upload.service.ts",
+    "src/file/download-types.ts",
+    "src/file/download-store.ts",
+    "src/file/download.service.ts"
   ]
 }
