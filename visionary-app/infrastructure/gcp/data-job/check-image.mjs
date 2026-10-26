@@ -29,12 +29,12 @@ const socket='/cloudsql/visionary-research:asia-south1:synthetic-image-check';
 const evidence=mkdtempSync(join(tmpdir(),'kan37-image-'));
 const postgres='postgres:16-bookworm';
 function docker(args,options={}){return execFileSync('docker',args,{encoding:'utf8',timeout:60000,...options});}
-function run(command,environment,extra=[]){return docker(['run','--rm','--network=none','--mount','type=volume,source='+volume+',target='+socket,
+function run(command,environment,extra=[]){return docker(['run','--rm','--network=none','--mount','type=volume,source='+volume+',target='+socket+',volume-nocopy',
   ...extra,...Object.entries(environment).flatMap(([k,v])=>['--env',k+'='+v]),image,command]);}
 try{
   docker(['volume','create',volume]);
   docker(['run','--rm','--network=none','--mount','type=volume,source='+volume+',target=/socket','--entrypoint','sh',postgres,'-c','chmod 1777 /socket']);
-  docker(['run','--detach','--name',server,'--network=none','--mount','type=volume,source='+volume+',target='+socket,
+  docker(['run','--detach','--name',server,'--network=none','--mount','type=volume,source='+volume+',target='+socket+',volume-nocopy',
     '--env','POSTGRES_PASSWORD=synthetic-image-only',postgres,'-c','unix_socket_directories='+socket]);
   let ready=false,lastReadiness='';
   for(let attempt=0;attempt<45;attempt++){
@@ -47,6 +47,7 @@ try{
   }
   if(!ready){
     console.error('Disposable fixture readiness:',lastReadiness);
+    console.error(docker(['inspect','--format','{{json .State}}',server]));
     console.error(docker(['logs',server]));
   }
   assert.ok(ready,'Disposable PostgreSQL must become ready.');
