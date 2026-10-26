@@ -751,8 +751,8 @@
       "sourceId": "DATA-02",
       "jiraKey": "KAN-37",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-37",
-      "status": "Testing",
-      "scope": "Real PostgreSQL migration/backfill development preparation restricted to disposable loopback synthetic databases",
+      "status": "Rework",
+      "scope": "Versioned PostgreSQL migration/backfill framework plus separately packaged production-capable Cloud SQL migration job; hosted rollout and connected domain acceptance remain open",
       "branch": "codex/deepseek-kan-37-data-migrations",
       "baseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
       "review": {
@@ -796,8 +796,15 @@
         "acceptance": "Existing Firebase product regression; migrations/backfills remain disconnected and are separately PostgreSQL-tested"
       },
       "integration": {
-        "state": "pending exact final-source approval, final-head CI and published dev integration",
-        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/28"
+        "state": "accepted bounded PostgreSQL preparation; production integration remains Rework",
+        "commit": "65045d72976b629336a150fa18aa32d73537a3bd",
+        "reviewedFinalHead": "aacf1bafb4f2e9fbbc151046f886e401a89f3226",
+        "acceptedBaseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/28",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40204197741",
+        "ciConclusion": "success",
+        "remotePublished": true,
+        "jiraCommentId": "10236"
       },
       "fullFeatureAccepted": false,
       "linkedProductGatesRemainOpen": true,
@@ -812,6 +819,52 @@
         "state": "not eligible: full ticket remains open",
         "worker": "deepseek-kan-37-data-migrations",
         "reviewer": "qa-review-kan-37-data-migrations"
+      },
+      "productionAlignment": {
+        "state": "Production-capable migration job exact-source review and container checks accepted; final dev integration pending; hosted and full-ticket gates open",
+        "observedSourceGaps": [
+          "Product HTTP/domain import graph does not activate new SQL workspace persistence (KAN-38 ownership)",
+          "Hosted Cloud SQL provisioning, IAM/SQL roles and actual staging/production execution not accepted",
+          "Named operational backfill CLI/registry and retained-record expand/backfill/switch rollout remain open",
+          "No connected ML or two-device SQL outcome established"
+        ],
+        "liveInventory": "In-app console showed Cloud SQL setup screen and visionary-product in asia-south1; no new resource or grant created. Local real Firebase Auth and Firestore read-only checks passed on26October2026.",
+        "mainPromoted": false,
+        "hostedAccepted": false
+      },
+      "productionJobContinuation": {
+        "sourceCommit": "52279b91e852f6135abd2763b6872d0c0c6f55d0",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/29",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40281324192",
+        "ciConclusion": "success",
+        "localPostgresqlTests": 59,
+        "localInfrastructureTests": 31,
+        "containerExecution": "Real compiled non-root image: isolated PostgreSQL Unix socket staging apply/verify/replay, pinned-receipt production-mode apply/verify, irreversible rollback denied and state preserved. No GCP resource or customer data.",
+        "review": {
+          "state": "approved-scoped-production-job",
+          "reviewer": "/root/kan37_final_review",
+          "approvedCommit": "52279b91e852f6135abd2763b6872d0c0c6f55d0",
+          "reportCommit": "69fc8645159500884b98d62be32025e19dd5d07b",
+          "report": "docs/architecture/reviews/KAN37_PRODUCTION_JOB_INDEPENDENT_REVIEW.md",
+          "independentAdversarialProbes": 5
+        },
+        "budget": "On-demand job only; tasks1 parallelism1 retries0 timeout300s cpu1 memory512Mi. Existing product release min0/max1. No SQL instance, scheduler, ML/GPU endpoint or IAM grant created. Cloud SQL explicit start/stop required and residual storage/IP charges remain.",
+        "fullTicketAccepted": false,
+        "productRegression": {
+          "date": "2026-10-26",
+          "browser": "User signed-in in-app browser",
+          "routes": [
+            "Home",
+            "Learn",
+            "Ask",
+            "Practice",
+            "Build",
+            "Privacy"
+          ],
+          "sessionReload": true,
+          "configuration": "Restored existing ignored primary Firebase configuration; real Firebase Auth and Firestore read-only probes passed. No credentials displayed or committed.",
+          "scope": "Existing product regression only; SQL/domain activation and ML acceptance remain open."
+        }
       }
     }
   ]

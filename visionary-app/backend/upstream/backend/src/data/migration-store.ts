@@ -9,7 +9,7 @@ export class PostgresMigrationStore {
   readonly config:Readonly<IdentityConfig>;
   constructor(config:IdentityConfig){
     assertSeparateIdentities(config);
-    this.config=Object.freeze({...config});
+    this.config=Object.freeze({...config,cloudSql:config.cloudSql?Object.freeze({...config.cloudSql}):undefined});
     this.migration=new PrismaClient({datasources:{db:{url:config.migrationUrl}}});
     this.runtime=new PrismaClient({datasources:{db:{url:config.runtimeUrl}}});
   }
@@ -44,7 +44,8 @@ export class PostgresMigrationStore {
     await this.runtimeIdentity();
     return this.migration.$transaction(async tx=>{
       const rows=await tx.$queryRawUnsafe<any[]>(`SELECT current_user AS role,r.rolsuper,r.rolcreatedb,r.rolcreaterole,
-        n.nspowner::regrole::text AS owner FROM pg_roles r JOIN pg_namespace n ON n.nspname=$1 WHERE r.rolname=current_user`,this.config.schema);
+        owner.rolname AS owner FROM pg_roles r JOIN pg_namespace n ON n.nspname=$1
+        JOIN pg_roles owner ON owner.oid=n.nspowner WHERE r.rolname=current_user`,this.config.schema);
       const r=rows[0];
       if(!r||r.role!==this.config.migrationRole||r.owner!==r.role||r.rolsuper||r.rolcreatedb||r.rolcreaterole)
         throw Error('MIGRATION_IDENTITY_DENIED');

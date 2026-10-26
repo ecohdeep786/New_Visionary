@@ -37,7 +37,7 @@ export class BackfillRunner {
     if(!/^[a-zA-Z0-9_-]{1,80}$/.test(o.name)||!/^[a-f0-9]{64}$/.test(o.definition))throw Error('BACKFILL_DEFINITION_REQUIRED');
     const size=bounded(o.batchSize??100,1,500),maxRows=bounded(o.maxRows??1000,1,10000),
       maxBatches=bounded(o.maxBatches??10,1,100),duration=bounded(o.maxDurationMs??10000,100,30000);
-    const until=Date.now()+duration;let batches=0,invocationRows=0,result:BackfillResult;
+    const until=Date.now()+duration;let batches=0,invocationRows=0,result:BackfillResult|undefined;
     while(batches<maxBatches&&invocationRows<maxRows&&Date.now()<until){
       if(o.signal?.aborted)throw Error('BACKFILL_CANCELLED');
       const budget=Math.min(15000,Math.max(100,until-Date.now()));

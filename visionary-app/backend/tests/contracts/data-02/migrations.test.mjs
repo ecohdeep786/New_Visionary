@@ -102,7 +102,8 @@ test('stale checksum, renamed history, removed prerequisites and changed down SQ
 test('physical reversible rollback restores baseline and immutable history survives reapply',()=>fixture(async f=>{
   const base=canonical(),v2=extra(base);
   await new MigrationRunner(f.store(),[...base,v2]).applyAll();assert.equal(await column(f,'syntheticOnly'),1);
-  await new MigrationRunner(f.store(),[...base,v2]).rollbackLast();assert.equal(await column(f,'syntheticOnly'),0);
+  const rolled=await new MigrationRunner(f.store(),[...base,v2]).rollbackLast();assert.equal(await column(f,'syntheticOnly'),0);
+  assert.deepEqual(rolled.remainingVersions,[1]);assert.equal((await new MigrationRunner(f.store(),[...base,v2]).verify(rolled.remainingVersions)).consistent,true);
   const changed=registerMigration({...v2,name:'mutated-after-rollback'});
   await assert.rejects(new MigrationRunner(f.store(),[...base,changed]).applyAll(),/PREFLIGHT/);
   assert.equal((await new MigrationRunner(f.store(),[...base,v2]).applyAll()).applied,1);
