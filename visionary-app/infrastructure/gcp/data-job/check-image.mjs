@@ -1,7 +1,7 @@
 import {execFileSync,spawnSync} from 'node:child_process';
 import assert from 'node:assert/strict';
 import {createHash,randomUUID} from 'node:crypto';
-import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
+import {mkdtempSync,writeFileSync,rmSync,chmodSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 const commit=process.env.GITHUB_SHA;
@@ -36,11 +36,18 @@ try{
   docker(['run','--rm','--network=none','--mount','type=volume,source='+volume+',target=/socket','--entrypoint','sh',postgres,'-c','chmod 1777 /socket']);
   docker(['run','--detach','--name',server,'--network=none','--mount','type=volume,source='+volume+',target='+socket,
     '--env','POSTGRES_PASSWORD=synthetic-image-only',postgres,'-c','unix_socket_directories='+socket]);
-  let ready=false;
+  let ready=false,lastReadiness='';
   for(let attempt=0;attempt<45;attempt++){
-    const r=spawnSync('docker',['exec',server,'pg_isready','-h',socket,'-U','postgres'],{encoding:'utf8',timeout:5000});
+    // The official image first starts a temporary initialization server. Wait
+    // for the final PID 1 server so fixture DDL cannot race its shutdown.
+    const r=spawnSync('docker',['exec',server,'sh','-c','test "$(head -n1 "$PGDATA/postmaster.pid")" = 1 && pg_isready -h "$1" -U postgres','sh',socket],{encoding:'utf8',timeout:5000});
+    lastReadiness=String(r.error??'')+r.stdout+r.stderr;
     if(r.status===0){ready=true;break;}
     await new Promise(resolve=>setTimeout(resolve,1000));
+  }
+  if(!ready){
+    console.error('Disposable fixture readiness:',lastReadiness);
+    console.error(docker(['logs',server]));
   }
   assert.ok(ready,'Disposable PostgreSQL must become ready.');
   const psql=(database,sql)=>docker(['exec','-i',server,'psql','-h',socket,'-U','postgres','-d',database,'-v','ON_ERROR_STOP=1'],{input:sql});
@@ -56,6 +63,9 @@ try{
   assert.equal(JSON.parse(run('verify',staging)).status,'verified');
   assert.equal(JSON.parse(run('apply',staging)).status,'verified','Repeated apply reconciles existing ledger.');
   writeFileSync(join(evidence,'staging.json'),receiptBytes);
+  // Only synthetic, non-secret evidence: the image runs as node, not the host
+  // CI runner UID. mkdtemp defaults0700 and would otherwise deny this mount.
+  chmodSync(evidence,0o755);chmodSync(join(evidence,'staging.json'),0o644);
   const production={...staging,DATA_DATABASE_MODE:'production',DATA_DATABASE_NAME:'visionary_product_image',
     DATA_MIGRATION_DATABASE_URL:target.DATA_MIGRATION_DATABASE_URL.replace('/visionary_data_staging_image?','/visionary_product_image?'),
     DATA_RUNTIME_DATABASE_URL:target.DATA_RUNTIME_DATABASE_URL.replace('/visionary_data_staging_image?','/visionary_product_image?'),
