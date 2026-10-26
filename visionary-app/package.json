@@ -41,6 +41,7 @@
     "rea:install": "node scripts/product.mjs rea install",
     "rea:build": "node scripts/product.mjs rea build",
     "rea": "node scripts/product.mjs rea cli",
-    "data:check": "node scripts/domain-check.mjs"
+    "data:check": "node scripts/domain-check.mjs",
+    "ingestion:check": "node scripts/ingestion-check.mjs"
   }
 }
