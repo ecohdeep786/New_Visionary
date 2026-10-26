@@ -1,5 +1,8 @@
 # KAN-37 local product verification
 
+Current closeout evidence is the local-first regression section at the end of
+this document. Earlier sections retain their dated scope and review state.
+
 25 October 2026. The real root development commands ran frontend and Firebase-connected Nest backend from the existing KAN-37 checkout on localhost:5173 and port3001. Existing ignored Firebase configuration was used; no password, fake account or authentication bypass was introduced. Domain migrations/backfills remain disconnected from product startup and were tested separately against disposable PostgreSQL.
 
 The user's actual signed-in in-app browser, Professional role, passed read-only Home, Learn, Ask, Practice, Build and Privacy navigation. Expected headings were Welcome back, Visionary.; Your learning outline; Visionary Guide; Your next practice; Build something of your own; and Privacy & consent. Home retained the existing session after full reload. At390x844 the Home content and bottom navigation were readable without visible horizontal clipping. The viewport override was reset and browser error logs returned no entries. No project, invitation, payment, privacy setting or learning record was created or changed.
@@ -29,3 +32,23 @@ The separate migration image's successful PostgreSQL socket test and exact-sourc
 approval are recorded in `KAN37_PRODUCTION_JOB_INDEPENDENT_REVIEW.md`. This browser
 regression covers the existing product; it does not activate SQL repositories,
 execute a hosted migration/backfill or establish ML/production acceptance.
+
+## Local-first closeout regression, 26 October 2026
+
+At runtime source `0a775cae343d75a8eb5ca6e7c3c5522068ae216c`, the real root
+development commands started the existing task checkout's frontend on5173 and
+Firebase-connected backend on3001. The signed-in in-app browser retained the
+Personal / Professional workspace. Home, Learn, Ask, Practice, Build and Privacy
+rendered their expected headings after lazy loading completed. Home remained
+authenticated after a browser reload. Read-only local HTTP checks returned200
+for the frontend and backend CSRF endpoint. No product record or preference was
+changed. The later closeout candidate changes documentation/receipts only;
+its frontend/backend/data/image sources are identical to this runtime source.
+
+Screenshot, outside Git:
+`C:/Users/Administrator/Visionary-local/kan37-rework/browser/KAN37_LOCAL_FIRST_HOME_2026-10-26.png`.
+This pass used the browser's normal desktop viewport; it does not claim a fresh
+mobile pass. The initial programmatic tab-opening/navigation timeout was resolved
+through the in-app address bar before any result was counted as successful.
+The visible local-preview disclosures remain accurate: route regression proves
+neither connected SQL domain features nor hosted ML/provider/release acceptance.
