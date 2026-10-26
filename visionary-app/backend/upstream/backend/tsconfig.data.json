@@ -20,6 +20,9 @@
     "src/file/manifest-types.ts",
     "src/file/manifest-store.ts",
     "src/file/manifest.service.ts",
-    "src/file/file-security.ts"
+    "src/file/file-security.ts",
+    "src/content/content-types.ts",
+    "src/content/content-store.ts",
+    "src/content/catalog.service.ts"
   ]
 }
