@@ -14,6 +14,8 @@ import { LearningController } from '../../learning/learning.controller';
 import { LearningService } from '../../learning/learning.service';
 import { KnowledgeProjectionController } from '../../learning/knowledge-projection.controller';
 import { KnowledgeProjectionService } from '../../learning/knowledge-projection.service';
+import { PersonalWorkspaceController } from '../../workspaces/personal-workspace.controller';
+import { PersonalWorkspaceService } from '../../workspaces/personal-workspace.service';
 
-@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController], providers: [FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService] })
+@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController, PersonalWorkspaceController], providers: [FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService, PersonalWorkspaceService] })
 export class FirebaseProductModule {}
