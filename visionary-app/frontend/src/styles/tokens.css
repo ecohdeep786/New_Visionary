@@ -58,8 +58,14 @@
 }
 
 :root {
-  --font-public: 'Google Sans Flex', 'Google Sans', sans-serif;
-  --font-public-content: 'Google Sans Flex Content', 'Google Sans Flex', 'Google Sans', sans-serif;
+  /* Public-family fallbacks stop at the generic: the Google Sans Flex set
+     carries 400/500/600/700 already, so any public list resolving to the
+     static 'Google Sans' face would pull a ~1.9MB truetype into the landing
+     render wave (observed 2026-10-27 css-initiated on '/' at ~5.4s). Public
+     surfaces therefore never list the static family; --font-product keeps it
+     for the internal product surface only. */
+  --font-public: 'Google Sans Flex', sans-serif;
+  --font-public-content: 'Google Sans Flex Content', 'Google Sans Flex', sans-serif;
   --font-product: 'Google Sans', sans-serif;
   --font-brand: var(--font-public);
 }

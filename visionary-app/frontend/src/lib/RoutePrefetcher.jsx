@@ -42,11 +42,32 @@ export function RoutePrefetcher() {
     // Don't prefetch if we're already on the landing page
     if (pathname !== "/") return;
     if (!("requestIdleCallback" in window) || !connectionAllowsPrefetch()) return undefined;
+    /* D3 LCP law (2026-10-27): this prefetch used to fire inside the landing
+       LCP window — at ~4.5s under Fast 3G throttle it raced the mount path
+       through the shared pipe (observed: 7 route chunks streamed while the
+       hero was still being laid out). It now paces itself: only after the
+       load event settles for another 3s, and then only on an idle callback,
+       so the 2.5s LCP target never shares its wire window. */
+    let cancelled = false;
+    let idleId = null;
+    let settleId = null;
     const run = () => {
+      if (cancelled) return;
       for (const load of PRIORITY_ROUTE_CHUNKS()) load.catch(() => {});
     };
-    const id = window.requestIdleCallback(run, { timeout: 4000 });
-    return () => window.cancelIdleCallback(id);
+    const schedule = () => {
+      settleId = window.setTimeout(() => {
+        if (cancelled) return;
+        idleId = window.requestIdleCallback(run, { timeout: 2000 });
+      }, 3000);
+    };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
+    return () => {
+      cancelled = true;
+      if (settleId !== null) window.clearTimeout(settleId);
+      if (idleId !== null) window.cancelIdleCallback(idleId);
+    };
   }, [pathname]);
   return null;
 }

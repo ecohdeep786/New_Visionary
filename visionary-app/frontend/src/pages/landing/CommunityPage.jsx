@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgM1 from "@/assets/student-primary.webp";
 import imgM2 from "@/assets/student-vocational.webp";
@@ -52,7 +53,7 @@ function PhotoMarquee() {
           <div className={`flex w-max ${row.cls}`}>
             {[...row.photos, ...row.photos].map((photo, i) => (
               <div key={row.cls + i} className="mr-6 shrink-0 overflow-hidden rounded-[24px]">
-                <img src={photo.img} alt="" decoding="async" className="h-[190px] w-[300px] object-cover" />
+                <LazyImage src={photo.img} alt="" className="h-[190px] w-[300px] object-cover" />
               </div>
             ))}
           </div>

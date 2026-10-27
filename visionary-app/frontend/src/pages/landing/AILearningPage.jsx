@@ -4,6 +4,7 @@ import { ArrowRight, Check, ChevronDown, Minus, Sparkles } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import studentImage from "@/assets/student-face-main.webp";
 import teacherImage from "@/assets/teacher-face-main.webp";
@@ -231,7 +232,7 @@ function PricingPersonaSection() {
           {PERSONA_PLANS.map((p) => (
             <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
               <div className="mb-5 flex h-36 items-center justify-center overflow-hidden rounded-[18px] bg-white">
-                <img src={PERSONA_IMAGES[p.persona]} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                <LazyImage src={PERSONA_IMAGES[p.persona]} alt="" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
               <p className="font-normal tracking-[0] leading-[1.4] text-[16px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>

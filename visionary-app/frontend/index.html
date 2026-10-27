@@ -15,13 +15,28 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="dns-prefetch" href="https://storage.googleapis.com" />
     <!-- Local self-hosted fonts — no external dependency -->
-    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Regular.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Medium.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Bold.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Semibold.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/GoogleSans-Regular.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/GoogleSans-Medium.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/GoogleSans-Bold.ttf" type="font/ttf" crossorigin>
+    <!-- D3 weight law: FIN-01 — only the Google Sans Flex variable set is
+         preloaded (4 × ~128KB, used by every route). The Google Sans static
+         faces are ~1.9MB each and are only referenced by workspace-surface
+         routes (--font-product), so they load on demand there, never in the
+         landing critical path. Preloading them unconditionally put ~5.7MB of
+         dead wire behind every route on Fast 3G (observed in the 2026-10-25
+         lab baseline). -->
+    <!-- D3 weight law: FIN-01 — only the Google Sans Flex variable set is
+         preloaded (4 × ~128KB, used by every route). The Google Sans static
+         faces are ~1.9MB each and are only referenced by workspace-surface
+         routes (--font-product), so they load on demand there, never in the
+         landing critical path. Preloading them unconditionally put ~5.7MB of
+         dead wire behind every route on Fast 3G (observed in the 2026-10-25
+         lab baseline). No type attribute on font preloads: a font preload
+         with a type attribute sends a different Accept than the @font-face
+         fetch of the same URL, and the preload cache reuse then misses —
+         observed 2026-10-27 as a full css-initiated re-fetch of all four
+         faces at ~5.3s (double delivery) with the attribute present. -->
+    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Medium.ttf" crossorigin>
+    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Bold.ttf" crossorigin>
+    <link rel="preload" as="font" href="/fonts/GoogleSansFlex-Semibold.ttf" crossorigin>
     <title>Visionary — Learn, Ask, Build</title>
   </head>
   <body>

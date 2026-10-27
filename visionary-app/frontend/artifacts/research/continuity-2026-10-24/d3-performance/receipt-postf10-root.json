@@ -1,0 +1,151 @@
+{
+  "route": "/",
+  "tag": "postf10",
+  "via": "headless chromium via fast3g proxy",
+  "url": "http://localhost:4180/",
+  "ttfbMs": 317,
+  "dclMs": 4585,
+  "loadEndMs": 4585,
+  "fcpMs": 4676,
+  "finalLcpMs": 6720,
+  "finalLcp": {
+    "t": 6720,
+    "el": "IMG",
+    "src": "student-800w-CFiR_nJS.avif",
+    "attr": "student-800w-DtjnvTKH.webp",
+    "size": 95668,
+    "id": null
+  },
+  "lcpCount": 3,
+  "lcpTrail": [
+    {
+      "t": 4676,
+      "el": "SPAN",
+      "src": null,
+      "attr": null,
+      "size": 1116,
+      "id": null
+    },
+    {
+      "t": 5516,
+      "el": "SPAN",
+      "src": null,
+      "attr": null,
+      "size": 30520,
+      "id": null
+    },
+    {
+      "t": 6720,
+      "el": "IMG",
+      "src": "student-800w-CFiR_nJS.avif",
+      "attr": "student-800w-DtjnvTKH.webp",
+      "size": 95668,
+      "id": null
+    }
+  ],
+  "cls": 0.041,
+  "recorderError": null,
+  "ttf": [
+    {
+      "file": "GoogleSansFlex-Regular.ttf",
+      "initiator": "link",
+      "bytes": 128244,
+      "start": 522,
+      "end": 3367
+    },
+    {
+      "file": "GoogleSansFlex-Medium.ttf",
+      "initiator": "link",
+      "bytes": 128548,
+      "start": 525,
+      "end": 4129
+    },
+    {
+      "file": "GoogleSansFlex-Semibold.ttf",
+      "initiator": "link",
+      "bytes": 118544,
+      "start": 525,
+      "end": 3769
+    },
+    {
+      "file": "GoogleSansFlex-Bold.ttf",
+      "initiator": "link",
+      "bytes": 128764,
+      "start": 525,
+      "end": 4044
+    }
+  ],
+  "fontsDoubleFetched": false,
+  "avifCount": 5,
+  "avifTen": [
+    {
+      "file": "professional-800w-BIxDCCdL.avif",
+      "initiator": "img",
+      "bytes": 19161,
+      "start": 5124,
+      "end": 5393
+    },
+    {
+      "file": "teacher-800w-C4ORRitl.avif",
+      "initiator": "img",
+      "bytes": 25332,
+      "start": 5130,
+      "end": 5604
+    },
+    {
+      "file": "student-800w-CFiR_nJS.avif",
+      "initiator": "img",
+      "bytes": 28907,
+      "start": 5130,
+      "end": 6172
+    },
+    {
+      "file": "organization-800w-Y5jvkWeF.avif",
+      "initiator": "img",
+      "bytes": 23001,
+      "start": 5130,
+      "end": 6172
+    },
+    {
+      "file": "parent-800w-BafNAH3z.avif",
+      "initiator": "img",
+      "bytes": 35118,
+      "start": 5130,
+      "end": 6173
+    }
+  ],
+  "prefetchStarts": [
+    {
+      "file": "AboutUsPage-DcZwXBY-.js",
+      "start": 7668
+    },
+    {
+      "file": "PrivacyPage-NOdEnBxF.js",
+      "start": 7669
+    },
+    {
+      "file": "StudentPage-DufMKY96.js",
+      "start": 7669
+    },
+    {
+      "file": "SafetyPage-BWI1PVK-.js",
+      "start": 7669
+    },
+    {
+      "file": "TeacherPage-BcdB2j2y.js",
+      "start": 7670
+    },
+    {
+      "file": "ParentPage-qsYrVxTp.js",
+      "start": 7670
+    },
+    {
+      "file": "OrganizationPage-YCOGJo7S.js",
+      "start": 7670
+    }
+  ],
+  "staticFontFetched": false,
+  "faviconBytes": 0,
+  "jsCount": 40,
+  "jsBytes": 331362
+}
