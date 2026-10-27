@@ -43,6 +43,7 @@
     "rea": "node scripts/product.mjs rea cli",
     "data:check": "node scripts/domain-check.mjs",
     "retrievalgate:check": "node scripts/retrievalgate-check.mjs",
-    "coverage:check": "node scripts/coverage-check.mjs"
+    "coverage:check": "node scripts/coverage-check.mjs",
+    "mediagate:check": "node scripts/mediagate-check.mjs"
   }
 }
