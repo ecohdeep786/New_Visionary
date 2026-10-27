@@ -897,15 +897,18 @@
       "sourceId": "DATA-03",
       "jiraKey": "KAN-38",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-38",
-      "status": "Rework",
+      "status": "Testing",
       "scope": "Durable SQL/Firestore personal workspace provisioning backend enabler and guarded opt-in API; frontend/hosted/release gates remain open",
       "branch": "codex/deepseek-kan-38-workspace-provisioning",
       "baseCommit": "f61292efaf6940ec1acc1751a61cb4a7dd17e66b",
       "originalCandidate": "f06e1e2b931e97fdb39aec112e44c4b3b035a722",
       "originalReview": "changes requested; five reproduced race/identity/persistence findings",
       "review": {
-        "state": "pending exact-source independent review",
-        "report": "docs/architecture/delivery/KAN38_DDL_REVIEW.md"
+        "state": "approved scoped backend source; final handoff and dev integration pending",
+        "reviewer": "/root/kan38_review",
+        "approvedCommit": "a05caa540b559781522c079328f9b69e1397a503",
+        "report": "docs/architecture/reviews/KAN38_INDEPENDENT_REVIEW.md",
+        "reportCommit": "43fba9098a3a86dfe9103209e6db6b14adf2358f"
       },
       "checks": {
         "priorFullDataCheck": {
@@ -921,19 +924,67 @@
         "runtimeEntrypointTests": 3,
         "upstreamProvenance": true,
         "localServicesStoppedAfterTests": true,
-        "finalCi": "pending"
+        "finalCi": "success",
+        "checkedCommit": "a05caa540b559781522c079328f9b69e1397a503",
+        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/40459938688",
+        "frontendTests": 624,
+        "scriptTests": 82,
+        "apiContracts": 35,
+        "postgresqlData01": 20,
+        "postgresqlData02": 39,
+        "provisioningTests": 11,
+        "deployedBackendTests": 99,
+        "deployedProvisioningTests": 11,
+        "actualNonRootApiImage": true,
+        "independentAdditionalSqlFirestoreProbes": 6,
+        "independentFocusedRollback": true,
+        "independentCorrectedHttp": true,
+        "priorLocalTimeouts": "Preserved failed attempts; final CI and focused independent reruns passed without relaxed deadlines"
       },
       "fullFeatureAccepted": false,
       "linkedProductGatesRemainOpen": true,
       "remainingGates": [
-        "Independent exact-SHA acceptance, final CI and checked/published dev integration",
+        "Final handoff review, checked/published dev integration and actual Jira transition",
         "Hosted SQL/Firestore/IAM/network/secret/recovery acceptance",
         "Connected frontend/source/ML/two-device/privacy acceptance",
         "Main release and explicit production enablement"
       ],
       "worktreeCleanup": {
-        "state": "not eligible: active review/rework",
+        "state": "not eligible: final integration and Jira closeout pending",
         "worker": "deepseek-kan-38-workspace-provisioning"
+      },
+      "implementationCommits": [
+        "1b4ea2a7034976c548eca44b2c98b328d8de493d"
+      ],
+      "localProductVerification": {
+        "date": "2026-10-27",
+        "browser": "User signed-in in-app browser",
+        "routes": [
+          "Home",
+          "Learn",
+          "Ask",
+          "Practice",
+          "Build",
+          "Privacy"
+        ],
+        "role": "Professional",
+        "sessionReload": true,
+        "phoneHome": "390x844 visually passed, no horizontal overflow",
+        "tabletHome": "768x1024 visually passed, no horizontal overflow",
+        "viewportRestored": true,
+        "consoleErrors": 0,
+        "evidence": "docs/architecture/delivery/evidence/KAN38_LOCAL_BROWSER_2026-10-27.json",
+        "acceptance": "Existing real Firebase product regression; frontend SQL workspace cutover remains open"
+      },
+      "liveFirestoreVerification": {
+        "passed": true,
+        "existingVerifiedIdentity": true,
+        "coldReplay": true,
+        "accountRootAndBillingUnchanged": true,
+        "productionDomainLinkUnchanged": true,
+        "developmentNamespaceOnly": true,
+        "localSqlStoppedAndRetained": true,
+        "evidence": "docs/architecture/delivery/evidence/KAN38_LIVE_FIRESTORE_2026-10-27.json"
       }
     }
   ]
