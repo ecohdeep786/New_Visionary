@@ -53,6 +53,7 @@
     "dailyplan:check": "node scripts/dailyplan-check.mjs",
     "journey:check": "node scripts/journey-check.mjs",
     "evaluation:check": "node scripts/evaluation-check.mjs",
-    "projects:check": "node scripts/projects-check.mjs"
+    "projects:check": "node scripts/projects-check.mjs",
+    "draftrecovery:check": "node scripts/draftrecovery-check.mjs"
   }
 }
