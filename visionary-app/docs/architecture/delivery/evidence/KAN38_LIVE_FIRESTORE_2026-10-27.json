@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-27",
+  "source": "1b4ea2a7034976c548eca44b2c98b328d8de493d",
+  "firebaseProject": "visionary-research",
+  "firestoreDatabase": "default",
+  "realExistingVerifiedIdentity": true,
+  "realLiveFirestore": true,
+  "localPostgresql": true,
+  "coldReplay": true,
+  "workspaceCount": 1,
+  "receiptCount": 1,
+  "outboxCount": 1,
+  "accountRootAndBillingUnchanged": true,
+  "productionDomainLinkUnchanged": true,
+  "developmentNamespaceOnly": true,
+  "sqlSchemaRetained": true,
+  "hostedSqlAccepted": false,
+  "mainPromoted": false
+}
