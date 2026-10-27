@@ -48,6 +48,7 @@
     "catalogadapter:check": "node scripts/catalogadapter-check.mjs",
     "conceptgraph:check": "node scripts/conceptgraph-check.mjs",
     "learningsession:check": "node scripts/learningsession-check.mjs",
-    "attempts:check": "node scripts/attempts-check.mjs"
+    "attempts:check": "node scripts/attempts-check.mjs",
+    "projections:check": "node scripts/projections-check.mjs"
   }
 }
