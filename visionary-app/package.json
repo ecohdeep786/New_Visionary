@@ -59,6 +59,7 @@
     "runs:check": "node scripts/runs-check.mjs",
     "sharing:check": "node scripts/sharing-check.mjs",
     "completion:check": "node scripts/completion-check.mjs",
-    "providerscope:check": "node scripts/providerscope-check.mjs"
+    "providerscope:check": "node scripts/providerscope-check.mjs",
+    "serviceidentity:check": "node scripts/serviceidentity-check.mjs"
   }
 }
