@@ -800,7 +800,7 @@
       "sourceId": "FAP-D3",
       "jiraKey": "FAP-55",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-55",
-      "status": "In Progress",
+      "status": "Testing",
       "startAt": "2026-10-25T06:12:20.761Z",
       "scope": "D3 performance + image law: hero art AVIF/WebP with measured density, LazyImage everywhere, bundle split of F10 monoliths into per-section modules, LCP <2.5s on Fast3G landing; AC vite build budget recorded + LCP pass recorded",
       "branch": "opencode/fap-d3-performance",
@@ -829,6 +829,10 @@
         {
           "at": "2026-10-26T00:20:00.000Z",
           "item": "D3_EVIDENCE.md written to frontend/artifacts/research/continuity-2026-10-24/d3-performance/ (receipts table, F10 split record, chunk-graph proof, tooling law updates, incident/harness notes); final v2 comment posted on FAP-55; NO beta merge — awaiting independent reviewer per D-095 to record the exact reviewed commit"
+        },
+        {
+          "at": "2026-10-27T08:23:00.000Z",
+          "item": "founder-authorized end-to-end delivery completed: founder set the standing lane this session ('you have to work on task to implement end to end in worktree and testing the product and merge in the beta and move to next task') and confirmed the merge by explicit choice; branch opencode/fap-d3-performance b21f6bc8 merged --no-ff into beta as e9d04f050a2b14dd2a087f4fda91396499a870ee (33add512..e9d04f05), pushed and ls-remote verified; D-095 unchanged - separate reviewer records the exact reviewed commit before Done; post-restart Jira auth is 401, so FAP-55 Jira transition to Testing and live verification of the final v2 comment are pending first re-login (if the comment is absent on the board, post it once); stale lane noted: opencode/fap-continuity-qa a364bf45 (2026-10-23, based on main 592d4752, pre-rebuild E1/D2 hybrid editing monolith files since split by F10) superseded and left parked untouched; next task: E1 cross-page continuity QA per FRONTEND_AGI_TASK_REBUILD dependency chain (A0..D3 done, D3 now in beta at e9d04f05)"
         }
       ]
     }
