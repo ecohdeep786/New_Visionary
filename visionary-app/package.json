@@ -60,6 +60,7 @@
     "sharing:check": "node scripts/sharing-check.mjs",
     "completion:check": "node scripts/completion-check.mjs",
     "providerscope:check": "node scripts/providerscope-check.mjs",
-    "serviceidentity:check": "node scripts/serviceidentity-check.mjs"
+    "serviceidentity:check": "node scripts/serviceidentity-check.mjs",
+    "conversationauth:check": "node scripts/conversationauth-check.mjs"
   }
 }
