@@ -16,6 +16,7 @@ export class PersonalWorkspaceController extends ProductRequestAuthority {
     try { return await this.personal.provision(uid, input); }
     catch (error) {
       if (error instanceof ProvisionError) throw new HttpException({ code: error.code, message: 'Personal workspace could not be provisioned. Retry the same command after checking status.' }, error.status);
+      if (error instanceof HttpException) throw error;
       // Never expose SQL URLs, query/error bodies, credential or account contents.
       throw new ServiceUnavailableException('Personal workspace provisioning is pending or unavailable. Retry the same command.');
     }

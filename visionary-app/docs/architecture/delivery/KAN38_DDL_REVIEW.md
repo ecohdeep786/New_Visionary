@@ -23,7 +23,8 @@ Request acceptance of the backend provisioning enabler and its guarded API,
 not a frontend workspace cutover or hosted release. The actual product module
 registers `POST /api/account/workspace/provision`; existing session verification,
 CSRF/origin checks and expected-account binding derive the only authoritative UID.
-Input permits a bounded command key and fixed `manual`/`onboarding` source. Client
+Enabled commands require per-UID admission (10 per minute) before any provisioning
+write; throttling retains HTTP429. Input permits a bounded command key and fixed `manual`/`onboarding` source. Client
 UID/workspace hints and unknown fields are rejected. Provisioning is disabled by
 default, creates no SQL pool while disabled, and never runs migrations on startup.
 
@@ -78,6 +79,10 @@ finally block; the pinned emulator and test child are bounded and stopped/reaped
 The official emulator JAR1.22.0 SHA256 and size are checked before execution.
 Windows Java initially failed its long AF_UNIX temporary path; a short dedicated
 socket directory resolved startup before any result was counted as a pass.
+
+27 October continuation corrects pinned SDK project binding through its actual
+initialized getter and updates the registered38-route authority/limit inventory.
+The guarded HTTP test also denies throttled requests before any domain write.
 
 Final candidate CI, production-lock/container result, signed-in in-app product
 regression, independent exact-SHA decision, published dev integration and actual

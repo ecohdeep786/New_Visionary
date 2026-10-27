@@ -14,7 +14,7 @@ const { PersonalWorkspaceController } = req('./dist/src/workspaces/personal-work
 const { PersonalWorkspaceService } = req('./dist/src/workspaces/personal-workspace.service.js');
 const { FirebaseProductService } = req('./dist/src/auth/firebase-product/firebase-product.service.js');
 const { ConfigService } = req('@nestjs/config');
-const { Module, UnauthorizedException } = req('@nestjs/common');
+const { Module, UnauthorizedException, HttpException } = req('@nestjs/common');
 const { NestFactory } = req('@nestjs/core');
 if (!/^127[.]0[.]0[.]1:[0-9]{1,5}$/.test(process.env.FIRESTORE_EMULATOR_HOST || '')) throw Error('Explicit loopback Firestore emulator required; live fallback prohibited.');
 const db = new Firestore({ projectId: 'demo-visionary-kan38' });
@@ -35,7 +35,7 @@ before(async () => {
   const url = new URL(env.config.runtimeUrl);
   target = { environment:'local',environmentId:'test-local',firebaseProject:'demo-visionary-kan38',firebaseDatabase:'(default)',firestoreMode:'emulator',sqlProject:'local',region:'local',instance:'loopback-'+(url.port||'5432'),database:url.pathname.slice(1),schema:env.schema };
   targetKey = identity('fixture-target',command()).targetKey;
-  store = new PostgresProvisionStore(env.runtime, {role:env.runtimeRole,schema:env.schema}); links = new FirestoreProvisionLinks(db,'demo-visionary-kan38'); provisioner = new WorkspaceProvisioner(store, links, target);
+  store = new PostgresProvisionStore(env.runtime, {role:env.runtimeRole,schema:env.schema}); links = new FirestoreProvisionLinks(db); provisioner = new WorkspaceProvisioner(store, links, target);
 });
 after(async () => {
   for (const root of owned) await db.recursiveDelete(root);
@@ -50,7 +50,7 @@ test('real SQL + Firestore commit preserves original account/profile/billing and
   const sql = new freshSql({ datasources: { db: { url: env.config.runtimeUrl } } });
   const freshDb = new Firestore({ projectId: 'demo-visionary-kan38' });
   try {
-    const replay = await new WorkspaceProvisioner(new PostgresProvisionStore(sql, {role:env.runtimeRole,schema:env.schema}), new FirestoreProvisionLinks(freshDb,'demo-visionary-kan38'), target).provision(uid, command());
+    const replay = await new WorkspaceProvisioner(new PostgresProvisionStore(sql, {role:env.runtimeRole,schema:env.schema}), new FirestoreProvisionLinks(freshDb), target).provision(uid, command());
     assert.equal(replay.personalWorkspaceId, first.personalWorkspaceId); assert.equal(replay.replay, true);
   } finally { await sql.$disconnect(); await freshDb.terminate(); }
   assert.deepEqual([(await root.get()).data(), (await root.collection('billing').doc('test').get()).data()], before);
@@ -127,7 +127,7 @@ test('same live-style Firestore UID remains isolated across SQL targets and neve
     await new MigrationRunner(second.store(), canonicalMigrations(backend)).applyAll(); await second.grantRuntime();
     const otherTarget = { ...target, schema: second.schema };
     const first = await provisioner.provision(uid, command());
-    const other = new WorkspaceProvisioner(new PostgresProvisionStore(second.runtime, {role:second.runtimeRole,schema:second.schema}), new FirestoreProvisionLinks(db,'demo-visionary-kan38'), otherTarget);
+    const other = new WorkspaceProvisioner(new PostgresProvisionStore(second.runtime, {role:second.runtimeRole,schema:second.schema}), new FirestoreProvisionLinks(db), otherTarget);
     const result = await other.provision(uid, command()); assert.notEqual(result.personalWorkspaceId,first.personalWorkspaceId);
     assert.equal((await root.collection('developmentWorkspaceLinks').get()).size,2);
     assert.equal((await root.collection('domainLinks').doc('connections').get()).exists,false);
@@ -179,7 +179,8 @@ test('actual HTTP controller requires session + CSRF + account binding before re
   const uid = await account('http'), csrf = 'c'.repeat(64);
   const config = new ConfigService({ AUTH_PUBLIC_ORIGIN:'http://localhost:5173', FIREBASE_PROJECT_ID:'demo-visionary-kan38', FIREBASE_PROJECT_KIND:'emulator', DATA_WORKSPACE_ENVIRONMENT_ID:'test-local', DATA_WORKSPACE_PROVISIONING_ENABLED:'true',
     DATA_WORKSPACE_RUNTIME_URL:env.config.runtimeUrl+'&pool_timeout=5&connect_timeout=5', DATA_WORKSPACE_RUNTIME_ROLE:env.runtimeRole, DATA_WORKSPACE_SCHEMA:env.schema });
-  const auth = { getDatabase:()=>db, authenticate:async(cookie,device)=>{if(cookie!=='synthetic-http-session'||device!=='a'.repeat(64))throw new UnauthorizedException(); return {uid};} };
+  let admitted = 0, throttled = false;
+  const auth = { rateLimit:async(scope,subject,limit)=>{assert.equal(scope,'personal-workspace-provision');assert.equal(subject,uid);assert.equal(limit,10);admitted++;if(throttled)throw new HttpException('Rate limited',429);}, getDatabase:()=>db, authenticate:async(cookie,device)=>{if(cookie!=='synthetic-http-session'||device!=='a'.repeat(64))throw new UnauthorizedException(); return {uid};} };
   const service = new PersonalWorkspaceService(auth,config);
   class HttpFixture {} Module({controllers:[PersonalWorkspaceController],providers:[{provide:ConfigService,useValue:config},{provide:FirebaseProductService,useValue:auth},{provide:PersonalWorkspaceService,useValue:service}]})(HttpFixture);
   const app = await NestFactory.create(HttpFixture,{logger:false}); app.use(req('cookie-parser')()); await app.listen(0,'127.0.0.1');
@@ -191,6 +192,11 @@ test('actual HTTP controller requires session + CSRF + account binding before re
     assert.equal((await post({cookie:'visionary-csrf='+csrf})).status,401);
     assert.equal((await post({'x-visionary-account':'other'})).status,409);
     assert.equal(await env.db.workspace.count({where:{uid}}),0);
+    assert.equal(admitted,0);
+    throttled=true; assert.equal((await post({})).status,429);
+    assert.equal(await env.db.workspace.count({where:{uid}}),0);
+    assert.equal((await link(owned.at(-1)).get()).exists,false);
+    throttled=false;
     const response = await post({}); assert.equal(response.status,201); assert.ok((await response.json()).personalWorkspaceId);
     const disabled = new PersonalWorkspaceService(auth,new ConfigService({})); await assert.rejects(disabled.provision(uid,command()),/not enabled/); await disabled.onModuleDestroy();
   } finally { await app.close(); await service.onModuleDestroy(); }

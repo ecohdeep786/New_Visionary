@@ -17,6 +17,7 @@ export class PersonalWorkspaceService implements OnModuleDestroy {
   constructor(private readonly accounts: FirebaseProductService, private readonly config: ConfigService) {}
   async provision(uid: string, input: unknown) {
     if (this.config.get('DATA_WORKSPACE_PROVISIONING_ENABLED') !== 'true') throw new ServiceUnavailableException('Personal workspace provisioning is not enabled.');
+    await this.accounts.rateLimit('personal-workspace-provision', uid, 10);
     if (!this.provisioner) {
       try {
         const raw = this.config.get<string>('DATA_WORKSPACE_RUNTIME_URL') || '';
@@ -41,7 +42,7 @@ export class PersonalWorkspaceService implements OnModuleDestroy {
           firebaseProject: this.config.get<string>('FIREBASE_PROJECT_ID') || '', firebaseDatabase: this.config.get<string>('FIRESTORE_DATABASE_ID') || '(default)',
           firestoreMode: this.config.get('FIREBASE_PROJECT_KIND') === 'emulator' ? 'emulator' : 'live', sqlProject: cloud ? 'visionary-research' : 'local', region: cloud ? 'asia-south1' : 'local',
           instance: cloud ? this.config.get<string>('DATA_WORKSPACE_SQL_INSTANCE') || '' : 'loopback-' + (url.port || '5432'), database: url.pathname.slice(1), schema });
-        const links = new FirestoreProvisionLinks(this.accounts.getDatabase(), target.firebaseProject);
+        const links = new FirestoreProvisionLinks(this.accounts.getDatabase());
         this.client = new PrismaClient({ datasources: { db: { url: String(url) } } });
         this.provisioner = new WorkspaceProvisioner(new PostgresProvisionStore(this.client, { role, schema }), links, target);
       } catch { throw new ServiceUnavailableException('Personal workspace configuration is unavailable.'); }

@@ -3,9 +3,14 @@ import { canonicalProvisionTarget, hash, ProvisionError, ProvisionIdentity } fro
 import type { ProvisionLinkStore } from './provision-store';
 /** Account/profile/billing are read-only; only dedicated commands and links are written. */
 export class FirestoreProvisionLinks implements ProvisionLinkStore {
-  constructor(private readonly db: Firestore, private readonly projectId: string) {}
+  constructor(private readonly db: Firestore) {}
   private refs(i: ProvisionIdentity) {
-    if (this.projectId !== i.target.firebaseProject || this.db.databaseId !== i.target.firebaseDatabase ||
+    // The pinned SDK exposes its initialized project through this getter but
+    // omits it from public declarations. A missing/uninitialized getter fails
+    // closed before any read, rather than trusting a caller-provided label.
+    let projectId: unknown;
+    try { projectId = Reflect.get(this.db, 'projectId'); } catch { throw new ProvisionError('UNAVAILABLE', 503); }
+    if (projectId !== i.target.firebaseProject || this.db.databaseId !== i.target.firebaseDatabase ||
       (process.env.FIRESTORE_EMULATOR_HOST ? 'emulator' : 'live') !== i.target.firestoreMode) throw new ProvisionError('CONFLICT', 409);
     const account = this.db.collection('visionary_accounts').doc(i.uid);
     if (i.target.environment === 'production') return { account, command: account.collection('workspaceProvisionCommands').doc(i.key), link: account.collection('domainLinks').doc('connections') };
