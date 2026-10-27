@@ -65,6 +65,7 @@
     "mlgate:check": "node scripts/mlgate-check.mjs",
     "usagereservation:check": "node scripts/usagereservation-check.mjs",
     "deadline:check": "node scripts/deadline-check.mjs",
-    "modalities:check": "node scripts/modalities-check.mjs"
+    "modalities:check": "node scripts/modalities-check.mjs",
+    "qualityscope:check": "node scripts/qualityscope-check.mjs"
   }
 }
