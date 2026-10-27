@@ -71,6 +71,7 @@
     "contextassembly:check": "node scripts/contextassembly-check.mjs",
     "benchmark:check": "node scripts/benchmark-check.mjs",
     "scopedcache:check": "node scripts/scopedcache-check.mjs",
-    "privacycore:check": "node scripts/privacycore-check.mjs"
+    "privacycore:check": "node scripts/privacycore-check.mjs",
+    "privacyjobs:check": "node scripts/privacyjobs-check.mjs"
   }
 }
