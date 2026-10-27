@@ -51,6 +51,7 @@
     "attempts:check": "node scripts/attempts-check.mjs",
     "projections:check": "node scripts/projections-check.mjs",
     "dailyplan:check": "node scripts/dailyplan-check.mjs",
-    "journey:check": "node scripts/journey-check.mjs"
+    "journey:check": "node scripts/journey-check.mjs",
+    "evaluation:check": "node scripts/evaluation-check.mjs"
   }
 }
