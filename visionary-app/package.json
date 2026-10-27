@@ -55,6 +55,7 @@
     "evaluation:check": "node scripts/evaluation-check.mjs",
     "projects:check": "node scripts/projects-check.mjs",
     "draftrecovery:check": "node scripts/draftrecovery-check.mjs",
-    "guidedbriefs:check": "node scripts/guidedbriefs-check.mjs"
+    "guidedbriefs:check": "node scripts/guidedbriefs-check.mjs",
+    "runs:check": "node scripts/runs-check.mjs"
   }
 }
