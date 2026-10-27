@@ -75,6 +75,7 @@
     "privacyjobs:check": "node scripts/privacyjobs-check.mjs",
     "restoretombstone:check": "node scripts/restoretombstone-check.mjs",
     "notifications:check": "node scripts/notifications-check.mjs",
-    "supportcases:check": "node scripts/supportcases-check.mjs"
+    "supportcases:check": "node scripts/supportcases-check.mjs",
+    "negativeauth:check": "node scripts/negativeauth-check.mjs"
   }
 }
