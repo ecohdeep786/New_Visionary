@@ -47,6 +47,7 @@
     "mediagate:check": "node scripts/mediagate-check.mjs",
     "catalogadapter:check": "node scripts/catalogadapter-check.mjs",
     "conceptgraph:check": "node scripts/conceptgraph-check.mjs",
-    "learningsession:check": "node scripts/learningsession-check.mjs"
+    "learningsession:check": "node scripts/learningsession-check.mjs",
+    "attempts:check": "node scripts/attempts-check.mjs"
   }
 }
