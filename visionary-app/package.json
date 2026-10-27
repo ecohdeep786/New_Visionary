@@ -44,6 +44,7 @@
     "data:check": "node scripts/domain-check.mjs",
     "retrievalgate:check": "node scripts/retrievalgate-check.mjs",
     "coverage:check": "node scripts/coverage-check.mjs",
-    "mediagate:check": "node scripts/mediagate-check.mjs"
+    "mediagate:check": "node scripts/mediagate-check.mjs",
+    "catalogadapter:check": "node scripts/catalogadapter-check.mjs"
   }
 }
