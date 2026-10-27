@@ -76,6 +76,7 @@
     "restoretombstone:check": "node scripts/restoretombstone-check.mjs",
     "notifications:check": "node scripts/notifications-check.mjs",
     "supportcases:check": "node scripts/supportcases-check.mjs",
-    "negativeauth:check": "node scripts/negativeauth-check.mjs"
+    "negativeauth:check": "node scripts/negativeauth-check.mjs",
+    "disclosures:check": "node scripts/disclosures-check.mjs"
   }
 }
