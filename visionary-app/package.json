@@ -62,6 +62,7 @@
     "providerscope:check": "node scripts/providerscope-check.mjs",
     "serviceidentity:check": "node scripts/serviceidentity-check.mjs",
     "conversationauth:check": "node scripts/conversationauth-check.mjs",
-    "mlgate:check": "node scripts/mlgate-check.mjs"
+    "mlgate:check": "node scripts/mlgate-check.mjs",
+    "usagereservation:check": "node scripts/usagereservation-check.mjs"
   }
 }
