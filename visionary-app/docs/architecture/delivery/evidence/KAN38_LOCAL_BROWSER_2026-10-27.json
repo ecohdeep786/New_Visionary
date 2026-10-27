@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-27",
+  "candidate": "a05caa540b559781522c079328f9b69e1397a503",
+  "runtimeCommit": "1b4ea2a7034976c548eca44b2c98b328d8de493d",
+  "browser": "User signed-in in-app browser",
+  "origin": "http://localhost:5173",
+  "backend": "127.0.0.1:3001",
+  "identity": "Existing real Firebase account; user completed sign-in",
+  "roleObserved": "Professional",
+  "routes": [
+    "Home",
+    "Learn",
+    "Ask",
+    "Practice",
+    "Build",
+    "Privacy"
+  ],
+  "sessionReload": true,
+  "phoneHome": {
+    "requestedWidth": 390,
+    "height": 844,
+    "documentClientWidth": 390,
+    "documentScrollWidth": 390,
+    "visuallyPassed": true
+  },
+  "tabletHome": {
+    "requestedWidth": 768,
+    "height": 1024,
+    "documentClientWidth": 769,
+    "documentScrollWidth": 769,
+    "visuallyPassed": true
+  },
+  "viewportRestored": true,
+  "consoleErrors": 0,
+  "previewAndPrivacyDisclosuresPreserved": true,
+  "provisioningDefaultDisabled": true,
+  "newFrontendWorkspaceCutoverAccepted": false,
+  "screenshots": [
+    {
+      "file": "home-desktop.png",
+      "sha256": "b9bb1d25d526f392012d05cf51fad01daf021f77aac5a54bcc76d931495d177e",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "learn.png",
+      "sha256": "76676dd5e671f0be76a412143262bb4384e25e8b61aae84e9cf0818e708b3884",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "ask.png",
+      "sha256": "4442a4643b198233c26dd68a14687d38b28b4cc26433bee02b937d1142e3d3ff",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "practice.png",
+      "sha256": "96c9a718da51512104fe30c24a8bd374598b169b6b488015002eaba07c030dea",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "build.png",
+      "sha256": "a2f24d5d0d5d6958ed07eebd8eb3e98fa3c2081d61e27121b560c4b588bbcb32",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "privacy.png",
+      "sha256": "d40f939ca7bdd897809970bc2c2e9530fd44d2ed53d32aef676044fc5918fe2b",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "home-phone.png",
+      "sha256": "70e6f0f83482fff7e4ccb316e95a71bc4a0e67058e9bd8ba0591929b5d92814d",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "home-tablet.png",
+      "sha256": "6d927589f2e7ebde106a124d0ff9447903450bd76c864af59cd52feefc67a84e",
+      "width": 65536,
+      "height": 4292542531
+    }
+  ],
+  "rawScreenshots": "Retained outside Git in C:/Users/Administrator/Visionary-local/kan38-rework",
+  "hostedAccepted": false,
+  "mainPromoted": false
+}
