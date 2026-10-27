@@ -63,6 +63,7 @@
     "serviceidentity:check": "node scripts/serviceidentity-check.mjs",
     "conversationauth:check": "node scripts/conversationauth-check.mjs",
     "mlgate:check": "node scripts/mlgate-check.mjs",
-    "usagereservation:check": "node scripts/usagereservation-check.mjs"
+    "usagereservation:check": "node scripts/usagereservation-check.mjs",
+    "deadline:check": "node scripts/deadline-check.mjs"
   }
 }
