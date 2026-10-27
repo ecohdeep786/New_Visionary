@@ -179,6 +179,9 @@ test('actual HTTP controller requires session + CSRF + account binding before re
   const uid = await account('http'), csrf = 'c'.repeat(64);
   const config = new ConfigService({ AUTH_PUBLIC_ORIGIN:'http://localhost:5173', FIREBASE_PROJECT_ID:'demo-visionary-kan38', FIREBASE_PROJECT_KIND:'emulator', DATA_WORKSPACE_ENVIRONMENT_ID:'test-local', DATA_WORKSPACE_PROVISIONING_ENABLED:'true',
     DATA_WORKSPACE_RUNTIME_URL:env.config.runtimeUrl+'&pool_timeout=5&connect_timeout=5', DATA_WORKSPACE_RUNTIME_ROLE:env.runtimeRole, DATA_WORKSPACE_SCHEMA:env.schema });
+  // Prisma may load the ignored product .env while importing its client.
+  // The HTTP fixture must use only its explicit synthetic settings.
+  config.skipProcessEnv = true;
   let admitted = 0, throttled = false;
   const auth = { rateLimit:async(scope,subject,limit)=>{assert.equal(scope,'personal-workspace-provision');assert.equal(subject,uid);assert.equal(limit,10);admitted++;if(throttled)throw new HttpException('Rate limited',429);}, getDatabase:()=>db, authenticate:async(cookie,device)=>{if(cookie!=='synthetic-http-session'||device!=='a'.repeat(64))throw new UnauthorizedException(); return {uid};} };
   const service = new PersonalWorkspaceService(auth,config);
@@ -198,6 +201,7 @@ test('actual HTTP controller requires session + CSRF + account binding before re
     assert.equal((await link(owned.at(-1)).get()).exists,false);
     throttled=false;
     const response = await post({}); assert.equal(response.status,201); assert.ok((await response.json()).personalWorkspaceId);
-    const disabled = new PersonalWorkspaceService(auth,new ConfigService({})); await assert.rejects(disabled.provision(uid,command()),/not enabled/); await disabled.onModuleDestroy();
+    const disabledConfig = new ConfigService({}); disabledConfig.skipProcessEnv = true;
+    const disabled = new PersonalWorkspaceService(auth,disabledConfig); await assert.rejects(disabled.provision(uid,command()),/not enabled/); await disabled.onModuleDestroy();
   } finally { await app.close(); await service.onModuleDestroy(); }
 });
