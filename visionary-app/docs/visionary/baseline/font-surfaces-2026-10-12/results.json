@@ -27,7 +27,7 @@
     {
       "surface": "public-after-product",
       "width": 390,
-      "font": "\"Google Sans Flex\", \"Google Sans\", sans-serif"
+      "font": "\"Google Sans Flex\", sans-serif"
     },
     {
       "surface": "product",
@@ -56,7 +56,7 @@
     {
       "surface": "public-after-product",
       "width": 1440,
-      "font": "\"Google Sans Flex\", \"Google Sans\", sans-serif"
+      "font": "\"Google Sans Flex\", sans-serif"
     }
   ],
   "recovery": {

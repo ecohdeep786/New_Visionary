@@ -16,6 +16,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgHero from "@/assets/pro-face-main-1600w.webp";
 import imgStory from "@/assets/student-competitive.webp";
@@ -272,7 +273,7 @@ export default function CareersPage() {
                 <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
                   {STRIP.map((photo) => (
                     <div key={photo.alt} className="overflow-hidden rounded-xl">
-                      <img src={photo.img} alt={photo.alt} loading="lazy" decoding="async"
+                      <LazyImage src={photo.img} alt={photo.alt}
                         className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03] motion-reduce:transform-none" />
                     </div>
                   ))}
@@ -334,7 +335,7 @@ export default function CareersPage() {
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {AREAS.map((area) => (
                       <article key={area.title} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white">
-                        <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
+                        <LazyImage src={area.photo} alt={area.alt} className="h-[180px] w-full object-cover" />
                         <div className="flex flex-1 flex-col p-7 pb-16">
                           <h3 className="text-[28px] font-normal leading-[1.3] text-[#1d1d1f]">{area.title}</h3>
                           <p className="mt-2 text-[16px] leading-[1.6] text-[#6e6e73]">{area.desc}</p>
@@ -365,8 +366,8 @@ export default function CareersPage() {
             <section id="hiring" data-section="04-hiring" className="scroll-mt-32 bg-[#f5f5f7] px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="overflow-hidden rounded-[20px]">
-                  <img src={imgStory} alt="A student writing through a problem at her desk"
-                    loading="lazy" decoding="async" className="aspect-[16/8] w-full object-cover" />
+                  <LazyImage src={imgStory} alt="A student writing through a problem at her desk"
+                    decoding="async" className="aspect-[16/8] w-full object-cover" />
                 </div>
                 <div className="mx-auto max-w-[820px] text-center">
                   <p className="mt-14 apple-eyebrow text-[#6e6e73]">How we hire</p>

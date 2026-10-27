@@ -137,7 +137,7 @@ export function collectSurface(root) {
     if (!specifier.startsWith('.') && !specifier.startsWith('@/')) return null;
     const base = normalize(specifier.startsWith('@/') ? 'frontend/src/' + specifier.slice(2) : path.posix.join(path.posix.dirname(from), specifier));
     const target = [base, ...['.js', '.jsx', '.ts', '.tsx', '/index.js', '/index.jsx', '/index.ts'].map(ext => base + ext)].find(p => files.has(p));
-    if (!target && !/\.(css|json|svg|png|jpe?g|webp|gif|woff2?|mp4)$/.test(base)) throw new Error(`Unresolved local source import ${from} → ${specifier}`);
+    if (!target && !/\.(css|json|svg|png|jpe?g|webp|avif|gif|woff2?|mp4)$/.test(base)) throw new Error(`Unresolved local source import ${from} → ${specifier}`);
     return target ?? null;
   };
   const closure = seeds => {

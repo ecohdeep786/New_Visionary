@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgHeroChip from "@/assets/student-higher.webp";
 import imgStudent from "@/assets/student-hero-main-1600w.webp";
@@ -165,7 +166,7 @@ export default function ResearchNewsPage() {
         <section data-section="01-hero" className="relative overflow-hidden">
           <div className="relative mx-auto max-w-[1240px] px-4 pb-16 pt-16 sm:px-6 lg:px-10 lg:pb-20 lg:pt-24">
             <div className="pointer-events-none absolute right-[8%] top-[9%] hidden w-[170px] rotate-3 overflow-hidden rounded-[20px] shadow-[0_20px_50px_rgba(18,19,23,0.16)] lg:block">
-              <img src={imgHeroChip} alt="" aria-hidden="true" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+              <LazyImage src={imgHeroChip} alt="" aria-hidden="true" className="aspect-[4/3] w-full object-cover" />
             </div>
             <div className="pointer-events-none absolute bottom-[14%] right-[24%] hidden -rotate-2 lg:block">
               <SpotIllustration subject="loop" className="h-[112px] w-[150px] rounded-[20px] shadow-[0_20px_50px_rgba(18,19,23,0.16)]" />
@@ -225,7 +226,7 @@ export default function ResearchNewsPage() {
             founding idea (Google's attributed quote band) */}
         <section data-section="03-quote" className="px-4 sm:px-6 lg:px-10">
           <Reveal className="relative mx-auto max-w-[1240px] overflow-hidden rounded-[30px] bg-[#1d1d1f] px-8 py-16 sm:px-14 sm:py-24">
-            <img src={imgHeroChip} alt="" aria-hidden="true" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+            <LazyImage src={imgHeroChip} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-30" />
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#1d1d1f]/90 via-[#1d1d1f]/70 to-[#1d1d1f]/40" />
             <div className="relative">
               <h3 className="max-w-[860px] text-[28px] font-normal leading-[1.3] tracking-[-0.02em] text-white">
@@ -295,7 +296,7 @@ export default function ResearchNewsPage() {
                 <div key={area.role}>
                   <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
                     <div className={`overflow-hidden rounded-[30px] bg-white ${area.flip ? "lg:order-2" : ""}`}>
-                      <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-contain object-bottom mix-blend-multiply" />
+                      <LazyImage src={area.photo} alt={area.alt} className="aspect-[4/3] w-full object-contain object-bottom mix-blend-multiply" />
                     </div>
                     <div className={area.flip ? "lg:order-1" : ""}>
                       <p className="apple-eyebrow text-[#6e6e73]">{area.role}</p>
@@ -342,7 +343,7 @@ export default function ResearchNewsPage() {
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {PROJECTS.map((project) => (
                   <article key={project.title} className="flex h-full flex-col overflow-hidden rounded-[20px] bg-white">
-                    <img src={project.photo} alt={project.alt} loading="lazy" decoding="async" className="h-[190px] w-full object-cover" />
+                    <LazyImage src={project.photo} alt={project.alt} className="h-[190px] w-full object-cover" />
                     <div className="flex flex-1 flex-col p-6">
                       <h3 className="text-[21px] font-normal leading-[1.3] text-[#1d1d1f]">{project.title}</h3>
                       <p className="mt-2 text-[16px] leading-[1.6] text-[#6e6e73]">{project.copy}</p>
@@ -428,7 +429,7 @@ export default function ResearchNewsPage() {
         <section data-section="09-responsible" className="bg-[#f5f5f7] px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="overflow-hidden rounded-[20px]">
-              <img src={imgResponsible} alt="A learner reading closely to make sense of an idea" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+              <LazyImage src={imgResponsible} alt="A learner reading closely to make sense of an idea" className="aspect-[4/3] w-full object-cover" />
             </div>
             <div>
               <h2 className="text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
@@ -456,7 +457,7 @@ export default function ResearchNewsPage() {
             <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-8">
               <div className="grid gap-3 lg:grid-cols-2">
                 <Link to="/community" className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
-                  <img src={imgFutureCommunity} alt="A teacher explaining an idea" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
+                  <LazyImage src={imgFutureCommunity} alt="A teacher explaining an idea" className="h-[200px] w-full object-cover" />
                   <div className="flex flex-1 flex-col p-7 pb-16">
                     <h3 className="text-[23px] font-normal leading-[1.3] text-[#1d1d1f]">Join the community</h3>
                     <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">
@@ -466,7 +467,7 @@ export default function ResearchNewsPage() {
                   <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
                 <Link to="/careers" className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
-                  <img src={imgFutureCareers} alt="A teammate at work in a shared space" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
+                  <LazyImage src={imgFutureCareers} alt="A teammate at work in a shared space" className="h-[200px] w-full object-cover" />
                   <div className="flex flex-1 flex-col p-7 pb-16">
                     <h3 className="text-[23px] font-normal leading-[1.3] text-[#1d1d1f]">Work with us</h3>
                     <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">

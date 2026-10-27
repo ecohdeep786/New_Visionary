@@ -5,6 +5,7 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import LandingNav from "@/components/landing/LandingNav";
 import AboutUsHero from "@/components/landing/AboutUsHero";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import studentImage from "@/assets/student-hero-main-1600w.webp";
 import teacherImage from "@/assets/teacher-hero-main-1600w.webp";
@@ -148,7 +149,7 @@ function RolesSection() {
       <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
           {ROLES.map((role) => <Link key={role.label} to={role.to} className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] lg:col-span-2">
-            <div className="overflow-hidden"><img src={role.image} alt="" loading="lazy" className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
+            <div className="overflow-hidden"><LazyImage src={role.image} alt="" className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
             <div className="flex flex-1 flex-col p-6 pb-16"><h3 className="text-[22px] font-normal text-[#1d1d1f]">{role.label}</h3><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#6e6e73]">{role.line}</p></div>
             {/* google.com card curve — the card's cutout sweeps into the
                 bottom-right corner and the action button floats in it with breath */}
@@ -171,7 +172,7 @@ function LifeJourneySection() {
       </div>
       <ol className="mt-14 grid gap-3 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 md:grid-cols-2 lg:grid-cols-4 lg:p-10">
         {LIFE_STAGES.map((stage) => <li key={stage.number} className="flex flex-col overflow-hidden rounded-[20px] bg-white">
-          <img src={stage.photo} alt={stage.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+          <LazyImage src={stage.photo} alt={stage.alt} className="aspect-[4/3] w-full object-cover" />
           <div className="flex flex-1 flex-col p-6">
             <span className="text-[13px] font-medium tabular-nums text-[#6e6e73]">{stage.number} / 04</span>
             <h3 className="mt-3 text-[22px] font-normal leading-[1.18] tracking-[-0.02em] text-[#1d1d1f]">{stage.title}</h3>

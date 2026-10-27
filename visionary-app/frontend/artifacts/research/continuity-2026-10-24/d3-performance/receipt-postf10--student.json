@@ -1,0 +1,99 @@
+{
+  "route": "/student",
+  "tag": "postf10",
+  "via": "headless chromium via fast3g proxy",
+  "url": "http://localhost:4180/student",
+  "ttfbMs": 209,
+  "dclMs": 4488,
+  "loadEndMs": 4488,
+  "fcpMs": 4536,
+  "finalLcpMs": 5960,
+  "finalLcp": {
+    "t": 5960,
+    "el": "IMG",
+    "src": "student-hero-main-2400w-BcRYOFig.avif",
+    "attr": "student-hero-main-2400w-CkOHZvhT.webp",
+    "size": 1245456,
+    "id": null
+  },
+  "lcpCount": 3,
+  "lcpTrail": [
+    {
+      "t": 4536,
+      "el": "SPAN",
+      "src": null,
+      "attr": null,
+      "size": 1116,
+      "id": null
+    },
+    {
+      "t": 5476,
+      "el": "P",
+      "src": null,
+      "attr": null,
+      "size": 33634,
+      "id": null
+    },
+    {
+      "t": 5960,
+      "el": "IMG",
+      "src": "student-hero-main-2400w-BcRYOFig.avif",
+      "attr": "student-hero-main-2400w-CkOHZvhT.webp",
+      "size": 1245456,
+      "id": null
+    }
+  ],
+  "cls": 0.032,
+  "recorderError": null,
+  "ttf": [
+    {
+      "file": "GoogleSansFlex-Regular.ttf",
+      "initiator": "link",
+      "bytes": 128244,
+      "start": 437,
+      "end": 3466
+    },
+    {
+      "file": "GoogleSansFlex-Medium.ttf",
+      "initiator": "link",
+      "bytes": 128548,
+      "start": 439,
+      "end": 4073
+    },
+    {
+      "file": "GoogleSansFlex-Semibold.ttf",
+      "initiator": "link",
+      "bytes": 118544,
+      "start": 440,
+      "end": 3866
+    },
+    {
+      "file": "GoogleSansFlex-Bold.ttf",
+      "initiator": "link",
+      "bytes": 128764,
+      "start": 440,
+      "end": 4161
+    }
+  ],
+  "fontsDoubleFetched": false,
+  "avifCount": 1,
+  "avifTen": [
+    {
+      "file": "student-hero-main-2400w-BcRYOFig.avif",
+      "initiator": "link",
+      "bytes": 121882,
+      "start": 4580,
+      "end": 5708
+    }
+  ],
+  "prefetchStarts": [
+    {
+      "file": "StudentPage-DufMKY96.js",
+      "start": 4511
+    }
+  ],
+  "staticFontFetched": false,
+  "faviconBytes": 0,
+  "jsCount": 20,
+  "jsBytes": 272572
+}

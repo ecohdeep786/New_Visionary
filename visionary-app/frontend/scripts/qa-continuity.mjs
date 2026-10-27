@@ -66,19 +66,46 @@ const LAW_HEXES = new Set([
 
 /* File-scoped exemptions: recorded so the freeze stays honest. Art palettes
  * are not UI tokens; PremiumPersona stage values are design-governed and
- * documented as token-export candidates. */
+ * documented as token-export candidates.
+ * F10 split (2026-10-26): monolith paths moved to per-section modules — the
+ * SAME approved values re-registered under the new paths; no value added
+ * or removed (abbreviated-split verified byte-verbatim). */
 const FILE_HEX_EXCEPTIONS = {
-  'src/components/landing/persona/PremiumPersonaSections.jsx': {
+  'src/components/landing/persona/premium/PremiumIntelligenceSection.jsx': {
     values: new Set(['#0d1017', '#0a0d14', '#6bb6ff']),
-    reason: 'Premium stage near-black grounds + on-dark link:hover tone; token-export candidates (E1 receipt 2026-10-23).',
+    reason: 'Premium stage near-black grounds + on-dark link:hover tone; token-export candidates (E1 receipt 2026-10-23). Path from PremiumPersonaSections.jsx after the F10 split.',
+  },
+  'src/components/landing/persona/premium/PremiumCTASection.jsx': {
+    values: new Set(['#0d1017', '#0a0d14', '#6bb6ff']),
+    reason: 'Premium stage near-black grounds + on-dark link:hover tone; token-export candidates (E1 receipt 2026-10-23). Path from PremiumPersonaSections.jsx after the F10 split.',
   },
   'src/components/landing/AboutUsHero.jsx': {
     values: new Set(['#e9f5ef', '#fef3df', '#f3edff', '#fcebe8']),
     reason: 'Persona door tints — design-governed pastels; tint-token family candidate (E1 receipt 2026-10-23).',
   },
-  'src/components/landing/SpotIllustration.jsx': {
+  'src/components/landing/SpotIllustration/palette.jsx': {
     allowAll: true,
-    reason: 'Editorial illustration palette (art, not UI law).',
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-primary.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-academic.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-portraits.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-wide.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/index.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
   },
 };
 
