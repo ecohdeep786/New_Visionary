@@ -77,6 +77,7 @@
     "assignment:check": "node scripts/assignment-check.mjs",
     "submissions:check": "node scripts/submissions-check.mjs",
     "professional:check": "node scripts/professional-check.mjs",
-    "organization:check": "node scripts/organization-check.mjs"
+    "organization:check": "node scripts/organization-check.mjs",
+    "entitlement:check": "node scripts/entitlement-check.mjs"
   }
 }
