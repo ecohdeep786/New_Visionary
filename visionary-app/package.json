@@ -72,6 +72,7 @@
     "airaflow:check": "node scripts/airaflow-check.mjs",
     "scorecard:check": "node scripts/scorecard-check.mjs",
     "changefeed:check": "node scripts/changefeed-check.mjs",
-    "sceneprotocol:check": "node scripts/sceneprotocol-check.mjs"
+    "sceneprotocol:check": "node scripts/sceneprotocol-check.mjs",
+    "classroom:check": "node scripts/classroom-check.mjs"
   }
 }
