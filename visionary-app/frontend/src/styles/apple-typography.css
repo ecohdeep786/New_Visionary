@@ -507,8 +507,10 @@
   letter-spacing: var(--track-section) !important;
 }
 
-/* Text controls share the action tier; icon-only controls keep their geometry. */
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(button, input, textarea, select) {
+/* Text controls share the action tier; icon-only controls and law-shaped
+   pills keep their geometry — rounded-full pills are the CTA tier's own
+   anatomy (A2 / FAP-42), the same exemption the link arm carries above. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(button:not([class*="rounded-full"]), input, textarea, select) {
   font-size: var(--fs-body) !important;
   line-height: 1.294118 !important;
   letter-spacing: var(--track-body) !important;
@@ -787,7 +789,7 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
     font-weight: var(--weight-body) !important;
   }
 }
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a[class*="bg-"]:not(:has(img,h2,h3)):not([data-type]) {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a[class*="bg-"]:not([class*="rounded-full"]):not(:has(img,h2,h3)):not([data-type]) {
   line-height: var(--lh-action) !important;
 }
 

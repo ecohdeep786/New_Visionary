@@ -850,6 +850,26 @@
         {
           "at": "2026-10-27T08:27:00.000Z",
           "item": "task started per founder end-to-end lane; worktree opencode-fap-e1-continuity from verified beta e2a6d7c9; scope + lane recorded; salvage candidates from superseded a364bf45 artifacts (e1-after-scan.json, render-check-receipts.json) to be studied during scoping; next: read current qa-continuity.mjs + scripts/check.mjs wiring, define the four audit dimensions (roles-resolve, no dual-ink, link single-source, CTA geometry equality at 1440), then implement"
+        },
+        {
+          "at": "2026-10-27T20:00:00.000Z",
+          "item": "static law layer extended 4 -> 7 laws in frontend/scripts/qa-continuity.mjs: Law 6 icon-control-size-44px (2.75rem single definition point), Law 7 link-ink-single-source (role map base/hover/active/focus-visible); full-tree pass (77 files, 0 violations); -q null-safety hardened; law tests scripts/tests/continuity-law.test.mjs 7/7 pass"
+        },
+        {
+          "at": "2026-10-28T03:00:00.000Z",
+          "item": "rendered harness built: frontend/scripts/qa-continuity-render.mjs — canonical 24-route D2 sweep universe at 1440x900@1 against production dist on :4173; progressive scroll mounts lazy sections (D2 protocol parity), pill filter = radius >= half-height or specified 9999px with h 36-72, per-pill text labels, ground-aware role capture, mysteryInk ancestry chain capture"
+        },
+        {
+          "at": "2026-10-28T03:15:00.000Z",
+          "item": "rendered findings decoded (pre-fix run): recorded CTA class (fs 17px / px 21px / h 44 / fw 500) rendered three competing leading regimes across pages (25.5px font-normal GSF, 20px font-normal GSF Content, 22px adapter-forced) and two tracking regimes (-0.187px canonical vs -0.374px adapter-forced); role-dual-ink pairs were dual-GROUND staging (dark frost vs light ink of same type); mystery link ink rgb(31,31,31) present in no build asset"
+        },
+        {
+          "at": "2026-10-28T03:20:00.000Z",
+          "item": "source fixes applied: system/ui.jsx CtaPair primary pill + leading-[1.176] (BUTTONS.geo anatomy); apple-typography.css L511 text-control clause and L792 a[class*=bg-] clause both gain :not([class*=\"rounded-full\"]) per the recorded L426 CTA-tier doctrine (rounded-full pills are exempt, the CTA tier owns their anatomy A2/FAP-42); DownloadPage 6 pill sites (Open Visionary, See platforms, Open in browser, coming-soon x5, Prepare email request, Continue on web) + AILearningPage(=/pricing) 3 pill sites (plan CTAs, institution CTA, final Get started) given explicit leading-[1.176]"
+        },
+        {
+          "at": "2026-10-28T03:28:00.000Z",
+          "item": "verification chain green: rendered harness 0 violations on 24/24 routes (1036 pill census rows; 52 recorded-CTA-class pills, 52/52 canonical 19.992px/-0.187px; grounds light+dark resolved); static 7 laws pass full tree; law tests 7/7; eslint --quiet 0; tsc jsconfig + tsconfig.domain 0; mysteryInk decoded rgb(31,31,31) = hsl(var(--foreground)) global shadcn token, inherited by sr-only skip links (invisible, focus state law-legal) and the logo anchor (inert: VisionaryLogo paints explicit brand fills); evidence artifacts/research/continuity-2026-10-27/e1-continuity/ (e1-continuity-render.json + E1_EVIDENCE.md); implementation + verification complete, independent review per D-095 pending"
         }
       ]
     }
