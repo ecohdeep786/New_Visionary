@@ -69,6 +69,7 @@
     "qualityscope:check": "node scripts/qualityscope-check.mjs",
     "mlresilience:check": "node scripts/mlresilience-check.mjs",
     "contextassembly:check": "node scripts/contextassembly-check.mjs",
-    "airaflow:check": "node scripts/airaflow-check.mjs"
+    "airaflow:check": "node scripts/airaflow-check.mjs",
+    "scorecard:check": "node scripts/scorecard-check.mjs"
   }
 }
