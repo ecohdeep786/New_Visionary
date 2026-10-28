@@ -78,6 +78,7 @@
     "submissions:check": "node scripts/submissions-check.mjs",
     "professional:check": "node scripts/professional-check.mjs",
     "organization:check": "node scripts/organization-check.mjs",
-    "entitlement:check": "node scripts/entitlement-check.mjs"
+    "entitlement:check": "node scripts/entitlement-check.mjs",
+    "guardian:check": "node scripts/guardian-check.mjs"
   }
 }
