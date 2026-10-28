@@ -840,7 +840,7 @@
       "sourceId": "FAP-E1",
       "jiraKey": null,
       "jiraUrl": null,
-      "status": "In Progress",
+      "status": "Testing",
       "startAt": "2026-10-27T08:27:00.000Z",
       "registrationNote": "Jira ticket not yet creatable (board auth 401 after environment restarts) - create/claim the FAP-E1 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E1: ...",
       "scope": "E1 cross-page continuity QA: automated audit that same-page font/type roles resolve (no bridge fallback), no dual-ink values, link color single-source, CTA geometry equality across public pages at 1440; extends npm run qa:continuity and keeps it wired into scripts/check.mjs; failing cases fixed",
@@ -870,6 +870,10 @@
         {
           "at": "2026-10-28T03:28:00.000Z",
           "item": "verification chain green: rendered harness 0 violations on 24/24 routes (1036 pill census rows; 52 recorded-CTA-class pills, 52/52 canonical 19.992px/-0.187px; grounds light+dark resolved); static 7 laws pass full tree; law tests 7/7; eslint --quiet 0; tsc jsconfig + tsconfig.domain 0; mysteryInk decoded rgb(31,31,31) = hsl(var(--foreground)) global shadcn token, inherited by sr-only skip links (invisible, focus state law-legal) and the logo anchor (inert: VisionaryLogo paints explicit brand fills); evidence artifacts/research/continuity-2026-10-27/e1-continuity/ (e1-continuity-render.json + E1_EVIDENCE.md); implementation + verification complete, independent review per D-095 pending"
+        },
+        {
+          "at": "2026-10-28T03:40:00.000Z",
+          "item": "delivery record: lane opencode/fap-e1-continuity merged into beta --no-ff fe984775 (e2a6d7c9..fe984775 pushed + ls-remote verified); task branch head 7d6d5d43 pushed + ls-remote verified; mirror FAP-E1 -> Testing per D3 precedent; D-095 independent review still pending (implementer cannot self-approve); Jira transition + key backfill pending board auth (401)"
         }
       ]
     }
