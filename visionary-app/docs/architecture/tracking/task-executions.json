@@ -835,6 +835,23 @@
           "item": "founder-authorized end-to-end delivery completed: founder set the standing lane this session ('you have to work on task to implement end to end in worktree and testing the product and merge in the beta and move to next task') and confirmed the merge by explicit choice; branch opencode/fap-d3-performance b21f6bc8 merged --no-ff into beta as e9d04f050a2b14dd2a087f4fda91396499a870ee (33add512..e9d04f05), pushed and ls-remote verified; D-095 unchanged - separate reviewer records the exact reviewed commit before Done; post-restart Jira auth is 401, so FAP-55 Jira transition to Testing and live verification of the final v2 comment are pending first re-login (if the comment is absent on the board, post it once); stale lane noted: opencode/fap-continuity-qa a364bf45 (2026-10-23, based on main 592d4752, pre-rebuild E1/D2 hybrid editing monolith files since split by F10) superseded and left parked untouched; next task: E1 cross-page continuity QA per FRONTEND_AGI_TASK_REBUILD dependency chain (A0..D3 done, D3 now in beta at e9d04f05)"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-E1",
+      "jiraKey": null,
+      "jiraUrl": null,
+      "status": "In Progress",
+      "startAt": "2026-10-27T08:27:00.000Z",
+      "registrationNote": "Jira ticket not yet creatable (board auth 401 after environment restarts) - create/claim the FAP-E1 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E1: ...",
+      "scope": "E1 cross-page continuity QA: automated audit that same-page font/type roles resolve (no bridge fallback), no dual-ink values, link color single-source, CTA geometry equality across public pages at 1440; extends npm run qa:continuity and keeps it wired into scripts/check.mjs; failing cases fixed",
+      "branch": "opencode/fap-e1-continuity",
+      "base": "beta@e2a6d7c9 (verified before branching: D3 task-lane merge e9d04f05 of b21f6bc8 + D3 delivery record)",
+      "progress": [
+        {
+          "at": "2026-10-27T08:27:00.000Z",
+          "item": "task started per founder end-to-end lane; worktree opencode-fap-e1-continuity from verified beta e2a6d7c9; scope + lane recorded; salvage candidates from superseded a364bf45 artifacts (e1-after-scan.json, render-check-receipts.json) to be studied during scoping; next: read current qa-continuity.mjs + scripts/check.mjs wiring, define the four audit dimensions (roles-resolve, no dual-ink, link single-source, CTA geometry equality at 1440), then implement"
+        }
+      ]
     }
   ]
 }
