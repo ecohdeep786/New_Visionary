@@ -76,6 +76,7 @@
     "classroom:check": "node scripts/classroom-check.mjs",
     "assignment:check": "node scripts/assignment-check.mjs",
     "submissions:check": "node scripts/submissions-check.mjs",
-    "professional:check": "node scripts/professional-check.mjs"
+    "professional:check": "node scripts/professional-check.mjs",
+    "organization:check": "node scripts/organization-check.mjs"
   }
 }
