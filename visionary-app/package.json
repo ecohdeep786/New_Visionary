@@ -74,6 +74,7 @@
     "changefeed:check": "node scripts/changefeed-check.mjs",
     "sceneprotocol:check": "node scripts/sceneprotocol-check.mjs",
     "classroom:check": "node scripts/classroom-check.mjs",
-    "assignment:check": "node scripts/assignment-check.mjs"
+    "assignment:check": "node scripts/assignment-check.mjs",
+    "submissions:check": "node scripts/submissions-check.mjs"
   }
 }
