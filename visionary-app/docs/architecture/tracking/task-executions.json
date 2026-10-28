@@ -951,6 +951,14 @@
         {
           "at": "2026-10-28T06:24:00.000Z",
           "item": "next: build review handoff per TASK_REVIEW_TEMPLATE for A0->E1 chain into docs/architecture/delivery (evidence side; reviewer explicit pending per D-095), founder walkthrough checklist, then commit+push lane + beta merge."
+        },
+        {
+          "at": "2026-10-28T06:40:00.000Z",
+          "item": "evidence package committed eae9d39b (FAP_E2_REVIEW_EVIDENCE.md + FAP_E2_WALKTHROUGH_CHECKLIST.md + task-executions backfill); branch opencode/fap-e2-review-evidence pushed + ls-remote verified; lane merged into beta --no-ff 9c4bfd27 (eae9d39b into beta), journal receipt baf1e61a, beta pushed + ls-remote verified baf1e61a"
+        },
+        {
+          "at": "2026-10-28T06:40:00.000Z",
+          "item": "E2 remains In Progress: Done gated by D-095 (separate reviewer records exact reviewed commit per FAP_E2_REVIEW_EVIDENCE.md) + C3/FAP-51 board transition + C4/FAP-52 open + founder walkthrough + audit production-ready flip after approvals"
         }
       ],
       "jira": {
