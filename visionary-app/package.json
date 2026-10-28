@@ -71,6 +71,7 @@
     "contextassembly:check": "node scripts/contextassembly-check.mjs",
     "airaflow:check": "node scripts/airaflow-check.mjs",
     "scorecard:check": "node scripts/scorecard-check.mjs",
-    "changefeed:check": "node scripts/changefeed-check.mjs"
+    "changefeed:check": "node scripts/changefeed-check.mjs",
+    "sceneprotocol:check": "node scripts/sceneprotocol-check.mjs"
   }
 }
