@@ -876,6 +876,23 @@
           "item": "delivery record: lane opencode/fap-e1-continuity merged into beta --no-ff fe984775 (e2a6d7c9..fe984775 pushed + ls-remote verified); task branch head 7d6d5d43 pushed + ls-remote verified; mirror FAP-E1 -> Testing per D3 precedent; D-095 independent review still pending (implementer cannot self-approve); Jira transition + key backfill pending board auth (401)"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-E2",
+      "jiraKey": null,
+      "jiraUrl": null,
+      "status": "In Progress",
+      "startAt": "2026-10-28T03:50:00.000Z",
+      "registrationNote": "Jira ticket not yet creatable (board auth 401) - create/claim the FAP-E2 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E2: ...",
+      "scope": "E2 review + release evidence: reviewer (not author) records reviewed SHAs per TASK_REVIEW_TEMPLATE for the A0->E1 chain; integration evidence into docs/architecture/delivery; Jira per-task receipts (pending board auth); founder walkthrough landing -> pricing -> download -> trust -> auth -> dashboard; AC: every task Done with acceptance evidence, audit doc updated to production-ready",
+      "branch": "opencode/fap-e2-review-evidence",
+      "base": "beta@3e4e8234 (verified before branching: E1 lane merge fe984775 + E1 delivery record)",
+      "progress": [
+        {
+          "at": "2026-10-28T03:50:00.000Z",
+          "item": "task started per founder end-to-end lane; worktree opencode-fap-e2-review-evidence from verified beta 3e4e8234; scope + lane recorded; next: per-task review handoffs per TASK_REVIEW_TEMPLATE (reviewer stays unassigned pending until a separate agent/founder actually reviews - never self-assigned), delivery integration evidence, walkthrough checklist; audit-doc production-ready flip waits for reviewer approvals"
+        }
+      ]
     }
   ]
 }
