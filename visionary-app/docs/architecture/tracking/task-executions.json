@@ -834,12 +834,32 @@
           "at": "2026-10-27T08:23:00.000Z",
           "item": "founder-authorized end-to-end delivery completed: founder set the standing lane this session ('you have to work on task to implement end to end in worktree and testing the product and merge in the beta and move to next task') and confirmed the merge by explicit choice; branch opencode/fap-d3-performance b21f6bc8 merged --no-ff into beta as e9d04f050a2b14dd2a087f4fda91396499a870ee (33add512..e9d04f05), pushed and ls-remote verified; D-095 unchanged - separate reviewer records the exact reviewed commit before Done; post-restart Jira auth is 401, so FAP-55 Jira transition to Testing and live verification of the final v2 comment are pending first re-login (if the comment is absent on the board, post it once); stale lane noted: opencode/fap-continuity-qa a364bf45 (2026-10-23, based on main 592d4752, pre-rebuild E1/D2 hybrid editing monolith files since split by F10) superseded and left parked untouched; next task: E1 cross-page continuity QA per FRONTEND_AGI_TASK_REBUILD dependency chain (A0..D3 done, D3 now in beta at e9d04f05)"
         }
-      ]
+      ],
+      "jira": {
+        "transitions": [
+          {
+            "id": 41,
+            "to": "Testing",
+            "status": 204,
+            "at": "2026-10-28T06:20:00.000Z",
+            "commentId": 10318,
+            "note": "board auth restored backfill"
+          },
+          {
+            "id": 41,
+            "to": "Testing",
+            "status": 204,
+            "at": "2026-10-28T06:20:00.000Z",
+            "commentId": 10318,
+            "note": "board auth restored backfill"
+          }
+        ]
+      }
     },
     {
       "sourceId": "FAP-E1",
-      "jiraKey": null,
-      "jiraUrl": null,
+      "jiraKey": "FAP-56",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-56",
       "status": "Testing",
       "startAt": "2026-10-27T08:27:00.000Z",
       "registrationNote": "Jira ticket not yet creatable (board auth 401 after environment restarts) - create/claim the FAP-E1 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E1: ...",
@@ -875,12 +895,36 @@
           "at": "2026-10-28T03:40:00.000Z",
           "item": "delivery record: lane opencode/fap-e1-continuity merged into beta --no-ff fe984775 (e2a6d7c9..fe984775 pushed + ls-remote verified); task branch head 7d6d5d43 pushed + ls-remote verified; mirror FAP-E1 -> Testing per D3 precedent; D-095 independent review still pending (implementer cannot self-approve); Jira transition + key backfill pending board auth (401)"
         }
-      ]
+      ],
+      "jira": {
+        "transitions": [
+          {
+            "id": 21,
+            "to": "To Do",
+            "status": 204,
+            "at": "2026-10-28T06:22:00.000Z"
+          },
+          {
+            "id": 31,
+            "to": "In Progress",
+            "status": 204,
+            "at": "2026-10-28T06:22:00.000Z"
+          },
+          {
+            "id": 41,
+            "to": "Testing",
+            "status": 204,
+            "at": "2026-10-28T06:22:00.000Z",
+            "commentId": 10319,
+            "note": "E1 claimed + Testing per D3 precedent (board auth restored)"
+          }
+        ]
+      }
     },
     {
       "sourceId": "FAP-E2",
-      "jiraKey": null,
-      "jiraUrl": null,
+      "jiraKey": "FAP-57",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-57",
       "status": "In Progress",
       "startAt": "2026-10-28T03:50:00.000Z",
       "registrationNote": "Jira ticket not yet creatable (board auth 401) - create/claim the FAP-E2 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E2: ...",
@@ -891,8 +935,42 @@
         {
           "at": "2026-10-28T03:50:00.000Z",
           "item": "task started per founder end-to-end lane; worktree opencode-fap-e2-review-evidence from verified beta 3e4e8234; scope + lane recorded; next: per-task review handoffs per TASK_REVIEW_TEMPLATE (reviewer stays unassigned pending until a separate agent/founder actually reviews - never self-assigned), delivery integration evidence, walkthrough checklist; audit-doc production-ready flip waits for reviewer approvals"
+        },
+        {
+          "at": "2026-10-28T06:20:00.000Z",
+          "item": "board auth restored this session (token in .zcode/config.json valid; MCP plugin env not inherited, used REST directly). Pending-relogin backfill executed: FAP-55 (D3)->Testing + v2 comment 10318; FAP-56 (E1) claimed Idea->To Do->In Progress->Testing + delivery comment 10319; FAP-57 (E2) claimed Idea->To Do->In Progress + start comment 10320. journal appended."
+        },
+        {
+          "at": "2026-10-28T06:24:00.000Z",
+          "item": "next: build review handoff per TASK_REVIEW_TEMPLATE for A0->E1 chain into docs/architecture/delivery (evidence side; reviewer explicit pending per D-095), founder walkthrough checklist, then commit+push lane + beta merge."
+        },
+        {
+          "at": "2026-10-28T06:20:00.000Z",
+          "item": "board auth restored this session (token in .zcode/config.json valid; MCP plugin env not inherited, used REST directly). Pending-relogin backfill executed: FAP-55 (D3)->Testing + v2 comment 10318; FAP-56 (E1) claimed Idea->To Do->In Progress->Testing + delivery comment 10319; FAP-57 (E2) claimed Idea->To Do->In Progress + start comment 10320. journal appended."
+        },
+        {
+          "at": "2026-10-28T06:24:00.000Z",
+          "item": "next: build review handoff per TASK_REVIEW_TEMPLATE for A0->E1 chain into docs/architecture/delivery (evidence side; reviewer explicit pending per D-095), founder walkthrough checklist, then commit+push lane + beta merge."
         }
-      ]
+      ],
+      "jira": {
+        "transitions": [
+          {
+            "id": 21,
+            "to": "To Do",
+            "status": 204,
+            "at": "2026-10-28T06:23:00.000Z"
+          },
+          {
+            "id": 31,
+            "to": "In Progress",
+            "status": 204,
+            "at": "2026-10-28T06:23:00.000Z",
+            "commentId": 10320,
+            "note": "E2 claimed on Jira"
+          }
+        ]
+      }
     }
   ]
 }
