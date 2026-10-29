@@ -17,6 +17,15 @@ if (scriptTests.status !== 0) process.exit(scriptTests.status ?? 1);
 const apiContracts = spawnSync(process.execPath, [path.join(root, 'integration/contracts/v1/check.mjs')], { cwd: root, stdio: 'inherit' });
 if (apiContracts.error) throw apiContracts.error;
 if (apiContracts.status !== 0) process.exit(apiContracts.status ?? 1);
+// SCOPE-06 (KAN-33): executable backend contract/deny/replay cases and the
+// matching frontend vertical-slice cases, registered fail-fast so a green
+// check always proves they ran.
+const scope06Backend = spawnSync(process.execPath, ['--test', path.join(root, 'backend/tests/contracts/scope-06/scope-06.test.mjs')], { cwd: root, stdio: 'inherit' });
+if (scope06Backend.error) throw scope06Backend.error;
+if (scope06Backend.status !== 0) process.exit(scope06Backend.status ?? 1);
+const scope06Frontend = spawnSync(process.execPath, ['--test', path.join(root, 'frontend/tests/contracts/scope-06/scope-06.test.mjs')], { cwd: root, stdio: 'inherit' });
+if (scope06Frontend.error) throw scope06Frontend.error;
+if (scope06Frontend.status !== 0) process.exit(scope06Frontend.status ?? 1);
 const surfaceCheck = spawnSync(process.execPath, [path.join(root, 'scripts/surface-audit.mjs')], { cwd: root, stdio: 'inherit' });
 if (surfaceCheck.error) throw surfaceCheck.error;
 if (surfaceCheck.status !== 0) process.exit(surfaceCheck.status ?? 1);
