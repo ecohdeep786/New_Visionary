@@ -14,7 +14,7 @@ Owned files / contracts:
 - `backend/upstream/backend/src/reviewschedule/reviewschedule-service.ts` (ReviewScheduleService — defineBaselineRules, calibrateBaseline, recordAssessedEvidence, recordSelfRating, postponeReview, projectDueQueue, setPreferences, resumeQueue)
 - `backend/upstream/backend/src/reviewschedule/index.ts`
 - `backend/upstream/backend/tsconfig.reviewschedule.json`
-- `backend/tests/contracts/reviewschedule/reviewschedule.test.mjs` (LEARN-11 suite, 9 tests)
+- `backend/tests/contracts/reviewschedule/reviewschedule.test.mjs` (LEARN-11 suite, 11 tests)
 - `scripts/reviewschedule-check.mjs`, `package.json` (`reviewschedule:check`)
 Prerequisites (native Blocks): LEARN-02 / KAN-68 (assessed attempts), JOB-01 / KAN-53 (outbox jobs), LEARN-09 / KAN-145 (knowledge projections) — all implemented and in Testing/Done. Unblocks ACCEPT-01 / KAN-117 and LEARN-14 / KAN-159. Composes the lane stances: LEARN-04 daily-plan review scheduling, LEARN-03 review-due projections, KAN-139 record discipline.
 
@@ -27,7 +27,8 @@ Implement versioned, durable review scheduling from assessed evidence with bound
 - BOUNDED BASELINE SRS — only a versioned, APPROVED baseline rules object schedules anything; an unknown version (`rules_unknown`), an empty approver (`rules_not_approved`), and an invalid/non-monotonic/over-max ladder (`rules_invalid`) all refuse. The ladder is an explicit table (again < hard <= good <= easy) bounded by maxIntervalDays — never an unvalidated exponential formula.
 - CALIBRATION BEFORE PERSONALIZED CLAIMS — an uncalibrated baseline projection explicitly declines any personalized claim (`no personalized claim` in the reason); `calibrateBaseline` (measured) flips the projection to the calibrated baseline reason.
 - SCHEDULING FROM ASSESSED EVIDENCE ONLY — only server-assessed evidence reschedules a review; a self-rating recorded for the same concept changes nothing (byte-identical due dates).
-- COMMAND DEDUPLICATION — the same commandKey + same payload converges idempotently; the same commandKey with a CHANGED payload refuses (`command_changed`).
+- COMMAND DEDUPLICATION — the same commandKey + same payload converges idempotently (an evidence replay returns the ORIGINAL evidence row — no duplicate rows); the same commandKey with a CHANGED payload refuses (`command_changed`).
+- MANUAL CONTROL IS DURABLE — a postpone persists and due projections honor it (due pushed later, reason visibly marked `manual postpone`); other concepts unaffected; an over-max postpone refuses.
 - DETERMINISTIC DUE QUEUE — the projection rebuilds byte-stably (equal digest/items for identical inputs), sorted by dueAt, every item carrying an understandable reason.
 - PREFERENCES (quiet hours/timezone) — a due time inside the saved quiet window shifts to the allowed boundary; invalid preferences refuse.
 - TWO-DEVICE RECOVERY — two controllers over the same store observe the identical byte-stable projection history (equal digest/count).
@@ -37,8 +38,9 @@ Implement versioned, durable review scheduling from assessed evidence with bound
 
 ## Commands, exit codes, test counts and timestamps
 
-- ReviewSchedule compile + suite: `node scripts/reviewschedule-check.mjs` → tsc `tsconfig.reviewschedule.json` exit 0; `node --test` → 9 tests, 9 pass, 0 fail (2026-10-29).
-- Lane regressions: all 41 contract modules on this candidate, 0 failures (reviewschedule-new 9, coaching 11, reports 6, guardian 6, entitlement 6, organization 6, professional 6, submissions 7, assignment 7, classroom 6, sceneprotocol 12, changefeed 10, scorecard 14, airaflow 14, modalities 5, deadline 6, usagereservation 6, mlgate 7, conversationauth 6, serviceidentity 7, providerscope 4, completion 4, sharing 4, runs 6, guidedbriefs 4, draftrecovery 6, projects 5, evaluation 5, journey 8, dailyplan 7, projections 7, attempts 6, learningsession 8, conceptgraph 8, catalogadapter 7, coverage 7, mediagate 7, retrievalgate 6, qualityscope 6, mlresilience 4, contextassembly 8).
+- ReviewSchedule compile + suite: `node scripts/reviewschedule-check.mjs` → tsc `tsconfig.reviewschedule.json` exit 0; `node --test` → 11 tests, 11 pass, 0 fail (2026-10-29).
+- Candidate revision note: after the initial candidate (2b1d018a) the implementer's self-audit found the manual-postpone result was returned but not persisted/consumed, and an evidence replay appended a duplicate row. The corrected candidate makes postpones durable and consumed by projections and makes evidence replay converge to the original row (2 added tests).
+- Lane regressions: all 41 contract modules on this candidate, 0 failures (reviewschedule-new 11, coaching 11, reports 6, guardian 6, entitlement 6, organization 6, professional 6, submissions 7, assignment 7, classroom 6, sceneprotocol 12, changefeed 10, scorecard 14, airaflow 14, modalities 5, deadline 6, usagereservation 6, mlgate 7, conversationauth 6, serviceidentity 7, providerscope 4, completion 4, sharing 4, runs 6, guidedbriefs 4, draftrecovery 6, projects 5, evaluation 5, journey 8, dailyplan 7, projections 7, attempts 6, learningsession 8, conceptgraph 8, catalogadapter 7, coverage 7, mediagate 7, retrievalgate 6, qualityscope 6, mlresilience 4, contextassembly 8).
 - `data:check` (DATA-01 DDL) requires `DATA_TEST_DATABASE_URL` loopback PostgreSQL and is a DDL check, not part of the contract-module regression list; unchanged by this task and still out of the module-lane scope.
 
 ## Remaining defects, limitations and linked open gates

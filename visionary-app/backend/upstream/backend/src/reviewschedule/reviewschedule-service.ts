@@ -80,8 +80,9 @@ export class ReviewScheduleService {
 
   /**
    * Record one server-assessed evidence outcome. ONLY assessed evidence
-   * reschedules a review. Idempotent per (commandKey, payload); a changed
-   * payload on the same commandKey refuses `command_changed`.
+   * reschedules a review. Idempotent per (commandKey, payload): a replayed
+   * command converges to the ORIGINAL evidence row (no duplicate rows); a
+   * changed payload on the same commandKey refuses `command_changed`.
    */
   async recordAssessedEvidence(
     owner: ReviewOwner,
@@ -93,6 +94,11 @@ export class ReviewScheduleService {
     const payloadHash = hash(`${commandKey}|${conceptId}|${grade}|${payloadVersion}`);
     const prior = await this.store.commandPayload(commandKey);
     if (prior && prior !== payloadHash) throw new ReviewScheduleError('command_changed');
+    if (prior && prior === payloadHash) {
+      // Replayed command: converge to the originally recorded evidence.
+      const existing = await this.store.latestAssessedEvidence(owner, conceptId);
+      if (existing) return existing;
+    }
     await this.store.recordCommand(commandKey, payloadHash);
     const evidence: AssessedEvidence = {
       evidenceId: `ev_${++this.evidenceCounter}`,
@@ -147,7 +153,10 @@ export class ReviewScheduleService {
     const prior = await this.store.commandPayload(commandKey);
     if (prior && prior !== payloadHash) throw new ReviewScheduleError('command_changed');
     await this.store.recordCommand(commandKey, payloadHash);
-    return { conceptId, postponedTo: new Date(this.now().getTime() + postponeDays * 86_400_000).toISOString() };
+    const postponedTo = new Date(this.now().getTime() + postponeDays * 86_400_000).toISOString();
+    // The postpone is DURABLE manual control: later due projections honor it.
+    await this.store.savePostpone(owner, conceptId, postponedTo);
+    return { conceptId, postponedTo };
   }
 
   /**
@@ -170,11 +179,19 @@ export class ReviewScheduleService {
       const latest = await this.store.latestAssessedEvidence(owner, conceptId);
       if (!latest) continue;
       const days = rules.ladder[latest.grade] ?? rules.ladder.good;
-      const baseDue = new Date(new Date(latest.assessedAt).getTime() + days * 86_400_000);
-      const dueAt = await this.applyQuietHours(owner, baseDue.toISOString());
+      let dueMs = new Date(latest.assessedAt).getTime() + days * 86_400_000;
+      let postponedNote = '';
+      // MANUAL CONTROL: a durable postpone override never shortens the due —
+      // it only ever pushes it later, and the reason stays understandable.
+      const postpone = await this.store.latestPostpone(owner, conceptId);
+      if (postpone && new Date(postpone).getTime() > dueMs) {
+        dueMs = new Date(postpone).getTime();
+        postponedNote = ' (manual postpone)';
+      }
+      const dueAt = await this.applyQuietHours(owner, new Date(dueMs).toISOString());
       const reason = rules.calibrated
-        ? `Due after ${days}d for "${conceptId}" — calibrated baseline v${rulesVersion}.`
-        : `Due after ${days}d for "${conceptId}" — uncalibrated baseline v${rulesVersion} (no personalized claim).`;
+        ? `Due after ${days}d for "${conceptId}"${postponedNote} — calibrated baseline v${rulesVersion}.`
+        : `Due after ${days}d for "${conceptId}"${postponedNote} — uncalibrated baseline v${rulesVersion} (no personalized claim).`;
       items.push({ conceptId, dueAt, reason });
     }
     items.sort((a, b) => a.dueAt.localeCompare(b.dueAt));

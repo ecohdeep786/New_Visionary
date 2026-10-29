@@ -21,6 +21,9 @@ export interface ReviewScheduleStore {
   /** A separate self-rating — recorded, NEVER reschedules. */
   saveSelfRating(owner: ReviewOwner, conceptId: string, rating: SelfRating): Promise<void>;
   selfRatings(owner: ReviewOwner, conceptId: string): Promise<SelfRating[]>;
+  /** Manual control: the latest postpone override for one concept (durable). */
+  savePostpone(owner: ReviewOwner, conceptId: string, postponedTo: string): Promise<void>;
+  latestPostpone(owner: ReviewOwner, conceptId: string): Promise<string | undefined>;
   saveProjection(projection: DueProjection): Promise<void>;
   projectionsFor(owner: ReviewOwner): Promise<DueProjection[]>;
   savePreferences(preferences: ReviewPreferences): Promise<void>;
@@ -43,6 +46,7 @@ export class InMemoryReviewScheduleStore implements ReviewScheduleStore {
   private rulesMap = new Map<string, BaselineRules>();
   private evidence = new Map<string, AssessedEvidence>();
   private selfRatingsMap = new Map<string, SelfRating[]>();
+  private postpones = new Map<string, string>();
   private projections: DueProjection[] = [];
   private prefsMap = new Map<string, ReviewPreferences>();
   private commands = new Map<string, string>();
@@ -79,6 +83,13 @@ export class InMemoryReviewScheduleStore implements ReviewScheduleStore {
   async selfRatings(owner: ReviewOwner, conceptId: string): Promise<SelfRating[]> {
     const list = this.selfRatingsMap.get(ownerKey(owner, conceptId));
     return list ? clone(list) : [];
+  }
+
+  async savePostpone(owner: ReviewOwner, conceptId: string, postponedTo: string): Promise<void> {
+    this.postpones.set(ownerKey(owner, conceptId), postponedTo);
+  }
+  async latestPostpone(owner: ReviewOwner, conceptId: string): Promise<string | undefined> {
+    return this.postpones.get(ownerKey(owner, conceptId));
   }
 
   async saveProjection(projection: DueProjection): Promise<void> {

@@ -163,3 +163,35 @@ test('WORKSPACE/OWNER boundary: wrong owner or workspace cannot read the queue (
   assert.equal(rWs2.count, 0);
   void p;
 });
+
+test('MANUAL CONTROL is durable: a postponed concept due later with a visible reason; others unaffected', async () => {
+  const { service } = await makeService();
+  await service.recordAssessedEvidence(OWNER, 'cmd-p1', 'c1', 'good', 1);
+  await service.recordAssessedEvidence(OWNER, 'cmd-p2', 'c2', 'good', 1);
+  const before = await service.projectDueQueue(OWNER, 'baseline_v1', 1, ['c1', 'c2'], fixedNow().toISOString());
+  const c1Before = before.items.find((i) => i.conceptId === 'c1');
+  // Postpone c1 by 20 days (bounded by maxPostponeDays=30).
+  await service.postponeReview(OWNER, 'cmd-p3', 'c1', 20, 30, 1);
+  const after = await service.projectDueQueue(OWNER, 'baseline_v1', 1, ['c1', 'c2'], fixedNow().toISOString());
+  const c1After = after.items.find((i) => i.conceptId === 'c1');
+  const c2After = after.items.find((i) => i.conceptId === 'c2');
+  assert.ok(new Date(c1After.dueAt) > new Date(c1Before.dueAt)); // pushed later
+  assert.ok(c1After.reason.includes('manual postpone')); // visible, understandable
+  assert.equal(c2After.dueAt, before.items.find((i) => i.conceptId === 'c2').dueAt); // others unaffected
+  // Over-max postpone refuses.
+  await assert.rejects(
+    () => service.postponeReview(OWNER, 'cmd-p4', 'c1', 31, 30, 1),
+    (e) => e.code === 'projection_definition_invalid',
+  );
+});
+
+test('EVIDENCE REPLAY CONVERGENCE: a replayed command returns the ORIGINAL evidence (no duplicate rows)', async () => {
+  const { store, service } = await makeService();
+  const first = await service.recordAssessedEvidence(OWNER, 'cmd-r1', 'c1', 'good', 1);
+  const replay = await service.recordAssessedEvidence(OWNER, 'cmd-r1', 'c1', 'good', 1);
+  assert.equal(replay.evidenceId, first.evidenceId);
+  assert.equal(replay.assessedAt, first.assessedAt);
+  // The store holds exactly one evidence row for the concept (latest matches).
+  const latest = await store.latestAssessedEvidence(OWNER, 'c1');
+  assert.equal(latest.evidenceId, first.evidenceId);
+});
