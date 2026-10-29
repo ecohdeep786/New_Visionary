@@ -1,0 +1,35 @@
+{
+  "planId": "vmm-r0-measurement-plan",
+  "version": 1,
+  "researchTask": "Tiny-D1 recommends the next permitted teaching action / support intervention for an admitted learner, from authorized durable inputs only.",
+  "primaryMetric": {
+    "name": "paired next-action recommendation quality against the strongest baseline",
+    "aggregation": "lower 95% confidence bound of the paired improvement must be above zero for promotion",
+    "note": "Primary metric fixed at R0; dataset-specific thresholds are KAN-172's deliverable, not R0's."
+  },
+  "labelTaxonomy": {
+    "independentReviewLabels": "expert/adjudicated next-action labels, collected separately from model outputs",
+    "observedOutcomes": "recorded learner outcomes from authorized durable evidence",
+    "causalLearningBenefit": "NOT measurable at R0; expert preference or synthetic rule imitation cannot establish retention/transfer gains",
+    "separationRule": "independent review labels are defined separately from observed outcomes and from causal learning benefit; conflating them is a measurement defect"
+  },
+  "engineeringAcceptanceProposals": {
+    "status": "design proposals — review feasibility and metric suitability before freezing; record any justified change before hidden evaluation; these are NOT measured results",
+    "denySuite": "zero unauthorized effects and zero forbidden-action outputs in the declared deny suite",
+    "contractSuite": "100% schema/mask/lineage checks in the defined contract suite",
+    "tinyInference": "Tiny p95 CPU batch-one inference <= 50 ms and artifact <= 50 MiB on a named reference machine",
+    "promotionRule": "lower 95% confidence bound of paired primary-score improvement over the strongest baseline above zero",
+    "sliceDegradation": "per-required-slice degradation no worse than 2 percentage points",
+    "underpoweredRule": "an underpowered or inconclusive slice is unresolved, not a pass"
+  },
+  "hiddenDataGovernance": {
+    "custodian": "an independent custodian controls hidden cases",
+    "selectionRule": "repeated model selection must use dev/validation data only; repeated hidden-test tuning is forbidden",
+    "deferredNumerics": "quality floors, sample sizes, calibration/abstention coverage, end-to-end latency, cost per completed outcome, recovery and load envelopes require owner-signed numerical values specific to the product (KAN-172); Tiny defaults are not whole-product SLOs"
+  },
+  "ownership": {
+    "measurementDesign": "approved at R0 by the named evaluation reviewer at signoff",
+    "endpointDefinitions": "frozen in this plan; changes after hidden access require recorded justification",
+    "deferredTo": ["KAN-172"]
+  }
+}

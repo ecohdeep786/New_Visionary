@@ -85,6 +85,7 @@
     "reviewschedule:check": "node scripts/reviewschedule-check.mjs",
     "stage:check": "node scripts/stage-check.mjs",
     "conversation:check": "node scripts/conversation-check.mjs",
-    "export:check": "node scripts/export-check.mjs"
+    "export:check": "node scripts/export-check.mjs",
+    "researchgate:check": "node scripts/researchgate-check.mjs"
   }
 }

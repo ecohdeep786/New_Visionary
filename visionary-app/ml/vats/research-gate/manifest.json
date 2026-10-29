@@ -1,0 +1,41 @@
+{
+  "manifestId": "vmm-r0",
+  "gate": "R0",
+  "version": 1,
+  "title": "Visionary ML isolated research readiness — signed, versioned research manifest",
+  "author": "principal backend engineer (implementer; named signoffs pending separate review per D-095)",
+  "sourceRevision": {
+    "branch": "codex/principal-kan-207-research-gate",
+    "recordedBy": "smoke evidence (gitHead captured at every smoke run)",
+    "evidencePath": "artifacts/research/private/gate-evidence/"
+  },
+  "accountableSignoffs": {
+    "policy": "Named signatories are recorded at review; the implementer cannot self-sign (D-095). Acceptance owner: Visionary Founder. Independent reviewer: separate reviewer per docs/architecture/delivery/TASK_REVIEW_TEMPLATE.md.",
+    "roles": [
+      { "role": "model-reviewer", "accountability": "Tiny-D1 architecture, training plan and checkpoint honesty", "namedSignatory": null, "signedAt": null },
+      { "role": "data-reviewer", "accountability": "rights-cleared data licenses, private artifact inventory, no protected-record export", "namedSignatory": null, "signedAt": null },
+      { "role": "evaluation-reviewer", "accountability": "measurement design, label taxonomy and deny-suite coverage", "namedSignatory": null, "signedAt": null }
+    ]
+  },
+  "approvedLocalEnvironment": {
+    "compute": "CPU-only local development machine (no GPU, no paid capacity)",
+    "runtimes": ["node >= 20 (smoke/contract runner)", "python >= 3.12 (existing VATS tooling)"],
+    "network": "training runs offline; no production accounts, no production credentials, no provider calls during research",
+    "boundedComputePlan": "Tiny-D1 CPU-only experiments; no paid capacity is provisioned by this gate (cost owner acceptance required separately)"
+  },
+  "privateArtifactLocations": {
+    "researchData": "artifacts/research/private/data/",
+    "checkpoints": "artifacts/research/private/checkpoints/",
+    "gateEvidence": "artifacts/research/private/gate-evidence/",
+    "outsidePublicGit": true
+  },
+  "dataLicensePolicy": {
+    "allowed": ["authored", "rights_cleared"],
+    "forbidden": ["public_availability_as_license", "scraped", "unreviewed_user_content"],
+    "note": "Public availability is not a training license. Production accounts, learner records, private company content and production credentials are forbidden research inputs."
+  },
+  "checkpointInventory": {
+    "trainedOwnedWeights": false,
+    "note": "Honest inventory: no trained Visionary-owned weights exist yet. Existing local baselines/configurations are not trained owned weights."
+  }
+}

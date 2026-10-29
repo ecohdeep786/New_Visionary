@@ -1,0 +1,63 @@
+{
+  "matrixId": "vmm-r0-capability-matrix",
+  "version": 1,
+  "note": "Machine-readable role x mode x task family x source x language/script x modality x age/admission matrix frozen at R0. The tested matrix expands before release; this freeze narrows nothing.",
+  "roles": ["student", "teacher", "parent_guardian", "professional", "organization"],
+  "modes": ["teach_learn", "ask", "practice", "build"],
+  "taskFamilies": {
+    "teach_learn": ["next_teaching_action_recommendation", "support_intervention_recommendation", "explanation"],
+    "ask": ["grounded_question_answer"],
+    "practice": ["assessed_practice_item", "independent_practice_set"],
+    "build": ["bounded_plan", "document_artifact", "data_artifact", "code_artifact"]
+  },
+  "sources": [
+    { "sourceRef": "authored/seed-v1", "license": "authored", "notes": "authored seed data produced for research" },
+    { "sourceRef": "ncert/class8/selected-slices", "license": "rights_cleared", "notes": "rights-cleared selected slices only; public availability is not a training license" }
+  ],
+  "languages": [
+    { "code": "en-IN", "status": "required" },
+    { "code": "hi", "status": "required" },
+    { "code": "bn", "status": "required" }
+  ],
+  "ocrSlices": [
+    { "slice": "printed_english", "status": "required", "qualified": false },
+    { "slice": "printed_hindi", "status": "required", "qualified": false },
+    { "slice": "printed_bengali", "status": "required", "qualified": false },
+    { "slice": "handwritten_english", "status": "required", "qualified": false }
+  ],
+  "modalities": ["text", "photo_ocr"],
+  "ageAdmission": [
+    { "cohort": "admitted_learner", "gate": "guardian_first_admission (DATA-09 semantics)" },
+    { "cohort": "adult_professional", "gate": "authenticated adult account" },
+    { "cohort": "org_member", "gate": "verified organization membership (ROLE-06 semantics)" }
+  ],
+  "firstReferenceJourneys": [
+    {
+      "journeyId": "J1-ocr-practice",
+      "steps": ["permitted_photographed_work", "ocr_with_correction_and_provenance", "supported_explanation", "independent_practice", "persisted_evidence", "next_session_guidance"],
+      "scopeNote": "OCR slices remain explicit and unqualified until benchmarked (VOCR-02)."
+    },
+    {
+      "journeyId": "J2-standalone-build",
+      "steps": ["standalone_brief", "bounded_plan", "document_or_data_or_code_artifact", "isolated_tests_or_preview", "user_approved_save_export_publication", "recovery_and_later_correction"],
+      "scopeNote": "Standalone general Build is preserved; execution/publication stay separately gated (LATER/BUILD-LAUNCH)."
+    }
+  ],
+  "claimsLedger": {
+    "claimed": [
+      "Tiny-D1 recommends the next permitted teaching action / support intervention, evaluated on development data under the frozen measurement plan",
+      "Bounded per-mode task families above, on the declared sources/languages/modalities only"
+    ],
+    "notClaimed": [
+      "retention or transfer learning gains",
+      "specific misconception classification beyond BKT/count baselines",
+      "arbitrary-task or omniscient capability",
+      "zero-error behavior",
+      "any AGI or launch capability",
+      "equivalence of expert preference or synthetic rule imitation with learning benefit"
+    ],
+    "deferred": [
+      { "item": "dataset-specific split manifests, final numerical thresholds and sample/power rationale", "owner": "KAN-172" }
+    ]
+  }
+}
