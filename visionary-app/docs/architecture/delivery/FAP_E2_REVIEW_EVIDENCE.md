@@ -25,8 +25,8 @@ can pin the candidate.
 | B3 | FAP-48 | Done | KAN-201 B3 @ 3dc6d346 | beta | pricing store-grade table |
 | C1 | FAP-49 | Done | KAN-201 C1 @ 69add673 | beta | auth joins one system + real phone sign-in |
 | C2 | FAP-50 | Done | KAN-201 C2 @ d04af411 + 0a01fb58 | beta | onboarding joins one system |
-| C3 | FAP-51 | In Progress | KAN-201 C3 @ 2e88e302 + ba20027a (in beta) | beta | dashboard v-token completion (retire leaked Material) — **board not yet moved** |
-| C4 | FAP-52 | Idea | — | — | **not implemented** — open predecessor |
+| C3 | FAP-51 | Testing | KAN-201 C3 @ 2e88e302 + ba20027a (in beta) | beta | dashboard v-token completion (retire leaked Material) — moved In Progress → Testing 2026-10-29 (readback verified; re-verified AC in beta tree; delivery comment 10342) |
+| C4 | FAP-52 | In Progress | opencode/fap-c4-forms (branch from beta 6883a844) | (pending) | forms delivery honesty — claimed + implementing 2026-10-29 (comment 10343); evidence + checks in progress |
 | D1 | FAP-53 | Testing | opencode/fap-d1-motion @ af6a8047 | 4dc833dd | D1 motion law; receipt 123→0; qa-motion |
 | D2 | FAP-54 | Testing | opencode/fap-d2-responsive @ e486bd38 | 794025c1 | 24-route × 5-width sweep 0 overflow; 98→0 sub-44 |
 | D3 | FAP-55 | Testing | opencode/fap-d3-performance @ b21f6bc8 | e9d04f05 | F10 split; 135 chunks; Fast3G receipts; D3_EVIDENCE.md |
@@ -69,11 +69,15 @@ can pin the candidate.
 
 ## Open predecessors / remaining sequence (see companion walkthrough)
 
-1. **C4 = FAP-52 (Forms delivery honesty)** — still Idea, not implemented; dependency predecessor to D-series in the rebuilt chain.
-2. **C3 = FAP-51 (Dashboard v-token completion)** — implementation merged in beta but Jira still In Progress; needs board transition + reviewer.
+1. **C3 = FAP-51 (Dashboard v-token completion)** — implementation merged in beta; candidate moved to Testing 2026-10-29 awaiting separate reviewer (D-095).
+2. **C4 = FAP-52 (Forms delivery honesty)** — being implemented in `opencode/fap-c4-forms` from beta 6883a844; review handoff doc `FAP_C4_FORMS_EVIDENCE.md`; D-095 reviewer required after the candidate lands.
 3. **D1–E1 reviewer sign-off** — each in Testing awaiting a separate reviewer's exact-SHA approval → Done.
 4. **Founder walkthrough** — landing → pricing → download → trust → auth → dashboard (checklist in companion doc).
 5. **Audit doc production-ready flip** — only after the above are accepted.
+
+## Carry note (2026-10-29)
+
+`npm run scope:audit` was red at beta tip before this session: D3's monolith split (beta e9d04f05) left 19 split control files unreviewed and 3 obsolete registry rows. The C4 lane carried the minimal rebaseline (rows inherit the monolith boundary profiles) and regenerated the audit receipts — see `FAP_C4_FORMS_EVIDENCE.md`.
 
 ## Jira receipts (this session)
 

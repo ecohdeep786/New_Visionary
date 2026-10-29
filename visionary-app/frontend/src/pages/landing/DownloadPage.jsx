@@ -71,13 +71,17 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 });
 
 /* ═══ MODELS ═══ */
+/* Native availability is intentionally unreleased (PRODUCT_SURFACE_AUDIT
+   `download-installation`): unreleased entries carry a visible reason and render
+   a genuinely disabled control with no fabricated badge or clickable affordance. */
+const UNRELEASED_REASON = "Coming soon — not available yet";
 const PLATFORMS = [
-  { id: "web", Icon: Globe, name: "Web", meta: "No install · Always up to date", action: "Open in browser", href: "/register", kind: "web" },
-  { id: "windows", Icon: Monitor, name: "Windows", meta: "Windows 10 or later", action: "Windows app coming soon", kind: "desktop" },
-  { id: "mac", Icon: Apple, name: "Mac", meta: "macOS 12 or later · Apple Silicon or Intel", action: "Mac app coming soon", kind: "desktop" },
-  { id: "linux", Icon: Laptop, name: "Linux", meta: "Ubuntu 20.04+ · .deb / .AppImage planned", action: "Linux app coming soon", kind: "desktop" },
-  { id: "ios", Icon: Smartphone, name: "iOS", meta: "iPhone & iPad · iOS 16 or later", action: "iOS app coming soon", kind: "store" },
-  { id: "android", Icon: TabletSmartphone, name: "Android", meta: "Android 9 or later", action: "Android app coming soon", kind: "store" },
+  { id: "web", Icon: Globe, name: "Web", meta: "Live today · No install · Always up to date", action: "Open in browser", href: "/register", kind: "web" },
+  { id: "windows", Icon: Monitor, name: "Windows", meta: "Windows 10 or later", action: "Windows app coming soon", reason: UNRELEASED_REASON, kind: "desktop" },
+  { id: "mac", Icon: Apple, name: "Mac", meta: "macOS 12 or later · Apple Silicon or Intel", action: "Mac app coming soon", reason: UNRELEASED_REASON, kind: "desktop" },
+  { id: "linux", Icon: Laptop, name: "Linux", meta: "Ubuntu 20.04+ · .deb / .AppImage planned", action: "Linux app coming soon", reason: UNRELEASED_REASON, kind: "desktop" },
+  { id: "ios", Icon: Smartphone, name: "iOS", meta: "iPhone & iPad · iOS 16 or later", action: "iOS app coming soon", reason: UNRELEASED_REASON, kind: "store" },
+  { id: "android", Icon: TabletSmartphone, name: "Android", meta: "Android 9 or later", action: "Android app coming soon", reason: UNRELEASED_REASON, kind: "store" },
 ];
 
 const REQUIREMENTS = [
@@ -135,7 +139,7 @@ function DownloadHeroSection() {
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-              Native apps for desktop and mobile: faster, offline-friendly, and synced to your account.
+              Native apps are being prepared for desktop and mobile. The web is live today — open Visionary in your browser.
             </p>
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <button
@@ -199,15 +203,23 @@ function DownloadPlatformsSection() {
                     {p.action}
                   </Link>
                 ) : (
-                  /* Store links are not live yet — a disabled button, never a fabricated badge (L3 01-PM). */
-                  <button
-                    type="button"
-                    aria-disabled="true"
-                    title="Available at launch"
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-                  >
-                    {p.action}
-                  </button>
+                  /* Store links are not live yet — a genuinely disabled control
+                     with a visible reason, never a fabricated badge (C4 FAP-52).
+                     Not `aria-disabled` alone: a control that still accepts
+                     clicks/hover is a lying affordance. */
+                  <>
+                    <button
+                      type="button"
+                      disabled
+                      title="Available at launch"
+                      className="mt-6 inline-flex h-11 cursor-not-allowed items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f]"
+                    >
+                      {p.action}
+                    </button>
+                    <p className="mt-2 text-[12px] tracking-[0.01em]" style={{ color: COLORS.lightGrey }}>
+                      {p.reason}
+                    </p>
+                  </>
                 )}
               </div>
             );
@@ -246,7 +258,7 @@ function DownloadNotifySection() {
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[30px] bg-[#f5f5f7] p-8 text-center lg:p-10">
           <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
           <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-            Native apps are in final testing. We'll email you the moment your platform is ready.
+            The web product is live today; native apps are still being prepared. We'll email you the moment your platform ships.
           </p>
           {status === "success" ? (
             <p role="status" className="mt-6 w-full rounded-[14px] bg-white px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>
@@ -306,7 +318,7 @@ function DownloadSyncSection() {
         on every other.
       </p>
       <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17px] transition-all duration-700 ease-apple delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
-        Conversations, progress, and context sync across web, desktop, and mobile, automatically and privately.
+        Conversations, progress, and context sync with your Visionary account, automatically and privately — web today, with apps as they launch.
       </p>
       <div className="mt-9 flex justify-center">
         <QuietLink to="/contact">
@@ -354,7 +366,7 @@ function DownloadTrustBand() {
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
           <p className="text-center font-normal tracking-[0.24px] text-[16px]" style={{ color: COLORS.ink }}>
-            Signed builds · Automatic updates · Your data stays yours on every device.
+            Signed builds and automatic updates are planned for every platform. The web is live today, and your data stays yours.
           </p>
         </div>
       </FadeReveal>
