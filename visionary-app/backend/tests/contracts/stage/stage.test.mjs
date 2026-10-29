@@ -186,3 +186,11 @@ test('REPLAY CONVERGENCE: a replayed undo returns the ORIGINAL revert (no duplic
   const afterExit = await store.eventsFor(OWNER);
   assert.equal(afterExit.filter((e) => e.type === 'exit').length, 1); // no duplicate exit rows
 });
+
+test('POSTPONE REPLAY: a replayed postpone returns the proposal as originally stored (window never shifts on retry)', async () => {
+  const { service } = await makeService();
+  const proposal = await service.proposePromotion(OWNER, 'stage_1', 'stage_2', 'authorized', 'ordinary', ['c9'], []);
+  const first = await service.postponeProposal(OWNER, 'cmd-pp', proposal.proposalId, 7);
+  const replay = await service.postponeProposal(OWNER, 'cmd-pp', proposal.proposalId, 7);
+  assert.equal(replay.postponedUntil, first.postponedUntil); // byte-identical window
+});

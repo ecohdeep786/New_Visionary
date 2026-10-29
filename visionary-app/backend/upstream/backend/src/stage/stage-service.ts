@@ -123,6 +123,12 @@ export class StageService {
     const payloadHash = hash(`postpone|${commandKey}|${proposalId}|${days}`);
     const prior = await this.store.commandPayload(commandKey);
     if (prior && prior !== payloadHash) throw new StageError('command_changed');
+    if (prior && prior === payloadHash) {
+      // Replay convergence: a replayed postpone returns the proposal exactly as
+      // originally stored (the postpone window never shifts on retry).
+      const reread = await this.store.proposal(proposalId);
+      if (reread) return reread;
+    }
     await this.store.recordCommand(commandKey, payloadHash);
     const postponed: PromotionProposal = {
       ...proposal,
