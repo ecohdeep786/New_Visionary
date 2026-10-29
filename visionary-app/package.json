@@ -83,6 +83,7 @@
     "reports:check": "node scripts/reports-check.mjs",
     "coaching:check": "node scripts/coaching-check.mjs",
     "reviewschedule:check": "node scripts/reviewschedule-check.mjs",
-    "stage:check": "node scripts/stage-check.mjs"
+    "stage:check": "node scripts/stage-check.mjs",
+    "conversation:check": "node scripts/conversation-check.mjs"
   }
 }
