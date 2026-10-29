@@ -54,5 +54,7 @@ accessibility `/accessibility`, cookies `/cookies`)
   FAP-57 review comment (D-095 — separate reviewer records decision before Done).
 - Known honest boundary: D3 records LCP >2.5s on raw Fast3G (physics: 4 flex TTF
   ~505KB + 331KB JS + LCP art). Fast-LCP lever is a named next-wave; not claimed as met.
-- C3 (FAP-51) dashboard v-token completion is in beta but board still In Progress;
-  C4 (FAP-52) forms honesty is open. Both precede Done for the full chain.
+- C3 (FAP-51) dashboard v-token completion moved to Testing 2026-10-29 (reviewer pending);
+  C4 (FAP-52) forms honesty is being implemented in `opencode/fap-c4-forms` with the
+  DownloadPage disabled-with-reason program + audit-flag flips. Both precede Done for the
+  full chain.
