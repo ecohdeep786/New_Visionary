@@ -79139,6 +79139,10 @@
       "sourceSha256": "a990ad6ceb6903cf0823b4bb04f44d5c3f4dc18801634dd33692976e62ebc4d0"
     },
     {
+      "file": "frontend/src/services/learningDeviceState.ts",
+      "sourceSha256": "763d38002f1f02697362500d0a9ea70e85f8508188d0ab84617f5a1f88abde7d"
+    },
+    {
       "file": "frontend/src/services/learningPipelineService.ts",
       "sourceSha256": "3daaaa074b409c699e72918f83649e8b19c95164312c784532bd3887ecba5c2a"
     },
@@ -79223,6 +79227,10 @@
       "sourceSha256": "a6d20b6289410df12aee3d5f0502b3dbf6735e4f94eb48dd518a5f61f5f2b24d"
     },
     {
+      "file": "frontend/src/services/roleScreenAdapters.ts",
+      "sourceSha256": "baf89a8c7d1958c4c9715ceab5c0ab623f33ad1711f67dcf2e542a7eafcd6e57"
+    },
+    {
       "file": "frontend/src/services/stageEditorDraft.js",
       "sourceSha256": "66907639e2439a6d0038f05e8b8f84c039db740cafdd1afd35598af5dd40a2a1"
     },
@@ -79233,6 +79241,14 @@
     {
       "file": "frontend/src/services/stageTransitionService.ts",
       "sourceSha256": "6ff03c5900a6b34fe6b5f1abf3987a081737d98a40957afb2e16b958a22d66e2"
+    },
+    {
+      "file": "frontend/src/services/syncCoordinator.ts",
+      "sourceSha256": "b5b01a11dab8894a387bb2cd5dbd3e3c7e3dd60bcf97ce339bcf7efaadd0e3b7"
+    },
+    {
+      "file": "frontend/src/services/syncTypes.ts",
+      "sourceSha256": "6ab995d9830bfec38eebf7605d144ab665bc9dac055ad485bd3b5bf31ab35100"
     },
     {
       "file": "frontend/src/services/teachingInterface.ts",
