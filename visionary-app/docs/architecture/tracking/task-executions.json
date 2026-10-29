@@ -1013,7 +1013,7 @@
       "sourceId": "FAP-C4",
       "jiraKey": "FAP-52",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-52",
-      "status": "In Progress",
+      "status": "Testing",
       "startAt": "2026-10-29T07:04:00.000Z",
       "registrationNote": "Claimed live on the board this session (Idea -> To Do -> In Progress, 204/204, verified readback).",
       "scope": "Forms delivery honesty: partners enquiry + updates signup server intake recorded as intentionally-unreleased with the honest manual mail-draft channel kept explicit; DownloadPage coming-soon controls become genuinely disabled-with-reason; overclaiming DownloadPage copy made honest; PRODUCT_SURFACE_AUDIT operation flags flipped with receipts via scope:audit:write. Backend intake stays the separate task; PRIV-07/CONTENT-05 gates unchanged. Per founder delivery amendment: lane merges to beta first, then dev, both pushed and remote-verified before receipt.",
@@ -1031,6 +1031,10 @@
         {
           "at": "2026-10-29T08:40:00.000Z",
           "item": "receipts regenerated: scope:audit:write green (68 routes, 37 endpoints, 237 control files, 1656 declarations) + read-only scope:audit verified; evidence doc FAP_C4_FORMS_EVIDENCE.md; E2 chain rows + walkthrough updated; task-executions + journal appended; next: npm run check + tests on the lane candidate, commit+push+ls-remote, beta merge --no-ff, FAP-52 -> Testing with delivery comment"
+        },
+        {
+          "at": "2026-10-29T09:10:00.000Z",
+          "item": "checks green on lane candidate 793ab758: npm run check full chain (layout/imports PASS 3842 files, qa continuity/motion/taps nav suite, tests 656/656 pass 0 fail, scope:audit green, vite build ok in 32.16s), eslint --quiet 0, tsc jsconfig 0 + tsc domain 0; branch pushed + ls-remote verified 793ab758"
         }
       ],
       "jira": {
