@@ -24,7 +24,8 @@ export interface StageStore {
   /** Preserved fixed assignment labels (never rewritten by continuity). */
   assignmentLabels(owner: StageOwner): Promise<readonly { assignmentId: string; label: string }[]>;
   commandPayload(commandKey: string): Promise<string | undefined>;
-  recordCommand(commandKey: string, payloadHash: string): Promise<void>;
+  recordCommand(commandKey: string, payloadHash: string, resultRef?: string): Promise<void>;
+  commandResult(commandKey: string): Promise<string | undefined>;
 }
 
 function clone<T>(value: T): T {
@@ -42,7 +43,7 @@ export class InMemoryStageStore implements StageStore {
   private eventList = new Map<string, StageEvent[]>();
   private dueDates = new Map<string, { conceptId: string; dueAt: string }[]>();
   private labels = new Map<string, { assignmentId: string; label: string }[]>();
-  private commands = new Map<string, string>();
+  private commands = new Map<string, { hash: string; resultRef?: string }>();
 
   async saveMapping(mapping: StageMapping): Promise<void> {
     this.mappings.set(mapping.mappingId, clone(mapping));
@@ -95,9 +96,13 @@ export class InMemoryStageStore implements StageStore {
     this.labels.set(ownerKey(owner), clone(rows));
   }
   async commandPayload(commandKey: string): Promise<string | undefined> {
-    return this.commands.get(commandKey);
+    return this.commands.get(commandKey)?.hash;
   }
-  async recordCommand(commandKey: string, payloadHash: string): Promise<void> {
-    this.commands.set(commandKey, payloadHash);
+  async recordCommand(commandKey: string, payloadHash: string, resultRef?: string): Promise<void> {
+    const prior = this.commands.get(commandKey);
+    this.commands.set(commandKey, { hash: payloadHash, resultRef: resultRef ?? prior?.resultRef });
+  }
+  async commandResult(commandKey: string): Promise<string | undefined> {
+    return this.commands.get(commandKey)?.resultRef;
   }
 }

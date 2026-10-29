@@ -168,3 +168,21 @@ test('OWNER/WORKSPACE boundary: another learner cannot act on a proposal that is
     (e) => e.code === 'not_owner',
   );
 });
+
+test('REPLAY CONVERGENCE: a replayed undo returns the ORIGINAL revert (no duplicate ledger rows); replayed exit converges', async () => {
+  const { store, service } = await makeService();
+  const proposal = await service.proposePromotion(OWNER, 'stage_1', 'stage_2', 'authorized', 'ordinary', ['c9'], []);
+  const event = await service.applyPromotion(OWNER, 'cmd-u1', proposal.proposalId, false);
+  const before = (await store.eventsFor(OWNER)).length;
+  const revert1 = await service.undoPromotion(OWNER, 'cmd-u2', event.eventId);
+  const revertReplay = await service.undoPromotion(OWNER, 'cmd-u2', event.eventId);
+  assert.equal(revertReplay.eventId, revert1.eventId); // same-key replay converges
+  const afterUndo = await store.eventsFor(OWNER);
+  assert.equal(afterUndo.length, before + 1); // exactly ONE revert row appended
+  // Replayed exit converges to the ORIGINAL exit event.
+  const exit1 = await service.recordExit(OWNER, 'cmd-u3', 'stage_1');
+  const exitReplay = await service.recordExit(OWNER, 'cmd-u3', 'stage_1');
+  assert.equal(exitReplay.eventId, exit1.eventId);
+  const afterExit = await store.eventsFor(OWNER);
+  assert.equal(afterExit.filter((e) => e.type === 'exit').length, 1); // no duplicate exit rows
+});

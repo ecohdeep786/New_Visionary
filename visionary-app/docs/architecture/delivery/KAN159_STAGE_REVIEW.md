@@ -14,7 +14,7 @@ Owned files / contracts:
 - `backend/upstream/backend/src/stage/stage-service.ts` (StageService — recordMapping, proposePromotion, postponeProposal, applyPromotion, undoPromotion, recordExit, exitGateActive, currentProfile, postCommitProjection)
 - `backend/upstream/backend/src/stage/index.ts`
 - `backend/upstream/backend/tsconfig.stage.json`
-- `backend/tests/contracts/stage/stage.test.mjs` (LEARN-14 suite, 9 tests)
+- `backend/tests/contracts/stage/stage.test.mjs` (LEARN-14 suite, 10 tests)
 - `scripts/stage-check.mjs`, `package.json` (`stage:check`)
 Prerequisites (native Blocks): DATA-01 / KAN-36, DATA-06 / KAN-41, CONTENT-08 / KAN-144, LEARN-09 / KAN-145, LEARN-11 / KAN-147 (implemented; corrected candidate f019bc67), SYNC-02 / KAN-140, DATA-05 / KAN-40, AI-15 / KAN-149, PRIV-01 / KAN-110 — all implemented and in Testing/Done. Unblocks ACCEPT-01 / KAN-117, ACCEPT-02 / KAN-118, ACCEPT-04 / KAN-120. Composes the lane stances: LEARN-11 review scheduling, LEARN-09 knowledge projections, CONTENT-08 curriculum graph, KAN-139 record discipline.
 
@@ -37,7 +37,8 @@ Implement backend-owned lifelong stage/curriculum continuity over the same UID: 
 
 ## Commands, exit codes, test counts and timestamps
 
-- Stage compile + suite: `node scripts/stage-check.mjs` → tsc `tsconfig.stage.json` exit 0; `node --test` → 9 tests, 9 pass, 0 fail (2026-10-29).
+- Stage compile + suite: `node scripts/stage-check.mjs` → tsc `tsconfig.stage.json` exit 0; `node --test` → 10 tests, 10 pass, 0 fail (2026-10-29).
+- Candidate revision note: the implementer's post-push self-audit found that a replayed undo/exit command appended a duplicate revert/exit event to the append-only ledger. The corrected candidate converges replayed undo/exit commands to the ORIGINAL events (command result refs) and adds a replay-convergence regression test (suite 9 → 10).
 - Lane regressions: all 42 contract modules on this candidate, 0 failures (stage-new 9, reviewschedule 11 (corrected f019bc67), coaching 11, reports 6, guardian 6, entitlement 6, organization 6, professional 6, submissions 7, assignment 7, classroom 6, sceneprotocol 12, changefeed 10, scorecard 14, airaflow 14, modalities 5, deadline 6, usagereservation 6, mlgate 7, conversationauth 6, serviceidentity 7, providerscope 4, completion 4, sharing 4, runs 6, guidedbriefs 4, draftrecovery 6, projects 5, evaluation 5, journey 8, dailyplan 7, projections 7, attempts 6, learningsession 8, conceptgraph 8, catalogadapter 7, coverage 7, mediagate 7, retrievalgate 6, qualityscope 6, mlresilience 4, contextassembly 8).
 - `data:check` (DATA-01 DDL) requires `DATA_TEST_DATABASE_URL` loopback PostgreSQL and is a DDL check, not part of the contract-module regression list; unchanged by this task and still out of the module-lane scope.
 

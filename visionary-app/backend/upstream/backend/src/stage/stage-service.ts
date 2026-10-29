@@ -191,6 +191,15 @@ export class StageService {
     const payloadHash = hash(`undo|${commandKey}|${eventId}`);
     const prior = await this.store.commandPayload(commandKey);
     if (prior && prior !== payloadHash) throw new StageError('command_changed');
+    if (prior && prior === payloadHash) {
+      // Replay convergence: a replayed undo returns the ORIGINAL revert event
+      // (never a duplicate revert row in the append-only ledger).
+      const existingRef = await this.store.commandResult(commandKey);
+      if (existingRef) {
+        const existing = await this.store.event(existingRef);
+        if (existing) return existing;
+      }
+    }
     await this.store.recordCommand(commandKey, payloadHash);
     const revert: StageEvent = {
       eventId: `evt_${++this.eventCounter}`,
@@ -204,6 +213,7 @@ export class StageService {
       committedAt: this.now().toISOString(),
     };
     await this.store.saveEvent(revert);
+    await this.store.recordCommand(commandKey, payloadHash, revert.eventId);
     return revert;
   }
 
@@ -212,6 +222,14 @@ export class StageService {
     const payloadHash = hash(`exit|${commandKey}|${fromStage}`);
     const prior = await this.store.commandPayload(commandKey);
     if (prior && prior !== payloadHash) throw new StageError('command_changed');
+    if (prior && prior === payloadHash) {
+      // Replay convergence: a replayed exit returns the ORIGINAL exit event.
+      const existingRef = await this.store.commandResult(commandKey);
+      if (existingRef) {
+        const existing = await this.store.event(existingRef);
+        if (existing) return existing;
+      }
+    }
     await this.store.recordCommand(commandKey, payloadHash);
     const event: StageEvent = {
       eventId: `evt_${++this.eventCounter}`,
@@ -225,6 +243,7 @@ export class StageService {
       committedAt: this.now().toISOString(),
     };
     await this.store.saveEvent(event);
+    await this.store.recordCommand(commandKey, payloadHash, event.eventId);
     return event;
   }
 
