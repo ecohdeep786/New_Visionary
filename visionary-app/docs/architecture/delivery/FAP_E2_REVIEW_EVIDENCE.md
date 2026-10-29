@@ -26,7 +26,7 @@ can pin the candidate.
 | C1 | FAP-49 | Done | KAN-201 C1 @ 69add673 | beta | auth joins one system + real phone sign-in |
 | C2 | FAP-50 | Done | KAN-201 C2 @ d04af411 + 0a01fb58 | beta | onboarding joins one system |
 | C3 | FAP-51 | Testing | KAN-201 C3 @ 2e88e302 + ba20027a (in beta) | beta | dashboard v-token completion (retire leaked Material) — moved In Progress → Testing 2026-10-29 (readback verified; re-verified AC in beta tree; delivery comment 10342) |
-| C4 | FAP-52 | In Progress | opencode/fap-c4-forms (branch from beta 6883a844) | (pending) | forms delivery honesty — claimed + implementing 2026-10-29 (comment 10343); evidence + checks in progress |
+| C4 | FAP-52 | Testing | opencode/fap-c4-forms @ 793ab758 (branch from beta 6883a844) | 3e9532f5 | forms delivery honesty — moved In Progress → Testing 2026-10-29 (readback verified; delivery comment 10344); D-095 review pending |
 | D1 | FAP-53 | Testing | opencode/fap-d1-motion @ af6a8047 | 4dc833dd | D1 motion law; receipt 123→0; qa-motion |
 | D2 | FAP-54 | Testing | opencode/fap-d2-responsive @ e486bd38 | 794025c1 | 24-route × 5-width sweep 0 overflow; 98→0 sub-44 |
 | D3 | FAP-55 | Testing | opencode/fap-d3-performance @ b21f6bc8 | e9d04f05 | F10 split; 135 chunks; Fast3G receipts; D3_EVIDENCE.md |
@@ -70,7 +70,7 @@ can pin the candidate.
 ## Open predecessors / remaining sequence (see companion walkthrough)
 
 1. **C3 = FAP-51 (Dashboard v-token completion)** — implementation merged in beta; candidate moved to Testing 2026-10-29 awaiting separate reviewer (D-095).
-2. **C4 = FAP-52 (Forms delivery honesty)** — being implemented in `opencode/fap-c4-forms` from beta 6883a844; review handoff doc `FAP_C4_FORMS_EVIDENCE.md`; D-095 reviewer required after the candidate lands.
+2. **C4 = FAP-52 (Forms delivery honesty)** — delivered in `opencode/fap-c4-forms` @ 793ab758 from beta 6883a844; merged beta `3e9532f5`; handoff doc `FAP_C4_FORMS_EVIDENCE.md`; D-095 reviewer required before Done.
 3. **D1–E1 reviewer sign-off** — each in Testing awaiting a separate reviewer's exact-SHA approval → Done.
 4. **Founder walkthrough** — landing → pricing → download → trust → auth → dashboard (checklist in companion doc).
 5. **Audit doc production-ready flip** — only after the above are accepted.
