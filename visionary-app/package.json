@@ -86,6 +86,7 @@
     "stage:check": "node scripts/stage-check.mjs",
     "conversation:check": "node scripts/conversation-check.mjs",
     "export:check": "node scripts/export-check.mjs",
-    "researchgate:check": "node scripts/researchgate-check.mjs"
+    "researchgate:check": "node scripts/researchgate-check.mjs",
+    "observability:check": "node scripts/observability-check.mjs"
   }
 }
