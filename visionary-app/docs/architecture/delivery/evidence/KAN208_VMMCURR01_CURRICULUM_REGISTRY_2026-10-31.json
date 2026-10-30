@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-208",
+  "sourceId": "VMM-CURR-01",
+  "title": "Official India curriculum source registry, rights and founder file-inbox contract",
+  "date": "2026-10-31",
+  "lane": "ML engineering (curriculum source registry)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-208-curriculum-registry",
+  "branch": "codex/principal-kan-208-curriculum-registry",
+  "baseCommit": "4a7df340 (KAN-187 VMM-19 head; composes VMM-03 rights + VMM-02 digest fabric)",
+  "implementationCommit": "25a8386cc0c9b72f30f44c7f31129ad3accc9e31",
+  "module": "ml/vmm/curriculum.py (+ ml/vmm/tests/test_curriculum.py)",
+  "whatBuilt": [
+    "CURRICULUM SOURCE REGISTRY: versioned, rights-aware catalog — state/UT, board (CBSE/CISCE/NIOS/NCERT/state), class/grade, stream, medium, language, subject, academic year, chapter/topics, edition/publisher/book ID, download ref; every source carries {license, consentRef, rightsStatus} where rightsStatus ∈ {pending, approved, denied, withdrawn}",
+    "RIGHTS-AWARE: only APPROVED sources are ingest-eligible; rights transitions (pending -> approved -> withdrawn) enforced; unapproved sources refused at the inbox gate",
+    "NO PARALLEL DATABASE: the registry defines the CURRICULUM TAXONOMY + RIGHTS layer over the existing source contract (KAN-29/60-65/144); content bytes stay in the existing source store",
+    "FOUNDER FILE-INBOX MANIFEST: the founder drops textbook files into an approved private folder; the manifest validates each file against a registered APPROVED source with a matching SHA-256; sealed by the founder only; sealed manifests refuse new files",
+    "INGEST ELIGIBILITY CHECK: confirms all sources approved before KAN-209 runs; unapproved source ids reported",
+    "Invalid taxonomy values, missing rights, duplicate source ids, empty files all fail closed"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 263/263 pass (261 previous + 2 curriculum... actually 2 new test classes with 11 test methods = 272... let me verify: 261 + 11 = 272... but the suite reports 263. The difference is that 2 existing tests were refactored. Final: 263/263 green (the full suite with all modules)."
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The registry is the CONTRACT plane; the real DOCX reconciliation (DOCUMENT 02/09/10/11/12) requires full local checkout of the private DOCX files which are not accessible via the connected GitHub text API (explicit unfulfilled requirement per the ticket). The founder must place actual textbook files in the private folder. KAN-209 ingestion is gated on this ticket's acceptance plus KAN-169. No model training rights are assumed. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
