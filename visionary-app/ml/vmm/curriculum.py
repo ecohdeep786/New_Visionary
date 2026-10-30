@@ -188,6 +188,7 @@ class FounderInboxManifest:
         return {
             "contract": CURR_CONTRACT,
             "fileCount": len(self._files),
+            "files": [deepcopy(f) for f in sorted(self._files.values(), key=lambda f: f["filename"])],
             "manifestDigest": manifest_digest,
             "sealedAt": _now(),
         }
