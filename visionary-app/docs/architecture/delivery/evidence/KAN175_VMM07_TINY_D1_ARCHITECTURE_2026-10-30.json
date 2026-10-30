@@ -1,0 +1,27 @@
+{
+  "jiraKey": "KAN-175",
+  "sourceId": "VMM-07",
+  "title": "Select and implement Visionary-Tiny-D1 trainable architecture and output heads",
+  "date": "2026-10-30",
+  "lane": "ML engineering (model architecture)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-175-tiny-d1-architecture",
+  "branch": "codex/principal-kan-175-tiny-d1-architecture",
+  "baseCommit": "26c60d9e (KAN-174 VMM-06 head; composes VMM-02..06 fabric)",
+  "implementationCommit": "c1cacf2cb8d52cec2015a7c2d18ece1934c17303",
+  "module": "ml/vmm/tinyd1.py (+ ml/vmm/tests/test_tinyd1.py + ml/vmm/TINY_D1_ARCHITECTURE.md)",
+  "whatBuilt": [
+    "FROZEN ARCHITECTURE: input(VMM-06 dim 7) -> dense(8, tanh) -> dense(action logits) -> masked softmax over the VATS ACT strategy set; 109 parameters matching the documented candidate-size comparison (heuristic teacher 0, BKT 4, NB O(vocab), Tiny-D1 109)",
+    "MASKED OUTPUTS: only the caller's ALLOWED actions compete; masked logits are -inf so masked probabilities are exactly 0 and a masked action is never ranked; unknown/invalid allowed sets refused",
+    "ALL-ACTIONS-FORBIDDEN as a defined output ({abstained, reason: all_actions_forbidden}) — never a crash, never a forced pick",
+    "LOSS: masked cross-entropy + L2; deterministic SGD under the seed (identical seeds -> identical trajectories and predictions, proven); training reduces loss on synthetic policy-imitation data",
+    "CALIBRATION + ABSTENTION: softmax probabilities with a confidence floor (below-floor abstains); OOD gates — missingness above the training bound and features outside the observed range abstain with explicit reasons",
+    "CONDITIONAL HEADS: a misconception head is enabled ONLY with sufficient labels per class (minPerClass); enabling without enough labels is refused, never silently degraded; head parameter cost documented",
+    "POLICY-IMITATION SANITY: labels from the VMM-05 reproduction of the reference VATS pedagogy on synthetic evidence snapshots (features via VMM-06 extractor); held-out teacher agreement >= 0.7 validates the training loop, not educational quality",
+    "VMM-04 INTEGRATION: Tiny-D1 evaluated through the benchmark registry (runner records, custodian grades); educationalGainsEstablished stays False"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 65/65 pass (12 supplychain/exposure + 10 seeddata + 10 benchmarks + 9 baselines + 11 features + 13 tinyd1)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "No real learner data, no cloud training, no deployment; policy-imitation agreement validates the training loop only. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
