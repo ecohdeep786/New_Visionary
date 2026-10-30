@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-181",
+  "sourceId": "VMM-13",
+  "title": "Integrate Visionary-Tiny policy ranking with ATE's bounded learner teaching loop",
+  "date": "2026-10-30",
+  "lane": "ML engineering (teaching runtime)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-181-teaching-loop",
+  "branch": "codex/principal-kan-181-teaching-loop",
+  "baseCommit": "250e774c (KAN-180 VMM-12 head; composes VMM-05 policy reproduction + VMM-07/11 ranking)",
+  "implementationCommit": "7c8f8163a8c0f63265073bfe20a292abbb4cea32",
+  "module": "ml/vmm/teachingloop.py (+ ml/vmm/tests/test_teachingloop.py)",
+  "whatBuilt": [
+    "REFERENCE POLICY REMAINS THE LOOP AUTHORITY: every transition decided by the VMM-05 reproduction of the original VATS pedagogy; the Tiny-D1 ranking is an ADVISORY strategy preference applied ONLY inside the policy's allowed set AND its availability constraints (visual without an approved visual falls back to the policy candidate); model provenance recorded (rankedBy: tiny-d1-advisory | policy)",
+    "MODEL CANNOT SKIP ASSESSMENT: even at pKnown 0.99 the check demands backend assessment (assessed_by != backend refused); masteryGranted always False",
+    "REAL FLOW: explain (pinned source citation on every explanation) -> learner doubt -> check (protected answers: the expected answer is never stored; hints_only travels with the check) -> remediation (strategy != previous) or review at the failure bound",
+    "CORRECT STOP BEHAVIOR: the loop terminates at check_complete or the failure bound — proven by a driver test that the loop is never unbounded",
+    "OPTIONAL TEACHING DURING BUILD: attach_to_build is a distinct operation that never advances Build acceptance",
+    "PINNED VERSIONS + RESUME: policy/criteria/graph/source pinned at start (unpinned refused); events append-only with phaseAfter; second-device resume replays events to the identical loop state"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 126/126 pass (113 previous + 13 teaching-loop)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The loop is the runtime CONTRACT; wiring into the hosted backend tutor remains integration work. No mastery or educational-gain claim is made. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
