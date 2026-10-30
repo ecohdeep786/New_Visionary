@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-209",
+  "sourceId": "VMM-CURR-02",
+  "title": "Safely ingest founder-approved local curriculum corpus into source graph, OCR and grounded product",
+  "date": "2026-10-31",
+  "lane": "ML engineering (curriculum ingestion)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-209-corpus-ingest",
+  "branch": "codex/principal-kan-209-corpus-ingest",
+  "baseCommit": "5281d59c (KAN-208 VMM-CURR-01 head; composes the curriculum registry + inbox manifest)",
+  "implementationCommit": "8acded271ac7f645383c8d8f2a9aa130d51d112b",
+  "module": "ml/vmm/corpusingest.py (+ ml/vmm/tests/test_corpusingest.py) + ml/vmm/curriculum.py fix (seal returns files)",
+  "whatBuilt": [
+    "AUTHORIZED INGESTION ONLY: sealed inbox manifest (KAN-208) is the sole entry point; backend-only; unapproved sources refused at the inbox declare gate AND at ingestion (rights revoked after seal blocks)",
+    "CHUNK + INDEX: bounded chunks, scanned for injection/prompt-injection, indexed with source citations {sourceId, sourceVersion, page, chunkIndex, license, consentRef, criteriaVersion, cited: true} — downstream surfaces always cite",
+    "DENY PATHS: duplicated book, stale syllabus (criteria unpinned), source withdrawal (immediate chunk invalidation), rights revoked after seal, injected payload, prompt injection",
+    "WITHDRAWAL/ROLLBACK: source withdrawal immediately invalidates all chunks (fail closed); deterministic rollback to an earlier served version; user records unchanged",
+    "NO COMPETING SOURCE STORE: no source-store mutation API exists (contract-proven)",
+    "KAN-208 fix: seal() now returns the files list so the ingest pipeline can validate against it"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 274/274 pass (263 previous + 11 corpusingest)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The pipeline is the CONTRACT plane; the real ingestion run requires the founder to place actual rights-cleared textbook files in the private folder, set rights to approved, and accept KAN-208. The DOCX reconciliation (DOCUMENT 02/09/10/11/12) remains an explicit unfulfilled requirement. No model training rights are assumed. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
