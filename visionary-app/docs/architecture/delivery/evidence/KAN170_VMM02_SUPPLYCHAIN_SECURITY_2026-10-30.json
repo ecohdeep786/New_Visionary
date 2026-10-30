@@ -1,0 +1,35 @@
+{
+  "jiraKey": "KAN-170",
+  "sourceId": "VMM-02",
+  "title": "Private-model supply-chain security and architecture threat model",
+  "date": "2026-10-30",
+  "lane": "ML engineering (model-building supply chain)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-170-supplychain-security",
+  "branch": "codex/principal-kan-170-supplychain-security",
+  "baseCommit": "f61292ef (verified origin/dev per D-098)",
+  "implementationCommit": "de57fd7f3d054b51240ab5ac0e3d14bef8026d09",
+  "module": "ml/vmm/ (supplychain.py, exposure.py, THREAT_MODEL.md, tests/)",
+  "supporting": ["scripts/vmm.mjs", "package.json (ml:vmm:test, ml:vmm:inventory)", "ml/vmm/evidence/exposure-inventory-latest.json"],
+  "whatBuilt": [
+    "Artifact-manifest control plane (stdlib-only): validated manifests binding kind/id/version/SHA-256 digest/producer/license/storageClass/lineage",
+    "HMAC-SHA256 signing over canonical JSON with constant-time verification; any manifest field change breaks the signature",
+    "Provenance-lineage verification: every parent must resolve to a registered artifact with the exact recorded digest (T5)",
+    "Registry read policy: consumers can never read private artifacts; owner/reviewer only (T4)",
+    "Repository exposure inventory (T3): path-pattern classification of credential material/templates/databases/model weights/datasets; credential-class contents NEVER read or recorded; streamed SHA-256 for weights/datasets; vendored-upstream scoping; oversized files recorded as skipped, never read",
+    "Structured THREAT_CATALOG T1-T7 mapped to implemented controls + THREAT_MODEL.md (assets, boundaries, controls, residual risks: key-rotation policy, public-history audit, registry backend)"
+  ],
+  "evidenceFindings": {
+    "scannedFiles": 7372,
+    "criticalCredentialFindings": 0,
+    "credentialTemplates": 10,
+    "datasetCandidates": 2,
+    "modelWeights": 2,
+    "notable": "pinned ml/upstream reranker ONNX (flashrank-MiniLM-L-12-v2_Q.onnx, ~34MB) recorded with vendored-upstream scope + streamed digest; public git history NOT audited in this pass (follow-up recorded, not assumed clean)"
+  },
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 12/12 pass (python -m unittest discover, PYTHONPATH=ml)",
+    "inventory": "npm run ml:vmm:inventory -> regenerates ml/vmm/evidence/exposure-inventory-latest.json"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "No cloud capacity is started by this ticket. Signing-key rotation policy (HSM/KMS), public git-history audit, and the registry/storage backend integration remain open. Testing status is not acceptance; the R0 research-gate prerequisite remains with its own signoff flow per its ticket."
+}
