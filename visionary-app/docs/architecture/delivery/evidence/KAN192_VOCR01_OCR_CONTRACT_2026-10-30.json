@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-192",
+  "sourceId": "VOCR-01",
+  "title": "Specify secure OCR L1 contract, private upload and untrusted perception",
+  "date": "2026-10-30",
+  "lane": "ML engineering (OCR security contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-192-ocr-contract",
+  "branch": "codex/principal-kan-192-ocr-contract",
+  "baseCommit": "607e5573 (KAN-183 VMM-15 head)",
+  "implementationCommit": "d30ecf0533a695660d079e827ad7216622851895",
+  "module": "ml/vmm/ocr.py (+ ml/vmm/tests/test_ocr.py)",
+  "whatBuilt": [
+    "AUTHORIZED PRIVATE UPLOAD: owner-scoped upload intent -> PRIVATE quarantine with SHA-256 digest; format bounds via magic-byte check (png/jpeg); size bounds; malformed/oversized/empty uploads refused",
+    "PRIVATE STORAGE DENY PATHS: cross-owner upload/job/result access denied; digests bind bytes so tampering is detectable",
+    "PARSER JOB: bounded job over quarantined bytes -> STRUCTURAL result (pages -> regions -> text hypotheses with confidence + engine version); structural bounds (pages/regions/text length) enforced",
+    "UNTRUSTED PERCEPTION: every OCR text is a HYPOTHESIS — marked untrustedPerception, scanned for injected script/URL payloads (refused), sourceAuthorized: False and masteryGranted: False unconditionally — parsing is NOT source authorization",
+    "CANCELLATION: parser-job cancellation is a defined outcome (cancelled jobs refuse completion)",
+    "QUALIFICATION GATE RECORDED: benchmarkQualified False until VOCR-02 measures real engines; provenance routing to Learn/Ask/Practice/Build (VOCR-03 seam) carries provenance + hypotheses, NEVER hidden answer keys"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 155/155 pass (146 previous + 9 OCR)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The engine is a SEAM (synthetic in tests); real OCR engines, Indian-script/handwriting benchmark qualification (VOCR-02) and hosted safety/rollout acceptance (VOCR-04) remain gated. Parent KAN-184 requires ALL FOUR OCR subtasks accepted. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
