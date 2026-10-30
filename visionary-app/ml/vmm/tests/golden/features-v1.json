@@ -1,0 +1,92 @@
+{
+ "contract": "vmm-features.v1",
+ "featureVersion": 1,
+ "note": "Golden train/serve parity fixtures; regenerate only with an intentional feature-version bump.",
+ "cases": [
+  {
+   "name": "five-attempt-window",
+   "evidence": {
+    "contract": "vmm-scm-evidence.v1",
+    "conceptId": "newtons-second-law",
+    "attempts": [
+     true,
+     true,
+     false,
+     true,
+     true
+    ],
+    "sourceRefs": [
+     "src-consented-001",
+     "src-consented-002"
+    ],
+    "criteriaVersion": 3
+   },
+   "scmPKnown": 0.72,
+   "cutoff": null,
+   "expectedVector": [
+    5.0,
+    0.8,
+    0.6666666666666666,
+    2.0,
+    0.72,
+    -1.0,
+    2.0
+   ],
+   "expectedVectorDigest": "6852a2f991e516afc13e5483b271f6c5d2bd14928f65bc5bd3f9601a6faa0387"
+  },
+  {
+   "name": "cutoff-2-time-leakage-bound",
+   "evidence": {
+    "contract": "vmm-scm-evidence.v1",
+    "conceptId": "newtons-second-law",
+    "attempts": [
+     true,
+     true,
+     false,
+     true,
+     true
+    ],
+    "sourceRefs": [
+     "src-consented-001"
+    ],
+    "criteriaVersion": 2
+   },
+   "scmPKnown": 0.6,
+   "cutoff": 2,
+   "expectedVector": [
+    2.0,
+    1.0,
+    1.0,
+    2.0,
+    0.6,
+    -1.0,
+    1.0
+   ],
+   "expectedVectorDigest": "8c3184da181982bf8fb3df0c74ece99c43b8fc14e4817ac9aad26e8c46789700"
+  },
+  {
+   "name": "empty-window-missingness",
+   "evidence": {
+    "contract": "vmm-scm-evidence.v1",
+    "conceptId": "photosynthesis",
+    "attempts": [],
+    "sourceRefs": [
+     "src-consented-003"
+    ],
+    "criteriaVersion": 1
+   },
+   "scmPKnown": 0.5,
+   "cutoff": 0,
+   "expectedVector": [
+    0.0,
+    -1.0,
+    -1.0,
+    0.0,
+    0.5,
+    -1.0,
+    1.0
+   ],
+   "expectedVectorDigest": "4541097d3a3dc2ee832450f9f44565183d57b1981d56a2d35335017fc7519a30"
+  }
+ ]
+}
