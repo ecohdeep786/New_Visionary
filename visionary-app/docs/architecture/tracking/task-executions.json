@@ -1099,6 +1099,31 @@
           "item": "candidate committed 9dc944c5 on opencode/fap-f1-final-pass, pushed + ls-remote verified; merged to beta no-ff as 44f1f15f on top of principal delivery record 0d20700 (empty marker), pushed + ls-remote verified 0d207007..44f1f15f; FAP-35 moved In Progress -> Testing via transition 41 (204) + delivery comment 10375 posted via comments endpoint + readback verified (status Testing, updated 2026-10-30T14:03:29.171+0530); D-095 external reviewer must record exact reviewed commit before Done; dev merge after review acceptance"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-C9",
+      "jiraKey": "FAP-34",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-34",
+      "status": "In Progress",
+      "startAt": "2026-10-30T10:05:00.000Z",
+      "registrationNote": "Closeout lane only: FAP-34 is under the founder reopen (2026-10-21) for their review round; this lane deliberately performs no transition, it re-runs the C9 acceptance gate on the current production tree and refreshes the acceptance evidence for the reviewer.",
+      "scope": "Re-verified current-tree acceptance of the Apple type-scale system (spec APPLE_TYPE_SCALE_SPEC_2026-10-20): role-aware probe 120/120 across 7 public pages x 390/768/1440 (hero pairing, 64px section cap, ladder membership, nav/body floors, zero overflow); Vision-Pro category heroes exact at all three viewports; landing display supersession documented (hero one-voice law, B1/FAP-46 commit 6d54b76b receipted 2026-10-21: fitted 117/96/41.5 replaces the mixed per-word 140/~127 + 64/~44 bug, stage box keeps the 64/96/140 ladder anchor). No code changes; evidence-only lane.",
+      "branch": "opencode/fap-c9-closeout",
+      "base": "beta@156d0bed (verified origin/beta tip; tree identical to receipted F1 candidate 9dc944c5 / beta merge 44f1f15f)",
+      "progress": [
+        {
+          "at": "2026-10-30T10:05:00.000Z",
+          "item": "fresh worktree opencode-fap-c9-closeout from verified origin/beta 156d0bed; full battery cited from the identical-tree F1 receipt (656/656 + audits + build green)"
+        },
+        {
+          "at": "2026-10-30T10:20:00.000Z",
+          "item": "prod build served at 127.0.0.1:4188; type-verify 120/120 PASS; hero-verify: student/teacher Vision-Pro category heroes EXACT at 390/768/1440 with zero overflow; home cast display reads 117@1440 vs spec 140 - traced to receipted B1 hero one-voice law (commit 6d54b76b, FAP-46 founder bug receipt) not drift; stage box keeps the 64/96/140 anchor"
+        },
+        {
+          "at": "2026-10-30T10:30:00.000Z",
+          "item": "acceptance evidence refreshed in artifacts (type-verify.json + hero-verify.json re-run on this tree) + FAP_C9_CLOSEOUT_EVIDENCE.md written (supersession documented for reviewer judgement; no transition performed - founder owns the C9 verdict per D-095)"
+        }
+      ]
     }
   ]
 }
