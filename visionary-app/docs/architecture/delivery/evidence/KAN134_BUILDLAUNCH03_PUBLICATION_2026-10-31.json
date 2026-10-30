@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-134",
+  "sourceId": "BUILD-LAUNCH-03",
+  "title": "User-approved app publication, storage and scoped connectors",
+  "date": "2026-10-31",
+  "lane": "ML engineering (publication controls)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-134-publication",
+  "branch": "codex/principal-kan-134-publication",
+  "baseCommit": "b9258221 (KAN-132 BUILD-LAUNCH-01 head)",
+  "implementationCommit": "652dfad063cbc7fd8ca117245d3efed8b8f39b4a",
+  "module": "ml/vmm/publication.py (+ ml/vmm/tests/test_publication.py)",
+  "whatBuilt": [
+    "EXPLICIT APPROVAL REQUIRED: owner requests publication bound to the exact artifact digest + revision; custodian approves; no self-publication, no model-initiated publication",
+    "CREDENTIAL REFS STAY PRIVATE: connector credentials stored as vault REFS (starting with 'vault:'), never raw values; non-owner/reviewer cannot read refs; published payload contains credential REFS only (credentialValuesExposed: false)",
+    "STALE / REVOKED APPROVALS FAIL SAFELY: wrong digest/revision approval refused; revocation after publication marks the artifact REVOKED and stops serving; revoked approval refuses re-publication",
+    "DUPLICATE PUBLICATION REFUSED: same artifact+revision cannot be published twice",
+    "SCOPED CONNECTORS: storage/database/api connectors registered with vault credential refs; unregistered connector refs refuse publication",
+    "ROLLBACK: deterministic rollback to an earlier PUBLISHED revision; forward rollback refused; user records unchanged"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 317/317 pass (303 previous + 16 publication)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The publication authority is the CONTRACT plane; actual hosted deployment/export (real connector invocation, real storage) remains a separate hosted gate. No public model endpoint is exposed. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
