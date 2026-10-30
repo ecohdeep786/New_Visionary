@@ -1059,7 +1059,7 @@
       "sourceId": "FAP-F1",
       "jiraKey": "FAP-35",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-35",
-      "status": "In Progress",
+      "status": "Testing",
       "startAt": "2026-10-29T08:23:00.000Z",
       "registrationNote": "Claimed live on the board this session (To Do -> In Progress via transition 31, 204, verified readback; start comment 10345 posted via comments endpoint).",
       "scope": "Final production pass: apply the measured Apple-premium spacing and composition system across every remaining public page. The six document surfaces (privacy/terms/security/cookies/accessibility/help) join the chapter system: data-section stage tags replace hand-set band paddings under a measured document-band law; careers life-strip and download sync-tray + contact strip adopt the compact-band law. Type ladder, CTA anatomy, ink palette and motion laws untouched. Fresh opencode worktree + own branch per D-098 from verified origin/beta 1550d5fa. FAP lane convention: beta first, dev after review.",
@@ -1093,6 +1093,10 @@
         {
           "at": "2026-10-30T04:25:00.000Z",
           "item": "full check battery green on candidate tree: verify-layout, verify-imports, qa-continuity/qa-motion/qa-taps, 54 script tests, scope:audit (237 files / 1656 declarations unchanged, digests re-written), lint 0, typecheck x2 0, 656/656 frontend tests, vite build ok; receipts appended to FAP_F1_PRODUCTION_PASS_EVIDENCE.md Checks section"
+        },
+        {
+          "at": "2026-10-30T08:33:00.000Z",
+          "item": "candidate committed 9dc944c5 on opencode/fap-f1-final-pass, pushed + ls-remote verified; merged to beta no-ff as 44f1f15f on top of principal delivery record 0d20700 (empty marker), pushed + ls-remote verified 0d207007..44f1f15f; FAP-35 moved In Progress -> Testing via transition 41 (204) + delivery comment 10375 posted via comments endpoint + readback verified (status Testing, updated 2026-10-30T14:03:29.171+0530); D-095 external reviewer must record exact reviewed commit before Done; dev merge after review acceptance"
         }
       ]
     }
