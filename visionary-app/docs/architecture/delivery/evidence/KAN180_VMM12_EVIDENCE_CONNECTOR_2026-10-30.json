@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-180",
+  "sourceId": "VMM-12",
+  "title": "Connect authoritative learner evidence, SCM/BKT and versioned model feature snapshots",
+  "date": "2026-10-30",
+  "lane": "ML engineering (learning-backend evidence contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-180-evidence-connector",
+  "branch": "codex/principal-kan-180-evidence-connector",
+  "baseCommit": "83e6922c (KAN-179 VMM-11 head; composes VMM-05 SCM/BKT + VMM-06 features/uncertainty)",
+  "implementationCommit": "4bf610e005f3504e1ba0040a9cc9d846d44f409e",
+  "module": "ml/vmm/evidence.py (+ ml/vmm/tests/test_evidence.py)",
+  "whatBuilt": [
+    "AUTHORITATIVE ONLY: receipts enter ONLY from backend assessment (assessedBy: backend, the KAN-74 server-owned evaluation); client pass-claims and model/OCR/Build outputs are REFUSED — nothing except backend assessment can fabricate mastery; projections carry masteryGranted: False unconditionally",
+    "IDEMPOTENT / REPLAY / REBUILD: ingestion idempotent by receiptId (duplicates converge; replayed ids with different content refused); the projection is a pure function of the receipt SET (out-of-order arrival converges to identical projections); rebuild() reproduces byte-identical projections",
+    "SCM/BKT CONNECTION: receipts -> per-concept attempt sequences -> VMM-05 scm_project with provenance (criteriaVersion, sourceVersion)",
+    "VERSIONED FEATURE/PROGRESS PROJECTIONS: receipts -> VMM-06 feature vectors + Wilson uncertainty, bound to a PINNED criteriaVersion (stale receipts refused)",
+    "SECOND-DEVICE READ-BACK: owner-scoped projections identical for any authorized device session; cross-workspace reads denied",
+    "BACKEND-ONLY INGEST: end-user callers denied; identities stay out of feature data (VMM-06 gate); absence of evidence is never a zero estimate"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 113/113 pass (100 previous + 13 evidence)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The connector is the contract plane; the real API/store flow against the hosted backend (KAN-36 DDL + KAN-74 evaluation store) remains integration work. No mastery claim is made anywhere. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
