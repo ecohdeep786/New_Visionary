@@ -1,0 +1,23 @@
+{
+  "jiraKey": "KAN-202",
+  "sourceId": "VMM-30",
+  "title": "Resumable long-running goals and user-controlled proactive assistance",
+  "date": "2026-10-30",
+  "lane": "ML engineering (durable jobs)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-202-resumable-goals",
+  "branch": "codex/principal-kan-202-resumable-goals",
+  "baseCommit": "2bd9a4eb (KAN-201 VMM-29 head)",
+  "implementationCommit": "6f718cef37508f6c2a7c1e6ec0a1c632ec1a83b7",
+  "module": "ml/vmm/longgoals.py (+ ml/vmm/tests/test_longgoals.py)",
+  "whatBuilt": [
+    "RESUMABLE GOALS: append-only events + periodic CHECKPOINT; resume replays to an identical state (restart/interruption recovery proven); LEASE bounds concurrent workers — lease-race denied, stale leases re-acquirable; only the leaseholder advances; progress deterministic",
+    "CANCEL: owner-only; stops advancement and leasing immediately",
+    "USER-CONTROLLED PROACTIVE ASSISTANCE: explicit per-category OPT-IN (nothing delivered by default — no default unsolicited messages); opt-out takes effect immediately; QUIET HOURS honored incl. overnight windows; dismissed suggestions never resurface; per-day frequency cap; every delivered suggestion gets a REAL receipt with a test identity",
+    "SUGGEST-ONLY: proactive suggestions never execute; actions require explicit per-action consent (executed stays false); NO always-on microphone"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 218/218 pass (208 previous + 10 longgoals)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The scheduler/lease/notification receipts are the CONTRACT plane; wiring into the existing backend scheduler and real notification delivery remains integration work. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
