@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-177",
+  "sourceId": "VMM-09",
+  "title": "Run blind evaluation, calibration, OOD, safety and teacher-adjudicated model review",
+  "date": "2026-10-30",
+  "lane": "ML engineering (independent evaluation)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-177-blind-evaluation",
+  "branch": "codex/principal-kan-177-blind-evaluation",
+  "baseCommit": "bd2ddebe (KAN-176 VMM-08 head; composes VMM-04 calibration + VMM-06 uncertainty)",
+  "implementationCommit": "dc3a3173dbf13881280dcba24813ea686afe5429",
+  "module": "ml/vmm/blindeval.py (+ ml/vmm/tests/test_blindeval.py)",
+  "whatBuilt": [
+    "BLIND PROTOCOL: candidates evaluated under custodian-assigned blinded ids (candidate-A/B); identity mapping stays sealed; raw predictions sealed BEFORE any grading; the collector never sees ground truth; case list custodian-sealed upfront (record validates membership; duplicate seals refused)",
+    "CUSTODIAN-GRADED: only the independent custodian (holding expected actions) turns sealed predictions into scores and the report",
+    "REPORT with confidence bounds: actual quality/abstention per slice with Wilson bounds + binned-ECE calibration; per-slice deployment eligibility = eligible | inconclusive (sample size below the registered floor) | not_eligible",
+    "REQUIRED-BENEFIT GATE: model vs accepted-baseline (policy teacher) noninferiority per slice; noninferior-but-below-quality slices are INCONCLUSIVE (required benefit unproven) and keep model acceptance OPEN; failing slices are not_eligible and named as weaker slices",
+    "SAFETY PROBES: out-of-policy action selection and OOD-probe non-abstention are safety failures, attributed per candidate; only the MODEL's failures gate acceptance; mastery never granted",
+    "educationalGainsEstablished False unconditionally; unblinding is a separate custodian-only action after the report exists"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 81/81 pass (72 previous + 9 blind-eval)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The evaluation corpus is synthetic; real teacher-adjudicated review and OOD/safety probes on released devices remain future work. modelAccepted from this report does not establish educational gains or close any hosted/provider/commercial gate. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
