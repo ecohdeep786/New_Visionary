@@ -1,0 +1,41 @@
+{
+  "jiraKey": "KAN-155",
+  "sourceId": "AI-17",
+  "title": "Natural two-way voice tutoring with interruption and safe actions",
+  "date": "2026-10-30",
+  "lane": "principal backend (voice-session contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-155-voice-session",
+  "branch": "codex/principal-kan-155-voice-session",
+  "baseCommit": "d1104623 (KAN-156 AI-18 head; chain KAN-75..82, 154, 153, 151, 156)",
+  "implementationCommit": "a5f17a4a451dbc53b05cc5d6695f239194ffdb0b",
+  "module": "backend/upstream/backend/src/voicesession/ (voicesession-types.ts, voicesession-lookups.ts, voicesession-service.ts, index.ts)",
+  "supporting": [
+    "backend/upstream/backend/tsconfig.voicesession.json",
+    "scripts/voicesession-check.mjs",
+    "backend/tests/contracts/voicesession/voicesession.test.mjs",
+    "package.json (voicesession:check script)"
+  ],
+  "whatBuilt": [
+    "Two-way voice session over the same authorized session with EXPLICIT mic consent/status and a QUALIFIED locale (composes the AI-18 qualification seam); no always-on recording, raw audio never retained, no voice cloning, no automatic raw-audio training",
+    "Interim transcripts are never input; only FINAL recognized speech advances, keyed by audio sequence ids; STALE (reordered/old) audio is suppressed",
+    "Interruption/stop/cancel are bounded and acknowledged (cancels the in-flight turn)",
+    "Uncertain numbers/units require a READBACK confirmation before they become input (never auto-committed)",
+    "SAFE ACTIONS allowlist-only; consequential Build accept/share/export require an explicit confirm bound to the EXACT project revision (revision-moved blocks); final speech is input, never assessment or permission authority",
+    "Reconnect reauthorizes (consent + no revocation); account switch denied; turn/token/concurrency/deadline bounds enforced"
+  ],
+  "provenEndToEnd": {
+    "openConsentQualification": "mic-consent required, qualified locale required, concurrency bound enforced",
+    "interimVsFinal": "interim never input; only final advances; reordered/old audio rejected (stale_audio)",
+    "interruption": "interrupt acknowledged and cancels the in-flight turn",
+    "readback": "uncertain number/unit stays awaiting_readback until confirmed (never auto-committed)",
+    "safeActions": "allowlist-only; build-accept without confirm -> action_requires_confirm; wrong revision -> revision_moved; exact-revision confirm allowed",
+    "reauthorizePrivacy": "reconnect re-checks consent/revocation (revoked fails closed); wrong user denied; raw audio never retained, no cloning/training",
+    "bounds": "max turns enforced (max_turns_exceeded)"
+  },
+  "verification": {
+    "voicesessionCheck": "npm run voicesession:check -> 7/7 tests pass (compile tsconfig.voicesession.json + node --test)",
+    "backendBuild": "npm run backend:build (nest build) -> exit 0"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "notes": "Native prerequisites per ticket: KAN-156, KAN-92, KAN-143, KAN-90, KAN-89, KAN-139 (all in Testing). This is the voice-session CONTRACT framework; the ASR/TTS/locale/provider adapters remain seams to be supplied at integration, and real-device/interruption/mic-loss/poor-network proofs require released hardware and qualified provider runs. No voice/provider/hosted/commercial/coverage gate is claimed closed by this work."
+}
