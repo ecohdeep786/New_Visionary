@@ -1172,6 +1172,58 @@
           "item": "qa:design PASS (contrast+44px gates on new chrome); root check exit 0 (54/54, build 17.57s); scope:audit rebaselined; dc2914a4 merged no-ff into beta f8ab83c6 remote-verified; FAP-28 -> Testing (41) + delivery comment; evidence committed in artifacts; worktree cleanup next; D-095 separate reviewer pending"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-21",
+      "jiraKey": "FAP-21",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-21",
+      "status": "Testing",
+      "startAt": "2026-10-30T19:30:00.000Z",
+      "scope": "Persona chip rail on small widths per the 2026-10-20 QA review: 5-chip persona row wrapped at 390px (Organizations onto line 2); fix = horizontal scroll rail with snap + edge fade, 44px targets.",
+      "branch": "opencode/fap-persona-rail",
+      "base": "beta@0f48ae75 (verified origin/beta tip)",
+      "progress": [
+        {
+          "at": "2026-10-30T19:35:00.000Z",
+          "item": "claimed (21->31); defect measured live at 390: hero audience rail row1 top 437, Organizations row2 top 485"
+        },
+        {
+          "at": "2026-10-30T19:45:00.000Z",
+          "item": "implemented .audience-rail law (public-system.css): <=520px snap rail with edge fade; caught and fixed align-center load-time snap (-> align-start) and parent-centered overflow (-> max-width 100% containment)"
+        },
+        {
+          "at": "2026-10-30T19:55:00.000Z",
+          "item": "verified single row at 390 + no page overflow; check exit 0 (build 18.27s); audit rebaselined; 528d1e83 merged no-ff into beta 033adf6e remote-verified; FAP-21 -> Testing (41) + delivery comment; evidence in artifacts; D-095 separate reviewer pending"
+        }
+      ]
+    },
+    {
+      "sourceId": "FAP-31",
+      "jiraKey": "FAP-31",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-31",
+      "status": "Testing",
+      "startAt": "2026-10-30T20:05:00.000Z",
+      "scope": "Lighthouse on the production build per the 2026-10-20 review: gates a11y >= 0.95, SEO >= 0.95, perf budgets recorded; run against prod build not dev.",
+      "branch": "opencode/fap-lighthouse-gate",
+      "base": "beta@6c42717b (verified origin/beta tip)",
+      "progress": [
+        {
+          "at": "2026-10-30T20:10:00.000Z",
+          "item": "claimed (21->31); lighthouse 13.6 installed; gate script written (programmatic, mobile emulation, 5 public routes, per-route receipts + baseline-audit assertions)"
+        },
+        {
+          "at": "2026-10-30T20:20:00.000Z",
+          "item": "first runs caught real defects: SEO 0.92 (link-text) on / + /student, a11y 0.93 (color-contrast) + 0.96 (aria-prohibited-attr) on /student, heading-order 0 on 4 routes; perf score null on all (NO_NAVSTART)"
+        },
+        {
+          "at": "2026-10-30T20:35:00.000Z",
+          "item": "fixed: frost caption 3.4:1 -> 4.86:1; lazy placeholder role=img; 6 generic link texts descriptive (FAP-15 correction posted 10449); footer h4->h3 + pricing th h3->h2; perf boundary recorded (Edge 141 vs lighthouse 13.6 tracer; D3 Fast3G ledger holds perf receipts); BP 0.92 = AdSense-vs-CSP console error (FAP-6 evidence)"
+        },
+        {
+          "at": "2026-10-30T20:45:00.000Z",
+          "item": "final gate PASS: a11y 1.0 + SEO 1.0 on all five routes; check exit 0 (build 18.02s); audit rebaselined; 38a8dc29 merged no-ff into beta a2a38354 remote-verified; FAP-31 -> Testing (41, comment 10448); cleanup next; D-095 separate reviewer pending"
+        }
+      ]
     }
   ]
 }
