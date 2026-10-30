@@ -1,0 +1,26 @@
+{
+  "jiraKey": "KAN-132",
+  "sourceId": "BUILD-LAUNCH-01",
+  "title": "Isolated code execution, dependencies, network and resource controls",
+  "date": "2026-10-31",
+  "lane": "ML engineering (sandbox security policy)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-132-sandbox-policy",
+  "branch": "codex/principal-kan-132-sandbox-policy",
+  "baseCommit": "a347ec92 (KAN-133 BUILD-LAUNCH-02 head; composes the VMM-02 signing fabric)",
+  "implementationCommit": "0da2f20d6bdd1c88abd51b84aa11232a56460d90",
+  "module": "ml/vmm/sandboxpolicy.py (+ ml/vmm/tests/test_sandboxpolicy.py)",
+  "whatBuilt": [
+    "FILESYSTEM DENIAL: sandboxed code has NO filesystem access (contract: filesystemAccess: denied in every verdict)",
+    "EGRESS DENIAL: NO network access from sandboxed code (contract: networkEgress: denied); denied import patterns (os/sys/subprocess/socket/requests/urllib/eval/exec/open/__import__) refused BEFORE execution",
+    "RESOURCE LIMITS: CPU seconds, wall-clock timeout, memory MB, and output bytes all bounded; exceeding the output bound TERMINATES the execution (outcome: terminated)",
+    "SECRETS ISOLATION: no credentials, API keys, tokens or secrets visible to sandboxed code; undeclared env keys refused; secret-looking key names denied even if declared",
+    "DEPENDENCY ALLOWLIST: only allowlisted dependencies may be used; unlisted deps refused before execution",
+    "ARTIFACT RECEIPTS: signed verdicts capture stdout, artifacts (with SHA-256), exit code, and the policy digest; every verdict documents the deny paths",
+    "NO PERSISTENCE: nothing the sandbox writes survives the execution (persistedAfterExit: false)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 303/303 pass (291 previous + 12 sandboxpolicy)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The in-memory implementation proves POLICY ENFORCEMENT; the actual hosted runtime (Docker/Firecracker/gVisor) with real kernel-level isolation remains a separate hosted gate. No public model endpoint is exposed. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
