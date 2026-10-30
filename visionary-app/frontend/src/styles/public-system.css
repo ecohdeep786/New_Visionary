@@ -133,3 +133,15 @@ html {
     .public-action:hover { transform: none; }
   }
 }
+
+/* FAP-C5: audience rail - on small widths the 5-chip persona row wraps
+   ("Organizations" lands on line 2). Below 520px the row becomes a
+   horizontal snap rail with an edge fade instead: one line, scrollable,
+   scroll-snap alignment, 44px targets unchanged (D2 law). Wide widths keep
+   the centered single line exactly as before (the rail never engages). */
+.audience-rail {display: flex;flex-wrap: nowrap;overflow-x: visible;max-width: 100%}
+@media(max-width:520px) {
+  .audience-rail.audience-rail {max-width: 100%;overflow-x: auto;justify-content: flex-start;scroll-snap-type: x proximity;scroll-padding-inline: 16px;scrollbar-width: none;-webkit-overflow-scrolling: touch;-webkit-mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%)}
+  .audience-rail.audience-rail::-webkit-scrollbar {display: none}
+  .audience-rail > * {flex: none;scroll-snap-align: start}
+}

@@ -307,7 +307,7 @@ export default function NewPersona({
               focus previews that line and holds it; the click opens the
               persona page. Auto-advance pauses under reduced motion. */}
           {audienceLinks?.length ? (
-            <nav aria-label="Audiences" className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
+            <nav aria-label="Audiences" className="audience-rail mt-8 items-center justify-center gap-x-1 gap-y-1">
               {audienceLinks.map((audience, i) => (
                 <Link
                   key={audience.to}
