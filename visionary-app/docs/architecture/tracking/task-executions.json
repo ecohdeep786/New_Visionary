@@ -1148,6 +1148,30 @@
           "item": "qa:design PASS (8 theme/width samples, populated surface); root check exit 0 (build 21.90s); scope:audit rebaselined 237 files/1656 declarations; e714ea9d pushed + merged no-ff into beta 3e302138 remote-verified; FAP-30 -> Testing (41); worktree removed after merge; D-095 separate reviewer pending"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-28",
+      "jiraKey": "FAP-28",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-28",
+      "status": "Testing",
+      "startAt": "2026-10-30T18:50:00.000Z",
+      "scope": "Settings polish per the 2026-10-20 QA review: styled listbox control for native selects, info panel for long disclaimer lines, Guide chip bottom clipping.",
+      "branch": "opencode/fap-settings-polish",
+      "base": "beta@e506316e (verified origin/beta tip)",
+      "progress": [
+        {
+          "at": "2026-10-30T18:55:00.000Z",
+          "item": "claimed (21->31); measure-first probe at 1280x900: Guide chip clipping NOT reproducible (0 fixed/sticky elements crossing viewport bottom on guide+settings); settings selects render native chrome"
+        },
+        {
+          "at": "2026-10-30T19:05:00.000Z",
+          "item": "implemented .v-select styled listbox chrome (native combobox retained, harness-compatible) on 5 WorkspaceTools selects + .v-info-panel disclaimer block; first shot caught the Guide-appearance select missed by exact-match class replace -> fixed"
+        },
+        {
+          "at": "2026-10-30T19:20:00.000Z",
+          "item": "qa:design PASS (contrast+44px gates on new chrome); root check exit 0 (54/54, build 17.57s); scope:audit rebaselined; dc2914a4 merged no-ff into beta f8ab83c6 remote-verified; FAP-28 -> Testing (41) + delivery comment; evidence committed in artifacts; worktree cleanup next; D-095 separate reviewer pending"
+        }
+      ]
     }
   ]
 }
