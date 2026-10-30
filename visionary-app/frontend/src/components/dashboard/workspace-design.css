@@ -389,7 +389,8 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-preference-choice {padding: 18px 0;border-top: 1px solid var(--v-border);line-height: 1.7}
 .v-preference-choice input {flex: none}
 .v-role-permission-art {width: 64px;height: 64px;flex: none}
-.v-role-class-link {color: var(--v-action)}
+.v-role-class-link {color: var(--v-action);min-height: 44px} /* FAP-29: tap law - class links in the insights table are controls */
+.v-home-secondary {color: #0066cc} /* FAP-29: these are links - C1 link token 5.24:1 on canvas (inherited action was 4.42:1) */
 .v-project-grid {display: grid;grid-template-columns: repeat(auto-fit,minmax(240px,1fr));gap: 16px;margin-top: 20px}
 .v-project-card {display: flex;flex-direction: column;align-items: stretch;gap: 16px;text-align: left;border: 1px solid var(--v-border);border-radius: 18px;padding: 22px;min-width: 0;background: var(--v-surface);transition: border-color var(--v-motion) var(--ease-out-apple),background-color var(--v-motion) var(--ease-out-apple)}
 .v-project-card:hover {border-color: var(--v-action-border);background: var(--v-soft)}
