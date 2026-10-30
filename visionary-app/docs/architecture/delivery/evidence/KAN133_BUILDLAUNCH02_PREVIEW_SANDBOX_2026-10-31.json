@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-133",
+  "sourceId": "BUILD-LAUNCH-02",
+  "title": "Isolated generated HTML previews and authenticated review bridge",
+  "date": "2026-10-31",
+  "lane": "ML engineering (preview sandbox)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-133-preview-sandbox",
+  "branch": "codex/principal-kan-133-preview-sandbox",
+  "baseCommit": "d4492c19 (KAN-209 VMM-CURR-02 head)",
+  "implementationCommit": "2dc9ff590e3074841a2290bc9397a2aa3a09af8e",
+  "module": "ml/vmm/previewsandbox.py (+ ml/vmm/tests/test_previewsandbox.py)",
+  "whatBuilt": [
+    "HTML CONTENT SANDBOX: generated HTML scanned and bounded before any preview is served; script tags, event handlers, external URLs, iframe/embed/object/form/input, CSS url()/expression/@import, <meta http-equiv>, and dangerous attributes all REFUSED (never stripped — dangerous content is refused outright)",
+    "ORIGIN + MESSAGE CONTROLS: the review bridge only accepts postMessage events from the AUTHORIZED preview origin; message types validated (ready/content-update/error/resize); content-update messages re-scanned through the sandbox; oversized payloads refused",
+    "AUTHENTICATED REVIEW BRIDGE: only the artifact owner (or authorized reviewer/custodian) can open sessions; the model CANNOT open sessions; sessions are time-bounded; cross-owner requests denied",
+    "ACCESSIBLE ERRORS: every refusal carries a machine-readable error code AND a meaningful text alternative",
+    "Content Security Policy returned with each session (default-src 'none'; style-src 'unsafe-inline'; img-src data:)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 291/291 pass (274 previous + 17 previewsandbox)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The sandbox is the CONTRACT plane; actual hosted preview rendering (real browser, real origin) and KAN-132's code-execution runtime remain gated. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
