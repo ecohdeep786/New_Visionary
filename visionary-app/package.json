@@ -62,6 +62,7 @@
     "deviceadapter:check": "node scripts/deviceadapter-check.mjs",
     "declarativeactivity:check": "node scripts/declarativeactivity-check.mjs",
     "offlinelearning:check": "node scripts/offlinelearning-check.mjs",
-    "safeguarding:check": "node scripts/safeguarding-check.mjs"
+    "safeguarding:check": "node scripts/safeguarding-check.mjs",
+    "speechqualification:check": "node scripts/speechqualification-check.mjs"
   }
 }
