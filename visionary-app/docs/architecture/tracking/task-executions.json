@@ -1711,6 +1711,26 @@
           "item": "check exit 0 (build 17.25s); audit rebaselined; bab19391 merged no-ff into beta 9d1ce550 remote-verified; FAP-33 -> Testing (41, comment 10468); worktree cleaned; D-095 separate reviewer pending"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-24",
+      "jiraKey": "FAP-24",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-24",
+      "status": "Done",
+      "startAt": "2026-10-31T01:30:00.000Z",
+      "scope": "FAP-C8 domain consolidation per the 2026-10-20 review: one rule for visionary.app vs @visionary.org.in, verified in product, recorded in the contract.",
+      "branch": "opencode/fap-e2-review-evidence",
+      "base": "beta@78127b3e (verified origin/beta tip)",
+      "progress": [
+        {
+          "at": "2026-10-31T01:32:00.000Z",
+          "item": "verified pure split: 27 web-canonical uses of visionary.app, 48 email uses of @visionary.org.in, zero cross-usage either direction"
+        },
+        {
+          "at": "2026-10-31T01:35:00.000Z",
+          "item": "rule recorded as DECISIONS D-105 (E2 lane, merged into beta 99ebef21); FAP-24 closed Done with receipt (comment); brand-level domain moves remain founder scope"
+        }
+      ]
     }
   ]
 }
