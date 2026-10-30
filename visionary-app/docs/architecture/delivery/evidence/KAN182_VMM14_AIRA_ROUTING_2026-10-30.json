@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-182",
+  "sourceId": "VMM-14",
+  "title": "Connect AIRA multi-model routing with safe context, tools and memory authority",
+  "date": "2026-10-30",
+  "lane": "ML engineering (orchestration)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-182-aira-routing",
+  "branch": "codex/principal-kan-182-aira-routing",
+  "baseCommit": "7c7ed035 (KAN-181 VMM-13 head)",
+  "implementationCommit": "1bbed66827d9b1317dc3180defc4a2a915e52412",
+  "module": "ml/vmm/routing.py (+ ml/vmm/tests/test_routing.py)",
+  "whatBuilt": [
+    "CONTEXT CARRIES REFERENCES, NEVER PRIVATE HISTORY: contextRefs are opaque {ref, revision} pairs, each permission-checked through the authorizer seam; unauthorized refs denied; the decision transports ONLY authorized refs",
+    "STALE REVISION + REVOKED PERMISSION REFUSED: refs below the current revision rejected; post-construction revocation fails closed (seam-driven)",
+    "TOOLS ALLOWLIST-INTERSECTED: request tools ∩ model-profile tools ∩ global allowlist; unknown tools refused outright",
+    "MEMORY CONSENT-BOUND: scopes resolve only with ACTIVE consent (ledger seam); cross-scope reads denied; revocation immediate",
+    "MODE / VOICE-TEXT HANDOFF: handoff re-routes with the SAME pinned context and records from/to; invalid modalities refused",
+    "DETERMINISTIC ROUTING: versioned table maps request classes to model profiles (pinned versions + fallback order); stale table versions refused; identical requests route identically (no timestamps in the decision); all-models-down yields a safe refusal (never an unauthorized model)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 135/135 pass (126 previous + 9 routing)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The router is the orchestration CONTRACT; scoped LIVE adapter calls to real providers require hosted access and remain a separate gate. No provider call is made by this ticket. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
