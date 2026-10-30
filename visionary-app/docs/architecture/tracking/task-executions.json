@@ -1124,6 +1124,30 @@
           "item": "acceptance evidence refreshed in artifacts (type-verify.json + hero-verify.json re-run on this tree) + FAP_C9_CLOSEOUT_EVIDENCE.md written (supersession documented for reviewer judgement; no transition performed - founder owns the C9 verdict per D-095)"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-30",
+      "jiraKey": "FAP-30",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-30",
+      "status": "Testing",
+      "startAt": "2026-10-30T17:55:00.000Z",
+      "scope": "Extend design-quality-review.mjs with 4.5:1 informative-text contrast check (alpha blending) and rendered 44px hit-area check so regressions fail the harness; static target law stays in qa:taps.",
+      "branch": "opencode/fap-design-contrast",
+      "base": "beta@04090cf5 (verified origin/beta tip)",
+      "progress": [
+        {
+          "at": "2026-10-30T17:58:00.000Z",
+          "item": "claimed (comment 10432, In Progress); measured-first probe on light/dark: empty-state all pass (worst 4.7:1 light, 9.04:1 dark); harness gates implemented (alpha-blended composited backgrounds, WCAG thresholds, 44px rendered controls, audits in review-results.json)"
+        },
+        {
+          "at": "2026-10-30T18:10:00.000Z",
+          "item": "first full run caught a real defect: .v-evidence stage badge 12px #0071e3 on #edf3ff = 4.22:1 -> fixed with --v-action-on-soft token (#0066cc light 5.0:1 / #aac7ff dark 10:1, D-104 single definition point) applied to .v-evidence + .v-class-sections selected tabs"
+        },
+        {
+          "at": "2026-10-30T18:30:00.000Z",
+          "item": "qa:design PASS (8 theme/width samples, populated surface); root check exit 0 (build 21.90s); scope:audit rebaselined 237 files/1656 declarations; e714ea9d pushed + merged no-ff into beta 3e302138 remote-verified; FAP-30 -> Testing (41); worktree removed after merge; D-095 separate reviewer pending"
+        }
+      ]
     }
   ]
 }
