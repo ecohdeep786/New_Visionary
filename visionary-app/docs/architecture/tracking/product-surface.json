@@ -38639,7 +38639,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "82025a6cfe939887eda015348376a24939034b7f89b25189433a3fd427e38513",
+      "declarationSha256": "ebd62369bda7679fe7938e2fc0b616ff8f3bdbd58e93c95b36ec4dab5bb1b9cf",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -54865,7 +54865,7 @@
       "calls": [],
       "destination": "/dashboard/support",
       "disabled": null,
-      "declarationSha256": "67f189a06c2518bb1000d8473202346120be96b04e4ac7791676997f2b6723d4",
+      "declarationSha256": "38ad2dfd8c78c49aa0680fd0e795b52dffda92c0981526cd8f22993ed67c725e",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -78826,7 +78826,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx",
-      "sourceSha256": "00c5fed1c7714f8d74757f42a61c60bd49974453bd5335f13620da03e3320f7a"
+      "sourceSha256": "d5f55f9975583430498410b0321bd1e9acc71363fa09b8168f7fddb4637cdc2b"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx",
@@ -79734,7 +79734,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Guide.jsx",
-      "sourceSha256": "bbe44e94d00fc3e1a9b06efc67b9b1da1a45eb084b83de8e6f3a265e2aa6a9b5"
+      "sourceSha256": "80350066a711182b6b6fc040e82145a4625906ea1e76d376f54f7f63b941cadd"
     },
     {
       "file": "frontend/src/pages/dashboard/Learn.jsx",
