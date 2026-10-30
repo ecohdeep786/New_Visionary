@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-201",
+  "sourceId": "VMM-29",
+  "title": "Personal learning from verified outcomes with measurable improvement",
+  "date": "2026-10-30",
+  "lane": "ML engineering (personalization)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-201-personal-adaptation",
+  "branch": "codex/principal-kan-201-personal-adaptation",
+  "baseCommit": "da304754 (KAN-199 VMM-27 head; composes VMM-05 BKT + VMM-12 ingestion semantics)",
+  "implementationCommit": "cc4a6d0e89f031fd5b665ee20cf04c4ee3e4cd8a",
+  "module": "ml/vmm/adaptation.py (+ ml/vmm/tests/test_adaptation.py)",
+  "whatBuilt": [
+    "THREE MODES COMPARED: cold-start (default BKT) vs memory-only (strategy preference from VMM-25 memory tags — memory NEVER moves mastery) vs verified-outcome (per-concept prior from backend-verified receipts only; model/client claims refused)",
+    "USER UNDERSTANDING vs ARTIFACT SUCCESS SEPARATE: artifact outcomes live in a distinct ledger and never move a mastery estimate (proven by test)",
+    "MEASURABLE IMPROVEMENT: step-wise predictive accuracy on HELD-OUT verified tasks (predict each outcome from the state BEFORE incorporating it); improvementEstablished only when verified-outcome beats cold-start by the PRE-REGISTERED delta; otherwise inconclusive — no invented gains (no receipts -> no claim)",
+    "OVER-INTERVENTION: corrections per session tracked against a pre-declared bound; excess flagged (composes the VMM-26 recurrence counter)",
+    "Deterministic + idempotent ingestion (duplicate receipts converge)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 208/208 pass (197 previous + 11 adaptation)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The comparison harness is the CONTRACT plane; demonstrating added value on real learner data requires accepted evidence (KAN-180's own gate) and remains future work. No educational-gain claim is made. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
