@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-171",
+  "sourceId": "VMM-03",
+  "title": "Versioned rights-cleared seed dataset and misconception/action ontology",
+  "date": "2026-10-30",
+  "lane": "ML engineering (model-building data foundation)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-171-seed-dataset-ontology",
+  "branch": "codex/principal-kan-171-seed-dataset-ontology",
+  "baseCommit": "7fa43a4b (KAN-170 VMM-02 head; composes ml/vmm supply-chain controls)",
+  "implementationCommit": "18896098fce5006290b28928353e6b6a5c285bcd",
+  "module": "ml/vmm/seeddata.py (+ ml/vmm/tests/test_seeddata.py)",
+  "whatBuilt": [
+    "VersionedOntology: append-only versioned code registries — misconception codes (MC-###) and pedagogical action codes (ACT-###) aligned with the VATS L2/L3 strategy set (ml/vats/pedagogy.py); earlier versions byte-stable after amendment",
+    "Rights-cleared seed records: license + consent refs mandatory, cohort-gated (child/minor require approved admission), locale/script identity, opaque source refs + content digests only — raw learner text never enters the registry",
+    "LABELS SEPARATE BY SCHEMA: misconceptionLabels, pedagogicalAction, buildOutcome and preferenceSignals are distinct fields; no function derives one from another (pedagogical action labels are never conflated with Build success or personal preferences)",
+    "BenchmarkExclusions: versioned licensed-benchmark exclusion registry; assert_no_benchmark_contamination refuses any record whose content digest is excluded (contamination guard)",
+    "SeedDatasetRegistry: append-only source-revocation ledger; revoked sources make their records untrainable (fail closed); the dataset registers as a SIGNED VMM-02 manifest whose digest binds the exact canonical record set with lineage to source artifacts",
+    "OKF independence: the core schema contains no OKF fields; KAN-205 is an adapter that reads this core, never a source of rights"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 22/22 pass (12 supplychain/exposure + 10 seeddata)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "No training run, cloud capacity, or dataset purchase happens from this ticket. The reviewed seed corpus itself (real consented examples for both modes and all released cohorts) requires rights holders and reviewer acceptance per the ticket's hard prerequisites; this delivers the registry/ontology/contamination/revocation CONTRACT the corpus will be admitted through. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
