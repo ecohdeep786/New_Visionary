@@ -1,0 +1,37 @@
+{
+  "jiraKey": "KAN-156",
+  "sourceId": "AI-18",
+  "title": "Indian-language speech and pedagogical-meaning qualification",
+  "date": "2026-10-30",
+  "lane": "principal backend (speech-qualification contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-156-speech-qualification",
+  "branch": "codex/principal-kan-156-speech-qualification",
+  "baseCommit": "f255b0fa (KAN-151 SAFE-01 head; chain KAN-75..82, 154, 153, 151)",
+  "implementationCommit": "1756e91b368301a2919570dc696affc726efdab4",
+  "module": "backend/upstream/backend/src/speechqualification/ (speechqualification-types.ts, speechqualification-lookups.ts, speechqualification-service.ts, index.ts)",
+  "supporting": [
+    "backend/upstream/backend/tsconfig.speechqualification.json",
+    "scripts/speechqualification-check.mjs",
+    "backend/tests/contracts/speechqualification/speechqualification.test.mjs",
+    "package.json (speechqualification:check script)"
+  ],
+  "whatBuilt": [
+    "Reproducible held-out evaluation-corpus REGISTRY with independent interface/input/source/output language + script identity, modality, device context (noisy/low-bandwidth) and pedagogical meaning",
+    "Rights/leakage checks: missing consent/license refused; a held-out case that overlaps training source/content is REJECTED (leakage_detected)",
+    "Versioned per-case/route evidence ledger: ASR/TTS/model/prompt/interface versions, recognition + critical-semantic errors, intelligibility/pronunciation, uncertainty, latency/cancellation, per-task cost; authors record evidence only",
+    "Preapproved qualification thresholds; coverage is REVIEWER-GATED",
+    "Dataset/model language COUNTS never establish coverage - covered only with held-out evidence AND a qualified human reviewer decision (accept/reject tri-state)"
+  ],
+  "provenEndToEnd": {
+    "rightsClearedCorpus": "consent/license required; held-out leakage from training source rejected; clean held-out + train cases register",
+    "versionedEvidence": "author records outcomes with versions, error/cost/cancellation; reviewer role cannot record (not_owner)",
+    "countsNeverCoverage": "counts-only and evidence-without-reviewer both report not covered; unqualified author cannot decide coverage",
+    "reviewerGated": "thresholds-met + reviewer accept -> covered; reviewer reject recorded -> not covered (reviewer_rejected); pending -> reviewer_decision_pending"
+  },
+  "verification": {
+    "speechqualificationCheck": "npm run speechqualification:check -> 4/4 tests pass (compile tsconfig.speechqualification.json + node --test)",
+    "backendBuild": "npm run backend:build (nest build) -> exit 0"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "notes": "Native prerequisites per ticket: KAN-29, KAN-65, KAN-84 (all in Testing). This builds the REPRODUCIBLE QUALIFICATION FRAMEWORK (registry, leakage checks, evidence ledger, reviewer-gated coverage). It does NOT run real ASR/TTS/provider comparisons or declare product voice coverage; qualified reviewers and a licensed/consented held-out corpus with actual provider runs remain required before any voice enablement. No hosted/provider/load/commercial/coverage gate is claimed closed by this work."
+}
