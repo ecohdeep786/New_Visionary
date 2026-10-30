@@ -1252,6 +1252,30 @@
           "item": "check exit 0 (build 17.33s); audit rebaselined; f9468087 merged no-ff into beta f3f72ce2 remote-verified; FAP-29 -> Testing (41, delivery comment); evidence + 20 screenshots committed; worktree cleanup next; D-095 separate reviewer pending; hosted real-user journeys = founder session boundary"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-6",
+      "jiraKey": "FAP-6",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-6",
+      "status": "Testing",
+      "startAt": "2026-10-30T21:30:00.000Z",
+      "scope": "FAP-A1 per the 2026-10-20 review: remove Google AdSense (meta + loader) from all public pages; zero ad-network requests; /cookies copy verified true.",
+      "branch": "opencode/fap-adsense-removal",
+      "base": "beta@b31c0b4f (verified origin/beta tip)",
+      "progress": [
+        {
+          "at": "2026-10-30T21:35:00.000Z",
+          "item": "claimed (21->31); only references = index.html meta + loader; /cookies page promises 'no advertising cookies... no ad networks. Ever.' - the loader contradicted it"
+        },
+        {
+          "at": "2026-10-30T21:40:00.000Z",
+          "item": "removed meta + script; acceptance probed: 0 ad requests + 0 console errors across 5 public routes; lighthouse BP 0.92 -> 1.0 (CSP had already blocked the loader - dead code + console noise), a11y/SEO 1.0 unchanged"
+        },
+        {
+          "at": "2026-10-30T21:45:00.000Z",
+          "item": "check exit 0 (build 17.53s); audit rebaselined; 45ce928e merged no-ff into beta 5d6da02c remote-verified; FAP-6 -> Testing (41, delivery comment); future ad-supported free tier = founder-scope consent-aware integration; worktree cleanup next; D-095 separate reviewer pending"
+        }
+      ]
     }
   ]
 }
