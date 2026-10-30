@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-178",
+  "sourceId": "VMM-10",
+  "title": "Create private model registry, provenance, version pinning and independent release approval",
+  "date": "2026-10-30",
+  "lane": "ML engineering (MLOps control plane)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-178-model-registry",
+  "branch": "codex/principal-kan-178-model-registry",
+  "baseCommit": "70272ac8 (KAN-177 VMM-09 head; composes VMM-02 signing + VMM-09 approval verdicts)",
+  "implementationCommit": "45ce7811e136a1704c0258a78cdf87ec039bf3b7",
+  "module": "ml/vmm/registry.py (+ ml/vmm/tests/test_registry.py)",
+  "whatBuilt": [
+    "REGISTRATION: VMM-02 manifest validation + signature verification FIRST (mutated-field re-submissions with an old signature refused before the immutability shortcut), lineage checked across the registered set, manifests IMMUTABLE per id+version (different digest refused; identical digest re-registration idempotent)",
+    "ARTIFACT VAULT: real artifact bytes attach under the exact registered digest (owner-only; wrong bytes/wrong rights refused); access-controlled reads — consumers never read private artifact bytes (typed AccessDenied)",
+    "DETERMINISTIC PINNING: consumers pin an EXACT version (metadata selection); NO floating-latest resolve exists in the contract; pinned token deterministic (id+version+digest); resolve returns exactly that manifest",
+    "APPROVAL: deployable only with an explicit custodian approval bound to an accepted VMM-09 report (modelAccepted + zero model safety failures); wrong rights/failed reports rejected; deployment_status registered|approved",
+    "ROLLBACK: deterministic pointer change to an EARLIER APPROVED version only; forward rollback refused; user records untouched (userRecordsChanged: false)",
+    "INDEPENDENT VERIFICATION: verify_artifact recomputes digest + signature + lineage without operator trust; provenance walks dataset->model"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 91/91 pass (81 previous + 10 registry)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The registry is an in-memory contract plane; the storage/serving backend integration is future work. No model is deployed by this ticket. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
