@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-199",
+  "sourceId": "VMM-27",
+  "title": "Adaptive AIRA planning, bounded delegation and independent outcome verification",
+  "date": "2026-10-30",
+  "lane": "ML engineering (orchestration/planning)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-199-adaptive-planning",
+  "branch": "codex/principal-kan-199-adaptive-planning",
+  "baseCommit": "033e550f (KAN-198 VMM-26 head)",
+  "implementationCommit": "f3802ad7dabe7bab3d6210b7e1e1bcdd358727e9",
+  "module": "ml/vmm/planning.py (+ ml/vmm/tests/test_planning.py)",
+  "whatBuilt": [
+    "DURABLE TYPED PLAN: steps TYPED (tool|delegation|approval|artifact) with explicit bounds (deadlineMs/maxRetries/maxStepCostUsd); append-only events; CHECKPOINT replays into an identical state across a context reset (proven by equality); callables never serialize (named verifier registry re-bound on restore — part of the plan definition)",
+    "BOUNDED DELEGATION: delegation steps REQUIRE a registered independent verifier at add-time; retries and cumulative cost budgets enforced — exceeding either fails the step CLOSED (no infinite retry)",
+    "INDEPENDENT OUTCOME VERIFICATION: a delegate's self-reported success is NEVER completion; completion requires the INDEPENDENT executable check to pass (failed checks fail the step); verification is backend-authorized",
+    "NO DUPLICATE OR LATE EFFECTS: step effects idempotent by stepId+revision; effects against a superseded plan revision refused",
+    "APPROVAL STEPS: explicit approver required; the model can neither approve nor self-approve",
+    "ADAPTIVE REPLANNING: constraint changes create a new plan revision with refreshed bounds; replanning backend-authorized"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 197/197 pass (186 previous + 11 planning)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The planner is the CONTRACT plane; wiring to the real AIRA/run adapters and hosted execution remains integration work. No educational-gain claim is made. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
