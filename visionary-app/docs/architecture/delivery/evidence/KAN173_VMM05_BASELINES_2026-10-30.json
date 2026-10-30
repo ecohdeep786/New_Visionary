@@ -1,0 +1,23 @@
+{
+  "jiraKey": "KAN-173",
+  "sourceId": "VMM-05",
+  "title": "Reproduce original VATS pedagogy, SCM baseline and simple statistical classifier",
+  "date": "2026-10-30",
+  "lane": "ML engineering (model baselines)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-173-pedagogy-scm-baselines",
+  "branch": "codex/principal-kan-173-pedagogy-scm-baselines",
+  "baseCommit": "1110c922 (KAN-172 VMM-04 head; composes VMM-02/03/04 fabric)",
+  "implementationCommit": "6287039658fa9233a30b85a8dfff099888d9ac90",
+  "module": "ml/vmm/baselines.py (+ ml/vmm/tests/test_baselines.py)",
+  "whatBuilt": [
+    "PEDAGOGY REPRODUCTION PROVEN: independent reimplementation of the original VATS L2/L3 decision policy (ml/vats/pedagogy.py) agrees with the reference on ALL 12 shared fixtures (integration/contracts/fixtures/vats-pedagogy.v1.json) AND refuses the same 17 invalid-snapshot mutations — reproduce proven by test, not claimed",
+    "SCM BASELINE: deterministic BKT student-cognitive-model — validated parameters strictly in (0,1), one-step posterior+learn update, sequence projection carrying provenance (sourceRef, criteriaVersion); masteryGranted is always False (the estimate never grants mastery or skips an assessed check)",
+    "SIMPLE STATISTICAL CLASSIFIER: multinomial Naive Bayes (Laplace-smoothed, log-sum-exp posterior, deterministic, stdlib-only) with an explicit abstention path below the confidence floor — uncertainty is abstention, not a forced guess",
+    "VMM-04 INTEGRATION: the classifier is evaluated THROUGH the benchmark registry (runner records, custodian grades); a strong baseline on easy slices passes the registered gates; a degraded slice fails per-slice noninferiority; educationalGainsEstablished remains False"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 41/41 pass (12 supplychain/exposure + 10 seeddata + 10 benchmarks + 9 baselines)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "Baselines are baselines: no model is selected, no training run starts, no cloud capacity is provisioned, and engineering benchmark success does not establish educational gains (recorded in the verdict itself). Calibration against live learner state remains future work. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
