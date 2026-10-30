@@ -83,6 +83,17 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-page :is(a,button).v-card:hover {border-color: var(--v-action-border);background: var(--v-soft)}
 .v-field {border: 1px solid var(--v-outline);border-radius: var(--v-radius-control);min-height: 46px;background: var(--v-surface);padding: 11px 14px;line-height: 1.5;color: var(--v-text)}
 .v-field::placeholder {color: var(--v-muted);opacity: 1}
+/* FAP-28: styled listbox chrome for native selects on Settings - keeps the
+   native combobox role, keyboard behavior and mobile pickers while matching
+   the custom system (chevron, hover, focus ring). */
+.v-field.v-select {appearance: none;padding-right: 40px;background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2360646c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat: no-repeat;background-position: right 14px center;cursor: pointer}
+.v-field.v-select:hover {border-color: var(--v-action)}
+.v-field.v-select:focus-visible {outline: none;border-color: var(--v-action);box-shadow: 0 0 0 2px color-mix(in srgb, var(--v-action) 25%, transparent)}
+.v-field.v-select:disabled {opacity: .5;cursor: default}
+/* FAP-28: info panel groups long disclaimer lines into one intentional block
+   instead of stray muted lines. */
+.v-info-panel {display: flex;gap: 10px;align-items: flex-start;margin-top: 16px;padding: 12px 14px;border: 1px solid var(--v-border);border-radius: var(--v-radius-control);background: var(--v-canvas);font-size: 0.8125rem;line-height: 1.6;color: var(--v-muted)}
+.v-info-panel svg {flex: none;margin-top: 2px;color: var(--v-action-on-soft)}
 .v-page textarea.v-field {resize: vertical;min-height: 112px}
 .v-notice {border-radius: var(--v-radius-control);padding: 14px 18px;background: var(--v-soft);font-size: 0.8125rem;line-height: 1.65}
 .v-notice.v-error {background: var(--v-error-soft)}
