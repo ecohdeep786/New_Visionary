@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-172",
+  "sourceId": "VMM-04",
+  "title": "Independent hidden-set benchmark registry across roles, subjects and modalities",
+  "date": "2026-10-30",
+  "lane": "ML engineering (model evaluation infrastructure)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-172-benchmark-registry",
+  "branch": "codex/principal-kan-172-benchmark-registry",
+  "baseCommit": "02591764 (KAN-171 VMM-03 head; composes VMM-02/03 fabric)",
+  "implementationCommit": "8f89b3d26461c4b3d28100549f9e481eef97ebdb",
+  "module": "ml/vmm/benchmarks.py (+ ml/vmm/tests/test_benchmarks.py)",
+  "whatBuilt": [
+    "PRE-REGISTRATION ENFORCED: numerical thresholds (min quality, per-slice noninferiority margin, max calibration error, max abstention rate, p95 latency, per-task cost, min cases per slice) plus a sample/power rationale registered by the INDEPENDENT CUSTODIAN before any evaluation exists; thresholds immutable; evaluations bind the thresholds digest (mismatch refused)",
+    "HIDDEN SET CUSTODIAN-SEALED: registry stores case digests + slice metadata only; expected answers never enter runner-visible records (registry refuses any case carrying an 'expected' key); deterministic seal digest commits the exact case set",
+    "GRADING CUSTODIAN-ONLY: the candidate runner records raw per-case results; a different independent custodian grades",
+    "PER-SLICE NONINFERIORITY: every slice (role x subject x modality + transfer/crossSession/toolBuild dimensions for the KAN-203 extension) must independently meet thresholds; abstained results score 0; binned ECE calibration gate (stdlib, deterministic); p95 latency and cost gates; min-cases-per-sample-rationale enforcement",
+    "Verdict records engineeringBenchmarkSuccess AND educationalGainsEstablished: False unconditionally (engineering benchmark success does not establish educational gains)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 32/32 pass (12 supplychain/exposure + 10 seeddata + 10 benchmarks)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "No candidate model is trained or selected by this ticket; the hidden-case CONTENT and custodian appointment are separate review items. Engineering benchmark success does not establish educational gains (recorded in the verdict itself). Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
