@@ -1628,6 +1628,61 @@
    "evidenceHeadCommit": "4a7df340",
    "scope": "candidate pipeline CAPSTONE; 251/251 total",
    "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "BUILD-LAUNCH-01",
+   "jiraKey": "KAN-132",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-132",
+   "status": "Testing",
+   "branch": "codex/principal-kan-132-sandbox-policy",
+   "implementationCommit": "0da2f20d",
+   "evidenceHeadCommit": "b9258221",
+   "scope": "sandbox security policy: filesystem/egress/resource denial, secrets isolation, dependency allowlist; part of 303/303",
+   "note": "D-095: separate reviewer must confirm exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "BUILD-LAUNCH-02",
+   "jiraKey": "KAN-133",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-133",
+   "status": "Testing",
+   "branch": "codex/principal-kan-133-preview-sandbox",
+   "implementationCommit": "2dc9ff59",
+   "evidenceHeadCommit": "a347ec92",
+   "scope": "HTML preview sandbox + authenticated review bridge; part of 291/291",
+   "note": "D-095: separate reviewer must confirm exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "BUILD-LAUNCH-03",
+   "jiraKey": "KAN-134",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-134",
+   "status": "Testing",
+   "branch": "codex/principal-kan-134-publication",
+   "implementationCommit": "652dfad0",
+   "evidenceHeadCommit": "797d29e9",
+   "scope": "publication + scoped connectors + rollback; part of 317/317",
+   "note": "D-095: separate reviewer must confirm exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-CURR-01",
+   "jiraKey": "KAN-208",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-208",
+   "status": "Testing",
+   "branch": "codex/principal-kan-208-curriculum-registry",
+   "implementationCommit": "25a8386c",
+   "evidenceHeadCommit": "5281d59c",
+   "scope": "curriculum source registry + inbox manifest; part of 263/263",
+   "note": "D-095: separate reviewer must confirm exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-CURR-02",
+   "jiraKey": "KAN-209",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-209",
+   "status": "Testing",
+   "branch": "codex/principal-kan-209-corpus-ingest",
+   "implementationCommit": "8acded27",
+   "evidenceHeadCommit": "d4492c19",
+   "scope": "corpus ingestion pipeline + deny paths; part of 274/274",
+   "note": "D-095: separate reviewer must confirm exact reviewed SHA before Done."
   }
  ]
 }
