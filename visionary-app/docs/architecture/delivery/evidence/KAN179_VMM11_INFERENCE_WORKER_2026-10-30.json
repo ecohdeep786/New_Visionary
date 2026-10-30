@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-179",
+  "sourceId": "VMM-11",
+  "title": "Deploy private Tiny-D1 inference worker and authorize backend-only predictions",
+  "date": "2026-10-30",
+  "lane": "ML engineering (model serving)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-179-inference-worker",
+  "branch": "codex/principal-kan-179-inference-worker",
+  "baseCommit": "f1c9570f (KAN-178 VMM-10 head; composes VMM-10 registry + VMM-07 model + VMM-05 baseline)",
+  "implementationCommit": "50319b3a33ca3ed8d1706a475abdd238d6e497d6",
+  "module": "ml/vmm/serving.py (+ ml/vmm/tests/test_serving.py)",
+  "whatBuilt": [
+    "BACKEND-ONLY AUTHORIZATION: predictions served ONLY to the registered backend service identity within its allowed scopes; end-user/anonymous callers and out-of-scope workspaces denied — NO public direct model endpoint; the worker cannot even be constructed without a backend-service identity",
+    "VERSIONED INFERENCE ON A PINNED APPROVED MODEL: deploy loads the pinned version from the VMM-10 registry (unapproved versions refused at deploy); responses carry modelId/version/digest; requests referencing a version that no longer matches the served pin are refused as stale (after rollback/redeploy)",
+    "DEADLINE + CANCELLATION: every request carries a deadline including caller-side queue time (deterministic); exhausted budget yields a defined CANCELLED response (never a late result); cancel() acknowledgment defined",
+    "SAFE FALLBACK: when the model abstains (confidence floor / OOD), the worker falls back to the ACCEPTED baseline (VMM-05 policy teacher) and marks response.fallback — never to an unvalidated path",
+    "WEIGHTS NEVER EXPOSED: no weights in any response path; weightsExposed false; actual worker request/response proven against a REAL trained checkpoint (trained from scratch in-test, registered + approved through the VMM-10 registry)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 100/100 pass (91 previous + 9 serving)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The worker is the serving CONTRACT; the actual hosted deployment (GCP/ingress, latency under load, real network) remains a separate hosted gate and is not claimed closed. No public endpoint is exposed. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
