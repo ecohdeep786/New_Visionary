@@ -1,1281 +1,1633 @@
 {
-  "schemaVersion": 2,
-  "meaning": "Current scoped task execution and review receipts supplement dated requirement/capacity snapshots. Historical acceptedImplementation/verifiedAt/check fields retain D-094 evidence, not independent approval. Read live Jira before assignment. D-095 requires a separate reviewer, exact reviewed revision, passed relevant verification and accepted integration before Done.",
-  "tasks": [
+ "schemaVersion": 2,
+ "meaning": "Current scoped task execution and review receipts supplement dated requirement/capacity snapshots. Historical acceptedImplementation/verifiedAt/check fields retain D-094 evidence, not independent approval. Read live Jira before assignment. D-095 requires a separate reviewer, exact reviewed revision, passed relevant verification and accepted integration before Done.",
+ "tasks": [
+  {
+   "sourceId": "SCOPE-01",
+   "jiraKey": "KAN-28",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-28",
+   "status": "Done",
+   "verifiedAt": "2026-10-17T17:56:50.838Z",
+   "scope": "QA-approved source-audit enabler; actual dev integration and Jira Done retained from D-096",
+   "branch": "codex/codex-tasks",
+   "implementationCommits": [
+    "593f2a210fd51d08b9859803d9e1cdf1b3a70c7d",
+    "36933dfedb33822feeded5254bf78a988984e46d"
+   ],
+   "acceptedImplementationDev": "36933dfedb33822feeded5254bf78a988984e46d",
+   "acceptedImplementationMain": "328239b616de4c7304081e8d09962ce87497957a",
+   "acceptedImplementationTree": "ac449a72013ceab86976424d04778e0155c494e4",
+   "checks": {
+    "frontendTests": 532,
+    "scriptTests": 18,
+    "failed": 0,
+    "lint": true,
+    "typecheck": true,
+    "build": true,
+    "buildSeconds": 17.32,
+    "audit": true
+   },
+   "artifacts": [
+    "docs/architecture/PRODUCT_SURFACE_AUDIT.md",
+    "docs/architecture/tracking/product-surface.json",
+    "integration/contracts/product-surface-review.json"
+   ],
+   "coverage": {
+    "routeEntries": 68,
+    "controlDeclarations": 1637,
+    "controlFiles": 219,
+    "registeredEndpoints": 26,
+    "reviewedOperationGroups": 30,
+    "roles": 5,
+    "syntheticCategoryScenarios": 9
+   },
+   "hostedDeploymentVerified": false,
+   "gcpProject": "visionary-research",
+   "deploymentBlocker": "Cloud Run services and Cloud Build triggers are not configured in the inspected project listings. Product environment/CI/IAM/secrets/deployment and hosted acceptance remain PLAT-01 and linked platform/release work.",
+   "linkedProductGatesRemainOpen": true,
+   "gcpConsoleAuthenticated": true,
+   "cloudRunServicesListed": 0,
+   "cloudBuildTriggersListed": 0,
+   "review": {
+    "state": "approved",
+    "implementer": "Codex",
+    "reviewer": "qa-review (independent prior report)",
+    "candidateCommit": "b829922d2d9250719ea71d70ed6f710e175cf27d",
+    "requestedAt": "2026-10-17T18:16:28.377Z",
+    "decisionAt": null,
+    "approvedCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+    "reason": "Implementation/test history is retained. A reviewer separate from the implementing agent must inspect the exact source-audit candidate, evidence and current dev compatibility before renewed Done.",
+    "jiraCommentId": "10006"
+   },
+   "history": [
     {
-      "sourceId": "SCOPE-01",
-      "jiraKey": "KAN-28",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-28",
-      "status": "Done",
-      "verifiedAt": "2026-10-17T17:56:50.838Z",
-      "scope": "QA-approved source-audit enabler; actual dev integration and Jira Done retained from D-096",
-      "branch": "codex/codex-tasks",
-      "implementationCommits": [
-        "593f2a210fd51d08b9859803d9e1cdf1b3a70c7d",
-        "36933dfedb33822feeded5254bf78a988984e46d"
-      ],
-      "acceptedImplementationDev": "36933dfedb33822feeded5254bf78a988984e46d",
-      "acceptedImplementationMain": "328239b616de4c7304081e8d09962ce87497957a",
-      "acceptedImplementationTree": "ac449a72013ceab86976424d04778e0155c494e4",
-      "checks": {
-        "frontendTests": 532,
-        "scriptTests": 18,
-        "failed": 0,
-        "lint": true,
-        "typecheck": true,
-        "build": true,
-        "buildSeconds": 17.32,
-        "audit": true
-      },
-      "artifacts": [
-        "docs/architecture/PRODUCT_SURFACE_AUDIT.md",
-        "docs/architecture/tracking/product-surface.json",
-        "integration/contracts/product-surface-review.json"
-      ],
-      "coverage": {
-        "routeEntries": 68,
-        "controlDeclarations": 1637,
-        "controlFiles": 219,
-        "registeredEndpoints": 26,
-        "reviewedOperationGroups": 30,
-        "roles": 5,
-        "syntheticCategoryScenarios": 9
-      },
-      "hostedDeploymentVerified": false,
-      "gcpProject": "visionary-research",
-      "deploymentBlocker": "Cloud Run services and Cloud Build triggers are not configured in the inspected project listings. Product environment/CI/IAM/secrets/deployment and hosted acceptance remain PLAT-01 and linked platform/release work.",
-      "linkedProductGatesRemainOpen": true,
-      "gcpConsoleAuthenticated": true,
-      "cloudRunServicesListed": 0,
-      "cloudBuildTriggersListed": 0,
-      "review": {
-        "state": "approved",
-        "implementer": "Codex",
-        "reviewer": "qa-review (independent prior report)",
-        "candidateCommit": "b829922d2d9250719ea71d70ed6f710e175cf27d",
-        "requestedAt": "2026-10-17T18:16:28.377Z",
-        "decisionAt": null,
-        "approvedCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
-        "reason": "Implementation/test history is retained. A reviewer separate from the implementing agent must inspect the exact source-audit candidate, evidence and current dev compatibility before renewed Done.",
-        "jiraCommentId": "10006"
-      },
-      "history": [
-        {
-          "decision": "D-094",
-          "status": "Done",
-          "at": "2026-10-17T17:56:50.838Z",
-          "scope": "Accepted source inventory and drift-check enabler only",
-          "note": "Earlier source-enabler closure and local verification; no independent reviewer was recorded."
-        },
-        {
-          "decision": "D-095",
-          "status": "Testing",
-          "at": "2026-10-17T18:16:28.378Z",
-          "jiraTransitionId": "41",
-          "jiraCommentId": "10004",
-          "note": "Founder requires review and verification before Done/next task. No code rollback or hosted deployment; no approval fabricated."
-        }
-      ],
-      "integration": {
-        "commit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
-        "branch": "dev",
-        "remotePublished": true,
-        "jiraCommentId": "10007",
-        "jiraTransitionId": "51",
-        "jiraReturnedStatus": "Done"
-      },
-      "worktree": null
+     "decision": "D-094",
+     "status": "Done",
+     "at": "2026-10-17T17:56:50.838Z",
+     "scope": "Accepted source inventory and drift-check enabler only",
+     "note": "Earlier source-enabler closure and local verification; no independent reviewer was recorded."
     },
     {
-      "sourceId": "SCOPE-02",
-      "jiraKey": "KAN-29",
-      "status": "To Do",
-      "scope": "Connected coverage candidate independently reviewed for technical compatibility; full real source/version/rights acceptance remains open. Founder defers source discussion on 21 October 2026.",
-      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix",
-      "branch": "codex/codex-kan-29-coverage-matrix",
-      "currentCheckpoint": "99d18b12d8734a52973c63f629ac88cdce2127e8",
-      "currentHandoff": "docs/architecture/delivery/KAN29_CURRENT_PRODUCTION_COMPATIBILITY.md on the KAN-29 branch",
-      "fullFeatureAccepted": false,
-      "preparationBranch": "codex/kan-29-coverage-matrix",
-      "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
-      "jiraCommentId": "10015",
-      "jiraTransitionId": "21",
-      "review": {
-        "state": "not-submitted"
-      },
-      "resumeCondition": "Founder requested KAN-34 completion first; KAN-29 remains open with its existing checkout/evidence preserved. Book/edition/language/licence discussion is deferred."
-    },
-    {
-      "sourceId": "AI-11",
-      "jiraKey": "KAN-137",
-      "status": "Done",
-      "scope": "Deterministic retrieval-binary-v2 metric repair and Python/Go parity only",
-      "branch": "codex/qa-review-kan-137-metrics",
-      "independentlyReviewedSource": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
-      "currentDevBase": "b6525e16b5cfbd45a1a0963cdcd62846eb992cf7",
-      "runtimeImplementationChanged": false,
-      "review": {
-        "state": "approved-existing-implementation",
-        "evidence": "docs/architecture/tracking/kan-137-qa-closeout.json",
-        "newCodeApprovalClaimed": false
-      },
-      "checks": {
-        "pythonTests": 3,
-        "sharedFixtures": 13,
-        "goAnalyticsSuites": 8,
-        "passed": true
-      },
-      "historicalBenchmarks": {
-        "recomputed": false,
-        "qualified": false,
-        "ledger": "ml/evaluation/historical-report-qualification.json"
-      },
-      "remainingGates": [
-        "KAN-83",
-        "KAN-142",
-        "KAN-143",
-        "KAN-127"
-      ],
-      "hostedAcceptance": false,
-      "worktree": null,
-      "integration": {
-        "branch": "dev",
-        "commit": "7d69436c21c3020cb1c7680b225ff911283cd8ee",
-        "remotePublished": true,
-        "jiraCommentId": "10016",
-        "jiraTransitionId": "51",
-        "jiraReturnedStatus": "Done"
-      },
-      "cleanup": {
-        "qaWorktreeRemoved": true,
-        "extraRegisteredWorktrees": 0,
-        "publishedTaskBranchRetained": true,
-        "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-18.json"
-      }
-    },
-    {
-      "sourceId": "ACCOUNT-DIRECTORY-01",
-      "jiraKey": "KAN-161",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-161",
-      "status": "Done",
-      "scope": "Finalize UID ownership hierarchy; derived activity directory and additive current-tree maintenance. Future domain integration and hosted/provider gates remain open.",
-      "branch": "codex/codex-kan-161-account-structure",
-      "baseCommit": "f92495eadba3a07b17adef73a70d43ac38dab547",
-      "worktree": null,
-      "review": {
-        "state": "approved",
-        "implementer": "Codex",
-        "reviewer": "account_structure_review",
-        "approvedCommit": "075e082fc084261ab7fbacc30bade178361d92db",
-        "evidence": "docs/architecture/delivery/KAN161_INDEPENDENT_REVIEW.md",
-        "reviewBranchCommit": "cae90769732dcff26e6a1b0ea9b125a196c41dd0"
-      },
-      "hostedAcceptance": false,
-      "implementationCommit": "075e082fc084261ab7fbacc30bade178361d92db",
-      "checks": {
-        "backendBuild": true,
-        "backendTests": 63,
-        "backendFailed": 0,
-        "rootCheck": true,
-        "scriptTests": 18,
-        "frontendTests": 532,
-        "frontendFailed": 0,
-        "lint": true,
-        "typecheck": true,
-        "frontendBuild": true,
-        "buildSeconds": 29.14
-      },
-      "jiraCommentId": "10018",
-      "integration": {
-        "branch": "dev",
-        "commit": "fe20cb454e3d1383687ed50ef2b8de1f10b4602b",
-        "remotePublished": true,
-        "jiraCommentId": "10019",
-        "jiraTransitionId": "51",
-        "jiraReturnedStatus": "Done"
-      },
-      "liveEvidence": "docs/architecture/tracking/kan161-account-directory-closeout.json",
-      "cleanup": {
-        "registeredExtraWorktrees": 0,
-        "reviewerWorktreeRemoved": true,
-        "taskWorktreeUnregistered": true,
-        "taskFolderRemainder": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-161-account-structure",
-        "taskFolderRemoved": false,
-        "dependencyJunctionsRemovedWithoutFollowingTargets": true,
-        "primaryDependenciesRetained": true,
-        "reviewPreloaderPreserved": "artifacts/qa/kan161/review-ts-preloader.cjs",
-        "taskBackup": "93e27749a0eda8cdfc549d50d13125a928db3b75",
-        "limitation": "Git removal unregistered the completed task but reported Filename too long. Automatic approval review rejected the checked extended-path recursive deletion: blocked by policy. No bypass or further deletion attempted."
-      }
-    },
-    {
-      "sourceId": "MAIN-PRODUCTION-01",
-      "jiraKey": "KAN-162",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-162",
-      "status": "Done",
-      "scope": "Verified main-only production hosting and CI/CD in visionary-research; full product/content/provider gates remain separate",
-      "branch": "codex/firebase-visionary-research",
-      "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
-      "worktree": null,
-      "review": {
-        "state": "approved",
-        "implementer": "Codex",
-        "reviewer": "/root/kan162_review",
-        "approvedCommit": "4de8a33cb223a746c9738dc24554dd8ab812556e",
-        "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md",
-        "hostedScopeAccepted": true,
-        "hostedEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md",
-        "productionAcceptanceReportCommit": "86718c1f7b9420b38e00bb20bd9e41cea254435b"
-      },
-      "integration": {
-        "devCommit": "ab201364d4a0dd3ed2314851fd94164b0a2887f3",
-        "mainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
-        "remotePublished": true,
-        "helperFollowupPendingIntegration": false,
-        "evidenceDevCommit": "1caf66fbbc039f8d1d054e2f42ce7d88852fa356"
-      },
-      "checks": {
-        "frontendTests": 532,
-        "scriptTests": 18,
-        "productionTests": 65,
-        "infrastructureNodeTests": 21,
-        "bootstrapPythonTests": 11,
-        "highCriticalAuditFindings": 0,
-        "moderateAuditFindings": 4,
-        "mainBuildContainerSmokePublish": true
-      },
-      "hosted": {
-        "project": "visionary-research",
-        "projectNumber": "174851137514",
-        "region": "asia-south1",
-        "service": "visionary-product",
-        "baselineRevision": "visionary-product-baseline-f3cf316edb74-mvgi7evq",
-        "imageDigest": "sha256:95f26b3ca800d148577456b2b21951bb2f93f76d1534628a37304ccd1363a7aa",
-        "edgeIp": "34.8.58.39",
-        "baselineVerified": true,
-        "syntheticUidTwoSessionStoreChecksPassed": true,
-        "syntheticIdentityDisabled": true,
-        "certificateStatus": "ACTIVE",
-        "canonicalAcceptance": true,
-        "automaticDeploymentEnabled": true,
-        "currentRevision": "visionary-product-g7aee2324024c-39405370084-1",
-        "actualMainPushDeploymentVerified": true,
-        "rollbackRestorationVerified": true,
-        "runUrl": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39405370084"
-      },
-      "jiraCommentId": "10053",
-      "jiraReturnedStatus": "Done",
-      "linkedProductGatesRemainOpen": true,
-      "jiraTransitionId": "51",
-      "verifiedAt": "2026-10-20T10:12:09Z",
-      "cleanup": {
-        "state": "completed",
-        "removedWorktrees": [
-          "codex-kan-162-main-deployment",
-          "qa-review-kan-162-main-deployment",
-          "qa-review-kan-162-visionary-research",
-          "firebase-visionary-research"
-        ],
-        "preservedFiles": 77,
-        "preservedBytes": 776009,
-        "localEvidenceRoot": "C:/Users/Administrator/New_Visionary/visionary-app/artifacts/qa/kan162-closeout-20261020",
-        "manifest": "preserved-files.json",
-        "pushedSourceAndReviewRefsRetained": true,
-        "dependencyJunctionsRemovedWithoutFollowingTargets": 4,
-        "primaryDependenciesRetained": true,
-        "primaryBranch": "dev"
-      }
-    },
-    {
-      "sourceId": "LEARN-09",
-      "jiraKey": "KAN-145",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-145",
-      "status": "Done",
-      "scope": "Repaired development knowledge-projection enabler; whole connected feature prerequisites/acceptance remain open",
-      "branch": "codex/deepseek-kan-145-knowledge-projection",
-      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
-      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-145-knowledge-projection",
-      "review": {
-        "state": "approved-repaired-development-enabler",
-        "candidateCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
-        "approvedCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
-        "reviewer": "/root/kan145_repair_review",
-        "reviewerReportCommit": "7f1fa144a5b0155fcf8c5c4ea62726ab994fd70c",
-        "evidence": "docs/architecture/reviews/KAN145_EXACT_SHA_REPAIR_8B14A762.md",
-        "fullFeatureAccepted": false,
-        "enablerScopeAccepted": true
-      },
-      "hostedAcceptance": false,
-      "implementationCommit": "98ce3e5916e61b3c76a01b732f29d9b49b692af6",
-      "checks": {
-        "backendBuild": true,
-        "focusedTests": 11,
-        "backendTests": 84,
-        "rootCheck": true,
-        "frontendTests": 532,
-        "scriptTests": 18,
-        "failed": 0,
-        "productionTests": 76
-      },
-      "jiraCommentId": "10061",
-      "liveEvidence": "integration/KNOWLEDGE_PROJECTION_CONTRACT.md",
-      "currentDevBase": "e089319a24953bcadb522fcfef0e795065dd0c29",
-      "repairHandoff": "docs/architecture/delivery/KAN145_STORAGE_REPAIR.md",
-      "remainingPrerequisites": [
-        "KAN-144",
-        "KAN-74"
-      ],
-      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
-      "acceptedScope": "development backend enabler",
-      "fullFeatureGate": "KAN-163",
-      "fullFeatureAccepted": false,
-      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
-      "integration": {
-        "branch": "dev",
-        "commit": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
-        "pullRequest": 15,
-        "remotePublished": true,
-        "ciRun": "39457245132",
-        "ciConclusion": "success",
-        "productionJob": "skipped"
-      },
-      "jiraReturnedStatus": "Done",
-      "jiraTransitionId": "51",
-      "cleanup": {
-        "state": "removed-after-verified-preservation",
-        "removed": true,
-        "reason": "Completed source and review evidence accepted on dev/main; required ignored configuration/evidence preserved with SHA256 verification before exact checkout removal.",
-        "primaryDependenciesRetained": true,
-        "sourceAndReviewRefsRetained": true,
-        "worktrees": [
-          "deepseek-kan-145-knowledge-projection",
-          "qa-review-kan-145-knowledge-projection"
-        ],
-        "preservedFiles": 9,
-        "preservedBytes": 118332,
-        "evidenceRoot": "artifacts/qa/kan145-closeout-20261020",
-        "manifest": "preserved-files.json",
-        "jiraCommentId": "10062",
-        "previousCheckpoint": "blocked-by-automatic-approval-review",
-        "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-22.json"
-      },
-      "enablerScopeAccepted": true
-    },
-    {
-      "sourceId": "LEARN-10",
-      "jiraKey": "KAN-146",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-146",
-      "status": "Done",
-      "scope": "Repaired development teaching replay and client confirmation enabler; full learner acceptance open",
-      "branch": "codex/deepseek-kan-146-teaching-loop",
-      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
-      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-146-teaching-loop",
-      "review": {
-        "state": "approved-repaired-development-enabler",
-        "approvedCommit": "3920140df87a21522b227c0e807476b47a3a29d6",
-        "reviewer": "/root/kan146_repair_review",
-        "reviewerReportCommit": "4259d5ef40b853975de059655fda0908b90155a9",
-        "evidence": "docs/architecture/reviews/KAN146_EXACT_SHA_REPAIR_3920140D.md",
-        "enablerScopeAccepted": true,
-        "fullFeatureAccepted": false
-      },
-      "hostedAcceptance": false,
-      "implementationCommit": "83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec",
-      "checks": {
-        "backendBuild": true,
-        "backendTests": 95,
-        "productionTests": 87,
-        "focusedFrontendTests": 18,
-        "scriptTests": 18,
-        "frontendTests": 550,
-        "rootCheck": true,
-        "lint": true,
-        "typecheck": true,
-        "buildSeconds": 153,
-        "independentBackendTests": 22,
-        "independentFrontendTests": 18,
-        "independentVersionProbes": 12,
-        "failed": 0
-      },
-      "jiraCommentId": "10065",
-      "liveEvidence": "integration/LEARNING_LOOP_CONTRACT.md",
-      "currentDevBase": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
-      "repairHandoff": "docs/architecture/delivery/KAN146_REPLAY_REPAIR.md",
-      "remainingPrerequisites": [
-        "KAN-145",
-        "KAN-143"
-      ],
-      "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
-      "acceptedScope": "development teaching loop/client enabler",
-      "fullFeatureGate": "KAN-164",
-      "fullFeatureAccepted": false,
-      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
-      "integration": {
-        "branch": "dev",
-        "commit": "e91a75ddbcd1e40b1894367909298e7373728aab",
-        "pullRequest": 16,
-        "remotePublished": true,
-        "ciRun": "39459245188",
-        "ciConclusion": "success",
-        "productionJob": "skipped"
-      },
-      "enablerScopeAccepted": true,
-      "jiraReturnedStatus": "Done",
-      "jiraTransitionId": "51",
-      "cleanup": {
-        "state": "removed-after-verified-preservation",
-        "removed": true,
-        "reason": "Completed source and review evidence accepted on dev/main; required ignored configuration/evidence preserved with SHA256 verification before exact checkout removal.",
-        "primaryDependenciesRetained": true,
-        "sourceAndReviewRefsRetained": true,
-        "worktrees": [
-          "deepseek-kan-146-teaching-loop",
-          "qa-review-kan-146-teaching-loop"
-        ],
-        "preservedFiles": 18,
-        "preservedBytes": 310136,
-        "evidenceRoot": "artifacts/qa/kan146-closeout-20261020",
-        "manifest": "preserved-files.json",
-        "deletionAttemptOnThisTask": false,
-        "previousCheckpoint": "blocked-by-automatic-approval-review",
-        "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-22.json"
-      }
-    },
-    {
-      "jiraKey": "KAN-163",
-      "status": "To Do",
-      "scope": "Full connected learner feature acceptance retained from KAN-145; original requirements not accepted by enabler closeout",
-      "scopeTransferredFrom": "KAN-145",
-      "prerequisites": [
-        "KAN-144",
-        "KAN-74",
-        "KAN-36",
-        "KAN-29"
-      ],
-      "fullFeatureAccepted": false,
-      "worktree": null
-    },
-    {
-      "jiraKey": "KAN-164",
-      "status": "To Do",
-      "scope": "Full connected learner feature acceptance retained from KAN-146; original requirements not accepted by enabler closeout",
-      "scopeTransferredFrom": "KAN-146",
-      "prerequisites": [
-        "KAN-163",
-        "KAN-143",
-        "KAN-74"
-      ],
-      "fullFeatureAccepted": false,
-      "worktree": null
-    },
-    {
-      "sourceId": "SCOPE-07",
-      "jiraKey": "KAN-34",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
-      "status": "Done",
-      "scope": "Accepted released email/Google/phone sign-in, secure server-owned remembered sessions, saved onboarding and global sign-out; native production phone closeout independently accepted. Custom sender-domain/templates and broad security/load/MFA coverage remain separate.",
-      "branch": "codex/codex-kan-34-signin-matrix",
-      "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
-      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
-      "implementer": "Codex",
-      "review": {
-        "state": "approved-source-and-hosted-release",
-        "reviewer": "/root/kan34_release_review",
-        "exactReviewedCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
-        "report": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
-        "reportCommit": "1398227ae1001db8626ac5916f20f50fab7038d0",
-        "fullFeatureAccepted": true,
-        "hostedPhoneAcceptancePending": false,
-        "hostedReport": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
-        "hostedReportCommit": "893a322444d8971a0c7ad2c2fc9b686982770ac1"
-      },
-      "implementationCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
-      "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/19",
-      "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39908224000",
-      "sourceCiConclusion": "success",
-      "handoff": "docs/architecture/delivery/KAN34_PHONE_AUTH_REVIEW.md",
-      "jiraResumeCommentId": "10126",
-      "checks": {
-        "backendBuild": true,
-        "backendTests": 107,
-        "frontendTests": 624,
-        "scriptTests": 18,
-        "gcpJavascriptTests": 27,
-        "rootCheck": true,
-        "lint": true,
-        "typecheck": true,
-        "firebaseModeBuild": true,
-        "finalFirebaseBuildSeconds": 25.86,
-        "phoneEmulatorBrowserScenarios": 8,
-        "emailEmulatorBrowserScenarios": 11,
-        "realPhoneSmsAcceptance": true,
-        "failed": 0
-      },
-      "hostedAcceptance": true,
-      "fullFeatureAccepted": true,
-      "liveContinuation": {
-        "date": "2026-10-22",
-        "localRealFirebaseGoogle": true,
-        "canonicalProductionGoogle": true,
-        "existingProductionCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
-        "localhostDomainAddedAndReadBack": true,
-        "productionDomainsPreserved": true,
-        "signInProviderConfigurationUnchanged": true,
-        "realVerificationMailReceived": true,
-        "realVerifiedEmailSession": true,
-        "realResetMailReceived": true,
-        "passwordResetCompleted": true,
-        "appleConfigured": false,
-        "appleRealSignIn": false,
-        "onboardingAccountRecoveryRepaired": true,
-        "compiledRecoveryScenarios": 6,
-        "repairReview": "pending",
-        "founderReleaseChoices": {
-          "appleWeb": "removed-by-explicit-founder-instruction",
-          "emailVerification": "firebase-native-links-explicitly-selected",
-          "customSender": false,
-          "numericCodeImplemented": false
-        },
-        "rememberedDeviceCandidate": {
-          "absoluteDays": 14,
-          "idleDays": 7,
-          "authority": "server-verified-HttpOnly-cookie-plus-device-record",
-          "sdkTokenPersistence": "memory-only",
-          "deployed": true,
-          "globalLogout": true,
-          "passiveVisibleObservationSeconds": 30,
-          "passiveObservationTouchesIdle": false
-        },
-        "firebaseTemplates": {
-          "status": "prepared-not-applied",
-          "api": "EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED",
-          "consoleSenderSubjectSave": "rejected-project-updates-unavailable",
-          "senderDomain": "visionary.org.in",
-          "senderDomainStatus": "IN_PROGRESS",
-          "configuration": "infrastructure/gcp/auth-email-templates.json"
-        },
-        "resetEvidence": {
-          "mailDelivered": true,
-          "resetFormOpened": true,
-          "oldPasswordRejectedAfterHandoff": true,
-          "preResetSessionDenied": true,
-          "newPasswordSignInObserved": true,
-          "sourceCommit": "d87ea72e9cbc4b88a701718231ac7e5a1b786665"
-        },
-        "currentCandidateNativeEmail": {
-          "sourceCommit": "10f1f95646b21b64a72fcef9acac36e1b37186e1",
-          "realSignIn": true,
-          "savedOnboardingRestored": true,
-          "reloadRestored": true,
-          "globalLogoutFirestoreVersionBefore": 0,
-          "globalLogoutFirestoreVersionAfter": 1,
-          "globalCutoffRecorded": true,
-          "issuerReturnedToSignIn": true,
-          "fixtureDisabledAfterVerification": true,
-          "fixtureTokensRevokedAfterVerification": true,
-          "originalAccountChanged": false,
-          "hostedCandidate": false
-        },
-        "mailDomainLatestRead": {
-          "pendingCustomDomain": "visionary.org.in",
-          "customDomainState": "IN_PROGRESS",
-          "domainVerificationRequestTime": "2026-10-22T16:44:51.371Z",
-          "templateEditsApplied": false
-        }
-      },
-      "integration": {
-        "remotePublished": true,
-        "commit": "98b11ad4282889bd7ce7a864a24fe747fd6acbfe",
-        "acceptedBaseCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
-        "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39909053089",
-        "ciConclusion": "success"
-      },
-      "synchronizedDevCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
-      "sourceCiCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
-      "releasePlan": {
-        "procedure": "main-only-reviewed-phone-extension",
-        "policyAwareRollback": "1ae078dc469846246bb5571717e39a6afe7a402e",
-        "epochEnforcementAlwaysEnabled": true,
-        "phoneDeployed": true,
-        "freshPhoneSignInUnavailableOnRollback": true
-      },
-      "acceptedBase": {
-        "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
-        "review": {
-          "state": "approved-source-and-two-stage-release-procedure",
-          "reviewer": "/root/kan34_release_review",
-          "exactReviewedCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
-          "report": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
-          "reportCommit": "a333955c8a35e1fa1072610d3e5e640321dad7d4",
-          "independentAuthAndGcpTests": 65,
-          "independentRenderLint": true,
-          "compiledBrowserReceiptsInspected": 14,
-          "fullFeatureAccepted": false,
-          "hostedAcceptancePending": true
-        },
-        "checks": {
-          "backendBuild": true,
-          "backendTests": 104,
-          "frontendTests": 617,
-          "scriptTests": 18,
-          "gcpJavascriptTests": 26,
-          "rootCheck": true,
-          "rootCheckEvidence": "Local root check at d3b3ba32; final445 import repair separately linted/rebuilt, all14 compiled browser cases pass, and final445 GitHub CI reruns full root check.",
-          "lint": true,
-          "typecheck": true,
-          "firebaseModeBuild": true,
-          "finalFirebaseBuildSeconds": 28.17,
-          "compiledBrowserScenarios": 14,
-          "compiledBrowserEnvironment": "Fictional identity/store, compiled frontend and Nest service. Four methods, six onboarding recovery, two enabled global-logout device cases and two disabled compatibility-stage local-logout cases.",
-          "realProviderAcceptance": false,
-          "failed": 0
-        },
-        "devIntegrationCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
-        "mainCommit": "1ae078dc469846246bb5571717e39a6afe7a402e",
-        "hostedAcceptance": true,
-        "evidence": "docs/architecture/delivery/evidence/KAN34_HOSTED_AUTH_2026-10-22.json",
-        "independentHostedReviewCommit": "95a6bb00fd0825e03972d43d479040ae9c09570c"
-      },
-      "phoneSourceCi": {
-        "commit": "24663e2199c9ffeeffa80e5946429684a0caa2cd",
-        "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39830621424",
-        "conclusion": "success",
-        "approval": false
-      },
-      "mainRelease": {
-        "commit": "a0d24fdf587bc1c9af0a90061bcc1b55089349ee",
-        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/20",
-        "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39909298035",
-        "conclusion": "success",
-        "evidence": "docs/architecture/delivery/evidence/KAN34_HOSTED_PHONE_2026-10-23.json"
-      },
-      "jiraDone": {
-        "date": "2026-10-23",
-        "transitionId": 51,
-        "returnedStatus": "Done",
-        "readBackStatus": "Done",
-        "commentId": "10138"
-      },
-      "closeoutPublication": {
-        "scope": "Documentation only; unchanged runtime",
-        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/21",
-        "state": "pending checked publication"
-      },
-      "worktreeCleanup": {
-        "state": "eligible after checked closeout publication",
-        "requiredLocalEvidencePreserved": true,
-        "preservationRoot": "C:/Users/Administrator/Visionary-local/completed-worktrees-2026-10-23",
-        "retainedRefs": [
-          "main",
-          "dev",
-          "beta",
-          "KAN-29"
-        ],
-        "actualRemovalReceipt": "Record actual inventory and removal in Jira after cleanup; this checkpoint does not assert future removal"
-      }
-    },
-    {
-      "sourceId": "FAP-D1",
-      "jiraKey": "FAP-53",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-53",
-      "status": "Testing",
-      "verifiedAt": "2026-10-24T06:25:28.874Z",
-      "scope": "D1 one motion law: --ease-out-apple curve + 180/280/420/650/900ms duration scale on the single token home; enforced end-to-end by qa-motion across 403 source files and scripts/tests/motion-law.test.mjs",
-      "branch": "opencode/fap-d1-motion",
-      "implementationCommits": [
-        "af6a80472f6d93d22abc41f7f141ad966a902363"
-      ],
-      "betaIntegration": {
-        "mergeCommit": "4dc833dd",
-        "pushedAndVerified": true,
-        "protocol": "founder-amended: agents merge task lane into beta and push; no beta<->dev merges by agents; dev untouched"
-      },
-      "checks": {
-        "fullCheck": "green (verify-layout, verify-imports, qa-continuity, qa-motion, script tests, lint, both typechecks, 624/624 tests, vite build 47.63s)",
-        "frontendTests": 624,
-        "qaMotionReceiptPair": {
-          "before": 123,
-          "after": 0,
-          "files": 403
-        }
-      },
-      "scopeAuditRebaseline": {
-        "routes": 512,
-        "controlDeclarations": 931,
-        "controlFiles": 219,
-        "registeredEndpoints": 26,
-        "reviewedOperationGroups": 30,
-        "drift": "identical to E1 baseline (zero drift); baselines included in af6a8047"
-      },
-      "artifacts": [
-        "frontend/artifacts/research/continuity-2026-10-24/d1-motion/D1_EVIDENCE.md",
-        "frontend/artifacts/research/continuity-2026-10-24/d1-motion/d1-before-scan.json",
-        "frontend/artifacts/research/continuity-2026-10-24/d1-motion/d1-after-scan.json",
-        "frontend/artifacts/research/continuity-2026-10-24/APPLE_BENCHMARK_STUDY_2026-10-23.md"
-      ],
-      "review": {
-        "state": "pending-reviewer-acceptance",
-        "implementer": "opencode",
-        "reviewer": null,
-        "candidateCommit": "af6a8047",
-        "jiraCommentId": "10175",
-        "note": "D-095 pending review lives in Jira Testing; Done requires a separate reviewer recording the exact reviewed commit. Founder-ordered continuous-progression tension recorded in D1_EVIDENCE.md"
-      },
-      "jira": {
-        "transitions": [
-          {
-            "id": 41,
-            "to": "Testing",
-            "status": 204,
-            "at": "2026-10-24T06:25:28.874Z",
-            "commentId": 10175
-          }
-        ]
-      }
-    },
-    {
-      "sourceId": "FAP-D2",
-      "jiraKey": "FAP-54",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-54",
-      "status": "Testing",
-      "startAt": "2026-10-24T06:25:28.874Z",
-      "scope": "D2 responsive + tap targets: full public sweep at 320/390/768/1024/1440 with zero overflow, 44px tap-target law (static qa-taps + rendered receipts), onboarding labels >=12px, hero stacks verified at 390, 200% font re-run",
-      "branch": "opencode/fap-d2-responsive",
-      "base": "beta@4dc833dd (verified before branching; deviation from origin/dev 0306703e documented per founder-amended beta integration lane)",
-      "progress": [
-        {
-          "at": "2026-10-24T06:25:28.874Z",
-          "item": "static law scanner frontend/scripts/qa-taps.mjs (tap law + hit-union accounting + label law + 3-entry exception register) green: 245 interactive controls / 90 files; wired into frontend qa:taps, product frontend:qa:taps, scripts/check.mjs; scripts/tests/tap-law.test.mjs 13/13"
-        },
-        {
-          "at": "2026-10-24T06:25:28.874Z",
-          "item": "source fixes: CareersPage 32px icon Link -> 44px box (icon position preserved), CookiesPage switch -> 64x44 hit wrapper with unchanged 28x48 visual pill (+ law-curve durations), four dot rows -> >=44px pseudo hit unions (PersonaSections, PremiumPersonaSections x2, system/ui ProgressDots, PartnersPage tab strip)"
-        },
-        {
-          "at": "2026-10-24T06:25:28.874Z",
-          "item": "next: rendered 320/390/768/1024/1440 sweep with receipts into frontend/artifacts/research/continuity-2026-10-24/d2-responsive/, hero stack at 390 verification, 200% font sweep, then full npm run check + beta merge per amended protocol"
-        },
-        {
-          "at": "2026-10-25T11:30:00.000Z",
-          "item": "harness decision: dev-server boots flaked on cold module waterfall (~105 resources) -> rendered sweep measured against production build via vite preview 4173 (deterministic ~0.4-1.5s boots); router context via src-less iframe inheriting parent pathname (top-level navigate per route), no replaceState shim; ledger persisted in localStorage['d2sweep'] across navigations; dpr 1.31 so css-44 raw-reads 43.9886 -> threshold 43.9 with raw 2-decimal values"
-        },
-        {
-          "at": "2026-10-25T11:30:00.000Z",
-          "item": "rendered sweep BEFORE fix batch: 24 public routes x 5 widths = 120 rows, 0 horizontal-overflow combos, 0 dead boots; 98 unique sub-44 signatures across ~10 component classes (breadcrumb 13px links, legal chips, policy sidebars, /help chips, /how-it-works chips + CTA, persona Learn-more text links, community/careers/contact pills, home route links, nav logo 28px, hamburger flex-squeeze w30)"
-        },
-        {
-          "at": "2026-10-25T11:30:00.000Z",
-          "item": "fix batch landed in 13 files (Breadcrumb, PolicyTabs, Privacy/Terms/Security/CookiesPage sidebar + privacy links, SchoolPage /help chips, CoachingPage CTA + story chips + walks, PremiumPersonaSections 6 link sites, AboutUsPage link component, CommunityPage, ContactPage pills + link, CareersPage pills + links, UpdatesPage link, LandingNav iconBtn shrink-0 + logo union, CookiesPage class disambiguation) -> tap unions via relative after:absolute after:-inset-y-3 (nav logo after:-inset-y-2 after:-inset-x-7); no visual anatomy change"
-        },
-        {
-          "at": "2026-10-25T11:30:00.000Z",
-          "item": "rendered sweep AFTER fix batch: 120 rows, 0 violations (no under44, no overflow); 200% root font (32px) x 18 routes x 320/390 = 36 combos with 0 overflow; hero stacks verified at 390 (visible h1 fits, clipped:false, on all checked routes); receipts: d2-sweep-rendered-2026-10-25.json (before), d2-sweep-rendered-2026-10-25-after.json (after), font-200-hero-390-2026-10-25.json, D2_EVIDENCE.md (PNG screenshots unavailable - desktop browser window not visible this session)"
-        },
-        {
-          "at": "2026-10-25T11:30:00.000Z",
-          "item": "next: full npm run check, commit+d push task branch, beta merge --no-ff + push + verify per amended protocol; FAP-54 remains In Progress; separate reviewer records exact reviewed commit before Done (D-095); founder-ordered continuous progression continues toward D3 while review pends"
-        },
-        {
-          "at": "2026-10-25T12:45:00.000Z",
-          "item": "surface audit drift (fix batch changed link classNames/geometry) resolved per the check error's own prescription: npm run scope:audit:write -> product-surface.json refreshed (97/97 pure line-number remap confined to Breadcrumb.jsx (+1 comment line) and CookiesPage.jsx (+4 switch-wrapper lines); no route/endpoint/state semantics changed) -> full npm run check re-run: every law stage green (roots separation, import baseline 3842 files, qa:continuity all recorded public-surface laws, qa:motion 403 files, qa:taps 245 controls, 52/52 script tests incl. tap-law, surface audit clean, 624/624 vitest, production build 52.26s)"
-        },
-        {
-          "at": "2026-10-25T12:45:00.000Z",
-          "item": "delivered: task branch opencode/fap-d2-responsive commit e486bd38bb1a6fee9d7b10013cf5db9d2d87bde3 'opencode FAP-D2: responsive + 44px tap-target law...' pushed and remote verified; beta merged --no-ff as 794025c1eef975d573f23b5821cfb373894ecabd and pushed (origin/beta verified e486bd38->794025c1); Jira FAP-54 progress comment 10208 posted live + delivery record + transition In Progress->Testing (41); D-095: pending separate reviewer recording exact reviewed commit before Done"
-        }
-      ],
-      "jira": {
-        "transitions": [
-          {
-            "id": 31,
-            "to": "In Progress",
-            "status": 204,
-            "at": "2026-10-24T06:25:28.874Z",
-            "commentId": 10176
-          }
-        ]
-      }
-    },
-    {
-      "sourceId": "FAP-D3",
-      "jiraKey": "FAP-55",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-55",
-      "status": "Testing",
-      "startAt": "2026-10-25T06:12:20.761Z",
-      "scope": "D3 performance + image law: hero art AVIF/WebP with measured density, LazyImage everywhere, bundle split of F10 monoliths into per-section modules, LCP <2.5s on Fast3G landing; AC vite build budget recorded + LCP pass recorded",
-      "branch": "opencode/fap-d3-performance",
-      "base": "beta@33add5121a567e9e45fa0c2da414c90d21fcb5fd (verified after D2 delivery record merge)",
-      "progress": [
-        {
-          "at": "2026-10-25T06:12:20.762Z",
-          "item": "task started per founder-ordered continuous progression from delivered D2 (FAP-54 in Testing awaiting reviewer); worktree opencode-fap-d3-performance from verified beta; Jira FAP-55 Idea->To Do->In Progress with start comment 10210; next: image inventory + LCP baseline on Fast3G"
-        },
-        {
-          "at": "2026-10-26T00:00:00.000Z",
-          "item": "F10 monolith split delivered mechanically and verbatim: PersonaSections.jsx 958L -> 20 per-section modules + 19-name barrel, PremiumPersonaSections.jsx 1375L -> 7 modules + barrel, SpotIllustration.jsx 1223L -> dir (palette + 4 scene groups + index), LandingNav.jsx 785L -> dir (nav-data + nav-shared + index); split scripts committed (f10-split-persona/premium/spot-nav.mjs), bodies verified verbatim by substring containment; import sites unchanged"
-        },
-        {
-          "at": "2026-10-26T00:05:00.000Z",
-          "item": "Post-split wire proof: 134 chunks/3,098,409B (gzip 880,929B) -> 135 chunks (133 names)/3,088,080B (gzip 879,418B), 0 stale monolith chunks; chevron-only pages pay a 414B ChevronIcon shared chunk (old shared PersonaSections chunk 9.1KB gone); Landing loads its 4 needed premium sections via the 37.1KB PremiumExploreSection chunk and does NOT load the persona-only 30.3KB PremiumJourneyFlowSection chunk (07-language/09-achievement/10-journey excluded from /)"
-        },
-        {
-          "at": "2026-10-26T00:10:00.000Z",
-          "item": "QA law wall green after split: qa-perf budget recorded (grouped ledger patch for same-name chunk collisions) + fresh verify PASS; qa:continuity regenerated for new paths (same approved hex domain, nothing added/removed) PASS; qa:fonts PASS on production preview; qa:design PASS + qa:navigation PASS on their canonical dev harness; qa:taps PASS (245 controls/125 files); qa:motion PASS (438 files); lint clean; new f10-audit-bindings.mjs guard (rollup free-identifier law) clean after fixing 3 real header drifts"
-        },
-        {
-          "at": "2026-10-26T00:15:00.000Z",
-          "item": "Final Fast3G headless receipts via proxy (post-restart full rebuild, 135 chunks): / LCP 6,720 + 7,168 across two same-build runs (wire 331,362B pre-split-vs-post -877B; pre-F10 standing receipt 5,584 — spread bounds lab scheduling noise), /student LCP 5,960 (hero main 2400w AVIF), /teacher LCP 6,288; CLS 0.041/0.032/0.032; fontsDoubleFetched:false + staticFontFetched:false on all; LCP <2.5s AC honestly unmet on raw Fast3G (physics: 4 flex TTF ~505KB + 331KB JS + 95KB LCP art); edge-signature recorded, fast-LCP lever named as next-wave"
-        },
-        {
-          "at": "2026-10-26T00:20:00.000Z",
-          "item": "D3_EVIDENCE.md written to frontend/artifacts/research/continuity-2026-10-24/d3-performance/ (receipts table, F10 split record, chunk-graph proof, tooling law updates, incident/harness notes); final v2 comment posted on FAP-55; NO beta merge — awaiting independent reviewer per D-095 to record the exact reviewed commit"
-        },
-        {
-          "at": "2026-10-27T08:23:00.000Z",
-          "item": "founder-authorized end-to-end delivery completed: founder set the standing lane this session ('you have to work on task to implement end to end in worktree and testing the product and merge in the beta and move to next task') and confirmed the merge by explicit choice; branch opencode/fap-d3-performance b21f6bc8 merged --no-ff into beta as e9d04f050a2b14dd2a087f4fda91396499a870ee (33add512..e9d04f05), pushed and ls-remote verified; D-095 unchanged - separate reviewer records the exact reviewed commit before Done; post-restart Jira auth is 401, so FAP-55 Jira transition to Testing and live verification of the final v2 comment are pending first re-login (if the comment is absent on the board, post it once); stale lane noted: opencode/fap-continuity-qa a364bf45 (2026-10-23, based on main 592d4752, pre-rebuild E1/D2 hybrid editing monolith files since split by F10) superseded and left parked untouched; next task: E1 cross-page continuity QA per FRONTEND_AGI_TASK_REBUILD dependency chain (A0..D3 done, D3 now in beta at e9d04f05)"
-        }
-      ],
-      "jira": {
-        "transitions": [
-          {
-            "id": 41,
-            "to": "Testing",
-            "status": 204,
-            "at": "2026-10-28T06:20:00.000Z",
-            "commentId": 10318,
-            "note": "board auth restored backfill"
-          },
-          {
-            "id": 41,
-            "to": "Testing",
-            "status": 204,
-            "at": "2026-10-28T06:20:00.000Z",
-            "commentId": 10318,
-            "note": "board auth restored backfill"
-          }
-        ]
-      }
-    },
-    {
-      "sourceId": "FAP-E1",
-      "jiraKey": "FAP-56",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-56",
-      "status": "Testing",
-      "startAt": "2026-10-27T08:27:00.000Z",
-      "registrationNote": "Jira ticket not yet creatable (board auth 401 after environment restarts) - create/claim the FAP-E1 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E1: ...",
-      "scope": "E1 cross-page continuity QA: automated audit that same-page font/type roles resolve (no bridge fallback), no dual-ink values, link color single-source, CTA geometry equality across public pages at 1440; extends npm run qa:continuity and keeps it wired into scripts/check.mjs; failing cases fixed",
-      "branch": "opencode/fap-e1-continuity",
-      "base": "beta@e2a6d7c9 (verified before branching: D3 task-lane merge e9d04f05 of b21f6bc8 + D3 delivery record)",
-      "progress": [
-        {
-          "at": "2026-10-27T08:27:00.000Z",
-          "item": "task started per founder end-to-end lane; worktree opencode-fap-e1-continuity from verified beta e2a6d7c9; scope + lane recorded; salvage candidates from superseded a364bf45 artifacts (e1-after-scan.json, render-check-receipts.json) to be studied during scoping; next: read current qa-continuity.mjs + scripts/check.mjs wiring, define the four audit dimensions (roles-resolve, no dual-ink, link single-source, CTA geometry equality at 1440), then implement"
-        },
-        {
-          "at": "2026-10-27T20:00:00.000Z",
-          "item": "static law layer extended 4 -> 7 laws in frontend/scripts/qa-continuity.mjs: Law 6 icon-control-size-44px (2.75rem single definition point), Law 7 link-ink-single-source (role map base/hover/active/focus-visible); full-tree pass (77 files, 0 violations); -q null-safety hardened; law tests scripts/tests/continuity-law.test.mjs 7/7 pass"
-        },
-        {
-          "at": "2026-10-28T03:00:00.000Z",
-          "item": "rendered harness built: frontend/scripts/qa-continuity-render.mjs — canonical 24-route D2 sweep universe at 1440x900@1 against production dist on :4173; progressive scroll mounts lazy sections (D2 protocol parity), pill filter = radius >= half-height or specified 9999px with h 36-72, per-pill text labels, ground-aware role capture, mysteryInk ancestry chain capture"
-        },
-        {
-          "at": "2026-10-28T03:15:00.000Z",
-          "item": "rendered findings decoded (pre-fix run): recorded CTA class (fs 17px / px 21px / h 44 / fw 500) rendered three competing leading regimes across pages (25.5px font-normal GSF, 20px font-normal GSF Content, 22px adapter-forced) and two tracking regimes (-0.187px canonical vs -0.374px adapter-forced); role-dual-ink pairs were dual-GROUND staging (dark frost vs light ink of same type); mystery link ink rgb(31,31,31) present in no build asset"
-        },
-        {
-          "at": "2026-10-28T03:20:00.000Z",
-          "item": "source fixes applied: system/ui.jsx CtaPair primary pill + leading-[1.176] (BUTTONS.geo anatomy); apple-typography.css L511 text-control clause and L792 a[class*=bg-] clause both gain :not([class*=\"rounded-full\"]) per the recorded L426 CTA-tier doctrine (rounded-full pills are exempt, the CTA tier owns their anatomy A2/FAP-42); DownloadPage 6 pill sites (Open Visionary, See platforms, Open in browser, coming-soon x5, Prepare email request, Continue on web) + AILearningPage(=/pricing) 3 pill sites (plan CTAs, institution CTA, final Get started) given explicit leading-[1.176]"
-        },
-        {
-          "at": "2026-10-28T03:28:00.000Z",
-          "item": "verification chain green: rendered harness 0 violations on 24/24 routes (1036 pill census rows; 52 recorded-CTA-class pills, 52/52 canonical 19.992px/-0.187px; grounds light+dark resolved); static 7 laws pass full tree; law tests 7/7; eslint --quiet 0; tsc jsconfig + tsconfig.domain 0; mysteryInk decoded rgb(31,31,31) = hsl(var(--foreground)) global shadcn token, inherited by sr-only skip links (invisible, focus state law-legal) and the logo anchor (inert: VisionaryLogo paints explicit brand fills); evidence artifacts/research/continuity-2026-10-27/e1-continuity/ (e1-continuity-render.json + E1_EVIDENCE.md); implementation + verification complete, independent review per D-095 pending"
-        },
-        {
-          "at": "2026-10-28T03:40:00.000Z",
-          "item": "delivery record: lane opencode/fap-e1-continuity merged into beta --no-ff fe984775 (e2a6d7c9..fe984775 pushed + ls-remote verified); task branch head 7d6d5d43 pushed + ls-remote verified; mirror FAP-E1 -> Testing per D3 precedent; D-095 independent review still pending (implementer cannot self-approve); Jira transition + key backfill pending board auth (401)"
-        }
-      ],
-      "jira": {
-        "transitions": [
-          {
-            "id": 21,
-            "to": "To Do",
-            "status": 204,
-            "at": "2026-10-28T06:22:00.000Z"
-          },
-          {
-            "id": 31,
-            "to": "In Progress",
-            "status": 204,
-            "at": "2026-10-28T06:22:00.000Z"
-          },
-          {
-            "id": 41,
-            "to": "Testing",
-            "status": 204,
-            "at": "2026-10-28T06:22:00.000Z",
-            "commentId": 10319,
-            "note": "E1 claimed + Testing per D3 precedent (board auth restored)"
-          }
-        ]
-      }
-    },
-    {
-      "sourceId": "FAP-E2",
-      "jiraKey": "FAP-57",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-57",
-      "status": "In Progress",
-      "startAt": "2026-10-28T03:50:00.000Z",
-      "registrationNote": "Jira ticket not yet creatable (board auth 401) - create/claim the FAP-E2 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E2: ...",
-      "scope": "E2 review + release evidence: reviewer (not author) records reviewed SHAs per TASK_REVIEW_TEMPLATE for the A0->E1 chain; integration evidence into docs/architecture/delivery; Jira per-task receipts (pending board auth); founder walkthrough landing -> pricing -> download -> trust -> auth -> dashboard; AC: every task Done with acceptance evidence, audit doc updated to production-ready",
-      "branch": "opencode/fap-e2-review-evidence",
-      "base": "beta@3e4e8234 (verified before branching: E1 lane merge fe984775 + E1 delivery record)",
-      "progress": [
-        {
-          "at": "2026-10-28T03:50:00.000Z",
-          "item": "task started per founder end-to-end lane; worktree opencode-fap-e2-review-evidence from verified beta 3e4e8234; scope + lane recorded; next: per-task review handoffs per TASK_REVIEW_TEMPLATE (reviewer stays unassigned pending until a separate agent/founder actually reviews - never self-assigned), delivery integration evidence, walkthrough checklist; audit-doc production-ready flip waits for reviewer approvals"
-        },
-        {
-          "at": "2026-10-28T06:20:00.000Z",
-          "item": "board auth restored this session (token in .zcode/config.json valid; MCP plugin env not inherited, used REST directly). Pending-relogin backfill executed: FAP-55 (D3)->Testing + v2 comment 10318; FAP-56 (E1) claimed Idea->To Do->In Progress->Testing + delivery comment 10319; FAP-57 (E2) claimed Idea->To Do->In Progress + start comment 10320. journal appended."
-        },
-        {
-          "at": "2026-10-28T06:24:00.000Z",
-          "item": "next: build review handoff per TASK_REVIEW_TEMPLATE for A0->E1 chain into docs/architecture/delivery (evidence side; reviewer explicit pending per D-095), founder walkthrough checklist, then commit+push lane + beta merge."
-        },
-        {
-          "at": "2026-10-28T06:20:00.000Z",
-          "item": "board auth restored this session (token in .zcode/config.json valid; MCP plugin env not inherited, used REST directly). Pending-relogin backfill executed: FAP-55 (D3)->Testing + v2 comment 10318; FAP-56 (E1) claimed Idea->To Do->In Progress->Testing + delivery comment 10319; FAP-57 (E2) claimed Idea->To Do->In Progress + start comment 10320. journal appended."
-        },
-        {
-          "at": "2026-10-28T06:24:00.000Z",
-          "item": "next: build review handoff per TASK_REVIEW_TEMPLATE for A0->E1 chain into docs/architecture/delivery (evidence side; reviewer explicit pending per D-095), founder walkthrough checklist, then commit+push lane + beta merge."
-        },
-        {
-          "at": "2026-10-28T06:40:00.000Z",
-          "item": "evidence package committed eae9d39b (FAP_E2_REVIEW_EVIDENCE.md + FAP_E2_WALKTHROUGH_CHECKLIST.md + task-executions backfill); branch opencode/fap-e2-review-evidence pushed + ls-remote verified; lane merged into beta --no-ff 9c4bfd27 (eae9d39b into beta), journal receipt baf1e61a, beta pushed + ls-remote verified baf1e61a"
-        },
-        {
-          "at": "2026-10-28T06:40:00.000Z",
-          "item": "E2 remains In Progress: Done gated by D-095 (separate reviewer records exact reviewed commit per FAP_E2_REVIEW_EVIDENCE.md) + C3/FAP-51 board transition + C4/FAP-52 open + founder walkthrough + audit production-ready flip after approvals"
-        }
-      ],
-      "jira": {
-        "transitions": [
-          {
-            "id": 21,
-            "to": "To Do",
-            "status": 204,
-            "at": "2026-10-28T06:23:00.000Z"
-          },
-          {
-            "id": 31,
-            "to": "In Progress",
-            "status": 204,
-            "at": "2026-10-28T06:23:00.000Z",
-            "commentId": 10320,
-            "note": "E2 claimed on Jira"
-          }
-        ]
-      }
-    },
-    {
-      "sourceId": "FAP-C3",
-      "jiraKey": "FAP-51",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-51",
-      "status": "Testing",
-      "startAt": "2026-10-29T07:04:00.000Z",
-      "registrationNote": "Board housekeeping only - the C3 implementation (KAN-201 chain) merged in beta at 2e88e302 + ba20027a predates this session; this entry records the candidate submit + Testing transition performed by the opencode lane after re-verifying the AC in the beta tree.",
-      "scope": "Re-verify the merged C3 candidate in the beta tree and submit it for separate review: scoped surfaces (Ask, Build, StudentClasses, Subscription, Settings, RoleWorkspace, Guide) contain 0 raw #4285F4/#dadce0; Subscription.jsx renders v-card panels; workspace-design.css single definition point (--v-action #0071e3 light / #aac7ff on-dark); workspace.css only aliases --v-brand. No new implementation.",
-      "branch": "null (no lane; primary beta checkout reads only)",
-      "base": "beta@6883a844 (verified origin/beta tip)",
-      "progress": [
-        {
-          "at": "2026-10-29T07:50:00.000Z",
-          "item": "C3 AC re-verified in beta tree this session; FAP-51 moved In Progress -> Testing (transition 41, 204); Testing delivery comment 10342 posted (comments endpoint - transition-attached comment payloads were silently dropped and re-posted separately); D-095 review pending, implementer cannot self-approve"
-        }
-      ],
-      "jira": {
-        "transitions": [
-          {
-            "id": 41,
-            "to": "Testing",
-            "status": 204,
-            "at": "2026-10-29T07:50:00.000Z",
-            "commentId": "10342",
-            "note": "C3 candidate submitted for separate review (D-095)"
-          }
-        ]
-      }
-    },
-    {
-      "sourceId": "FAP-C4",
-      "jiraKey": "FAP-52",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-52",
-      "status": "Testing",
-      "startAt": "2026-10-29T07:04:00.000Z",
-      "registrationNote": "Claimed live on the board this session (Idea -> To Do -> In Progress, 204/204, verified readback).",
-      "scope": "Forms delivery honesty: partners enquiry + updates signup server intake recorded as intentionally-unreleased with the honest manual mail-draft channel kept explicit; DownloadPage coming-soon controls become genuinely disabled-with-reason; overclaiming DownloadPage copy made honest; PRODUCT_SURFACE_AUDIT operation flags flipped with receipts via scope:audit:write. Backend intake stays the separate task; PRIV-07/CONTENT-05 gates unchanged. Per founder delivery amendment: lane merges to beta first, then dev, both pushed and remote-verified before receipt.",
-      "branch": "opencode/fap-c4-forms",
-      "base": "beta@6883a844 (verified origin/beta tip; clean tree, checked before branch)",
-      "progress": [
-        {
-          "at": "2026-10-29T07:04:00.000Z",
-          "item": "task claimed per founder end-to-end lane; worktree opencode-fap-c4-forms from verified beta 6883a844; scope recorded on board (start comment follows via comments endpoint after transition-comment drop discovery); scope:audit found red at beta tip (D3 monolith split left 19 split control files unreviewed + 3 obsolete registry rows)"
-        },
-        {
-          "at": "2026-10-29T08:20:00.000Z",
-          "item": "implementation: review registry rows public-enquiry-careers-partners + public-updates-distribution flipped missing -> intentionally-unreleased with honest receipts (follow-ups unchanged); minimal D3 rebaseline carried (19 split files inherit monolith client-presentation rows, 3 obsolete rows removed); DownloadPage: real disabled controls with visible 'Coming soon - not available yet' reasons replacing aria-disabled clickable buttons; honest copy repairs (no 'final testing', no cross-device sync claim, no 'faster offline-friendly' promise); lane deps installed from lock (frontend install 661 pkgs)"
-        },
-        {
-          "at": "2026-10-29T08:40:00.000Z",
-          "item": "receipts regenerated: scope:audit:write green (68 routes, 37 endpoints, 237 control files, 1656 declarations) + read-only scope:audit verified; evidence doc FAP_C4_FORMS_EVIDENCE.md; E2 chain rows + walkthrough updated; task-executions + journal appended; next: npm run check + tests on the lane candidate, commit+push+ls-remote, beta merge --no-ff, FAP-52 -> Testing with delivery comment"
-        },
-        {
-          "at": "2026-10-29T09:10:00.000Z",
-          "item": "checks green on lane candidate 793ab758: npm run check full chain (layout/imports PASS 3842 files, qa continuity/motion/taps nav suite, tests 656/656 pass 0 fail, scope:audit green, vite build ok in 32.16s), eslint --quiet 0, tsc jsconfig 0 + tsc domain 0; branch pushed + ls-remote verified 793ab758"
-        }
-      ],
-      "jira": {
-        "transitions": [
-          {
-            "id": 21,
-            "to": "To Do",
-            "status": 204,
-            "at": "2026-10-29T07:04:35.000Z"
-          },
-          {
-            "id": 31,
-            "to": "In Progress",
-            "status": 204,
-            "at": "2026-10-29T07:04:35.000Z",
-            "note": "history 12430/12431 verified via changelog readback; transition-attached start comment dropped, re-posted via comments endpoint as 10343"
-          }
-        ]
-      }
-    },
-    {
-      "sourceId": "FAP-F1",
-      "jiraKey": "FAP-35",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-35",
-      "status": "Testing",
-      "startAt": "2026-10-29T08:23:00.000Z",
-      "registrationNote": "Claimed live on the board this session (To Do -> In Progress via transition 31, 204, verified readback; start comment 10345 posted via comments endpoint).",
-      "scope": "Final production pass: apply the measured Apple-premium spacing and composition system across every remaining public page. The six document surfaces (privacy/terms/security/cookies/accessibility/help) join the chapter system: data-section stage tags replace hand-set band paddings under a measured document-band law; careers life-strip and download sync-tray + contact strip adopt the compact-band law. Type ladder, CTA anatomy, ink palette and motion laws untouched. Fresh opencode worktree + own branch per D-098 from verified origin/beta 1550d5fa. FAP lane convention: beta first, dev after review.",
-      "branch": "opencode/fap-f1-final-pass",
-      "base": "beta@1550d5fa (verified origin/beta tip; clean tree, checked before branch)",
-      "progress": [
-        {
-          "at": "2026-10-29T08:23:00.000Z",
-          "item": "task claimed per founder end-to-end lane; fresh worktree opencode-fap-f1-final-pass from verified origin/beta 1550d5fa; scope recorded on board (start comment 10345)"
-        },
-        {
-          "at": "2026-10-29T08:32:00.000Z",
-          "item": "measured reference extended this pass: live CSSOM measurement of apple.com/privacy @1000x700 (medium band) - chapter bands 128/128 to 140/140, statement-to-copy 43px, closing router band 140/140 with 64px/600 statement and 52px gap; recorded in FAP_F1_PRODUCTION_PASS_EVIDENCE.md"
-        },
-        {
-          "at": "2026-10-29T09:05:00.000Z",
-          "item": "scope decision from evidence: the six document surfaces were the only public pages outside the chapter system (0 data-section tags; hand-set py-14/16/24/32 muddle); per-page scans put all other public pages on the container/seam laws already"
-        },
-        {
-          "at": "2026-10-29T09:20:00.000Z",
-          "item": "chapterize codemods applied with exact-once rules (f1-policy-chapterize.mjs 56/58 + fixup 2/2): 6 doc pages fully tagged (hero plates authored by design), careers 01b-life strip, download 02b-tray + 04b-strip strips; measured document-band law + statement-to-copy gap law + compact strip rules added to public-bridge.css F1 block"
-        },
-        {
-          "at": "2026-10-30T04:10:00.000Z",
-          "item": "rendered verification exposed the gap law dead selector: chapter copy is the SectionHeading wrapper siblings (eyebrow+h2 in one div), h2+p matched 0 nodes; carrier retargeted to div:has(> h2) margin-bottom + bare h2 + * margin-top (43px at 1000w); candidate rebuilt"
-        },
-        {
-          "at": "2026-10-30T04:20:00.000Z",
-          "item": "rendered readbacks all law-exact at 1000x700: doc bands 125/125 (carrier readable on all six mains; 14+16+14+10+9+2 chapters), statement-to-copy gap 43px on every h2 chapter (bare 02-summary pattern and max-w-[720px] category wrappers alike), strips 01b-life/02b-tray/04b-strip at 70/70 compact law with neighbours untouched, zero horizontal overflow on all seven swept pages; full-page screenshot capture blocked (desktop window not visible to harness), computed readbacks recorded as evidence in FAP_F1_PRODUCTION_PASS_EVIDENCE.md"
-        },
-        {
-          "at": "2026-10-30T04:25:00.000Z",
-          "item": "full check battery green on candidate tree: verify-layout, verify-imports, qa-continuity/qa-motion/qa-taps, 54 script tests, scope:audit (237 files / 1656 declarations unchanged, digests re-written), lint 0, typecheck x2 0, 656/656 frontend tests, vite build ok; receipts appended to FAP_F1_PRODUCTION_PASS_EVIDENCE.md Checks section"
-        },
-        {
-          "at": "2026-10-30T08:33:00.000Z",
-          "item": "candidate committed 9dc944c5 on opencode/fap-f1-final-pass, pushed + ls-remote verified; merged to beta no-ff as 44f1f15f on top of principal delivery record 0d20700 (empty marker), pushed + ls-remote verified 0d207007..44f1f15f; FAP-35 moved In Progress -> Testing via transition 41 (204) + delivery comment 10375 posted via comments endpoint + readback verified (status Testing, updated 2026-10-30T14:03:29.171+0530); D-095 external reviewer must record exact reviewed commit before Done; dev merge after review acceptance"
-        }
-      ]
-    },
-    {
-      "sourceId": "FAP-C9",
-      "jiraKey": "FAP-34",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-34",
-      "status": "In Progress",
-      "startAt": "2026-10-30T10:05:00.000Z",
-      "registrationNote": "Closeout lane only: FAP-34 is under the founder reopen (2026-10-21) for their review round; this lane deliberately performs no transition, it re-runs the C9 acceptance gate on the current production tree and refreshes the acceptance evidence for the reviewer.",
-      "scope": "Re-verified current-tree acceptance of the Apple type-scale system (spec APPLE_TYPE_SCALE_SPEC_2026-10-20): role-aware probe 120/120 across 7 public pages x 390/768/1440 (hero pairing, 64px section cap, ladder membership, nav/body floors, zero overflow); Vision-Pro category heroes exact at all three viewports; landing display supersession documented (hero one-voice law, B1/FAP-46 commit 6d54b76b receipted 2026-10-21: fitted 117/96/41.5 replaces the mixed per-word 140/~127 + 64/~44 bug, stage box keeps the 64/96/140 ladder anchor). No code changes; evidence-only lane.",
-      "branch": "opencode/fap-c9-closeout",
-      "base": "beta@156d0bed (verified origin/beta tip; tree identical to receipted F1 candidate 9dc944c5 / beta merge 44f1f15f)",
-      "progress": [
-        {
-          "at": "2026-10-30T10:05:00.000Z",
-          "item": "fresh worktree opencode-fap-c9-closeout from verified origin/beta 156d0bed; full battery cited from the identical-tree F1 receipt (656/656 + audits + build green)"
-        },
-        {
-          "at": "2026-10-30T10:20:00.000Z",
-          "item": "prod build served at 127.0.0.1:4188; type-verify 120/120 PASS; hero-verify: student/teacher Vision-Pro category heroes EXACT at 390/768/1440 with zero overflow; home cast display reads 117@1440 vs spec 140 - traced to receipted B1 hero one-voice law (commit 6d54b76b, FAP-46 founder bug receipt) not drift; stage box keeps the 64/96/140 anchor"
-        },
-        {
-          "at": "2026-10-30T10:30:00.000Z",
-          "item": "acceptance evidence refreshed in artifacts (type-verify.json + hero-verify.json re-run on this tree) + FAP_C9_CLOSEOUT_EVIDENCE.md written (supersession documented for reviewer judgement; no transition performed - founder owns the C9 verdict per D-095)"
-        }
-      ]
-    },
-    {
-      "sourceId": "FAP-30",
-      "jiraKey": "FAP-30",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-30",
-      "status": "Testing",
-      "startAt": "2026-10-30T17:55:00.000Z",
-      "scope": "Extend design-quality-review.mjs with 4.5:1 informative-text contrast check (alpha blending) and rendered 44px hit-area check so regressions fail the harness; static target law stays in qa:taps.",
-      "branch": "opencode/fap-design-contrast",
-      "base": "beta@04090cf5 (verified origin/beta tip)",
-      "progress": [
-        {
-          "at": "2026-10-30T17:58:00.000Z",
-          "item": "claimed (comment 10432, In Progress); measured-first probe on light/dark: empty-state all pass (worst 4.7:1 light, 9.04:1 dark); harness gates implemented (alpha-blended composited backgrounds, WCAG thresholds, 44px rendered controls, audits in review-results.json)"
-        },
-        {
-          "at": "2026-10-30T18:10:00.000Z",
-          "item": "first full run caught a real defect: .v-evidence stage badge 12px #0071e3 on #edf3ff = 4.22:1 -> fixed with --v-action-on-soft token (#0066cc light 5.0:1 / #aac7ff dark 10:1, D-104 single definition point) applied to .v-evidence + .v-class-sections selected tabs"
-        },
-        {
-          "at": "2026-10-30T18:30:00.000Z",
-          "item": "qa:design PASS (8 theme/width samples, populated surface); root check exit 0 (build 21.90s); scope:audit rebaselined 237 files/1656 declarations; e714ea9d pushed + merged no-ff into beta 3e302138 remote-verified; FAP-30 -> Testing (41); worktree removed after merge; D-095 separate reviewer pending"
-        }
-      ]
-    },
-    {
-      "sourceId": "FAP-28",
-      "jiraKey": "FAP-28",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-28",
-      "status": "Testing",
-      "startAt": "2026-10-30T18:50:00.000Z",
-      "scope": "Settings polish per the 2026-10-20 QA review: styled listbox control for native selects, info panel for long disclaimer lines, Guide chip bottom clipping.",
-      "branch": "opencode/fap-settings-polish",
-      "base": "beta@e506316e (verified origin/beta tip)",
-      "progress": [
-        {
-          "at": "2026-10-30T18:55:00.000Z",
-          "item": "claimed (21->31); measure-first probe at 1280x900: Guide chip clipping NOT reproducible (0 fixed/sticky elements crossing viewport bottom on guide+settings); settings selects render native chrome"
-        },
-        {
-          "at": "2026-10-30T19:05:00.000Z",
-          "item": "implemented .v-select styled listbox chrome (native combobox retained, harness-compatible) on 5 WorkspaceTools selects + .v-info-panel disclaimer block; first shot caught the Guide-appearance select missed by exact-match class replace -> fixed"
-        },
-        {
-          "at": "2026-10-30T19:20:00.000Z",
-          "item": "qa:design PASS (contrast+44px gates on new chrome); root check exit 0 (54/54, build 17.57s); scope:audit rebaselined; dc2914a4 merged no-ff into beta f8ab83c6 remote-verified; FAP-28 -> Testing (41) + delivery comment; evidence committed in artifacts; worktree cleanup next; D-095 separate reviewer pending"
-        }
-      ]
-    },
-    {
-      "sourceId": "FAP-21",
-      "jiraKey": "FAP-21",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-21",
-      "status": "Testing",
-      "startAt": "2026-10-30T19:30:00.000Z",
-      "scope": "Persona chip rail on small widths per the 2026-10-20 QA review: 5-chip persona row wrapped at 390px (Organizations onto line 2); fix = horizontal scroll rail with snap + edge fade, 44px targets.",
-      "branch": "opencode/fap-persona-rail",
-      "base": "beta@0f48ae75 (verified origin/beta tip)",
-      "progress": [
-        {
-          "at": "2026-10-30T19:35:00.000Z",
-          "item": "claimed (21->31); defect measured live at 390: hero audience rail row1 top 437, Organizations row2 top 485"
-        },
-        {
-          "at": "2026-10-30T19:45:00.000Z",
-          "item": "implemented .audience-rail law (public-system.css): <=520px snap rail with edge fade; caught and fixed align-center load-time snap (-> align-start) and parent-centered overflow (-> max-width 100% containment)"
-        },
-        {
-          "at": "2026-10-30T19:55:00.000Z",
-          "item": "verified single row at 390 + no page overflow; check exit 0 (build 18.27s); audit rebaselined; 528d1e83 merged no-ff into beta 033adf6e remote-verified; FAP-21 -> Testing (41) + delivery comment; evidence in artifacts; D-095 separate reviewer pending"
-        }
-      ]
-    },
-    {
-      "sourceId": "FAP-31",
-      "jiraKey": "FAP-31",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-31",
-      "status": "Testing",
-      "startAt": "2026-10-30T20:05:00.000Z",
-      "scope": "Lighthouse on the production build per the 2026-10-20 review: gates a11y >= 0.95, SEO >= 0.95, perf budgets recorded; run against prod build not dev.",
-      "branch": "opencode/fap-lighthouse-gate",
-      "base": "beta@6c42717b (verified origin/beta tip)",
-      "progress": [
-        {
-          "at": "2026-10-30T20:10:00.000Z",
-          "item": "claimed (21->31); lighthouse 13.6 installed; gate script written (programmatic, mobile emulation, 5 public routes, per-route receipts + baseline-audit assertions)"
-        },
-        {
-          "at": "2026-10-30T20:20:00.000Z",
-          "item": "first runs caught real defects: SEO 0.92 (link-text) on / + /student, a11y 0.93 (color-contrast) + 0.96 (aria-prohibited-attr) on /student, heading-order 0 on 4 routes; perf score null on all (NO_NAVSTART)"
-        },
-        {
-          "at": "2026-10-30T20:35:00.000Z",
-          "item": "fixed: frost caption 3.4:1 -> 4.86:1; lazy placeholder role=img; 6 generic link texts descriptive (FAP-15 correction posted 10449); footer h4->h3 + pricing th h3->h2; perf boundary recorded (Edge 141 vs lighthouse 13.6 tracer; D3 Fast3G ledger holds perf receipts); BP 0.92 = AdSense-vs-CSP console error (FAP-6 evidence)"
-        },
-        {
-          "at": "2026-10-30T20:45:00.000Z",
-          "item": "final gate PASS: a11y 1.0 + SEO 1.0 on all five routes; check exit 0 (build 18.02s); audit rebaselined; 38a8dc29 merged no-ff into beta a2a38354 remote-verified; FAP-31 -> Testing (41, comment 10448); cleanup next; D-095 separate reviewer pending"
-        }
-      ]
-    },
-    {
-      "sourceId": "FAP-29",
-      "jiraKey": "FAP-29",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-29",
-      "status": "Testing",
-      "startAt": "2026-10-30T20:50:00.000Z",
-      "scope": "Role fixtures + dashboard QA per the 2026-10-20 review: valid student/teacher/parent/professional/organization fixtures so relationship-gated surfaces fully exercise; extend the dashboard sweep; Phase-2 audit evidence.",
-      "branch": "opencode/fap-role-fixtures",
-      "base": "beta@914eaf39 (verified origin/beta tip)",
-      "progress": [
-        {
-          "at": "2026-10-30T20:55:00.000Z",
-          "item": "claimed (21->31); surface map built (route->component->entity dependencies); qa:journeys sweep written with relationship-bearing fixtures (Classroom/FamilyLink+child workspace/org members)"
-        },
-        {
-          "at": "2026-10-30T21:05:00.000Z",
-          "item": "first sweep: 19/20 rendered (build surface timed out on networkidle -> load wait), findings triaged to exact elements via offender HTML dumps"
-        },
-        {
-          "at": "2026-10-30T21:15:00.000Z",
-          "item": "fixed: .v-home-secondary 4.42:1 -> C1 link tone 5.24:1; guide preview link 15px -> 44px; insight card 'Open class' 20px -> 44px; .v-role-class-link 22px -> 44px; final sweep PASS 20/20"
-        },
-        {
-          "at": "2026-10-30T21:20:00.000Z",
-          "item": "check exit 0 (build 17.33s); audit rebaselined; f9468087 merged no-ff into beta f3f72ce2 remote-verified; FAP-29 -> Testing (41, delivery comment); evidence + 20 screenshots committed; worktree cleanup next; D-095 separate reviewer pending; hosted real-user journeys = founder session boundary"
-        }
-      ]
-    },
-    {
-      "sourceId": "FAP-6",
-      "jiraKey": "FAP-6",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-6",
-      "status": "Testing",
-      "startAt": "2026-10-30T21:30:00.000Z",
-      "scope": "FAP-A1 per the 2026-10-20 review: remove Google AdSense (meta + loader) from all public pages; zero ad-network requests; /cookies copy verified true.",
-      "branch": "opencode/fap-adsense-removal",
-      "base": "beta@b31c0b4f (verified origin/beta tip)",
-      "progress": [
-        {
-          "at": "2026-10-30T21:35:00.000Z",
-          "item": "claimed (21->31); only references = index.html meta + loader; /cookies page promises 'no advertising cookies... no ad networks. Ever.' - the loader contradicted it"
-        },
-        {
-          "at": "2026-10-30T21:40:00.000Z",
-          "item": "removed meta + script; acceptance probed: 0 ad requests + 0 console errors across 5 public routes; lighthouse BP 0.92 -> 1.0 (CSP had already blocked the loader - dead code + console noise), a11y/SEO 1.0 unchanged"
-        },
-        {
-          "at": "2026-10-30T21:45:00.000Z",
-          "item": "check exit 0 (build 17.53s); audit rebaselined; 45ce928e merged no-ff into beta 5d6da02c remote-verified; FAP-6 -> Testing (41, delivery comment); future ad-supported free tier = founder-scope consent-aware integration; worktree cleanup next; D-095 separate reviewer pending"
-        }
-      ]
+     "decision": "D-095",
+     "status": "Testing",
+     "at": "2026-10-17T18:16:28.378Z",
+     "jiraTransitionId": "41",
+     "jiraCommentId": "10004",
+     "note": "Founder requires review and verification before Done/next task. No code rollback or hosted deployment; no approval fabricated."
     }
-  ]
+   ],
+   "integration": {
+    "commit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+    "branch": "dev",
+    "remotePublished": true,
+    "jiraCommentId": "10007",
+    "jiraTransitionId": "51",
+    "jiraReturnedStatus": "Done"
+   },
+   "worktree": null
+  },
+  {
+   "sourceId": "SCOPE-02",
+   "jiraKey": "KAN-29",
+   "status": "To Do",
+   "scope": "Connected coverage candidate independently reviewed for technical compatibility; full real source/version/rights acceptance remains open. Founder defers source discussion on 21 October 2026.",
+   "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix",
+   "branch": "codex/codex-kan-29-coverage-matrix",
+   "currentCheckpoint": "99d18b12d8734a52973c63f629ac88cdce2127e8",
+   "currentHandoff": "docs/architecture/delivery/KAN29_CURRENT_PRODUCTION_COMPATIBILITY.md on the KAN-29 branch",
+   "fullFeatureAccepted": false,
+   "preparationBranch": "codex/kan-29-coverage-matrix",
+   "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
+   "jiraCommentId": "10015",
+   "jiraTransitionId": "21",
+   "review": {
+    "state": "not-submitted"
+   },
+   "resumeCondition": "Founder requested KAN-34 completion first; KAN-29 remains open with its existing checkout/evidence preserved. Book/edition/language/licence discussion is deferred."
+  },
+  {
+   "sourceId": "AI-11",
+   "jiraKey": "KAN-137",
+   "status": "Done",
+   "scope": "Deterministic retrieval-binary-v2 metric repair and Python/Go parity only",
+   "branch": "codex/qa-review-kan-137-metrics",
+   "independentlyReviewedSource": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+   "currentDevBase": "b6525e16b5cfbd45a1a0963cdcd62846eb992cf7",
+   "runtimeImplementationChanged": false,
+   "review": {
+    "state": "approved-existing-implementation",
+    "evidence": "docs/architecture/tracking/kan-137-qa-closeout.json",
+    "newCodeApprovalClaimed": false
+   },
+   "checks": {
+    "pythonTests": 3,
+    "sharedFixtures": 13,
+    "goAnalyticsSuites": 8,
+    "passed": true
+   },
+   "historicalBenchmarks": {
+    "recomputed": false,
+    "qualified": false,
+    "ledger": "ml/evaluation/historical-report-qualification.json"
+   },
+   "remainingGates": [
+    "KAN-83",
+    "KAN-142",
+    "KAN-143",
+    "KAN-127"
+   ],
+   "hostedAcceptance": false,
+   "worktree": null,
+   "integration": {
+    "branch": "dev",
+    "commit": "7d69436c21c3020cb1c7680b225ff911283cd8ee",
+    "remotePublished": true,
+    "jiraCommentId": "10016",
+    "jiraTransitionId": "51",
+    "jiraReturnedStatus": "Done"
+   },
+   "cleanup": {
+    "qaWorktreeRemoved": true,
+    "extraRegisteredWorktrees": 0,
+    "publishedTaskBranchRetained": true,
+    "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-18.json"
+   }
+  },
+  {
+   "sourceId": "ACCOUNT-DIRECTORY-01",
+   "jiraKey": "KAN-161",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-161",
+   "status": "Done",
+   "scope": "Finalize UID ownership hierarchy; derived activity directory and additive current-tree maintenance. Future domain integration and hosted/provider gates remain open.",
+   "branch": "codex/codex-kan-161-account-structure",
+   "baseCommit": "f92495eadba3a07b17adef73a70d43ac38dab547",
+   "worktree": null,
+   "review": {
+    "state": "approved",
+    "implementer": "Codex",
+    "reviewer": "account_structure_review",
+    "approvedCommit": "075e082fc084261ab7fbacc30bade178361d92db",
+    "evidence": "docs/architecture/delivery/KAN161_INDEPENDENT_REVIEW.md",
+    "reviewBranchCommit": "cae90769732dcff26e6a1b0ea9b125a196c41dd0"
+   },
+   "hostedAcceptance": false,
+   "implementationCommit": "075e082fc084261ab7fbacc30bade178361d92db",
+   "checks": {
+    "backendBuild": true,
+    "backendTests": 63,
+    "backendFailed": 0,
+    "rootCheck": true,
+    "scriptTests": 18,
+    "frontendTests": 532,
+    "frontendFailed": 0,
+    "lint": true,
+    "typecheck": true,
+    "frontendBuild": true,
+    "buildSeconds": 29.14
+   },
+   "jiraCommentId": "10018",
+   "integration": {
+    "branch": "dev",
+    "commit": "fe20cb454e3d1383687ed50ef2b8de1f10b4602b",
+    "remotePublished": true,
+    "jiraCommentId": "10019",
+    "jiraTransitionId": "51",
+    "jiraReturnedStatus": "Done"
+   },
+   "liveEvidence": "docs/architecture/tracking/kan161-account-directory-closeout.json",
+   "cleanup": {
+    "registeredExtraWorktrees": 0,
+    "reviewerWorktreeRemoved": true,
+    "taskWorktreeUnregistered": true,
+    "taskFolderRemainder": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-161-account-structure",
+    "taskFolderRemoved": false,
+    "dependencyJunctionsRemovedWithoutFollowingTargets": true,
+    "primaryDependenciesRetained": true,
+    "reviewPreloaderPreserved": "artifacts/qa/kan161/review-ts-preloader.cjs",
+    "taskBackup": "93e27749a0eda8cdfc549d50d13125a928db3b75",
+    "limitation": "Git removal unregistered the completed task but reported Filename too long. Automatic approval review rejected the checked extended-path recursive deletion: blocked by policy. No bypass or further deletion attempted."
+   }
+  },
+  {
+   "sourceId": "MAIN-PRODUCTION-01",
+   "jiraKey": "KAN-162",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-162",
+   "status": "Done",
+   "scope": "Verified main-only production hosting and CI/CD in visionary-research; full product/content/provider gates remain separate",
+   "branch": "codex/firebase-visionary-research",
+   "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
+   "worktree": null,
+   "review": {
+    "state": "approved",
+    "implementer": "Codex",
+    "reviewer": "/root/kan162_review",
+    "approvedCommit": "4de8a33cb223a746c9738dc24554dd8ab812556e",
+    "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md",
+    "hostedScopeAccepted": true,
+    "hostedEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md",
+    "productionAcceptanceReportCommit": "86718c1f7b9420b38e00bb20bd9e41cea254435b"
+   },
+   "integration": {
+    "devCommit": "ab201364d4a0dd3ed2314851fd94164b0a2887f3",
+    "mainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+    "remotePublished": true,
+    "helperFollowupPendingIntegration": false,
+    "evidenceDevCommit": "1caf66fbbc039f8d1d054e2f42ce7d88852fa356"
+   },
+   "checks": {
+    "frontendTests": 532,
+    "scriptTests": 18,
+    "productionTests": 65,
+    "infrastructureNodeTests": 21,
+    "bootstrapPythonTests": 11,
+    "highCriticalAuditFindings": 0,
+    "moderateAuditFindings": 4,
+    "mainBuildContainerSmokePublish": true
+   },
+   "hosted": {
+    "project": "visionary-research",
+    "projectNumber": "174851137514",
+    "region": "asia-south1",
+    "service": "visionary-product",
+    "baselineRevision": "visionary-product-baseline-f3cf316edb74-mvgi7evq",
+    "imageDigest": "sha256:95f26b3ca800d148577456b2b21951bb2f93f76d1534628a37304ccd1363a7aa",
+    "edgeIp": "34.8.58.39",
+    "baselineVerified": true,
+    "syntheticUidTwoSessionStoreChecksPassed": true,
+    "syntheticIdentityDisabled": true,
+    "certificateStatus": "ACTIVE",
+    "canonicalAcceptance": true,
+    "automaticDeploymentEnabled": true,
+    "currentRevision": "visionary-product-g7aee2324024c-39405370084-1",
+    "actualMainPushDeploymentVerified": true,
+    "rollbackRestorationVerified": true,
+    "runUrl": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39405370084"
+   },
+   "jiraCommentId": "10053",
+   "jiraReturnedStatus": "Done",
+   "linkedProductGatesRemainOpen": true,
+   "jiraTransitionId": "51",
+   "verifiedAt": "2026-10-20T10:12:09Z",
+   "cleanup": {
+    "state": "completed",
+    "removedWorktrees": [
+     "codex-kan-162-main-deployment",
+     "qa-review-kan-162-main-deployment",
+     "qa-review-kan-162-visionary-research",
+     "firebase-visionary-research"
+    ],
+    "preservedFiles": 77,
+    "preservedBytes": 776009,
+    "localEvidenceRoot": "C:/Users/Administrator/New_Visionary/visionary-app/artifacts/qa/kan162-closeout-20261020",
+    "manifest": "preserved-files.json",
+    "pushedSourceAndReviewRefsRetained": true,
+    "dependencyJunctionsRemovedWithoutFollowingTargets": 4,
+    "primaryDependenciesRetained": true,
+    "primaryBranch": "dev"
+   }
+  },
+  {
+   "sourceId": "LEARN-09",
+   "jiraKey": "KAN-145",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-145",
+   "status": "Done",
+   "scope": "Repaired development knowledge-projection enabler; whole connected feature prerequisites/acceptance remain open",
+   "branch": "codex/deepseek-kan-145-knowledge-projection",
+   "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+   "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-145-knowledge-projection",
+   "review": {
+    "state": "approved-repaired-development-enabler",
+    "candidateCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+    "approvedCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+    "reviewer": "/root/kan145_repair_review",
+    "reviewerReportCommit": "7f1fa144a5b0155fcf8c5c4ea62726ab994fd70c",
+    "evidence": "docs/architecture/reviews/KAN145_EXACT_SHA_REPAIR_8B14A762.md",
+    "fullFeatureAccepted": false,
+    "enablerScopeAccepted": true
+   },
+   "hostedAcceptance": false,
+   "implementationCommit": "98ce3e5916e61b3c76a01b732f29d9b49b692af6",
+   "checks": {
+    "backendBuild": true,
+    "focusedTests": 11,
+    "backendTests": 84,
+    "rootCheck": true,
+    "frontendTests": 532,
+    "scriptTests": 18,
+    "failed": 0,
+    "productionTests": 76
+   },
+   "jiraCommentId": "10061",
+   "liveEvidence": "integration/KNOWLEDGE_PROJECTION_CONTRACT.md",
+   "currentDevBase": "e089319a24953bcadb522fcfef0e795065dd0c29",
+   "repairHandoff": "docs/architecture/delivery/KAN145_STORAGE_REPAIR.md",
+   "remainingPrerequisites": [
+    "KAN-144",
+    "KAN-74"
+   ],
+   "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
+   "acceptedScope": "development backend enabler",
+   "fullFeatureGate": "KAN-163",
+   "fullFeatureAccepted": false,
+   "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+   "integration": {
+    "branch": "dev",
+    "commit": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+    "pullRequest": 15,
+    "remotePublished": true,
+    "ciRun": "39457245132",
+    "ciConclusion": "success",
+    "productionJob": "skipped"
+   },
+   "jiraReturnedStatus": "Done",
+   "jiraTransitionId": "51",
+   "cleanup": {
+    "state": "removed-after-verified-preservation",
+    "removed": true,
+    "reason": "Completed source and review evidence accepted on dev/main; required ignored configuration/evidence preserved with SHA256 verification before exact checkout removal.",
+    "primaryDependenciesRetained": true,
+    "sourceAndReviewRefsRetained": true,
+    "worktrees": [
+     "deepseek-kan-145-knowledge-projection",
+     "qa-review-kan-145-knowledge-projection"
+    ],
+    "preservedFiles": 9,
+    "preservedBytes": 118332,
+    "evidenceRoot": "artifacts/qa/kan145-closeout-20261020",
+    "manifest": "preserved-files.json",
+    "jiraCommentId": "10062",
+    "previousCheckpoint": "blocked-by-automatic-approval-review",
+    "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-22.json"
+   },
+   "enablerScopeAccepted": true
+  },
+  {
+   "sourceId": "LEARN-10",
+   "jiraKey": "KAN-146",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-146",
+   "status": "Done",
+   "scope": "Repaired development teaching replay and client confirmation enabler; full learner acceptance open",
+   "branch": "codex/deepseek-kan-146-teaching-loop",
+   "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+   "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-146-teaching-loop",
+   "review": {
+    "state": "approved-repaired-development-enabler",
+    "approvedCommit": "3920140df87a21522b227c0e807476b47a3a29d6",
+    "reviewer": "/root/kan146_repair_review",
+    "reviewerReportCommit": "4259d5ef40b853975de059655fda0908b90155a9",
+    "evidence": "docs/architecture/reviews/KAN146_EXACT_SHA_REPAIR_3920140D.md",
+    "enablerScopeAccepted": true,
+    "fullFeatureAccepted": false
+   },
+   "hostedAcceptance": false,
+   "implementationCommit": "83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec",
+   "checks": {
+    "backendBuild": true,
+    "backendTests": 95,
+    "productionTests": 87,
+    "focusedFrontendTests": 18,
+    "scriptTests": 18,
+    "frontendTests": 550,
+    "rootCheck": true,
+    "lint": true,
+    "typecheck": true,
+    "buildSeconds": 153,
+    "independentBackendTests": 22,
+    "independentFrontendTests": 18,
+    "independentVersionProbes": 12,
+    "failed": 0
+   },
+   "jiraCommentId": "10065",
+   "liveEvidence": "integration/LEARNING_LOOP_CONTRACT.md",
+   "currentDevBase": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+   "repairHandoff": "docs/architecture/delivery/KAN146_REPLAY_REPAIR.md",
+   "remainingPrerequisites": [
+    "KAN-145",
+    "KAN-143"
+   ],
+   "scopeDecision": "Founder accepted completed development enablers; linked full feature gates remain open (20 October 2026)",
+   "acceptedScope": "development teaching loop/client enabler",
+   "fullFeatureGate": "KAN-164",
+   "fullFeatureAccepted": false,
+   "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+   "integration": {
+    "branch": "dev",
+    "commit": "e91a75ddbcd1e40b1894367909298e7373728aab",
+    "pullRequest": 16,
+    "remotePublished": true,
+    "ciRun": "39459245188",
+    "ciConclusion": "success",
+    "productionJob": "skipped"
+   },
+   "enablerScopeAccepted": true,
+   "jiraReturnedStatus": "Done",
+   "jiraTransitionId": "51",
+   "cleanup": {
+    "state": "removed-after-verified-preservation",
+    "removed": true,
+    "reason": "Completed source and review evidence accepted on dev/main; required ignored configuration/evidence preserved with SHA256 verification before exact checkout removal.",
+    "primaryDependenciesRetained": true,
+    "sourceAndReviewRefsRetained": true,
+    "worktrees": [
+     "deepseek-kan-146-teaching-loop",
+     "qa-review-kan-146-teaching-loop"
+    ],
+    "preservedFiles": 18,
+    "preservedBytes": 310136,
+    "evidenceRoot": "artifacts/qa/kan146-closeout-20261020",
+    "manifest": "preserved-files.json",
+    "deletionAttemptOnThisTask": false,
+    "previousCheckpoint": "blocked-by-automatic-approval-review",
+    "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-22.json"
+   }
+  },
+  {
+   "jiraKey": "KAN-163",
+   "status": "To Do",
+   "scope": "Full connected learner feature acceptance retained from KAN-145; original requirements not accepted by enabler closeout",
+   "scopeTransferredFrom": "KAN-145",
+   "prerequisites": [
+    "KAN-144",
+    "KAN-74",
+    "KAN-36",
+    "KAN-29"
+   ],
+   "fullFeatureAccepted": false,
+   "worktree": null
+  },
+  {
+   "jiraKey": "KAN-164",
+   "status": "To Do",
+   "scope": "Full connected learner feature acceptance retained from KAN-146; original requirements not accepted by enabler closeout",
+   "scopeTransferredFrom": "KAN-146",
+   "prerequisites": [
+    "KAN-163",
+    "KAN-143",
+    "KAN-74"
+   ],
+   "fullFeatureAccepted": false,
+   "worktree": null
+  },
+  {
+   "sourceId": "SCOPE-07",
+   "jiraKey": "KAN-34",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-34",
+   "status": "Done",
+   "scope": "Accepted released email/Google/phone sign-in, secure server-owned remembered sessions, saved onboarding and global sign-out; native production phone closeout independently accepted. Custom sender-domain/templates and broad security/load/MFA coverage remain separate.",
+   "branch": "codex/codex-kan-34-signin-matrix",
+   "baseCommit": "84a432ece03535ec7e62c1591b420650bd12e52a",
+   "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-34-signin-matrix",
+   "implementer": "Codex",
+   "review": {
+    "state": "approved-source-and-hosted-release",
+    "reviewer": "/root/kan34_release_review",
+    "exactReviewedCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
+    "report": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
+    "reportCommit": "1398227ae1001db8626ac5916f20f50fab7038d0",
+    "fullFeatureAccepted": true,
+    "hostedPhoneAcceptancePending": false,
+    "hostedReport": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
+    "hostedReportCommit": "893a322444d8971a0c7ad2c2fc9b686982770ac1"
+   },
+   "implementationCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
+   "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/19",
+   "sourceCiRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39908224000",
+   "sourceCiConclusion": "success",
+   "handoff": "docs/architecture/delivery/KAN34_PHONE_AUTH_REVIEW.md",
+   "jiraResumeCommentId": "10126",
+   "checks": {
+    "backendBuild": true,
+    "backendTests": 107,
+    "frontendTests": 624,
+    "scriptTests": 18,
+    "gcpJavascriptTests": 27,
+    "rootCheck": true,
+    "lint": true,
+    "typecheck": true,
+    "firebaseModeBuild": true,
+    "finalFirebaseBuildSeconds": 25.86,
+    "phoneEmulatorBrowserScenarios": 8,
+    "emailEmulatorBrowserScenarios": 11,
+    "realPhoneSmsAcceptance": true,
+    "failed": 0
+   },
+   "hostedAcceptance": true,
+   "fullFeatureAccepted": true,
+   "liveContinuation": {
+    "date": "2026-10-22",
+    "localRealFirebaseGoogle": true,
+    "canonicalProductionGoogle": true,
+    "existingProductionCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+    "localhostDomainAddedAndReadBack": true,
+    "productionDomainsPreserved": true,
+    "signInProviderConfigurationUnchanged": true,
+    "realVerificationMailReceived": true,
+    "realVerifiedEmailSession": true,
+    "realResetMailReceived": true,
+    "passwordResetCompleted": true,
+    "appleConfigured": false,
+    "appleRealSignIn": false,
+    "onboardingAccountRecoveryRepaired": true,
+    "compiledRecoveryScenarios": 6,
+    "repairReview": "pending",
+    "founderReleaseChoices": {
+     "appleWeb": "removed-by-explicit-founder-instruction",
+     "emailVerification": "firebase-native-links-explicitly-selected",
+     "customSender": false,
+     "numericCodeImplemented": false
+    },
+    "rememberedDeviceCandidate": {
+     "absoluteDays": 14,
+     "idleDays": 7,
+     "authority": "server-verified-HttpOnly-cookie-plus-device-record",
+     "sdkTokenPersistence": "memory-only",
+     "deployed": true,
+     "globalLogout": true,
+     "passiveVisibleObservationSeconds": 30,
+     "passiveObservationTouchesIdle": false
+    },
+    "firebaseTemplates": {
+     "status": "prepared-not-applied",
+     "api": "EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED",
+     "consoleSenderSubjectSave": "rejected-project-updates-unavailable",
+     "senderDomain": "visionary.org.in",
+     "senderDomainStatus": "IN_PROGRESS",
+     "configuration": "infrastructure/gcp/auth-email-templates.json"
+    },
+    "resetEvidence": {
+     "mailDelivered": true,
+     "resetFormOpened": true,
+     "oldPasswordRejectedAfterHandoff": true,
+     "preResetSessionDenied": true,
+     "newPasswordSignInObserved": true,
+     "sourceCommit": "d87ea72e9cbc4b88a701718231ac7e5a1b786665"
+    },
+    "currentCandidateNativeEmail": {
+     "sourceCommit": "10f1f95646b21b64a72fcef9acac36e1b37186e1",
+     "realSignIn": true,
+     "savedOnboardingRestored": true,
+     "reloadRestored": true,
+     "globalLogoutFirestoreVersionBefore": 0,
+     "globalLogoutFirestoreVersionAfter": 1,
+     "globalCutoffRecorded": true,
+     "issuerReturnedToSignIn": true,
+     "fixtureDisabledAfterVerification": true,
+     "fixtureTokensRevokedAfterVerification": true,
+     "originalAccountChanged": false,
+     "hostedCandidate": false
+    },
+    "mailDomainLatestRead": {
+     "pendingCustomDomain": "visionary.org.in",
+     "customDomainState": "IN_PROGRESS",
+     "domainVerificationRequestTime": "2026-10-22T16:44:51.371Z",
+     "templateEditsApplied": false
+    }
+   },
+   "integration": {
+    "remotePublished": true,
+    "commit": "98b11ad4282889bd7ce7a864a24fe747fd6acbfe",
+    "acceptedBaseCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+    "ciRun": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39909053089",
+    "ciConclusion": "success"
+   },
+   "synchronizedDevCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+   "sourceCiCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
+   "releasePlan": {
+    "procedure": "main-only-reviewed-phone-extension",
+    "policyAwareRollback": "1ae078dc469846246bb5571717e39a6afe7a402e",
+    "epochEnforcementAlwaysEnabled": true,
+    "phoneDeployed": true,
+    "freshPhoneSignInUnavailableOnRollback": true
+   },
+   "acceptedBase": {
+    "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+    "review": {
+     "state": "approved-source-and-two-stage-release-procedure",
+     "reviewer": "/root/kan34_release_review",
+     "exactReviewedCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+     "report": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
+     "reportCommit": "a333955c8a35e1fa1072610d3e5e640321dad7d4",
+     "independentAuthAndGcpTests": 65,
+     "independentRenderLint": true,
+     "compiledBrowserReceiptsInspected": 14,
+     "fullFeatureAccepted": false,
+     "hostedAcceptancePending": true
+    },
+    "checks": {
+     "backendBuild": true,
+     "backendTests": 104,
+     "frontendTests": 617,
+     "scriptTests": 18,
+     "gcpJavascriptTests": 26,
+     "rootCheck": true,
+     "rootCheckEvidence": "Local root check at d3b3ba32; final445 import repair separately linted/rebuilt, all14 compiled browser cases pass, and final445 GitHub CI reruns full root check.",
+     "lint": true,
+     "typecheck": true,
+     "firebaseModeBuild": true,
+     "finalFirebaseBuildSeconds": 28.17,
+     "compiledBrowserScenarios": 14,
+     "compiledBrowserEnvironment": "Fictional identity/store, compiled frontend and Nest service. Four methods, six onboarding recovery, two enabled global-logout device cases and two disabled compatibility-stage local-logout cases.",
+     "realProviderAcceptance": false,
+     "failed": 0
+    },
+    "devIntegrationCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+    "mainCommit": "1ae078dc469846246bb5571717e39a6afe7a402e",
+    "hostedAcceptance": true,
+    "evidence": "docs/architecture/delivery/evidence/KAN34_HOSTED_AUTH_2026-10-22.json",
+    "independentHostedReviewCommit": "95a6bb00fd0825e03972d43d479040ae9c09570c"
+   },
+   "phoneSourceCi": {
+    "commit": "24663e2199c9ffeeffa80e5946429684a0caa2cd",
+    "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39830621424",
+    "conclusion": "success",
+    "approval": false
+   },
+   "mainRelease": {
+    "commit": "a0d24fdf587bc1c9af0a90061bcc1b55089349ee",
+    "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/20",
+    "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39909298035",
+    "conclusion": "success",
+    "evidence": "docs/architecture/delivery/evidence/KAN34_HOSTED_PHONE_2026-10-23.json"
+   },
+   "jiraDone": {
+    "date": "2026-10-23",
+    "transitionId": 51,
+    "returnedStatus": "Done",
+    "readBackStatus": "Done",
+    "commentId": "10138"
+   },
+   "closeoutPublication": {
+    "scope": "Documentation only; unchanged runtime",
+    "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/21",
+    "state": "pending checked publication"
+   },
+   "worktreeCleanup": {
+    "state": "eligible after checked closeout publication",
+    "requiredLocalEvidencePreserved": true,
+    "preservationRoot": "C:/Users/Administrator/Visionary-local/completed-worktrees-2026-10-23",
+    "retainedRefs": [
+     "main",
+     "dev",
+     "beta",
+     "KAN-29"
+    ],
+    "actualRemovalReceipt": "Record actual inventory and removal in Jira after cleanup; this checkpoint does not assert future removal"
+   }
+  },
+  {
+   "sourceId": "FAP-D1",
+   "jiraKey": "FAP-53",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-53",
+   "status": "Testing",
+   "verifiedAt": "2026-10-24T06:25:28.874Z",
+   "scope": "D1 one motion law: --ease-out-apple curve + 180/280/420/650/900ms duration scale on the single token home; enforced end-to-end by qa-motion across 403 source files and scripts/tests/motion-law.test.mjs",
+   "branch": "opencode/fap-d1-motion",
+   "implementationCommits": [
+    "af6a80472f6d93d22abc41f7f141ad966a902363"
+   ],
+   "betaIntegration": {
+    "mergeCommit": "4dc833dd",
+    "pushedAndVerified": true,
+    "protocol": "founder-amended: agents merge task lane into beta and push; no beta<->dev merges by agents; dev untouched"
+   },
+   "checks": {
+    "fullCheck": "green (verify-layout, verify-imports, qa-continuity, qa-motion, script tests, lint, both typechecks, 624/624 tests, vite build 47.63s)",
+    "frontendTests": 624,
+    "qaMotionReceiptPair": {
+     "before": 123,
+     "after": 0,
+     "files": 403
+    }
+   },
+   "scopeAuditRebaseline": {
+    "routes": 512,
+    "controlDeclarations": 931,
+    "controlFiles": 219,
+    "registeredEndpoints": 26,
+    "reviewedOperationGroups": 30,
+    "drift": "identical to E1 baseline (zero drift); baselines included in af6a8047"
+   },
+   "artifacts": [
+    "frontend/artifacts/research/continuity-2026-10-24/d1-motion/D1_EVIDENCE.md",
+    "frontend/artifacts/research/continuity-2026-10-24/d1-motion/d1-before-scan.json",
+    "frontend/artifacts/research/continuity-2026-10-24/d1-motion/d1-after-scan.json",
+    "frontend/artifacts/research/continuity-2026-10-24/APPLE_BENCHMARK_STUDY_2026-10-23.md"
+   ],
+   "review": {
+    "state": "pending-reviewer-acceptance",
+    "implementer": "opencode",
+    "reviewer": null,
+    "candidateCommit": "af6a8047",
+    "jiraCommentId": "10175",
+    "note": "D-095 pending review lives in Jira Testing; Done requires a separate reviewer recording the exact reviewed commit. Founder-ordered continuous-progression tension recorded in D1_EVIDENCE.md"
+   },
+   "jira": {
+    "transitions": [
+     {
+      "id": 41,
+      "to": "Testing",
+      "status": 204,
+      "at": "2026-10-24T06:25:28.874Z",
+      "commentId": 10175
+     }
+    ]
+   }
+  },
+  {
+   "sourceId": "FAP-D2",
+   "jiraKey": "FAP-54",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-54",
+   "status": "Testing",
+   "startAt": "2026-10-24T06:25:28.874Z",
+   "scope": "D2 responsive + tap targets: full public sweep at 320/390/768/1024/1440 with zero overflow, 44px tap-target law (static qa-taps + rendered receipts), onboarding labels >=12px, hero stacks verified at 390, 200% font re-run",
+   "branch": "opencode/fap-d2-responsive",
+   "base": "beta@4dc833dd (verified before branching; deviation from origin/dev 0306703e documented per founder-amended beta integration lane)",
+   "progress": [
+    {
+     "at": "2026-10-24T06:25:28.874Z",
+     "item": "static law scanner frontend/scripts/qa-taps.mjs (tap law + hit-union accounting + label law + 3-entry exception register) green: 245 interactive controls / 90 files; wired into frontend qa:taps, product frontend:qa:taps, scripts/check.mjs; scripts/tests/tap-law.test.mjs 13/13"
+    },
+    {
+     "at": "2026-10-24T06:25:28.874Z",
+     "item": "source fixes: CareersPage 32px icon Link -> 44px box (icon position preserved), CookiesPage switch -> 64x44 hit wrapper with unchanged 28x48 visual pill (+ law-curve durations), four dot rows -> >=44px pseudo hit unions (PersonaSections, PremiumPersonaSections x2, system/ui ProgressDots, PartnersPage tab strip)"
+    },
+    {
+     "at": "2026-10-24T06:25:28.874Z",
+     "item": "next: rendered 320/390/768/1024/1440 sweep with receipts into frontend/artifacts/research/continuity-2026-10-24/d2-responsive/, hero stack at 390 verification, 200% font sweep, then full npm run check + beta merge per amended protocol"
+    },
+    {
+     "at": "2026-10-25T11:30:00.000Z",
+     "item": "harness decision: dev-server boots flaked on cold module waterfall (~105 resources) -> rendered sweep measured against production build via vite preview 4173 (deterministic ~0.4-1.5s boots); router context via src-less iframe inheriting parent pathname (top-level navigate per route), no replaceState shim; ledger persisted in localStorage['d2sweep'] across navigations; dpr 1.31 so css-44 raw-reads 43.9886 -> threshold 43.9 with raw 2-decimal values"
+    },
+    {
+     "at": "2026-10-25T11:30:00.000Z",
+     "item": "rendered sweep BEFORE fix batch: 24 public routes x 5 widths = 120 rows, 0 horizontal-overflow combos, 0 dead boots; 98 unique sub-44 signatures across ~10 component classes (breadcrumb 13px links, legal chips, policy sidebars, /help chips, /how-it-works chips + CTA, persona Learn-more text links, community/careers/contact pills, home route links, nav logo 28px, hamburger flex-squeeze w30)"
+    },
+    {
+     "at": "2026-10-25T11:30:00.000Z",
+     "item": "fix batch landed in 13 files (Breadcrumb, PolicyTabs, Privacy/Terms/Security/CookiesPage sidebar + privacy links, SchoolPage /help chips, CoachingPage CTA + story chips + walks, PremiumPersonaSections 6 link sites, AboutUsPage link component, CommunityPage, ContactPage pills + link, CareersPage pills + links, UpdatesPage link, LandingNav iconBtn shrink-0 + logo union, CookiesPage class disambiguation) -> tap unions via relative after:absolute after:-inset-y-3 (nav logo after:-inset-y-2 after:-inset-x-7); no visual anatomy change"
+    },
+    {
+     "at": "2026-10-25T11:30:00.000Z",
+     "item": "rendered sweep AFTER fix batch: 120 rows, 0 violations (no under44, no overflow); 200% root font (32px) x 18 routes x 320/390 = 36 combos with 0 overflow; hero stacks verified at 390 (visible h1 fits, clipped:false, on all checked routes); receipts: d2-sweep-rendered-2026-10-25.json (before), d2-sweep-rendered-2026-10-25-after.json (after), font-200-hero-390-2026-10-25.json, D2_EVIDENCE.md (PNG screenshots unavailable - desktop browser window not visible this session)"
+    },
+    {
+     "at": "2026-10-25T11:30:00.000Z",
+     "item": "next: full npm run check, commit+d push task branch, beta merge --no-ff + push + verify per amended protocol; FAP-54 remains In Progress; separate reviewer records exact reviewed commit before Done (D-095); founder-ordered continuous progression continues toward D3 while review pends"
+    },
+    {
+     "at": "2026-10-25T12:45:00.000Z",
+     "item": "surface audit drift (fix batch changed link classNames/geometry) resolved per the check error's own prescription: npm run scope:audit:write -> product-surface.json refreshed (97/97 pure line-number remap confined to Breadcrumb.jsx (+1 comment line) and CookiesPage.jsx (+4 switch-wrapper lines); no route/endpoint/state semantics changed) -> full npm run check re-run: every law stage green (roots separation, import baseline 3842 files, qa:continuity all recorded public-surface laws, qa:motion 403 files, qa:taps 245 controls, 52/52 script tests incl. tap-law, surface audit clean, 624/624 vitest, production build 52.26s)"
+    },
+    {
+     "at": "2026-10-25T12:45:00.000Z",
+     "item": "delivered: task branch opencode/fap-d2-responsive commit e486bd38bb1a6fee9d7b10013cf5db9d2d87bde3 'opencode FAP-D2: responsive + 44px tap-target law...' pushed and remote verified; beta merged --no-ff as 794025c1eef975d573f23b5821cfb373894ecabd and pushed (origin/beta verified e486bd38->794025c1); Jira FAP-54 progress comment 10208 posted live + delivery record + transition In Progress->Testing (41); D-095: pending separate reviewer recording exact reviewed commit before Done"
+    }
+   ],
+   "jira": {
+    "transitions": [
+     {
+      "id": 31,
+      "to": "In Progress",
+      "status": 204,
+      "at": "2026-10-24T06:25:28.874Z",
+      "commentId": 10176
+     }
+    ]
+   }
+  },
+  {
+   "sourceId": "FAP-D3",
+   "jiraKey": "FAP-55",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-55",
+   "status": "Testing",
+   "startAt": "2026-10-25T06:12:20.761Z",
+   "scope": "D3 performance + image law: hero art AVIF/WebP with measured density, LazyImage everywhere, bundle split of F10 monoliths into per-section modules, LCP <2.5s on Fast3G landing; AC vite build budget recorded + LCP pass recorded",
+   "branch": "opencode/fap-d3-performance",
+   "base": "beta@33add5121a567e9e45fa0c2da414c90d21fcb5fd (verified after D2 delivery record merge)",
+   "progress": [
+    {
+     "at": "2026-10-25T06:12:20.762Z",
+     "item": "task started per founder-ordered continuous progression from delivered D2 (FAP-54 in Testing awaiting reviewer); worktree opencode-fap-d3-performance from verified beta; Jira FAP-55 Idea->To Do->In Progress with start comment 10210; next: image inventory + LCP baseline on Fast3G"
+    },
+    {
+     "at": "2026-10-26T00:00:00.000Z",
+     "item": "F10 monolith split delivered mechanically and verbatim: PersonaSections.jsx 958L -> 20 per-section modules + 19-name barrel, PremiumPersonaSections.jsx 1375L -> 7 modules + barrel, SpotIllustration.jsx 1223L -> dir (palette + 4 scene groups + index), LandingNav.jsx 785L -> dir (nav-data + nav-shared + index); split scripts committed (f10-split-persona/premium/spot-nav.mjs), bodies verified verbatim by substring containment; import sites unchanged"
+    },
+    {
+     "at": "2026-10-26T00:05:00.000Z",
+     "item": "Post-split wire proof: 134 chunks/3,098,409B (gzip 880,929B) -> 135 chunks (133 names)/3,088,080B (gzip 879,418B), 0 stale monolith chunks; chevron-only pages pay a 414B ChevronIcon shared chunk (old shared PersonaSections chunk 9.1KB gone); Landing loads its 4 needed premium sections via the 37.1KB PremiumExploreSection chunk and does NOT load the persona-only 30.3KB PremiumJourneyFlowSection chunk (07-language/09-achievement/10-journey excluded from /)"
+    },
+    {
+     "at": "2026-10-26T00:10:00.000Z",
+     "item": "QA law wall green after split: qa-perf budget recorded (grouped ledger patch for same-name chunk collisions) + fresh verify PASS; qa:continuity regenerated for new paths (same approved hex domain, nothing added/removed) PASS; qa:fonts PASS on production preview; qa:design PASS + qa:navigation PASS on their canonical dev harness; qa:taps PASS (245 controls/125 files); qa:motion PASS (438 files); lint clean; new f10-audit-bindings.mjs guard (rollup free-identifier law) clean after fixing 3 real header drifts"
+    },
+    {
+     "at": "2026-10-26T00:15:00.000Z",
+     "item": "Final Fast3G headless receipts via proxy (post-restart full rebuild, 135 chunks): / LCP 6,720 + 7,168 across two same-build runs (wire 331,362B pre-split-vs-post -877B; pre-F10 standing receipt 5,584 — spread bounds lab scheduling noise), /student LCP 5,960 (hero main 2400w AVIF), /teacher LCP 6,288; CLS 0.041/0.032/0.032; fontsDoubleFetched:false + staticFontFetched:false on all; LCP <2.5s AC honestly unmet on raw Fast3G (physics: 4 flex TTF ~505KB + 331KB JS + 95KB LCP art); edge-signature recorded, fast-LCP lever named as next-wave"
+    },
+    {
+     "at": "2026-10-26T00:20:00.000Z",
+     "item": "D3_EVIDENCE.md written to frontend/artifacts/research/continuity-2026-10-24/d3-performance/ (receipts table, F10 split record, chunk-graph proof, tooling law updates, incident/harness notes); final v2 comment posted on FAP-55; NO beta merge — awaiting independent reviewer per D-095 to record the exact reviewed commit"
+    },
+    {
+     "at": "2026-10-27T08:23:00.000Z",
+     "item": "founder-authorized end-to-end delivery completed: founder set the standing lane this session ('you have to work on task to implement end to end in worktree and testing the product and merge in the beta and move to next task') and confirmed the merge by explicit choice; branch opencode/fap-d3-performance b21f6bc8 merged --no-ff into beta as e9d04f050a2b14dd2a087f4fda91396499a870ee (33add512..e9d04f05), pushed and ls-remote verified; D-095 unchanged - separate reviewer records the exact reviewed commit before Done; post-restart Jira auth is 401, so FAP-55 Jira transition to Testing and live verification of the final v2 comment are pending first re-login (if the comment is absent on the board, post it once); stale lane noted: opencode/fap-continuity-qa a364bf45 (2026-10-23, based on main 592d4752, pre-rebuild E1/D2 hybrid editing monolith files since split by F10) superseded and left parked untouched; next task: E1 cross-page continuity QA per FRONTEND_AGI_TASK_REBUILD dependency chain (A0..D3 done, D3 now in beta at e9d04f05)"
+    }
+   ],
+   "jira": {
+    "transitions": [
+     {
+      "id": 41,
+      "to": "Testing",
+      "status": 204,
+      "at": "2026-10-28T06:20:00.000Z",
+      "commentId": 10318,
+      "note": "board auth restored backfill"
+     },
+     {
+      "id": 41,
+      "to": "Testing",
+      "status": 204,
+      "at": "2026-10-28T06:20:00.000Z",
+      "commentId": 10318,
+      "note": "board auth restored backfill"
+     }
+    ]
+   }
+  },
+  {
+   "sourceId": "FAP-E1",
+   "jiraKey": "FAP-56",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-56",
+   "status": "Testing",
+   "startAt": "2026-10-27T08:27:00.000Z",
+   "registrationNote": "Jira ticket not yet creatable (board auth 401 after environment restarts) - create/claim the FAP-E1 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E1: ...",
+   "scope": "E1 cross-page continuity QA: automated audit that same-page font/type roles resolve (no bridge fallback), no dual-ink values, link color single-source, CTA geometry equality across public pages at 1440; extends npm run qa:continuity and keeps it wired into scripts/check.mjs; failing cases fixed",
+   "branch": "opencode/fap-e1-continuity",
+   "base": "beta@e2a6d7c9 (verified before branching: D3 task-lane merge e9d04f05 of b21f6bc8 + D3 delivery record)",
+   "progress": [
+    {
+     "at": "2026-10-27T08:27:00.000Z",
+     "item": "task started per founder end-to-end lane; worktree opencode-fap-e1-continuity from verified beta e2a6d7c9; scope + lane recorded; salvage candidates from superseded a364bf45 artifacts (e1-after-scan.json, render-check-receipts.json) to be studied during scoping; next: read current qa-continuity.mjs + scripts/check.mjs wiring, define the four audit dimensions (roles-resolve, no dual-ink, link single-source, CTA geometry equality at 1440), then implement"
+    },
+    {
+     "at": "2026-10-27T20:00:00.000Z",
+     "item": "static law layer extended 4 -> 7 laws in frontend/scripts/qa-continuity.mjs: Law 6 icon-control-size-44px (2.75rem single definition point), Law 7 link-ink-single-source (role map base/hover/active/focus-visible); full-tree pass (77 files, 0 violations); -q null-safety hardened; law tests scripts/tests/continuity-law.test.mjs 7/7 pass"
+    },
+    {
+     "at": "2026-10-28T03:00:00.000Z",
+     "item": "rendered harness built: frontend/scripts/qa-continuity-render.mjs — canonical 24-route D2 sweep universe at 1440x900@1 against production dist on :4173; progressive scroll mounts lazy sections (D2 protocol parity), pill filter = radius >= half-height or specified 9999px with h 36-72, per-pill text labels, ground-aware role capture, mysteryInk ancestry chain capture"
+    },
+    {
+     "at": "2026-10-28T03:15:00.000Z",
+     "item": "rendered findings decoded (pre-fix run): recorded CTA class (fs 17px / px 21px / h 44 / fw 500) rendered three competing leading regimes across pages (25.5px font-normal GSF, 20px font-normal GSF Content, 22px adapter-forced) and two tracking regimes (-0.187px canonical vs -0.374px adapter-forced); role-dual-ink pairs were dual-GROUND staging (dark frost vs light ink of same type); mystery link ink rgb(31,31,31) present in no build asset"
+    },
+    {
+     "at": "2026-10-28T03:20:00.000Z",
+     "item": "source fixes applied: system/ui.jsx CtaPair primary pill + leading-[1.176] (BUTTONS.geo anatomy); apple-typography.css L511 text-control clause and L792 a[class*=bg-] clause both gain :not([class*=\"rounded-full\"]) per the recorded L426 CTA-tier doctrine (rounded-full pills are exempt, the CTA tier owns their anatomy A2/FAP-42); DownloadPage 6 pill sites (Open Visionary, See platforms, Open in browser, coming-soon x5, Prepare email request, Continue on web) + AILearningPage(=/pricing) 3 pill sites (plan CTAs, institution CTA, final Get started) given explicit leading-[1.176]"
+    },
+    {
+     "at": "2026-10-28T03:28:00.000Z",
+     "item": "verification chain green: rendered harness 0 violations on 24/24 routes (1036 pill census rows; 52 recorded-CTA-class pills, 52/52 canonical 19.992px/-0.187px; grounds light+dark resolved); static 7 laws pass full tree; law tests 7/7; eslint --quiet 0; tsc jsconfig + tsconfig.domain 0; mysteryInk decoded rgb(31,31,31) = hsl(var(--foreground)) global shadcn token, inherited by sr-only skip links (invisible, focus state law-legal) and the logo anchor (inert: VisionaryLogo paints explicit brand fills); evidence artifacts/research/continuity-2026-10-27/e1-continuity/ (e1-continuity-render.json + E1_EVIDENCE.md); implementation + verification complete, independent review per D-095 pending"
+    },
+    {
+     "at": "2026-10-28T03:40:00.000Z",
+     "item": "delivery record: lane opencode/fap-e1-continuity merged into beta --no-ff fe984775 (e2a6d7c9..fe984775 pushed + ls-remote verified); task branch head 7d6d5d43 pushed + ls-remote verified; mirror FAP-E1 -> Testing per D3 precedent; D-095 independent review still pending (implementer cannot self-approve); Jira transition + key backfill pending board auth (401)"
+    }
+   ],
+   "jira": {
+    "transitions": [
+     {
+      "id": 21,
+      "to": "To Do",
+      "status": 204,
+      "at": "2026-10-28T06:22:00.000Z"
+     },
+     {
+      "id": 31,
+      "to": "In Progress",
+      "status": 204,
+      "at": "2026-10-28T06:22:00.000Z"
+     },
+     {
+      "id": 41,
+      "to": "Testing",
+      "status": 204,
+      "at": "2026-10-28T06:22:00.000Z",
+      "commentId": 10319,
+      "note": "E1 claimed + Testing per D3 precedent (board auth restored)"
+     }
+    ]
+   }
+  },
+  {
+   "sourceId": "FAP-E2",
+   "jiraKey": "FAP-57",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-57",
+   "status": "In Progress",
+   "startAt": "2026-10-28T03:50:00.000Z",
+   "registrationNote": "Jira ticket not yet creatable (board auth 401) - create/claim the FAP-E2 key on first re-login and backfill here before any board write; commit convention stays opencode FAP-E2: ...",
+   "scope": "E2 review + release evidence: reviewer (not author) records reviewed SHAs per TASK_REVIEW_TEMPLATE for the A0->E1 chain; integration evidence into docs/architecture/delivery; Jira per-task receipts (pending board auth); founder walkthrough landing -> pricing -> download -> trust -> auth -> dashboard; AC: every task Done with acceptance evidence, audit doc updated to production-ready",
+   "branch": "opencode/fap-e2-review-evidence",
+   "base": "beta@3e4e8234 (verified before branching: E1 lane merge fe984775 + E1 delivery record)",
+   "progress": [
+    {
+     "at": "2026-10-28T03:50:00.000Z",
+     "item": "task started per founder end-to-end lane; worktree opencode-fap-e2-review-evidence from verified beta 3e4e8234; scope + lane recorded; next: per-task review handoffs per TASK_REVIEW_TEMPLATE (reviewer stays unassigned pending until a separate agent/founder actually reviews - never self-assigned), delivery integration evidence, walkthrough checklist; audit-doc production-ready flip waits for reviewer approvals"
+    },
+    {
+     "at": "2026-10-28T06:20:00.000Z",
+     "item": "board auth restored this session (token in .zcode/config.json valid; MCP plugin env not inherited, used REST directly). Pending-relogin backfill executed: FAP-55 (D3)->Testing + v2 comment 10318; FAP-56 (E1) claimed Idea->To Do->In Progress->Testing + delivery comment 10319; FAP-57 (E2) claimed Idea->To Do->In Progress + start comment 10320. journal appended."
+    },
+    {
+     "at": "2026-10-28T06:24:00.000Z",
+     "item": "next: build review handoff per TASK_REVIEW_TEMPLATE for A0->E1 chain into docs/architecture/delivery (evidence side; reviewer explicit pending per D-095), founder walkthrough checklist, then commit+push lane + beta merge."
+    },
+    {
+     "at": "2026-10-28T06:20:00.000Z",
+     "item": "board auth restored this session (token in .zcode/config.json valid; MCP plugin env not inherited, used REST directly). Pending-relogin backfill executed: FAP-55 (D3)->Testing + v2 comment 10318; FAP-56 (E1) claimed Idea->To Do->In Progress->Testing + delivery comment 10319; FAP-57 (E2) claimed Idea->To Do->In Progress + start comment 10320. journal appended."
+    },
+    {
+     "at": "2026-10-28T06:24:00.000Z",
+     "item": "next: build review handoff per TASK_REVIEW_TEMPLATE for A0->E1 chain into docs/architecture/delivery (evidence side; reviewer explicit pending per D-095), founder walkthrough checklist, then commit+push lane + beta merge."
+    },
+    {
+     "at": "2026-10-28T06:40:00.000Z",
+     "item": "evidence package committed eae9d39b (FAP_E2_REVIEW_EVIDENCE.md + FAP_E2_WALKTHROUGH_CHECKLIST.md + task-executions backfill); branch opencode/fap-e2-review-evidence pushed + ls-remote verified; lane merged into beta --no-ff 9c4bfd27 (eae9d39b into beta), journal receipt baf1e61a, beta pushed + ls-remote verified baf1e61a"
+    },
+    {
+     "at": "2026-10-28T06:40:00.000Z",
+     "item": "E2 remains In Progress: Done gated by D-095 (separate reviewer records exact reviewed commit per FAP_E2_REVIEW_EVIDENCE.md) + C3/FAP-51 board transition + C4/FAP-52 open + founder walkthrough + audit production-ready flip after approvals"
+    }
+   ],
+   "jira": {
+    "transitions": [
+     {
+      "id": 21,
+      "to": "To Do",
+      "status": 204,
+      "at": "2026-10-28T06:23:00.000Z"
+     },
+     {
+      "id": 31,
+      "to": "In Progress",
+      "status": 204,
+      "at": "2026-10-28T06:23:00.000Z",
+      "commentId": 10320,
+      "note": "E2 claimed on Jira"
+     }
+    ]
+   }
+  },
+  {
+   "sourceId": "FAP-C3",
+   "jiraKey": "FAP-51",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-51",
+   "status": "Testing",
+   "startAt": "2026-10-29T07:04:00.000Z",
+   "registrationNote": "Board housekeeping only - the C3 implementation (KAN-201 chain) merged in beta at 2e88e302 + ba20027a predates this session; this entry records the candidate submit + Testing transition performed by the opencode lane after re-verifying the AC in the beta tree.",
+   "scope": "Re-verify the merged C3 candidate in the beta tree and submit it for separate review: scoped surfaces (Ask, Build, StudentClasses, Subscription, Settings, RoleWorkspace, Guide) contain 0 raw #4285F4/#dadce0; Subscription.jsx renders v-card panels; workspace-design.css single definition point (--v-action #0071e3 light / #aac7ff on-dark); workspace.css only aliases --v-brand. No new implementation.",
+   "branch": "null (no lane; primary beta checkout reads only)",
+   "base": "beta@6883a844 (verified origin/beta tip)",
+   "progress": [
+    {
+     "at": "2026-10-29T07:50:00.000Z",
+     "item": "C3 AC re-verified in beta tree this session; FAP-51 moved In Progress -> Testing (transition 41, 204); Testing delivery comment 10342 posted (comments endpoint - transition-attached comment payloads were silently dropped and re-posted separately); D-095 review pending, implementer cannot self-approve"
+    }
+   ],
+   "jira": {
+    "transitions": [
+     {
+      "id": 41,
+      "to": "Testing",
+      "status": 204,
+      "at": "2026-10-29T07:50:00.000Z",
+      "commentId": "10342",
+      "note": "C3 candidate submitted for separate review (D-095)"
+     }
+    ]
+   }
+  },
+  {
+   "sourceId": "FAP-C4",
+   "jiraKey": "FAP-52",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-52",
+   "status": "Testing",
+   "startAt": "2026-10-29T07:04:00.000Z",
+   "registrationNote": "Claimed live on the board this session (Idea -> To Do -> In Progress, 204/204, verified readback).",
+   "scope": "Forms delivery honesty: partners enquiry + updates signup server intake recorded as intentionally-unreleased with the honest manual mail-draft channel kept explicit; DownloadPage coming-soon controls become genuinely disabled-with-reason; overclaiming DownloadPage copy made honest; PRODUCT_SURFACE_AUDIT operation flags flipped with receipts via scope:audit:write. Backend intake stays the separate task; PRIV-07/CONTENT-05 gates unchanged. Per founder delivery amendment: lane merges to beta first, then dev, both pushed and remote-verified before receipt.",
+   "branch": "opencode/fap-c4-forms",
+   "base": "beta@6883a844 (verified origin/beta tip; clean tree, checked before branch)",
+   "progress": [
+    {
+     "at": "2026-10-29T07:04:00.000Z",
+     "item": "task claimed per founder end-to-end lane; worktree opencode-fap-c4-forms from verified beta 6883a844; scope recorded on board (start comment follows via comments endpoint after transition-comment drop discovery); scope:audit found red at beta tip (D3 monolith split left 19 split control files unreviewed + 3 obsolete registry rows)"
+    },
+    {
+     "at": "2026-10-29T08:20:00.000Z",
+     "item": "implementation: review registry rows public-enquiry-careers-partners + public-updates-distribution flipped missing -> intentionally-unreleased with honest receipts (follow-ups unchanged); minimal D3 rebaseline carried (19 split files inherit monolith client-presentation rows, 3 obsolete rows removed); DownloadPage: real disabled controls with visible 'Coming soon - not available yet' reasons replacing aria-disabled clickable buttons; honest copy repairs (no 'final testing', no cross-device sync claim, no 'faster offline-friendly' promise); lane deps installed from lock (frontend install 661 pkgs)"
+    },
+    {
+     "at": "2026-10-29T08:40:00.000Z",
+     "item": "receipts regenerated: scope:audit:write green (68 routes, 37 endpoints, 237 control files, 1656 declarations) + read-only scope:audit verified; evidence doc FAP_C4_FORMS_EVIDENCE.md; E2 chain rows + walkthrough updated; task-executions + journal appended; next: npm run check + tests on the lane candidate, commit+push+ls-remote, beta merge --no-ff, FAP-52 -> Testing with delivery comment"
+    },
+    {
+     "at": "2026-10-29T09:10:00.000Z",
+     "item": "checks green on lane candidate 793ab758: npm run check full chain (layout/imports PASS 3842 files, qa continuity/motion/taps nav suite, tests 656/656 pass 0 fail, scope:audit green, vite build ok in 32.16s), eslint --quiet 0, tsc jsconfig 0 + tsc domain 0; branch pushed + ls-remote verified 793ab758"
+    }
+   ],
+   "jira": {
+    "transitions": [
+     {
+      "id": 21,
+      "to": "To Do",
+      "status": 204,
+      "at": "2026-10-29T07:04:35.000Z"
+     },
+     {
+      "id": 31,
+      "to": "In Progress",
+      "status": 204,
+      "at": "2026-10-29T07:04:35.000Z",
+      "note": "history 12430/12431 verified via changelog readback; transition-attached start comment dropped, re-posted via comments endpoint as 10343"
+     }
+    ]
+   }
+  },
+  {
+   "sourceId": "FAP-F1",
+   "jiraKey": "FAP-35",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-35",
+   "status": "Testing",
+   "startAt": "2026-10-29T08:23:00.000Z",
+   "registrationNote": "Claimed live on the board this session (To Do -> In Progress via transition 31, 204, verified readback; start comment 10345 posted via comments endpoint).",
+   "scope": "Final production pass: apply the measured Apple-premium spacing and composition system across every remaining public page. The six document surfaces (privacy/terms/security/cookies/accessibility/help) join the chapter system: data-section stage tags replace hand-set band paddings under a measured document-band law; careers life-strip and download sync-tray + contact strip adopt the compact-band law. Type ladder, CTA anatomy, ink palette and motion laws untouched. Fresh opencode worktree + own branch per D-098 from verified origin/beta 1550d5fa. FAP lane convention: beta first, dev after review.",
+   "branch": "opencode/fap-f1-final-pass",
+   "base": "beta@1550d5fa (verified origin/beta tip; clean tree, checked before branch)",
+   "progress": [
+    {
+     "at": "2026-10-29T08:23:00.000Z",
+     "item": "task claimed per founder end-to-end lane; fresh worktree opencode-fap-f1-final-pass from verified origin/beta 1550d5fa; scope recorded on board (start comment 10345)"
+    },
+    {
+     "at": "2026-10-29T08:32:00.000Z",
+     "item": "measured reference extended this pass: live CSSOM measurement of apple.com/privacy @1000x700 (medium band) - chapter bands 128/128 to 140/140, statement-to-copy 43px, closing router band 140/140 with 64px/600 statement and 52px gap; recorded in FAP_F1_PRODUCTION_PASS_EVIDENCE.md"
+    },
+    {
+     "at": "2026-10-29T09:05:00.000Z",
+     "item": "scope decision from evidence: the six document surfaces were the only public pages outside the chapter system (0 data-section tags; hand-set py-14/16/24/32 muddle); per-page scans put all other public pages on the container/seam laws already"
+    },
+    {
+     "at": "2026-10-29T09:20:00.000Z",
+     "item": "chapterize codemods applied with exact-once rules (f1-policy-chapterize.mjs 56/58 + fixup 2/2): 6 doc pages fully tagged (hero plates authored by design), careers 01b-life strip, download 02b-tray + 04b-strip strips; measured document-band law + statement-to-copy gap law + compact strip rules added to public-bridge.css F1 block"
+    },
+    {
+     "at": "2026-10-30T04:10:00.000Z",
+     "item": "rendered verification exposed the gap law dead selector: chapter copy is the SectionHeading wrapper siblings (eyebrow+h2 in one div), h2+p matched 0 nodes; carrier retargeted to div:has(> h2) margin-bottom + bare h2 + * margin-top (43px at 1000w); candidate rebuilt"
+    },
+    {
+     "at": "2026-10-30T04:20:00.000Z",
+     "item": "rendered readbacks all law-exact at 1000x700: doc bands 125/125 (carrier readable on all six mains; 14+16+14+10+9+2 chapters), statement-to-copy gap 43px on every h2 chapter (bare 02-summary pattern and max-w-[720px] category wrappers alike), strips 01b-life/02b-tray/04b-strip at 70/70 compact law with neighbours untouched, zero horizontal overflow on all seven swept pages; full-page screenshot capture blocked (desktop window not visible to harness), computed readbacks recorded as evidence in FAP_F1_PRODUCTION_PASS_EVIDENCE.md"
+    },
+    {
+     "at": "2026-10-30T04:25:00.000Z",
+     "item": "full check battery green on candidate tree: verify-layout, verify-imports, qa-continuity/qa-motion/qa-taps, 54 script tests, scope:audit (237 files / 1656 declarations unchanged, digests re-written), lint 0, typecheck x2 0, 656/656 frontend tests, vite build ok; receipts appended to FAP_F1_PRODUCTION_PASS_EVIDENCE.md Checks section"
+    },
+    {
+     "at": "2026-10-30T08:33:00.000Z",
+     "item": "candidate committed 9dc944c5 on opencode/fap-f1-final-pass, pushed + ls-remote verified; merged to beta no-ff as 44f1f15f on top of principal delivery record 0d20700 (empty marker), pushed + ls-remote verified 0d207007..44f1f15f; FAP-35 moved In Progress -> Testing via transition 41 (204) + delivery comment 10375 posted via comments endpoint + readback verified (status Testing, updated 2026-10-30T14:03:29.171+0530); D-095 external reviewer must record exact reviewed commit before Done; dev merge after review acceptance"
+    }
+   ]
+  },
+  {
+   "sourceId": "FAP-C9",
+   "jiraKey": "FAP-34",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-34",
+   "status": "In Progress",
+   "startAt": "2026-10-30T10:05:00.000Z",
+   "registrationNote": "Closeout lane only: FAP-34 is under the founder reopen (2026-10-21) for their review round; this lane deliberately performs no transition, it re-runs the C9 acceptance gate on the current production tree and refreshes the acceptance evidence for the reviewer.",
+   "scope": "Re-verified current-tree acceptance of the Apple type-scale system (spec APPLE_TYPE_SCALE_SPEC_2026-10-20): role-aware probe 120/120 across 7 public pages x 390/768/1440 (hero pairing, 64px section cap, ladder membership, nav/body floors, zero overflow); Vision-Pro category heroes exact at all three viewports; landing display supersession documented (hero one-voice law, B1/FAP-46 commit 6d54b76b receipted 2026-10-21: fitted 117/96/41.5 replaces the mixed per-word 140/~127 + 64/~44 bug, stage box keeps the 64/96/140 ladder anchor). No code changes; evidence-only lane.",
+   "branch": "opencode/fap-c9-closeout",
+   "base": "beta@156d0bed (verified origin/beta tip; tree identical to receipted F1 candidate 9dc944c5 / beta merge 44f1f15f)",
+   "progress": [
+    {
+     "at": "2026-10-30T10:05:00.000Z",
+     "item": "fresh worktree opencode-fap-c9-closeout from verified origin/beta 156d0bed; full battery cited from the identical-tree F1 receipt (656/656 + audits + build green)"
+    },
+    {
+     "at": "2026-10-30T10:20:00.000Z",
+     "item": "prod build served at 127.0.0.1:4188; type-verify 120/120 PASS; hero-verify: student/teacher Vision-Pro category heroes EXACT at 390/768/1440 with zero overflow; home cast display reads 117@1440 vs spec 140 - traced to receipted B1 hero one-voice law (commit 6d54b76b, FAP-46 founder bug receipt) not drift; stage box keeps the 64/96/140 anchor"
+    },
+    {
+     "at": "2026-10-30T10:30:00.000Z",
+     "item": "acceptance evidence refreshed in artifacts (type-verify.json + hero-verify.json re-run on this tree) + FAP_C9_CLOSEOUT_EVIDENCE.md written (supersession documented for reviewer judgement; no transition performed - founder owns the C9 verdict per D-095)"
+    }
+   ]
+  },
+  {
+   "sourceId": "FAP-30",
+   "jiraKey": "FAP-30",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-30",
+   "status": "Testing",
+   "startAt": "2026-10-30T17:55:00.000Z",
+   "scope": "Extend design-quality-review.mjs with 4.5:1 informative-text contrast check (alpha blending) and rendered 44px hit-area check so regressions fail the harness; static target law stays in qa:taps.",
+   "branch": "opencode/fap-design-contrast",
+   "base": "beta@04090cf5 (verified origin/beta tip)",
+   "progress": [
+    {
+     "at": "2026-10-30T17:58:00.000Z",
+     "item": "claimed (comment 10432, In Progress); measured-first probe on light/dark: empty-state all pass (worst 4.7:1 light, 9.04:1 dark); harness gates implemented (alpha-blended composited backgrounds, WCAG thresholds, 44px rendered controls, audits in review-results.json)"
+    },
+    {
+     "at": "2026-10-30T18:10:00.000Z",
+     "item": "first full run caught a real defect: .v-evidence stage badge 12px #0071e3 on #edf3ff = 4.22:1 -> fixed with --v-action-on-soft token (#0066cc light 5.0:1 / #aac7ff dark 10:1, D-104 single definition point) applied to .v-evidence + .v-class-sections selected tabs"
+    },
+    {
+     "at": "2026-10-30T18:30:00.000Z",
+     "item": "qa:design PASS (8 theme/width samples, populated surface); root check exit 0 (build 21.90s); scope:audit rebaselined 237 files/1656 declarations; e714ea9d pushed + merged no-ff into beta 3e302138 remote-verified; FAP-30 -> Testing (41); worktree removed after merge; D-095 separate reviewer pending"
+    }
+   ]
+  },
+  {
+   "sourceId": "FAP-28",
+   "jiraKey": "FAP-28",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-28",
+   "status": "Testing",
+   "startAt": "2026-10-30T18:50:00.000Z",
+   "scope": "Settings polish per the 2026-10-20 QA review: styled listbox control for native selects, info panel for long disclaimer lines, Guide chip bottom clipping.",
+   "branch": "opencode/fap-settings-polish",
+   "base": "beta@e506316e (verified origin/beta tip)",
+   "progress": [
+    {
+     "at": "2026-10-30T18:55:00.000Z",
+     "item": "claimed (21->31); measure-first probe at 1280x900: Guide chip clipping NOT reproducible (0 fixed/sticky elements crossing viewport bottom on guide+settings); settings selects render native chrome"
+    },
+    {
+     "at": "2026-10-30T19:05:00.000Z",
+     "item": "implemented .v-select styled listbox chrome (native combobox retained, harness-compatible) on 5 WorkspaceTools selects + .v-info-panel disclaimer block; first shot caught the Guide-appearance select missed by exact-match class replace -> fixed"
+    },
+    {
+     "at": "2026-10-30T19:20:00.000Z",
+     "item": "qa:design PASS (contrast+44px gates on new chrome); root check exit 0 (54/54, build 17.57s); scope:audit rebaselined; dc2914a4 merged no-ff into beta f8ab83c6 remote-verified; FAP-28 -> Testing (41) + delivery comment; evidence committed in artifacts; worktree cleanup next; D-095 separate reviewer pending"
+    }
+   ]
+  },
+  {
+   "sourceId": "FAP-21",
+   "jiraKey": "FAP-21",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-21",
+   "status": "Testing",
+   "startAt": "2026-10-30T19:30:00.000Z",
+   "scope": "Persona chip rail on small widths per the 2026-10-20 QA review: 5-chip persona row wrapped at 390px (Organizations onto line 2); fix = horizontal scroll rail with snap + edge fade, 44px targets.",
+   "branch": "opencode/fap-persona-rail",
+   "base": "beta@0f48ae75 (verified origin/beta tip)",
+   "progress": [
+    {
+     "at": "2026-10-30T19:35:00.000Z",
+     "item": "claimed (21->31); defect measured live at 390: hero audience rail row1 top 437, Organizations row2 top 485"
+    },
+    {
+     "at": "2026-10-30T19:45:00.000Z",
+     "item": "implemented .audience-rail law (public-system.css): <=520px snap rail with edge fade; caught and fixed align-center load-time snap (-> align-start) and parent-centered overflow (-> max-width 100% containment)"
+    },
+    {
+     "at": "2026-10-30T19:55:00.000Z",
+     "item": "verified single row at 390 + no page overflow; check exit 0 (build 18.27s); audit rebaselined; 528d1e83 merged no-ff into beta 033adf6e remote-verified; FAP-21 -> Testing (41) + delivery comment; evidence in artifacts; D-095 separate reviewer pending"
+    }
+   ]
+  },
+  {
+   "sourceId": "FAP-31",
+   "jiraKey": "FAP-31",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-31",
+   "status": "Testing",
+   "startAt": "2026-10-30T20:05:00.000Z",
+   "scope": "Lighthouse on the production build per the 2026-10-20 review: gates a11y >= 0.95, SEO >= 0.95, perf budgets recorded; run against prod build not dev.",
+   "branch": "opencode/fap-lighthouse-gate",
+   "base": "beta@6c42717b (verified origin/beta tip)",
+   "progress": [
+    {
+     "at": "2026-10-30T20:10:00.000Z",
+     "item": "claimed (21->31); lighthouse 13.6 installed; gate script written (programmatic, mobile emulation, 5 public routes, per-route receipts + baseline-audit assertions)"
+    },
+    {
+     "at": "2026-10-30T20:20:00.000Z",
+     "item": "first runs caught real defects: SEO 0.92 (link-text) on / + /student, a11y 0.93 (color-contrast) + 0.96 (aria-prohibited-attr) on /student, heading-order 0 on 4 routes; perf score null on all (NO_NAVSTART)"
+    },
+    {
+     "at": "2026-10-30T20:35:00.000Z",
+     "item": "fixed: frost caption 3.4:1 -> 4.86:1; lazy placeholder role=img; 6 generic link texts descriptive (FAP-15 correction posted 10449); footer h4->h3 + pricing th h3->h2; perf boundary recorded (Edge 141 vs lighthouse 13.6 tracer; D3 Fast3G ledger holds perf receipts); BP 0.92 = AdSense-vs-CSP console error (FAP-6 evidence)"
+    },
+    {
+     "at": "2026-10-30T20:45:00.000Z",
+     "item": "final gate PASS: a11y 1.0 + SEO 1.0 on all five routes; check exit 0 (build 18.02s); audit rebaselined; 38a8dc29 merged no-ff into beta a2a38354 remote-verified; FAP-31 -> Testing (41, comment 10448); cleanup next; D-095 separate reviewer pending"
+    }
+   ]
+  },
+  {
+   "sourceId": "FAP-29",
+   "jiraKey": "FAP-29",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-29",
+   "status": "Testing",
+   "startAt": "2026-10-30T20:50:00.000Z",
+   "scope": "Role fixtures + dashboard QA per the 2026-10-20 review: valid student/teacher/parent/professional/organization fixtures so relationship-gated surfaces fully exercise; extend the dashboard sweep; Phase-2 audit evidence.",
+   "branch": "opencode/fap-role-fixtures",
+   "base": "beta@914eaf39 (verified origin/beta tip)",
+   "progress": [
+    {
+     "at": "2026-10-30T20:55:00.000Z",
+     "item": "claimed (21->31); surface map built (route->component->entity dependencies); qa:journeys sweep written with relationship-bearing fixtures (Classroom/FamilyLink+child workspace/org members)"
+    },
+    {
+     "at": "2026-10-30T21:05:00.000Z",
+     "item": "first sweep: 19/20 rendered (build surface timed out on networkidle -> load wait), findings triaged to exact elements via offender HTML dumps"
+    },
+    {
+     "at": "2026-10-30T21:15:00.000Z",
+     "item": "fixed: .v-home-secondary 4.42:1 -> C1 link tone 5.24:1; guide preview link 15px -> 44px; insight card 'Open class' 20px -> 44px; .v-role-class-link 22px -> 44px; final sweep PASS 20/20"
+    },
+    {
+     "at": "2026-10-30T21:20:00.000Z",
+     "item": "check exit 0 (build 17.33s); audit rebaselined; f9468087 merged no-ff into beta f3f72ce2 remote-verified; FAP-29 -> Testing (41, delivery comment); evidence + 20 screenshots committed; worktree cleanup next; D-095 separate reviewer pending; hosted real-user journeys = founder session boundary"
+    }
+   ]
+  },
+  {
+   "sourceId": "FAP-6",
+   "jiraKey": "FAP-6",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-6",
+   "status": "Testing",
+   "startAt": "2026-10-30T21:30:00.000Z",
+   "scope": "FAP-A1 per the 2026-10-20 review: remove Google AdSense (meta + loader) from all public pages; zero ad-network requests; /cookies copy verified true.",
+   "branch": "opencode/fap-adsense-removal",
+   "base": "beta@b31c0b4f (verified origin/beta tip)",
+   "progress": [
+    {
+     "at": "2026-10-30T21:35:00.000Z",
+     "item": "claimed (21->31); only references = index.html meta + loader; /cookies page promises 'no advertising cookies... no ad networks. Ever.' - the loader contradicted it"
+    },
+    {
+     "at": "2026-10-30T21:40:00.000Z",
+     "item": "removed meta + script; acceptance probed: 0 ad requests + 0 console errors across 5 public routes; lighthouse BP 0.92 -> 1.0 (CSP had already blocked the loader - dead code + console noise), a11y/SEO 1.0 unchanged"
+    },
+    {
+     "at": "2026-10-30T21:45:00.000Z",
+     "item": "check exit 0 (build 17.53s); audit rebaselined; 45ce928e merged no-ff into beta 5d6da02c remote-verified; FAP-6 -> Testing (41, delivery comment); future ad-supported free tier = founder-scope consent-aware integration; worktree cleanup next; D-095 separate reviewer pending"
+    }
+   ]
+  },
+  {
+   "sourceId": "BUILD-08",
+   "jiraKey": "KAN-82",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-82",
+   "status": "Testing",
+   "branch": "codex/principal-kan-82-adapter-proofs",
+   "implementationCommit": "1af7010e",
+   "evidenceHeadCommit": "49ac5dfe",
+   "scope": "device-adapter edge proofs on two devices; 7/7 tests",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "BUILD-09",
+   "jiraKey": "KAN-154",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-154",
+   "status": "Testing",
+   "branch": "codex/principal-kan-154-declarative-build",
+   "implementationCommit": "a454c065",
+   "evidenceHeadCommit": "c63965ba",
+   "scope": "declarative activity admission; 8/8 tests",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "LEARN-13",
+   "jiraKey": "KAN-153",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-153",
+   "status": "Testing",
+   "branch": "codex/principal-kan-153-offline-learning",
+   "implementationCommit": "91e935ee",
+   "evidenceHeadCommit": "8c946cdd",
+   "scope": "offline packs + pending-attempt reconciliation; 7/7 tests",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "SAFE-01",
+   "jiraKey": "KAN-151",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-151",
+   "status": "Testing",
+   "branch": "codex/principal-kan-151-safeguarding",
+   "implementationCommit": "c1468acf",
+   "evidenceHeadCommit": "f255b0fa",
+   "scope": "safeguarding route + truthful escalation; 5/5 tests",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "AI-18",
+   "jiraKey": "KAN-156",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-156",
+   "status": "Testing",
+   "branch": "codex/principal-kan-156-speech-qualification",
+   "implementationCommit": "1756e91b",
+   "evidenceHeadCommit": "d1104623",
+   "scope": "speech qualification registry; 4/4 tests",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "AI-17",
+   "jiraKey": "KAN-155",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-155",
+   "status": "Testing",
+   "branch": "codex/principal-kan-155-voice-session",
+   "implementationCommit": "a5f17a4a",
+   "evidenceHeadCommit": "76875a6a",
+   "scope": "voice session with interruption + safe actions; 7/7 tests",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "SCOPE-09",
+   "jiraKey": "KAN-158",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-158",
+   "status": "Testing",
+   "branch": "codex/principal-kan-158-equity-continuity",
+   "implementationCommit": "c59b839e",
+   "evidenceHeadCommit": "c59b839e",
+   "scope": "equity/continuity record (docs-only draft)",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-02",
+   "jiraKey": "KAN-170",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-170",
+   "status": "Testing",
+   "branch": "codex/principal-kan-170-supplychain-security",
+   "implementationCommit": "de57fd7f",
+   "evidenceHeadCommit": "7fa43a4b",
+   "scope": "supply-chain security + exposure inventory; 12/12 tests",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-03",
+   "jiraKey": "KAN-171",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-171",
+   "status": "Testing",
+   "branch": "codex/principal-kan-171-seed-dataset-ontology",
+   "implementationCommit": "18896098",
+   "evidenceHeadCommit": "02591764",
+   "scope": "seed dataset + ontology + contamination guard; part of 22/22",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-04",
+   "jiraKey": "KAN-172",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-172",
+   "status": "Testing",
+   "branch": "codex/principal-kan-172-benchmark-registry",
+   "implementationCommit": "8f89b3d2",
+   "evidenceHeadCommit": "1110c922",
+   "scope": "hidden-set benchmark registry; part of 32/32",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-05",
+   "jiraKey": "KAN-173",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-173",
+   "status": "Testing",
+   "branch": "codex/principal-kan-173-pedagogy-scm-baselines",
+   "implementationCommit": "62870396",
+   "evidenceHeadCommit": "2d5258d1",
+   "scope": "pedagogy reproduction + SCM/BKT baseline; part of 41/41",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-06",
+   "jiraKey": "KAN-174",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-174",
+   "status": "Testing",
+   "branch": "codex/principal-kan-174-scm-features",
+   "implementationCommit": "6053a92e",
+   "evidenceHeadCommit": "26c60d9e",
+   "scope": "evidence-to-feature contract + leakage controls; part of 52/52",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-07",
+   "jiraKey": "KAN-175",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-175",
+   "status": "Testing",
+   "branch": "codex/principal-kan-175-tiny-d1-architecture",
+   "implementationCommit": "c1cacf2c",
+   "evidenceHeadCommit": "1d973d88",
+   "scope": "Tiny-D1 frozen architecture; part of 65/65",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-08",
+   "jiraKey": "KAN-176",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-176",
+   "status": "Testing",
+   "branch": "codex/principal-kan-176-tiny-d1-training",
+   "implementationCommit": "bd2ddebe",
+   "evidenceHeadCommit": "bd2ddebe",
+   "scope": "checkpoint trained from scratch; part of 72/72",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-09",
+   "jiraKey": "KAN-177",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-177",
+   "status": "Testing",
+   "branch": "codex/principal-kan-177-blind-evaluation",
+   "implementationCommit": "dc3a3173",
+   "evidenceHeadCommit": "70272ac8",
+   "scope": "blind evaluation + per-slice eligibility; part of 81/81",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-10",
+   "jiraKey": "KAN-178",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-178",
+   "status": "Testing",
+   "branch": "codex/principal-kan-178-model-registry",
+   "implementationCommit": "45ce7811",
+   "evidenceHeadCommit": "f1c9570f",
+   "scope": "model registry + pinning/approval/rollback; part of 91/91",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-11",
+   "jiraKey": "KAN-179",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-179",
+   "status": "Testing",
+   "branch": "codex/principal-kan-179-inference-worker",
+   "implementationCommit": "50319b3a",
+   "evidenceHeadCommit": "83e6922c",
+   "scope": "backend-authorized inference worker; part of 100/100",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-12",
+   "jiraKey": "KAN-180",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-180",
+   "status": "Testing",
+   "branch": "codex/principal-kan-180-evidence-connector",
+   "implementationCommit": "4bf610e0",
+   "evidenceHeadCommit": "250e774c",
+   "scope": "evidence connector + projections; part of 113/113",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-13",
+   "jiraKey": "KAN-181",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-181",
+   "status": "Testing",
+   "branch": "codex/principal-kan-181-teaching-loop",
+   "implementationCommit": "7c8f8163",
+   "evidenceHeadCommit": "7c7ed035",
+   "scope": "Tiny ranking in bounded tutor loop; part of 126/126",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-14",
+   "jiraKey": "KAN-182",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-182",
+   "status": "Testing",
+   "branch": "codex/principal-kan-182-aira-routing",
+   "implementationCommit": "1bbed668",
+   "evidenceHeadCommit": "1f99dd5c",
+   "scope": "AIRA routing + safe context/tools/memory; part of 135/135",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-15",
+   "jiraKey": "KAN-183",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-183",
+   "status": "Testing",
+   "branch": "codex/principal-kan-183-provider-qualification",
+   "implementationCommit": "1a30e318",
+   "evidenceHeadCommit": "607e5573",
+   "scope": "provider qualification + capability routing; part of 146/146",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VOCR-01",
+   "jiraKey": "KAN-192",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-192",
+   "status": "Testing",
+   "branch": "codex/principal-kan-192-ocr-contract",
+   "implementationCommit": "d30ecf05",
+   "evidenceHeadCommit": "b75ce140",
+   "scope": "OCR L1 contract + untrusted perception; part of 155/155",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VOCR-02",
+   "jiraKey": "KAN-193",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-193",
+   "status": "Testing",
+   "branch": "codex/principal-kan-193-ocr-benchmark",
+   "implementationCommit": "a46ee46e",
+   "evidenceHeadCommit": "15822738",
+   "scope": "OCR benchmark harness; part of 261/261",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VOCR-03",
+   "jiraKey": "KAN-194",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-194",
+   "status": "Testing",
+   "branch": "codex/principal-kan-194-ocr-routing",
+   "implementationCommit": "bbdc677f",
+   "evidenceHeadCommit": "af515455",
+   "scope": "OCR provenance routing; part of 261/261",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-24",
+   "jiraKey": "KAN-196",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-196",
+   "status": "Testing",
+   "branch": "codex/principal-kan-196-goals-planning",
+   "implementationCommit": "a57e5de8",
+   "evidenceHeadCommit": "b1cf0650",
+   "scope": "goals/planning + no invented readiness; part of 165/165",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-25",
+   "jiraKey": "KAN-197",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-197",
+   "status": "Testing",
+   "branch": "codex/principal-kan-197-memory",
+   "implementationCommit": "bfb4d602",
+   "evidenceHeadCommit": "74b742df",
+   "scope": "durable correctable memory; part of 177/177",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-26",
+   "jiraKey": "KAN-198",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-198",
+   "status": "Testing",
+   "branch": "codex/principal-kan-198-corrections",
+   "implementationCommit": "a4cb5157",
+   "evidenceHeadCommit": "033e550f",
+   "scope": "verified corrections + recurrence escalation; part of 186/186",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-27",
+   "jiraKey": "KAN-199",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-199",
+   "status": "Testing",
+   "branch": "codex/principal-kan-199-adaptive-planning",
+   "implementationCommit": "f3802ad7",
+   "evidenceHeadCommit": "da304754",
+   "scope": "adaptive planning + bounded delegation; part of 197/197",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-29",
+   "jiraKey": "KAN-201",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-201",
+   "status": "Testing",
+   "branch": "codex/principal-kan-201-personal-adaptation",
+   "implementationCommit": "cc4a6d0e",
+   "evidenceHeadCommit": "2bd9a4eb",
+   "scope": "personal adaptation 3-mode comparison; part of 208/208",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-30",
+   "jiraKey": "KAN-202",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-202",
+   "status": "Testing",
+   "branch": "codex/principal-kan-202-resumable-goals",
+   "implementationCommit": "6f718cef",
+   "evidenceHeadCommit": "8e39ebd5",
+   "scope": "resumable goals + proactive assistance; part of 218/218",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-33",
+   "jiraKey": "KAN-205",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-205",
+   "status": "Testing",
+   "branch": "codex/principal-kan-205-okf-adapter",
+   "implementationCommit": "1d2d9f4d",
+   "evidenceHeadCommit": "0e79ddbc",
+   "scope": "OKF exchange adapter; part of 228/228",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  },
+  {
+   "sourceId": "VMM-19",
+   "jiraKey": "KAN-187",
+   "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-187",
+   "status": "Testing",
+   "branch": "codex/principal-kan-187-candidate-pipeline",
+   "implementationCommit": "79303a63",
+   "evidenceHeadCommit": "4a7df340",
+   "scope": "candidate pipeline CAPSTONE; 251/251 total",
+   "note": "D-095: separate reviewer must confirm the exact reviewed SHA before Done."
+  }
+ ]
 }
