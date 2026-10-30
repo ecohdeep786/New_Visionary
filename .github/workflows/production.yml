@@ -2,9 +2,9 @@ name: Product checks and main production
 
 on:
   push:
-    branches: [dev, main]
+    branches: [dev, main, beta]
   pull_request:
-    branches: [dev, main]
+    branches: [dev, main, beta]
   workflow_dispatch:
 
 permissions:
