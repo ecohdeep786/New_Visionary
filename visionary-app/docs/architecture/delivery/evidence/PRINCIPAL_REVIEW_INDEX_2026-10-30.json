@@ -1,0 +1,88 @@
+{
+  "title": "Principal backend lane — consolidated D-095 review index",
+  "date": "2026-10-30",
+  "session": "six-candidate contract-framework batch (Build chain KAN-75..82 + subsequent)",
+  "intent": "Each candidate is a server contract-framework module with a focused compile + node:test suite and backend:build green. A SEPARATE reviewer must confirm each exact reviewed SHA and decide (D-095); unresolved findings return to In Progress. No hosted/provider/load/privacy/commercial/coverage gate is claimed closed by any candidate.",
+  "candidates": [
+    {
+      "jiraKey": "KAN-82",
+      "sourceId": "BUILD-08",
+      "module": "src/deviceadapter",
+      "branch": "codex/principal-kan-82-adapter-proofs",
+      "implementationCommit": "1af7010e3100416eed9b936203980ba494c21fdd",
+      "evidenceCommit": "49ac5dfe0e7b9a11a46eb8fa899b8507bbd70511",
+      "tests": "npm run deviceadapter:check -> 7/7",
+      "blockCommentId": "10374",
+      "evidence": "docs/architecture/delivery/evidence/KAN82_BUILD08_DEVICE_ADAPTER_2026-10-30.json",
+      "scope": "two-device Build edge proofs: duplicate accept, stale proposal, cancellation/restart, account switch, restore/export failure, revoked share"
+    },
+    {
+      "jiraKey": "KAN-154",
+      "sourceId": "BUILD-09",
+      "module": "src/declarativeactivity",
+      "branch": "codex/principal-kan-154-declarative-build",
+      "implementationCommit": "a454c065a36644fcf86d77c3d8df20728ba3718d",
+      "evidenceCommit": "c63965ba8d08f0444e2cf028f2490abe3a720c44",
+      "tests": "npm run declarativeactivity:check -> 8/8",
+      "blockCommentId": "10376",
+      "evidence": "docs/architecture/delivery/evidence/KAN154_BUILD09_DECLARATIVE_ACTIVITY_2026-10-30.json",
+      "scope": "trusted declarative Build activities + accessible preview: allowlisted schemas, validate-never-execute, fixed-revision preview, distinct ops, stale/cancel/wrong-user fail closed"
+    },
+    {
+      "jiraKey": "KAN-153",
+      "sourceId": "LEARN-13",
+      "module": "src/offlinelearning",
+      "branch": "codex/principal-kan-153-offline-learning",
+      "implementationCommit": "91e935ee70d2779339915771b32fe35ac77881b5",
+      "evidenceCommit": "8c946cdd4911249663ecc3be1d87c13287eceeea",
+      "tests": "npm run offlinelearning:check -> 7/7",
+      "blockCommentId": "10379",
+      "evidence": "docs/architecture/delivery/evidence/KAN153_LEARN13_OFFLINE_LEARNING_2026-10-30.json",
+      "scope": "rights-aware offline packs (integrity, bounded storage), pending-attempt reconciliation with server reassessment (no local pass flag), lease/withdrawal, account switch"
+    },
+    {
+      "jiraKey": "KAN-151",
+      "sourceId": "SAFE-01",
+      "module": "src/safeguarding",
+      "branch": "codex/principal-kan-151-safeguarding",
+      "implementationCommit": "c1468acf25501cf44628a39edba122579935f904",
+      "evidenceCommit": "f255b0fae89fd114a9a93773e35f97782eb892bf",
+      "tests": "npm run safeguarding:check -> 5/5",
+      "blockCommentId": "10380",
+      "evidence": "docs/architecture/delivery/evidence/KAN151_SAFE01_SAFEGUARDING_2026-10-30.json",
+      "scope": "reviewed safeguarding route: contextual risk-model seam, journey eligibility, truthful escalation (no abuser auto-notify, guardian summary without raw text), output fail-closed"
+    },
+    {
+      "jiraKey": "KAN-156",
+      "sourceId": "AI-18",
+      "module": "src/speechqualification",
+      "branch": "codex/principal-kan-156-speech-qualification",
+      "implementationCommit": "1756e91b368301a2919570dc696affc726efdab4",
+      "evidenceCommit": "d1104623c16e2de0d6981307be99a6d2a0b1fefb",
+      "tests": "npm run speechqualification:check -> 4/4",
+      "blockCommentId": "10381",
+      "evidence": "docs/architecture/delivery/evidence/KAN156_AI18_SPEECH_QUALIFICATION_2026-10-30.json",
+      "scope": "Indian-language speech/pedagogical qualification matrix + held-out corpus registry with leakage checks + reviewer-gated coverage (counts never coverage)"
+    },
+    {
+      "jiraKey": "KAN-155",
+      "sourceId": "AI-17",
+      "module": "src/voicesession",
+      "branch": "codex/principal-kan-155-voice-session",
+      "implementationCommit": "a5f17a4a451dbc53b05cc5d6695f239194ffdb0b",
+      "evidenceCommit": "76875a6afcadc37a4ffdd2c598adfd2f9bfae4ef",
+      "tests": "npm run voicesession:check -> 7/7",
+      "blockCommentId": "10382",
+      "evidence": "docs/architecture/delivery/evidence/KAN155_AI17_VOICE_SESSION_2026-10-30.json",
+      "scope": "two-way voice session: mic consent + qualified locale, interim-vs-final (never interim input), stale-audio suppression, interruption ack, readback confirmation, allowlisted safe actions bound to exact revision, reauthorize/privacy, bounds"
+    }
+  ],
+  "reviewerChecklist": [
+    "Confirm the exact implementationCommit on the named branch (git rev-parse on the worktree / ls-remote origin <branch>).",
+    "Run the listed <module>:check script (compiles the module tsconfig then runs the contract suite).",
+    "Run npm run backend:build (nest build) -> exit 0.",
+    "Decide per D-095; record the exact reviewed SHA; unresolved findings return to In Progress.",
+    "Do NOT promote to Done from Testing on ticket status alone; hosted/provider/coverage gates remain open."
+  ],
+  "notes": "Prerequisites for each native ticket (DECLARED in live Jira) are in Testing; this lane continued per founder direction to build the framework contracts. All candidates chain on the prior Build head with fresh worktrees (D-098 lane practice)."
+}
