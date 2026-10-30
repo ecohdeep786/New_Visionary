@@ -1,0 +1,142 @@
+{
+ "contract": "vmm-exposure.v1",
+ "root": "C:\\Users\\Administrator\\New_Visionary\\New_Visionary-worktrees\\principal-kan-170-supplychain-security\\visionary-app",
+ "scannedAt": "2026-10-30T15:39:17.442314+00:00",
+ "scannedFiles": 7372,
+ "findings": [
+  {
+   "path": "backend/.env.firebase.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 1014,
+   "scope": "working-tree",
+   "digest": "6007383dcdbf990943ed427aae008399b90f568eeab8a496e4b490854478540c",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "backend/.env.razorpay.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 778,
+   "scope": "working-tree",
+   "digest": "baab8703eea6fbc42906914c0c21d0e9e061df928b1b27c15d41a81df56e985b",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "backend/upstream/backend/.env.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 824,
+   "scope": "vendored-upstream",
+   "digest": "08a8ed2d1ce380fa0abe72a356d9bc674f000f42c64f64afce5cf464d664b788",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "backend/upstream/deploy/env/.env.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 1745,
+   "scope": "vendored-upstream",
+   "digest": "6624ea3bc76ed3b8fa0034bacad6dd5e196b61d8f59831c5b74af2d037feb545",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "frontend/.env.firebase.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 806,
+   "scope": "working-tree",
+   "digest": "b800b6afb6912c4f402b584a5850bf64ac24816917bbe3c69cf26618c571c96f",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/.env.local.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 3731,
+   "scope": "vendored-upstream",
+   "digest": "4e451486ac613ded3223e84438dfe38b4b0f2acfafd59d72615fc12547c986f2",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/data/quick_improvement_results.csv",
+   "classification": "dataset-candidate",
+   "severity": "medium",
+   "sizeBytes": 253,
+   "scope": "vendored-upstream",
+   "digest": "08a07deed9f8424fafb83056f1fddcc7e7d85f681100021267e0011dc540737f",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/services/api-gateway/.env.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 2189,
+   "scope": "vendored-upstream",
+   "digest": "1a0e70c97d42950a56dc9dc1a5019b64ac35a7a1d9e9d7c2f9d32ffdac028981",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/services/embedding-service/.env.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 2542,
+   "scope": "vendored-upstream",
+   "digest": "bc8c0481f793aeb635b610131b69538bd177762998ea00e96dece758a9b0d6d2",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/services/query-understanding-service/.env.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 1100,
+   "scope": "vendored-upstream",
+   "digest": "11e8e85bfec1ff9df23fef385cf6716e533ea48b932a537498cbd2b9498c8b62",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/services/reranker-service/models/ms-marco-MiniLM-L-12-v2/flashrank-MiniLM-L-12-v2_Q.onnx",
+   "classification": "model-weight",
+   "severity": "high",
+   "sizeBytes": 34004051,
+   "scope": "vendored-upstream",
+   "digest": "d3dd7b09fcf06b0c070081d6819b5effbb40b667bcad78b2d7543400271141d1",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/services/reranker-service/models/__MACOSX/ms-marco-MiniLM-L-12-v2/._flashrank-MiniLM-L-12-v2_Q.onnx",
+   "classification": "model-weight",
+   "severity": "high",
+   "sizeBytes": 219,
+   "scope": "vendored-upstream",
+   "digest": "9165cba9423b112b64463efc9bea9b126306b416614566d1f687d87b0f6738f6",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "ml/upstream/services/vector-search-service/.env.example",
+   "classification": "credential-template",
+   "severity": "low",
+   "sizeBytes": 2490,
+   "scope": "vendored-upstream",
+   "digest": "747abeecaaf8b00bcbbfe00dcf17badbc8c1556b3128c2e02ee6ae918d506d1b",
+   "evidence": "path-pattern match; streamed digest recorded"
+  },
+  {
+   "path": "reverse-engineering/upstream/docs/user-visible-errors.csv",
+   "classification": "dataset-candidate",
+   "severity": "medium",
+   "sizeBytes": 32799,
+   "scope": "vendored-upstream",
+   "digest": "88aac3b40fe85b52acfabd04fa64bc0ae635a6b07f70b4ad69b9e5b9592176de",
+   "evidence": "path-pattern match; streamed digest recorded"
+  }
+ ],
+ "skippedOversized": [],
+ "countsByClassification": {
+  "credential-template": 10,
+  "dataset-candidate": 2,
+  "model-weight": 2
+ },
+ "criticalCount": 0,
+ "note": "Evidence inventory only. Critical-class contents are never read or recorded by the scanner."
+}
