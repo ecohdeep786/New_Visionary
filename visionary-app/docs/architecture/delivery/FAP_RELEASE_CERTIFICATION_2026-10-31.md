@@ -51,3 +51,27 @@ agents merge task lanes into beta and push while dev stays untouched — so the 
 integration is a founder-directed operation** (a merge across 69+66 diverged commits,
 reviewed for conflicts), not an agent step. Until it is directed, `origin/beta` is the
 authoritative frontend integration branch and the certification above applies to it.
+
+## CI wiring (beta now triggers the product checks wall)
+
+The existing `production.yml` workflow ran "Product checks and main production" on
+push/PR to dev/main only — none of the FAP work ever ran CI. `beta` is now added to the
+push/PR triggers (2026-10-31): every beta push runs the full `npm run check` wall on
+ubuntu/node-24 (layout/import + continuity + motion + taps + lint + typecheck + tests +
+build), completing the FAP-30 promise that regressions fail CI. The production deploy job
+remains strictly `refs/heads/main`-gated — beta pushes can never deploy. The
+browser-dependent gates (qa:fonts/lighthouse/journeys/i18n/design/navigation) stay
+local-run: they need the msedge/chromium channel which the current runner image does not
+pin; wiring them into CI needs a browser-setup step and is founder/infra scope.
+
+## Dev-integration rehearsal (local trial, nothing pushed)
+
+A local trial merge of `origin/beta` into `origin/dev` (scratch worktree, aborted after
+measurement): across the 69-vs-66-commit divergence the **entire integration surface is
+2 content conflicts**, both trivial unions —
+1. `visionary-app/scripts/check.mjs`: dev's HEAD chains extra backend script tests while
+   beta's line added the QA law invocations — resolution keeps both chains;
+2. `visionary-app/docs/architecture/tracking/task-executions.json`: both lines appended
+   entries — union.
+Everything else merges clean (1069 additive insertions). The founder-directed beta → dev
+integration is therefore a small, well-understood operation whenever it is ordered.
