@@ -1,0 +1,41 @@
+{
+  "jiraKey": "KAN-153",
+  "sourceId": "LEARN-13",
+  "title": "Rights-aware offline lessons and pending-attempt reconciliation",
+  "date": "2026-10-30",
+  "lane": "principal backend (offline learning contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-153-offline-learning",
+  "branch": "codex/principal-kan-153-offline-learning",
+  "baseCommit": "c63965ba (KAN-154 BUILD-09 head; Build chain KAN-75..82, 154)",
+  "implementationCommit": "91e935ee70d2779339915771b32fe35ac77881b5",
+  "module": "backend/upstream/backend/src/offlinelearning/ (offlinelearning-types.ts, offlinelearning-lookups.ts, offlinelearning-service.ts, index.ts)",
+  "supporting": [
+    "backend/upstream/backend/tsconfig.offlinelearning.json",
+    "scripts/offlinelearning-check.mjs",
+    "backend/tests/contracts/offlinelearning/offlinelearning.test.mjs",
+    "package.json (offlinelearning:check script)"
+  ],
+  "whatBuilt": [
+    "Server-authored, rights-approved offline packs bound to exact immutable source/criteria/renderer versions, SHA-256 integrity + bounded per-owner storage quota",
+    "Rights/eligibility refusals deny (unknown pack, unconsented, source withdrawn, lease expired, storage limit) - never a forged success",
+    "Pending answers preserve original base version + explicit command identity; on reconnect the SERVER re-authorizes (session eligibility, consent, source withdrawal, lease) then reassesses with the PROTECTED criteria key",
+    "No local pass flag: a client pass claim is carried as a claim only and overruled by the server verdict; honest revocation-limitation disclosure for already-downloaded bytes",
+    "Duplicate command ids converge to the recorded outcome; out-of-order replays ordered by staging time; committed evidence survives expiry/withdrawal",
+    "Account-switched users leak nothing (downloads/pending are owner-scoped, not_owner); AI generation stays online (no on-device model qualified)"
+  ],
+  "provenEndToEnd": {
+    "rightsDownload": "eligible owner gets immutable digest + bounded size; unconsented/unknown refusals deny",
+    "boundedStorage": "per-owner quota enforced across downloads (over-limit denied storage_limit)",
+    "pendingReplay": "pending attempts bound to original base replayed in order and server-assessed on reconnect",
+    "noLocalPassFlag": "client pass claim never flips the server verdict (wrong claim -> needs_review, 0 points)",
+    "duplicateOutOfOrder": "replay of a command id converges (duplicate, same recorded outcome)",
+    "leaseExpiryWithdrawal": "new offline commands denied (acceptEvidence=false) with committed evidence preserved and revocation limitation disclosed",
+    "accountSwitchWrongUser": "another account cannot read downloads, stage, or reconcile (not_owner) - nothing leaks"
+  },
+  "verification": {
+    "offlinelearningCheck": "npm run offlinelearning:check -> 7/7 tests pass (compile tsconfig.offlinelearning.json + node --test)",
+    "backendBuild": "npm run backend:build (nest build) -> exit 0"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "notes": "Native prerequisites per ticket: KAN-58, KAN-40, KAN-62, KAN-68, KAN-140 (all in Testing); this module composes pack integrity + consent + source-lifecycle + attempt-persistence + sync seams as server contracts. Offline SYNTHETIC tests alone cannot close hosted/provider/educational outcomes; no hosted/provider/load/privacy/commercial gate is claimed closed by this work."
+}
