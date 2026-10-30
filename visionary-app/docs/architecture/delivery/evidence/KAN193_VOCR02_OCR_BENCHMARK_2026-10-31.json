@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-193",
+  "sourceId": "VOCR-02",
+  "title": "Benchmark English launch OCR, handwriting, formulas and document layouts",
+  "date": "2026-10-31",
+  "lane": "ML engineering (OCR evaluation)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-193-ocr-benchmark",
+  "branch": "codex/principal-kan-193-ocr-benchmark",
+  "baseCommit": "4a7df340 (KAN-187 VMM-19 head; composes the VMM-04 pre-registration + grading pattern)",
+  "implementationCommit": "a46ee46ea407cf5dda58a5cea1ab4ba0984a739c",
+  "module": "ml/vmm/ocrbenchmark.py (+ ml/vmm/tests/test_ocrbenchmark.py)",
+  "whatBuilt": [
+    "NAMED SLICES: print / handwriting / camera / layout / formula / table — each gated INDEPENDENTLY (per-slice verdicts; no aggregate pass)",
+    "PRE-REGISTERED per-slice thresholds (maxCer/minWordAccuracy/maxCorrectionRate/maxAbstentionRate) by the custodian BEFORE measurement; results bind the thresholds digest; thresholds must cover exactly the named slices",
+    "MEASUREMENT: an ENGINE SEAM (synthetic engines prove the contract; real engines hosted-gated) invoked per case; CER via stdlib Levenshtein, word accuracy, abstention, latency, per-case cost",
+    "DOWNSTREAM ERROR + CORRECTION reported per slice: an OCR error with CER > 0.3 is flagged as propagating into assessment; correction rates bounded",
+    "VERDICT: per-slice evidence/cost/abstention + overall qualified only when EVERY slice passes; custodian-only report; unmeasured slices inconclusive"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 261/261 pass (251 previous + 10 ocrbenchmark)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The HARNESS is the deliverable; the actual benchmark RUN against real engines and a real reviewed corpus (print/handwriting/camera/layout/formula/table cases) remains hosted-gated. Synthetic engines prove the contract only. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
