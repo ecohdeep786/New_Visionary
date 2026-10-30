@@ -1,0 +1,48 @@
+{
+  "jiraKey": "KAN-82",
+  "sourceId": "BUILD-08",
+  "title": "Prove duplicate accept, stale proposal, cancellation/restart, account switch, restore/export failure and revoked share behavior through real API adapters on two devices.",
+  "date": "2026-10-30",
+  "lane": "principal backend (device-adapter proofs)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-82-adapter-proofs",
+  "branch": "codex/principal-kan-82-adapter-proofs",
+  "baseCommit": "8ea1881d (KAN-81 BUILD-07 head; Build chain: KAN-75..81)",
+  "implementationCommit": "1af7010e3100416eed9b936203980ba494c21fdd",
+  "module": "backend/upstream/backend/src/deviceadapter/ (device-adapter-types.ts, device-adapter-lookups.ts, device-adapter-service.ts, index.ts)",
+  "supporting": [
+    "backend/upstream/backend/tsconfig.deviceadapter.json",
+    "scripts/deviceadapter-check.mjs",
+    "backend/tests/contracts/deviceadapter/device-adapter.test.mjs",
+    "package.json (deviceadapter:check script)"
+  ],
+  "whatBuilt": [
+    "Real typed device-adapter API (account x device session bound, explicit device identity, never inferred from a token)",
+    "ONE shared owning store (DeviceAdapterStore) implementing the run/project/sharing seams over a single append-only revision ledger with SHA-256 manifests",
+    "Adapter-level guards: restore/export re-digest and fail closed on tampered bytes; shareRevision enforces owner-only",
+    "Session close = account switch: every later call on that device is denied session_closed; a foreign account is denied not_owner everywhere"
+  ],
+  "provenEndToEnd": {
+    "duplicateAccept": "same decision id replayed from device B converges to 'duplicate', no double-append (ledger stays at 1)",
+    "staleProposal": "new edit from device B moves the base revision; device A accept blocked base_revision_moved; nothing changed",
+    "cancellationRestart": "cancelled run yields no proposals (cancelled_run_no_proposal); a fresh run on the same project base restarts and accepts cleanly",
+    "accountSwitch": "closeSession denies every call (session_closed); different account on same device denied not_owner on save/accept/history; true owner still operates from device B",
+    "restoreExportFailure": "tampered stored payload fails export and restore manifest checks (export_integrity_failed), nothing corrupted is written; unknown revision/project fail closed",
+    "revokedShare": "owner revokes an accepted recipient -> view denied recipient_not_accepted on every device; revoked AI-proposal permission blocks a live accept (permission_revoked)"
+  },
+  "verification": {
+    "deviceadapterCheck": "npm run deviceadapter:check -> 7/7 tests pass (compile tsconfig.deviceadapter.json + node --test)",
+    "backendBuild": "npm run backend:build (nest build) -> exit 0",
+    "siblingSuites": {
+      "runs": "6/6",
+      "projects": "5/5",
+      "sharing": "4/4",
+      "completion": "4/4",
+      "draftrecovery": "6/6",
+      "guidedbriefs": "4/4",
+      "journey": "8/8",
+      "evaluation": "5/5"
+    }
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "notes": "Two devices are explicit device sessions (device_a/device_b/device_c), not inferred fingerprints; this ticket proves the Build edge/deny behavior through the adapter API. Hosted/provider/load/privacy/commercial gates remain open — no such gate is claimed closed by this work."
+}
