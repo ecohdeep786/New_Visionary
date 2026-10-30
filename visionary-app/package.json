@@ -58,6 +58,7 @@
     "guidedbriefs:check": "node scripts/guidedbriefs-check.mjs",
     "runs:check": "node scripts/runs-check.mjs",
     "sharing:check": "node scripts/sharing-check.mjs",
-    "completion:check": "node scripts/completion-check.mjs"
+    "completion:check": "node scripts/completion-check.mjs",
+    "deviceadapter:check": "node scripts/deviceadapter-check.mjs"
   }
 }
