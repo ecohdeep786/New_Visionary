@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-205",
+  "sourceId": "VMM-33",
+  "title": "Evaluate conditional OKF knowledge exchange and provenance adapter",
+  "date": "2026-10-31",
+  "lane": "ML engineering (interchange adapter)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-205-okf-adapter",
+  "branch": "codex/principal-kan-205-okf-adapter",
+  "baseCommit": "8e39ebd5 (KAN-202 VMM-30 head)",
+  "implementationCommit": "1d2d9f4daa75781d9e7eeef0d67e8f69100b784c",
+  "module": "ml/vmm/okf.py (+ ml/vmm/tests/test_okf.py)",
+  "whatBuilt": [
+    "ROUND-TRIP: export core seed records -> signed OKF Markdown/YAML bundle (specVersion pinned 0.2) -> import -> faithful records (proven by test)",
+    "VERIFICATION: bundle signed with HMAC; each record carries a content digest; CHANGED CONTENT WITH OLD SIGNOFF detected (digest recomputed over the body without the verification block); forged verification blocks refused; stale SPEC versions refused",
+    "POISONED TEXT / TRAVERSAL: injection payloads refused at export AND import; path traversal in record ids refused",
+    "CROSS-TENANT CITATIONS: bundles/citations from another tenant refused",
+    "RESTRICTED EXPORTS: private/consent-missing records EXCLUDED; withdrawal propagates (export excluded; re-import of withdrawn records refused)",
+    "OKF SIGNALS ARE INTERCHANGE CONVENTIONS: imported records verified: false until the owning contract re-validates — format conformance is NOT proof of truth, rights, or authorization (no authorize/grant_rights/store_canonical APIs exist — contract-proven)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 228/228 pass (218 previous + 10 okf)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "This is a CONDITIONAL, NONBLOCKING adapter per the ticket: execution happened because the interchange need exists in the chain (VMM-03's OKF independence). The pinned upstream SPEC commit, the licensed sample bundle, citation-UI evidence and the hidden-corpus comparison against the existing retrieval route remain hosted/founder-gated. The adapter is NOT a source-rights shortcut (VMM-03). No AGI or training claim follows from format conformance. Testing status is not acceptance."
+}
