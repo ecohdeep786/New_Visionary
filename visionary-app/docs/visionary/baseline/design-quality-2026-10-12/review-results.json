@@ -5,56 +5,474 @@
       "width": 320,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 4.7,
+      "controls44": 4
     },
     {
       "scheme": "light",
       "width": 390,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 4.7,
+      "controls44": 4
     },
     {
       "scheme": "light",
       "width": 768,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 4.7,
+      "controls44": 4
     },
     {
       "scheme": "light",
       "width": 1440,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 4.7,
+      "controls44": 4
     },
     {
       "scheme": "dark",
       "width": 320,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 7.25,
+      "controls44": 4
     },
     {
       "scheme": "dark",
       "width": 390,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 7.25,
+      "controls44": 4
     },
     {
       "scheme": "dark",
       "width": 768,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 7.25,
+      "controls44": 4
     },
     {
       "scheme": "dark",
       "width": 1440,
       "document": false,
       "main": false,
-      "font": "\"Google Sans\", sans-serif"
+      "font": "\"Google Sans\", sans-serif",
+      "contrastSamples": 10,
+      "contrastWorst": 7.25,
+      "controls44": 4
+    }
+  ],
+  "audits": [
+    {
+      "scheme": "light",
+      "width": 320,
+      "worst": [
+        {
+          "color": "rgb(255, 255, 255)",
+          "bg": "rgb(0,113,227)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 4.7,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(0, 102, 204)",
+          "bg": "rgb(237,243,255)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(247,248,250)",
+          "fs": 12,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.59,
+          "sample": "2 correct"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(255,255,255)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.94,
+          "sample": "Review what you checked, practised and a"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "worst": [
+        {
+          "color": "rgb(255, 255, 255)",
+          "bg": "rgb(0,113,227)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 4.7,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(0, 102, 204)",
+          "bg": "rgb(237,243,255)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(247,248,250)",
+          "fs": 12,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.59,
+          "sample": "2 correct"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(255,255,255)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.94,
+          "sample": "Review what you checked, practised and a"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "worst": [
+        {
+          "color": "rgb(255, 255, 255)",
+          "bg": "rgb(0,113,227)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 4.7,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(0, 102, 204)",
+          "bg": "rgb(237,243,255)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(247,248,250)",
+          "fs": 12,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.59,
+          "sample": "2 correct"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(255,255,255)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.94,
+          "sample": "Review what you checked, practised and a"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "worst": [
+        {
+          "color": "rgb(255, 255, 255)",
+          "bg": "rgb(0,113,227)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 4.7,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(0, 102, 204)",
+          "bg": "rgb(237,243,255)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(247,248,250)",
+          "fs": 12,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.59,
+          "sample": "2 correct"
+        },
+        {
+          "color": "rgb(96, 100, 108)",
+          "bg": "rgb(255,255,255)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 5.94,
+          "sample": "Review what you checked, practised and a"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "worst": [
+        {
+          "color": "rgb(170, 199, 255)",
+          "bg": "rgb(37,53,79)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 7.25,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(9, 43, 97)",
+          "bg": "rgb(170,199,255)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 8.06,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Review what you checked, practised and a"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 13,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Last 7 days"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "worst": [
+        {
+          "color": "rgb(170, 199, 255)",
+          "bg": "rgb(37,53,79)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 7.25,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(9, 43, 97)",
+          "bg": "rgb(170,199,255)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 8.06,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Review what you checked, practised and a"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 13,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Last 7 days"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "worst": [
+        {
+          "color": "rgb(170, 199, 255)",
+          "bg": "rgb(37,53,79)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 7.25,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(9, 43, 97)",
+          "bg": "rgb(170,199,255)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 8.06,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Review what you checked, practised and a"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 13,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Last 7 days"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "worst": [
+        {
+          "color": "rgb(170, 199, 255)",
+          "bg": "rgb(37,53,79)",
+          "fs": 12,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 7.25,
+          "sample": "Secure"
+        },
+        {
+          "color": "rgb(9, 43, 97)",
+          "bg": "rgb(170,199,255)",
+          "fs": 14,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 8.06,
+          "sample": "Add a goal"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 14,
+          "fw": 400,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Review what you checked, practised and a"
+        },
+        {
+          "color": "rgb(182, 189, 202)",
+          "bg": "rgb(25,28,34)",
+          "fs": 13,
+          "fw": 500,
+          "large": false,
+          "required": 4.5,
+          "ratio": 9.04,
+          "sample": "Last 7 days"
+        }
+      ],
+      "textSamples": 10,
+      "controls44": 4,
+      "smallControls": []
     }
   ],
   "type": {
