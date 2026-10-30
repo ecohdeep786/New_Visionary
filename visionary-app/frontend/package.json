@@ -18,7 +18,8 @@
     "qa:motion": "node scripts/qa-motion.mjs",
     "qa:taps": "node scripts/qa-taps.mjs",
     "qa:lighthouse": "node scripts/lighthouse-audit.mjs",
-    "qa:journeys": "node scripts/role-journey-sweep.mjs"
+    "qa:journeys": "node scripts/role-journey-sweep.mjs",
+    "qa:i18n": "node scripts/i18n-audit.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",

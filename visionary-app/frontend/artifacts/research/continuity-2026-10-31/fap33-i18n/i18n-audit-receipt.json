@@ -1,0 +1,150 @@
+{
+  "at": "2026-10-30T19:05:33.915Z",
+  "base": "http://127.0.0.1:5179",
+  "v1SurfaceDecision": "workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT",
+  "surfaces": [
+    {
+      "route": "/dashboard/home",
+      "label": "Home",
+      "enNodes": 18,
+      "hiNodes": 18,
+      "bnNodes": 18,
+      "hiSample": "फिर स्वागत है, Alex।",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/learn",
+      "label": "Learn",
+      "enNodes": 6,
+      "hiNodes": 6,
+      "bnNodes": 6,
+      "hiSample": "खोजें और समझें",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/ask",
+      "label": "Ask",
+      "enNodes": 18,
+      "hiNodes": 18,
+      "bnNodes": 18,
+      "hiSample": "आप किसमें सहायता चाहते हैं?",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/progress",
+      "label": "Progress",
+      "enNodes": 13,
+      "hiNodes": 13,
+      "bnNodes": 13,
+      "hiSample": "आपके सीखने के प्रमाण",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/settings",
+      "label": "Personalization",
+      "enNodes": 16,
+      "hiNodes": 16,
+      "bnNodes": 16,
+      "hiSample": "Guide को अपनी ज़रूरत के अनुसार बनाएँ",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/privacy",
+      "label": "Privacy & consent",
+      "enNodes": 18,
+      "hiNodes": 18,
+      "bnNodes": 18,
+      "hiSample": "गोपनीयता और सहमति",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/notifications",
+      "label": "Notifications",
+      "enNodes": 6,
+      "hiNodes": 6,
+      "bnNodes": 6,
+      "hiSample": "सूचनाएँ",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/child",
+      "label": "Family (parent)",
+      "enNodes": 18,
+      "hiNodes": 18,
+      "bnNodes": 18,
+      "hiSample": "फिर स्वागत है, Alex।",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/classes",
+      "label": "Classes (teacher)",
+      "enNodes": 4,
+      "hiNodes": 4,
+      "bnNodes": 4,
+      "hiSample": "आपकी कक्षाएँ",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/people",
+      "label": "People (organization)",
+      "enNodes": 18,
+      "hiNodes": 18,
+      "bnNodes": 18,
+      "hiSample": "फिर स्वागत है, Alex।",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    }
+  ],
+  "totals": {
+    "flaggedNodes": 0
+  }
+}
