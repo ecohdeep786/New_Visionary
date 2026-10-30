@@ -60,6 +60,7 @@
     "sharing:check": "node scripts/sharing-check.mjs",
     "completion:check": "node scripts/completion-check.mjs",
     "deviceadapter:check": "node scripts/deviceadapter-check.mjs",
-    "declarativeactivity:check": "node scripts/declarativeactivity-check.mjs"
+    "declarativeactivity:check": "node scripts/declarativeactivity-check.mjs",
+    "offlinelearning:check": "node scripts/offlinelearning-check.mjs"
   }
 }
