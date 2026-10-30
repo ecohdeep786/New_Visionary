@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-187",
+  "sourceId": "VMM-19",
+  "title": "Implement privacy-governed L7 daily model candidate training and feedback loop",
+  "date": "2026-10-31",
+  "lane": "ML engineering (candidate pipeline — capstone)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-187-candidate-pipeline",
+  "branch": "codex/principal-kan-187-candidate-pipeline",
+  "baseCommit": "af515455 (KAN-194 VOCR-03 head; composes VMM-02/03/04/08/10/29)",
+  "implementationCommit": "79303a63393478c50d4ad59270f7b1a9239fa24b",
+  "module": "ml/vmm/candidates.py (+ ml/vmm/tests/test_candidates.py)",
+  "whatBuilt": [
+    "ELIGIBLE DATA ONLY: corpus from the VMM-03 seed registry's TRAINABLE records — revoked sources excluded (revocation lineage), benchmark-contaminated records refused (poison test), RETENTION bound excludes records older than the pre-declared 365-day window, rights-missing refused; corpus digest binds the exact eligible set",
+    "REPRODUCIBLE BOUNDED EXERCISE: one candidate trained from scratch (VMM-08 semantics) with a recorded manifest; exercise bounded (max samples/epochs); same seed -> identical training curve; loss decreases",
+    "LINEAGE: dataset -> candidate chain complete with digests (VMM-02 manifests)",
+    "RELEASE PATHS: evaluation through the VMM-04 registry (custodian decides); PROMOTE requires a VMM-10 custodian approval bound to an accepted report; HOLD keeps the candidate registered-but-unapproved; ROLLBACK returns serving to an earlier APPROVED version",
+    "PERSONAL STATE REMAINS DISTINCT: no adaptation-state API exists on the pipeline (contract-proven) — global weights and personal adaptation are separate namespaces"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 251/251 pass (239 previous + 12 candidates)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The pipeline is the CONTRACT plane composing the whole chain; real daily scheduled training, actual provider serving and the hosted rollout remain gated. The synthetic corpus stands in for real learner data (KAN-180's own gate). No educational-gain claim is made. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
