@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": ".",
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": false,
+    "incremental": false
+  },
+  "include": [
+    "src/deviceadapter/**/*.ts",
+    "src/runs/**/*.ts",
+    "src/projects/**/*.ts",
+    "src/sharing/**/*.ts",
+    "src/declarativeactivity/**/*.ts"
+  ]
+}
