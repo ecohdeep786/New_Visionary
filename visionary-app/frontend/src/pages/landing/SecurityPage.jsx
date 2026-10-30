@@ -208,7 +208,7 @@ export default function SecurityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-security min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Security" />
       <PolicyTabs />
@@ -332,7 +332,7 @@ export default function SecurityPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="security-summary-title">
+                <section data-section="02-summary" aria-labelledby="security-summary-title">
                   <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="security-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -351,7 +351,7 @@ export default function SecurityPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 */}
-                <section id="your-information" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-information" data-section="03-your-information" className="scroll-mt-24">
                   <SectionHeading number="01" title="Your information" />
                   <Paragraph>Security starts with understanding what information moves through a product.</Paragraph>
                   <div className="mt-5"><Paragraph>Depending on how you use Visionary, this can include information such as your account details, conversations, learning activity, content you provide, and information needed to operate the service.</Paragraph></div>
@@ -360,7 +360,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 02 */}
-                <section id="protected-in-transit" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="protected-in-transit" data-section="04-protected-in-transit" className="scroll-mt-24">
                   <SectionHeading number="02" title="Protected as it moves" />
                   <Paragraph>Information can move between your device, Visionary, and the systems that help provide the service.</Paragraph>
                   <div className="mt-5"><Paragraph>Visionary uses encrypted HTTPS connections when information travels between your browser and the service. Keep your browser and operating system updated so they can use current connection protections.</Paragraph></div>
@@ -368,7 +368,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 03 */}
-                <section id="protected-when-stored" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="protected-when-stored" data-section="05-protected-when-stored" className="scroll-mt-24">
                   <SectionHeading number="03" title="Protected when stored" />
                   <Paragraph>Information that needs to remain available to operate Visionary may be stored in our systems.</Paragraph>
                   <div className="mt-5"><Paragraph>Stored information is protected through technical and organizational measures, including controls around infrastructure, systems, credentials, and access.</Paragraph></div>
@@ -377,7 +377,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 04 */}
-                <section id="access-controlled" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="access-controlled" data-section="06-access-controlled" className="scroll-mt-24">
                   <SectionHeading number="04" title="Access is controlled" />
                   <Paragraph>Not everyone who works on a system should have access to everything inside it.</Paragraph>
                   <div className="mt-5"><Paragraph>Visionary limits access to systems and information according to what a person or service needs to perform its role.</Paragraph></div>
@@ -393,7 +393,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 05 */}
-                <section id="your-control" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-control" data-section="07-your-control" className="scroll-mt-24">
                   <SectionHeading number="05" title="Your control matters" />
                   <Paragraph>Security is not separate from privacy or account control.</Paragraph>
                   <div className="mt-5"><Paragraph>You should be able to understand what happens to your information and use the controls Visionary provides to manage your account and data.</Paragraph></div>
@@ -408,7 +408,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 06 */}
-                <section id="security-over-time" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="security-over-time" data-section="08-security-over-time" className="scroll-mt-24">
                   <SectionHeading number="06" title="Security is ongoing" />
                   <Paragraph>A secure product is never finished.</Paragraph>
                   <div className="mt-5"><Paragraph>Software changes. New vulnerabilities are discovered. New threats appear. Security therefore requires continuous attention as Visionary's product and infrastructure evolve.</Paragraph></div>
@@ -417,7 +417,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 07 */}
-                <section id="report-security" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="report-security" data-section="09-report-security" className="scroll-mt-24">
                   <SectionHeading number="07" title="When something goes wrong" />
                   <Paragraph>Finding a security problem is the first step toward fixing it.</Paragraph>
                   <div className="mt-5"><Paragraph>If you believe you have discovered a vulnerability, unauthorized access, or another security issue involving Visionary, please report it through our security contact channel.</Paragraph></div>
@@ -431,7 +431,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 08 */}
-                <section id="commitments" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="commitments" data-section="10-commitments" className="scroll-mt-24">
                   <SectionHeading number="08" title="Our security commitments" />
                   <div className="mt-8 max-w-[880px] space-y-4">
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
@@ -474,7 +474,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 09 · SYNC DEVICES — the master-order product requirement */}
-                <section id="sync-devices" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="sync-devices" data-section="11-sync-devices" className="scroll-mt-24">
                   <SectionHeading number="09" title="Sync devices" />
                   <Paragraph>
                     Sign in with your Sync Encrypted ID and Visionary carries your learning to every device you use: your questions, progress, and memory arrive as they were, and only you can open them.
@@ -516,7 +516,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 10 */}
-                <section id="contact" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="contact" data-section="12-contact" className="scroll-mt-24">
                   <SectionHeading number="10" title="Contact" />
                   <Paragraph>Security questions, vulnerability reports, and security concerns can be sent to:</Paragraph>
                   <div className="mt-6">
@@ -536,7 +536,7 @@ export default function SecurityPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="13-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -558,7 +558,7 @@ export default function SecurityPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="14-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -583,7 +583,7 @@ export default function SecurityPage() {
         {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
-        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+        <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
             <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
               Questions about this policy?

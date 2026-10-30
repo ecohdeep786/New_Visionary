@@ -172,7 +172,7 @@ export default function SchoolPage() {
   const noResults = query.length > 0 && topics.length === 0 && answers.length === 0;
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-school min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Help" />
       <main id="main">
@@ -217,7 +217,7 @@ export default function SchoolPage() {
         </section>
 
         {/* ═══ BODY — topics or answers ═══ */}
-        <section className="relative bg-white px-6 py-24 lg:py-32">
+        <section data-section="02-discover" className="relative bg-white px-6">
           {activeTopic ? (
             <div className="mx-auto w-full max-w-[900px]">
               <button type="button" onClick={() => setTopicId(null)}
@@ -293,7 +293,7 @@ export default function SchoolPage() {
         </section>
 
         {/* ═══ CONTACT BAND (Apple support pattern) ═══ */}
-        <section className="relative px-6 py-24" style={{ backgroundColor: COLORS.surface }}>
+        <section data-section="03-contact" className="relative px-6" style={{ backgroundColor: COLORS.surface }}>
           <div className="mx-auto max-w-[760px] rounded-[24px] g-card bg-white p-10 text-center">
             <p className="font-medium tracking-[0] leading-[1.15] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>Still stuck?</p>
             <p className="mx-auto mt-3 max-w-[560px] font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>

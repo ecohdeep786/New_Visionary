@@ -4283,14 +4283,14 @@
         "frontend/src/pages/landing/AccessibilityPage.jsx:34:5",
         "frontend/src/pages/landing/AccessibilityPage.jsx:146:15",
         "frontend/src/pages/landing/AccessibilityPage.jsx:172:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:209:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:235:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:238:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:284:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:296:15",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:333:15",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:351:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:354:17"
+        "frontend/src/pages/landing/AccessibilityPage.jsx:210:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:236:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:239:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:285:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:297:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:334:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:352:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:355:17"
       ],
       "operations": []
     },
@@ -70158,9 +70158,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:209:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:210:19",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 209,
+      "line": 210,
       "column": 19,
       "tag": "QuietLink",
       "events": [],
@@ -70182,9 +70182,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:235:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:236:19",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 235,
+      "line": 236,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -70207,9 +70207,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:238:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:239:19",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 238,
+      "line": 239,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -70232,9 +70232,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:284:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:285:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 284,
+      "line": 285,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -70256,9 +70256,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:296:15",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:297:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 296,
+      "line": 297,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -70281,9 +70281,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:333:15",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:334:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 333,
+      "line": 334,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -70306,9 +70306,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:351:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:352:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 351,
+      "line": 352,
       "column": 17,
       "tag": "a",
       "events": [],
@@ -70331,9 +70331,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:354:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:355:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 354,
+      "line": 355,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79870,7 +79870,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "e19b67c47618a02a477bc7c1548297f0fa0569f5ac6e80e6f5dc20b18e0f2ee2"
+      "sourceSha256": "ee8dab3551092b6bd73230dbe5d05dc6ac7e77c324d083c748fa724a9f5d2d82"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
@@ -79878,7 +79878,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "sourceSha256": "426e9391dfab0a765d1c137d664ec25d2d0cde2afc21367124ee4d2c7e4d4510"
+      "sourceSha256": "27d166de046ee67c90df84523d95f0ded7ddd0d13e687e3dbfd50c210702f0e1"
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
@@ -79898,11 +79898,11 @@
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "sourceSha256": "69d117afd6f83bce16173483f77843081f2be64313b4481ed3c2b18dff37ea43"
+      "sourceSha256": "d447b75b8a31d8c5d4f55d07e238a36ae030c299ab2ab8c41bab395d96840201"
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "sourceSha256": "183996628c95a0c850f1f86efe462fc642029e9af4f4e32eb80f3b0195193daf"
+      "sourceSha256": "44d6b4f45e4b3f33117ff6cdb4859665791c14a52afdee424fb4e1c145d2d749"
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
@@ -79918,7 +79918,7 @@
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "883fb515f3dcbba9550ad04271caa1ec44e05f72a24e7fd56302e111a262935e"
+      "sourceSha256": "f0adfdd5e7123a9b54f36a0dc0ef2c590d4292bb16e6ee334f28c896a6e260b1"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
@@ -79934,11 +79934,11 @@
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "sourceSha256": "4eee11d3ab23a210a3cedf315660e3dc408effded336dd4646f0257d0c73d40c"
+      "sourceSha256": "340d249b412d14c01a19543a15cde9375ac0092c81d4fd768ee4d90b1a0fff54"
     },
     {
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "sourceSha256": "8908fbbb09508e535e216c17c6ea8555c7558e5527d7477af48c38047233476f"
+      "sourceSha256": "758e7089d408c91410f8af2a8abf04b64cf50b91073f412ddf5d83f7dcf2fdf0"
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
@@ -79950,7 +79950,7 @@
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "sourceSha256": "c03e23ca7f911908cf42d2b2333f36738b4f955eb78dd481949ca73b63202678"
+      "sourceSha256": "bf82113e96da3ce7b5f4dd3e7c91cdb3de82706d02f37b9fb9a9d37287d07aa8"
     },
     {
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",

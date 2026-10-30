@@ -127,7 +127,7 @@ const COMMITMENT = [
 
 export default function AccessibilityPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-accessibility min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <Breadcrumb page="Accessibility" />
@@ -158,7 +158,7 @@ export default function AccessibilityPage() {
         </section>
 
         {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
-        <section className="border-y border-[rgba(18,19,23,0.12)] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <section data-section="03-statement" className="border-y border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-[560px]">
               <p className="text-[26px] font-normal leading-[1.25] tracking-[-0.025em] text-[#1d1d1f] sm:text-[36px]">
@@ -184,9 +184,10 @@ export default function AccessibilityPage() {
         {CATEGORIES.map((category) => (
           <section
             key={category.id}
+            data-section={`04-${category.id}`}
             id={category.id}
             aria-labelledby={`${category.id}-title`}
-            className={`scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10 lg:py-24 ${category.band}`}
+            className={`scroll-mt-28 px-6 sm:px-8 lg:px-10 ${category.band}`}
           >
             <Reveal className="mx-auto max-w-[1240px]">
               <div className="max-w-[720px]">
@@ -216,7 +217,7 @@ export default function AccessibilityPage() {
         ))}
 
         {/* SYNC SHOWPIECE — one person, every device, end to end encrypted */}
-        <section id="sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section id="sync" data-section="05-sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="grid items-center gap-10 rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
               <div>
@@ -268,7 +269,7 @@ export default function AccessibilityPage() {
         </section>
 
         {/* GET STARTED — the reference's own-pace resource split */}
-        <section id="resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[rgba(18,19,23,0.12)] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section id="resources" data-section="06-resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
               <p className="apple-eyebrow text-[#6e6e73]">Resources</p>
@@ -308,7 +309,7 @@ export default function AccessibilityPage() {
         </section>
 
         {/* COMMITMENT — the reference's three-column promise */}
-        <section aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section data-section="07-commitment" aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <h2 id="commitment-title" className="text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
@@ -338,7 +339,7 @@ export default function AccessibilityPage() {
         </section>
 
         {/* CLOSING — the reference's blue DNA band */}
-        <section aria-labelledby="closing-title" className="px-6 pb-24 sm:px-8 lg:px-10">
+        <section data-section="08-closing" aria-labelledby="closing-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-16 text-center sm:px-12 lg:py-20">
               <h2 id="closing-title" className="mx-auto max-w-[720px] text-[clamp(28px,3.6vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#1d1d1f]">

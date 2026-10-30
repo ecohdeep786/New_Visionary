@@ -206,7 +206,7 @@ export default function CookiesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-cookies min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Cookies" />
       <PolicyTabs />
@@ -330,7 +330,7 @@ export default function CookiesPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="cookies-summary-title">
+                <section data-section="02-summary" aria-labelledby="cookies-summary-title">
                   <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="cookies-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -349,7 +349,7 @@ export default function CookiesPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 — WHAT COOKIES ARE */}
-                <section id="what-cookies-are" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-cookies-are" data-section="03-what-cookies-are" className="scroll-mt-24">
                   <SectionHeading number="01" title="What cookies are" />
                   <Paragraph>
                     Cookies are small files a website saves in your browser. They let the site recognize your session, remember your choices, and keep things working the way you expect between visits.
@@ -362,7 +362,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 02 — WHAT WE USE AND WHY */}
-                <section id="principles" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="principles" data-section="04-principles" className="scroll-mt-24">
                   <SectionHeading number="02" title="What we use and why" />
                   <Paragraph>
                     No advertising cookies. No tracking across other sites. Just what keeps Visionary running for you.
@@ -383,7 +383,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 03 — THE TYPES WE USE */}
-                <section id="types" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="types" data-section="05-types" className="scroll-mt-24">
                   <SectionHeading number="03" title="The types we use" />
                   <Paragraph>
                     Each type does one job. Here is the full list.
@@ -403,7 +403,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 04 — YOUR CHOICES AND CONTROLS */}
-                <section id="preferences" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="preferences" data-section="06-preferences" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your choices and controls" />
                   <Paragraph>
                     Optional choices are saved in this browser. They do not change settings on your other devices.
@@ -443,7 +443,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 05 — MANAGING COOKIES */}
-                <section id="managing" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="managing" data-section="07-managing" className="scroll-mt-24">
                   <SectionHeading number="05" title="Managing cookies" />
                   <Paragraph>
                     You control them, always. Clear them anytime from your browser or your Visionary settings. No emails, no waiting.
@@ -467,7 +467,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 06 — QUESTIONS AND CONTACT */}
-                <section id="contact" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="contact" data-section="08-contact" className="scroll-mt-24">
                   <SectionHeading number="06" title="Questions and contact" />
                   <Paragraph>
                     We're transparent about every cookie we use and why. If something isn't clear, reach out.
@@ -492,7 +492,7 @@ export default function CookiesPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="9-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -514,7 +514,7 @@ export default function CookiesPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="10-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -539,7 +539,7 @@ export default function CookiesPage() {
         {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
-        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+        <section data-section="11-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
             <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
               Questions about this policy?

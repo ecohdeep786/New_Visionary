@@ -253,7 +253,7 @@ function DownloadNotifySection() {
   }
 
   return (
-    <section ref={ref} className="relative bg-white px-6 pb-24" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="02b-tray" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[30px] bg-[#f5f5f7] p-8 text-center lg:p-10">
           <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
@@ -361,7 +361,7 @@ function DownloadRequirementsSection() {
 function DownloadTrustBand() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-12" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
+    <section ref={ref} data-section="04b-strip" className="relative px-6" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />

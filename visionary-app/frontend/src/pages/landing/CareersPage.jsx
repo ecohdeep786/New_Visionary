@@ -268,7 +268,7 @@ export default function CareersPage() {
             </section>
 
             {/* PHOTO STRIP — the "life here" cards row under the hero */}
-            <section aria-label="Life at Visionary" className="mx-auto max-w-[1240px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+            <section data-section="01b-life" aria-label="Life at Visionary" className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-10">
               <Reveal>
                 <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
                   {STRIP.map((photo) => (
