@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-197",
+  "sourceId": "VMM-25",
+  "title": "Durable, inspectable and correctable personal and company memory",
+  "date": "2026-10-30",
+  "lane": "ML engineering (memory contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-197-memory",
+  "branch": "codex/principal-kan-197-memory",
+  "baseCommit": "b1cf0650 (KAN-196 VMM-24 head)",
+  "implementationCommit": "bfb4d602b2a9014b7361bb944172b2313b486557",
+  "module": "ml/vmm/memory.py (+ ml/vmm/tests/test_memory.py)",
+  "whatBuilt": [
+    "DURABLE: per-scope append-only HASH-CHAINED log (each entry digests the previous chain digest); verify_chain re-verifies the whole chain — long-gap recovery proven identical and tampering detected (brokenAtSeq)",
+    "INSPECTABLE: owner-only full audit trail with provenance (source, capturedAt, seq, kind)",
+    "CORRECTABLE: corrections APPEND bound to the original (never rewrite); the effective retrieval view surfaces the corrected text with the original's tags; original stays inspectable; superseded entries excluded",
+    "DISABLE / FORGET: disable excludes from retrieval but stays inspectable; forget is a crypto-delete (content dropped, tombstone keeps the chain intact)",
+    "PERSONAL/COMPANY SEPARATION: company scope demands the company role; cross-scope writes/reads denied; canonical project/assessment records untouched (no mutation API exists — contract-proven)",
+    "RETRIEVAL: relevance = explicit tags ∩ query tags ranked deterministically by (matches, freshness, seq); freshness (ageDays) reported; stale entries flagged"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 177/177 pass (165 previous + 12 memory)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The memory module is the CONTRACT plane; the real durable store (SQL/object) and retrieval-adapter integration remain hosted/integration work. No mastery or educational-gain claim is made. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
