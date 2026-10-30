@@ -195,7 +195,7 @@ const IntelligenceFrame = React.memo(function IntelligenceFrame({ steps, active,
 
 const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index, total, active = false }) {
   const frost = "rgba(245,247,250,0.72)";
-  const frostDim = "rgba(245,247,250,0.45)";
+  const frostDim = "rgba(245,247,250,0.6)"; /* FAP-31: composited >=4.5:1 on the darkest panel (0.45 was 3.4:1) */
   return (
     <div key={`${index}-${step.title}`} className="hero-fade-up w-full">
       <p className="text-[14px] font-medium tracking-[0.08em] leading-[1.4]">

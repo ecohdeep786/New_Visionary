@@ -62,6 +62,7 @@ export default function LazyImage({
         ref={imgRef}
         className={`lazy-placeholder ${className}`}
         style={placeholderStyle}
+        role={alt ? "img" : undefined}
         aria-label={alt ? `Loading ${alt}` : undefined}
       />
     );
