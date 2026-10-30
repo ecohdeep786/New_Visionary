@@ -1,0 +1,38 @@
+{
+  "jiraKey": "KAN-151",
+  "sourceId": "SAFE-01",
+  "title": "Reviewed safeguarding and truthful localized support routes",
+  "date": "2026-10-30",
+  "lane": "principal backend (safeguarding contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-151-safeguarding",
+  "branch": "codex/principal-kan-151-safeguarding",
+  "baseCommit": "8c946cdd (KAN-153 LEARN-13 head; chain KAN-75..82, 154, 153)",
+  "implementationCommit": "c1468acf25501cf44628a39edba122579935f904",
+  "module": "backend/upstream/backend/src/safeguarding/ (safeguarding-types.ts, safeguarding-lookups.ts, safeguarding-service.ts, index.ts)",
+  "supporting": [
+    "backend/upstream/backend/tsconfig.safeguarding.json",
+    "scripts/safeguarding-check.mjs",
+    "backend/tests/contracts/safeguarding/safeguarding.test.mjs",
+    "package.json (safeguarding:check script)"
+  ],
+  "whatBuilt": [
+    "Separate reviewed safeguarding route from normal teaching: input/output checks run through a CONFIGURED contextual risk model seam (risk model is injected, not a keyword list; high-risk context amplifies the signal)",
+    "A score is never equated with safety/legal compliance (scoreIsNotCompliance:true); high/critical risk always requires a human review decision (humanReviewRequired)",
+    "Journey eligibility gates unsupported minor/adult journeys until approved admission + consent; unapproved journeys fail closed",
+    "Truthful localized escalation: concern routes to a CONFIGURED channel; the alleged abuser is never auto-notified; the reporter cannot double as the alleged subject; a guardian receives a truthful summary and NEVER raw learner text (rawTextIncluded:false)",
+    "Output check fails closed on critical assistant output; missing escalation channel fails closed"
+  ],
+  "provenEndToEnd": {
+    "contextualInputCheck": "low-risk neutral lesson -> low; crisis/abuse context (even on neutral words) -> critical/high + humanReviewRequired; score not compliance",
+    "falsePositivesNegatives": "lenient model cannot produce a silent false negative on explicit crisis; a suspicious high label lands in human review, not auto-escalation",
+    "journeyEligibility": "unsupported minor journeys blocked (blocked_unsupported_minor) and unapproved adult journeys blocked (blocked_consent_missing) until approved admission + consent",
+    "truthfulEscalation": "concern routes to configured channel; allegedAbuserNotified=false; reporter-as-subject denied; guardian notice contains summary with a support route and NO raw text",
+    "failClosed": "critical assistant output blocked (output_blocked); unconfigured escalation channel denied (escalation_channel_unconfigured)"
+  },
+  "verification": {
+    "safeguardingCheck": "npm run safeguarding:check -> 5/5 tests pass (compile tsconfig.safeguarding.json + node --test)",
+    "backendBuild": "npm run backend:build (nest build) -> exit 0"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "notes": "Native prerequisite per ticket: KAN-32 (in Testing). The risk model is a CONFIGURED seam for a reviewed contextual classifier; this contract enforces that a score is never compliance and that guardian/abuser disclosures stay truthful and bounded. Localized/escalation-channel setup and any hosted/provider/load/commercial gates remain open; no such gate is claimed closed by this work."
+}
