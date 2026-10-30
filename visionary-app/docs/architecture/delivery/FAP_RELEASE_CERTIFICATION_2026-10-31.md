@@ -40,3 +40,14 @@ Done via independent review (comment 10390).
 - FAP-34 (C9) verdict — founder reopen-review.
 - Signed-in dashboard walkthrough — founder session (completes FAP-29's hosted journeys + E2).
 - GitHub Actions wiring for the new gates — infra scope.
+
+## Integration gate: dev (founder-directed)
+
+Verified 2026-10-31: no FAP lane merge has reached `origin/dev` (D1 4dc833dd, D3 e9d04f05,
+E1 fe984775, C4 793ab758, FAP-21 528d1e83 all absent from dev). `dev` and `beta` diverged
+at 0306703e: beta carries the 69-commit frontend FAP line; dev carries 66 commits of
+parallel backend KAN history. The operative recorded rule for this lane series is that
+agents merge task lanes into beta and push while dev stays untouched — so the **beta → dev
+integration is a founder-directed operation** (a merge across 69+66 diverged commits,
+reviewed for conflicts), not an agent step. Until it is directed, `origin/beta` is the
+authoritative frontend integration branch and the certification above applies to it.
