@@ -136,7 +136,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
               to="/how-it-works"
               className="relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
-              Learn more
+              How Visionary works
               <ChevronIcon className="h-4 w-4" />
             </Link>
           </div>

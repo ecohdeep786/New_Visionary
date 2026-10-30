@@ -1,0 +1,211 @@
+{
+  "at": "2026-10-30T17:52:51.093Z",
+  "base": "http://127.0.0.1:4199",
+  "gates": {
+    "accessibility": 0.95,
+    "seo": 0.95
+  },
+  "routes": [
+    {
+      "route": "/",
+      "categories": {
+        "performance": null,
+        "accessibility": 1,
+        "best-practices": 0.92,
+        "seo": 1,
+        "agentic-browsing": null
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": null,
+        "largest-contentful-paint": null,
+        "total-blocking-time": null,
+        "cumulative-layout-shift": null,
+        "speed-index": null
+      },
+      "evidence": "docs\\visionary\\baseline\\lighthouse-2026-10-30\\lighthouse-root.json"
+    },
+    {
+      "route": "/pricing",
+      "categories": {
+        "performance": null,
+        "accessibility": 1,
+        "best-practices": 0.92,
+        "seo": 1,
+        "agentic-browsing": null
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": null,
+        "largest-contentful-paint": null,
+        "total-blocking-time": null,
+        "cumulative-layout-shift": null,
+        "speed-index": null
+      },
+      "evidence": "docs\\visionary\\baseline\\lighthouse-2026-10-30\\lighthouse-pricing.json"
+    },
+    {
+      "route": "/download",
+      "categories": {
+        "performance": null,
+        "accessibility": 1,
+        "best-practices": 0.92,
+        "seo": 1,
+        "agentic-browsing": null
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": null,
+        "largest-contentful-paint": null,
+        "total-blocking-time": null,
+        "cumulative-layout-shift": null,
+        "speed-index": null
+      },
+      "evidence": "docs\\visionary\\baseline\\lighthouse-2026-10-30\\lighthouse-download.json"
+    },
+    {
+      "route": "/student",
+      "categories": {
+        "performance": null,
+        "accessibility": 1,
+        "best-practices": 0.92,
+        "seo": 1,
+        "agentic-browsing": null
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": null,
+        "largest-contentful-paint": null,
+        "total-blocking-time": null,
+        "cumulative-layout-shift": null,
+        "speed-index": null
+      },
+      "evidence": "docs\\visionary\\baseline\\lighthouse-2026-10-30\\lighthouse-student.json"
+    },
+    {
+      "route": "/safety",
+      "categories": {
+        "performance": null,
+        "accessibility": 1,
+        "best-practices": 0.92,
+        "seo": 1,
+        "agentic-browsing": null
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": null,
+        "largest-contentful-paint": null,
+        "total-blocking-time": null,
+        "cumulative-layout-shift": null,
+        "speed-index": null
+      },
+      "evidence": "docs\\visionary\\baseline\\lighthouse-2026-10-30\\lighthouse-safety.json"
+    }
+  ],
+  "perfNote": "performance is recorded, not gated - the D3 ledger holds the raw Fast3G LCP receipts and the fast-LCP next-wave lever"
+}
