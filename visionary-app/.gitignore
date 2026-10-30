@@ -73,3 +73,6 @@ ml/upstream/services/**/*.exe
 
 # Main workflow migration image receipt is a retained Actions artifact.
 /published-data-job.json
+
+# VMM-08: private checkpoint BYTES stay local; only digests/signatures are committed.
+ml/vmm/evidence/checkpoints/
