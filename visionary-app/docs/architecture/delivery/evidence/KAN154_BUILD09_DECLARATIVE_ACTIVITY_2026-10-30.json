@@ -1,0 +1,42 @@
+{
+  "jiraKey": "KAN-154",
+  "sourceId": "BUILD-09",
+  "title": "Trusted declarative Build activities and accessible preview",
+  "date": "2026-10-30",
+  "lane": "principal backend (declarative activity admission)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-154-declarative-build",
+  "branch": "codex/principal-kan-154-declarative-build",
+  "baseCommit": "49ac5dfe (KAN-82 BUILD-08 head; Build chain: KAN-75..82)",
+  "implementationCommit": "a454c065a36644fcf86d77c3d8df20728ba3718d",
+  "module": "backend/upstream/backend/src/declarativeactivity/ (declarativeactivity-types.ts, declarativeactivity-lookups.ts, declarativeactivity-service.ts, index.ts)",
+  "supporting": [
+    "backend/upstream/backend/tsconfig.declarativeactivity.json",
+    "scripts/declarativeactivity-check.mjs",
+    "backend/tests/contracts/declarativeactivity/declarativeactivity.test.mjs",
+    "package.json (declarativeactivity:check script)"
+  ],
+  "whatBuilt": [
+    "Versioned, server-registered allowlisted activity schemas (components + approved trusted renderers + bounds); clients cannot extend",
+    "Manifest admission = validation, never execution: component/renderer allowlist, bounded depth/size, banned-content scan (scripts, arbitrary HTML, unsafe URL, network action, hidden answer key) before anything persists; arrays recursed too",
+    "Trusted accessible preview over a FIXED immutable proposal base revision: digest re-verified; only the approved renderer's safe plain-text view rows are returned (never raw script/HTML from the manifest); no generated JS/HTML executed anywhere",
+    "Distinct authorized operations: generation/admit, preview, accept (apply-as-new-revision), export — each ownership-guarded; sharing stays in the KAN-80 contract",
+    "Stale proposals (base moved) and cancelled runs fail closed; accept idempotent per decision; export re-verifies integrity and fails closed on tampered bytes",
+    "This does NOT enable the separate arbitrary-code/public-app runtime"
+  ],
+  "provenEndToEnd": {
+    "admissionPlusPreview": "valid allowlisted manifest binds to exact committed base revision; preview serves fixed base, approved renderer, safe plain-text rows only",
+    "malformed": "unknown component, unapproved renderer, unknown schema rejected before admit",
+    "bounds": "too-deep and too-large manifests rejected",
+    "injection": "<script>, javascript:, http(s)://, fetch()/network, hidden answer key (top-level and nested) all block admit",
+    "cancelledRun": "a proposal whose run is cancelled is never admitted",
+    "staleProposal": "new edit moves the base; accept blocked base_revision_moved while preview stays on the fixed revision",
+    "crossDeviceResume": "second device previews the same fixed revision and accepts once; replay idempotent (duplicate, no double-append); reject records without history; export digest-verified",
+    "wrongUserAndIntegrity": "wrong user denied preview/accept/export; tampered base bytes fail preview AND export closed"
+  },
+  "verification": {
+    "declarativeactivityCheck": "npm run declarativeactivity:check -> 8/8 tests pass (compile tsconfig.declarativeactivity.json + node --test)",
+    "backendBuild": "npm run backend:build (nest build) -> exit 0"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "notes": "Prereqs per ticket: KAN-75, KAN-78, KAN-150, KAN-58 (this lane bases on the Build chain and composes runs/projects/sharing; KAN-150 AI-16 scene protocol and KAN-58 FILE-03 download/export are separate contracts this module composes for the fixed-revision + export paths). Hosted/provider/load/privacy/commercial/educational gates remain open; no such gate is claimed closed by this work."
+}
