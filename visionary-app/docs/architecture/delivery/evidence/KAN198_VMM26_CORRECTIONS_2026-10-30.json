@@ -1,0 +1,25 @@
+{
+  "jiraKey": "KAN-198",
+  "sourceId": "VMM-26",
+  "title": "Verified correction loop, scoped repair and repeated-error prevention",
+  "date": "2026-10-30",
+  "lane": "ML engineering (correction runtime)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-198-corrections",
+  "branch": "codex/principal-kan-198-corrections",
+  "baseCommit": "74b742df (KAN-197 VMM-25 head)",
+  "implementationCommit": "a4cb5157424133987671b68665888ffc4cae42c7",
+  "module": "ml/vmm/corrections.py (+ ml/vmm/tests/test_corrections.py)",
+  "whatBuilt": [
+    "CLASSIFIED NOT ASSUMED: every reported correction is VERIFIED through a domain verifier seam and classified confirmed_error | false_correction | valid_preference; false corrections are recorded and REFUSED repair; valid preferences recorded with nothing repaired",
+    "SCOPED REPAIR: repairs bind to (domain, ref) + exact artifact digest; invalidate ONLY the affected revision (other domains/earlier revisions untouched); append-only repair history, inspectable",
+    "UNAUTHORIZED EDITS REJECTED: cross-owner refused; reviewer role may act on any ref; repairs require a VERIFIED confirmed error for the exact digest",
+    "RECURRENCE TESTED: repeated confirmed errors increment recurrence and escalate to human review after the pre-declared bound — loop closes bounded (never unbounded)",
+    "INVALIDATION: is_stale fails dependent artifacts closed against an invalidated revision until regenerated",
+    "DOMAINS: memory | ocr | explanation | build (verifier seams; real verification wires to each domain's authority)"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 186/186 pass (177 previous + 9 corrections)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The domain verifiers are SEAMS; wiring them to the real memory/OCR/explanation/Build authorities is integration work. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
