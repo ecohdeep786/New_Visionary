@@ -1224,6 +1224,34 @@
           "item": "final gate PASS: a11y 1.0 + SEO 1.0 on all five routes; check exit 0 (build 18.02s); audit rebaselined; 38a8dc29 merged no-ff into beta a2a38354 remote-verified; FAP-31 -> Testing (41, comment 10448); cleanup next; D-095 separate reviewer pending"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-29",
+      "jiraKey": "FAP-29",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-29",
+      "status": "Testing",
+      "startAt": "2026-10-30T20:50:00.000Z",
+      "scope": "Role fixtures + dashboard QA per the 2026-10-20 review: valid student/teacher/parent/professional/organization fixtures so relationship-gated surfaces fully exercise; extend the dashboard sweep; Phase-2 audit evidence.",
+      "branch": "opencode/fap-role-fixtures",
+      "base": "beta@914eaf39 (verified origin/beta tip)",
+      "progress": [
+        {
+          "at": "2026-10-30T20:55:00.000Z",
+          "item": "claimed (21->31); surface map built (route->component->entity dependencies); qa:journeys sweep written with relationship-bearing fixtures (Classroom/FamilyLink+child workspace/org members)"
+        },
+        {
+          "at": "2026-10-30T21:05:00.000Z",
+          "item": "first sweep: 19/20 rendered (build surface timed out on networkidle -> load wait), findings triaged to exact elements via offender HTML dumps"
+        },
+        {
+          "at": "2026-10-30T21:15:00.000Z",
+          "item": "fixed: .v-home-secondary 4.42:1 -> C1 link tone 5.24:1; guide preview link 15px -> 44px; insight card 'Open class' 20px -> 44px; .v-role-class-link 22px -> 44px; final sweep PASS 20/20"
+        },
+        {
+          "at": "2026-10-30T21:20:00.000Z",
+          "item": "check exit 0 (build 17.33s); audit rebaselined; f9468087 merged no-ff into beta f3f72ce2 remote-verified; FAP-29 -> Testing (41, delivery comment); evidence + 20 screenshots committed; worktree cleanup next; D-095 separate reviewer pending; hosted real-user journeys = founder session boundary"
+        }
+      ]
     }
   ]
 }
