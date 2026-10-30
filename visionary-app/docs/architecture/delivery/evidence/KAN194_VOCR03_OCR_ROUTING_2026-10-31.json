@@ -1,0 +1,26 @@
+{
+  "jiraKey": "KAN-194",
+  "sourceId": "VOCR-03",
+  "title": "Route OCR provenance to Learn, Ask, Practice and Build with protected scoring",
+  "date": "2026-10-31",
+  "lane": "ML engineering (OCR integration)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-194-ocr-routing",
+  "branch": "codex/principal-kan-194-ocr-routing",
+  "baseCommit": "0e79ddbc (KAN-205 VMM-33 head; composes VOCR-01 structural results)",
+  "implementationCommit": "bbdc677f09457a8b6e8b259b6d60737f66b8bb08",
+  "module": "ml/vmm/ocrouting.py (+ ml/vmm/tests/test_ocrouting.py)",
+  "whatBuilt": [
+    "ONLY REVIEWED OCR ROUTES: raw perception refused; routing requires a REVIEWED result (owner-reviewed or correction-backed)",
+    "EXACT VERSIONS SURVIVE: every routed payload pins the exact page/region counts + source version + source revision; downstream surfaces never silently see newer versions",
+    "WRONG OPERATOR REFUSED: only the upload owner (or an authorized reviewer) may route; cross-operator rejected",
+    "STALE TRANSCRIPT REFUSED: source revision moved past the capture version -> routing refused; a stale transcript cannot silently affect assessment",
+    "NO NEW COMPETING SOURCE STORE: routed payloads REFERENCE the existing source contract (sourceVersion pinned); the router persists NO text as a source and exposes no source-store API (contract-proven)",
+    "CORRECTIONS route as corrections (bound to the original transcript via correctionSeq), never as new content",
+    "SURFACES: learn/ask/practice/build; build never receives answer keys (hiddenAnswerKeys: [])"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 239/239 pass (228 previous + 11 ocrouting)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The router is the CONTRACT plane; wiring into the hosted OCR engine output (VOCR-02 benchmark) and the real source/learning/Build adapters remains integration work. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
