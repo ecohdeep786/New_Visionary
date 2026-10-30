@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-196",
+  "sourceId": "VMM-24",
+  "title": "Persistent user goals, success plans and cross-mode continuity",
+  "date": "2026-10-30",
+  "lane": "ML engineering (goals/planning contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-196-goals-planning",
+  "branch": "codex/principal-kan-196-goals-planning",
+  "baseCommit": "b75ce140 (KAN-192 VOCR-01 head; composes VMM-12 evidence projections + VMM-06 uncertainty)",
+  "implementationCommit": "a57e5de826e9a3be67597152d0bdc1e1fa6d32d6",
+  "module": "ml/vmm/goals.py (+ ml/vmm/tests/test_goals.py)",
+  "whatBuilt": [
+    "GOALS VERSIONED: amendments append a new version; earlier versions byte-stable; goals span learn/practice/build modes; owner-scoped",
+    "PLANS CURRICULUM-AWARE + DETERMINISTIC: success plan derived from PINNED curriculum/source versions + assessed evidence; weakest assessed first; unassessed concepts carry an explicit UNKNOWN state; exam-date/board changes regenerate deterministically (date-only change keeps item order — proven)",
+    "NO INVENTED EXAM READINESS: readiness computed ONLY from assessed evidence against the pinned criteria; unassessed -> explicit unknown; incomplete coverage flags readinessIncomplete and overallReadinessClaim stays None (no fabricated total)",
+    "HOME-FACING STATE correct after an assessed attempt (nextReview recomputed), exam-date/board change, duplicate events (idempotent by eventId) and second-device resume (identical deterministic content, timestamps excluded as receipt metadata)",
+    "Stale/unpinned versions refused; invalid inputs fail closed"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 165/165 pass (155 previous + 10 goals)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The planner is the CONTRACT plane; the real API/store flow against the hosted backend (goal/plan projections) remains integration work. No exam-readiness claim is made anywhere. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
