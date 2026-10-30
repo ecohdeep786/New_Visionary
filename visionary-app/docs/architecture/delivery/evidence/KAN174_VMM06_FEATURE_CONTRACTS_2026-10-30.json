@@ -1,0 +1,27 @@
+{
+  "jiraKey": "KAN-174",
+  "sourceId": "VMM-06",
+  "title": "Build SCM evidence-to-feature contract, uncertainty representation and leakage controls",
+  "date": "2026-10-30",
+  "lane": "ML engineering (feature contracts)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-174-scm-features",
+  "branch": "codex/principal-kan-174-scm-features",
+  "baseCommit": "2d5258d1 (KAN-173 VMM-05 head; composes VMM-03 ontology/revocation)",
+  "implementationCommit": "6053a92eb9eba568cd2406c05a1dbbb4846e7632",
+  "module": "ml/vmm/features.py (+ ml/vmm/tests/test_features.py + ml/vmm/tests/golden/features-v1.json)",
+  "whatBuilt": [
+    "Versioned deterministic evidence-to-feature extraction: fixed feature order (attempt_count, correct_rate, recent3_correct_rate, current_streak, scm_p_known, p_known_delta[reserved+explicitly missing], distinct_sources); vector carries featureVersion + SHA-256 vectorDigest",
+    "TRAIN/SERVE PARITY via golden fixtures: committed features-v1.json (3 cases) must reproduce exactly; parity asserted through the shared extractor with digest equality and version-drift refusal",
+    "MISSINGNESS EXPLICIT: sentinel -1.0 + missingness mask (empty windows, reserved features); missing scm_p_known refused at the gate — nothing silently zeroed",
+    "TIME LEAKAGE CONTROL: cutoff bounds the attempt window; proven by test that cutoff-k extraction equals truncated-sequence extraction for every k (future attempts cannot influence features)",
+    "NO FUTURE OUTCOMES / IDENTITIES: buildOutcome and misconceptionLabels in evidence refused at the gate (labels are targets, never features); uid/workspaceId/sessionId refused — identities remain outside neural features",
+    "LABEL-SIDE GATE: validate_misconception_labels refuses codes outside the pinned ontology version (VMM-03)",
+    "SOURCE LEAKAGE: leakage_report detects shared sourceRefs/contentDigests across a train/eval split; revoked sources gate extraction via the VMM-03 revocation ledger",
+    "UNCERTAINTY: Wilson-score interval over the observed correct-rate with wide/moderate/tight banding and an abstain recommendation — few attempts mean wide uncertainty and an honest gather-more-evidence answer"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 52/52 pass (12 supplychain/exposure + 10 seeddata + 10 benchmarks + 9 baselines + 11 features)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "No model is trained or selected by this ticket; golden fixtures regenerate only with an intentional feature-version bump (reviewer-visible). Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
