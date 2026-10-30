@@ -1,0 +1,24 @@
+{
+  "jiraKey": "KAN-183",
+  "sourceId": "VMM-15",
+  "title": "Qualify current frontier model providers and a stable capability-based routing registry",
+  "date": "2026-10-30",
+  "lane": "ML engineering (provider evaluation)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-183-provider-qualification",
+  "branch": "codex/principal-kan-183-provider-qualification",
+  "baseCommit": "1f99dd5c (KAN-182 VMM-14 head; composes the VMM-04 pre-registration pattern)",
+  "implementationCommit": "1a30e31840c030531f46b3859a1f771bc2051f42",
+  "module": "ml/vmm/providers.py (+ ml/vmm/tests/test_providers.py)",
+  "whatBuilt": [
+    "STABLE ADAPTERS: every provider pins an adapter version; the SAME version must be used at qualification AND serve time — a mismatch refuses the route",
+    "THRESHOLDS PRE-REGISTERED by the custodian BEFORE profiles/measurements (frozen once measurement exists); measured results bind the thresholds digest",
+    "GATES: task quality, latency (p95), per-task cost, English grounding rate, tools support, and MANDATORY accepted data terms (retention/region/trainingUse=none) — a provider without accepted data terms is never qualified for private tasks",
+    "NO BRAND RANKING: qualification is thresholds-based per provider; the registry has NO ranking operation (refuse_ranking contract-proven); consumer-chat availability is explicitly irrelevant",
+    "CAPABILITY-BASED ROUTING: capability_route returns the deterministic qualified-provider set per capability (teach/reason/build) in fallback order; unqualified providers never route"
+  ],
+  "verification": {
+    "vmmTests": "npm run ml:vmm:test -> 146/146 pass (135 previous + 11 providers)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "Qualification VERDICTS here are measured through SYNTHETIC adapters; real provider measurement (actual API quality/cost/latency/data-terms contracts with named providers) requires hosted access and named-provider agreements and remains a separate gate. Testing status is not acceptance; the R0 research-gate prerequisite keeps its own signoff flow."
+}
