@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-30T15:43:20.923Z",
+  "scrolledChecks": {
+    "downloadComingSoonButtons": [
+      {
+        "text": "Windows app coming soon",
+        "ariaDisabled": null,
+        "disabled": true,
+        "title": "Available at launch",
+        "minTapOk": true
+      },
+      {
+        "text": "Mac app coming soon",
+        "ariaDisabled": null,
+        "disabled": true,
+        "title": "Available at launch",
+        "minTapOk": true
+      },
+      {
+        "text": "Linux app coming soon",
+        "ariaDisabled": null,
+        "disabled": true,
+        "title": "Available at launch",
+        "minTapOk": true
+      },
+      {
+        "text": "iOS app coming soon",
+        "ariaDisabled": null,
+        "disabled": true,
+        "title": "Available at launch",
+        "minTapOk": true
+      },
+      {
+        "text": "Android app coming soon",
+        "ariaDisabled": null,
+        "disabled": true,
+        "title": "Available at launch",
+        "minTapOk": true
+      }
+    ],
+    "downloadHonestCopy": {
+      "hasNativeAppsPrepared": true,
+      "hasPrepareEmailRequest": true,
+      "hasReviewAndSend": false,
+      "hasNoFabricatedStoreBadge": true
+    },
+    "updatesHonestCopy": {
+      "hasPrepareEmailRequest": true,
+      "hasNothingSubmitted": true,
+      "hasNotSubscribedAutomatically": false
+    },
+    "partnersHonestCopy": {
+      "hasMailtoDraft": true,
+      "hasNothingSubmitted": true,
+      "replyWithin5Days": true
+    },
+    "dashboardGate": {
+      "requested": "/dashboard",
+      "landedOn": "http://127.0.0.1:4173/dashboard",
+      "heading": null,
+      "bodySnippet": "Skip to content | Sign-in is temporarily unavailable. Please try again shortly. | Retry loading account"
+    }
+  }
+}
