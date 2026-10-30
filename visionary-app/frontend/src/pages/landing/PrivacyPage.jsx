@@ -225,7 +225,7 @@ export default function PrivacyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-privacy min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Privacy policy" />
       <PolicyTabs />
@@ -351,7 +351,7 @@ export default function PrivacyPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="privacy-summary-title">
+                <section data-section="02-summary" aria-labelledby="privacy-summary-title">
                   <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="privacy-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -370,7 +370,7 @@ export default function PrivacyPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 — WHAT WE COLLECT */}
-                <section id="what-we-collect" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-we-collect" data-section="03-what-we-collect" className="scroll-mt-24">
                   <SectionHeading number="01" title="What we collect" />
                   <Paragraph>
                     The information involved depends on the features you use. Some workspace records can stay in your browser, while account services use information needed to sign you in and provide connected features. The categories below explain what may be involved.
@@ -392,7 +392,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 02 — WHY WE USE IT */}
-                <section id="purpose" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="purpose" data-section="04-purpose" className="scroll-mt-24">
                   <SectionHeading number="02" title="Why we use it" />
                   <Paragraph>
                     We use personal information to provide your workspace, retain the learning activity you choose to save, maintain and protect the service, and respond to your requests.
@@ -417,7 +417,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 03 — WHO CAN SEE IT */}
-                <section id="sharing" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="sharing" data-section="05-sharing" className="scroll-mt-24">
                   <SectionHeading number="03" title="Who can see it" />
                   <Paragraph>
                     Visibility follows the workspace role and any explicit learning relationship. Visionary limits each view to the information needed for that relationship.
@@ -442,7 +442,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 04 — YOUR CONTROLS */}
-                <section id="your-controls" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-controls" data-section="06-your-controls" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your controls" />
                   <Paragraph>
                     Your controls depend on where information is stored. Use{" "}
@@ -482,7 +482,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 05 — SECURITY */}
-                <section id="security" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="security" data-section="07-security" className="scroll-mt-24">
                   <SectionHeading number="05" title="How we protect it" />
                   <Paragraph>
                     Visionary uses access controls, secure transport, and appropriate storage safeguards to protect information. We review these protections as the service changes and limit access to people and providers who need it for their work.
@@ -491,7 +491,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 06 — DATA REQUESTS */}
-                <section id="data-requests" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="data-requests" data-section="08-data-requests" className="scroll-mt-24">
                   <SectionHeading number="06" title="Access and deletion requests" />
                   <Paragraph>
                     You can contact us to ask about personal information associated with your use of Visionary, request access or correction, or request deletion. The Grievance officer reviews the request and may verify your identity before acting on it.
@@ -521,7 +521,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 07 — RETENTION */}
-                <section id="retention" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="retention" data-section="09-retention" className="scroll-mt-24">
                   <SectionHeading number="07" title="How long we keep it" />
                   <Paragraph>
                     Workspace records stored locally remain in this browser until you remove them or clear browser storage. Account information is retained only while it is needed for the purposes explained in this policy, including legal, safety, and service requirements.
@@ -540,7 +540,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 08 — YOUNGER LEARNERS */}
-                <section id="younger-learners" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="younger-learners" data-section="10-younger-learners" className="scroll-mt-24">
                   <SectionHeading number="08" title="Younger learners" />
                   <Paragraph>
                     Where a learner is a child under the DPDP Act, Visionary applies the consent and safeguard requirements that apply, including age-appropriate experiences and verified consent where required.
@@ -549,7 +549,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 09 — COMMON QUESTIONS */}
-                <section id="explainers" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="explainers" data-section="11-explainers" className="scroll-mt-24">
                   <SectionHeading number="09" title="Common privacy questions" />
                   <div className="max-w-[880px] border-t border-[rgba(18,19,23,0.12)]">
                     {FAQ.map((item, index) => (
@@ -574,7 +574,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 10 — CONTACT AND GRIEVANCES */}
-                <section id="grievance-officer" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="grievance-officer" data-section="12-grievance-officer" className="scroll-mt-24">
                   <SectionHeading number="10" title="Contact and grievances" />
                   <Paragraph>
                     For questions about this policy or to submit a privacy grievance, contact the named Grievance officer. Include enough detail to identify the request, but do not send passwords or other secrets by email.
@@ -598,7 +598,7 @@ export default function PrivacyPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="13-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -620,7 +620,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="14-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -645,7 +645,7 @@ export default function PrivacyPage() {
         {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
-        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+        <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
             <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
               Questions about this policy?

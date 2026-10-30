@@ -472,3 +472,51 @@ main p[style*="6e6e73"].text-\[17px\] {
 .text-\[13px\] {
   font-size: 14px !important;
 }
+
+/* ── FAP-F1 final production pass (2026-10-29) — the six remaining document
+   surfaces: privacy, terms, security, cookies, accessibility and /help join
+   the chapter system. Their chapters now carry data-section, so the base
+   law applies with a document-tuned band: measured live on apple.com/privacy
+   at 1000×700 (medium) on 2026-10-29 — chapter bands 128/128 → 140/140,
+   statement→copy 43px, closing router band 140/140 with a 64px/600 statement
+   and a 52px gap. The tuned clamp(6rem, 12.5vw, 10rem) reproduces those
+   measured numbers at the medium band while keeping the shared 96px phone
+   floor / 160px desktop cap of the global law. */
+.page-privacy main, .page-terms main, .page-security main, .page-cookies main,
+.page-accessibility main, .page-school main {
+  --public-section-py: clamp(6rem, 12.5vw, 10rem);
+}
+
+/* Statement → copy in the document chapters: Apple's measured doc gap
+   (43px @1000 medium, capped 52px desktop, 28px phone floor). The heading
+   is authored as eyebrow + h2 inside one wrapper div with the copy as the
+   wrapper's next sibling, so the wrapper carries the gap (overriding its
+   mb-6); the bare-h2 "at a glance" pattern (h2 then grid directly) carries
+   it on the following block. */
+.page-privacy main [data-section] div:has(> h2),
+.page-terms main [data-section] div:has(> h2),
+.page-security main [data-section] div:has(> h2),
+.page-cookies main [data-section] div:has(> h2),
+.page-accessibility main [data-section] div:has(> h2),
+.page-school main [data-section] div:has(> h2) {
+  margin-bottom: clamp(1.75rem, 4.3vw, 3.25rem);
+}
+
+.page-privacy main [data-section] h2 + *,
+.page-terms main [data-section] h2 + *,
+.page-security main [data-section] h2 + *,
+.page-cookies main [data-section] h2 + *,
+.page-accessibility main [data-section] h2 + *,
+.page-school main [data-section] h2 + * {
+  margin-top: clamp(1.75rem, 4.3vw, 3.25rem);
+}
+
+/* Strip trays — careers "Life at Visionary" and download's sync tray +
+   contact strip adopt the established compact-band law (the pattern that
+   already serves updates/referral one-liner strips). */
+.page-careers main > section[data-section="01b-life"],
+.page-download main > section[data-section="02b-tray"],
+.page-download main > section[data-section="04b-strip"] {
+  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+

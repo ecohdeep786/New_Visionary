@@ -1054,6 +1054,47 @@
           }
         ]
       }
+    },
+    {
+      "sourceId": "FAP-F1",
+      "jiraKey": "FAP-35",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-35",
+      "status": "In Progress",
+      "startAt": "2026-10-29T08:23:00.000Z",
+      "registrationNote": "Claimed live on the board this session (To Do -> In Progress via transition 31, 204, verified readback; start comment 10345 posted via comments endpoint).",
+      "scope": "Final production pass: apply the measured Apple-premium spacing and composition system across every remaining public page. The six document surfaces (privacy/terms/security/cookies/accessibility/help) join the chapter system: data-section stage tags replace hand-set band paddings under a measured document-band law; careers life-strip and download sync-tray + contact strip adopt the compact-band law. Type ladder, CTA anatomy, ink palette and motion laws untouched. Fresh opencode worktree + own branch per D-098 from verified origin/beta 1550d5fa. FAP lane convention: beta first, dev after review.",
+      "branch": "opencode/fap-f1-final-pass",
+      "base": "beta@1550d5fa (verified origin/beta tip; clean tree, checked before branch)",
+      "progress": [
+        {
+          "at": "2026-10-29T08:23:00.000Z",
+          "item": "task claimed per founder end-to-end lane; fresh worktree opencode-fap-f1-final-pass from verified origin/beta 1550d5fa; scope recorded on board (start comment 10345)"
+        },
+        {
+          "at": "2026-10-29T08:32:00.000Z",
+          "item": "measured reference extended this pass: live CSSOM measurement of apple.com/privacy @1000x700 (medium band) - chapter bands 128/128 to 140/140, statement-to-copy 43px, closing router band 140/140 with 64px/600 statement and 52px gap; recorded in FAP_F1_PRODUCTION_PASS_EVIDENCE.md"
+        },
+        {
+          "at": "2026-10-29T09:05:00.000Z",
+          "item": "scope decision from evidence: the six document surfaces were the only public pages outside the chapter system (0 data-section tags; hand-set py-14/16/24/32 muddle); per-page scans put all other public pages on the container/seam laws already"
+        },
+        {
+          "at": "2026-10-29T09:20:00.000Z",
+          "item": "chapterize codemods applied with exact-once rules (f1-policy-chapterize.mjs 56/58 + fixup 2/2): 6 doc pages fully tagged (hero plates authored by design), careers 01b-life strip, download 02b-tray + 04b-strip strips; measured document-band law + statement-to-copy gap law + compact strip rules added to public-bridge.css F1 block"
+        },
+        {
+          "at": "2026-10-30T04:10:00.000Z",
+          "item": "rendered verification exposed the gap law dead selector: chapter copy is the SectionHeading wrapper siblings (eyebrow+h2 in one div), h2+p matched 0 nodes; carrier retargeted to div:has(> h2) margin-bottom + bare h2 + * margin-top (43px at 1000w); candidate rebuilt"
+        },
+        {
+          "at": "2026-10-30T04:20:00.000Z",
+          "item": "rendered readbacks all law-exact at 1000x700: doc bands 125/125 (carrier readable on all six mains; 14+16+14+10+9+2 chapters), statement-to-copy gap 43px on every h2 chapter (bare 02-summary pattern and max-w-[720px] category wrappers alike), strips 01b-life/02b-tray/04b-strip at 70/70 compact law with neighbours untouched, zero horizontal overflow on all seven swept pages; full-page screenshot capture blocked (desktop window not visible to harness), computed readbacks recorded as evidence in FAP_F1_PRODUCTION_PASS_EVIDENCE.md"
+        },
+        {
+          "at": "2026-10-30T04:25:00.000Z",
+          "item": "full check battery green on candidate tree: verify-layout, verify-imports, qa-continuity/qa-motion/qa-taps, 54 script tests, scope:audit (237 files / 1656 declarations unchanged, digests re-written), lint 0, typecheck x2 0, 656/656 frontend tests, vite build ok; receipts appended to FAP_F1_PRODUCTION_PASS_EVIDENCE.md Checks section"
+        }
+      ]
     }
   ]
 }
