@@ -58,4 +58,3 @@ The candidate's nine supplied tests were inspected, not claimed as an independen
 Current boundary trace: frontend unchanged; API controller/module are present but disconnected from `FirebaseProductModule`; backend service executed by the probes; data is an in-memory synthetic store with no durable SQL adapter in this candidate; jobs/ML/cache are not involved; no connected device or hosted outcome was demonstrated.
 
 KAN-93, KAN-96 and KAN-169 must not treat this rejected invitation candidate as accepted permission readiness. Main promotion, deployment, full DATA-04 completion and completed-worktree cleanup are not eligible. The integrator owns the Jira comment/transition and any task-execution receipt update; this reviewer has performed neither.
-

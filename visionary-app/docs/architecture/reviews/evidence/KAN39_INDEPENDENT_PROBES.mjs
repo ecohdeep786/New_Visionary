@@ -90,4 +90,3 @@ test('R5 observation: removing issuer authority does not invalidate pending acce
   await svc.accept('uid-after-owner-removal', invite.token);
   assert.equal(await svc.role('ws-review', 'uid-after-owner-removal', 'MEMBER'), true);
 });
-
