@@ -12,7 +12,7 @@
 // authorization proof (v1 README boundary note).
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { storage, fixture, reset } from '../../fixtures/classCurriculum.mjs';
+import { storage, fixture, reset, org } from '../../fixtures/classCurriculum.mjs';
 import * as w from '../../../src/services/workspaceService.ts';
 import { submitClassworkResponses } from '../../../src/services/classroomService.js';
 
@@ -45,6 +45,19 @@ test('SC06-04 idempotent replay: the same response returns the retained submissi
   assert.equal(replay.id, first.id);
   assert.equal(submissions().length, 1);
   assert.equal(submissions()[0].attempt || 1, 1);
+});
+
+test('frontend identical submission replay rechecks current membership and denies after revocation without replacing the retained answer', async () => {
+  const f = await setup();
+  const input = { assignmentId: f.assignment.id, text: 'One half divides the whole equally.', selfReview: { parts: 'Two equal parts.' } };
+  await submitClassworkResponses(f.learner, input);
+  const invite = w.organizationInvites(org).find(row => row.email === 'adult@visionary.test');
+  assert.ok(invite, 'fixture must have an actual accepted membership to revoke');
+  w.changeOrganizationInvite(org, invite.id, 'revoked');
+  const retained = storage.get('visionary_entity_Submission');
+  await assert.rejects(() => submitClassworkResponses(f.learner, input), /active|unavailable|workspace|permission/i);
+  assert.equal(storage.get('visionary_entity_Submission'), retained);
+  assert.equal(submissions().length, 1);
 });
 
 test('SC06-06 changed payload under the same key conflicts; the retained submission is the recovery point', async () => {

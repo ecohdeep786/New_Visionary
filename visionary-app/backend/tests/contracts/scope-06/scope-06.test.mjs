@@ -18,5 +18,5 @@ test('draft fingerprint compares complete payload bytes; this does not authorize
 });
 test('draft revision comparison distinguishes stale and matching values without writing state', () => {
   assert.equal(compareRevision(2, 3), 'stale');
-  assert.notEqual(compareRevision(3, 3), 'stale');
+  assert.equal(compareRevision(3, 3), 'matches');
 });

@@ -177,7 +177,7 @@ test('real HTTP source mismatch, forged score and account-switch requests cannot
   const h = await fixture();
   try {
     const before = snapshot(h.f);
-    assert.equal((await h.post('/assessments', h.answer({ sourceVersion: 'withdrawn-or-other-version' }))).status, 409);
+    assert.equal((await h.post('/assessments', h.answer({ sourceVersion: 'other-version' }))).status, 409);
     assert.equal((await h.post('/assessments', { ...h.answer(), passed: true })).status, 400);
     assert.equal((await h.post('/assessments', h.answer(), { 'X-Visionary-Account': 'another-account' })).status, 409);
     assert.equal(snapshot(h.f), before);
