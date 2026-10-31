@@ -897,18 +897,22 @@
       "sourceId": "DATA-03",
       "jiraKey": "KAN-38",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-38",
-      "status": "Testing",
+      "status": "Done",
       "scope": "Durable SQL/Firestore personal workspace provisioning backend enabler and guarded opt-in API; frontend/hosted/release gates remain open",
       "branch": "codex/deepseek-kan-38-workspace-provisioning",
       "baseCommit": "f61292efaf6940ec1acc1751a61cb4a7dd17e66b",
       "originalCandidate": "f06e1e2b931e97fdb39aec112e44c4b3b035a722",
       "originalReview": "changes requested; five reproduced race/identity/persistence findings",
       "review": {
-        "state": "approved scoped backend source; final handoff and dev integration pending",
+        "state": "approved scoped backend enabler and final corrected handoff",
         "reviewer": "/root/kan38_review",
         "approvedCommit": "a05caa540b559781522c079328f9b69e1397a503",
         "report": "docs/architecture/reviews/KAN38_INDEPENDENT_REVIEW.md",
-        "reportCommit": "43fba9098a3a86dfe9103209e6db6b14adf2358f"
+        "reportCommit": "43fba9098a3a86dfe9103209e6db6b14adf2358f",
+        "finalHandoffReviewer": "/root/kan38_final_review",
+        "finalHandoffCommit": "f590efea312e5a85540e95b416dbf512300ef855",
+        "finalReport": "docs/architecture/reviews/KAN38_FINAL_HANDOFF_REVIEW_F590EFEA.md",
+        "finalReportCommit": "417ed4845882562e672bd94be8e97dd51eefd672"
       },
       "checks": {
         "priorFullDataCheck": {
@@ -939,19 +943,30 @@
         "independentAdditionalSqlFirestoreProbes": 6,
         "independentFocusedRollback": true,
         "independentCorrectedHttp": true,
-        "priorLocalTimeouts": "Preserved failed attempts; final CI and focused independent reruns passed without relaxed deadlines"
+        "priorLocalTimeouts": "Preserved failed attempts; final CI and focused independent reruns passed without relaxed deadlines",
+        "finalHeadCheckedCommit": "417ed4845882562e672bd94be8e97dd51eefd672",
+        "finalHeadCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41182120564",
+        "integratedCheckedCommit": "d445396011215651e761b8c53d696c12825c7fdf",
+        "integratedCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41182411049",
+        "integratedChecksJob": 124482333860,
+        "integratedCiConclusion": "success",
+        "productionJob": "skipped"
       },
       "fullFeatureAccepted": false,
       "linkedProductGatesRemainOpen": true,
       "remainingGates": [
-        "Final handoff review, checked/published dev integration and actual Jira transition",
         "Hosted SQL/Firestore/IAM/network/secret/recovery acceptance",
         "Connected frontend/source/ML/two-device/privacy acceptance",
         "Main release and explicit production enablement"
       ],
       "worktreeCleanup": {
-        "state": "not eligible: final integration and Jira closeout pending",
-        "worker": "deepseek-kan-38-workspace-provisioning"
+        "state": "eligible after accepted integration and actual Jira Done; final removal receipt follows in Jira",
+        "worker": "deepseek-kan-38-workspace-provisioning",
+        "reviewer": "qa-review-kan-38-workspace-provisioning",
+        "configurationPreservedOutsideGit": true,
+        "preservationRoot": "C:/Users/Administrator/Visionary-local/kan38-completed-20261031",
+        "configurationFilesByteVerified": 2,
+        "rawEvidenceOutsideTaskCheckout": true
       },
       "implementationCommits": [
         "1b4ea2a7034976c548eca44b2c98b328d8de493d"
@@ -985,6 +1000,19 @@
         "developmentNamespaceOnly": true,
         "localSqlStoppedAndRetained": true,
         "evidence": "docs/architecture/delivery/evidence/KAN38_LIVE_FIRESTORE_2026-10-27.json"
+      },
+      "verifiedAt": "2026-10-31",
+      "integration": {
+        "branch": "dev",
+        "commit": "d445396011215651e761b8c53d696c12825c7fdf",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/31",
+        "remotePublished": true,
+        "acceptedFinalHead": "417ed4845882562e672bd94be8e97dd51eefd672",
+        "mergedTreeMatchesAcceptedFinalHead": true,
+        "jiraCommentId": "10477",
+        "jiraTransitionId": "51",
+        "jiraReturnedStatus": "Done",
+        "acceptanceScope": "guarded durable personal-workspace provisioning backend enabler only"
       }
     }
   ]
