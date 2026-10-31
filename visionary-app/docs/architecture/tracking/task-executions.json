@@ -751,7 +751,7 @@
       "sourceId": "DATA-02",
       "jiraKey": "KAN-37",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-37",
-      "status": "Done",
+      "status": "Rework",
       "scope": "Local DATA-02 enabler: versioned PostgreSQL migrations, distinct identities, durable bounded backfills, compatibility and rollback guards; production-capable job packaged. Hosted/domain/release acceptance remains open.",
       "branch": "codex/deepseek-kan-37-data-migrations",
       "baseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
@@ -891,6 +891,15 @@
         "fullFeatureAccepted": false,
         "jiraDoneTransitionId": "51",
         "jiraCommentId": "10252"
+      },
+      "currentRework": {
+        "date": "2026-10-31",
+        "jiraCommentId": "10513",
+        "jiraTransitionId": "2",
+        "jiraReturnedStatus": "Rework",
+        "finding": "Sub1000ms backfill budget becomes1ms SQL statement_timeout; metadata setup can fail before hanging source enters, returning57014 rather than expected deadline. Original accepted implementation evidence retained; no repair claimed.",
+        "evidence": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41219772606/attempts/1",
+        "queue": "Next repair after KAN-33 accepted integration, actual Done and cleanup; before KAN-39"
       }
     },
     {
@@ -1013,6 +1022,105 @@
         "jiraTransitionId": "51",
         "jiraReturnedStatus": "Done",
         "acceptanceScope": "guarded durable personal-workspace provisioning backend enabler only"
+      }
+    },
+    {
+      "sourceId": "SCOPE-06",
+      "jiraKey": "KAN-33",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-33",
+      "status": "Done",
+      "scope": "Executable draft-schema/actual Learning HTTP and frontend local-service regression enabler, plus corrected existing default learning API route. First real released-source selection and full connected feature/release acceptance remain open.",
+      "branch": "codex/principal-kan-33-executable-invariants",
+      "baseCommit": "777f27a30927949891eb1b7ae60b8678cbbb7693",
+      "originalCandidate": "5fffa44af74916fda9ac6ad6547b21009dd0882a",
+      "originalReview": "changes requested; fixture-only authority/cancellation and false shared-matrix assertions",
+      "implementationCommits": [
+        "d0bae0511b75962bc4c5501f5259f1dae97d6817",
+        "f3961d08ef8d58f9382990259f482eff5353c37c",
+        "caf9dcd49319f0a44ead67b8a7513234c0cab44f"
+      ],
+      "review": {
+        "state": "approved scoped regression enabler and repaired existing transport",
+        "reviewer": "/root/kan33_independent_review",
+        "approvedCommit": "73e31d55473b178f2985644067b941bd2178fa05",
+        "report": "docs/architecture/reviews/KAN33_FINAL_REVIEW_73E31D55.md",
+        "reportCommit": "133019b725c88e90401d68c941bd92756bc361a4",
+        "originalReviewerReportCommit": "ca741598b641161f45b71179495de1bdf6b40ee7",
+        "jiraCommentId": "10511"
+      },
+      "checks": {
+        "schemaCases": 5,
+        "actualLearningHttpCases": 12,
+        "frontendLocalServiceCases": 6,
+        "frontendTests": 625,
+        "scriptTests": 82,
+        "apiContracts": 35,
+        "postgresqlData01": 20,
+        "postgresqlData02": 39,
+        "provisioningTests": 11,
+        "deployedBackendTests": 99,
+        "deployedProvisioningTests": 11,
+        "infraJsTests": 31,
+        "infraPythonTests": 11,
+        "lint": true,
+        "typecheck": true,
+        "build": true,
+        "actualMigrationAndApiImages": true,
+        "cancellationWeakeningFailures": 2,
+        "changedCurrentInputWeakeningFailures": 4,
+        "independentReceiptFingerprintWeakeningFailures": 1,
+        "oldDefaultRouteRegressionFails": true,
+        "finalHeadCheckedCommit": "133019b725c88e90401d68c941bd92756bc361a4",
+        "finalHeadCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41219772606/attempts/2",
+        "integratedCheckedCommit": "10e455a0dba38c69b100fc04e6566f415f0fd8e6",
+        "integratedCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41220472624",
+        "integratedCiConclusion": "success",
+        "productionJob": "skipped",
+        "retainedFailure": "caf9 CI41217997684 attempt1: unchanged DATA02 fixture setup exceeded existing15s transaction bounds. Bounded unchanged retry and later heads passed; no deadline relaxation. Report133 CI41219772606 attempt1 passed38/39 DATA02; small-budget statement-timeout vs deadline concern is reopened KAN-37 comment10513. Unchanged bounded attempt2 and integrated CI passed."
+      },
+      "localProductVerification": {
+        "date": "2026-10-31",
+        "sourceCommit": "caf9dcd49319f0a44ead67b8a7513234c0cab44f",
+        "browser": "Signed-in in-app browser; actual Professional Firebase session",
+        "journey": "Authored English sample -> explanation -> actual server check -> reload private unscored draft -> server assessment201 -> reload one saved attempt; practice/project handoff and return/reload",
+        "realFirestoreFreshReadback": true,
+        "newSampleOwnerAndAssessmentReceiptConfirmed": true,
+        "mobileViewport": "390x844 project layout; no horizontal overflow",
+        "viewportRestored": true,
+        "evidence": "docs/architecture/delivery/evidence/KAN33_LOCAL_BROWSER_2026-10-31.json",
+        "acceptance": "Bounded real assessment outcome and persistence plus observed UI/local practice/project handoff; not full feature/hosted/two-device acceptance",
+        "integratedEvidence": "docs/architecture/delivery/evidence/KAN33_DEV_BROWSER_2026-10-31.json"
+      },
+      "fullFeatureAccepted": false,
+      "firstRealReleasedSourceAccepted": false,
+      "linkedProductGatesRemainOpen": true,
+      "remainingGates": [
+        "Founder-supplied real books/curriculum/source/rights under KAN-29; English launch and final all-board/all-class scope retained",
+        "Current source/publication/consent and real classroom membership authority in owning tasks",
+        "Durable Build and connected classroom/provider/role/two-device/ML/privacy/hosted acceptance",
+        "Main promotion and release acceptance"
+      ],
+      "integration": {
+        "branch": "dev",
+        "commit": "10e455a0dba38c69b100fc04e6566f415f0fd8e6",
+        "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/33",
+        "acceptedFinalHead": "133019b725c88e90401d68c941bd92756bc361a4",
+        "mergedTreeMatchesAcceptedFinalHead": true,
+        "remotePublished": true,
+        "jiraCommentId": "10514",
+        "jiraTransitionId": "51",
+        "jiraReturnedStatus": "Done",
+        "acceptanceScope": "Scoped regression enabler and corrected existing learning route only"
+      },
+      "verifiedAt": "2026-10-31T16:40:33Z",
+      "worktreeCleanup": {
+        "state": "eligible after actual Done and accepted integration; actual removal receipt follows in Jira",
+        "worker": "principal-kan-33-executable-invariants",
+        "reviewer": "qa-review-kan-33-replacement",
+        "configurationPreservedOutsideGit": true,
+        "configurationFilesByteVerified": 3,
+        "preservationRoot": "C:/Users/Administrator/Visionary-local/kan33-completed-20261031",
+        "rawEvidenceOutsideTaskCheckout": true
       }
     }
   ]
