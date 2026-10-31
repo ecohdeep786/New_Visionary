@@ -13,7 +13,11 @@ import React, { useState, useEffect, useRef } from "react";
  *   className  — applied to the img
  *   style      — inline styles for the placeholder frame
  *   eager      — if true, load immediately (above-fold hero images)
- *   fetchPriority — passed to the img (e.g. "high")
+ *   fetchPriority — the A4 receipted DOM treatment: React 18.2 warns on the
+ *     camelCase img prop (unsupported react prop), so the caller-facing prop
+ *     stays camelCase but reaches the DOM as the standard lowercase
+ *     `fetchpriority` content attribute (custom attr passthrough, no dev
+ *     warning; React >= 18.3 supports the camelCase prop if the upgrade lands).
  *   placeholderBg — background color for the loading placeholder (default: #f5f5f7)
  */
 export default function LazyImage({
@@ -56,6 +60,11 @@ export default function LazyImage({
     ...style,
   };
 
+  /* FAP-9 (A4): the priority request must reach the DOM without React 18.2's</think><tool_call>edit<arg_key>newString</arg_key><arg_value>  /* FAP-9 (A4): the priority request must reach the DOM without React 18.2's
+     camelCase warning, so it goes out as the standard lowercase custom
+     attribute (same treatment as PageMeta's imperative preload hint). */
+  const priorityAttrs = fetchPriority ? { fetchpriority: fetchPriority } : {};
+
   if (!inView) {
     return (
       <div
@@ -77,10 +86,10 @@ export default function LazyImage({
       alt={alt}
       loading={eager ? "eager" : "lazy"}
       decoding="async"
-      fetchPriority={fetchPriority}
       onLoad={() => setLoaded(true)}
       className={`${className} ${!loaded ? "lazy-loading" : "lazy-loaded"}`}
       style={placeholderStyle}
+      {...priorityAttrs}
       {...rest}
     />
   );
