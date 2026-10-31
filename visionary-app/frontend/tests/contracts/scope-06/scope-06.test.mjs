@@ -5,16 +5,14 @@
 // language 'en', class 6 Mathematics — a clearly fictional, synthetic slice
 // (final released-source selection remains KAN-29's founder decision).
 //
-// These cases execute the SAME case matrix as the backend suite
-// (backend/tests/contracts/scope-06/scope-06-cases.mjs: SC06-01 positive,
-// SC06-03 stale, SC06-04 idempotent replay, SC06-05 authority deny,
-// SC06-06 changed-payload conflict) against the REAL frontend
-// classroomService boundary, asserting owning-store records and recovery.
+// These are distinct frontend classroom-service scenarios, not the backend
+// LearningController API or a shared wire-case matrix. They exercise local
+// submission/replay/revision/class access and owning-store recovery.
 // Preview/local fixtures are shape-and-flow evidence, not server
 // authorization proof (v1 README boundary note).
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { storage, fixture, reset } from '../../fixtures/classCurriculum.mjs';
+import { storage, fixture, reset, org } from '../../fixtures/classCurriculum.mjs';
 import * as w from '../../../src/services/workspaceService.ts';
 import { submitClassworkResponses } from '../../../src/services/classroomService.js';
 
@@ -49,6 +47,19 @@ test('SC06-04 idempotent replay: the same response returns the retained submissi
   assert.equal(submissions()[0].attempt || 1, 1);
 });
 
+test('frontend identical submission replay rechecks current membership and denies after revocation without replacing the retained answer', async () => {
+  const f = await setup();
+  const input = { assignmentId: f.assignment.id, text: 'One half divides the whole equally.', selfReview: { parts: 'Two equal parts.' } };
+  await submitClassworkResponses(f.learner, input);
+  const invite = w.organizationInvites(org).find(row => row.email === 'adult@visionary.test');
+  assert.ok(invite, 'fixture must have an actual accepted membership to revoke');
+  w.changeOrganizationInvite(org, invite.id, 'revoked');
+  const retained = storage.get('visionary_entity_Submission');
+  await assert.rejects(() => submitClassworkResponses(f.learner, input), /active|unavailable|workspace|permission/i);
+  assert.equal(storage.get('visionary_entity_Submission'), retained);
+  assert.equal(submissions().length, 1);
+});
+
 test('SC06-06 changed payload under the same key conflicts; the retained submission is the recovery point', async () => {
   const f = await setup();
   const first = await submitClassworkResponses(f.learner, { assignmentId: f.assignment.id, text: 'One half divides the whole equally.', selfReview: { parts: 'Two equal parts.' } });
@@ -75,7 +86,7 @@ test('SC06-03 stale expected revision denies; the response is retained for recov
   assert.equal(submissions().length, 0); // nothing persisted from the stale command
 });
 
-test('SC06-05 authority deny: an authenticated learner outside the class cannot submit; the class store is unchanged', async () => {
+test('frontend class-access deny: an authenticated outsider cannot submit; this is not a revoked-consent test', async () => {
   const f = await setup();
   // An authenticated learner with their own workspace, but NO enrollment in
   // this class — the enrollment boundary is what must deny here.

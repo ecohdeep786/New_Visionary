@@ -65,6 +65,9 @@ jobs:
         working-directory: visionary-app/infrastructure/gcp/data-job
       - run: node infrastructure/gcp/data-job/check-image.mjs
       - run: node scripts/production-check.mjs
+        env:
+          DATA_TEST_DATABASE_URL: postgresql://postgres:synthetic-ci-only@127.0.0.1:5432/visionary_data_test_ci
+      - run: node infrastructure/gcp/check-product-api-image.mjs
       - run: node --test infrastructure/gcp/tests/*.test.mjs
       - run: python3 -m unittest discover -s infrastructure/gcp/tests -p '*_test.py'
 

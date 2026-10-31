@@ -23,3 +23,4 @@ const tests = readdirSync(join(root, 'backend/tests/contracts/data-01')).filter(
 run(['--test', '--test-reporter=tap', ...tests.map((f) => join(root, 'backend/tests/contracts/data-01', f))]);
 const migrationTests = readdirSync(join(root, 'backend/tests/contracts/data-02')).filter((f) => f.endsWith('.test.mjs'));
 run(['--test', '--test-reporter=tap', ...migrationTests.map((f) => join(root, 'backend/tests/contracts/data-02', f))]);
+run([join(root, 'scripts/provision-check.mjs')]);

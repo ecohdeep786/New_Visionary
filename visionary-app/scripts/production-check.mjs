@@ -18,7 +18,10 @@ try {
   mkdirSync(backend, { recursive: true });
   for (const name of ['src', 'tsconfig.json', 'tsconfig.product.json']) cpSync(join(root, 'backend/upstream/backend', name), join(backend, name), { recursive: true });
   cpSync(join(runtime, 'package.json'), join(backend, 'package.json'));
+  mkdirSync(join(backend, 'prisma'), { recursive: true });
+  cpSync(join(root, 'backend/upstream/backend/prisma/schema.prisma'), join(backend, 'prisma/schema.prisma'));
   symlinkSync(realpathSync(join(runtime, 'node_modules')), join(backend, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
+  run([join(runtime, 'node_modules/prisma/build/index.js'), 'generate', '--schema', join(backend, 'prisma/schema.prisma')], backend);
   const tests = ['firebase-admin', 'firebase-product', 'account-storage', 'billing', 'feedback', 'production-http'];
   // Main predates the independently delivered account-directory feature. Its
   // source and regressions must arrive together when that feature is released.
@@ -43,9 +46,19 @@ try {
     const source = `src/auth/firebase-product/${name}.ts`;
     if (existsSync(join(backend, source))) config.files.push(source);
   }
+  const hasProvisioning = existsSync(join(backend, 'src/workspaces/personal-workspace.service.ts'));
+  if (hasProvisioning) {
+    config.files.push('src/data/migration-runner.ts', 'src/data/migration-store.ts', 'src/data/migration-registry.ts');
+    cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261024000001_data_01_workspaces'), join(backend, 'prisma/migrations/20261024000001_data_01_workspaces'), { recursive: true });
+    for (const file of ['data-01/postgres-fixture.cjs', 'data-02/postgres-fixture.cjs', 'data-03/provisioning.test.mjs']) {
+      const destination = join(testRoot, 'contracts', file); mkdirSync(dirname(destination), { recursive: true });
+      cpSync(join(root, 'backend/tests/contracts', file), destination);
+    }
+  }
   writeFileSync(join(backend, 'tsconfig.tests.json'), JSON.stringify(config));
   run([join(runtime, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.tests.json'], backend);
   run(['--test', '--test-reporter=tap', ...tests.map(name => join(testRoot, `${name}.test.cjs`))], root);
+  if (hasProvisioning) run([join(root, 'scripts/provision-check.mjs'), '--root', temporary], root);
 } finally {
   const actual = realpathSync(temporary);
   if (dirname(actual) !== realpathSync(tmpdir()) || !basename(actual).startsWith('visionary-production-check-')) throw Error('Temporary check cleanup boundary mismatch.');
