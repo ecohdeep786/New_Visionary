@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "jiraKey": "KAN-33",
+  "date": "2026-10-31",
+  "sourceCommit": "caf9dcd49319f0a44ead67b8a7513234c0cab44f",
+  "environment": {
+    "frontend": "http://localhost:5183",
+    "api": "http://127.0.0.1:3003",
+    "browser": "ChatGPT in-app browser",
+    "authentication": "Existing real Firebase Professional session; no test login or password handoff",
+    "backend": "Official FirebaseProductModule entry point with real configured Firestore; SQL provisioning disabled",
+    "startup": "Official root dev/backend:dev; isolated ignored Vite host/port/proxy overrides. Started at handoff500c85d4, frontend fix caf9 loaded with full reload; backend source unchanged."
+  },
+  "journey": [
+    "Home -> Learn -> authored workplace sample -> Data interpretation / Sample / Professional / English -> Turn data into a decision -> start -> explanation",
+    "At500c85d4, Check my understanding visibly failed with POST /api/account/learningsessions404; saved work retained. Jira returned In Progress for repair.",
+    "Atcaf9, full reload -> Check my understanding -> actual session create201 and check201 -> select25 -> full reload preserves private unscored draft",
+    "Check answer -> real server assessment201 -> UI Understanding check recorded, 1/1 correct; choices disabled. Full reload retains result and exactly one saved attempt.",
+    "Continue practice -> select supported conclusion -> Check answer -> UI Practice step recorded, 2/2 correct; Apply this in Build -> Open your project retains authored fictional-data brief",
+    "Mobile390x844 project workspace visually checked, document scrollWidth390/clientWidth390. Return to learning unit -> reset viewport -> full reload restores Build stage with both recorded steps."
+  ],
+  "assessmentNetwork": {
+    "path": "/api/account/learning/sessions/:id/assessments",
+    "status": 201
+  },
+  "serverAssessment": {
+    "version": 1,
+    "status": "active",
+    "phase": "check_passed",
+    "revision": 2,
+    "failedChecks": 0,
+    "passed": true,
+    "answerKeyExposed": false
+  },
+  "freshStoreReadbackImmediatelyAfterAssessment": {
+    "project": "visionary-research",
+    "database": "default",
+    "realFirestore": true,
+    "freshProcessReadBack": true,
+    "sessionExists": true,
+    "ownerAndReceiptBindingsMatch": true,
+    "status": "active",
+    "phase": "check_passed",
+    "revision": 2,
+    "assessmentExists": true,
+    "assessmentPassed": true,
+    "immutableCommandReceiptExists": true,
+    "noWritesRequested": true,
+    "scope": "Only the new browser-authored sample learning session/assessment/command; no profile or billing data displayed"
+  },
+  "localFullCheck": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "source": "caf9dcd49319f0a44ead67b8a7513234c0cab44f",
+    "completedUtc": "2026-10-31T16:09:01.3967550Z"
+  },
+  "console": {
+    "finalReloadErrorsAndWarnings": 0,
+    "original404": "Preserved as failed browser attempt; subsequent reload diagnostics do not retain historical messages."
+  },
+  "networkCaptureLimit": "Final reload event buffer was truncated and retained only later auth/me200. The original observed assessment201 event was preserved separately; no claim of a complete HAR.",
+  "screenshots": [
+    {
+      "name": "browser-learning-route-failure",
+      "sha256": "998dc4b5989756aebb1c84a463a57cb86b053b85aa6600e0357217357dba6a54",
+      "bytes": 96031,
+      "format": "jpeg",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-restored-private-draft",
+      "sha256": "a638dc4e93236e0a673217207d2b5e29221b8473ba16f31aa5eb2a4b38e07895",
+      "bytes": 76419,
+      "format": "jpeg",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-server-assessed-outcome",
+      "sha256": "9877b3ca939cc3af03159e39cc13713d5818c0cbceaabc859d6c6160ac0d3e20",
+      "bytes": 86193,
+      "format": "jpeg",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-guided-practice-recorded",
+      "sha256": "a29e8cc2c667c05bdfaa0b485c8555fca82bb7e23bd1a60c3f54901ee6ae126c",
+      "bytes": 94385,
+      "format": "jpeg",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-mobile-project-handoff",
+      "sha256": "3b715856671cf10604ac2e0d8cb1061f75da167a5b4821de0be0e0394ff91ba8",
+      "bytes": 39106,
+      "format": "jpeg",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "browser-returned-learning-stage",
+      "sha256": "716fa2debbc00e02d0c17996a882a94dd07f2a52cf0c241c73a256ae1faa2634",
+      "bytes": 86126,
+      "format": "jpeg",
+      "width": 1187,
+      "height": 1170
+    }
+  ],
+  "rawEvidenceRoot": "C:/Users/Administrator/Visionary-local/kan33-rework-20261031",
+  "privateDataHandling": "Raw screenshots, configuration, logs and exact test-record binding stay outside Git. Public receipt omits UID, session/command/artifact IDs, cookies, tokens and profile/billing records.",
+  "limits": [
+    "Authored sample is not official curriculum or real book coverage. Founder-supplied real books/rights remain KAN-29; English launch and final all-board/all-class scope retained.",
+    "Local reload evidence and fresh exact-record Firestore persistence are separate observations; this is not two-device or hosted release acceptance.",
+    "Guided-practice and project handoff are observed UI/local workspace outcomes; this receipt does not certify durable Build persistence or independently certify the practice server receipt.",
+    "No browser cancellation control was exercised. Actual HTTP cancellation/replay/denial/recovery is covered by registered runtime12 and independent weakening probes.",
+    "Real classroom server membership, current source/publication/consent revocation, SQL/hosted, ML, privacy/retention and main release remain separately gated. Disconnected teaching service is honestly visible."
+  ]
+}

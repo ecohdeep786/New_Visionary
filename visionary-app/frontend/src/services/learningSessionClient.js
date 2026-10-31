@@ -36,7 +36,7 @@ function learningReceipt(value, uid) {
     ...(receipt ? { receipt } : {}) };
 }
 
-export function createLearningSessionClient({ getAccountId, request = createAuthTransport({ basePath: '/api/account/learning' }) }) {
+export function createLearningSessionClient({ getAccountId, request = createAuthTransport({ basePath: '/api/account/learning/' }) }) {
   const guard = () => {
     const uid = getAccountId();
     const check = () => { if (!uid || getAccountId() !== uid) throw Object.assign(new Error('The signed-in account changed.'), { status: 409 }); };
