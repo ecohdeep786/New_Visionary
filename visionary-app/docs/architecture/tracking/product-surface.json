@@ -1475,18 +1475,18 @@
         "frontend/src/components/landing/LandingNav/index.jsx:589:15",
         "frontend/src/components/landing/LandingNav/index.jsx:627:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
-        "frontend/src/pages/landing/SchoolPage.jsx:129:7",
-        "frontend/src/pages/landing/SchoolPage.jsx:138:13",
+        "frontend/src/pages/landing/SchoolPage.jsx:134:7",
         "frontend/src/pages/landing/SchoolPage.jsx:143:13",
-        "frontend/src/pages/landing/SchoolPage.jsx:194:17",
-        "frontend/src/pages/landing/SchoolPage.jsx:208:19",
-        "frontend/src/pages/landing/SchoolPage.jsx:223:15",
-        "frontend/src/pages/landing/SchoolPage.jsx:239:38",
-        "frontend/src/pages/landing/SchoolPage.jsx:255:23",
-        "frontend/src/pages/landing/SchoolPage.jsx:274:41",
-        "frontend/src/pages/landing/SchoolPage.jsx:286:19",
-        "frontend/src/pages/landing/SchoolPage.jsx:303:15",
-        "frontend/src/pages/landing/SchoolPage.jsx:306:15"
+        "frontend/src/pages/landing/SchoolPage.jsx:148:13",
+        "frontend/src/pages/landing/SchoolPage.jsx:199:17",
+        "frontend/src/pages/landing/SchoolPage.jsx:213:19",
+        "frontend/src/pages/landing/SchoolPage.jsx:228:15",
+        "frontend/src/pages/landing/SchoolPage.jsx:244:38",
+        "frontend/src/pages/landing/SchoolPage.jsx:260:23",
+        "frontend/src/pages/landing/SchoolPage.jsx:279:41",
+        "frontend/src/pages/landing/SchoolPage.jsx:291:19",
+        "frontend/src/pages/landing/SchoolPage.jsx:308:15",
+        "frontend/src/pages/landing/SchoolPage.jsx:311:15"
       ],
       "operations": [
         "public-discovery"
@@ -2912,13 +2912,13 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/CommunityPage.jsx:180:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:184:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:200:15",
-        "frontend/src/pages/landing/CommunityPage.jsx:234:23",
-        "frontend/src/pages/landing/CommunityPage.jsx:265:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:300:15",
-        "frontend/src/pages/landing/CommunityPage.jsx:303:15"
+        "frontend/src/pages/landing/CommunityPage.jsx:183:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:187:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:203:15",
+        "frontend/src/pages/landing/CommunityPage.jsx:237:23",
+        "frontend/src/pages/landing/CommunityPage.jsx:268:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:303:15",
+        "frontend/src/pages/landing/CommunityPage.jsx:306:15"
       ],
       "operations": [
         "public-updates-distribution"
@@ -3359,22 +3359,22 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/UpdatesPage.jsx:105:15",
-        "frontend/src/pages/landing/UpdatesPage.jsx:111:15",
-        "frontend/src/pages/landing/UpdatesPage.jsx:140:17",
-        "frontend/src/pages/landing/UpdatesPage.jsx:168:17",
-        "frontend/src/pages/landing/UpdatesPage.jsx:177:19",
-        "frontend/src/pages/landing/UpdatesPage.jsx:224:17",
-        "frontend/src/pages/landing/UpdatesPage.jsx:258:21",
-        "frontend/src/pages/landing/UpdatesPage.jsx:289:21",
-        "frontend/src/pages/landing/UpdatesPage.jsx:298:19",
-        "frontend/src/pages/landing/UpdatesPage.jsx:302:25",
-        "frontend/src/pages/landing/UpdatesPage.jsx:310:25",
-        "frontend/src/pages/landing/UpdatesPage.jsx:324:29",
-        "frontend/src/pages/landing/UpdatesPage.jsx:338:23",
-        "frontend/src/pages/landing/UpdatesPage.jsx:347:21",
-        "frontend/src/pages/landing/UpdatesPage.jsx:363:15",
-        "frontend/src/pages/landing/UpdatesPage.jsx:375:13"
+        "frontend/src/pages/landing/UpdatesPage.jsx:108:15",
+        "frontend/src/pages/landing/UpdatesPage.jsx:114:15",
+        "frontend/src/pages/landing/UpdatesPage.jsx:143:17",
+        "frontend/src/pages/landing/UpdatesPage.jsx:171:17",
+        "frontend/src/pages/landing/UpdatesPage.jsx:180:19",
+        "frontend/src/pages/landing/UpdatesPage.jsx:227:17",
+        "frontend/src/pages/landing/UpdatesPage.jsx:261:21",
+        "frontend/src/pages/landing/UpdatesPage.jsx:292:21",
+        "frontend/src/pages/landing/UpdatesPage.jsx:301:19",
+        "frontend/src/pages/landing/UpdatesPage.jsx:305:25",
+        "frontend/src/pages/landing/UpdatesPage.jsx:313:25",
+        "frontend/src/pages/landing/UpdatesPage.jsx:327:29",
+        "frontend/src/pages/landing/UpdatesPage.jsx:341:23",
+        "frontend/src/pages/landing/UpdatesPage.jsx:350:21",
+        "frontend/src/pages/landing/UpdatesPage.jsx:366:15",
+        "frontend/src/pages/landing/UpdatesPage.jsx:378:13"
       ],
       "operations": [
         "public-updates-distribution"
@@ -3518,19 +3518,19 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/ReferralPage.jsx:114:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:117:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:166:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:197:21",
-        "frontend/src/pages/landing/ReferralPage.jsx:201:21",
-        "frontend/src/pages/landing/ReferralPage.jsx:230:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:240:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:243:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:246:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:278:15",
-        "frontend/src/pages/landing/ReferralPage.jsx:313:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:345:17",
-        "frontend/src/pages/landing/ReferralPage.jsx:348:17"
+        "frontend/src/pages/landing/ReferralPage.jsx:112:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:115:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:164:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:195:21",
+        "frontend/src/pages/landing/ReferralPage.jsx:199:21",
+        "frontend/src/pages/landing/ReferralPage.jsx:228:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:238:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:241:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:244:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:276:15",
+        "frontend/src/pages/landing/ReferralPage.jsx:311:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:343:17",
+        "frontend/src/pages/landing/ReferralPage.jsx:346:17"
       ],
       "operations": [
         "referral-sharing"
@@ -3672,18 +3672,18 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
+        "frontend/src/pages/landing/SafetyPage.jsx:153:15",
+        "frontend/src/pages/landing/SafetyPage.jsx:154:15",
         "frontend/src/pages/landing/SafetyPage.jsx:155:15",
         "frontend/src/pages/landing/SafetyPage.jsx:156:15",
-        "frontend/src/pages/landing/SafetyPage.jsx:157:15",
-        "frontend/src/pages/landing/SafetyPage.jsx:158:15",
-        "frontend/src/pages/landing/SafetyPage.jsx:180:15",
-        "frontend/src/pages/landing/SafetyPage.jsx:208:15",
-        "frontend/src/pages/landing/SafetyPage.jsx:237:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:269:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:295:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:301:21",
-        "frontend/src/pages/landing/SafetyPage.jsx:338:17",
-        "frontend/src/pages/landing/SafetyPage.jsx:344:17"
+        "frontend/src/pages/landing/SafetyPage.jsx:178:15",
+        "frontend/src/pages/landing/SafetyPage.jsx:206:15",
+        "frontend/src/pages/landing/SafetyPage.jsx:235:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:267:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:293:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:299:21",
+        "frontend/src/pages/landing/SafetyPage.jsx:336:17",
+        "frontend/src/pages/landing/SafetyPage.jsx:342:17"
       ],
       "operations": []
     },
@@ -3825,22 +3825,22 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
-        "frontend/src/pages/landing/PrivacyPage.jsx:170:7",
-        "frontend/src/pages/landing/PrivacyPage.jsx:245:25",
-        "frontend/src/pages/landing/PrivacyPage.jsx:303:23",
-        "frontend/src/pages/landing/PrivacyPage.jsx:317:19",
-        "frontend/src/pages/landing/PrivacyPage.jsx:336:29",
-        "frontend/src/pages/landing/PrivacyPage.jsx:359:23",
-        "frontend/src/pages/landing/PrivacyPage.jsx:449:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:451:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:469:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:473:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:477:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:517:21",
-        "frontend/src/pages/landing/PrivacyPage.jsx:557:25",
-        "frontend/src/pages/landing/PrivacyPage.jsx:587:23",
-        "frontend/src/pages/landing/PrivacyPage.jsx:633:17",
-        "frontend/src/pages/landing/PrivacyPage.jsx:653:13"
+        "frontend/src/pages/landing/PrivacyPage.jsx:169:7",
+        "frontend/src/pages/landing/PrivacyPage.jsx:244:25",
+        "frontend/src/pages/landing/PrivacyPage.jsx:302:23",
+        "frontend/src/pages/landing/PrivacyPage.jsx:316:19",
+        "frontend/src/pages/landing/PrivacyPage.jsx:335:29",
+        "frontend/src/pages/landing/PrivacyPage.jsx:358:23",
+        "frontend/src/pages/landing/PrivacyPage.jsx:448:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:450:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:468:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:472:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:476:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:516:21",
+        "frontend/src/pages/landing/PrivacyPage.jsx:556:25",
+        "frontend/src/pages/landing/PrivacyPage.jsx:586:23",
+        "frontend/src/pages/landing/PrivacyPage.jsx:632:17",
+        "frontend/src/pages/landing/PrivacyPage.jsx:652:13"
       ],
       "operations": []
     },
@@ -4130,18 +4130,18 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
-        "frontend/src/pages/landing/SecurityPage.jsx:154:7",
-        "frontend/src/pages/landing/SecurityPage.jsx:228:25",
-        "frontend/src/pages/landing/SecurityPage.jsx:284:23",
-        "frontend/src/pages/landing/SecurityPage.jsx:298:19",
-        "frontend/src/pages/landing/SecurityPage.jsx:317:29",
-        "frontend/src/pages/landing/SecurityPage.jsx:340:23",
-        "frontend/src/pages/landing/SecurityPage.jsx:425:21",
+        "frontend/src/pages/landing/SecurityPage.jsx:153:7",
+        "frontend/src/pages/landing/SecurityPage.jsx:227:25",
+        "frontend/src/pages/landing/SecurityPage.jsx:283:23",
+        "frontend/src/pages/landing/SecurityPage.jsx:297:19",
+        "frontend/src/pages/landing/SecurityPage.jsx:316:29",
+        "frontend/src/pages/landing/SecurityPage.jsx:339:23",
+        "frontend/src/pages/landing/SecurityPage.jsx:424:21",
+        "frontend/src/pages/landing/SecurityPage.jsx:512:21",
         "frontend/src/pages/landing/SecurityPage.jsx:513:21",
-        "frontend/src/pages/landing/SecurityPage.jsx:514:21",
-        "frontend/src/pages/landing/SecurityPage.jsx:523:21",
-        "frontend/src/pages/landing/SecurityPage.jsx:571:17",
-        "frontend/src/pages/landing/SecurityPage.jsx:591:13"
+        "frontend/src/pages/landing/SecurityPage.jsx:522:21",
+        "frontend/src/pages/landing/SecurityPage.jsx:570:17",
+        "frontend/src/pages/landing/SecurityPage.jsx:590:13"
       ],
       "operations": []
     },
@@ -4280,17 +4280,17 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/components/landing/ValuesStrip.jsx:62:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:34:5",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:146:15",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:172:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:210:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:236:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:239:19",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:285:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:297:15",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:334:15",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:352:17",
-        "frontend/src/pages/landing/AccessibilityPage.jsx:355:17"
+        "frontend/src/pages/landing/AccessibilityPage.jsx:32:5",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:144:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:170:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:208:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:234:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:237:19",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:283:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:295:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:332:15",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:350:17",
+        "frontend/src/pages/landing/AccessibilityPage.jsx:353:17"
       ],
       "operations": []
     },
@@ -4430,17 +4430,17 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/CookiesPage.jsx:129:7",
-        "frontend/src/pages/landing/CookiesPage.jsx:226:25",
-        "frontend/src/pages/landing/CookiesPage.jsx:282:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:296:19",
-        "frontend/src/pages/landing/CookiesPage.jsx:315:29",
-        "frontend/src/pages/landing/CookiesPage.jsx:338:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:419:27",
-        "frontend/src/pages/landing/CookiesPage.jsx:434:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:478:23",
-        "frontend/src/pages/landing/CookiesPage.jsx:527:17",
-        "frontend/src/pages/landing/CookiesPage.jsx:547:13"
+        "frontend/src/pages/landing/CookiesPage.jsx:128:7",
+        "frontend/src/pages/landing/CookiesPage.jsx:225:25",
+        "frontend/src/pages/landing/CookiesPage.jsx:281:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:295:19",
+        "frontend/src/pages/landing/CookiesPage.jsx:314:29",
+        "frontend/src/pages/landing/CookiesPage.jsx:337:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:418:27",
+        "frontend/src/pages/landing/CookiesPage.jsx:433:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:477:23",
+        "frontend/src/pages/landing/CookiesPage.jsx:526:17",
+        "frontend/src/pages/landing/CookiesPage.jsx:546:13"
       ],
       "operations": []
     },
@@ -70084,9 +70084,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:34:5",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:32:5",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 34,
+      "line": 32,
       "column": 5,
       "tag": "a",
       "events": [],
@@ -70108,9 +70108,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:146:15",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:144:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 146,
+      "line": 144,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -70133,9 +70133,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:172:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:170:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 172,
+      "line": 170,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -70158,9 +70158,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:210:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:208:19",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 210,
+      "line": 208,
       "column": 19,
       "tag": "QuietLink",
       "events": [],
@@ -70182,9 +70182,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:236:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:234:19",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 236,
+      "line": 234,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -70207,9 +70207,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:239:19",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:237:19",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 239,
+      "line": 237,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -70232,9 +70232,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:285:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:283:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 285,
+      "line": 283,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -70256,9 +70256,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:297:15",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:295:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 297,
+      "line": 295,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -70281,9 +70281,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:334:15",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:332:15",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 334,
+      "line": 332,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -70306,9 +70306,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:352:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:350:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 352,
+      "line": 350,
       "column": 17,
       "tag": "a",
       "events": [],
@@ -70331,9 +70331,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:355:17",
+      "id": "frontend/src/pages/landing/AccessibilityPage.jsx:353:17",
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "line": 355,
+      "line": 353,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71388,9 +71388,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:180:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:183:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 180,
+      "line": 183,
       "column": 17,
       "tag": "a",
       "events": [
@@ -71421,9 +71421,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:184:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:187:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 184,
+      "line": 187,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71446,9 +71446,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:200:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:203:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 200,
+      "line": 203,
       "column": 15,
       "tag": "a",
       "events": [
@@ -71478,9 +71478,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:234:23",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:237:23",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 234,
+      "line": 237,
       "column": 23,
       "tag": "Link",
       "events": [],
@@ -71502,9 +71502,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:265:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:268:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 265,
+      "line": 268,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71526,16 +71526,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:300:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:303:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 300,
+      "line": 303,
       "column": 15,
       "tag": "Link",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "17abfa207f444ce62a2d0245e366fc3abee8cd41d79ef284d24cbd4c18834a08",
+      "declarationSha256": "b39eeac9b4f34aaf93a57254297e16c9024296cb91d92d0d41721050fafadba3",
       "routeIds": [
         "/community"
       ],
@@ -71551,9 +71551,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:303:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:306:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 303,
+      "line": 306,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -71852,9 +71852,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:129:7",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:128:7",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 129,
+      "line": 128,
       "column": 7,
       "tag": "Link",
       "events": [],
@@ -71876,9 +71876,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:226:25",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:225:25",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 226,
+      "line": 225,
       "column": 25,
       "tag": "button",
       "events": [
@@ -71907,9 +71907,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:282:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:281:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 282,
+      "line": 281,
       "column": 23,
       "tag": "button",
       "events": [
@@ -71938,9 +71938,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:296:19",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:295:19",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 296,
+      "line": 295,
       "column": 19,
       "tag": "button",
       "events": [
@@ -71969,9 +71969,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:315:29",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:314:29",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 315,
+      "line": 314,
       "column": 29,
       "tag": "button",
       "events": [
@@ -72002,9 +72002,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:338:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:337:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 338,
+      "line": 337,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -72026,9 +72026,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:419:27",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:418:27",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 419,
+      "line": 418,
       "column": 27,
       "tag": "button",
       "events": [
@@ -72055,9 +72055,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:434:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:433:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 434,
+      "line": 433,
       "column": 23,
       "tag": "button",
       "events": [
@@ -72084,9 +72084,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:478:23",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:477:23",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 478,
+      "line": 477,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -72109,9 +72109,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:527:17",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:526:17",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 527,
+      "line": 526,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -72133,9 +72133,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CookiesPage.jsx:547:13",
+      "id": "frontend/src/pages/landing/CookiesPage.jsx:546:13",
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "line": 547,
+      "line": 546,
       "column": 13,
       "tag": "QuietLink",
       "events": [],
@@ -72980,9 +72980,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:170:7",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:169:7",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 170,
+      "line": 169,
       "column": 7,
       "tag": "Link",
       "events": [],
@@ -73004,9 +73004,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:245:25",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:244:25",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 245,
+      "line": 244,
       "column": 25,
       "tag": "button",
       "events": [
@@ -73035,9 +73035,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:303:23",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:302:23",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 303,
+      "line": 302,
       "column": 23,
       "tag": "Link",
       "events": [],
@@ -73060,9 +73060,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:317:19",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:316:19",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 317,
+      "line": 316,
       "column": 19,
       "tag": "button",
       "events": [
@@ -73091,9 +73091,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:336:29",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:335:29",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 336,
+      "line": 335,
       "column": 29,
       "tag": "button",
       "events": [
@@ -73124,9 +73124,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:359:23",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:358:23",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 359,
+      "line": 358,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -73148,9 +73148,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:449:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:448:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 449,
+      "line": 448,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -73173,9 +73173,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:451:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:450:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 451,
+      "line": 450,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -73198,9 +73198,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:469:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:468:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 469,
+      "line": 468,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -73223,9 +73223,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:473:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:472:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 473,
+      "line": 472,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -73248,9 +73248,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:477:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:476:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 477,
+      "line": 476,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -73273,9 +73273,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:517:21",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:516:21",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 517,
+      "line": 516,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -73297,9 +73297,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:557:25",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:556:25",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 557,
+      "line": 556,
       "column": 25,
       "tag": "button",
       "events": [
@@ -73328,9 +73328,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:587:23",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:586:23",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 587,
+      "line": 586,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -73352,9 +73352,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:633:17",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:632:17",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 633,
+      "line": 632,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -73376,9 +73376,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/PrivacyPage.jsx:653:13",
+      "id": "frontend/src/pages/landing/PrivacyPage.jsx:652:13",
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "line": 653,
+      "line": 652,
       "column": 13,
       "tag": "QuietLink",
       "events": [],
@@ -73401,9 +73401,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:114:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:112:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 114,
+      "line": 112,
       "column": 15,
       "tag": "button",
       "events": [
@@ -73430,9 +73430,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:117:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:115:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 117,
+      "line": 115,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -73455,9 +73455,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:166:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:164:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 166,
+      "line": 164,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -73480,9 +73480,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:197:21",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:195:21",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 197,
+      "line": 195,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -73504,9 +73504,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:201:21",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:199:21",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 201,
+      "line": 199,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -73528,9 +73528,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:230:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:228:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 230,
+      "line": 228,
       "column": 15,
       "tag": "input",
       "events": [
@@ -73559,9 +73559,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:240:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:238:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 240,
+      "line": 238,
       "column": 17,
       "tag": "button",
       "events": [
@@ -73588,9 +73588,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:243:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:241:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 243,
+      "line": 241,
       "column": 17,
       "tag": "button",
       "events": [
@@ -73617,9 +73617,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:246:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:244:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 246,
+      "line": 244,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -73642,9 +73642,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:278:15",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:276:15",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 278,
+      "line": 276,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -73667,9 +73667,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:313:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:311:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 313,
+      "line": 311,
       "column": 17,
       "tag": "a",
       "events": [],
@@ -73692,9 +73692,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:345:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:343:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 345,
+      "line": 343,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -73717,9 +73717,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ReferralPage.jsx:348:17",
+      "id": "frontend/src/pages/landing/ReferralPage.jsx:346:17",
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "line": 348,
+      "line": 346,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -74141,9 +74141,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:155:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:153:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 155,
+      "line": 153,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -74166,9 +74166,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:156:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:154:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 156,
+      "line": 154,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -74191,9 +74191,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:157:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:155:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 157,
+      "line": 155,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -74216,9 +74216,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:158:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:156:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 158,
+      "line": 156,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -74241,9 +74241,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:180:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:178:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 180,
+      "line": 178,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -74266,9 +74266,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:208:15",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:206:15",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 208,
+      "line": 206,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -74290,9 +74290,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:237:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:235:21",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 237,
+      "line": 235,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -74314,9 +74314,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:269:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:267:21",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 269,
+      "line": 267,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -74338,9 +74338,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:295:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:293:21",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 295,
+      "line": 293,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -74362,9 +74362,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:301:21",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:299:21",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 301,
+      "line": 299,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -74387,9 +74387,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:338:17",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:336:17",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 338,
+      "line": 336,
       "column": 17,
       "tag": "a",
       "events": [],
@@ -74411,9 +74411,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SafetyPage.jsx:344:17",
+      "id": "frontend/src/pages/landing/SafetyPage.jsx:342:17",
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "line": 344,
+      "line": 342,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -74436,9 +74436,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:129:7",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:134:7",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 129,
+      "line": 134,
       "column": 7,
       "tag": "button",
       "events": [
@@ -74467,9 +74467,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:138:13",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:143:13",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 138,
+      "line": 143,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -74491,9 +74491,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:143:13",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:148:13",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 143,
+      "line": 148,
       "column": 13,
       "tag": "a",
       "events": [],
@@ -74515,9 +74515,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:194:17",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:199:17",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 194,
+      "line": 199,
       "column": 17,
       "tag": "input",
       "events": [
@@ -74546,9 +74546,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:208:19",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:213:19",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 208,
+      "line": 213,
       "column": 19,
       "tag": "button",
       "events": [
@@ -74578,9 +74578,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:223:15",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:228:15",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 223,
+      "line": 228,
       "column": 15,
       "tag": "button",
       "events": [
@@ -74609,9 +74609,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:239:38",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:244:38",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 239,
+      "line": 244,
       "column": 38,
       "tag": "AnswerItem",
       "events": [],
@@ -74633,9 +74633,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:255:23",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:260:23",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 255,
+      "line": 260,
       "column": 23,
       "tag": "button",
       "events": [
@@ -74665,9 +74665,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:274:41",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:279:41",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 274,
+      "line": 279,
       "column": 41,
       "tag": "AnswerItem",
       "events": [],
@@ -74689,16 +74689,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:286:19",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:291:19",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 286,
+      "line": 291,
       "column": 19,
       "tag": "a",
       "events": [],
       "calls": [],
       "destination": "mailto:hello@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "cef0e6ad70a4b7453a503e84e5e5e1c6b65857887f53b7600ba8d58409fb38f3",
+      "declarationSha256": "f2a87eade8d6195c132449dfe1b9f9f86217d1ad81846cdcc4abb12e38ec8e4f",
       "routeIds": [
         "/help"
       ],
@@ -74714,16 +74714,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:303:15",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:308:15",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 303,
+      "line": 308,
       "column": 15,
       "tag": "a",
       "events": [],
       "calls": [],
       "destination": "mailto:hello@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "fdeb48567d0f98f247919394309f58ec7d28d5648e0fbbc9de1e13bf6fd81819",
+      "declarationSha256": "fc34ec8b8af3cb11046ff1ae993eeba4277936d2d6ad05846e75dee31a454bc5",
       "routeIds": [
         "/help"
       ],
@@ -74739,16 +74739,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SchoolPage.jsx:306:15",
+      "id": "frontend/src/pages/landing/SchoolPage.jsx:311:15",
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "line": 306,
+      "line": 311,
       "column": 15,
       "tag": "a",
       "events": [],
       "calls": [],
       "destination": "mailto:safety@visionary.org.in",
       "disabled": null,
-      "declarationSha256": "fc79575ceacb348e10663aba7f3dd64d39b26bd075bb4fbd4431599c882d714e",
+      "declarationSha256": "60c9457e2b87420912227811f1bfbf78df6e6dd84487e4211801a4efad95e59a",
       "routeIds": [
         "/help"
       ],
@@ -74764,9 +74764,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:154:7",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:153:7",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 154,
+      "line": 153,
       "column": 7,
       "tag": "Link",
       "events": [],
@@ -74788,9 +74788,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:228:25",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:227:25",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 228,
+      "line": 227,
       "column": 25,
       "tag": "button",
       "events": [
@@ -74819,9 +74819,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:284:23",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:283:23",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 284,
+      "line": 283,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -74844,9 +74844,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:298:19",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:297:19",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 298,
+      "line": 297,
       "column": 19,
       "tag": "button",
       "events": [
@@ -74875,9 +74875,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:317:29",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:316:29",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 317,
+      "line": 316,
       "column": 29,
       "tag": "button",
       "events": [
@@ -74908,9 +74908,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:340:23",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:339:23",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 340,
+      "line": 339,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -74932,9 +74932,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:425:21",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:424:21",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 425,
+      "line": 424,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -74957,9 +74957,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:513:21",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:512:21",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 513,
+      "line": 512,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -74982,9 +74982,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:514:21",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:513:21",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 514,
+      "line": 513,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -75007,9 +75007,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:523:21",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:522:21",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 523,
+      "line": 522,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -75032,9 +75032,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:571:17",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:570:17",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 571,
+      "line": 570,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -75056,9 +75056,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/SecurityPage.jsx:591:13",
+      "id": "frontend/src/pages/landing/SecurityPage.jsx:590:13",
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "line": 591,
+      "line": 590,
       "column": 13,
       "tag": "QuietLink",
       "events": [],
@@ -75443,9 +75443,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:105:15",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:108:15",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 105,
+      "line": 108,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -75468,9 +75468,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:111:15",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:114:15",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 111,
+      "line": 114,
       "column": 15,
       "tag": "a",
       "events": [],
@@ -75493,9 +75493,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:140:17",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:143:17",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 140,
+      "line": 143,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -75518,9 +75518,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:168:17",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:171:17",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 168,
+      "line": 171,
       "column": 17,
       "tag": "button",
       "events": [
@@ -75549,9 +75549,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:177:19",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:180:19",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 177,
+      "line": 180,
       "column": 19,
       "tag": "button",
       "events": [
@@ -75580,9 +75580,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:224:17",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:227:17",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 224,
+      "line": 227,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -75605,9 +75605,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:258:21",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:261:21",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 258,
+      "line": 261,
       "column": 21,
       "tag": "button",
       "events": [
@@ -75638,9 +75638,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:289:21",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:292:21",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 289,
+      "line": 292,
       "column": 21,
       "tag": "button",
       "events": [
@@ -75669,9 +75669,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:298:19",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:301:19",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 298,
+      "line": 301,
       "column": 19,
       "tag": "form",
       "events": [
@@ -75698,9 +75698,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:302:25",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:305:25",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 302,
+      "line": 305,
       "column": 25,
       "tag": "input",
       "events": [
@@ -75729,9 +75729,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:310:25",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:313:25",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 310,
+      "line": 313,
       "column": 25,
       "tag": "input",
       "events": [
@@ -75760,9 +75760,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:324:29",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:327:29",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 324,
+      "line": 327,
       "column": 29,
       "tag": "button",
       "events": [
@@ -75793,9 +75793,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:338:23",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:341:23",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 338,
+      "line": 341,
       "column": 23,
       "tag": "input",
       "events": [
@@ -75824,15 +75824,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:347:21",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:350:21",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 347,
+      "line": 350,
       "column": 21,
       "tag": "button",
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "3cf4f012f6a409a8886802f615f1dc89c1279817660a28fc1b1354ebc7f889d0",
+      "declarationSha256": "703a7b0c81fe5ff9876e71e6cc1e2a6da512c2b70d9fbe93a379389904b88571",
       "routeIds": [
         "/updates"
       ],
@@ -75848,9 +75848,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:363:15",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:366:15",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 363,
+      "line": 366,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -75873,9 +75873,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/UpdatesPage.jsx:375:13",
+      "id": "frontend/src/pages/landing/UpdatesPage.jsx:378:13",
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "line": 375,
+      "line": 378,
       "column": 13,
       "tag": "a",
       "events": [],
@@ -79070,7 +79070,7 @@
     },
     {
       "file": "frontend/src/components/landing/system/tokens.js",
-      "sourceSha256": "17a08dc4e3d3a69e6e8afb5f21c82f4ad69d3cae2a86a1f9cdae391fe0592dd6"
+      "sourceSha256": "ea529899c5dbbb927e3045494ba87a79c29e21f0fdafe435e3db3483f581894b"
     },
     {
       "file": "frontend/src/components/landing/system/ui.jsx",
@@ -79866,11 +79866,11 @@
     },
     {
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "sourceSha256": "c330bcad654eca0af1ba8be05a411feb351ebab95473f684269d3b0c87a4c571"
+      "sourceSha256": "6ebfda904081cba1ceaf2e2566904cae0af2f385607a409afb7c169f368c9eda"
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "fe7d8a74173fe7892792b65d0803d3f3ee609d4f1e42a3e0be6c479f347d0778"
+      "sourceSha256": "76a35f882c5fe4a7b947fbbcc8107fc8d0275895f61bdfe135cc5f8fdbbf67c8"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
@@ -79890,7 +79890,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "b04c7317abc6182abbdf93e3921d4c272666adc538b39535f261a5a1bd81c142"
+      "sourceSha256": "cc97bf60536cb1251ac59c69e1f17046caf8f54583fa568ed96aca3e6c5628b1"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
@@ -79898,7 +79898,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "sourceSha256": "a6a7501cac650b3af23b1fa53986ea0b2c46c25691baa2b4847e6fdca74c3891"
+      "sourceSha256": "28369c342b420f59e4a914a80cdccf709989091413515beee74f1450bcd9f802"
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
@@ -79918,27 +79918,27 @@
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "2b8eb04bafac445021e3ec12cdfc416c922ae58a8145944cfa0ff33ef4bc4509"
+      "sourceSha256": "e8e692a71406b928a27f02e5ed038bc0bbeb96b675e2fd00e2aa4ef653652c1b"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "sourceSha256": "57230502d37321ead88901215aeaccb54322e2edd8cf5586739ea501e1fabeb6"
+      "sourceSha256": "4c7a44181d9525fd41ef1f761858a5c0fa905233715a0423ec237598ea99cbfd"
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "sourceSha256": "3553b437054f7e62877cb7e87549a3e2711ca1154f7b1125bb2086117eff4175"
+      "sourceSha256": "7310d96d3cdf21f3decbacdc55363ce2b694c0f66ba3994ca01ba89025ebdb5b"
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "sourceSha256": "95a677072d6cc07a56cfe4568f2c83f10cf32f59ef9d86ec040867f999aff08a"
+      "sourceSha256": "b8a3c80d80fe465f14405be0dc2465593f316a9052b836037f142ec4512a31e0"
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "sourceSha256": "fb6a963d40cd18153bd1c6fa435b180408f3f387c8717532f3aeeaafb1a00458"
+      "sourceSha256": "4d29bfcb20338861891a82fdc7b811cf5a1623e79cc991f3a1690f4261658059"
     },
     {
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "sourceSha256": "ae35a512f3ad64ec069a6c2c86846e44948b26d0b479664766df8ffbb6dba53c"
+      "sourceSha256": "f48c83214413793e7da4f040fcb27a22ff9f0334e2d4a8c15f043031fa165b00"
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
@@ -79950,11 +79950,11 @@
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "sourceSha256": "bf82113e96da3ce7b5f4dd3e7c91cdb3de82706d02f37b9fb9a9d37287d07aa8"
+      "sourceSha256": "16c2748a6c109dca6fe5b40a6b81697f76cd7f55c3ec207c23abb38cd23b6773"
     },
     {
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "sourceSha256": "5aa1d4642e9d55a071ad2fa8ae2e96f70ded1d02a1e62fe836a38ed5abdb2cd6"
+      "sourceSha256": "180f043503e5ef647702b72031939744d9d85c68ffea87ec5942eaece620b8a4"
     },
     {
       "file": "frontend/src/pages/Landing.jsx",

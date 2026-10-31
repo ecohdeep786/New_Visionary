@@ -182,7 +182,7 @@ export default function ResearchNewsPage() {
                   </svg>
                 </span>
               </h1>
-              <p className="mt-14 max-w-[480px] text-[17px] leading-[1.65] text-[#6e6e73] sm:text-[18px]">
+              <p className="mt-14 max-w-[480px] text-[17px] leading-[1.65] text-[#6e6e73]">
                 We are building a mentor that knows your journey. This page records what we learn.
               </p>
             </Reveal>

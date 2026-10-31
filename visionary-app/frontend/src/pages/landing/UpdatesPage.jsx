@@ -10,10 +10,13 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared public dialect (#1d1d1f ink pills, #0066cc quiet
    links, #f5f5f7 trays, white rounded-[20px] cards, whisper hairlines). ═══ */
+
+/* The A2 CTA law, imported from the one source — no page re-declares geometry. */
+const { inkPill } = CTA_LAW;
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
    motion-reduce safe). ═══ */
@@ -346,7 +349,7 @@ export default function UpdatesPage() {
 
                     <button
                       type="submit"
-                      className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                      className={`mt-7 ${inkPill}`}
                     >
                       Prepare email request
                     </button>
