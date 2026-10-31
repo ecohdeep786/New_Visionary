@@ -1,7 +1,8 @@
 # KAN-33 executable invariant rework
 
-31 October 2026. Implementer: Codex /root. Technical source: `f3961d08ef8d58f9382990259f482eff5353c37c`.
-State: **In Progress again after a mandatory browser test found a real route-construction defect**.
+31 October 2026. Implementer: Codex /root. Runtime-test source: `f3961d08ef8d58f9382990259f482eff5353c37c`.
+Browser-repaired source: `caf9dcd49319f0a44ead67b8a7513234c0cab44f`.
+State: **Testing; corrected browser journey passed, final exact-head review/CI and dev integration pending**.
 
 The earlier `5fffa44a` candidate was independently rejected. Its authority and
 cancellation assertions compared fixture constants without executing those
@@ -30,9 +31,9 @@ routes, controls and authority declarations are unchanged.
 
 The real Firebase Admin/Firestore read-only probe now passes against the
 configured live project/database without reading out profiles or writing
-records. The corrected source still needs a new full check, renewed exact-SHA
-review and the same real browser journey before merge. Earlier technical
-approval and CI do not approve this later frontend source change.
+records. The corrected source passed a new full local check and the real
+browser journey below. Renewed exact-head independent review and final CI
+remain required; earlier approval does not approve this frontend source change.
 
 ## Actual acceptance scope and application
 
@@ -93,13 +94,43 @@ Executed technical verification:
   fail. The normal `node scripts/check.mjs` exits1 before frontend execution.
   The fixture file was restored byte-for-byte afterward.
 
-Local evidence: `C:/Users/Administrator/Visionary-local/kan33-rework-20261031/`
-contains the full CI job log, local runtime output, both executed probe scripts
-and their result/log files. A local frontend attempt failed due to an interrupted,
-partial Firebase package install; it is not counted as a passing run. Independent
-locked frontend/backend restoration is underway for actual browser testing.
-The mandatory candidate product browser run has **not yet passed**; no merge or
-Done is authorized until that run and independent exact-SHA review are accepted.
+## Actual product browser and store verification
+
+The corrected candidate ran with the existing real Firebase Professional
+session in the in-app browser. The authored English workplace sample went
+from explanation to an actual server-issued check (create/check201), retained
+the unscored selection across reload, then recorded a correct assessment201.
+The UI disabled the answered options and showed one saved attempt after reload.
+A fresh Node process read only the newly created sample session, assessment
+and command from the configured live Firestore database: owner/receipt bindings
+matched, phase was check_passed, revision2, and the immutable assess receipt existed.
+No account/profile/billing scan or write was requested by that readback.
+
+The visible journey continued through guided practice (2/2 recorded correct
+answers), the authored project brief and a390x844 project layout without
+horizontal overflow. Returning to learning and reloading retained both steps
+and the Build stage. Practice/Build here are UI/local workspace evidence, not
+a new claim of durable Build, classroom or model acceptance. Browser cancellation
+was not exercised; actual controller/service cancellation remains in runtime12.
+
+[Sanitized browser receipt](../delivery/evidence/KAN33_LOCAL_BROWSER_2026-10-31.json)
+contains screenshot SHA256, JPEG signatures/dimensions, actual observed assessment
+status, safe Firestore readback and limitations. Raw JPEGs, logs, exact new-record
+bindings and ignored credentials stay outside Git at
+`C:/Users/Administrator/Visionary-local/kan33-rework-20261031/`.
+The final reload console had zero errors/warnings. Its truncated network buffer
+is not represented as a full HAR; the original assessment201 event is preserved.
+
+Locked frontend/backend restoration completed. Earlier interrupted-install
+attempts are retained and not counted as successful tests. Full local
+`npm run check` passed at exactcaf9 on2026-10-31T16:09:01Z, including the new
+actual-default-client regression (full frontend625). CI41217997684 first passed
+root check but failed eight unchanged DATA02 setup cases exceeding existing
+15-second transaction bounds. The failed log is preserved. One bounded same-job
+retry passed unchanged source and deadlines: checks job124589852792,
+[CI41217997684 attempt2](https://github.com/ecohdeep786/New_Visionary/actions/runs/41217997684/attempts/2),
+SQL20+39+11, deployed99+11, actual API/migration images and infrastructure31+11
+all passed; production skipped. The final documentation head still requires CI.
 
 The runtime runner requires the independently installed locked
 `infrastructure/gcp/runtime` dependencies, already installed before the root
@@ -111,13 +142,14 @@ dist output or another worker's generated client.
 
 Current source publication/consent revocation enforcement, real membership
 authority, source/rights acceptance, a connected frontend-to-server classroom
-journey, real Firebase/provider, SQL/hosted, model, two-device feature and
+journey, broader provider coverage, SQL/hosted, model, two-device feature and
 release acceptance remain with their owning tasks. A source-version mismatch
 is not proof of current publication reauthorization. No generic consent or
 policy checker is added to make fixture tests pass.
 
-Separate reviewer: pending exact new handoff candidate and browser evidence. Earlier
-approval/rejection cannot approve changed source. Task remains In Progress
-while fixing code, then Testing for browser verification and independent review. Only
+Separate reviewer: `/root/kan33_independent_review` accepted responsibility and
+passed the caf9 source delta, actual URL mutation probe and18 relevant tests.
+Final approval remains pending this exact new handoff/evidence head and passing CI.
+Task returned from In Progress to Testing for the corrected browser verification. Only
 accepted scope with checked published dev integration and an actual Jira
 receipt is eligible for Done and evidence-preserving task cleanup.
