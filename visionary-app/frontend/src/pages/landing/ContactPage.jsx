@@ -134,10 +134,10 @@ export default function ContactPage() {
 
         {/* HERO — the support-page statement: centered heading, sub, and an
             outlined Help center pill */}
-        <section data-section="01-hero" className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
+        <section data-section="01-hero" className="px-6 pb-16 pt-10 text-center sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
           <Reveal className="mx-auto max-w-[880px]">
             <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
-              Guidance to <span className="accent-gradient">get you going</span> on Visionary
+              We listen. <span className="accent-gradient">We build.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[25px] text-[#6e6e73]">
               Find the answers and support you need to make the most of Visionary.
@@ -234,7 +234,7 @@ export default function ContactPage() {
               </p>
             </div>
             <div className="flex shrink-0 flex-col items-start gap-3 lg:items-end">
-              <Link to="/help" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+              <Link to="/help" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
                 Visit Help center
               </Link>
               <EmailLink email="hello@visionary.org.in" subject="Support question" />

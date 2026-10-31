@@ -203,7 +203,7 @@ function HeroCard({ idPrefix = "hero" }) {
   return (
     <form onSubmit={submit} noValidate>
       <h1 className="max-w-[700px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
-        Search for <span className="accent-gradient">your place</span> at Visionary.
+        Build the <span className="accent-gradient">future of learning.</span>
       </h1>
       <div className="mt-8 space-y-5">
         <div>
@@ -226,7 +226,7 @@ function HeroCard({ idPrefix = "hero" }) {
       </div>
       <div className="mt-8">
         <button type="submit"
-          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
+          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
           Introduce yourself <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>
@@ -268,7 +268,7 @@ export default function CareersPage() {
             </section>
 
             {/* PHOTO STRIP — the "life here" cards row under the hero */}
-            <section data-section="01b-life" aria-label="Life at Visionary" className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-10">
+            <section data-section="01b-life" aria-label="Life at Visionary" className="mx-auto max-w-[1240px] px-4 py-6 sm:px-6 lg:px-10">
               <Reveal>
                 <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
                   {STRIP.map((photo) => (
@@ -473,7 +473,7 @@ export default function CareersPage() {
                 </p>
                 <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
-                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
+                    className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
                     Email the careers team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </a>
                   <Link to="/about" className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">

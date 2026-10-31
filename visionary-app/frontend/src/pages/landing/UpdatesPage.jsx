@@ -92,7 +92,7 @@ export default function UpdatesPage() {
         <Breadcrumb page="Updates" />
 
         {/* HERO — editorial statement: eyebrow, display heading, dek, two paths */}
-        <section data-section="01-hero" className="px-6 pb-14 pt-10 sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
+        <section data-section="01-hero" className="px-6 pb-16 pt-10 sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
           <Reveal className="mx-auto max-w-[880px]">
             <p data-type="label" className="text-[#6e6e73]">News &amp; updates</p>
             <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#1d1d1f]">
@@ -104,7 +104,7 @@ export default function UpdatesPage() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#signup"
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
               >
                 Get updates by email
               </a>
@@ -120,7 +120,7 @@ export default function UpdatesPage() {
         </section>
 
         {/* FEATURED — the editorial lead story */}
-        <section aria-labelledby="featured-title" data-section="02-featured" className="px-6 sm:px-8 lg:px-10">
+        <section aria-labelledby="featured-title" data-section="02-featured" className="px-6 py-24 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <article className="relative grid items-center gap-8 overflow-hidden rounded-[30px] bg-[#f5f5f7] p-8 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:p-12">
               <div>
