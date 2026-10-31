@@ -1731,6 +1731,35 @@
           "item": "rule recorded as DECISIONS D-105 (E2 lane, merged into beta 99ebef21); FAP-24 closed Done with receipt (comment); brand-level domain moves remain founder scope"
         }
       ]
+    },
+    {
+      "sourceId": "FAP-9",
+      "jiraKey": "FAP-9",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-9",
+      "status": "Done",
+      "startAt": "2026-10-31T06:30:00.000Z",
+      "registrationNote": "Post-closure hygiene lane after the 2026-10-30 board reconciliation: FAP-9 was closed Done by the founder receipt (comment 10395, superseded-by-rebuild mapping), but the beta tree at that point still carried the camelCase img prop (fetchPriority={fetchPriority} under react ^18.2.0), so the dev-console warning the ticket named was still emitted. This lane lands only that remaining code fact; no Jira status was changed (comment 10486 filed instead) and no D-095 approval is claimed.",
+      "scope": "LazyImage.jsx: the caller-facing fetchPriority prop is unchanged (NewPersona 380/440 call sites untouched); the img now receives the standard lowercase fetchpriority content attribute via a priorityAttrs spread (React custom-attribute passthrough, no dev warning); same treatment as the already-delivered PageMeta imperative preload hint (lib/PageMeta.jsx:66, upsertPreload invalid-href guard). No dependency bump (react stays ^18.2.0); L18 records the >=18.3 camelCase upgrade path.",
+      "branch": "opencode/fap-a4-preload-warnings",
+      "base": "beta@1d408e73 (verified origin/beta tip; receipt-refresh merge of the 2026-10-30 late gate re-run sweep, lane 57358faa)",
+      "progress": [
+        {
+          "at": "2026-10-31T06:35:00.000Z",
+          "item": "candidate 6395f1ae rebased on beta 1d408e73: rebase auto-merged with the FAP-31 role=img fix; final file has both role=img placeholder and fetchpriority passthrough, 0 camelCase img props"
+        },
+        {
+          "at": "2026-10-31T06:45:00.000Z",
+          "item": "full check battery green at the candidate: verify-layout PASS, imports 3842 + 3 recorded patches, qa continuity/motion/taps PASS (77 files / 438 files / 245 controls-3 exceptions), 54/54 script tests, scope:audit rebaselined 68 routes/37 endpoints/1656 declarations/237 control files (LazyImage op offset 72:5->81:5 x5; PRODUCT_SURFACE_AUDIT.md content-identical, EOL-stable), lint 0, typecheck x2 0, 656/656 tests (69.5s), vite build ok 40.19s"
+        },
+        {
+          "at": "2026-10-31T07:05:00.000Z",
+          "item": "DOM readback on the rendered landing hero (dev 127.0.0.1:4197): 5/5 eager cast images (professional/teacher/student/parent/organization 800w AVIF) carry fetchpriority=high from first paint, loading=eager preserved, 0 images with any camelCase attribute"
+        },
+        {
+          "at": "2026-10-31T07:12:00.000Z",
+          "item": "receipts: branch opencode/fap-a4-preload-warnings candidate 6395f1ae + delivery b9243f6a pushed, ls-remote verified BEFORE merge; beta merge 7326d21c --no-ff pushed + ls-remote verified (CI production.yml product checks run per beta push); evidence docs/architecture/delivery/FAP_A4_PRELOAD_EVIDENCE.md; Jira FAP-9 comment 10486 (no transition; Done stands per 10395)"
+        }
+      ]
     }
   ]
 }
