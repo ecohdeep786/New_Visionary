@@ -2302,7 +2302,7 @@
         "frontend/src/pages/landing/AboutUsPage.jsx:183:297",
         "frontend/src/pages/landing/AboutUsPage.jsx:194:34",
         "frontend/src/pages/landing/AboutUsPage.jsx:209:441",
-        "frontend/src/pages/landing/AboutUsPage.jsx:209:875"
+        "frontend/src/pages/landing/AboutUsPage.jsx:209:898"
       ],
       "operations": [
         "public-discovery"
@@ -39756,7 +39756,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "52d217959771d4d00a1bfb6b1a40aaad1e98538f580144d8b08b46ede12b433d",
+      "declarationSha256": "3fb42b7162783a6b5b27f0857c59f8f42343e799dc33b20750c8cd4db2834020",
       "routeIds": [
         "/about"
       ],
@@ -69920,7 +69920,7 @@
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "e3865c876fa2ffcb53512f95394c36407cd22d88e7a8d4240a255434f9e13b63",
+      "declarationSha256": "457bf9faed9e7e84b0edf78f753d8bcd1ca6c205e197a634e6ba2f0c2e9a6d7b",
       "routeIds": [
         "/about"
       ],
@@ -70043,7 +70043,7 @@
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "b5c0c34b95eb10379213eb54edf0c7ddcd25d11168fd28fef3a2c3ec51e843f1",
+      "declarationSha256": "0331b3760283f27c013efb8d01303a48215dc4c0686862d03547ec88ef62a4ef",
       "routeIds": [
         "/about"
       ],
@@ -70059,16 +70059,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:209:875",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:209:898",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
       "line": 209,
-      "column": 875,
+      "column": 898,
       "tag": "Link",
       "events": [],
       "calls": [],
       "destination": "/contact",
       "disabled": null,
-      "declarationSha256": "c71de0a8c1e7d0784579a1545ddad38b1897da710b2fa6fca0532caa32c5b190",
+      "declarationSha256": "e47666a02d90115b5cde48eae2c247cfc9eef51966774316c016f0e9b3b4baa1",
       "routeIds": [
         "/about"
       ],
@@ -70732,7 +70732,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "92ec3fdad1c142dc3bcefeca4f478a97e8c59bc896f9bdf8bbd32fced0d4e627",
+      "declarationSha256": "9381ccffb4c7012acc87a84d861416c44e56775c76181188e1a53f9b3a667ed9",
       "routeIds": [
         "/careers"
       ],
@@ -70985,7 +70985,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "b11c456a0bf2bf5743f327a2339253ca7b4719ed53bd2142389d5eb9a9ec85a1",
+      "declarationSha256": "2bceb3d181d521b4670c57abe80fbd78103a615456e1981b7249827b6b5fe59f",
       "routeIds": [
         "/careers"
       ],
@@ -71287,7 +71287,7 @@
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "b5c0c34b95eb10379213eb54edf0c7ddcd25d11168fd28fef3a2c3ec51e843f1",
+      "declarationSha256": "0331b3760283f27c013efb8d01303a48215dc4c0686862d03547ec88ef62a4ef",
       "routeIds": [
         "/how-it-works"
       ],
@@ -71312,7 +71312,7 @@
       "calls": [],
       "destination": "/pricing",
       "disabled": null,
-      "declarationSha256": "e331850df60b476d447d1e9bd28a5a926ccb5d533b5d5de028d45a6dc5a4022c",
+      "declarationSha256": "53a7e8b79d2785582fe216a27cbfbde05043991e7da20191fbbcb58840377222",
       "routeIds": [
         "/how-it-works"
       ],
@@ -71405,7 +71405,7 @@
       ],
       "destination": "#learners",
       "disabled": null,
-      "declarationSha256": "de28a0b4531ce12030a800aa3f1d0554469831635c9289e9de213e157221a2a5",
+      "declarationSha256": "13db1375ef311fc6cbe5a10199cb091e0550a560968597c2a4bafecc14a8010e",
       "routeIds": [
         "/community"
       ],
@@ -71739,7 +71739,7 @@
       "calls": [],
       "destination": "/help",
       "disabled": null,
-      "declarationSha256": "8897fdb73785c11fec41379eab92a47187e48db31c08df6cf8c254a1f93989c0",
+      "declarationSha256": "755824c240f383626a7f5e3996246f8d6e99ce51c8256166ec41c468536e02d6",
       "routeIds": [
         "/contact"
       ],
@@ -72691,7 +72691,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "531cde6bd594cf44c3a415590cd8b11a01a58cdbb6f9142dc19f67ba7f0f53f9",
+      "declarationSha256": "00516abb603cf6cc38fbcda6963e48f1350a5e549c3e014e4d1afe83f4e47a50",
       "routeIds": [
         "/partners"
       ],
@@ -72840,7 +72840,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "3dc8a39c9106d05ab5ac5a48809d4a14d6b0494d0c5cc5ac4e54af4c73f9332d",
+      "declarationSha256": "a5b7ebbbfc2ebeeaed1664b5d4d62a4082d6f16875806485939e314d7cc8f7e5",
       "routeIds": [
         "/partners"
       ],
@@ -72939,7 +72939,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "1bccad20718d3e113e15daef831d6a5b023d787bb36843e537ba0d48ecbfb09c",
+      "declarationSha256": "94ff1e0cb41a561732ae5459320f71e20ffe5fc3a0278bd29748570cb9376eb9",
       "routeIds": [
         "/partners"
       ],
@@ -75452,7 +75452,7 @@
       "calls": [],
       "destination": "#signup",
       "disabled": null,
-      "declarationSha256": "19e5f25a4b357f96436fcb124de421bcfb2c2544f58f76107e4d0d67a4ca2a98",
+      "declarationSha256": "1bf9eae0a0661928a2c7c2c36f6f6b58fa32a40b2da8d4259c7e89a7258d0075",
       "routeIds": [
         "/updates"
       ],
@@ -78874,7 +78874,7 @@
     },
     {
       "file": "frontend/src/components/landing/AboutUsHero.jsx",
-      "sourceSha256": "05753a226db484ab0e86061033d8a399e956b81f42405050a560c73df2e5018e"
+      "sourceSha256": "2c8775dc39602e5106a2a229475c72b9226fd09e5dab50633194eb9def3a3cca"
     },
     {
       "file": "frontend/src/components/landing/Breadcrumb.jsx",
@@ -79866,11 +79866,11 @@
     },
     {
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "sourceSha256": "3531c1cff4e0708fce22fbcc50aaa66f91595fc96bd452e1ebe1961da909c64d"
+      "sourceSha256": "c330bcad654eca0af1ba8be05a411feb351ebab95473f684269d3b0c87a4c571"
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "ee8dab3551092b6bd73230dbe5d05dc6ac7e77c324d083c748fa724a9f5d2d82"
+      "sourceSha256": "fe7d8a74173fe7892792b65d0803d3f3ee609d4f1e42a3e0be6c479f347d0778"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
@@ -79878,11 +79878,11 @@
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "sourceSha256": "27d166de046ee67c90df84523d95f0ded7ddd0d13e687e3dbfd50c210702f0e1"
+      "sourceSha256": "5578aec19c5d411eccef5ecec2d18604473cd318a00dc86c3b3d5f3e75e82b67"
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "sourceSha256": "5f855dd263fd869b93e09b0b2b456559dd873f8d7b0e94b7f141089488fee9cf"
+      "sourceSha256": "3d8fe3e409f6c7ac976ccd8a756859d4c2f02c028623657de9ac548c2a425b1a"
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
@@ -79890,15 +79890,15 @@
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "fa19da344a8bc6f31b0c4b91b08cd7de433fbed6bb88a7c9167157ff792a586a"
+      "sourceSha256": "b04c7317abc6182abbdf93e3921d4c272666adc538b39535f261a5a1bd81c142"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
-      "sourceSha256": "cbb2c93da40b8565606651869636dafb2b5a2ad9f40d2ce8b54e6e8e30670f6c"
+      "sourceSha256": "e957ac6e829ae53e78ea6cff45e0a411abcb82faef97aad485d1460834f2ead2"
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "sourceSha256": "d447b75b8a31d8c5d4f55d07e238a36ae030c299ab2ab8c41bab395d96840201"
+      "sourceSha256": "a6a7501cac650b3af23b1fa53986ea0b2c46c25691baa2b4847e6fdca74c3891"
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
@@ -79914,15 +79914,15 @@
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "sourceSha256": "df94aecca05ab637e11ad481685fb28fc9d1fd06c0a7ef72e6d3bd8509db30a3"
+      "sourceSha256": "799b645eb9e27d80641bcb4216c472b659155dd769e752612be08217deca6cbd"
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "f0adfdd5e7123a9b54f36a0dc0ef2c590d4292bb16e6ee334f28c896a6e260b1"
+      "sourceSha256": "2b8eb04bafac445021e3ec12cdfc416c922ae58a8145944cfa0ff33ef4bc4509"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "sourceSha256": "1b8d3793faba53b27c6788e3261b6375c3ea5d83f4892c98f0a11e72ff96beaf"
+      "sourceSha256": "57230502d37321ead88901215aeaccb54322e2edd8cf5586739ea501e1fabeb6"
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
@@ -79930,15 +79930,15 @@
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "sourceSha256": "88ddf718a17280e4ab68541c73241f14f54f6f6aa0f63d7188df5ad477835a8d"
+      "sourceSha256": "95a677072d6cc07a56cfe4568f2c83f10cf32f59ef9d86ec040867f999aff08a"
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "sourceSha256": "340d249b412d14c01a19543a15cde9375ac0092c81d4fd768ee4d90b1a0fff54"
+      "sourceSha256": "fb6a963d40cd18153bd1c6fa435b180408f3f387c8717532f3aeeaafb1a00458"
     },
     {
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "sourceSha256": "758e7089d408c91410f8af2a8abf04b64cf50b91073f412ddf5d83f7dcf2fdf0"
+      "sourceSha256": "ae35a512f3ad64ec069a6c2c86846e44948b26d0b479664766df8ffbb6dba53c"
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
@@ -79954,7 +79954,7 @@
     },
     {
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "sourceSha256": "4774265f19d69d65374bb9dc0b059231203a42bc3fde3593f4f40158bac0a727"
+      "sourceSha256": "5aa1d4642e9d55a071ad2fa8ae2e96f70ded1d02a1e62fe836a38ed5abdb2cd6"
     },
     {
       "file": "frontend/src/pages/Landing.jsx",

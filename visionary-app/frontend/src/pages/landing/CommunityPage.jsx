@@ -166,7 +166,7 @@ export default function CommunityPage() {
 
         {/* HERO — the communities.google layout: centered statement first,
             then the full-width fanned card strip with paging */}
-        <section data-section="01-hero" className="relative overflow-hidden bg-white" style={{ paddingTop: "calc(64px + 40px)", paddingBottom: "40px" }}>
+        <section data-section="01-hero" className="relative overflow-hidden bg-white pb-24" style={{ paddingTop: "clamp(7rem, 10vw, 9.5rem)", paddingBottom: "clamp(6rem, 8vw, 8rem)" }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
             <p data-type="label" className="text-center text-[#6e6e73]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
@@ -178,7 +178,7 @@ export default function CommunityPage() {
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                   Find your community
                 </a>
                 <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
