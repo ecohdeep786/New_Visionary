@@ -1,12 +1,38 @@
 # KAN-33 executable invariant rework
 
 31 October 2026. Implementer: Codex /root. Technical source: `f3961d08ef8d58f9382990259f482eff5353c37c`.
-State: **developer checks passed; Testing for mandatory browser verification and independent review**.
+State: **In Progress again after a mandatory browser test found a real route-construction defect**.
 
 The earlier `5fffa44a` candidate was independently rejected. Its authority and
 cancellation assertions compared fixture constants without executing those
 boundaries. Its frontend suite did not consume the claimed shared matrix.
 That history and the earlier Manus rejection remain preserved in Git and Jira.
+
+## Browser-found integration repair
+
+The actual candidate product ran from this worktree at localhost:5183 with
+the real Firebase API at localhost:3003. An existing Professional session
+restored normally. Home -> Learn -> authored workplace sample -> chapter ->
+Start -> Check my understanding failed visibly on exact handoff500c85d4:
+`POST /api/account/learningsessions` returned404 while auth/me and CSRF returned200.
+The preserved local JPEG shows the failure and retained authored activity.
+
+The default learning client supplied relative paths to a concatenating auth
+transport without a trailing separator in its base path. The repair adds
+that separator to the learning client's default base path. A new test uses
+the actual default client and auth transport (not an injected request stub)
+to verify every start/read/check/assessment/cancel/list URL, account/CSRF
+binding, credentials and no-store behavior. It failed on the original source
+(six existing tests passed, the new test failed on the malformed path).
+After repair, all24 focused client/transport/durable-session tests pass.
+The generated product-surface change updates only this source file's hash;
+routes, controls and authority declarations are unchanged.
+
+The real Firebase Admin/Firestore read-only probe now passes against the
+configured live project/database without reading out profiles or writing
+records. The corrected source still needs a new full check, renewed exact-SHA
+review and the same real browser journey before merge. Earlier technical
+approval and CI do not approve this later frontend source change.
 
 ## Actual acceptance scope and application
 

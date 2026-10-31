@@ -79157,7 +79157,7 @@
     },
     {
       "file": "frontend/src/services/learningSessionClient.js",
-      "sourceSha256": "bd7b319645887c4a45d13125d81646f66edb97e6b1f40e5b0dbe6ed765fcff9c"
+      "sourceSha256": "5a155fc291bbf327a3c51f78af01be1ddc64160f7666aecbfb5e96f8e318de19"
     },
     {
       "file": "frontend/src/services/legacyConnections.ts",
