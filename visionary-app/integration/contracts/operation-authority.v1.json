@@ -36,6 +36,10 @@
       "state": "observed",
       "authority": "Firestore UID-nested knowledgeCommands/Receipts/Projections/Outbox; calibrated metadata is not a second learner-evidence owner"
     },
+    "workspaceProvision": {
+      "state": "observed",
+      "authority": "Opt-in PostgreSQL domain transaction/receipt plus Firestore pending/completion reconciliation; local/staging developmentWorkspaceLinks are isolated from production domainLinks; existing account remains Firestore-owned; not distributed ACID or hosted acceptance"
+    },
     "domain": {
       "state": "proposed",
       "authority": "Selected reviewed owning domain store pending DATA-01 and authority/policy acceptance; legacy imported Prisma schema is not deployed authority"
@@ -253,6 +257,17 @@
       "stores": [
         "knowledge",
         "learning"
+      ],
+      "state": "observed"
+    },
+    "workspaceProvision": {
+      "actor": "Verified current session/device, expected-account match, exact Origin/CSRF and per-UID 10/minute rate admission; UID derived by commandAccount",
+      "workspace": "Creates only the authenticated owner personal workspace and OWNER membership; caller role/workspace hints rejected",
+      "object": "Explicit opt-in runtime-only SQL identity; target/UID-scoped command receipt, workspace, member, audit and outbox commit in one SQL transaction",
+      "source": "No educational source or publication access granted",
+      "consent": "Existing Firestore account/profile/billing preserved; dedicated pending/completed locator is not a permission grant",
+      "stores": [
+        "workspaceProvision"
       ],
       "state": "observed"
     },
@@ -501,6 +516,13 @@
       "profile": "learningWrite",
       "controller": "LearningController",
       "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/workspace/provision",
+      "profile": "workspaceProvision",
+      "controller": "PersonalWorkspaceController",
+      "sourceFile": "backend/upstream/backend/src/workspaces/personal-workspace.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -1331,8 +1353,12 @@
       "sha256Lf": "84520838bc7477cdb606a67457f73630172f0d8ceecd2d6d3b05e240d65c9ff8"
     },
     {
+      "file": "backend/upstream/backend/src/workspaces/personal-workspace.controller.ts",
+      "sha256Lf": "6a3f92ce1f774399fc36d6b5701f4327a231e2767d595dc5055aca3a38e952f6"
+    },
+    {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sha256Lf": "83762ac31d426eda4ce6041de30c4c5598bdb93005b3d3805f2cd842e5335638"
+      "sha256Lf": "92349458524099911048fa4d00013a5d5923d65276f57c0400981d304f91c532"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/request-authority.ts",
@@ -1383,6 +1409,26 @@
       "sha256Lf": "f1c210da74d220b8c73f93d8f9d3a10d50ba6a5065f5494c288485b2af6632fe"
     },
     {
+      "file": "backend/upstream/backend/src/workspaces/personal-workspace.service.ts",
+      "sha256Lf": "530c81fa0eaab1e6bb35399ac3525ebbce8921097e427a01d7940c61f904c75a"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/provision-types.ts",
+      "sha256Lf": "73b0189727582d04bc86772ec681d2dd0738538a2d05de74a6a07993769945cc"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/provision-store.ts",
+      "sha256Lf": "f5d66ac0cf832126e67dce64d8d3acb5e129e4c4b84d25279663457da4d1cb6e"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/firestore-provision-links.ts",
+      "sha256Lf": "57054dfdd7ec483cd1d233553c5f9af6fe82dc338d120fa1dd9017db55a9c149"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/workspace-provisioner.ts",
+      "sha256Lf": "56fc0ee56088552243e9519df145015b1ae9eb6d9f615c8ebcd669dd8fa6f10b"
+    },
+    {
       "file": "backend/upstream/backend/src/main-auth.ts",
       "sha256Lf": "6e90518e1fa053504ce2f73ddff15eed432e846dbbbc040a476454dbf4adc52d"
     },
@@ -1396,7 +1442,7 @@
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "152e09a48ca1da0382e70c66bff6404fc972b0c07c5374b2debdb0a487222a02"
+      "sha256Lf": "5109c02bafad61834e69f7056ff0e49e89e5ef20fa1fa4246ff2a3dd859baffd"
     },
     {
       "file": "integration/contracts/v1/openapi.json",

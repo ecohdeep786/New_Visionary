@@ -17915,6 +17915,15 @@
       "column": 3
     },
     {
+      "method": "POST",
+      "path": "/api/account/workspace/provision",
+      "controller": "PersonalWorkspaceController",
+      "handler": "provision",
+      "file": "backend/upstream/backend/src/workspaces/personal-workspace.controller.ts",
+      "line": 12,
+      "column": 3
+    },
+    {
       "method": "GET",
       "path": "/api/auth/csrf",
       "controller": "FirebaseProductController",
@@ -79262,7 +79271,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sourceSha256": "83762ac31d426eda4ce6041de30c4c5598bdb93005b3d3805f2cd842e5335638"
+      "sourceSha256": "92349458524099911048fa4d00013a5d5923d65276f57c0400981d304f91c532"
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
@@ -79283,6 +79292,10 @@
     {
       "file": "backend/upstream/backend/src/main-auth.ts",
       "sourceSha256": "6e90518e1fa053504ce2f73ddff15eed432e846dbbbc040a476454dbf4adc52d"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/personal-workspace.controller.ts",
+      "sourceSha256": "6a3f92ce1f774399fc36d6b5701f4327a231e2767d595dc5055aca3a38e952f6"
     }
   ],
   "review": {
@@ -82556,7 +82569,7 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 37,
+    "registeredEndpoints": 38,
     "controlDeclarations": 1656,
     "routeReachableDeclarations": 1504,
     "controlFiles": 221,

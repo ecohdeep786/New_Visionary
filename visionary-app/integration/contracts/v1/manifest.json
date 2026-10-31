@@ -55,7 +55,8 @@
     "POST /api/account/learning/sessions/:sessionId/cancel": "existing-json",
     "POST /api/account/learning/knowledge/project": "existing-json",
     "GET /api/account/learning/knowledge/projections": "existing-json",
-    "GET /api/account/learning/knowledge/models": "existing-json"
+    "GET /api/account/learning/knowledge/models": "existing-json",
+    "POST /api/account/workspace/provision": "existing-json"
   },
   "infrastructureSurfaces": [
     "GET /healthz",
