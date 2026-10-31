@@ -5,11 +5,9 @@
 // language 'en', class 6 Mathematics — a clearly fictional, synthetic slice
 // (final released-source selection remains KAN-29's founder decision).
 //
-// These cases execute the SAME case matrix as the backend suite
-// (backend/tests/contracts/scope-06/scope-06-cases.mjs: SC06-01 positive,
-// SC06-03 stale, SC06-04 idempotent replay, SC06-05 authority deny,
-// SC06-06 changed-payload conflict) against the REAL frontend
-// classroomService boundary, asserting owning-store records and recovery.
+// These are distinct frontend classroom-service scenarios, not the backend
+// LearningController API or a shared wire-case matrix. They exercise local
+// submission/replay/revision/class access and owning-store recovery.
 // Preview/local fixtures are shape-and-flow evidence, not server
 // authorization proof (v1 README boundary note).
 import test, { beforeEach } from 'node:test';
@@ -75,7 +73,7 @@ test('SC06-03 stale expected revision denies; the response is retained for recov
   assert.equal(submissions().length, 0); // nothing persisted from the stale command
 });
 
-test('SC06-05 authority deny: an authenticated learner outside the class cannot submit; the class store is unchanged', async () => {
+test('frontend class-access deny: an authenticated outsider cannot submit; this is not a revoked-consent test', async () => {
   const f = await setup();
   // An authenticated learner with their own workspace, but NO enrollment in
   // this class — the enrollment boundary is what must deny here.
