@@ -11,6 +11,7 @@ const controllerFiles = [
   'auth/firebase-product/firebase-product.controller.ts', 'auth/firebase-product/account.controller.ts',
   'billing/billing.controller.ts', 'feedback/feedback.controller.ts',
   'learning/learning.controller.ts', 'learning/knowledge-projection.controller.ts',
+  'workspaces/personal-workspace.controller.ts',
 ].map(file => backend + file);
 const provenanceFiles = [...controllerFiles, ...[
   'auth/firebase-product/firebase-product.module.ts', 'auth/firebase-product/request-authority.ts',
@@ -18,7 +19,9 @@ const provenanceFiles = [...controllerFiles, ...[
   'auth/firebase-product/session-policy.ts', 'auth/firebase-product/identity-admission.ts',
   'billing/billing.service.ts', 'billing/billing.repository.ts', 'billing/razorpay.provider.ts',
   'feedback/feedback.service.ts', 'learning/learning.service.ts', 'learning/learning.contract.ts',
-  'learning/knowledge-projection.service.ts', 'main-auth.ts', 'platform/production-http.ts',
+  'learning/knowledge-projection.service.ts', 'workspaces/personal-workspace.service.ts',
+  'workspaces/provision-types.ts', 'workspaces/provision-store.ts', 'workspaces/firestore-provision-links.ts',
+  'workspaces/workspace-provisioner.ts', 'main-auth.ts', 'platform/production-http.ts',
 ].map(file => backend + file), 'integration/contracts/product-surface-review.json',
   'integration/contracts/request-limits.v1.json', 'integration/contracts/v1/openapi.json'];
 
@@ -42,6 +45,7 @@ export const profiles = {
   learningWrite: profile('Current session/device/account plus Origin/CSRF', 'Owner records only; workspace tag consistency is not membership proof', 'UID-nested session/command/assessment transaction, expected revision and replay fingerprint; server scores stored authored key', 'Source/provider/criteria references and authored check input are bounded client input; no independent approved-source authority is established', 'No shared-classroom/guardian/model-provider consent established', ['learning']),
   knowledgeRead: profile('Current session/device and expected-account match', 'Owner projection scoped by workspace/concept/source/criteria; no verified membership added', 'UID-nested knowledge projection or selected model metadata; pKnown is not assessed mastery', 'Exact source/criteria/model compatibility, not published-source licensing', 'No cross-user reporting or model-data permission', ['knowledge']),
   knowledgeWrite: profile('Current session/device/account and Origin/CSRF', 'Scope derived from owned saved session/assessment; consistency checked', 'Owned immutable assessment receipt to projection/command/receipt/outbox transaction; bounded replay/rebuild checks', 'Pins stored source/criteria/model revisions; authoritative source/criteria service still gated', 'No cross-user or training permission', ['knowledge', 'learning']),
+  workspaceProvision: profile('Verified current session/device, expected-account match, exact Origin/CSRF and per-UID 10/minute rate admission; UID derived by commandAccount', 'Creates only the authenticated owner personal workspace and OWNER membership; caller role/workspace hints rejected', 'Explicit opt-in runtime-only SQL identity; target/UID-scoped command receipt, workspace, member, audit and outbox commit in one SQL transaction', 'No educational source or publication access granted', 'Existing Firestore account/profile/billing preserved; dedicated pending/completed locator is not a permission grant', ['workspaceProvision']),
   domain: profile('REQUIRED: server-verified UID/session, expected account, action-specific admission; writes require Origin/CSRF', 'REQUIRED: current verified membership/capability, never preview role or caller workspaceId', 'REQUIRED: current owner/object/action and exact revision/digest; reauthorize duplicate and in-flight work', 'REQUIRED: current published source/version/rights and permitted action; withdrawal checked', 'REQUIRED: current purpose/relationship/consent/entitlement; payment is not a role', ['domain'], 'proposed'),
   privateFile: profile('REQUIRED: current authenticated UID and permitted action; signed URL possession alone is insufficient', 'REQUIRED: current workspace/object/source authority', 'REQUIRED: private object/asset/export ownership, quarantine/finalize checks; reauthorize downloads and issuance', 'REQUIRED: approved media/source rights and permitted offline/export use', 'REQUIRED: purpose/consent, expiry/revocation; downloaded bytes have residual-access limits', ['domain', 'privateObjects'], 'proposed'),
   privateJob: profile('REQUIRED: verified queue/service identity, scoped operation and accountable operator where applicable', 'REQUIRED: reload original current owner/workspace/action; never authorize by queue payload', 'REQUIRED: owning-store receipt/outbox, immutable command identity, revision and cancellation; no cross-store ACID claim', 'REQUIRED: source/rights recheck at execution and delivery', 'REQUIRED: current purpose/consent/entitlement; expired/revoked work cannot commit', ['domain', 'jobs'], 'proposed'),
@@ -59,6 +63,7 @@ const storeDefinitions = {
   feedback: { state: 'observed', authority: 'Firestore UID-nested feedback/commands and admission counters through current account authority' },
   learning: { state: 'observed', authority: 'Firestore visionary_accounts/{uid}/learningSessions with checks/assessments and learningCommands; owning transaction, no SQL cutover implied' },
   knowledge: { state: 'observed', authority: 'Firestore UID-nested knowledgeCommands/Receipts/Projections/Outbox; calibrated metadata is not a second learner-evidence owner' },
+  workspaceProvision: { state: 'observed', authority: 'Opt-in PostgreSQL domain transaction/receipt plus Firestore pending/completion reconciliation; local/staging developmentWorkspaceLinks are isolated from production domainLinks; existing account remains Firestore-owned; not distributed ACID or hosted acceptance' },
   domain: { state: 'proposed', authority: 'Selected reviewed owning domain store pending DATA-01 and authority/policy acceptance; legacy imported Prisma schema is not deployed authority' },
   privateObjects: { state: 'proposed', authority: 'Private object bytes plus owning-domain metadata; no upload/download service installed by this inventory' },
   jobs: { state: 'proposed', authority: 'Owning-domain transactional outbox/job receipt plus scoped worker orchestration; no independent queue authorization or cross-store transaction assumed' },
@@ -79,6 +84,7 @@ const assignments = {
   learningWrite: ['POST /api/account/learning/sessions', 'POST /api/account/learning/sessions/:sessionId/checks', 'POST /api/account/learning/sessions/:sessionId/assessments', 'POST /api/account/learning/sessions/:sessionId/cancel'],
   knowledgeRead: ['GET /api/account/learning/knowledge/projections', 'GET /api/account/learning/knowledge/models'],
   knowledgeWrite: ['POST /api/account/learning/knowledge/project'],
+  workspaceProvision: ['POST /api/account/workspace/provision'],
 };
 const groupProfiles = {
   'public-discovery': 'public', 'public-enquiry-careers-partners': 'public', 'public-updates-distribution': 'public',

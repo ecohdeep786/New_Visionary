@@ -13,6 +13,7 @@ const controllerPaths = [
   'auth/firebase-product/firebase-product.controller.ts', 'auth/firebase-product/account.controller.ts',
   'billing/billing.controller.ts', 'feedback/feedback.controller.ts',
   'learning/learning.controller.ts', 'learning/knowledge-projection.controller.ts',
+  'workspaces/personal-workspace.controller.ts',
 ];
 
 test('policy proposals remain distinct from observed enforcement and cover registered controllers', () => {
