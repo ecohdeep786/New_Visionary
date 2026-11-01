@@ -90,6 +90,38 @@ test('a source that never resolves is bounded by deadline with no committed batc
   assert.ok(Date.now()-started<3000);assert.equal((await f.rows()).length,0);
 }));
 
+test('a 200ms invocation reaches its source after bounded SQL setup, rolls back and cold retries',()=>fixture(async f=>{
+  const store=f.store();
+  // Open both role connections before measuring the invocation. The hook below
+  // adds real SQL latency, rather than sleeping in a test-owned source stub.
+  await store.transaction(async()=>{});
+  const transaction=store.transaction.bind(store);
+  store.transaction=(work,...bounds)=>transaction(tx=>work(new Proxy(tx,{
+    get(target,key){
+      if(key==='$executeRawUnsafe')return async(sql,...args)=>{
+        if(sql.includes('CREATE TABLE IF NOT EXISTS "_visionary_backfills"'))
+          await target.$executeRawUnsafe('SELECT pg_sleep(0.02)');
+        return target.$executeRawUnsafe(sql,...args);
+      };
+      const value=Reflect.get(target,key);return typeof value==='function'?value.bind(target):value;
+    },
+  })),...bounds);
+  let entered=false,failure;
+  const started=Date.now();
+  try{await new BackfillRunner(store,{next(){entered=true;return new Promise(()=>{});}},f.write)
+    .run({...options,maxDurationMs:200});}catch(error){failure=error;}
+  const elapsed=Date.now()-started;
+  assert.ok(failure,'Hanging work must not succeed');
+  assert.ok(elapsed<3000,'Invocation remains bounded');
+  assert.equal((await f.rows()).length,0,'No target row committed');
+  const tables=await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename IN ('_visionary_backfills','_visionary_backfill_rows','_visionary_backfill_cursors')",f.schema);
+  assert.equal(tables.length,0,'Uncommitted control/checkpoint tables roll back');
+  const recovered=await new BackfillRunner(f.store(),source(rows),f.write).run(options);
+  assert.equal(recovered.processed,5);assert.equal((await f.rows()).length,5);
+  assert.equal(entered,true,'SQL setup must not collapse the 200ms invocation into a 1ms deadline');
+  assert.match(String(failure),/BACKFILL_DEADLINE/);
+}));
+
 test('concurrent backfill invocations use durable completion and invoke writer exactly once per key',()=>fixture(async f=>{
   const results=await Promise.all([new BackfillRunner(f.store(),source(rows),f.write).run(options),new BackfillRunner(f.store(),source(rows),f.write).run(options)]);
   assert.ok(results.every(r=>r.done&&r.processed===5));assert.equal((await f.rows()).length,5);
