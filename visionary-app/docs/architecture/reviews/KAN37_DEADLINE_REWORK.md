@@ -23,7 +23,7 @@ uncommitted control/checkpoint tables and cold retry to exactly five rows.
 Those checks execute successfully before its final source-entry assertion
 fails: the source was never reached. The intentional before-fix test exits1.
 
-Current implementation subtracts1000ms for statement_timeout and500ms for
+The rejected baseline subtracts1000ms for statement_timeout and500ms for
 the callback guard; both collapse small budgets to1ms. Identity checks occur
 before the transaction timer, and final privilege checks do not check the
 invocation deadline before commit admission.
@@ -63,6 +63,23 @@ The SQL test therefore accepts source entry or genuine budget expiry while
 checking deadline outcome, no committed target/checkpoint data and cold recovery.
 It does not promise source entry on a slow host. The deterministic policy test
 separately rejects the old1ms SQL configuration.
+
+## Verification checkpoint and test correction
+
+Exact0278ee932bac3069122b151abb562d60c96eb9bb passed full CI41284013263
+(checks124781527038, production skipped), and full local product check passed.
+The full local data run retained a real failure:48/49 DATA02 passed, with the
+long-SQL test expecting only SQL_DEADLINE while the correctly bounded transaction
+expired first. This is not counted as a passing local data check.
+
+The replacement separates the competing-timer test (only documented SQL or
+transaction deadline outcomes accepted) from an actual explicit50ms server
+statement-timeout diagnostic inside the existing10s default invocation.
+Both corrected real-SQL cases pass, including rollback and cold retry. The
+unchanged200ms regression and deterministic policy test remain intact. No total
+deadline or authority assertion was weakened; the independent reviewer agreed
+that source entry and competing timer order cannot be host-speed promises.
+Final replacement-head full data verification and CI are still required.
 
 ## Acceptance still required
 

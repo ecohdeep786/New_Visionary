@@ -216,7 +216,7 @@ test('cancellation after durable commit but before acknowledgement reports uncer
   assert.equal((await f.rows()).length,1);
 }));
 
-test('the configured SQL statement timeout reports a deadline and rolls back the batch',()=>fixture(async f=>{
+test('long SQL work terminates at its SQL or transaction budget and rolls back the batch',()=>fixture(async f=>{
   const store=f.store(),finished=latch();let sqlFailure;
   const transaction=store.transaction.bind(store);
   store.transaction=async(...args)=>{try{return await transaction(...args);}finally{finished.release();}};
@@ -224,7 +224,21 @@ test('the configured SQL statement timeout reports a deadline and rolls back the
     try{await tx.$executeRawUnsafe('SELECT pg_sleep(3)');}catch(error){sqlFailure=error;throw error;}
   }).run({...options,maxDurationMs:2000}),/BACKFILL_DEADLINE/);
   await observed(finished.promise);
+  assert.match(String(sqlFailure),/BACKFILL_DEADLINE_(SQL|TRANSACTION)/);
+  assert.equal((await f.rows()).length,0);
+  assert.equal((await new BackfillRunner(f.store(),source(rows),f.write).run(options)).processed,5);
+}));
+
+test('an explicit server statement timeout retains its precise deadline classification',()=>fixture(async f=>{
+  const store=f.store();let sqlFailure;
+  await store.transaction(async()=>{},10000,{remainingMs:()=>10000,assertActive(){}});
+  await assert.rejects(new BackfillRunner(store,source([rows[0]]),async tx=>{
+    await tx.$queryRawUnsafe("SELECT set_config('statement_timeout','50',true)");
+    try{await tx.$executeRawUnsafe('SELECT pg_sleep(0.2)');}catch(error){sqlFailure=error;throw error;}
+  }).run(options),/BACKFILL_DEADLINE_SQL/);
   assert.match(String(sqlFailure),/BACKFILL_DEADLINE_SQL/);
   assert.equal((await f.rows()).length,0);
+  const checkpoint=await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='_visionary_backfills'",f.schema);
+  assert.equal(checkpoint.length,0);
   assert.equal((await new BackfillRunner(f.store(),source(rows),f.write).run(options)).processed,5);
 }));
