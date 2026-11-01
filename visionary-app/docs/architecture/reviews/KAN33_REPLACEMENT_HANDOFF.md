@@ -2,7 +2,10 @@
 
 31 October 2026. Implementer: Codex /root. Runtime-test source: `f3961d08ef8d58f9382990259f482eff5353c37c`.
 Browser-repaired source: `caf9dcd49319f0a44ead67b8a7513234c0cab44f`.
-State: **Testing; corrected browser journey passed, final exact-head review/CI and dev integration pending**.
+State: **Done for the scoped regression enabler and corrected existing route; real-source/full feature/release gates remain open**.
+
+The sections below retain the submitted verification checkpoints. The final
+closeout at the end records the actual accepted integration and Jira result.
 
 The earlier `5fffa44a` candidate was independently rejected. Its authority and
 cancellation assertions compared fixture constants without executing those
@@ -153,3 +156,19 @@ Final approval remains pending this exact new handoff/evidence head and passing 
 Task returned from In Progress to Testing for the corrected browser verification. Only
 accepted scope with checked published dev integration and an actual Jira
 receipt is eligible for Done and evidence-preserving task cleanup.
+
+## Accepted dev closeout
+
+Independent approval: exact `73e31d55473b178f2985644067b941bd2178fa05`, report-only final
+head `133019b725c88e90401d68c941bd92756bc361a4`. Final-head CI passed: https://github.com/ecohdeep786/New_Visionary/actions/runs/41219772606/attempts/2.
+PR33 merged into published dev at `10e455a0dba38c69b100fc04e6566f415f0fd8e6`; its
+complete tree matches the accepted final head. Integrated CI passed: https://github.com/ecohdeep786/New_Visionary/actions/runs/41220472624.
+Production was skipped; main was not promoted. Actual Jira transition51 returned
+Done, acceptance comment10514, on2026-10-31T16:40:33Z.
+
+This closes executable invariant regression and the repaired client route only.
+Founder-supplied released books/source/rights, current consent/publication and
+classroom authority, durable Build, hosted/model/privacy/two-device and release
+acceptance remain open. Three ignored local configuration files are byte-preserved
+outside Git. Actual worktree retirement follows this evidence-only receipt review
+and publication; the resulting cleanup receipt is recorded in Jira.
