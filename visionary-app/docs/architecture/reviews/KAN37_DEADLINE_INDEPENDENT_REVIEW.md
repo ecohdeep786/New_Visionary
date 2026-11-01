@@ -2,7 +2,7 @@
 
 1 November 2026 (Asia/Calcutta). Jira/source: KAN-37 / DATA-02.
 
-**Current source/test decision: approved at exact replacement `6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e`; final product evidence, complete replacement-head verification and integration gates remain pending.** The original `0278ee932bac3069122b151abb562d60c96eb9bb` checkpoint below retains its changes-requested decision and failed local check. The replacement assessment is appended at the end; this is not final product or merge approval.
+**Final scoped reviewer decision: approved at exact evidence candidate `55e7bb25a5ff7decc7f4c3fc1bfd0b31b94b3828`, subject to successful final-head CI before merge and accepted published dev integration/checks before scoped Done.** Runtime/test source remains exact `6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e`. The original `0278ee93` checkpoint below retains its changes-requested decision and failed local check. Later sections record replacement and final evidence acceptance; no hosted, broader feature or release approval follows.
 
 ## Responsibility and review instance
 
@@ -62,3 +62,34 @@ The long-SQL case now allows only the two documented deadline classifications an
 The reviewer independently ran both corrected tests on its own compiled runtime and the actual isolated PostgreSQL fixture: **2/2 passed, zero failed**. The explicit-server case reached its exact SQL-deadline assertion and rollback/recovery checks. The handoff correctly retains the original local 48/49 failure, identifies the rejected baseline in past tense and leaves final verification pending. Live Jira comment 10522 records the native In Progress repair and resubmission to Testing; no Done is inferred.
 
 At this checkpoint live replacement [CI 41284731460](https://github.com/ecohdeep786/New_Visionary/actions/runs/41284731460) is still in progress. The final replacement full local DATA rerun and actual real-Firebase browser regression are also pending; no result is predicted. A final evidence head must retain this exact runtime identity, receive evidence-only delta review and passing required head/integration checks before accepted dev publication and scoped Jira Done. New runtime source changes require renewed exact-source review.
+
+## Final evidence acceptance — exact 55e7bb25
+
+**Decision: approved for the existing bounded backfill/transaction development-enabler repair at exact `55e7bb25a5ff7decc7f4c3fc1bfd0b31b94b3828`. No unresolved source, test or submitted-evidence finding remains in this scope. Final evidence-head CI must pass before merge; accepted published dev integration and integrated checks still precede native scoped Jira Done.** Reviewer `/root/kan38_final_review` accepts this exact final decision independently of the implementer.
+
+The final delta over approved `6b40d420` changes two documentation files only: the rework handoff append and [sanitized SQL/browser receipt](../delivery/evidence/KAN37_REWORK_BROWSER_SQL_2026-11-01.json). Backend/runtime/frontend/infrastructure/test/dependency source is unchanged. The reviewer fetched and merged the exact final candidate into the same matching task instance. Before this report update, its only differences from the candidate were the three preserved independent report/probe files. Exact-range whitespace checks passed. The reviewer did not alter implementation, sign in, operate the live account or write account records.
+
+### Browser artifacts and limits
+
+The reviewer independently SHA-256 checked, byte-count checked and decoded format/dimensions for all six original captures under `C:/Users/Administrator/Visionary-local/kan37-deadline-rework-20261101`. All values match the public receipt; all six are actual JPEGs, each 1187 x 1170. Every capture was visually inspected:
+
+| Capture | What it corroborates |
+| --- | --- |
+| browser-signed-in-home.jpg | Professional workspace and the saved authored unit's Continue learning state |
+| browser-restored-learning.jpg | Existing understanding/practice checks, Build stage and authored-sample/disconnected-teaching disclosure |
+| browser-project-handoff.jpg | Fictional-data brief, existing project title and explicit local-preview/workplace-privacy boundary |
+| browser-scoped-ask.jpg | Preserved learning-return context and unsent project-help draft |
+| browser-practice-records.jpg | Existing unit with two recorded answers |
+| browser-privacy-boundaries.jpg | Existing local-preview, sharing and privacy disclosures; no active export/delete/consent operation shown |
+
+The raw browser-observation summary matches the public browser receipt. Reload, auth/me 200, console counts, navigation ordering and requested-action history remain explicitly implementer-observed evidence; static captures do not independently establish those events. The reviewer accepts the scoped artifact-backed product regression without claiming to have repeated sign-in or server/account writes. The receipt explicitly says its network buffer is truncated and is not a full HAR. It retains the initial cold-load automation timeouts and the watched-API restart proxy 500/ECONNREFUSED attempt, followed by the official API restart and clean observed journey. Those attempts are not converted into passes.
+
+The public receipt contains no account UID, cookies, tokens, raw session/command/artifact identifiers, protected profile or billing records. Raw captures/configuration/runtime logs remain outside Git. The unsent Ask draft is not a model invocation, the authored unit is not official-source coverage, and visible local practice/project state is not newly accepted durable Build, hosted SQL or multi-device evidence. Administrative backfill behavior is correctly established by the separate SQL tests; no fictitious backfill UI journey is asserted.
+
+### Final runtime verification inspected
+
+Live [CI 41284731460](https://github.com/ecohdeep786/New_Visionary/actions/runs/41284731460), exact `6b40d420`, completed successfully with checks job `124783620444`; production was skipped. The reviewer inspected its live log, which identifies `6b40d420` rehearsed against accepted `3aa0d919` and records all DATA-01 20, DATA-02 50, SQL/Firestore provisioning 11, deployed backend 99/deployed provisioning 11, root product checks, actual migration/API images and infrastructure checks passing. This supersedes the former pending-CI checkpoint above without erasing its historical timing.
+
+The reviewer read the preserved local source/result/log receipts: exact `6b40d420` local SQL stages passed 20/20 and 50/50; the encompassing `data:check` still exited 1 when the unchanged provisioning script could not locate Java 21. That original result is retained accurately. After selecting the already installed official Java executable, registered `node scripts/provision-check.mjs` on the same exact source exited 0 with 11/11 actual SQL/official Firestore-emulator/HTTP tests. Full local product check on `0278ee93` exited 0, and its product runtime/frontend source is unchanged in the accepted replacement. No whole-command local DATA exit-0 result is claimed.
+
+At final evidence review, [CI 41286130404](https://github.com/ecohdeep786/New_Visionary/actions/runs/41286130404) for exact `55e7bb25` is in progress. **The integrator must confirm that exact final-head check succeeds, compare current dev and merge only this reviewed head.** A new source or evidence revision is not covered automatically. After published integration and passed relevant integrated checks, record actual scoped Jira Done and preserve configuration/raw evidence before worktree cleanup. This reviewer performed no merge to dev, Jira write, cleanup, cloud provisioning or main promotion. Hosted SQL/IAM/operations, domain/provider/content/rights/privacy/model/two-device and release gates remain open.
