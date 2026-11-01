@@ -13,7 +13,7 @@ import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META } from "@/data/legalMeta";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 const COLORS = {
   ink: "#1d1d1f",
@@ -29,8 +29,8 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* ═══ Link grammar — the approved public quiet link, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { quietLink } = CTA_LAW;
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {

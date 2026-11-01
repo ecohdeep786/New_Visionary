@@ -8,13 +8,18 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system) ═══ */
 const COLORS = {
   ink: "#1d1d1f", surface: "#f5f5f7", blue: "#0066cc", grey: "#6e6e73",
   lightGrey: "#86868b", mist: "#d2d2d7", white: "#ffffff",
 };
+
+/* The A2 CTA law, imported from the one source; `mailPill` re-tones the
+   primary pill to the support blue, so /help never re-declares the geometry. */
+const { inkPill } = CTA_LAW;
+const mailPill = inkPill.replace("bg-[#1d1d1f]", "bg-[#0066cc]");
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -177,7 +182,7 @@ export default function SchoolPage() {
       <Breadcrumb page="Help" />
       <main id="main">
         {/* ═══ HERO — mark + heading + search (Google Help pattern) ═══ */}
-        <section ref={ref} className="relative px-6 pb-24 pt-24 lg:pt-28" style={{ backgroundColor: COLORS.white }}>
+        <section ref={ref} data-section="01-hero" className="relative px-6 pb-24 pt-24 lg:pt-28" style={{ backgroundColor: COLORS.white }}>
           <FadeReveal visible={visible}>
             <div className="mx-auto flex flex-col items-center text-center">
               <span className="flex h-20 w-20 items-center justify-center rounded-[24px] g-card" style={{ color: COLORS.blue }}>
@@ -283,7 +288,7 @@ export default function SchoolPage() {
                   <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>
                     Tell us what you need. A human answers within one business day.
                   </p>
-                  <a href="mailto:hello@visionary.org.in" className="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 font-medium tracking-[0.24px] text-[16px] text-white transition-all hover:opacity-90" style={{ backgroundColor: COLORS.blue }}>
+                  <a href="mailto:hello@visionary.org.in" className={`mt-6 ${mailPill}`}>
                     <Mail className="h-4 w-4" strokeWidth={1.8} /> Email us
                   </a>
                 </div>
@@ -300,10 +305,10 @@ export default function SchoolPage() {
               We answer within one business day. Urgent safety reports are handled within 24 hours.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a href="mailto:hello@visionary.org.in" className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 font-medium tracking-[0.24px] text-[16px] text-white transition-all hover:opacity-90" style={{ backgroundColor: COLORS.blue }}>
+              <a href="mailto:hello@visionary.org.in" className={mailPill}>
                 <Mail className="h-4 w-4" strokeWidth={1.8} /> hello@visionary.org.in
               </a>
-              <a href="mailto:safety@visionary.org.in" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-8 font-medium tracking-[0.24px] text-[16px] transition-colors hover:bg-[#1d1d1f]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+              <a href="mailto:safety@visionary.org.in" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#1d1d1f]/30 px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-[#1d1d1f] transition-colors hover:bg-[#1d1d1f]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                 <ShieldCheck className="h-4 w-4" strokeWidth={1.8} /> Report a safety issue
               </a>
             </div>

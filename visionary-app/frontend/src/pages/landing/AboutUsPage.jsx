@@ -88,7 +88,7 @@ function MissionSection() {
       <Eyebrow>Why Visionary exists</Eyebrow>
       <div className="mt-5 grid gap-9 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-20">
         <h2 className="max-w-[760px] text-[40px] font-normal leading-[1.07] tracking-[-0.045em] text-[#1d1d1f] sm:text-[52px] lg:text-[64px]">Understanding should open the next door.</h2>
-        <p className="max-w-[480px] pb-1 text-[18px] leading-[1.65] text-[#6e6e73]">People move between classrooms, homes, work, and new ambitions. Too often, what they have learned gets left behind at each change. We are building Visionary so understanding can grow with them.</p>
+        <p className="max-w-[480px] pb-1 text-[17px] leading-[1.65] text-[#6e6e73]">People move between classrooms, homes, work, and new ambitions. Too often, what they have learned gets left behind at each change. We are building Visionary so understanding can grow with them.</p>
       </div>
       <div id="team" className="relative mt-14 grid scroll-mt-28 gap-3 overflow-hidden rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 md:grid-cols-[1.1fr_0.9fr] lg:p-10">
         <div className="flex min-h-[320px] flex-col rounded-[20px] bg-white p-8 sm:p-10 lg:p-14">

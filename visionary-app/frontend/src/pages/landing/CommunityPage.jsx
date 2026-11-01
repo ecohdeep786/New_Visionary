@@ -21,7 +21,10 @@ import imgM9 from "@/assets/organization-problem-2-1600w.webp";
 import imgM10 from "@/assets/professional-problem-1-1600w.webp";
 import imgM11 from "@/assets/student-higher.webp";
 import imgM12 from "@/assets/organization-problem-1-1600w.webp";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
+
+/* The A2 CTA law, imported from the one source — no page re-declares geometry. */
+const { inkPill } = CTA_LAW;
 
 /* ═══ Tokens — the public dialect (#1d1d1f ink, #0066cc actions, #f5f5f7
    trays, white rounded-[20px] cards, ink pills). ═══ */
@@ -297,7 +300,7 @@ export default function CommunityPage() {
               Communities grow around real learning. Start with the loop, and the space builds itself around it.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link to="/register" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
+              <Link to="/register" className={`w-full sm:w-auto ${inkPill}`}>
                 Get started
               </Link>
               <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">

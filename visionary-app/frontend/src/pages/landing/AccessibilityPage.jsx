@@ -11,12 +11,10 @@ import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import QuietLink from "@/components/landing/QuietLink";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
-/* ═══ Link grammar — the approved public ink pill / grey pill / chip, verbatim ═══ */
-const inkPill = "inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const greyPill = "inline-flex h-11 items-center justify-center rounded-full bg-[#f5f5f7] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
-const chipPill = "inline-flex min-h-11 items-center rounded-full bg-[#f5f5f7] px-6 text-[16px] font-medium tracking-[0.24px] text-[#1d1d1f] transition-colors duration-200 hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { inkPill, greyPill, chipPill } = CTA_LAW;
 
 function Reveal({ children, className = "", delay = 0 }) {
   return (
