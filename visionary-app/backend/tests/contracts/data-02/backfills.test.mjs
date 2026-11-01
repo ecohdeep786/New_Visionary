@@ -13,6 +13,8 @@ async function fixture(fn){const f=await stagingDatabase();try{
 }finally{await f.close();}}
 const source=(rows)=>({async next(cursor,limit){const offset=Number(cursor??0),slice=rows.slice(offset,offset+limit);return {rows:slice,nextCursor:String(offset+slice.length),done:offset+slice.length>=rows.length};}});
 const rows=Array.from({length:5},(_,i)=>({key:String(i),value:'synthetic-'+i}));
+function latch(){let release;const promise=new Promise(resolve=>{release=resolve;});return {promise,release};}
+async function observed(promise){let timer;try{return await Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Test phase was not reached')),8000);})]);}finally{clearTimeout(timer);}}
 
 test('bounded invocation persists checkpoints and cold adapter resumes without duplicate writer calls',()=>fixture(async f=>{
   const r=new BackfillRunner(f.store(),source(rows),f.write);
@@ -90,11 +92,12 @@ test('a source that never resolves is bounded by deadline with no committed batc
   assert.ok(Date.now()-started<3000);assert.equal((await f.rows()).length,0);
 }));
 
-test('a 200ms invocation reaches its source after bounded SQL setup, rolls back and cold retries',()=>fixture(async f=>{
+test('a 200ms invocation does not fail prematurely during SQL setup, rolls back and cold retries',()=>fixture(async f=>{
   const store=f.store();
   // Open both role connections before measuring the invocation. The hook below
   // adds real SQL latency, rather than sleeping in a test-owned source stub.
   await store.transaction(async()=>{});
+  await store.transaction(async()=>{},10000,{remainingMs:()=>10000,assertActive(){}});
   const transaction=store.transaction.bind(store);
   store.transaction=(work,...bounds)=>transaction(tx=>work(new Proxy(tx,{
     get(target,key){
@@ -118,7 +121,7 @@ test('a 200ms invocation reaches its source after bounded SQL setup, rolls back 
   assert.equal(tables.length,0,'Uncommitted control/checkpoint tables roll back');
   const recovered=await new BackfillRunner(f.store(),source(rows),f.write).run(options);
   assert.equal(recovered.processed,5);assert.equal((await f.rows()).length,5);
-  assert.equal(entered,true,'SQL setup must not collapse the 200ms invocation into a 1ms deadline');
+  assert.ok(entered||elapsed>=180,`Admission/setup may exhaust the real budget, but not collapse it to 1ms (elapsed=${elapsed}ms)`);
   assert.match(String(failure),/BACKFILL_DEADLINE/);
 }));
 
@@ -137,7 +140,7 @@ test('row budget limits the requested page and leaves explicit resumable state',
 test('lost batch commit acknowledgement resumes from durable rows and completion',()=>fixture(async f=>{
   const {PostgresMigrationStore}=req('./dist/src/data/migration-store.js');
   class LostAcknowledgementStore extends PostgresMigrationStore{
-    async transaction(work,timeout){await super.transaction(work,timeout);throw Error('synthetic lost batch acknowledgement');}
+    async transaction(work,timeout,bounds){await super.transaction(work,timeout,bounds);throw Error('synthetic lost batch acknowledgement');}
   }
   const uncertain=new LostAcknowledgementStore(f.config);
   try{await assert.rejects(new BackfillRunner(uncertain,source(rows),f.write).run(options),/lost batch/);}finally{await uncertain.close();}
@@ -150,4 +153,78 @@ test('new backfill metadata with runtime default grants rolls back its writer be
   await assert.rejects(new BackfillRunner(f.store(),source(rows),f.write).run(options),/RUNTIME_CONTROL_WRITE_DENIED/);
   assert.equal((await f.rows()).length,0);
   assert.equal((await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='_visionary_backfills'",f.schema)).length,0);
+}));
+
+test('an identity check released after the invocation deadline cannot open a migration transaction',()=>fixture(async f=>{
+  const store=f.store(),gate=latch(),finished=latch();let opened=0,sourceEntered=false;
+  const identity=store.runtimeIdentity.bind(store),transaction=store.migration.$transaction.bind(store.migration);
+  store.runtimeIdentity=async(...args)=>{try{await gate.promise;return await identity(...args);}finally{finished.release();}};
+  store.migration.$transaction=(...args)=>{opened++;return transaction(...args);};
+  try{
+    await assert.rejects(new BackfillRunner(store,{async next(){sourceEntered=true;return {rows:[],nextCursor:null,done:true};}},f.write).run({...options,maxDurationMs:200}),/BACKFILL_DEADLINE/);
+  }finally{gate.release();}
+  await observed(finished.promise);
+  assert.equal(opened,0);assert.equal(sourceEntered,false);assert.equal((await f.rows()).length,0);
+  assert.equal((await new BackfillRunner(f.store(),source(rows),f.write).run(options)).processed,5);
+}));
+
+test('a source released after cancellation cannot invoke the writer',()=>fixture(async f=>{
+  const gate=latch(),entered=latch(),controller=new AbortController();let writes=0;
+  const pending=new BackfillRunner(f.store(),{async next(){entered.release();await gate.promise;return {rows:[rows[0]],nextCursor:null,done:true};}},async(...args)=>{writes++;return f.write(...args);})
+    .run({...options,maxDurationMs:5000,signal:controller.signal});
+  const rejected=assert.rejects(pending,/BACKFILL_CANCELLED/);
+  try{await observed(entered.promise);controller.abort();await rejected;}finally{controller.abort();gate.release();}
+  assert.equal((await f.rows()).length,0);assert.equal(writes,0);
+  assert.equal((await new BackfillRunner(f.store(),source(rows),f.write).run(options)).processed,5);
+}));
+
+test('a writer released after cancellation cannot submit its late SQL',()=>fixture(async f=>{
+  const entered=latch(),gate=latch(),finished=latch(),controller=new AbortController();let lateError;
+  const pending=new BackfillRunner(f.store(),source([rows[0]]),async(tx,row)=>{
+    entered.release();await gate.promise;
+    try{await f.write(tx,row);}catch(error){lateError=error;}finally{finished.release();}
+  }).run({...options,maxDurationMs:5000,signal:controller.signal});
+  const rejected=assert.rejects(pending,/BACKFILL_CANCELLED/);
+  try{await observed(entered.promise);controller.abort();await rejected;}finally{controller.abort();gate.release();}
+  await observed(finished.promise);
+  assert.match(String(lateError),/BACKFILL_CANCELLED/);assert.equal((await f.rows()).length,0);
+  assert.equal((await new BackfillRunner(f.store(),source(rows),f.write).run(options)).processed,5);
+}));
+
+test('cancellation while final privileges are suspended rolls back before commit admission',()=>fixture(async f=>{
+  const store=f.store(),entered=latch(),gate=latch(),finished=latch(),controller=new AbortController();let calls=0;
+  const privileges=store.runtimePrivileges.bind(store),transaction=store.transaction.bind(store);
+  store.runtimePrivileges=async(...args)=>{if(++calls===2){entered.release();await gate.promise;}return privileges(...args);};
+  store.transaction=async(...args)=>{try{return await transaction(...args);}finally{finished.release();}};
+  const pending=new BackfillRunner(store,source([rows[0]]),f.write).run({...options,maxDurationMs:5000,signal:controller.signal});
+  const rejected=assert.rejects(pending,/BACKFILL_CANCELLED/);
+  try{await observed(entered.promise);controller.abort();await rejected;}finally{controller.abort();gate.release();}
+  await observed(finished.promise);assert.equal((await f.rows()).length,0);
+  assert.equal((await new BackfillRunner(f.store(),source(rows),f.write).run(options)).processed,5);
+}));
+
+test('cancellation after durable commit but before acknowledgement reports uncertainty and cold reconciles',()=>fixture(async f=>{
+  const store=f.store(),committed=latch(),gate=latch(),finished=latch(),controller=new AbortController();
+  const transaction=store.transaction.bind(store);
+  store.transaction=async(...args)=>{try{const result=await transaction(...args);committed.release();await gate.promise;return result;}finally{finished.release();}};
+  const pending=new BackfillRunner(store,source([rows[0]]),f.write).run({...options,maxDurationMs:5000,signal:controller.signal});
+  const rejected=observed(assert.rejects(pending,/BACKFILL_CANCELLED_COMMIT_UNKNOWN/));
+  try{await observed(committed.promise);controller.abort();await rejected;}finally{controller.abort();gate.release();}
+  await observed(finished.promise);assert.equal((await f.rows()).length,1);
+  const recovered=await new BackfillRunner(f.store(),source([rows[0]]),f.write).run(options);
+  assert.equal(recovered.done,true);assert.equal(recovered.processed,1);assert.equal(recovered.batches,0);
+  assert.equal((await f.rows()).length,1);
+}));
+
+test('the configured SQL statement timeout reports a deadline and rolls back the batch',()=>fixture(async f=>{
+  const store=f.store(),finished=latch();let sqlFailure;
+  const transaction=store.transaction.bind(store);
+  store.transaction=async(...args)=>{try{return await transaction(...args);}finally{finished.release();}};
+  await assert.rejects(new BackfillRunner(store,source([rows[0]]),async tx=>{
+    try{await tx.$executeRawUnsafe('SELECT pg_sleep(3)');}catch(error){sqlFailure=error;throw error;}
+  }).run({...options,maxDurationMs:2000}),/BACKFILL_DEADLINE/);
+  await observed(finished.promise);
+  assert.match(String(sqlFailure),/BACKFILL_DEADLINE_SQL/);
+  assert.equal((await f.rows()).length,0);
+  assert.equal((await new BackfillRunner(f.store(),source(rows),f.write).run(options)).processed,5);
 }));

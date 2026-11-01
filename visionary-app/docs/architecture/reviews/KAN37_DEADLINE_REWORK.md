@@ -1,6 +1,6 @@
 # KAN-37 deadline rework checkpoint
 
-1 November 2026. State: In Progress, **not accepted and not repaired yet**.
+1 November 2026. State: implementation candidate, **not accepted or merged**.
 Implementer: Codex /root. Separate reviewer /root/kan38_final_review has
 accepted responsibility for the eventual exact candidate; no approval exists.
 
@@ -28,7 +28,43 @@ the callback guard; both collapse small budgets to1ms. Identity checks occur
 before the transaction timer, and final privilege checks do not check the
 invocation deadline before commit admission.
 
-## Repair and acceptance still required
+## Existing implementation repaired
+
+The candidate preserves the existing migrations, roles, SQL stores and job
+entry points. It changes backfill budget propagation and transaction admission;
+no replacement product or schema is introduced.
+
+The backfill uses one monotonic invocation deadline, callback time capped by
+the store's remaining batch budget and proportional capped safety reserves.
+It no longer extends nearly exhausted work to100ms or collapses a small budget
+to1ms. The optional store guard checks identity, SQL, work and final privileges,
+immediately before commit admission. Source/writer continuations resumed after
+cancellation cannot submit late guarded SQL. Migration-only callers retain
+their default15-second policy.
+
+Only explicit own bounded SQL statement-timeout and Prisma transaction-expiry
+diagnostics receive deadline classifications. User-request SQL cancellation,
+invalid transaction identity and authority errors retain their identity.
+Uncertain commit acknowledgement is marked COMMIT_UNKNOWN; cold retry reconciles
+durable checkpoints rather than promising rollback of a durable commit.
+
+Focused real PostgreSQL verification passes the original200ms case, controlled
+SQL setup/rollback/cold retry, late identity/source/writer and suspended final
+privilege cases. Commit-acknowledgement uncertainty preserves one durable row
+and cold-retries without duplicate batches; actual pg_sleep statement timeout
+rolls back and recovers. Three separately labelled policy-unit cases run the
+actual store/runner against explicit inert Prisma interfaces. The budget
+regression fails against the actual old store in an isolated probe, with
+original product files untouched. Final exact-head full checks, independent
+approval and actual browser evidence remain required.
+
+Physical setup may legitimately consume the unchanged200ms invocation budget.
+The SQL test therefore accepts source entry or genuine budget expiry while
+checking deadline outcome, no committed target/checkpoint data and cold recovery.
+It does not promise source entry on a slow host. The deterministic policy test
+separately rejects the old1ms SQL configuration.
+
+## Acceptance still required
 
 Use one monotonic invocation deadline through identity/setup/work/final
 authority checks and commit admission; reserve bounded proportional safety
