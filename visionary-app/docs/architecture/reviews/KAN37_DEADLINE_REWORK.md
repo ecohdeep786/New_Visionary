@@ -113,3 +113,39 @@ customer/account/profile/billing data is used. Dependency locks are unchanged;
 four verified cache junctions have proper node_modules layout and must be
 removed as link objects at eventual cleanup. No schema/role/source permission
 or frontend product behavior has changed at this checkpoint.
+
+## Submitted product and final-source verification
+
+Runtime/tests6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e are independently
+source/test approved. [Full CI41284731460](https://github.com/ecohdeep786/New_Visionary/actions/runs/41284731460)
+passed all registered checks, including SQL20+50+11, deployed99+11, actual
+migration/API images and frontend625; production skipped. Full local product
+check passed0278; runtime/frontend/infrastructure are byte-identical in6b40.
+Local SQL20+50 passed; the original whole local data command exited1 only when
+the unchanged emulator stage could not locate Java21. After configuring the
+existing official executable, its registered provision-check passed11/11.
+The original nonzero result remains retained and is not relabeled a pass.
+
+The actual product ran through official root commands at localhost5183/API3003
+with the existing real Firebase Professional account. A clean reload returned
+auth/me200 and restored Home/saved activity. Home -> Learn outline -> existing
+authored sample -> project -> scoped Ask -> Practice -> Privacy -> Home passed.
+Both recorded answers, learning stages, fictional-data project brief and private
+workspace context were retained. No chat/model prompt was submitted; no profile,
+billing, consent, export or deletion mutation was requested. Navigation state
+was restored. This browser regression is separate from actual administrative
+SQL/backfill execution; there is intentionally no backfill button in that flow.
+
+Initial cold-load automation waits expired. A later proxy500 was confirmed as
+ECONNREFUSED while the watched API restarted during verification/dependency
+generation. The owned API was restarted at6b40 after generation, then clean
+auth/me200 and the complete journey were observed. These earlier attempts are
+retained, not counted as successful runs. The final loaded document had zero
+console errors/warnings. The network buffer was truncated, so no full HAR is
+claimed. Six actual JPEGs have verified SHA256/bytes/dimensions1187x1170.
+
+[Sanitized SQL/browser receipt](../delivery/evidence/KAN37_REWORK_BROWSER_SQL_2026-11-01.json)
+records all results and limits. Raw/private evidence remains outside Git.
+Final evidence-head independent approval/CI, dev integration, actual Jira Done
+and evidence-preserving cleanup are still pending. Hosted/provider/content/
+domain/privacy/model/two-device and main release gates remain open.
