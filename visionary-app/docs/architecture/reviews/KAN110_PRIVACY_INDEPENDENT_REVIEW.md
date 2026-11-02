@@ -52,3 +52,40 @@ Required correction: define/enforce permitted field types/reference shapes per c
 ## Re-review
 
 Return/keep KAN-110 In Progress for these repairs. Submit a new exact SHA and relevant verification; this rejection does not transfer to a later candidate. Any eventual source acceptance remains distinct from named policy-owner decisions, owning-domain/consumer enforcement, authenticated browser journeys, hosted evidence, `dev` integration and actual Jira Done. Preserve the worker/reviewer instances until proper acceptance and cleanup gates are met.
+
+## Re-review of corrected candidate 1080e312d5cd5f0ec222b0aec33ed94049f53e6a
+
+Decision: **CHANGES REQUESTED**, limited to the remaining accessor validation finding below. Earlier P1 policy-content binding and ordinary nested-content P2 findings are corrected on this exact source: both acknowledgement and proposal match digest plus version, missing fields deny, and ordinary object/array/null values are rejected by the bounded-scalar helper. Those earlier defects are not being carried forward as unresolved.
+
+The same task-specific QA instance merged the corrected candidate while preserving the first independent report. Backend, scripts and package source diff against the exact candidate was empty before/after the probes. Reviewer-owned temporary test additions were restored after use; no worker, Jira, `dev` or `main` change was made.
+
+### P2 — accessor values change between validation and returned clone
+
+`privacy-core-service.ts:20-32` evaluates candidate values separately through `Object.values`, `JSON.stringify` and `structuredClone`. `privacy-policy.ts:4-5` admits plain objects containing enumerable getter descriptors. An internal JS caller can therefore pass this input to the exported minimizer:
+
+```js
+let reads = 0;
+const input = {};
+Object.defineProperty(input, 'runId', {
+  enumerable: true,
+  get() {
+    return ++reads < 3 ? 'safe' : { rawPrivateText: 'synthetic-private-text' };
+  }
+});
+const result = await core.minimize('model_artifacts', input);
+// result.runId.rawPrivateText === 'synthetic-private-text'; reads === 3
+```
+
+The scalar validator sees the first safe value, serialization sees another safe value, and the returned clone contains the third nested value. The actual compiled helper boundary independently reproduced this with no store call; the full exported `minimize` call then reproduced it with the actual Firestore policy adapter in the extended emulator suite. This is specifically an internal JavaScript object boundary issue; ordinary JSON deserialization does not create accessors, and this finding does not claim an HTTP exploit or artifact collector write.
+
+Correction: reject unsupported property descriptors/accessors before reading candidate values and/or validate and return the same immutable plain-data snapshot. Reject unsupported symbol/non-enumerable/descriptor shapes consistently as appropriate to the bounded data contract. Tests should prove malicious getters are never evaluated (or cannot change the accepted snapshot), while ordinary data descriptors still work. Preserve scalar/minimal-field validation and explicit structured-domain schema gates.
+
+### Independent corrected-candidate evidence
+
+- `node scripts/privacycore-check.mjs`: **46/46 passed** with exact corrected source compiled independently. `C:\Users\Administrator\Visionary-local\kan110-independent-1080e312.log`, SHA256 `4cbdffd7b38e5c4d187455d55381419fc2d9367599bf62e9d179e0140eea43ce`.
+- Seven additional actual-emulator probes: **53/53 observations passed**. Six validate genuine missing-digest rejection, wrong-version/current-digest rejection, canonical-equivalent key order acceptance, independent proof refresh, corrupt artifact-digest replay denial, and scalar text/nested text behavior. The seventh deliberately reproduces the accessor bypass above and therefore blocks acceptance despite its observation assertion passing.
+- `C:\Users\Administrator\Visionary-local\kan110-independent-probes-1080e312.log`, SHA256 `b5d11cd41412bdedf73c0cf59f53b33954d4d7ca07e149cc708b0bda2c06aa36`. Full temporary probe suite preserved outside Git at `C:\Users\Administrator\Visionary-local\kan110-independent-probe-suite-1080e312.cjs`.
+- Source registration inspection confirms the ordinary data command includes privacy compilation/emulator checks and the deployed-lock checker includes privacy service/store plus the same test suite. Production checker syntax passed. No broad SQL/deployed/browser success is claimed by this review.
+- Actual Firestore was official pinned emulator 1.22.0, loopback-only synthetic project `demo-visionary-kan110`, Java 21, synthetic reviewers/records. Launchers cleaned up their emulator children. No live policy approval, record deletion, admission activation or provider mutation occurred.
+
+Submit the next repaired exact SHA for independent review. Full policy-owner, consumer/owning-domain, browser, hosted, integration and Jira acceptance gates remain as stated above.
