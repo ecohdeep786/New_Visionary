@@ -90,9 +90,9 @@ test('database failure after membership and token mutation rolls back all state,
   try { assert.equal((await fresh(db).accept(x.user, i.token)).replay, false); } finally { await db.$disconnect(); }
   assert.equal((await membership(x)).role, 'MEMBER');
 });
-test('acceptance preserves OWNER and never promotes an existing MEMBER through an ADMIN invitation', async () => {
+test('owner self-accept is denied without demotion; existing MEMBER never gains ADMIN through invitation', async () => {
   const x = await setup(), ownerInvite = await invite(x);
-  assert.equal((await service.accept(x.owner, ownerInvite.token)).membershipRole, 'OWNER');
+  await assert.rejects(service.accept(x.owner, ownerInvite.token), code('unauthorized'));
   assert.equal((await membership(x, x.owner)).role, 'OWNER');
   await env.db.workspaceMembership.create({ data: { workspaceId: x.ws, uid: x.user, role: 'MEMBER', source: 'direct' } });
   const admin = await invite(x, 'ADMIN', 'other@example.invalid');
@@ -154,4 +154,71 @@ test('wrong SQL identity and privileged migration client are rejected without wr
   const privileged = new InvitationService(new PostgresInvitationStore(env.db, { ...target, role: env.migrationRole }));
   await assert.rejects(privileged.invite(x.owner, x.ws, { role: 'MEMBER', email: 'x@example.invalid' }), code('unavailable'));
   assert.equal(await env.db.invitation.count({ where: { workspaceId: x.ws } }), 0);
+});
+
+function pauseActual(modelName, method, matches = () => true) {
+  let reached, release, paused = false;
+  const ready = new Promise(r => { reached = r; }), wait = new Promise(r => { release = r; });
+  const db = { $transaction: (work, options) => env.runtime.$transaction(tx => work(new Proxy(tx, { get(t, k) {
+    if (k === modelName) return new Proxy(t[k], { get(model, key) {
+      const value = model[key];
+      if (key === method) return async args => { const row = await value.call(model, args); if (!paused && matches(args)) { paused = true; reached(row); await wait; } return row; };
+      return typeof value === 'function' ? value.bind(model) : value;
+    } });
+    const value = t[k]; return typeof value === 'function' ? value.bind(t) : value;
+  } })), options) };
+  return { db, ready, release };
+}
+test('owner-scoped workspace erasure denies every command/read, not only recipient-scoped markers', async () => {
+  const x = await setup(), i = await invite(x);
+  await env.db.deletionTombstone.create({ data: { uid: x.owner, resourceType: 'workspace', resourceId: x.ws, reason: 'synthetic owner erasure' } });
+  for (const action of [() => service.accept(x.user, i.token), () => service.revoke(x.owner, i.invitationId),
+    () => service.list(x.owner, x.ws), () => service.track(x.owner, x.ws, i.invitationId), () => invite(x, 'MEMBER', 'later@example.invalid')])
+    await assert.rejects(action(), code('unauthorized'));
+  assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
+});
+test('database clock rejects expiry during SQL lookup even when injected caller clock stays earlier', async () => {
+  const x = await setup(), i = await invite(x), expires = new Date(Date.now() + 1500);
+  await env.db.invitation.update({ where: { id: i.invitationId }, data: { expiresAt: expires } });
+  const pause = pauseActual('invitation', 'findUnique', args => !!args.where.tokenHash);
+  const pending = fresh(pause.db).accept(x.user, i.token);
+  try { await pause.ready; await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
+  await assert.rejects(pending, code('expired')); assert.equal(await membership(x), null);
+  assert.equal(await events(i.invitationId, 'accepted'), 0);
+});
+test('expiry during the last outbox write rolls back membership, token, receipt, audit and outbox', async () => {
+  const x = await setup(), i = await invite(x), expires = new Date(Date.now() + 1800);
+  await env.db.invitation.update({ where: { id: i.invitationId }, data: { expiresAt: expires } });
+  const pause = pauseActual('outboxEvent', 'create');
+  const pending = fresh(pause.db).accept(x.user, i.token);
+  try { await pause.ready; await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
+  await assert.rejects(pending, code('expired')); assert.equal(await membership(x), null);
+  assert.equal(await env.db.commandResult.count({ where: { uid: x.user } }), 0);
+  assert.equal(await env.db.outboxEvent.count({ where: { uid: x.user } }), 0);
+  assert.equal(await events(i.invitationId, 'accepted'), 0);
+  assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } })).status, 'PENDING');
+});
+test('foreign OWNER membership and retained OWNER invite cannot establish ownership', async () => {
+  const x = await setup(), i = await invite(x);
+  await env.db.workspaceMembership.create({ data: { workspaceId: x.ws, uid: x.other, role: 'OWNER', source: 'direct' } });
+  await assert.rejects(service.invite(x.other, x.ws, { role: 'ADMIN', email: 'foreign@example.invalid' }), code('unauthorized'));
+  await env.db.invitation.update({ where: { id: i.invitationId }, data: { role: 'OWNER' } });
+  await assert.rejects(service.accept(x.user, i.token), code('unauthorized'));
+  assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
+});
+test('canonical UID anchor fences outbox allocation across distinct workspaces until commit', async () => {
+  const x = await setup(), other = await env.db.workspace.create({ data: { uid: x.owner, slug: randomUUID(), name: 'Synthetic second workspace' } });
+  await env.db.workspaceMembership.create({ data: { uid: x.owner, workspaceId: other.id, role: 'OWNER', source: 'direct' } });
+  const pause = pauseActual('outboxEvent', 'create');
+  const first = fresh(pause.db).invite(x.owner, x.ws, { role: 'MEMBER', email: 'first@example.invalid' });
+  const row = await pause.ready;
+  let second;
+  try {
+    second = service.invite(x.owner, other.id, { role: 'MEMBER', email: 'second@example.invalid' });
+    await new Promise(r => setTimeout(r, 250));
+    assert.equal(await env.db.outboxEvent.count({ where: { uid: x.owner, cursor: { gte: row.cursor } } }), 0);
+  } finally { pause.release(); }
+  await first; await second;
+  const saved = await env.db.outboxEvent.findMany({ where: { uid: x.owner, cursor: { gte: row.cursor } }, orderBy: { cursor: 'asc' } });
+  assert.equal(saved.length, 2); assert.equal(saved[0].workspaceId, x.ws); assert.equal(saved[1].workspaceId, other.id);
 });

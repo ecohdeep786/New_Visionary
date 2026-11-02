@@ -76,3 +76,53 @@ inventories, current role/proof lifecycle and frontend transport, real browser
 positive/deny/recovery/two-device evidence, accepted dev integration and actual
 Jira Done before cleanup. Hosted/email/provider/privacy/release gates retain their
 own acceptance. No dev merge, main promotion or cloud provisioning is performed.
+
+## Independent findings and replacement checkpoint
+
+Independent exact5f91935d review requested changes in report7a6cb892:
+[eight actual SQL probes](https://github.com/ecohdeep786/New_Visionary/blob/7a6cb892c1f32c633c67e85d7ca28f931eae1d16/visionary-app/docs/architecture/reviews/KAN39_TRANSACTION_INDEPENDENT_REVIEW.md).
+Five reproduced unsafe outcomes were owner-workspace tombstone bypass, expiry
+after a delayed lookup, foreign OWNER authority, a retained OWNER invite, and
+same-UID outbox cursor commit inversion across workspaces. Three additional
+deny/preservation probes passed. The former13 SQL passes and successful
+CI41400838600 did not establish source acceptance.
+
+Replacement source checks the canonical owner's deletion markers on every
+workspace command/read. Membership authority rejects foreign OWNER rows, and
+persisted invitations may only grant MEMBER/ADMIN. A canonical owner cannot
+self-accept; OWNER authority remains unchanged, matching WorkspaceRepository.
+The current database clock (clock_timestamp, not transaction-start NOW) checks
+expiry after serialized lookup/authority and again after the final outbox write;
+late work rolls back all authority and lifecycle writes. The injected caller
+clock may only make expiry stricter. Mutating operations acquire the canonical
+actor UID anchor before workspace locks and retain it through commit, fencing
+same-UID outbox allocation across workspaces without shared-lock upgrades.
+
+Own replacement compile and18/18 actual PostgreSQL tests passed, including a
+second expiry test delayed after actual outbox insertion that verifies complete
+rollback. Exact replacement independent review/full checks remain pending.
+
+Full local product check and registered data:check on original5f91935d both
+exited0 (DATA01 20, DATA02 50, SQL/Firestore11, invitations13). The separate
+local deployed-lock command exited1 at Prisma generation: temporary dependency
+junction lacked the derived .cache parent. No invitation assertion ran in that
+attempt. Its exact failure/result remain outside Git; CI's separate deployed
+lock compile and99+11+13 tests passed. Resolve that local setup before rerun,
+without changing package locks or relabeling the failed attempt.
+
+The official candidate root commands started the actual real-Firebase product
+at localhost5183/API3003, with byte-identical preserved ignored configuration.
+Existing Professional session restored. Direct browser observation confirmed
+Connections' empty Requests/Connected/Closed history, the account-email form,
+permission-boundary text, and explicit local-preview/no-cloud/no-cross-device
+disclosure. Form was opened and restored without entering an email or sending
+an invitation. This is a verified remaining product gap, not a completed SQL
+invitation journey. Initial connection-refused/cold navigation attempts and
+browser API recovery remain retained, not counted as passes.
+
+Raw actual JPEG browser-connections-preview.jpg remains outside Git at the
+evidence root:78925 bytes, SHA256
+d0fa946b33e1cb30d1b21bf9ade6f80d93bceec6a733cbaac028a34123a3e501.
+No new connection, permission, profile, billing or child/institution activation
+was requested in that browser inspection. No connected acceptance, dev merge,
+Jira Done, main promotion or worktree cleanup is claimed.
