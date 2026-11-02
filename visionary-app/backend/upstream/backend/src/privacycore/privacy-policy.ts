@@ -1,10 +1,18 @@
 import { createHash } from 'node:crypto';
 import { DATA_CLASSES, PrivacyError, PrivacyPolicy, PolicySnapshot } from './privacy-core-types';
 export function record(value: unknown, allowed: readonly string[]): asserts value is Record<string, any> {
-  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.getPrototypeOf(value) !== Object.prototype || Object.keys(value).some(k => !allowed.includes(k))) throw new PrivacyError('invalid_command');
+  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.getPrototypeOf(value) !== Object.prototype || Reflect.ownKeys(value).some(k => typeof k !== 'string' || !allowed.includes(k)) || Object.values(Object.getOwnPropertyDescriptors(value)).some(d => !d.enumerable || !Object.prototype.hasOwnProperty.call(d, 'value'))) throw new PrivacyError('invalid_command');
 }
 export const uid = (value: unknown): value is string => typeof value === 'string' && /^[A-Za-z0-9_-]{1,128}$/.test(value) && !/^__.*__$/.test(value);
 const text = (value: unknown, max: number) => typeof value === 'string' && value.trim().length > 0 && value.length <= max;
+function dataArray(value: unknown): value is any[] {
+  if (!Array.isArray(value) || Object.getPrototypeOf(value) !== Array.prototype) return false;
+  return Reflect.ownKeys(value).every(k => {
+    if (k === 'length') return true;
+    const descriptor = Object.getOwnPropertyDescriptor(value, k);
+    return typeof k === 'string' && /^(0|[1-9][0-9]*)$/.test(k) && !!descriptor?.enumerable && Object.prototype.hasOwnProperty.call(descriptor, 'value');
+  });
+}
 export function validatePrivacyPolicy(value: unknown): asserts value is PrivacyPolicy {
   try {
     record(value, ['policyVersion', 'admission', 'classes']);
@@ -13,13 +21,13 @@ export function validatePrivacyPolicy(value: unknown): asserts value is PrivacyP
     // Preserve the current product boundary; a configuration/guardian flag alone
     // cannot enable children before the connected replacement is accepted.
     if (value.admission.minimumSelfServeAge !== 18 || value.admission.under18Activation !== 'blocked') throw Error();
-    if (!Array.isArray(value.classes) || value.classes.length !== DATA_CLASSES.length) throw Error();
+    if (!dataArray(value.classes) || value.classes.length !== DATA_CLASSES.length) throw Error();
     const seen = new Set();
     for (const c of value.classes) {
       record(c, ['dataClass', 'purpose', 'permittedFields', 'retention', 'access']);
       if (!DATA_CLASSES.includes(c.dataClass) || seen.has(c.dataClass) || !text(c.purpose, 1000) || !['owner', 'operator', 'service'].includes(c.access)) throw Error();
       seen.add(c.dataClass);
-      if (!Array.isArray(c.permittedFields) || !c.permittedFields.length || c.permittedFields.length > 40 || new Set(c.permittedFields).size !== c.permittedFields.length || c.permittedFields.some(f => typeof f !== 'string' || !/^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(f) || ['constructor', 'prototype'].includes(f) || /password|privatekey|paymentsecret|sessioncookie/i.test(f))) throw Error();
+      if (!dataArray(c.permittedFields) || !c.permittedFields.length || c.permittedFields.length > 40 || new Set(c.permittedFields).size !== c.permittedFields.length || c.permittedFields.some(f => typeof f !== 'string' || !/^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(f) || ['constructor', 'prototype'].includes(f) || /password|privatekey|paymentsecret|sessioncookie/i.test(f))) throw Error();
       record(c.retention, ['mode', 'days', 'rationale', 'authorityRef']);
       if (!text(c.retention.rationale, 1000)) throw Error();
       switch (c.retention.mode) {

@@ -152,3 +152,23 @@ test('missing or corrupt acknowledgement/proposal digest denies rather than upgr
     await denies(() => f.core.collectArtifact(serviceUid, f.input), 'access_denied');
   }
 });
+
+test('shared metadata boundary rejects getters before any value read or clone', async () => {
+  const f = await fixture(); let reads = 0;
+  const candidate = Object.defineProperty({}, 'runId', { enumerable: true, get() { reads++; return reads < 3 ? 'safe' : { rawPrivateText: 'synthetic-private-text' }; } });
+  await denies(() => f.core.minimize('model_artifacts', candidate), 'field_not_minimized');
+  assert.equal(reads, 0);
+  const hidden = Object.defineProperty({}, 'runId', { value: 'hidden', enumerable: false });
+  await denies(() => f.core.minimize('model_artifacts', hidden), 'field_not_minimized');
+  await denies(() => f.core.minimize('model_artifacts', { runId: 'safe', [Symbol('private')]: 'hidden' }), 'field_not_minimized');
+});
+
+test('policy array accessors deny before reading changing elements', () => {
+  for (const target of ['classes', 'fields']) {
+    const policy = snapshot().policy; let reads = 0;
+    const array = target === 'classes' ? policy.classes : policy.classes[0].permittedFields;
+    Object.defineProperty(array, '0', { enumerable: true, get() { reads++; throw Error('getter must not run'); } });
+    assert.throws(() => validatePrivacyPolicy(policy), e => e.code === 'policy_invalid');
+    assert.equal(reads, 0);
+  }
+});
