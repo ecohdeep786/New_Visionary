@@ -232,3 +232,55 @@ privacy/release acceptance. No token or SQL Person row alone activates those
 protected roles. Live Jira remains In Progress. New source or final evidence
 heads require their own exact review; the earlier rejected5f is not accepted and
 this bounded3e decision does not approve an unfinished product merge or cleanup.
+
+## Bounded harness follow-up — exact0b755723
+
+**Decision: the test-readiness follow-up is resolved and the source/test
+checkpoint is approved at exact `0b755723168bd5d13842f6575f8de12f50006805`.
+This does not approve the unfinished product for dev merge, native Jira Done,
+protected-role activation or release. Exact-head full CI and remaining product
+gates still apply.** Reviewer responsibility and independence are unchanged.
+
+The reviewer fetched and remote-verified the exact replacement and merged it into
+the matching review instance. Its delta over3e changes only the submitted SQL
+test file and worker handoff. Backend runtime, frontend, infrastructure, schemas,
+dependencies and locks are byte-identical; the earlier independent own-source
+8/8 repaired-mode probes and18/18 SQL execution remain evidence for that runtime.
+They are not mislabeled as a fresh independent SQL execution of0b's harness.
+
+Four paused tests now race their readiness promise against the actual pending
+operation and each has an explicit15-second test timeout. An operation rejected
+before its scheduling pause therefore surfaces as test failure instead of an
+unresolved readiness wait. The revoke, real elapsed expiry, final-outbox rollback,
+canonical ownership and ordered-cursor assertions remain unchanged. No token
+validity or10-second production transaction budget was extended. The owner
+self-accept denial and all18 regression cases remain present.
+
+The reviewer independently executed
+[the readiness probe](evidence/KAN39_TEST_READINESS_PROBE.cjs): **4/4 passed**,
+zero failed/skipped. This dependency-free harness probe extracts and executes
+the four exact `Promise.race` expressions from the submitted test source after
+checking equality to exact0b. With readiness deliberately unresolved and the
+operation rejected, every expression exposed the original synthetic rejection
+immediately; a separate1-second sentinel bounds the probe itself. It also checks
+that all four test timeout declarations remain present. This is explicitly
+harness-only evidence, not SQL, API or product execution. Source test syntax and
+exact-range whitespace checks passed. Raw log:
+`C:/Users/Administrator/Visionary-local/kan39-independent-review-20261102/readiness-0b755723.log`.
+
+The handoff retains both failed local deployed-lock setup attempts and the
+derived-cache/junction diagnosis, states that only derived cache paths changed,
+and leaves a successful complete local deployed rerun pending rather than
+predicting it. Its statement that18 SQL tests passed with this test delta refers
+to the implementer's precommit working-tree result, not a new reviewer SQL run.
+The canonical runtime identity and accepted earlier review are explicit. Current
+Connections/policy/reissue/API/browser/product gates remain unfinished; no new
+permission or institution/child activation is claimed.
+
+The reviewer independently located
+[exact-head CI41405789855](https://github.com/ecohdeep786/New_Visionary/actions/runs/41405789855),
+still in progress at this review checkpoint. Confirm its actual result before
+any later verification closeout; this review does not invent that result or the
+main verifier's still-running local deployed command outcome. The reviewer used
+no SQL window, shared generation, product browser or account writes for this
+two-file follow-up. Later source or evidence changes require exact delta review.
