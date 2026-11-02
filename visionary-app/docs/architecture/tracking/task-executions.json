@@ -751,7 +751,7 @@
       "sourceId": "DATA-02",
       "jiraKey": "KAN-37",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-37",
-      "status": "Rework",
+      "status": "Done",
       "scope": "Local DATA-02 enabler: versioned PostgreSQL migrations, distinct identities, durable bounded backfills, compatibility and rollback guards; production-capable job packaged. Hosted/domain/release acceptance remains open.",
       "branch": "codex/deepseek-kan-37-data-migrations",
       "baseCommit": "27ba46b73e08071049c36f7999ddf0367e50738d",
@@ -899,7 +899,55 @@
         "jiraReturnedStatus": "Rework",
         "finding": "Sub1000ms backfill budget becomes1ms SQL statement_timeout; metadata setup can fail before hanging source enters, returning57014 rather than expected deadline. Original accepted implementation evidence retained; no repair claimed.",
         "evidence": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41219772606/attempts/1",
-        "queue": "Next repair after KAN-33 accepted integration, actual Done and cleanup; before KAN-39"
+        "queue": "Runtime repair complete; next candidate KAN-39 still requires live prerequisite and existing-worktree review. Calendar dates are ignored per founder direction.",
+        "state": "resolved; independently approved, integrated/published/verified and actual scoped Jira Done",
+        "resolvedDate": "2026-11-02",
+        "branch": "codex/principal-kan-37-deadline-rework",
+        "baseCommit": "3aa0d91957b31f44ca708f5af6b1a09515cd4f48",
+        "runtimeAndTests": "6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e",
+        "acceptedFinalHead": "55e7bb25a5ff7decc7f4c3fc1bfd0b31b94b3828",
+        "review": {
+          "reviewer": "/root/kan38_final_review",
+          "confirmationReviewer": "/root/kan37_final_evidence_review",
+          "reportCommit": "dcab02efee006ca7102d7faef9a14197e18b5076",
+          "reportUrl": "https://github.com/ecohdeep786/New_Visionary/blob/dcab02efee006ca7102d7faef9a14197e18b5076/visionary-app/docs/architecture/reviews/KAN37_DEADLINE_INDEPENDENT_REVIEW.md",
+          "decision": "approved exact final head for bounded development-enabler repair"
+        },
+        "verification": {
+          "finalHeadCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41286130404",
+          "conclusion": "success",
+          "sqlData01": 20,
+          "sqlData02": 50,
+          "sqlFirestoreProvisioning": 11,
+          "frontend": 625,
+          "independentAdditionalProbes": 5,
+          "independentGuardWeakeningFailures": 3,
+          "browserReceipt": "docs/architecture/delivery/evidence/KAN37_REWORK_BROWSER_SQL_2026-11-01.json",
+          "localWholeDataExit": 1,
+          "separateConfiguredProvisioningExit": 0,
+          "failurePreservation": "Original test failure, Java lookup failure, cold browser waits and watched-API proxy failure retained with corrections/recovery; no blanket local command pass asserted."
+        },
+        "integration": {
+          "commit": "adff90473edf523f2d6a6210e80f13ae6c6e915d",
+          "pullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/35",
+          "wholeTreeEqualsApprovedCandidate": true,
+          "ci": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41395618094",
+          "checksJob": 125116183999,
+          "conclusion": "success",
+          "production": "skipped",
+          "published": true
+        },
+        "jiraDone": {
+          "transitionId": "51",
+          "returnedStatus": "Done",
+          "commentId": "10525"
+        },
+        "cleanup": {
+          "state": "configuration byte-preserved outside Git; owned product/SQL ports stopped; worker/reviewer removal follows evidence closeout publication",
+          "preservationRoot": "C:/Users/Administrator/Visionary-local/kan37-completed-20261102",
+          "rawEvidenceRoot": "C:/Users/Administrator/Visionary-local/kan37-deadline-rework-20261101",
+          "sourceAndReviewRefsRetained": true
+        }
       }
     },
     {
