@@ -149,3 +149,22 @@ records all results and limits. Raw/private evidence remains outside Git.
 Final evidence-head independent approval/CI, dev integration, actual Jira Done
 and evidence-preserving cleanup are still pending. Hosted/provider/content/
 domain/privacy/model/two-device and main release gates remain open.
+
+## Accepted scoped repair closeout - 2 November 2026
+
+Exact final55e7bb25 was independently approved in pushed reportdcab02ef;
+/root/kan37_final_evidence_review independently reconfirmed that evidence.
+Final-head CI41286130404 passed. PR35 published dev integration
+adff90473edf523f2d6a6210e80f13ae6c6e915d, whose whole tree equals the
+approved candidate. Integrated CI41395618094 checks125116183999 passed;
+production skipped. Native Jira transition51 returned Done, with receipt
+comment10525. This supersedes pending-gate statements above without erasing
+their historical timing or retained failures.
+
+Three ignored configuration files are byte-preserved outside Git at
+C:/Users/Administrator/Visionary-local/kan37-completed-20261102. Raw evidence
+remains outside Git in the original evidence root. Owned product/SQL ports
+are stopped. Completed worker/reviewer removal follows this evidence-only
+closeout publication; pushed source/review refs remain. No cleanup success is
+claimed in advance. Hosted/domain/provider/content/rights/privacy/model/
+two-device and release gates remain open. No main promotion.
