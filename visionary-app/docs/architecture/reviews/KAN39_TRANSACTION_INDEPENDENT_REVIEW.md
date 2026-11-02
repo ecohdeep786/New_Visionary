@@ -138,3 +138,97 @@ frontend transport, actual browser/two-device, hosted/provider/privacy and relea
 gates remain. No merge, Jira Done, main promotion or worktree cleanup is approved.
 At eventual accepted cleanup remove the reviewer backend dependency junction as
 a link object without following or deleting its shared cache target.
+
+## Replacement source review — exact3e4047d7
+
+**Decision: N1-N5 are resolved; the transactional correction is independently
+source-approved at exact `3e4047d712aaf6a4562679ec9f50ed694ee6e28f` for continued
+KAN-39 work. This is a bounded source-checkpoint decision, not approval to merge
+the unfinished task into dev, move Jira to Done, activate protected roles or
+release the product. The verification-harness follow-up and product gates below
+remain explicit.** Reviewer responsibility and independence are unchanged.
+
+The reviewer fetched and remote-verified exact3e4047d7 and unchanged devf50868b3,
+then merged that exact replacement into the same clean matching review instance.
+The delta over rejected5f changes only the PostgreSQL invitation adapter, its
+submitted SQL regression file and the worker handoff. Before this appendix, the
+review tree differed from the candidate only by the two retained independent
+report/probe files. Exact-range whitespace passed. No implementation was edited
+by the reviewer and the original rejection/probe logs remain preserved.
+
+The replacement reads canonical Workspace.uid and checks its owner-scoped
+workspace/person tombstone before every command/read. Its membership query
+rejects foreign OWNER rows, fresh acceptance rejects canonical-owner self-join
+and stored invite roles outside MEMBER/ADMIN, and existing MEMBER/GUEST rows
+retain their roles. This reconciles the accepted repository authority boundary
+without introducing an owner-transfer operation.
+
+The current database `clock_timestamp()` is compared at serialized acceptance,
+after issuer authorization and after the final outbox write; injected caller time
+can only make that check stricter. Delayed work that reaches expiry rolls back
+the complete transaction. A canonical Person `FOR UPDATE` anchor is acquired
+before workspace locks and held through outbox allocation/commit, so different
+workspaces for the same UID cannot publish cursors out of commit order. It is not
+a later shared-to-exclusive lock upgrade. The existing authority, receipt and
+rollback boundaries were retained.
+
+### Independent replacement execution
+
+The reviewer recompiled its own `tsconfig.data.json` and
+`tsconfig.invitations.json` successfully, without shared Prisma generation.
+The exact-source probe ran with:
+
+```powershell
+$env:KAN39_REVIEW_SOURCE='3e4047d712aaf6a4562679ec9f50ed694ee6e28f'
+$env:KAN39_EXPECT_REPAIRED='1'
+node --test --test-reporter=tap docs/architecture/reviews/evidence/KAN39_TRANSACTION_INDEPENDENT_PROBES.cjs
+```
+
+Actual result: **8/8 passed**, zero failures/skips,13.616 seconds. Unlike the
+original baseline mode, this requires the five former unsafe cases to deny or
+preserve ordering/state. The three independent receipt/lifecycle/GUEST checks
+also remain passing. The source anchor was inspected in addition to the bounded
+outbox visibility observation. The baseline8/8 unsafe reproductions are retained
+as separate rejected-source evidence, never relabeled as acceptance tests.
+
+The reviewer then independently ran the submitted entire actual PostgreSQL
+DATA-04 suite from its same newly compiled exact3e source: **18/18 passed**, zero
+failed/skipped,19.421 seconds. This includes delayed final-outbox expiry with
+complete rollback, canonical-owner erasure across all command/read entry points,
+foreign/retained OWNER denial, original races/outage/cold retry and UID ordering.
+No copies of the service business logic were used. Its result is distinct from
+the implementer's earlier successful working-tree run before the source commit.
+
+Raw replacement logs and exact-source results are retained at
+`C:/Users/Administrator/Visionary-local/kan39-independent-review-20261102/3e4047d7`.
+The parent-coordinated exclusive loopback SQL window was used; the synthetic
+server was stopped in finally and its stop log confirms that result. No account,
+profile, billing, live Firestore or cloud record was used. No dependency cache
+contents or product runtime were changed by the reviewer.
+
+The reviewer independently read live
+[CI41404661904](https://github.com/ecohdeep786/New_Visionary/actions/runs/41404661904):
+checks job125143853280 completed successfully; production job was skipped. This
+is the exact replacement's required CI checkpoint. It does not establish the
+unfinished connected feature or erase the prior local deployed-lock setup
+failure; the integrator retains that failure and any separately corrected rerun.
+
+### Remaining verification and product gates
+
+The submitted expiry tests wait for `pause.ready`. In particular, a sufficiently
+slow host can reach the earlier expiry denial before the late-outbox pause, so
+readiness may never resolve while the pending operation rejects. No explicit
+test timeout/readiness-versus-rejection race is present. Bound the harness and
+surface that early failure explicitly before final verification submission.
+This is a source-inspection robustness follow-up, not a claim that an actual
+hang occurred: the reviewer18/18 execution and current CI both passed. It does
+not require weakening the production expiry guard or extending token validity.
+
+KAN-39 still requires reissue/lifecycle/schema reconciliation, current accepted
+child/guardian/institution proof under PRIV-01, authenticated and bounded API with
+correct authority/rate-limit inventories, current frontend transport, real
+browser positive/deny/recovery/two-device outcome and applicable hosted/provider/
+privacy/release acceptance. No token or SQL Person row alone activates those
+protected roles. Live Jira remains In Progress. New source or final evidence
+heads require their own exact review; the earlier rejected5f is not accepted and
+this bounded3e decision does not approve an unfinished product merge or cleanup.
