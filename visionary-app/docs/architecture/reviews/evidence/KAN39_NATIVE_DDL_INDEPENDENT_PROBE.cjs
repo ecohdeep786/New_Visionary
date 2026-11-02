@@ -29,6 +29,7 @@ try {
     ['case-sensitive-key', sql.replace('lower("email")', '"email"')],
     ['role-added-to-key', sql.replace('lower("email"))', 'lower("email"), "role")')],
     ['accepted-in-active-predicate', sql.replace("('PENDING', 'ISSUED')", "('PENDING', 'ISSUED', 'ACCEPTED')")],
+    ...(strict ? [['positive-revision-tautology', sql + '\nALTER TABLE "command_results" DROP CONSTRAINT "command_results_revision_positive";\nALTER TABLE "command_results" ADD CONSTRAINT "command_results_revision_positive" CHECK ("revision">0 OR true);\n']] : []),
   ]) {
     assert.notEqual(weakened, sql);
     const status = run(name, weakened);

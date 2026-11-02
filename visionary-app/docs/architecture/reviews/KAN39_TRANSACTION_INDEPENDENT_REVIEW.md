@@ -414,3 +414,94 @@ checks. Current policy, authenticated API/Connections transport, real browser/
 two-device, hosted/provider/privacy and release gates remain open; KAN110 policy
 blocks protected activation. No merge, Done or completed-worktree removal follows
 from the successful focused SQL and provenance checks.
+
+## N6/N7 replacement review — exact1a22f733
+
+**Decision: N6 and N7 are resolved. The reissue/schema/verification source
+checkpoint is independently approved at exact
+`1a22f73337ad13ccd94ae9890282e5caafb6b76e` for continued KAN-39 work. This
+bounded source decision does not approve the unfinished feature for dev merge,
+Jira Done, protected-role activation or release.** Reviewer responsibility and
+independence remain unchanged; rejecteda983 and its failure evidence are retained.
+
+The reviewer fetched and remote-verified exact1a22f733 and unchanged devf50868b3,
+then merged the replacement into the same clean matching reviewer instance.
+Five files change over rejecteda983: native DDL verifier, production admission
+command, target tests, the physical partial-key regression and worker handoff.
+Migration artifacts, Prisma schema and invitation runtime remain unchanged from
+the separately inspected and executed reissue checkpoint. Exact-range whitespace
+passed. No implementation or worker checkout was edited by the reviewer.
+
+The native verifier now inspects catalog table, method, uniqueness, validity,
+readiness, attribute count, ordered key expressions and normalized predicate
+instead of accepting substrings in an index definition. The required positive
+revision CHECK also has to match its expression. The physical uniqueness test
+now uses ADMIN for the second active delivery while the first is MEMBER, so
+adding role to the key no longer passes that database-boundary regression.
+
+Production admission receives the actual registered version sequence from the
+command, requires strictly increasing positive safe integers and compares the
+entire ordered receipt sequence. The positive1,2 case and denial of missing,
+reordered, duplicate and extra versions are present. Existing source approval,
+digest, target, byte pin, schema, namespace and receipt-age checks remain. This
+fix does not turn production admission into acceptance of an arbitrary array or
+authorize applying pending DDL to retained records.
+
+### Independent exact replacement execution
+
+The reviewer recompiled its own data and invitation runtime successfully, using
+the already verified task-local backend client with unchanged schema. No Prisma
+generation or shared dependency mutation was performed. In an exclusive
+loopback SQL window the reviewer executed:
+
+| Check | Actual result |
+| --- | --- |
+| Exact physical DDL/model/native baseline | Exit0 |
+| Unexpected physical invitation column | Exit1, model drift rejected |
+| Active key without lower(email) | Exit1, native index drift rejected |
+| Active key with extra role | Exit1, native index drift rejected |
+| Active predicate including ACCEPTED | Exit1, native index drift rejected |
+| Positive revision CHECK weakened to revision>0 OR true | Exit1, native constraint drift rejected |
+| Eight independent repaired-mode realSQL probes | 8/8, zero failures/skips,4.646 seconds |
+| Submitted core/reissue/evolution realSQL suites | 28/28, zero failures/skips,18.764 seconds |
+| Submitted production-target suite | 7/7, zero failures/skips,1.584 seconds |
+
+The [native probe](evidence/KAN39_NATIVE_DDL_INDEPENDENT_PROBE.cjs) ran with
+`KAN39_NATIVE_EXPECT_STRICT=1`. Its strict mode additionally exercises the
+positive revision tautology; prior rejected-source baseline evidence remains
+separate. These are real executions of the submitted physical verifier after
+temporary weakening of only the reviewer's version2 artifact. All exact original
+SQL bytes were restored in finally and independently compared with1a afterward.
+No worker source or accepted historical migration was changed. Every negative
+variant now fails for the intended model/index/constraint gate, rather than a
+missing tool or test-owned constant.
+
+The seven target tests combine policy/configuration checks and an actual
+synthetic canonical migration command using quoted IAM-style role names; they
+do not establish real GCP/IAM/production execution. Their former valid pinned
+version2 receipt failure is resolved. The28 physical cases retain the original
+permission/race/outage recovery obligations as well as history, normalized
+active-key enforcement, literal email matching, both session timezones,
+failed-v2 migration rollback/cold retry and retained-record migration denial.
+
+Raw exact results and each negative verifier stdout/stderr remain outside Git at
+`C:/Users/Administrator/Visionary-local/kan39-independent-review-20261102/1a22f733`.
+The retained synthetic server was stopped in finally; its stop log confirms it.
+The SQL window was returned to the main verifier. No live account, profile,
+billing, Firestore, hosted SQL, cloud resource or browser was used by this review.
+
+The reviewer independently located the exact replacement
+[CI41481231768](https://github.com/ecohdeep786/New_Visionary/actions/runs/41481231768)
+and read its live jobs: checks125399773244 completed successfully; production
+125401923856 was skipped. This replaces the earlier failed CI checkpoint for
+this new head without erasing that failure. The handoff accurately distinguishes
+prior precommit focused results, retained layout/DATA failures and broader gates.
+
+No new blocking source finding remains in this bounded replacement. Current
+accepted institution/guardian/age/purpose policy, authenticated bounded API and
+authority inventories, Connections transport, actual connected browser and
+two-device outcomes, hosted/provider/privacy and release acceptance remain open.
+Prerequisite probes are not legal/policy approval or acceptance of their provider.
+KAN-39 must not be declared complete from these local SQL/source/CI results.
+Any subsequent source or final evidence head requires exact review again; no
+merge, Jira transition, activation or worktree cleanup was performed here.
