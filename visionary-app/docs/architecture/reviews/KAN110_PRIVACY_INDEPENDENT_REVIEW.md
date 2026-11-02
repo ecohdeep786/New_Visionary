@@ -1,5 +1,7 @@
 # KAN-110 independent privacy repair review
 
+Current source-only decision: exact `de99307de4fe3497cf229460382d56580def7406` accepted; see final re-review below. Historical rejected candidates remain intact. Full feature and integration gates remain open.
+
 - Reviewer: `/root/kan110_privacy_review`, separate from implementer; accepts responsibility for this exact-source review.
 - Candidate reviewed: `80983e8c940e65ed911411c1f508ad611e11f98e`.
 - Worker: `codex/principal-kan-110-policy-rework`.
@@ -89,3 +91,25 @@ Correction: reject unsupported property descriptors/accessors before reading can
 - Actual Firestore was official pinned emulator 1.22.0, loopback-only synthetic project `demo-visionary-kan110`, Java 21, synthetic reviewers/records. Launchers cleaned up their emulator children. No live policy approval, record deletion, admission activation or provider mutation occurred.
 
 Submit the next repaired exact SHA for independent review. Full policy-owner, consumer/owning-domain, browser, hosted, integration and Jira acceptance gates remain as stated above.
+
+## Final source re-review: de99307de4fe3497cf229460382d56580def7406
+
+Decision: **ACCEPTED — INTERNAL SOURCE CHECKPOINT ONLY** for exact `de99307de4fe3497cf229460382d56580def7406`. This is the current source decision; prior rejected candidates and findings above are retained as historical receipts. Reviewer remains `/root/kan110_privacy_review`, independent of the author, and accepts responsibility for this scoped decision.
+
+All three demonstrated source defects are corrected on this exact candidate: acknowledgement/proposal proof binds both version and canonical digest; ordinary nested values cannot pass bounded scalar metadata minimization; own property descriptors are checked before any candidate value evaluation, denying getters, symbols and hidden fields. Policy class and permitted-field arrays also reject accessor elements and unsupported descriptor/key extensions before evaluation. Ordinary enumerable data descriptors, including frozen records, remain usable.
+
+The reviewer's matching task instance merged the exact corrected source without discarding prior review receipts. Backend/source, scripts and package diff against the worker candidate is empty. Temporary reviewer probe additions were restored, and clean state was checked before the report update. No dependency locks/model generation or worker code were changed by this review.
+
+### Exact-source verification
+
+- Independently compiled and ran `node scripts/privacycore-check.mjs`: **48/48 passed**, pinned official Firestore 1.22.0 emulator, Java 21, loopback-only `demo-visionary-kan110`, synthetic review/service identities and records. Log `C:\Users\Administrator\Visionary-local\kan110-independent-de99307d.log`, SHA256 `1715cd4442a111562fab2af46fda8379765eaf43458a0b31d1310d0370facb84`.
+- Re-ran six independent proof/replay/minimization probes against this exact compiled source and actual Firestore adapter: **54/54 passed** including submitted suite. True absent digest fields deny; wrong version with otherwise-current digest denies; canonical-equivalent policy key ordering retains validity; refreshing only acknowledgement does not refresh artifact proposal; corrupt persisted artifact digest cannot replay; intended scalar text remains usable while nested text objects deny. Log `C:\Users\Administrator\Visionary-local\kan110-independent-proofs-de99307d.log`; full temporary suite preserved at `C:\Users\Administrator\Visionary-local\kan110-independent-probe-suite-de99307d.cjs`.
+- **10/10 separate reviewer-owned actual compiled descriptor-boundary probes passed:** changing getter denied with zero reads; hidden and symbol metadata denied; ordinary frozen data descriptor accepted; policy admission getter denied with zero reads; classes/permittedFields element getters denied with zero reads; policy array hidden/symbol extensions denied; approval digest getter denied with zero reads. These descriptor-only probes do not contact a store. Script `C:\Users\Administrator\Visionary-local\kan110-independent-descriptor-probes-de99307d.cjs`; log of the same name ending `.log`, SHA256 `3b31c54fda83fc3a74964716974533cff865cd2d48804022af34d9a29c21d4bd`.
+- Layout/import integrity passed again: 3842 imported files, four recorded patches, credentials excluded. Production-check syntax passed. Relevant ordinary/deployed-lock test registration remains included as inspected above. Full SQL/frontend/CI outcomes remain the integrator's separately recorded evidence; this review does not substitute focused results for them.
+- Tests cover transactional pending-erasure/fence durability, rollback and lost acknowledgements through the submitted actual-store suite. Synthetic account/billing preservation and no live fallback remain explicit. Launchers stop their owned emulator children.
+
+### Acceptance boundaries retained
+
+This accepts the bounded implementation source and correction of the independent findings. It does **not** accept a real privacy policy, retention/admission decision, guardian/institution proof, consent publication, completed erasure/export, global consumer fencing, connected product/controller/UI journey, browser end-to-end behavior, hosted/provider deployment, full KAN-110 Done, or KAN-39 unblock. Those require the applicable named owner, owning-domain/consumer, authenticated browser and hosted evidence. No real user records, passwords, policies, grants or provider resources were changed.
+
+**Do not infer merge/Done/cleanup authorization from this source-only decision.** Any integration must have an explicitly accepted scope, complete relevant full checks and remaining product gates. No merge to `dev` or `main`, Jira transition or worktree removal was performed by this reviewer. Later source changes require a new exact-SHA decision. Preserve these receipts alongside the author's handoff and integrator evidence.
