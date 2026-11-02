@@ -1,0 +1,157 @@
+import test, { before, after } from 'node:test';
+import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
+import fixture from '../data-02/postgres-fixture.cjs';
+const { req, backend, stagingDatabase } = fixture;
+const { MigrationRunner } = req('./dist/src/data/migration-runner.js');
+const { canonicalMigrations } = req('./dist/src/data/migration-registry.js');
+const { InvitationService } = req('./dist/src/invitations/invitation.service.js');
+const { PostgresInvitationStore } = req('./dist/src/invitations/invitation-store.js');
+const { PrismaClient } = req('@prisma/client');
+let env, target, service;
+const at = new Date('2026-11-02T00:00:00Z');
+const fresh = db => new InvitationService(new PostgresInvitationStore(db, target), () => at);
+const code = value => error => error.code === value;
+before(async () => {
+  env = await stagingDatabase();
+  await new MigrationRunner(env.store(), canonicalMigrations(backend)).applyAll();
+  await env.grantRuntime();
+  target = { role: env.runtimeRole, schema: env.schema, database: new URL(env.config.runtimeUrl).pathname.slice(1) };
+  service = fresh(env.runtime);
+});
+after(async () => { if (env) await env.close(); });
+async function setup(personal = false) {
+  const suffix = randomUUID().replaceAll('-', ''), owner = 'owner_' + suffix, user = 'user_' + suffix, other = 'other_' + suffix;
+  await env.db.person.createMany({ data: [owner, user, other].map(uid => ({ uid })) });
+  const w = await env.db.workspace.create({ data: { uid: owner, slug: suffix, name: 'Synthetic invitation workspace', isPersonal: personal } });
+  await env.db.workspaceMembership.create({ data: { uid: owner, workspaceId: w.id, role: 'OWNER', source: 'direct' } });
+  return { owner, user, other, ws: w.id };
+}
+const invite = (x, role = 'MEMBER', email = 'synthetic@example.invalid') => service.invite(x.owner, x.ws, { role, email });
+const membership = (x, uid = x.user) => env.db.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: x.ws } } });
+const events = (id, action) => env.db.auditEvent.count({ where: { resourceId: id, ...(action ? { operation: 'invitation.' + action } : {}) } });
+
+test('actual SQL issue stores only token hash and commits lifecycle/receipt/outbox together', async () => {
+  const x = await setup(), i = await invite(x);
+  const row = await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } });
+  assert.match(i.token, /^[A-Za-z0-9_-]{43}$/); assert.match(row.tokenHash, /^[a-f0-9]{64}$/);
+  assert.equal(await membership(x), null); assert.equal(await events(row.id, 'issued'), 1);
+  assert.equal(await env.db.commandResult.count({ where: { workspaceId: x.ws } }), 1);
+  const receipts = await env.db.commandResult.findMany({ where: { workspaceId: x.ws } });
+  assert.equal(JSON.stringify(receipts).includes(i.token), false);
+  const visible = await service.list(x.owner, x.ws);
+  assert.equal(JSON.stringify(visible).includes(row.tokenHash), false);
+  assert.equal(await env.db.outboxEvent.count({ where: { workspaceId: x.ws } }), 1);
+});
+test('one token admits only one of two concurrent verified UIDs', async () => {
+  const x = await setup(), i = await invite(x);
+  const results = await Promise.allSettled([x.user, x.other].map(uid => service.accept(uid, i.token)));
+  assert.equal(results.filter(r => r.status === 'fulfilled').length, 1);
+  assert.equal(results.filter(r => r.status === 'rejected' && r.reason.code === 'already_accepted').length, 1);
+  assert.equal(await env.db.workspaceMembership.count({ where: { workspaceId: x.ws } }), 2);
+  assert.equal(await events(i.invitationId, 'accepted'), 1);
+});
+test('concurrent same-UID and cold-client retries replay without duplicate membership/audit/outbox', async () => {
+  const x = await setup(), i = await invite(x);
+  const results = await Promise.all(Array.from({ length: 4 }, () => service.accept(x.user, i.token)));
+  assert.equal(results.filter(r => !r.replay).length, 1);
+  const db = new PrismaClient({ datasources: { db: { url: env.config.runtimeUrl } } });
+  try { assert.equal((await fresh(db).accept(x.user, i.token)).replay, true); } finally { await db.$disconnect(); }
+  assert.equal(await events(i.invitationId, 'accepted'), 1);
+  assert.equal(await env.db.commandResult.count({ where: { uid: x.user } }), 1);
+  assert.equal(await env.db.outboxEvent.count({ where: { uid: x.user } }), 1);
+});
+test('completed revoke wins over acceptance paused after actual token lookup', async () => {
+  const x = await setup(), i = await invite(x);
+  let release, reached;
+  const wait = new Promise(r => { release = r; }), ready = new Promise(r => { reached = r; });
+  const proxy = { $transaction: (work, options) => env.runtime.$transaction(tx => work(new Proxy(tx, { get(t, k) {
+    if (k === 'invitation') return new Proxy(t.invitation, { get(model, method) {
+      if (method === 'findUnique') return async args => { const value = await model.findUnique(args); if (args.where.tokenHash) { reached(); await wait; } return value; };
+      const value = model[method]; return typeof value === 'function' ? value.bind(model) : value;
+    } });
+    const value = t[k]; return typeof value === 'function' ? value.bind(t) : value;
+  } })), options) };
+  const pending = fresh(proxy).accept(x.user, i.token);
+  try { await ready; await service.revoke(x.owner, i.invitationId); } finally { release(); }
+  await assert.rejects(pending, code('revoked'));
+  assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
+  assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } })).status, 'REVOKED');
+});
+test('database failure after membership and token mutation rolls back all state, then cold retry recovers', async () => {
+  const x = await setup(), i = await invite(x), name = 'fail_' + randomUUID().replaceAll('-', '');
+  await env.db.$executeRawUnsafe(`CREATE FUNCTION "${name}"() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW."uid"='${x.user}' THEN RAISE EXCEPTION 'synthetic receipt outage'; END IF; RETURN NEW; END $$`);
+  await env.db.$executeRawUnsafe(`CREATE TRIGGER "${name}" BEFORE INSERT ON "command_results" FOR EACH ROW EXECUTE FUNCTION "${name}"()`);
+  try { await assert.rejects(service.accept(x.user, i.token), /synthetic receipt outage/); }
+  finally { await env.db.$executeRawUnsafe(`DROP TRIGGER "${name}" ON "command_results"`); await env.db.$executeRawUnsafe(`DROP FUNCTION "${name}"()`); }
+  assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
+  assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } })).status, 'PENDING');
+  const db = new PrismaClient({ datasources: { db: { url: env.config.runtimeUrl } } });
+  try { assert.equal((await fresh(db).accept(x.user, i.token)).replay, false); } finally { await db.$disconnect(); }
+  assert.equal((await membership(x)).role, 'MEMBER');
+});
+test('acceptance preserves OWNER and never promotes an existing MEMBER through an ADMIN invitation', async () => {
+  const x = await setup(), ownerInvite = await invite(x);
+  assert.equal((await service.accept(x.owner, ownerInvite.token)).membershipRole, 'OWNER');
+  assert.equal((await membership(x, x.owner)).role, 'OWNER');
+  await env.db.workspaceMembership.create({ data: { workspaceId: x.ws, uid: x.user, role: 'MEMBER', source: 'direct' } });
+  const admin = await invite(x, 'ADMIN', 'other@example.invalid');
+  assert.equal((await service.accept(x.user, admin.token)).membershipRole, 'MEMBER');
+  assert.equal((await membership(x)).role, 'MEMBER');
+});
+test('removed issuer authority invalidates pending acceptance without consuming token', async () => {
+  const x = await setup(), i = await invite(x);
+  await env.db.workspaceMembership.delete({ where: { uid_workspaceId: { uid: x.owner, workspaceId: x.ws } } });
+  await assert.rejects(service.accept(x.user, i.token), code('unauthorized'));
+  assert.equal(await membership(x), null);
+  assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } })).status, 'PENDING');
+});
+test('a cold retry cannot recreate a removed membership or bypass a deletion tombstone', async () => {
+  const x = await setup(), i = await invite(x); await service.accept(x.user, i.token);
+  await env.db.workspaceMembership.delete({ where: { uid_workspaceId: { uid: x.user, workspaceId: x.ws } } });
+  await assert.rejects(service.accept(x.user, i.token), code('unauthorized')); assert.equal(await membership(x), null);
+  const j = await invite(x, 'MEMBER', 'deleted@example.invalid');
+  await env.db.deletionTombstone.create({ data: { uid: x.user, resourceType: 'workspace', resourceId: x.ws, reason: 'synthetic deletion' } });
+  await assert.rejects(service.accept(x.user, j.token), code('unauthorized')); assert.equal(await membership(x), null);
+});
+test('unknown identity, guessed token, expiration and revoked token cannot grant membership', async () => {
+  const x = await setup(), i = await invite(x);
+  await assert.rejects(service.accept('unprovisioned', i.token), code('unauthorized'));
+  await assert.rejects(service.accept(x.user, 'not-a-token'), code('invalid_token'));
+  await assert.rejects(service.accept(x.user, 'A'.repeat(43)), code('invalid_token'));
+  const late = new InvitationService(new PostgresInvitationStore(env.runtime, target), () => new Date('2027-01-01T00:00:00Z'));
+  await assert.rejects(late.accept(x.user, i.token), code('expired'));
+  await service.revoke(x.owner, i.invitationId);
+  await assert.rejects(service.accept(x.user, i.token), code('revoked')); assert.equal(await membership(x), null);
+});
+test('wrong workspace/history/actor access is denied and token hashes stay private', async () => {
+  const x = await setup(), y = await setup(), i = await invite(x);
+  await assert.rejects(service.invite(x.other, x.ws, { email: 'x@example.invalid', role: 'MEMBER' }), code('unauthorized'));
+  await assert.rejects(service.revoke(x.other, i.invitationId), code('unauthorized'));
+  await assert.rejects(service.list(x.other, x.ws), code('unauthorized'));
+  await assert.rejects(service.track(y.owner, y.ws, i.invitationId), code('not_found'));
+  const history = await service.track(x.owner, x.ws, i.invitationId);
+  assert.equal(history.length, 1); assert.equal(history[0].action, 'invitation.issued');
+  assert.equal(JSON.stringify(history).includes(i.token), false);
+});
+test('personal workspace, OWNER picker, malformed body and invalid expiry fail closed', async () => {
+  const x = await setup(true); await assert.rejects(invite(x), code('unauthorized'));
+  const y = await setup();
+  for (const payload of [{ role: 'OWNER', email: 'a@example.invalid' }, { role: 'MEMBER', email: 'a@example.invalid', expiresInSeconds: NaN },
+    { role: 'MEMBER', email: 'a@example.invalid', expiresInSeconds: 0 }, { role: 'MEMBER', email: 'bad' }, { role: 'MEMBER', email: 'a@example.invalid', actorUid: y.owner }])
+    await assert.rejects(service.invite(y.owner, y.ws, payload), code('invalid_command'));
+});
+test('same-time issues use unique IDs; duplicate delivery identity never silently overwrites a token', async () => {
+  const x = await setup(); const a = await invite(x), b = await invite(x, 'MEMBER', 'different@example.invalid');
+  assert.notEqual(a.invitationId, b.invitationId);
+  await assert.rejects(invite(x), code('conflict'));
+  await service.accept(x.user, a.token); assert.equal((await membership(x)).role, 'MEMBER');
+});
+test('wrong SQL identity and privileged migration client are rejected without writes', async () => {
+  const x = await setup();
+  const wrong = new InvitationService(new PostgresInvitationStore(env.runtime, { ...target, role: env.migrationRole }));
+  await assert.rejects(wrong.invite(x.owner, x.ws, { role: 'MEMBER', email: 'x@example.invalid' }), code('unavailable'));
+  const privileged = new InvitationService(new PostgresInvitationStore(env.db, { ...target, role: env.migrationRole }));
+  await assert.rejects(privileged.invite(x.owner, x.ws, { role: 'MEMBER', email: 'x@example.invalid' }), code('unavailable'));
+  assert.equal(await env.db.invitation.count({ where: { workspaceId: x.ws } }), 0);
+});

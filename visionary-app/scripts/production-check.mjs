@@ -47,6 +47,13 @@ try {
     if (existsSync(join(backend, source))) config.files.push(source);
   }
   const hasProvisioning = existsSync(join(backend, 'src/workspaces/personal-workspace.service.ts'));
+  const hasInvitations = existsSync(join(backend, 'src/invitations/invitation.service.ts'));
+  if (hasInvitations) {
+    config.files.push('src/invitations/invitation.service.ts', 'src/invitations/invitation-store.ts');
+    const destination = join(testRoot, 'contracts/data-04/invitations.test.mjs');
+    mkdirSync(dirname(destination), { recursive: true });
+    cpSync(join(root, 'backend/tests/contracts/data-04/invitations.test.mjs'), destination);
+  }
   if (hasProvisioning) {
     config.files.push('src/data/migration-runner.ts', 'src/data/migration-store.ts', 'src/data/migration-registry.ts');
     cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261024000001_data_01_workspaces'), join(backend, 'prisma/migrations/20261024000001_data_01_workspaces'), { recursive: true });
@@ -59,6 +66,7 @@ try {
   run([join(runtime, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.tests.json'], backend);
   run(['--test', '--test-reporter=tap', ...tests.map(name => join(testRoot, `${name}.test.cjs`))], root);
   if (hasProvisioning) run([join(root, 'scripts/provision-check.mjs'), '--root', temporary], root);
+  if (hasInvitations) run(['--test', '--test-reporter=tap', join(testRoot, 'contracts/data-04/invitations.test.mjs')], root);
 } finally {
   const actual = realpathSync(temporary);
   if (dirname(actual) !== realpathSync(tmpdir()) || !basename(actual).startsWith('visionary-production-check-')) throw Error('Temporary check cleanup boundary mismatch.');

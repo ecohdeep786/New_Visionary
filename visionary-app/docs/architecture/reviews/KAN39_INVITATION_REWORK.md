@@ -1,0 +1,78 @@
+# KAN-39 invitation repair checkpoint
+
+2 November 2026, Asia/Calcutta. Implementer: /root. Jira remains In Progress.
+Branch codex/principal-kan-39-invitation-rework; fresh D-098 instance from
+verified dev f50868b3eba2c539768c1454a473d4a29459b79b. Existing original
+candidate a93cc508 and independent reviewer evidence f34b5d17 remain preserved.
+No old task ancestry was merged wholesale.
+
+## Product boundary and repair
+
+The original InvitationService/InMemoryInvitationStore independently reproduces
+double membership from one token, acceptance after completed revocation,
+partially consumed acceptance after membership failure, and OWNER demotion.
+The original fifth issuer-authority observation also reproduces. Those five
+passing reproduction assertions establish unsafe outcomes, not acceptance.
+
+The replacement service uses an owning-store command contract. The PostgreSQL
+adapter verifies the configured DML identity/target and locks the non-personal
+workspace, current invitation and relevant authority rows. Acceptance rechecks
+token, lifecycle, current issuer membership and an already provisioned canonical
+UID. Token state, conditional membership creation, receipt, audit and outbox
+commit or roll back together. Existing roles are preserved; invitation acceptance
+does not perform role change or owner transfer. A same-UID cold retry replays
+without duplicate writes and cannot recreate a removed membership. A different
+UID cannot reuse the token. No plaintext token is saved in history or receipts.
+IDs use random UUIDs rather than a workspace/email/clock collision.
+
+## Actual verification to date
+
+Fresh layout/import integrity checks passed. Four unchanged source locks and
+available installed-lock hashes match the preserved dependency cache manifest;
+four ignored junctions are link-only dependencies, not new package installs.
+An initial attempt compared source-lock and installed-lock hashes directly;
+these deliberately differ. The manifest-based comparison corrected that setup
+check before verification. No shared dependency contents were changed.
+
+Own TypeScript compilation passed. All13 actual PostgreSQL invitation tests
+passed against disposable fixture schemas with separate migration/runtime roles
+on the retained loopback synthetic cluster. They exercise real domain commits,
+two-UID concurrency, same-UID/cold-client replay, a completed revocation while
+acceptance pauses after real SQL lookup, a physical database-trigger outage
+after membership/token changes, complete rollback and recovery, existing-role
+preservation, removed issuer and recipient authority, tombstones, wrong scope,
+expiry, malformed commands and wrong/privileged SQL identities. No customer,
+account, profile or billing record was used. The cluster was stopped afterwards.
+
+Failed attempts are retained outside Git: initial setup used the wrong existing
+migration method (apply rather than applyAll), and the next run passed12/13 but
+exposed a synchronous validation throw in a promise API. Methods now consistently
+return promises; the final13/13 rerun passed. Raw logs/results and protected
+synthetic target configuration remain outside Git at
+C:/Users/Administrator/Visionary-local/kan39-rework-20261102.
+
+Normal data:check now compiles and runs DATA-04 fail-fast; production-check
+explicitly compiles/runs it under the deployed dependency lock. These registered
+full commands/CI have not yet passed at this checkpoint.
+
+## Remaining product work and acceptance
+
+This checkpoint is not a completed KAN-39 product or merge approval. The original
+in-memory module/controller was not installed as a runtime provider. Current
+Connections is explicitly a local browser preview; it has not been replaced by
+this adapter. No actual browser or connected invitation acceptance is claimed.
+
+The existing DATA-01 unique workspace/email constraint intentionally remains
+unchanged, so repeat invitation to that email is a conflict rather than silent
+token replacement. A reviewed lifecycle/reissue/schema evolution is still needed
+for a complete production invitation journey. Current child/guardian/institution
+proof and activation must follow accepted PRIV-01 policy; a bearer token or SQL
+Person row alone must not activate those relationships. No such activation path
+is connected here. Do not infer full policy acceptance from these synthetic UIDs.
+
+Remaining: separate exact-SHA source review and findings; full registered checks,
+proper runtime/controller input/auth/account/CSRF/rate-limit/error and authority
+inventories, current role/proof lifecycle and frontend transport, real browser
+positive/deny/recovery/two-device evidence, accepted dev integration and actual
+Jira Done before cleanup. Hosted/email/provider/privacy/release gates retain their
+own acceptance. No dev merge, main promotion or cloud provisioning is performed.
