@@ -126,3 +126,34 @@ d0fa946b33e1cb30d1b21bf9ade6f80d93bceec6a733cbaac028a34123a3e501.
 No new connection, permission, profile, billing or child/institution activation
 was requested in that browser inspection. No connected acceptance, dev merge,
 Jira Done, main promotion or worktree cleanup is claimed.
+
+## Bounded verification follow-up
+
+Independent replacement reportc06dee096dfac240b26df71aa27e17128bfbb07b
+approves the N1-N5 transaction corrections at exact3e4047d7 only. Its own newly
+compiled source passed8 repaired-mode independent SQL probes and18 submitted
+SQL tests. CI41404661904 also passed all registered checks, including DATA01 20,
+DATA02 50, SQL/Firestore11, invitations18 and deployed99+11+18; production
+release was skipped. No full task, merge or activation approval was granted.
+
+The reviewer identified a test-harness follow-up: if an operation rejects before
+reaching its scheduled pause, waiting only for readiness can hide the failure.
+Four paused tests now race readiness against the pending operation and have an
+explicit15-second test timeout. No transaction deadline or expiry assertion was
+relaxed. The18-case SQL suite passed again with this test-only delta; runtime
+source remains byte-identical to reviewed3e4047d7. Exact follow-up review and CI
+are still required before any final verification submission.
+
+The first derived-cache-parent preparation did not fix local Prisma generation;
+that second failed deployed-lock attempt is retained separately. A dependency-
+free Node filesystem probe reproduced Windows ENOENT when creating a new path
+through the temporary dependency junction. Creating the complete derived
+.cache/prisma directory through its actual cache path made the same probe pass.
+Only derived cache directories changed, no package source or lock. The local
+deployed-lock command must still be rerun successfully; no pass is predicted.
+
+Live KAN110/PRIV01 remains Testing. The current lifelong contract explicitly
+requires accepted policy before child/guardian/institution activation. Native
+Blocks link10399 now records KAN110 -> KAN39 for that full product scope;
+isolated SQL repair can continue. Current under18 activation denial remains.
+KAN39 is still In Progress and draft PR37 remains unmerged.

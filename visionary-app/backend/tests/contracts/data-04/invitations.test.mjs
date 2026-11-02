@@ -61,7 +61,7 @@ test('concurrent same-UID and cold-client retries replay without duplicate membe
   assert.equal(await env.db.commandResult.count({ where: { uid: x.user } }), 1);
   assert.equal(await env.db.outboxEvent.count({ where: { uid: x.user } }), 1);
 });
-test('completed revoke wins over acceptance paused after actual token lookup', async () => {
+test('completed revoke wins over acceptance paused after actual token lookup', { timeout: 15000 }, async () => {
   const x = await setup(), i = await invite(x);
   let release, reached;
   const wait = new Promise(r => { release = r; }), ready = new Promise(r => { reached = r; });
@@ -73,7 +73,7 @@ test('completed revoke wins over acceptance paused after actual token lookup', a
     const value = t[k]; return typeof value === 'function' ? value.bind(t) : value;
   } })), options) };
   const pending = fresh(proxy).accept(x.user, i.token);
-  try { await ready; await service.revoke(x.owner, i.invitationId); } finally { release(); }
+  try { await Promise.race([ready, pending]); await service.revoke(x.owner, i.invitationId); } finally { release(); }
   await assert.rejects(pending, code('revoked'));
   assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
   assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } })).status, 'REVOKED');
@@ -177,21 +177,21 @@ test('owner-scoped workspace erasure denies every command/read, not only recipie
     await assert.rejects(action(), code('unauthorized'));
   assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
 });
-test('database clock rejects expiry during SQL lookup even when injected caller clock stays earlier', async () => {
+test('database clock rejects expiry during SQL lookup even when injected caller clock stays earlier', { timeout: 15000 }, async () => {
   const x = await setup(), i = await invite(x), expires = new Date(Date.now() + 1500);
   await env.db.invitation.update({ where: { id: i.invitationId }, data: { expiresAt: expires } });
   const pause = pauseActual('invitation', 'findUnique', args => !!args.where.tokenHash);
   const pending = fresh(pause.db).accept(x.user, i.token);
-  try { await pause.ready; await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
+  try { await Promise.race([pause.ready, pending]); await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
   await assert.rejects(pending, code('expired')); assert.equal(await membership(x), null);
   assert.equal(await events(i.invitationId, 'accepted'), 0);
 });
-test('expiry during the last outbox write rolls back membership, token, receipt, audit and outbox', async () => {
+test('expiry during the last outbox write rolls back membership, token, receipt, audit and outbox', { timeout: 15000 }, async () => {
   const x = await setup(), i = await invite(x), expires = new Date(Date.now() + 1800);
   await env.db.invitation.update({ where: { id: i.invitationId }, data: { expiresAt: expires } });
   const pause = pauseActual('outboxEvent', 'create');
   const pending = fresh(pause.db).accept(x.user, i.token);
-  try { await pause.ready; await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
+  try { await Promise.race([pause.ready, pending]); await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
   await assert.rejects(pending, code('expired')); assert.equal(await membership(x), null);
   assert.equal(await env.db.commandResult.count({ where: { uid: x.user } }), 0);
   assert.equal(await env.db.outboxEvent.count({ where: { uid: x.user } }), 0);
@@ -206,12 +206,12 @@ test('foreign OWNER membership and retained OWNER invite cannot establish owners
   await assert.rejects(service.accept(x.user, i.token), code('unauthorized'));
   assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
 });
-test('canonical UID anchor fences outbox allocation across distinct workspaces until commit', async () => {
+test('canonical UID anchor fences outbox allocation across distinct workspaces until commit', { timeout: 15000 }, async () => {
   const x = await setup(), other = await env.db.workspace.create({ data: { uid: x.owner, slug: randomUUID(), name: 'Synthetic second workspace' } });
   await env.db.workspaceMembership.create({ data: { uid: x.owner, workspaceId: other.id, role: 'OWNER', source: 'direct' } });
   const pause = pauseActual('outboxEvent', 'create');
   const first = fresh(pause.db).invite(x.owner, x.ws, { role: 'MEMBER', email: 'first@example.invalid' });
-  const row = await pause.ready;
+  const row = await Promise.race([pause.ready, first]);
   let second;
   try {
     second = service.invite(x.owner, other.id, { role: 'MEMBER', email: 'second@example.invalid' });
