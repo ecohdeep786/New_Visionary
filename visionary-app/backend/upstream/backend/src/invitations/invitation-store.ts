@@ -19,13 +19,27 @@ export class PostgresInvitationStore implements InvitationStore {
     }, { maxWait: 5000, timeout: 10000 });
   }
   private async workspace(tx: Tx, id: string) {
-    const [w] = await tx.$queryRawUnsafe<any[]>('SELECT "id","isPersonal" FROM "workspaces" WHERE "id"=$1 FOR UPDATE', id);
+    const [w] = await tx.$queryRawUnsafe<any[]>('SELECT "id","uid","isPersonal" FROM "workspaces" WHERE "id"=$1 FOR UPDATE', id);
     if (!w || w.isPersonal) throw new InvitationPolicyError('unauthorized');
+    if (await tx.deletionTombstone.findFirst({ where: { uid: w.uid, OR: [{ resourceType: 'workspace', resourceId: id }, { resourceType: 'person' }] } })) throw new InvitationPolicyError('unauthorized');
     return w;
   }
+  private async anchor(tx: Tx, uid: string) {
+    // Same UID order as WorkspaceRepository: acquire before workspace locks and
+    // retain through outbox allocation/commit. Never upgrade a shared UID lock.
+    const rows = await tx.$queryRawUnsafe<any[]>('SELECT "uid" FROM "persons" WHERE "uid"=$1 FOR UPDATE', uid);
+    if (!rows.length) throw new InvitationPolicyError('unauthorized');
+  }
+  private async unexpired(tx: Tx, expiresAt: Date, callerTime: Date) {
+    // clock_timestamp is current at this statement, unlike transaction-start NOW.
+    const [row] = await tx.$queryRawUnsafe<any[]>('SELECT clock_timestamp() AS current');
+    const current = new Date(Math.max(row.current.getTime(), callerTime.getTime()));
+    if (expiresAt <= current) throw new InvitationPolicyError('expired');
+    return current;
+  }
   private async member(tx: Tx, workspaceId: string, uid: string, minimum: number) {
-    const [m] = await tx.$queryRawUnsafe<any[]>('SELECT "role" FROM "workspace_memberships" WHERE "workspaceId"=$1 AND "uid"=$2 FOR SHARE', workspaceId, uid);
-    if (!m || rank(m.role) < minimum) throw new InvitationPolicyError('unauthorized');
+    const [m] = await tx.$queryRawUnsafe<any[]>('SELECT m."role",w."uid" AS owner FROM "workspace_memberships" m JOIN "workspaces" w ON w."id"=m."workspaceId" WHERE m."workspaceId"=$1 AND m."uid"=$2 FOR SHARE OF m', workspaceId, uid);
+    if (!m || rank(m.role) < minimum || (m.role === 'OWNER' && m.owner !== uid)) throw new InvitationPolicyError('unauthorized');
     return m.role as WorkspaceRole;
   }
   private view(i: any, replay = false, membershipRole?: WorkspaceRole): InvitationView {
@@ -44,6 +58,7 @@ export class PostgresInvitationStore implements InvitationStore {
   }
   issue(input: InvitationIssue) {
     return this.transaction(async tx => {
+      await this.anchor(tx, input.actorUid);
       await this.workspace(tx, input.workspaceId);
       await this.member(tx, input.workspaceId, input.actorUid, 2);
       // The domain schema's email uniqueness is retained; reissue never silently
@@ -56,17 +71,17 @@ export class PostgresInvitationStore implements InvitationStore {
   }
   accept(uid: string, tokenHash: string, at: Date) {
     return this.transaction(async tx => {
+      // A token cannot create an identity; the canonical UID also fences events.
+      await this.anchor(tx, uid);
       const found = await tx.invitation.findUnique({ where: { tokenHash } });
       if (!found) throw new InvitationPolicyError('invalid_token');
-      await this.workspace(tx, found.workspaceId);
+      const workspace = await this.workspace(tx, found.workspaceId);
       await tx.$queryRawUnsafe('SELECT "id" FROM "invitations" WHERE "id"=$1 FOR UPDATE', found.id);
       const i = await tx.invitation.findUniqueOrThrow({ where: { id: found.id } });
       if (i.workspaceId !== found.workspaceId) throw new InvitationPolicyError('conflict');
       if (i.tokenHash !== tokenHash) throw new InvitationPolicyError('invalid_token');
       if (i.status === 'REVOKED' || i.revokedAt) throw new InvitationPolicyError('revoked');
-      // Canonical identity must already exist; token possession cannot provision one.
-      const person = await tx.$queryRawUnsafe<any[]>('SELECT "uid" FROM "persons" WHERE "uid"=$1 FOR SHARE', uid);
-      if (!person.length) throw new InvitationPolicyError('unauthorized');
+      if (!['MEMBER', 'ADMIN'].includes(i.role)) throw new InvitationPolicyError('unauthorized');
       if (await tx.deletionTombstone.findFirst({ where: { uid, OR: [{ resourceType: 'workspace', resourceId: i.workspaceId }, { resourceType: 'person' }] } })) throw new InvitationPolicyError('unauthorized');
       const existing = await tx.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: i.workspaceId } } });
       if (i.status === 'ACCEPTED') {
@@ -78,19 +93,23 @@ export class PostgresInvitationStore implements InvitationStore {
         return this.view(i, true, existing.role);
       }
       if (i.status !== 'PENDING') throw new InvitationPolicyError('conflict');
-      if (i.expiresAt <= at) throw new InvitationPolicyError('expired');
+      if (workspace.uid === uid) throw new InvitationPolicyError('unauthorized');
+      await this.unexpired(tx, i.expiresAt, at);
       const issued = await tx.auditEvent.findMany({ where: { workspaceId: i.workspaceId, resourceType: 'invitation', resourceId: i.id, operation: 'invitation.issued', outcome: 'SUCCESS' }, take: 2 });
       if (issued.length !== 1 || !issued[0].actorUid) throw new InvitationPolicyError('unauthorized');
       await this.member(tx, i.workspaceId, issued[0].actorUid, 2);
+      const acceptedAt = await this.unexpired(tx, i.expiresAt, at);
       // Invites create membership, never perform a role change or owner transfer.
       const membershipRole = existing ? await this.member(tx, i.workspaceId, uid, 0) : i.role;
       if (!existing) await tx.workspaceMembership.create({ data: { uid, workspaceId: i.workspaceId, role: i.role, source: 'invitation', sourceVersion: 'v1' } });
-      const saved = await tx.invitation.update({ where: { id: i.id }, data: { status: 'ACCEPTED', acceptedAt: at, acceptedByUid: uid } });
-      const result = this.view(saved, false, membershipRole); await this.record(tx, uid, saved, 'accepted', result); return result;
+      const saved = await tx.invitation.update({ where: { id: i.id }, data: { status: 'ACCEPTED', acceptedAt, acceptedByUid: uid } });
+      const result = this.view(saved, false, membershipRole); await this.record(tx, uid, saved, 'accepted', result);
+      await this.unexpired(tx, i.expiresAt, at); return result;
     });
   }
   revoke(uid: string, id: string, at: Date) {
     return this.transaction(async tx => {
+      await this.anchor(tx, uid);
       const found = await tx.invitation.findUnique({ where: { id } });
       if (!found) throw new InvitationPolicyError('not_found');
       await this.workspace(tx, found.workspaceId); await this.member(tx, found.workspaceId, uid, 2);
