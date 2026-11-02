@@ -113,7 +113,7 @@
       "decision": "Founder-authorized sequential KAN-39 product repair; exact review remains required",
       "reason": "Replace permanent delivery-email uniqueness with a nonunique history lookup in the current model; version2 PostgreSQL partial uniqueness protects one normalized active invitation. Preserve immutable version1 DDL, all closed lifecycle history, authority and current child/policy guards. No live migration, runtime activation or release acceptance.",
       "diff": "integration/upstream-patches/2026-11-02-data-04-invitation-reissue.patch",
-      "diffSha256": "1d91d4140526e5b59c3caefa8114cb5217b3877844befd6d9cf0a2608e60477b",
+      "diffSha256": "6b44aceadb6928e1fc435b7b1a7eb6160ad33b04ebc2ae6aa6fca8e8c790ba05",
       "files": [
         {
           "source": "backend",
