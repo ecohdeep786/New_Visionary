@@ -284,3 +284,133 @@ any later verification closeout; this review does not invent that result or the
 main verifier's still-running local deployed command outcome. The reviewer used
 no SQL window, shared generation, product browser or account writes for this
 two-file follow-up. Later source or evidence changes require exact delta review.
+
+## Reissue/schema checkpoint review — exacta9839eb7
+
+**Decision: CHANGES REQUESTED at exact
+`a9839eb7b2a82fbd2864bdeeb8f018e8da2b0dd6`. The reissue/core SQL suites pass,
+but the native-invariant verifier falsely accepts three materially weakened
+indexes, and valid version2 staging receipt admission fails. Earlier bounded
+approvals do not cover this new schema/runtime/verification checkpoint. No merge,
+Jira Done, protected activation or release is approved.**
+
+The reviewer fetched and remote-verified exacta983 and unchanged devf50868b3,
+then merged this candidate into the same matching review instance while keeping
+the original reports. The15-file delta was inspected: new forward-only version2
+DDL, current Prisma model, canonical migration registry, transactional reissue,
+physical tests, version-chain/model verifier, deployed/image integration and
+explicit fifth schema provenance patch. The original version1 artifact remains
+byte-identical; it was not regenerated from the current model.
+
+### Independently verified improvements and preservation
+
+The correct version2 artifact replaces the permanent workspace/email key with
+a nonunique history lookup and normalized partial uniqueness for PENDING/ISSUED.
+Runtime reissue retains old IDs/token hashes and closed lifecycle rows, closes
+only actually elapsed active deliveries, records expiry and new issue in one
+transaction, and creates a fresh ID/token. Literal equality avoids treating
+percent/underscore characters as email patterns. Explicit UTC timestamp
+comparison avoids a session-timezone conversion of Prisma's timestamp-without-
+time-zone expiry. The accepted authority, deletion, expiry, rollback and UID
+event-order guards remain in place.
+
+The existing runner still rejects pending DDL on retained domain rows. Migration2
+therefore has no accepted retained-record rollout merely because this SQL/index
+change preserves row bytes. Its successful-commit evolution is intentionally
+forward-only; restoring permanent uniqueness across closed history cannot be
+assumed safe. Transactional rollback of a failed v2 application is distinct from
+operator rollback after a successful migration. Historical synthetic migration
+tests explicitly pin v1 before introducing their own synthetic v2/v3; separate
+new tests exercise the actual current chain and retained-row denial/recovery.
+
+The reviewer independently applied the exact zero-context fifth patch to the
+preserved0b schema blob. Before SHA256
+`10c22a2e2bfede742ece5db5dee356d5a584f1d75bc55422f23f01fa511ae087`,
+after SHA256 `583c9140cb47636abb2d9cccb8865942aef9371a378dbeb26b014239414bfb7b`
+and diff SHA256 `6b44aceadb6928e1fc435b7b1a7eb6160ad33b04ebc2ae6aa6fca8e8c790ba05`
+all match metadata; actual applied bytes equal the candidate schema. Layout and
+import checks pass3,842 baseline files plus five patches/11 changed imported
+files. The original import manifest/history was not rewritten. Actual
+`node scripts/domain-ddl.mjs --write` refuses and leaves the v1 hash unchanged.
+
+After the main verifier confirmed generation finished, the reviewer verified the
+new task-local backend cache's source/installed lock hashes and generated model.
+An initial raw-schema comparison stopped before retargeting because Prisma
+formats whitespace. A complete lexical comparison preserving string tokens and
+ignoring comments/format whitespace established all2,499 schema tokens equal.
+Only the reviewer's dependency junction was then retargeted to
+`C:/Users/Administrator/Visionary-local/kan39-deps/backend/node_modules`; the old
+cache remains intact. Own data/invitation compiles passed. No Prisma generation
+or package/lock/cache-content mutation was performed by the reviewer.
+
+### N6 / P2 — native DDL verifier accepts weakened invariant semantics
+
+`scripts/domain-ddl.mjs` inspects index names and substring terms. Those checks
+do not establish exact key expressions/count or predicate scope. The reviewer
+executed [the actual native-DDL weakening probe](evidence/KAN39_NATIVE_DDL_INDEPENDENT_PROBE.cjs)
+against isolated physical replay schemas. It temporarily changed only its own
+version2 SQL artifact, ran the real verifier for each variant, and restored the
+exact original bytes in finally. No worker or shared dependency file was edited.
+
+| Physical replay variant | Actual verifier result |
+| --- | --- |
+| Exact candidate baseline | Exit0, as expected |
+| Add an unexpected real invitation column | Exit1: model drift detected |
+| Remove `lower(email)` from the active unique key | Exit0, incorrect acceptance of case-sensitive uniqueness |
+| Add role as a third active unique key | Exit0, incorrect acceptance of multiple active deliveries with different roles |
+| Add ACCEPTED to the partial active-status predicate | Exit0, incorrect acceptance of uniqueness across closed accepted history |
+
+The candidate artifact itself defines the intended correct key. This finding is
+about the claimed native-invariant verification, not a claim that the shipped
+artifact already contains those weaker indexes. Prisma's model diff does detect
+an extra physical column, but it does not supply the unsupported partial-index
+semantics omitted from the current substring check. Inspect actual catalog
+uniqueness/validity/key count/key expressions and exact predicate scope, including
+the other native indexes and positive revision constraint. Re-run negative probes
+requiring every weakened invariant to fail. Registered behavior tests are useful
+additional evidence, not a reason to relabel this verifier false acceptance.
+
+### N7 / integration blocker — production admission remains pinned to version1
+
+The canonical registry and new real image plan now require versions1,2, while
+`assertProductionAdmission` in `src/data/migration-command.ts` still compares
+the receipt to `[1]`. The reviewer independently ran the exact submitted
+production-target suite: **6/7 passed, one failed**, exit1. The valid pinned
+receipt case throws `STAGING_RECEIPT_INVALID`; the actual synthetic apply/verify
+command case still passes. This is a real current-registry integration failure,
+not an optional provider setup issue. Resolve admission against the exact current
+registered ordered versions and reject missing/reordered/duplicate/extra receipt
+versions; do not simply accept arbitrary arrays or disable pinned receipt checks.
+
+The reviewer independently read [CI41478597797](https://github.com/ecohdeep786/New_Visionary/actions/runs/41478597797),
+checks job125390655150 failed at registered `npm run data:check`; production was
+skipped. Main verification reported the same49/50 failure. The exact candidate
+cannot claim passing full integration on the strength of its focused reissue suite.
+
+### Actual independent SQL evidence and next decision
+
+Own exact-source execution against disposable schemas with separate roles:
+
+- Prior independent repaired-mode probe:8/8 passed,7.071 seconds.
+- Submitted core plus reissue/evolution suites:28/28 passed,16.796 seconds.
+- Actual native DDL verifier: baseline pass; physical-column drift rejected;
+  three independent semantic index weakenings falsely accepted as above.
+- Submitted production-target suite:6/7, retained `STAGING_RECEIPT_INVALID` failure.
+
+The28 include closed-history/replay, concurrent reissue, physical normalized
+PENDING/ISSUED uniqueness, literal special-character emails, positive/negative
+session timezones, actual receipt-trigger outage with rollback/cold retry,
+retained-v1-row migration denial and failed-v2-index application recovery. No
+consumer, browser, provider or production record was fabricated. Raw results,
+variant stdout/stderr and stop log remain outside Git under
+`C:/Users/Administrator/Visionary-local/kan39-independent-review-20261102/a9839eb7`.
+The exclusive loopback SQL instance was stopped in finally and the stop log
+confirms server stopped. Version2 artifact bytes were verified restored to the
+exact candidate after all weakening runs.
+
+Keep the task In Progress and retain this rejection. A new source/schema/
+verification head needs its own exact review after N6/N7 repair and registered
+checks. Current policy, authenticated API/Connections transport, real browser/
+two-device, hosted/provider/privacy and release gates remain open; KAN110 policy
+blocks protected activation. No merge, Done or completed-worktree removal follows
+from the successful focused SQL and provenance checks.
