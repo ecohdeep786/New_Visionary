@@ -61,9 +61,22 @@ export class PostgresInvitationStore implements InvitationStore {
       await this.anchor(tx, input.actorUid);
       await this.workspace(tx, input.workspaceId);
       await this.member(tx, input.workspaceId, input.actorUid, 2);
-      // The domain schema's email uniqueness is retained; reissue never silently
-      // overwrites an existing token or grants another role.
-      if (await tx.invitation.findUnique({ where: { workspaceId_email: { workspaceId: input.workspaceId, email: input.email } } })) throw new InvitationPolicyError('conflict');
+      const [clock] = await tx.$queryRawUnsafe<any[]>('SELECT clock_timestamp() AS current');
+      if (input.expiresAt <= clock.current) throw new InvitationPolicyError('expired');
+      // Close only genuinely elapsed deliveries, under the same workspace lock.
+      // Their tokens/IDs/history remain immutable; reissue creates a fresh row.
+      // Equality is literal, including valid '%'/'_' email characters; avoid
+      // an ILIKE filter that could interpret delivery text as a wildcard.
+      // Prisma DateTime columns are UTC timestamp-without-time-zone. Compare
+      // like types explicitly; a timestamptz cast would shift retained expiry
+      // according to the connection timezone and close still-valid deliveries.
+      const elapsed = await tx.$queryRawUnsafe<any[]>('SELECT * FROM "invitations" WHERE "workspaceId"=$1 AND lower("email")=lower($2) AND "status" IN (\'PENDING\',\'ISSUED\') AND "expiresAt"<=(clock_timestamp() AT TIME ZONE \'UTC\') FOR UPDATE', input.workspaceId, input.email);
+      for (const old of elapsed) {
+        const expired = await tx.invitation.update({ where: { id: old.id }, data: { status: 'EXPIRED' } });
+        await this.record(tx, input.actorUid, expired, 'expired', this.view(expired));
+      }
+      const pending = await tx.$queryRawUnsafe<any[]>('SELECT "id" FROM "invitations" WHERE "workspaceId"=$1 AND lower("email")=lower($2) AND "status" IN (\'PENDING\',\'ISSUED\') LIMIT 1', input.workspaceId, input.email);
+      if (pending.length) throw new InvitationPolicyError('conflict');
       const i = await tx.invitation.create({ data: { id: input.id, workspaceId: input.workspaceId, email: input.email,
         role: input.role, tokenHash: input.tokenHash, status: 'PENDING', issuedAt: input.at, expiresAt: input.expiresAt } });
       const result = this.view(i); await this.record(tx, input.actorUid, i, 'issued', result); return result;
@@ -81,6 +94,7 @@ export class PostgresInvitationStore implements InvitationStore {
       if (i.workspaceId !== found.workspaceId) throw new InvitationPolicyError('conflict');
       if (i.tokenHash !== tokenHash) throw new InvitationPolicyError('invalid_token');
       if (i.status === 'REVOKED' || i.revokedAt) throw new InvitationPolicyError('revoked');
+      if (i.status === 'EXPIRED') throw new InvitationPolicyError('expired');
       if (!['MEMBER', 'ADMIN'].includes(i.role)) throw new InvitationPolicyError('unauthorized');
       if (await tx.deletionTombstone.findFirst({ where: { uid, OR: [{ resourceType: 'workspace', resourceId: i.workspaceId }, { resourceType: 'person' }] } })) throw new InvitationPolicyError('unauthorized');
       const existing = await tx.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: i.workspaceId } } });

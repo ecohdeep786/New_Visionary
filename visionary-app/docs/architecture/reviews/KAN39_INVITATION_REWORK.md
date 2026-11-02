@@ -157,3 +157,75 @@ requires accepted policy before child/guardian/institution activation. Native
 Blocks link10399 now records KAN110 -> KAN39 for that full product scope;
 isolated SQL repair can continue. Current under18 activation denial remains.
 KAN39 is still In Progress and draft PR37 remains unmerged.
+
+## Reissue and versioned schema checkpoint
+
+Continuing the same task instance after reviewed0b755723. Live Jira39 remains
+In Progress; current dev isf50868b3. This continuation is not covered by the
+earlier source approval and needs its own exact review and checks.
+
+The old permanent workspace/email unique key prevented any new delivery after
+revocation, expiry or acceptance. New migration2 replaces that key with a history
+lookup index and one partial unique normalized-email key for PENDING/ISSUED rows.
+The accepted version1 SQL bytes remain unchanged. New deliveries get fresh IDs
+and tokens; closed rows, token hashes, receipts and lifecycle history are retained.
+Reissue closes only genuinely elapsed pending/issued rows, within the same
+workspace/current-authority transaction as the new issue and audit/outbox.
+Email comparison is literal and case-normalized; '%'/'_' do not act as patterns.
+Accepting a new delivery never silently changes an existing role. Old revoked/
+expired tokens remain denied, and accepted same-UID replay cannot recreate a
+removed membership. The current identity/policy/admission boundaries stay intact.
+
+Migration2 is forward-only: committed history may contain multiple closed
+deliveries, so restoring permanent uniqueness cannot be assumed safe. Actual
+transaction failure restores v1 indexes before commit; this is distinct from an
+operator rollback after successful migration. The existing migration runner
+continues to deny pending DDL on retained domain rows. Empty synthetic upgrade/
+failure/retry evidence does not authorize a live retained-record rollout.
+
+Current model verification now replays the canonical version chain in an owned,
+empty disposable SQL schema and checks Prisma's physical diff and native partial
+indexes/checks. It refuses --write rather than regenerating the accepted v1 SQL
+from current models. Historical DATA02 rollback/drift scenarios explicitly pin
+v1 before adding their own synthetic v2/v3; DATA04 exercises the actual complete
+current chain and failed/current migration2 recovery. Deployed dependency and
+migration images include both actual migration files and assert versions1,2.
+
+Schema provenance is an explicit fifth patch chained from the accepted model
+hash, with its exact diff and before/after bytes; the original import lock and
+prior patches are unchanged. Import verification passes3,842 baseline files,
+five patches/11 changed imported files. The only imported file changed in this
+continuation is the reviewed-model schema, not an exception to the verifier.
+
+Two fresh lock-matched dependency directories under
+C:/Users/Administrator/Visionary-local/kan39-deps isolate new generated Prisma
+clients from preserved checkpoints. Source locks are unchanged. Only this task's
+backend/runtime dependency junctions were retargeted; old caches/configuration
+remain intact. Install receipts are outside Git; no credential or generated
+client is committed. New reviewer verification must use the matching model.
+
+Own fresh schema validation/client generation/three component compiles and the
+physical model/versioned DDL verifier passed. Focused actual PostgreSQL suites
+passed28/28: prior18 plus10 reissue/evolution cases. They cover revoked/expired/
+accepted history, concurrent reissue, database-enforced normalized active-delivery
+uniqueness across both statuses, literal special characters, current-role
+preservation, outbox/receipt failure rollback and cold retry, retained v1-row
+migration denial and failed v2-index migration recovery. Positive/negative session
+timezones are explicitly exercised. The synthetic SQL cluster was stopped.
+
+The first wrapper used the wrong schema lookup directory and stopped before
+product assertions. After correction, the first28-case predecessor ran27 cases,
+26 passed/one failed: a timestamptz comparison shifted Prisma UTC timestamps by
+the session timezone and closed a still-valid delivery. Runtime SQL now compares
+UTC timestamp types explicitly using clock_timestamp() AT TIME ZONE 'UTC'.
+The valid/elapsed tests in Asia/Kolkata and America/Los_Angeles pass. Both failed
+attempts/logs remain outside Git at
+C:/Users/Administrator/Visionary-local/kan39-reissue-20261102, alongside actual
+results and dependency-isolation evidence. No failed attempt is relabeled a pass.
+
+Full registered product/data/deployed/image checks and independent exact-source
+review of this new schema/runtime delta remain required. API/Connections and
+verified institution/guardian policy/browser/two-device gates are still open;
+KAN110 is still Testing and blocks the protected activation scope. No new browser
+invitation journey, runtime activation, dev merge, Done, main promotion or cleanup
+is claimed by this checkpoint.

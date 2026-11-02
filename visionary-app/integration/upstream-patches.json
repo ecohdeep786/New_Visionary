@@ -106,6 +106,22 @@
           "afterSha256": "10c22a2e2bfede742ece5db5dee356d5a584f1d75bc55422f23f01fa511ae087"
         }
       ]
+    },
+    {
+      "id": "2026-11-02-data-04-invitation-reissue",
+      "date": "2026-11-02",
+      "decision": "Founder-authorized sequential KAN-39 product repair; exact review remains required",
+      "reason": "Replace permanent delivery-email uniqueness with a nonunique history lookup in the current model; version2 PostgreSQL partial uniqueness protects one normalized active invitation. Preserve immutable version1 DDL, all closed lifecycle history, authority and current child/policy guards. No live migration, runtime activation or release acceptance.",
+      "diff": "integration/upstream-patches/2026-11-02-data-04-invitation-reissue.patch",
+      "diffSha256": "1d91d4140526e5b59c3caefa8114cb5217b3877844befd6d9cf0a2608e60477b",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "10c22a2e2bfede742ece5db5dee356d5a584f1d75bc55422f23f01fa511ae087",
+          "afterSha256": "583c9140cb47636abb2d9cccb8865942aef9371a378dbeb26b014239414bfb7b"
+        }
+      ]
     }
   ]
 }

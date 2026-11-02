@@ -1,0 +1,15 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index cc80edf4..f695fe3b 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -431,7 +431,9 @@ model Invitation {
+   workspace   Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+   acceptedBy  Person? @relation("AcceptedInvitation", fields: [acceptedByUid], references: [uid], onDelete: SetNull)
+ 
+-  @@unique([workspaceId, email])
++  // A PostgreSQL partial unique index admits one pending/issued delivery while
++  // preserving revoked/expired/accepted invitation history for later reissue.
++  @@index([workspaceId, email])
+   @@index([email])
+   @@map("invitations")
+ }

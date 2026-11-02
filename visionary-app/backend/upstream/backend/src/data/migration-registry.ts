@@ -48,5 +48,7 @@ export function splitSql(sql:string):string[] {
 }
 export function canonicalMigrations(backendRoot:string):readonly RegisteredMigration[] {
   const sql=readFileSync(resolve(backendRoot,'prisma/migrations/20261024000001_data_01_workspaces/migration.sql'),'utf8');
-  return [registerMigration({version:1,name:'data-01-workspace-domain',requires:[],statements:splitSql(sql),reversible:false})];
+  const reissue=readFileSync(resolve(backendRoot,'prisma/migrations/20261102000002_data_04_invitation_reissue/migration.sql'),'utf8');
+  return [registerMigration({version:1,name:'data-01-workspace-domain',requires:[],statements:splitSql(sql),reversible:false}),
+    registerMigration({version:2,name:'data-04-invitation-reissue',requires:[1],statements:splitSql(reissue),reversible:false})];
 }
