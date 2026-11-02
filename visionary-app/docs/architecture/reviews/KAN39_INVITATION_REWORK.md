@@ -229,3 +229,49 @@ verified institution/guardian policy/browser/two-device gates are still open;
 KAN110 is still Testing and blocks the protected activation scope. No new browser
 invitation journey, runtime activation, dev merge, Done, main promotion or cleanup
 is claimed by this checkpoint.
+
+## Full-path findings and replacement
+
+Exacta9839eb7 was rejected in independent report724c4be131cf812d7e65489455b12a6c448aed56.
+Own28 submitted SQL cases and8 additional probes passed, but the native DDL
+verifier falsely accepted three real weakened indexes: omitted lower(email),
+an extra role key, and an ACCEPTED-inclusive predicate. An actual model/column
+drift was correctly denied. All reviewer mutations were restored. The full local
+DATA suite and CI41478597797 also failed49/50 DATA02 cases because production
+receipt admission still required the original single version1. Those are retained
+integration failures, not successful full checks or acceptable unreviewed scope.
+
+The replacement native verifier checks real catalog key expressions/order,
+key count, table, btree method, uniqueness, validity/readiness and exact normalized
+predicate. The positive revision CHECK must also match the required expression,
+rather than merely contain a comparison. Physical uniqueness now tests a second
+active delivery with a different invited role as well as normalized email, so a
+role-qualified key cannot silently pass that boundary.
+
+Production receipt admission now receives the actual canonical registry versions
+from the command, validates their strictly increasing positive-integer sequence,
+and requires an exact ordered receipt match. Existing source/digest/target/age/
+byte-pin checks remain. Valid1,2 receipts pass; missing, reordered, duplicate and
+extra receipt versions, as well as invalid expected registries, are denied.
+
+Fresh physical DDL verification and the focused run passed35/35:28 SQL invitation/
+evolution cases plus7 migration target checks (a mix of policy checks and an
+actual canonical command). That precommit result identifies its a983 base plus
+the changed source/test files; it is not relabeled as an earlier head's pass.
+Independent replacement review and registered full final-head checks are required.
+
+The broader product command initially stopped on an unexpected product-root
+node_modules/.cache left by the focused Prisma CLI's working directory. Its
+bytes were preserved and moved outside the checkout; no layout guard changed.
+The helper now invokes Prisma from its owning backend directory. The subsequent
+registered product check passed, including frontend625/lint/types/build. Failed
+layout and DATA/CI attempts and all recovery logs remain under the reissue
+evidence root. The synthetic SQL cluster is stopped after focused verification.
+
+Prerequisite inspection also confirms the disconnected KAN110 candidate is not
+an accepted proof provider. Read-only exact-source probes againstb99eb31f
+reproduced malformed age/retention/version acceptance, missing revocation on an
+erasure outage, and artifact collection bypassing its own minimization rule.
+Those prerequisite reproductions are not a full KAN110 review, legal/policy
+approval or a claim of a live product bypass. No admission guard or user data was
+changed. The native policy block and all full KAN39 product gates remain open.

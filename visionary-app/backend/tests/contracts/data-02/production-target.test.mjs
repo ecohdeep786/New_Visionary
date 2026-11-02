@@ -38,11 +38,12 @@ test('staging database and production database namespaces cannot be confused',()
 
 test('production command requires pinned exact-source verified staging receipt bytes',()=>{
   const c=config(),bytes=receipt(),env={VISIONARY_RELEASE_COMMIT:source,DATA_MIGRATION_APPROVED_SHA:source,DATA_STAGING_RECEIPT_SHA256:sha(bytes)};
-  assert.doesNotThrow(()=>assertProductionAdmission(env,c,digest,bytes));
-  for(const e of [{...env,DATA_MIGRATION_APPROVED_SHA:'c'.repeat(40)},{...env,DATA_STAGING_RECEIPT_SHA256:'0'.repeat(64)}])assert.throws(()=>assertProductionAdmission(e,c,digest,bytes));
-  for(const fields of [{sourceCommit:'c'.repeat(40)},{registryDigest:'c'.repeat(64)},{environment:'production'},{database:target.database},{schema:'another_schema'},{instance:'different-instance'},{verifiedAt:'2000-01-01T00:00:00Z'},{appliedVersions:[]},{status:'pending'}]){
-    const changed=JSON.stringify({...JSON.parse(bytes),...fields});assert.throws(()=>assertProductionAdmission({...env,DATA_STAGING_RECEIPT_SHA256:sha(changed)},c,digest,changed),/STAGING/);
+  assert.doesNotThrow(()=>assertProductionAdmission(env,c,digest,bytes,[1,2]));
+  for(const e of [{...env,DATA_MIGRATION_APPROVED_SHA:'c'.repeat(40)},{...env,DATA_STAGING_RECEIPT_SHA256:'0'.repeat(64)}])assert.throws(()=>assertProductionAdmission(e,c,digest,bytes,[1,2]));
+  for(const fields of [{sourceCommit:'c'.repeat(40)},{registryDigest:'c'.repeat(64)},{environment:'production'},{database:target.database},{schema:'another_schema'},{instance:'different-instance'},{verifiedAt:'2000-01-01T00:00:00Z'},{appliedVersions:[]},{appliedVersions:[1]},{appliedVersions:[2]},{appliedVersions:[2,1]},{appliedVersions:[1,1]},{appliedVersions:[1,2,3]},{status:'pending'}]){
+    const changed=JSON.stringify({...JSON.parse(bytes),...fields});assert.throws(()=>assertProductionAdmission({...env,DATA_STAGING_RECEIPT_SHA256:sha(changed)},c,digest,changed,[1,2]),/STAGING/);
   }
+  for(const expected of [undefined,[],[1,1],[2,1]])assert.throws(()=>assertProductionAdmission(env,c,digest,bytes,expected),/STAGING/);
 });
 
 test('production process cannot select the synthetic command mode',()=>{

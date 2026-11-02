@@ -71,7 +71,7 @@ test('two concurrent reissues have exactly one pending winner and retain closed 
 });
 test('physical partial uniqueness rejects a second active delivery across PENDING and ISSUED', async () => {
   const x = await setup(), old = await issue(x);
-  await assert.rejects(env.db.invitation.create({ data: { workspaceId: x.ws, email: 'REPEAT@EXAMPLE.INVALID', role: 'MEMBER', status: 'ISSUED', tokenHash: randomUUID(), expiresAt: new Date(Date.now() + 60000) } }), e => e.code === 'P2002');
+  await assert.rejects(env.db.invitation.create({ data: { workspaceId: x.ws, email: 'REPEAT@EXAMPLE.INVALID', role: 'ADMIN', status: 'ISSUED', tokenHash: randomUUID(), expiresAt: new Date(Date.now() + 60000) } }), e => e.code === 'P2002');
   await service.revoke(x.owner, old.invitationId);
   await env.db.invitation.create({ data: { workspaceId: x.ws, email: 'repeat@example.invalid', role: 'MEMBER', status: 'ISSUED', tokenHash: randomUUID(), expiresAt: new Date(Date.now() + 60000) } });
   await assert.rejects(issue(x), code('conflict'));

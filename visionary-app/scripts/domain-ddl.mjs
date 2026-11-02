@@ -61,17 +61,26 @@ try {
       if (actual.error || actual.status !== 0) throw Error('Versioned physical domain/model drift: ' + (actual.stdout || actual.stderr || actual.error));
       // Prisma does not express these partial indexes/checks. Inspect the real
       // native invariants too; DATA-01/DATA-04 exercise their failure semantics.
-      const indexes = await db.$queryRawUnsafe('SELECT indexname,indexdef FROM pg_indexes WHERE schemaname=$1', namespace);
-      for (const [name, terms] of [
-        ['workspaces_personal_uid_key', ['UNIQUE', 'uid', 'WHERE', 'isPersonal']],
-        ['consent_grants_account_scope_key', ['UNIQUE', 'uid', 'purpose', 'consentVersion', 'IS NULL']],
-        ['invitations_one_pending_email', ['UNIQUE', 'workspaceId', 'email', 'WHERE', 'PENDING', 'ISSUED']],
+      const indexes = await db.$queryRawUnsafe(`SELECT c.relname AS name,t.relname AS table,am.amname AS method,
+        i.indisunique AS "isUnique",i.indisvalid AS valid,i.indisready AS ready,i.indnatts AS attributes,
+        ARRAY(SELECT pg_get_indexdef(i.indexrelid,k,true) FROM generate_series(1,i.indnkeyatts) k ORDER BY k) AS keys,
+        pg_get_expr(i.indpred,i.indrelid) AS predicate FROM pg_index i
+        JOIN pg_class c ON c.oid=i.indexrelid JOIN pg_class t ON t.oid=i.indrelid
+        JOIN pg_namespace n ON n.oid=c.relnamespace JOIN pg_am am ON am.oid=c.relam
+        WHERE n.nspname=$1`, namespace);
+      const compact = sql => String(sql ?? '').replaceAll('"', '').replaceAll(namespace + '.', '').replace(/[\s()[\]]/g, '');
+      for (const [name, table, keys, predicate] of [
+        ['workspaces_personal_uid_key', 'workspaces', ['uid'], 'isPersonal'],
+        ['consent_grants_account_scope_key', 'consent_grants', ['uid', 'purpose', 'consentVersion'], 'resourceId IS NULL'],
+        ['invitations_one_pending_email', 'invitations', ['workspaceId', 'lower(email)'], "status = ANY (ARRAY['PENDING'::InvitationStatus,'ISSUED'::InvitationStatus])"],
       ]) {
-        const index = indexes.find(i => i.indexname === name);
-        if (!index || terms.some(term => !index.indexdef.includes(term))) throw Error('Native domain index drift: ' + name);
+        const index = indexes.find(i => i.name === name);
+        if (!index || index.table !== table || index.method !== 'btree' || !index.isUnique || !index.valid || !index.ready ||
+            index.attributes !== keys.length || JSON.stringify(index.keys.map(compact)) !== JSON.stringify(keys.map(compact)) ||
+            compact(index.predicate) !== compact(predicate)) throw Error('Native domain index drift: ' + name);
       }
       const constraints = await db.$queryRawUnsafe('SELECT pg_get_constraintdef(c.oid) AS definition FROM pg_constraint c JOIN pg_namespace n ON n.oid=c.connamespace WHERE n.nspname=$1 AND c.conname=$2', namespace, 'command_results_revision_positive');
-      if (constraints.length !== 1 || !/revision.*> 0/.test(constraints[0].definition)) throw Error('Native positive revision constraint drift.');
+      if (constraints.length !== 1 || compact(constraints[0].definition) !== 'CHECKrevision>0') throw Error('Native positive revision constraint drift.');
       console.log('PASS: replayed versioned domain DDL matches current Prisma models and native invariants.');
     } finally {
       await db.$disconnect();
