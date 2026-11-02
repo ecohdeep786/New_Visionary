@@ -9,8 +9,8 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
-import PolicyTabs from "@/components/landing/PolicyTabs";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META } from "@/data/legalMeta";
 import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
@@ -208,9 +208,23 @@ export default function CookiesPage() {
     <div className="page-cookies min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Cookies" />
-      <PolicyTabs />
+      <LocalNav title="Cookies" />
 
       <main id="main">
+        {/* HERO — the Apple-privacy hero anatomy (FAP-59 phase 3), rendered
+            from the single-source CinematicHero under the LocalNav bar:
+            centered two-part display, values-first statement, and the
+            full-bleed cinematic band (placeholder until the founder's image
+            lands in @/assets/brand/hero-cookies.{webp,avif}). */}
+        <FadeReveal visible={heroVisible}>
+          <CinematicHero
+            label="Cookie policy"
+            title="How we use cookies. And how"
+            accent="you control them."
+            statement="The short version, then the full list. Only what's needed, nothing extra, nothing sold."
+            image={null}
+          />
+        </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
@@ -249,18 +263,11 @@ export default function CookiesPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY HERO — the same policies.google.com opening as Privacy */}
+              {/* POLICY BODY OPENING — promises, action row, effective date
+                  (the display hero lives in CinematicHero above; FAP-59
+                  phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
-                <div className="pb-12 pt-2">
-                  <div className="flex justify-center"><SpotIllustration subject="cookie" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Cookie policy</p>
-                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                    How we use cookies. And how <span className="accent-gradient">you control them.</span>
-                  </h1>
-                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
-                    The short version, then the full list. Only what's needed, nothing extra, nothing sold.
-                  </p>
-
+                <div className="pb-12 pt-10">
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {COOKIE_PROMISES.map((p) => (
                       <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>

@@ -1406,7 +1406,7 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/PolicyTabs.jsx": {
+    "frontend/src/components/landing/LocalNav.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
