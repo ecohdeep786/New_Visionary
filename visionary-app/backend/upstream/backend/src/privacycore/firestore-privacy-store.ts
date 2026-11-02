@@ -26,7 +26,7 @@ export class FirestorePrivacyStore implements PrivacyControlStore {
         const ack = await get('acknowledgements', digest(uid));
         if (!account || account.uid !== uid || account.identity?.uid !== uid || account.storageVersion !== 2 || account.storageMigration?.status === 'copying' || account.onboarding?.status !== 'complete') return undefined;
         return { uid, ageBand: account.profile?.age_band ?? 'unknown', assurance: 'declared', status: ack?.status,
-          policyVersion: ack?.policyVersion, acknowledgementUid: ack?.uid, acknowledgementPurpose: ack?.purpose,
+          policyVersion: ack?.policyVersion, policyDigest: ack?.policyDigest, acknowledgementUid: ack?.uid, acknowledgementPurpose: ack?.purpose,
           expiresAt: ack?.expiresAt, revokedAt: ack?.revokedAt };
       },
       artifactProposal: id => get('artifactProposals', id), artifact: id => get('artifacts', id),

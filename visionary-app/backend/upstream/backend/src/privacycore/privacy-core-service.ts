@@ -17,30 +17,29 @@ export class PrivacyCoreService {
   }
   private fields(allowed: readonly string[] | undefined, candidate: unknown) {
     if (!allowed) throw new PrivacyError('policy_invalid');
-    const jsonValue = (value: unknown, depth = 0): void => {
-      if (depth > 3) throw Error();
-      if (value === null || typeof value === 'boolean') return;
-      if (typeof value === 'string') { if (value.length > 4000) throw Error(); return; }
-      if (typeof value === 'number') { if (!Number.isFinite(value)) throw Error(); return; }
-      if (Array.isArray(value)) { if (value.length > 50) throw Error(); value.forEach(v => jsonValue(v, depth + 1)); return; }
-      if (value && typeof value === 'object' && Object.getPrototypeOf(value) === Object.prototype) {
-        if (Object.keys(value).length > 40 || Object.keys(value).some(k => ['__proto__', 'constructor', 'prototype'].includes(k))) throw Error();
-        Object.values(value).forEach(v => jsonValue(v, depth + 1)); return;
+    // This helper accepts bounded scalar metadata only. Domain-owned structured
+    // text/documents require their own explicit schema; an allowed root field
+    // cannot smuggle an arbitrary private object/array into approved metadata.
+    try {
+      record(candidate, allowed);
+      for (const value of Object.values(candidate)) {
+        if (typeof value === 'string' && value.length <= 4000) continue;
+        if (typeof value === 'boolean') continue;
+        if (typeof value === 'number' && Number.isFinite(value)) continue;
+        throw Error();
       }
-      throw Error();
-    };
-    try { record(candidate, allowed); jsonValue(candidate); if (JSON.stringify(candidate).length > 16000) throw Error(); }
-    catch { throw new PrivacyError('field_not_minimized'); }
+      if (JSON.stringify(candidate).length > 16000) throw Error();
+    } catch { throw new PrivacyError('field_not_minimized'); }
     return structuredClone(candidate);
   }
   async admission(actorUid: string) {
     this.identity(actorUid);
     return this.store.transaction(async tx => {
-      const { policy } = await this.policy(tx);
+      const { policy, policyDigest } = await this.policy(tx);
       if (await tx.restriction(actorUid)) return { allowed: false, state: 'processing_restricted' };
       const subject = await tx.subject(actorUid);
-      try { record(subject, ['uid', 'ageBand', 'assurance', 'status', 'policyVersion', 'acknowledgementUid', 'acknowledgementPurpose', 'expiresAt', 'revokedAt']); } catch { return { allowed: false, state: 'review_required' }; }
-      if (subject.uid !== actorUid || subject.status !== 'active' || subject.policyVersion !== policy.policyVersion || subject.assurance !== 'declared' || subject.acknowledgementUid !== actorUid || subject.acknowledgementPurpose !== 'personal-policy-review' || subject.revokedAt !== null || !Number.isFinite(Date.parse(subject.expiresAt)) || Date.parse(subject.expiresAt) <= this.now().getTime()) return { allowed: false, state: 'review_required' };
+      try { record(subject, ['uid', 'ageBand', 'assurance', 'status', 'policyVersion', 'policyDigest', 'acknowledgementUid', 'acknowledgementPurpose', 'expiresAt', 'revokedAt']); } catch { return { allowed: false, state: 'review_required' }; }
+      if (subject.uid !== actorUid || subject.status !== 'active' || subject.policyVersion !== policy.policyVersion || subject.policyDigest !== policyDigest || subject.assurance !== 'declared' || subject.acknowledgementUid !== actorUid || subject.acknowledgementPurpose !== 'personal-policy-review' || subject.revokedAt !== null || !Number.isFinite(Date.parse(subject.expiresAt)) || Date.parse(subject.expiresAt) <= this.now().getTime()) return { allowed: false, state: 'review_required' };
       if (subject.ageBand !== 'adult') return { allowed: false, state: 'guardian_review_required' };
       return { allowed: true, state: 'adult_current_boundary', assurance: subject.assurance };
     });
@@ -80,8 +79,8 @@ export class PrivacyCoreService {
       const { policy, policyDigest } = await this.policy(tx);
       if (await tx.restriction(metadata.uid)) throw new PrivacyError('processing_restricted');
       const proposal = await tx.artifactProposal(key), prior = await tx.artifact(key);
-      try { record(proposal, ['uid', 'runId', 'modelVersion', 'evidenceDigest', 'policyVersion', 'purpose', 'status', 'expiresAt', 'revokedAt', 'serviceUid']); } catch { throw new PrivacyError('access_denied'); }
-      if (proposal.status !== 'approved' || proposal.revokedAt !== null || proposal.policyVersion !== policy.policyVersion || proposal.purpose !== 'model-operation' || proposal.serviceUid !== actorUid || !Number.isFinite(Date.parse(proposal.expiresAt)) || Date.parse(proposal.expiresAt) <= this.now().getTime() || ['uid', 'runId', 'modelVersion', 'evidenceDigest'].some(k => proposal[k] !== metadata[k])) throw new PrivacyError('access_denied');
+      try { record(proposal, ['uid', 'runId', 'modelVersion', 'evidenceDigest', 'policyVersion', 'policyDigest', 'purpose', 'status', 'expiresAt', 'revokedAt', 'serviceUid']); } catch { throw new PrivacyError('access_denied'); }
+      if (proposal.status !== 'approved' || proposal.revokedAt !== null || proposal.policyVersion !== policy.policyVersion || proposal.policyDigest !== policyDigest || proposal.purpose !== 'model-operation' || proposal.serviceUid !== actorUid || !Number.isFinite(Date.parse(proposal.expiresAt)) || Date.parse(proposal.expiresAt) <= this.now().getTime() || ['uid', 'runId', 'modelVersion', 'evidenceDigest'].some(k => proposal[k] !== metadata[k])) throw new PrivacyError('access_denied');
       const value = { ...metadata, occurredAt: this.now().toISOString(), policyDigest, policyVersion: policy.policyVersion, serviceUid: actorUid };
       const rule = policy.classes.find(c => c.dataClass === 'model_artifacts');
       if (rule?.access !== 'service') throw new PrivacyError('access_denied'); this.fields(rule.permittedFields, value);
