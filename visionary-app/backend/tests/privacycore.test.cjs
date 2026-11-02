@@ -172,3 +172,15 @@ test('policy array accessors deny before reading changing elements', () => {
     assert.equal(reads, 0);
   }
 });
+
+test('Founder-approved preservation asset passes actual policy boundary and denies altered policy', () => {
+  const fs = require('node:fs');
+  const asset = JSON.parse(fs.readFileSync(req.resolve('./src/privacycore/privacy-preservation-policy.v1.json'), 'utf8'));
+  const owner = asset.humanApproval.ownerId;
+  const accepted = approvedPolicy(asset.policySnapshot, new Set([owner]), new Date());
+  assert.equal(accepted.policyDigest, '2f928ca888cf4d2bddf7b35898788fd3ca093b351ef9344e1db572608140b577');
+  assert.equal(accepted.policy.admission.under18Activation, 'blocked');
+  const altered = structuredClone(asset.policySnapshot); altered.policy.classes[0].purpose += ' changed';
+  assert.throws(() => approvedPolicy(altered, new Set([owner]), new Date()), e => e.code === 'policy_unapproved');
+  assert.throws(() => approvedPolicy(asset.policySnapshot, new Set(), new Date()), e => e.code === 'policy_unapproved');
+});
