@@ -55,10 +55,16 @@ try {
       cpSync(join(root, 'backend/tests/contracts', file), destination);
     }
   }
+  const hasPrivacy = existsSync(join(backend, 'src/privacycore/privacy-core-service.ts'));
+  if (hasPrivacy) {
+    config.files.push('src/privacycore/privacy-core-service.ts', 'src/privacycore/firestore-privacy-store.ts');
+    cpSync(join(root, 'backend/tests/privacycore.test.cjs'), join(testRoot, 'privacycore.test.cjs'));
+  }
   writeFileSync(join(backend, 'tsconfig.tests.json'), JSON.stringify(config));
   run([join(runtime, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.tests.json'], backend);
   run(['--test', '--test-reporter=tap', ...tests.map(name => join(testRoot, `${name}.test.cjs`))], root);
   if (hasProvisioning) run([join(root, 'scripts/provision-check.mjs'), '--root', temporary], root);
+  if (hasPrivacy) run([join(root, 'scripts/provision-check.mjs'), '--suite', 'privacycore', '--root', temporary], root);
 } finally {
   const actual = realpathSync(temporary);
   if (dirname(actual) !== realpathSync(tmpdir()) || !basename(actual).startsWith('visionary-production-check-')) throw Error('Temporary check cleanup boundary mismatch.');

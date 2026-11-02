@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "rootDir": ".", "outDir": "./dist", "incremental": false, "declaration": false, "sourceMap": false },
+  "include": ["src/privacycore/**/*.ts"]
+}

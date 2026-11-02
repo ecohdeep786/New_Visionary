@@ -12,6 +12,11 @@ import { createServer } from 'node:net';
 const rootArgument = process.argv.indexOf('--root');
 const root = rootArgument < 0 ? resolve(dirname(fileURLToPath(import.meta.url)), '..') : resolve(process.argv[rootArgument + 1] || '');
 if (rootArgument >= 0 && !/visionary-production-check-[^/\\]+$/.test(root)) throw Error('Explicit test root must be the owned production-check fixture.');
+const suiteArgument = process.argv.indexOf('--suite');
+const suite = suiteArgument < 0 ? 'provisioning' : process.argv[suiteArgument + 1];
+if (!['provisioning', 'privacycore'].includes(suite)) throw Error('Unknown bounded Firestore suite.');
+const project = suite === 'privacycore' ? 'demo-visionary-kan110' : 'demo-visionary-kan38';
+const testPath = suite === 'privacycore' ? 'backend/tests/privacycore.test.cjs' : 'backend/tests/contracts/data-03/provisioning.test.mjs';
 // Official Firebase CLI downloadableEmulatorInfo.json, version1.22.0.
 const name = 'cloud-firestore-emulator-v1.22.0.jar';
 const checksum = '9b6498b7f62714d67f48f59b3818883cd682dbcd46b9f59511de81c97bb5166c';
@@ -36,7 +41,7 @@ await mkdir(socketTemp, { recursive: true });
 // Windows Java's default AF_UNIX temporary pathname can exceed its local limit.
 // A short task-local directory fixes that transport issue without public binds.
 const args = ['-XX:ActiveProcessorCount=2', '-Xmx512m', '-Djdk.net.unixdomain.tmpdir=' + socketTemp,
-  '-jar', jar, '--host=127.0.0.1', '--port=' + port, '--project_id=demo-visionary-kan38'];
+  '-jar', jar, '--host=127.0.0.1', '--port=' + port, '--project_id=' + project];
 let tail = '', exited = false, testChild, interrupted = false;
 const emulator = spawn(java, args, { stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
 emulator.on('error', error => { tail = String(error); exited = true; });
@@ -53,14 +58,15 @@ try {
   }
   if (!ready) throw Error('Local Firestore emulator failed readiness.');
   const result = await new Promise((ok, fail) => {
-    testChild = spawn(process.execPath, ['--test', '--test-reporter=tap', 'backend/tests/contracts/data-03/provisioning.test.mjs'], {
+    testChild = spawn(process.execPath, ['--test', '--test-reporter=tap', testPath], {
       cwd: root, env: { ...process.env, FIRESTORE_EMULATOR_HOST: '127.0.0.1:' + port }, stdio: 'inherit', windowsHide: true });
     const timeout = setTimeout(() => testChild.kill('SIGTERM'), 120000);
     testChild.once('error', error => { clearTimeout(timeout); fail(error); });
     testChild.once('exit', code => { clearTimeout(timeout); ok(code); });
   });
-  if (result !== 0 || interrupted) throw Error('Real SQL/Firestore provisioning checks failed or were interrupted.');
-  console.log('PASS: real PostgreSQL and pinned local Firestore provisioning, recovery, concurrency and HTTP authority checks.');
+  if (result !== 0 || interrupted) throw Error(suite + ' checks failed or were interrupted.');
+  if (suite === 'privacycore') console.log('PASS: pinned local Firestore privacy control-plane checks; not live policy/provider approval.');
+  else console.log('PASS: real PostgreSQL and pinned local Firestore provisioning, recovery, concurrency and HTTP authority checks.');
 } catch (error) { console.error(tail); throw error; }
 finally {
   stop();
