@@ -9,7 +9,7 @@ const target={environment:'production',project:'visionary-research',region:'asia
 function url(role='visionary_runtime',t=target){const u=new URL('postgresql://localhost/'+t.database);u.username=role;u.searchParams.set('schema','product');u.searchParams.set('host','/cloudsql/'+t.project+':'+t.region+':'+t.instance);u.searchParams.set('connection_limit','2');u.searchParams.set('pool_timeout','10');u.searchParams.set('connect_timeout','10');return String(u);}
 const config=()=>({migrationUrl:url('visionary_migrator'),runtimeUrl:url(),migrationRole:'visionary_migrator',runtimeRole:'visionary_runtime',schema:'product',cloudSql:{...target}});
 const source='a'.repeat(40),digest='b'.repeat(64),sha=s=>createHash('sha256').update(s).digest('hex');
-const receipt=()=>JSON.stringify({environment:'staging',sourceCommit:source,registryDigest:digest,project:target.project,region:target.region,instance:target.instance,database:'visionary_data_staging_kan37',schema:'product',status:'verified',appliedVersions:[1],verifiedAt:new Date().toISOString()});
+const receipt=()=>JSON.stringify({environment:'staging',sourceCommit:source,registryDigest:digest,project:target.project,region:target.region,instance:target.instance,database:'visionary_data_staging_kan37',schema:'product',status:'verified',appliedVersions:[1,2],verifiedAt:new Date().toISOString()});
 
 test('Cloud SQL target requires exact project, region, instance socket, database and bounded pools',()=>{
   assert.doesNotThrow(()=>assertSeparateIdentities(config()));
@@ -54,7 +54,7 @@ test('actual command executes and verifies durable canonical migration with quot
   try{
     const env={DATA_DATABASE_MODE:'synthetic',DATA_MIGRATION_DATABASE_URL:f.config.migrationUrl,DATA_RUNTIME_DATABASE_URL:f.config.runtimeUrl,
       DATA_MIGRATION_ROLE:f.migrationRole,DATA_RUNTIME_ROLE:f.runtimeRole,DATA_DATABASE_SCHEMA:f.schema,VISIONARY_RELEASE_COMMIT:source};
-    const plan=await runMigrationCommand('plan',env,backend);assert.deepEqual(plan.versions,[1]);
+    const plan=await runMigrationCommand('plan',env,backend);assert.deepEqual(plan.versions,[1,2]);
     const result=await runMigrationCommand('apply',env,backend);assert.equal(result.status,'verified');
     const fresh=await runMigrationCommand('verify',env,backend);assert.equal(fresh.registryDigest,result.registryDigest);
     assert.equal((await f.db.$queryRawUnsafe('SELECT "appliedBy" FROM "_visionary_migrations"'))[0].appliedBy,f.migrationRole);

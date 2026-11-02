@@ -431,7 +431,9 @@ model Invitation {
   workspace   Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   acceptedBy  Person? @relation("AcceptedInvitation", fields: [acceptedByUid], references: [uid], onDelete: SetNull)
 
-  @@unique([workspaceId, email])
+  // A PostgreSQL partial unique index admits one pending/issued delivery while
+  // preserving revoked/expired/accepted invitation history for later reissue.
+  @@index([workspaceId, email])
   @@index([email])
   @@map("invitations")
 }
