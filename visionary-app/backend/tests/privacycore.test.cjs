@@ -28,10 +28,10 @@ async function fixture() {
   await root.collection('policies').doc('current').set(snapshot());
   await account.set({ uid, identity: { uid }, storageVersion: 2, profile: { age_band: 'adult', name: 'Synthetic preserved' }, onboarding: { status: 'complete' } });
   await account.collection('billing').doc('preserved').set({ revision: 7, uid });
-  await root.collection('acknowledgements').doc(digest(uid)).set({ uid, policyVersion: 'priv-review-v1', purpose: 'personal-policy-review', status: 'active', expiresAt: future, revokedAt: null });
+  await root.collection('acknowledgements').doc(digest(uid)).set({ uid, policyVersion: 'priv-review-v1', policyDigest: snapshot().approval.policyDigest, purpose: 'personal-policy-review', status: 'active', expiresAt: future, revokedAt: null });
   const store = new FirestorePrivacyStore(db, namespace), core = new PrivacyCoreService(store, options);
   const input = { uid, runId: 'run-1', modelVersion: 'model-1', evidenceDigest: 'a'.repeat(64) }, key = digest([uid, input.runId]);
-  await root.collection('artifactProposals').doc(key).set({ ...input, serviceUid, policyVersion: 'priv-review-v1', purpose: 'model-operation', status: 'approved', expiresAt: future, revokedAt: null });
+  await root.collection('artifactProposals').doc(key).set({ ...input, serviceUid, policyVersion: 'priv-review-v1', policyDigest: snapshot().approval.policyDigest, purpose: 'model-operation', status: 'approved', expiresAt: future, revokedAt: null });
   return { namespace, root, uid, account, store, core, input, key };
 }
 const denies = (work, code) => assert.rejects(work, error => error.code === code);
@@ -77,7 +77,7 @@ test('separate subject records and caller guardian flag cannot change minor acco
 });
 test('shared minimizer rejects forbidden and non-JSON fields', async () => {
   const f = await fixture();
-  for (const input of [{ rawPrivateText: [] }, { runId: NaN }, { runId: undefined }, { runId: () => true }, { runId: { nested: { nested: { nested: [] } } } }]) await denies(() => f.core.minimize('model_artifacts', input), 'field_not_minimized');
+  for (const input of [{ rawPrivateText: [] }, { runId: { rawPrivateText: 'synthetic-private-text', password: 'synthetic-not-secret' } }, { runId: [] }, { runId: null }, { runId: NaN }, { runId: undefined }, { runId: () => true }, { runId: { nested: { nested: { nested: [] } } } }]) await denies(() => f.core.minimize('model_artifacts', input), 'field_not_minimized');
   assert.deepEqual(await f.core.minimize('model_artifacts', { runId: 'safe' }), { runId: 'safe' });
 });
 test('artifact rejects raw text and untrusted service without writing', async () => {
@@ -128,4 +128,27 @@ test('in-flight artifact read and erasure serialize; later processing sees the f
   const erasure = f.core.requestErasure(f.uid, 'erase-after-inflight');
   release(); await pending; await erasure;
   await denies(() => f.core.collectArtifact(serviceUid, f.input), 'processing_restricted');
+});
+
+test('same-version content change invalidates both old acknowledgement and artifact proposal', async () => {
+  const f = await fixture(), changed = snapshot();
+  changed.policy.classes[0].purpose += ' changed'; changed.approval.policyDigest = digest(changed.policy);
+  await f.root.collection('policies').doc('current').set(changed);
+  assert.equal((await f.core.admission(f.uid)).allowed, false);
+  await denies(() => f.core.collectArtifact(serviceUid, f.input), 'access_denied');
+  assert.equal((await f.root.collection('artifacts').get()).size, 0);
+  await f.root.collection('acknowledgements').doc(digest(f.uid)).update({ policyDigest: changed.approval.policyDigest });
+  await f.root.collection('artifactProposals').doc(f.key).update({ policyDigest: changed.approval.policyDigest });
+  assert.equal((await f.core.admission(f.uid)).allowed, true);
+  assert.equal((await f.core.collectArtifact(serviceUid, f.input)).replay, false);
+  assert.equal((await f.root.collection('artifacts').doc(f.key).get()).data().policyDigest, changed.approval.policyDigest);
+});
+test('missing or corrupt acknowledgement/proposal digest denies rather than upgrading old proof', async () => {
+  for (const value of [null, '', 'wrong']) {
+    const f = await fixture();
+    await f.root.collection('acknowledgements').doc(digest(f.uid)).update({ policyDigest: value });
+    await f.root.collection('artifactProposals').doc(f.key).update({ policyDigest: value });
+    assert.equal((await f.core.admission(f.uid)).allowed, false);
+    await denies(() => f.core.collectArtifact(serviceUid, f.input), 'access_denied');
+  }
 });
