@@ -9,6 +9,8 @@ import QuietLink from "@/components/landing/QuietLink";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
+import CinematicHero from "@/components/landing/CinematicHero";
+import { CtaPair } from "@/components/landing/system/ui";
 import imgHeroChip from "@/assets/student-higher.webp";
 import imgStudent from "@/assets/student-hero-main-1600w.webp";
 import imgTeacher from "@/assets/teacher-hero-main-1600w.webp";
@@ -161,33 +163,21 @@ export default function ResearchNewsPage() {
       <main id="main">
         <Breadcrumb page="Research" />
 
-        {/* HERO — the research.google statement: a huge staggered two-line
-            headline with floating image accents and a hand-drawn arrow */}
-        <section data-section="01-hero" className="relative overflow-hidden">
-          <div className="relative mx-auto max-w-[1240px] px-4 pb-16 pt-16 sm:px-6 lg:px-10 lg:pb-20 lg:pt-24">
-            <div className="pointer-events-none absolute right-[8%] top-[9%] hidden w-[170px] rotate-3 overflow-hidden rounded-[20px] shadow-[0_20px_50px_rgba(18,19,23,0.16)] lg:block">
-              <LazyImage src={imgHeroChip} alt="" aria-hidden="true" className="aspect-[4/3] w-full object-cover" />
-            </div>
-            <div className="pointer-events-none absolute bottom-[14%] right-[24%] hidden -rotate-2 lg:block">
-              <SpotIllustration subject="loop" className="h-[112px] w-[150px] rounded-[20px] shadow-[0_20px_50px_rgba(18,19,23,0.16)]" />
-            </div>
-            <Reveal>
-              <h1 className="max-w-[1000px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
-                <span className="block">One intelligence,</span>
-                <span className="block pl-[10%] sm:pl-[18%]">
-                  <span className="accent-gradient">every learner.</span>
-                  <svg aria-hidden="true" viewBox="0 0 120 40" className="ml-5 inline-block h-9 w-28 text-[#1d1d1f] sm:h-11 sm:w-36">
-                    <path d="M6 8 C 40 34, 78 34, 108 18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-                    <path d="M98 14 L 110 17 L 102 27" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-              </h1>
-              <p className="mt-14 max-w-[480px] text-[17px] leading-[1.65] text-[#6e6e73]">
-                We are building a mentor that knows your journey. This page records what we learn.
-              </p>
-            </Reveal>
-          </div>
-        </section>
+        {/* HERO — the Apple-privacy hero anatomy (FAP-59 phase 3), rendered
+            from the single-source CinematicHero: centered two-part display,
+            values-first statement, the front-door CTA pair, and the full-bleed
+            cinematic band (placeholder stage until the founder's image lands
+            in @/assets/brand/hero-research.{webp,avif}). No local nav bar on
+            this page (founder directive) — breadcrumb stays the guide. */}
+        <Reveal>
+          <CinematicHero
+            title="One intelligence,"
+            accent="every learner."
+            statement="We are building a mentor that knows your journey. This page records what we learn."
+            cta={<CtaPair ctaTo="/register" ctaLabel="Start learning free" secondaryTo="/how-it-works" secondaryLabel="See how it works" />}
+            image={null}
+          />
+        </Reveal>
 
         {/* MISSION SPLIT — "Amplifying human curiosity" beside a dark brand
             panel (Google's video panel position) */}

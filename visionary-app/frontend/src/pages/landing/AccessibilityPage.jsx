@@ -10,6 +10,8 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import QuietLink from "@/components/landing/QuietLink";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
@@ -129,31 +131,38 @@ export default function AccessibilityPage() {
       <LandingNav />
       <main id="main">
         <Breadcrumb page="Accessibility" />
+        <LocalNav title="Accessibility" />
 
-        {/* HERO — the reference's centered statement + anchor chips */}
-        <section className="px-6 pb-16 pt-10 text-center sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
-          <Reveal className="mx-auto max-w-[900px]">
-            <p data-type="label" className="text-[#6e6e73]">Accessibility</p>
-            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#1d1d1f]">
-              Help every learner learn <span className="accent-gradient">how they learn best.</span>
-            </h1>
-            <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
-              One product, many ways in: vision, hearing, movement, thinking, and language on the device you have.
-            </p>
-            <div className="mt-10 flex justify-center">
-              <Link to="/register" className={inkPill}>
+        {/* HERO — the Apple-privacy hero anatomy (FAP-59 phase 3), rendered
+            from the single-source CinematicHero under the LocalNav bar:
+            centered two-part display, statement, the solo ink CTA, the
+            on-page anchor chips (trailing slot — they stay at the decision
+            point instead of becoming a second bar), and the full-bleed
+            cinematic band (placeholder until the founder's image lands in
+            @/assets/brand/hero-accessibility.{webp,avif}). */}
+        <Reveal>
+          <CinematicHero
+            label="Accessibility"
+            title="Help every learner learn"
+            accent="how they learn best."
+            statement="One product, many ways in: vision, hearing, movement, thinking, and language on the device you have."
+            cta={(
+              <Link to="/register" className={`${inkPill} mt-10`}>
                 Explore what's built in
               </Link>
-            </div>
-            <nav aria-label="On this page" className="mt-6 flex flex-wrap justify-center gap-4">
-              <AnchorChip href="#vision">Seeing and reading</AnchorChip>
-              <AnchorChip href="#voice">Hearing and speaking</AnchorChip>
-              <AnchorChip href="#motor">Motor and navigation</AnchorChip>
-              <AnchorChip href="#language">Language and understanding</AnchorChip>
-              <AnchorChip href="#sync">Sync &amp; devices</AnchorChip>
-            </nav>
-          </Reveal>
-        </section>
+            )}
+            trailing={(
+              <nav aria-label="On this page" className="mt-6 flex flex-wrap justify-center gap-4">
+                <AnchorChip href="#vision">Seeing and reading</AnchorChip>
+                <AnchorChip href="#voice">Hearing and speaking</AnchorChip>
+                <AnchorChip href="#motor">Motor and navigation</AnchorChip>
+                <AnchorChip href="#language">Language and understanding</AnchorChip>
+                <AnchorChip href="#sync">Sync &amp; devices</AnchorChip>
+              </nav>
+            )}
+            image={null}
+          />
+        </Reveal>
 
         {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
         <section data-section="03-statement" className="border-y border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
