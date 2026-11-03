@@ -45,18 +45,27 @@ test('actual SQL issue stores only token hash and commits lifecycle/receipt/outb
 });
 test('one token admits only one of two concurrent verified UIDs', async () => {
   const x = await setup(), i = await invite(x);
-  const results = await Promise.allSettled([x.user, x.other].map(uid => service.accept(uid, i.token)));
+  const results = await Promise.allSettled([x.user, x.other].map(uid => service.accept(uid, i.token, 'synthetic@example.invalid')));
   assert.equal(results.filter(r => r.status === 'fulfilled').length, 1);
   assert.equal(results.filter(r => r.status === 'rejected' && r.reason.code === 'already_accepted').length, 1);
   assert.equal(await env.db.workspaceMembership.count({ where: { workspaceId: x.ws } }), 2);
   assert.equal(await events(i.invitationId, 'accepted'), 1);
 });
+test('a forwarded token cannot grant membership to a different verified email', async () => {
+  const x = await setup(), invitation = await invite(x);
+  await assert.rejects(service.accept(x.other, invitation.token, 'different@example.invalid'), code('invalid_token'));
+  await assert.rejects(service.accept(x.user, invitation.token), code('unauthorized'));
+  assert.equal(await membership(x, x.other), null);
+  assert.equal(await events(invitation.invitationId, 'accepted'), 0);
+  await service.accept(x.user, invitation.token, 'SYNTHETIC@EXAMPLE.INVALID');
+  assert.equal((await membership(x)).role, 'MEMBER');
+});
 test('concurrent same-UID and cold-client retries replay without duplicate membership/audit/outbox', async () => {
   const x = await setup(), i = await invite(x);
-  const results = await Promise.all(Array.from({ length: 4 }, () => service.accept(x.user, i.token)));
+  const results = await Promise.all(Array.from({ length: 4 }, () => service.accept(x.user, i.token, 'synthetic@example.invalid')));
   assert.equal(results.filter(r => !r.replay).length, 1);
   const db = new PrismaClient({ datasources: { db: { url: env.config.runtimeUrl } } });
-  try { assert.equal((await fresh(db).accept(x.user, i.token)).replay, true); } finally { await db.$disconnect(); }
+  try { assert.equal((await fresh(db).accept(x.user, i.token, 'synthetic@example.invalid')).replay, true); } finally { await db.$disconnect(); }
   assert.equal(await events(i.invitationId, 'accepted'), 1);
   assert.equal(await env.db.commandResult.count({ where: { uid: x.user } }), 1);
   assert.equal(await env.db.outboxEvent.count({ where: { uid: x.user } }), 1);
@@ -72,7 +81,7 @@ test('completed revoke wins over acceptance paused after actual token lookup', {
     } });
     const value = t[k]; return typeof value === 'function' ? value.bind(t) : value;
   } })), options) };
-  const pending = fresh(proxy).accept(x.user, i.token);
+  const pending = fresh(proxy).accept(x.user, i.token, 'synthetic@example.invalid');
   try { await Promise.race([ready, pending]); await service.revoke(x.owner, i.invitationId); } finally { release(); }
   await assert.rejects(pending, code('revoked'));
   assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
@@ -82,47 +91,47 @@ test('database failure after membership and token mutation rolls back all state,
   const x = await setup(), i = await invite(x), name = 'fail_' + randomUUID().replaceAll('-', '');
   await env.db.$executeRawUnsafe(`CREATE FUNCTION "${name}"() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW."uid"='${x.user}' THEN RAISE EXCEPTION 'synthetic receipt outage'; END IF; RETURN NEW; END $$`);
   await env.db.$executeRawUnsafe(`CREATE TRIGGER "${name}" BEFORE INSERT ON "command_results" FOR EACH ROW EXECUTE FUNCTION "${name}"()`);
-  try { await assert.rejects(service.accept(x.user, i.token), /synthetic receipt outage/); }
+  try { await assert.rejects(service.accept(x.user, i.token, 'synthetic@example.invalid'), /synthetic receipt outage/); }
   finally { await env.db.$executeRawUnsafe(`DROP TRIGGER "${name}" ON "command_results"`); await env.db.$executeRawUnsafe(`DROP FUNCTION "${name}"()`); }
   assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
   assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } })).status, 'PENDING');
   const db = new PrismaClient({ datasources: { db: { url: env.config.runtimeUrl } } });
-  try { assert.equal((await fresh(db).accept(x.user, i.token)).replay, false); } finally { await db.$disconnect(); }
+  try { assert.equal((await fresh(db).accept(x.user, i.token, 'synthetic@example.invalid')).replay, false); } finally { await db.$disconnect(); }
   assert.equal((await membership(x)).role, 'MEMBER');
 });
 test('owner self-accept is denied without demotion; existing MEMBER never gains ADMIN through invitation', async () => {
   const x = await setup(), ownerInvite = await invite(x);
-  await assert.rejects(service.accept(x.owner, ownerInvite.token), code('unauthorized'));
+  await assert.rejects(service.accept(x.owner, ownerInvite.token, 'synthetic@example.invalid'), code('unauthorized'));
   assert.equal((await membership(x, x.owner)).role, 'OWNER');
   await env.db.workspaceMembership.create({ data: { workspaceId: x.ws, uid: x.user, role: 'MEMBER', source: 'direct' } });
   const admin = await invite(x, 'ADMIN', 'other@example.invalid');
-  assert.equal((await service.accept(x.user, admin.token)).membershipRole, 'MEMBER');
+  assert.equal((await service.accept(x.user, admin.token, 'other@example.invalid')).membershipRole, 'MEMBER');
   assert.equal((await membership(x)).role, 'MEMBER');
 });
 test('removed issuer authority invalidates pending acceptance without consuming token', async () => {
   const x = await setup(), i = await invite(x);
   await env.db.workspaceMembership.delete({ where: { uid_workspaceId: { uid: x.owner, workspaceId: x.ws } } });
-  await assert.rejects(service.accept(x.user, i.token), code('unauthorized'));
+  await assert.rejects(service.accept(x.user, i.token, 'synthetic@example.invalid'), code('unauthorized'));
   assert.equal(await membership(x), null);
   assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: i.invitationId } })).status, 'PENDING');
 });
 test('a cold retry cannot recreate a removed membership or bypass a deletion tombstone', async () => {
-  const x = await setup(), i = await invite(x); await service.accept(x.user, i.token);
+  const x = await setup(), i = await invite(x); await service.accept(x.user, i.token, 'synthetic@example.invalid');
   await env.db.workspaceMembership.delete({ where: { uid_workspaceId: { uid: x.user, workspaceId: x.ws } } });
-  await assert.rejects(service.accept(x.user, i.token), code('unauthorized')); assert.equal(await membership(x), null);
+  await assert.rejects(service.accept(x.user, i.token, 'synthetic@example.invalid'), code('unauthorized')); assert.equal(await membership(x), null);
   const j = await invite(x, 'MEMBER', 'deleted@example.invalid');
   await env.db.deletionTombstone.create({ data: { uid: x.user, resourceType: 'workspace', resourceId: x.ws, reason: 'synthetic deletion' } });
-  await assert.rejects(service.accept(x.user, j.token), code('unauthorized')); assert.equal(await membership(x), null);
+  await assert.rejects(service.accept(x.user, j.token, 'deleted@example.invalid'), code('unauthorized')); assert.equal(await membership(x), null);
 });
 test('unknown identity, guessed token, expiration and revoked token cannot grant membership', async () => {
   const x = await setup(), i = await invite(x);
-  await assert.rejects(service.accept('unprovisioned', i.token), code('unauthorized'));
-  await assert.rejects(service.accept(x.user, 'not-a-token'), code('invalid_token'));
-  await assert.rejects(service.accept(x.user, 'A'.repeat(43)), code('invalid_token'));
+  await assert.rejects(service.accept('unprovisioned', i.token, 'synthetic@example.invalid'), code('unauthorized'));
+  await assert.rejects(service.accept(x.user, 'not-a-token', 'synthetic@example.invalid'), code('invalid_token'));
+  await assert.rejects(service.accept(x.user, 'A'.repeat(43), 'synthetic@example.invalid'), code('invalid_token'));
   const late = new InvitationService(new PostgresInvitationStore(env.runtime, target), () => new Date('2027-01-01T00:00:00Z'));
-  await assert.rejects(late.accept(x.user, i.token), code('expired'));
+  await assert.rejects(late.accept(x.user, i.token, 'synthetic@example.invalid'), code('expired'));
   await service.revoke(x.owner, i.invitationId);
-  await assert.rejects(service.accept(x.user, i.token), code('revoked')); assert.equal(await membership(x), null);
+  await assert.rejects(service.accept(x.user, i.token, 'synthetic@example.invalid'), code('revoked')); assert.equal(await membership(x), null);
 });
 test('wrong workspace/history/actor access is denied and token hashes stay private', async () => {
   const x = await setup(), y = await setup(), i = await invite(x);
@@ -145,7 +154,7 @@ test('same-time issues use unique IDs; duplicate delivery identity never silentl
   const x = await setup(); const a = await invite(x), b = await invite(x, 'MEMBER', 'different@example.invalid');
   assert.notEqual(a.invitationId, b.invitationId);
   await assert.rejects(invite(x), code('conflict'));
-  await service.accept(x.user, a.token); assert.equal((await membership(x)).role, 'MEMBER');
+  await service.accept(x.user, a.token, 'synthetic@example.invalid'); assert.equal((await membership(x)).role, 'MEMBER');
 });
 test('wrong SQL identity and privileged migration client are rejected without writes', async () => {
   const x = await setup();
@@ -172,7 +181,7 @@ function pauseActual(modelName, method, matches = () => true) {
 test('owner-scoped workspace erasure denies every command/read, not only recipient-scoped markers', async () => {
   const x = await setup(), i = await invite(x);
   await env.db.deletionTombstone.create({ data: { uid: x.owner, resourceType: 'workspace', resourceId: x.ws, reason: 'synthetic owner erasure' } });
-  for (const action of [() => service.accept(x.user, i.token), () => service.revoke(x.owner, i.invitationId),
+  for (const action of [() => service.accept(x.user, i.token, 'synthetic@example.invalid'), () => service.revoke(x.owner, i.invitationId),
     () => service.list(x.owner, x.ws), () => service.track(x.owner, x.ws, i.invitationId), () => invite(x, 'MEMBER', 'later@example.invalid')])
     await assert.rejects(action(), code('unauthorized'));
   assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
@@ -181,7 +190,7 @@ test('database clock rejects expiry during SQL lookup even when injected caller 
   const x = await setup(), i = await invite(x), expires = new Date(Date.now() + 1500);
   await env.db.invitation.update({ where: { id: i.invitationId }, data: { expiresAt: expires } });
   const pause = pauseActual('invitation', 'findUnique', args => !!args.where.tokenHash);
-  const pending = fresh(pause.db).accept(x.user, i.token);
+  const pending = fresh(pause.db).accept(x.user, i.token, 'synthetic@example.invalid');
   try { await Promise.race([pause.ready, pending]); await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
   await assert.rejects(pending, code('expired')); assert.equal(await membership(x), null);
   assert.equal(await events(i.invitationId, 'accepted'), 0);
@@ -190,7 +199,7 @@ test('expiry during the last outbox write rolls back membership, token, receipt,
   const x = await setup(), i = await invite(x), expires = new Date(Date.now() + 1800);
   await env.db.invitation.update({ where: { id: i.invitationId }, data: { expiresAt: expires } });
   const pause = pauseActual('outboxEvent', 'create');
-  const pending = fresh(pause.db).accept(x.user, i.token);
+  const pending = fresh(pause.db).accept(x.user, i.token, 'synthetic@example.invalid');
   try { await Promise.race([pause.ready, pending]); await new Promise(r => setTimeout(r, Math.max(0, expires.getTime() - Date.now()) + 80)); } finally { pause.release(); }
   await assert.rejects(pending, code('expired')); assert.equal(await membership(x), null);
   assert.equal(await env.db.commandResult.count({ where: { uid: x.user } }), 0);
@@ -203,7 +212,7 @@ test('foreign OWNER membership and retained OWNER invite cannot establish owners
   await env.db.workspaceMembership.create({ data: { workspaceId: x.ws, uid: x.other, role: 'OWNER', source: 'direct' } });
   await assert.rejects(service.invite(x.other, x.ws, { role: 'ADMIN', email: 'foreign@example.invalid' }), code('unauthorized'));
   await env.db.invitation.update({ where: { id: i.invitationId }, data: { role: 'OWNER' } });
-  await assert.rejects(service.accept(x.user, i.token), code('unauthorized'));
+  await assert.rejects(service.accept(x.user, i.token, 'synthetic@example.invalid'), code('unauthorized'));
   assert.equal(await membership(x), null); assert.equal(await events(i.invitationId, 'accepted'), 0);
 });
 test('canonical UID anchor fences outbox allocation across distinct workspaces until commit', { timeout: 15000 }, async () => {

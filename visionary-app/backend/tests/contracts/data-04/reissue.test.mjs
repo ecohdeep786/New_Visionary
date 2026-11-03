@@ -37,10 +37,10 @@ test('revoked invite can be reissued without rewriting its ID, token or history'
   const before = await env.db.invitation.findUniqueOrThrow({ where: { id: old.invitationId } });
   const next = await issue(x);
   assert.notEqual(next.invitationId, old.invitationId); assert.notEqual(next.token, old.token);
-  await assert.rejects(service.accept(x.user, old.token), code('revoked'));
+  await assert.rejects(service.accept(x.user, old.token, 'repeat@example.invalid'), code('revoked'));
   assert.deepEqual(await env.db.invitation.findUniqueOrThrow({ where: { id: old.invitationId } }), before);
   assert.equal((await service.track(x.owner, x.ws, old.invitationId)).length, 2);
-  await service.accept(x.user, next.token); assert.equal((await membership(x)).role, 'MEMBER');
+  await service.accept(x.user, next.token, 'repeat@example.invalid'); assert.equal((await membership(x)).role, 'MEMBER');
   assert.equal((await rows(x)).length, 2);
 });
 test('elapsed pending delivery transitions once to EXPIRED when reissued and its old token stays denied', async () => {
@@ -48,16 +48,16 @@ test('elapsed pending delivery transitions once to EXPIRED when reissued and its
   await env.db.invitation.update({ where: { id: old.invitationId }, data: { expiresAt: new Date(Date.now() - 1000), email: 'REPEAT@EXAMPLE.INVALID' } });
   const next = await issue(x);
   assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: old.invitationId } })).status, 'EXPIRED');
-  await assert.rejects(service.accept(x.user, old.token), code('expired'));
+  await assert.rejects(service.accept(x.user, old.token, 'repeat@example.invalid'), code('expired'));
   assert.equal(await env.db.auditEvent.count({ where: { resourceId: old.invitationId, operation: 'invitation.expired' } }), 1);
-  await service.accept(x.user, next.token); assert.equal((await membership(x)).role, 'MEMBER');
+  await service.accept(x.user, next.token, 'repeat@example.invalid'); assert.equal((await membership(x)).role, 'MEMBER');
 });
 test('accepted history remains replayable while a new delivery never silently changes the current role', async () => {
-  const x = await setup(), old = await issue(x); await service.accept(x.user, old.token);
+  const x = await setup(), old = await issue(x); await service.accept(x.user, old.token, 'repeat@example.invalid');
   const next = await issue(x, 'ADMIN');
-  assert.equal((await service.accept(x.user, next.token)).membershipRole, 'MEMBER');
+  assert.equal((await service.accept(x.user, next.token, 'repeat@example.invalid')).membershipRole, 'MEMBER');
   assert.equal((await membership(x)).role, 'MEMBER');
-  assert.equal((await service.accept(x.user, old.token)).replay, true);
+  assert.equal((await service.accept(x.user, old.token, 'repeat@example.invalid')).replay, true);
   assert.equal((await rows(x)).filter(r => r.status === 'ACCEPTED').length, 2);
   assert.equal(await env.db.auditEvent.count({ where: { uid: x.user, operation: 'invitation.accepted' } }), 2);
 });
@@ -117,7 +117,7 @@ test('reissue outage rolls back expiry/history/outbox and new invitation, then c
   try {
     const cold = new InvitationService(new PostgresInvitationStore(db, target));
     const next = await cold.invite(x.owner, x.ws, { email: 'repeat@example.invalid', role: 'MEMBER' });
-    await cold.accept(x.user, next.token);
+    await cold.accept(x.user, next.token, 'repeat@example.invalid');
   } finally { await db.$disconnect(); }
   assert.equal((await membership(x)).role, 'MEMBER'); assert.equal((await rows(x)).length, 2);
 });

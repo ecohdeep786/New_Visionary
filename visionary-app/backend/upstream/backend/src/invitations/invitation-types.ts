@@ -24,7 +24,7 @@ export interface InvitationIssue {
 /** Owning-store operations, never separate consume/grant/history mutations. */
 export interface InvitationStore {
   issue(input: InvitationIssue): Promise<InvitationView>;
-  accept(uid: string, tokenHash: string, at: Date): Promise<InvitationView>;
+  accept(uid: string, tokenHash: string, verifiedEmail: string, at: Date): Promise<InvitationView>;
   revoke(uid: string, id: string, at: Date): Promise<InvitationView>;
   list(uid: string, workspaceId: string): Promise<InvitationView[]>;
   track(uid: string, workspaceId: string, id: string): Promise<unknown[]>;

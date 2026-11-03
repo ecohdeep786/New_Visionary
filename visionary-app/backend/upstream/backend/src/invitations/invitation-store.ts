@@ -82,7 +82,7 @@ export class PostgresInvitationStore implements InvitationStore {
       const result = this.view(i); await this.record(tx, input.actorUid, i, 'issued', result); return result;
     });
   }
-  accept(uid: string, tokenHash: string, at: Date) {
+  accept(uid: string, tokenHash: string, verifiedEmail: string, at: Date) {
     return this.transaction(async tx => {
       // A token cannot create an identity; the canonical UID also fences events.
       await this.anchor(tx, uid);
@@ -92,7 +92,7 @@ export class PostgresInvitationStore implements InvitationStore {
       await tx.$queryRawUnsafe('SELECT "id" FROM "invitations" WHERE "id"=$1 FOR UPDATE', found.id);
       const i = await tx.invitation.findUniqueOrThrow({ where: { id: found.id } });
       if (i.workspaceId !== found.workspaceId) throw new InvitationPolicyError('conflict');
-      if (i.tokenHash !== tokenHash) throw new InvitationPolicyError('invalid_token');
+      if (i.tokenHash !== tokenHash || !verifiedEmail || i.email.toLowerCase() !== verifiedEmail) throw new InvitationPolicyError('invalid_token');
       if (i.status === 'REVOKED' || i.revokedAt) throw new InvitationPolicyError('revoked');
       if (i.status === 'EXPIRED') throw new InvitationPolicyError('expired');
       if (!['MEMBER', 'ADMIN'].includes(i.role)) throw new InvitationPolicyError('unauthorized');

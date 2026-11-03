@@ -20,10 +20,14 @@ export class InvitationService {
     // Only this initial response contains the bearer token; no receipt/history stores it.
     return { invitationId: view.id, token, expiresAt: view.expiresAt };
   }
-  async accept(uid: string, token: unknown) {
+  async accept(uid: string, token: unknown, verifiedEmail: string) {
     assertUid(uid);
     if (typeof token !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(token)) throw new InvitationPolicyError('invalid_token');
-    return this.store.accept(uid, tokenDigest(token), this.now());
+    // The HTTP boundary must supply this from the current verified identity, never the request body.
+    if (typeof verifiedEmail !== 'string' || verifiedEmail.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(verifiedEmail.trim())) {
+      throw new InvitationPolicyError('unauthorized');
+    }
+    return this.store.accept(uid, tokenDigest(token), verifiedEmail.trim().toLowerCase(), this.now());
   }
   async revoke(uid: string, id: string) { assertUid(uid); assertId(id); return this.store.revoke(uid, id, this.now()); }
   async list(uid: string, workspaceId: string) { assertUid(uid); assertId(workspaceId); return this.store.list(uid, workspaceId); }
