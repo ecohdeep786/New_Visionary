@@ -260,6 +260,17 @@
       ],
       "state": "observed"
     },
+    "institutionInvitations": {
+      "actor": "Current session, account and CSRF; verified provider email on acceptance; bounded UID rate admission",
+      "workspace": "Canonical PostgreSQL workspace and active issuer authority; configured independent reviewers only",
+      "object": "Opt-in SQL transaction binds invitation to its locked issuance approval",
+      "source": "No source publication or private learning access",
+      "consent": "Current adult privacy admission before issuing, accepting or approving; hosted activation separately gated",
+      "stores": [
+        "workspaceProvision"
+      ],
+      "state": "observed"
+    },
     "workspaceProvision": {
       "actor": "Verified current session/device, expected-account match, exact Origin/CSRF and per-UID 10/minute rate admission; UID derived by commandAccount",
       "workspace": "Creates only the authenticated owner personal workspace and OWNER membership; caller role/workspace hints rejected",
@@ -488,6 +499,34 @@
       "profile": "feedbackWrite",
       "controller": "FeedbackController",
       "sourceFile": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/accept",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/institution/approve",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/institution/revoke",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/issue",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -1368,8 +1407,12 @@
       "sha256Lf": "f2c713500f932eaa8c1c462945d9921f9ce2706f34d65de3913a9207a4cefe68"
     },
     {
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "sha256Lf": "94381b953a6ad1719a0d840384a6c030ba1ec67f573fa9cc59a0f3f45cf38143"
+    },
+    {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sha256Lf": "0229af0c63caf83a8e278f3b09f3578c1688ffd6a74e486f08fa4902cad02034"
+      "sha256Lf": "e89a17b4c891491ba48065f817f4573001a3af1ea7058d91671fc62b39e5e8bf"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/request-authority.ts",
@@ -1424,6 +1467,22 @@
       "sha256Lf": "530c81fa0eaab1e6bb35399ac3525ebbce8921097e427a01d7940c61f904c75a"
     },
     {
+      "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
+      "sha256Lf": "24dbb6ed47ffc0091ef78f6eeb7024b668f87525972bc46806f0939211747e28"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/invitation.service.ts",
+      "sha256Lf": "072a9c1597c71a06b1d3dfd8b05246a733791231b7961cbfcb872649abeecf43"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/invitation-store.ts",
+      "sha256Lf": "c3caf14034260b6079c87f60b6b81426d453aa948cd14118a8ccc0003a98393e"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/institution-approval.ts",
+      "sha256Lf": "15113363fac5b78065c97df4844697809b56acd581d4bde3fc610fed62d2152c"
+    },
+    {
       "file": "backend/upstream/backend/src/privacycore/privacy-policy.service.ts",
       "sha256Lf": "5f12256143de4f27d9c6f42ceb689f9ccfdf36772064995f548cec1f38351cef"
     },
@@ -1465,7 +1524,7 @@
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "8ac26c150ee3dd8c4fe1ed6827635b53bd1b2a0cd7583657359a86df4445c799"
+      "sha256Lf": "5e2713a990da385c540e7c1756b40fdf98c44efff2c3f518a4ec7ec28ac8b383"
     },
     {
       "file": "integration/contracts/v1/openapi.json",

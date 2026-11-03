@@ -17876,6 +17876,42 @@
       "column": 3
     },
     {
+      "method": "POST",
+      "path": "/api/account/invitations/accept",
+      "controller": "ProductInvitationController",
+      "handler": "accept",
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "line": 48,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/account/invitations/institution/approve",
+      "controller": "ProductInvitationController",
+      "handler": "approve",
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "line": 56,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/account/invitations/institution/revoke",
+      "controller": "ProductInvitationController",
+      "handler": "revoke",
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "line": 71,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/account/invitations/issue",
+      "controller": "ProductInvitationController",
+      "handler": "issue",
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "line": 38,
+      "column": 3
+    },
+    {
       "method": "GET",
       "path": "/api/account/invoices",
       "controller": "AccountController",
@@ -79435,7 +79471,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sourceSha256": "0229af0c63caf83a8e278f3b09f3578c1688ffd6a74e486f08fa4902cad02034"
+      "sourceSha256": "e89a17b4c891491ba48065f817f4573001a3af1ea7058d91671fc62b39e5e8bf"
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
@@ -79444,6 +79480,10 @@
     {
       "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
       "sourceSha256": "65f077538052d5d15bf79fda17dc3a38941f06db97f147137920a3fa99774dff"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "sourceSha256": "94381b953a6ad1719a0d840384a6c030ba1ec67f573fa9cc59a0f3f45cf38143"
     },
     {
       "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
@@ -82750,7 +82790,7 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 39,
+    "registeredEndpoints": 43,
     "controlDeclarations": 1658,
     "routeReachableDeclarations": 1506,
     "controlFiles": 222,

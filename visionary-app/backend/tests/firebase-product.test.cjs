@@ -498,3 +498,48 @@ test('invitation authority resolves current verified provider email for the auth
   await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 401);
   assert.equal(calls, 4);
 });
+
+test('product invitation HTTP acceptance rejects forged identity and passes only current verified recipient', async () => {
+  const f = fixture();
+  const { Module } = req('@nestjs/common');
+  const { NestFactory } = req('@nestjs/core');
+  const { ProductInvitationController } = req('./dist/src/invitations/product-invitation.controller.js');
+  const { ProductInvitationService } = req('./dist/src/invitations/product-invitation.service.js');
+  const cookieParser = req('cookie-parser');
+  const session = await f.service.signIn('verified-fixture-token', metadata);
+  f.auth.getUser = async uid => ({ uid, email: 'verified-now@example.test', emailVerified: true });
+  const accepted = [];
+  const config = { get: key => key === 'AUTH_PUBLIC_ORIGIN' ? 'http://localhost:5173' : undefined };
+  class TestModule {}
+  Module({ controllers: [ProductInvitationController], providers: [
+    { provide: FirebaseProductService, useValue: f.service },
+    { provide: ConfigService, useValue: config },
+    { provide: ProductInvitationService, useValue: { accept: async (...args) => { accepted.push(args); return { workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false }; } } },
+  ] })(TestModule);
+  const app = await NestFactory.create(TestModule, { logger: false });
+  app.use(cookieParser());
+  await app.listen(0, '127.0.0.1');
+  try {
+    const csrf = 'b'.repeat(64);
+    const url = (await app.getUrl()) + '/account/invitations/accept';
+    const headers = {
+      Origin: 'http://localhost:5173', 'X-CSRF-Token': csrf, 'X-Visionary-Account': f.identity.uid,
+      Cookie: 'visionary-session=' + session.cookie + '; visionary-device=' + session.device + '; visionary-csrf=' + csrf,
+      'Content-Type': 'application/json',
+    };
+    const call = (body, extra) => fetch(url, { method: 'POST', headers: { ...headers, ...extra }, body: JSON.stringify(body) });
+    const token = 'A'.repeat(43);
+    assert.equal((await call({ token }, { 'X-CSRF-Token': 'wrong' })).status, 403);
+    assert.equal((await call({ token }, { 'X-Visionary-Account': 'other' })).status, 409);
+    assert.equal((await call({ token, verifiedEmail: 'fake@example.test' })).status, 400);
+    assert.deepEqual(accepted, []);
+    const response = await call({ token });
+    assert.equal(response.status, 201);
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await response.json(), { workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false });
+    assert.deepEqual(accepted, [[f.identity.uid, 'verified-now@example.test', token]]);
+    f.revoke();
+    assert.equal((await call({ token })).status, 401);
+    assert.equal(accepted.length, 1);
+  } finally { await app.close(); }
+});
