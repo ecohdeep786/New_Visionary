@@ -46,12 +46,32 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       return saved;
     });
   }
+  // BILL-04: the one authoritative entitlement derivation. Plan display,
+  // checkout intent and paid-action admission all read this, so every
+  // surface agrees by construction and across devices (revision-stamped).
+  // An unknown provider state - an unfinished attempt or a subscription the
+  // provider has not confirmed in this period - stays pending: neither
+  // granted nor denied.
+  private entitlementOf(data: any) {
+    const sub = data.subscription, attempt = data.attempt;
+    const confirmed = !!sub && ['active', 'authenticated'].includes(sub.status);
+    const paid = confirmed && sub.paidThrough > seconds() && sub.paidFrom <= seconds();
+    if (paid) return { state: 'active', plan: sub.plan, validUntil: iso(sub.paidThrough), source: 'subscription', revision: data.revision };
+    // An in-flight attempt stays pending; a finished one ('succeeded',
+    // 'ended', 'failed') falls through to the subscription truth.
+    if (attempt && !['ended', 'failed', 'succeeded'].includes(attempt.state)) return { state: 'pending', plan: attempt.plan, reason: attempt.state, validUntil: null, source: 'subscription', revision: data.revision };
+    if (sub && !terminal.has(sub.status)) return { state: 'pending', plan: sub.plan, reason: sub.status, validUntil: null, source: 'subscription', revision: data.revision };
+    return { state: 'free', plan: 'start', validUntil: null, source: 'free', revision: data.revision };
+  }
   private view(uid: string, data: any) {
     const sub = data.subscription;
-    const paid = sub?.paidThrough > seconds() && sub?.paidFrom <= seconds();
+    const entitlement = this.entitlementOf(data);
+    const paid = entitlement.state === 'active';
     return {
       uid, mode: 'test', revision: data.revision, asOf: new Date().toISOString(), lastSyncedAt: data.lastSyncedAt || null,
-      plan: paid ? sub.plan : 'start', entitlement: { plan: paid ? sub.plan : 'start', validUntil: paid ? iso(sub.paidThrough) : null, source: paid ? 'personal-subscription' : 'free' },
+      // The display plan is the granted plan only; a pending entitlement
+      // never advertises the plan it is still waiting on.
+      plan: entitlement.state === 'active' ? entitlement.plan : 'start', entitlement,
       subscription: sub ? { id: sub.id, plan: sub.plan, interval: sub.interval, amount: sub.amount, currency: 'INR', status: sub.status, paidThrough: iso(sub.paidThrough), periodStart: iso(sub.periodStart), periodEnd: iso(sub.periodEnd), cancelAtPeriodEnd: !!sub.cancelAtPeriodEnd, renewalAt: sub.cancelAtPeriodEnd || terminal.has(sub.status) ? null : iso(sub.chargeAt), paymentMethod: sub.paymentMethod || null } : null,
       pending: data.attempt && !['ended', 'failed'].includes(data.attempt.state) && !paid ? { id: data.attempt.id, plan: data.attempt.plan, interval: data.attempt.interval, state: data.attempt.state, subscriptionId: data.attempt.subscriptionId || null, recoverable: !!data.attempt.subscriptionId && ['created', 'authenticated'].includes(sub?.status) } : null,
       invoices: data.invoices || [], syncPending: !!data.syncLease && data.syncLease.until > Date.now(), cancellationPending: !!data.cancelRequested,
@@ -243,7 +263,10 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     if (email === profile.email.toLowerCase()) throw new BadRequestException('Your account already occupies the owner seat.');
     const token = randomUUID(), invitation = { id: token, email, expiresAt: Date.now() + 7 * 86400000 };
     await this.update(uid, (current, tx) => {
-      if (this.view(uid, current).plan !== 'family') throw new ForbiddenException('An active Family subscription is required.');
+      // Paid-action admission reads the authoritative entitlement, not the
+      // display projection: a pending or unknown provider state refuses.
+      const entitlement = this.entitlementOf(current);
+      if (entitlement.state !== 'active' || entitlement.plan !== 'family') throw new ForbiddenException('An active Family subscription is required.');
       const pending = (current.familyInvitations || []).filter(row => row.expiresAt > Date.now());
       if (pending.some(row => row.email === email) || (current.familyMembers || []).some(row => row.email === email)) throw new ConflictException('This member already has a seat or pending invitation.');
       if ((current.familyMembers?.length || 0) + pending.length >= 5) throw new ConflictException('All six Family places are reserved, including yours. Remove a member or pending invitation first.');

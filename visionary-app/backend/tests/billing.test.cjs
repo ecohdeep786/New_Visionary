@@ -246,3 +246,47 @@ test('native HTTP billing requires session/device, exact Origin/CSRF and expecte
     const event = await fetch(url + '/api/billing/webhooks/razorpay', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Razorpay-Signature': createHmac('sha256', webhookSecret).update(body).digest('hex'), 'X-Razorpay-Event-Id': 'event_http' }, body }); assert.equal(event.status, 201);
   } finally { await app.close(); }
 });
+
+test('BILL-04: entitlement agrees across display, intent and paid-action admission, revision-stamped', async () => {
+  const f = fixture(), c = await f.create('adult', 'family'); f.pay(c.subscriptionId, 49900);
+  await f.service.sync('adult', true);
+  const account = await f.service.account('adult');
+  assert.equal(account.entitlement.state, 'active');
+  assert.equal(account.entitlement.plan, 'family');
+  assert.equal(account.entitlement.revision, account.revision, 'the entitlement carries the account revision devices agree on');
+  assert.equal(account.plan, 'family');
+  await f.service.inviteFamily('adult', { email: 'member@example.test' });
+});
+
+test('BILL-04: an unknown provider state stays pending, is never advertised and refuses paid actions', async () => {
+  const f = fixture(), c = await f.create(); f.pay(c.subscriptionId);
+  await f.service.sync('adult', true);
+  f.subscriptions.get(c.subscriptionId).status = 'halted';
+  await f.service.sync('adult', true);
+  const account = await f.service.account('adult');
+  assert.equal(account.entitlement.state, 'pending');
+  assert.equal(account.plan, 'start', 'the display never claims the plan the provider has not confirmed');
+  await assert.rejects(f.service.inviteFamily('adult', { email: 'member@example.test' }), e => e.getStatus() === 403);
+});
+
+test('BILL-04: an unfinished checkout attempt is pending, not granted', async () => {
+  const f = fixture();
+  await f.create();
+  const account = await f.service.account('adult');
+  assert.equal(account.entitlement.state, 'pending');
+  assert.equal(account.entitlement.reason, 'awaiting_customer');
+  assert.equal(account.plan, 'start');
+  await assert.rejects(f.service.inviteFamily('adult', { email: 'member@example.test' }), e => e.getStatus() === 403);
+});
+
+test('BILL-04: a provider-confirmed terminal subscription returns to free without deleting receipts', async () => {
+  const f = fixture(), c = await f.create(); f.pay(c.subscriptionId);
+  await f.service.sync('adult', true);
+  Object.assign(f.subscriptions.get(c.subscriptionId), { status: 'cancelled' });
+  await f.service.sync('adult', true); // force: the freshness window must not hide the provider truth
+  await f.service.sync('adult', true);
+  const account = await f.service.account('adult');
+  assert.equal(account.entitlement.state, 'free');
+  assert.equal(account.plan, 'start');
+  assert.equal(account.invoices.length > 0, true, 'receipts are retained');
+});
