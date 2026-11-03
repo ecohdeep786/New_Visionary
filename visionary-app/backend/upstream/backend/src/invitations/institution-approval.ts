@@ -38,7 +38,16 @@ export function createInstitutionApproval(input: {
   if (input.administratorUid !== canonicalOwnerUid || input.reviewerUid === canonicalOwnerUid ||
       !/^proof_[A-Za-z0-9_-]{16,100}$/.test(input.evidenceRef) ||
       !Number.isFinite(duration) || duration <= 0 || duration > MAX_APPROVAL_AGE_MS) denied();
-  return { ...input, policy: INSTITUTION_INVITATION_POLICY, approvedAt: new Date(now), expiresAt: new Date(input.expiresAt), revokedAt: null };
+  return {
+    policy: INSTITUTION_INVITATION_POLICY,
+    workspaceId: input.workspaceId,
+    administratorUid: input.administratorUid,
+    reviewerUid: input.reviewerUid,
+    evidenceRef: input.evidenceRef,
+    approvedAt: new Date(now),
+    expiresAt: new Date(input.expiresAt),
+    revokedAt: null,
+  };
 }
 
 /** Use on the locked approval row. A restored owner does not revive a revoked approval. */

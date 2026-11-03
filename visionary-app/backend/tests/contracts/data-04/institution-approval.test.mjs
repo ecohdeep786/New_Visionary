@@ -27,3 +27,9 @@ test('approval is restricted to its workspace and owner and fails closed on expi
   assert.throws(() => assertActiveInstitutionApproval({ ...approval, revokedAt: now }, 'classroom', 'administrator', now), denied);
   assert.throws(() => assertActiveInstitutionApproval({ ...approval, policy: 'obsolete' }, 'classroom', 'administrator', now), denied);
 });
+
+test('approval retains only the opaque reference when internal input has extra evidence fields', () => {
+  const approval = createInstitutionApproval({ ...input, rawProof: 'synthetic private evidence', contactEmail: 'synthetic@example.invalid' }, 'administrator', now, reviewers);
+  assert.equal(approval.evidenceRef, input.evidenceRef);
+  assert.deepEqual(Object.keys(approval).sort(), ['administratorUid', 'approvedAt', 'evidenceRef', 'expiresAt', 'policy', 'reviewerUid', 'revokedAt', 'workspaceId']);
+});
