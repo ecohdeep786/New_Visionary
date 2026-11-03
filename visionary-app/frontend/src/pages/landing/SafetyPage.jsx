@@ -161,7 +161,7 @@ export default function SafetyPage() {
         {/* STATEMENT + ICON STRIP — the reference's icon row */}
         <section data-section="02-statement" aria-labelledby="statement-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[880px] text-center">
-            <h2 id="statement-title" className="text-[clamp(24px,3vw,34px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#1d1d1f]">
+            <h2 id="statement-title" data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
               The questions you ask every day, <span className="text-[#1d1d1f]">safer in all kinds of ways.</span>
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">

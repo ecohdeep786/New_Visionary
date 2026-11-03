@@ -79864,11 +79864,11 @@
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "sourceSha256": "84af95e1be1e1409b0b33b3a8cd75aff7e49b984804c2bdddad3f21bcca672d1"
+      "sourceSha256": "57eb22b48490b37b7cc39532b81ad8e33b0ddfe99c13bbfeec57734d69272e5f"
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "sourceSha256": "b8a3c80d80fe465f14405be0dc2465593f316a9052b836037f142ec4512a31e0"
+      "sourceSha256": "d920c90ee401dcc3cd728af628ab2abea5db14a87a46e1564b6eb2995a3e69e2"
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",

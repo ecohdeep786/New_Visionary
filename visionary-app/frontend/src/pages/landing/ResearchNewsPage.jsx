@@ -187,7 +187,7 @@ export default function ResearchNewsPage() {
         <section data-section="02-mission" className="px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <div>
-              <h2 className="text-[24px] font-medium leading-[1.3] tracking-[-0.02em] text-[#1d1d1f] sm:text-[28px]">
+              <h2 data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Building the mentor intelligence.
               </h2>
               <div className="mt-4 max-w-[520px]">
