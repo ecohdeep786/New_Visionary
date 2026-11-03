@@ -28,6 +28,7 @@
     "POST /api/auth/onboarding/introduction": "existing-json",
     "POST /api/auth/logout-all": "existing-json",
     "POST /api/auth/logout": "existing-json",
+    "GET /api/account/privacy/policy": "existing-json",
     "GET /api/account/overview": "existing-json",
     "GET /api/account/devices": "existing-json",
     "GET /api/account/invoices": "existing-json",
