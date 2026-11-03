@@ -50,7 +50,7 @@ try {
   const hasInvitations = existsSync(join(backend, 'src/invitations/invitation.service.ts'));
   const invitationTests = hasInvitations ? readdirSync(join(root, 'backend/tests/contracts/data-04')).filter(name => name.endsWith('.test.mjs')) : [];
   if (hasInvitations) {
-    config.files.push('src/invitations/invitation.service.ts', 'src/invitations/invitation-store.ts');
+    config.files.push('src/invitations/invitation.service.ts', 'src/invitations/invitation-store.ts', 'src/invitations/institution-approval.ts');
     if (!invitationTests.length) throw Error('Invitation source without registered regressions.');
     for (const name of invitationTests) {
       const destination = join(testRoot, 'contracts/data-04', name); mkdirSync(dirname(destination), { recursive: true });
