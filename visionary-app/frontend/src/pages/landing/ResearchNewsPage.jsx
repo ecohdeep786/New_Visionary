@@ -10,7 +10,8 @@ import SpotIllustration from "@/components/landing/SpotIllustration";
 import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import CinematicHero from "@/components/landing/CinematicHero";
-import { CtaPair } from "@/components/landing/system/ui";
+import stageHeroWebp from "@/assets/brand/hero-research.webp";
+import stageHeroAvif from "@/assets/brand/hero-research.avif";
 import imgHeroChip from "@/assets/student-higher.webp";
 import imgStudent from "@/assets/student-hero-main-1600w.webp";
 import imgTeacher from "@/assets/teacher-hero-main-1600w.webp";
@@ -163,19 +164,21 @@ export default function ResearchNewsPage() {
       <main id="main">
         <Breadcrumb page="Research" />
 
-        {/* HERO — the Apple-privacy hero anatomy (FAP-59 phase 3), rendered
-            from the single-source CinematicHero: centered two-part display,
-            values-first statement, the front-door CTA pair, and the full-bleed
-            cinematic band (placeholder stage until the founder's image lands
-            in @/assets/brand/hero-research.{webp,avif}). No local nav bar on
-            this page (founder directive) — breadcrumb stays the guide. */}
+                        {/* HERO — the FAP-59 stage with Apple's centered voice (phase 4):
+            the two-part display rides alone (founder: remove the tag,
+            sub-heading and CTA); the three-learner portrait rises from the
+            fold. No local nav bar on this page (founder directive); the
+            breadcrumb stays as the page's top guide. */}
         <Reveal>
           <CinematicHero
             title="One intelligence,"
             accent="every learner."
-            statement="We are building a mentor that knows your journey. This page records what we learn."
-            cta={<CtaPair ctaTo="/register" ctaLabel="Start learning free" secondaryTo="/how-it-works" secondaryLabel="See how it works" />}
-            image={null}
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "Three learners looking ahead to their studies",
+            }}
+            inFlow={60}
           />
         </Reveal>
 

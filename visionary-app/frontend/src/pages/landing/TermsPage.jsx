@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+﻿import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Accessibility, ArrowRight, ChevronDown, Cookie, FileText,
@@ -6,11 +6,13 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
 import LocalNav from "@/components/landing/LocalNav";
 import CinematicHero from "@/components/landing/CinematicHero";
+import stageHeroWebp from "@/assets/brand/hero-stage.webp";
+import stageHeroAvif from "@/assets/brand/hero-stage.avif";
+
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META } from "@/data/legalMeta";
 import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
@@ -29,10 +31,10 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+/* â•â•â• Link and pill grammar â€” the A2 CTA law, imported from the one source â•â•â• */
 const { quietLink } = CTA_LAW;
 
-/* ═══ CONTROLLERS ═══ */
+/* â•â•â• CONTROLLERS â•â•â• */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -203,27 +205,28 @@ export default function TermsPage() {
   return (
     <div className="page-terms min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <Breadcrumb page="Terms" />
       <LocalNav title="Terms" />
 
       <main id="main">
-        {/* HERO — the Apple-privacy hero anatomy (FAP-59 phase 3), rendered
-            from the single-source CinematicHero under the LocalNav bar:
-            centered two-part display, values-first statement, and the
-            full-bleed cinematic band (placeholder until the founder's image
-            lands in @/assets/brand/hero-terms.{webp,avif}). */}
+        {/* HERO â€” the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4), rendered from the single-source CinematicHero
+            under the LocalNav bar. Promises, action row and effective date
+            stay as the body opening below. */}
         <FadeReveal visible={heroVisible}>
           <CinematicHero
-            label="Terms of service"
             title="Clear rules, written"
             accent="to be understood."
-            statement="What you can expect from Visionary, and what we expect from the people who use it, without the obscure language."
-            image={null}
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "A learner holding a laptop, ready to learn",
+            }}
+            inFlow={56}
           />
         </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
-            {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
+            {/* SIDEBAR TOC â€” starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
                 <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
@@ -259,7 +262,7 @@ export default function TermsPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY BODY OPENING — promises, action row, effective date
+              {/* POLICY BODY OPENING â€” promises, action row, effective date
                   (the display hero lives in CinematicHero above; FAP-59
                   phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
@@ -490,7 +493,7 @@ export default function TermsPage() {
           </div>
         </div>
 
-        {/* KEY TERMS — the policies.google.com glossary pattern */}
+        {/* KEY TERMS â€” the policies.google.com glossary pattern */}
         <section data-section="15-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
@@ -535,7 +538,7 @@ export default function TermsPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 â€” the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="17-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

@@ -5,6 +5,8 @@ import ScrollReveal from "../sections/ScrollReveal.jsx";
 import RevealItem from "../sections/RevealItem.jsx";
 import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { fontStack } from "@/components/landing/system/tokens";
+import heroBotWebp from "@/assets/brand/visionary-bot.webp";
+import heroBotAvif from "@/assets/brand/visionary-bot.avif";
 
 function useCentredStep(total) {
   const nodes = useRef([]);
@@ -144,7 +146,9 @@ function IntelligenceBeats({ index, label }) {
    raised ink field; every beat is stacked and cross-faded by `active` with a
    settle-scale, a clip plays only while its beat is active, and reduced
    motion snaps everything to instant. The 30px radius matches the journey
-   story cards exactly. */
+   story cards exactly. NOTE (2026-11-02, founder): on the front door's promo
+   band this rectangle frame is replaced by the bare Visionary bot image; the
+   frame remains the category pages' mechanism stage. */
 const IntelligenceFrame = React.memo(function IntelligenceFrame({ steps, active, autoplay = true, plain = false }) {
   const reduced = usePrefersReducedMotion();
   const videos = useRef([]);
@@ -223,20 +227,15 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
   const { ref: headRef } = useRevealOnce();
   const { active, setStepRef, nodes } = useCentredStep(steps.length);
   const reduced = usePrefersReducedMotion();
-  const [beat, setBeat] = useState(0);
 
   /* promo mode — the front door's product band: the chapter's statement over
-     one slowly morphing stage (the mark walks its four scenes), one door
-     out to the full mechanism. No beats, no drawers, no dots — the door is
-     the dark-band white pill (Apple's dark chapters never carry a filled
-     accent button; the accent lives in the statement and the light) and the
-     mark floats bare, no card border. The default renders the full chapter
+     the one bare mark (the Visionary bot, unframed on the dark stage,
+     founder directive 2026-11-02: "remove the rectangle and use the
+     image"), one door out to the full mechanism. No beats, no drawers, no
+     dots — the door is the dark-band white pill (Apple's dark chapters never
+     carry a filled accent button; the accent lives in the statement and the
+     light) and the mark floats bare. The default renders the full chapter
      every category page carries. */
-  useEffect(() => {
-    if (!promo || reduced) return undefined;
-    const id = setInterval(() => setBeat((b) => (b + 1) % steps.length), 4200);
-    return () => clearInterval(id);
-  }, [promo, reduced, steps.length]);
 
   const scrollToBeat = useCallback((i) => {
     const node = nodes.current?.[i];
@@ -287,10 +286,21 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
             </RevealItem>
           ) : null}
         </ScrollReveal>
+        {/* the mark — the Visionary bot stands bare on the dark field under
+            the CTA (founder directive: remove the rectangle, use the
+            image); no frame, no stage box. */}
         <div aria-hidden="true" className="relative mx-auto mt-16 w-full px-6">
-          <div className="mx-auto aspect-square w-full max-w-[560px]">
-            <IntelligenceFrame steps={steps} active={beat} autoplay={false} plain />
-          </div>
+          <picture>
+            <source type="image/avif" srcSet={heroBotAvif} />
+            <img
+              src={heroBotWebp}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+              className="pointer-events-none mx-auto h-auto w-[clamp(320px,52vw,500px)] select-none"
+            />
+          </picture>
         </div>
       </section>
     );

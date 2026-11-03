@@ -5,6 +5,8 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import LandingNav from "@/components/landing/LandingNav";
 import AboutUsHero from "@/components/landing/AboutUsHero";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import heroBotWebp from "@/assets/brand/visionary-bot.webp";
+import heroBotAvif from "@/assets/brand/visionary-bot.avif";
 import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import studentImage from "@/assets/student-hero-main-1600w.webp";
@@ -99,7 +101,10 @@ function MissionSection() {
           </p>
           <p className="mt-10 text-[14px] text-[#1d1d1f]">Visionary · the mission we build toward</p>
         </div>
-        <div className="flex min-h-[260px] items-center justify-center rounded-[20px] bg-white p-8 pb-20 sm:pb-24"><SpotIllustration subject="loop" className="h-56 w-56 sm:h-72 sm:w-72" title="One intelligence across every learner" /></div>
+        {/* the mark — the Visionary bot (the same founder-approved bare bot
+            the front door's One-intelligence promo band carries), hosted in
+            the mission card at the illustration slot's exact dimensions. */}
+        <div className="flex min-h-[260px] items-center justify-center rounded-[20px] bg-white p-8 pb-20 sm:pb-24"><picture><source type="image/avif" srcSet={heroBotAvif} /><img src={heroBotWebp} alt="One intelligence across every learner" loading="lazy" decoding="async" draggable="false" className="pointer-events-none h-56 w-56 select-none object-contain sm:h-72 sm:w-72" /></picture></div>
         {/* google.com card curve — the field's cutout sweeps into the
             bottom-right of the illustration card and the action pill
             floats in it with breathing room */}
