@@ -507,14 +507,22 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
   const { ProductInvitationService } = req('./dist/src/invitations/product-invitation.service.js');
   const cookieParser = req('cookie-parser');
   const session = await f.service.signIn('verified-fixture-token', metadata);
-  f.auth.getUser = async uid => ({ uid, email: 'verified-now@example.test', emailVerified: true });
+  let providerCalls = 0;
+  f.auth.getUser = async uid => { providerCalls++; return { uid, email: 'verified-now@example.test', emailVerified: true }; };
   const accepted = [];
-  const config = { get: key => key === 'AUTH_PUBLIC_ORIGIN' ? 'http://localhost:5173' : undefined };
+  let enabled = false, adult = true;
+  const config = { get: key => ({ AUTH_PUBLIC_ORIGIN: 'http://localhost:5173', DATA_INSTITUTION_INVITATIONS_ENABLED: String(enabled) })[key] };
+  const product = new ProductInvitationService(f.service, config);
+  product.runtime = {
+    reviewers: new Set(),
+    privacy: { admission: async () => ({ allowed: adult, state: adult ? 'adult_current_boundary' : 'review_required' }) },
+    invitations: { accept: async (...args) => { accepted.push(args); return { workspaceId: 'fixture-workspace', membershipRole: 'MEMBER', replay: false }; } },
+  };
   class TestModule {}
   Module({ controllers: [ProductInvitationController], providers: [
     { provide: FirebaseProductService, useValue: f.service },
     { provide: ConfigService, useValue: config },
-    { provide: ProductInvitationService, useValue: { accept: async (...args) => { accepted.push(args); return { workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false }; } } },
+    { provide: ProductInvitationService, useValue: product },
   ] })(TestModule);
   const app = await NestFactory.create(TestModule, { logger: false });
   app.use(cookieParser());
@@ -532,12 +540,24 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
     assert.equal((await call({ token }, { 'X-CSRF-Token': 'wrong' })).status, 403);
     assert.equal((await call({ token }, { 'X-Visionary-Account': 'other' })).status, 409);
     assert.equal((await call({ token, verifiedEmail: 'fake@example.test' })).status, 400);
+    assert.equal((await call({ token: 'short' })).status, 400);
+    assert.equal((await call({ token })).status, 503);
+    enabled = true;
+    const rateLimit = f.service.rateLimit.bind(f.service);
+    const { HttpException } = req('@nestjs/common');
+    f.service.rateLimit = async () => { throw new HttpException('Rate limited', 429); };
+    assert.equal((await call({ token })).status, 429);
+    f.service.rateLimit = rateLimit;
+    adult = false;
+    assert.equal((await call({ token })).status, 403);
+    adult = true;
+    assert.equal(providerCalls, 0);
     assert.deepEqual(accepted, []);
     const response = await call({ token });
     assert.equal(response.status, 201);
     assert.equal(response.headers.get('cache-control'), 'no-store');
     assert.deepEqual(await response.json(), { workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false });
-    assert.deepEqual(accepted, [[f.identity.uid, 'verified-now@example.test', token]]);
+    assert.deepEqual(accepted, [[f.identity.uid, token, 'verified-now@example.test']]);
     f.revoke();
     assert.equal((await call({ token })).status, 401);
     assert.equal(accepted.length, 1);

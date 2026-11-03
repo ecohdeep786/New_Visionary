@@ -1408,7 +1408,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "sha256Lf": "94381b953a6ad1719a0d840384a6c030ba1ec67f573fa9cc59a0f3f45cf38143"
+      "sha256Lf": "0c53d5a08871dfcbdc232f071b45f1538fd3125b392732c7b1385c36f7bb51dd"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
@@ -1468,7 +1468,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
-      "sha256Lf": "24dbb6ed47ffc0091ef78f6eeb7024b668f87525972bc46806f0939211747e28"
+      "sha256Lf": "0e7981eb21811f6adbdb1efa0c1ac0a5a95f6fa2fe1ec5f5447b57c25f2a22a4"
     },
     {
       "file": "backend/upstream/backend/src/invitations/invitation.service.ts",
@@ -1520,7 +1520,7 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "d5c2dc0ba13d9ef69991b068d196978a72b3a22572e8460e7138e160d022c67c"
+      "sha256Lf": "c8c35d87f2e50c37037a76994e0c8c0b8dfc1cdb4f57b09e24cb59fdf036ddaa"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",

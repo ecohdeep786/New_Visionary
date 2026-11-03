@@ -48,9 +48,10 @@ export class ProductInvitationController extends ProductRequestAuthority {
   @Post('accept')
   @Header('Cache-Control', 'no-store')
   async accept(@Req() req: Request, @Body() input: unknown) {
-    const { uid, verifiedEmail } = await this.invitationRecipient(req);
+    this.csrf(req);
+    const { uid } = await this.commandAccount(req, false);
     const { token } = this.body(input, ['token']);
-    return this.command(() => this.invitations.accept(uid, verifiedEmail, token));
+    return this.command(() => this.invitations.accept(uid, token));
   }
 
   @Post('institution/approve')

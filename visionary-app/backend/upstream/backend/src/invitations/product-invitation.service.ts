@@ -6,6 +6,7 @@ import { assertCloudSqlUrl, assertSyntheticUrl, quoteIdentifier } from '../data/
 import { FirestorePrivacyStore } from '../privacycore/firestore-privacy-store';
 import { PrivacyCoreService } from '../privacycore/privacy-core-service';
 import { PostgresInvitationStore } from './invitation-store';
+import { InvitationPolicyError } from './invitation-types';
 import { assertInstitutionReviewer } from './institution-approval';
 import { InvitationService } from './invitation.service';
 
@@ -67,10 +68,12 @@ export class ProductInvitationService implements OnModuleDestroy {
     return invitations.invite(uid, workspaceId, input);
   }
 
-  async accept(uid: string, verifiedEmail: string, token: unknown) {
+  async accept(uid: string, token: unknown) {
+    if (typeof token !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(token)) throw new InvitationPolicyError('invalid_command');
     const { invitations, privacy } = this.settings();
     await this.accounts.rateLimit('institution-invite-accept', uid, 10);
     await this.admission(privacy, uid);
+    const { verifiedEmail } = await this.accounts.currentVerifiedInvitationRecipient(uid);
     const result = await invitations.accept(uid, token, verifiedEmail);
     return { workspaceId: result.workspaceId, role: result.membershipRole, replay: result.replay };
   }
