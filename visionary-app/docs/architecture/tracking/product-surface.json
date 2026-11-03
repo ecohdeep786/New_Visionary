@@ -2757,22 +2757,22 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:212:13",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:241:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:242:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:258:25",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:268:15",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:299:25",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:333:15",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:349:15",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:369:19",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:400:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:401:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:437:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:438:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:452:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:462:17",
-        "frontend/src/pages/landing/ResearchNewsPage.jsx:479:15"
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:242:15",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:272:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:273:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:289:25",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:299:15",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:330:25",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:364:15",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:380:15",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:400:19",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:431:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:432:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:468:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:469:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:483:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:493:17",
+        "frontend/src/pages/landing/ResearchNewsPage.jsx:510:15"
       ],
       "operations": [
         "public-updates-distribution"
@@ -73676,10 +73676,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:212:13",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:242:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 212,
-      "column": 13,
+      "line": 242,
+      "column": 15,
       "tag": "QuietLink",
       "events": [],
       "calls": [],
@@ -73701,9 +73701,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:241:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:272:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 241,
+      "line": 272,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -73726,9 +73726,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:242:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:273:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 242,
+      "line": 273,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -73751,9 +73751,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:258:25",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:289:25",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 258,
+      "line": 289,
       "column": 25,
       "tag": "Link",
       "events": [],
@@ -73776,9 +73776,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:268:15",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:299:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 268,
+      "line": 299,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -73801,9 +73801,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:299:25",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:330:25",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 299,
+      "line": 330,
       "column": 25,
       "tag": "QuietLink",
       "events": [],
@@ -73825,9 +73825,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:333:15",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:364:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 333,
+      "line": 364,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -73850,9 +73850,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:349:15",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:380:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 349,
+      "line": 380,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -73875,9 +73875,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:369:19",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:400:19",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 369,
+      "line": 400,
       "column": 19,
       "tag": "QuietLink",
       "events": [],
@@ -73900,9 +73900,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:400:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:431:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 400,
+      "line": 431,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -73925,9 +73925,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:401:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:432:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 401,
+      "line": 432,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -73950,9 +73950,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:437:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:468:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 437,
+      "line": 468,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -73975,9 +73975,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:438:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:469:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 438,
+      "line": 469,
       "column": 17,
       "tag": "QuietLink",
       "events": [],
@@ -74000,9 +74000,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:452:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:483:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 452,
+      "line": 483,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -74025,9 +74025,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:462:17",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:493:17",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 462,
+      "line": 493,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -74050,9 +74050,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:479:15",
+      "id": "frontend/src/pages/landing/ResearchNewsPage.jsx:510:15",
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "line": 479,
+      "line": 510,
       "column": 15,
       "tag": "QuietLink",
       "events": [],
@@ -79864,7 +79864,7 @@
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "sourceSha256": "57eb22b48490b37b7cc39532b81ad8e33b0ddfe99c13bbfeec57734d69272e5f"
+      "sourceSha256": "8f9cb0e4fd84072f564c49a450beddf492bd2fe9f12ea9779e7afa0015e2a01e"
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",

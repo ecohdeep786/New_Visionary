@@ -10,8 +10,8 @@ import SpotIllustration from "@/components/landing/SpotIllustration";
 import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import CinematicHero from "@/components/landing/CinematicHero";
-import stageHeroWebp from "@/assets/brand/hero-research.webp";
-import stageHeroAvif from "@/assets/brand/hero-research.avif";
+import researchBotWebp from "@/assets/brand/visionary-bot.webp";
+import researchBotAvif from "@/assets/brand/visionary-bot.avif";
 import imgHeroChip from "@/assets/student-higher.webp";
 import imgStudent from "@/assets/student-hero-main-1600w.webp";
 import imgTeacher from "@/assets/teacher-hero-main-1600w.webp";
@@ -166,17 +166,19 @@ export default function ResearchNewsPage() {
 
                         {/* HERO — the FAP-59 stage with Apple's centered voice (phase 4):
             the two-part display rides alone (founder: remove the tag,
-            sub-heading and CTA); the three-learner portrait rises from the
-            fold. No local nav bar on this page (founder directive); the
-            breadcrumb stays as the page's top guide. */}
+            sub-heading and CTA); the VISIONARY BOT rises from the fold —
+            this is a research page (founder directive 2026-11-03): the bot
+            is the program's output, so the stage carries the bot, not a
+            persona photo. No local nav bar on this page (founder directive);
+            the breadcrumb stays as the page's top guide. */}
         <Reveal>
           <CinematicHero
             title="One intelligence,"
             accent="every learner."
             image={{
-              src: stageHeroWebp,
-              avifSrcSet: stageHeroAvif,
-              alt: "Three learners looking ahead to their studies",
+              src: researchBotWebp,
+              avifSrcSet: researchBotAvif,
+              alt: "The Visionary intelligence — the output of the research program",
             }}
             inFlow={60}
           />
@@ -197,21 +199,50 @@ export default function ResearchNewsPage() {
               </div>
             </div>
             <div className="relative overflow-hidden rounded-[30px] bg-[#1d1d1f] p-10 sm:p-14">
-              <p className="apple-eyebrow text-white/60">Visionary Intelligence</p>
-              <h3 className="mt-6 max-w-[420px] text-[28px] font-normal leading-[1.2] tracking-[-0.02em] text-white sm:text-[36px]">
-                I am your Intelligence.
-              </h3>
-              <div className="mt-8 flex flex-wrap gap-2.5">
-                {["Knows your journey", "Speaks your language", "Works across roles", "Built on evidence"].map((chip) => (
-                  <span key={chip} className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[13px] text-white/80">{chip}</span>
-                ))}
+              <div className="flex items-center gap-8 sm:gap-12">
+                <div className="min-w-0 flex-1">
+                  <p className="apple-eyebrow text-white/60">Visionary Intelligence</p>
+                  <h3 className="mt-6 max-w-[420px] text-[28px] font-normal leading-[1.2] tracking-[-0.02em] text-white sm:text-[36px]">
+                    I am your Intelligence.
+                  </h3>
+                  <p className="mt-4 max-w-[440px] text-[15px] leading-[1.6] text-white/70">
+                    Every finding on this page ends up here — the bot is where the research meets the learner.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-2.5">
+                    {["Knows your journey", "Speaks your language", "Works across roles", "Built on evidence"].map((chip) => (
+                      <span key={chip} className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[13px] text-white/80">{chip}</span>
+                    ))}
+                  </div>
+                </div>
+                <picture className="hidden shrink-0 sm:block">
+                  <source type="image/avif" srcSet={researchBotAvif} />
+                  <img
+                    src={researchBotWebp}
+                    alt="The Visionary intelligence"
+                    loading="lazy"
+                    decoding="async"
+                    draggable="false"
+                    className="pointer-events-none w-[150px] select-none lg:w-[190px]"
+                  />
+                </picture>
               </div>
             </div>
           </Reveal>
           <div className="mx-auto max-w-[1240px] px-0 mt-10">
-            <QuietLink href="#latest">
-              What the intelligence does today <ChevronIcon className="h-4 w-4" aria-hidden="true" />
-            </QuietLink>
+            {/* the research pipeline — the founder's framing: findings feed the
+                bot, the bot is what the learner meets */}
+            <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[14px] text-[#6e6e73]">
+              <span className="font-medium text-[#1d1d1f]">Research</span>
+              <ChevronIcon className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="font-medium text-[#1d1d1f]">The bot</span>
+              <ChevronIcon className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="font-medium text-[#1d1d1f]">Every learner</span>
+            </p>
+            <div className="mt-4">
+              <QuietLink href="#latest">
+                What the intelligence does today <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
+            </div>
           </div>
         </section>
 
