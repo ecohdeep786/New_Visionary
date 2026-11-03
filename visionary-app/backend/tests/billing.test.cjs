@@ -246,3 +246,71 @@ test('native HTTP billing requires session/device, exact Origin/CSRF and expecte
     const event = await fetch(url + '/api/billing/webhooks/razorpay', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Razorpay-Signature': createHmac('sha256', webhookSecret).update(body).digest('hex'), 'X-Razorpay-Event-Id': 'event_http' }, body }); assert.equal(event.status, 201);
   } finally { await app.close(); }
 });
+
+test('BILL-03: failed dispatches climb a rate-aware retry ladder and quarantine at the ceiling', async () => {
+  const f = fixture(), c = await f.create(); f.pay(c.subscriptionId);
+  await f.service.sync('adult', true);
+  const queueKey = 'visionary_billing_test_queue/adult';
+  const request = f.provider.request.bind(f.provider);
+  f.provider.request = async (method, resource, body) => {
+    if (method === 'GET' && resource.startsWith('subscriptions/')) throw new PaymentProviderError(true);
+    return request(method, resource, body);
+  };
+  const ladderMs = [60000, 120000, 300000, 900000, 1800000];
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    await assert.rejects(f.service.sync('adult', true), () => true);
+    const row = f.rows.get(queueKey);
+    assert.equal(row.attempts, attempt, `attempt ${attempt} recorded on the queue document`);
+    if (attempt < 5) {
+      const due = row.nextSyncAt - Date.now(), base = ladderMs[attempt - 1];
+      assert.ok(due > base * 0.85 && due < base * 1.25, `attempt ${attempt} backs off ~${base}ms, saw ${due}ms`);
+    }
+  }
+  const quarantined = f.rows.get(queueKey);
+  assert.equal(quarantined.attempts, 5);
+  assert.ok(quarantined.quarantinedAt > 0, 'ceiling quarantines the account');
+  assert.ok(quarantined.nextSyncAt - Date.now() > 1800000 * 0.85, 'quarantine backs off far');
+});
+
+test('BILL-03: quarantined accounts are skipped by dispatch and a fresh merchant event resets the ladder', async () => {
+  const f = fixture(), c = await f.create(); f.pay(c.subscriptionId);
+  await f.service.sync('adult', true);
+  const queueKey = 'visionary_billing_test_queue/adult';
+  f.rows.set(queueKey, { ...f.rows.get(queueKey), nextSyncAt: Date.now() - 1000, attempts: 5, quarantinedAt: Date.now() - 1 });
+  const result = await f.service.reconcileDue();
+  assert.equal(result.quarantinedSkipped, 1); assert.equal(result.processed, 0);
+  const raw = Buffer.from(JSON.stringify({ event: 'subscription.charged', payload: { subscription: { entity: { id: c.subscriptionId } } } }));
+  await f.service.webhook(raw, createHmac('sha256', webhookSecret).update(raw).digest('hex'), 'event_ladder');
+  const row = f.rows.get(queueKey);
+  assert.equal(row.attempts, 0); assert.equal(row.quarantinedAt, null);
+});
+
+test('BILL-03: dispatch pages through more accounts than one page holds', async () => {
+  const f = fixture();
+  for (let n = 0; n < 25; n++) f.rows.set(`visionary_billing_test_queue/growth${n}`, { uid: `growth${n}`, nextSyncAt: Date.now() - 1000, attempts: 0, quarantinedAt: null });
+  const result = await f.service.reconcileDue();
+  assert.equal(result.processed, 25, 'two pages: 20 + 5');
+  assert.ok(f.rows.has('visionary_accounts/growth24/billing/test'), 'the last paged account was reconciled');
+});
+
+test('BILL-03: backlog observation is private-identity-only and reports redacted counts', async () => {
+  const f = fixture();
+  for (const token of [undefined, 'bad', 'a'.repeat(64)]) await assert.rejects(f.service.backlog(token), e => e.getStatus() === 403);
+  f.rows.set('visionary_billing_test_queue/one', { uid: 'one', nextSyncAt: Date.now() - 1000, attempts: 1, quarantinedAt: null });
+  f.rows.set('visionary_billing_test_queue/two', { uid: 'two', nextSyncAt: Date.now() + 3600000, attempts: 5, quarantinedAt: Date.now() - 1 });
+  const view = await f.service.backlog(jobToken);
+  assert.deepEqual(Object.keys(view).sort(), ['dueAtLeast', 'dueBounded', 'quarantinedAtLeast', 'quarantinedBounded', 'sampledAt']);
+  assert.equal(view.dueAtLeast, 1); assert.equal(view.quarantinedAtLeast, 1);
+  assert.equal(JSON.stringify(view).includes('one'), false, 'no account identifiers in the backlog view');
+});
+
+test('BILL-03: a pre-claim dispatch failure ladders the queue document instead of hot-looping', async () => {
+  const f = fixture(), c = await f.create(); f.pay(c.subscriptionId);
+  await f.service.sync('adult', true);
+  f.rows.set('visionary_accounts/adult', { ...f.rows.get('visionary_accounts/adult'), storageMigration: { status: 'copying' } });
+  f.rows.set('visionary_billing_test_queue/adult', { ...f.rows.get('visionary_billing_test_queue/adult'), nextSyncAt: Date.now() - 1000 });
+  await assert.rejects(f.service.reconcileDue(true), e => e.getStatus() === 503);
+  const row = f.rows.get('visionary_billing_test_queue/adult');
+  assert.equal(row.attempts, 1);
+  assert.ok(row.nextSyncAt > Date.now() + 50000, 'the queue document backs off instead of staying due');
+});

@@ -13,6 +13,16 @@ const statuses = new Set(['created', 'authenticated', 'active', 'pending', 'halt
 const fingerprint = (value: string) => createHash('sha256').update(value).digest('hex');
 const seconds = () => Math.floor(Date.now() / 1000);
 const iso = (value: number) => value > 0 ? new Date(value * 1000).toISOString() : null;
+// BILL-03 dispatch state: per-account queue documents carry the retry ladder.
+// The backoff grows across attempts and is rate-aware for the merchant (the
+// shortest retry stays above the interactive resync window; jitter spreads a
+// recovered backlog so a restart never stamps a spike into the provider).
+const RETRY_LADDER = [60_000, 120_000, 300_000, 900_000, 1_800_000];
+const MAX_DISPATCH_ATTEMPTS = 5;
+const QUARANTINE_BACKOFF = RETRY_LADDER[RETRY_LADDER.length - 1] * 2;
+const jitter = (ms: number) => Math.round(ms * (0.9 + Math.random() * 0.2));
+const backoffFor = (attempts: number) => jitter(RETRY_LADDER[Math.min(Math.max(attempts, 1), RETRY_LADDER.length) - 1]);
+const DISPATCH_PAGE = 20;
 
 @Injectable()
 export class BillingService implements OnModuleInit, OnModuleDestroy {
@@ -42,7 +52,9 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       const saved = { ...next, uid, basePlan: 'start', schemaVersion: 1, revision: current.revision + 1, updatedAt: Date.now() };
       tx.set(ref, saved);
       // Global operational index; account data remains under the verified UID.
-      tx.set(this.repo.queue(uid), { uid, nextSyncAt: saved.nextSyncAt || null, revision: saved.revision });
+      // Merge keeps the dispatch ladder (attempts/quarantine) that claim and
+      // failure paths write in the same transaction.
+      tx.set(this.repo.queue(uid), { uid, nextSyncAt: saved.nextSyncAt || null, revision: saved.revision }, { merge: true });
       return saved;
     });
   }
@@ -151,8 +163,11 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     if (!data.subscription?.id) return this.account(uid);
     if (!force && data.lastSyncedAt && Date.now() - data.lastSyncedAt < 30000) return this.account(uid);
     const lease = randomUUID(), subId = data.subscription.id;
-    const claimed = await this.update(uid, current => {
+    const claimed = await this.update(uid, (current, tx) => {
       if (current.subscription?.id !== subId || current.syncLease?.until > Date.now() || current.commandLease?.until > Date.now()) return null;
+      // The queue document moves with the claim so a concurrent dispatch pass
+      // cannot re-pick this account while the lease holds.
+      tx.set(this.repo.queue(uid), { uid, nextSyncAt: Date.now() + 180000 }, { merge: true });
       return { ...current, syncLease: { id: lease, until: Date.now() + 180000 }, nextSyncAt: Date.now() + 180000 };
     });
     if (claimed.syncLease?.id !== lease) return this.account(uid);
@@ -197,10 +212,27 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
         for (const receipt of receipts) { history.set(receipt.id, receipt); tx.set(this.repo.receipt(uid, receipt.id), { ...receipt, uid }); tx.set(this.repo.db().collection('visionary_billing_test_payments').doc(receipt.paymentId), { uid, invoiceId: receipt.id, subscriptionId: receipt.subscriptionId, merchant: fingerprint(this.provider.settings().keyId) }); }
         current.paymentAdjustments = (current.paymentAdjustments || []).filter(id => !adjustments.includes(id));
         if (terminal.has(sub.status)) current.cancelRequested = false;
-        return { ...current, subscription: { ...current.subscription, status: sub.status, periodStart: sub.current_start || 0, periodEnd: sub.current_end || 0, chargeAt: sub.charge_at || 0, paidFrom, paidThrough, paymentMethod: sub.payment_method || null }, attempt: current.attempt?.subscriptionId === subId ? { ...current.attempt, state: paidThrough > seconds() ? 'succeeded' : terminal.has(sub.status) ? 'ended' : 'processing' } : current.attempt, invoices: [...history.values()].sort((a: any, b: any) => String(b.paidAt).localeCompare(String(a.paidAt))).slice(0, 50), lastSyncedAt: Date.now(), syncLease: null, nextSyncAt: terminal.has(sub.status) && !paidThrough ? Date.now() + 86400000 : Date.now() + 60000 };
+        const nextSyncAt = terminal.has(sub.status) && !paidThrough ? Date.now() + 86400000 : Date.now() + 60000;
+        tx.set(this.repo.queue(uid), { uid, nextSyncAt, attempts: 0, quarantinedAt: null }, { merge: true });
+        return { ...current, subscription: { ...current.subscription, status: sub.status, periodStart: sub.current_start || 0, periodEnd: sub.current_end || 0, chargeAt: sub.charge_at || 0, paidFrom, paidThrough, paymentMethod: sub.payment_method || null }, attempt: current.attempt?.subscriptionId === subId ? { ...current.attempt, state: paidThrough > seconds() ? 'succeeded' : terminal.has(sub.status) ? 'ended' : 'processing' } : current.attempt, invoices: [...history.values()].sort((a: any, b: any) => String(b.paidAt).localeCompare(String(a.paidAt))).slice(0, 50), lastSyncedAt: Date.now(), syncLease: null, nextSyncAt };
       });
     } catch (error) {
-      await this.update(uid, current => current.syncLease?.id === lease ? { ...current, syncLease: null, nextSyncAt: Date.now() + 60000 } : null);
+      // A failed dispatch climbs the merchant-rate-aware ladder; at the
+      // ceiling the account quarantines (long backoff, surfaced in the
+      // backlog) instead of retry-storming the provider. Attempts live on
+      // the queue document only; a fresh merchant event or an interactive
+      // sync resets the ladder.
+      await this.update(uid, async (current, tx) => {
+        if (current.syncLease?.id !== lease) return null;
+        const queueRef = this.repo.queue(uid);
+        const attempts = (((await tx.get(queueRef)).data()?.attempts as number) || 0) + 1;
+        const quarantined = attempts >= MAX_DISPATCH_ATTEMPTS;
+        const nextSyncAt = Date.now() + (quarantined ? jitter(QUARANTINE_BACKOFF) : backoffFor(attempts));
+        tx.set(queueRef, { uid, nextSyncAt, attempts, quarantinedAt: quarantined ? Date.now() : null }, { merge: true });
+        return { ...current, syncLease: null, nextSyncAt };
+      });
+      // The dispatch layer must not ladder this failure twice.
+      if (error instanceof Error) (error as any).dispatchHandled = true;
       throw error;
     }
     return this.account(uid);
@@ -330,7 +362,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       if (saved?.exists) {
         const nextSyncAt = Date.now();
         tx.update(account, { nextSyncAt, paymentAdjustments: pending });
-        tx.set(this.repo.queue(mapping.uid), { uid: mapping.uid, nextSyncAt, revision: saved.data().revision || 0 });
+        tx.set(this.repo.queue(mapping.uid), { uid: mapping.uid, nextSyncAt, attempts: 0, quarantinedAt: null, revision: saved.data().revision || 0 });
       }
     });
     return { received: true };
@@ -347,23 +379,65 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
   async reconcileDue(reportFailure = false) {
     if (this.running || this.stopping) return { skipped: true, processed: 0, failed: 0 };
     this.running = true;
-    let processed = 0, failed = 0;
+    let processed = 0, failed = 0, quarantinedSkipped = 0;
     try {
       this.provider.settings();
-      const due = await this.repo.db().collection(BILLING_QUEUE).where('nextSyncAt', '>', 0).where('nextSyncAt', '<=', Date.now()).limit(20).get();
+      // Growth-appropriate dispatch: ordered, cursor-paged reads of due
+      // accounts instead of an unordered whole-queue scan. Every page is a
+      // bounded indexed query; the wall-clock budget bounds the pass, the
+      // next pass resumes after the cursor, and each claimed account moves
+      // its own queue document out of the due window inside the claim
+      // transaction. Quarantined accounts are skipped, never retried here.
       const startedAt = Date.now();
-      for (const row of due.docs) {
+      let cursor: FirebaseFirestore.QueryDocumentSnapshot | undefined;
+      for (;;) {
         if (this.stopping || Date.now() - startedAt > 45000) break;
-        try { await this.sync(row.id); processed++; }
-        catch { failed++; await this.update(row.id, current => ({ ...current, nextSyncAt: Date.now() + 60000 })).catch(() => {}); }
+        let query: FirebaseFirestore.Query = this.repo.db().collection(BILLING_QUEUE)
+          .where('nextSyncAt', '>', 0).where('nextSyncAt', '<=', Date.now())
+          .orderBy('nextSyncAt').limit(DISPATCH_PAGE);
+        if (cursor) query = query.startAfter(cursor);
+        const page = await this.repo.safely(() => query.get());
+        if (!page.docs.length) break;
+        for (const row of page.docs) {
+          cursor = row;
+          if (row.data()?.quarantinedAt) { quarantinedSkipped++; continue; }
+          try { await this.sync(row.id); processed++; }
+          catch (error) {
+            failed++;
+            // A pre-claim failure (storage/provider unavailable before the
+            // lease) never reached the sync-owned ladder; move the queue
+            // document itself so the next pass backs off instead of
+            // immediately re-picking the account. Sync-handled failures
+            // already climbed the ladder exactly once.
+            if (!(error as any)?.dispatchHandled) {
+              await this.repo.transaction(async tx => {
+                const ref = this.repo.queue(row.id);
+                const attempts = (((await tx.get(ref)).data()?.attempts as number) || 0) + 1;
+                const quarantined = attempts >= MAX_DISPATCH_ATTEMPTS;
+                tx.set(ref, { uid: row.id, attempts, nextSyncAt: Date.now() + (quarantined ? jitter(QUARANTINE_BACKOFF) : backoffFor(attempts)), quarantinedAt: quarantined ? Date.now() : null }, { merge: true });
+              }).catch(() => {});
+            }
+          }
+        }
+        if (page.docs.length < DISPATCH_PAGE) break;
       }
       if (reportFailure && failed) throw new ServiceUnavailableException('Some billing work remains due. Retry reconciliation.');
-      return { skipped: false, processed, failed };
+      return { skipped: false, processed, failed, quarantinedSkipped };
     } catch {
       if (reportFailure) throw new ServiceUnavailableException('Billing reconciliation is temporarily unavailable. Retry this job.');
       // Missing configuration/storage does not take browser auth offline.
     }
     finally { this.running = false; }
+  }
+
+  // Backlog monitoring for the private job identity: counts only, never
+  // account identifiers, bounded sampling with an explicit bound marker.
+  async backlog(token: unknown) {
+    this.provider.authorizeReconciliation(token);
+    const now = Date.now();
+    const due = await this.repo.safely(() => this.repo.db().collection(BILLING_QUEUE).where('nextSyncAt', '>', 0).where('nextSyncAt', '<=', now).limit(101).get());
+    const quarantined = await this.repo.safely(() => this.repo.db().collection(BILLING_QUEUE).where('quarantinedAt', '>', 0).limit(101).get());
+    return { dueAtLeast: due.docs.length, dueBounded: due.docs.length > 100, quarantinedAtLeast: quarantined.docs.length, quarantinedBounded: quarantined.docs.length > 100, sampledAt: now };
   }
   onModuleDestroy() { this.stopping = true; if (this.timer) clearInterval(this.timer); }
 }

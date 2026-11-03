@@ -25,5 +25,6 @@ export class BillingController extends ProductRequestAuthority {
   @Post('family/remove') async remove(@Req() req: Request, @Body() body: unknown) { return this.billing.removeFamily(await this.writer(req), body); }
   @Post('family/leave') async leave(@Req() req: Request) { return this.billing.leaveFamily(await this.writer(req)); }
   @Post('jobs/reconcile') scheduled(@Req() req: Request) { return this.billing.scheduledReconciliation(req.get('X-Visionary-Billing-Job')); }
+  @Post('jobs/backlog') backlog(@Req() req: Request) { return this.billing.backlog(req.get('X-Visionary-Billing-Job')); }
   @Post('webhooks/razorpay') webhook(@Req() req: Request) { return this.billing.webhook(req.body, req.get('X-Razorpay-Signature'), req.get('X-Razorpay-Event-Id')); }
 }

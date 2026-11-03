@@ -26,15 +26,17 @@ exports.billingMemory = () => {
     const pending = queue.then(async () => {
       const changes = []; let writing = false;
       const tx = { get: async ref => { if (writing) throw Error('Firestore requires reads before writes'); return snapshot(ref.key); },
-        set: (ref, value) => { writing = true; changes.push(['set', ref.key, clone(value)]); },
+        set: (ref, value, options) => { writing = true; changes.push(['set', ref.key, clone(value), !!options?.merge]); },
         create: (ref, value) => { writing = true; changes.push(['create', ref.key, clone(value)]); },
         update: (ref, value) => { writing = true; changes.push(['update', ref.key, clone(value)]); },
         delete: ref => { writing = true; changes.push(['delete', ref.key]); } };
       const result = await action(tx), saved = new Map(rows);
-      for (const [kind, key, value] of changes) {
+      for (const [kind, key, value, merge] of changes) {
         if (kind === 'create' && saved.has(key)) throw Error('Already exists');
         if (kind === 'update' && !saved.has(key)) throw Error('Missing record');
-        if (kind === 'delete') saved.delete(key); else saved.set(key, kind === 'update' ? { ...saved.get(key), ...value } : value);
+        if (kind === 'delete') saved.delete(key);
+        else if (merge) saved.set(key, { ...(saved.get(key) || {}), ...value });
+        else saved.set(key, kind === 'update' ? { ...saved.get(key), ...value } : value);
       }
       rows.clear(); for (const [key, value] of saved) rows.set(key, value);
       return result;
