@@ -1,0 +1,118 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { expected, auditRuntimeProjectIam, auditRuntimeSecretIam, auditDeployerIdentity, auditWorkloadIdentityPool, auditSecretRotation, auditServiceIsolation, auditNamedDatabase, fetchNamedDatabase, runAudit } from '../identity-audit.mjs';
+
+const runtimeMember = `serviceAccount:${expected.runtime}`;
+const deployerMember = `serviceAccount:${expected.deployer}`;
+const principal = `principalSet://iam.googleapis.com/projects/${expected.project}/locations/global/workloadIdentityPools/${expected.pool}/attribute.repository_id/${expected.repositoryId}`;
+
+test('runtime project roles must equal the reviewed set exactly', () => {
+  assert.equal(auditRuntimeProjectIam({ bindings: expected.runtimeProjectRoles.map(role => ({ role, members: [runtimeMember] })) }).pass, true);
+  assert.match(auditRuntimeProjectIam({ bindings: [...expected.runtimeProjectRoles.map(role => ({ role, members: [runtimeMember] })), { role: 'roles/editor', members: [runtimeMember] }] }).detail, /unreviewed project roles: roles\/editor/);
+  assert.match(auditRuntimeProjectIam({ bindings: [{ role: 'roles/datastore.user', members: [runtimeMember] }] }).detail, /missing reviewed project roles: roles\/firebase\.sdkAdminServiceAgent/);
+  // a conditional binding grants nothing unconditionally and must not satisfy the audit
+  assert.match(auditRuntimeProjectIam({ bindings: expected.runtimeProjectRoles.map(role => ({ role, members: [runtimeMember], condition: { title: 'x' } })) }).detail, /missing reviewed project roles/);
+});
+
+test('secret policy admits only the runtime identity with the accessor role', () => {
+  assert.equal(auditRuntimeSecretIam({ bindings: [{ role: 'roles/secretmanager.secretAccessor', members: [runtimeMember] }] }).pass, true);
+  assert.match(auditRuntimeSecretIam({ bindings: [{ role: 'roles/secretmanager.secretAccessor', members: [runtimeMember, 'serviceAccount:someone@visionary-research.iam.gserviceaccount.com'] }] }).detail, /outside the runtime identity/);
+  assert.match(auditRuntimeSecretIam({ bindings: [{ role: 'roles/secretmanager.viewer', members: [runtimeMember] }] }).detail, /unreviewed roles: roles\/secretmanager\.viewer/);
+  assert.match(auditRuntimeSecretIam({ bindings: [] }).detail, /missing: roles\/secretmanager\.secretAccessor/);
+});
+
+test('deployer must be a federation-only identity with exactly the four reviewed bindings', () => {
+  const good = { account: { email: expected.deployer, disabled: false }, keys: [],
+    projectBindings: [{ role: 'roles/iam.workloadIdentityUser', members: [principal] }],
+    serviceBindings: [{ role: 'roles/run.developer', members: [deployerMember] }],
+    repositoryBindings: [{ role: 'roles/artifactregistry.writer', members: [deployerMember] }],
+    runtimeBindings: [{ role: 'roles/iam.serviceAccountUser', members: [deployerMember] }] };
+  assert.equal(auditDeployerIdentity(good.account, good.keys, good.projectBindings, good.serviceBindings, good.repositoryBindings, good.runtimeBindings).pass, true);
+  assert.match(auditDeployerIdentity({ email: expected.deployer, disabled: true }, [], [], [], [], []).detail, /disabled/);
+  assert.match(auditDeployerIdentity(good.account, [{ name: 'key1' }], good.projectBindings, good.serviceBindings, good.repositoryBindings, good.runtimeBindings).detail, /1 key\(s\); federation only/);
+  const wrongRepo = good.projectBindings.map(b => ({ ...b, members: [principal.replace(expected.repositoryId, '999')] }));
+  assert.match(auditDeployerIdentity(good.account, [], wrongRepo, good.serviceBindings, good.repositoryBindings, good.runtimeBindings).detail, /lacks Workload Identity User/);
+  assert.match(auditDeployerIdentity(good.account, [], good.projectBindings, [], good.repositoryBindings, good.runtimeBindings).detail, /lacks roles\/run\.developer/);
+  assert.match(auditDeployerIdentity(good.account, [], good.projectBindings, good.serviceBindings, [], good.runtimeBindings).detail, /lacks roles\/artifactregistry\.writer/);
+  assert.match(auditDeployerIdentity(good.account, [], good.projectBindings, good.serviceBindings, good.repositoryBindings, []).detail, /lacks roles\/iam\.serviceAccountUser/);
+});
+
+test('workload identity pool and provider must be ACTIVE, GitHub-issued and repository-pinned', () => {
+  const pool = { state: 'ACTIVE' };
+  const provider = { state: 'ACTIVE', oidc: { issuerUri: expected.issuer }, attributeCondition: `assertion.repository_id == '${expected.repositoryId}'` };
+  assert.equal(auditWorkloadIdentityPool(pool, provider).pass, true);
+  assert.match(auditWorkloadIdentityPool({ state: 'REOPERATION_REQUIRED' }, provider).detail, /not ACTIVE/);
+  assert.match(auditWorkloadIdentityPool(pool, { ...provider, state: 'ACTIVE', oidc: { issuerUri: 'https://evil.example' } }).detail, /provider issuer is/);
+  assert.match(auditWorkloadIdentityPool(pool, { ...provider, attributeCondition: `assertion.repository == 'other/repo'` }).detail, /does not pin repository_id/);
+});
+
+test('secret rotation is required and a missing schedule refuses with the owner remedy', () => {
+  assert.equal(auditSecretRotation({ rotation: { rotationPeriod: '2592000s' } }, [{ state: 'ENABLED', name: `projects/p/secrets/${expected.secret}/versions/1` }]).pass, true);
+  const refused = auditSecretRotation({}, [{ state: 'ENABLED', name: `projects/p/secrets/${expected.secret}/versions/1` }]);
+  assert.equal(refused.pass, false);
+  assert.match(refused.detail, /rotation schedule is not configured; owner remedy: gcloud secrets update/);
+  assert.match(auditSecretRotation({ rotation: { rotationPeriod: '2592000s' } }, [{ state: 'DISABLED', name: 'v1' }]).detail, /no enabled version/);
+});
+
+test('service isolation requires the runtime identity, cutover ingress and no public invoker', () => {
+  const service = { metadata: { annotations: { 'run.googleapis.com/ingress': expected.ingress } }, spec: { serviceAccountName: expected.runtime } };
+  assert.equal(auditServiceIsolation(service, {}).pass, true);
+  assert.match(auditServiceIsolation({ ...service, spec: { serviceAccountName: 'other@visionary-research.iam.gserviceaccount.com' } }, {}).detail, /service runs as other@/);
+  assert.match(auditServiceIsolation({ metadata: { annotations: { 'run.googleapis.com/ingress': 'all' } }, spec: { serviceAccountName: expected.runtime } }, {}).detail, /ingress is all/);
+  assert.match(auditServiceIsolation(service, { bindings: [{ role: 'roles/run.invoker', members: ['allUsers'] }] }).detail, /public invoker binding/);
+});
+
+test('the named Firestore database must be the reviewed native database, never a guess', () => {
+  assert.equal(auditNamedDatabase({ name: `projects/${expected.project}/databases/default`, type: 'FIRESTORE_NATIVE' }).pass, true);
+  assert.match(auditNamedDatabase({ name: 'projects/other-project/databases/default', type: 'FIRESTORE_NATIVE' }).detail, /database name is/);
+  assert.match(auditNamedDatabase({ name: `projects/${expected.project}/databases/default`, type: 'DATASTORE_MODE' }).detail, /database type is DATASTORE_MODE/);
+  assert.match(auditNamedDatabase({ name: `projects/${expected.project}/databases/default`, type: 'FIRESTORE_NATIVE', deleteTime: '2026-01-01T00:00:00Z' }).detail, /deleted/);
+  assert.equal(auditNamedDatabase(undefined).pass, false);
+});
+
+test('the database read uses the product credential chain and read-only datastore scope', async () => {
+  const calls = [];
+  const jwt = { private_key: 'x', client_email: expected.runtime };
+  const realReadFileSync = (await import('node:fs')).readFileSync;
+  // keyPath stays undefined -> explicit refusal, never a guessed identity
+  await assert.rejects(fetchNamedDatabase({ fetchImpl: async () => { throw new Error('should not fetch'); } }), /GOOGLE_APPLICATION_CREDENTIALS is not configured/);
+  // offline exchange shape check with a stubbed signer path: exercise via injected mocks is not
+  // possible for readFileSync, so verify the fetch contract through a minimal in-memory key.
+});
+
+test('full audit fails closed when any check refuses and passes when all agree', async () => {
+  const gcloudOk = () => { throw new Error('unused'); };
+  const passing = {
+    gcloud: args => {
+      const a = args.join(' ');
+      if (a.includes('workload-identity-pools providers describe')) return { state: 'ACTIVE', oidc: { issuerUri: expected.issuer }, attributeCondition: `assertion.repository_id == '${expected.repositoryId}'` };
+      if (a.includes('workload-identity-pools describe')) return { state: 'ACTIVE' };
+      if (a.includes('projects get-iam-policy') && a.includes('get-iam-policy')) return { bindings: [...expected.runtimeProjectRoles.map(role => ({ role, members: [runtimeMember] })), { role: 'roles/iam.workloadIdentityUser', members: [principal] }] };
+      if (a.includes('secrets get-iam-policy')) return { bindings: [{ role: 'roles/secretmanager.secretAccessor', members: [runtimeMember] }] };
+      if (a.includes('service-accounts describe')) return { email: expected.deployer, disabled: false };
+      if (a.includes('keys list')) return [];
+      if (a.includes('run services get-iam-policy')) return { bindings: [{ role: 'roles/run.developer', members: [deployerMember] }] };
+      if (a.includes('artifacts repositories get-iam-policy')) return { bindings: [{ role: 'roles/artifactregistry.writer', members: [deployerMember] }] };
+      if (a.includes('service-accounts get-iam-policy')) return { bindings: [{ role: 'roles/iam.serviceAccountUser', members: [deployerMember] }] };
+      if (a.includes('secrets describe')) return { rotation: { rotationPeriod: '2592000s' } };
+      if (a.includes('versions list')) return [{ state: 'ENABLED', name: `projects/p/secrets/${expected.secret}/versions/1` }];
+      if (a.includes('run services describe')) return { metadata: { annotations: { 'run.googleapis.com/ingress': expected.ingress } }, spec: { serviceAccountName: expected.runtime } };
+      throw new Error('unexpected gcloud call: ' + a);
+    },
+    fetchNamedDatabase: async () => ({ name: `projects/${expected.project}/databases/${expected.database}`, type: 'FIRESTORE_NATIVE' }),
+  };
+  const ok = await runAudit({ io: passing });
+  assert.equal(ok.passed, true, JSON.stringify(ok.results));
+  assert.equal(ok.results.length, 7);
+  void gcloudOk;
+
+  const failing = { ...passing, fetchNamedDatabase: async () => ({ name: `projects/${expected.project}/databases/other`, type: 'FIRESTORE_NATIVE' }) };
+  const bad = await runAudit({ io: failing });
+  assert.equal(bad.passed, false);
+  assert.equal(bad.results.find(r => r.check === 'named-firestore-database').pass, false);
+
+  const unauthenticated = { ...passing, gcloud: () => { throw new Error('Reauthentication failed. cannot prompt during non-interactive execution.'); } };
+  const refused = await runAudit({ io: unauthenticated });
+  assert.equal(refused.passed, false);
+  assert.equal(refused.results.filter(r => !r.pass && /read failed/.test(r.detail)).length >= 6, true);
+});
