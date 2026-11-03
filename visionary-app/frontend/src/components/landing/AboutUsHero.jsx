@@ -48,14 +48,17 @@ export default function AboutUsHero() {
     >
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
         <p data-type="label" className="text-center text-[#6e6e73]">About Visionary</p>
-        <div className="mx-auto mt-6 max-w-[1120px] text-center">
-          <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
+        {/* Google communities hero rhythm — one balanced beat between every
+            centered tier: tag → statement → subhead → CTAs, then the wide
+            breath before the card field. */}
+        <div className="mx-auto mt-8 max-w-[1120px] text-center">
+          <h1 className="mx-auto max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
             Understanding. <span className="accent-gradient">Built in.</span>
           </h1>
           <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
             A learning product for people who want to understand, practise, and apply what they learn.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               to="/how-it-works"
               className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
@@ -68,7 +71,7 @@ export default function AboutUsHero() {
       </div>
 
       {/* Fanned card strip — full page width, drifting anticlockwise */}
-      <div className="mt-14">
+      <div className="mt-20">
         <HeroFanCards items={STRIP_CARDS} ariaLabel="Explore Visionary by category" />
       </div>
     </section>
