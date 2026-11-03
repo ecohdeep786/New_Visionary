@@ -13,8 +13,8 @@ const code = expected => e => e.code === expected;
 let env, service, target;
 before(async () => {
   env = await stagingDatabase();
-  assert.deepEqual(registry().map(m => m.version), [1, 2]);
-  assert.equal((await new MigrationRunner(env.store(), registry()).applyAll()).applied, 2);
+  assert.deepEqual(registry().map(m => m.version), [1, 2, 3]);
+  assert.equal((await new MigrationRunner(env.store(), registry()).applyAll()).applied, 3);
   await env.grantRuntime();
   target = { role: env.runtimeRole, schema: env.schema, database: new URL(env.config.runtimeUrl).pathname.slice(1) };
   service = new InvitationService(new PostgresInvitationStore(env.runtime, target));
@@ -142,8 +142,8 @@ test('failed migration2 restores v1 indexes; cold retry applies current history 
     const indexes = await f.db.$queryRawUnsafe('SELECT indexname FROM pg_indexes WHERE schemaname=$1 AND tablename=$2', f.schema, 'invitations');
     assert.ok(indexes.some(i => i.indexname === 'invitations_workspaceId_email_key'));
     assert.ok(!indexes.some(i => i.indexname === 'invitations_one_pending_email'));
-    assert.equal((await new MigrationRunner(f.store(), registry()).applyAll()).applied, 1);
-    const replay = await new MigrationRunner(f.store(), registry()).applyAll(); assert.equal(replay.applied, 0); assert.equal(replay.skipped, 2);
-    assert.equal((await new MigrationRunner(f.store(), registry()).verify()).consistent, true);
+    assert.equal((await new MigrationRunner(f.store(), registry().slice(0, 2)).applyAll()).applied, 1);
+    const replay = await new MigrationRunner(f.store(), registry().slice(0, 2)).applyAll(); assert.equal(replay.applied, 0); assert.equal(replay.skipped, 2);
+    assert.equal((await new MigrationRunner(f.store(), registry().slice(0, 2)).verify()).consistent, true);
   } finally { await f.close(); }
 });

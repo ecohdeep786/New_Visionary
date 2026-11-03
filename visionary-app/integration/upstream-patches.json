@@ -122,6 +122,22 @@
           "afterSha256": "583c9140cb47636abb2d9cccb8865942aef9371a378dbeb26b014239414bfb7b"
         }
       ]
+    },
+    {
+      "id": "2026-11-03-data-04-institution-approval",
+      "date": "2026-11-03",
+      "decision": "KAN-39 manual institution approval workflow",
+      "reason": "Add durable scoped approval history and bind invitations to their issuance approval.",
+      "diff": "integration/upstream-patches/2026-11-03-data-04-institution-approval.patch",
+      "diffSha256": "4428b8faaffcac3db75ab23e5dc1bc0fe56aaa20078e799a26e4e30d2e40ba79",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "583c9140cb47636abb2d9cccb8865942aef9371a378dbeb26b014239414bfb7b",
+          "afterSha256": "34662e52fd9e144c50b1744c46c2183d46aa9006d84ff69aaf153af96e75ca89"
+        }
+      ]
     }
   ]
 }

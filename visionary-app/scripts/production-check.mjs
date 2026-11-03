@@ -61,6 +61,7 @@ try {
     config.files.push('src/data/migration-runner.ts', 'src/data/migration-store.ts', 'src/data/migration-registry.ts');
     cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261024000001_data_01_workspaces'), join(backend, 'prisma/migrations/20261024000001_data_01_workspaces'), { recursive: true });
     if (hasInvitations) cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261102000002_data_04_invitation_reissue'), join(backend, 'prisma/migrations/20261102000002_data_04_invitation_reissue'), { recursive: true });
+    if (hasInvitations) cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261103000003_data_04_institution_approval'), join(backend, 'prisma/migrations/20261103000003_data_04_institution_approval'), { recursive: true });
     for (const file of ['data-01/postgres-fixture.cjs', 'data-02/postgres-fixture.cjs', 'data-03/provisioning.test.mjs']) {
       const destination = join(testRoot, 'contracts', file); mkdirSync(dirname(destination), { recursive: true });
       cpSync(join(root, 'backend/tests/contracts', file), destination);
