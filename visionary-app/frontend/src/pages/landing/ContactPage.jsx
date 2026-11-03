@@ -289,11 +289,11 @@ export default function ContactPage() {
         <section data-section="07-hygiene" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-2 md:gap-12">
             <div>
-              <h2 className="text-[20px] font-medium text-[#1d1d1f]">Before you send</h2>
+              <h3 className="text-[20px] font-medium text-[#1d1d1f]">Before you send</h3>
               <p className="mt-3 text-[14px] leading-[1.75] text-[#6e6e73]">Your email app will open a draft. Review the recipient and message, then choose whether to send it. Nothing is submitted to Visionary from this page.</p>
             </div>
             <div>
-              <h2 className="text-[20px] font-medium text-[#1d1d1f]">Keep sensitive details out</h2>
+              <h3 className="text-[20px] font-medium text-[#1d1d1f]">Keep sensitive details out</h3>
               <p className="mt-3 text-[14px] leading-[1.75] text-[#6e6e73]">Do not include passwords, payment card details, or sensitive learner information in an email. For information about personal data, read the <Link to="/privacy" className="relative after:absolute after:-inset-y-3 after:-inset-x-2 font-medium text-[#0066cc] underline-offset-2 hover:underline">Privacy policy</Link>.</p>
             </div>
           </Reveal>

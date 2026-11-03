@@ -79812,7 +79812,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "d058a431750ef86b9d8ae9bd7b29bfec89a222ef52dfc4acaf1002421e343ebf"
+      "sourceSha256": "5dc956fc4b3822dc27bf37e04fa4c36978f94e66f0bd97bd61896a3f00663042"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
@@ -79832,7 +79832,7 @@
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
-      "sourceSha256": "de43c2b8bae56c955654f821271f3c4b82ee8f4642f38044e1ed7c2b0bcc7224"
+      "sourceSha256": "7e33cbe6fab42d697d5a5cd2fed4fb4fe71d26e93302e85928123cbabfe7a1f3"
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
