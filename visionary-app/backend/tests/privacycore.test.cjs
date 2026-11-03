@@ -172,3 +172,58 @@ test('policy array accessors deny before reading changing elements', () => {
     assert.equal(reads, 0);
   }
 });
+
+test('Founder-approved preservation asset passes actual policy boundary and denies altered policy', () => {
+  const fs = require('node:fs');
+  const asset = JSON.parse(fs.readFileSync(req.resolve('./src/privacycore/privacy-preservation-policy.v1.json'), 'utf8'));
+  const owner = asset.humanApproval.ownerId;
+  const accepted = approvedPolicy(asset.policySnapshot, new Set([owner]), new Date());
+  assert.equal(accepted.policyDigest, '2f928ca888cf4d2bddf7b35898788fd3ca093b351ef9344e1db572608140b577');
+  assert.equal(accepted.policy.admission.under18Activation, 'blocked');
+  const altered = structuredClone(asset.policySnapshot); altered.policy.classes[0].purpose += ' changed';
+  assert.throws(() => approvedPolicy(altered, new Set([owner]), new Date()), e => e.code === 'policy_unapproved');
+  assert.throws(() => approvedPolicy(asset.policySnapshot, new Set(), new Date()), e => e.code === 'policy_unapproved');
+});
+const { PrivacyPolicyService } = req('./dist/src/privacycore/privacy-policy.service.js');
+test('packaged approved policy view is bounded, attributed and does not imply lifecycle activation', () => {
+  const result = new PrivacyPolicyService().view('synthetic-owner');
+  assert.equal(result.uid, 'synthetic-owner'); assert.equal(result.dataClasses.length, 9);
+  assert.deepEqual(result.approvedBy, { name: 'Md Shahid Ali', role: 'Founder & CEO' });
+  assert.equal(result.policyDigest, '2f928ca888cf4d2bddf7b35898788fd3ca093b351ef9344e1db572608140b577');
+  assert.equal(result.capabilities.cloudErasure, false); assert.equal(result.preservation.under18Activation, 'blocked');
+  assert.ok(JSON.stringify(result).length < 16000);
+});
+test('packaged policy corruption and even self-rehashed replacement fail against reviewed digest pin', () => {
+  const fs = require('node:fs'), file = req.resolve('./dist/src/privacycore/privacy-preservation-policy.v1.json');
+  const original = fs.readFileSync(file); const service = new PrivacyPolicyService();
+  try {
+    const altered = JSON.parse(original); altered.policySnapshot.policy.classes[0].purpose += ' changed';
+    altered.policySnapshot.approval.policyDigest = digest(altered.policySnapshot.policy);
+    for (const bytes of [JSON.stringify(altered), '{bad', 'x'.repeat(24001)]) {
+      fs.writeFileSync(file, bytes); assert.throws(() => service.view('synthetic-owner'), e => e.getStatus() === 503 && !e.message.includes('changed'));
+    }
+  } finally { fs.writeFileSync(file, original); }
+  assert.equal(service.view('synthetic-owner').approvalState, 'approved');
+});
+test('actual privacy HTTP boundary verifies account before serving reference and denies selectors', async () => {
+  req('reflect-metadata');
+  const { Module, UnauthorizedException } = req('@nestjs/common'), { NestFactory } = req('@nestjs/core');
+  const { ConfigService } = req('@nestjs/config'), cookieParser = req('cookie-parser');
+  const { PrivacyPolicyController } = req('./dist/src/privacycore/privacy-policy.controller.js');
+  const { FirebaseProductService } = req('./dist/src/auth/firebase-product/firebase-product.service.js');
+  const observed = [];
+  const authFixture = { async authenticate(cookie, device, touch) { observed.push({ touch }); if (cookie !== 'synthetic-session' || device !== 'synthetic-device') throw new UnauthorizedException(); return { uid: 'synthetic-owner' }; } };
+  const config = new ConfigService(); config.get = key => key === 'AUTH_PUBLIC_ORIGIN' ? 'http://localhost:5183' : undefined;
+  class Fixture {} Module({ controllers: [PrivacyPolicyController], providers: [PrivacyPolicyService, { provide: FirebaseProductService, useValue: authFixture }, { provide: ConfigService, useValue: config }] })(Fixture);
+  const app = await NestFactory.create(Fixture, { logger: false }); app.use(cookieParser()); app.setGlobalPrefix('api');
+  try {
+    await app.listen(0, '127.0.0.1'); const endpoint = (await app.getUrl()) + '/api/account/privacy/policy';
+    const headers = { Cookie: 'visionary-session=synthetic-session; visionary-device=synthetic-device', 'X-Visionary-Account': 'synthetic-owner' };
+    const result = await fetch(endpoint, { headers }); assert.equal(result.status, 200); assert.equal((await result.json()).uid, 'synthetic-owner');
+    assert.equal((await fetch(endpoint)).status, 401);
+    assert.equal((await fetch(endpoint, { headers: { ...headers, 'X-Visionary-Account': 'foreign-owner' } })).status, 409);
+    assert.equal((await fetch(endpoint + '?uid=foreign-owner', { headers })).status, 400);
+    assert.equal((await fetch(endpoint + '?workspace=foreign-workspace', { headers })).status, 400);
+    assert.ok(observed.every(x => x.touch === false));
+  } finally { await app.close(); }
+});
