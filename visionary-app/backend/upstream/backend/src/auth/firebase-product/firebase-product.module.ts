@@ -1,3 +1,5 @@
+import { PrivacyPolicyController } from '../../privacycore/privacy-policy.controller';
+import { PrivacyPolicyService } from '../../privacycore/privacy-policy.service';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { FirebaseAdminModule } from '../firebase/firebase-admin.module';
@@ -17,5 +19,5 @@ import { KnowledgeProjectionService } from '../../learning/knowledge-projection.
 import { PersonalWorkspaceController } from '../../workspaces/personal-workspace.controller';
 import { PersonalWorkspaceService } from '../../workspaces/personal-workspace.service';
 
-@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController, PersonalWorkspaceController], providers: [FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService, PersonalWorkspaceService] })
+@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [PrivacyPolicyController, FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController, PersonalWorkspaceController], providers: [PrivacyPolicyService, FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService, PersonalWorkspaceService] })
 export class FirebaseProductModule {}
