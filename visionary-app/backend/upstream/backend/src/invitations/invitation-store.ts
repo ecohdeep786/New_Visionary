@@ -67,6 +67,7 @@ export class PostgresInvitationStore implements InvitationStore {
   async approveInstitution(input: { workspaceId: string; administratorUid: string; reviewerUid: string; evidenceRef: string; expiresAt: Date }) {
     assertInstitutionReviewer(input.reviewerUid, this.institutionReviewers);
     return this.transaction(async tx => {
+      await this.anchor(tx, input.administratorUid);
       const workspace = await this.workspace(tx, input.workspaceId);
       await this.member(tx, workspace.id, input.administratorUid, 3);
       const now = await this.databaseTime(tx);
@@ -87,7 +88,11 @@ export class PostgresInvitationStore implements InvitationStore {
     assertInstitutionReviewer(reviewerUid, this.institutionReviewers);
     assertId(approvalId);
     return this.transaction(async tx => {
+      const owner = await tx.workspace.findUnique({ where: { id: workspaceId }, select: { uid: true } });
+      if (!owner) throw new InvitationPolicyError('not_found');
+      await this.anchor(tx, owner.uid);
       const workspace = await this.workspace(tx, workspaceId);
+      if (workspace.uid !== owner.uid) throw new InvitationPolicyError('conflict');
       if (reviewerUid === workspace.uid) throw new InvitationPolicyError('unauthorized');
       const rows = await tx.$queryRawUnsafe<{ id: string }[]>('SELECT "id" FROM "institution_approvals" WHERE "workspaceId"=$1 AND "id"=$2 FOR UPDATE', workspace.id, approvalId);
       if (!rows.length) throw new InvitationPolicyError('not_found');

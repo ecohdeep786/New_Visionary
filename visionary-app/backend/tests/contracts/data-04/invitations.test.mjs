@@ -276,3 +276,40 @@ test('institution approval fences issuance, acceptance and replay across revocat
   await service.accept(x.other, freshInvite.token, 'synthetic@example.invalid');
   assert.equal((await membership(x, x.other)).role, 'MEMBER');
 });
+
+test('approval and revocation fence concurrent owner issuance with the Person lock first', { timeout: 15000 }, async () => {
+  const x = await setup(false, false);
+  const assertOwnerLocked = () => assert.rejects(
+    env.db.$queryRawUnsafe('SELECT "uid" FROM "persons" WHERE "uid"=$1 FOR UPDATE NOWAIT', x.owner),
+    error => error.meta?.code === '55P03',
+  );
+  const approvalPause = pauseActual('institutionApproval', 'create');
+  const approvingStore = new PostgresInvitationStore(approvalPause.db, target, new Set([reviewerUid]));
+  const approving = approvingStore.approveInstitution({ workspaceId: x.ws, administratorUid: x.owner, reviewerUid,
+    evidenceRef: 'proof_synthetic_race_001', expiresAt: new Date(Date.now() + 86400_000) });
+  let issuing;
+  try {
+    await Promise.race([approvalPause.ready, approving]);
+    await assertOwnerLocked();
+    issuing = invite(x);
+  } finally {
+    approvalPause.release();
+  }
+  const [approval, invitation] = await Promise.all([approving, issuing]);
+  const row = await env.db.invitation.findUniqueOrThrow({ where: { id: invitation.invitationId } });
+  assert.equal(row.institutionApprovalId, approval.approvalId);
+
+  const revokePause = pauseActual('institutionApproval', 'update');
+  const revokingStore = new PostgresInvitationStore(revokePause.db, target, new Set([reviewerUid]));
+  const revoking = revokingStore.revokeInstitution(reviewerUid, x.ws, approval.approvalId);
+  let deniedIssue;
+  try {
+    await Promise.race([revokePause.ready, revoking]);
+    await assertOwnerLocked();
+    deniedIssue = assert.rejects(invite(x, 'MEMBER', 'after-revocation@example.invalid'), code('unauthorized'));
+  } finally {
+    revokePause.release();
+  }
+  await Promise.all([revoking, deniedIssue]);
+  assert.equal(await env.db.invitation.count({ where: { workspaceId: x.ws } }), 1);
+});
