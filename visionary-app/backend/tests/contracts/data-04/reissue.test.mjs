@@ -25,6 +25,10 @@ async function setup() {
   await env.db.person.createMany({ data: [{ uid: owner }, { uid: user }] });
   const ws = await env.db.workspace.create({ data: { uid: owner, name: 'Synthetic reissue workspace', slug: id } });
   await env.db.workspaceMembership.create({ data: { uid: owner, workspaceId: ws.id, role: 'OWNER', source: 'direct' } });
+  const reviewerUid = 'institution-reviewer';
+  const reviewerStore = new PostgresInvitationStore(env.runtime, target, new Set([reviewerUid]));
+  await reviewerStore.approveInstitution({ workspaceId: ws.id, administratorUid: owner, reviewerUid,
+    evidenceRef: 'proof_synthetic_reissue_001', expiresAt: new Date(Date.now() + 86400_000) });
   return { owner, user, ws: ws.id };
 }
 const issue = (x, role = 'MEMBER') => service.invite(x.owner, x.ws, { email: 'repeat@example.invalid', role });
@@ -73,7 +77,7 @@ test('physical partial uniqueness rejects a second active delivery across PENDIN
   const x = await setup(), old = await issue(x);
   await assert.rejects(env.db.invitation.create({ data: { workspaceId: x.ws, email: 'REPEAT@EXAMPLE.INVALID', role: 'ADMIN', status: 'ISSUED', tokenHash: randomUUID(), expiresAt: new Date(Date.now() + 60000) } }), e => e.code === 'P2002');
   await service.revoke(x.owner, old.invitationId);
-  await env.db.invitation.create({ data: { workspaceId: x.ws, email: 'repeat@example.invalid', role: 'MEMBER', status: 'ISSUED', tokenHash: randomUUID(), expiresAt: new Date(Date.now() + 60000) } });
+  await env.db.invitation.create({ data: { workspaceId: x.ws, institutionApprovalId: (await rows(x))[0].institutionApprovalId, email: 'repeat@example.invalid', role: 'MEMBER', status: 'ISSUED', tokenHash: randomUUID(), expiresAt: new Date(Date.now() + 60000) } });
   await assert.rejects(issue(x), code('conflict'));
 });
 test('case normalization is literal and email wildcard characters never match other deliveries', async () => {

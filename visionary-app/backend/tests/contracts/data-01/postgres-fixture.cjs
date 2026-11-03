@@ -1,6 +1,6 @@
 const { createRequire } = require('node:module');
 const { resolve } = require('node:path');
-const { readFileSync } = require('node:fs');
+const { existsSync, readFileSync } = require('node:fs');
 const { randomUUID } = require('node:crypto');
 const backend = resolve(__dirname, '../../../upstream/backend');
 const req = createRequire(resolve(backend, 'package.json'));
@@ -16,7 +16,7 @@ function testUrl() {
   return url;
 }
 const client = (url) => new PrismaClient({ datasources: { db: { url: String(url) } } });
-async function domainDatabase() {
+async function domainDatabase({ historical = false } = {}) {
   const base = testUrl();
   const admin = client(base);
   const schema = 'data01_' + randomUUID().replaceAll('-', '');
@@ -24,8 +24,14 @@ async function domainDatabase() {
   const url = new URL(base);
   url.searchParams.set('schema', schema);
   const db = client(url);
-  const sql = readFileSync(resolve(backend, 'prisma/migrations/20261024000001_data_01_workspaces/migration.sql'), 'utf8');
-  for (const statement of sql.split(';').map((s) => s.trim()).filter(Boolean)) await db.$executeRawUnsafe(statement);
+  for (const name of ['20261024000001_data_01_workspaces', '20261102000002_data_04_invitation_reissue', '20261103000003_data_04_institution_approval']) {
+    if (historical && name !== '20261024000001_data_01_workspaces') break;
+    const file = resolve(backend, 'prisma/migrations', name, 'migration.sql');
+    if (!existsSync(file) && name !== '20261024000001_data_01_workspaces') continue;
+    for (const statement of readFileSync(file, 'utf8').split(';').map(s => s.trim()).filter(Boolean)) {
+      await db.$executeRawUnsafe(statement);
+    }
+  }
   return { db, schema, url, client: () => client(url), async close() {
     await db.$disconnect();
     if (!/^data01_[0-9a-f]{32}$/.test(schema)) throw Error('Synthetic schema cleanup boundary mismatch.');

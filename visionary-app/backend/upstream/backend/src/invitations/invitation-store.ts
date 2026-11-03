@@ -1,11 +1,13 @@
+import { randomUUID } from 'node:crypto';
+import { assertActiveInstitutionApproval, assertInstitutionReviewer, createInstitutionApproval, INSTITUTION_INVITATION_POLICY, InstitutionApproval } from './institution-approval';
 import type { PrismaClient, Prisma } from '@prisma/client';
-import { digest, InvitationIssue, InvitationPolicyError, InvitationStore, InvitationView, rank, WorkspaceRole } from './invitation-types';
+import { digest, InvitationIssue, InvitationPolicyError, InvitationStore, InvitationView, rank, WorkspaceRole, assertId } from './invitation-types';
 type Tx = Prisma.TransactionClient;
 /** DML-only PostgreSQL owner. Every command locks its workspace before reading
  * mutable invitation/membership state. SQL row locks also fence external changes
  * to the workspace and current issuer/recipient authority until commit. */
 export class PostgresInvitationStore implements InvitationStore {
-  constructor(private readonly db: PrismaClient, private readonly target: { role: string; schema: string; database: string }) {}
+  constructor(private readonly db: PrismaClient, private readonly target: { role: string; schema: string; database: string }, private readonly institutionReviewers: ReadonlySet<string> = new Set()) {}
   private transaction<T>(work: (tx: Tx) => Promise<T>): Promise<T> {
     return this.db.$transaction(async tx => {
       const [r] = await tx.$queryRawUnsafe<any[]>(`SELECT current_user AS role,current_schema() AS schema,current_database() AS database,
@@ -42,6 +44,63 @@ export class PostgresInvitationStore implements InvitationStore {
     if (!m || rank(m.role) < minimum || (m.role === 'OWNER' && m.owner !== uid)) throw new InvitationPolicyError('unauthorized');
     return m.role as WorkspaceRole;
   }
+  private async databaseTime(tx: Tx): Promise<Date> {
+    const [row] = await tx.$queryRawUnsafe<{ current: Date }[]>('SELECT clock_timestamp() AS current');
+    return row.current;
+  }
+
+  private async lockApproval(tx: Tx, workspace: { id: string; uid: string }, approvalId?: string) {
+    const ids = approvalId
+      ? await tx.$queryRawUnsafe<{ id: string }[]>('SELECT "id" FROM "institution_approvals" WHERE "workspaceId"=$1 AND "id"=$2 FOR UPDATE', workspace.id, approvalId)
+      : await tx.$queryRawUnsafe<{ id: string }[]>(`SELECT "id" FROM "institution_approvals"
+          WHERE "workspaceId"=$1 AND "administratorUid"=$2 AND "policy"=$3 AND "revokedAt" IS NULL
+            AND "approvedAt" <= (clock_timestamp() AT TIME ZONE 'UTC') AND "expiresAt" > (clock_timestamp() AT TIME ZONE 'UTC')
+          ORDER BY "approvedAt" DESC, "id" DESC LIMIT 1 FOR UPDATE`, workspace.id, workspace.uid, INSTITUTION_INVITATION_POLICY);
+    const row = ids[0] ? await tx.institutionApproval.findUnique({ where: { id: ids[0].id } }) : null;
+    const approval: InstitutionApproval | null = row?.policy === INSTITUTION_INVITATION_POLICY ? { ...row, policy: INSTITUTION_INVITATION_POLICY } : null;
+    if (!row) throw new InvitationPolicyError('unauthorized');
+    await this.member(tx, workspace.id, workspace.uid, 3);
+    assertActiveInstitutionApproval(approval, workspace.id, workspace.uid, await this.databaseTime(tx));
+    return row;
+  }
+
+  async approveInstitution(input: { workspaceId: string; administratorUid: string; reviewerUid: string; evidenceRef: string; expiresAt: Date }) {
+    assertInstitutionReviewer(input.reviewerUid, this.institutionReviewers);
+    return this.transaction(async tx => {
+      const workspace = await this.workspace(tx, input.workspaceId);
+      await this.member(tx, workspace.id, input.administratorUid, 3);
+      const now = await this.databaseTime(tx);
+      const approval = createInstitutionApproval(input, workspace.uid, now, this.institutionReviewers);
+      const existing = await tx.institutionApproval.findFirst({ where: {
+        workspaceId: workspace.id, revokedAt: null, expiresAt: { gt: now },
+      }, select: { id: true } });
+      if (existing) throw new InvitationPolicyError('conflict');
+      const id = 'iap_' + randomUUID().replaceAll('-', '');
+      await tx.institutionApproval.create({ data: { id, ...approval } });
+      await tx.auditEvent.create({ data: { uid: workspace.uid, actorUid: input.reviewerUid, workspaceId: workspace.id,
+        operation: 'institution.approved', actorType: 'user', resourceType: 'institutionApproval', resourceId: id, outcome: 'SUCCESS' } });
+      return { approvalId: id, expiresAt: approval.expiresAt };
+    });
+  }
+
+  async revokeInstitution(reviewerUid: string, workspaceId: string, approvalId: string) {
+    assertInstitutionReviewer(reviewerUid, this.institutionReviewers);
+    assertId(approvalId);
+    return this.transaction(async tx => {
+      const workspace = await this.workspace(tx, workspaceId);
+      if (reviewerUid === workspace.uid) throw new InvitationPolicyError('unauthorized');
+      const rows = await tx.$queryRawUnsafe<{ id: string }[]>('SELECT "id" FROM "institution_approvals" WHERE "workspaceId"=$1 AND "id"=$2 FOR UPDATE', workspace.id, approvalId);
+      if (!rows.length) throw new InvitationPolicyError('not_found');
+      const row = await tx.institutionApproval.findUniqueOrThrow({ where: { id: approvalId } });
+      if (row.revokedAt) return { approvalId, revokedAt: row.revokedAt };
+      const revokedAt = await this.databaseTime(tx);
+      await tx.institutionApproval.update({ where: { id: approvalId }, data: { revokedAt, revokedByUid: reviewerUid } });
+      await tx.auditEvent.create({ data: { uid: workspace.uid, actorUid: reviewerUid, workspaceId: workspace.id,
+        operation: 'institution.revoked', actorType: 'user', resourceType: 'institutionApproval', resourceId: approvalId, outcome: 'SUCCESS' } });
+      return { approvalId, revokedAt };
+    });
+  }
+
   private view(i: any, replay = false, membershipRole?: WorkspaceRole): InvitationView {
     return { id: i.id, workspaceId: i.workspaceId, email: i.email, role: i.role, status: i.status.toLowerCase(),
       issuedAt: i.issuedAt?.toISOString() ?? '', expiresAt: i.expiresAt.toISOString(), acceptedBy: i.acceptedByUid,
@@ -59,8 +118,9 @@ export class PostgresInvitationStore implements InvitationStore {
   issue(input: InvitationIssue) {
     return this.transaction(async tx => {
       await this.anchor(tx, input.actorUid);
-      await this.workspace(tx, input.workspaceId);
+      const workspace = await this.workspace(tx, input.workspaceId);
       await this.member(tx, input.workspaceId, input.actorUid, 2);
+      const approval = await this.lockApproval(tx, workspace);
       const [clock] = await tx.$queryRawUnsafe<any[]>('SELECT clock_timestamp() AS current');
       if (input.expiresAt <= clock.current) throw new InvitationPolicyError('expired');
       // Close only genuinely elapsed deliveries, under the same workspace lock.
@@ -75,11 +135,23 @@ export class PostgresInvitationStore implements InvitationStore {
         const expired = await tx.invitation.update({ where: { id: old.id }, data: { status: 'EXPIRED' } });
         await this.record(tx, input.actorUid, expired, 'expired', this.view(expired));
       }
+      // A replacement approval never revives an earlier delivery. Retire the
+      // older delivery for this address in the same transaction as its reissue.
+      const obsolete = await tx.$queryRawUnsafe<{ id: string }[]>(`SELECT "id" FROM "invitations"
+        WHERE "workspaceId"=$1 AND lower("email")=lower($2) AND "status" IN ('PENDING','ISSUED')
+          AND "institutionApprovalId" IS DISTINCT FROM $3 FOR UPDATE`, input.workspaceId, input.email, approval.id);
+      for (const { id } of obsolete) {
+        const revoked = await tx.invitation.update({ where: { id }, data: { status: 'REVOKED', revokedAt: await this.databaseTime(tx) } });
+        await this.record(tx, input.actorUid, revoked, 'revoked', this.view(revoked));
+      }
       const pending = await tx.$queryRawUnsafe<any[]>('SELECT "id" FROM "invitations" WHERE "workspaceId"=$1 AND lower("email")=lower($2) AND "status" IN (\'PENDING\',\'ISSUED\') LIMIT 1', input.workspaceId, input.email);
       if (pending.length) throw new InvitationPolicyError('conflict');
-      const i = await tx.invitation.create({ data: { id: input.id, workspaceId: input.workspaceId, email: input.email,
+      const i = await tx.invitation.create({ data: { id: input.id, workspaceId: input.workspaceId, email: input.email, institutionApprovalId: approval.id,
         role: input.role, tokenHash: input.tokenHash, status: 'PENDING', issuedAt: input.at, expiresAt: input.expiresAt } });
-      const result = this.view(i); await this.record(tx, input.actorUid, i, 'issued', result); return result;
+      const result = this.view(i);
+      await this.record(tx, input.actorUid, i, 'issued', result);
+      await this.lockApproval(tx, workspace, approval.id);
+      return result;
     });
   }
   accept(uid: string, tokenHash: string, verifiedEmail: string, at: Date) {
@@ -98,6 +170,8 @@ export class PostgresInvitationStore implements InvitationStore {
       if (!['MEMBER', 'ADMIN'].includes(i.role)) throw new InvitationPolicyError('unauthorized');
       if (await tx.deletionTombstone.findFirst({ where: { uid, OR: [{ resourceType: 'workspace', resourceId: i.workspaceId }, { resourceType: 'person' }] } })) throw new InvitationPolicyError('unauthorized');
       const existing = await tx.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: i.workspaceId } } });
+      if (!i.institutionApprovalId) throw new InvitationPolicyError('unauthorized');
+      await this.lockApproval(tx, workspace, i.institutionApprovalId);
       if (i.status === 'ACCEPTED') {
         if (i.acceptedByUid !== uid) throw new InvitationPolicyError('already_accepted');
         if (!existing) throw new InvitationPolicyError('unauthorized');
@@ -118,7 +192,9 @@ export class PostgresInvitationStore implements InvitationStore {
       if (!existing) await tx.workspaceMembership.create({ data: { uid, workspaceId: i.workspaceId, role: i.role, source: 'invitation', sourceVersion: 'v1' } });
       const saved = await tx.invitation.update({ where: { id: i.id }, data: { status: 'ACCEPTED', acceptedAt, acceptedByUid: uid } });
       const result = this.view(saved, false, membershipRole); await this.record(tx, uid, saved, 'accepted', result);
-      await this.unexpired(tx, i.expiresAt, at); return result;
+      await this.unexpired(tx, i.expiresAt, at);
+      await this.lockApproval(tx, workspace, i.institutionApprovalId);
+      return result;
     });
   }
   revoke(uid: string, id: string, at: Date) {

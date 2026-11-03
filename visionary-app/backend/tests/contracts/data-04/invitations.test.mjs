@@ -8,7 +8,10 @@ const { canonicalMigrations } = req('./dist/src/data/migration-registry.js');
 const { InvitationService } = req('./dist/src/invitations/invitation.service.js');
 const { PostgresInvitationStore } = req('./dist/src/invitations/invitation-store.js');
 const { PrismaClient } = req('@prisma/client');
-let env, target, service;
+let env, target, service, reviewerStore;
+const reviewerUid = 'institution-reviewer';
+const approve = (ws, owner) => reviewerStore.approveInstitution({ workspaceId: ws, administratorUid: owner, reviewerUid,
+  evidenceRef: 'proof_synthetic_fixture_001', expiresAt: new Date(Date.now() + 86400_000) });
 const at = new Date('2026-11-02T00:00:00Z');
 const fresh = db => new InvitationService(new PostgresInvitationStore(db, target), () => at);
 const code = value => error => error.code === value;
@@ -18,14 +21,16 @@ before(async () => {
   await env.grantRuntime();
   target = { role: env.runtimeRole, schema: env.schema, database: new URL(env.config.runtimeUrl).pathname.slice(1) };
   service = fresh(env.runtime);
+  reviewerStore = new PostgresInvitationStore(env.runtime, target, new Set([reviewerUid]));
 });
 after(async () => { if (env) await env.close(); });
-async function setup(personal = false) {
+async function setup(personal = false, approved = true) {
   const suffix = randomUUID().replaceAll('-', ''), owner = 'owner_' + suffix, user = 'user_' + suffix, other = 'other_' + suffix;
   await env.db.person.createMany({ data: [owner, user, other].map(uid => ({ uid })) });
   const w = await env.db.workspace.create({ data: { uid: owner, slug: suffix, name: 'Synthetic invitation workspace', isPersonal: personal } });
   await env.db.workspaceMembership.create({ data: { uid: owner, workspaceId: w.id, role: 'OWNER', source: 'direct' } });
-  return { owner, user, other, ws: w.id };
+  const approval = !personal && approved ? await approve(w.id, owner) : null;
+  return { owner, user, other, ws: w.id, approval };
 }
 const invite = (x, role = 'MEMBER', email = 'synthetic@example.invalid') => service.invite(x.owner, x.ws, { role, email });
 const membership = (x, uid = x.user) => env.db.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: x.ws } } });
@@ -222,6 +227,7 @@ test('foreign OWNER membership and retained OWNER invite cannot establish owners
 test('canonical UID anchor fences outbox allocation across distinct workspaces until commit', { timeout: 15000 }, async () => {
   const x = await setup(), other = await env.db.workspace.create({ data: { uid: x.owner, slug: randomUUID(), name: 'Synthetic second workspace' } });
   await env.db.workspaceMembership.create({ data: { uid: x.owner, workspaceId: other.id, role: 'OWNER', source: 'direct' } });
+  await approve(other.id, x.owner);
   const pause = pauseActual('outboxEvent', 'create');
   const first = fresh(pause.db).invite(x.owner, x.ws, { role: 'MEMBER', email: 'first@example.invalid' });
   const row = await Promise.race([pause.ready, first]);
@@ -234,4 +240,39 @@ test('canonical UID anchor fences outbox allocation across distinct workspaces u
   await first; await second;
   const saved = await env.db.outboxEvent.findMany({ where: { uid: x.owner, cursor: { gte: row.cursor } }, orderBy: { cursor: 'asc' } });
   assert.equal(saved.length, 2); assert.equal(saved[0].workspaceId, x.ws); assert.equal(saved[1].workspaceId, other.id);
+});
+
+test('institution approval fences issuance, acceptance and replay across revocation and replacement', async () => {
+  const x = await setup(false, false);
+  await assert.rejects(invite(x), code('unauthorized'));
+  assert.equal(await env.db.invitation.count({ where: { workspaceId: x.ws } }), 0);
+  const first = await approve(x.ws, x.owner);
+  await assert.rejects(approve(x.ws, x.owner), code('conflict'));
+  const pending = await invite(x);
+  const accepted = await invite(x, 'MEMBER', 'accepted@example.invalid');
+  await service.accept(x.user, accepted.token, 'accepted@example.invalid');
+
+  const y = await setup();
+  await assert.rejects(env.db.invitation.update({
+    where: { id: pending.invitationId }, data: { institutionApprovalId: y.approval.approvalId },
+  }), error => error.code === 'P2003');
+
+  await assert.rejects(reviewerStore.revokeInstitution(x.owner, x.ws, first.approvalId), code('unauthorized'));
+  const revoked = await reviewerStore.revokeInstitution(reviewerUid, x.ws, first.approvalId);
+  assert.deepEqual(await reviewerStore.revokeInstitution(reviewerUid, x.ws, first.approvalId), revoked);
+  await assert.rejects(invite(x, 'MEMBER', 'blocked@example.invalid'), code('unauthorized'));
+  const replacement = await approve(x.ws, x.owner);
+  assert.notEqual(replacement.approvalId, first.approvalId);
+  await assert.rejects(service.accept(x.other, pending.token, 'synthetic@example.invalid'), code('unauthorized'));
+  await assert.rejects(service.accept(x.user, accepted.token, 'accepted@example.invalid'), code('unauthorized'));
+  assert.equal(await membership(x, x.other), null);
+  assert.equal(await events(pending.invitationId, 'accepted'), 0);
+  assert.equal(await events(accepted.invitationId, 'accepted'), 1);
+
+  const freshInvite = await invite(x);
+  assert.equal((await env.db.invitation.findUniqueOrThrow({ where: { id: pending.invitationId } })).status, 'REVOKED');
+  const row = await env.db.invitation.findUniqueOrThrow({ where: { id: freshInvite.invitationId } });
+  assert.equal(row.institutionApprovalId, replacement.approvalId);
+  await service.accept(x.other, freshInvite.token, 'synthetic@example.invalid');
+  assert.equal((await membership(x, x.other)).role, 'MEMBER');
 });
