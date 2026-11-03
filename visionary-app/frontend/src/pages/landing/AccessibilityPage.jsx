@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Accessibility as AccessibilityIcon, ArrowRight,
   Lock, Monitor, Smartphone, Tablet, UsersRound,
@@ -17,7 +17,7 @@ import stageHeroAvif from "@/assets/brand/hero-stage.avif";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
-/* â•â•â• Link and pill grammar â€” the A2 CTA law, imported from the one source â•â•â• */
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
 const { inkPill, greyPill, chipPill } = CTA_LAW;
 
 function Reveal({ children, className = "", delay = 0 }) {
@@ -39,8 +39,8 @@ function AnchorChip({ href, children }) {
   );
 }
 
-/* â•â•â• WHAT IS BUILT IN â€” the four interaction categories, each grounded in
-   behavior the product actually has â•â•â• */
+/* ═══ WHAT IS BUILT IN — the four interaction categories, each grounded in
+   behavior the product actually has ═══ */
 const CATEGORIES = [
   {
     id: "vision",
@@ -100,7 +100,7 @@ const CATEGORIES = [
   },
 ];
 
-/* â•â•â• RESOURCES â€” "Get started at your own pace" link rows â•â•â• */
+/* ═══ RESOURCES — "Get started at your own pace" link rows ═══ */
 const RESOURCES = [
   { to: "/help", label: "Help center", desc: "Guides for setup, classrooms, and every persona." },
   { to: "/download", label: "Download Visionary", desc: "Web, desktop, and mobile: the platforms sync covers." },
@@ -108,7 +108,7 @@ const RESOURCES = [
   { to: "/privacy", label: "Privacy policy", desc: "What information is handled, why, and the choices you have." },
 ];
 
-/* â•â•â• COMMITMENT â€” the reference's three-column promise â•â•â• */
+/* ═══ COMMITMENT — the reference's three-column promise ═══ */
 const COMMITMENT = [
   {
     Icon: AccessibilityIcon,
@@ -134,7 +134,7 @@ export default function AccessibilityPage() {
       <main id="main">
         <LocalNav title="Accessibility" />
 
-        {/* HERO â€” the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar: the photograph sits behind the centered
             type; the solo ink CTA and the on-page anchor chips (trailing
@@ -161,7 +161,7 @@ export default function AccessibilityPage() {
           />
         </Reveal>
 
-        {/* STATEMENT BAND â€” text + illustration (the 2-up statement pattern) */}
+        {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
         <section data-section="03-statement" className="border-y border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-[560px]">
@@ -184,7 +184,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* FEATURE CATEGORIES â€” the reference's section + card-grid rhythm */}
+        {/* FEATURE CATEGORIES — the reference's section + card-grid rhythm */}
         {CATEGORIES.map((category) => (
           <section
             key={category.id}
@@ -220,7 +220,7 @@ export default function AccessibilityPage() {
           </section>
         ))}
 
-        {/* SYNC SHOWPIECE â€” one person, every device, end to end encrypted */}
+        {/* SYNC SHOWPIECE — one person, every device, end to end encrypted */}
         <section id="sync" data-section="05-sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="grid items-center gap-10 rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
@@ -272,7 +272,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* GET STARTED â€” the reference's own-pace resource split */}
+        {/* GET STARTED — the reference's own-pace resource split */}
         <section id="resources" data-section="06-resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
@@ -312,7 +312,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* COMMITMENT â€” the reference's three-column promise */}
+        {/* COMMITMENT — the reference's three-column promise */}
         <section data-section="07-commitment" aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
@@ -342,7 +342,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* CLOSING â€” the reference's blue DNA band */}
+        {/* CLOSING — the reference's blue DNA band */}
         <section data-section="08-closing" aria-labelledby="closing-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-16 text-center sm:px-12 lg:py-20">

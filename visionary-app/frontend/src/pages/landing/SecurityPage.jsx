@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   AlertCircle, ArrowRight, ChevronDown, Cookie, Database, Eye,
@@ -32,11 +32,11 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* â•â•â• Link and pill grammar â€” the A2 CTA law, imported from the one source â•â•â• */
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
 const { quietLink, inkPill } = CTA_LAW;
 const greyPill = "inline-flex h-11 items-center justify-center rounded-full bg-[#f5f5f7] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
 
-/* â•â•â• CONTROLLERS â•â•â• */
+/* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -77,7 +77,7 @@ const AT_A_GLANCE = [
   {
     to: "#access-controlled",
     label: "See who can access",
-    text: "Access follows authorized identities and the needs of the role â€” nothing broader.",
+    text: "Access follows authorized identities and the needs of the role — nothing broader.",
     Icon: UserRound,
   },
   {
@@ -214,7 +214,7 @@ export default function SecurityPage() {
       <LocalNav title="Security" />
 
       <main id="main">
-        {/* HERO â€” the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
             stay as the body opening below. */}
@@ -232,7 +232,7 @@ export default function SecurityPage() {
         </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
-            {/* SIDEBAR TOC â€” starts at the top, beside the policy hero */}
+            {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
                 <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
@@ -268,7 +268,7 @@ export default function SecurityPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY BODY OPENING â€” promises, action row, effective date
+              {/* POLICY BODY OPENING — promises, action row, effective date
                   (the display hero lives in CinematicHero above; FAP-59
                   phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
@@ -482,7 +482,7 @@ export default function SecurityPage() {
                   </div>
                 </section>
 
-                {/* 09 Â· SYNC DEVICES â€” the master-order product requirement */}
+                {/* 09 · SYNC DEVICES — the master-order product requirement */}
                 <section id="sync-devices" data-section="11-sync-devices" className="scroll-mt-24">
                   <SectionHeading number="09" title="Sync devices" />
                   <Paragraph>
@@ -544,7 +544,7 @@ export default function SecurityPage() {
           </div>
         </div>
 
-        {/* KEY TERMS â€” the policies.google.com glossary pattern */}
+        {/* KEY TERMS — the policies.google.com glossary pattern */}
         <section data-section="13-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
@@ -589,7 +589,7 @@ export default function SecurityPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 â€” the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

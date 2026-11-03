@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Database,
@@ -41,10 +41,10 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* â•â•â• Link and pill grammar â€” the A2 CTA law, imported from the one source â•â•â• */
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
 const { inkPill, quietLink } = CTA_LAW;
 
-/* â•â•â• CONTROLLERS â•â•â• */
+/* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -85,7 +85,7 @@ const AT_A_GLANCE = [
   {
     to: "#sharing",
     label: "Understand who can see it",
-    text: "Access depends on account role and the learning relationship â€” not a public profile.",
+    text: "Access depends on account role and the learning relationship — not a public profile.",
     Icon: Eye,
   },
   {
@@ -124,7 +124,7 @@ const FAQ = [
   },
   {
     q: "How long is information retained?",
-    a: "We keep information only for as long as it is needed to provide the service, meet legal obligations, resolve disputes, and protect Visionary. Records stored on your device remain there until you remove them or clear that browserâ€™s storage.",
+    a: "We keep information only for as long as it is needed to provide the service, meet legal obligations, resolve disputes, and protect Visionary. Records stored on your device remain there until you remove them or clear that browser’s storage.",
   },
   {
     q: "Can I delete my account or learning records?",
@@ -231,12 +231,12 @@ export default function PrivacyPage() {
       <LocalNav title="Privacy" />
 
       <main id="main">
-        {/* HERO â€” the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar: the photograph sits behind the centered
             type, labelled context, values-first statement, promises and the
             utility opening stay in the body below. */}
-        {/* HERO â€” the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4): the photograph sits behind the centered copy,
             landing on the fold under the LandingNav + LocalNav chrome. The
             founder's stage photography swaps in via this same image prop. */}
@@ -254,7 +254,7 @@ export default function PrivacyPage() {
         </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
-            {/* SIDEBAR TOC â€” starts at the top, beside the policy hero */}
+            {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
                 <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
@@ -290,7 +290,7 @@ export default function PrivacyPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY BODY OPENING â€” promises, Privacy-Checkup action row,
+              {/* POLICY BODY OPENING — promises, Privacy-Checkup action row,
                   effective date (the display hero lives in CinematicHero
                   above; FAP-59 phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
@@ -304,7 +304,7 @@ export default function PrivacyPage() {
                     ))}
                   </div>
 
-                  {/* Action row â€” the Privacy Checkup pattern */}
+                  {/* Action row — the Privacy Checkup pattern */}
                   <div className="mt-10 flex items-start gap-4">
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}>
                       <Eye className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
@@ -381,7 +381,7 @@ export default function PrivacyPage() {
 
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
-                {/* 01 â€” WHAT WE COLLECT */}
+                {/* 01 — WHAT WE COLLECT */}
                 <section id="what-we-collect" data-section="03-what-we-collect" className="scroll-mt-24">
                   <SectionHeading number="01" title="What we collect" />
                   <Paragraph>
@@ -403,7 +403,7 @@ export default function PrivacyPage() {
                   </div>
                 </section>
 
-                {/* 02 â€” WHY WE USE IT */}
+                {/* 02 — WHY WE USE IT */}
                 <section id="purpose" data-section="04-purpose" className="scroll-mt-24">
                   <SectionHeading number="02" title="Why we use it" />
                   <Paragraph>
@@ -428,7 +428,7 @@ export default function PrivacyPage() {
                   </div>
                 </section>
 
-                {/* 03 â€” WHO CAN SEE IT */}
+                {/* 03 — WHO CAN SEE IT */}
                 <section id="sharing" data-section="05-sharing" className="scroll-mt-24">
                   <SectionHeading number="03" title="Who can see it" />
                   <Paragraph>
@@ -437,7 +437,7 @@ export default function PrivacyPage() {
                   <div className="mt-10 border-t border-[rgba(18,19,23,0.12)]">
                     {[
                       ["Student", "Learners can review their own work. Private conversation text is not included in the parent and teacher progress views described here."],
-                      ["Teacher", "Class-linked learning evidence is limited to the teacherâ€™s assigned classes in the product model."],
+                      ["Teacher", "Class-linked learning evidence is limited to the teacher’s assigned classes in the product model."],
                       ["Parent", "A parent view contains shared progress and activity summaries for connected children, not private conversations."],
                       ["Institution", "The organization view is designed for aggregate, role-appropriate information rather than private learner conversations."],
                       ["Service providers", "Trusted providers may process information only to operate, secure, support, or improve Visionary under appropriate contractual safeguards."],
@@ -453,7 +453,7 @@ export default function PrivacyPage() {
                   </p>
                 </section>
 
-                {/* 04 â€” YOUR CONTROLS */}
+                {/* 04 — YOUR CONTROLS */}
                 <section id="your-controls" data-section="06-your-controls" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your controls" />
                   <Paragraph>
@@ -493,7 +493,7 @@ export default function PrivacyPage() {
                   </div>
                 </section>
 
-                {/* 05 â€” SECURITY */}
+                {/* 05 — SECURITY */}
                 <section id="security" data-section="07-security" className="scroll-mt-24">
                   <SectionHeading number="05" title="How we protect it" />
                   <Paragraph>
@@ -502,7 +502,7 @@ export default function PrivacyPage() {
                   <LearnMoreRow to="/security" label="How security works at Visionary" />
                 </section>
 
-                {/* 06 â€” DATA REQUESTS */}
+                {/* 06 — DATA REQUESTS */}
                 <section id="data-requests" data-section="08-data-requests" className="scroll-mt-24">
                   <SectionHeading number="06" title="Access and deletion requests" />
                   <Paragraph>
@@ -532,7 +532,7 @@ export default function PrivacyPage() {
                   </div>
                 </section>
 
-                {/* 07 â€” RETENTION */}
+                {/* 07 — RETENTION */}
                 <section id="retention" data-section="09-retention" className="scroll-mt-24">
                   <SectionHeading number="07" title="How long we keep it" />
                   <Paragraph>
@@ -551,7 +551,7 @@ export default function PrivacyPage() {
                   </div>
                 </section>
 
-                {/* 08 â€” YOUNGER LEARNERS */}
+                {/* 08 — YOUNGER LEARNERS */}
                 <section id="younger-learners" data-section="10-younger-learners" className="scroll-mt-24">
                   <SectionHeading number="08" title="Younger learners" />
                   <Paragraph>
@@ -560,7 +560,7 @@ export default function PrivacyPage() {
                   <LearnMoreRow to="/safety" label="How safety works for younger learners" />
                 </section>
 
-                {/* 09 â€” COMMON QUESTIONS */}
+                {/* 09 — COMMON QUESTIONS */}
                 <section id="explainers" data-section="11-explainers" className="scroll-mt-24">
                   <SectionHeading number="09" title="Common privacy questions" />
                   <div className="max-w-[880px] border-t border-[rgba(18,19,23,0.12)]">
@@ -585,7 +585,7 @@ export default function PrivacyPage() {
                   </div>
                 </section>
 
-                {/* 10 â€” CONTACT AND GRIEVANCES */}
+                {/* 10 — CONTACT AND GRIEVANCES */}
                 <section id="grievance-officer" data-section="12-grievance-officer" className="scroll-mt-24">
                   <SectionHeading number="10" title="Contact and grievances" />
                   <Paragraph>
@@ -609,7 +609,7 @@ export default function PrivacyPage() {
           </div>
         </div>
 
-        {/* KEY TERMS â€” the policies.google.com glossary pattern */}
+        {/* KEY TERMS — the policies.google.com glossary pattern */}
         <section data-section="13-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
@@ -618,7 +618,7 @@ export default function PrivacyPage() {
                 { term: "Workspace", def: "The learning environment you use in a browser. It holds the questions, practice, and projects from your sessions." },
                 { term: "Learning records", def: "The activity and progress tied to your account or device: what you asked, practised, and built." },
                 { term: "Browser-local storage", def: "Records saved in your browser on this device. They stay until you remove them or clear the browser's storage." },
-                { term: "Account services", def: "The connected features that need an identity to work â€” sign-in, shared progress, and role-based access." },
+                { term: "Account services", def: "The connected features that need an identity to work — sign-in, shared progress, and role-based access." },
                 { term: "Grievance officer", def: "The named person responsible for reviewing your privacy requests and grievances under Indian law." },
                 { term: "DPDP Act", def: "India's Digital Personal Data Protection Act, the law whose consent and safeguard rules this policy follows." },
               ].map(({ term, def }) => (
@@ -654,7 +654,7 @@ export default function PrivacyPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 â€” the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Accessibility, ArrowRight, ChevronDown, Cookie, FileText,
@@ -31,10 +31,10 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* â•â•â• Link and pill grammar â€” the A2 CTA law, imported from the one source â•â•â• */
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
 const { quietLink, inkPill } = CTA_LAW;
 
-/* â•â•â• CONTROLLERS â•â•â• */
+/* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -212,7 +212,7 @@ export default function CookiesPage() {
       <LocalNav title="Cookies" />
 
       <main id="main">
-        {/* HERO â€” the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
             stay as the body opening below. */}
@@ -230,7 +230,7 @@ export default function CookiesPage() {
         </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
-            {/* SIDEBAR TOC â€” starts at the top, beside the policy hero */}
+            {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
                 <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
@@ -266,7 +266,7 @@ export default function CookiesPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY BODY OPENING â€” promises, action row, effective date
+              {/* POLICY BODY OPENING — promises, action row, effective date
                   (the display hero lives in CinematicHero above; FAP-59
                   phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
@@ -357,7 +357,7 @@ export default function CookiesPage() {
 
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
-                {/* 01 â€” WHAT COOKIES ARE */}
+                {/* 01 — WHAT COOKIES ARE */}
                 <section id="what-cookies-are" data-section="03-what-cookies-are" className="scroll-mt-24">
                   <SectionHeading number="01" title="What cookies are" />
                   <Paragraph>
@@ -370,7 +370,7 @@ export default function CookiesPage() {
                   </div>
                 </section>
 
-                {/* 02 â€” WHAT WE USE AND WHY */}
+                {/* 02 — WHAT WE USE AND WHY */}
                 <section id="principles" data-section="04-principles" className="scroll-mt-24">
                   <SectionHeading number="02" title="What we use and why" />
                   <Paragraph>
@@ -391,7 +391,7 @@ export default function CookiesPage() {
                   </div>
                 </section>
 
-                {/* 03 â€” THE TYPES WE USE */}
+                {/* 03 — THE TYPES WE USE */}
                 <section id="types" data-section="05-types" className="scroll-mt-24">
                   <SectionHeading number="03" title="The types we use" />
                   <Paragraph>
@@ -411,7 +411,7 @@ export default function CookiesPage() {
                   </div>
                 </section>
 
-                {/* 04 â€” YOUR CHOICES AND CONTROLS */}
+                {/* 04 — YOUR CHOICES AND CONTROLS */}
                 <section id="preferences" data-section="06-preferences" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your choices and controls" />
                   <Paragraph>
@@ -451,7 +451,7 @@ export default function CookiesPage() {
                   </div>
                 </section>
 
-                {/* 05 â€” MANAGING COOKIES */}
+                {/* 05 — MANAGING COOKIES */}
                 <section id="managing" data-section="07-managing" className="scroll-mt-24">
                   <SectionHeading number="05" title="Managing cookies" />
                   <Paragraph>
@@ -462,7 +462,7 @@ export default function CookiesPage() {
                     <ul className="mt-4 space-y-2.5">
                       {[
                         "Essential cookies cannot be turned off. They're what make Visionary work.",
-                        "Preference and analytics cookies are optional, and you can change your choices at any time from your Visionary settings (Settings â†’ Privacy & cookies).",
+                        "Preference and analytics cookies are optional, and you can change your choices at any time from your Visionary settings (Settings → Privacy & cookies).",
                         "Clear or block cookies anytime from your browser's site settings.",
                         "Optional choices apply to this device only. Set them again on devices you use.",
                       ].map((t) => (
@@ -475,7 +475,7 @@ export default function CookiesPage() {
                   </div>
                 </section>
 
-                {/* 06 â€” QUESTIONS AND CONTACT */}
+                {/* 06 — QUESTIONS AND CONTACT */}
                 <section id="contact" data-section="08-contact" className="scroll-mt-24">
                   <SectionHeading number="06" title="Questions and contact" />
                   <Paragraph>
@@ -500,7 +500,7 @@ export default function CookiesPage() {
           </div>
         </div>
 
-        {/* KEY TERMS â€” the policies.google.com glossary pattern */}
+        {/* KEY TERMS — the policies.google.com glossary pattern */}
         <section data-section="9-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
@@ -545,7 +545,7 @@ export default function CookiesPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 â€” the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="11-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

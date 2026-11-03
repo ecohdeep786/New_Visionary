@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Accessibility, ArrowRight, ChevronDown, Cookie, FileText,
@@ -31,10 +31,10 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* â•â•â• Link and pill grammar â€” the A2 CTA law, imported from the one source â•â•â• */
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
 const { quietLink } = CTA_LAW;
 
-/* â•â•â• CONTROLLERS â•â•â• */
+/* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -208,7 +208,7 @@ export default function TermsPage() {
       <LocalNav title="Terms" />
 
       <main id="main">
-        {/* HERO â€” the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
             stay as the body opening below. */}
@@ -226,7 +226,7 @@ export default function TermsPage() {
         </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
-            {/* SIDEBAR TOC â€” starts at the top, beside the policy hero */}
+            {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
                 <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
@@ -262,7 +262,7 @@ export default function TermsPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY BODY OPENING â€” promises, action row, effective date
+              {/* POLICY BODY OPENING — promises, action row, effective date
                   (the display hero lives in CinematicHero above; FAP-59
                   phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
@@ -493,7 +493,7 @@ export default function TermsPage() {
           </div>
         </div>
 
-        {/* KEY TERMS â€” the policies.google.com glossary pattern */}
+        {/* KEY TERMS — the policies.google.com glossary pattern */}
         <section data-section="15-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
@@ -538,7 +538,7 @@ export default function TermsPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 â€” the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="17-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
