@@ -27,7 +27,7 @@
      rhythm's section :where() scope (the fixed hero keeps its own geometry),
      so cast/persona heroes read these complements directly (FAP-34). */
   --fs-hero-eyebrow: 3.5rem; /* desktop 56px */
-  --fs-hero-headline: 8.75rem; /* desktop 140px */
+  --fs-hero-headline: 5rem; /* desktop 80px — unified h1 role law (was the 140px education display; founder directive 2026-11-03: one size per role on every page) */
 
   /* Category-hero tokens — UNIFIED H1 ROLE LAW (founder directive
      2026-11-03: one headline size per role on every page). The persona hero
@@ -97,14 +97,14 @@ main h2 + p.mt-6 {
 @media (max-width: 1068px) {
   :root {
     --fs-hero-eyebrow: 2.5rem; /* tablet 40px */
-    --fs-hero-headline: 6rem; /* tablet 96px */
+    --fs-hero-headline: 4rem; /* tablet 64px — unified h1 law step */
   }
 }
 
 @media (max-width: 734px) {
   :root {
     --fs-hero-eyebrow: 2.5rem; /* phone 40px */
-    --fs-hero-headline: 4rem; /* phone 64px */
+    --fs-hero-headline: 2.75rem; /* phone 44px — unified h1 law step */
   }
 }
 
@@ -313,7 +313,7 @@ main p + h2.mt-4 {
 
     /* Apple tablet-specific adjustments */
     --fs-hero-eyebrow: 2.5rem;
-    --fs-hero-headline: 6rem;
+    --fs-hero-headline: 4rem;
     --fs-statement-elevated: 4rem;
     --fs-highlights: 3rem;
     --fs-compact-chapter: 2.5rem;
@@ -364,7 +364,7 @@ main p + h2.mt-4 {
 
     /* Apple mobile-specific adjustments */
     --fs-hero-eyebrow: 2.5rem;
-    --fs-hero-headline: 4rem;
+    --fs-hero-headline: 2.75rem;
     --fs-statement-elevated: 2.5rem;
     --fs-highlights: 2rem;
     --fs-compact-chapter: 2rem;
