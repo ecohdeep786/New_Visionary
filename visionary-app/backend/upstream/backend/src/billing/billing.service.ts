@@ -7,6 +7,7 @@ import { freeBillingAccount } from './billing-account';
 import { invoiceDocument } from './invoice';
 import { BILLING_QUEUE, LEGACY_BILLING_ACCOUNTS } from '../auth/firebase-product/account-storage';
 import { PaymentProviderError, RazorpayProvider, validSignature } from './razorpay.provider';
+import { GRACE_MS, DUNNING_STATUSES, lifecycleOf, releasedCapabilities, confirmed as confirmedLifecycle } from './billing-lifecycle';
 
 const terminal = new Set(['cancelled', 'completed', 'expired']);
 const statuses = new Set(['created', 'authenticated', 'active', 'pending', 'halted', 'paused', ...terminal]);
@@ -52,6 +53,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     return {
       uid, mode: 'test', revision: data.revision, asOf: new Date().toISOString(), lastSyncedAt: data.lastSyncedAt || null,
       plan: paid ? sub.plan : 'start', entitlement: { plan: paid ? sub.plan : 'start', validUntil: paid ? iso(sub.paidThrough) : null, source: paid ? 'personal-subscription' : 'free' },
+      lifecycle: lifecycleOf(data), capabilities: releasedCapabilities(),
       subscription: sub ? { id: sub.id, plan: sub.plan, interval: sub.interval, amount: sub.amount, currency: 'INR', status: sub.status, paidThrough: iso(sub.paidThrough), periodStart: iso(sub.periodStart), periodEnd: iso(sub.periodEnd), cancelAtPeriodEnd: !!sub.cancelAtPeriodEnd, renewalAt: sub.cancelAtPeriodEnd || terminal.has(sub.status) ? null : iso(sub.chargeAt), paymentMethod: sub.paymentMethod || null } : null,
       pending: data.attempt && !['ended', 'failed'].includes(data.attempt.state) && !paid ? { id: data.attempt.id, plan: data.attempt.plan, interval: data.attempt.interval, state: data.attempt.state, subscriptionId: data.attempt.subscriptionId || null, recoverable: !!data.attempt.subscriptionId && ['created', 'authenticated'].includes(sub?.status) } : null,
       invoices: data.invoices || [], syncPending: !!data.syncLease && data.syncLease.until > Date.now(), cancellationPending: !!data.cancelRequested,
@@ -197,7 +199,13 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
         for (const receipt of receipts) { history.set(receipt.id, receipt); tx.set(this.repo.receipt(uid, receipt.id), { ...receipt, uid }); tx.set(this.repo.db().collection('visionary_billing_test_payments').doc(receipt.paymentId), { uid, invoiceId: receipt.id, subscriptionId: receipt.subscriptionId, merchant: fingerprint(this.provider.settings().keyId) }); }
         current.paymentAdjustments = (current.paymentAdjustments || []).filter(id => !adjustments.includes(id));
         if (terminal.has(sub.status)) current.cancelRequested = false;
-        return { ...current, subscription: { ...current.subscription, status: sub.status, periodStart: sub.current_start || 0, periodEnd: sub.current_end || 0, chargeAt: sub.charge_at || 0, paidFrom, paidThrough, paymentMethod: sub.payment_method || null }, attempt: current.attempt?.subscriptionId === subId ? { ...current.attempt, state: paidThrough > seconds() ? 'succeeded' : terminal.has(sub.status) ? 'ended' : 'processing' } : current.attempt, invoices: [...history.values()].sort((a: any, b: any) => String(b.paidAt).localeCompare(String(a.paidAt))).slice(0, 50), lastSyncedAt: Date.now(), syncLease: null, nextSyncAt: terminal.has(sub.status) && !paidThrough ? Date.now() + 86400000 : Date.now() + 60000 };
+        // BILL-05: a provider charge-failure dunning status opens the grace
+        // window; a confirmed paid period clears it (recovery).
+        const dunning = DUNNING_STATUSES.has(sub.status);
+        const recovered = confirmedLifecycle.has(sub.status) && paidThrough > seconds();
+        const pastDueSince = dunning && !recovered ? (current.pastDueSince || Date.now()) : recovered ? null : current.pastDueSince || null;
+        const graceUntil = dunning && !recovered ? pastDueSince + GRACE_MS : recovered ? null : current.graceUntil || null;
+        return { ...current, pastDueSince, graceUntil, subscription: { ...current.subscription, status: sub.status, periodStart: sub.current_start || 0, periodEnd: sub.current_end || 0, chargeAt: sub.charge_at || 0, paidFrom, paidThrough, paymentMethod: sub.payment_method || null }, attempt: current.attempt?.subscriptionId === subId ? { ...current.attempt, state: paidThrough > seconds() ? 'succeeded' : terminal.has(sub.status) ? 'ended' : 'processing' } : current.attempt, invoices: [...history.values()].sort((a: any, b: any) => String(b.paidAt).localeCompare(String(a.paidAt))).slice(0, 50), lastSyncedAt: Date.now(), syncLease: null, nextSyncAt: terminal.has(sub.status) && !paidThrough ? Date.now() + 86400000 : Date.now() + 60000 };
       });
     } catch (error) {
       await this.update(uid, current => current.syncLease?.id === lease ? { ...current, syncLease: null, nextSyncAt: Date.now() + 60000 } : null);

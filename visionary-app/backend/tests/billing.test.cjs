@@ -246,3 +246,60 @@ test('native HTTP billing requires session/device, exact Origin/CSRF and expecte
     const event = await fetch(url + '/api/billing/webhooks/razorpay', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Razorpay-Signature': createHmac('sha256', webhookSecret).update(body).digest('hex'), 'X-Razorpay-Event-Id': 'event_http' }, body }); assert.equal(event.status, 201);
   } finally { await app.close(); }
 });
+
+test('BILL-05: the released lifecycle derives free/active/renewing and never over-advertises', async () => {
+  const { lifecycleOf, releasedCapabilities, GRACE_MS, BILLING_LIFECYCLE_VERSION } = req('./dist/src/billing/billing-lifecycle.js');
+  assert.equal(lifecycleOf({}).state, 'free');
+  const active = lifecycleOf({ subscription: { status: 'active', plan: 'personal', chargeAt: Date.now() + 10 * 86400000 } });
+  assert.equal(active.state, 'active'); assert.ok(active.renewalAt);
+  const renewing = lifecycleOf({ subscription: { status: 'active', plan: 'personal', chargeAt: Math.floor(Date.now() / 1000) + 3600 } });
+  assert.equal(renewing.state, 'renewing');
+  assert.equal(lifecycleOf({ subscription: { status: 'cancelled', plan: 'personal' } }).state, 'ended');
+  assert.equal(lifecycleOf({ subscription: { status: 'created', plan: 'personal' } }).state, 'pending_activation');
+  const caps = releasedCapabilities();
+  assert.equal(caps.version, BILLING_LIFECYCLE_VERSION);
+  assert.equal(caps.renewal && caps.failure && caps.grace && caps.recovery && caps.cancel && caps.refund && caps.dispute, true);
+  assert.equal('plan-change' in caps, false); assert.equal('payment-method' in caps, false);
+  void GRACE_MS;
+});
+
+test('BILL-05: a provider charge-failure opens the grace window; recovery clears it; expiry suspends without deletion', async () => {
+  const f = fixture(), c = await f.create(); f.pay(c.subscriptionId);
+  await f.service.sync('adult', true);
+  let account = await f.service.account('adult');
+  assert.equal(account.lifecycle.state, 'active');
+  assert.equal(account.capabilities.version >= 1, true);
+  // Provider halts the charge; the last period has ended.
+  Object.assign(f.subscriptions.get(c.subscriptionId), { status: 'halted' });
+  const old = f.invoices.get(c.subscriptionId)[0];
+  f.invoices.set(c.subscriptionId, [{ ...old, billing_end: Math.floor(Date.now() / 1000) - 1 }]);
+  await f.service.sync('adult', true);
+  account = await f.service.account('adult');
+  assert.equal(account.lifecycle.state, 'grace');
+  assert.ok(account.lifecycle.graceUntil && account.lifecycle.pastDueSince, 'grace window opened');
+  assert.equal(account.plan, 'start', 'the pending state is not advertised');
+  // Grace still open -> same window.
+  const doc = f.rows.get('visionary_accounts/adult/billing/test');
+  assert.ok(doc.graceUntil > Date.now()); assert.ok(doc.pastDueSince > 0);
+  // Recovery within grace: provider active again with a paid period.
+  Object.assign(f.subscriptions.get(c.subscriptionId), { status: 'active', charge_at: Math.floor(Date.now() / 1000) + 86400 * 30 });
+  f.invoices.set(c.subscriptionId, [{ ...old, billing_end: Math.floor(Date.now() / 1000) + 86400 * 30 }]);
+  await f.service.sync('adult', true);
+  account = await f.service.account('adult');
+  assert.equal(account.lifecycle.state, 'active');
+  const recovered = f.rows.get('visionary_accounts/adult/billing/test');
+  assert.equal(recovered.pastDueSince, null); assert.equal(recovered.graceUntil, null);
+  // Expire the grace window: data retained, no active entitlement advertised.
+  f.rows.set('visionary_accounts/adult/billing/test', { ...recovered, status: 'active', subscription: { ...recovered.subscription, status: 'halted', paidThrough: 0 }, pastDueSince: Date.now() - 10 * 86400000, graceUntil: Date.now() - 1000 });
+  account = await f.service.account('adult');
+  assert.equal(account.lifecycle.state, 'suspended');
+  assert.equal(account.plan, 'start');
+  assert.equal(Array.isArray(account.invoices), true, 'historical data is retained, not deleted');
+});
+
+test('BILL-05: unreleased plan-change and payment-method surfaces do not exist', async () => {
+  const source = require('node:fs').readFileSync(path.resolve(__dirname, '../upstream/backend/src/billing/billing.controller.ts'), 'utf8');
+  for (const word of ['change-plan', 'plan-change', 'payment-method', 'paymentmethod', 'update-method']) assert.equal(source.includes(word), false, `unreleased surface present: ${word}`);
+  const caps = req('./dist/src/billing/billing-lifecycle.js').releasedCapabilities();
+  assert.equal(caps.renewal === true && caps.dispute === true, true);
+});
