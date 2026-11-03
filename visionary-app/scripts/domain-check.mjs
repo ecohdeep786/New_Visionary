@@ -24,3 +24,5 @@ run(['--test', '--test-reporter=tap', ...tests.map((f) => join(root, 'backend/te
 const migrationTests = readdirSync(join(root, 'backend/tests/contracts/data-02')).filter((f) => f.endsWith('.test.mjs'));
 run(['--test', '--test-reporter=tap', ...migrationTests.map((f) => join(root, 'backend/tests/contracts/data-02', f))]);
 run([join(root, 'scripts/provision-check.mjs')]);
+
+run([join(root, 'scripts/privacycore-check.mjs')]);
