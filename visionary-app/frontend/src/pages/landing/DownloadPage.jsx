@@ -165,7 +165,13 @@ function DownloadPlatformsSection() {
     <section ref={ref} id="platforms" data-section="02-platforms" className="relative scroll-mt-24 bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>Supported platforms</p>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
+        {/* Section-head law (typography audit 2026-11-03): a top-level section
+            head renders the 64px chapter tier like every sibling section on
+            this page and across the public surface — the old text-[30px]
+            class tripped the subordinate h2 tier in apple-typography.css and
+            flattened this head to ~28px, the only "very low" section head
+            left anywhere. */}
+        <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
         <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>
           Use Visionary on the web today. Native apps are being prepared
           {detected ? (
@@ -336,7 +342,8 @@ function DownloadRequirementsSection() {
     <section ref={ref} data-section="04-requirements" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>System requirements</p>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
+        {/* Section-head law — see 02-platforms (typography audit 2026-11-03). */}
+        <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
         <div className="mx-auto mt-12 w-full max-w-[1240px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {REQUIREMENTS.map((r) => (
@@ -380,7 +387,10 @@ function DownloadCTASection() {
   return (
     <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
+        {/* Section-head role — see 02-platforms (typography audit 2026-11-03):
+            the page's closing statement is a section head too, so it carries
+            the same section tier as its siblings. */}
+        <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Still deciding? The web is one click away.
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">

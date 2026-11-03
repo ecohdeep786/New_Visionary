@@ -4,21 +4,25 @@ import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack } from "@/components/landing/system/tokens";
 
 
-/* ── Fan cards: every main category plus the sub-categories used on each
-      category page. All sub-category cards redirect to their main category
-      page — no separate sub-pages exist. ── */
+/* ── Fan cards — one card per main category, in cycle order. The strip
+      repeats this five-card cycle across the fan (communities.google
+      repeats its five programmes the same way), so every visible window
+      mixes all five tints. Sub-category cards all redirect to these same
+      five pages, so the mains carry the navigation. ── */
 const FAN_GROUPS = [
-  { to: "/student", label: "Students", subject: "student", tint: "rgba(0,102,204,0.10)", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"], ["Competitive exams", "flag"], ["Vocational and skills", "build"], ["Higher education", "research"], ["Learning on your own", "loop"]] },
-  { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson planning", "document"], ["In class", "ask"], ["Checking understanding", "practice"], ["Adapting", "compass"], ["Supporting individuals", "handshake"], ["Growing", "growth"]] },
-  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"]] },
-  { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
-  { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8", subs: [["Schools", "student"], ["Colleges and universities", "research"], ["Coaching", "practice"], ["Workplace learning", "computerScience"]] },
+  { to: "/student", label: "Students", subject: "student", tint: "rgba(0,102,204,0.10)" },
+  { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef" },
+  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df" },
+  { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff" },
+  { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8" },
 ];
 
-const STRIP_CARDS = FAN_GROUPS.flatMap((group) => [
-  { to: group.to, label: group.label, subject: group.subject, tint: group.tint },
-  ...group.subs.map(([label, subject]) => ({ to: group.to, label, subject, tint: group.tint })),
-]);
+const HERO_FAN_CARDS = FAN_GROUPS.map((group) => ({
+  to: group.to,
+  label: group.label,
+  subject: group.subject,
+  tint: group.tint,
+}));
 
 /* ── ArrowLink — the site's quiet link: ink blue with the chevron ── */
 function ArrowLink({ to, children, className = "" }) {
@@ -33,8 +37,9 @@ function ArrowLink({ to, children, className = "" }) {
   );
 }
 
-/* ── Main hero — the communities.google layout: centered eyebrow, statement,
-      and CTAs first, then the full-width fanned card strip with paging. ── */
+/* ── Main hero — the communities.google layout: a centered tag, statement,
+      and CTAs stacked with Google's balanced beats (tight heading-to-sub,
+      wide breath before the cards), then the static fanned card strip. ── */
 export default function AboutUsHero() {
   return (
     <section
@@ -48,14 +53,14 @@ export default function AboutUsHero() {
     >
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
         <p data-type="label" className="text-center text-[#6e6e73]">About Visionary</p>
-        {/* Google communities hero rhythm — one balanced beat between every
-            centered tier: tag → statement → subhead → CTAs, then the wide
-            breath before the card field. */}
-        <div className="mx-auto mt-8 max-w-[1120px] text-center">
+        {/* Google communities hero rhythm — big air above the unit, one tight
+            beat from heading to subhead, one moderate beat to the CTAs, then
+            the wide breath before the card field. */}
+        <div className="mx-auto mt-6 max-w-[1120px] text-center">
           <h1 className="mx-auto max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
             Understanding. <span className="accent-gradient">Built in.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
+          <p className="mx-auto mt-4 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
             A learning product for people who want to understand, practise, and apply what they learn.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -70,9 +75,9 @@ export default function AboutUsHero() {
         </div>
       </div>
 
-      {/* Fanned card strip — full page width, drifting anticlockwise */}
-      <div className="mt-20">
-        <HeroFanCards items={STRIP_CARDS} ariaLabel="Explore Visionary by category" />
+      {/* Fanned card strip — static centered fan, bleeding off both edges */}
+      <div className="mt-24">
+        <HeroFanCards items={HERO_FAN_CARDS} ariaLabel="Explore Visionary by category" />
       </div>
     </section>
   );

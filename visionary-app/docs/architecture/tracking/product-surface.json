@@ -2147,16 +2147,16 @@
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/pages/landing/DownloadPage.jsx:128:13",
         "frontend/src/pages/landing/DownloadPage.jsx:145:13",
-        "frontend/src/pages/landing/DownloadPage.jsx:199:19",
-        "frontend/src/pages/landing/DownloadPage.jsx:211:21",
-        "frontend/src/pages/landing/DownloadPage.jsx:230:11",
-        "frontend/src/pages/landing/DownloadPage.jsx:268:13",
-        "frontend/src/pages/landing/DownloadPage.jsx:271:17",
-        "frontend/src/pages/landing/DownloadPage.jsx:285:17",
-        "frontend/src/pages/landing/DownloadPage.jsx:324:9",
-        "frontend/src/pages/landing/DownloadPage.jsx:351:11",
-        "frontend/src/pages/landing/DownloadPage.jsx:387:11",
-        "frontend/src/pages/landing/DownloadPage.jsx:390:11"
+        "frontend/src/pages/landing/DownloadPage.jsx:205:19",
+        "frontend/src/pages/landing/DownloadPage.jsx:217:21",
+        "frontend/src/pages/landing/DownloadPage.jsx:236:11",
+        "frontend/src/pages/landing/DownloadPage.jsx:274:13",
+        "frontend/src/pages/landing/DownloadPage.jsx:277:17",
+        "frontend/src/pages/landing/DownloadPage.jsx:291:17",
+        "frontend/src/pages/landing/DownloadPage.jsx:330:9",
+        "frontend/src/pages/landing/DownloadPage.jsx:358:11",
+        "frontend/src/pages/landing/DownloadPage.jsx:397:11",
+        "frontend/src/pages/landing/DownloadPage.jsx:400:11"
       ],
       "operations": [
         "download-installation"
@@ -2230,10 +2230,10 @@
         "frontend/src/App.jsx:58:15",
         "frontend/src/App.jsx:68:17",
         "frontend/src/App.jsx:229:11",
-        "frontend/src/components/landing/AboutUsHero.jsx:26:5",
-        "frontend/src/components/landing/AboutUsHero.jsx:62:13",
-        "frontend/src/components/landing/AboutUsHero.jsx:68:13",
-        "frontend/src/components/landing/HeroFanCards.jsx:28:17",
+        "frontend/src/components/landing/AboutUsHero.jsx:30:5",
+        "frontend/src/components/landing/AboutUsHero.jsx:67:13",
+        "frontend/src/components/landing/AboutUsHero.jsx:73:13",
+        "frontend/src/components/landing/HeroFanCards.jsx:38:15",
         "frontend/src/components/landing/LandingFooter.jsx:99:21",
         "frontend/src/components/landing/LandingFooter.jsx:125:15",
         "frontend/src/components/landing/LandingFooter.jsx:135:15",
@@ -3788,7 +3788,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:627:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/LocalNav.jsx:53:17",
+        "frontend/src/components/landing/LocalNav.jsx:58:17",
         "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx:13:13",
         "frontend/src/components/landing/persona/sections/CarouselDots.jsx:12:9",
         "frontend/src/components/landing/persona/sections/ExploreCard.jsx:12:5",
@@ -3936,7 +3936,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:627:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/LocalNav.jsx:53:17",
+        "frontend/src/components/landing/LocalNav.jsx:58:17",
         "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx:13:13",
         "frontend/src/components/landing/persona/sections/CarouselDots.jsx:12:9",
         "frontend/src/components/landing/persona/sections/ExploreCard.jsx:12:5",
@@ -4077,7 +4077,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:627:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/LocalNav.jsx:53:17",
+        "frontend/src/components/landing/LocalNav.jsx:58:17",
         "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx:13:13",
         "frontend/src/components/landing/persona/sections/CarouselDots.jsx:12:9",
         "frontend/src/components/landing/persona/sections/ExploreCard.jsx:12:5",
@@ -4227,7 +4227,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:627:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/LocalNav.jsx:53:17",
+        "frontend/src/components/landing/LocalNav.jsx:58:17",
         "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx:13:13",
         "frontend/src/components/landing/persona/sections/CarouselDots.jsx:12:9",
         "frontend/src/components/landing/persona/sections/ExploreCard.jsx:12:5",
@@ -4369,7 +4369,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:627:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/LocalNav.jsx:53:17",
+        "frontend/src/components/landing/LocalNav.jsx:58:17",
         "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx:13:13",
         "frontend/src/components/landing/persona/sections/CarouselDots.jsx:12:9",
         "frontend/src/components/landing/persona/sections/ExploreCard.jsx:12:5",
@@ -39691,9 +39691,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/AboutUsHero.jsx:26:5",
+      "id": "frontend/src/components/landing/AboutUsHero.jsx:30:5",
       "file": "frontend/src/components/landing/AboutUsHero.jsx",
-      "line": 26,
+      "line": 30,
       "column": 5,
       "tag": "Link",
       "events": [],
@@ -39715,9 +39715,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/AboutUsHero.jsx:62:13",
+      "id": "frontend/src/components/landing/AboutUsHero.jsx:67:13",
       "file": "frontend/src/components/landing/AboutUsHero.jsx",
-      "line": 62,
+      "line": 67,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -39740,9 +39740,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/AboutUsHero.jsx:68:13",
+      "id": "frontend/src/components/landing/AboutUsHero.jsx:73:13",
       "file": "frontend/src/components/landing/AboutUsHero.jsx",
-      "line": 68,
+      "line": 73,
       "column": 13,
       "tag": "ArrowLink",
       "events": [],
@@ -39834,15 +39834,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/HeroFanCards.jsx:28:17",
+      "id": "frontend/src/components/landing/HeroFanCards.jsx:38:15",
       "file": "frontend/src/components/landing/HeroFanCards.jsx",
-      "line": 28,
-      "column": 17,
+      "line": 38,
+      "column": 15,
       "tag": "Link",
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "70dcebb653189d81184fa3d5af78a9e81a1599a98e6ba584311590e6cf2281af",
+      "declarationSha256": "e8910d0493d11069f0743f0fd3f64e6633f68ec5d2e1f878af4da5ff0e0e82a4",
       "routeIds": [
         "/about"
       ],
@@ -41840,9 +41840,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/LocalNav.jsx:53:17",
+      "id": "frontend/src/components/landing/LocalNav.jsx:58:17",
       "file": "frontend/src/components/landing/LocalNav.jsx",
-      "line": 53,
+      "line": 58,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -72146,9 +72146,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:199:19",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:205:19",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 199,
+      "line": 205,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -72170,9 +72170,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:211:21",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:217:21",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 211,
+      "line": 217,
       "column": 21,
       "tag": "button",
       "events": [],
@@ -72194,9 +72194,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:230:11",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:236:11",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 230,
+      "line": 236,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -72219,9 +72219,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:268:13",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:274:13",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 268,
+      "line": 274,
       "column": 13,
       "tag": "form",
       "events": [
@@ -72248,9 +72248,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:271:17",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:277:17",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 271,
+      "line": 277,
       "column": 17,
       "tag": "input",
       "events": [
@@ -72280,9 +72280,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:285:17",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:291:17",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 285,
+      "line": 291,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -72304,9 +72304,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:324:9",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:330:9",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 324,
+      "line": 330,
       "column": 9,
       "tag": "QuietLink",
       "events": [],
@@ -72329,9 +72329,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:351:11",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:358:11",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 351,
+      "line": 358,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -72354,9 +72354,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:387:11",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:397:11",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 387,
+      "line": 397,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -72379,9 +72379,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:390:11",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:400:11",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 390,
+      "line": 400,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -78808,7 +78808,7 @@
     },
     {
       "file": "frontend/src/components/landing/AboutUsHero.jsx",
-      "sourceSha256": "aea094d6074f2e2d511a511ad5d95b46cb29fe910619d8fc2295427116c487a0"
+      "sourceSha256": "0baac688d25dcb9b7b6579c62cf0f899539c5c3158761fa7a6f5d2de8e741e1d"
     },
     {
       "file": "frontend/src/components/landing/Breadcrumb.jsx",
@@ -78816,11 +78816,11 @@
     },
     {
       "file": "frontend/src/components/landing/CinematicHero.jsx",
-      "sourceSha256": "ff1f36007ac3aeade0d91a2724201895db3e2214d901ebbbd74737e2511cb6ae"
+      "sourceSha256": "fe88f9d98c065e0653e046b94eb8709f87d591b8e85658329e0a18af5d5c4218"
     },
     {
       "file": "frontend/src/components/landing/HeroFanCards.jsx",
-      "sourceSha256": "04599e879a7f87147c5c29334df22b7c9252228495861f55de5a30994e31316d"
+      "sourceSha256": "b37afbb3769ef9592474c0c2a8316b1540e00584311fc997a966a39d2f7aa05e"
     },
     {
       "file": "frontend/src/components/landing/LandingFAQ.jsx",
@@ -78848,7 +78848,7 @@
     },
     {
       "file": "frontend/src/components/landing/LocalNav.jsx",
-      "sourceSha256": "6d52479c127152257ccb70251bce3cea20f08211084542d8cce170e059d4c34d"
+      "sourceSha256": "87fe8fed0bd920517462b67f598080b5484e370cc7abcd28dcbb14285649c97b"
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
@@ -79840,7 +79840,7 @@
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "sourceSha256": "44d6b4f45e4b3f33117ff6cdb4859665791c14a52afdee424fb4e1c145d2d749"
+      "sourceSha256": "0f039ea906768aeb8e93a07f8ea6ecd9297d0888a4f544684a4f947665319089"
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",

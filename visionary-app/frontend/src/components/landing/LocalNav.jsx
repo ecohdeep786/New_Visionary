@@ -41,7 +41,12 @@ export default function LocalNav({ title, items = DEFAULT_ITEMS, className = "" 
       className={`sticky z-30 bg-white ${className}`}
       style={{ top: 56, fontFamily: fontStack }}
     >
-      <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
+      {/* public-frame — the SAME container the LandingNav composes, so the
+         bar's title, items and hairline align exactly with the main nav's
+         content edges (founder directive 2026-11-03); the old
+         max-w-[1240px] px-10 wrapper inset the content 40px further than
+         the nav above it. */}
+      <div className="public-frame">
         <div className="flex h-14 items-center justify-between gap-6 border-b border-[rgba(18,19,23,0.12)]">
           <span className="shrink-0 whitespace-nowrap text-[21px] font-semibold leading-none tracking-[-0.01em] text-[#1d1d1f]">
             {title}

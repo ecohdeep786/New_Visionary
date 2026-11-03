@@ -9,9 +9,10 @@ import { fontStack } from "@/components/landing/system/tokens";
  * Measured composition (StudentPage → PersonaHero stage + apple.com/in/privacy
  * hero, 2026-11-02): one full-viewport studio stage — white set, the whole
  * photograph bottom-anchored rising from the fold (object-contain, feet on
- * the fold, nothing cropped), the copy centered horizontally in the free
- * stage above it — the persona stage's collision-free composition with the
- * type on Apple's centered position.
+ * the fold, nothing cropped), the copy centered on BOTH axes (the Apple
+ * privacy position, founder directive 2026-11-03): with the photograph the
+ * copy centers in the free region above it; without it, the copy centers in
+ * the whole stage.
  *
  * Anatomy law (one source; pages compose props, never re-declare):
  *   - Stage: height calc(100svh - 56px - inFlow), min 640px, marginTop 56
@@ -25,11 +26,14 @@ import { fontStack } from "@/components/landing/system/tokens";
  *     wires it, WebP raster fallback, eager + fetchPriority high (it is
  *     the stage), draggable off, maxWidth:none so the contain fit can
  *     window.
- *   - Copy column: centered on every width (the Apple position): optional
- *     label, the two-part display (48 → 64 → 76, font-normal, 1.06,
- *     -0.045em — part 2 in the accent gradient), the 17px/25px statement at
- *     the 760px cap, then the CTA pair / pill slots and the `trailing` slot
- *     (the accessibility anchor chips); pages compose, never re-style.
+ *   - Copy column: centered on every width and both axes (the Apple
+ *     privacy position): optional label, the two-part display
+ *     (44 → 64 → 80, font-semibold, 1.05, -0.015em — Apple's measured
+ *     overview-hero profile; part 2 in the accent gradient), the 17px/25px
+ *     statement at the 760px cap, then the CTA pair / pill slots and the
+ *     `trailing` slot (the accessibility anchor chips); pages compose,
+ *     never re-style. The 44px base intentionally sits outside the
+ *     h1.text-[48px] page-title bridge so the hero ladder renders.
  *   - The stage ends at the fold: body content follows as normal scroll.
  *
  * Founder image slots: pages wire the hero stage image via the `image`
@@ -67,20 +71,27 @@ export default function CinematicHero({
         marginTop: 56,
       }}
     >
-      {/* The copy — centered horizontally (the Apple position), anchored in
-          the free stage above the photograph; CTAs ride the shared
-          primitives (CtaPair for the promo pair, CTA_LAW.pill for a solo
-          ink action), passed as props; pages that pass a raw pill own its
-          top margin, since the wrapper stays margin-free to keep the
-          CtaPair cadence exact. */}
-      <div className="relative flex w-full flex-col items-center px-6 pt-[clamp(40px,7svh,80px)] pb-[clamp(12px,2svh,24px)] text-center sm:px-8 lg:px-10">
+      {/* The copy — centered on both axes in the free stage (the Apple
+          privacy hero position, founder directive 2026-11-03: match the
+          apple.com/in/privacy hero — measured 2026-11-02: 80px/600, -0.015em,
+          1.05, dead-center of the first viewport). With the photograph the
+          copy centers in the free region above it (flex 1:1 with the image
+          layer); without it, the copy owns the whole stage. CTAs ride the
+          shared primitives (CtaPair for the promo pair, CTA_LAW.pill for a
+          solo ink action), passed as props; pages that pass a raw pill own
+          its top margin, since the wrapper stays margin-free to keep the
+          CtaPair cadence exact. The 44px base deliberately steps outside the
+          h1.text-[48px] page-title bridge (public-bridge.css) so the hero
+          renders its own Apple-measured ladder, per that file's own hero law
+          ("hero 80px ls-0.015em lh1.05"). */}
+      <div className="relative flex w-full flex-1 flex-col items-center justify-center px-6 pt-[clamp(16px,3svh,40px)] pb-[clamp(12px,2svh,24px)] text-center sm:px-8 lg:px-10">
         <div className="mx-auto max-w-[1120px]">
           {label ? (
             <p data-type="label" className="text-[#6e6e73]">
               {label}
             </p>
           ) : null}
-          <h1 className="mx-auto mt-6 max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
+          <h1 className="mx-auto mt-6 max-w-[960px] text-[44px] font-semibold leading-[1.05] tracking-[-0.015em] text-[#1d1d1f] sm:text-[64px] lg:text-[80px]">
             {title} <span className="accent-gradient">{accent}</span>
           </h1>
           {statement ? (
@@ -96,9 +107,10 @@ export default function CinematicHero({
 
       {/* The image layer — the photograph rises from the fold BELOW the
           centered copy at every width (the student stage's collision-free
-          anatomy; the subject stays clear of the type, feet on the fold). */}
-      <div className="relative flex min-h-[220px] flex-1">
-        {image?.src ? (
+          anatomy; the subject stays clear of the centered type, feet on the
+          fold). Shares the free stage 1:1 with the copy region. */}
+      {image?.src ? (
+        <div className="relative flex min-h-[220px] flex-1">
           <picture>
             {image.avifSrcSet ? (
               <source type="image/avif" srcSet={image.avifSrcSet} sizes={image.sizes} />
@@ -119,21 +131,21 @@ export default function CinematicHero({
               }}
             />
           </picture>
-        ) : (
-          /* The placeholder stage — an intentional quiet set (the brand-blue
-             presence hint anchored where the photograph's subject zone sits,
-             over the site's white surface), not a broken slot. Replaced
-             automatically once image.src exists. */
-          <div
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(46% 74% at 50% 96%, rgba(66,133,244,0.08) 0%, rgba(66,133,244,0.03) 45%, rgba(66,133,244,0) 70%), linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%)",
-            }}
-          />
-        )}
-      </div>
+        </div>
+      ) : (
+        /* The placeholder stage — an intentional quiet set behind the
+           centered copy (the brand-blue presence hint anchored where the
+           photograph's subject zone sits, over the site's white surface),
+           not a broken slot. Replaced automatically once image.src exists. */
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(46% 74% at 50% 96%, rgba(66,133,244,0.08) 0%, rgba(66,133,244,0.03) 45%, rgba(66,133,244,0) 70%), linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%)",
+          }}
+        />
+      )}
 
       {/* the studio floor — desktop grounding veil from the persona stage
           (cast.css), desktop only */}
