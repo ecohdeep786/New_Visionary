@@ -468,3 +468,33 @@ test('HTTP boundary requires exact origin and CSRF, and issues HttpOnly bound co
     assert.equal((await f.service.me('fixture-adult')).onboarding_complete, true);
   } finally { await app.close(); }
 });
+
+test('invitation authority resolves current verified provider email for the authenticated UID', async () => {
+  const f = fixture();
+  const { ProductRequestAuthority } = req('./dist/src/auth/firebase-product/request-authority.js');
+  const boundary = new ProductRequestAuthority(f.service, f.service.config);
+  const session = await f.service.signIn('verified-fixture-token', metadata);
+  const csrf = 'a'.repeat(64);
+  const headers = { Origin: 'http://localhost:5173', 'X-CSRF-Token': csrf, 'X-Visionary-Account': f.identity.uid };
+  const request = { cookies: { 'visionary-session': session.cookie, 'visionary-device': session.device, 'visionary-csrf': csrf }, get: name => headers[name] };
+  let provider = { uid: f.identity.uid, email: 'current@example.test', emailVerified: true };
+  let calls = 0;
+  f.auth.getUser = async uid => { assert.equal(uid, f.identity.uid); calls++; return provider; };
+  headers['X-Visionary-Account'] = 'different-account';
+  await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 409);
+  headers['X-Visionary-Account'] = f.identity.uid;
+  headers['X-CSRF-Token'] = 'wrong';
+  await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 403);
+  assert.equal(calls, 0);
+  headers['X-CSRF-Token'] = csrf;
+  assert.deepEqual(await boundary.invitationRecipient(request), { uid: f.identity.uid, verifiedEmail: 'current@example.test' });
+  for (const changes of [{ emailVerified: false }, { disabled: true }, { uid: 'different-account' }]) {
+    const current = provider;
+    provider = { ...current, ...changes };
+    await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 401);
+    provider = current;
+  }
+  f.revoke();
+  await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 401);
+  assert.equal(calls, 4);
+});
