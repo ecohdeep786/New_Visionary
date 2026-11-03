@@ -228,10 +228,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
-        "frontend/src/pages/Landing.jsx:272:15",
-        "frontend/src/pages/Landing.jsx:313:11",
-        "frontend/src/pages/Landing.jsx:381:17",
-        "frontend/src/pages/Landing.jsx:471:13"
+        "frontend/src/pages/Landing.jsx:270:15",
+        "frontend/src/pages/Landing.jsx:311:11",
+        "frontend/src/pages/Landing.jsx:379:17",
+        "frontend/src/pages/Landing.jsx:469:13"
       ],
       "operations": [
         "public-discovery"
@@ -75832,9 +75832,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:272:15",
+      "id": "frontend/src/pages/Landing.jsx:270:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 272,
+      "line": 270,
       "column": 15,
       "tag": "ProgressDots",
       "events": [
@@ -75861,9 +75861,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:313:11",
+      "id": "frontend/src/pages/Landing.jsx:311:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 313,
+      "line": 311,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -75886,9 +75886,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:381:17",
+      "id": "frontend/src/pages/Landing.jsx:379:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 381,
+      "line": 379,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -75910,9 +75910,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:471:13",
+      "id": "frontend/src/pages/Landing.jsx:469:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 471,
+      "line": 469,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79808,7 +79808,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "e3c0ef95f26348da3031a011db612aab86c40e1378d4021d08e3a0233686888a"
+      "sourceSha256": "5e0f3a163ab762beb20ef0c55cb283df60864d50a13ef32887c0014b5b879998"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
@@ -79816,7 +79816,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "sourceSha256": "5578aec19c5d411eccef5ecec2d18604473cd318a00dc86c3b3d5f3e75e82b67"
+      "sourceSha256": "b068a2b2ac523173d7d410aa5e7ee08810737c21f21dc695941a9d328f3b0832"
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
@@ -79832,7 +79832,7 @@
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
-      "sourceSha256": "e957ac6e829ae53e78ea6cff45e0a411abcb82faef97aad485d1460834f2ead2"
+      "sourceSha256": "de43c2b8bae56c955654f821271f3c4b82ee8f4642f38044e1ed7c2b0bcc7224"
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
@@ -79896,7 +79896,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "74e3eabacee8e3fe594216692853f875c44fbfe45efc14c6bc4307b63b38b9fa"
+      "sourceSha256": "a3dd20015dd2f503a772a510ed6c1827d7e7a2eb34a0ba428ad97c928c3775f5"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

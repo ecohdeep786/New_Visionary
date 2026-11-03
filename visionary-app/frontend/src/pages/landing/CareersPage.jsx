@@ -436,7 +436,7 @@ export default function CareersPage() {
             <section id="contact" data-section="06-contact" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
                 <div>
-                  <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.03em] text-[#1d1d1f] sm:text-[38px]">
+                  <h2 data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                     A fair process starts with clarity.
                   </h2>
                 </div>

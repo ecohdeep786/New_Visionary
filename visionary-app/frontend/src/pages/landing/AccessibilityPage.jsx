@@ -196,7 +196,7 @@ export default function AccessibilityPage() {
             <Reveal className="mx-auto max-w-[1240px]">
               <div className="max-w-[720px]">
                 <p className="apple-eyebrow text-[#6e6e73]">{category.eyebrow}</p>
-                <h2 id={`${category.id}-title`} className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[40px]">
+                <h2 id={`${category.id}-title`} data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                   {category.title}
                 </h2>
                 <p className="mt-4 max-w-[620px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">{category.intro}</p>
@@ -226,7 +226,7 @@ export default function AccessibilityPage() {
             <div className="grid items-center gap-10 rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
               <div>
                 <p className="apple-eyebrow text-[#6e6e73]">Sync &amp; devices</p>
-                <h2 id="sync-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
+                <h2 id="sync-title" data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                   One person. Every device. <span className="text-[#1d1d1f]">Anywhere.</span>
                 </h2>
                 <p className="mt-5 max-w-[560px] text-[16px] leading-[1.75] text-[#1d1d1f] sm:text-[16px]">
@@ -277,7 +277,7 @@ export default function AccessibilityPage() {
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
               <p className="apple-eyebrow text-[#6e6e73]">Resources</p>
-              <h2 id="resources-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[40px]">
+              <h2 id="resources-title" data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Start at your own pace.
               </h2>
               <p className="mt-4 max-w-[420px] text-[16px] leading-[1.75] text-[#6e6e73]">
@@ -316,7 +316,7 @@ export default function AccessibilityPage() {
         <section data-section="07-commitment" aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 id="commitment-title" className="text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
+              <h2 id="commitment-title" data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Our commitment.
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
@@ -346,7 +346,7 @@ export default function AccessibilityPage() {
         <section data-section="08-closing" aria-labelledby="closing-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-16 text-center sm:px-12 lg:py-20">
-              <h2 id="closing-title" className="mx-auto max-w-[720px] text-[clamp(28px,3.6vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#1d1d1f]">
+              <h2 id="closing-title" data-type="section" className="mx-auto max-w-[720px] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Accessibility is part of <span className="text-[#1d1d1f]">our design DNA.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.7] text-[#1d1d1f] sm:text-[16px]">

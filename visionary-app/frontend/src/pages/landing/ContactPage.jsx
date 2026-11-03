@@ -273,7 +273,7 @@ export default function ContactPage() {
           <Reveal className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
               <p className="apple-eyebrow text-[#6e6e73]">Privacy grievance</p>
-              <h2 className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#1d1d1f] sm:text-[38px]">A formal route for privacy concerns.</h2>
+              <h2 data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">A formal route for privacy concerns.</h2>
               <p className="mt-4 max-w-[420px] text-[16px] leading-[1.75] text-[#6e6e73]">For a privacy grievance under India's DPDP Act, contact the named Grievance Officer directly.</p>
             </div>
             <div className="rounded-[20px] bg-white p-6 sm:p-8">

@@ -29,15 +29,15 @@
   --fs-hero-eyebrow: 3.5rem; /* desktop 56px */
   --fs-hero-headline: 8.75rem; /* desktop 140px */
 
-  /* Category-hero tokens — the apple.com/apple-vision-pro hero, measured
-     2026-10-20 (artifacts/qa-2026-10-20/hero-measure.json + vp-lockup.mjs):
-     the focal element is the h1 wordmark lockup, 43px tall on phones and
-     62px from 734px up (letters ~44–46px cap height) — a 64px Google Sans
-     statement lands on the same visual mass; the tagline steps 17/24/28 at
-     600 like Apple's. The main landing hero keeps the education ladder. */
-  --fs-category-statement: 4rem; /* desktop 64px — syncs to the 62px lockup */
-  --lh-category-statement: 1.08;
-  --track-category-statement: -0.009em; /* section-head curve at 64 */
+  /* Category-hero tokens — UNIFIED H1 ROLE LAW (founder directive
+     2026-11-03: one headline size per role on every page). The persona hero
+     statement joins the same Apple-privacy profile every public h1 now
+     carries (CinematicHero 2026-11-02: 44/64/80, 600, -0.015em, 1.05) —
+     measured from apple.com/in/privacy, replacing the per-page 64px Vision
+     Pro lockup ladder. */
+  --fs-category-statement: 5rem; /* desktop 80px — the unified h1 law */
+  --lh-category-statement: 1.05;
+  --track-category-statement: -0.015em;
   --fs-category-tagline: 1.75rem; /* desktop 28px */
   --lh-category-tagline: 1.14;
   --track-category-tagline: 0.007em;
@@ -112,9 +112,9 @@ main h2 + p.mt-6 {
    (out of the section scope, so they live at :root like the cast tokens). */
 @media (max-width: 1068px) {
   :root {
-    --fs-category-statement: 3.5rem; /* tablet 56px — matches the 62px lockup */
-    --lh-category-statement: 1.1;
-    --track-category-statement: 0em;
+    --fs-category-statement: 4rem; /* tablet 64px — unified h1 law step */
+    --lh-category-statement: 1.05;
+    --track-category-statement: -0.015em;
     --fs-category-tagline: 1.5rem; /* tablet 24px */
     --lh-category-tagline: 1.17;
     --track-category-tagline: 0.009em;
@@ -123,9 +123,9 @@ main h2 + p.mt-6 {
 
 @media (max-width: 734px) {
   :root {
-    --fs-category-statement: 2.5rem; /* phone 40px — matches the 43px lockup */
-    --lh-category-statement: 1.14;
-    --track-category-statement: 0.007em;
+    --fs-category-statement: 2.75rem; /* phone 44px — unified h1 law step */
+    --lh-category-statement: 1.05;
+    --track-category-statement: -0.015em;
     --fs-category-tagline: 1.0625rem; /* phone 17px */
     --lh-category-tagline: 1.24;
     /* Apple SF sets -0.022em here; Google Sans reads wider, so the accepted
