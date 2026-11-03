@@ -24,6 +24,21 @@ const page=await context.newPage(),errors=[],samples=[],audits=[];
 page.setDefaultTimeout(60000);page.setDefaultNavigationTimeout(90000);
 page.on('pageerror',error=>errors.push(String(error)));
 const ctx={personId:'design-quality',workspaceId:'design-quality:student',role:'student',locale:'en'};
+/* FAP-67 session migration: the product's auth is Firebase-backed
+ * (VITE_AUTH_MODE=firebase), so the legacy localStorage seed no longer
+ * authenticates the dashboard. The QA session now signs in through the real
+ * login UI in this script's own browser context; the Firebase session
+ * persists for every later navigation. */
+const QA_EMAIL='qa.designer@example.test', QA_PASSWORD='Visionary#2026';
+const loginViaUi = async () => {
+  await page.goto(`${base}/login`,{waitUntil:'domcontentloaded'});
+  await page.getByRole('button',{name:'Continue with Email'}).first().click();
+  await page.locator('input[type="email"]').first().fill(QA_EMAIL);
+  await page.getByRole('button',{name:/continue|next/i}).last().click();
+  await page.locator('input[type="password"]').first().fill(QA_PASSWORD,{timeout:20000});
+  await page.getByRole('button',{name:/sign in/i}).last().click();
+  await page.waitForTimeout(5000);
+};
 /* Rendered accessibility audit (FAP-30): informative-text contrast with alpha
  * blending, and 44px hit-area on interactive controls. Backgrounds composite
  * through the ancestor chain (rgba layers over the first opaque ancestor), so
@@ -70,6 +85,15 @@ const renderedAudit=()=>{
   };
 };
 try {
+ await loginViaUi();
+ /* The fixture services key on the signed-in identity: read the live session's
+  * person/workspace ids after the UI login instead of the legacy constants. */
+ const liveCtx = await page.evaluate(() => {
+  const ws = JSON.parse(localStorage.getItem('visionary_workspace_v2') || '{}');
+  const uid = Object.keys(ws.active || {})[0] || null;
+  return { personId: uid, workspaceId: uid ? ws.active[uid] : null, role: (ws.people?.find(p => p.id === uid)?.roles || ['student'])[0] };
+ });
+ if (liveCtx.personId) { ctx.personId = liveCtx.personId; ctx.workspaceId = liveCtx.workspaceId; ctx.role = liveCtx.role; }
  await page.goto(`${base}/dashboard/progress`,{waitUntil:'networkidle'});
  await page.getByRole('heading',{name:'Your evidence starts with an activity'}).waitFor();
  assert.equal(await page.locator('.v-progress-overview').count(),0,'empty history must not invent achievement');
@@ -95,6 +119,10 @@ try {
  }
  const fixture=JSON.parse(await fs.readFile(process.env.DESIGN_FIXTURE_PATH||`${evidence}/fictional-fixture.json`,'utf8'));
  await page.goto(`${base}/dashboard/learn?unit=${fixture.unitId}`,{waitUntil:'networkidle'});
+ if (process.env.DESIGN_DEBUG) {
+  const dbg = await page.evaluate(() => ({ url: location.pathname + location.search, h1: document.querySelector('h1')?.textContent.trim().slice(0, 60) ?? null, body: document.body.textContent.trim().slice(0, 200) }));
+  console.log('LEARN PAGE STATE:', JSON.stringify(dbg));
+ }
  await page.getByRole('heading',{name:'Practice step recorded'}).waitFor();
  await page.screenshot({path:`${evidence}/practice-recorded-390.png`});
  assert.equal(await page.getByRole('button',{name:'Apply this in Build',exact:true}).count(),1);
