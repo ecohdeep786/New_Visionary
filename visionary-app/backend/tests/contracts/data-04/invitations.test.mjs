@@ -59,6 +59,10 @@ test('a forwarded token cannot grant membership to a different verified email', 
   assert.equal(await events(invitation.invitationId, 'accepted'), 0);
   await service.accept(x.user, invitation.token, 'SYNTHETIC@EXAMPLE.INVALID');
   assert.equal((await membership(x)).role, 'MEMBER');
+  await assert.rejects(service.accept(x.user, invitation.token, 'changed@example.invalid'), code('invalid_token'));
+  assert.equal(await events(invitation.invitationId, 'accepted'), 1);
+  assert.equal(await env.db.commandResult.count({ where: { uid: x.user } }), 1);
+  assert.equal(await env.db.outboxEvent.count({ where: { uid: x.user } }), 1);
 });
 test('concurrent same-UID and cold-client retries replay without duplicate membership/audit/outbox', async () => {
   const x = await setup(), i = await invite(x);
