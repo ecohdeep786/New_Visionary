@@ -11,7 +11,7 @@ const controllerFiles = [
   'auth/firebase-product/firebase-product.controller.ts', 'auth/firebase-product/account.controller.ts',
   'billing/billing.controller.ts', 'feedback/feedback.controller.ts',
   'learning/learning.controller.ts', 'learning/knowledge-projection.controller.ts',
-  'workspaces/personal-workspace.controller.ts',
+  'workspaces/personal-workspace.controller.ts', 'privacycore/privacy-policy.controller.ts',
 ].map(file => backend + file);
 const provenanceFiles = [...controllerFiles, ...[
   'auth/firebase-product/firebase-product.module.ts', 'auth/firebase-product/request-authority.ts',
@@ -20,6 +20,7 @@ const provenanceFiles = [...controllerFiles, ...[
   'billing/billing.service.ts', 'billing/billing.repository.ts', 'billing/razorpay.provider.ts',
   'feedback/feedback.service.ts', 'learning/learning.service.ts', 'learning/learning.contract.ts',
   'learning/knowledge-projection.service.ts', 'workspaces/personal-workspace.service.ts',
+  'privacycore/privacy-policy.service.ts', 'privacycore/privacy-policy.ts', 'privacycore/privacy-preservation-policy.v1.json',
   'workspaces/provision-types.ts', 'workspaces/provision-store.ts', 'workspaces/firestore-provision-links.ts',
   'workspaces/workspace-provisioner.ts', 'main-auth.ts', 'platform/production-http.ts',
 ].map(file => backend + file), 'integration/contracts/product-surface-review.json',
@@ -31,7 +32,7 @@ export const profiles = {
   csrf: profile('Anonymous bootstrap; random CSRF cookie/token is not identity', 'No workspace grant', 'Current browser CSRF cookie only', 'Not applicable', 'Not consent to product/provider processing', ['none']),
   exchange: profile('Firebase-verified ID token, current identity admission and rate limits; existing cookie/device binding retained', 'Onboarding role/preferences grant no verified membership', 'Verified UID account/session/device; current session-policy epoch/cutoff', 'No educational source grant', 'No guardian or model-processing consent inferred', ['auth']),
   sessionRead: profile('Verified current session AND device; /me does not require expected-account header', 'No workspace membership inferred', 'Server-derived UID profile only', 'No source grant', 'No relationship consent inferred', ['auth']),
-  ownerRead: profile('Verified current session/device and compared X-Visionary-Account hint', 'Account-level only; no workspace grant', 'UID-derived account/device/invoice records; cursors stay within owner collection', 'No educational source grant', 'No staff/guardian/payer-to-learning grant', ['auth', 'billing']),
+  ownerRead: profile('Verified current session/device and compared X-Visionary-Account hint', 'Account-level only; no workspace grant', 'UID-derived account/device/invoice records and bounded approved preservation-policy reference; cursors stay within owner collection; policy reference grants no permissions', 'No educational source grant', 'No staff/guardian/payer-to-learning grant', ['auth', 'billing']),
   ownerWrite: profile('Verified current session/device, expected-account match, exact Origin and CSRF; rate limits', 'Self-reported role/workspace preferences are not membership', 'UID-owned profile/onboarding with transaction session-version check', 'No educational source grant', 'No guardian/organization proof inferred', ['auth']),
   logout: profile('Exact Origin/CSRF; device lookup plus expected UID OR matching cookie hash; no-op for absent/invalid device', 'No workspace grant', 'Only selected device/session revocation and cookie cleanup; not ordinary full-session authentication', 'Not applicable', 'No grant; revocation only', ['auth']),
   logoutAll: profile('Enabled action, verified session cookie/device binding and expected UID; transaction epoch and replay checks', 'No workspace grant', 'Current UID session-policy epoch/cutoff, device/session revocation and auth events', 'Not applicable', 'No grant; revocation only', ['auth']),
@@ -73,7 +74,7 @@ const storeDefinitions = {
 const assignments = {
   public: ['GET /api/auth/methods', 'GET /api/billing/catalog'],
   csrf: ['GET /api/auth/csrf'], exchange: ['POST /api/auth/session'], sessionRead: ['GET /api/auth/me'],
-  ownerRead: ['GET /api/account/overview', 'GET /api/account/devices', 'GET /api/account/invoices'],
+  ownerRead: ['GET /api/account/privacy/policy', 'GET /api/account/overview', 'GET /api/account/devices', 'GET /api/account/invoices'],
   ownerWrite: ['POST /api/auth/onboarding', 'PATCH /api/auth/profile', 'POST /api/auth/onboarding/introduction'],
   logout: ['POST /api/auth/logout'], logoutAll: ['POST /api/auth/logout-all'],
   billingRead: ['GET /api/billing/account', 'GET /api/billing/invoices/:id', 'GET /api/billing/family/invitations/:id'],

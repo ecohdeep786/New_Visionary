@@ -943,6 +943,19 @@
         "SYNC-02"
       ]
     },
+    "frontend/src/components/dashboard/ApprovedPrivacyPolicy.jsx": {
+      "profile": "approved-privacy-reference",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated read of the Founder-approved preservation reference. Lifecycle and guardian verification remain separate.",
+      "followUp": [
+        "PRIV-01",
+        "PRIV-02"
+      ],
+      "endpoints": [
+        "GET /api/account/privacy/policy"
+      ]
+    },
     "frontend/src/components/dashboard/StageProfileEditor.jsx": {
       "profile": "local-stage-continuity",
       "state": "preview",

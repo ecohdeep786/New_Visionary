@@ -105,7 +105,7 @@
     "ownerRead": {
       "actor": "Verified current session/device and compared X-Visionary-Account hint",
       "workspace": "Account-level only; no workspace grant",
-      "object": "UID-derived account/device/invoice records; cursors stay within owner collection",
+      "object": "UID-derived account/device/invoice records and bounded approved preservation-policy reference; cursors stay within owner collection; policy reference grants no permissions",
       "source": "No educational source grant",
       "consent": "No staff/guardian/payer-to-learning grant",
       "stores": [
@@ -418,6 +418,13 @@
       "profile": "ownerRead",
       "controller": "AccountController",
       "sourceFile": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/privacy/policy",
+      "profile": "ownerRead",
+      "controller": "PrivacyPolicyController",
+      "sourceFile": "backend/upstream/backend/src/privacycore/privacy-policy.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -1357,8 +1364,12 @@
       "sha256Lf": "6a3f92ce1f774399fc36d6b5701f4327a231e2767d595dc5055aca3a38e952f6"
     },
     {
+      "file": "backend/upstream/backend/src/privacycore/privacy-policy.controller.ts",
+      "sha256Lf": "f2c713500f932eaa8c1c462945d9921f9ce2706f34d65de3913a9207a4cefe68"
+    },
+    {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sha256Lf": "92349458524099911048fa4d00013a5d5923d65276f57c0400981d304f91c532"
+      "sha256Lf": "0229af0c63caf83a8e278f3b09f3578c1688ffd6a74e486f08fa4902cad02034"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/request-authority.ts",
@@ -1413,6 +1424,18 @@
       "sha256Lf": "530c81fa0eaab1e6bb35399ac3525ebbce8921097e427a01d7940c61f904c75a"
     },
     {
+      "file": "backend/upstream/backend/src/privacycore/privacy-policy.service.ts",
+      "sha256Lf": "5f12256143de4f27d9c6f42ceb689f9ccfdf36772064995f548cec1f38351cef"
+    },
+    {
+      "file": "backend/upstream/backend/src/privacycore/privacy-policy.ts",
+      "sha256Lf": "483e0e254fcf019d961d1e3c9be76b64fc95d58b522561a14ea490e4f317268d"
+    },
+    {
+      "file": "backend/upstream/backend/src/privacycore/privacy-preservation-policy.v1.json",
+      "sha256Lf": "e14041f9c67f68c73d900063ad993456d2c5b29748238724d0c56789b076e261"
+    },
+    {
       "file": "backend/upstream/backend/src/workspaces/provision-types.ts",
       "sha256Lf": "73b0189727582d04bc86772ec681d2dd0738538a2d05de74a6a07993769945cc"
     },
@@ -1438,11 +1461,11 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "3a751105cb525eca0c6caae4f9520e9e51533e4fa2afbcf23dd17d31f89d4270"
+      "sha256Lf": "d5c2dc0ba13d9ef69991b068d196978a72b3a22572e8460e7138e160d022c67c"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "5109c02bafad61834e69f7056ff0e49e89e5ef20fa1fa4246ff2a3dd859baffd"
+      "sha256Lf": "8ac26c150ee3dd8c4fe1ed6827635b53bd1b2a0cd7583657359a86df4445c799"
     },
     {
       "file": "integration/contracts/v1/openapi.json",
