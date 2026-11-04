@@ -235,6 +235,11 @@ test('native HTTP billing requires session/device, exact Origin/CSRF and expecte
   try {
     const url = await app.getUrl(), csrf = 'a'.repeat(64), cookie = `visionary-session=adult; visionary-device=device; visionary-csrf=${csrf}`;
     assert.equal((await fetch(url + '/api/billing/account')).status, 401);
+    // BILL-08: auth-required purchase — an anonymous or stale-session checkout is refused at the HTTP boundary and never creates a provider subscription.
+    const anonBuy = headers => fetch(url + '/api/billing/checkouts', { method: 'POST', headers: { Origin: 'http://localhost:5173', 'Content-Type': 'application/json', 'X-Visionary-Account': 'adult', 'X-CSRF-Token': csrf, ...headers }, body: JSON.stringify({ plan: 'personal', interval: 'monthly', commandId: randomUUID(), catalogVersion: CATALOG_VERSION }) });
+    assert.equal((await anonBuy({})).status, 403);
+    assert.equal((await anonBuy({ Cookie: 'visionary-session=adult; visionary-device=stale-device; visionary-csrf=' + csrf })).status, 401);
+    assert.equal(f.creates(), 0);
     assert.equal((await fetch(url + '/api/billing/jobs/reconcile', { method: 'POST' })).status, 403);
     assert.equal((await fetch(url + '/api/billing/jobs/reconcile', { method: 'POST', headers: { 'X-Visionary-Billing-Job': jobToken } })).status, 201);
     assert.equal((await fetch(url + '/api/billing/account', { headers: { Cookie: cookie, 'X-Visionary-Account': 'other' } })).status, 409);
@@ -245,4 +250,68 @@ test('native HTTP billing requires session/device, exact Origin/CSRF and expecte
     const body = JSON.stringify({ event: 'subscription.charged', payload: { subscription: { entity: { id: 'sub_fixture1' } } } });
     const event = await fetch(url + '/api/billing/webhooks/razorpay', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Razorpay-Signature': createHmac('sha256', webhookSecret).update(body).digest('hex'), 'X-Razorpay-Event-Id': 'event_http' }, body }); assert.equal(event.status, 201);
   } finally { await app.close(); }
+});
+
+// BILL-08 proof block. Purchases are auth-required, the saved attempt survives an
+// expired session and is re-verified without a second charge, a repeated command is
+// idempotent, Family has exactly one payer, beneficiaries can be revoked, invoice access
+// is payer-only, and family benefits never appear as learning/guardian access.
+test('expired-session recovery re-verifies the saved owner attempt without a second charge', async () => {
+  const f = fixture(), c = await f.create(); assert.equal(f.creates(), 1);
+  const abandoned = await f.service.account('adult'); assert.equal(abandoned.pending.recoverable, true);
+  // The original browser session is gone: a fresh session for the same account cannot
+  // replay ownership of another user's attempt.
+  await assert.rejects(f.service.verify('other', { attemptId: c.attemptId, razorpay_payment_id: 'pay_other', razorpay_subscription_id: c.subscriptionId, razorpay_signature: signature('pay_other|' + c.subscriptionId) }), e => e.getStatus() === 409);
+  // The owner re-authenticates and verifies the SAME saved attempt; no second subscription is created.
+  const inv = f.pay(c.subscriptionId);
+  const recovered = await f.service.verify('adult', { attemptId: c.attemptId, razorpay_payment_id: inv.payment_id, razorpay_subscription_id: c.subscriptionId, razorpay_signature: signature(`${inv.payment_id}|${c.subscriptionId}`) });
+  assert.equal(recovered.plan, 'personal'); assert.equal(recovered.pending, null); assert.equal(f.creates(), 1);
+});
+test('retry of the same checkout command after an ambiguous provider error is idempotent and recovers one subscription', async () => {
+  const f = fixture(), command = randomUUID(); f.failCreation();
+  await assert.rejects(f.create('adult', 'personal', 'monthly', command)); assert.equal(f.creates(), 1);
+  // The provider created a subscription but the response was ambiguous; the saved attempt
+  // keeps the same command identity so a later retry cannot double-create.
+  f.rows.get('visionary_accounts/adult/billing/test').attempt.createdAt -= 31000;
+  const recovered = await f.create('adult', 'personal', 'monthly', command);
+  assert.equal(recovered.subscriptionId, 'sub_fixture1'); assert.equal(f.creates(), 1);
+  const recoveredAgain = await f.create('adult', 'personal', 'monthly', command);
+  assert.equal(recoveredAgain.subscriptionId, 'sub_fixture1'); assert.equal(f.creates(), 1);
+});
+test('only one Family payer holds a subscription; beneficiaries cannot verify, payer-only invoice access holds, and revocation ends the benefit immediately', async () => {
+  const f = fixture(), c = await f.create('owner', 'family'); const inv = f.pay(c.subscriptionId, 49900); await f.service.sync('owner', true);
+  const invite = await f.service.inviteFamily('owner', { email: 'member@example.test' });
+  const joined = await f.service.acceptFamily('member', { invitationId: invite.id });
+  assert.equal(joined.plan, 'family'); assert.equal(joined.entitlement.source, 'family-membership'); assert.equal(joined.family.owner, false);
+  assert.equal(joined.subscription, null);
+  // One payer: the beneficiary has no payer state, cannot start their own purchase, and cannot confirm the payer's attempt.
+  await assert.rejects(f.create('member'), e => e.getStatus() === 409);
+  await assert.rejects(f.service.verify('member', { attemptId: c.attemptId, razorpay_payment_id: 'pay_member', razorpay_subscription_id: c.subscriptionId, razorpay_signature: '0'.repeat(64) }), e => e.getStatus() === 409);
+  // Payer-only invoice access: even an active beneficiary cannot read the payer's invoice; only the payer can.
+  await assert.rejects(f.service.invoice('member', inv.id), e => e.getStatus() === 404);
+  assert.equal((await f.service.invoice('owner', inv.id)).paymentId, inv.payment_id);
+  // Revocation is payer-only and immediate: the removed beneficiary reads Free and its membership is gone.
+  await assert.rejects(f.service.removeFamily('member', { memberUid: 'owner' }));
+  await f.service.removeFamily('owner', { memberUid: 'member' });
+  const ex = await f.service.account('member');
+  assert.equal(ex.plan, 'start'); assert.deepEqual(ex.entitlement, { plan: 'start', validUntil: null, source: 'free' });
+  assert.equal(f.rows.has('visionary_billing_test_memberships/member'), false);
+  await assert.rejects(f.service.invoice('member', inv.id), e => e.getStatus() === 404);
+  assert.equal((await f.service.account('owner')).plan, 'family');
+});
+test('Family membership is a billing-only benefit: it never appears as learning or guardian access, and the billing controller exposes no such surface', async () => {
+  const f = fixture(), c = await f.create('owner', 'family'); f.pay(c.subscriptionId, 49900); await f.service.sync('owner', true);
+  const invite = await f.service.inviteFamily('owner', { email: 'kid@example.test' });
+  const member = await f.service.acceptFamily('kid', { invitationId: invite.id });
+  assert.equal(member.entitlement.source, 'family-membership');
+  const owner = await f.service.account('owner');
+  // Neither a beneficiary nor even the payer carries a learning/guardian capability from billing.
+  for (const surface of [member, owner]) {
+    assert.equal(surface.learningAccess, undefined);
+    assert.equal(surface.guardianAccess, undefined);
+    assert.equal(surface.instructorAccess, undefined);
+  }
+  // The billing controller route surface contains no learning/guardian capability route.
+  const controllerSource = await import('node:fs').then(fs => fs.promises.readFile(path.resolve(__dirname, '../upstream/backend/src/billing/billing.controller.ts'), 'utf8'));
+  assert.equal(/learning|guardian|instructor/i.test(controllerSource), false);
 });
