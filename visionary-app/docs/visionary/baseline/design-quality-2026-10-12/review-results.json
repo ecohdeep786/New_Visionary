@@ -8,7 +8,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 4.7,
-      "controls44": 4
+      "controls44": 5
     },
     {
       "scheme": "light",
@@ -18,7 +18,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 4.7,
-      "controls44": 4
+      "controls44": 5
     },
     {
       "scheme": "light",
@@ -28,7 +28,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 4.7,
-      "controls44": 4
+      "controls44": 5
     },
     {
       "scheme": "light",
@@ -38,7 +38,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 4.7,
-      "controls44": 4
+      "controls44": 5
     },
     {
       "scheme": "dark",
@@ -48,7 +48,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 7.25,
-      "controls44": 4
+      "controls44": 5
     },
     {
       "scheme": "dark",
@@ -58,7 +58,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 7.25,
-      "controls44": 4
+      "controls44": 5
     },
     {
       "scheme": "dark",
@@ -68,7 +68,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 7.25,
-      "controls44": 4
+      "controls44": 5
     },
     {
       "scheme": "dark",
@@ -78,7 +78,7 @@
       "font": "\"Google Sans\", sans-serif",
       "contrastSamples": 10,
       "contrastWorst": 7.25,
-      "controls44": 4
+      "controls44": 5
     }
   ],
   "audits": [
@@ -128,7 +128,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     },
     {
@@ -177,7 +177,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     },
     {
@@ -226,7 +226,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     },
     {
@@ -275,7 +275,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     },
     {
@@ -324,7 +324,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     },
     {
@@ -373,7 +373,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     },
     {
@@ -422,7 +422,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     },
     {
@@ -471,7 +471,7 @@
         }
       ],
       "textSamples": 10,
-      "controls44": 4,
+      "controls44": 5,
       "smallControls": []
     }
   ],

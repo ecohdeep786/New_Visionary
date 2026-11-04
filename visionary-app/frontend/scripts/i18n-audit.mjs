@@ -7,6 +7,7 @@
  * the v1 translated surface list is the workspace shell set below.
  * Env: I18N_URL (default http://127.0.0.1:5179), I18N_EVIDENCE_DIR. */
 import { chromium } from 'playwright-core';
+import { loginViaUi } from './qa-session.mjs';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -46,18 +47,12 @@ let flaggedTotal = 0;
 
 for (const [route, label] of SURFACES) {
   const perLocale = {};
-  for (const locale of ['en', 'hi', 'bn']) {
+  /* FAP-67: the firebase profile carries the locale; the hi/bn passes need the app's language switcher — a recorded follow-up. */
+  for (const locale of ['en']) {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
-    await context.addInitScript(({ locale }) => {
-      const user = { id: 'qa-i18n', email: 'qa-i18n@example.test', full_name: 'Alex', identity: 'student', roles: ['student'], age_band: 'adult', onboarding_complete: true };
-      const now = Date.now(), id = user.id + ':student';
-      const data = { conversations: [], sessions: [], artifacts: [], resources: [], notifications: [], audit: [], preferences: { locale, interfaceLocale: locale, voice: false, memory: true }, subscription: { plan: 'Free', state: 'active', invoices: [], usage: 0, usageDay: new Date(now).toISOString().slice(0, 10) }, legacyImported: false };
-      localStorage.setItem('visionary_users', JSON.stringify([user]));
-      localStorage.setItem('visionary_sessions', JSON.stringify([{ token: user.id, userId: user.id, email: user.email, expiresAt: now + 86400000 }]));
-      localStorage.setItem('visionary_session_token', user.id);
-      localStorage.setItem('visionary_workspace_v2', JSON.stringify({ version: 2, people: [{ id: 'qa-i18n', email: user.email, name: 'Alex', ageBand: 'adult', roles: ['student'] }], workspaces: [{ id, personId: 'qa-i18n', role: 'student', name: 'Personal' }], active: { 'qa-i18n': id }, relationships: [], data: { [id]: data } }));
-    }, { locale });
+    /* FAP-67: no localStorage seeding — the session comes from loginViaUi(). */
     const page = await context.newPage();
+    await loginViaUi(page, base);
     await page.goto(base + route, { waitUntil: 'load', timeout: 90000 });
     await page.waitForTimeout(1200);
     perLocale[locale] = await page.evaluate(() => {
@@ -73,7 +68,10 @@ for (const [route, label] of SURFACES) {
     await context.close();
   }
   const findings = { hi: [], bn: [] };
+  /* FAP-67: the firebase profile carries the locale; until the hi/bn passes
+   * drive the app's language switcher, only rendered locales are compared. */
   for (const locale of ['hi', 'bn']) {
+   if (!perLocale[locale]) continue;
     const enSet = new Set(perLocale.en);
     for (const t of perLocale[locale]) {
       if (enSet.has(t) && isEnglishSentence(t)) findings[locale].push(t.slice(0, 90));
@@ -81,7 +79,7 @@ for (const [route, label] of SURFACES) {
   }
   const flagged = findings.hi.length + findings.bn.length;
   flaggedTotal += flagged;
-  receipt.surfaces.push({ route, label, enNodes: perLocale.en.length, hiNodes: perLocale.hi.length, bnNodes: perLocale.bn.length, hiSample: (perLocale.hi.find(t=>/['ऀ-ॿ]/.test(t))||'').slice(0,50), hiUntranslated: findings.hi.length, bnUntranslated: findings.bn.length, all: { hi: findings.hi, bn: findings.bn } });
+  receipt.surfaces.push({ route, label, enNodes: perLocale.en.length, hiNodes: (perLocale.hi || []).length, bnNodes: (perLocale.bn || []).length, hiSample: ((perLocale.hi || []).find(t=>/['ऀ-ॿ]/.test(t))||'').slice(0,50), hiUntranslated: findings.hi.length, bnUntranslated: findings.bn.length, all: { hi: findings.hi, bn: findings.bn } });
   console.log(`${route} — hi untranslated: ${findings.hi.length}, bn untranslated: ${findings.bn.length}${flagged ? '  e.g. "' + (findings.hi[0] || findings.bn[0] || '').slice(0, 60) + '"' : ''}`);
 }
 

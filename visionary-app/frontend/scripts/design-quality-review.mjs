@@ -10,16 +10,10 @@ const evidence = path.resolve(productRoot,process.env.DESIGN_EVIDENCE_DIR || 'do
 await fs.mkdir(evidence, {recursive:true});
 const browser = await chromium.launch({channel:'msedge',headless:true,args:['--no-proxy-server']});
 const context = await browser.newContext({viewport:{width:390,height:900},reducedMotion:'reduce'});
-await context.addInitScript(() => {
- if(localStorage.getItem('visionary_workspace_v2'))return;
- const user={id:'design-quality',email:'quality@example.test',full_name:'Alex',identity:'student',roles:['student'],age_band:'adult',onboarding_complete:true};
- const now=Date.now(),id=user.id+':student';
- const data={conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',voice:false,memory:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:new Date(now).toISOString().slice(0,10)},legacyImported:false};
- localStorage.setItem('visionary_users',JSON.stringify([user]));
- localStorage.setItem('visionary_sessions',JSON.stringify([{token:user.id,userId:user.id,email:user.email,expiresAt:now+86400000}]));
- localStorage.setItem('visionary_session_token',user.id);
- localStorage.setItem('visionary_workspace_v2',JSON.stringify({version:2,people:[{id:user.id,email:user.email,name:user.full_name,ageBand:'adult',roles:['student']}],workspaces:[{id,personId:user.id,role:'student',name:'Personal'}],active:{[user.id]:id},relationships:[],data:{[id]:data}}));
-});
+/* FAP-67: no localStorage seeding. The product's auth is Firebase-backed
+ * (VITE_AUTH_MODE=firebase) and the app bootstraps its own workspace after
+ * the UI login; a pre-seeded workspace conflicts with that bootstrap and
+ * stalls the post-login navigation. The session comes from loginViaUi(). */
 const page=await context.newPage(),errors=[],samples=[],audits=[];
 page.setDefaultTimeout(60000);page.setDefaultNavigationTimeout(90000);
 page.on('pageerror',error=>errors.push(String(error)));
@@ -31,13 +25,28 @@ const ctx={personId:'design-quality',workspaceId:'design-quality:student',role:'
  * persists for every later navigation. */
 const QA_EMAIL='qa.designer@example.test', QA_PASSWORD='Visionary#2026';
 const loginViaUi = async () => {
+ for (let attempt = 0; attempt < 2; attempt++) {
   await page.goto(`${base}/login`,{waitUntil:'domcontentloaded'});
   await page.getByRole('button',{name:'Continue with Email'}).first().click();
   await page.locator('input[type="email"]').first().fill(QA_EMAIL);
   await page.getByRole('button',{name:/continue|next/i}).last().click();
   await page.locator('input[type="password"]').first().fill(QA_PASSWORD,{timeout:20000});
   await page.getByRole('button',{name:/sign in/i}).last().click();
-  await page.waitForTimeout(5000);
+  /* The workspace bootstrap must finish before the fixture services read the
+   * live identity — wait for it explicitly instead of a fixed delay. */
+  try {
+   await page.waitForFunction(() => {
+    try { const ws = JSON.parse(localStorage.getItem('visionary_workspace_v2') || '{}'); return Object.keys(ws.active || {}).length > 0; } catch { return false; }
+   },{timeout:20000});
+   await page.waitForTimeout(1500);
+   if (process.env.DESIGN_DEBUG) {
+    const dbg = await page.evaluate(() => ({ url: location.pathname, h1: document.querySelector('h1')?.textContent.trim().slice(0, 50) ?? null }));
+    console.log('LOGIN STATE:', JSON.stringify(dbg));
+   }
+   return;
+  } catch { /* one clean retry */ }
+ }
+ throw new Error('The QA login could not complete in two attempts.');
 };
 /* Rendered accessibility audit (FAP-30): informative-text contrast with alpha
  * blending, and 44px hit-area on interactive controls. Backgrounds composite
@@ -151,11 +160,11 @@ try {
  assert.match(await page.locator('.v-progress-overview').innerText(),/2 correct/,'search cannot rewrite period totals');
  await page.getByLabel('Find an objective',{exact:true}).fill('');
  const backup=await page.evaluate(()=>({workspace:localStorage.getItem('visionary_workspace_v2'),mentor:localStorage.getItem('visionary_mentor_v1')}));
- await page.evaluate(()=>{
+ await page.evaluate((wid)=>{
   const store=JSON.parse(localStorage.getItem('visionary_workspace_v2'));
-  store.data['design-quality:student'].sessions=[{id:'fictional-earlier',journeyId:'cube',stage:'checking',locale:'en',position:0,answers:{},canvas:{size:3,rotation:25},notes:'',updatedAt:new Date().toISOString(),interrupted:false,evidence:[{id:'fictional-check',objectiveId:'cube',kind:'check',correct:1,total:1,at:new Date().toISOString(),delayed:false}]}];
+  store.data[wid].sessions=[{id:'fictional-earlier',journeyId:'cube',stage:'checking',locale:'en',position:0,answers:{},canvas:{size:3,rotation:25},notes:'',updatedAt:new Date().toISOString(),interrupted:false,evidence:[{id:'fictional-check',objectiveId:'cube',kind:'check',correct:1,total:1,at:new Date().toISOString(),delayed:false}]}];
   localStorage.setItem('visionary_workspace_v2',JSON.stringify(store));localStorage.setItem('visionary_mentor_v1','Fictional unreadable evidence');
- });
+ }, ctx.workspaceId);
  await page.reload({waitUntil:'networkidle'});
  await page.getByText('Some sources are unavailable. This summary includes only the records that could be read.').waitFor();
  assert.match(await page.locator('.v-progress-overview').innerText(),/1 correct/);

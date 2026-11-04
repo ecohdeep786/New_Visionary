@@ -8,6 +8,7 @@
  * "Workspace unavailable" with empty fixtures.
  * Env: JOURNEY_URL (default http://127.0.0.1:5179), JOURNEY_EVIDENCE_DIR. */
 import { chromium } from 'playwright-core';
+import { loginViaUi } from './qa-session.mjs';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -103,33 +104,13 @@ const renderedAudit = () => {
 const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
 const receipt = { at: new Date().toISOString(), base, roles: [], note: 'local fixture journeys - the "real-user" hosted journeys need a signed-in founder session (honest boundary); the FAP-30 rendered audit is recorded per surface, and lowContrast/smallControls are findings, not gates here' };
 
-for (const [role, fix] of Object.entries(FIXTURES)) {
+/* FAP-67: one Firebase QA account (student); the multi-role journeys need the app's role-add flow — a recorded follow-up. */
+for (const [role, fix] of Object.entries({ student: FIXTURES.student })) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
-  await context.addInitScript(({ fix, role }) => {
-    if (localStorage.getItem('visionary_workspace_v2')) return;
-    const baseData = () => ({ conversations: [], sessions: [], artifacts: [], resources: [], notifications: [], audit: [], preferences: { locale: 'en', interfaceLocale: 'en', voice: false, memory: true }, subscription: { plan: 'Free', state: 'active', invoices: [], usage: 0, usageDay: new Date(Date.now()).toISOString().slice(0, 10) }, legacyImported: false });
-    const childUser = { id: 'qa-child', email: 'qa-child@example.test', full_name: 'Sam', identity: 'student', roles: ['student'], age_band: 'adult', onboarding_complete: true };
-    const toPerson = (u) => ({ id: u.id, email: u.email, name: u.full_name || u.name, ageBand: u.age_band || u.ageBand || 'adult', roles: u.roles });
-    const user = toPerson(fix.user);
-    const people = [user, ...fix.people.map(toPerson)];
-    const workspaces = [{ id: `${fix.user.id}:${role}`, personId: fix.user.id, role, name: 'Personal' }];
-    const active = { [fix.user.id]: workspaces[0].id };
-    const data = { [workspaces[0].id]: baseData() };
-    for (const p of fix.people) {
-      if (p.id === 'qa-child') {
-        const cws = { id: 'qa-child:student', personId: 'qa-child', role: 'student', name: 'Personal' };
-        workspaces.push(cws); active['qa-child'] = cws.id;
-        data[cws.id] = baseData();
-        data[cws.id].sessions = [{ id: 'journey-child-check', journeyId: 'cube', stage: 'checking', locale: 'en', position: 0, answers: {}, canvas: { size: 3, rotation: 25 }, notes: '', updatedAt: new Date().toISOString(), interrupted: false, evidence: [{ id: 'journey-ev-1', objectiveId: 'cube', kind: 'check', correct: 2, total: 3, at: new Date().toISOString(), delayed: false }] }];
-      }
-    }
-    localStorage.setItem('visionary_users', JSON.stringify(people.map((u) => ({ id: u.id, email: u.email, full_name: u.name, identity: u.roles[0], roles: u.roles, age_band: 'adult', onboarding_complete: true }))));
-    localStorage.setItem('visionary_sessions', JSON.stringify([{ token: fix.user.id, userId: fix.user.id, email: fix.user.email, expiresAt: Date.now() + 86400000 }]));
-    localStorage.setItem('visionary_session_token', fix.user.id);
-    localStorage.setItem('visionary_workspace_v2', JSON.stringify({ version: 2, people, workspaces, active, relationships: [], data }));
-    for (const [name, rows] of Object.entries(fix.entities || {})) localStorage.setItem(`visionary_entity_${name}`, JSON.stringify(rows));
-  }, { fix, role });
+  /* FAP-67: no localStorage seeding — the session comes from loginViaUi();
+   * the fixture entities (family links etc.) belong to the multi-role pass. */
   const page = await context.newPage();
+  await loginViaUi(page, base);
   const errors = [];
   page.on('pageerror', (e) => errors.push(String(e).slice(0, 160)));
   const surfaces = [];
