@@ -14,9 +14,13 @@
     "DIGEST-STAMPED SNAPSHOTS + BYTE-IDENTICAL RESTORE: restore refuses on digest divergence AND on any lost/reassigned owner identity",
     "PITR: append-only snapshot log restores any recorded instant; later mutations discarded",
     "OBJECT PROTECTION: retention lock - immutable backups refuse deletion before the 30-day horizon",
-    "RUNBOOK: the drill steps ARE the restore runbook, executable and asserted"
+    "RUNBOOK: the drill steps ARE the restore runbook, executable and asserted",
+    "CORRECTION: initial candidate 62d72b17 pushed with one failing test; fixed and re-verified before review"
   ],
-  "verification": { "drillSuite": "python -m unittest discover -s infrastructure/drills/tests -> 4/4 pass", "regression": "full vmm suite 296/296 still green on this tree" },
+  "verification": {
+    "drillSuite": "python -m unittest discover -s infrastructure/drills/tests -> 4/4 pass. HONESTY NOTE: the first push (62d72b17) contained one failing test (assertion arithmetic slip in the byte-identical test); corrected in the follow-up commit and re-verified before this receipt was finalized. The reviewed SHA is the corrected head.",
+    "regression": "full vmm suite 296/296 still green on this tree"
+  },
   "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
   "gatesNotClosed": "The HOSTED enablement (real Cloud SQL backups/PITR, GCS object protection, identity restore on the production project) remains founder-gated - this candidate is the verification contract and runbook those enablements execute against. Testing is not acceptance."
 }

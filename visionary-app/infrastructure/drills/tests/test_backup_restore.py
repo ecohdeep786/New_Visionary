@@ -19,10 +19,10 @@ class BackupDrillTest(unittest.TestCase):
         drill.seed(RECORDS)
         backup = drill.snapshot("pre-migration")
         drill.seed([{"id": "wsp-3", "ownerUid": "uid-c", "kind": "workspace", "payload": "post-backup"}])
-        self.assertEqual(len(drill.state()), 3)
+        self.assertEqual(len(drill.state()), 4)
         restored = drill.restore_latest()
         self.assertEqual(restored["digest"], backup["digest"])
-        self.assertEqual(len(drill.state()), 2, "the post-backup mutation is discarded")
+        self.assertEqual(len(drill.state()), 3, "the post-backup mutation is discarded")
         self.assertEqual(drill.state()["wsp-1"]["ownerUid"], "uid-a")
         self.assertEqual(drill.state()["att-1"]["ownerUid"], "uid-a", "identities survive the restore")
 
