@@ -25,6 +25,8 @@ function setup() {
 
 test('grant requires matching server-uid and an explicit policy version', async () => {
   const { svc } = setup();
+  await assert.rejects(svc.grant(undefined, { uid: undefined, purpose: 'downloads', consentVersion: '2026.1' }), { code: 'unauthorized' });
+  assert.equal(await svc.check(undefined, 'downloads', '2026.1'), false);
   await assert.rejects(svc.grant('alice', { id: 'c1', uid: 'bob', purpose: 'downloads', consentVersion: '2026.1' }));
   await assert.rejects(svc.grant('alice', { id: 'c1', uid: 'alice', purpose: 'downloads', consentVersion: '' }));
   const view = await svc.grant('alice', { id: 'c1', uid: 'alice', purpose: 'downloads', consentVersion: '2026.1' });

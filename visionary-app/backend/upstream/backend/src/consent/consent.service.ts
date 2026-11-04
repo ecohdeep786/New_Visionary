@@ -57,6 +57,7 @@ export class ConsentService {
 
   /** Grant (or renew) consent for the data subject on a purpose + policy version. */
   async grant(uid: string, command: ConsentCommand): Promise<ConsentView> {
+    if (typeof uid !== 'string' || !uid.trim()) throw new ConsentPolicyError('unauthorized');
     if (command.uid !== uid) throw new ConsentPolicyError('wrong_subject');
     if (!this.knownPurpose(command.purpose)) throw new ConsentPolicyError('unknown_purpose');
     if (typeof command.consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
@@ -142,7 +143,8 @@ export class ConsentService {
 
   /** The caller supplies the current server policy version for the operation. */
   async check(uid: string, purpose: ConsentPurpose, consentVersion: string, resourceId?: string): Promise<boolean> {
-    if (!this.knownPurpose(purpose) || typeof consentVersion !== 'string' || !consentVersion) return false;
+    if (typeof uid !== 'string' || !uid.trim() || !this.knownPurpose(purpose) ||
+        typeof consentVersion !== 'string' || !consentVersion) return false;
     const grant = await this.store.findGrantBySubject(purpose, uid, resourceId ?? null, consentVersion);
     if (grant) {
       const current = this.hydrateActive(grant);
