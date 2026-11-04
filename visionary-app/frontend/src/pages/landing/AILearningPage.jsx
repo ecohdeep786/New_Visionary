@@ -4,6 +4,7 @@ import { ArrowRight, Check, ChevronDown, Minus, Sparkles } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import studentImage from "@/assets/student-face-main.webp";
 import teacherImage from "@/assets/teacher-face-main.webp";
@@ -54,7 +55,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -78,7 +79,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
             type="button"
             aria-pressed={active}
             onClick={() => onChange(b)}
-            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
+            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
           >
             {b === "monthly" ? "Monthly" : "Annual"}
             {b === "annual" && (
@@ -163,7 +164,7 @@ function PricingStoreSection() {
                         <Link
                           data-b3="cta"
                           to={["personal", "family"].includes(p.id) ? billingPath(p.id, billing) : p.to}
-                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#0059b4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                         >
                           {p.cta}
                         </Link>
@@ -207,7 +208,7 @@ function PricingStoreSection() {
               <Link
                 data-b3="cta"
                 to={institution.to}
-                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#0059b4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
               >
                 {institution.cta}
               </Link>
@@ -231,7 +232,7 @@ function PricingPersonaSection() {
           {PERSONA_PLANS.map((p) => (
             <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
               <div className="mb-5 flex h-36 items-center justify-center overflow-hidden rounded-[18px] bg-white">
-                <img src={PERSONA_IMAGES[p.persona]} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                <LazyImage src={PERSONA_IMAGES[p.persona]} alt="" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
               <p className="font-normal tracking-[0] leading-[1.4] text-[16px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
@@ -265,7 +266,7 @@ function PricingTrustBand() {
   );
 }
 
-/* ═══ 05 · FAQ — the shared accordion resolve curve (grid-rows + ease-google ═══ */
+/* ═══ 05 · FAQ — the shared accordion resolve curve (grid-rows + ease-apple ═══ */
 function PricingFAQSection() {
   const { ref, visible } = useRevealOnce();
   const [open, setOpen] = useState(-1);
@@ -289,7 +290,7 @@ function PricingFAQSection() {
                 </button>
                 {/* visibility (not display) keeps the grid-rows resolve while
                     the collapsed row stays out of the tab/a11y order */}
-                <div id={`pricing-faq-answer-${i}`} aria-labelledby={`pricing-faq-question-${i}`} aria-hidden={open !== i} className={`grid transition-all duration-500 ease-google motion-reduce:transition-none ${open === i ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}>
+                <div id={`pricing-faq-answer-${i}`} aria-labelledby={`pricing-faq-question-${i}`} aria-hidden={open !== i} className={`grid transition-all duration-500 ease-apple motion-reduce:transition-none ${open === i ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}>
                   <div className="overflow-hidden">
                     <p className="max-w-[640px] pb-6 pr-8 text-[16px] leading-[1.65]" style={{ color: COLORS.grey }}>{item.a}</p>
                   </div>
@@ -309,10 +310,10 @@ function PricingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
           <Link to="/contact" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">

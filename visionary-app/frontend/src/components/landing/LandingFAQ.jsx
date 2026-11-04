@@ -62,7 +62,7 @@ export default function LandingFAQ({
             type="button"
             onClick={toggleAll}
             aria-expanded={allOpen}
-            className="inline-flex min-h-11 items-center gap-2 rounded-sm px-2 text-[14px] font-medium text-[#0066cc] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
+            className="inline-flex min-h-11 items-center gap-2 rounded-sm px-2 text-[14px] font-medium text-[#0066cc] transition-colors hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
           >
             {allOpen ? collapseAllLabel : expandAllLabel}
             <Plus className={`h-4 w-4 transition-transform duration-200 ${allOpen ? "rotate-45" : ""}`} aria-hidden="true" />
@@ -103,7 +103,7 @@ export default function LandingFAQ({
                   aria-labelledby={triggerId}
                   /* visibility (not display) keeps the grid-rows animation while
                      removing the closed answer from the a11y tree and selection */
-                  className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}
+                  className={`grid transition-all duration-500 ease-apple ${open ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}
                 >
                   <div className="overflow-hidden">
                     <p className="max-w-[1240px] pt-8 text-[16px] leading-[1.6]" style={{ color: "#1d1d1f" }}>{faq.a}</p>
@@ -114,7 +114,7 @@ export default function LandingFAQ({
           }
 
           return (
-            <div key={faq.q || index} className="overflow-hidden rounded-2xl border border-[#e8eaed] bg-white">
+            <div key={faq.q || index} className="overflow-hidden rounded-2xl border border-[#d2d2d7] bg-white">
               <button
                 id={triggerId}
                 type="button"

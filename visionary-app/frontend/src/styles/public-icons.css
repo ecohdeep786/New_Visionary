@@ -9,7 +9,7 @@
   --icon-medium: 1.25rem;
   --icon-feature: 1.5rem;
   --icon-large: 2.5rem;
-  --icon-control-size: 2.25rem;
+  --icon-control-size: 2.75rem;
   --icon-control-glyph: 1.5rem;
   --icon-plus: 1.25rem;
   --icon-stroke: 1.75;
@@ -80,7 +80,7 @@
   stroke-width: var(--icon-control-stroke);
 }
 
-/* The story card plus is a 20px glyph in a 36px circle; the story remains
+/* The story card plus is a 20px glyph in a 44px circle; the story remains
    the click target. Size the affordance, never the entire image button. */
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-card-control {
   width: var(--icon-control-size) !important;

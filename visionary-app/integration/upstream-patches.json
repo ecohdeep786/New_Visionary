@@ -90,6 +90,58 @@
           "afterSha256": "186c229ae7860e09b5851993177a582f3237298e477aa9ae9a04fb15bc154459"
         }
       ]
+    },
+    {
+      "id": "2026-11-04-fap67-graceful-degradation",
+      "date": "2026-11-04",
+      "decision": "D-056",
+      "reason": "FAP-67 (quality engineer): the backend boots and degrades gracefully without third-party credentials — the Google OAuth strategy registers only when GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET are configured (a missing credential crashed the boot at the passport constructor, taking email auth down with it), the four OpenAI agent/orchestrator clients construct with an unconfigured fallback key (calls fail at request time with a clear auth error), the email service uses jsonTransport without SMTP (dev logs the verification code), and the document storage client degrades to a placeholder client without Supabase config (only storage calls fail). Recorded after the fact: the FAP-67 commits shipped the source changes without ledger entries, which broke scripts/verify-imports for every later run.",
+      "diff": "integration/upstream-patches/2026-11-04-fap67-graceful-degradation.patch",
+      "diffSha256": "12c9ac69c011755281c3632407d876dc855b23c457ea6211a1f0b47ec6c16631",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/src/agents/content/content-agent.service.ts",
+          "beforeSha256": "e9228a3bfa71e14afd5851fbac6dc0945efd0a5629ce906e68755bfacc21796f",
+          "afterSha256": "a03c063afc622c81878d4d69da54816d0a5d29353a9ed4c89f7c39b7d7ec37c3"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/agents/diagram/diagram-agent.service.ts",
+          "beforeSha256": "d9830823d3f14274673902b4b8fd8a709a803c7fb828422f08da63fced8caaec",
+          "afterSha256": "58cc3aceabc620e37a807ad5331479c3ec249d3d459a9ba6a34b9978b3c5a5a6"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/agents/resource/resource-agent.service.ts",
+          "beforeSha256": "fcb81ad1c40a9ae5b30f909a876365f43b6ba7e7030b1feb22bc8e0df735e58f",
+          "afterSha256": "00cfc5ceff50e75cd1bf9165b35643d2a02fb67c869ebe64d0f23e49a0389fd6"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/auth/auth.module.ts",
+          "beforeSha256": "787ac18e79d9c37410346c1f472eb58cae63920c32d26930ae50282633e9f8b3",
+          "afterSha256": "e3fe807c6423a5c19ffb69aefadcd26f453408703493182d9fed5581c9aaeecc"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/orchestrator/orchestrator.service.ts",
+          "beforeSha256": "551ef6ddd71707798a717c4d7ed37e5b195ea7e430910420332033464ec66525",
+          "afterSha256": "86b052081a39641d3a4d903081c280be2f41597cd14a1bdd98b0eb78625a649d"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/email/email.service.ts",
+          "beforeSha256": "b7cd0136de974a256c3202b43bb6dedc855a61288ea9a1b66e3b5de8475cbb81",
+          "afterSha256": "e055bd9e9906f2cfc18f5797e33a83b69a4e0fd45d42665e242b15bedf96a28c"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/documents/documents.service.ts",
+          "beforeSha256": "1a08db1697873e3889871190320fbeebd3157d7bf96dc4eea691fc735a9e67f3",
+          "afterSha256": "5b143a54ce87c55e87495e43e4195c99b3d4bc6c02bcf03fe6a34e564f30729c"
+        }
+      ]
     }
   ]
 }

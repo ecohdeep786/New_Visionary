@@ -64,20 +64,24 @@ function useDetectedPlatform() {
 
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
 });
 
 /* ═══ MODELS ═══ */
+/* Native availability is intentionally unreleased (PRODUCT_SURFACE_AUDIT
+   `download-installation`): unreleased entries carry a visible reason and render
+   a genuinely disabled control with no fabricated badge or clickable affordance. */
+const UNRELEASED_REASON = "Coming soon — not available yet";
 const PLATFORMS = [
-  { id: "web", Icon: Globe, name: "Web", meta: "No install · Always up to date", action: "Open in browser", href: "/register", kind: "web" },
-  { id: "windows", Icon: Monitor, name: "Windows", meta: "Windows 10 or later", action: "Windows app coming soon", kind: "desktop" },
-  { id: "mac", Icon: Apple, name: "Mac", meta: "macOS 12 or later · Apple Silicon or Intel", action: "Mac app coming soon", kind: "desktop" },
-  { id: "linux", Icon: Laptop, name: "Linux", meta: "Ubuntu 20.04+ · .deb / .AppImage planned", action: "Linux app coming soon", kind: "desktop" },
-  { id: "ios", Icon: Smartphone, name: "iOS", meta: "iPhone & iPad · iOS 16 or later", action: "iOS app coming soon", kind: "store" },
-  { id: "android", Icon: TabletSmartphone, name: "Android", meta: "Android 9 or later", action: "Android app coming soon", kind: "store" },
+  { id: "web", Icon: Globe, name: "Web", meta: "Live today · No install · Always up to date", action: "Open in browser", href: "/register", kind: "web" },
+  { id: "windows", Icon: Monitor, name: "Windows", meta: "Windows 10 or later", action: "Windows app coming soon", reason: UNRELEASED_REASON, kind: "desktop" },
+  { id: "mac", Icon: Apple, name: "Mac", meta: "macOS 12 or later · Apple Silicon or Intel", action: "Mac app coming soon", reason: UNRELEASED_REASON, kind: "desktop" },
+  { id: "linux", Icon: Laptop, name: "Linux", meta: "Ubuntu 20.04+ · .deb / .AppImage planned", action: "Linux app coming soon", reason: UNRELEASED_REASON, kind: "desktop" },
+  { id: "ios", Icon: Smartphone, name: "iOS", meta: "iPhone & iPad · iOS 16 or later", action: "iOS app coming soon", reason: UNRELEASED_REASON, kind: "store" },
+  { id: "android", Icon: TabletSmartphone, name: "Android", meta: "Android 9 or later", action: "Android app coming soon", reason: UNRELEASED_REASON, kind: "store" },
 ];
 
 const REQUIREMENTS = [
@@ -123,7 +127,7 @@ function DownloadHeroSection() {
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <Link
               to="/register"
-              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               Open Visionary
             </Link>
@@ -135,13 +139,13 @@ function DownloadHeroSection() {
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-              Native apps for desktop and mobile: faster, offline-friendly, and synced to your account.
+              Native apps are being prepared for desktop and mobile. The web is live today — open Visionary in your browser.
             </p>
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+              className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               See platforms
             </button>
@@ -161,7 +165,13 @@ function DownloadPlatformsSection() {
     <section ref={ref} id="platforms" data-section="02-platforms" className="relative scroll-mt-24 bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>Supported platforms</p>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
+        {/* Section-head law (typography audit 2026-11-03): a top-level section
+            head renders the 64px chapter tier like every sibling section on
+            this page and across the public surface — the old text-[30px]
+            class tripped the subordinate h2 tier in apple-typography.css and
+            flattened this head to ~28px, the only "very low" section head
+            left anywhere. */}
+        <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
         <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>
           Use Visionary on the web today. Native apps are being prepared
           {detected ? (
@@ -194,20 +204,28 @@ function DownloadPlatformsSection() {
                 {p.kind === "web" ? (
                   <Link
                     to={p.href}
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                   >
                     {p.action}
                   </Link>
                 ) : (
-                  /* Store links are not live yet — a disabled button, never a fabricated badge (L3 01-PM). */
-                  <button
-                    type="button"
-                    aria-disabled="true"
-                    title="Available at launch"
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-all duration-200 hover:scale-[1.01] hover:bg-[rgba(0,0,0,0.13)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-                  >
-                    {p.action}
-                  </button>
+                  /* Store links are not live yet — a genuinely disabled control
+                     with a visible reason, never a fabricated badge (C4 FAP-52).
+                     Not `aria-disabled` alone: a control that still accepts
+                     clicks/hover is a lying affordance. */
+                  <>
+                    <button
+                      type="button"
+                      disabled
+                      title="Available at launch"
+                      className="mt-6 inline-flex h-11 cursor-not-allowed items-center justify-center rounded-full bg-[rgba(0,0,0,0.08)] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f]"
+                    >
+                      {p.action}
+                    </button>
+                    <p className="mt-2 text-[12px] tracking-[0.01em]" style={{ color: COLORS.lightGrey }}>
+                      {p.reason}
+                    </p>
+                  </>
                 )}
               </div>
             );
@@ -241,12 +259,12 @@ function DownloadNotifySection() {
   }
 
   return (
-    <section ref={ref} className="relative bg-white px-6 pb-24" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="02b-tray" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[30px] bg-[#f5f5f7] p-8 text-center lg:p-10">
           <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
           <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-            Native apps are in final testing. We'll email you the moment your platform is ready.
+            The web product is live today; native apps are still being prepared. We'll email you the moment your platform ships.
           </p>
           {status === "success" ? (
             <p role="status" className="mt-6 w-full rounded-[14px] bg-white px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>
@@ -272,7 +290,7 @@ function DownloadNotifySection() {
                 />
                 <button
                   type="submit"
-                  className="inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 disabled:opacity-70"
+                  className="inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 disabled:opacity-70"
                 >
                   Prepare email request
                 </button>
@@ -300,13 +318,13 @@ function DownloadSyncSection() {
   }, []);
   return (
     <section ref={ref} data-section="03-sync" className="relative px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
-      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         Start on one device.{" "}
         <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
         on every other.
       </p>
-      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
-        Conversations, progress, and context sync across web, desktop, and mobile, automatically and privately.
+      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17px] transition-all duration-700 ease-apple delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
+        Conversations, progress, and context sync with your Visionary account, automatically and privately — web today, with apps as they launch.
       </p>
       <div className="mt-9 flex justify-center">
         <QuietLink to="/contact">
@@ -324,7 +342,8 @@ function DownloadRequirementsSection() {
     <section ref={ref} data-section="04-requirements" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center apple-eyebrow" style={{ color: COLORS.grey }}>System requirements</p>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
+        {/* Section-head law — see 02-platforms (typography audit 2026-11-03). */}
+        <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
         <div className="mx-auto mt-12 w-full max-w-[1240px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {REQUIREMENTS.map((r) => (
@@ -349,12 +368,12 @@ function DownloadRequirementsSection() {
 function DownloadTrustBand() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-12" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
+    <section ref={ref} data-section="04b-strip" className="relative px-6" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
           <p className="text-center font-normal tracking-[0.24px] text-[16px]" style={{ color: COLORS.ink }}>
-            Signed builds · Automatic updates · Your data stays yours on every device.
+            Signed builds and automatic updates are planned for every platform. The web is live today, and your data stays yours.
           </p>
         </div>
       </FadeReveal>
@@ -367,12 +386,15 @@ function DownloadCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+        {/* Section-head role — see 02-platforms (typography audit 2026-11-03):
+            the page's closing statement is a section head too, so it carries
+            the same section tier as its siblings. */}
+        <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Still deciding? The web is one click away.
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Continue on web
           </Link>
           <Link to="/how-it-works" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
