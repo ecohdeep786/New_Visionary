@@ -1,0 +1,21 @@
+{
+  "jiraKey": "KAN-203",
+  "sourceId": "VMM-31",
+  "title": "Day-one general capability and two-mode launch acceptance",
+  "date": "2026-11-05",
+  "lane": "ML engineering (launch acceptance)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-203-two-mode-launch",
+  "branch": "codex/principal-kan-203-two-mode-launch",
+  "baseCommit": "16963cdf (KAN-191 VMM-23 head; composes the full VMM chain)",
+  "implementationCommit": "678af320",
+  "module": "ml/vmm/launchgate.py (+ ml/vmm/tests/test_launchgate.py); no other source changes",
+  "whatBuilt": [
+    "FROZEN DAY-ONE CONTRACT: digest-stamped two-mode manifest (teach-learn+build); later mutation refuses",
+    "EVIDENCE-GATED READINESS: gates accept only real chain evidence shapes - closed backend-assessed tutor-loop check (Learn), Build deploy receipt with test+explanation digests, passed-canary receipt with reviewer, fail-closed recovered kill-switch drill; promises/prose refuse",
+    "TWO-MODE COHERENCE: evidence must cite the frozen digest; foreign contract refs refuse",
+    "BLOCKED VERDICTS name exactly which gates remain; sign-off needs ALL gates + verbatim separate reviewer (self-signoff refused)"
+  ],
+  "verification": { "vmmTests": "python -m unittest discover -s ml/vmm/tests -> 292/292 pass (287 previous + 5)" },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The REAL day-one launch acceptance with the hosted product, real users and the founder's sign-off remain founder-gated; this is the acceptance contract those runs execute against. Prerequisite KAN-207 (VMM-R0 contract freeze) is in Testing not Done - proceeding under the founder's explicit instruction; the reviewer still gates Done. Testing is not acceptance."
+}
