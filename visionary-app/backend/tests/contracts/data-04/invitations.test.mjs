@@ -48,6 +48,14 @@ test('actual SQL issue stores only token hash and commits lifecycle/receipt/outb
   assert.equal(JSON.stringify(visible).includes(row.tokenHash), false);
   assert.equal(await env.db.outboxEvent.count({ where: { workspaceId: x.ws } }), 1);
 });
+test('ordinary members cannot read the invitation list or audit history', async () => {
+  const x = await setup(), invitation = await invite(x);
+  await service.accept(x.user, invitation.token, 'synthetic@example.invalid');
+  await assert.rejects(service.list(x.user, x.ws), code('unauthorized'));
+  await assert.rejects(service.track(x.user, x.ws, invitation.invitationId), code('unauthorized'));
+  assert.equal((await service.list(x.owner, x.ws)).length, 1);
+  assert.equal((await service.track(x.owner, x.ws, invitation.invitationId)).length, 2);
+});
 test('one token admits only one of two concurrent verified UIDs', async () => {
   const x = await setup(), i = await invite(x);
   const results = await Promise.allSettled([x.user, x.other].map(uid => service.accept(uid, i.token, 'synthetic@example.invalid')));

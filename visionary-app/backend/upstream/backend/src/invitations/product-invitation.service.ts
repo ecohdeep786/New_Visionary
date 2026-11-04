@@ -19,6 +19,7 @@ export class ProductInvitationService implements OnModuleDestroy {
   private settings() {
     // KAN-110 must resolve admission consistency before hosted activation.
     if (this.config.get('NODE_ENV') !== 'development' ||
+        this.config.get('FIREBASE_PROJECT_KIND') !== 'emulator' ||
         this.config.get('DATA_WORKSPACE_DATABASE_MODE') !== 'synthetic' ||
         this.config.get('DATA_INSTITUTION_INVITATIONS_ENABLED') !== 'true') {
       throw new ServiceUnavailableException('Institution invitations are unavailable.');
