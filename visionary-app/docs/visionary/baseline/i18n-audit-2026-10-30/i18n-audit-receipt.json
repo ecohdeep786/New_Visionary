@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-04T05:58:12.801Z",
-  "base": "http://localhost:5173",
+  "at": "2026-11-04T19:00:58.322Z",
+  "base": "http://127.0.0.1:4197",
   "v1SurfaceDecision": "workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT",
   "surfaces": [
     {
@@ -62,7 +62,7 @@
     {
       "route": "/dashboard/settings",
       "label": "Personalization",
-      "enNodes": 16,
+      "enNodes": 0,
       "hiNodes": 0,
       "bnNodes": 0,
       "hiSample": "",
@@ -118,7 +118,7 @@
     {
       "route": "/dashboard/classes",
       "label": "Classes (teacher)",
-      "enNodes": 4,
+      "enNodes": 0,
       "hiNodes": 0,
       "bnNodes": 0,
       "hiSample": "",
