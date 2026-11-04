@@ -2,6 +2,7 @@ import { Injectable, ConflictException, NotFoundException, ForbiddenException, B
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { createHash } from 'node:crypto';
+import { CONSENT_PURPOSES, MAX_CONSENT_EXPIRY_SECONDS, type ConsentPurpose } from '../consent/consent-types';
 
 type Store = Prisma.TransactionClient;
 type Role = 'OWNER' | 'ADMIN' | 'MEMBER' | 'GUEST';
@@ -58,9 +59,11 @@ export class WorkspaceRepository {
   async assertConsent(uid: string, purpose: string, resourceId?: string, consentVersion?: string): Promise<void> {
     if (typeof uid !== 'string' || !uid.trim()) throw new ForbiddenException('A consent subject is required.');
     if (!purpose || !consentVersion) throw new ForbiddenException('An explicit purpose and policy version are required.');
+    const now = new Date();
     const grant = await this.prisma.consentGrant.findFirst({ where: {
-      uid, purpose, resourceId: resourceId ?? null, consentVersion, revokedAt: null,
-      OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }],
+      uid, purpose, resourceId: resourceId ?? null, consentVersion, revokedAt: null, grantedAt: { lte: now },
+      person: { deletionTombstones: { none: { resourceType: 'person' } } },
+      OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
     } });
     if (!grant) throw new ForbiddenException('Required consent is unavailable or revoked.');
   }
@@ -82,6 +85,37 @@ export class WorkspaceRepository {
       await tx.auditEvent.create({ data: { uid, actorUid: uid, actorType: 'user', operation: 'consent.revoked',
         resourceType: 'consentGrant', resourceId: grantId, outcome: 'SUCCESS' } });
       await tx.outboxEvent.create({ data: { uid, topic: 'consent.revoked', payload: result } });
+      return result;
+    });
+  }
+
+  /** The caller supplies the authenticated subject and the server-selected policy version. */
+  async grantAccountConsent(uid: string, purpose: ConsentPurpose, consentVersion: string, expiresInSeconds: number) {
+    if (typeof uid !== 'string' || !uid.trim() || !CONSENT_PURPOSES.includes(purpose) ||
+        typeof consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(consentVersion) ||
+        !Number.isSafeInteger(expiresInSeconds) || expiresInSeconds < 1 || expiresInSeconds > MAX_CONSENT_EXPIRY_SECONDS) {
+      throw new BadRequestException('An account, supported purpose, policy version and bounded expiry are required.');
+    }
+    return this.prisma.$transaction(async tx => {
+      const accounts = await tx.$queryRaw<Array<{ uid: string }>>`SELECT "uid" FROM "persons" WHERE "uid" = ${uid} FOR UPDATE`;
+      if (!accounts.length || await tx.deletionTombstone.findFirst({ where: { uid, resourceType: 'person' } })) {
+        throw new ForbiddenException('Consent subject is unavailable.');
+      }
+      const scope = { uid, purpose, resourceId: null, consentVersion };
+      const prior = await tx.consentGrant.findFirst({ where: scope });
+      const [clock] = await tx.$queryRaw<Array<{ now: Date }>>`SELECT clock_timestamp() AS now`;
+      if (prior) {
+        if (prior.revokedAt || (prior.expiresAt && prior.expiresAt <= clock.now)) {
+          throw new ConflictException('This policy version already has a closed consent grant.');
+        }
+        return { id: prior.id, expiresAt: prior.expiresAt?.toISOString() ?? null };
+      }
+      const expiresAt = new Date(clock.now.getTime() + expiresInSeconds * 1000);
+      const grant = await tx.consentGrant.create({ data: { ...scope, version: consentVersion, grantedAt: clock.now, expiresAt } });
+      const result = { id: grant.id, expiresAt: expiresAt.toISOString() };
+      await tx.auditEvent.create({ data: { uid, actorUid: uid, actorType: 'user', operation: 'consent.granted',
+        resourceType: 'consentGrant', resourceId: grant.id, outcome: 'SUCCESS' } });
+      await tx.outboxEvent.create({ data: { uid, topic: 'consent.granted', payload: result } });
       return result;
     });
   }

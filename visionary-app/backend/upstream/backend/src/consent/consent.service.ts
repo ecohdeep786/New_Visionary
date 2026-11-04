@@ -4,6 +4,7 @@
 // revives a grant. Only the data subject (or verified delegating authority)
 // grants or revokes their own consent; shares are created by the resource owner.
 import { createHash, randomBytes } from 'node:crypto';
+import { CONSENT_PURPOSES, MAX_CONSENT_EXPIRY_SECONDS } from './consent-types';
 import type { ConsentGrant, ConsentPurpose, ConsentShareCommand, ConsentCommand, ConsentView, RevocationOutcome, ShareGrant, ConsentVersion, ConsentEvent } from './consent-types';
 import type { ConsentStore } from './consent-store';
 
@@ -13,8 +14,6 @@ export class ConsentPolicyError extends Error {
   }
 }
 
-const KNOWN_PURPOSES: ConsentPurpose[] = ['learning_sessions', 'document_sharing', 'downloads', 'model_context', 'telemetry_optional'];
-const MAX_EXPIRY_SECONDS = 366 * 24 * 60 * 60; // cap grant length at ~1 year; renewal requires fresh grant
 
 export interface ConsentServiceOptions {
   now?: () => Date;
@@ -34,7 +33,7 @@ export class ConsentService {
   history() { return this.events.slice(); }
   private when() { return this.now().toISOString(); }
   private newId(prefix: string) { return `${prefix}_${randomBytes(this.idBytes).toString('hex')}`; }
-  private knownPurpose(p: unknown): p is ConsentPurpose { return typeof p === 'string' && (KNOWN_PURPOSES as string[]).includes(p); }
+  private knownPurpose(p: unknown): p is ConsentPurpose { return CONSENT_PURPOSES.some(purpose => purpose === p); }
 
   private event(grant: ConsentGrant, from: ConsentView['state'], to: ConsentView['state'], reason: ConsentEvent['reason']): ConsentEvent {
     return { id: `ev_${this.when()}_${grant.id}`, grantId: grant.id, uid: grant.uid, from, to, purpose: grant.purpose,
@@ -63,7 +62,7 @@ export class ConsentService {
     if (typeof command.consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
     const resourceId = command.resourceId ?? null;
     const expiresIn = command.expiresInSeconds;
-    if (expiresIn !== undefined && (!Number.isSafeInteger(expiresIn) || expiresIn <= 0 || expiresIn > MAX_EXPIRY_SECONDS)) {
+    if (expiresIn !== undefined && (!Number.isSafeInteger(expiresIn) || expiresIn <= 0 || expiresIn > MAX_CONSENT_EXPIRY_SECONDS)) {
       throw new ConsentPolicyError('expiry_forbidden');
     }
     const at = this.when();
@@ -106,7 +105,7 @@ export class ConsentService {
     if (!command.grantedToUid || /[@\s]/.test(command.grantedToUid)) throw new ConsentPolicyError('foreign_share_target');
     if (command.grantedToUid === ownerUid) throw new ConsentPolicyError('foreign_share_target');
     const expiresIn = command.expiresInSeconds;
-    if (expiresIn !== undefined && (!Number.isSafeInteger(expiresIn) || expiresIn <= 0 || expiresIn > MAX_EXPIRY_SECONDS)) {
+    if (expiresIn !== undefined && (!Number.isSafeInteger(expiresIn) || expiresIn <= 0 || expiresIn > MAX_CONSENT_EXPIRY_SECONDS)) {
       throw new ConsentPolicyError('expiry_forbidden');
     }
     const at = this.when();

@@ -5,7 +5,9 @@
 // must block pending jobs, caches and newly requested downloads. Cache is not
 // authority; time alone never revives a grant.
 export type ConsentState = 'active' | 'expired' | 'revoked';
-export type ConsentPurpose = 'learning_sessions' | 'document_sharing' | 'downloads' | 'model_context' | 'telemetry_optional';
+export const CONSENT_PURPOSES = ['learning_sessions', 'document_sharing', 'downloads', 'model_context', 'telemetry_optional'] as const;
+export type ConsentPurpose = (typeof CONSENT_PURPOSES)[number];
+export const MAX_CONSENT_EXPIRY_SECONDS = 366 * 24 * 60 * 60;
 
 export interface ConsentGrant {
   id: string;

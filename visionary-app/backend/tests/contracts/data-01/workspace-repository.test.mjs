@@ -56,6 +56,29 @@ test('actual repository checks exact consent version, expiry and revocation', as
   assert.deepEqual(events.map(event => event.payload), [revocations[0]]);
   await assert.rejects(repo.assertConsent('owner', 'synthetic-learning', undefined, 'v1'), /revoked/);
 });
+test('account consent grants are durable, bounded and serialized by policy version', async () => {
+  await assert.rejects(repo.grantAccountConsent('unknown-subject', 'downloads', 'v1', 60), /unavailable/);
+  await assert.rejects(repo.grantAccountConsent('owner', 'downloads', 'v1', 0), /bounded expiry/);
+  const [first, retry] = await Promise.all([
+    repo.grantAccountConsent('owner', 'downloads', 'v1', 60),
+    repo.grantAccountConsent('owner', 'downloads', 'v1', 60),
+  ]);
+  assert.deepEqual(first, retry);
+  await repo.assertConsent('owner', 'downloads', undefined, 'v1');
+  await assert.rejects(repo.assertConsent('owner', 'downloads', undefined, 'v2'), /consent/);
+  assert.equal(await db.auditEvent.count({ where: { uid: 'owner', operation: 'consent.granted', resourceId: first.id } }), 1);
+  assert.equal(await db.outboxEvent.count({ where: { uid: 'owner', topic: 'consent.granted' } }), 1);
+  await repo.revokeConsent('owner', first.id);
+  await assert.rejects(repo.grantAccountConsent('owner', 'downloads', 'v1', 60), /closed consent/);
+  const next = await repo.grantAccountConsent('owner', 'downloads', 'v2', 60);
+  assert.notEqual(next.id, first.id);
+  await repo.assertConsent('owner', 'downloads', undefined, 'v2');
+  await repo.ensurePerson('grant-erased');
+  await repo.grantAccountConsent('grant-erased', 'downloads', 'v1', 60);
+  await db.deletionTombstone.create({ data: { uid: 'grant-erased', resourceType: 'person', resourceId: 'grant-erased' } });
+  await assert.rejects(repo.assertConsent('grant-erased', 'downloads', undefined, 'v1'), /unavailable/);
+  await assert.rejects(repo.grantAccountConsent('grant-erased', 'downloads', 'v2', 60), /unavailable/);
+});
 async function invite(token, extra = {}) {
   return db.invitation.create({ data: { workspaceId: ws.id, email: token + '@example.invalid', tokenHash: createHash('sha256').update(token).digest('hex'),
     role: 'MEMBER', status: 'ISSUED', expiresAt: new Date(Date.now() + 60000), ...extra } });
