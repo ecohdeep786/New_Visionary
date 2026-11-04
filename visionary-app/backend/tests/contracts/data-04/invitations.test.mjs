@@ -88,6 +88,24 @@ test('ordinary members cannot read the invitation list or audit history', async 
   assert.equal((await service.list(x.owner, x.ws)).length, 1);
   assert.equal((await service.track(x.owner, x.ws, invitation.invitationId)).length, 2);
 });
+
+test('a retained admin membership grants no invitation authority after erasure', async () => {
+  for (const resourceType of ['person', 'workspace']) {
+    const x = await setup();
+    await env.db.workspaceMembership.create({ data: { uid: x.other, workspaceId: x.ws, role: 'ADMIN', source: 'direct' } });
+    const invitation = await service.invite(x.other, x.ws, { email: 'synthetic@example.invalid', role: 'MEMBER' });
+    await env.db.deletionTombstone.create({ data: { uid: x.other, resourceType, resourceId: resourceType === 'person' ? x.other : x.ws } });
+
+    await assert.rejects(service.invite(x.other, x.ws, { email: 'another@example.invalid', role: 'MEMBER' }), code('unauthorized'));
+    await assert.rejects(service.list(x.other, x.ws), code('unauthorized'));
+    await assert.rejects(service.track(x.other, x.ws, invitation.invitationId), code('unauthorized'));
+    await assert.rejects(reviewerStore.pending(x.other, x.ws, 'synthetic@example.invalid'), code('unauthorized'));
+    await assert.rejects(reviewerStore.revoke(x.other, invitation.invitationId, at, x.ws), code('unauthorized'));
+    await assert.rejects(service.accept(x.user, invitation.token, 'synthetic@example.invalid'), code('unauthorized'));
+    assert.equal(await membership(x), null);
+    assert.equal((await reviewerStore.revoke(x.owner, invitation.invitationId, at, x.ws)).status, 'revoked');
+  }
+});
 test('one token admits only one of two concurrent verified UIDs', async () => {
   const x = await setup(), i = await invite(x);
   const results = await Promise.allSettled([x.user, x.other].map(uid => service.accept(uid, i.token, 'synthetic@example.invalid')));
