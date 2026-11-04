@@ -149,15 +149,22 @@ const verifyPassword = async (user, candidatePassword) => {
 
 /* ── Auth API ── */
 
+/* ACCEPT-06 (KAN-122): the whole demo/fixture implementation is statically
+   DEV-only so a production bundle eliminates it (the demo route is DEV-only
+   and this is its only caller). */
+const enterDemoDev = import.meta.env?.DEV ? async function (person) {
+  if (!person.id.startsWith('demo-') || !person.email.endsWith('@visionary.test')) throw new Error('Only fictional preview accounts are allowed.');
+  const {seedConnectedFixtures}=await import('./demoFixtures.js');seedConnectedFixtures();
+  let user = getUsers().find(u => u.id === person.id);
+  if (!user) { user = { id: person.id, email: person.email, full_name: person.name, identity: person.roles[0], onboarding_complete: true, demo: true, createdAt: Date.now() }; writeJson(USERS_KEY, [...getUsers(), user]); }
+  createSession(user);
+  return sanitizeUser(user);
+} : null;
+
 const auth = {
   async enterDemo(person) {
-    if (!import.meta.env?.DEV) throw new Error('Demo account selection is available only in development.');
-    if (!person.id.startsWith('demo-') || !person.email.endsWith('@visionary.test')) throw new Error('Only fictional preview accounts are allowed.');
-    const {seedConnectedFixtures}=await import('./demoFixtures.js');seedConnectedFixtures();
-    let user = getUsers().find(u => u.id === person.id);
-    if (!user) { user = { id: person.id, email: person.email, full_name: person.name, identity: person.roles[0], onboarding_complete: true, demo: true, createdAt: Date.now() }; writeJson(USERS_KEY, [...getUsers(), user]); }
-    createSession(user);
-    return sanitizeUser(user);
+    if (!enterDemoDev) throw new Error('Demo account selection is available only in development.');
+    return enterDemoDev(person);
   },
   async me() {
     const user = getCurrentUser();
