@@ -64,6 +64,10 @@ test('issuer recovers a lost response without recovering the old secret or revok
   await assert.rejects(service.accept(x.user, first.token, 'synthetic@example.invalid'), code('revoked'));
   await service.accept(x.user, replacement.token, 'synthetic@example.invalid');
   assert.equal((await membership(x)).role, 'MEMBER');
+  assert.deepEqual((await service.track(x.owner, x.ws, first.invitationId)).map(event => event.action),
+    ['invitation.issued', 'invitation.revoked']);
+  assert.deepEqual((await service.track(x.owner, x.ws, replacement.invitationId)).map(event => event.action),
+    ['invitation.issued', 'invitation.accepted']);
 });
 test('ordinary members cannot read the invitation list or audit history', async () => {
   const x = await setup(), invitation = await invite(x);

@@ -529,6 +529,10 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
         recovery.push(args);
         return { id: args[1], status: 'revoked', revokedAt: '2026-11-04T00:00:00.000Z', email: 'private@example.test' };
       },
+      track: async (...args) => {
+        recovery.push(args);
+        return [{ id: 'audit-id', action: 'invitation.revoked', at: '2026-11-04T00:00:00.000Z', actorUid: 'private-actor' }];
+      },
     },
     privacy: { admission: async () => ({ allowed: adult, state: adult ? 'adult_current_boundary' : 'review_required' }) },
     invitations: { accept: async (...args) => { accepted.push(args); return { workspaceId: 'fixture-workspace', membershipRole: 'MEMBER', replay: false }; } },
@@ -595,6 +599,20 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
     assert.deepEqual(await revoked.json(), { invitationId: 'fixture-invitation', status: 'revoked', revokedAt: '2026-11-04T00:00:00.000Z' });
     assert.equal(recovery[1][0], f.identity.uid);
     assert.equal(recovery[1][3], 'fixture-workspace');
+    const scope = { workspaceId: 'fixture-workspace', invitationId: 'fixture-invitation' };
+    assert.equal((await call({ ...scope, actorUid: 'other' }, {}, 'history')).status, 400);
+    adult = false;
+    assert.equal((await call(scope, {}, 'history')).status, 403);
+    assert.equal(recovery.length, 2);
+    adult = true;
+    const history = await call(scope, {}, 'history');
+    assert.equal(history.status, 201);
+    assert.equal(history.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await history.json(), {
+      invitationId: 'fixture-invitation',
+      events: [{ action: 'invitation.revoked', at: '2026-11-04T00:00:00.000Z' }],
+    });
+    assert.deepEqual(recovery[2], [f.identity.uid, 'fixture-workspace', 'fixture-invitation']);
     f.revoke();
     assert.equal((await call({ token })).status, 401);
     assert.equal(accepted.length, 1);

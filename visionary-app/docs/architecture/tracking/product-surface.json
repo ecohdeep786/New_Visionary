@@ -17886,11 +17886,20 @@
     },
     {
       "method": "POST",
+      "path": "/api/account/invitations/history",
+      "controller": "ProductInvitationController",
+      "handler": "history",
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "line": 75,
+      "column": 3
+    },
+    {
+      "method": "POST",
       "path": "/api/account/invitations/institution/approve",
       "controller": "ProductInvitationController",
       "handler": "approve",
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "line": 75,
+      "line": 84,
       "column": 3
     },
     {
@@ -17899,7 +17908,7 @@
       "controller": "ProductInvitationController",
       "handler": "revoke",
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "line": 90,
+      "line": 99,
       "column": 3
     },
     {
@@ -79501,7 +79510,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "sourceSha256": "4997c55509f9ca5153a0385a9e3049d3098d963ab4da74ca8a55276c2af3be87"
+      "sourceSha256": "b714ebdf541e6500cfd4e7218249f04efcbf6834211e7c2d0ad7997b05e638cd"
     },
     {
       "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
@@ -82808,7 +82817,7 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 45,
+    "registeredEndpoints": 46,
     "controlDeclarations": 1658,
     "routeReachableDeclarations": 1506,
     "controlFiles": 222,

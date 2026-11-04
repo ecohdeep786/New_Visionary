@@ -94,6 +94,16 @@ export class ProductInvitationService implements OnModuleDestroy {
     return { invitationId: result.id, status: result.status, revokedAt: result.revokedAt };
   }
 
+  async history(uid: string, workspaceId: unknown, invitationId: unknown) {
+    assertId(workspaceId);
+    assertId(invitationId);
+    const { store, privacy } = this.settings();
+    await this.accounts.rateLimit('institution-invite-history', uid, 10);
+    await this.admission(privacy, uid);
+    const rows = await store.track(uid, workspaceId, invitationId);
+    return { invitationId, events: rows.map(({ action, at }) => ({ action, at })) };
+  }
+
   async approve(reviewerUid: string, input: { workspaceId: string; administratorUid: string; evidenceRef: string; expiresAt: Date }) {
     const { store, privacy, reviewers } = this.settings();
     assertInstitutionReviewer(reviewerUid, reviewers);

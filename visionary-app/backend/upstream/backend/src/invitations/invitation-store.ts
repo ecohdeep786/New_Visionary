@@ -242,7 +242,10 @@ export class PostgresInvitationStore implements InvitationStore {
   track(uid: string, workspaceId: string, id: string) {
     return this.transaction(async tx => { await this.workspace(tx, workspaceId); await this.member(tx, workspaceId, uid, 2);
       if (!await tx.invitation.findFirst({ where: { id, workspaceId } })) throw new InvitationPolicyError('not_found');
-      const rows = await tx.auditEvent.findMany({ where: { workspaceId, resourceType: 'invitation', resourceId: id }, take: 100, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
+      const rows = await tx.auditEvent.findMany({ where: {
+        workspaceId, resourceType: 'invitation', resourceId: id, outcome: 'SUCCESS',
+        operation: { in: ['invitation.issued', 'invitation.accepted', 'invitation.revoked', 'invitation.expired'] },
+      }, take: 100, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
       return rows.map(r => ({ id: r.id, invitationId: id, workspaceId, action: r.operation, actorUid: r.actorUid, at: r.createdAt.toISOString() })); });
   }
 }
