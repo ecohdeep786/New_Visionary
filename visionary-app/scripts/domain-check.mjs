@@ -26,3 +26,4 @@ run(['--test', '--test-reporter=tap', ...migrationTests.map((f) => join(root, 'b
 run([join(root, 'scripts/provision-check.mjs')]);
 
 run([join(root, 'scripts/privacycore-check.mjs')]);
+run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-05/consent.test.mjs')]);
