@@ -87,7 +87,7 @@ const assignments = {
   learningWrite: ['POST /api/account/learning/sessions', 'POST /api/account/learning/sessions/:sessionId/checks', 'POST /api/account/learning/sessions/:sessionId/assessments', 'POST /api/account/learning/sessions/:sessionId/cancel'],
   knowledgeRead: ['GET /api/account/learning/knowledge/projections', 'GET /api/account/learning/knowledge/models'],
   knowledgeWrite: ['POST /api/account/learning/knowledge/project'],
-  institutionInvitations: ['POST /api/account/invitations/issue', 'POST /api/account/invitations/accept', 'POST /api/account/invitations/pending', 'POST /api/account/invitations/revoke', 'POST /api/account/invitations/history', 'POST /api/account/invitations/institution/approve', 'POST /api/account/invitations/institution/revoke'],
+  institutionInvitations: ['POST /api/account/invitations/issue', 'POST /api/account/invitations/accept', 'POST /api/account/invitations/pending', 'POST /api/account/invitations/revoke', 'POST /api/account/invitations/membership', 'POST /api/account/invitations/history', 'POST /api/account/invitations/institution/approve', 'POST /api/account/invitations/institution/revoke'],
   workspaceProvision: ['POST /api/account/workspace/provision'],
 };
 const groupProfiles = {

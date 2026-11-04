@@ -180,8 +180,7 @@ export class PostgresInvitationStore implements InvitationStore {
       if (i.status === 'ACCEPTED') {
         if (i.acceptedByUid !== uid) throw new InvitationPolicyError('already_accepted');
         if (!existing) throw new InvitationPolicyError('unauthorized');
-        const receipt = await tx.commandResult.findUnique({ where: { commandId: 'inv-v1-' + digest(['accepted', i.id, uid]) } });
-        if (!receipt || receipt.uid !== uid || receipt.workspaceId !== i.workspaceId || receipt.kind !== 'invitation.accepted' || receipt.status !== 'COMMITTED' || receipt.payloadDigest !== digest(['accepted', i.id, uid, i.tokenHash, i.role])) throw new InvitationPolicyError('conflict');
+        await this.assertAcceptanceReceipt(tx, uid, i);
         await this.member(tx, i.workspaceId, uid, 0);
         return this.view(i, true, existing.role);
       }
@@ -202,6 +201,34 @@ export class PostgresInvitationStore implements InvitationStore {
       return result;
     });
   }
+  private async assertAcceptanceReceipt(tx: Tx, uid: string, invitation: {
+    id: string; workspaceId: string; tokenHash: string; role: string;
+  }) {
+    const { id, workspaceId, tokenHash, role } = invitation;
+    const receipt = await tx.commandResult.findUnique({ where: { commandId: 'inv-v1-' + digest(['accepted', id, uid]) } });
+    if (!receipt || receipt.uid !== uid || receipt.workspaceId !== workspaceId || receipt.kind !== 'invitation.accepted' ||
+        receipt.status !== 'COMMITTED' || receipt.payloadDigest !== digest(['accepted', id, uid, tokenHash, role])) {
+      throw new InvitationPolicyError('conflict');
+    }
+  }
+
+  acceptedMembership(uid: string, workspaceId: string, invitationId: string) {
+    return this.transaction(async tx => {
+      await this.anchor(tx, uid);
+      const workspace = await this.workspace(tx, workspaceId);
+      const invitation = await tx.invitation.findFirst({ where: {
+        id: invitationId, workspaceId, status: 'ACCEPTED', acceptedByUid: uid,
+      } });
+      if (!invitation?.institutionApprovalId) throw new InvitationPolicyError('not_found');
+      if (await tx.deletionTombstone.findFirst({ where: { uid, OR: [{ resourceType: 'workspace', resourceId: workspaceId }, { resourceType: 'person' }] } })) {
+        throw new InvitationPolicyError('unauthorized');
+      }
+      await this.lockApproval(tx, workspace, invitation.institutionApprovalId);
+      await this.assertAcceptanceReceipt(tx, uid, invitation);
+      return { workspaceId, role: await this.member(tx, workspaceId, uid, 0) };
+    });
+  }
+
   revoke(uid: string, id: string, at: Date, workspaceId?: string) {
     return this.transaction(async tx => {
       await this.anchor(tx, uid);

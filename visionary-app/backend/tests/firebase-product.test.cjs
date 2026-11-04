@@ -524,6 +524,7 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
   product.runtime = {
     reviewers: new Set(),
     store: {
+      acceptedMembership: async (...args) => { recovery.push(args); return { workspaceId: args[1], role: 'MEMBER' }; },
       pending: async (...args) => { recovery.push(args); return { invitationId: 'fixture-invitation' }; },
       revoke: async (...args) => {
         recovery.push(args);
@@ -535,7 +536,7 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
       },
     },
     privacy: { admission: async () => ({ allowed: adult, state: adult ? 'adult_current_boundary' : 'review_required' }) },
-    invitations: { accept: async (...args) => { accepted.push(args); return { workspaceId: 'fixture-workspace', membershipRole: 'MEMBER', replay: false }; } },
+    invitations: { accept: async (...args) => { accepted.push(args); return { id: 'fixture-invitation', workspaceId: 'fixture-workspace', membershipRole: 'MEMBER', replay: false }; } },
   };
   class TestModule {}
   Module({ controllers: [ProductInvitationController], providers: [
@@ -584,7 +585,7 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
     const response = await call({ token });
     assert.equal(response.status, 201);
     assert.equal(response.headers.get('cache-control'), 'no-store');
-    assert.deepEqual(await response.json(), { workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false });
+    assert.deepEqual(await response.json(), { invitationId: 'fixture-invitation', workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false });
     assert.deepEqual(accepted, [[f.identity.uid, token, 'verified-now@example.test']]);
     const lookup = { workspaceId: 'fixture-workspace', email: ' Fixture@Example.test ' };
     assert.equal((await call({ ...lookup, uid: 'other' }, {}, 'pending')).status, 400);
@@ -613,6 +614,12 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
       events: [{ action: 'invitation.revoked', at: '2026-11-04T00:00:00.000Z' }],
     });
     assert.deepEqual(recovery[2], [f.identity.uid, 'fixture-workspace', 'fixture-invitation']);
+    assert.equal((await call(scope, { 'X-Visionary-Account': 'other' }, 'membership')).status, 409);
+    const membership = await call(scope, {}, 'membership');
+    assert.equal(membership.status, 201);
+    assert.equal(membership.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await membership.json(), { workspaceId: 'fixture-workspace', role: 'MEMBER' });
+    assert.deepEqual(recovery[3], [f.identity.uid, 'fixture-workspace', 'fixture-invitation']);
     f.revoke();
     assert.equal((await call({ token })).status, 401);
     assert.equal(accepted.length, 1);

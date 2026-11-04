@@ -72,6 +72,15 @@ export class ProductInvitationController extends ProductRequestAuthority {
     return this.command(() => this.invitations.revokeInvitation(uid, workspaceId, invitationId));
   }
 
+  @Post('membership')
+  @Header('Cache-Control', 'no-store')
+  async membership(@Req() req: Request, @Body() input: unknown) {
+    this.csrf(req);
+    const { uid } = await this.commandAccount(req, false);
+    const { workspaceId, invitationId } = this.body(input, ['workspaceId', 'invitationId']);
+    return this.command(() => this.invitations.membership(uid, workspaceId, invitationId));
+  }
+
   @Post('history')
   @Header('Cache-Control', 'no-store')
   async history(@Req() req: Request, @Body() input: unknown) {

@@ -68,6 +68,14 @@ test('issuer recovers a lost response without recovering the old secret or revok
     ['invitation.issued', 'invitation.revoked']);
   assert.deepEqual((await service.track(x.owner, x.ws, replacement.invitationId)).map(event => event.action),
     ['invitation.issued', 'invitation.accepted']);
+  assert.deepEqual(await reviewerStore.acceptedMembership(x.user, x.ws, replacement.invitationId),
+    { workspaceId: x.ws, role: 'MEMBER' });
+  await assert.rejects(reviewerStore.acceptedMembership(x.other, x.ws, replacement.invitationId), code('not_found'));
+  await assert.rejects(reviewerStore.acceptedMembership(x.user, y.ws, replacement.invitationId), code('not_found'));
+  await env.db.workspaceMembership.update({ where: { uid_workspaceId: { uid: x.user, workspaceId: x.ws } }, data: { role: 'GUEST' } });
+  assert.equal((await reviewerStore.acceptedMembership(x.user, x.ws, replacement.invitationId)).role, 'GUEST');
+  await reviewerStore.revokeInstitution(reviewerUid, x.ws, x.approval.id);
+  await assert.rejects(reviewerStore.acceptedMembership(x.user, x.ws, replacement.invitationId), code('unauthorized'));
 });
 test('ordinary members cannot read the invitation list or audit history', async () => {
   const x = await setup(), invitation = await invite(x);

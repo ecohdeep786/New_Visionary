@@ -17890,7 +17890,7 @@
       "controller": "ProductInvitationController",
       "handler": "history",
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "line": 75,
+      "line": 84,
       "column": 3
     },
     {
@@ -17899,7 +17899,7 @@
       "controller": "ProductInvitationController",
       "handler": "approve",
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "line": 84,
+      "line": 93,
       "column": 3
     },
     {
@@ -17908,7 +17908,7 @@
       "controller": "ProductInvitationController",
       "handler": "revoke",
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "line": 99,
+      "line": 108,
       "column": 3
     },
     {
@@ -17918,6 +17918,15 @@
       "handler": "issue",
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
       "line": 38,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/account/invitations/membership",
+      "controller": "ProductInvitationController",
+      "handler": "membership",
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "line": 75,
       "column": 3
     },
     {
@@ -79510,7 +79519,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "sourceSha256": "b714ebdf541e6500cfd4e7218249f04efcbf6834211e7c2d0ad7997b05e638cd"
+      "sourceSha256": "40aae7c7784d238592803fb9a42239833153aceb19446430b355f0266944e2c9"
     },
     {
       "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
@@ -82817,7 +82826,7 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 46,
+    "registeredEndpoints": 47,
     "controlDeclarations": 1658,
     "routeReachableDeclarations": 1506,
     "controlFiles": 222,

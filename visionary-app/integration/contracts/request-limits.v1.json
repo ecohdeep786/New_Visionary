@@ -80,6 +80,7 @@
     "POST /api/account/invitations/pending": "existing-json",
     "POST /api/account/invitations/revoke": "existing-json",
     "POST /api/account/invitations/history": "existing-json",
+    "POST /api/account/invitations/membership": "existing-json",
     "POST /api/account/invitations/institution/approve": "existing-json",
     "POST /api/account/invitations/institution/revoke": "existing-json",
     "POST /api/account/workspace/provision": "existing-json"

@@ -537,6 +537,13 @@
       "exposure": "registered-controller"
     },
     {
+      "route": "POST /api/account/invitations/membership",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
       "route": "POST /api/account/invitations/pending",
       "profile": "institutionInvitations",
       "controller": "ProductInvitationController",
@@ -1429,7 +1436,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "sha256Lf": "b714ebdf541e6500cfd4e7218249f04efcbf6834211e7c2d0ad7997b05e638cd"
+      "sha256Lf": "40aae7c7784d238592803fb9a42239833153aceb19446430b355f0266944e2c9"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
@@ -1489,7 +1496,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
-      "sha256Lf": "43979e72bb9ca79b131bac21358785ce6d26323a1473d68b753c7ee70f75e6e6"
+      "sha256Lf": "4a5ca5bd1af0b3f2ca09b7e72819b46f6bd2ffee3ddffce2633957881f01790f"
     },
     {
       "file": "backend/upstream/backend/src/invitations/invitation.service.ts",
@@ -1497,7 +1504,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/invitation-store.ts",
-      "sha256Lf": "63bebf62b627527775be33a4434f7b079cc06492ae006383fcf12e9b44ae4049"
+      "sha256Lf": "5281b22e31e32db1ce568b8365498a39c7416a5aabbcdcacc0e52866a3496a6c"
     },
     {
       "file": "backend/upstream/backend/src/invitations/institution-approval.ts",
@@ -1545,7 +1552,7 @@
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "42cf0f1b1f7b70a6508b1721c5e8eb80d53b8e8b533c5a4daeec1b3aa6086179"
+      "sha256Lf": "8adbcc8b998b2cb5d7eac431d1bb9a6684641c0949f030924a5a532696155b0b"
     },
     {
       "file": "integration/contracts/v1/openapi.json",

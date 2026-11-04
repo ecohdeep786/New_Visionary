@@ -73,7 +73,7 @@ export class ProductInvitationService implements OnModuleDestroy {
     await this.admission(privacy, uid);
     const { verifiedEmail } = await this.accounts.currentVerifiedInvitationRecipient(uid);
     const result = await invitations.accept(uid, token, verifiedEmail);
-    return { workspaceId: result.workspaceId, role: result.membershipRole, replay: result.replay };
+    return { invitationId: result.id, workspaceId: result.workspaceId, role: result.membershipRole, replay: result.replay };
   }
 
   async pending(uid: string, workspaceId: unknown, email: unknown) {
@@ -92,6 +92,15 @@ export class ProductInvitationService implements OnModuleDestroy {
     await this.accounts.rateLimit('institution-invite-revoke', uid, 10);
     const result = await store.revoke(uid, invitationId, new Date(), workspaceId);
     return { invitationId: result.id, status: result.status, revokedAt: result.revokedAt };
+  }
+
+  async membership(uid: string, workspaceId: unknown, invitationId: unknown) {
+    assertId(workspaceId);
+    assertId(invitationId);
+    const { store, privacy } = this.settings();
+    await this.accounts.rateLimit('institution-invite-membership', uid, 10);
+    await this.admission(privacy, uid);
+    return store.acceptedMembership(uid, workspaceId, invitationId);
   }
 
   async history(uid: string, workspaceId: unknown, invitationId: unknown) {
