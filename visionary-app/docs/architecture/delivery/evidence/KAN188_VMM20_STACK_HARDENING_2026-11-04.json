@@ -1,0 +1,21 @@
+{
+  "jiraKey": "KAN-188",
+  "sourceId": "VMM-20",
+  "title": "Independently harden Tiny/OCR/frontier stack under hosted privacy, security and load",
+  "date": "2026-11-04",
+  "lane": "ML engineering (stack hardening)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-188-stack-hardening",
+  "branch": "codex/principal-kan-188-stack-hardening",
+  "baseCommit": "588a5cbb (KAN-186 VMM-18 head; composes the full VMM chain)",
+  "implementationCommit": "5988daa2",
+  "module": "ml/vmm/hardening.py (+ ml/vmm/tests/test_hardening.py); no other source changes",
+  "whatBuilt": [
+    "KILL SWITCH: engages fail-closed across the composed stack (new work AND deploys refuse while engaged); completed state stays intact; release recovers and continues the artifact sequence without loss",
+    "CAPACITY: bounded concurrent probe over real stack operations (1..512, ThreadPool) - every operation completes or refuses within the deadline, nothing hangs, p95 reported",
+    "ADVERSARIAL BOUNDARIES: oversized (>10MiB), malformed-magic and empty uploads refused by the real OCR quarantine; refused attacks provably never reach the recognition engine (spy engine call count 0)",
+    "REDACTION: secret-shaped tokens (sk- keys, pin tokens, private-key blocks) refuse to survive any event/error surface"
+  ],
+  "verification": { "vmmTests": "python -m unittest discover -s ml/vmm/tests -> 274/274 pass (269 previous + 5)" },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The measured HOSTED end-to-end load/voice-interruption/outage/cost results and hosted recovery drills require the hosted runtime and real devices (founder-gated); this candidate proves the stack-boundary contract properties locally over the real modules. Prerequisite KAN-203/204 acceptance pending; proceeding under the founder's explicit instruction to continue the pending sequence; the reviewer still gates Done. Testing is not acceptance."
+}
