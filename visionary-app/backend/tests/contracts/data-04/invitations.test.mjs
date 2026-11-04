@@ -77,7 +77,7 @@ test('issuer recovers a lost response without recovering the old secret or revok
   const replay = await service.accept(x.user, replacement.token, 'synthetic@example.invalid');
   assert.equal(replay.replay, true);
   assert.equal(replay.membershipRole, 'GUEST');
-  await reviewerStore.revokeInstitution(reviewerUid, x.ws, x.approval.id);
+  await reviewerStore.revokeInstitution(reviewerUid, x.ws, x.approval.approvalId);
   await assert.rejects(reviewerStore.acceptedMembership(x.user, x.ws, replacement.invitationId), code('unauthorized'));
 });
 test('ordinary members cannot read the invitation list or audit history', async () => {
