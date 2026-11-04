@@ -527,7 +527,7 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
       pending: async (...args) => { recovery.push(args); return { invitationId: 'fixture-invitation' }; },
       revoke: async (...args) => {
         recovery.push(args);
-        return { id: args[1], status: 'REVOKED', revokedAt: '2026-11-04T00:00:00.000Z', email: 'private@example.test' };
+        return { id: args[1], status: 'revoked', revokedAt: '2026-11-04T00:00:00.000Z', email: 'private@example.test' };
       },
     },
     privacy: { admission: async () => ({ allowed: adult, state: adult ? 'adult_current_boundary' : 'review_required' }) },
@@ -592,7 +592,7 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
     assert.deepEqual(recovery[0], [f.identity.uid, 'fixture-workspace', 'fixture@example.test']);
     const revoked = await call({ workspaceId: 'fixture-workspace', invitationId: 'fixture-invitation' }, {}, 'revoke');
     assert.equal(revoked.status, 201);
-    assert.deepEqual(await revoked.json(), { invitationId: 'fixture-invitation', status: 'REVOKED', revokedAt: '2026-11-04T00:00:00.000Z' });
+    assert.deepEqual(await revoked.json(), { invitationId: 'fixture-invitation', status: 'revoked', revokedAt: '2026-11-04T00:00:00.000Z' });
     assert.equal(recovery[1][0], f.identity.uid);
     assert.equal(recovery[1][3], 'fixture-workspace');
     f.revoke();

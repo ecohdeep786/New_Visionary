@@ -56,7 +56,7 @@ test('issuer recovers a lost response without recovering the old secret or revok
   await assert.rejects(reviewerStore.pending(x.other, x.ws, 'synthetic@example.invalid'), code('unauthorized'));
   await assert.rejects(reviewerStore.revoke(x.other, pending.invitationId, at, x.ws), code('unauthorized'));
   await assert.rejects(reviewerStore.revoke(y.owner, pending.invitationId, at, y.ws), code('not_found'));
-  await reviewerStore.revoke(x.owner, pending.invitationId, at, x.ws);
+  assert.equal((await reviewerStore.revoke(x.owner, pending.invitationId, at, x.ws)).status, 'revoked');
   assert.deepEqual(await reviewerStore.pending(x.owner, x.ws, 'synthetic@example.invalid'), { invitationId: null });
   const replacement = await invite(x);
   assert.equal((await reviewerStore.revoke(x.owner, pending.invitationId, at, x.ws)).replay, true);
