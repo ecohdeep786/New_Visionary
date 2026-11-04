@@ -96,7 +96,7 @@ const FAQS = [
 
 /* ═══ Motion — the shared reveal grammar ═══ */
 function Reveal({ children, className = "" }) {
-  return <div className={`transition duration-700 ease-google ${className}`}>{children}</div>;
+  return <div className={`transition duration-700 ease-apple ${className}`}>{children}</div>;
 }
 
 function EmailLink({ email, subject, children = email, className = "" }) {
@@ -134,10 +134,10 @@ export default function ContactPage() {
 
         {/* HERO — the support-page statement: centered heading, sub, and an
             outlined Help center pill */}
-        <section data-section="01-hero" className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
+        <section data-section="01-hero" className="px-6 pb-16 pt-10 text-center sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
           <Reveal className="mx-auto max-w-[880px]">
             <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
-              Guidance to <span className="accent-gradient">get you going</span> on Visionary
+              We listen. <span className="accent-gradient">We build.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[25px] text-[#6e6e73]">
               Find the answers and support you need to make the most of Visionary.
@@ -159,7 +159,7 @@ export default function ContactPage() {
                 {TABS.map((t) => (
                   <button key={t.id} type="button" role="tab" aria-selected={activeTab === t.id}
                     onClick={() => setActiveTab(t.id)}
-                    className={`shrink-0 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
+                    className={`shrink-0 rounded-full px-5 py-3 text-[14px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
                       activeTab === t.id ? "bg-white text-[#1d1d1f] shadow-[0_1px_3px_rgba(18,19,23,0.08)]" : "text-[#6e6e73] hover:text-[#1d1d1f]"
                     }`}>
                     {t.label}
@@ -234,7 +234,7 @@ export default function ContactPage() {
               </p>
             </div>
             <div className="flex shrink-0 flex-col items-start gap-3 lg:items-end">
-              <Link to="/help" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+              <Link to="/help" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
                 Visit Help center
               </Link>
               <EmailLink email="hello@visionary.org.in" subject="Support question" />
@@ -273,7 +273,7 @@ export default function ContactPage() {
           <Reveal className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
               <p className="apple-eyebrow text-[#6e6e73]">Privacy grievance</p>
-              <h2 className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#1d1d1f] sm:text-[38px]">A formal route for privacy concerns.</h2>
+              <h2 data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">A formal route for privacy concerns.</h2>
               <p className="mt-4 max-w-[420px] text-[16px] leading-[1.75] text-[#6e6e73]">For a privacy grievance under India's DPDP Act, contact the named Grievance Officer directly.</p>
             </div>
             <div className="rounded-[20px] bg-white p-6 sm:p-8">
@@ -289,12 +289,12 @@ export default function ContactPage() {
         <section data-section="07-hygiene" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-2 md:gap-12">
             <div>
-              <h2 className="text-[20px] font-medium text-[#1d1d1f]">Before you send</h2>
+              <h3 className="text-[20px] font-medium text-[#1d1d1f]">Before you send</h3>
               <p className="mt-3 text-[14px] leading-[1.75] text-[#6e6e73]">Your email app will open a draft. Review the recipient and message, then choose whether to send it. Nothing is submitted to Visionary from this page.</p>
             </div>
             <div>
-              <h2 className="text-[20px] font-medium text-[#1d1d1f]">Keep sensitive details out</h2>
-              <p className="mt-3 text-[14px] leading-[1.75] text-[#6e6e73]">Do not include passwords, payment card details, or sensitive learner information in an email. For information about personal data, read the <Link to="/privacy" className="font-medium text-[#0066cc] underline-offset-2 hover:underline">Privacy policy</Link>.</p>
+              <h3 className="text-[20px] font-medium text-[#1d1d1f]">Keep sensitive details out</h3>
+              <p className="mt-3 text-[14px] leading-[1.75] text-[#6e6e73]">Do not include passwords, payment card details, or sensitive learner information in an email. For information about personal data, read the <Link to="/privacy" className="relative after:absolute after:-inset-y-3 after:-inset-x-2 font-medium text-[#0066cc] underline-offset-2 hover:underline">Privacy policy</Link>.</p>
             </div>
           </Reveal>
         </section>

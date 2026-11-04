@@ -15,15 +15,17 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
 import ValuesStrip from "@/components/landing/ValuesStrip";
-import PolicyTabs from "@/components/landing/PolicyTabs";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
+import stageHeroWebp from "@/assets/brand/hero-stage.webp";
+import stageHeroAvif from "@/assets/brand/hero-stage.avif";
+
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META, GRIEVANCE_OFFICER } from "@/data/legalMeta";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 const COLORS = {
   ink: "#1d1d1f",
@@ -39,9 +41,8 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* ═══ Link and pill grammar — the approved public classes, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { inkPill, quietLink } = CTA_LAW;
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -66,7 +67,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -159,7 +160,7 @@ function Paragraph({ children }) {
 function IconTile({ Icon }) {
   return (
     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}>
-      <Icon className="h-5 w-5" strokeWidth={1.7} aria-hidden="true" />
+      <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
     </span>
   );
 }
@@ -225,12 +226,32 @@ export default function PrivacyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-privacy min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <Breadcrumb page="Privacy policy" />
-      <PolicyTabs />
+      <LocalNav title="Privacy" />
 
       <main id="main">
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4), rendered from the single-source CinematicHero
+            under the LocalNav bar: the photograph sits behind the centered
+            type, labelled context, values-first statement, promises and the
+            utility opening stay in the body below. */}
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4): the photograph sits behind the centered copy,
+            landing on the fold under the LandingNav + LocalNav chrome. The
+            founder's stage photography swaps in via this same image prop. */}
+        <FadeReveal visible={heroVisible}>
+          <CinematicHero
+            title="Your learning is personal."
+            accent="Privacy should be clear."
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "A learner holding a laptop, ready to learn",
+            }}
+            inFlow={56}
+          />
+        </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
@@ -247,7 +268,7 @@ export default function PrivacyPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
                           <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
                           <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
@@ -258,7 +279,7 @@ export default function PrivacyPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       For safety and security details, see the Safety and Security pages.
                     </p>
@@ -269,20 +290,11 @@ export default function PrivacyPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY HERO — the policies.google.com opening: centered
-                  illustration, eyebrow, trust statement, intro, promises,
-                  Privacy-Checkup action row, effective date */}
+              {/* POLICY BODY OPENING — promises, Privacy-Checkup action row,
+                  effective date (the display hero lives in CinematicHero
+                  above; FAP-59 phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
-                <div className="pb-12 pt-2">
-                  <div className="flex justify-center"><SpotIllustration subject="shield" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Privacy policy</p>
-                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                    Your learning is personal. <span className="accent-gradient">Privacy should be clear.</span>
-                  </h1>
-                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
-                    This policy explains what information Visionary uses, why, who can see it, and how you can update, manage, or delete it.
-                  </p>
-
+                <div className="pb-12 pt-10">
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {PRIVACY_PROMISES.map((p) => (
                       <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
@@ -351,7 +363,7 @@ export default function PrivacyPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="privacy-summary-title">
+                <section data-section="02-summary" aria-labelledby="privacy-summary-title">
                   <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="privacy-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -370,7 +382,7 @@ export default function PrivacyPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 — WHAT WE COLLECT */}
-                <section id="what-we-collect" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-we-collect" data-section="03-what-we-collect" className="scroll-mt-24">
                   <SectionHeading number="01" title="What we collect" />
                   <Paragraph>
                     The information involved depends on the features you use. Some workspace records can stay in your browser, while account services use information needed to sign you in and provide connected features. The categories below explain what may be involved.
@@ -392,7 +404,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 02 — WHY WE USE IT */}
-                <section id="purpose" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="purpose" data-section="04-purpose" className="scroll-mt-24">
                   <SectionHeading number="02" title="Why we use it" />
                   <Paragraph>
                     We use personal information to provide your workspace, retain the learning activity you choose to save, maintain and protect the service, and respond to your requests.
@@ -417,7 +429,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 03 — WHO CAN SEE IT */}
-                <section id="sharing" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="sharing" data-section="05-sharing" className="scroll-mt-24">
                   <SectionHeading number="03" title="Who can see it" />
                   <Paragraph>
                     Visibility follows the workspace role and any explicit learning relationship. Visionary limits each view to the information needed for that relationship.
@@ -442,13 +454,13 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 04 — YOUR CONTROLS */}
-                <section id="your-controls" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-controls" data-section="06-your-controls" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your controls" />
                   <Paragraph>
                     Your controls depend on where information is stored. Use{" "}
-                    <Link to="/dashboard/privacy" className="font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] rounded-sm">Privacy settings</Link>{" "}
+                    <Link to="/dashboard/privacy" className="relative after:absolute after:-inset-y-3 after:-inset-x-2 font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] rounded-sm">Privacy settings</Link>{" "}
                     to review information saved on this device, change workspace preferences, or contact the{" "}
-                    <a href="#grievance-officer" className="font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] rounded-sm">Grievance officer</a>{" "}
+                    <a href="#grievance-officer" className="relative after:absolute after:-inset-y-3 after:-inset-x-2 font-medium text-[#0066cc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] rounded-sm">Grievance officer</a>{" "}
                     for an access, correction, or deletion request.
                   </Paragraph>
                   <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -482,7 +494,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 05 — SECURITY */}
-                <section id="security" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="security" data-section="07-security" className="scroll-mt-24">
                   <SectionHeading number="05" title="How we protect it" />
                   <Paragraph>
                     Visionary uses access controls, secure transport, and appropriate storage safeguards to protect information. We review these protections as the service changes and limit access to people and providers who need it for their work.
@@ -491,7 +503,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 06 — DATA REQUESTS */}
-                <section id="data-requests" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="data-requests" data-section="08-data-requests" className="scroll-mt-24">
                   <SectionHeading number="06" title="Access and deletion requests" />
                   <Paragraph>
                     You can contact us to ask about personal information associated with your use of Visionary, request access or correction, or request deletion. The Grievance officer reviews the request and may verify your identity before acting on it.
@@ -521,7 +533,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 07 — RETENTION */}
-                <section id="retention" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="retention" data-section="09-retention" className="scroll-mt-24">
                   <SectionHeading number="07" title="How long we keep it" />
                   <Paragraph>
                     Workspace records stored locally remain in this browser until you remove them or clear browser storage. Account information is retained only while it is needed for the purposes explained in this policy, including legal, safety, and service requirements.
@@ -540,7 +552,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 08 — YOUNGER LEARNERS */}
-                <section id="younger-learners" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="younger-learners" data-section="10-younger-learners" className="scroll-mt-24">
                   <SectionHeading number="08" title="Younger learners" />
                   <Paragraph>
                     Where a learner is a child under the DPDP Act, Visionary applies the consent and safeguard requirements that apply, including age-appropriate experiences and verified consent where required.
@@ -549,7 +561,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 09 — COMMON QUESTIONS */}
-                <section id="explainers" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="explainers" data-section="11-explainers" className="scroll-mt-24">
                   <SectionHeading number="09" title="Common privacy questions" />
                   <div className="max-w-[880px] border-t border-[rgba(18,19,23,0.12)]">
                     {FAQ.map((item, index) => (
@@ -574,7 +586,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* 10 — CONTACT AND GRIEVANCES */}
-                <section id="grievance-officer" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="grievance-officer" data-section="12-grievance-officer" className="scroll-mt-24">
                   <SectionHeading number="10" title="Contact and grievances" />
                   <Paragraph>
                     For questions about this policy or to submit a privacy grievance, contact the named Grievance officer. Include enough detail to identify the request, but do not send passwords or other secrets by email.
@@ -598,7 +610,7 @@ export default function PrivacyPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="13-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -620,7 +632,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="14-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -632,7 +644,7 @@ export default function PrivacyPage() {
               ].map(({ to, label, desc, Icon }) => (
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <Icon className="h-5 w-5" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
@@ -645,7 +657,7 @@ export default function PrivacyPage() {
         {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
-        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+        <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
             <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
               Questions about this policy?

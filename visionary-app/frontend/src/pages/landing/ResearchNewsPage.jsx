@@ -7,7 +7,11 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
+import CinematicHero from "@/components/landing/CinematicHero";
+import researchBotWebp from "@/assets/brand/visionary-bot.webp";
+import researchBotAvif from "@/assets/brand/visionary-bot.avif";
 import imgHeroChip from "@/assets/student-higher.webp";
 import imgStudent from "@/assets/student-hero-main-1600w.webp";
 import imgTeacher from "@/assets/teacher-hero-main-1600w.webp";
@@ -147,7 +151,7 @@ function useRevealOnce() {
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <div ref={ref} className={`${className} transition-all duration-700 ease-google motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+    <div ref={ref} className={`${className} transition-all duration-700 ease-apple motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
       {children}
     </div>
   );
@@ -160,40 +164,32 @@ export default function ResearchNewsPage() {
       <main id="main">
         <Breadcrumb page="Research" />
 
-        {/* HERO — the research.google statement: a huge staggered two-line
-            headline with floating image accents and a hand-drawn arrow */}
-        <section data-section="01-hero" className="relative overflow-hidden">
-          <div className="relative mx-auto max-w-[1240px] px-4 pb-16 pt-16 sm:px-6 lg:px-10 lg:pb-20 lg:pt-24">
-            <div className="pointer-events-none absolute right-[8%] top-[9%] hidden w-[170px] rotate-3 overflow-hidden rounded-[20px] shadow-[0_20px_50px_rgba(18,19,23,0.16)] lg:block">
-              <img src={imgHeroChip} alt="" aria-hidden="true" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
-            </div>
-            <div className="pointer-events-none absolute bottom-[14%] right-[24%] hidden -rotate-2 lg:block">
-              <SpotIllustration subject="loop" className="h-[112px] w-[150px] rounded-[20px] shadow-[0_20px_50px_rgba(18,19,23,0.16)]" />
-            </div>
-            <Reveal>
-              <h1 className="max-w-[1000px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
-                <span className="block">One intelligence,</span>
-                <span className="block pl-[10%] sm:pl-[18%]">
-                  <span className="accent-gradient">every learner.</span>
-                  <svg aria-hidden="true" viewBox="0 0 120 40" className="ml-5 inline-block h-9 w-28 text-[#1d1d1f] sm:h-11 sm:w-36">
-                    <path d="M6 8 C 40 34, 78 34, 108 18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-                    <path d="M98 14 L 110 17 L 102 27" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-              </h1>
-              <p className="mt-14 max-w-[480px] text-[17px] leading-[1.65] text-[#6e6e73] sm:text-[18px]">
-                We are building a mentor that knows your journey. This page records what we learn.
-              </p>
-            </Reveal>
-          </div>
-        </section>
+                        {/* HERO — the FAP-59 stage with Apple's centered voice (phase 4):
+            the two-part display rides alone (founder: remove the tag,
+            sub-heading and CTA); the VISIONARY BOT rises from the fold —
+            this is a research page (founder directive 2026-11-03): the bot
+            is the program's output, so the stage carries the bot, not a
+            persona photo. No local nav bar on this page (founder directive);
+            the breadcrumb stays as the page's top guide. */}
+        <Reveal>
+          <CinematicHero
+            title="One intelligence,"
+            accent="every learner."
+            image={{
+              src: researchBotWebp,
+              avifSrcSet: researchBotAvif,
+              alt: "The Visionary intelligence — the output of the research program",
+            }}
+            inFlow={60}
+          />
+        </Reveal>
 
         {/* MISSION SPLIT — "Amplifying human curiosity" beside a dark brand
             panel (Google's video panel position) */}
         <section data-section="02-mission" className="px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <div>
-              <h2 className="text-[24px] font-medium leading-[1.3] tracking-[-0.02em] text-[#1d1d1f] sm:text-[28px]">
+              <h2 data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Building the mentor intelligence.
               </h2>
               <div className="mt-4 max-w-[520px]">
@@ -203,21 +199,50 @@ export default function ResearchNewsPage() {
               </div>
             </div>
             <div className="relative overflow-hidden rounded-[30px] bg-[#1d1d1f] p-10 sm:p-14">
-              <p className="apple-eyebrow text-white/60">Visionary Intelligence</p>
-              <h3 className="mt-6 max-w-[420px] text-[28px] font-normal leading-[1.2] tracking-[-0.02em] text-white sm:text-[36px]">
-                I am your Intelligence.
-              </h3>
-              <div className="mt-8 flex flex-wrap gap-2.5">
-                {["Knows your journey", "Speaks your language", "Works across roles", "Built on evidence"].map((chip) => (
-                  <span key={chip} className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[13px] text-white/80">{chip}</span>
-                ))}
+              <div className="flex items-center gap-8 sm:gap-12">
+                <div className="min-w-0 flex-1">
+                  <p className="apple-eyebrow text-white/60">Visionary Intelligence</p>
+                  <h3 className="mt-6 max-w-[420px] text-[28px] font-normal leading-[1.2] tracking-[-0.02em] text-white sm:text-[36px]">
+                    I am your Intelligence.
+                  </h3>
+                  <p className="mt-4 max-w-[440px] text-[15px] leading-[1.6] text-white/70">
+                    Every finding on this page ends up here — the bot is where the research meets the learner.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-2.5">
+                    {["Knows your journey", "Speaks your language", "Works across roles", "Built on evidence"].map((chip) => (
+                      <span key={chip} className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[13px] text-white/80">{chip}</span>
+                    ))}
+                  </div>
+                </div>
+                <picture className="hidden shrink-0 sm:block">
+                  <source type="image/avif" srcSet={researchBotAvif} />
+                  <img
+                    src={researchBotWebp}
+                    alt="The Visionary intelligence"
+                    loading="lazy"
+                    decoding="async"
+                    draggable="false"
+                    className="pointer-events-none w-[150px] select-none lg:w-[190px]"
+                  />
+                </picture>
               </div>
             </div>
           </Reveal>
           <div className="mx-auto max-w-[1240px] px-0 mt-10">
-            <QuietLink href="#latest">
-              What the intelligence does today <ChevronIcon className="h-4 w-4" aria-hidden="true" />
-            </QuietLink>
+            {/* the research pipeline — the founder's framing: findings feed the
+                bot, the bot is what the learner meets */}
+            <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[14px] text-[#6e6e73]">
+              <span className="font-medium text-[#1d1d1f]">Research</span>
+              <ChevronIcon className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="font-medium text-[#1d1d1f]">The bot</span>
+              <ChevronIcon className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="font-medium text-[#1d1d1f]">Every learner</span>
+            </p>
+            <div className="mt-4">
+              <QuietLink href="#latest">
+                What the intelligence does today <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+              </QuietLink>
+            </div>
           </div>
         </section>
 
@@ -225,7 +250,7 @@ export default function ResearchNewsPage() {
             founding idea (Google's attributed quote band) */}
         <section data-section="03-quote" className="px-4 sm:px-6 lg:px-10">
           <Reveal className="relative mx-auto max-w-[1240px] overflow-hidden rounded-[30px] bg-[#1d1d1f] px-8 py-16 sm:px-14 sm:py-24">
-            <img src={imgHeroChip} alt="" aria-hidden="true" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+            <LazyImage src={imgHeroChip} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-30" />
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#1d1d1f]/90 via-[#1d1d1f]/70 to-[#1d1d1f]/40" />
             <div className="relative">
               <h3 className="max-w-[860px] text-[28px] font-normal leading-[1.3] tracking-[-0.02em] text-white">
@@ -295,7 +320,7 @@ export default function ResearchNewsPage() {
                 <div key={area.role}>
                   <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
                     <div className={`overflow-hidden rounded-[30px] bg-white ${area.flip ? "lg:order-2" : ""}`}>
-                      <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-contain object-bottom mix-blend-multiply" />
+                      <LazyImage src={area.photo} alt={area.alt} className="aspect-[4/3] w-full object-contain object-bottom mix-blend-multiply" />
                     </div>
                     <div className={area.flip ? "lg:order-1" : ""}>
                       <p className="apple-eyebrow text-[#6e6e73]">{area.role}</p>
@@ -342,7 +367,7 @@ export default function ResearchNewsPage() {
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {PROJECTS.map((project) => (
                   <article key={project.title} className="flex h-full flex-col overflow-hidden rounded-[20px] bg-white">
-                    <img src={project.photo} alt={project.alt} loading="lazy" decoding="async" className="h-[190px] w-full object-cover" />
+                    <LazyImage src={project.photo} alt={project.alt} className="h-[190px] w-full object-cover" />
                     <div className="flex flex-1 flex-col p-6">
                       <h3 className="text-[21px] font-normal leading-[1.3] text-[#1d1d1f]">{project.title}</h3>
                       <p className="mt-2 text-[16px] leading-[1.6] text-[#6e6e73]">{project.copy}</p>
@@ -428,7 +453,7 @@ export default function ResearchNewsPage() {
         <section data-section="09-responsible" className="bg-[#f5f5f7] px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="overflow-hidden rounded-[20px]">
-              <img src={imgResponsible} alt="A learner reading closely to make sense of an idea" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+              <LazyImage src={imgResponsible} alt="A learner reading closely to make sense of an idea" className="aspect-[4/3] w-full object-cover" />
             </div>
             <div>
               <h2 className="text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
@@ -456,7 +481,7 @@ export default function ResearchNewsPage() {
             <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-8">
               <div className="grid gap-3 lg:grid-cols-2">
                 <Link to="/community" className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
-                  <img src={imgFutureCommunity} alt="A teacher explaining an idea" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
+                  <LazyImage src={imgFutureCommunity} alt="A teacher explaining an idea" className="h-[200px] w-full object-cover" />
                   <div className="flex flex-1 flex-col p-7 pb-16">
                     <h3 className="text-[23px] font-normal leading-[1.3] text-[#1d1d1f]">Join the community</h3>
                     <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">
@@ -466,7 +491,7 @@ export default function ResearchNewsPage() {
                   <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
                 <Link to="/careers" className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
-                  <img src={imgFutureCareers} alt="A teammate at work in a shared space" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
+                  <LazyImage src={imgFutureCareers} alt="A teammate at work in a shared space" className="h-[200px] w-full object-cover" />
                   <div className="flex flex-1 flex-col p-7 pb-16">
                     <h3 className="text-[23px] font-normal leading-[1.3] text-[#1d1d1f]">Work with us</h3>
                     <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">
