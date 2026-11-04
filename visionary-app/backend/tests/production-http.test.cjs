@@ -18,7 +18,7 @@ for(const hops of [1,2])test(`production HTTP preserves cookie/cache/API boundar
  const privateValue='synthetic-unmarked-learner-note';
  assert.equal((await fetch(base+'/api/probe/'+privateValue+'?note='+privateValue,{headers:{'X-Request-Id':privateValue}})).status,200);
  assert.equal((await fetch(base+'/api/unknown/'+privateValue)).status,404);
- assert.equal((await fetch(base+'/api/probe',{method:'POST',headers:{'Content-Type':'application/json'},body:'{"note":"'+privateValue+'"'})).status,404);
+ assert.equal((await fetch(base+'/api/probe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note:privateValue})})).status,404);
  assert.ok(telemetry.some(event=>event.route==='/api/probe/:value'&&event.status===200));
  assert.ok(telemetry.some(event=>event.route==='unclassified'&&event.status===404));
  for(const event of telemetry){
