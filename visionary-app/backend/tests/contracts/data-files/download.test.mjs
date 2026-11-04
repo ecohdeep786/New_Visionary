@@ -187,6 +187,15 @@ test('FILE-03 unknown or foreign signed-link token is refused', async () => {
   await assert.rejects(gateway.readSignedLink(signedLink.token, 'uid-9'), (e) => e.code === 'link_not_found');
 });
 
+test('signed-link overrides cannot widen the configured validity or read budget', async () => {
+  const { resolver, gateway, store } = setup();
+  publishReady(resolver, 'uid-1', 'obj-1', 1);
+  const object = { ownerUid: 'uid-1', objectId: 'obj-1', generation: 1 };
+  await assert.rejects(gateway.issueSignedLink({ ...object, ttlMs: 8 * 24 * 60 * 60 * 1000 }), { code: 'out_of_bounds' });
+  await assert.rejects(gateway.issueSignedLink({ ...object, maxReads: 2 }), { code: 'out_of_bounds' });
+  assert.equal((await store.grantTokens('uid-1')).length, 0);
+});
+
 test('FILE-03 export: creation pins READY generations; reading delivers all members; revocation is immediate', async () => {
   const { resolver, exports } = setup();
   publishReady(resolver, 'uid-1', 'obj-1', 1);

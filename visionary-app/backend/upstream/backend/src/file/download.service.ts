@@ -99,10 +99,17 @@ export class DownloadGateway {
   /** Issue a grant. The target generation must be READY + owned. */
   async issueGrant(opts: IssueGrantOptions): Promise<DownloadGrant> {
     if (opts.channel !== 'gateway' && opts.channel !== 'signed_link') throw new DownloadPolicyError('state_conflict');
+    const maxLease = opts.channel === 'signed_link' ? this.policy.signedLinkTtlMs : this.policy.gatewayLeaseMs;
+    const readLimit = opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : Number.MAX_SAFE_INTEGER;
+    const leaseMs = opts.leaseMs ?? maxLease;
+    const maxReads = opts.maxReads ?? readLimit;
+    if (!Number.isSafeInteger(leaseMs) || leaseMs < 1 || leaseMs > maxLease ||
+        !Number.isSafeInteger(maxReads) || maxReads < 1 || maxReads > readLimit) {
+      throw new DownloadPolicyError('out_of_bounds');
+    }
     const object = await this.resolver.requireReady(opts.ownerUid, opts.objectId, opts.generation);
+    if (object.objectId !== opts.objectId || object.generation !== opts.generation) throw new DownloadPolicyError('not_ready');
     if (object.size > this.policy.maxDeliverableBytes) throw new DownloadPolicyError('out_of_bounds');
-    const leaseMs = opts.leaseMs ?? (opts.channel === 'signed_link' ? this.policy.signedLinkTtlMs : this.policy.gatewayLeaseMs);
-    const maxReads = opts.maxReads ?? (opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : Number.MAX_SAFE_INTEGER);
     const grant: DownloadGrant = {
       id: `dl_${Date.now()}_${Math.floor(Math.random() * 1e9)}`,
       ownerUid: opts.ownerUid,
