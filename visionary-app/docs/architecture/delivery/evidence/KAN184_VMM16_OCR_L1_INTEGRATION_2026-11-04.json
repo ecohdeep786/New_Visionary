@@ -1,0 +1,21 @@
+{
+  "jiraKey": "KAN-184",
+  "sourceId": "VMM-16",
+  "title": "Add OCR to fixed VATS L1 and qualify private textbook/photo/handwriting perception",
+  "date": "2026-11-04",
+  "lane": "ML engineering (OCR x L1 integration)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-184-ocr-l1-integration",
+  "branch": "codex/principal-kan-184-ocr-l1-integration",
+  "baseCommit": "722dec1 (KAN-195 VOCR-04 head; composes the full VOCR chain)",
+  "implementationCommit": "882f76047e30de1463e81d9b2fd039130ca42907",
+  "module": "ml/vmm/ocrintegration.py (+ ml/vmm/tests/test_ocrintegration.py) + additive is_usable probe on ml/vmm/ocracceptance.py (no other source changes)",
+  "whatBuilt": [
+    "ADMISSION BY ROUTING: a capture enters the L1 session only after it routes into the learn surface through the REAL harness + provenance router - ownership, review, non-staleness, revocation/expiry and the rollout switch are enforced by that single fail-closed gate",
+    "UNTRUSTED VISUAL ONLY: the reviewed capture may only set the loop's approved_visual_available input; attempt provenance always records untrustedPerception=True, sourceAuthorized=False, masteryFromOcrAlone=False - mastery stays with the loop's backend-assessed check",
+    "FEATURE VISIBILITY: OCR serves only when the rollout matrix is release-ready; disabled rollout gives a visible visual-fallback (the loop still runs) instead of a hidden failure",
+    "USE-TIME VALIDITY: is_usable re-check at explain/attempt time so a capture revoked or expired after admission dies inside the session too"
+  ],
+  "verification": { "vmmTests": "python -m unittest discover -s ml/vmm/tests -> 257/257 pass (252 previous + 5 integration tests over the real chain)" },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "Real-device/hosted perception qualification runs, per-modality hosted latency/cost and the founder-approved private corpus remain founder-gated (KAN-208/209 provide the ingestion contract); the four OCR subtasks + this integration remain unmerged feature-branch work outside dev until the reviewer merges the chain; proceeding under the founder's explicit 2026-11-04 instruction to continue the pending sequence ahead of KAN-195 acceptance - the reviewer still gates Done. Testing is not acceptance."
+}
