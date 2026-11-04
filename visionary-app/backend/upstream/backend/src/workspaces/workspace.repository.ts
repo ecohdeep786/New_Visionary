@@ -92,10 +92,23 @@ export class WorkspaceRepository {
 
       const [clock] = await tx.$queryRaw<Array<{ now: Date }>>`SELECT clock_timestamp() AS now`;
       await tx.consentGrant.update({ where: { id: grantId, uid, revokedAt: null }, data: { revokedAt: clock.now } });
+      // Persist revocation on the affected shares so later consent cannot reactivate them.
+      await tx.shareGrant.updateMany({
+        where: {
+          uid,
+          purpose: grant.purpose,
+          consentVersion: grant.consentVersion,
+          ...(grant.resourceId === null ? {} : { resourceId: grant.resourceId }),
+          revokedAt: null,
+        },
+        data: { revokedAt: clock.now },
+      });
       const result = { id: grantId, revokedAt: clock.now.toISOString() };
       await tx.auditEvent.create({ data: { uid, actorUid: uid, actorType: 'user', operation: 'consent.revoked',
         resourceType: 'consentGrant', resourceId: grantId, outcome: 'SUCCESS' } });
-      await tx.outboxEvent.create({ data: { uid, topic: 'consent.revoked', payload: result } });
+      await tx.outboxEvent.create({ data: { uid, topic: 'consent.revoked', payload: {
+        ...result, purpose: grant.purpose, resourceId: grant.resourceId, consentVersion: grant.consentVersion,
+      } } });
       return result;
     });
   }

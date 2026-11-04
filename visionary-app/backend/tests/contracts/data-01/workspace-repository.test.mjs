@@ -53,8 +53,51 @@ test('actual repository checks exact consent version, expiry and revocation', as
   assert.deepEqual(revocations[0], revocations[1]);
   assert.equal(await db.auditEvent.count({ where: { uid: 'owner', operation: 'consent.revoked', resourceId: grant.id } }), 1);
   const events = await db.outboxEvent.findMany({ where: { uid: 'owner', topic: 'consent.revoked' } });
-  assert.deepEqual(events.map(event => event.payload), [revocations[0]]);
+  assert.deepEqual(events.map(event => event.payload), [{
+    ...revocations[0], purpose: 'synthetic-learning', resourceId: null, consentVersion: 'v1',
+  }]);
   await assert.rejects(repo.assertConsent('owner', 'synthetic-learning', undefined, 'v1'), /revoked/);
+});
+test('consent revocation closes only matching durable shares and publishes their scope', async () => {
+  const uid = 'share-owner';
+  const purpose = 'document_sharing';
+  const consentVersion = 'share-policy-v1';
+  await repo.ensurePerson(uid);
+  const accountGrant = await repo.grantAccountConsent(uid, purpose, consentVersion, 600);
+  const scopedGrant = await db.consentGrant.create({ data: {
+    uid, purpose, version: consentVersion, consentVersion, resourceId: 'shared-one',
+  } });
+  const share = (fields = {}) => db.shareGrant.create({ data: {
+    uid, grantedToUid: 'different', resourceType: 'document', resourceId: 'shared-one',
+    purpose, consentVersion, scope: 'view', ...fields,
+  } });
+  const scopedShare = await share();
+  const otherResource = await share({ resourceId: 'shared-two' });
+  const otherPurpose = await share({ purpose: 'downloads' });
+  const otherPolicy = await share({ consentVersion: 'share-policy-v2' });
+  const otherOwner = await share({ uid: 'different', grantedToUid: 'owner' });
+  const read = async (id) => (await db.shareGrant.findUniqueOrThrow({ where: { id } })).revokedAt?.toISOString();
+
+  const unavailableOutbox = db.$extends({ query: { outboxEvent: {
+    async create() { throw new Error('Synthetic outbox failure'); },
+  } } });
+  await assert.rejects(new WorkspaceRepository(unavailableOutbox).revokeConsent(uid, scopedGrant.id), /Synthetic outbox failure/);
+  await repo.assertConsent(uid, purpose, 'shared-one', consentVersion);
+  assert.equal(await read(scopedShare.id), undefined);
+
+  const scoped = await repo.revokeConsent(uid, scopedGrant.id);
+  assert.equal(await read(scopedShare.id), scoped.revokedAt);
+  assert.equal(await read(otherResource.id), undefined);
+  const account = await repo.revokeConsent(uid, accountGrant.id);
+  assert.equal(await read(otherResource.id), account.revokedAt);
+  assert.equal(await read(scopedShare.id), scoped.revokedAt);
+  for (const unrelated of [otherOwner, otherPurpose, otherPolicy]) assert.equal(await read(unrelated.id), undefined);
+
+  const events = await db.outboxEvent.findMany({ where: { uid, topic: 'consent.revoked' }, orderBy: { cursor: 'asc' } });
+  assert.deepEqual(events.map(event => event.payload), [
+    { ...scoped, purpose, resourceId: 'shared-one', consentVersion },
+    { ...account, purpose, resourceId: null, consentVersion },
+  ]);
 });
 test('account consent grants are durable, bounded and serialized by policy version', async () => {
   await assert.rejects(repo.grantAccountConsent('unknown-subject', 'downloads', 'v1', 60), /unavailable/);
