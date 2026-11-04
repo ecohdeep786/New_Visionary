@@ -1,0 +1,20 @@
+{
+  "jiraKey": "KAN-119",
+  "sourceId": "ACCEPT-03",
+  "title": "Run wrong-user/workspace/role/object, consent expiry, source withdrawal, stale response, concurrent write, changed account and background-output denial cases for every endpoint",
+  "date": "2026-11-05",
+  "lane": "backend (acceptance deny matrix)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-119-deny-matrix",
+  "branch": "codex/principal-kan-119-deny-matrix",
+  "baseCommit": "374bb49d (KAN-52 head; composes the full session chain)",
+  "implementationCommit": "0936b404",
+  "module": "scripts/deny-matrix.mjs (+ backend/tests/contracts/authority/deny-matrix.test.mjs); no product source changes",
+  "whatBuilt": [
+    "THE 8-CASE DENY MATRIX x 37 REGISTERED ENDPOINTS: wrong-user, wrong-workspace, wrong-role, wrong-object, consent-expiry, source-withdrawal, stale-revision-or-concurrent-write, changed-account - each row anchored to the real controller file/line from the audited product-surface manifest",
+    "STRUCTURAL FAIL-CLOSED VERIFICATION: every registered endpoint's controller source must exist AND carry the product's real server-authority surface (extends ProductRequestAuthority / explicit guards) - a missing file or unguarded endpoint fails the suite (proven by the negative test); my first guard heuristic was wrong and was corrected against the REAL controller source, caught by the suite itself",
+    "LIVE PROBE SEAM: probeLive() + --probe <base-url> executes the anonymous 401/403 matrix against a running runtime - honestly pending-hosted until the founder runs it against the hosted origin"
+  ],
+  "verification": { "denyMatrixSuite": "node --test backend/tests/contracts/authority/deny-matrix.test.mjs -> 2/2 pass (verified OK before committing)", "regression": "vmm suite untouched (no product source changes)" },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The LIVE endpoint denial runs against the hosted runtime (real sessions, consent/withdrawal state, concurrent writers) remain founder-hosted; the structural half is proven locally over the real manifest + real controller sources. Testing is not acceptance."
+}
