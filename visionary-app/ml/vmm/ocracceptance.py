@@ -354,6 +354,10 @@ class OcrAcceptanceHarness:
     def routed(self) -> list[dict[str, Any]]:
         return deepcopy(self._routed)
 
+    def is_usable(self, job_id: str) -> bool:
+        """Current validity of an interpretation (revocation/expiry aware)."""
+        return job_id in self._owners and job_id not in self._revoked and job_id not in self._expired
+
     # -- cross-device recovery ---------------------------------------------------
     def recovery_state(self) -> dict[str, Any]:
         """The durable state a second device rebuilds from the event log."""
