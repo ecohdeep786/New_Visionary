@@ -1,0 +1,26 @@
+{
+  "jiraKey": "KAN-195",
+  "sourceId": "VOCR-04",
+  "title": "Accept hosted OCR safety, user correction, accessibility and rollout matrix",
+  "date": "2026-11-04",
+  "lane": "ML engineering (OCR acceptance)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-195-ocr-acceptance",
+  "branch": "codex/principal-kan-195-ocr-acceptance",
+  "baseCommit": "af515455 (KAN-194 VOCR-03 head; composes the VOCR-01 OCR contract + VOCR-03 provenance routing chain)",
+  "implementationCommit": "9c33ceefeb2ceae8543d5032df71f351725bbe3c",
+  "module": "ml/vmm/ocracceptance.py (+ ml/vmm/tests/test_ocracceptance.py); NO source changes to ocr.py/ocrouting.py",
+  "whatBuilt": [
+    "REVIEW/REPAIR: the missing layer between VOCR-01 raw hypotheses (never authoritative) and VOCR-03 routing (refuses unreviewed results) — owner-only review binds every correction to an exact (page, region) of the transcript, injection-scans corrected text like perception text, and yields a reviewed result the real OcrProvenanceRouter accepts; review is idempotent by transcript fingerprint",
+    "CORRECTION INVALIDATION: a new correction supersedes every routed proposal captured at an earlier correction sequence; re-routing the stale transcript is refused (fail closed) and only the repaired transcript routes again",
+    "OWNERSHIP/REVOCATION/EXPIRY: cross-owner review/registration/revocation refused; owner or system revocation and permission expiry invalidate the interpretation and mark every routed payload invalidated immediately",
+    "ROLLOUT MATRIX: per-locale gates with required-vs-expansion modalities (CER/WER thresholds, minimum sample bound) — English is the launch locale and a failing required modality BLOCKS the model release; non-English locales register as disabled expansion cases that stay visibly unavailable and never block launch; disable() is fail-closed for review AND routing; rollback(version) restores the exact prior matrix state deterministically",
+    "REDACTED OBSERVABILITY: append-only event log carries ids/hashes/counts only (probe-proven: no event may carry OCR text or correction text)",
+    "CROSS-DEVICE RECOVERY: harness state reconstructs deterministically from the event log (replay_state)"
+  ],
+  "verification": {
+    "vmmTests": "python -m unittest discover -s ml/vmm/tests -> 252/252 pass (239 previous + 13 OCR-acceptance), including the negative/deny paths (cross-owner, stale revision via the real router, unbound corrections, injected correction text, expired permission, revoked interpretation, unknown-locale/short-sample matrix refusals)"
+  },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The harness is the CONTRACT/acceptance plane running against the real OCR quarantine + provenance router seams; the HOSTED/device run (real mobile/desktop captures, per-device latency/cost, cross-device recovery on real devices) and the per-script hosted report remain founder-gated with real devices and the hosted runtime — this candidate does not claim them. Non-English scripts stay separately gated expansion cases. KAN-184 (VMM-16) integration acceptance stays open behind this task and KAN-195 review; the OCR modules remain unmerged feature-branch work outside dev until the reviewer merges the chain.",
+  "engineSeam": "fake-ocr-1.0 deterministic engine for the harness; real OCR engines remain hosted-gated per VOCR-01"
+}
