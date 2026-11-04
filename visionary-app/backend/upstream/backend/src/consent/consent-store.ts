@@ -5,7 +5,7 @@ import type { ConsentGrant, ShareGrant, ConsentEvent, ConsentState, ConsentPurpo
 export interface ConsentStore {
   createGrant(grant: ConsentGrant): Promise<ConsentGrant>;
   findGrant(id: string): Promise<ConsentGrant | null>;
-  findGrantBySubject(purpose: ConsentPurpose, uid: string, resourceId: string | null): Promise<ConsentGrant | null>;
+  findGrantBySubject(purpose: ConsentPurpose, uid: string, resourceId: string | null, consentVersion: string): Promise<ConsentGrant | null>;
   listGrants(uid: string): Promise<ConsentGrant[]>;
   updateGrant(id: string, update: Partial<Pick<ConsentGrant, 'state' | 'revokedAt' | 'expiresAt'>>): Promise<ConsentGrant | null>;
   /** Persist only if the owner and verified recipient are confirmed in the same operation. */
@@ -41,11 +41,12 @@ export class InMemoryConsentStore implements ConsentStore {
 
   async createGrant(grant: ConsentGrant) { this.grants.set(grant.id, grant); return grant; }
   async findGrant(id: string) { return this.grants.get(id) ?? null; }
-  async findGrantBySubject(purpose, uid, resourceId) {
+  async findGrantBySubject(purpose: ConsentPurpose, uid: string, resourceId: string | null, consentVersion: string) {
+    let latest: ConsentGrant | null = null;
     for (const g of this.grants.values()) {
-      if (g.purpose === purpose && g.uid === uid && (g.resourceId ?? null) === (resourceId ?? null)) return g;
+      if (g.purpose === purpose && g.uid === uid && (g.resourceId ?? null) === resourceId && g.consentVersion === consentVersion) latest = g;
     }
-    return null;
+    return latest;
   }
   async listGrants(uid: string) { return [...this.grants.values()].filter((g) => g.uid === uid); }
   async updateGrant(id, update) {

@@ -39,19 +39,27 @@ test('unknown purpose is rejected; grant is idempotent for active subject', asyn
   const again = await svc.grant('alice', { id: 'c4', uid: 'alice', purpose: 'downloads', consentVersion: '2026.1' });
   assert.equal(again.state, 'active');
   // check() reflects active consent
-  assert.equal(await svc.check('alice', 'downloads'), true);
+  assert.equal(await svc.check('alice', 'downloads', '2026.1'), true);
+  assert.equal(await svc.check('alice', 'downloads'), false);
+  assert.equal(await svc.check('alice', 'downloads', '2026.2'), false);
+  const renewed = await svc.grant('alice', { id: 'c5', uid: 'alice', purpose: 'downloads', consentVersion: '2026.2' });
+  assert.notEqual(renewed.id, again.id);
+  assert.equal(await svc.check('alice', 'downloads', '2026.2'), true);
 });
 
 test('expiry is durable; time alone never revives consent', async () => {
   const { s } = setup();
   const svc = new ConsentService(s, { now: () => new Date('2026-10-25T10:00:00Z') });
   await svc.grant('alice', { id: 'e1', uid: 'alice', purpose: 'downloads', consentVersion: 'v1', expiresInSeconds: 60 });
-  assert.equal(await svc.check('alice', 'downloads'), true);
+  assert.equal(await svc.check('alice', 'downloads', 'v1'), true);
   const late = new ConsentService(s, { now: () => new Date('2026-10-25T10:02:00Z') }); // after 60s
-  assert.equal(await late.check('alice', 'downloads'), false);
+  assert.equal(await late.check('alice', 'downloads', 'v1'), false);
   // Expired grant is not blocked accidentally by revocation but listed as expired.
   const views = await late.list('alice');
   assert.ok(views.some((v) => v.purpose === 'downloads' && v.state === 'expired'));
+  const renewed = await late.grant('alice', { id: 'e2', uid: 'alice', purpose: 'downloads', consentVersion: 'v1' });
+  assert.notEqual(renewed.id, views[0].id);
+  assert.equal(await late.check('alice', 'downloads', 'v1'), true);
 });
 
 test('revocation blocks pending jobs, flushes caches and blocks newly requested downloads', async () => {
@@ -67,7 +75,7 @@ test('revocation blocks pending jobs, flushes caches and blocks newly requested 
   assert.equal(out.flushedCaches, 1);
   assert.equal(out.blockedDownloads, 1);
   // post-revocation access to resources is denied: no downloads served
-  assert.equal(await svc.check('alice', 'downloads'), false);
+  assert.equal(await svc.check('alice', 'downloads', '2026.1'), false);
 });
 
 test('revocation by the data subject only; wrong uid or absent grant rejects', async () => {
@@ -126,10 +134,10 @@ test('share revocation is owner-only; recipient cannot revoke; revoked shares in
 test('checks on pending jobs/downloads deny once consent is missing (missing grants, expired, foreign purpose)', async () => {
   const { s } = setup();
   const svc = new ConsentService(s, { now: FIXED_NOW });
-  assert.equal(await svc.check('nobody', 'downloads'), false); // no grant at all
+  assert.equal(await svc.check('nobody', 'downloads', '2026.1'), false); // no grant at all
   await svc.grant('carol', { id: 'p1', uid: 'carol', purpose: 'learning_sessions', consentVersion: '2026.1' });
-  assert.equal(await svc.check('carol', 'downloads'), false); // different purpose
-  assert.equal(await svc.check('carol', 'telemetry_optional'), false); // unknown grant for this purpose
+  assert.equal(await svc.check('carol', 'downloads', '2026.1'), false); // different purpose
+  assert.equal(await svc.check('carol', 'telemetry_optional', '2026.1'), false); // unknown grant for this purpose
 });
 
 test('revocation lifecycle history is append-only and complete', async () => {

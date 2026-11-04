@@ -61,7 +61,7 @@ export class ConsentService {
     if (!this.knownPurpose(command.purpose)) throw new ConsentPolicyError('unknown_purpose');
     if (!command.consentVersion || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
     const resourceId = command.resourceId ?? null;
-    const existing = await this.store.findGrantBySubject(command.purpose, uid, resourceId);
+    const existing = await this.store.findGrantBySubject(command.purpose, uid, resourceId, command.consentVersion);
     if (existing) {
       const current = this.hydrateActive(existing);
       // Idempotent replay of the same subject/purpose: return current state.
@@ -146,10 +146,10 @@ export class ConsentService {
     return grants.map((g) => this.view(this.hydrateActive(g)));
   }
 
-  /** Still-active consent check used by sensitive operations (jobs, downloads). */
-  async check(uid: string, purpose: ConsentPurpose, resourceId?: string): Promise<boolean> {
-    if (!this.knownPurpose(purpose)) return false;
-    const grant = await this.store.findGrantBySubject(purpose, uid, resourceId ?? null);
+  /** The caller supplies the current server policy version for the operation. */
+  async check(uid: string, purpose: ConsentPurpose, consentVersion: string, resourceId?: string): Promise<boolean> {
+    if (!this.knownPurpose(purpose) || typeof consentVersion !== 'string' || !consentVersion) return false;
+    const grant = await this.store.findGrantBySubject(purpose, uid, resourceId ?? null, consentVersion);
     if (grant) {
       const current = this.hydrateActive(grant);
       if (current.state === 'active') return true;
