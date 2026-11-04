@@ -1,0 +1,21 @@
+{
+  "jiraKey": "KAN-122",
+  "sourceId": "ACCEPT-06",
+  "title": "Verify production builds cannot activate fictional data, fixture routes, emulator bypasses or legacy identity/model startup",
+  "date": "2026-11-05",
+  "lane": "backend (build purity acceptance)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-122-build-purity",
+  "branch": "codex/principal-kan-122-build-purity",
+  "baseCommit": "e64c5926 (KAN-119 head; composes the full session chain)",
+  "implementationCommit": "189b7b5f",
+  "module": "scripts/build-purity.mjs (+ tests) AND real upstream patches: frontend/src/api/appClient.js (enterDemoDev statically DEV-only) + frontend/src/services/workspaceService.ts (scenarioPersonas/demoStages/seedDemo DEV-gated, vite/client types)",
+  "whatBuilt": [
+    "REAL LEAKS FOUND: the enterDemo body + demoFixtures dynamic import shipped statically live in production bundles (fictional personas in Children/Plans chunks) and workspaceService exported live demo seeding",
+    "FIXED (minimal upstream patches): the entire demo implementation is now statically DEV-only - the production build provably eliminates it (dist scanned clean)",
+    "BACKEND EMULATOR SURFACE verified exactly the two fail-closed services (live refuses emulator; emulator requires loopback and prohibits live fallback) - no ungated readers",
+    "PLACEHOLDER NOTE recorded: inert @visionary.test input placeholders in Children/FamilyBilling are UI copy, not activated data - flagged for product decision, not a purity failure"
+  ],
+  "verification": { "suite": "node --test backend/tests/contracts/authority/build-purity.test.mjs -> 3/3 (incl. REAL npm build + dist scan + fail-closed negative)", "typecheck": "npm run typecheck -> exit 0", "verifiedBeforeCommit": true },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The hosted production-build verification (the served bundle at the origin matching this dist) and CI wiring remain founder-hosted; legacy identity/model startup checks are covered by the emulator fail-closed contract + backend battery. Testing is not acceptance."
+}
