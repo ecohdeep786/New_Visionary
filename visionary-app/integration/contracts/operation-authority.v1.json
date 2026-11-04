@@ -1504,7 +1504,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/invitation-store.ts",
-      "sha256Lf": "5281b22e31e32db1ce568b8365498a39c7416a5aabbcdcacc0e52866a3496a6c"
+      "sha256Lf": "81d011f384d0286431af78b59048c356a66557a1d83f7c80a9a6fa0fd2514548"
     },
     {
       "file": "backend/upstream/backend/src/invitations/institution-approval.ts",

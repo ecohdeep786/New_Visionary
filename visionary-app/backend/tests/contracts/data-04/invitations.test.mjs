@@ -74,6 +74,9 @@ test('issuer recovers a lost response without recovering the old secret or revok
   await assert.rejects(reviewerStore.acceptedMembership(x.user, y.ws, replacement.invitationId), code('not_found'));
   await env.db.workspaceMembership.update({ where: { uid_workspaceId: { uid: x.user, workspaceId: x.ws } }, data: { role: 'GUEST' } });
   assert.equal((await reviewerStore.acceptedMembership(x.user, x.ws, replacement.invitationId)).role, 'GUEST');
+  const replay = await service.accept(x.user, replacement.token, 'synthetic@example.invalid');
+  assert.equal(replay.replay, true);
+  assert.equal(replay.membershipRole, 'GUEST');
   await reviewerStore.revokeInstitution(reviewerUid, x.ws, x.approval.id);
   await assert.rejects(reviewerStore.acceptedMembership(x.user, x.ws, replacement.invitationId), code('unauthorized'));
 });

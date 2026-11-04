@@ -174,15 +174,13 @@ export class PostgresInvitationStore implements InvitationStore {
       if (i.status === 'EXPIRED') throw new InvitationPolicyError('expired');
       if (!['MEMBER', 'ADMIN'].includes(i.role)) throw new InvitationPolicyError('unauthorized');
       if (await tx.deletionTombstone.findFirst({ where: { uid, OR: [{ resourceType: 'workspace', resourceId: i.workspaceId }, { resourceType: 'person' }] } })) throw new InvitationPolicyError('unauthorized');
-      const existing = await tx.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: i.workspaceId } } });
       if (!i.institutionApprovalId) throw new InvitationPolicyError('unauthorized');
       await this.lockApproval(tx, workspace, i.institutionApprovalId);
       if (i.status === 'ACCEPTED') {
         if (i.acceptedByUid !== uid) throw new InvitationPolicyError('already_accepted');
-        if (!existing) throw new InvitationPolicyError('unauthorized');
         await this.assertAcceptanceReceipt(tx, uid, i);
-        await this.member(tx, i.workspaceId, uid, 0);
-        return this.view(i, true, existing.role);
+        const membershipRole = await this.member(tx, i.workspaceId, uid, 0);
+        return this.view(i, true, membershipRole);
       }
       if (i.status !== 'PENDING') throw new InvitationPolicyError('conflict');
       if (workspace.uid === uid) throw new InvitationPolicyError('unauthorized');
@@ -192,6 +190,7 @@ export class PostgresInvitationStore implements InvitationStore {
       await this.member(tx, i.workspaceId, issued[0].actorUid, 2);
       const acceptedAt = await this.unexpired(tx, i.expiresAt, at);
       // Invites create membership, never perform a role change or owner transfer.
+      const existing = await tx.workspaceMembership.findUnique({ where: { uid_workspaceId: { uid, workspaceId: i.workspaceId } } });
       const membershipRole = existing ? await this.member(tx, i.workspaceId, uid, 0) : i.role;
       if (!existing) await tx.workspaceMembership.create({ data: { uid, workspaceId: i.workspaceId, role: i.role, source: 'invitation', sourceVersion: 'v1' } });
       const saved = await tx.invitation.update({ where: { id: i.id }, data: { status: 'ACCEPTED', acceptedAt, acceptedByUid: uid } });
