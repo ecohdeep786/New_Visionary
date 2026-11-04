@@ -1,0 +1,22 @@
+{
+  "jiraKey": "KAN-52",
+  "sourceId": "PLAT-08",
+  "title": "Enable and verify backups/PITR/object protection, restore identities and environment runbooks before persistent real-user data is admitted",
+  "date": "2026-11-05",
+  "lane": "platform (backup/restore verification)",
+  "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/principal-kan-52-backup-drills",
+  "branch": "codex/principal-kan-52-backup-drills",
+  "baseCommit": "a772a035 (KAN-204 head; the composed chain carries the whole session's verified work; infrastructure/ file ownership is separate from the ml lane)",
+  "implementationCommit": "62d72b17",
+  "module": "infrastructure/drills/backup_restore_drill.py (+ infrastructure/drills/tests/test_backup_restore.py); no other source changes",
+  "whatBuilt": [
+    "SYNTHETIC-FIRST DISCIPLINE: real-user records are contract-refused from the drill (persistent real-user data is not admitted before these drills pass)",
+    "DIGEST-STAMPED SNAPSHOTS + BYTE-IDENTICAL RESTORE: restore refuses on digest divergence AND on any lost/reassigned owner identity",
+    "PITR: append-only snapshot log restores any recorded instant; later mutations discarded",
+    "OBJECT PROTECTION: retention lock - immutable backups refuse deletion before the 30-day horizon",
+    "RUNBOOK: the drill steps ARE the restore runbook, executable and asserted"
+  ],
+  "verification": { "drillSuite": "python -m unittest discover -s infrastructure/drills/tests -> 4/4 pass", "regression": "full vmm suite 296/296 still green on this tree" },
+  "status": "Testing (submit candidate; D-095 separate reviewer + exact reviewed SHA required before Done)",
+  "gatesNotClosed": "The HOSTED enablement (real Cloud SQL backups/PITR, GCS object protection, identity restore on the production project) remains founder-gated - this candidate is the verification contract and runbook those enablements execute against. Testing is not acceptance."
+}
