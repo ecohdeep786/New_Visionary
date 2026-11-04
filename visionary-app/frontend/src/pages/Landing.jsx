@@ -455,7 +455,7 @@ function LandingSuiteSection() {
             the journeys line-up above, not a second hero. */}
         <h2
           data-type="section"
-          className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
+          className="text-balance font-semibold tracking-[-0.009em] leading-[1.06]"
           style={{ color: BRAND.ink, maxWidth: "20ch" }}
         >
           Explore further.

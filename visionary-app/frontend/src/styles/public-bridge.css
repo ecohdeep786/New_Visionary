@@ -128,6 +128,15 @@ main > section[data-section="07-language"] + section[data-section="06-journey"] 
   border-top-color: transparent !important;
 }
 
+/* The about hero's fanned cards droop past the row into the chapter breath —
+   the deepest visible card already spends ~180px of it inside the hero. The
+   full chapter rhythm stacked on top pushed the mission eyebrow past
+   Apple's measured 192–288px adjacent air, so mission meets the fan at the
+   adjacent band instead (page-scoped; the shared chapter law stands). */
+.page-about main > section[data-section="02-mission"] {
+  padding-block-start: clamp(4rem, 6.5vw, 6rem) !important;
+}
+
 /* Partners — the enquiry story rides one white ground: the carousel, the
    access grid, the journey and the FAQ join without a seam (Apple's
    no-seam law). The grey bands (includes, statement, closing CTA) change

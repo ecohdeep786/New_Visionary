@@ -37,9 +37,10 @@ function ArrowLink({ to, children, className = "" }) {
   );
 }
 
-/* ── Main hero — the communities.google layout: a centered tag, statement,
-      and CTAs stacked with Google's balanced beats (tight heading-to-sub,
-      wide breath before the cards), then the static fanned card strip. ── */
+/* ── Main hero — the communities.google layout, voiced for an about page:
+      a centered tag, statement, and one quiet wayfinding link (no
+      conversion pair — this page explains, the fan carries the nav), then
+      the static fanned card strip with Google's balanced beats. ── */
 export default function AboutUsHero() {
   return (
     <section
@@ -47,15 +48,17 @@ export default function AboutUsHero() {
       className="relative overflow-hidden bg-white"
       style={{
         fontFamily: fontStack,
-        paddingTop: "clamp(7rem, 10vw, 9.5rem)",
-        paddingBottom: "clamp(6rem, 8vw, 8rem)",
+        /* Top air: the communities hero carries ~177px of nav-to-heading
+           breath at 1440 — the grand opener an about page deserves. */
+        paddingTop: "clamp(7.5rem, 12.5vw, 12rem)",
+        paddingBottom: "clamp(4.5rem, 6vw, 6rem)",
       }}
     >
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
         <p data-type="label" className="text-center text-[#6e6e73]">About Visionary</p>
         {/* Google communities hero rhythm — big air above the unit, one tight
-            beat from heading to subhead, one moderate beat to the CTAs, then
-            the wide breath before the card field. */}
+            beat from heading to subhead, one moderate beat to the quiet
+            link, then the wide breath before the card field. */}
         <div className="mx-auto mt-6 max-w-[1120px] text-center">
           <h1 className="mx-auto max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
             Understanding. <span className="accent-gradient">Built in.</span>
@@ -63,13 +66,7 @@ export default function AboutUsHero() {
           <p className="mx-auto mt-4 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
             A learning product for people who want to understand, practise, and apply what they learn.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              to="/how-it-works"
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4"
-            >
-              See how it works
-            </Link>
+          <div className="mt-6 flex justify-center">
             <ArrowLink to="/research">Explore our approach</ArrowLink>
           </div>
         </div>

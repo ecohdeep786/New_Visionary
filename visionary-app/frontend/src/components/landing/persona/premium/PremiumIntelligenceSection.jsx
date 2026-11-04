@@ -288,7 +288,8 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
         </ScrollReveal>
         {/* the mark — the Visionary bot stands bare on the dark field under
             the CTA (founder directive: remove the rectangle, use the
-            image); no frame, no stage box. */}
+            image); no frame, no stage box. Width is device-tiered — the
+            phone floor no longer pins a 320px bot onto a 390px screen. */}
         <div aria-hidden="true" className="relative mx-auto mt-16 w-full px-6">
           <picture>
             <source type="image/avif" srcSet={heroBotAvif} />
@@ -298,7 +299,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
               loading="lazy"
               decoding="async"
               draggable="false"
-              className="pointer-events-none mx-auto h-auto w-[clamp(320px,52vw,500px)] select-none"
+              className="pointer-events-none mx-auto h-auto w-[240px] select-none sm:w-[300px] md:w-[380px] lg:w-[460px] xl:w-[500px]"
             />
           </picture>
         </div>
