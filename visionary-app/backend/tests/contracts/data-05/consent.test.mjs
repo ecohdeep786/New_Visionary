@@ -88,6 +88,9 @@ test('share targets a verified recipient UID, not an email or guessed id', async
   for (const override of [{ resourceId: 'foreign-doc' }, { resourceType: 'summary' }, { grantedToUid: 'guessed-uid' }]) {
     await assert.rejects(svc.share('alice', { ...command, ...override }), { code: 'unauthorized' });
   }
+  const orphan = { ...command, uid: undefined, resourceId: 'unowned-doc' };
+  await assert.rejects(svc.share(undefined, orphan), { code: 'unauthorized' });
+  assert.equal(await s.createAuthorizedShare(orphan), null);
   assert.equal(s.shares.size, 0);
   await assert.rejects(svc.share('alice', { id: 's1', uid: 'alice', resourceType: 'document', resourceId: 'doc-1',
     grantedToUid: 'bob@x.org', purpose: 'document_sharing', scope: 'share to bob', consentVersion: '2026.1' }));

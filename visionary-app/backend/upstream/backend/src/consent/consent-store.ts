@@ -1,6 +1,5 @@
 // DATA-05 — consent/share store contract + in-memory synthetic implementation.
-// The Cloud SQL adapter implements the same contract against the DATA-01
-// consent_grants / share_grants tables, so logic runs unchanged on GCP.
+// A Cloud SQL adapter must enforce this contract before product activation.
 import type { ConsentGrant, ShareGrant, ConsentEvent, ConsentState, ConsentPurpose } from './consent-types';
 
 export interface ConsentStore {
@@ -58,7 +57,7 @@ export class InMemoryConsentStore implements ConsentStore {
   }
   async createAuthorizedShare(share: ShareGrant) {
     const owner = this.resourceOwners.get(share.resourceType)?.get(share.resourceId);
-    if (owner !== share.uid || !this.verifiedRecipients.has(share.grantedToUid)) return null;
+    if (!owner || owner !== share.uid || !this.verifiedRecipients.has(share.grantedToUid)) return null;
     this.shares.set(share.id, share);
     return share;
   }

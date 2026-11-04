@@ -104,6 +104,7 @@ export class ConsentService {
 
   /** Share a resource to a verified recipient uid under a purpose + version. */
   async share(ownerUid: string, command: ConsentShareCommand): Promise<ShareGrant> {
+    if (typeof ownerUid !== 'string' || !ownerUid.trim()) throw new ConsentPolicyError('unauthorized');
     if (command.uid !== ownerUid) throw new ConsentPolicyError('wrong_subject');
     if (!this.knownPurpose(command.purpose)) throw new ConsentPolicyError('unknown_purpose');
     if (!command.consentVersion || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
