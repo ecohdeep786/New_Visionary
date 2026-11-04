@@ -105,6 +105,7 @@ export class WorkspaceRepository {
       const prior = await tx.consentGrant.findFirst({ where: scope });
       const [clock] = await tx.$queryRaw<Array<{ now: Date }>>`SELECT clock_timestamp() AS now`;
       if (prior) {
+        if (prior.grantedAt > clock.now) throw new ConflictException('This consent grant is not yet effective.');
         if (prior.revokedAt || (prior.expiresAt && prior.expiresAt <= clock.now)) {
           throw new ConflictException('This policy version already has a closed consent grant.');
         }

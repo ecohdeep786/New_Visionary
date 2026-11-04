@@ -59,6 +59,11 @@ test('actual repository checks exact consent version, expiry and revocation', as
 test('account consent grants are durable, bounded and serialized by policy version', async () => {
   await assert.rejects(repo.grantAccountConsent('unknown-subject', 'downloads', 'v1', 60), /unavailable/);
   await assert.rejects(repo.grantAccountConsent('owner', 'downloads', 'v1', 0), /bounded expiry/);
+  await db.consentGrant.create({ data: {
+    uid: 'owner', purpose: 'model_context', version: 'v1', consentVersion: 'v1', grantedAt: new Date(Date.now() + 60_000),
+  } });
+  await assert.rejects(repo.grantAccountConsent('owner', 'model_context', 'v1', 60), /not yet effective/);
+  await assert.rejects(repo.assertConsent('owner', 'model_context', undefined, 'v1'), /unavailable/);
   const [first, retry] = await Promise.all([
     repo.grantAccountConsent('owner', 'downloads', 'v1', 60),
     repo.grantAccountConsent('owner', 'downloads', 'v1', 60),
