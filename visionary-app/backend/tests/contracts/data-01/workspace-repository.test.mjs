@@ -44,9 +44,16 @@ test('actual repository denies wrong ownership, unknown roles and forged OWNER m
 test('actual repository checks exact consent version, expiry and revocation', async () => {
   const grant = await db.consentGrant.create({ data: { uid: 'owner', purpose: 'synthetic-learning', version: 'policy-1', consentVersion: 'v1' } });
   await repo.assertConsent('owner', 'synthetic-learning', undefined, 'v1');
+  await assert.rejects(repo.assertConsent(undefined, 'synthetic-learning', undefined, 'v1'), /subject/);
   await assert.rejects(repo.assertConsent('owner', 'synthetic-learning', undefined, 'v2'), /consent/);
   await assert.rejects(repo.assertConsent('owner', 'synthetic-learning'), /policy version/);
-  await db.consentGrant.update({ where: { id: grant.id }, data: { revokedAt: new Date() } });
+  await assert.rejects(repo.revokeConsent('different', grant.id), /unavailable/);
+  await repo.assertConsent('owner', 'synthetic-learning', undefined, 'v1');
+  const revocations = await Promise.all([repo.revokeConsent('owner', grant.id), repo.revokeConsent('owner', grant.id)]);
+  assert.deepEqual(revocations[0], revocations[1]);
+  assert.equal(await db.auditEvent.count({ where: { uid: 'owner', operation: 'consent.revoked', resourceId: grant.id } }), 1);
+  const events = await db.outboxEvent.findMany({ where: { uid: 'owner', topic: 'consent.revoked' } });
+  assert.deepEqual(events.map(event => event.payload), [revocations[0]]);
   await assert.rejects(repo.assertConsent('owner', 'synthetic-learning', undefined, 'v1'), /revoked/);
 });
 async function invite(token, extra = {}) {

@@ -56,12 +56,34 @@ export class WorkspaceRepository {
   }
 
   async assertConsent(uid: string, purpose: string, resourceId?: string, consentVersion?: string): Promise<void> {
+    if (typeof uid !== 'string' || !uid.trim()) throw new ForbiddenException('A consent subject is required.');
     if (!purpose || !consentVersion) throw new ForbiddenException('An explicit purpose and policy version are required.');
     const grant = await this.prisma.consentGrant.findFirst({ where: {
       uid, purpose, resourceId: resourceId ?? null, consentVersion, revokedAt: null,
       OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }],
     } });
     if (!grant) throw new ForbiddenException('Required consent is unavailable or revoked.');
+  }
+
+  async revokeConsent(uid: string, grantId: string): Promise<{ id: string; revokedAt: string }> {
+    if (typeof uid !== 'string' || !uid.trim() || typeof grantId !== 'string' || !grantId.trim()) {
+      throw new BadRequestException('An account and consent grant are required.');
+    }
+    return this.prisma.$transaction(async tx => {
+      const accounts = await tx.$queryRaw<Array<{ uid: string }>>`SELECT "uid" FROM "persons" WHERE "uid" = ${uid} FOR UPDATE`;
+      if (!accounts.length) throw new ForbiddenException('Consent grant is unavailable.');
+      const grant = await tx.consentGrant.findFirst({ where: { id: grantId, uid } });
+      if (!grant) throw new ForbiddenException('Consent grant is unavailable.');
+      if (grant.revokedAt) return { id: grantId, revokedAt: grant.revokedAt.toISOString() };
+
+      const [clock] = await tx.$queryRaw<Array<{ now: Date }>>`SELECT clock_timestamp() AS now`;
+      await tx.consentGrant.update({ where: { id: grantId, uid, revokedAt: null }, data: { revokedAt: clock.now } });
+      const result = { id: grantId, revokedAt: clock.now.toISOString() };
+      await tx.auditEvent.create({ data: { uid, actorUid: uid, actorType: 'user', operation: 'consent.revoked',
+        resourceType: 'consentGrant', resourceId: grantId, outcome: 'SUCCESS' } });
+      await tx.outboxEvent.create({ data: { uid, topic: 'consent.revoked', payload: result } });
+      return result;
+    });
   }
 
   private checkReceipt(existing: { uid: string; kind: string; payloadDigest: string }, uid: string, kind: string, hash: string): void {
