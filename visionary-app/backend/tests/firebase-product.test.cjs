@@ -510,6 +510,7 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
   let providerCalls = 0;
   f.auth.getUser = async uid => { providerCalls++; return { uid, email: 'verified-now@example.test', emailVerified: true }; };
   const accepted = [];
+  const recovery = [];
   let enabled = false, adult = true;
   let environment = 'development', databaseMode = 'synthetic', firebaseKind = 'emulator';
   const config = { get: key => ({
@@ -522,6 +523,13 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
   const product = new ProductInvitationService(f.service, config);
   product.runtime = {
     reviewers: new Set(),
+    store: {
+      pending: async (...args) => { recovery.push(args); return { invitationId: 'fixture-invitation' }; },
+      revoke: async (...args) => {
+        recovery.push(args);
+        return { id: args[1], status: 'REVOKED', revokedAt: '2026-11-04T00:00:00.000Z', email: 'private@example.test' };
+      },
+    },
     privacy: { admission: async () => ({ allowed: adult, state: adult ? 'adult_current_boundary' : 'review_required' }) },
     invitations: { accept: async (...args) => { accepted.push(args); return { workspaceId: 'fixture-workspace', membershipRole: 'MEMBER', replay: false }; } },
   };
@@ -536,13 +544,13 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
   await app.listen(0, '127.0.0.1');
   try {
     const csrf = 'b'.repeat(64);
-    const url = (await app.getUrl()) + '/account/invitations/accept';
+    const url = (await app.getUrl()) + '/account/invitations/';
     const headers = {
       Origin: 'http://localhost:5173', 'X-CSRF-Token': csrf, 'X-Visionary-Account': f.identity.uid,
       Cookie: 'visionary-session=' + session.cookie + '; visionary-device=' + session.device + '; visionary-csrf=' + csrf,
       'Content-Type': 'application/json',
     };
-    const call = (body, extra) => fetch(url, { method: 'POST', headers: { ...headers, ...extra }, body: JSON.stringify(body) });
+    const call = (body, extra, route = 'accept') => fetch(url + route, { method: 'POST', headers: { ...headers, ...extra }, body: JSON.stringify(body) });
     const token = 'A'.repeat(43);
     assert.equal((await call({ token }, { 'X-CSRF-Token': 'wrong' })).status, 403);
     assert.equal((await call({ token }, { 'X-Visionary-Account': 'other' })).status, 409);
@@ -574,6 +582,19 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
     assert.equal(response.headers.get('cache-control'), 'no-store');
     assert.deepEqual(await response.json(), { workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false });
     assert.deepEqual(accepted, [[f.identity.uid, token, 'verified-now@example.test']]);
+    const lookup = { workspaceId: 'fixture-workspace', email: ' Fixture@Example.test ' };
+    assert.equal((await call({ ...lookup, uid: 'other' }, {}, 'pending')).status, 400);
+    assert.equal((await call(lookup, { 'X-CSRF-Token': 'wrong' }, 'pending')).status, 403);
+    const pending = await call(lookup, {}, 'pending');
+    assert.equal(pending.status, 201);
+    assert.equal(pending.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await pending.json(), { invitationId: 'fixture-invitation' });
+    assert.deepEqual(recovery[0], [f.identity.uid, 'fixture-workspace', 'fixture@example.test']);
+    const revoked = await call({ workspaceId: 'fixture-workspace', invitationId: 'fixture-invitation' }, {}, 'revoke');
+    assert.equal(revoked.status, 201);
+    assert.deepEqual(await revoked.json(), { invitationId: 'fixture-invitation', status: 'REVOKED', revokedAt: '2026-11-04T00:00:00.000Z' });
+    assert.equal(recovery[1][0], f.identity.uid);
+    assert.equal(recovery[1][3], 'fixture-workspace');
     f.revoke();
     assert.equal((await call({ token })).status, 401);
     assert.equal(accepted.length, 1);

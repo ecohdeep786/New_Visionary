@@ -6,7 +6,7 @@ import { assertSyntheticUrl, quoteIdentifier } from '../data/migration-identitie
 import { FirestorePrivacyStore } from '../privacycore/firestore-privacy-store';
 import { PrivacyCoreService } from '../privacycore/privacy-core-service';
 import { PostgresInvitationStore } from './invitation-store';
-import { InvitationPolicyError } from './invitation-types';
+import { assertId, invitationEmail, InvitationPolicyError } from './invitation-types';
 import { assertInstitutionReviewer } from './institution-approval';
 import { InvitationService } from './invitation.service';
 
@@ -74,6 +74,24 @@ export class ProductInvitationService implements OnModuleDestroy {
     const { verifiedEmail } = await this.accounts.currentVerifiedInvitationRecipient(uid);
     const result = await invitations.accept(uid, token, verifiedEmail);
     return { workspaceId: result.workspaceId, role: result.membershipRole, replay: result.replay };
+  }
+
+  async pending(uid: string, workspaceId: unknown, email: unknown) {
+    assertId(workspaceId);
+    const recipient = invitationEmail(email);
+    const { store, privacy } = this.settings();
+    await this.accounts.rateLimit('institution-invite-pending', uid, 10);
+    await this.admission(privacy, uid);
+    return store.pending(uid, workspaceId, recipient);
+  }
+
+  async revokeInvitation(uid: string, workspaceId: unknown, invitationId: unknown) {
+    assertId(workspaceId);
+    assertId(invitationId);
+    const { store } = this.settings();
+    await this.accounts.rateLimit('institution-invite-revoke', uid, 10);
+    const result = await store.revoke(uid, invitationId, new Date(), workspaceId);
+    return { invitationId: result.id, status: result.status, revokedAt: result.revokedAt };
   }
 
   async approve(reviewerUid: string, input: { workspaceId: string; administratorUid: string; evidenceRef: string; expiresAt: Date }) {

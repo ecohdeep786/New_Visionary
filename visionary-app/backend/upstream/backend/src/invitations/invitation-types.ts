@@ -12,6 +12,12 @@ export function assertUid(uid: unknown): asserts uid is string {
 export function assertId(id: unknown): asserts id is string {
   if (typeof id !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(id)) throw new InvitationPolicyError('invalid_command');
 }
+export function invitationEmail(email: unknown): string {
+  if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    throw new InvitationPolicyError('invalid_command');
+  }
+  return email.trim().toLowerCase();
+}
 export interface InvitationView {
   id: string; workspaceId: string; email: string; role: WorkspaceRole;
   status: string; issuedAt: string; expiresAt: string; acceptedBy: string | null;

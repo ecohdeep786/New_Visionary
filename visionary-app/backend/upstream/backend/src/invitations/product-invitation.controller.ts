@@ -54,6 +54,24 @@ export class ProductInvitationController extends ProductRequestAuthority {
     return this.command(() => this.invitations.accept(uid, token));
   }
 
+  @Post('pending')
+  @Header('Cache-Control', 'no-store')
+  async pending(@Req() req: Request, @Body() input: unknown) {
+    this.csrf(req);
+    const { uid } = await this.commandAccount(req, false);
+    const { workspaceId, email } = this.body(input, ['workspaceId', 'email']);
+    return this.command(() => this.invitations.pending(uid, workspaceId, email));
+  }
+
+  @Post('revoke')
+  @Header('Cache-Control', 'no-store')
+  async revokeInvitation(@Req() req: Request, @Body() input: unknown) {
+    this.csrf(req);
+    const { uid } = await this.commandAccount(req, false);
+    const { workspaceId, invitationId } = this.body(input, ['workspaceId', 'invitationId']);
+    return this.command(() => this.invitations.revokeInvitation(uid, workspaceId, invitationId));
+  }
+
   @Post('institution/approve')
   @Header('Cache-Control', 'no-store')
   async approve(@Req() req: Request, @Body() input: unknown) {

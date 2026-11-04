@@ -262,10 +262,10 @@
     },
     "institutionInvitations": {
       "actor": "Current session, account and CSRF; verified provider email on acceptance; bounded UID rate admission",
-      "workspace": "Canonical PostgreSQL workspace and active issuer authority; configured independent reviewers only",
-      "object": "Opt-in SQL transaction binds invitation to its locked issuance approval",
+      "workspace": "Canonical PostgreSQL workspace, admin-only recovery and configured independent reviewers",
+      "object": "Local emulator and synthetic SQL only; transaction binds invitation to its locked issuance approval",
       "source": "No source publication or private learning access",
-      "consent": "Current adult privacy admission before issuing, accepting or approving; hosted activation separately gated",
+      "consent": "Current adult privacy admission before issuing, looking up, accepting or approving; recovery returns no recipient or token",
       "stores": [
         "workspaceProvision"
       ],
@@ -524,6 +524,20 @@
     },
     {
       "route": "POST /api/account/invitations/issue",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/pending",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/revoke",
       "profile": "institutionInvitations",
       "controller": "ProductInvitationController",
       "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
@@ -1408,7 +1422,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
-      "sha256Lf": "0c53d5a08871dfcbdc232f071b45f1538fd3125b392732c7b1385c36f7bb51dd"
+      "sha256Lf": "4997c55509f9ca5153a0385a9e3049d3098d963ab4da74ca8a55276c2af3be87"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
@@ -1468,15 +1482,15 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
-      "sha256Lf": "e083d11e0d7dd67746a0845aab6db8c3511f514d4ce1026039d7f74e476df5bb"
+      "sha256Lf": "6a695ccb02deb65e157783adabbd30c660dc5dcfbc1395a0a7e4c47b964619fc"
     },
     {
       "file": "backend/upstream/backend/src/invitations/invitation.service.ts",
-      "sha256Lf": "072a9c1597c71a06b1d3dfd8b05246a733791231b7961cbfcb872649abeecf43"
+      "sha256Lf": "37d724ff1c74eb82b78468adec31e39d77eb11a990c5cec133aef8805582f689"
     },
     {
       "file": "backend/upstream/backend/src/invitations/invitation-store.ts",
-      "sha256Lf": "c3caf14034260b6079c87f60b6b81426d453aa948cd14118a8ccc0003a98393e"
+      "sha256Lf": "59f586f7dfcf31db34c109cac932eb520eab6dda789fcc311829f097be9b3364"
     },
     {
       "file": "backend/upstream/backend/src/invitations/institution-approval.ts",
@@ -1524,7 +1538,7 @@
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "5e2713a990da385c540e7c1756b40fdf98c44efff2c3f518a4ec7ec28ac8b383"
+      "sha256Lf": "b22bb7cce5d4cae01e0221b18a0fe14e5de54c3bd24582e3157c7e9c32b358a5"
     },
     {
       "file": "integration/contracts/v1/openapi.json",

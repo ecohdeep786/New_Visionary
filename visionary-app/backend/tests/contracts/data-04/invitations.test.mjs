@@ -48,6 +48,23 @@ test('actual SQL issue stores only token hash and commits lifecycle/receipt/outb
   assert.equal(JSON.stringify(visible).includes(row.tokenHash), false);
   assert.equal(await env.db.outboxEvent.count({ where: { workspaceId: x.ws } }), 1);
 });
+test('issuer recovers a lost response without recovering the old secret or revoking a replacement', async () => {
+  const x = await setup(), y = await setup(), first = await invite(x);
+  const pending = await reviewerStore.pending(x.owner, x.ws, 'SYNTHETIC@example.invalid');
+  assert.deepEqual(pending, { invitationId: first.invitationId });
+  await env.db.workspaceMembership.create({ data: { uid: x.other, workspaceId: x.ws, role: 'MEMBER', source: 'direct' } });
+  await assert.rejects(reviewerStore.pending(x.other, x.ws, 'synthetic@example.invalid'), code('unauthorized'));
+  await assert.rejects(reviewerStore.revoke(x.other, pending.invitationId, at, x.ws), code('unauthorized'));
+  await assert.rejects(reviewerStore.revoke(y.owner, pending.invitationId, at, y.ws), code('not_found'));
+  await reviewerStore.revoke(x.owner, pending.invitationId, at, x.ws);
+  assert.deepEqual(await reviewerStore.pending(x.owner, x.ws, 'synthetic@example.invalid'), { invitationId: null });
+  const replacement = await invite(x);
+  assert.equal((await reviewerStore.revoke(x.owner, pending.invitationId, at, x.ws)).replay, true);
+  assert.equal(await events(first.invitationId, 'revoked'), 1);
+  await assert.rejects(service.accept(x.user, first.token, 'synthetic@example.invalid'), code('revoked'));
+  await service.accept(x.user, replacement.token, 'synthetic@example.invalid');
+  assert.equal((await membership(x)).role, 'MEMBER');
+});
 test('ordinary members cannot read the invitation list or audit history', async () => {
   const x = await setup(), invitation = await invite(x);
   await service.accept(x.user, invitation.token, 'synthetic@example.invalid');

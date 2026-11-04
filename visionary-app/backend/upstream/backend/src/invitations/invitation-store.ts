@@ -202,19 +202,37 @@ export class PostgresInvitationStore implements InvitationStore {
       return result;
     });
   }
-  revoke(uid: string, id: string, at: Date) {
+  revoke(uid: string, id: string, at: Date, workspaceId?: string) {
     return this.transaction(async tx => {
       await this.anchor(tx, uid);
-      const found = await tx.invitation.findUnique({ where: { id } });
+      if (workspaceId !== undefined) {
+        await this.workspace(tx, workspaceId);
+        await this.member(tx, workspaceId, uid, 2);
+      }
+      const found = await tx.invitation.findFirst({ where: { id, workspaceId } });
       if (!found) throw new InvitationPolicyError('not_found');
-      await this.workspace(tx, found.workspaceId); await this.member(tx, found.workspaceId, uid, 2);
+      if (workspaceId === undefined) {
+        await this.workspace(tx, found.workspaceId);
+        await this.member(tx, found.workspaceId, uid, 2);
+      }
       await tx.$queryRawUnsafe('SELECT "id" FROM "invitations" WHERE "id"=$1 FOR UPDATE', id);
       const i = await tx.invitation.findUniqueOrThrow({ where: { id } });
       if (i.workspaceId !== found.workspaceId) throw new InvitationPolicyError('conflict');
       if (i.status === 'REVOKED') return this.view(i, true);
-      if (i.status !== 'PENDING') throw new InvitationPolicyError('already_accepted');
-      const saved = await tx.invitation.update({ where: { id }, data: { status: 'REVOKED', revokedAt: at } });
+      if (i.status !== 'PENDING' && i.status !== 'ISSUED') throw new InvitationPolicyError('already_accepted');
+      const revokedAt = workspaceId === undefined ? at : await this.databaseTime(tx);
+      const saved = await tx.invitation.update({ where: { id }, data: { status: 'REVOKED', revokedAt } });
       const result = this.view(saved); await this.record(tx, uid, saved, 'revoked', result); return result;
+    });
+  }
+  pending(uid: string, workspaceId: string, email: string) {
+    return this.transaction(async tx => {
+      await this.workspace(tx, workspaceId);
+      await this.member(tx, workspaceId, uid, 2);
+      const [row] = await tx.$queryRawUnsafe<{ id: string }[]>(`SELECT "id" FROM "invitations"
+        WHERE "workspaceId"=$1 AND lower("email")=lower($2) AND "status" IN ('PENDING','ISSUED')
+          AND "expiresAt">(clock_timestamp() AT TIME ZONE 'UTC')`, workspaceId, email);
+      return { invitationId: row?.id ?? null };
     });
   }
   list(uid: string, workspaceId: string) {
