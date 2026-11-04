@@ -59,15 +59,8 @@ export class ConsentService {
   async grant(uid: string, command: ConsentCommand): Promise<ConsentView> {
     if (command.uid !== uid) throw new ConsentPolicyError('wrong_subject');
     if (!this.knownPurpose(command.purpose)) throw new ConsentPolicyError('unknown_purpose');
-    if (!command.consentVersion || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
+    if (typeof command.consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
     const resourceId = command.resourceId ?? null;
-    const existing = await this.store.findGrantBySubject(command.purpose, uid, resourceId, command.consentVersion);
-    if (existing) {
-      const current = this.hydrateActive(existing);
-      // Idempotent replay of the same subject/purpose: return current state.
-      if (current.state === 'active') return this.view(current);
-      if (current.state === 'revoked') throw new ConsentPolicyError('revoked'); // must re-grant as a fresh grant after revocation
-    }
     const expiresIn = command.expiresInSeconds;
     if (expiresIn !== undefined && (!Number.isSafeInteger(expiresIn) || expiresIn <= 0 || expiresIn > MAX_EXPIRY_SECONDS)) {
       throw new ConsentPolicyError('expiry_forbidden');
@@ -78,10 +71,11 @@ export class ConsentService {
       grantedAt: at, expiresAt: expiresIn !== undefined ? new Date(this.now().getTime() + expiresIn * 1000).toISOString() : null,
       revokedAt: null, state: 'active',
     };
-    await this.store.createGrant(grant);
-    await this.store.appendEvent(this.event(grant, 'active', 'active', 'grant'));
-    this.events.push(`grant ${grant.id}`);
-    return this.view(grant);
+    const saved = await this.store.createGrantIfNeeded(grant, this.event(grant, 'active', 'active', 'grant'));
+    const current = this.hydrateActive(saved.grant);
+    if (current.state === 'revoked') throw new ConsentPolicyError('revoked');
+    if (saved.created) this.events.push(`grant ${grant.id}`);
+    return this.view(current);
   }
 
   /** Revoke consent immediately. Blocked pending jobs, cache flush and download refusals are reported. */
@@ -107,7 +101,7 @@ export class ConsentService {
     if (typeof ownerUid !== 'string' || !ownerUid.trim()) throw new ConsentPolicyError('unauthorized');
     if (command.uid !== ownerUid) throw new ConsentPolicyError('wrong_subject');
     if (!this.knownPurpose(command.purpose)) throw new ConsentPolicyError('unknown_purpose');
-    if (!command.consentVersion || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
+    if (typeof command.consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
     if (!command.grantedToUid || /[@\s]/.test(command.grantedToUid)) throw new ConsentPolicyError('foreign_share_target');
     if (command.grantedToUid === ownerUid) throw new ConsentPolicyError('foreign_share_target');
     const expiresIn = command.expiresInSeconds;

@@ -62,6 +62,17 @@ test('expiry is durable; time alone never revives consent', async () => {
   assert.equal(await late.check('alice', 'downloads', 'v1'), true);
 });
 
+test('concurrent grants return one ID and one revocation removes access', async () => {
+  const { svc } = setup();
+  const command = { id: 'duplicate', uid: 'alice', purpose: 'downloads', consentVersion: 'v1' };
+  await assert.rejects(svc.grant('alice', { ...command, consentVersion: 1 }), { code: 'missing_version' });
+  const [first, second] = await Promise.all([svc.grant('alice', command), svc.grant('alice', command)]);
+  assert.equal(first.id, second.id);
+  assert.equal((await svc.track('alice')).length, 1);
+  await svc.revoke('alice', first.id);
+  assert.equal(await svc.check('alice', 'downloads', 'v1'), false);
+});
+
 test('revocation blocks pending jobs, flushes caches and blocks newly requested downloads', async () => {
   const { s, svc } = setup();
   await svc.grant('alice', { id: 'r1', uid: 'alice', purpose: 'downloads', consentVersion: '2026.1' });

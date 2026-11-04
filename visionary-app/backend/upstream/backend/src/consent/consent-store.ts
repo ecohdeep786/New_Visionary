@@ -3,7 +3,8 @@
 import type { ConsentGrant, ShareGrant, ConsentEvent, ConsentState, ConsentPurpose } from './consent-types';
 
 export interface ConsentStore {
-  createGrant(grant: ConsentGrant): Promise<ConsentGrant>;
+  /** Find the current grant or atomically create a replacement and its audit event. */
+  createGrantIfNeeded(grant: ConsentGrant, event: ConsentEvent): Promise<{ grant: ConsentGrant; created: boolean }>;
   findGrant(id: string): Promise<ConsentGrant | null>;
   findGrantBySubject(purpose: ConsentPurpose, uid: string, resourceId: string | null, consentVersion: string): Promise<ConsentGrant | null>;
   listGrants(uid: string): Promise<ConsentGrant[]>;
@@ -39,9 +40,21 @@ export class InMemoryConsentStore implements ConsentStore {
 
   private nextId(prefix: string) { return `${prefix}_${++this.seq}`; }
 
-  async createGrant(grant: ConsentGrant) { this.grants.set(grant.id, grant); return grant; }
+  async createGrantIfNeeded(grant: ConsentGrant, event: ConsentEvent) {
+    const current = this.latestGrant(grant.purpose, grant.uid, grant.resourceId, grant.consentVersion);
+    if (current && (current.revokedAt || current.state === 'revoked' ||
+        (current.state === 'active' && (!current.expiresAt || Date.parse(current.expiresAt) > Date.parse(grant.grantedAt))))) {
+      return { grant: current, created: false };
+    }
+    this.grants.set(grant.id, grant);
+    this.history.push(event);
+    return { grant, created: true };
+  }
   async findGrant(id: string) { return this.grants.get(id) ?? null; }
   async findGrantBySubject(purpose: ConsentPurpose, uid: string, resourceId: string | null, consentVersion: string) {
+    return this.latestGrant(purpose, uid, resourceId, consentVersion);
+  }
+  private latestGrant(purpose: ConsentPurpose, uid: string, resourceId: string | null, consentVersion: string) {
     let latest: ConsentGrant | null = null;
     for (const g of this.grants.values()) {
       if (g.purpose === purpose && g.uid === uid && (g.resourceId ?? null) === resourceId && g.consentVersion === consentVersion) latest = g;
