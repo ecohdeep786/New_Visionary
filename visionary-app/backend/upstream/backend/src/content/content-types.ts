@@ -3,20 +3,25 @@
 // language metadata.
 //
 // The catalog maps 1:1 onto the Grade/Subject/Book/Chapter/Topic/Subtopic
-// master tables plus CONTENT-01 metadata columns (source_versions, publications,
+// master tables plus the CONTENT-01 metadata columns (source_versions, publications,
 // content_nodes at DATA integration — D-085 trace). The durable external
 // identity is a STABLE PUBLIC ID: publishers, devices and retrieval all address
 // content by it, so it is derived once from the immutable identity (kind +
-// parent + source provider + edition) and is NEVER recycled or repurposed after
-// registration. Name/grade/category/language edits never change the ID.
+// parent + NAME + source provider + edition) and is NEVER recycled or repurposed
+// after registration. The title (name) is part of that identity because it is
+// what distinguishes sibling nodes under the same parent/provider/edition
+// (e.g. two chapters of the same book). Grade/category/language/license edits
+// never change the ID; a rename is a new identity, not an in-place edit.
 //
 // Source provider/version is a first-class, reviewable value: a node is eligible
 // for retrieval only when its source version is APPROVED/RELEASED (the
 // "approved released-language/source pointer"), the node AND every ancestor are
-// published/public, and a caller with the right to read actually exists. Owner
-// authority is server-authoritative; a non-owner can neither mutate nor
-// publish/withdraw another uid's node. No syllabus promise: only concrete
-// registered source nodes exist; nothing is invented for missing coverage.
+// published/public, and each node in the chain carries an approved/released
+// source pointer. Owner authority is server-authoritative; a non-owner can
+// neither mutate nor publish/withdraw another uid's node, and a node may only
+// be registered beneath a parent its owner already owns. No syllabus promise:
+// only concrete registered source nodes exist; nothing is invented for missing
+// coverage.
 
 export type ContentKind = 'curriculum' | 'book' | 'chapter' | 'topic' | 'concept';
 
@@ -63,7 +68,7 @@ export interface ContentNode {
   /** Stable public ID — derived once, never recycled, immutable. */
   publicId: string;
   kind: ContentKind;
-  /** Human name/title (editable; the public ID does not change). */
+  /** Human title — PART OF THE IMMUTABLE IDENTITY; not editable in place. */
   name: string;
   /** Structural parent: curriculum → book → chapter → topic → concept. */
   parentId: string | null;
