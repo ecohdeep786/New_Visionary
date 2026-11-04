@@ -85,7 +85,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
               className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[14px] font-medium tracking-[0] sm:left-9"
               style={{ color: color.ink }}
             >
-              <meta.Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.75} style={{ color: color.ink }} />
+              <meta.Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.8} style={{ color: color.ink }} />
               Visionary for {stage.title}
             </span>
           </div>
@@ -111,7 +111,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
               {content.blocks.map((b) => (
                 <div key={b.t} className="border-t pt-6" style={{ borderColor: color.mist }}>
                   <div className="flex items-start gap-4">
-                    <b.Icon aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.75} style={{ color: color.ink }} />
+                    <b.Icon aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.8} style={{ color: color.ink }} />
                     <div className="min-w-0">
                       <h4 className="text-[17px] font-semibold leading-[21px] tracking-[-0.01em]" style={{ color: color.ink }}>
                         {b.t}

@@ -251,7 +251,7 @@ export default function TermsPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       These Terms are read together with the Privacy Policy and the Cookie policy.
                     </p>
@@ -528,7 +528,7 @@ export default function TermsPage() {
               ].map(({ to, label, desc, Icon }) => (
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <Icon className="h-5 w-5" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>

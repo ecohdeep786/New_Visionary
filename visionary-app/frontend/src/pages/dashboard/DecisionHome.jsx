@@ -93,7 +93,7 @@ export default function DecisionHome() {
 function PlanSymbol({id}) {
   const kind = id.split(':')[0];
   const Icon = {classwork:ClipboardList,review:RotateCcw,unit:BookOpen,build:Hammer,done:CircleCheck,'done-build':CircleCheck}[kind] || BookOpen;
-  return <Icon size={20} strokeWidth={1.75}/>;
+  return <Icon size={20} strokeWidth={1.8}/>;
 }
 
 function StageSuggestionEntry({ctx,locale}){const t=stageCopy(locale);let count=0;try{count=getStageSuggestions(ctx).length;}catch{return null;}return count>0?<section className="v-home-module" lang={locale}><h2 className="font-medium">{t("Stage suggestions · not applied")}</h2><p className="v-muted mt-2">{t("{count} suggestions to review. Your current stage is unchanged; evidence alone never moves you to a new stage.",{count})}</p><Link className="v-button mt-3" to="/dashboard/personalization">{t("Review stage suggestions")}</Link></section>:null;}

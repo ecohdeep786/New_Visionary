@@ -371,7 +371,7 @@ function LandingReturnSection() {
                 key={item.title}
                 className="flex flex-col rounded-[1.75rem] bg-[#f5f5f7] p-8 min-[1069px]:p-10"
               >
-                <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.75} style={{ color: BRAND.ink }} />
+                <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.8} style={{ color: BRAND.ink }} />
                 <h3 data-type="feature" className="mt-6" style={{ color: BRAND.ink }}>{item.title}</h3>
                 <p data-type="value-body" className="max-w-[46ch]" style={{ color: BRAND.slate }}>{item.copy}</p>
                 {/* the editorial link law owns the door's colour and hover

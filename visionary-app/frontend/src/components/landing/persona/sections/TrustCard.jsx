@@ -18,7 +18,7 @@ const TrustCard = React.memo(function TrustCard({ card, image }) {
       {/* white chip guarantees copy contrast on any image */}
       <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
         <div className="rounded-[20px] bg-white/95 p-5">
-          <card.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: color.ink }} />
+          <card.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} style={{ color: color.ink }} />
           <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: color.ink }}>{card.copy}</p>
           <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" style={{ color: color.link }}>
             {card.link}

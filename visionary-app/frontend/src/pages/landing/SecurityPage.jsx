@@ -125,7 +125,7 @@ function Paragraph({ children }) {
 function IconTile({ Icon }) {
   return (
     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}>
-      <Icon className="h-5 w-5" strokeWidth={1.7} aria-hidden="true" />
+      <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
     </span>
   );
 }
@@ -257,7 +257,7 @@ export default function SecurityPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       Security and privacy work together. For personal data and your rights, see the Privacy Policy.
                     </p>
@@ -445,7 +445,7 @@ export default function SecurityPage() {
                   <div className="mt-8 max-w-[880px] space-y-4">
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Protect information</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Use appropriate technical and organizational measures to protect information handled by the service.</p>
@@ -454,7 +454,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <UserRound className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <UserRound className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Limit access</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Restrict access to systems and information according to legitimate operational needs.</p>
@@ -463,7 +463,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Respond to problems</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Investigate reported security concerns and improve the service when weaknesses are found.</p>
@@ -472,7 +472,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Be clear about what we know</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Avoid making security promises that are not supported by Visionary's actual systems and practices.</p>
@@ -491,7 +491,7 @@ export default function SecurityPage() {
                   <div className="mt-8 max-w-[880px] space-y-4">
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Sign in with your Sync Encrypted ID</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>One encrypted identity opens Visionary on a new device. The encryption stays with your account, not with the device.</p>
@@ -500,7 +500,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Your learning follows you</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Progress, notes, and memory sync across phone, tablet, and laptop. Pick up exactly where you stopped.</p>
@@ -509,7 +509,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>You see every device</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Review the devices signed in to your account and remove any of them, at any time, from your settings.</p>
@@ -579,7 +579,7 @@ export default function SecurityPage() {
               ].map(({ to, label, desc, Icon }) => (
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <Icon className="h-5 w-5" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>

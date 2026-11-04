@@ -255,7 +255,7 @@ export default function AccessibilityPage() {
                   ].map(({ Icon, label }) => (
                     <div key={label} className="relative z-10 flex w-28 flex-col items-center gap-3 rounded-[20px] bg-white p-4 text-center sm:w-32">
                       <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
-                        <Icon className="h-6 w-6" strokeWidth={1.7} aria-hidden="true" />
+                        <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
                       </span>
                       <span className="text-[13px] font-medium text-[#1d1d1f]">{label}</span>
                       <span className="flex items-center gap-1 text-[12px] font-medium text-[#188038]">
