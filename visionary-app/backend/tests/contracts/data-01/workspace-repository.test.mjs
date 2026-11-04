@@ -84,6 +84,23 @@ test('account consent grants are durable, bounded and serialized by policy versi
   await assert.rejects(repo.assertConsent('grant-erased', 'downloads', undefined, 'v1'), /unavailable/);
   await assert.rejects(repo.grantAccountConsent('grant-erased', 'downloads', 'v2', 60), /unavailable/);
 });
+test('consent validity uses the database clock when the application clock drifts', async (t) => {
+  const [clock] = await db.$queryRaw`SELECT clock_timestamp() AS now`;
+  const ahead = clock.now.getTime() + 60 * 60 * 1000;
+  const behind = clock.now.getTime() - 60 * 60 * 1000;
+  const future = { uid: 'owner', purpose: 'downloads', version: 'clock-future', consentVersion: 'clock-future',
+    grantedAt: new Date(ahead), expiresAt: new Date(ahead + 60_000) };
+  const expired = { ...future, version: 'clock-expired', consentVersion: 'clock-expired',
+    grantedAt: new Date(behind - 60_000), expiresAt: new Date(behind + 60_000) };
+  await db.consentGrant.createMany({ data: [future, expired] });
+  await repo.grantAccountConsent('owner', 'downloads', 'clock-active', 600);
+
+  t.mock.timers.enable({ apis: ['Date'], now: ahead });
+  await assert.rejects(repo.assertConsent('owner', 'downloads', undefined, 'clock-future'), /unavailable/);
+  await repo.assertConsent('owner', 'downloads', undefined, 'clock-active');
+  t.mock.timers.setTime(behind);
+  await assert.rejects(repo.assertConsent('owner', 'downloads', undefined, 'clock-expired'), /unavailable/);
+});
 async function invite(token, extra = {}) {
   return db.invitation.create({ data: { workspaceId: ws.id, email: token + '@example.invalid', tokenHash: createHash('sha256').update(token).digest('hex'),
     role: 'MEMBER', status: 'ISSUED', expiresAt: new Date(Date.now() + 60000), ...extra } });

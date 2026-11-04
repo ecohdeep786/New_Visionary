@@ -59,13 +59,24 @@ export class WorkspaceRepository {
   async assertConsent(uid: string, purpose: string, resourceId?: string, consentVersion?: string): Promise<void> {
     if (typeof uid !== 'string' || !uid.trim()) throw new ForbiddenException('A consent subject is required.');
     if (!purpose || !consentVersion) throw new ForbiddenException('An explicit purpose and policy version are required.');
-    const now = new Date();
-    const grant = await this.prisma.consentGrant.findFirst({ where: {
-      uid, purpose, resourceId: resourceId ?? null, consentVersion, revokedAt: null, grantedAt: { lte: now },
-      person: { deletionTombstones: { none: { resourceType: 'person' } } },
-      OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
-    } });
-    if (!grant) throw new ForbiddenException('Required consent is unavailable or revoked.');
+    // The grant and revocation writers also use the database clock.
+    const grants = await this.prisma.$queryRaw<Array<{ id: string }>>`
+      SELECT grant_row.id
+      FROM consent_grants AS grant_row
+      WHERE grant_row.uid = ${uid}
+        AND grant_row.purpose = ${purpose}
+        AND grant_row."resourceId" IS NOT DISTINCT FROM ${resourceId ?? null}::text
+        AND grant_row."consentVersion" = ${consentVersion}
+        AND grant_row."revokedAt" IS NULL
+        AND grant_row."grantedAt" <= timezone('UTC', statement_timestamp())
+        AND (grant_row."expiresAt" IS NULL OR grant_row."expiresAt" > timezone('UTC', statement_timestamp()))
+        AND NOT EXISTS (
+          SELECT 1 FROM deletion_tombstones AS tombstone
+          WHERE tombstone.uid = grant_row.uid AND tombstone."resourceType" = 'person'
+        )
+      LIMIT 1
+    `;
+    if (!grants.length) throw new ForbiddenException('Required consent is unavailable or revoked.');
   }
 
   async revokeConsent(uid: string, grantId: string): Promise<{ id: string; revokedAt: string }> {
