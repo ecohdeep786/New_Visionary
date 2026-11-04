@@ -511,7 +511,13 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
   f.auth.getUser = async uid => { providerCalls++; return { uid, email: 'verified-now@example.test', emailVerified: true }; };
   const accepted = [];
   let enabled = false, adult = true;
-  const config = { get: key => ({ AUTH_PUBLIC_ORIGIN: 'http://localhost:5173', DATA_INSTITUTION_INVITATIONS_ENABLED: String(enabled) })[key] };
+  let environment = 'development', databaseMode = 'synthetic';
+  const config = { get: key => ({
+    AUTH_PUBLIC_ORIGIN: 'http://localhost:5173',
+    DATA_INSTITUTION_INVITATIONS_ENABLED: String(enabled),
+    NODE_ENV: environment,
+    DATA_WORKSPACE_DATABASE_MODE: databaseMode,
+  })[key] };
   const product = new ProductInvitationService(f.service, config);
   product.runtime = {
     reviewers: new Set(),
@@ -543,6 +549,12 @@ test('product invitation HTTP acceptance rejects forged identity and passes only
     assert.equal((await call({ token: 'short' })).status, 400);
     assert.equal((await call({ token })).status, 503);
     enabled = true;
+    environment = 'production';
+    assert.equal((await call({ token })).status, 503);
+    environment = 'development';
+    databaseMode = 'cloud-sql';
+    assert.equal((await call({ token })).status, 503);
+    databaseMode = 'synthetic';
     const rateLimit = f.service.rateLimit.bind(f.service);
     const { HttpException } = req('@nestjs/common');
     f.service.rateLimit = async () => { throw new HttpException('Rate limited', 429); };

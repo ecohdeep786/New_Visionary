@@ -1468,7 +1468,7 @@
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
-      "sha256Lf": "0e7981eb21811f6adbdb1efa0c1ac0a5a95f6fa2fe1ec5f5447b57c25f2a22a4"
+      "sha256Lf": "e083d11e0d7dd67746a0845aab6db8c3511f514d4ce1026039d7f74e476df5bb"
     },
     {
       "file": "backend/upstream/backend/src/invitations/invitation.service.ts",
@@ -1520,7 +1520,7 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "c8c35d87f2e50c37037a76994e0c8c0b8dfc1cdb4f57b09e24cb59fdf036ddaa"
+      "sha256Lf": "d5c2dc0ba13d9ef69991b068d196978a72b3a22572e8460e7138e160d022c67c"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",

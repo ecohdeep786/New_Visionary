@@ -2,7 +2,7 @@ import { ForbiddenException, Injectable, OnModuleDestroy, ServiceUnavailableExce
 import { ConfigService } from '@nestjs/config';
 import { PrismaClient } from '@prisma/client';
 import { FirebaseProductService } from '../auth/firebase-product/firebase-product.service';
-import { assertCloudSqlUrl, assertSyntheticUrl, quoteIdentifier } from '../data/migration-identities';
+import { assertSyntheticUrl, quoteIdentifier } from '../data/migration-identities';
 import { FirestorePrivacyStore } from '../privacycore/firestore-privacy-store';
 import { PrivacyCoreService } from '../privacycore/privacy-core-service';
 import { PostgresInvitationStore } from './invitation-store';
@@ -17,7 +17,10 @@ export class ProductInvitationService implements OnModuleDestroy {
   constructor(private readonly accounts: FirebaseProductService, private readonly config: ConfigService) {}
 
   private settings() {
-    if (this.config.get('DATA_INSTITUTION_INVITATIONS_ENABLED') !== 'true') {
+    // KAN-110 must resolve admission consistency before hosted activation.
+    if (this.config.get('NODE_ENV') !== 'development' ||
+        this.config.get('DATA_WORKSPACE_DATABASE_MODE') !== 'synthetic' ||
+        this.config.get('DATA_INSTITUTION_INVITATIONS_ENABLED') !== 'true') {
       throw new ServiceUnavailableException('Institution invitations are unavailable.');
     }
     if (this.runtime) return this.runtime;
@@ -25,15 +28,9 @@ export class ProductInvitationService implements OnModuleDestroy {
       const raw = this.config.get<string>('DATA_WORKSPACE_RUNTIME_URL') || '';
       const role = this.config.get<string>('DATA_WORKSPACE_RUNTIME_ROLE') || '';
       const schema = this.config.get<string>('DATA_WORKSPACE_SCHEMA') || '';
-      const production = this.config.get('NODE_ENV') === 'production';
       quoteIdentifier(role);
       quoteIdentifier(schema);
-      const cloud = this.config.get('DATA_WORKSPACE_DATABASE_MODE') === 'cloud-sql';
-      if (production && !cloud) throw Error('Synthetic SQL is disabled in production');
-      const url = cloud
-        ? assertCloudSqlUrl(raw, { environment: production ? 'production' : 'staging', project: 'visionary-research', region: 'asia-south1',
-            instance: this.config.get<string>('DATA_WORKSPACE_SQL_INSTANCE') || '', database: this.config.get<string>('DATA_WORKSPACE_DATABASE_NAME') || '' })
-        : assertSyntheticUrl(raw);
+      const url = assertSyntheticUrl(raw);
       for (const [key, max] of [['connection_limit', 3], ['pool_timeout', 15], ['connect_timeout', 15]] as const) {
         const value = Number(url.searchParams.get(key));
         if (!Number.isInteger(value) || value < 1 || value > max) throw Error('Unbounded SQL pool');

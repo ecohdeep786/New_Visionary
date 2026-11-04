@@ -956,19 +956,6 @@
         "GET /api/account/privacy/policy"
       ]
     },
-    "frontend/src/components/dashboard/InstitutionInvitationAcceptance.jsx": {
-      "profile": "institution-invitation-acceptance",
-      "state": "connected",
-      "execution": "server",
-      "reason": "Account-bound invitation acceptance using current admission and institution approval. Hosted activation remains separate.",
-      "followUp": [
-        "DATA-04",
-        "PRIV-01"
-      ],
-      "endpoints": [
-        "POST /api/account/invitations/accept"
-      ]
-    },
     "frontend/src/components/dashboard/StageProfileEditor.jsx": {
       "profile": "local-stage-continuity",
       "state": "preview",
