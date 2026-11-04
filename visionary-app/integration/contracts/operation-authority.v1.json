@@ -860,7 +860,7 @@
     {
       "id": "public-enquiry-careers-partners",
       "profile": "public",
-      "datedCheckpointClassification": "missing",
+      "datedCheckpointClassification": "intentionally-unreleased",
       "currentAuthorityNotEstablishedByCheckpoint": true,
       "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
       "registeredRoutes": [],
@@ -871,7 +871,7 @@
     {
       "id": "public-updates-distribution",
       "profile": "public",
-      "datedCheckpointClassification": "missing",
+      "datedCheckpointClassification": "intentionally-unreleased",
       "currentAuthorityNotEstablishedByCheckpoint": true,
       "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
       "registeredRoutes": [],
@@ -1461,7 +1461,7 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "d5c2dc0ba13d9ef69991b068d196978a72b3a22572e8460e7138e160d022c67c"
+      "sha256Lf": "597a1b432253d6646c9e225db1794760fe4bc1aa85fa83b2b1f629850afdcd8a"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
