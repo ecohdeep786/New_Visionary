@@ -64,16 +64,16 @@ class LaunchQualificationTest(unittest.TestCase):
             lq.start_canary("cand_1", 60)  # traffic bound
 
     def test_kill_switch_blocks_canary_and_promotion(self):
-        lq = make()
         hardening = IndependentHardening()
-        lq2 = LaunchQualification(hardening)
-        lq2.declare_candidate(CUSTODIAN, "tiny-d1-v3", 4, ["provider-alpha"])
+        lq = LaunchQualification(hardening)
+        lq.declare_candidate(CUSTODIAN, "tiny-d1-v3", 4, ["provider-alpha"])
+        healthy_canary(lq)  # canary passes BEFORE the incident
         hardening.engage_kill_switch("incident")
+        lq.declare_candidate(CUSTODIAN, "tiny-d1-v4", 5, ["provider-alpha"])
         with self.assertRaises(LaunchError):
-            lq2.start_canary("cand_1", 10)
-        healthy_canary(lq2)
+            lq.start_canary("cand_2", 10)  # no canary starts while engaged
         with self.assertRaises(LaunchError):
-            lq2.promote(CUSTODIAN, "cand_1", REVIEWER)
+            lq.promote(CUSTODIAN, "cand_1", REVIEWER)  # promotion blocked too
 
     def test_declaration_and_bounds_refuse(self):
         lq = LaunchQualification(IndependentHardening())
