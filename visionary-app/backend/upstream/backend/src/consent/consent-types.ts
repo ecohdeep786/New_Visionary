@@ -8,6 +8,8 @@ export type ConsentState = 'active' | 'expired' | 'revoked';
 export const CONSENT_PURPOSES = ['learning_sessions', 'document_sharing', 'downloads', 'model_context', 'telemetry_optional'] as const;
 export type ConsentPurpose = (typeof CONSENT_PURPOSES)[number];
 export const MAX_CONSENT_EXPIRY_SECONDS = 366 * 24 * 60 * 60;
+export const isConsentVersion = (version: unknown): version is string =>
+  typeof version === 'string' && /^[A-Za-z0-9._:-]{1,64}$/.test(version);
 
 export interface ConsentGrant {
   id: string;

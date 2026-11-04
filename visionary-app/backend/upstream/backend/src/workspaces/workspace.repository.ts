@@ -2,7 +2,7 @@ import { Injectable, ConflictException, NotFoundException, ForbiddenException, B
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { createHash } from 'node:crypto';
-import { CONSENT_PURPOSES, MAX_CONSENT_EXPIRY_SECONDS, type ConsentPurpose } from '../consent/consent-types';
+import { CONSENT_PURPOSES, MAX_CONSENT_EXPIRY_SECONDS, isConsentVersion, type ConsentPurpose } from '../consent/consent-types';
 
 type Store = Prisma.TransactionClient;
 type Role = 'OWNER' | 'ADMIN' | 'MEMBER' | 'GUEST';
@@ -92,7 +92,7 @@ export class WorkspaceRepository {
   /** The caller supplies the authenticated subject and the server-selected policy version. */
   async grantAccountConsent(uid: string, purpose: ConsentPurpose, consentVersion: string, expiresInSeconds: number) {
     if (typeof uid !== 'string' || !uid.trim() || !CONSENT_PURPOSES.includes(purpose) ||
-        typeof consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(consentVersion) ||
+        !isConsentVersion(consentVersion) ||
         !Number.isSafeInteger(expiresInSeconds) || expiresInSeconds < 1 || expiresInSeconds > MAX_CONSENT_EXPIRY_SECONDS) {
       throw new BadRequestException('An account, supported purpose, policy version and bounded expiry are required.');
     }

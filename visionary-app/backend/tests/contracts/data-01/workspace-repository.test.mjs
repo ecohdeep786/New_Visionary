@@ -70,9 +70,9 @@ test('account consent grants are durable, bounded and serialized by policy versi
   assert.equal(await db.outboxEvent.count({ where: { uid: 'owner', topic: 'consent.granted' } }), 1);
   await repo.revokeConsent('owner', first.id);
   await assert.rejects(repo.grantAccountConsent('owner', 'downloads', 'v1', 60), /closed consent/);
-  const next = await repo.grantAccountConsent('owner', 'downloads', 'v2', 60);
+  const next = await repo.grantAccountConsent('owner', 'downloads', 'priv-review-v2', 60);
   assert.notEqual(next.id, first.id);
-  await repo.assertConsent('owner', 'downloads', undefined, 'v2');
+  await repo.assertConsent('owner', 'downloads', undefined, 'priv-review-v2');
   await repo.ensurePerson('grant-erased');
   await repo.grantAccountConsent('grant-erased', 'downloads', 'v1', 60);
   await db.deletionTombstone.create({ data: { uid: 'grant-erased', resourceType: 'person', resourceId: 'grant-erased' } });

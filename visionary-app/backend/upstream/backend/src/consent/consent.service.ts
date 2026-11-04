@@ -4,7 +4,7 @@
 // revives a grant. Only the data subject (or verified delegating authority)
 // grants or revokes their own consent; shares are created by the resource owner.
 import { createHash, randomBytes } from 'node:crypto';
-import { CONSENT_PURPOSES, MAX_CONSENT_EXPIRY_SECONDS } from './consent-types';
+import { CONSENT_PURPOSES, MAX_CONSENT_EXPIRY_SECONDS, isConsentVersion } from './consent-types';
 import type { ConsentGrant, ConsentPurpose, ConsentShareCommand, ConsentCommand, ConsentView, RevocationOutcome, ShareGrant, ConsentVersion, ConsentEvent } from './consent-types';
 import type { ConsentStore } from './consent-store';
 
@@ -59,7 +59,7 @@ export class ConsentService {
     if (typeof uid !== 'string' || !uid.trim()) throw new ConsentPolicyError('unauthorized');
     if (command.uid !== uid) throw new ConsentPolicyError('wrong_subject');
     if (!this.knownPurpose(command.purpose)) throw new ConsentPolicyError('unknown_purpose');
-    if (typeof command.consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
+    if (!isConsentVersion(command.consentVersion)) throw new ConsentPolicyError('missing_version');
     const resourceId = command.resourceId ?? null;
     const expiresIn = command.expiresInSeconds;
     if (expiresIn !== undefined && (!Number.isSafeInteger(expiresIn) || expiresIn <= 0 || expiresIn > MAX_CONSENT_EXPIRY_SECONDS)) {
@@ -101,7 +101,7 @@ export class ConsentService {
     if (typeof ownerUid !== 'string' || !ownerUid.trim()) throw new ConsentPolicyError('unauthorized');
     if (command.uid !== ownerUid) throw new ConsentPolicyError('wrong_subject');
     if (!this.knownPurpose(command.purpose)) throw new ConsentPolicyError('unknown_purpose');
-    if (typeof command.consentVersion !== 'string' || !/^v?\d+(\.\d+){0,3}$/.test(command.consentVersion)) throw new ConsentPolicyError('missing_version');
+    if (!isConsentVersion(command.consentVersion)) throw new ConsentPolicyError('missing_version');
     if (!command.grantedToUid || /[@\s]/.test(command.grantedToUid)) throw new ConsentPolicyError('foreign_share_target');
     if (command.grantedToUid === ownerUid) throw new ConsentPolicyError('foreign_share_target');
     const expiresIn = command.expiresInSeconds;
@@ -143,7 +143,7 @@ export class ConsentService {
   /** The caller supplies the current server policy version for the operation. */
   async check(uid: string, purpose: ConsentPurpose, consentVersion: string, resourceId?: string): Promise<boolean> {
     if (typeof uid !== 'string' || !uid.trim() || !this.knownPurpose(purpose) ||
-        typeof consentVersion !== 'string' || !consentVersion) return false;
+        !isConsentVersion(consentVersion)) return false;
     const grant = await this.store.findGrantBySubject(purpose, uid, resourceId ?? null, consentVersion);
     if (grant) {
       const current = this.hydrateActive(grant);
