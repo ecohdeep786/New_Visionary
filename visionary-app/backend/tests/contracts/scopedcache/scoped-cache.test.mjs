@@ -28,7 +28,7 @@ const CALLER = { uid: 'uid_learner_1', workspaceId: 'ws_personal' };
 const OTHER = { uid: 'uid_stranger', workspaceId: 'ws_personal' };
 
 function scope(overrides = {}) {
-  return { caller: CALLER, sourceVersion: '1.1.0', policyVersion: 'pol-v3', kind: 'exact', ...overrides };
+  return { caller: CALLER, sourceVersion: '1.1.0', policyVersion: 'pol-v3', purpose: 'learning-answer', kind: 'exact', ...overrides };
 }
 
 async function makeService() {
@@ -42,17 +42,17 @@ test('unsafe global caches are DISABLED for every kind — a missing scope bindi
   const { svc } = await makeService();
   // Exact cache with no caller binding: refused.
   await assert.rejects(
-    () => svc.put({ kind: 'exact', sourceVersion: '1.1.0', policyVersion: 'pol-v3', caller: { uid: '', workspaceId: '' } }, { x: 1 }),
+    () => svc.put({ kind: 'exact', sourceVersion: '1.1.0', policyVersion: 'pol-v3', purpose: 'learning-answer', caller: { uid: '', workspaceId: '' } }, { x: 1 }),
     (e) => e.code === 'global_cache_disabled',
   );
   // Semantic cache with no policy version: refused.
   await assert.rejects(
-    () => svc.put({ kind: 'semantic', sourceVersion: '1.1.0', policyVersion: '', caller: CALLER }, { x: 1 }),
+    () => svc.put({ kind: 'semantic', sourceVersion: '1.1.0', policyVersion: '', purpose: 'learning-answer', caller: CALLER }, { x: 1 }),
     (e) => e.code === 'global_cache_disabled',
   );
   // Template cache with no source version: refused.
   await assert.rejects(
-    () => svc.put({ kind: 'template', sourceVersion: '', policyVersion: 'pol-v3', caller: CALLER }, { x: 1 }),
+    () => svc.put({ kind: 'template', sourceVersion: '', policyVersion: 'pol-v3', purpose: 'learning-answer', caller: CALLER }, { x: 1 }),
     (e) => e.code === 'global_cache_disabled',
   );
   // A fully scoped entry puts fine.
@@ -112,4 +112,46 @@ test('policy-version bump invalidates matching entries event-driven', async () =
   assert.equal(oldEntry, null, 'invalidated entry no longer serves');
   const kept = await svc.get(scope({ kind: 'exact', policyVersion: 'pol-v2' }));
   assert.deepEqual(kept.value, { c: 3 }, 'entries on the current policy version survive');
+});
+
+test('review 10584: delimiter-colliding scopes never share a private entry (unambiguous JSON key)', async () => {
+  const { svc } = await makeService();
+  // The reviewer's exact probe: writer uid 'synthetic-a' + workspace 'b|c'
+  // collided with reader uid 'synthetic-a|b' + workspace 'c' under the old
+  // delimiter-joined key.
+  const writer = scope({ caller: { uid: 'synthetic-a', workspaceId: 'b|c' } });
+  await svc.put(writer, { secret: 'private to synthetic-a in workspace b|c' });
+
+  const collider = await svc.get(scope({ caller: { uid: 'synthetic-a|b', workspaceId: 'c' } }));
+  assert.equal(collider, null, 'the colliding scope MUST be a miss, not the private value');
+
+  const own = await svc.get(writer);
+  assert.deepEqual(own.value, { secret: 'private to synthetic-a in workspace b|c' });
+});
+
+test('purpose is a required binding: same caller/kind/policy with another purpose is a miss', async () => {
+  const { svc } = await makeService();
+  await svc.put(scope(), { answer: 'for learning-answer' });
+  await assert.rejects(
+    () => svc.put(scope({ purpose: '' }), { x: 1 }),
+    (e) => e.code === 'global_cache_disabled',
+    'a missing purpose is a missing scope binding — refused',
+  );
+  const otherPurpose = await svc.get(scope({ purpose: 'summary-share' }));
+  assert.equal(otherPurpose, null, 'another purpose never reads this entry');
+});
+
+test('delivery reauthorization covers the FULL binding: revoking one scope stops only that entry', async () => {
+  const { store, svc } = await makeService();
+  await svc.put(scope(), { answer: 'for purpose A' });
+  await svc.put(scope({ purpose: 'summary-share' }), { answer: 'for purpose B' });
+
+  store.revokeScope(scope());
+  await assert.rejects(
+    () => svc.get(scope()),
+    (e) => e.code === 'reauthorization_failed',
+    'the revoked binding stops serving immediately',
+  );
+  const other = await svc.get(scope({ purpose: 'summary-share' }));
+  assert.deepEqual(other.value, { answer: 'for purpose B' }, 'a different binding of the same caller still serves after its own reauth passes');
 });

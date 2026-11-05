@@ -62,3 +62,29 @@ Disable unsafe global exact/semantic/template caches. Add only scoped, source/po
 - Dev integration commit and checks: (after review; reviewer merges into `dev`, then release acceptance gates)
 - Jira transition/comment receipt: KAN-87 → In Progress at task start; → Testing with the exact candidate SHA (after push)
 - Next dependent task in sequence: with AI-05 done, the remaining lane tasks are all dependency-gated (SYNC-01/02, SCOPE-02/03, FILE-03, JOB-01, DATA-05); the next eligible task is selected from live Jira before assignment.
+
+## Rework 2 (2026-11-05) — review findings 10584 addressed
+
+Reviewer probe on 768306c7: a private value written for uid `synthetic-a` +
+workspace `b|c` was readable as uid `synthetic-a|b` + workspace `c` — both
+scopes passed validation and collided in the delimiter-joined key.
+
+Fixes:
+
+1. UNAMBIGUOUS KEY: the entry key is now a JSON-encoded structure
+   `JSON.stringify([kind, caller.uid, caller.workspaceId, purpose,
+   policyVersion])` — no delimiter collision is possible for any field
+   content, and the key covers the verified scope and request identity.
+2. PURPOSE IS A REQUIRED BINDING: `CacheScope.purpose` is now part of the
+   full scope binding; a missing purpose refuses with
+   `global_cache_disabled` like every other missing dimension.
+3. FULL-BINDING DELIVERY REAUTHORIZATION: the store reauth seam now receives
+   the whole scope and the in-memory contract store checks BOTH caller-level
+   and exact-binding-level revocations — delivery reauthorizes the full
+   workspace, source, purpose and policy binding, server-live.
+
+Verification: scopedcache:check → focused tsc exit 0; contract suite 8/8
+(5 updated + 3 new): the reviewer's exact collision probe now misses,
+purpose is required and isolating, and revoking one exact binding stops only
+that entry while the same caller's other binding still serves after its own
+reauth passes.

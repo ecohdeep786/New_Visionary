@@ -7,20 +7,28 @@ export interface ScopedCacheStore {
   putEntry(key: string, scope: CacheScope, value: unknown): Promise<void>;
   getEntry(key: string, scope: CacheScope): Promise<{ scope: CacheScope; value: unknown } | undefined>;
   invalidateByPolicyVersion(policyVersion: string): Promise<number>;
-  /** Delivery-time reauthorization (KAN-64 semantics; server-live). */
-  reauthorizationPasses(callerUid: string, sourceVersion: string): Promise<boolean>;
+  /** Delivery-time reauthorization (KAN-64 semantics; server-live) over the
+   * FULL scope binding — caller identity, workspace, source version, purpose
+   * and policy version. */
+  reauthorizationPasses(scope: CacheScope): Promise<boolean>;
 }
 
 /** Contract-true in-memory store; entries are private per full scope key. */
 export class InMemoryScopedCacheStore implements ScopedCacheStore {
   private entries = new Map<string, { scope: CacheScope; value: unknown }>();
-  private revoked = new Set<string>();
+  /** Caller-level revocations (whole identity) and binding-level revocations
+   * (one exact scope) — the delivery-time reauthorization checks BOTH. */
+  private revokedCallers = new Set<string>();
+  private revokedScopes = new Set<string>();
 
   private static key(scope: CacheScope): string {
-    // The lookup key binds caller + kind + policy version; the SOURCE VERSION
-    // is carried on the entry and verified at delivery (fail closed with
-    // version_mismatch rather than a silent miss across versions).
-    return `${scope.kind}|${scope.caller.uid}|${scope.caller.workspaceId}|${scope.policyVersion}`;
+    // Review 10584: a delimiter join collides ('a' + 'b|c' === 'a|b' + 'c').
+    // The lookup key is a JSON-encoded STRUCTURE — unambiguous for any field
+    // content — binding kind + caller uid + workspace + purpose + policy
+    // version. The SOURCE VERSION is carried on the entry and verified at
+    // delivery (fail closed with version_mismatch rather than a silent miss
+    // across versions).
+    return JSON.stringify([scope.kind, scope.caller.uid, scope.caller.workspaceId, scope.purpose, scope.policyVersion]);
   }
 
   async putEntry(_key: string, scope: CacheScope, value: unknown): Promise<void> {
@@ -43,12 +51,21 @@ export class InMemoryScopedCacheStore implements ScopedCacheStore {
     return removed;
   }
 
-  async reauthorizationPasses(callerUid: string, _sourceVersion: string): Promise<boolean> {
-    return !this.revoked.has(callerUid);
+  async reauthorizationPasses(scope: CacheScope): Promise<boolean> {
+    // Review 10584: delivery reauthorizes the FULL binding — caller identity,
+    // workspace, source version, purpose and policy version — server-live,
+    // not just the uid.
+    if (this.revokedCallers.has(scope.caller.uid)) return false;
+    return !this.revokedScopes.has(InMemoryScopedCacheStore.key(scope));
   }
 
   /** Test/integration hook: revoke a caller's authorization (server-live). */
   revoke(callerUid: string): void {
-    this.revoked.add(callerUid);
+    this.revokedCallers.add(callerUid);
+  }
+
+  /** Test/integration hook: revoke one exact scope binding (server-live). */
+  revokeScope(scope: CacheScope): void {
+    this.revokedScopes.add(InMemoryScopedCacheStore.key(scope));
   }
 }

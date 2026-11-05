@@ -37,7 +37,7 @@ export class ScopedCacheService {
     if (!entry) return null;
     if (entry.scope.sourceVersion !== scope.sourceVersion) throw new ScopedCacheError('version_mismatch');
     // Delivery-time reauthorization (server-live; KAN-64 semantics).
-    if (!(await this.store.reauthorizationPasses(scope.caller.uid, scope.sourceVersion))) {
+    if (!(await this.store.reauthorizationPasses(scope))) {
       throw new ScopedCacheError('reauthorization_failed');
     }
     return { value: entry.value, reauthorized: true };
@@ -51,7 +51,7 @@ export class ScopedCacheService {
   private assertFullScope(scope: CacheScope): void {
     // Unsafe global caches are disabled: any missing binding (no caller, no
     // source version, no policy version) refuses for EVERY cache kind.
-    if (!scope.caller?.uid || !scope.caller?.workspaceId || !scope.sourceVersion || !scope.policyVersion) {
+    if (!scope.caller?.uid || !scope.caller?.workspaceId || !scope.sourceVersion || !scope.policyVersion || !scope.purpose) {
       throw new ScopedCacheError('global_cache_disabled');
     }
   }

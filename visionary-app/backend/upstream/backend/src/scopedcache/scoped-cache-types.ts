@@ -32,6 +32,8 @@ export interface CacheScope {
   caller: CacheCaller;
   sourceVersion: string;
   policyVersion: string;
+  /** The authorized purpose the entry was produced under (delivery-rechecked). */
+  purpose: string;
   /** The cache kind — every kind requires the full scope binding. */
   kind: 'exact' | 'semantic' | 'template';
 }
