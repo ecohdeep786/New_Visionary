@@ -1,15 +1,22 @@
 // JOB-01 — owning-store outbox dispatcher.
 //
-// Dispatches outbox events + jobs with three crash-safe guarantees:
-//   - commit safety: an event appended to the owning store is never lost; a
-//     dispatch that fails before ack leaves a PENDING row that a later poll
-//     re-dispatches (recovery after commit/dispatch/ack crashes).
-//   - bounded retry/backoff: each outbox event/job has a maxAttempts ceiling and
-//     exponential backoff; exceeding the ceiling quarantines the row (FAILED).
-//   - idempotent completion: delivering the same cursor twice never executes the
-//     underlying action twice because completion is keyed on the durable cursor.
-//   - per-workload queues: jobs are routed by `queue`; a client cannot inject a
-//     queue it does not own (server-authoritative assertAuthorized).
+// Review rework (10582): the dispatcher now REQUIRES confirmed private
+// delivery before acknowledgement and reports outcomes honestly.
+//   - atomic due claim: claimDueOutbox on the owning store claims each due
+//     event exactly once (concurrent polls cannot double-claim; a poll before
+//     nextAttemptAt never touches the row and never burns an attempt).
+//   - confirmed delivery: the registered topic handler (or the default
+//     handler) must resolve before the DONE ack is attempted. An event with
+//     no handler is never marked DONE.
+//   - honest reporting: DONE = delivered + ack committed; DISPATCHED =
+//     delivery confirmed but the ack did not commit (crash) — the row is
+//     durably DISPATCHED under its recovery lease; PENDING = delivery failed
+//     and a bounded backoff retry is scheduled; FAILED = quarantined at the
+//     attempt ceiling. A poll never reports DISPATCHED for a PENDING row.
+//   - recovery: a lost ack leaves the row DISPATCHED; once its lease expires
+//     the next poll re-claims and re-delivers it. Handlers are idempotent per
+//     cursor (the consumer dedupes on the durable cursor), so a redelivery
+//     never double-commits.
 import type { BackoffPolicy, Job, JobState, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
 import type { OutboxStore } from './outbox-store';
@@ -21,58 +28,92 @@ export class JobPolicyError extends Error {
   }
 }
 
+/** A private authenticated delivery endpoint for one topic. Handlers MUST be
+ * idempotent per event cursor: recovery re-delivers after a lost ack. */
+export type DeliveryHandler = (event: OutboxEvent) => Promise<void>;
+
+export interface DispatchOutcome {
+  cursor: number;
+  /** Durable row status after this dispatch poll. */
+  status: OutboxStatus;
+  /** Whether the delivery handler confirmed the delivery. */
+  delivered: boolean;
+}
+
+export interface DispatcherHandlers {
+  /** Handler per topic; a topic without one falls back to `default`. */
+  topics?: Map<string, DeliveryHandler>;
+  /** Fallback delivery endpoint when a topic has no specific handler. */
+  default?: DeliveryHandler;
+}
+
 export class OutboxDispatcher {
-  constructor(private readonly store: OutboxStore, private readonly policy: BackoffPolicy = DEFAULT_BACKOFF) {}
+  constructor(
+    private readonly store: OutboxStore,
+    private readonly handlers: DispatcherHandlers = {},
+    private readonly policy: BackoffPolicy = DEFAULT_BACKOFF,
+  ) {}
 
   /**
-   * Dispatch the next batch of pending outbox events. Delivers at most once per
-   * cursor until an ack commits; a crash after dispatch but before ack is
-   * recovered on the next poll. Returns DELIVERED as `{cursor, status}`.
+   * Dispatch one batch of due outbox events. Each event is claimed atomically,
+   * delivered through its registered handler, and acknowledged only after the
+   * handler confirms. Returns one honest outcome per handled event.
    */
-  async dispatch(batchSize: number): Promise<{ cursor: number; status: OutboxStatus }[]> {
-    const pending = await this.store.pendingOutbox(batchSize);
-    const results: { cursor: number; status: OutboxStatus }[] = [];
-    for (const event of pending) {
-      const outcome = await this.attempt(event);
-      results.push({ cursor: event.cursor, status: outcome });
+  async dispatch(batchSize: number, now: Date = new Date()): Promise<DispatchOutcome[]> {
+    const results: DispatchOutcome[] = [];
+    // Quarantine exhausted rows first: they are due but never claimed again.
+    for (const dead of await this.store.exhaustedOutbox(now, this.policy.maxAttempts)) {
+      await this.store.markOutbox(dead.cursor, { status: 'FAILED', lastError: 'MAX_ATTEMPTS_REACHED' });
+      results.push({ cursor: dead.cursor, status: 'FAILED', delivered: false });
+    }
+    const claimed = await this.store.claimDueOutbox(batchSize, now, this.policy.maxAttempts, this.policy.leaseMs);
+    for (const event of claimed) {
+      results.push(await this.deliver(event, now));
     }
     return results;
   }
 
-  private async attempt(event: OutboxEvent): Promise<OutboxStatus> {
-    const nextAttempt = event.attempts + 1;
-    if (nextAttempt > this.policy.maxAttempts) {
-      // Quarantine: bounded ceiling reached. Never silently dropped; marked FAILED.
-      await this.mark(event.cursor, { status: 'FAILED', attempts: nextAttempt, lastError: 'MAX_ATTEMPTS_REACHED', dispatchedAt: new Date().toISOString() });
-      return 'FAILED';
-    }
-    // Durable claim: bump attempts and set the next retry time BEFORE delivering.
-    const delay = backoffDelay(this.policy, nextAttempt);
-    const claimed = await this.mark(event.cursor, {
-      attempts: nextAttempt,
-      nextAttemptAt: new Date(Date.now() + delay).toISOString(),
-      dispatchedAt: new Date().toISOString(),
-    });
-    if (!claimed) throw new JobPolicyError('unknown_event');
-    // Acknowledge atomically; if the ack fails (crash) the row stays claimable by
-    // nextAttemptAt and recovery re-delivers without a duplicate commit.
-    await this.ack(event.cursor);
-    return 'DISPATCHED';
+  private handlerFor(topic: string): DeliveryHandler | undefined {
+    return this.handlers.topics?.get(topic) ?? this.handlers.default;
   }
 
-  private async mark(cursor: number, patch: Partial<Pick<OutboxEvent, 'status' | 'dispatchedAt' | 'attempts' | 'nextAttemptAt' | 'lastError'>>): Promise<OutboxEvent | null> {
+  private async deliver(event: OutboxEvent, now: Date): Promise<DispatchOutcome> {
+    const outcome = (status: OutboxStatus, delivered: boolean): DispatchOutcome => ({ cursor: event.cursor, status, delivered });
+    const handler = this.handlerFor(event.topic);
+    if (!handler) {
+      // No delivery endpoint: never mark DONE. Schedule a bounded retry so the
+      // row is not hot-looped, and report PENDING honestly.
+      const delay = backoffDelay(this.policy, event.attempts);
+      await this.store.markOutbox(event.cursor, {
+        status: 'PENDING',
+        nextAttemptAt: new Date(now.getTime() + delay).toISOString(),
+        lastError: 'NO_DELIVERY_HANDLER',
+      });
+      return outcome('PENDING', false);
+    }
     try {
-      return await this.store.markOutbox(cursor, patch);
-    } catch {
-      // Crash between claim and ack: leave PENDING for recovery (do not lose the row).
-      return await this.store.outboxByCursor(cursor);
+      await handler(event);
+    } catch (error) {
+      const message = error instanceof Error ? error.message.slice(0, 200) : 'delivery failed';
+      if (event.attempts >= this.policy.maxAttempts) {
+        await this.store.markOutbox(event.cursor, { status: 'FAILED', lastError: message });
+        return outcome('FAILED', false);
+      }
+      // Bounded backoff: the retry slot respects nextAttemptAt; attempts were
+      // already incremented by the atomic claim, so a poll before the slot
+      // cannot burn another attempt.
+      const delay = backoffDelay(this.policy, event.attempts);
+      await this.store.markOutbox(event.cursor, {
+        status: 'PENDING',
+        nextAttemptAt: new Date(now.getTime() + delay).toISOString(),
+        lastError: message,
+      });
+      return outcome('PENDING', false);
     }
-  }
-
-  private async ack(cursor: number): Promise<void> {
-    // Idempotent completion keyed on durable cursor. If ack is lost the next
-    // poll sees attempt count and re-delivers; duplicates never re-commit.
-    await this.store.markOutbox(cursor, { status: 'DONE' }).catch(() => undefined);
+    // Delivery confirmed — only now is the DONE ack attempted. A lost ack
+    // leaves the row DISPATCHED under its lease for a later recovery poll.
+    const acked = await this.store.ackOutbox(event.cursor, now).catch(() => false);
+    return acked ? outcome('DONE', true) : outcome('DISPATCHED', true);
   }
 
   /** Enqueue a job into a per-workload queue, validating the client uid owns it. */
@@ -98,19 +139,38 @@ export class OutboxDispatcher {
     return job;
   }
 
-  /** Run one job idempotently with fencing against a cancelled token. */
-  async runJob(id: string, cancelToken?: string): Promise<void> {
+  /**
+   * Run one job through its owning handler. A job is never marked DONE
+   * without invoking a handler; a cancelled job is fenced against stale
+   * callers; a handler failure is recorded and bounded by maxAttempts.
+   */
+  async runJob(id: string, handler?: (job: Job) => Promise<void>, cancelToken?: string): Promise<void> {
     const job = await this.store.jobById(id);
     if (!job) return;
     if (job.state === 'CANCELLED' || (job.cancellationToken && job.cancellationToken !== cancelToken)) {
       return; // fencing: a stale/disconnected caller cannot run a cancelled job
     }
+    if (job.state === 'DONE') return; // idempotent completion
+    if (!handler) {
+      await this.store.updateJob(id, { lastError: 'NO_JOB_HANDLER' });
+      return;
+    }
+    if (job.attempt >= job.maxAttempts) {
+      await this.store.updateJob(id, { state: 'FAILED' as JobState, lastError: 'MAX_ATTEMPTS_REACHED' });
+      return;
+    }
+    await this.store.updateJob(id, { state: 'RUNNING' as JobState, attempt: job.attempt + 1 });
     try {
-      await this.store.updateJob(id, { state: 'RUNNING' as JobState });
-      // The worker body is owned by the job kind; here the enabler marks done.
-      await this.store.updateJob(id, { state: 'DONE' as JobState, completedAt: new Date().toISOString() });
-    } catch {
-      await this.store.updateJob(id, { state: 'FAILED' as JobState });
+      await handler(job);
+      await this.store.updateJob(id, { state: 'DONE' as JobState, completedAt: new Date().toISOString(), lastError: null });
+    } catch (error) {
+      const message = error instanceof Error ? error.message.slice(0, 200) : 'job failed';
+      const attempt = job.attempt + 1;
+      if (attempt >= job.maxAttempts) {
+        await this.store.updateJob(id, { state: 'FAILED' as JobState, lastError: message });
+      } else {
+        await this.store.updateJob(id, { state: 'PENDING' as JobState, lastError: message });
+      }
     }
   }
 

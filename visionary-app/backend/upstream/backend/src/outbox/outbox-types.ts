@@ -54,6 +54,12 @@ export interface BackoffPolicy {
   multiplier: number;
   /** Hard ceiling on any single delay (ms). */
   maxDelayMs: number;
+  /**
+   * Recovery lease (ms) written at the atomic due claim: an event whose
+   * delivery ran but whose DONE ack was lost stays DISPATCHED until
+   * nextAttemptAt passes, then the next poll re-claims and re-delivers it.
+   */
+  leaseMs: number;
 }
 
-export const DEFAULT_BACKOFF: BackoffPolicy = { maxAttempts: 5, baseDelayMs: 200, multiplier: 2, maxDelayMs: 60_000 };
+export const DEFAULT_BACKOFF: BackoffPolicy = { maxAttempts: 5, baseDelayMs: 200, multiplier: 2, maxDelayMs: 60_000, leaseMs: 30_000 };

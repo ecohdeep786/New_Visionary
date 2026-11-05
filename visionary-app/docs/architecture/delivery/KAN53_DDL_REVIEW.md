@@ -64,3 +64,40 @@ Implement owning-store outbox dispatch, private authenticated task delivery, per
 - Dev integration commit and checks: (after review)
 - Jira transition/comment receipt: KAN-53 → Testing (transition 41)
 - Next dependent tasks: JOB-02 (KAN-54) leases/fencing, JOB-03 (KAN-55) admission limits, then SYNC-01 (KAN-139).
+
+## Rework 2 (2026-11-05) — review findings 10582 addressed
+
+Reviewer blockers on 9e8dc2e5e13b356d4f5049736e7c812a8d0982d9 were reproduced
+and fixed in the dispatcher/store contract:
+
+1. Dishonest reporting: the old `ack()` swallowed a lost DONE ack and still
+   returned DISPATCHED while the row stayed PENDING. Now the owning store's
+   `ackOutbox` is the only DONE writer; a lost ack leaves the row durably
+   DISPATCHED under a recovery lease and the poll reports DISPATCHED only
+   because the row IS DISPATCHED (delivery confirmed, ack pending).
+2. Attempts burned before `nextAttemptAt`: `pendingOutbox` ignored the retry
+   slot. Now `claimDueOutbox(limit, now, maxAttempts, leaseMs)` performs the
+   ATOMIC DUE CLAIM on the owning store (one mutation per row: due check +
+   status DISPATCHED + attempts+1 + lease). A poll before `nextAttemptAt`
+   returns nothing and burns no attempt; concurrent polls cannot double-claim.
+3. DONE without delivery: there was no delivery handler at all. The dispatcher
+   now requires a registered topic handler (or default); DONE commits only
+   after the handler resolves. An event with no handler stays PENDING with
+   `NO_DELIVERY_HANDLER` and a bounded retry slot. Jobs likewise never reach
+   DONE without their handler (`NO_JOB_HANDLER`).
+
+New surface: `OutboxStore.claimDueOutbox/exhaustedOutbox/ackOutbox`,
+`BackoffPolicy.leaseMs`, `DispatchOutcome {cursor, status, delivered}`,
+`DeliveryHandler` (idempotent per cursor — recovery re-delivers after a lost
+ack and the consumer dedupes on the durable cursor).
+
+Verification: tsc --project tsconfig.data.json exit 0; nest build exit 0;
+node --test tests/contracts/data-jobs/outbox.test.mjs → 12 pass / 0 fail
+(includes restart recovery after ack crash, deadline-respecting backoff,
+concurrent double-dispatcher claims, batch bound, quarantine at the ceiling
+and the ack-crash quarantine sweep). Reviewer probe replay (kan53-probe):
+PROBE1 honest DISPATCHED=row status; PROBE2 early poll burns nothing;
+PROBE3 no-handler never DONE; PROBE4 concurrent claims atomic (4/4 unique).
+
+The Cloud SQL adapter swap and worker/controller wiring remain the declared
+later, separately reviewed integration (unchanged scope boundary).
