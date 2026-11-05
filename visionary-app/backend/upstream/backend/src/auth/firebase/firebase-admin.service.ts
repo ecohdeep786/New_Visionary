@@ -83,8 +83,16 @@ export class FirebaseAdminService implements OnModuleDestroy {
       try { credential = cert(account); }
       catch { throw new FirebaseAdminConfigurationError("The Firebase service-account credential cannot be parsed."); }
     } else if (settings.kind === "emulator") {
-      // No live key/ADC discovery, even if the surrounding host has credentials.
-      credential = { getAccessToken: async () => ({ access_token: "emulator-only", expires_in: 3600 }) };
+      // Emulator mode: no credential FILE is ever loaded (the checks above
+      // refuse one), and Auth verification is routed locally by
+      // FIREBASE_AUTH_EMULATOR_HOST regardless of the credential object.
+      // Firestore still requires a real google-auth-library credential CLASS —
+      // a bare getAccessToken shim satisfies Auth but the Firestore client
+      // refuses to initialize with it (firestore/invalid-credential), so the
+      // emulator app uses applicationDefault(): with no credential file
+      // configured this performs no file discovery, and every emulator call
+      // stays on the loopback emulator hosts.
+      credential = applicationDefault();
     } else {
       credential = applicationDefault();
     }
