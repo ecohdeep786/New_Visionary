@@ -40,7 +40,17 @@ export class PostgresInvitationStore implements InvitationStore {
     return current;
   }
   private async member(tx: Tx, workspaceId: string, uid: string, minimum: number) {
-    const [m] = await tx.$queryRawUnsafe<any[]>('SELECT m."role",w."uid" AS owner FROM "workspace_memberships" m JOIN "workspaces" w ON w."id"=m."workspaceId" WHERE m."workspaceId"=$1 AND m."uid"=$2 FOR SHARE OF m', workspaceId, uid);
+    const [m] = await tx.$queryRaw<{ role: string; owner: string }[]>`
+      SELECT m."role", w."uid" AS owner
+      FROM "workspace_memberships" m JOIN "workspaces" w ON w."id" = m."workspaceId"
+      WHERE m."workspaceId" = ${workspaceId} AND m."uid" = ${uid}
+        AND NOT EXISTS (
+          SELECT 1 FROM "deletion_tombstones" t WHERE t."uid" = m."uid"
+            AND (t."resourceType" = 'person' OR
+                 (t."resourceType" = 'workspace' AND t."resourceId" = m."workspaceId"))
+        )
+      FOR SHARE OF m
+    `;
     if (!m || rank(m.role) < minimum || (m.role === 'OWNER' && m.owner !== uid)) throw new InvitationPolicyError('unauthorized');
     return m.role as WorkspaceRole;
   }
