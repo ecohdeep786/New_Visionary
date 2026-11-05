@@ -10,7 +10,10 @@ const {MigrationRunner}=req('./dist/src/data/migration-runner.js');
 const {PostgresMigrationStore}=req('./dist/src/data/migration-store.js');
 const {canonicalMigrations,registerMigration,splitSql}=req('./dist/src/data/migration-registry.js');
 const {WorkspaceRepository}=req('./dist/src/workspaces/workspace.repository.js');
-const canonical=()=>canonicalMigrations(backend);
+// These historical rollback/drift scenarios intentionally pin the immutable v1
+// baseline before adding their own synthetic v2/v3. DATA-04 tests apply the full
+// current registry and verify the actual invitation evolution separately.
+const canonical=()=>canonicalMigrations(backend).slice(0,1);
 const extra=(base,overrides={})=>registerMigration({version:2,name:'synthetic-additive',requires:[1],statements:['ALTER TABLE "workspaces" ADD COLUMN "syntheticOnly" TEXT'],down:['ALTER TABLE "workspaces" DROP COLUMN "syntheticOnly"'],reversible:true,...overrides});
 const fixture=async fn=>{const f=await stagingDatabase();try{await fn(f);}finally{await f.close();}};
 const column=async(f,name)=>(await f.db.$queryRawUnsafe('SELECT column_name FROM information_schema.columns WHERE table_schema=$1 AND column_name=$2',f.schema,name)).length;
@@ -79,7 +82,7 @@ test('concurrent connections serialize and restart reads durable history',()=>fi
   const results=await Promise.all([new MigrationRunner(f.store(),canonical()).applyAll(),new MigrationRunner(f.store(),canonical()).applyAll()]);
   assert.deepEqual(results.map(r=>r.applied).sort(),[0,1]);
   const modulePath=resolve(backend,'dist/src/data');
-  const child=spawnSync(process.execPath,['-e',`const {PostgresMigrationStore}=require(process.env.DATA_MODULE+'/migration-store.js');const {MigrationRunner}=require(process.env.DATA_MODULE+'/migration-runner.js');const {canonicalMigrations}=require(process.env.DATA_MODULE+'/migration-registry.js');(async()=>{const s=new PostgresMigrationStore(JSON.parse(process.env.DATA_CONFIG));try{const r=await new MigrationRunner(s,canonicalMigrations(process.env.DATA_BACKEND)).applyAll();if(r.applied!==0||r.skipped!==1)process.exitCode=1;console.log(JSON.stringify({applied:r.applied,skipped:r.skipped}));}finally{await s.close();}})().catch(()=>{process.exitCode=1;});`],
+  const child=spawnSync(process.execPath,['-e',`const {PostgresMigrationStore}=require(process.env.DATA_MODULE+'/migration-store.js');const {MigrationRunner}=require(process.env.DATA_MODULE+'/migration-runner.js');const {canonicalMigrations}=require(process.env.DATA_MODULE+'/migration-registry.js');(async()=>{const s=new PostgresMigrationStore(JSON.parse(process.env.DATA_CONFIG));try{const r=await new MigrationRunner(s,canonicalMigrations(process.env.DATA_BACKEND).slice(0,1)).applyAll();if(r.applied!==0||r.skipped!==1)process.exitCode=1;console.log(JSON.stringify({applied:r.applied,skipped:r.skipped}));}finally{await s.close();}})().catch(()=>{process.exitCode=1;});`],
     {env:{...process.env,DATA_CONFIG:JSON.stringify(f.config),DATA_MODULE:modulePath,DATA_BACKEND:backend},encoding:'utf8',timeout:20000,windowsHide:true});
   assert.equal(child.status,0,child.stderr);assert.match(child.stdout,/"applied":0/);
 }));

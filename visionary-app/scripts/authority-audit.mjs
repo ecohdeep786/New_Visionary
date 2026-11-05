@@ -11,7 +11,7 @@ const controllerFiles = [
   'auth/firebase-product/firebase-product.controller.ts', 'auth/firebase-product/account.controller.ts',
   'billing/billing.controller.ts', 'feedback/feedback.controller.ts',
   'learning/learning.controller.ts', 'learning/knowledge-projection.controller.ts',
-  'workspaces/personal-workspace.controller.ts', 'privacycore/privacy-policy.controller.ts',
+  'workspaces/personal-workspace.controller.ts', 'privacycore/privacy-policy.controller.ts', 'invitations/product-invitation.controller.ts',
 ].map(file => backend + file);
 const provenanceFiles = [...controllerFiles, ...[
   'auth/firebase-product/firebase-product.module.ts', 'auth/firebase-product/request-authority.ts',
@@ -20,6 +20,7 @@ const provenanceFiles = [...controllerFiles, ...[
   'billing/billing.service.ts', 'billing/billing.repository.ts', 'billing/razorpay.provider.ts',
   'feedback/feedback.service.ts', 'learning/learning.service.ts', 'learning/learning.contract.ts',
   'learning/knowledge-projection.service.ts', 'workspaces/personal-workspace.service.ts',
+  'invitations/product-invitation.service.ts', 'invitations/invitation.service.ts', 'invitations/invitation-store.ts', 'invitations/institution-approval.ts',
   'privacycore/privacy-policy.service.ts', 'privacycore/privacy-policy.ts', 'privacycore/privacy-preservation-policy.v1.json',
   'workspaces/provision-types.ts', 'workspaces/provision-store.ts', 'workspaces/firestore-provision-links.ts',
   'workspaces/workspace-provisioner.ts', 'main-auth.ts', 'platform/production-http.ts',
@@ -46,6 +47,7 @@ export const profiles = {
   learningWrite: profile('Current session/device/account plus Origin/CSRF', 'Owner records only; workspace tag consistency is not membership proof', 'UID-nested session/command/assessment transaction, expected revision and replay fingerprint; server scores stored authored key', 'Source/provider/criteria references and authored check input are bounded client input; no independent approved-source authority is established', 'No shared-classroom/guardian/model-provider consent established', ['learning']),
   knowledgeRead: profile('Current session/device and expected-account match', 'Owner projection scoped by workspace/concept/source/criteria; no verified membership added', 'UID-nested knowledge projection or selected model metadata; pKnown is not assessed mastery', 'Exact source/criteria/model compatibility, not published-source licensing', 'No cross-user reporting or model-data permission', ['knowledge']),
   knowledgeWrite: profile('Current session/device/account and Origin/CSRF', 'Scope derived from owned saved session/assessment; consistency checked', 'Owned immutable assessment receipt to projection/command/receipt/outbox transaction; bounded replay/rebuild checks', 'Pins stored source/criteria/model revisions; authoritative source/criteria service still gated', 'No cross-user or training permission', ['knowledge', 'learning']),
+  institutionInvitations: profile('Current session, account and CSRF; verified provider email on acceptance; bounded UID rate admission', 'Canonical PostgreSQL workspace, admin-only recovery and configured independent reviewers', 'Local emulator and synthetic SQL only; transaction binds invitation to its locked issuance approval', 'No source publication or private learning access', 'Current adult privacy admission before issuing, looking up, accepting or approving; recovery returns no recipient or token', ['workspaceProvision']),
   workspaceProvision: profile('Verified current session/device, expected-account match, exact Origin/CSRF and per-UID 10/minute rate admission; UID derived by commandAccount', 'Creates only the authenticated owner personal workspace and OWNER membership; caller role/workspace hints rejected', 'Explicit opt-in runtime-only SQL identity; target/UID-scoped command receipt, workspace, member, audit and outbox commit in one SQL transaction', 'No educational source or publication access granted', 'Existing Firestore account/profile/billing preserved; dedicated pending/completed locator is not a permission grant', ['workspaceProvision']),
   domain: profile('REQUIRED: server-verified UID/session, expected account, action-specific admission; writes require Origin/CSRF', 'REQUIRED: current verified membership/capability, never preview role or caller workspaceId', 'REQUIRED: current owner/object/action and exact revision/digest; reauthorize duplicate and in-flight work', 'REQUIRED: current published source/version/rights and permitted action; withdrawal checked', 'REQUIRED: current purpose/relationship/consent/entitlement; payment is not a role', ['domain'], 'proposed'),
   privateFile: profile('REQUIRED: current authenticated UID and permitted action; signed URL possession alone is insufficient', 'REQUIRED: current workspace/object/source authority', 'REQUIRED: private object/asset/export ownership, quarantine/finalize checks; reauthorize downloads and issuance', 'REQUIRED: approved media/source rights and permitted offline/export use', 'REQUIRED: purpose/consent, expiry/revocation; downloaded bytes have residual-access limits', ['domain', 'privateObjects'], 'proposed'),
@@ -85,6 +87,7 @@ const assignments = {
   learningWrite: ['POST /api/account/learning/sessions', 'POST /api/account/learning/sessions/:sessionId/checks', 'POST /api/account/learning/sessions/:sessionId/assessments', 'POST /api/account/learning/sessions/:sessionId/cancel'],
   knowledgeRead: ['GET /api/account/learning/knowledge/projections', 'GET /api/account/learning/knowledge/models'],
   knowledgeWrite: ['POST /api/account/learning/knowledge/project'],
+  institutionInvitations: ['POST /api/account/invitations/issue', 'POST /api/account/invitations/accept', 'POST /api/account/invitations/pending', 'POST /api/account/invitations/revoke', 'POST /api/account/invitations/membership', 'POST /api/account/invitations/history', 'POST /api/account/invitations/institution/approve', 'POST /api/account/invitations/institution/revoke'],
   workspaceProvision: ['POST /api/account/workspace/provision'],
 };
 const groupProfiles = {
