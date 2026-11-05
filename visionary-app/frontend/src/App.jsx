@@ -93,7 +93,6 @@ const Learn = lazy(() => import('@/pages/dashboard/Learn'))
 const StudentClasses = lazy(() => import('@/pages/dashboard/StudentClasses'))
 const TopicDetail = lazy(() => import('@/pages/dashboard/TopicDetail'))
 const TeacherClasses = lazy(() => import('@/pages/dashboard/role/TeacherHome'))
-const DemoPreview = import.meta.env.DEV ? lazy(() => import('@/pages/DemoPreview')) : null
 const Practice = lazy(() => import('@/pages/dashboard/Practice'))
 const Build = lazy(() => import('@/pages/dashboard/ArtifactStudio'))
 const Subscription = lazy(() => import('@/pages/dashboard/Plans'))
@@ -158,7 +157,6 @@ function LandingEntry() {
 function ClassesEntry() { const { user } = useAuth(); return user?.identity === 'teacher' ? <TeacherClasses /> : <StudentClasses />; }
 const PublicApp = () => (
   <Routes>
-    {DemoPreview && <Route path="/dev/scenarios" element={<DemoPreview />} />}
     <Route path="/" element={<LandingEntry />} />
     <Route path="/signin" element={<Navigate to="/login" replace />} />
     <Route path="/login" element={<Login />} />

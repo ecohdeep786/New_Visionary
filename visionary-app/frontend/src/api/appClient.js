@@ -150,15 +150,6 @@ const verifyPassword = async (user, candidatePassword) => {
 /* ── Auth API ── */
 
 const auth = {
-  async enterDemo(person) {
-    if (!import.meta.env?.DEV) throw new Error('Demo account selection is available only in development.');
-    if (!person.id.startsWith('demo-') || !person.email.endsWith('@visionary.test')) throw new Error('Only fictional preview accounts are allowed.');
-    const {seedConnectedFixtures}=await import('./demoFixtures.js');seedConnectedFixtures();
-    let user = getUsers().find(u => u.id === person.id);
-    if (!user) { user = { id: person.id, email: person.email, full_name: person.name, identity: person.roles[0], onboarding_complete: true, demo: true, createdAt: Date.now() }; writeJson(USERS_KEY, [...getUsers(), user]); }
-    createSession(user);
-    return sanitizeUser(user);
-  },
   async me() {
     const user = getCurrentUser();
     if (!user) throw new Error('Not signed in');
