@@ -18,7 +18,7 @@ const FOOTER_SECTIONS = [
       { label: "Professionals", to: "/professional" },
       { label: "Organizations", to: "/organization" },
       { label: "How it works", to: "/how-it-works" },
-      { label: "Download", to: "/download" },
+      { label: "Download Visionary", to: "/download" },
       { label: "Pricing", to: "/pricing" },
     ],
   },
@@ -92,7 +92,7 @@ export default function LandingFooter({ variant = "brand" }) {
         <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: "#d2d2d7" }}>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="pt-10">
-              <h4 className="mb-4 text-[13px] font-semibold tracking-[-0.010em]" style={{ color: C.ink }}>{section.title}</h4>
+              <h3 className="mb-4 text-[13px] font-semibold tracking-[-0.010em]" style={{ color: C.ink }}>{section.title}</h3>
               <ul className="space-y-1">
                 {section.links.map((link) => (
                   <li key={link.label}>

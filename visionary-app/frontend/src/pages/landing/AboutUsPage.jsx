@@ -5,6 +5,9 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import LandingNav from "@/components/landing/LandingNav";
 import AboutUsHero from "@/components/landing/AboutUsHero";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import heroBotWebp from "@/assets/brand/visionary-bot.webp";
+import heroBotAvif from "@/assets/brand/visionary-bot.avif";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import studentImage from "@/assets/student-hero-main-1600w.webp";
 import teacherImage from "@/assets/teacher-hero-main-1600w.webp";
@@ -70,7 +73,7 @@ function useReveal() {
 
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useReveal();
-  return <div ref={ref} className={`${className} transition duration-700 ease-google motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
+  return <div ref={ref} className={`${className} transition duration-700 ease-apple motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
 }
 
 function Eyebrow({ children }) {
@@ -78,7 +81,7 @@ function Eyebrow({ children }) {
 }
 
 function ArrowLink({ to, children, className = "", style }) {
-  return <Link to={to} style={style} className={`group inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}>{children}<ChevronIcon className="h-4 w-4" /></Link>;
+  return <Link to={to} style={style} className={`group relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex w-fit items-center gap-1.5 rounded-sm text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${className}`}>{children}<ChevronIcon className="h-4 w-4" /></Link>;
 }
 
 function MissionSection() {
@@ -87,7 +90,7 @@ function MissionSection() {
       <Eyebrow>Why Visionary exists</Eyebrow>
       <div className="mt-5 grid gap-9 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-20">
         <h2 className="max-w-[760px] text-[40px] font-normal leading-[1.07] tracking-[-0.045em] text-[#1d1d1f] sm:text-[52px] lg:text-[64px]">Understanding should open the next door.</h2>
-        <p className="max-w-[480px] pb-1 text-[18px] leading-[1.65] text-[#6e6e73]">People move between classrooms, homes, work, and new ambitions. Too often, what they have learned gets left behind at each change. We are building Visionary so understanding can grow with them.</p>
+        <p className="max-w-[480px] pb-1 text-[17px] leading-[1.65] text-[#6e6e73]">People move between classrooms, homes, work, and new ambitions. Too often, what they have learned gets left behind at each change. We are building Visionary so understanding can grow with them.</p>
       </div>
       <div id="team" className="relative mt-14 grid scroll-mt-28 gap-3 overflow-hidden rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 md:grid-cols-[1.1fr_0.9fr] lg:p-10">
         <div className="flex min-h-[320px] flex-col rounded-[20px] bg-white p-8 sm:p-10 lg:p-14">
@@ -98,12 +101,15 @@ function MissionSection() {
           </p>
           <p className="mt-10 text-[14px] text-[#1d1d1f]">Visionary · the mission we build toward</p>
         </div>
-        <div className="flex min-h-[260px] items-center justify-center rounded-[20px] bg-white p-8 pb-20 sm:pb-24"><SpotIllustration subject="loop" className="h-56 w-56 sm:h-72 sm:w-72" title="One intelligence across every learner" /></div>
+        {/* the mark — the Visionary bot (the same founder-approved bare bot
+            the front door's One-intelligence promo band carries), hosted in
+            the mission card at the illustration slot's exact dimensions. */}
+        <div className="flex min-h-[260px] items-center justify-center rounded-[20px] bg-white p-8 pb-20 sm:pb-24"><picture><source type="image/avif" srcSet={heroBotAvif} /><img src={heroBotWebp} alt="One intelligence across every learner" loading="lazy" decoding="async" draggable="false" className="pointer-events-none h-56 w-56 select-none object-contain sm:h-72 sm:w-72" /></picture></div>
         {/* google.com card curve — the field's cutout sweeps into the
             bottom-right of the illustration card and the action pill
             floats in it with breathing room */}
         <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[240px] rounded-tl-[28px] bg-white" />
-        <Link to="/how-it-works" className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-6 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+        <Link to="/how-it-works" className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
       </div>
     </Reveal>
   </section>;
@@ -148,12 +154,12 @@ function RolesSection() {
       <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
           {ROLES.map((role) => <Link key={role.label} to={role.to} className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] lg:col-span-2">
-            <div className="overflow-hidden"><img src={role.image} alt="" loading="lazy" className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
+            <div className="overflow-hidden"><LazyImage src={role.image} alt="" className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
             <div className="flex flex-1 flex-col p-6 pb-16"><h3 className="text-[22px] font-normal text-[#1d1d1f]">{role.label}</h3><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#6e6e73]">{role.line}</p></div>
             {/* google.com card curve — the card's cutout sweeps into the
                 bottom-right corner and the action button floats in it with breath */}
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[192px] rounded-tl-[24px] bg-white" />
-            <span className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center gap-1.5 rounded-full bg-[#1d1d1f] px-6 font-medium tracking-[0.24px] text-[14px] text-white transition-colors duration-200 group-hover:bg-[#272729]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+            <span className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[14px] text-white transition-colors duration-200 group-hover:bg-[#272729]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
           </Link>)}
         </div>
       </div>
@@ -171,7 +177,7 @@ function LifeJourneySection() {
       </div>
       <ol className="mt-14 grid gap-3 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 md:grid-cols-2 lg:grid-cols-4 lg:p-10">
         {LIFE_STAGES.map((stage) => <li key={stage.number} className="flex flex-col overflow-hidden rounded-[20px] bg-white">
-          <img src={stage.photo} alt={stage.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+          <LazyImage src={stage.photo} alt={stage.alt} className="aspect-[4/3] w-full object-cover" />
           <div className="flex flex-1 flex-col p-6">
             <span className="text-[13px] font-medium tabular-nums text-[#6e6e73]">{stage.number} / 04</span>
             <h3 className="mt-3 text-[22px] font-normal leading-[1.18] tracking-[-0.02em] text-[#1d1d1f]">{stage.title}</h3>
@@ -205,7 +211,7 @@ function ExploreSection() {
 }
 
 function FinalCta() {
-  return <section data-section="07-cta" className="relative rounded-t-[32px] bg-[#f5f5f7] px-6 text-center sm:px-8 lg:px-10"><Reveal className="mx-auto max-w-[840px]"><Eyebrow>Start where you are</Eyebrow><h2 className="mt-5 text-[40px] font-normal leading-[1.08] tracking-[-0.04em] text-[#1d1d1f] sm:text-[56px]">There is a place for you in Visionary.</h2><div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row"><Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">Get started</Link><Link to="/contact" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">Contact Visionary<ChevronIcon className="h-4 w-4" /></Link></div><p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5] text-[#6e6e73]">Explore the view that fits your role, or begin with the question you have today.</p></Reveal></section>;
+  return <section data-section="07-cta" className="relative rounded-t-[32px] bg-[#f5f5f7] px-6 text-center sm:px-8 lg:px-10"><Reveal className="mx-auto max-w-[840px]"><Eyebrow>Start where you are</Eyebrow><h2 className="mt-5 text-[40px] font-normal leading-[1.08] tracking-[-0.04em] text-[#1d1d1f] sm:text-[56px]">There is a place for you in Visionary.</h2><div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row"><Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">Get started</Link><Link to="/contact" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">Contact Visionary<ChevronIcon className="h-4 w-4" /></Link></div><p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5] text-[#6e6e73]">Explore the view that fits your role, or begin with the question you have today.</p></Reveal></section>;
 }
 
 export default function AboutUsPage() {
