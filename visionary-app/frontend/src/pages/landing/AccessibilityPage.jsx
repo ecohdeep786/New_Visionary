@@ -5,24 +5,26 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import QuietLink from "@/components/landing/QuietLink";
-import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
-import { fontStack } from "@/components/landing/system/tokens";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
+import stageHeroWebp from "@/assets/brand/hero-stage.webp";
+import stageHeroAvif from "@/assets/brand/hero-stage.avif";
 
-/* ═══ Link grammar — the approved public ink pill / grey pill / chip, verbatim ═══ */
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[16px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
-const chipPill = "inline-flex min-h-11 items-center rounded-full bg-[#f5f5f7] px-6 text-[16px] font-medium tracking-[0.24px] text-[#1d1d1f] transition-colors duration-200 hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
+
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { inkPill, greyPill, chipPill } = CTA_LAW;
 
 function Reveal({ children, className = "", delay = 0 }) {
   return (
     <div
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${className}`}
+      className={`transition-[opacity,transform] duration-700 ease-apple motion-reduce:transition-none ${className}`}
     >
       {children}
     </div>
@@ -127,38 +129,40 @@ const COMMITMENT = [
 
 export default function AccessibilityPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-accessibility min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
-        <Breadcrumb page="Accessibility" />
+        <LocalNav title="Accessibility" />
 
-        {/* HERO — the reference's centered statement + anchor chips */}
-        <section className="px-6 pb-12 pt-10 text-center sm:px-8 lg:px-10 lg:pb-14 lg:pt-16">
-          <Reveal className="mx-auto max-w-[900px]">
-            <p data-type="label" className="text-[#6e6e73]">Accessibility</p>
-            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#1d1d1f]">
-              Help every learner learn <span className="accent-gradient">how they learn best.</span>
-            </h1>
-            <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
-              One product, many ways in: vision, hearing, movement, thinking, and language on the device you have.
-            </p>
-            <div className="mt-10 flex justify-center">
-              <Link to="/register" className={inkPill}>
-                Explore what's built in
-              </Link>
-            </div>
-            <nav aria-label="On this page" className="mt-6 flex flex-wrap justify-center gap-4">
-              <AnchorChip href="#vision">Seeing and reading</AnchorChip>
-              <AnchorChip href="#voice">Hearing and speaking</AnchorChip>
-              <AnchorChip href="#motor">Motor and navigation</AnchorChip>
-              <AnchorChip href="#language">Language and understanding</AnchorChip>
-              <AnchorChip href="#sync">Sync &amp; devices</AnchorChip>
-            </nav>
-          </Reveal>
-        </section>
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4), rendered from the single-source CinematicHero
+            under the LocalNav bar: the photograph sits behind the centered
+            type; the solo ink CTA and the on-page anchor chips (trailing
+            slot) hold their decision-point position. */}
+        <Reveal>
+          <CinematicHero
+            title="Help every learner learn"
+            accent="how they learn best."
+            trailing={(
+              <nav aria-label="On this page" className="mt-6 flex flex-wrap justify-center gap-4">
+                <AnchorChip href="#vision">Seeing and reading</AnchorChip>
+                <AnchorChip href="#voice">Hearing and speaking</AnchorChip>
+                <AnchorChip href="#motor">Motor and navigation</AnchorChip>
+                <AnchorChip href="#language">Language and understanding</AnchorChip>
+                <AnchorChip href="#sync">Sync &amp; devices</AnchorChip>
+              </nav>
+            )}
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "A learner holding a laptop, ready to learn",
+            }}
+            inFlow={56}
+          />
+        </Reveal>
 
         {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
-        <section className="border-y border-[rgba(18,19,23,0.12)] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <section data-section="03-statement" className="border-y border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-[560px]">
               <p className="text-[26px] font-normal leading-[1.25] tracking-[-0.025em] text-[#1d1d1f] sm:text-[36px]">
@@ -184,14 +188,15 @@ export default function AccessibilityPage() {
         {CATEGORIES.map((category) => (
           <section
             key={category.id}
+            data-section={`04-${category.id}`}
             id={category.id}
             aria-labelledby={`${category.id}-title`}
-            className={`scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10 lg:py-24 ${category.band}`}
+            className={`scroll-mt-28 px-6 sm:px-8 lg:px-10 ${category.band}`}
           >
             <Reveal className="mx-auto max-w-[1240px]">
               <div className="max-w-[720px]">
                 <p className="apple-eyebrow text-[#6e6e73]">{category.eyebrow}</p>
-                <h2 id={`${category.id}-title`} className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[40px]">
+                <h2 id={`${category.id}-title`} data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                   {category.title}
                 </h2>
                 <p className="mt-4 max-w-[620px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">{category.intro}</p>
@@ -216,12 +221,12 @@ export default function AccessibilityPage() {
         ))}
 
         {/* SYNC SHOWPIECE — one person, every device, end to end encrypted */}
-        <section id="sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section id="sync" data-section="05-sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="grid items-center gap-10 rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
               <div>
                 <p className="apple-eyebrow text-[#6e6e73]">Sync &amp; devices</p>
-                <h2 id="sync-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
+                <h2 id="sync-title" data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                   One person. Every device. <span className="text-[#1d1d1f]">Anywhere.</span>
                 </h2>
                 <p className="mt-5 max-w-[560px] text-[16px] leading-[1.75] text-[#1d1d1f] sm:text-[16px]">
@@ -250,7 +255,7 @@ export default function AccessibilityPage() {
                   ].map(({ Icon, label }) => (
                     <div key={label} className="relative z-10 flex w-28 flex-col items-center gap-3 rounded-[20px] bg-white p-4 text-center sm:w-32">
                       <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
-                        <Icon className="h-6 w-6" strokeWidth={1.7} aria-hidden="true" />
+                        <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
                       </span>
                       <span className="text-[13px] font-medium text-[#1d1d1f]">{label}</span>
                       <span className="flex items-center gap-1 text-[12px] font-medium text-[#188038]">
@@ -268,11 +273,11 @@ export default function AccessibilityPage() {
         </section>
 
         {/* GET STARTED — the reference's own-pace resource split */}
-        <section id="resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[rgba(18,19,23,0.12)] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section id="resources" data-section="06-resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
               <p className="apple-eyebrow text-[#6e6e73]">Resources</p>
-              <h2 id="resources-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[40px]">
+              <h2 id="resources-title" data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Start at your own pace.
               </h2>
               <p className="mt-4 max-w-[420px] text-[16px] leading-[1.75] text-[#6e6e73]">
@@ -308,10 +313,10 @@ export default function AccessibilityPage() {
         </section>
 
         {/* COMMITMENT — the reference's three-column promise */}
-        <section aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section data-section="07-commitment" aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 id="commitment-title" className="text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1f] sm:text-[42px]">
+              <h2 id="commitment-title" data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Our commitment.
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
@@ -338,10 +343,10 @@ export default function AccessibilityPage() {
         </section>
 
         {/* CLOSING — the reference's blue DNA band */}
-        <section aria-labelledby="closing-title" className="px-6 pb-24 sm:px-8 lg:px-10">
+        <section data-section="08-closing" aria-labelledby="closing-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-16 text-center sm:px-12 lg:py-20">
-              <h2 id="closing-title" className="mx-auto max-w-[720px] text-[clamp(28px,3.6vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#1d1d1f]">
+              <h2 id="closing-title" data-type="section" className="mx-auto max-w-[720px] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                 Accessibility is part of <span className="text-[#1d1d1f]">our design DNA.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.7] text-[#1d1d1f] sm:text-[16px]">

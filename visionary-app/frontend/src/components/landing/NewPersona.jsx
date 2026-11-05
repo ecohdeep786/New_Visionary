@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
+import { HERO_SRCSETS, HERO_SIZES, HERO_AVIF_SOURCES } from "@/lib/heroVariants";
 import { CtaPair } from "@/components/landing/system/ui";
 import "@/components/landing/cast.css";
 
@@ -247,7 +247,7 @@ export default function NewPersona({
                         key={animatedIndex}
                         className="apple-anim accent-gradient block whitespace-nowrap"
                         style={{
-                          animation: "heroLineUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                          animation: "heroLineUp var(--motion-duration-cinematic) var(--ease-out-apple) both",
                           paddingBottom: "0.05em",
                           lineHeight: "var(--fs-hero-headline)",
                           /* the fitted one-voice size survives the per-word
@@ -275,7 +275,7 @@ export default function NewPersona({
                         ref={wordRef}
                         className="apple-anim accent-gradient block whitespace-nowrap"
                         style={{
-                          animation: "heroLineUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                          animation: "heroLineUp var(--motion-duration-cinematic) var(--ease-out-apple) both",
                           paddingBottom: "0.05em",
                           lineHeight: "var(--fs-hero-headline)"
                         }}
@@ -307,7 +307,7 @@ export default function NewPersona({
               focus previews that line and holds it; the click opens the
               persona page. Auto-advance pauses under reduced motion. */}
           {audienceLinks?.length ? (
-            <nav aria-label="Audiences" className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
+            <nav aria-label="Audiences" className="audience-rail mt-8 items-center justify-center gap-x-1 gap-y-1">
               {audienceLinks.map((audience, i) => (
                 <Link
                   key={audience.to}
@@ -362,29 +362,34 @@ export default function NewPersona({
                   style={{
                     width: `calc(var(--cast-h) * ${m.slotW})`,
                     height: `calc(var(--cast-h) * ${m.slotH})`,
-                    animation: "figIn 1.15s cubic-bezier(0.22,1,0.36,1) both",
+                    animation: "figIn var(--motion-duration-cinematic) var(--ease-out-apple) both",
                     animationDelay: `${260 + i * 70}ms`,
                     transformOrigin: "50% 100%",
                   }}
                 >
-                  <img
-                    src={p.src}
-                    srcSet={p.srcSet}
-                    sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw"
-                    alt=""
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                    draggable="false"
-                    className="absolute select-none"
-                    style={{
-                      left: `calc(var(--cast-h) * ${m.offX})`,
-                      bottom: `calc(var(--cast-h) * ${-0.125 * m.canvasH})`,
-                      width: `calc(var(--cast-h) * ${m.canvasH})`,
-                      height: `calc(var(--cast-h) * ${m.canvasH})`,
-                      maxWidth: "none",
-                    }}
-                  />
+                  {/* D3 image law: cast cutout prefers the AVIF sibling at the
+                      same pixel grid; the WebP sizeset stays the fallback. */}
+                  <picture>
+                    <source type="image/avif" srcSet={p.avifSrcSet || p.srcSet} sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw" />
+                    <img
+                      src={p.src}
+                      srcSet={p.srcSet}
+                      sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw"
+                      alt=""
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
+                      draggable="false"
+                      className="absolute select-none"
+                      style={{
+                        left: `calc(var(--cast-h) * ${m.offX})`,
+                        bottom: `calc(var(--cast-h) * ${-0.125 * m.canvasH})`,
+                        width: `calc(var(--cast-h) * ${m.canvasH})`,
+                        height: `calc(var(--cast-h) * ${m.canvasH})`,
+                        maxWidth: "none",
+                      }}
+                    />
+                  </picture>
                 </div>
               );
             })}
@@ -414,20 +419,31 @@ export default function NewPersona({
       {/* the subject — the whole photograph, always. Phones and tablets:
               the full image in flow at the section's bottom, feet on the
               fold, nothing cropped. Desktop: the same contain fit as a
-              full-bleed stage behind the bottom-left words. */}
+              full-bleed stage behind the bottom-left words.
+              D3 image law: the <picture> offers the AVIF sizeset first
+              (42% smaller wire at identical pixels); AVIF-capable browsers
+              take it, the WebP sizeset below stays the fallback so the
+              07-perf srcSet/density law keeps working everywhere. */}
       <div className="relative order-last min-h-0 flex-1 lg:absolute lg:inset-0 lg:z-0">
-        <img
-          src={img}
-          srcSet={HERO_SRCSETS[img]}
-          sizes={HERO_SIZES}
-          alt={alt}
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          draggable="false"
-          className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"
-          style={{ objectPosition: "50% 100%" }}
-        />
+        <picture>
+          <source
+            type="image/avif"
+            srcSet={HERO_AVIF_SOURCES[img].srcSet}
+            sizes={HERO_SIZES}
+          />
+          <img
+            src={img}
+            srcSet={HERO_SRCSETS[img]}
+            sizes={HERO_SIZES}
+            alt={alt}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            draggable="false"
+            className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"
+            style={{ objectPosition: "50% 100%" }}
+          />
+        </picture>
       </div>
 
       {/* the studio floor — desktop only; with the whole image in flow below
@@ -449,7 +465,7 @@ export default function NewPersona({
               <span
                 key={index}
                 className="apple-anim accent-gradient inline-block"
-                style={{ animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both" }}
+                style={{ animation: "heroFadeUp var(--motion-duration-slow) var(--ease-out-apple) both" }}
               >
                 {words[index]}
               </span>

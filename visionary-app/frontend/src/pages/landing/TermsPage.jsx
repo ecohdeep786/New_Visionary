@@ -6,14 +6,16 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
-import PolicyTabs from "@/components/landing/PolicyTabs";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
+import stageHeroWebp from "@/assets/brand/hero-stage.webp";
+import stageHeroAvif from "@/assets/brand/hero-stage.avif";
+
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META } from "@/data/legalMeta";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 const COLORS = {
   ink: "#1d1d1f",
@@ -29,8 +31,8 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* ═══ Link grammar — the approved public quiet link, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { quietLink } = CTA_LAW;
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -55,7 +57,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -201,12 +203,27 @@ export default function TermsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-terms min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <Breadcrumb page="Terms" />
-      <PolicyTabs />
+      <LocalNav title="Terms" />
 
       <main id="main">
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4), rendered from the single-source CinematicHero
+            under the LocalNav bar. Promises, action row and effective date
+            stay as the body opening below. */}
+        <FadeReveal visible={heroVisible}>
+          <CinematicHero
+            title="Clear rules, written"
+            accent="to be understood."
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "A learner holding a laptop, ready to learn",
+            }}
+            inFlow={56}
+          />
+        </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
@@ -223,7 +240,7 @@ export default function TermsPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
                           <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
                           <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
@@ -234,7 +251,7 @@ export default function TermsPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       These Terms are read together with the Privacy Policy and the Cookie policy.
                     </p>
@@ -245,18 +262,11 @@ export default function TermsPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY HERO — the same policies.google.com opening as Privacy */}
+              {/* POLICY BODY OPENING — promises, action row, effective date
+                  (the display hero lives in CinematicHero above; FAP-59
+                  phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
-                <div className="pb-12 pt-2">
-                  <div className="flex justify-center"><SpotIllustration subject="document" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Terms of service</p>
-                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                    Clear rules, written <span className="accent-gradient">to be understood.</span>
-                  </h1>
-                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
-                    What you can expect from Visionary, and what we expect from the people who use it, without the obscure language.
-                  </p>
-
+                <div className="pb-12 pt-10">
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {TERMS_PROMISES.map((p) => (
                       <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
@@ -325,7 +335,7 @@ export default function TermsPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="terms-summary-title">
+                <section data-section="02-summary" aria-labelledby="terms-summary-title">
                   <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="terms-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -344,7 +354,7 @@ export default function TermsPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 */}
-                <section id="who-can-use" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="who-can-use" data-section="03-who-can-use" className="scroll-mt-24">
                   <SectionHeading number="01" title="Who can use Visionary" />
                   <Paragraph>You may use Visionary only if you are legally permitted to enter into these Terms.</Paragraph>
                   <div className="mt-5"><Paragraph>For younger learners, use of Visionary may require involvement or permission from a parent or legal guardian, depending on the learner's age and the applicable law.</Paragraph></div>
@@ -353,7 +363,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 02 */}
-                <section id="what-you-can-do" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-you-can-do" data-section="04-what-you-can-do" className="scroll-mt-24">
                   <SectionHeading number="02" title="What you can do" />
                   <Paragraph>Use Visionary to support learning, teaching, practice, creation, and work.</Paragraph>
                   <BulletList items={[
@@ -366,7 +376,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 03 */}
-                <section id="what-you-cannot-do" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-you-cannot-do" data-section="05-what-you-cannot-do" className="scroll-mt-24">
                   <SectionHeading number="03" title="What you cannot do" />
                   <Paragraph>Keep Visionary useful and safe for everyone.</Paragraph>
                   <BulletList items={[
@@ -382,7 +392,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 04 */}
-                <section id="what-we-provide" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-we-provide" data-section="06-what-we-provide" className="scroll-mt-24">
                   <SectionHeading number="04" title="What we provide" />
                   <Paragraph>Visionary provides technology designed to support learning, teaching, practice, creation, and connected progress.</Paragraph>
                   <div className="mt-5"><Paragraph>Features may change over time. We may add, improve, remove, or limit features as the product develops.</Paragraph></div>
@@ -392,7 +402,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 05 */}
-                <section id="your-content" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-content" data-section="07-your-content" className="scroll-mt-24">
                   <SectionHeading number="05" title="Your content" />
                   <Paragraph>You remain responsible for the content you submit, upload, create, or share through Visionary.</Paragraph>
                   <div className="mt-5"><Paragraph>You must have the necessary rights and permissions to provide that content.</Paragraph></div>
@@ -402,7 +412,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 06 */}
-                <section id="your-account" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-account" data-section="08-your-account" className="scroll-mt-24">
                   <SectionHeading number="06" title="Your account" />
                   <Paragraph>Keep your account information accurate and take reasonable steps to protect your account.</Paragraph>
                   <BulletList items={[
@@ -416,7 +426,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 07 */}
-                <section id="plans-payments" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="plans-payments" data-section="09-plans-payments" className="scroll-mt-24">
                   <SectionHeading number="07" title="Plans, payments, and cancellation" />
                   <Paragraph>Some Visionary features or services may require payment.</Paragraph>
                   <div className="mt-5"><Paragraph>Prices, billing periods, available features, renewal terms, refunds, and cancellation rules are described on the Pricing page or at the time of purchase.</Paragraph></div>
@@ -426,7 +436,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 08 */}
-                <section id="changes" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="changes" data-section="10-changes" className="scroll-mt-24">
                   <SectionHeading number="08" title="When Visionary or your access changes" />
                   <Paragraph>Products change. These Terms may need to change with them.</Paragraph>
                   <div className="mt-5"><Paragraph>We may update, suspend, or discontinue parts of Visionary when reasonably necessary, including for product development, security, legal, or operational reasons.</Paragraph></div>
@@ -435,7 +445,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 09 */}
-                <section id="restriction" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="restriction" data-section="11-restriction" className="scroll-mt-24">
                   <SectionHeading number="09" title="When access may be restricted" />
                   <Paragraph>We may restrict, suspend, or terminate access when necessary to protect users, Visionary, or the integrity of the service.</Paragraph>
                   <BulletList items={[
@@ -448,7 +458,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 10 */}
-                <section id="responsibility" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="responsibility" data-section="12-responsibility" className="scroll-mt-24">
                   <SectionHeading number="10" title="Disclaimers and responsibility" />
                   <Paragraph>Visionary operates subject to applicable law.</Paragraph>
                   <div className="mt-5"><Paragraph>We do not promise that the service will always be uninterrupted, error-free, completely accurate, or available in every circumstance.</Paragraph></div>
@@ -457,7 +467,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 11 */}
-                <section id="disputes" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="disputes" data-section="13-disputes" className="scroll-mt-24">
                   <SectionHeading number="11" title="Governing law and disputes" />
                   <Paragraph>If there is a disagreement, contact Visionary first and give us an opportunity to understand and resolve the issue.</Paragraph>
                   <div className="mt-5"><Paragraph>If a dispute cannot be resolved informally, the applicable governing law, jurisdiction, dispute-resolution procedure, arbitration provisions, and courts will be specified here.</Paragraph></div>
@@ -465,7 +475,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 12 */}
-                <section id="contact" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="contact" data-section="14-contact" className="scroll-mt-24">
                   <SectionHeading number="12" title="Contact" />
                   <Paragraph>Questions about these Terms? Contact Visionary at:</Paragraph>
                   <div className="mt-6">
@@ -484,7 +494,7 @@ export default function TermsPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="15-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -506,7 +516,7 @@ export default function TermsPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="16-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -518,7 +528,7 @@ export default function TermsPage() {
               ].map(({ to, label, desc, Icon }) => (
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <Icon className="h-5 w-5" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
@@ -531,7 +541,7 @@ export default function TermsPage() {
         {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
-        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+        <section data-section="17-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
             <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
               Questions about this policy?
