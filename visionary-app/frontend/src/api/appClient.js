@@ -156,18 +156,34 @@ const auth = {
     return user;
   },
 
+  /* Read-only existence check against the same store the credential gate
+   * verifies. The password step remains the only credential decision; this
+   * only routes the sign-in UI to the right local view (F-16). */
+  async emailRegistered(email) {
+    const normalizedEmail = email.trim().toLowerCase();
+    return getUsers().some((candidate) => candidate.email?.toLowerCase() === normalizedEmail);
+  },
+
   async loginViaEmailPassword(email, password) {
     const normalizedEmail = email.trim().toLowerCase();
     const users = getUsers();
     const user = users.find((candidate) => candidate.email?.toLowerCase() === normalizedEmail);
 
+    /* Same anti-enumeration message and credential-error code the firebase
+     * path maps (D-064), so the sign-in UI shows the same recovery view. */
+    const credentialError = () => {
+      const error = new Error('Incorrect email or password');
+      error.code = 'auth/invalid-credential';
+      return error;
+    };
+
     if (!user) {
-      throw new Error('Incorrect email or password');
+      throw credentialError();
     }
 
     const isValid = await verifyPassword(user, password);
     if (!isValid) {
-      throw new Error('Incorrect email or password');
+      throw credentialError();
     }
 
     createSession(user);
@@ -250,7 +266,9 @@ const auth = {
     const targetEmail = tokenRecord ? tokenRecord.email : null;
 
     if (!targetEmail) {
-      throw new Error('Reset link is invalid or has expired. Please request a new one.');
+      const error = new Error('Reset link is invalid or has expired. Please request a new one.');
+      error.code = 'auth/invalid-action-code';
+      throw error;
     }
 
     const users = getUsers();
