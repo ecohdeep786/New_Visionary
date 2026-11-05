@@ -201,3 +201,40 @@ gates remain separate. The emulator API/two-cookie-jar claim does not establish
 those outcomes. Real/live institution invitations remain disabled by the
 development/emulator/synthetic gate. The prior source rejection and all older
 reports/probes remain preserved; this review changes no candidate, dev or Jira.
+
+### Final-candidate verification update
+
+The source decision remains exact d919ae93. After the interrupted owned frontend
+install, the integrator temporarily linked the primary checkout's complete
+dependency tree for read-only verification. The integrator reports that the
+frontend lock bytes are identical and all 748 installed lock entries were checked
+with no version/integrity mismatch or missing required package manifest. Partial
+installation bytes were preserved separately. This reviewer did not install,
+modify or certify that shared tree, and the temporary link/setup must remain
+disclosed. This is local dependency setup, not a source or lock change.
+
+The reviewer independently reran `node scripts/surface-audit.mjs` against the
+candidate using that setup: **exit 0**, 68 routes, 47 registered endpoints,
+1,656 control declarations, 1,504 route-reachable declarations, 238 control
+files. The source's reported states were 512 connected, 931 preview, 59 missing
+and 154 intentionally unreleased, with `hostedVerified: false`. Candidate HEAD
+was independently checked as d919ae93 before and after and the tracked state
+remained clean. The earlier missing-lucide setup failure is retained above and
+is not rewritten as a pass.
+
+The GitHub connector independently associated exact full d919ae93 with
+[CI run 42027476771](https://github.com/ecohdeep786/New_Visionary/actions/runs/42027476771),
+which completed successfully. Its checks job `127245203513` completed
+successfully, including `npm run check`, `npm run data:check`, the migration
+data-job image check, deployed-lock `scripts/production-check.mjs`, the product
+API image check and infrastructure test steps. Production job `127247424170`
+was **skipped**. These are real final-candidate registered-check results, not
+a deployment or hosted-product receipt.
+
+Thus the final-candidate registered-check gate previously pending above now has
+independently inspected successful CI evidence, and the local source surface
+audit also passes. Publication into dev and checks on the integrated result are
+still pending. Actual connected browser/two-device, KAN-110 admission consistency,
+accepted institution proof/age policy, real/live activation and hosted/release
+acceptance retain their separate gates. No new source change, merge, Jira
+transition, activation or cleanup was performed by this reviewer.
