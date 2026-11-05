@@ -1,6 +1,7 @@
 import { Injectable, OnModuleDestroy } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { readFileSync } from "node:fs";
+import { generateKeyPairSync } from "node:crypto";
 import { isAbsolute } from "node:path";
 import { App, applicationDefault, cert, deleteApp, getApps, initializeApp } from "firebase-admin/app";
 import { Auth, getAuth } from "firebase-admin/auth";
@@ -83,16 +84,15 @@ export class FirebaseAdminService implements OnModuleDestroy {
       try { credential = cert(account); }
       catch { throw new FirebaseAdminConfigurationError("The Firebase service-account credential cannot be parsed."); }
     } else if (settings.kind === "emulator") {
-      // Emulator mode: no credential FILE is ever loaded (the checks above
-      // refuse one), and Auth verification is routed locally by
-      // FIREBASE_AUTH_EMULATOR_HOST regardless of the credential object.
-      // Firestore still requires a real google-auth-library credential CLASS —
-      // a bare getAccessToken shim satisfies Auth but the Firestore client
-      // refuses to initialize with it (firestore/invalid-credential), so the
-      // emulator app uses applicationDefault(): with no credential file
-      // configured this performs no file discovery, and every emulator call
-      // stays on the loopback emulator hosts.
-      credential = applicationDefault();
+      // The SDK requires a certificate credential to initialize Firestore
+      // without ambient credential discovery. Generate this synthetic key only
+      // in memory; the demo-project and loopback guards fence emulator access.
+      const { privateKey } = generateKeyPairSync("rsa", { modulusLength: 2048 });
+      credential = cert({
+        projectId: settings.projectId,
+        clientEmail: `emulator@${settings.projectId}.iam.gserviceaccount.com`,
+        privateKey: privateKey.export({ type: "pkcs8", format: "pem" }).toString(),
+      });
     } else {
       credential = applicationDefault();
     }
