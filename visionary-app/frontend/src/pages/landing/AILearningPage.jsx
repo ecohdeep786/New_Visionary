@@ -140,7 +140,7 @@ function PricingStoreSection() {
                         <div className="flex h-7 items-center justify-center">
                           {p.badge && <span className="rounded-full bg-[#1d1d1f] px-2.5 py-1 text-[12px] font-medium leading-none text-white">{p.badge}</span>}
                         </div>
-                        <h3 className="mt-2 text-[21px] font-semibold leading-[1.19] tracking-[-0.009em]" style={{ color: COLORS.ink }}>{p.name}</h3>
+                        <h2 className="mt-2 text-[21px] font-semibold leading-[1.19] tracking-[-0.009em]" style={{ color: COLORS.ink }}>{p.name}</h2>
                         <p className="mt-1.5 min-h-[40px] text-[14px] font-normal leading-[1.43]" style={{ color: COLORS.grey }}>{p.tagline}</p>
                         <div className="mt-4">
                           {(() => {
