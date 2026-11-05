@@ -282,7 +282,7 @@
         "frontend/src/components/auth/EmailVerification.jsx:27:5",
         "frontend/src/components/auth/EmailVerification.jsx:28:5",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
-        "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/LanguageSelector.jsx:48:13",
         "frontend/src/components/auth/PhoneAuth.jsx:49:5",
         "frontend/src/components/auth/PhoneAuth.jsx:52:21",
         "frontend/src/components/auth/PhoneAuth.jsx:54:7",
@@ -416,7 +416,7 @@
         "frontend/src/components/auth/EmailVerification.jsx:27:5",
         "frontend/src/components/auth/EmailVerification.jsx:28:5",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
-        "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/LanguageSelector.jsx:48:13",
         "frontend/src/components/auth/PhoneAuth.jsx:49:5",
         "frontend/src/components/auth/PhoneAuth.jsx:52:21",
         "frontend/src/components/auth/PhoneAuth.jsx:54:7",
@@ -522,7 +522,7 @@
         "frontend/src/components/auth/AuthUI.jsx:195:9",
         "frontend/src/components/auth/AuthUI.jsx:229:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
-        "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/LanguageSelector.jsx:48:13",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/AuthLayout.jsx:81:11",
@@ -581,7 +581,7 @@
         "frontend/src/components/auth/AuthUI.jsx:195:9",
         "frontend/src/components/auth/AuthUI.jsx:229:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
-        "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/LanguageSelector.jsx:48:13",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/AuthLayout.jsx:81:11",
@@ -662,7 +662,7 @@
         "frontend/src/components/auth/AuthUI.jsx:195:9",
         "frontend/src/components/auth/AuthUI.jsx:229:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
-        "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/LanguageSelector.jsx:48:13",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/AuthLayout.jsx:81:11",
@@ -742,7 +742,7 @@
         "frontend/src/components/auth/AuthUI.jsx:195:9",
         "frontend/src/components/auth/AuthUI.jsx:229:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
-        "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/LanguageSelector.jsx:48:13",
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/AuthLayout.jsx:81:11",
@@ -4432,7 +4432,7 @@
         "frontend/src/components/auth/AuthUI.jsx:195:9",
         "frontend/src/components/auth/AuthUI.jsx:229:7",
         "frontend/src/components/auth/LanguageSelector.jsx:34:7",
-        "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+        "frontend/src/components/auth/LanguageSelector.jsx:48:13",
         "frontend/src/components/onboarding/ChipMultiSelect.jsx:21:11",
         "frontend/src/components/onboarding/ChoiceGrid.jsx:23:11",
         "frontend/src/components/onboarding/OnboardingLayout.jsx:16:10",
@@ -19567,7 +19567,7 @@
         "setOpen"
       ],
       "disabled": null,
-      "declarationSha256": "8138e74492e5945dc91cff0f22e03f44230201ce1adecc15bfd31459da96399f",
+      "declarationSha256": "5181b046b6920387e19c683f80640b325da0a4911cfe20adbda9f21e55049265",
       "routeIds": [
         "/login",
         "/register",
@@ -19589,9 +19589,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/auth/LanguageSelector.jsx:46:13",
+      "id": "frontend/src/components/auth/LanguageSelector.jsx:48:13",
       "file": "frontend/src/components/auth/LanguageSelector.jsx",
-      "line": 46,
+      "line": 48,
       "column": 13,
       "tag": "button",
       "events": [
@@ -78176,7 +78176,7 @@
     },
     {
       "file": "frontend/src/components/auth/LanguageSelector.jsx",
-      "sourceSha256": "4f0fb72fca4fe8aded61be8b471320f0c9a6c7ec2fff73e8063071074118899a"
+      "sourceSha256": "c0457c90418a660172741225bad505e9484dfde26eb68422b1f79763e62b42b8"
     },
     {
       "file": "frontend/src/components/auth/PhoneAuth.jsx",
@@ -79636,99 +79636,99 @@
     },
     {
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "sourceSha256": "2789ebfeabd00cdfdb57cdbb6c18d187fe88dfb56ba66799fd15edb78a464712"
+      "sourceSha256": "0a0d637686b9a9d1f03c183c0a01ee2248fb26e70451ad1a0caa8d6f119859fc"
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "688cf641e8705efe67a318f365b88584ab800305907c156e434f8365e841bb4c"
+      "sourceSha256": "d15ccb9a69ddb8f0443ad65eb9464194e919e4a3bd47d66428033765aff642b4"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "d058a431750ef86b9d8ae9bd7b29bfec89a222ef52dfc4acaf1002421e343ebf"
+      "sourceSha256": "08880a777917f1b6ee2be915910918ebdab2fe15bfed9e5ef99c9da5038ff111"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "sourceSha256": "b068a2b2ac523173d7d410aa5e7ee08810737c21f21dc695941a9d328f3b0832"
+      "sourceSha256": "c1c6b76e12e5cacbe89ad0ad42b35abc02e8b6ebfa2952ab2521fcf9024e5bfa"
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "sourceSha256": "3d8fe3e409f6c7ac976ccd8a756859d4c2f02c028623657de9ac548c2a425b1a"
+      "sourceSha256": "8c20dbf9cd000abffbe15602fc0ac32869b0065ab659de5681b1e70fcec2e7b9"
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "89da0120732d8f1db79614a3c4ae147d496479fb84f9a32f10c9df620878d85c"
+      "sourceSha256": "7f9309360a56d9e80d373879b9791fd891dcb60309416408dbf0631f88f165e3"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "cc97bf60536cb1251ac59c69e1f17046caf8f54583fa568ed96aca3e6c5628b1"
+      "sourceSha256": "53b2c22c9069d5c83c8cfeccc2586d1f916a7e55a69b496acb6513d9cf214c6d"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
-      "sourceSha256": "7e33cbe6fab42d697d5a5cd2fed4fb4fe71d26e93302e85928123cbabfe7a1f3"
+      "sourceSha256": "b95c12e2e5925f1b9926a0d1e8c57dfbb391adb8758591a8b886c03ee2af9e8b"
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "sourceSha256": "7555324fc062c666a21af2721fbfdae2e30fb7c7fc54e60030eda43f0c4fe376"
+      "sourceSha256": "742da5da19ac2f7f2853213f10e45e7fadc4a4cf246f65e3749a3c7d5a2e5a11"
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "sourceSha256": "0f039ea906768aeb8e93a07f8ea6ecd9297d0888a4f544684a4f947665319089"
+      "sourceSha256": "db4ef7232f808fb3c24be99111a8fab847d92089741a1d574b97f72641bb3ef2"
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "sourceSha256": "b03f1b6c112150f453aac53d443ac3c668e3c0784cac3e34cc493ff9fd3642dc"
+      "sourceSha256": "8f6e33fbf665038e3ceeb04881157eaf2b2cebe64bc53a2d3de12a0ee02ce7fa"
     },
     {
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "sourceSha256": "13e6dbeefa1ec1442bfdd58e4ec3968f1865d641c0fd0f4af68e55dd8d15414f"
+      "sourceSha256": "c247aed2eef062d6a27ebc58157a217d867c3bc42bf413134c1958ee15d670f6"
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
-      "sourceSha256": "799b645eb9e27d80641bcb4216c472b659155dd769e752612be08217deca6cbd"
+      "sourceSha256": "0a94f15a12c984eb67759299af2a144ecc1f6b82d75394dde0ad532aff7d8897"
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "999c3843d633d522e45ed8a730db4497643b9024aad6b722f3630c71ab63da16"
+      "sourceSha256": "2701a619ffbe80c6cf2d183e7381c016bbdd087611acd5075ac7a78acc7ca9f1"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "sourceSha256": "4c7a44181d9525fd41ef1f761858a5c0fa905233715a0423ec237598ea99cbfd"
+      "sourceSha256": "06b9d786064896a4b50a00172c330a45b4d0daae096ddede9f082fda96dba211"
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "sourceSha256": "8f9cb0e4fd84072f564c49a450beddf492bd2fe9f12ea9779e7afa0015e2a01e"
+      "sourceSha256": "a1ec7dba894113a4b5acebecea6676e42f7fd4e8407236601e6c51e6d1f3bc4f"
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "sourceSha256": "d920c90ee401dcc3cd728af628ab2abea5db14a87a46e1564b6eb2995a3e69e2"
+      "sourceSha256": "e86a5c54e1f9f28d1288c344d31177c004e3451c80288b95586c2493851fd00c"
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
-      "sourceSha256": "4d29bfcb20338861891a82fdc7b811cf5a1623e79cc991f3a1690f4261658059"
+      "sourceSha256": "d4c541c768ea9832ff07bd813d8b17cbd91582c6fb3b6c1275367b45c805f370"
     },
     {
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "sourceSha256": "87d3ca8af507159998b05a970148177295d2ef1d5304699e32e9a20d29a4facd"
+      "sourceSha256": "2e0167f7022c25ff47da3cbeeb31aaeadd66ee277fe04221bb586014f65f4730"
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "sourceSha256": "143d4f695f00c43f7ca5abb0d1eb8e91a23ebf775b1908fb666a8f85c9246fc2"
+      "sourceSha256": "2e4c81704b268464e0568ae2c6bf522bd0536ce44e684532da9cc67c86c10b78"
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "sourceSha256": "1a586c2e077a5be7bc60a3a7d52fb28cb23cfdaf75528f3c4f8b3f5ae7787dc6"
+      "sourceSha256": "a2c96a43b4dbf74834768cbebbe9572b2dc7535555863e80f8dc74da549ffaa0"
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "sourceSha256": "6b46f4fcd904c877e0e59558a211b7b90eb3c37501a2330eaca6937515697d41"
+      "sourceSha256": "7f841110e6c93b3ba288178c6f24b1f4facd85c34c099f7b50ff9156c368fe53"
     },
     {
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",
-      "sourceSha256": "180f043503e5ef647702b72031939744d9d85c68ffea87ec5942eaece620b8a4"
+      "sourceSha256": "5a88ac519b023f112c0d6749a32904965be1716bf75caafb75d1eab704f0f498"
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "5fbfe3b58a6e580e3e5cb3ba9c66b289667b589432285253d90880ffa178a685"
+      "sourceSha256": "6245f95e3f3526faedeeb2b11822de2b63d0bfa04634649bb7e4e00b959792f4"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

@@ -625,7 +625,7 @@ export default function CoachingPage() {
     <div className="page-how-it-works min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="How it works" />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <HowHeroSection />
         <HowJourneySection />
         <HowLoopSection />

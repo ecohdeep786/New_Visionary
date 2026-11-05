@@ -95,7 +95,7 @@ export default function ReferralPage() {
   return (
     <div className="page-referral min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Breadcrumb page="Referral" />
 
         {/* HERO — the reference's centered statement with the illustration trio */}

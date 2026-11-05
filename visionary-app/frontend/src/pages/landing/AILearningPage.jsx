@@ -335,7 +335,7 @@ export default function AILearningPage() {
     <div className="page-pricing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Pricing" />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <PricingStoreSection />
         <PricingPersonaSection />
         <PricingTrustBand />
