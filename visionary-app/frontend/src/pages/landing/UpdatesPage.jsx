@@ -91,7 +91,7 @@ export default function UpdatesPage() {
   return (
     <div className="page-updates min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Breadcrumb page="Updates" />
 
         {/* HERO — editorial statement: eyebrow, display heading, dek, two paths */}

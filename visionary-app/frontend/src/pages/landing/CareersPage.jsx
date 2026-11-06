@@ -244,7 +244,7 @@ export default function CareersPage() {
         <CareersRail active={active} />
         <div className="min-w-0 flex-1">
           <MobileRail active={active} />
-          <main id="main">
+          <main id="main" tabIndex={-1}>
 
             {/* HERO — full-bleed photograph with the overlapping white card
                 (Google careers home). Desktop: card floats left over the photo.

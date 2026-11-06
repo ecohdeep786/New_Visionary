@@ -2317,16 +2317,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/pages/DemoPreview.jsx": {
-      "profile": "development-scenario-only",
-      "state": "intentionally-unreleased",
-      "execution": "development-only",
-      "reason": "DemoPreview is imported only under import.meta.env.DEV. Fictional scenario selectors are excluded from production entry and are not real account admission.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
     "frontend/src/pages/ForgotPassword.jsx": {
       "profile": "configured-account-flow",
       "state": "connected",

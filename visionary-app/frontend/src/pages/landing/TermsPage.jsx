@@ -207,7 +207,7 @@ export default function TermsPage() {
       <LandingNav />
       <LocalNav title="Terms" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date

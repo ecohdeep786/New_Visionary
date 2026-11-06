@@ -211,7 +211,7 @@ export default function CookiesPage() {
       <LandingNav />
       <LocalNav title="Cookies" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
@@ -462,7 +462,7 @@ export default function CookiesPage() {
                     <ul className="mt-4 space-y-2.5">
                       {[
                         "Essential cookies cannot be turned off. They're what make Visionary work.",
-                        "Preference and analytics cookies are optional, and you can change your choices at any time from your Visionary settings (Settings → Privacy & cookies).",
+                        "Preference and analytics cookies are optional, and you can change your choices at any time using the controls in the “Your choices and controls” section above.",
                         "Clear or block cookies anytime from your browser's site settings.",
                         "Optional choices apply to this device only. Set them again on devices you use.",
                       ].map((t) => (

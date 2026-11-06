@@ -133,7 +133,7 @@ export default function SafetyPage() {
   return (
     <div className="page-safety min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Breadcrumb page="Safety" />
 
         {/* HERO — the reference's shield badge + two-tone heading + jump chips */}

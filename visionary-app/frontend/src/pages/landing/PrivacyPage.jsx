@@ -230,7 +230,7 @@ export default function PrivacyPage() {
       <LandingNav />
       <LocalNav title="Privacy" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         {/* HERO — the student stage carrying Apple-privacy's centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar: the photograph sits behind the centered

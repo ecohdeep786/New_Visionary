@@ -508,7 +508,7 @@ export default function LandingPage() {
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <LandingHeroSection />
         {/* the glass sheet — the hero's cover. The frost fades in from its
             leading edge (mask), so the sheet never slices the pinned headline
