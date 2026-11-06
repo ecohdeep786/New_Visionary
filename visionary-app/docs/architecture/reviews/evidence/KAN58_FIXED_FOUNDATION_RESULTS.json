@@ -1,0 +1,57 @@
+[
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "grant-counter",
+    "crossedInt32": true,
+    "reachedExactSafeMaximum": true,
+    "excessDeniedWithoutMutation": true,
+    "nativeBounds": true
+  },
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "export-counter",
+    "crossedInt32": true,
+    "reachedExactSafeMaximum": true,
+    "excessDeniedWithoutMutation": true,
+    "nativeBounds": true
+  },
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "expiry-error-parity",
+    "passed": true
+  },
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "export-bounds",
+    "perObjectDenied": true,
+    "aggregateDenied": true,
+    "legacyBufferedDenied": true,
+    "legacyCallbackDenied": true,
+    "zeroAccounting": true
+  },
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "historical-migration-bytes",
+    "unchanged": true
+  },
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "grant-unchanged-row-expiry",
+    "actualPreExpiryLockWaitObserved": true,
+    "deliveryRefusedAfterExpiry": true,
+    "zeroAccounting": true
+  },
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "export-unchanged-row-expiry",
+    "actualPreExpiryLockWaitObserved": true,
+    "deliveryRefusedAfterExpiry": true,
+    "zeroAccounting": true
+  },
+  {
+    "source": "b27b5493ec41e8954ad17b93d995a11205216915",
+    "probe": "complete",
+    "dormantFoundationProbePassed": true,
+    "productAcceptance": false
+  }
+]
