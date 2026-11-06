@@ -127,6 +127,97 @@ test('account consent grants are durable, bounded and serialized by policy versi
   await assert.rejects(repo.assertConsent('grant-erased', 'downloads', undefined, 'v1'), /unavailable/);
   await assert.rejects(repo.grantAccountConsent('grant-erased', 'downloads', 'v2', 60), /unavailable/);
 });
+// Observe an actual attempt to acquire the account lock, without replacing SQL.
+function observeConsentLock(reached) {
+  return new WorkspaceRepository({ $transaction: fn => db.$transaction(tx => fn(new Proxy(tx, {
+    get(target, key) {
+      if (key === '$queryRaw') return (strings, ...values) => {
+        if (strings.join('').includes('FROM "persons"')) reached();
+        return target.$queryRaw(strings, ...values);
+      };
+      const value = Reflect.get(target, key);
+      return typeof value === 'function' ? value.bind(target) : value;
+    },
+  }))) });
+}
+const deferred = () => { let resolve; const promise = new Promise(r => { resolve = r; }); return { promise, resolve }; };
+
+test('a delivery waiting behind revocation cannot commit using earlier consent', async () => {
+  const uid = 'delivery-revocation'; await repo.ensurePerson(uid);
+  const grant = await repo.grantAccountConsent(uid, 'downloads', 'delivery-v1', 60);
+  const locked = deferred(), release = deferred(), attempted = deferred();
+  const revoking = db.$transaction(async tx => {
+    await tx.person.update({ where: { uid }, data: { updatedAt: new Date() } });
+    await tx.consentGrant.update({ where: { id: grant.id }, data: { revokedAt: new Date() } });
+    locked.resolve(); await release.promise;
+  });
+  let delivery;
+  try {
+    await locked.promise;
+    delivery = observeConsentLock(attempted.resolve).withConsentDelivery(uid, 'downloads', undefined, 'delivery-v1', tx =>
+      tx.outboxEvent.create({ data: { uid, topic: 'synthetic.delivery', payload: {} } })).then(() => null, error => error);
+    await attempted.promise; release.resolve(); await revoking;
+    assert.match((await delivery).message, /revoked/);
+    assert.equal(await db.outboxEvent.count({ where: { uid, topic: 'synthetic.delivery' } }), 0);
+  } finally { release.resolve(); await revoking; if (delivery) await delivery; }
+});
+
+test('a consent lease that expires while waiting for the account lock denies delivery', async () => {
+  const uid = 'delivery-expiry'; await repo.ensurePerson(uid);
+  const grant = await repo.grantAccountConsent(uid, 'downloads', 'delivery-v1', 60);
+  const locked = deferred(), release = deferred(), attempted = deferred();
+  const blocker = db.$transaction(async tx => {
+    await tx.person.update({ where: { uid }, data: { updatedAt: new Date() } });
+    const [clock] = await tx.$queryRaw`SELECT clock_timestamp() AS now`;
+    await tx.consentGrant.update({ where: { id: grant.id }, data: { expiresAt: new Date(clock.now.getTime() + 500) } });
+    locked.resolve(); await release.promise;
+  });
+  let called = false, delivery;
+  try {
+    await locked.promise;
+    delivery = observeConsentLock(attempted.resolve).withConsentDelivery(uid, 'downloads', undefined, 'delivery-v1', async () => { called = true; })
+      .then(() => null, error => error);
+    await attempted.promise;
+    await db.$queryRaw`SELECT 1 AS waited FROM pg_sleep(0.7)`;
+    release.resolve(); await blocker;
+    assert.match((await delivery).message, /unavailable/); assert.equal(called, false);
+  } finally { release.resolve(); await blocker; if (delivery) await delivery; }
+});
+
+test('an authorized owning-store commit precedes revocation and later delivery is denied', async () => {
+  const uid = 'delivery-first'; await repo.ensurePerson(uid);
+  const grant = await repo.grantAccountConsent(uid, 'downloads', 'delivery-v1', 60);
+  const entered = deferred(), release = deferred(), attempted = deferred();
+  const delivering = repo.withConsentDelivery(uid, 'downloads', undefined, 'delivery-v1', async tx => {
+    const receipt = await tx.outboxEvent.create({ data: { uid, topic: 'synthetic.delivery', payload: {} } });
+    entered.resolve(); await release.promise; return receipt.id;
+  });
+  let revoking;
+  try {
+    await entered.promise;
+    revoking = observeConsentLock(attempted.resolve).revokeConsent(uid, grant.id);
+    await attempted.promise;
+    assert.equal((await db.consentGrant.findUnique({ where: { id: grant.id } })).revokedAt, null);
+    assert.equal(await db.outboxEvent.count({ where: { uid, topic: 'synthetic.delivery' } }), 0);
+    release.resolve(); assert.equal(typeof await delivering, 'string'); await revoking;
+    await assert.rejects(repo.withConsentDelivery(uid, 'downloads', undefined, 'delivery-v1', tx =>
+      tx.outboxEvent.create({ data: { uid, topic: 'synthetic.delivery', payload: {} } })), /revoked/);
+    assert.equal(await db.outboxEvent.count({ where: { uid, topic: 'synthetic.delivery' } }), 1);
+  } finally { release.resolve(); await delivering; if (revoking) await revoking; }
+});
+
+test('failed consent delivery rolls back its owning-store write and releases revocation', async () => {
+  const uid = 'delivery-rollback'; await repo.ensurePerson(uid);
+  const grant = await repo.grantAccountConsent(uid, 'downloads', 'delivery-v1', 60);
+  await assert.rejects(repo.withConsentDelivery(uid, 'downloads', undefined, 'delivery-v1', async tx => {
+    await tx.outboxEvent.create({ data: { uid, topic: 'synthetic.delivery', payload: {} } });
+    throw Error('synthetic store failure');
+  }), /synthetic store failure/);
+  assert.equal(await db.outboxEvent.count({ where: { uid, topic: 'synthetic.delivery' } }), 0);
+  await repo.revokeConsent(uid, grant.id);
+  await assert.rejects(repo.assertConsent(uid, 'downloads', undefined, 'delivery-v1'), /revoked/);
+});
+
 test('consent validity uses the database clock when the application clock drifts', async (t) => {
   const [clock] = await db.$queryRaw`SELECT clock_timestamp() AS now`;
   const ahead = clock.now.getTime() + 60 * 60 * 1000;
