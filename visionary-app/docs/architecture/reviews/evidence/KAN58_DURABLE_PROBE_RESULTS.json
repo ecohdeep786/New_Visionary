@@ -1,0 +1,30 @@
+{
+  "reviewedSource": "adc1a4d872a57c491701ffe7a768246fc4923ea1",
+  "acceptedDevComparison": "65dee5af76d0ccaa3ee7d8bf52155b64108ac13c",
+  "reviewer": "/root/kan58_review",
+  "reviewDate": "2026-11-06",
+  "decision": "CHANGES REQUESTED",
+  "database": "isolated loopback synthetic PostgreSQL 16.15",
+  "dependencies": { "verifiedInstalledRecords": 653, "generatedModelMatches": true, "mutated": false },
+  "defaultMode": {
+    "exitCode": 0,
+    "meaning": "Unsafe outcomes intentionally reproduced, not acceptance passed",
+    "acceptedV1Upgrade": { "appliedMigrationDrift": true, "retainedPersonPreserved": true, "downloadTablesInstalled": false },
+    "defaultGatewayIssue": { "failed": true, "errorClass": "PrismaClientUnknownRequestError", "persistedGrants": 0 },
+    "boundedOwnedGatewayRead": { "deliveredBytes": 4, "readAfterCompletedGrantRevokeDenied": true },
+    "grantExpiryAfterObservedSqlLockWait": { "unsafeAccepted": true, "databaseClockAfterExpiry": true },
+    "exportExpiryAfterObservedSqlLockWait": { "unsafeAccepted": true, "databaseClockAfterExpiry": true },
+    "consentRevokedAfterResolverBeforeConsume": { "actualConsentRevoked": true, "bytesReturned": 4, "grantRemainsActive": true },
+    "unsafeOutcomesReproduced": 5
+  },
+  "reviewOnlyWallClockMutation": {
+    "candidateFilesModified": false,
+    "change": "In-memory transpilation replaces CURRENT_TIMESTAMP with clock_timestamp()",
+    "exitCode": 0,
+    "grantUnsafeAcceptedAfterExpiry": true,
+    "exportUnsafeAcceptedAfterExpiry": true,
+    "repairInsufficient": true
+  },
+  "cleanup": { "isolatedSchemasAndRolesDropped": true, "syntheticServerStopped": true },
+  "productAcceptance": { "httpRoute": false, "actualReadyObjectAdapter": false, "browser": false, "twoDevice": false, "hosted": false, "production": false }
+}
