@@ -1,0 +1,4 @@
+{"source":"a757c65ccec6a5a39ed8af1c6ab952f878fbb358","probe":"revision_reset_after_owner_transfer","previousRevision":1,"acceptedExpectedRevision":0,"newRevision":1,"staleWriteCommitted":true}
+{"source":"a757c65ccec6a5a39ed8af1c6ab952f878fbb358","probe":"revision_reset_after_previous_owner_erasure","previousRevision":1,"acceptedExpectedRevision":0,"newRevision":1,"staleWriteCommitted":true}
+{"source":"a757c65ccec6a5a39ed8af1c6ab952f878fbb358","probe":"dependency_and_model_verification","dependencyRecords":653,"generatedModelMatched":true}
+{"source":"a757c65ccec6a5a39ed8af1c6ab952f878fbb358","probe":"workspace_tombstone_bypassed_by_owner_transfer","retainedMarker":true,"newOwnerWriteCommitted":true}
