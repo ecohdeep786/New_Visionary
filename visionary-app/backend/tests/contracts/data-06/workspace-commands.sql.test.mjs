@@ -84,6 +84,31 @@ test('metadata revision spans its operations and stays scoped to the actual work
   assert.equal((await commands.execute(w.uid,input(other))).revision,1);
 });
 
+test('resource revision survives owner transfer and erasure of the original actor receipts',async()=>{
+  const w=await workspace(),nextOwner=await workspace(),c=input(w);
+  await commands.execute(w.uid,c);
+  await f.db.workspace.update({where:{id:w.id},data:{uid:nextOwner.uid}});
+  await assert.rejects(otherConnection.execute(nextOwner.uid,input(w)),{code:'stale_revision'});
+  await f.db.person.delete({where:{uid:w.uid}});
+  assert.equal(await f.db.commandResult.count({where:{workspaceId:w.id}}),0);
+  assert.equal((await f.db.workspaceCommandRevision.findUnique({where:{workspaceId:w.id}})).revision,1);
+  await assert.rejects(otherConnection.execute(nextOwner.uid,input(w)),{code:'stale_revision'});
+  const next=await otherConnection.execute(nextOwner.uid,input(w,{expectedRevision:1}));
+  assert.equal(next.revision,2);
+  assert.equal((await f.db.workspaceCommandRevision.findUnique({where:{workspaceId:w.id}})).revision,2);
+  await assert.rejects(f.db.workspaceCommandRevision.update({where:{workspaceId:w.id},data:{revision:-1}}));
+});
+
+test('workspace erasure marker follows the resource across ownership changes',async()=>{
+  const w=await workspace(),nextOwner=await workspace();
+  await f.db.deletionTombstone.create({data:{uid:w.uid,resourceType:'workspace',resourceId:w.id,expiresAt:new Date(0)}});
+  await f.db.workspace.update({where:{id:w.id},data:{uid:nextOwner.uid}});
+  await assert.rejects(commands.execute(nextOwner.uid,input(w)),{code:'unauthorized'});
+  assert.equal((await f.db.workspace.findUnique({where:{id:w.id}})).name,'Before');
+  assert.deepEqual(await counts(w),{receipt:0,audit:0,outbox:0});
+  assert.equal(await f.db.workspaceCommandRevision.findUnique({where:{workspaceId:w.id}}),null);
+});
+
 test('wrong owner and forged OWNER membership cannot mutate or recover another account receipt',async()=>{
   const w=await workspace(),foreign=await workspace();
   await f.db.workspaceMembership.create({data:{uid:foreign.uid,workspaceId:w.id,role:'OWNER',source:'synthetic-forgery'}});
@@ -117,6 +142,7 @@ test('outbox outage rolls back the real metadata and audit writes, then retry co
   await assert.rejects(new WorkspaceMetadataCommands(faulty,target).execute(w.uid,c),e=>e.code==='unavailable' && !e.message.includes('private'));
   assert.equal((await f.db.workspace.findUnique({where:{id:w.id}})).name,'Before');
   assert.deepEqual(await counts(w),{receipt:0,audit:0,outbox:0});
+  assert.equal(await f.db.workspaceCommandRevision.findUnique({where:{workspaceId:w.id}}),null);
   assert.equal((await commands.execute(w.uid,c)).revision,1);
   assert.deepEqual(await counts(w),{receipt:1,audit:1,outbox:1});
 });

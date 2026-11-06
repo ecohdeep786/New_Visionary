@@ -33,7 +33,7 @@ test('historical v1 registry executes its ten domain tables with real repository
 }));
 
 test('accepted empty-staging versions 1-3 upgrade additively without changing historical receipts',()=>fixture(async f=>{
-  const registry=canonicalMigrations(backend),store=f.store();
+  const registry=canonicalMigrations(backend).slice(0,4),store=f.store();
   assert.deepEqual(registry.map(m=>m.version),[1,2,3,4]);
   await new MigrationRunner(store,registry.slice(0,3)).applyAll();
   const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');
@@ -60,6 +60,19 @@ test('downloads do not bypass the retained-data migration gate or mutate existin
   assert.deepEqual(await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version'),receipts);
   assert.deepEqual(await f.db.workspace.findUnique({where:{id:workspace.id}}),before);
   assert.equal((await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='download_grants'",f.schema)).length,0);
+}));
+
+test('accepted empty-staging versions 1-4 upgrade to resource revision storage with historical receipts intact',()=>fixture(async f=>{
+  const registry=canonicalMigrations(backend),store=f.store();
+  assert.deepEqual(registry.map(m=>m.version),[1,2,3,4,5]);
+  await new MigrationRunner(store,registry.slice(0,4)).applyAll();
+  const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');
+  const runner=new MigrationRunner(store,registry),result=await runner.applyAll();
+  assert.equal(result.applied,1);assert.equal(result.skipped,4);
+  assert.deepEqual(await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" WHERE version<5 ORDER BY version'),receipts);
+  assert.equal((await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='workspace_command_revisions'",f.schema)).length,1);
+  assert.equal((await runner.verify()).consistent,true);
+  assert.equal((await runner.applyAll()).applied,0);
 }));
 
 test('actual runtime permits domain DML and denies DDL and migration receipts',()=>fixture(async f=>{

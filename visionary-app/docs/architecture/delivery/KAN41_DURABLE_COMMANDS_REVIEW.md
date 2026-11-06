@@ -17,9 +17,9 @@ canonical account lock precedes the workspace lock. Replay binds owner,
 workspace, operation, expected revision and normalized value. Revision comparison
 and writes share those locks; retries recover the original snapshot and cannot
 reuse a key for another operation/workspace. Timestamps come from PostgreSQL.
-No new schema or historical migration rewrite is needed.
+Additive canonical migration5 stores the resource revision independently of actors and receipt lifecycle. Accepted versions1-4 remain immutable.
 
-Verification: TypeScript data compilation and ten actual PostgreSQL cases passed
+Verification: TypeScript data compilation and twelve actual PostgreSQL cases passed
 against isolated loopback schemas using the existing canonical migration chain
 and DML-only runtime role. Independent connections prove one of two same-revision
 commands commits, simultaneous retries converge, and a cold client recovers a
@@ -36,3 +36,5 @@ revision/deletion operations, consent/source checks where those operations requi
 them, real outbox delivery via KAN-53, and hosted acceptance. This slice does not
 publish new SQL workspace permissions or mutate retained learner records. No full
 KAN-41 Done or browser acceptance is claimed. No implementation self-approval.
+
+Independent review rejected a757c65c: ownership changes reset its receipt-derived revision and bypassed actor-scoped resource tombstones. The replacement uses workspace_command_revisions with native CAS inside the transaction, and workspace tombstones follow resource identity across actors. New ownership-transfer/receipt-erasure and transferred-tombstone regressions passed against actual PostgreSQL. Migration5 is packaged in both image stages and production verification; native empty-staging upgrade tests preserve versions1-4 receipts. Physical replayed DDL/model verification passed. Full registered CI and revised independent review remain required.
