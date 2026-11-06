@@ -1,0 +1,21 @@
+{
+  "reviewedSource": "c6928a2ba84fed214f24164876d3dae7c33dde40",
+  "reviewDate": "2026-11-06",
+  "reviewer": "/root/kan58_review",
+  "decision": "CHANGES REQUESTED",
+  "probe": {
+    "mode": "Exact source with no-network recording Prisma sentinel",
+    "defaultOffPassed": true,
+    "verifiedInstalledDependencyRecords": 653,
+    "validDemoEmulatorToRealStagingCloudSqlAccepted": true,
+    "foreignLiveFirebaseToProductionCloudSqlAccepted": true,
+    "providerConnections": 0,
+    "candidateOrDependenciesMutated": false,
+    "exitCode": 0,
+    "meaning": "Unsafe configuration acceptance reproduced, not source acceptance"
+  },
+  "independentClientTests": { "passed": 4, "failed": 0, "sourceArchivedFromExactGitObject": true },
+  "verifiedCi": { "runId": 42160094928, "checks": "success", "production": "skipped" },
+  "browserEvidence": { "implementerReported": true, "independentlyRepeated": false },
+  "fullKan40Acceptance": false
+}
