@@ -1,0 +1,20 @@
+{
+  "reviewedSource": "5f5d4e68e993e23cc2b0a47f41c6faa67dee2b68",
+  "acceptedDevComparison": "65dee5af76d0ccaa3ee7d8bf52155b64108ac13c",
+  "reviewer": "/root/kan58_review",
+  "reviewDate": "2026-11-06",
+  "decision": "SOURCE APPROVED for bounded dev integration",
+  "acceptedScope": "Own-consent list/revoke UI/API and owning-store delivery transaction guard; default-off",
+  "priorRuntimeTargetFinding": "resolved",
+  "independentRuntimePreparation": { "source": "Exact Git archive", "transpiledSourceFiles": 123, "typecheck": "Exact-source CI", "dependenciesReadOnly": true, "generatedModelMatches": true },
+  "independentRepositorySqlHttp": { "passed": 23, "failed": 0, "injectedAccountVerifier": true, "realPostgres": true, "realNestHttp": true },
+  "independentConsentDomain": { "passed": 12, "failed": 0 },
+  "independentClient": { "passed": 4, "failed": 0, "testedAt": "c6928a2ba84fed214f24164876d3dae7c33dde40", "completeFrontendTreeUnchanged": true },
+  "verifiedCi": { "runId": 42162617516, "checks": "success", "production": "skipped" },
+  "cleanup": { "isolatedSchemaAndRoleCleaned": true, "syntheticServerStopped": true },
+  "browser": { "implementerReportedPriorRun": true, "reviewerRepeated": false, "correctedBackendRepeatRequiredBeforeIntegration": true },
+  "devIntegration": "pending",
+  "fullKan40Acceptance": false,
+  "consumerOrHostedAcceptance": false,
+  "jiraTransitionByReviewer": false
+}
