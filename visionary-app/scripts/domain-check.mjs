@@ -29,3 +29,4 @@ const invitationTests = readdirSync(join(root, 'backend/tests/contracts/data-04'
 run(['--test', '--test-reporter=tap', ...invitationTests.map(f => join(root, 'backend/tests/contracts/data-04', f))]);
 
 run([join(root, 'scripts/privacycore-check.mjs')]);
+run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-05/consent.test.mjs')]);

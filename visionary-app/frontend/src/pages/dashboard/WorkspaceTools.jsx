@@ -1,4 +1,5 @@
 import ApprovedPrivacyPolicy from '@/components/dashboard/ApprovedPrivacyPolicy';
+import CloudConsentControls from '@/components/dashboard/CloudConsentControls';
 import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import { teacherCopy } from '@/lib/teacherCopy';
@@ -133,7 +134,7 @@ function WorkspaceToolsContent({
   if (area === 'notifications' && ctx.role === 'organization') return <OrganizationNotifications ctx={ctx} data={data} />;
   if (area === 'notifications') return <WorkspaceNotifications key={ctx.workspaceId} ctx={ctx} data={data} />;
   if (area === 'personalization') return <Trust ctx={ctx} data={data} area={area} />;
-  if (area === 'privacy') return <><Trust ctx={ctx} data={data} area={area} /><div className="v-page"><ApprovedPrivacyPolicy key={ctx.personId} accountId={ctx.personId} /><MemoryControl ctx={ctx} locale={data.preferences.interfaceLocale || 'en'} /><LocalDataPreview key={ctx.personId} ctx={ctx} locale={data.preferences.interfaceLocale || 'en'} /></div></>;
+  if (area === 'privacy') return <><Trust ctx={ctx} data={data} area={area} /><div className="v-page"><ApprovedPrivacyPolicy key={ctx.personId} accountId={ctx.personId} /><CloudConsentControls key={'consents-' + ctx.personId} accountId={ctx.personId} /><MemoryControl ctx={ctx} locale={data.preferences.interfaceLocale || 'en'} /><LocalDataPreview key={ctx.personId} ctx={ctx} locale={data.preferences.interfaceLocale || 'en'} /></div></>;
   if (area === 'audit') return <OrganizationAudit key={ctx.personId + ':' + ctx.workspaceId} ctx={ctx} locale={data.preferences.interfaceLocale || 'en'} />;
   if (area === 'library' && ctx.role === 'organization') return <OrganizationContent ctx={ctx} data={data} />;
   if (!config) return <div className="v-page">{copy("This workspace is unavailable.")}</div>;
