@@ -170,17 +170,27 @@ for (const [file, rawText] of texts) {
 }
 
 /* ── backend side ──────────────────────────────────────────────────────────── */
-/* Product build (main-product.ts / main-auth.ts) starts FirebaseProductModule:
- * controllers under auth/firebase-product, billing, feedback, learning. Every
- * other controller belongs to the legacy AppModule (started only by main.ts). */
-const PRODUCT_FILE = /(firebase-product|\/billing\/|\/feedback\/|\/learning\/)/;
+/* Product build (main-product.ts / main-auth.ts) starts FirebaseProductModule.
+ * Product controllers are derived from the module's own imports (F-30: the
+ * backend grew consent/invitations/privacycore/workspaces product controllers;
+ * a hardcoded directory list misclassified them as legacy). Every controller
+ * file the module imports is product; every other controller belongs to the
+ * legacy AppModule (started only by main.ts). */
+const productModuleFile = path.join(backendSrc, 'auth', 'firebase-product', 'firebase-product.module.ts');
+const productModuleText = fs.readFileSync(productModuleFile, 'utf8');
+const productModuleDir = path.dirname(productModuleFile);
+const productFileSet = new Set(
+  [...productModuleText.matchAll(/from\s+['"](\.[^'"]+)['"]/g)]
+    .map((m) => path.normalize(path.join(productModuleDir, m[1])).replace(/\\/g, '/').replace(/\.ts$/, '').toLowerCase()),
+);
+const isProductController = (file) => productFileSet.has(file.replace(/\\/g, '/').replace(/\.ts$/, '').toLowerCase());
 const backendRoutes = [];
 for (const file of walk(backendSrc).filter((f) => /\.controller\.ts$/.test(f))) {
   const text = fs.readFileSync(file, 'utf8');
   const controllerMatch = text.match(/@Controller\(\s*['"]([^'"]*)['"]?\s*\)/);
   if (!controllerMatch) continue;
   const prefix = controllerMatch[1].replace(/^\/+|\/+$/g, '');
-  const isProduct = PRODUCT_FILE.test(rel(file).replace(/\\/g, '/'));
+  const isProduct = isProductController(file);
   const decoratorRe = /@(Get|Post|Patch|Delete|Put|Sse|All)\(\s*(?:['"]([^'"]*)['"])?\s*\)/g;
   let m;
   while ((m = decoratorRe.exec(text)) !== null) {
