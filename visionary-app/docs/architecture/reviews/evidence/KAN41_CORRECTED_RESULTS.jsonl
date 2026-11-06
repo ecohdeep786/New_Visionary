@@ -1,0 +1,6 @@
+{"source":"4e634634783eafc08cf91757b138e64c00d0d4dd","probe":"additive_empty_staging_upgrade","acceptedMigrationsUnchanged":4,"previousReceiptsUnchanged":4,"applied":1,"skipped":4}
+{"source":"4e634634783eafc08cf91757b138e64c00d0d4dd","probe":"revision_survives_owner_transfer","previousRevision":1,"staleZeroDenied":true,"newRevision":2,"nativeNonnegativeCheck":true}
+{"source":"4e634634783eafc08cf91757b138e64c00d0d4dd","probe":"revision_survives_previous_owner_erasure","previousRevision":1,"staleZeroDenied":true,"newRevision":2,"nativeNonnegativeCheck":true}
+{"source":"4e634634783eafc08cf91757b138e64c00d0d4dd","probe":"dependency_and_model_verification","dependencyRecords":653,"generatedModelMatched":true}
+{"source":"4e634634783eafc08cf91757b138e64c00d0d4dd","probe":"workspace_tombstone_survives_owner_transfer","retainedMarker":true,"newOwnerWriteDenied":true}
+{"source":"4e634634783eafc08cf91757b138e64c00d0d4dd","probe":"real_writer_counter_receipt_audit_outbox_atomicity_and_concurrency","outageRolledBackAll":true,"independentConnectionsAdmitOne":true,"coldReplayRecovered":true,"revision":2}
