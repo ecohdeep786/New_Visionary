@@ -291,7 +291,7 @@ export default function ParentPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <ParentHeroSection />
         <ParentStruggleSection />
         <ParentJourneySection />

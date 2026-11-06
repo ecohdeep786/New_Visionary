@@ -180,7 +180,7 @@ export default function SchoolPage() {
     <div className="page-school min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Help" />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         {/* ═══ HERO — mark + heading + search (Google Help pattern) ═══ */}
         <section ref={ref} data-section="01-hero" className="relative px-6 pb-24 pt-24 lg:pt-28" style={{ backgroundColor: COLORS.white }}>
           <FadeReveal visible={visible}>

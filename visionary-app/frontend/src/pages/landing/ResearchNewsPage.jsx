@@ -161,7 +161,7 @@ export default function ResearchNewsPage() {
   return (
     <div className="page-research min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Breadcrumb page="Research" />
 
                         {/* HERO — the FAP-59 stage with Apple's centered voice (phase 4):

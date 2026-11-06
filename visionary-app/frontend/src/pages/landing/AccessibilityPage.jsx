@@ -131,7 +131,7 @@ export default function AccessibilityPage() {
   return (
     <div className="page-accessibility min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <LocalNav title="Accessibility" />
 
         {/* HERO — the student stage carrying Apple-privacy's centered voice

@@ -377,7 +377,7 @@ export default function NewPersona({
                       sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw"
                       alt=""
                       loading="eager"
-                      fetchPriority="high"
+                      {...{ fetchpriority: "high" }}
                       decoding="async"
                       draggable="false"
                       className="absolute select-none"
@@ -437,7 +437,7 @@ export default function NewPersona({
             sizes={HERO_SIZES}
             alt={alt}
             loading="eager"
-            fetchPriority="high"
+            {...{ fetchpriority: "high" }}
             decoding="async"
             draggable="false"
             className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"

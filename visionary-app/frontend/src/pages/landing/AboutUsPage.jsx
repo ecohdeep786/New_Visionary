@@ -215,5 +215,5 @@ function FinalCta() {
 }
 
 export default function AboutUsPage() {
-  return <div className="page-about min-h-screen bg-white" style={{ fontFamily: fontStack }}><LandingNav /><main id="main"><AboutUsHero /><MissionSection /><LifeJourneySection /><ImpactSection /><RolesSection /><ExploreSection /><FinalCta /></main><LandingFooter variant="quiet" /></div>;
+  return <div className="page-about min-h-screen bg-white" style={{ fontFamily: fontStack }}><LandingNav /><main id="main" tabIndex={-1}><AboutUsHero /><MissionSection /><LifeJourneySection /><ImpactSection /><RolesSection /><ExploreSection /><FinalCta /></main><LandingFooter variant="quiet" /></div>;
 }

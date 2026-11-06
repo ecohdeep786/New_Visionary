@@ -429,7 +429,7 @@ export default function DownloadPage() {
     <div className="page-download min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Download" />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
 
         <DownloadHeroSection />
         <DownloadPlatformsSection />
