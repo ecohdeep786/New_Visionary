@@ -190,6 +190,21 @@
           "afterSha256": "5b143a54ce87c55e87495e43e4195c99b3d4bc6c02bcf03fe6a34e564f30729c"
         }
       ]
+    },
+    {
+      "id": "2026-11-06-file-03-downloads",
+      "reason": "Add durable download/export models with additive canonical migration4; preserve accepted migration history.",
+      "decision": "D-056 permits backend work; implementation checkpoint pending independent review and integration acceptance.",
+      "diff": "integration/upstream-patches/2026-11-06-file-03-downloads.patch",
+      "diffSha256": "601bc4c39d632ebadc154c15a4f5716232fe2985fae0567585aa465a7bd9dee1",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "34662e52fd9e144c50b1744c46c2183d46aa9006d84ff69aaf153af96e75ca89",
+          "afterSha256": "f4d425c23a5de4544d48e5a84c5d4af759140f3deba00efeed1714f46de24182"
+        }
+      ]
     }
   ]
 }

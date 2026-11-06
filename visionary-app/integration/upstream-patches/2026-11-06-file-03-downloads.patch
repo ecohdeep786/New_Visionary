@@ -1,0 +1,1327 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index 08d624d0..25c18f18 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -1,639 +1,683 @@
+-generator client {
+-  provider = "prisma-client-js"
+-}
+-
+-datasource db {
+-  provider  = "postgresql"
+-  url       = env("DATABASE_URL")
+-  directUrl = env("DIRECT_URL")
+-}
+-
+-// ─── Users ────────────────────────────────────────────────────────────────────
+-
+-model User {
+-  id                   String    @id @default(cuid())
+-  email                String    @unique
+-  name                 String
+-  avatar               String?
+-  passwordHash         String?
+-  googleId             String?   @unique
+-  plan                 Plan      @default(FREE)
+-  promptsToday         Int       @default(0)
+-  lastResetAt          DateTime  @default(now())
+-  // Email verification
+-  isVerified           Boolean   @default(false)
+-  otp                  String?   // bcrypt hash of OTP
+-  otpExpiry            DateTime?
+-  otpAttempts          Int       @default(0)
+-  otpLockedUntil       DateTime?
+-  // Onboarding fields
+-  onboardingCompleted  Boolean   @default(false)
+-  isStarted            Boolean   @default(false)
+-  category             String?   // student | teacher | organization
+-  fullName             String?
+-  grade                String?   // stores grade_master.id
+-  board                String?   // stores board_master.id
+-  subject              String?   // for teachers
+-  organizationName     String?   // for organizations
+-  organizationType     String?   // for organizations
+-  schoolName           String?
+-  phone                String?
+-  isDeleted            Boolean   @default(false)
+-  createdAt            DateTime  @default(now())
+-  updatedAt            DateTime  @updatedAt
+-
+-  conversations    Conversation[]
+-  documents        Document[]
+-  jobs             Job[]
+-  subjectTracks    SubjectTrack[]
+-  chapterTracks    ChapterTrack[]
+-  deletionRequests DeletionRequest[]
+-
+-  @@map("users")
+-}
+-
+-model DeletionRequest {
+-  id        String   @id @default(cuid())
+-  userId    String
+-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+-  reason    String?
+-  status    String   @default("pending")
+-  createdAt DateTime @default(now())
+-  updatedAt DateTime @updatedAt
+-
+-  @@map("deletion_request")
+-}
+-
+-// ─── Board Master Data ─────────────────────────────────────────────────────────
+-
+-model BoardMaster {
+-  id        String          @id @default(cuid())
+-  name      String          @unique
+-  isActive  Boolean         @default(true)
+-  sortOrder Int             @default(0)
+-  createdAt DateTime        @default(now())
+-
+-  subjects  SubjectMaster[]
+-
+-  @@map("board_master")
+-}
+-
+-// ─── Grade Master Data ─────────────────────────────────────────────────────────
+-
+-model GradeMaster {
+-  id        String          @id @default(cuid())
+-  name      String          @unique  // "1st", "2nd", ..., "12th"
+-  sortOrder Int
+-  isActive  Boolean         @default(true)
+-  createdAt DateTime        @default(now())
+-
+-  subjects  SubjectMaster[]
+-
+-  @@map("grade_master")
+-}
+-
+-// ─── Subject Master Data ───────────────────────────────────────────────────────
+-
+-model SubjectMaster {
+-  id        String       @id @default(cuid())
+-  name      String
+-  gradeId   String
+-  grade     GradeMaster  @relation(fields: [gradeId], references: [id], onDelete: Cascade)
+-  boardId   String?      // null = common for all boards
+-  board     BoardMaster? @relation(fields: [boardId], references: [id], onDelete: SetNull)
+-  icon      String?      // e.g. "/assets/Science-icon.png"
+-  isActive  Boolean      @default(true)
+-  sortOrder Int          @default(0)
+-  createdAt DateTime     @default(now())
+-
+-  books         BookMaster[]
+-  subjectTracks SubjectTrack[]
+-
+-  @@map("subject_master")
+-}
+-
+-// ─── Book Master Data ──────────────────────────────────────────────────────────
+-
+-model BookMaster {
+-  id         String        @id @default(cuid())
+-  name       String
+-  subjectId  String
+-  subject    SubjectMaster @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+-  sortOrder  Int           @default(0)
+-  totalParts Int?          // null = no tabs; 2+ = show Part I, Part II... tabs
+-  isActive   Boolean       @default(true)
+-  createdAt  DateTime      @default(now())
+-
+-  chapters ChapterMaster[]
+-
+-  @@map("book_master")
+-}
+-
+-// ─── Chapter Master Data ───────────────────────────────────────────────────────
+-
+-model ChapterMaster {
+-  id        String     @id @default(cuid())
+-  name      String
+-  bookId    String
+-  book      BookMaster @relation(fields: [bookId], references: [id], onDelete: Cascade)
+-  sortOrder Int        @default(0)
+-  part      Int?       // null = no part; 1/2/3... = which tab this chapter belongs to
+-  isActive  Boolean    @default(true)
+-  createdAt DateTime   @default(now())
+-
+-  chapterTracks ChapterTrack[]
+-  topics        TopicMaster[]
+-
+-  @@map("chapter_master")
+-}
+-
+-// ─── Topic Master Data ─────────────────────────────────────────────────────────
+-
+-model TopicMaster {
+-  id          String          @id @default(cuid())
+-  chapterId   String
+-  chapter     ChapterMaster   @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+-  pointNumber String          // e.g. "7.1", "7.2"
+-  title       String
+-  status      String          @default("active")
+-  sortOrder   Int             @default(0)
+-  createdAt   DateTime        @default(now())
+-  updatedAt   DateTime        @updatedAt
+-
+-  subtopics   SubtopicMaster[]
+-
+-  @@map("topic_master")
+-}
+-
+-// ─── Subtopic Master Data ──────────────────────────────────────────────────────
+-
+-model SubtopicMaster {
+-  id          String      @id @default(cuid())
+-  topicId     String
+-  topic       TopicMaster @relation(fields: [topicId], references: [id], onDelete: Cascade)
+-  pointNumber String      // e.g. "7.1.1", "7.1.2"
+-  title       String
+-  status      String      @default("active")
+-  sortOrder   Int         @default(0)
+-  createdAt   DateTime    @default(now())
+-  updatedAt   DateTime    @updatedAt
+-
+-  @@map("subtopic_master")
+-}
+-
+-// ─── Subject Track ─────────────────────────────────────────────────────────────
+-
+-model SubjectTrack {
+-  id        String        @id @default(cuid())
+-  userId    String
+-  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+-  subjectId String
+-  subject   SubjectMaster @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+-  startedAt DateTime      @default(now())
+-  updatedAt DateTime      @updatedAt
+-
+-  @@unique([userId, subjectId])
+-  @@map("subject_track")
+-}
+-
+-// ─── Chapter Track ─────────────────────────────────────────────────────────────
+-
+-model ChapterTrack {
+-  id          String        @id @default(cuid())
+-  userId      String
+-  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+-  chapterId   String
+-  chapter     ChapterMaster @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+-  progress    Int           @default(0)    // 0–100
+-  status      TrackStatus   @default(NOT_STARTED)
+-  startedAt   DateTime?
+-  completedAt DateTime?
+-  updatedAt   DateTime      @updatedAt
+-
+-  @@unique([userId, chapterId])
+-  @@map("chapter_track")
+-}
+-
+-enum TrackStatus {
+-  NOT_STARTED
+-  IN_PROGRESS
+-  COMPLETED
+-}
+-
+-enum Plan {
+-  FREE
+-  PRO
+-}
+-
+-// ─── Conversations ────────────────────────────────────────────────────────────
+-
+-model Conversation {
+-  id        String    @id @default(cuid())
+-  title     String    @default("New Chat")
+-  userId    String
+-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+-  createdAt DateTime  @default(now())
+-  updatedAt DateTime  @updatedAt
+-
+-  messages  Message[]
+-
+-  @@map("conversations")
+-}
+-
+-// ─── Messages ─────────────────────────────────────────────────────────────────
+-
+-model Message {
+-  id             String       @id @default(cuid())
+-  conversationId String
+-  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+-  role           MessageRole
+-  content        String       @db.Text
+-  diagram        String?      @db.Text  // Mermaid code
+-  resources      Json?                  // Resource[] JSON array
+-  imageUrl       String?
+-  createdAt      DateTime     @default(now())
+-
+-  @@map("messages")
+-}
+-
+-enum MessageRole {
+-  user
+-  assistant
+-}
+-
+-// ─── Documents (PDF upload) ────────────────────────────────────────────────────
+-
+-model Document {
+-  id          String         @id @default(cuid())
+-  userId      String
+-  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+-  filename    String
+-  storageUrl  String
+-  status      DocumentStatus @default(PROCESSING)
+-  createdAt   DateTime       @default(now())
+-
+-  chunks      DocumentChunk[]
+-
+-  @@map("documents")
+-}
+-
+-enum DocumentStatus {
+-  PROCESSING
+-  READY
+-  ERROR
+-}
+-
+-// ─── Document Chunks (pgvector RAG) ───────────────────────────────────────────
+-// NOTE: The embedding column uses pgvector — run the migration below manually
+-// in Supabase SQL editor AFTER running prisma migrate dev:
+-//   ALTER TABLE document_chunks ADD COLUMN embedding vector(1536);
+-//   CREATE INDEX ON document_chunks USING ivfflat (embedding vector_cosine_ops);
+-
+-model DocumentChunk {
+-  id         String   @id @default(cuid())
+-  documentId String
+-  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+-  content    String   @db.Text
+-  chunkIndex Int
+-  createdAt  DateTime @default(now())
+-  // embedding vector(1536) — added manually via SQL (pgvector not supported in Prisma schema)
+-
+-  @@map("document_chunks")
+-}
+-
+-// ─── Jobs (async tasks) ───────────────────────────────────────────────────────
+-
+-model Job {
+-  id        String    @id @default(cuid())
+-  userId    String
+-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+-  type      JobType
+-  status    JobStatus @default(PENDING)
+-  prompt    String?
+-  resultUrl String?
+-  error     String?
+-  createdAt DateTime  @default(now())
+-  updatedAt DateTime  @updatedAt
+-
+-  @@map("jobs")
+-}
+-
+-enum JobType {
+-  IMAGE_GENERATION
+-  PDF_PROCESSING
+-}
+-
+-enum JobStatus {
+-  PENDING
+-  COMPLETED
+-  FAILED
+-}
+-
+-// DATA-01 domain schema starts here.
+-// ─── Workspaces (DATA-01 / SCOPE-04) ────────────────────────────────────────────
+-//
+-// PostgreSQL owns domain/membership/evidence/run state, linked by the canonical
+-// Firebase UID (Person.uid). Firestore retains authority for account/billing/
+-// profile; SQL does NOT duplicate or replace those fields. Each domain command
+-// is server-authorized and transactionally scoped.
+-
+-/// Canonical person reference. The `uid` is the Firebase UID from the verified
+-/// session — the single join key to Firestore accounts. SQL stores no password
+-/// hashes, payment secrets, or billing authority.
+-model Person {
+-  uid            String              @id
+-  createdAt      DateTime            @default(now())
+-  updatedAt      DateTime            @updatedAt
+-
+-  workspaces     WorkspaceMembership[]
+-  ownedWorkspaces Workspace[]
+-  acceptedInvitations Invitation[] @relation("AcceptedInvitation")
+-  deletionTombstones DeletionTombstone[]
+-  shareGrants    ShareGrant[]
+-  consentGrants  ConsentGrant[]
+-  commandResults CommandResult[]
+-  auditEvents    AuditEvent[]
+-  outboxEvents   OutboxEvent[]
+-
+-  @@map("persons")
+-}
+-
+-/// A workspace owned by one UID and shared with members via memberships.
+-/// The owning UID is authoritative; memberships carry per-member roles/purposes.
+-model Workspace {
+-  id          String                @id @default(cuid())
+-  uid         String                // owner UID — links to Firestore person via Person.uid
+-  name        String
+-  slug        String                @unique
+-  description   String?
+-  isPersonal  Boolean               @default(false)
+-  createdAt   DateTime              @default(now())
+-  updatedAt   DateTime              @updatedAt
+-
+-  owner       Person                @relation(fields: [uid], references: [uid], onDelete: Cascade)
+-  memberships WorkspaceMembership[]
+-  invitations Invitation[]
+-  institutionApprovals InstitutionApproval[]
+-  commandResults CommandResult[]
+-  outboxEvents OutboxEvent[]
+-  auditEvents AuditEvent[]
+-
+-  @@index([uid])
+-
+-  @@map("workspaces")
+-}
+-
+-/// Explicit membership linking a person to a workspace with a role/purpose.
+-/// Unique constraint prevents duplicate membership; source/version are tracked.
+-model WorkspaceMembership {
+-  id            String        @id @default(cuid())
+-  uid           String
+-  workspaceId   String
+-  role          WorkspaceRole @default(MEMBER)
+-  source        String        // e.g. "invitation", "direct"
+-  sourceVersion String        @default("v1")
+-  purpose       String?
+-  consentVersion String?
+-  joinedAt      DateTime      @default(now())
+-  updatedAt     DateTime      @updatedAt
+-
+-  person      Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
+-  workspace   Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+-
+-  @@unique([uid, workspaceId])
+-  @@index([workspaceId])
+-  @@map("workspace_memberships")
+-}
+-
+-enum WorkspaceRole {
+-  OWNER
+-  ADMIN
+-  MEMBER
+-  GUEST
+-}
+-
+-/// Invitations to join a workspace. A role picker, email match, guessed ID or
+-/// browser record cannot establish permission (see DATA-04). Token is a one-time
+-/// use hash verified server-side.
+-model Invitation {
+-  id          String            @id @default(cuid())
+-  workspaceId String
+-  institutionApprovalId String?
+-  email       String
+-  role        WorkspaceRole     @default(MEMBER)
+-  tokenHash   String? @unique   // SHA-256 of the one-time invite token
+-  status      InvitationStatus  @default(PENDING)
+-  expiresAt   DateTime
+-  issuedAt    DateTime?
+-  acceptedAt  DateTime?
+-  acceptedByUid String?
+-  revokedAt   DateTime?
+-  createdAt   DateTime          @default(now())
+-
+-  workspace   Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+-  institutionApproval InstitutionApproval? @relation(fields: [institutionApprovalId, workspaceId], references: [id, workspaceId], onDelete: NoAction)
+-  acceptedBy  Person? @relation("AcceptedInvitation", fields: [acceptedByUid], references: [uid], onDelete: SetNull)
+-
+-  // A PostgreSQL partial unique index admits one pending/issued delivery while
+-  // preserving revoked/expired/accepted invitation history for later reissue.
+-  @@index([workspaceId, email])
+-  @@index([email])
+-  @@map("invitations")
+-}
+-
+-model InstitutionApproval {
+-  id               String   @id
+-  workspaceId      String
+-  administratorUid String
+-  reviewerUid      String
+-  policy           String
+-  evidenceRef      String
+-  approvedAt       DateTime
+-  expiresAt        DateTime
+-  revokedAt        DateTime?
+-  revokedByUid     String?
+-  workspace        Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+-  invitations      Invitation[]
+-
+-  @@unique([id, workspaceId])
+-  @@index([workspaceId, expiresAt])
+-  @@map("institution_approvals")
+-}
+-
+-enum InvitationStatus {
+-  PENDING
+-  ISSUED
+-  ACCEPTED
+-  REVOKED
+-  EXPIRED
+-}
+-
+-/// Consent/share purpose grants. Each grant is purpose-scoped with explicit
+-/// expiry/revocation. Revocation must affect pending jobs, caches and newly
+-/// requested downloads (see DATA-05).
+-model ConsentGrant {
+-  id              String   @id @default(cuid())
+-  uid             String
+-  purpose         String   // e.g. "learning-evidence", "workspace-share"
+-  resourceId      String?  // null = account-wide for this purpose
+-  grantedAt       DateTime @default(now())
+-  expiresAt       DateTime?
+-  revokedAt       DateTime?
+-  version         String   // policy version at grant time
+-  consentVersion  String
+-
+-  person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+-
+-  @@unique([uid, purpose, resourceId, consentVersion])
+-  @@index([uid])
+-  @@index([purpose])
+-  @@map("consent_grants")
+-}
+-
+-/// Share grants for explicit resource-level sharing (e.g. project/portfolio
+-/// share). Revoking consent must not revive old shares (see DATA-05).
+-model ShareGrant {
+-  id              String   @id @default(cuid())
+-  uid             String
+-  resourceType    String   // e.g. "project", "workspace", "report"
+-  resourceId      String
+-  grantedToUid    String?  // null = public within scope
+-  purpose         String   // e.g. "portfolio-share", "summary-share"
+-  scope           String   // e.g. "view", "comment", "full"
+-  grantedAt       DateTime @default(now())
+-  expiresAt       DateTime?
+-  revokedAt       DateTime?
+-  consentVersion  String
+-
+-  person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+-
+-  @@unique([uid, resourceType, resourceId, purpose, consentVersion])
+-  @@index([resourceType, resourceId])
+-  @@index([grantedToUid])
+-  @@map("share_grants")
+-}
+-
+-// ─── Command receipts (DATA-06) ────────────────────────────────────────────────
+-
+-/// Server-authorized command results with idempotency. Rejects the same command
+-/// key with a changed payload (duplicate-command case). Unique constraint on
+-/// commandId enforces idempotency; payloadDigest detects changed payloads.
+-model CommandResult {
+-  id           String        @id @default(cuid())
+-  uid          String
+-  commandId    String        @unique  // stable client-generated command key
+-  kind         String        // e.g. "workspace:create", "learning:start"
+-  payloadDigest String        // sha256 of the command payload for change detection
+-  workspaceId  String?       // null when account-scoped
+-  status       CommandStatus  @default(PENDING)
+-  resultJson   Json?         // committed result snapshot; null on failure
+-  error        String?       // error class/message on failure
+-  attemptedAt  DateTime      @default(now())
+-  committedAt  DateTime?     // null until the command commits successfully
+-  revision     Int           @default(1)  // expected revision for conditional writes
+-
+-  person       Person        @relation(fields: [uid], references: [uid], onDelete: Cascade)
+-  workspace    Workspace?    @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
+-
+-  @@index([uid])
+-  @@index([kind])
+-  @@index([committedAt])
+-  @@map("command_results")
+-}
+-
+-enum CommandStatus {
+-  PENDING
+-  COMMITTED
+-  FAILED
+-  DUPLICATE
+-  CONFLICT
+-}
+-
+-// ─── Outbox (SYNC-01) ────────────────────────────────────────────────────────────
+-
+-/// Durable outbox events for authorized change/run observation across
+-/// account, billing and every released workspace domain. Each event records
+-/// the owning UID and workspace scope; consumers observe via bounded polling/SSE
+-/// with replay/refetch/refetch semantics.
+-model OutboxEvent {
+-  id            String      @id @default(cuid())
+-  uid           String
+-  workspaceId   String?
+-  topic         String      // e.g. "workspace.membership", "consent.revoked"
+-  payload       Json
+-  cursor        BigInt      @unique @default(autoincrement()) // durable cursor; repository serializes events per UID
+-  status        OutboxStatus @default(PENDING)
+-  createdAt     DateTime    @default(now())
+-  dispatchedAt  DateTime?
+-  failureReason String?
+-
+-  person        Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
+-  workspace     Workspace?  @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
+-
+-  @@index([uid, cursor])
+-  @@index([status])
+-  @@index([createdAt])
+-  @@index([workspaceId])
+-  @@map("outbox_events")
+-}
+-
+-enum OutboxStatus {
+-  PENDING
+-  DISPATCHED
+-  FAILED
+-}
+-
+-// ─── Audit (PRIV-01/PRIV-03) ────────────────────────────────────────────────────
+-
+-/// Immutable audit events for security-sensitive operations. Retains the
+-/// owning UID and workspace scope; private details are redacted. IP addresses
+-/// have their last octet zeroed for IPv4.
+-model AuditEvent {
+-  id          String       @id @default(cuid())
+-  uid         String
+-  workspaceId String?
+-  operation   String       // e.g. "consent.grant", "workspace.invite.revoke"
+-  actorType   String       // "user", "system", "operator"
+-  actorUid    String?      // present when actor != subject uid
+-  resourceType String
+-  resourceId   String?
+-  outcome     AuditOutcome
+-  ip          String?      // redacted: last octet zeroed for IPv4
+-  userAgent   String?      // truncated, redacted
+-  createdAt   DateTime     @default(now())
+-
+-  person      Person       @relation(fields: [uid], references: [uid], onDelete: Cascade)
+-  workspace   Workspace?   @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
+-
+-  @@index([uid, createdAt])
+-  @@index([operation, createdAt])
+-  @@index([workspaceId, createdAt])
+-  @@map("audit_events")
+-}
+-
+-enum AuditOutcome {
+-  SUCCESS
+-  DENIED
+-  FAILED
+-}
+-
+-// ─── Deletion tombstones (PRIV-02/PRIV-03) ──────────────────────────────────────
+-
+-/// Deletion tombstone record. Used by PRIV-02/PRIV-03 to prevent revive of
+-/// erased derived records even after backup restore. Unique constraint
+-/// ensures a tombstone cannot be silently overwritten.
+-model DeletionTombstone {
+-  id          String   @id @default(cuid())
+-  uid         String
+-  resourceType String
+-  resourceId   String
+-  reason      String?
+-  createdAt   DateTime @default(now())
+-  expiresAt   DateTime?  // null = permanent tombstone
+-
+-  person Person @relation(fields: [uid], references: [uid], onDelete: Restrict)
+-
+-  @@unique([uid, resourceType, resourceId])
+-  @@index([expiresAt])
+-  @@map("deletion_tombstones")
+-}
++generator client {
++  provider = "prisma-client-js"
++}
++
++datasource db {
++  provider  = "postgresql"
++  url       = env("DATABASE_URL")
++  directUrl = env("DIRECT_URL")
++}
++
++// ─── Users ────────────────────────────────────────────────────────────────────
++
++model User {
++  id                   String    @id @default(cuid())
++  email                String    @unique
++  name                 String
++  avatar               String?
++  passwordHash         String?
++  googleId             String?   @unique
++  plan                 Plan      @default(FREE)
++  promptsToday         Int       @default(0)
++  lastResetAt          DateTime  @default(now())
++  // Email verification
++  isVerified           Boolean   @default(false)
++  otp                  String?   // bcrypt hash of OTP
++  otpExpiry            DateTime?
++  otpAttempts          Int       @default(0)
++  otpLockedUntil       DateTime?
++  // Onboarding fields
++  onboardingCompleted  Boolean   @default(false)
++  isStarted            Boolean   @default(false)
++  category             String?   // student | teacher | organization
++  fullName             String?
++  grade                String?   // stores grade_master.id
++  board                String?   // stores board_master.id
++  subject              String?   // for teachers
++  organizationName     String?   // for organizations
++  organizationType     String?   // for organizations
++  schoolName           String?
++  phone                String?
++  isDeleted            Boolean   @default(false)
++  createdAt            DateTime  @default(now())
++  updatedAt            DateTime  @updatedAt
++
++  conversations    Conversation[]
++  documents        Document[]
++  jobs             Job[]
++  subjectTracks    SubjectTrack[]
++  chapterTracks    ChapterTrack[]
++  deletionRequests DeletionRequest[]
++
++  @@map("users")
++}
++
++model DeletionRequest {
++  id        String   @id @default(cuid())
++  userId    String
++  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
++  reason    String?
++  status    String   @default("pending")
++  createdAt DateTime @default(now())
++  updatedAt DateTime @updatedAt
++
++  @@map("deletion_request")
++}
++
++// ─── Board Master Data ─────────────────────────────────────────────────────────
++
++model BoardMaster {
++  id        String          @id @default(cuid())
++  name      String          @unique
++  isActive  Boolean         @default(true)
++  sortOrder Int             @default(0)
++  createdAt DateTime        @default(now())
++
++  subjects  SubjectMaster[]
++
++  @@map("board_master")
++}
++
++// ─── Grade Master Data ─────────────────────────────────────────────────────────
++
++model GradeMaster {
++  id        String          @id @default(cuid())
++  name      String          @unique  // "1st", "2nd", ..., "12th"
++  sortOrder Int
++  isActive  Boolean         @default(true)
++  createdAt DateTime        @default(now())
++
++  subjects  SubjectMaster[]
++
++  @@map("grade_master")
++}
++
++// ─── Subject Master Data ───────────────────────────────────────────────────────
++
++model SubjectMaster {
++  id        String       @id @default(cuid())
++  name      String
++  gradeId   String
++  grade     GradeMaster  @relation(fields: [gradeId], references: [id], onDelete: Cascade)
++  boardId   String?      // null = common for all boards
++  board     BoardMaster? @relation(fields: [boardId], references: [id], onDelete: SetNull)
++  icon      String?      // e.g. "/assets/Science-icon.png"
++  isActive  Boolean      @default(true)
++  sortOrder Int          @default(0)
++  createdAt DateTime     @default(now())
++
++  books         BookMaster[]
++  subjectTracks SubjectTrack[]
++
++  @@map("subject_master")
++}
++
++// ─── Book Master Data ──────────────────────────────────────────────────────────
++
++model BookMaster {
++  id         String        @id @default(cuid())
++  name       String
++  subjectId  String
++  subject    SubjectMaster @relation(fields: [subjectId], references: [id], onDelete: Cascade)
++  sortOrder  Int           @default(0)
++  totalParts Int?          // null = no tabs; 2+ = show Part I, Part II... tabs
++  isActive   Boolean       @default(true)
++  createdAt  DateTime      @default(now())
++
++  chapters ChapterMaster[]
++
++  @@map("book_master")
++}
++
++// ─── Chapter Master Data ───────────────────────────────────────────────────────
++
++model ChapterMaster {
++  id        String     @id @default(cuid())
++  name      String
++  bookId    String
++  book      BookMaster @relation(fields: [bookId], references: [id], onDelete: Cascade)
++  sortOrder Int        @default(0)
++  part      Int?       // null = no part; 1/2/3... = which tab this chapter belongs to
++  isActive  Boolean    @default(true)
++  createdAt DateTime   @default(now())
++
++  chapterTracks ChapterTrack[]
++  topics        TopicMaster[]
++
++  @@map("chapter_master")
++}
++
++// ─── Topic Master Data ─────────────────────────────────────────────────────────
++
++model TopicMaster {
++  id          String          @id @default(cuid())
++  chapterId   String
++  chapter     ChapterMaster   @relation(fields: [chapterId], references: [id], onDelete: Cascade)
++  pointNumber String          // e.g. "7.1", "7.2"
++  title       String
++  status      String          @default("active")
++  sortOrder   Int             @default(0)
++  createdAt   DateTime        @default(now())
++  updatedAt   DateTime        @updatedAt
++
++  subtopics   SubtopicMaster[]
++
++  @@map("topic_master")
++}
++
++// ─── Subtopic Master Data ──────────────────────────────────────────────────────
++
++model SubtopicMaster {
++  id          String      @id @default(cuid())
++  topicId     String
++  topic       TopicMaster @relation(fields: [topicId], references: [id], onDelete: Cascade)
++  pointNumber String      // e.g. "7.1.1", "7.1.2"
++  title       String
++  status      String      @default("active")
++  sortOrder   Int         @default(0)
++  createdAt   DateTime    @default(now())
++  updatedAt   DateTime    @updatedAt
++
++  @@map("subtopic_master")
++}
++
++// ─── Subject Track ─────────────────────────────────────────────────────────────
++
++model SubjectTrack {
++  id        String        @id @default(cuid())
++  userId    String
++  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
++  subjectId String
++  subject   SubjectMaster @relation(fields: [subjectId], references: [id], onDelete: Cascade)
++  startedAt DateTime      @default(now())
++  updatedAt DateTime      @updatedAt
++
++  @@unique([userId, subjectId])
++  @@map("subject_track")
++}
++
++// ─── Chapter Track ─────────────────────────────────────────────────────────────
++
++model ChapterTrack {
++  id          String        @id @default(cuid())
++  userId      String
++  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
++  chapterId   String
++  chapter     ChapterMaster @relation(fields: [chapterId], references: [id], onDelete: Cascade)
++  progress    Int           @default(0)    // 0–100
++  status      TrackStatus   @default(NOT_STARTED)
++  startedAt   DateTime?
++  completedAt DateTime?
++  updatedAt   DateTime      @updatedAt
++
++  @@unique([userId, chapterId])
++  @@map("chapter_track")
++}
++
++enum TrackStatus {
++  NOT_STARTED
++  IN_PROGRESS
++  COMPLETED
++}
++
++enum Plan {
++  FREE
++  PRO
++}
++
++// ─── Conversations ────────────────────────────────────────────────────────────
++
++model Conversation {
++  id        String    @id @default(cuid())
++  title     String    @default("New Chat")
++  userId    String
++  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
++  createdAt DateTime  @default(now())
++  updatedAt DateTime  @updatedAt
++
++  messages  Message[]
++
++  @@map("conversations")
++}
++
++// ─── Messages ─────────────────────────────────────────────────────────────────
++
++model Message {
++  id             String       @id @default(cuid())
++  conversationId String
++  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
++  role           MessageRole
++  content        String       @db.Text
++  diagram        String?      @db.Text  // Mermaid code
++  resources      Json?                  // Resource[] JSON array
++  imageUrl       String?
++  createdAt      DateTime     @default(now())
++
++  @@map("messages")
++}
++
++enum MessageRole {
++  user
++  assistant
++}
++
++// ─── Documents (PDF upload) ────────────────────────────────────────────────────
++
++model Document {
++  id          String         @id @default(cuid())
++  userId      String
++  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
++  filename    String
++  storageUrl  String
++  status      DocumentStatus @default(PROCESSING)
++  createdAt   DateTime       @default(now())
++
++  chunks      DocumentChunk[]
++
++  @@map("documents")
++}
++
++enum DocumentStatus {
++  PROCESSING
++  READY
++  ERROR
++}
++
++// ─── Document Chunks (pgvector RAG) ───────────────────────────────────────────
++// NOTE: The embedding column uses pgvector — run the migration below manually
++// in Supabase SQL editor AFTER running prisma migrate dev:
++//   ALTER TABLE document_chunks ADD COLUMN embedding vector(1536);
++//   CREATE INDEX ON document_chunks USING ivfflat (embedding vector_cosine_ops);
++
++model DocumentChunk {
++  id         String   @id @default(cuid())
++  documentId String
++  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
++  content    String   @db.Text
++  chunkIndex Int
++  createdAt  DateTime @default(now())
++  // embedding vector(1536) — added manually via SQL (pgvector not supported in Prisma schema)
++
++  @@map("document_chunks")
++}
++
++// ─── Jobs (async tasks) ───────────────────────────────────────────────────────
++
++model Job {
++  id        String    @id @default(cuid())
++  userId    String
++  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
++  type      JobType
++  status    JobStatus @default(PENDING)
++  prompt    String?
++  resultUrl String?
++  error     String?
++  createdAt DateTime  @default(now())
++  updatedAt DateTime  @updatedAt
++
++  @@map("jobs")
++}
++
++enum JobType {
++  IMAGE_GENERATION
++  PDF_PROCESSING
++}
++
++enum JobStatus {
++  PENDING
++  COMPLETED
++  FAILED
++}
++
++// DATA-01 domain schema starts here.
++// ─── Workspaces (DATA-01 / SCOPE-04) ────────────────────────────────────────────
++//
++// PostgreSQL owns domain/membership/evidence/run state, linked by the canonical
++// Firebase UID (Person.uid). Firestore retains authority for account/billing/
++// profile; SQL does NOT duplicate or replace those fields. Each domain command
++// is server-authorized and transactionally scoped.
++
++/// Canonical person reference. The `uid` is the Firebase UID from the verified
++/// session — the single join key to Firestore accounts. SQL stores no password
++/// hashes, payment secrets, or billing authority.
++model Person {
++  uid            String              @id
++  createdAt      DateTime            @default(now())
++  updatedAt      DateTime            @updatedAt
++
++  workspaces     WorkspaceMembership[]
++  ownedWorkspaces Workspace[]
++  acceptedInvitations Invitation[] @relation("AcceptedInvitation")
++  deletionTombstones DeletionTombstone[]
++  shareGrants    ShareGrant[]
++  consentGrants  ConsentGrant[]
++  downloadGrants DownloadGrant[]
++  downloadExports DownloadExport[]
++  commandResults CommandResult[]
++  auditEvents    AuditEvent[]
++  outboxEvents   OutboxEvent[]
++
++  @@map("persons")
++}
++
++/// A workspace owned by one UID and shared with members via memberships.
++/// The owning UID is authoritative; memberships carry per-member roles/purposes.
++model Workspace {
++  id          String                @id @default(cuid())
++  uid         String                // owner UID — links to Firestore person via Person.uid
++  name        String
++  slug        String                @unique
++  description   String?
++  isPersonal  Boolean               @default(false)
++  createdAt   DateTime              @default(now())
++  updatedAt   DateTime              @updatedAt
++
++  owner       Person                @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  memberships WorkspaceMembership[]
++  invitations Invitation[]
++  institutionApprovals InstitutionApproval[]
++  commandResults CommandResult[]
++  outboxEvents OutboxEvent[]
++  auditEvents AuditEvent[]
++
++  @@index([uid])
++
++  @@map("workspaces")
++}
++
++/// Explicit membership linking a person to a workspace with a role/purpose.
++/// Unique constraint prevents duplicate membership; source/version are tracked.
++model WorkspaceMembership {
++  id            String        @id @default(cuid())
++  uid           String
++  workspaceId   String
++  role          WorkspaceRole @default(MEMBER)
++  source        String        // e.g. "invitation", "direct"
++  sourceVersion String        @default("v1")
++  purpose       String?
++  consentVersion String?
++  joinedAt      DateTime      @default(now())
++  updatedAt     DateTime      @updatedAt
++
++  person      Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace   Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
++
++  @@unique([uid, workspaceId])
++  @@index([workspaceId])
++  @@map("workspace_memberships")
++}
++
++enum WorkspaceRole {
++  OWNER
++  ADMIN
++  MEMBER
++  GUEST
++}
++
++/// Invitations to join a workspace. A role picker, email match, guessed ID or
++/// browser record cannot establish permission (see DATA-04). Token is a one-time
++/// use hash verified server-side.
++model Invitation {
++  id          String            @id @default(cuid())
++  workspaceId String
++  institutionApprovalId String?
++  email       String
++  role        WorkspaceRole     @default(MEMBER)
++  tokenHash   String? @unique   // SHA-256 of the one-time invite token
++  status      InvitationStatus  @default(PENDING)
++  expiresAt   DateTime
++  issuedAt    DateTime?
++  acceptedAt  DateTime?
++  acceptedByUid String?
++  revokedAt   DateTime?
++  createdAt   DateTime          @default(now())
++
++  workspace   Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
++  institutionApproval InstitutionApproval? @relation(fields: [institutionApprovalId, workspaceId], references: [id, workspaceId], onDelete: NoAction)
++  acceptedBy  Person? @relation("AcceptedInvitation", fields: [acceptedByUid], references: [uid], onDelete: SetNull)
++
++  // A PostgreSQL partial unique index admits one pending/issued delivery while
++  // preserving revoked/expired/accepted invitation history for later reissue.
++  @@index([workspaceId, email])
++  @@index([email])
++  @@map("invitations")
++}
++
++model InstitutionApproval {
++  id               String   @id
++  workspaceId      String
++  administratorUid String
++  reviewerUid      String
++  policy           String
++  evidenceRef      String
++  approvedAt       DateTime
++  expiresAt        DateTime
++  revokedAt        DateTime?
++  revokedByUid     String?
++  workspace        Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
++  invitations      Invitation[]
++
++  @@unique([id, workspaceId])
++  @@index([workspaceId, expiresAt])
++  @@map("institution_approvals")
++}
++
++enum InvitationStatus {
++  PENDING
++  ISSUED
++  ACCEPTED
++  REVOKED
++  EXPIRED
++}
++
++/// Consent/share purpose grants. Each grant is purpose-scoped with explicit
++/// expiry/revocation. Revocation must affect pending jobs, caches and newly
++/// requested downloads (see DATA-05).
++model ConsentGrant {
++  id              String   @id @default(cuid())
++  uid             String
++  purpose         String   // e.g. "learning-evidence", "workspace-share"
++  resourceId      String?  // null = account-wide for this purpose
++  grantedAt       DateTime @default(now())
++  expiresAt       DateTime?
++  revokedAt       DateTime?
++  version         String   // policy version at grant time
++  consentVersion  String
++
++  person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
++
++  @@unique([uid, purpose, resourceId, consentVersion])
++  @@index([uid])
++  @@index([purpose])
++  @@map("consent_grants")
++}
++
++/// Share grants for explicit resource-level sharing (e.g. project/portfolio
++/// share). Revoking consent must not revive old shares (see DATA-05).
++model ShareGrant {
++  id              String   @id @default(cuid())
++  uid             String
++  resourceType    String   // e.g. "project", "workspace", "report"
++  resourceId      String
++  grantedToUid    String?  // null = public within scope
++  purpose         String   // e.g. "portfolio-share", "summary-share"
++  scope           String   // e.g. "view", "comment", "full"
++  grantedAt       DateTime @default(now())
++  expiresAt       DateTime?
++  revokedAt       DateTime?
++  consentVersion  String
++
++  person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
++
++  @@unique([uid, resourceType, resourceId, purpose, consentVersion])
++  @@index([resourceType, resourceId])
++  @@index([grantedToUid])
++  @@map("share_grants")
++}
++
++// ─── Command receipts (DATA-06) ────────────────────────────────────────────────
++
++/// Server-authorized command results with idempotency. Rejects the same command
++/// key with a changed payload (duplicate-command case). Unique constraint on
++/// commandId enforces idempotency; payloadDigest detects changed payloads.
++model CommandResult {
++  id           String        @id @default(cuid())
++  uid          String
++  commandId    String        @unique  // stable client-generated command key
++  kind         String        // e.g. "workspace:create", "learning:start"
++  payloadDigest String        // sha256 of the command payload for change detection
++  workspaceId  String?       // null when account-scoped
++  status       CommandStatus  @default(PENDING)
++  resultJson   Json?         // committed result snapshot; null on failure
++  error        String?       // error class/message on failure
++  attemptedAt  DateTime      @default(now())
++  committedAt  DateTime?     // null until the command commits successfully
++  revision     Int           @default(1)  // expected revision for conditional writes
++
++  person       Person        @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace    Workspace?    @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
++
++  @@index([uid])
++  @@index([kind])
++  @@index([committedAt])
++  @@map("command_results")
++}
++
++enum CommandStatus {
++  PENDING
++  COMMITTED
++  FAILED
++  DUPLICATE
++  CONFLICT
++}
++
++// ─── Outbox (SYNC-01) ────────────────────────────────────────────────────────────
++
++/// Durable outbox events for authorized change/run observation across
++/// account, billing and every released workspace domain. Each event records
++/// the owning UID and workspace scope; consumers observe via bounded polling/SSE
++/// with replay/refetch/refetch semantics.
++model OutboxEvent {
++  id            String      @id @default(cuid())
++  uid           String
++  workspaceId   String?
++  topic         String      // e.g. "workspace.membership", "consent.revoked"
++  payload       Json
++  cursor        BigInt      @unique @default(autoincrement()) // durable cursor; repository serializes events per UID
++  status        OutboxStatus @default(PENDING)
++  createdAt     DateTime    @default(now())
++  dispatchedAt  DateTime?
++  failureReason String?
++
++  person        Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace     Workspace?  @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
++
++  @@index([uid, cursor])
++  @@index([status])
++  @@index([createdAt])
++  @@index([workspaceId])
++  @@map("outbox_events")
++}
++
++enum OutboxStatus {
++  PENDING
++  DISPATCHED
++  FAILED
++}
++
++// ─── Audit (PRIV-01/PRIV-03) ────────────────────────────────────────────────────
++
++/// Immutable audit events for security-sensitive operations. Retains the
++/// owning UID and workspace scope; private details are redacted. IP addresses
++/// have their last octet zeroed for IPv4.
++model AuditEvent {
++  id          String       @id @default(cuid())
++  uid         String
++  workspaceId String?
++  operation   String       // e.g. "consent.grant", "workspace.invite.revoke"
++  actorType   String       // "user", "system", "operator"
++  actorUid    String?      // present when actor != subject uid
++  resourceType String
++  resourceId   String?
++  outcome     AuditOutcome
++  ip          String?      // redacted: last octet zeroed for IPv4
++  userAgent   String?      // truncated, redacted
++  createdAt   DateTime     @default(now())
++
++  person      Person       @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  workspace   Workspace?   @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
++
++  @@index([uid, createdAt])
++  @@index([operation, createdAt])
++  @@index([workspaceId, createdAt])
++  @@map("audit_events")
++}
++
++enum AuditOutcome {
++  SUCCESS
++  DENIED
++  FAILED
++}
++
++// ─── Deletion tombstones (PRIV-02/PRIV-03) ──────────────────────────────────────
++
++/// Deletion tombstone record. Used by PRIV-02/PRIV-03 to prevent revive of
++/// erased derived records even after backup restore. Unique constraint
++/// ensures a tombstone cannot be silently overwritten.
++model DeletionTombstone {
++  id          String   @id @default(cuid())
++  uid         String
++  resourceType String
++  resourceId   String
++  reason      String?
++  createdAt   DateTime @default(now())
++  expiresAt   DateTime?  // null = permanent tombstone
++
++  person Person @relation(fields: [uid], references: [uid], onDelete: Restrict)
++
++  @@unique([uid, resourceType, resourceId])
++  @@index([expiresAt])
++  @@map("deletion_tombstones")
++}
++
++model DownloadGrant {
++  id             String    @id
++  ownerUid       String
++  objectId       String
++  generation     Int
++  digest         String
++  size           Int
++  type           String
++  channel        String // "gateway" | "signed_link"
++  state          String // ACTIVE | REVOKED | EXPIRED | USED
++  expiresAt      DateTime
++  token          String?   @unique
++  remainingReads Int
++  revokedAt      DateTime?
++  lastReadAt     DateTime?
++  bytesDelivered Int       @default(0)
++  createdAt      DateTime  @default(now())
++
++  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
++
++  @@index([ownerUid])
++  @@index([objectId, generation])
++  @@index([state])
++  @@map("download_grants")
++}
++
++model DownloadExport {
++  id             String   @id
++  ownerUid       String
++  objects        Json
++  state          String // ACTIVE | REVOKED | EXPIRED | USED
++  expiresAt      DateTime
++  createdAt      DateTime @default(now())
++  deliveredBytes Int      @default(0)
++
++  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
++
++  @@index([ownerUid])
++  @@index([state])
++  @@map("download_exports")
++}
