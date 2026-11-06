@@ -1,5 +1,5 @@
-import { Injectable, ConflictException, NotFoundException, ForbiddenException, BadRequestException } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Injectable, ConflictException, NotFoundException, ForbiddenException, BadRequestException, ServiceUnavailableException } from '@nestjs/common';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { createHash } from 'node:crypto';
 import { CONSENT_PURPOSES, MAX_CONSENT_EXPIRY_SECONDS, isConsentVersion, type ConsentPurpose } from '../consent/consent-types';
@@ -13,12 +13,39 @@ export interface WorkspaceInput {
   name: string; slug: string; description?: string; isPersonal?: boolean; commandId: string;
 }
 
-/** Unwired domain repository. Callers must supply a verified server UID.
+/** Domain repository. Registered consent callers supply a verified server UID.
+ * Legacy workspace management remains outside the selected product runtime.
  * Account/profile/billing authority stays in Firestore. This class does not
  * establish admission, source rights or guardian permissions for any caller. */
 @Injectable()
 export class WorkspaceRepository {
+  private consentRuntime?: Readonly<{ role: string; schema: string; database: string }>;
   constructor(private readonly prisma: PrismaService) {}
+
+  static forConsentRuntime(client: PrismaClient, identity: { role: string; schema: string; database: string }) {
+    const repository = new WorkspaceRepository(client as PrismaService);
+    repository.consentRuntime = Object.freeze({ ...identity });
+    return repository;
+  }
+
+  private async assertConsentRuntime(tx: Store) {
+    if (!this.consentRuntime) return;
+    const rows = await tx.$queryRawUnsafe<Array<{ role: string; schema: string; database: string; privileged: boolean; delegated: boolean; owns_or_controls: boolean }>>(`
+      SELECT current_user AS role, current_schema() AS schema, current_database() AS database,
+        r.rolsuper OR r.rolcreatedb OR r.rolcreaterole OR r.rolbypassrls AS privileged,
+        EXISTS(SELECT 1 FROM pg_roles d WHERE pg_has_role(r.oid,d.oid,'MEMBER') AND
+          (d.rolsuper OR d.rolcreatedb OR d.rolcreaterole OR d.rolbypassrls OR
+           has_schema_privilege(d.oid,current_schema(),'CREATE') OR has_database_privilege(d.oid,current_database(),'CREATE'))) AS delegated,
+        EXISTS(SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname=current_schema() AND (pg_has_role(r.oid,c.relowner,'MEMBER') OR
+            (left(c.relname,11)='_visionary_' AND EXISTS(SELECT 1 FROM pg_roles d WHERE pg_has_role(r.oid,d.oid,'MEMBER') AND CASE
+              WHEN c.relkind IN ('r','p') THEN has_table_privilege(d.oid,c.oid,'INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER')
+              WHEN c.relkind='S' THEN has_sequence_privilege(d.oid,c.oid,'USAGE,UPDATE') ELSE FALSE END)))) AS owns_or_controls
+        FROM pg_roles r WHERE r.rolname=current_user`);
+    const row = rows[0], expected = this.consentRuntime;
+    if (!row || row.role !== expected.role || row.schema !== expected.schema || row.database !== expected.database ||
+        row.privileged || row.delegated || row.owns_or_controls) throw new ServiceUnavailableException('Consent runtime identity is unavailable.');
+  }
 
   async ensurePerson(uid: string): Promise<void> {
     if (typeof uid !== 'string' || !uid || uid.length > 128) throw new BadRequestException('Invalid account reference.');
@@ -69,6 +96,7 @@ export class WorkspaceRepository {
     if (typeof uid !== 'string' || !uid.trim()) throw new ForbiddenException('A consent subject is required.');
     if (!purpose || !consentVersion) throw new ForbiddenException('An explicit purpose and policy version are required.');
     return this.prisma.$transaction(async tx => {
+      await this.assertConsentRuntime(tx);
       // Acquire the serialization lock before reading time or consent. A
       // transaction/statement-start clock may already be stale after this wait.
       const accounts = await tx.$queryRaw<Array<{ uid: string }>>`SELECT "uid" FROM "persons" WHERE "uid" = ${uid} FOR UPDATE`;
@@ -106,6 +134,7 @@ export class WorkspaceRepository {
       throw new BadRequestException('An account and consent grant are required.');
     }
     return this.prisma.$transaction(async tx => {
+      await this.assertConsentRuntime(tx);
       const accounts = await tx.$queryRaw<Array<{ uid: string }>>`SELECT "uid" FROM "persons" WHERE "uid" = ${uid} FOR UPDATE`;
       if (!accounts.length) throw new ForbiddenException('Consent grant is unavailable.');
       const grant = await tx.consentGrant.findFirst({ where: { id: grantId, uid } });
@@ -139,6 +168,7 @@ export class WorkspaceRepository {
     if (typeof uid !== 'string' || !uid.trim() || uid.length > 128 ||
         (after !== undefined && !/^[A-Za-z0-9_-]{1,128}$/.test(after))) throw new BadRequestException('Invalid consent page.');
     return this.prisma.$transaction(async tx => {
+      await this.assertConsentRuntime(tx);
       const accounts = await tx.$queryRaw<Array<{ uid: string }>>`SELECT "uid" FROM "persons" WHERE "uid" = ${uid} FOR UPDATE`;
       if (!accounts.length) return { grants: [], next: null };
       if (await tx.deletionTombstone.findFirst({ where: { uid, resourceType: 'person' } })) throw new ForbiddenException('Consent subject is unavailable.');

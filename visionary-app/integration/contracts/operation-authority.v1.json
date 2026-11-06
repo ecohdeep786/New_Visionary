@@ -265,9 +265,9 @@
       "state": "observed"
     },
     "consentRead": {
-      "actor": "Current session/device and expected account; cursor signed for this UID with bounded expiry",
+      "actor": "Current live visionary-research/named-default session/device and expected account; cursor signed for this UID with bounded expiry",
       "workspace": "No workspace selector or membership grant",
-      "object": "Explicit opt-in bounded SQL runtime; twenty own grants per page; erased subjects denied",
+      "object": "Explicit environment/target binding and actual DML-only SQL role/schema/database; twenty own grants per page; erased subjects denied",
       "source": "No private source bytes exposed",
       "consent": "Consent status only; no new grant or policy publication",
       "stores": [
@@ -276,9 +276,9 @@
       "state": "observed"
     },
     "consentRevoke": {
-      "actor": "Current session/device, expected account, Origin/CSRF and per-UID rate admission",
+      "actor": "Current pinned live identity realm, session/device, expected account, Origin/CSRF and per-UID rate admission",
       "workspace": "No client account/workspace selector accepted",
-      "object": "Owner-only canonical SQL consent/share revocation, audit and outbox in one transaction; retries return the same receipt",
+      "object": "Actual DML-only bound runtime; owner-only SQL consent/share revocation, audit and outbox transaction; retries return the same receipt",
       "source": "No source access granted or previously delivered bytes recalled",
       "consent": "No new consent, deletion, default training or consumer deployment; connected delivery remains separately gated",
       "stores": [
@@ -1540,11 +1540,11 @@
     },
     {
       "file": "backend/upstream/backend/src/consent/product-consent.service.ts",
-      "sha256Lf": "d0b61ea93c55f085ffba55a8c77b65cfd162374328483d93cd983491238934ba"
+      "sha256Lf": "d6cacaf20bbcb6c5f752ada30956bbb82f9e427441f347bb7a8e00cacb12c6f1"
     },
     {
       "file": "backend/upstream/backend/src/workspaces/workspace.repository.ts",
-      "sha256Lf": "6cd6ae354f49b1c8e749c3dd184520652a8312140fb007ba4862cf207ca4f8c7"
+      "sha256Lf": "8fd013d041f62db0bc9468650a2911841f724f29eb4bb425eba2e5c6d987ab8b"
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",

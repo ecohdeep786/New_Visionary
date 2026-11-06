@@ -1,11 +1,12 @@
 import { BadRequestException, HttpException, Injectable, OnModuleDestroy, ServiceUnavailableException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaClient } from '@prisma/client';
-import { createHmac, timingSafeEqual } from 'node:crypto';
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import { FirebaseProductService } from '../auth/firebase-product/firebase-product.service';
 import { assertCloudSqlUrl, assertSyntheticUrl, quoteIdentifier } from '../data/migration-identities';
-import { PrismaService } from '../prisma/prisma.service';
 import { WorkspaceRepository } from '../workspaces/workspace.repository';
+import { canonicalProvisionTarget } from '../workspaces/provision-types';
+import { firebaseAdminSettings } from '../auth/firebase/firebase-admin.service';
 
 /** Self-service reads/revocation only. This installs no consent grant, policy
  * publication, institution admission, job worker or download permission. */
@@ -13,6 +14,7 @@ import { WorkspaceRepository } from '../workspaces/workspace.repository';
 export class ProductConsentService implements OnModuleDestroy {
   private client?: PrismaClient;
   private repository?: WorkspaceRepository;
+  private binding?: string;
   constructor(private readonly accounts: FirebaseProductService, private readonly config: ConfigService) {}
   private enabled() { return this.config.get('DATA_CONSENT_ENABLED') === 'true'; }
   private key() {
@@ -40,14 +42,25 @@ export class ProductConsentService implements OnModuleDestroy {
   }
   private store() {
     if (!this.enabled()) throw new ServiceUnavailableException('Consent controls are unavailable.');
-    if (this.repository) return this.repository;
     try {
       this.key();
+      // Consent rows currently use bare UIDs. Accept only the current product's
+      // live identity realm; an emulator/foreign realm must never reuse them.
+      const firebase = firebaseAdminSettings(this.config);
+      // FirebaseProductService passes this name literally to getFirestore.
+      // The current account store is the named "default" database; "(default)"
+      // is a different realm and must not be treated as an alias here.
+      const firebaseDatabase = this.config.get<string>('FIRESTORE_DATABASE_ID') || '(default)';
+      if (firebase.kind === 'emulator' || firebase.projectId !== 'visionary-research' || firebaseDatabase !== 'default') throw Error();
+      const nodeEnvironment = this.config.get('NODE_ENV');
+      if (!['development', 'test', 'production'].includes(nodeEnvironment)) throw Error();
+      const mode = this.config.get('DATA_WORKSPACE_DATABASE_MODE');
+      if (!['synthetic', 'cloud-sql'].includes(mode)) throw Error();
       const raw = this.config.get<string>('DATA_WORKSPACE_RUNTIME_URL') || '';
       const role = this.config.get<string>('DATA_WORKSPACE_RUNTIME_ROLE') || '';
       const schema = this.config.get<string>('DATA_WORKSPACE_SCHEMA') || '';
       quoteIdentifier(role); quoteIdentifier(schema);
-      const cloud = this.config.get('DATA_WORKSPACE_DATABASE_MODE') === 'cloud-sql';
+      const cloud = mode === 'cloud-sql';
       if (!cloud && this.config.get('NODE_ENV') === 'production') throw Error();
       const url = cloud ? assertCloudSqlUrl(raw, { environment: this.config.get('NODE_ENV') === 'production' ? 'production' : 'staging',
         project: 'visionary-research', region: 'asia-south1', instance: this.config.get<string>('DATA_WORKSPACE_SQL_INSTANCE') || '',
@@ -56,9 +69,21 @@ export class ProductConsentService implements OnModuleDestroy {
         const n = Number(url.searchParams.get(key)); if (!Number.isInteger(n) || n < 1 || n > maximum) throw Error();
       }
       if (url.hash || decodeURIComponent(url.username) !== role || url.searchParams.get('schema') !== schema) throw Error();
+      const environment = nodeEnvironment === 'production' ? 'production' : cloud ? 'staging' : 'local';
+      const target = canonicalProvisionTarget({ environment,
+        environmentId: environment === 'production' ? 'production' : this.config.get<string>('DATA_WORKSPACE_ENVIRONMENT_ID') || '',
+        firebaseProject: firebase.projectId, firebaseDatabase, firestoreMode: 'live', sqlProject: cloud ? 'visionary-research' : 'local',
+        region: cloud ? 'asia-south1' : 'local', instance: cloud ? this.config.get<string>('DATA_WORKSPACE_SQL_INSTANCE') || '' : 'loopback-' + (url.port || '5432'),
+        database: url.pathname.slice(1), schema });
+      const binding = createHash('sha256').update(JSON.stringify([target, firebase.kind, role, String(url)])).digest('hex');
+      if (this.repository) {
+        if (this.binding !== binding) throw Error();
+        return this.repository;
+      }
       this.client = new PrismaClient({ datasources: { db: { url: String(url) } } });
       // The service owns this bounded client; no legacy global Prisma pool is used.
-      return this.repository = new WorkspaceRepository(this.client as PrismaService);
+      this.binding = binding;
+      return this.repository = WorkspaceRepository.forConsentRuntime(this.client, { role, schema, database: target.database });
     } catch { throw new ServiceUnavailableException('Consent controls are unavailable.'); }
   }
   async list(uid: string, cursor?: string) {

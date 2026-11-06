@@ -324,6 +324,75 @@ test('separate connections serialize per-UID commit order with durable unique se
   } finally { release(); await firstClient.$disconnect(); await secondClient.$disconnect(); }
 });
 
+test('consent rejects foreign identity realms and target drift before SQL construction without provider I/O', async () => {
+  const { ConfigService } = fixture.req('@nestjs/config');
+  const { ProductConsentService } = fixture.req('./dist/src/consent/product-consent.service.js');
+  const prisma = fixture.req('@prisma/client'), descriptor = Object.getOwnPropertyDescriptor(prisma, 'PrismaClient');
+  const priorHost = process.env.FIREBASE_AUTH_EMULATOR_HOST;
+  const changedEnvironment = Object.fromEntries(['FIRESTORE_DATABASE_ID', 'DATA_WORKSPACE_RUNTIME_ROLE', 'NODE_ENV',
+    'DATA_WORKSPACE_ENVIRONMENT_ID', 'DATA_WORKSPACE_RUNTIME_URL', 'DATA_WORKSPACE_DATABASE_NAME'].map(key => [key, process.env[key]]));
+  const constructed = [];
+  let transactions = 0;
+  class NoNetworkClient {
+    constructor(options) { constructed.push(options); }
+    async $transaction() { transactions++; throw Error('Synthetic no-network stop'); }
+    async $disconnect() {}
+  }
+  const url = new URL('postgresql://consent_runtime@localhost/visionary_data_production');
+  for (const [key, value] of Object.entries({ host: '/cloudsql/visionary-research:asia-south1:consent-review', schema: 'domain', connection_limit: '2', pool_timeout: '5', connect_timeout: '5' })) url.searchParams.set(key, value);
+  const base = { NODE_ENV: 'production', FIREBASE_PROJECT_ID: 'visionary-research', FIREBASE_PROJECT_KIND: 'production',
+    FIRESTORE_DATABASE_ID: 'default', GOOGLE_APPLICATION_CREDENTIALS: '', AUTH_RATE_LIMIT_KEY: 'synthetic-consent-review-key-000000000',
+    DATA_CONSENT_ENABLED: 'true', DATA_WORKSPACE_DATABASE_MODE: 'cloud-sql', DATA_WORKSPACE_RUNTIME_URL: String(url),
+    DATA_WORKSPACE_RUNTIME_ROLE: 'consent_runtime', DATA_WORKSPACE_SCHEMA: 'domain', DATA_WORKSPACE_SQL_INSTANCE: 'consent-review',
+    DATA_WORKSPACE_DATABASE_NAME: 'visionary_data_production' };
+  const accounts = { async rateLimit() {} };
+  try {
+    Object.defineProperty(prisma, 'PrismaClient', { ...descriptor, value: NoNetworkClient });
+    const staging = new URL(url); staging.pathname = '/visionary_data_staging_review';
+    for (const changes of [
+      { NODE_ENV: 'development', FIREBASE_PROJECT_ID: 'demo-consent-review', FIREBASE_PROJECT_KIND: 'emulator', FIREBASE_AUTH_EMULATOR_HOST: '127.0.0.1:9099', DATA_WORKSPACE_ENVIRONMENT_ID: 'staging-review', DATA_WORKSPACE_RUNTIME_URL: String(staging), DATA_WORKSPACE_DATABASE_NAME: 'visionary_data_staging_review' },
+      { FIREBASE_PROJECT_ID: 'foreign-consent-project' },
+      { FIRESTORE_DATABASE_ID: '(default)' },
+      { FIRESTORE_DATABASE_ID: 'another-database' },
+      { NODE_ENV: 'development', DATA_WORKSPACE_ENVIRONMENT_ID: '', DATA_WORKSPACE_RUNTIME_URL: String(staging), DATA_WORKSPACE_DATABASE_NAME: 'visionary_data_staging_review' },
+    ]) {
+      delete process.env.FIREBASE_AUTH_EMULATOR_HOST;
+      if (changes.FIREBASE_AUTH_EMULATOR_HOST) process.env.FIREBASE_AUTH_EMULATOR_HOST = changes.FIREBASE_AUTH_EMULATOR_HOST;
+      const service = new ProductConsentService(accounts, new ConfigService({ ...base, ...changes }));
+      await assert.rejects(service.list('same-bare-uid'), error => error.getStatus() === 503);
+      await assert.rejects(service.revoke('same-bare-uid', 'some-grant'), error => error.getStatus() === 503);
+      assert.equal(constructed.length, 0); assert.equal(service.client, undefined);
+    }
+    delete process.env.FIREBASE_AUTH_EMULATOR_HOST;
+    const config = new ConfigService(base), valid = new ProductConsentService(accounts, config);
+    await assert.rejects(valid.list('same-bare-uid'), error => error.getStatus() === 503);
+    assert.equal(constructed.length, 1, 'valid pinned production target reaches only the no-network sentinel');
+    assert.equal(transactions, 1);
+    config.set('FIRESTORE_DATABASE_ID', '(default)');
+    await assert.rejects(valid.list('same-bare-uid'), error => error.getStatus() === 503);
+    assert.equal(constructed.length, 1, 'cached client cannot bypass a changed identity realm');
+    assert.equal(transactions, 1);
+    config.set('FIRESTORE_DATABASE_ID', 'default'); config.set('DATA_WORKSPACE_RUNTIME_ROLE', 'different-role');
+    await assert.rejects(valid.list('same-bare-uid'), error => error.getStatus() === 503);
+    assert.equal(constructed.length, 1);
+    assert.equal(transactions, 1);
+    config.set('DATA_WORKSPACE_RUNTIME_ROLE', 'consent_runtime'); config.set('NODE_ENV', 'development');
+    config.set('DATA_WORKSPACE_ENVIRONMENT_ID', 'staging-review'); config.set('DATA_WORKSPACE_RUNTIME_URL', String(staging));
+    config.set('DATA_WORKSPACE_DATABASE_NAME', 'visionary_data_staging_review');
+    await assert.rejects(valid.list('same-bare-uid'), error => error.getStatus() === 503);
+    assert.equal(constructed.length, 1); assert.equal(transactions, 1, 'a different valid target cannot reuse the old pool');
+    const validStaging = new ProductConsentService(accounts, config);
+    await assert.rejects(validStaging.list('same-bare-uid'), error => error.getStatus() === 503);
+    assert.equal(constructed.length, 2); assert.equal(transactions, 2);
+    await validStaging.onModuleDestroy();
+    await valid.onModuleDestroy();
+  } finally {
+    Object.defineProperty(prisma, 'PrismaClient', descriptor);
+    if (priorHost === undefined) delete process.env.FIREBASE_AUTH_EMULATOR_HOST; else process.env.FIREBASE_AUTH_EMULATOR_HOST = priorHost;
+    for (const [key, value] of Object.entries(changedEnvironment)) { if (value === undefined) delete process.env[key]; else process.env[key] = value; }
+  }
+});
+
 test('actual consent HTTP service pages by signed account scope and commits owner-only revocation', async () => {
   const { Module, UnauthorizedException } = fixture.req('@nestjs/common');
   const { NestFactory } = fixture.req('@nestjs/core');
@@ -338,9 +407,20 @@ test('actual consent HTTP service pages by signed account scope and commits owne
     uid, purpose: 'downloads', version: 'http-v1', consentVersion: 'http-v1', resourceId: 'http-resource-' + i })) });
   const other = await db.consentGrant.create({ data: { uid: foreign, purpose: 'downloads', version: 'http-v1', consentVersion: 'http-v1' } });
   const url = new URL(env.url); url.searchParams.set('connection_limit', '2'); url.searchParams.set('pool_timeout', '5'); url.searchParams.set('connect_timeout', '5');
+  const runtimeRole = 'consent_http_' + env.schema.slice('data01_'.length);
+  assert.match(runtimeRole, /^consent_http_[a-f0-9]{32}$/);
+  await db.$executeRawUnsafe(`CREATE ROLE "${runtimeRole}" LOGIN PASSWORD 'synthetic-consent-http-only'`);
+  await db.$executeRawUnsafe(`GRANT USAGE ON SCHEMA "${env.schema}" TO "${runtimeRole}"`);
+  await db.$executeRawUnsafe(`GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA "${env.schema}" TO "${runtimeRole}"`);
+  await db.$executeRawUnsafe(`GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA "${env.schema}" TO "${runtimeRole}"`);
+  await assert.rejects(WorkspaceRepository.forConsentRuntime(db, { role: decodeURIComponent(url.username), schema: env.schema, database: url.pathname.slice(1) })
+    .listAccountConsents(uid), error => error.getStatus() === 503, 'the product boundary rejects the privileged fixture administrator');
+  url.username = runtimeRole; url.password = 'synthetic-consent-http-only';
   const secret = 'synthetic-consent-cursor-key-0000000000000000';
   const config = new ConfigService({ NODE_ENV: 'development', AUTH_PUBLIC_ORIGIN: 'http://localhost:5173',
+    FIREBASE_PROJECT_ID: 'visionary-research', FIREBASE_PROJECT_KIND: 'production', FIRESTORE_DATABASE_ID: 'default', GOOGLE_APPLICATION_CREDENTIALS: '',
     AUTH_RATE_LIMIT_KEY: secret, DATA_CONSENT_ENABLED: 'true', DATA_WORKSPACE_DATABASE_MODE: 'synthetic',
+    DATA_WORKSPACE_ENVIRONMENT_ID: 'consent-http-review',
     DATA_WORKSPACE_RUNTIME_URL: String(url), DATA_WORKSPACE_RUNTIME_ROLE: decodeURIComponent(url.username), DATA_WORKSPACE_SCHEMA: env.schema });
   const accounts = { async authenticate(session) { if (!['subject', 'foreign'].includes(session)) throw new UnauthorizedException(); return { uid: session === 'subject' ? uid : foreign }; }, async rateLimit() {} };
   const service = new ProductConsentService(accounts, config);
@@ -359,6 +439,12 @@ test('actual consent HTTP service pages by signed account scope and commits owne
     const first = await fetch(endpoint, { headers }); assert.equal(first.status, 200); assert.equal(first.headers.get('cache-control'), 'no-store');
     const page = await first.json(); assert.equal(page.uid, uid); assert.equal(page.grants.length, 20); assert.equal(typeof page.nextCursor, 'string');
     assert.ok(page.grants.every(g => g.id.startsWith('http-grant-')));
+    await assert.rejects(WorkspaceRepository.forConsentRuntime(service.client, { role: runtimeRole, schema: 'public', database: url.pathname.slice(1) })
+      .listAccountConsents(uid), error => error.getStatus() === 503);
+    await db.$executeRawUnsafe(`GRANT CREATE ON SCHEMA "${env.schema}" TO "${runtimeRole}"`);
+    assert.equal((await fetch(endpoint, { headers })).status, 503, 'DDL-capable runtime roles cannot read consent');
+    await db.$executeRawUnsafe(`REVOKE CREATE ON SCHEMA "${env.schema}" FROM "${runtimeRole}"`);
+    assert.equal((await fetch(endpoint, { headers })).status, 200);
     const cursorUrl = endpoint + '?cursor=' + encodeURIComponent(page.nextCursor);
     assert.equal((await fetch(cursorUrl, { headers: { ...headers, Cookie: 'visionary-session=foreign', 'X-Visionary-Account': foreign } })).status, 400);
     const next = await (await fetch(cursorUrl, { headers })).json(); assert.equal(next.grants.length, 1); assert.equal(next.nextCursor, null);
@@ -382,7 +468,11 @@ test('actual consent HTTP service pages by signed account scope and commits owne
     service.repository = { listAccountConsents: async () => { throw Error('private synthetic connection failure'); } };
     const outage = await fetch(endpoint, { headers }); assert.equal(outage.status, 503); assert.ok(!(await outage.text()).includes('private synthetic'));
     service.repository = original;
-  } finally { await app.close(); }
+  } finally {
+    await app.close();
+    await db.$executeRawUnsafe(`DROP OWNED BY "${runtimeRole}"`);
+    await db.$executeRawUnsafe(`DROP ROLE "${runtimeRole}"`);
+  }
   const disabled = new ProductConsentService(accounts, new ConfigService({}));
   assert.deepEqual(await disabled.list(uid), { version: 1, uid, available: false, grants: [], nextCursor: null });
   await assert.rejects(disabled.revoke(uid, 'http-grant-00'), error => error.getStatus() === 503);
