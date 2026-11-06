@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ROUTE_META, ROUTE_EXACT, PERSONA_OG } from "@/lib/routeMeta";
 
 /* Production origin for canonical/OG URLs. Override per environment with VITE_SITE_URL. */
-export const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://visionary.app").replace(/\/+$/, "");
+export const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://visionary.org.in").replace(/\/+$/, "");
 
 /* Pristine index.html head values, captured before any route modifies them. */
 const ORIGINAL = {

@@ -4,13 +4,26 @@ import { HERO_SRCSETS, HERO_SIZES, HERO_AVIF_SOURCES } from "@/lib/heroVariants"
 import { CtaPair } from "@/components/landing/system/ui";
 import "@/components/landing/cast.css";
 
+/* prefers-reduced-motion: reduce — read once per mount (F-31: the persona
+   word cycle is motion and must not auto-advance when the visitor asked
+   for reduced motion; the same law useCycleStep already follows). */
+function prefersReducedMotion() {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
+  try {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  } catch {
+    return false;
+  }
+}
+
 function useCycle(total, ms) {
   const [index, setIndex] = useState(0);
+  const [reduced] = useState(prefersReducedMotion);
   useEffect(() => {
-    if (!ms || ms <= 0) return undefined;
+    if (!ms || ms <= 0 || total <= 1 || reduced) return undefined;
     const id = setInterval(() => setIndex((i) => (i + 1) % total), ms);
     return () => clearInterval(id);
-  }, [total, ms]);
+  }, [total, ms, reduced]);
   return index;
 }
 
