@@ -18,18 +18,48 @@ const extra=(base,overrides={})=>registerMigration({version:2,name:'synthetic-ad
 const fixture=async fn=>{const f=await stagingDatabase();try{await fn(f);}finally{await f.close();}};
 const column=async(f,name)=>(await f.db.$queryRawUnsafe('SELECT column_name FROM information_schema.columns WHERE table_schema=$1 AND column_name=$2',f.schema,name)).length;
 
-test('canonical registry executes all twelve domain tables with real repository compatibility',()=>fixture(async f=>{
+test('historical v1 registry executes its ten domain tables with real repository compatibility',()=>fixture(async f=>{
   const registry=canonical(),s=f.store(),r=new MigrationRunner(s,registry);
   assert.deepEqual(registry[0].statements,splitSql(readFileSync(resolve(backend,'prisma/migrations/20261024000001_data_01_workspaces/migration.sql'),'utf8')));
   assert.equal((await r.applyAll()).applied,1);
   const tables=await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND left(tablename,11)<>'_visionary_'",f.schema);
-  assert.equal(tables.length,12);assert.equal(await column(f,'workspaceId')>0,true);
+  assert.equal(tables.length,10);assert.equal(await column(f,'workspaceId')>0,true);
   const repository=new WorkspaceRepository(f.db);
   const ws=await repository.createWorkspace('synthetic-owner',{name:'Synthetic',slug:'synthetic',isPersonal:true,commandId:'synthetic-create'});
   assert.ok(ws.id);await assert.rejects(repository.assertOwnership(ws.id,'wrong-owner'));
   assert.equal((await r.applyAll()).applied,0);
   assert.equal((await r.verify()).consistent,true);
   assert.equal((await f.db.$queryRawUnsafe('SELECT "appliedBy" FROM "_visionary_migrations"'))[0].appliedBy,f.migrationRole);
+}));
+
+test('accepted empty-staging versions 1-3 upgrade additively without changing historical receipts',()=>fixture(async f=>{
+  const registry=canonicalMigrations(backend),store=f.store();
+  assert.deepEqual(registry.map(m=>m.version),[1,2,3,4]);
+  await new MigrationRunner(store,registry.slice(0,3)).applyAll();
+  const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');
+  const upgrade=new MigrationRunner(store,registry);
+  const result=await upgrade.applyAll();
+  assert.equal(result.applied,1);assert.equal(result.skipped,3);
+  assert.deepEqual(await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" WHERE version<4 ORDER BY version'),receipts);
+  for(const name of ['download_grants','download_exports']) {
+    const tables=await f.db.$queryRawUnsafe('SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename=$2',f.schema,name);
+    assert.equal(tables.length,1);
+  }
+  assert.equal((await upgrade.applyAll()).applied,0);
+  assert.equal((await upgrade.verify()).consistent,true);
+}));
+
+test('downloads do not bypass the retained-data migration gate or mutate existing rows and receipts',()=>fixture(async f=>{
+  const registry=canonicalMigrations(backend),store=f.store();
+  await new MigrationRunner(store,registry.slice(0,3)).applyAll();
+  const repository=new WorkspaceRepository(f.db);
+  const workspace=await repository.createWorkspace('upgrade-owner',{name:'Retained',slug:'upgrade-retained',isPersonal:true,commandId:'upgrade-create'});
+  const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');
+  const before=await f.db.workspace.findUnique({where:{id:workspace.id}});
+  await assert.rejects(new MigrationRunner(store,registry).applyAll(),/NON_EMPTY_STAGING_DENIED/);
+  assert.deepEqual(await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version'),receipts);
+  assert.deepEqual(await f.db.workspace.findUnique({where:{id:workspace.id}}),before);
+  assert.equal((await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='download_grants'",f.schema)).length,0);
 }));
 
 test('actual runtime permits domain DML and denies DDL and migration receipts',()=>fixture(async f=>{

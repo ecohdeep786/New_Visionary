@@ -5,10 +5,10 @@ let env, db;
 before(async () => { env = await fixture.domainDatabase({ historical: true }); db = env.db; });
 after(async () => { if (env) await env.close(); });
 
-test('PostgreSQL creates all twelve domain tables with exact quoted field names', async () => {
+test('historical v1 creates its ten domain tables with exact quoted field names', async () => {
   const tables = await db.$queryRawUnsafe('SELECT table_name FROM information_schema.tables WHERE table_schema = $1', env.schema);
-  assert.equal(tables.length, 12);
-  for (const name of ['persons','workspaces','workspace_memberships','invitations','consent_grants','share_grants','download_grants','download_exports','command_results','outbox_events','audit_events','deletion_tombstones']) assert.ok(tables.some((t) => t.table_name === name));
+  assert.equal(tables.length, 10);
+  for (const name of ['persons','workspaces','workspace_memberships','invitations','consent_grants','share_grants','command_results','outbox_events','audit_events','deletion_tombstones']) assert.ok(tables.some((t) => t.table_name === name));
   const columns = await db.$queryRawUnsafe('SELECT column_name FROM information_schema.columns WHERE table_schema = $1 AND table_name = $2', env.schema, 'persons');
   assert.deepEqual(columns.map((c) => c.column_name).sort(), ['createdAt','uid','updatedAt']);
 });
