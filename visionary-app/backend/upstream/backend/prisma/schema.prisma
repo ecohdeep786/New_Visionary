@@ -655,7 +655,7 @@ model DownloadGrant {
   remainingReads Int
   revokedAt      DateTime?
   lastReadAt     DateTime?
-  bytesDelivered Int       @default(0)
+  bytesDelivered BigInt    @default(0)
   createdAt      DateTime  @default(now())
 
   person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
@@ -673,7 +673,7 @@ model DownloadExport {
   state          String // ACTIVE | REVOKED | EXPIRED | USED
   expiresAt      DateTime
   createdAt      DateTime @default(now())
-  deliveredBytes Int      @default(0)
+  deliveredBytes BigInt   @default(0)
 
   person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
 

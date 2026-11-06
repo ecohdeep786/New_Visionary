@@ -19,6 +19,12 @@ import type { DownloadStore, ExportWriteResult, GrantWriteResult } from './downl
 
 type Row = Record<string, unknown>;
 
+// Domain counters stay JSON-safe numbers; PostgreSQL persists them as BIGINT.
+function byteCount(value: number): number {
+  if (!Number.isSafeInteger(value) || value < 0) throw new Error('invalid byte count');
+  return value;
+}
+
 const iso = (value: unknown): string =>
   value instanceof Date ? value.toISOString() : String(value);
 const isoOrNull = (value: unknown): string | null => (value === null || value === undefined ? null : iso(value));
@@ -39,7 +45,7 @@ function grantFrom(row: Row): DownloadGrant {
     remainingReads: Number(row.remainingReads),
     revokedAt: isoOrNull(row.revokedAt),
     lastReadAt: isoOrNull(row.lastReadAt),
-    bytesDelivered: Number(row.bytesDelivered),
+    bytesDelivered: byteCount(Number(row.bytesDelivered)),
     createdAt: iso(row.createdAt),
   };
 }
@@ -52,7 +58,7 @@ function exportFrom(row: Row): ExportRecord {
     state: row.state as ExportRecord['state'],
     expiresAt: iso(row.expiresAt),
     createdAt: iso(row.createdAt),
-    deliveredBytes: Number(row.deliveredBytes),
+    deliveredBytes: byteCount(Number(row.deliveredBytes)),
   };
 }
 
@@ -70,7 +76,7 @@ export class PostgresDownloadStore implements DownloadStore {
         digest: grant.digest, size: grant.size, type: grant.type, channel: grant.channel, state: grant.state,
         expiresAt: new Date(grant.expiresAt), token: grant.token, remainingReads: grant.remainingReads,
         revokedAt: grant.revokedAt ? new Date(grant.revokedAt) : null, lastReadAt: null,
-        bytesDelivered: grant.bytesDelivered, createdAt: new Date(grant.createdAt),
+        bytesDelivered: BigInt(byteCount(grant.bytesDelivered)), createdAt: new Date(grant.createdAt),
       },
     });
   }
@@ -81,8 +87,12 @@ export class PostgresDownloadStore implements DownloadStore {
   }
 
   async consumeGrant(id: string, ownerUid: string, deliveredBytes: number): Promise<GrantWriteResult> {
+    byteCount(deliveredBytes);
     return this.db.$transaction(async tx => {
-      await tx.$queryRaw`SELECT "id" FROM "download_grants" WHERE "id" = ${id} AND "ownerUid" = ${ownerUid} FOR UPDATE`;
+      const locked = await tx.$queryRaw<Row[]>`SELECT * FROM "download_grants" WHERE "id" = ${id} AND "ownerUid" = ${ownerUid} FOR UPDATE`;
+      if (locked.length && !Number.isSafeInteger(Number(locked[0].bytesDelivered) + deliveredBytes)) {
+        return { ok: false, reason: 'conflict' };
+      }
     // Lock first, then evaluate wall time in a later statement: a concurrent revoke that
     // commits first makes this UPDATE match zero rows; a read paused between
     // the grant check and this write cannot resurrect the grant.
@@ -128,7 +138,9 @@ export class PostgresDownloadStore implements DownloadStore {
     const updated = await this.db.$queryRawUnsafe<Row[]>(`
       UPDATE "download_grants" SET
         "state" = ${this.sqlString(patch.state)},
-        "revokedAt" = ${patch.revokedAt ? `${this.sqlString(patch.revokedAt)}::TIMESTAMP(3)` : UTC_NOW}
+        "revokedAt" = ${patch.revokedAt === undefined
+          ? (patch.state === 'REVOKED' ? UTC_NOW : '"revokedAt"')
+          : (patch.revokedAt === null ? 'NULL' : `${this.sqlString(patch.revokedAt)}::TIMESTAMP(3)`)}
       WHERE "id" = ${this.sqlString(id)} AND "ownerUid" = ${this.sqlString(ownerUid)}
         AND "state" = 'ACTIVE' AND "revokedAt" IS NULL
       RETURNING *`);
@@ -151,7 +163,7 @@ export class PostgresDownloadStore implements DownloadStore {
       data: {
         id: record.id, ownerUid: record.ownerUid, objects: record.objects as unknown as Prisma.InputJsonValue,
         state: record.state, expiresAt: new Date(record.expiresAt),
-        createdAt: new Date(record.createdAt), deliveredBytes: record.deliveredBytes,
+        createdAt: new Date(record.createdAt), deliveredBytes: BigInt(byteCount(record.deliveredBytes)),
       },
     });
   }
@@ -162,8 +174,12 @@ export class PostgresDownloadStore implements DownloadStore {
   }
 
   async recordExportDelivery(id: string, ownerUid: string, deliveredBytes: number): Promise<ExportWriteResult> {
+    byteCount(deliveredBytes);
     return this.db.$transaction(async tx => {
-      await tx.$queryRaw`SELECT "id" FROM "download_exports" WHERE "id" = ${id} AND "ownerUid" = ${ownerUid} FOR UPDATE`;
+      const locked = await tx.$queryRaw<Row[]>`SELECT * FROM "download_exports" WHERE "id" = ${id} AND "ownerUid" = ${ownerUid} FOR UPDATE`;
+      if (locked.length && !Number.isSafeInteger(Number(locked[0].deliveredBytes) + deliveredBytes)) {
+        return { ok: false, reason: 'conflict' };
+      }
     const updated = await tx.$queryRawUnsafe<Row[]>(`
       UPDATE "download_exports" SET
         "deliveredBytes" = "deliveredBytes" + ${Number(deliveredBytes)}

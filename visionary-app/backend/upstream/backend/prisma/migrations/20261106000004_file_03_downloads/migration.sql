@@ -15,7 +15,7 @@ CREATE TABLE "download_grants" (
     "remainingReads" INTEGER NOT NULL,
     "revokedAt" TIMESTAMP(3),
     "lastReadAt" TIMESTAMP(3),
-    "bytesDelivered" INTEGER NOT NULL DEFAULT 0,
+    "bytesDelivered" BIGINT NOT NULL DEFAULT 0,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "download_grants_pkey" PRIMARY KEY ("id")
@@ -29,7 +29,7 @@ CREATE TABLE "download_exports" (
     "state" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deliveredBytes" INTEGER NOT NULL DEFAULT 0,
+    "deliveredBytes" BIGINT NOT NULL DEFAULT 0,
 
     CONSTRAINT "download_exports_pkey" PRIMARY KEY ("id")
 );
@@ -55,3 +55,7 @@ CREATE INDEX "download_exports_state_idx" ON "download_exports"("state");
 ALTER TABLE "download_grants" ADD CONSTRAINT "download_grants_ownerUid_fkey" FOREIGN KEY ("ownerUid") REFERENCES "persons"("uid") ON DELETE CASCADE ON UPDATE CASCADE;
 -- AddForeignKey
 ALTER TABLE "download_exports" ADD CONSTRAINT "download_exports_ownerUid_fkey" FOREIGN KEY ("ownerUid") REFERENCES "persons"("uid") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Preserve the exact numeric domain exposed by the gateway.
+ALTER TABLE "download_grants" ADD CONSTRAINT "download_grants_bytes_safe" CHECK ("bytesDelivered" >= 0 AND "bytesDelivered" <= 9007199254740991);
+ALTER TABLE "download_exports" ADD CONSTRAINT "download_exports_bytes_safe" CHECK ("deliveredBytes" >= 0 AND "deliveredBytes" <= 9007199254740991);

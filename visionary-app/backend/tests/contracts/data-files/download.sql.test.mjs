@@ -78,6 +78,61 @@ test('durable consume: an ACTIVE owned unexpired grant is consumed exactly once 
   assert.equal(row.remainingReads, 2);
 });
 
+test('grant and export accounting remain exact after crossing the Int32 boundary', async () => {
+  const initial = 2147483640;
+  const g = grant({bytesDelivered:initial});
+  await store.insert(g);
+  const read = await store.consumeGrant(g.id,'owner-dl',16);
+  assert.equal(read.ok,true);
+  assert.equal(read.grant.bytesDelivered,initial+16);
+  assert.equal((await store.grant(g.id)).bytesDelivered,initial+16);
+  const record={id:'export-large-accounting',ownerUid:'owner-dl',objects:[],state:'ACTIVE',expiresAt:nowIso(),createdAt:new Date().toISOString(),deliveredBytes:initial};
+  await store.insertExport(record);
+  const exported=await store.recordExportDelivery(record.id,'owner-dl',16);
+  assert.equal(exported.ok,true);
+  assert.equal(exported.record.deliveredBytes,initial+16);
+  assert.equal((await store.exportById(record.id)).deliveredBytes,initial+16);
+});
+
+test('invalid byte deltas and unsafe cumulative totals commit no accounting', async () => {
+  const g=grant({bytesDelivered:Number.MAX_SAFE_INTEGER-1});
+  await store.insert(g);
+  const record={id:'export-unsafe-accounting',ownerUid:'owner-dl',objects:[],state:'ACTIVE',expiresAt:nowIso(),createdAt:new Date().toISOString(),deliveredBytes:Number.MAX_SAFE_INTEGER-1};
+  await store.insertExport(record);
+  for(const bytes of [-1,NaN,Infinity,0.5,Number.MAX_SAFE_INTEGER+1]) {
+    await assert.rejects(store.consumeGrant(g.id,'owner-dl',bytes));
+    await assert.rejects(store.recordExportDelivery(record.id,'owner-dl',bytes));
+  }
+  assert.deepEqual(await store.consumeGrant(g.id,'owner-dl',2),{ok:false,reason:'conflict'});
+  assert.deepEqual(await store.recordExportDelivery(record.id,'owner-dl',2),{ok:false,reason:'conflict'});
+  assert.equal((await store.grant(g.id)).bytesDelivered,Number.MAX_SAFE_INTEGER-1);
+  assert.equal((await store.grant(g.id)).remainingReads,3);
+  assert.equal((await store.exportById(record.id)).deliveredBytes,Number.MAX_SAFE_INTEGER-1);
+  assert.equal((await store.consumeGrant(g.id,'owner-dl',1)).grant.bytesDelivered,Number.MAX_SAFE_INTEGER);
+  assert.equal((await store.recordExportDelivery(record.id,'owner-dl',1)).record.deliveredBytes,Number.MAX_SAFE_INTEGER);
+  assert.deepEqual(await store.consumeGrant(g.id,'owner-dl',1),{ok:false,reason:'conflict'});
+  assert.deepEqual(await store.recordExportDelivery(record.id,'owner-dl',1),{ok:false,reason:'conflict'});
+  assert.equal((await store.grant(g.id)).remainingReads,2);
+  for(const [table,column,id] of [['download_grants','bytesDelivered',g.id],['download_exports','deliveredBytes',record.id]]) {
+    for(const invalid of [-1n,9007199254740992n]) {
+      await assert.rejects(db.$executeRawUnsafe(`UPDATE "${table}" SET "${column}"=$1 WHERE id=$2`,invalid,id));
+    }
+  }
+});
+
+test('expiry sweeps preserve expired rather than revoked gateway and signed-link errors', async () => {
+  const { DownloadGateway } = req('./dist/src/file/download.service.js');
+  const gateway=new DownloadGateway(store,{async requireReady(){throw Error('Expired delivery must not reach resolver');}});
+  const gatewayGrant=grant({expiresAt:new Date(Date.now()-1000).toISOString()});
+  const signedGrant=grant({channel:'signed_link',token:'expired-token',expiresAt:gatewayGrant.expiresAt});
+  await store.insert(gatewayGrant);await store.insert(signedGrant);
+  await gateway.expire();
+  assert.equal((await store.grant(gatewayGrant.id)).revokedAt,null);
+  assert.equal((await store.grant(signedGrant.id)).revokedAt,null);
+  await assert.rejects(gateway.read(gatewayGrant.id,'owner-dl'),e=>e.code==='expired');
+  await assert.rejects(gateway.readSignedLink(signedGrant.token,'owner-dl'),e=>e.code==='link_expired');
+});
+
 test('review 10583 fence: a read that lands after a concurrent revoke is refused and the row stays REVOKED', async () => {
   const g = grant();
   await store.insert(g);

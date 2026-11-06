@@ -228,3 +228,43 @@ test('FILE-03 authorization: a non-owner cannot read, revoke or expire another u
   await assert.rejects(exports.readExport(record.id, 'uid-9'), (e) => e.code === 'unauthorized');
   await assert.rejects(exports.revokeExport(record.id, 'uid-9'), (e) => e.code === 'unauthorized');
 });
+
+test('exports enforce object and aggregate byte bounds before creation or delivery', async () => {
+  const store=new InMemoryDownloadStore();
+  const policy={...req('./dist/src/file/download-types.js').DEFAULT_DOWNLOAD_POLICY,maxDeliverableBytes:4};
+  let resolves=0,delivered=0;
+  const resolver={async requireReady(ownerUid,objectId,generation){
+    resolves++;
+    const size=Number(objectId.slice(-1));
+    return {objectId,generation,digest:'a'.repeat(64),size,type:'application/octet-stream',bytes:new Uint8Array(size)};
+  }};
+  const exports=new ExportService(store,resolver,policy);
+  const args=ids=>({ownerUid:'uid-1',objects:ids.map(objectId=>({objectId,generation:1}))});
+  await assert.rejects(exports.createExport(args(['object8'])),{code:'out_of_bounds'});
+  await assert.rejects(exports.createExport(args(['first3','second3'])),{code:'out_of_bounds'});
+  const relaxed=new ExportService(store,resolver,{...policy,maxDeliverableBytes:8});
+  const oversized=await relaxed.createExport(args(['object8']));
+  for(const streaming of [false,true]) {
+    resolves=0;
+    await assert.rejects(exports.readExport(oversized.id,'uid-1',streaming?()=>{delivered++;}:undefined),{code:'out_of_bounds'});
+    assert.equal(resolves,0);assert.equal(delivered,0);
+    assert.equal((await store.exportById(oversized.id)).deliveredBytes,0);
+  }
+  const exact=await exports.createExport(args(['first2','second2']));
+  assert.equal((await exports.readExport(exact.id,'uid-1')).deliveredBytes,4);
+});
+
+test('changed resolver sizes cannot escape pinned export bounds in buffered or callback reads',async()=>{
+  const store=new InMemoryDownloadStore();let changed=false,delivered=0;
+  const resolver={async requireReady(ownerUid,objectId,generation){
+    const size=changed?8:4;
+    return {objectId,generation,digest:'b'.repeat(64),size,type:'application/octet-stream',bytes:new Uint8Array(size)};
+  }};
+  const exports=new ExportService(store,resolver,{...req('./dist/src/file/download-types.js').DEFAULT_DOWNLOAD_POLICY,maxDeliverableBytes:4});
+  const record=await exports.createExport({ownerUid:'uid-1',objects:[{objectId:'pinned',generation:1}]});
+  changed=true;
+  for(const streaming of [false,true]) {
+    await assert.rejects(exports.readExport(record.id,'uid-1',streaming?()=>{delivered++;}:undefined),{code:'not_ready'});
+    assert.equal(delivered,0);assert.equal((await store.exportById(record.id)).deliveredBytes,0);
+  }
+});

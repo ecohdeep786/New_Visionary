@@ -44,3 +44,5 @@ production-ready. No browser download acceptance or Jira Done is claimed.
 ## Independent decision
 
 Pending on the final implementation SHA. The implementer cannot approve it.
+
+Review follow-up: cumulative counters now use BIGINT with native 0..9007199254740991 checks. SQL entrypoints reject invalid deltas and unsafe totals under the row lock; tests cross Int32 and reach the exact safe maximum before denial. Expiry sweeps preserve revokedAt for non-revocation transitions. The CLI plan test now expects canonical versions 1-4. These repairs require a new exact-SHA decision.
