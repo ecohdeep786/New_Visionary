@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 const base = process.env.REG_BASE_URL || 'http://127.0.0.1:4198';
 const productRoot = fileURLToPath(new URL('../../', import.meta.url));
 const frontendRoot = path.join(productRoot, 'frontend');
-const evidence = path.resolve(productRoot, process.env.REG_EVIDENCE_DIR || 'docs/visionary/baseline/f29-release-regression-2026-11-07');
+const evidence = path.resolve(productRoot, process.env.REG_EVIDENCE_DIR || 'docs/visionary/baseline/release-regression-' + new Date().toISOString().slice(0, 10) + '');
 await fs.mkdir(evidence, { recursive: true });
 
 const HARNESS = [

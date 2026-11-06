@@ -160,7 +160,10 @@ async function registerAccount(page, email) {
   await registerAccount(page, `authui-draft-${Date.now()}@visionary.test`);
   /* The wizard is now on the identity step. Select teacher, advance one step,
    * then reload — the product's own draft store should restore progress. */
-  /* Role selection coverage on the fresh identity step (F-16). */
+  /* Role selection coverage on the fresh identity step (F-16). Wait for the
+   * role board to render before reading it (F-29-F1-era race: the check ran
+   * against the pre-hydration paint and read all roles as absent). */
+  await page.waitForSelector('text=Make Visionary your own', { timeout: 45000 });
   const roles = await page.evaluate(() => {
     const text = document.body.innerText;
     return {
