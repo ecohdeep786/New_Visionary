@@ -1,0 +1,1582 @@
+{
+  "task": "F-24 backend contract integration audit",
+  "at": "2026-11-06T12:34:00.570Z",
+  "frontendRoot": "frontend/src",
+  "backendRoot": "backend/upstream/backend/src",
+  "summary": {
+    "frontendCalls": 30,
+    "backendProductRoutes": 37,
+    "backendLegacyRoutes": 37,
+    "matched": 28,
+    "frontendOnlyRecorded": 2,
+    "frontendOnlyUnexpected": 0,
+    "backendUnconsumed": 9
+  },
+  "frontendCalls": [
+    {
+      "path": "/api/auth/csrf",
+      "method": "GET",
+      "via": "authTransport csrf",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/authTransport.js",
+          "line": 37,
+          "via": "authTransport csrf"
+        },
+        {
+          "file": "frontend/src/api/firebase/authTransport.js",
+          "line": 41,
+          "via": "authTransport csrf"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 51,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/me",
+      "method": "GET",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 63,
+          "via": "authTransport"
+        },
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 63,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/onboarding",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 137,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/profile",
+      "method": "PATCH",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 144,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/onboarding/introduction",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 149,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/logout",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 158,
+          "via": "authTransport"
+        },
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 168,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/logout-all",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/api/firebase/serverAuth.js",
+          "line": 168,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/auth/methods",
+      "method": "GET",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/hooks/useSignInMethods.js",
+          "line": 15,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/apps/:x/mcp/consent-info",
+      "method": "GET",
+      "via": "direct fetch",
+      "sites": [
+        {
+          "file": "frontend/src/pages/OAuthConsent.jsx",
+          "line": 40,
+          "via": "direct fetch"
+        }
+      ]
+    },
+    {
+      "path": "/api/apps/:x/mcp/authorize-grant",
+      "method": "POST",
+      "via": "direct fetch",
+      "sites": [
+        {
+          "file": "frontend/src/pages/OAuthConsent.jsx",
+          "line": 90,
+          "via": "direct fetch"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/account",
+      "method": "GET",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 13,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/catalog",
+      "method": "GET",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 13,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/sync",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 13,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/checkouts",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 13,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/verify",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 13,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/cancel",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 13,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/invoices/:x",
+      "method": "GET",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 13,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/family/invitations",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 14,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/family/invitations/:x",
+      "method": "GET",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 14,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/family/accept",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 14,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/family/remove",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 14,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/billing/family/leave",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/billingClient.js",
+          "line": 14,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/account/feedback",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/feedbackClient.js",
+          "line": 19,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/account/learning/sessions",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/learningSessionClient.js",
+          "line": 64,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/account/learning/sessions/:x",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/learningSessionClient.js",
+          "line": 65,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/account/learning/sessions/:x/checks",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/learningSessionClient.js",
+          "line": 66,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/account/learning/sessions/:x/assessments",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/learningSessionClient.js",
+          "line": 67,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/account/learning/sessions/:x/cancel",
+      "method": "POST",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/learningSessionClient.js",
+          "line": 68,
+          "via": "authTransport"
+        }
+      ]
+    },
+    {
+      "path": "/api/account/learning/sessions",
+      "method": "GET",
+      "via": "authTransport",
+      "sites": [
+        {
+          "file": "frontend/src/services/learningSessionClient.js",
+          "line": 76,
+          "via": "authTransport"
+        }
+      ]
+    }
+  ],
+  "backendProductRoutes": [
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 15,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/overview"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 31,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/devices"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 44,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/invoices"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 11,
+      "product": true,
+      "method": "GET",
+      "path": "/api/auth/methods"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 13,
+      "product": true,
+      "method": "GET",
+      "path": "/api/auth/csrf"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 18,
+      "product": true,
+      "method": "POST",
+      "path": "/api/auth/session"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 29,
+      "product": true,
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 33,
+      "product": true,
+      "method": "POST",
+      "path": "/api/auth/onboarding"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 36,
+      "product": true,
+      "method": "PATCH",
+      "path": "/api/auth/profile"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 39,
+      "product": true,
+      "method": "POST",
+      "path": "/api/auth/onboarding/introduction"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 42,
+      "product": true,
+      "method": "POST",
+      "path": "/api/auth/logout-all"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "line": 47,
+      "product": true,
+      "method": "POST",
+      "path": "/api/auth/logout"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 15,
+      "product": true,
+      "method": "GET",
+      "path": "/api/billing/catalog"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 16,
+      "product": true,
+      "method": "GET",
+      "path": "/api/billing/account"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 17,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/checkouts"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 18,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/verify"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 19,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/sync"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 20,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/cancel"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 21,
+      "product": true,
+      "method": "GET",
+      "path": "/api/billing/invoices/:id"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 22,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/family/invitations"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 23,
+      "product": true,
+      "method": "GET",
+      "path": "/api/billing/family/invitations/:id"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 24,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/family/accept"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 25,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/family/remove"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 26,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/family/leave"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 27,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/jobs/reconcile"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 28,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/webhooks/razorpay"
+    },
+    {
+      "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "line": 12,
+      "product": true,
+      "method": "POST",
+      "path": "/api/account/feedback"
+    },
+    {
+      "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "line": 18,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/feedback"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 14,
+      "product": true,
+      "method": "POST",
+      "path": "/api/account/learning/knowledge/project"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 21,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/learning/knowledge/projections"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 28,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/learning/knowledge/models"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "line": 18,
+      "product": true,
+      "method": "POST",
+      "path": "/api/account/learning/sessions"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "line": 24,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/learning/sessions"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "line": 33,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/learning/sessions/:sessionId"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "line": 38,
+      "product": true,
+      "method": "POST",
+      "path": "/api/account/learning/sessions/:sessionId/checks"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "line": 44,
+      "product": true,
+      "method": "POST",
+      "path": "/api/account/learning/sessions/:sessionId/assessments"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "line": 50,
+      "product": true,
+      "method": "POST",
+      "path": "/api/account/learning/sessions/:sessionId/cancel"
+    }
+  ],
+  "backendLegacyRoutes": [
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 20,
+      "product": false,
+      "method": "POST",
+      "path": "/api/auth/register"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 25,
+      "product": false,
+      "method": "POST",
+      "path": "/api/auth/verify-otp"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 32,
+      "product": false,
+      "method": "POST",
+      "path": "/api/auth/resend-otp"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 37,
+      "product": false,
+      "method": "POST",
+      "path": "/api/auth/login"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 44,
+      "product": false,
+      "method": "GET",
+      "path": "/api/auth/google"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 50,
+      "product": false,
+      "method": "GET",
+      "path": "/api/auth/google/callback"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 68,
+      "product": false,
+      "method": "POST",
+      "path": "/api/auth/logout"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 75,
+      "product": false,
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 81,
+      "product": false,
+      "method": "PATCH",
+      "path": "/api/auth/profile"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 87,
+      "product": false,
+      "method": "PATCH",
+      "path": "/api/auth/password"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/auth.controller.ts",
+      "line": 93,
+      "product": false,
+      "method": "POST",
+      "path": "/api/auth/delete-account"
+    },
+    {
+      "file": "backend/upstream/backend/src/boards/boards.controller.ts",
+      "line": 9,
+      "product": false,
+      "method": "GET",
+      "path": "/api/boards"
+    },
+    {
+      "file": "backend/upstream/backend/src/chat/chat.controller.ts",
+      "line": 11,
+      "product": false,
+      "method": "POST",
+      "path": "/api/chat/conversations"
+    },
+    {
+      "file": "backend/upstream/backend/src/chat/chat.controller.ts",
+      "line": 16,
+      "product": false,
+      "method": "GET",
+      "path": "/api/chat/conversations"
+    },
+    {
+      "file": "backend/upstream/backend/src/chat/chat.controller.ts",
+      "line": 21,
+      "product": false,
+      "method": "GET",
+      "path": "/api/chat/conversations/:id/messages"
+    },
+    {
+      "file": "backend/upstream/backend/src/chat/chat.controller.ts",
+      "line": 26,
+      "product": false,
+      "method": "GET(SSE)",
+      "path": "/api/chat/stream"
+    },
+    {
+      "file": "backend/upstream/backend/src/documents/documents.controller.ts",
+      "line": 20,
+      "product": false,
+      "method": "POST",
+      "path": "/api/documents/upload"
+    },
+    {
+      "file": "backend/upstream/backend/src/documents/documents.controller.ts",
+      "line": 26,
+      "product": false,
+      "method": "GET",
+      "path": "/api/documents"
+    },
+    {
+      "file": "backend/upstream/backend/src/documents/documents.controller.ts",
+      "line": 31,
+      "product": false,
+      "method": "GET",
+      "path": "/api/documents/:id"
+    },
+    {
+      "file": "backend/upstream/backend/src/grades/grades.controller.ts",
+      "line": 9,
+      "product": false,
+      "method": "GET",
+      "path": "/api/grades"
+    },
+    {
+      "file": "backend/upstream/backend/src/health/health.controller.ts",
+      "line": 15,
+      "product": false,
+      "method": "GET",
+      "path": "/api/health/live"
+    },
+    {
+      "file": "backend/upstream/backend/src/health/health.controller.ts",
+      "line": 22,
+      "product": false,
+      "method": "GET",
+      "path": "/api/health/ready"
+    },
+    {
+      "file": "backend/upstream/backend/src/health/health.controller.ts",
+      "line": 32,
+      "product": false,
+      "method": "GET",
+      "path": "/api/health"
+    },
+    {
+      "file": "backend/upstream/backend/src/jobs/jobs.controller.ts",
+      "line": 11,
+      "product": false,
+      "method": "POST",
+      "path": "/api/jobs/image"
+    },
+    {
+      "file": "backend/upstream/backend/src/jobs/jobs.controller.ts",
+      "line": 16,
+      "product": false,
+      "method": "GET",
+      "path": "/api/jobs/:id"
+    },
+    {
+      "file": "backend/upstream/backend/src/onboarding/onboarding.controller.ts",
+      "line": 13,
+      "product": false,
+      "method": "GET",
+      "path": "/api/onboarding/status"
+    },
+    {
+      "file": "backend/upstream/backend/src/onboarding/onboarding.controller.ts",
+      "line": 18,
+      "product": false,
+      "method": "POST",
+      "path": "/api/onboarding/complete"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 12,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/me"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 17,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/started"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 22,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/my-tracks"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 27,
+      "product": false,
+      "method": "POST",
+      "path": "/api/subjects/:id/start"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 38,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/chapter-stats"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 43,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/all-tracked-chapters"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 48,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/recent-chapters"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 53,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/chapters/:chapterId/topics"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 58,
+      "product": false,
+      "method": "POST",
+      "path": "/api/subjects/chapters/:chapterId/start"
+    },
+    {
+      "file": "backend/upstream/backend/src/subjects/subjects.controller.ts",
+      "line": 69,
+      "product": false,
+      "method": "GET",
+      "path": "/api/subjects/:id/chapters"
+    }
+  ],
+  "matched": [
+    {
+      "frontend": {
+        "path": "/api/auth/csrf",
+        "method": "GET",
+        "via": "authTransport csrf",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/authTransport.js",
+            "line": 37,
+            "via": "authTransport csrf"
+          },
+          {
+            "file": "frontend/src/api/firebase/authTransport.js",
+            "line": 41,
+            "via": "authTransport csrf"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 13,
+        "method": "GET",
+        "path": "/api/auth/csrf"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/session",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 51,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 18,
+        "method": "POST",
+        "path": "/api/auth/session"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/me",
+        "method": "GET",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 63,
+            "via": "authTransport"
+          },
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 63,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 29,
+        "method": "GET",
+        "path": "/api/auth/me"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/onboarding",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 137,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 33,
+        "method": "POST",
+        "path": "/api/auth/onboarding"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/profile",
+        "method": "PATCH",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 144,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 36,
+        "method": "PATCH",
+        "path": "/api/auth/profile"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/onboarding/introduction",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 149,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 39,
+        "method": "POST",
+        "path": "/api/auth/onboarding/introduction"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/logout",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 158,
+            "via": "authTransport"
+          },
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 168,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 47,
+        "method": "POST",
+        "path": "/api/auth/logout"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/logout-all",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/api/firebase/serverAuth.js",
+            "line": 168,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 42,
+        "method": "POST",
+        "path": "/api/auth/logout-all"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/auth/methods",
+        "method": "GET",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/hooks/useSignInMethods.js",
+            "line": 15,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+        "line": 11,
+        "method": "GET",
+        "path": "/api/auth/methods"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/account",
+        "method": "GET",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 13,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 16,
+        "method": "GET",
+        "path": "/api/billing/account"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/catalog",
+        "method": "GET",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 13,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 15,
+        "method": "GET",
+        "path": "/api/billing/catalog"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/sync",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 13,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 19,
+        "method": "POST",
+        "path": "/api/billing/sync"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/checkouts",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 13,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 17,
+        "method": "POST",
+        "path": "/api/billing/checkouts"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/verify",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 13,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 18,
+        "method": "POST",
+        "path": "/api/billing/verify"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/cancel",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 13,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 20,
+        "method": "POST",
+        "path": "/api/billing/cancel"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/invoices/:x",
+        "method": "GET",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 13,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 21,
+        "method": "GET",
+        "path": "/api/billing/invoices/:id"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/family/invitations",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 14,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 22,
+        "method": "POST",
+        "path": "/api/billing/family/invitations"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/family/invitations/:x",
+        "method": "GET",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 14,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 23,
+        "method": "GET",
+        "path": "/api/billing/family/invitations/:id"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/family/accept",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 14,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 24,
+        "method": "POST",
+        "path": "/api/billing/family/accept"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/family/remove",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 14,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 25,
+        "method": "POST",
+        "path": "/api/billing/family/remove"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/billing/family/leave",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/billingClient.js",
+            "line": 14,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+        "line": 26,
+        "method": "POST",
+        "path": "/api/billing/family/leave"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/account/feedback",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/feedbackClient.js",
+            "line": 19,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+        "line": 12,
+        "method": "POST",
+        "path": "/api/account/feedback"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/account/learning/sessions",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/learningSessionClient.js",
+            "line": 64,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+        "line": 18,
+        "method": "POST",
+        "path": "/api/account/learning/sessions"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/account/learning/sessions/:x",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/learningSessionClient.js",
+            "line": 65,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+        "line": 33,
+        "method": "GET",
+        "path": "/api/account/learning/sessions/:sessionId"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/account/learning/sessions/:x/checks",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/learningSessionClient.js",
+            "line": 66,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+        "line": 38,
+        "method": "POST",
+        "path": "/api/account/learning/sessions/:sessionId/checks"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/account/learning/sessions/:x/assessments",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/learningSessionClient.js",
+            "line": 67,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+        "line": 44,
+        "method": "POST",
+        "path": "/api/account/learning/sessions/:sessionId/assessments"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/account/learning/sessions/:x/cancel",
+        "method": "POST",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/learningSessionClient.js",
+            "line": 68,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+        "line": 50,
+        "method": "POST",
+        "path": "/api/account/learning/sessions/:sessionId/cancel"
+      }
+    },
+    {
+      "frontend": {
+        "path": "/api/account/learning/sessions",
+        "method": "GET",
+        "via": "authTransport",
+        "sites": [
+          {
+            "file": "frontend/src/services/learningSessionClient.js",
+            "line": 76,
+            "via": "authTransport"
+          }
+        ]
+      },
+      "backend": {
+        "file": "backend/upstream/backend/src/learning/learning.controller.ts",
+        "line": 24,
+        "method": "GET",
+        "path": "/api/account/learning/sessions"
+      }
+    }
+  ],
+  "frontendOnly": [
+    {
+      "path": "/api/apps/:x/mcp/consent-info",
+      "method": "GET",
+      "via": "direct fetch",
+      "sites": [
+        {
+          "file": "frontend/src/pages/OAuthConsent.jsx",
+          "line": 40,
+          "via": "direct fetch"
+        }
+      ]
+    },
+    {
+      "path": "/api/apps/:x/mcp/authorize-grant",
+      "method": "POST",
+      "via": "direct fetch",
+      "sites": [
+        {
+          "file": "frontend/src/pages/OAuthConsent.jsx",
+          "line": 90,
+          "via": "direct fetch"
+        }
+      ]
+    }
+  ],
+  "backendUnconsumed": [
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 15,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/overview"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 31,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/devices"
+    },
+    {
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 44,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/invoices"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 27,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/jobs/reconcile"
+    },
+    {
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 28,
+      "product": true,
+      "method": "POST",
+      "path": "/api/billing/webhooks/razorpay"
+    },
+    {
+      "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "line": 18,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/feedback"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 14,
+      "product": true,
+      "method": "POST",
+      "path": "/api/account/learning/knowledge/project"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 21,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/learning/knowledge/projections"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 28,
+      "product": true,
+      "method": "GET",
+      "path": "/api/account/learning/knowledge/models"
+    }
+  ]
+}
