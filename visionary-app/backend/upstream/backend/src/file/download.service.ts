@@ -74,7 +74,8 @@ const plusMs = (ms: number) => new Date(Date.now() + ms).toISOString();
 function assertPinned(object: DeliverableObject, expected: Pick<DeliverableObject, 'objectId' | 'generation' | 'digest' | 'size' | 'type'>) {
   if (object.objectId !== expected.objectId || object.generation !== expected.generation ||
       object.digest !== expected.digest || object.size !== expected.size ||
-      object.type !== expected.type || object.bytes.byteLength !== expected.size) {
+      object.type !== expected.type || !Number.isSafeInteger(object.size) || object.size < 0 ||
+      object.bytes.byteLength !== expected.size) {
     throw new DownloadPolicyError('not_ready');
   }
 }
@@ -108,7 +109,7 @@ export class DownloadGateway {
       throw new DownloadPolicyError('out_of_bounds');
     }
     const object = await this.resolver.requireReady(opts.ownerUid, opts.objectId, opts.generation);
-    if (object.objectId !== opts.objectId || object.generation !== opts.generation) throw new DownloadPolicyError('not_ready');
+    assertPinned(object, {...object,objectId:opts.objectId,generation:opts.generation});
     if (object.size > this.policy.maxDeliverableBytes) throw new DownloadPolicyError('out_of_bounds');
     const grant: DownloadGrant = {
       id: `dl_${Date.now()}_${Math.floor(Math.random() * 1e9)}`,
@@ -223,6 +224,15 @@ export class ExportService {
     private readonly policy: DownloadPolicy = DEFAULT_DOWNLOAD_POLICY,
   ) {}
 
+  private assertExportSize(objects: Array<{size:number}>): void {
+    let total=0;
+    for(const object of objects) {
+      if(!Number.isSafeInteger(object.size) || object.size<0) throw new DownloadPolicyError('not_ready');
+      total+=object.size;
+      if(!Number.isSafeInteger(total) || total>this.policy.maxDeliverableBytes) throw new DownloadPolicyError('out_of_bounds');
+    }
+  }
+
   /**
    * Create a bounded, owner-scoped export of READY immutable generations.
    * Every member is resolved (READY + owned) at creation — an export never
@@ -234,7 +244,9 @@ export class ExportService {
     const pinned = [] as ExportRecord['objects'];
     for (const o of opts.objects) {
       const obj = await this.resolver.requireReady(opts.ownerUid, o.objectId, o.generation);
+      assertPinned(obj,{...obj,objectId:o.objectId,generation:o.generation});
       pinned.push({ objectId: obj.objectId, generation: obj.generation, digest: obj.digest, size: obj.size, type: obj.type });
+      this.assertExportSize(pinned);
     }
     const record: ExportRecord = {
       id: `exp_${Date.now()}_${Math.floor(Math.random() * 1e9)}`,
@@ -257,6 +269,8 @@ export class ExportService {
     if (record.state === 'REVOKED') throw new DownloadPolicyError('revoked');
     if (record.state !== 'ACTIVE') throw new DownloadPolicyError('expired');
     if (record.expiresAt <= nowIso()) throw new DownloadPolicyError('expired');
+    if (!record.objects.length || record.objects.length>this.policy.maxExportObjects) throw new DownloadPolicyError('out_of_bounds');
+    this.assertExportSize(record.objects);
     const members: DeliverableObject[] = [];
     let bytes = 0;
     for (const o of record.objects) {
