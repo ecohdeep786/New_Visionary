@@ -50,3 +50,13 @@ Sanitized observed results are retained in
 outcomes were reproduced as asserted; it is not passing product acceptance.
 A corrected exact source requires a new independent decision and complete CI.
 No merge, Jira Done, browser download or production readiness is approved.
+
+## Additional export bounds finding
+
+Exact-source `evidence/KAN58_EXPORT_BOUNDS_PROBE.cjs` confirms a READY object of
+8 bytes is refused by the gateway under maxDeliverableBytes=4, but accepted and
+returned by ExportService under the same policy. Export count alone does not
+bound per-object or aggregate bytes. Require explicit per-object and aggregate
+checks at creation and delivery, including buffered and callback paths. The
+probe uses a tiny synthetic object and in-memory store; it reproduces the actual
+service code but does not establish provider or browser acceptance.
