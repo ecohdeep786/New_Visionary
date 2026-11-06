@@ -379,6 +379,7 @@ model Workspace {
   commandResults CommandResult[]
   outboxEvents OutboxEvent[]
   auditEvents AuditEvent[]
+  commandRevision WorkspaceCommandRevision?
 
   @@index([uid])
 
@@ -638,6 +639,14 @@ model DeletionTombstone {
   @@unique([uid, resourceType, resourceId])
   @@index([expiresAt])
   @@map("deletion_tombstones")
+}
+
+model WorkspaceCommandRevision {
+  workspaceId String @id
+  revision Int @default(0)
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@map("workspace_command_revisions")
 }
 
 model DownloadGrant {

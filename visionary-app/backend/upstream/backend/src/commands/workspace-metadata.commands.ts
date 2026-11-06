@@ -55,7 +55,7 @@ export class WorkspaceMetadataCommands {
         if(!accounts.length)throw new CommandPolicyError('unauthorized');
         const workspaces=await tx.$queryRaw<Array<{id:string;uid:string}>>`SELECT id,uid FROM workspaces WHERE id=${c.workspaceId} FOR UPDATE`;
         if(!workspaces.length || workspaces[0].uid!==uid)throw new CommandPolicyError('unauthorized');
-        if(await tx.deletionTombstone.findFirst({where:{uid,OR:[{resourceType:'person'},{resourceType:'workspace',resourceId:c.workspaceId}]}}))throw new CommandPolicyError('unauthorized');
+        if(await tx.deletionTombstone.findFirst({where:{OR:[{uid,resourceType:'person'},{resourceType:'workspace',resourceId:c.workspaceId}]}}))throw new CommandPolicyError('unauthorized');
         // Reauthorize BEFORE replay. Retained receipts never recover lost rights.
         const prior=await tx.commandResult.findUnique({where:{commandId:c.commandId}});
         if(prior) {
@@ -63,10 +63,12 @@ export class WorkspaceMetadataCommands {
           if(prior.workspaceId!==c.workspaceId || prior.kind!==c.operation || prior.payloadDigest!==hash || prior.status!=='COMMITTED' || !prior.resultJson || !prior.committedAt)throw new CommandPolicyError('conflict');
           return {commandId:c.commandId,workspaceId:c.workspaceId,operation:c.operation,revision:prior.revision,result:prior.resultJson as MetadataReceipt['result'],committedAt:prior.committedAt.toISOString(),replayed:true};
         }
-        const latest=await tx.commandResult.aggregate({where:{uid,workspaceId:c.workspaceId,kind:{in:operations},status:'COMMITTED'},_max:{revision:true}});
-        const current=latest._max.revision??0;
+        const counter=await tx.workspaceCommandRevision.upsert({where:{workspaceId:c.workspaceId},create:{workspaceId:c.workspaceId},update:{}});
+        const current=counter.revision;
         if(current!==c.expectedRevision || current>=2147483647)throw new CommandPolicyError('stale_revision');
         const revision=current+1;
+        const advanced=await tx.workspaceCommandRevision.updateMany({where:{workspaceId:c.workspaceId,revision:current},data:{revision:{increment:1}}});
+        if(advanced.count!==1)throw new CommandPolicyError('stale_revision');
         const [clock]=await tx.$queryRaw<Array<{now:Date}>>`SELECT clock_timestamp() AS now`;
         const result=await tx.workspace.update({where:{id:c.workspaceId},data:c.operation==='workspace.metadata.rename'?{name:c.value}:{description:c.value||null},select:{id:true,name:true,description:true}});
         await tx.auditEvent.create({data:{uid,workspaceId:c.workspaceId,actorType:'user',actorUid:uid,operation:c.operation,resourceType:'workspace',resourceId:c.workspaceId,outcome:'SUCCESS',createdAt:clock.now}});
