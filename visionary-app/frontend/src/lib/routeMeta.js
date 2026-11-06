@@ -104,7 +104,7 @@ export const ROUTE_META = {
       "@context": "https://schema.org",
       "@type": "Organization",
       name: "Visionary",
-      url: "https://visionary.app",
+      url: "https://visionary.org.in",
       description: "Visionary builds an education product with role-based workspaces for learning, teaching, and building.",
       founder: { "@type": "Person", name: "Md Shahid Ali" },
     }],
