@@ -7,6 +7,7 @@ COPY backend/upstream/backend/prisma/schema.prisma ./prisma/schema.prisma
 COPY backend/upstream/backend/prisma/migrations/20261024000001_data_01_workspaces/ ./prisma/migrations/20261024000001_data_01_workspaces/
 COPY backend/upstream/backend/prisma/migrations/20261102000002_data_04_invitation_reissue/ ./prisma/migrations/20261102000002_data_04_invitation_reissue/
 COPY backend/upstream/backend/prisma/migrations/20261103000003_data_04_institution_approval/ ./prisma/migrations/20261103000003_data_04_institution_approval/
+COPY backend/upstream/backend/prisma/migrations/20261106000004_file_03_downloads/ ./prisma/migrations/20261106000004_file_03_downloads/
 COPY backend/upstream/backend/src/data/ ./src/data/
 COPY infrastructure/gcp/data-job/tsconfig.json ./tsconfig.json
 RUN ./node_modules/.bin/prisma generate && ./node_modules/.bin/tsc -p tsconfig.json && npm prune --omit=dev --ignore-scripts --no-audit --no-fund
@@ -22,6 +23,7 @@ COPY --from=build --chown=node:node /build/dist ./dist
 COPY --from=build --chown=node:node /build/prisma/migrations/20261024000001_data_01_workspaces/ ./prisma/migrations/20261024000001_data_01_workspaces/
 COPY --from=build --chown=node:node /build/prisma/migrations/20261102000002_data_04_invitation_reissue/ ./prisma/migrations/20261102000002_data_04_invitation_reissue/
 COPY --from=build --chown=node:node /build/prisma/migrations/20261103000003_data_04_institution_approval/ ./prisma/migrations/20261103000003_data_04_institution_approval/
+COPY --from=build --chown=node:node /build/prisma/migrations/20261106000004_file_03_downloads/ ./prisma/migrations/20261106000004_file_03_downloads/
 USER node
 ENTRYPOINT ["node", "dist/src/data/migration-command.js"]
 CMD ["plan"]
