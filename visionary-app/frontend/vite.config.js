@@ -72,6 +72,14 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks(id) {
+            // F-16-F4 / F-27: this shared copy module flipped between its own
+            // chunk and a merge into OrganizationContent between builds, which
+            // made the fail-closed chunk budget fail on unrelated lanes.
+            // Pinning it (standalone: three dashboard editors import it, and a
+            // merged chunk would drag OrganizationContent along) ends the flip.
+            if (id.includes('organizationAuthorCopy')) {
+              return 'organizationAuthorCopy';
+            }
             if (id.includes('node_modules')) {
               if (id.includes('recharts')) {
                 return 'vendor-charts';
@@ -100,8 +108,6 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
-      // Increase parallel workers for faster builds
-      maxWorkersIncrease: 'max-memory',
     },
     resolve: {
       alias: {
