@@ -205,6 +205,21 @@
           "afterSha256": "efbf7b8bfd0b107afb58f28c1c9980f41ca6770973d494c3beb9eaf6337a515e"
         }
       ]
+    },
+    {
+      "id": "2026-11-06-data-06-resource-revision",
+      "reason": "Add independent workspace metadata revision storage surviving owner and receipt lifecycle; canonical additive migration5.",
+      "decision": "D-056 permits backend work; replacement under independent review, not product activation.",
+      "diff": "integration/upstream-patches/2026-11-06-data-06-resource-revision.patch",
+      "diffSha256": "081d62fd7ae715d46cd38358b0c009bb60b88ade0106766a14741190f8a5c47c",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "efbf7b8bfd0b107afb58f28c1c9980f41ca6770973d494c3beb9eaf6337a515e",
+          "afterSha256": "dd9f18594335d17b029d47277c7ce90fbcaf2f399cc8acfb00612f789642273a"
+        }
+      ]
     }
   ]
 }

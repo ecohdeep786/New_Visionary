@@ -11,6 +11,7 @@
   "include": [
     "src/data/**/*.ts",
     "src/consent/**/*.ts",
-    "src/file/download*.ts"
+    "src/file/download*.ts",
+    "src/commands/**/*.ts"
   ]
 }
