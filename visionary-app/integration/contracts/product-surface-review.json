@@ -2706,6 +2706,21 @@
         "POST /api/auth/session",
         "GET /api/auth/me"
       ]
+    },
+    "frontend/src/components/dashboard/CloudConsentControls.jsx": {
+      "profile": "server-consent-self-service",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated own-consent listing and committed revocation receipts through an explicit opt-in SQL runtime. Disabled by default. No consent grant, job/download consumer activation, policy publication or hosted acceptance.",
+      "followUp": [
+        "DATA-05",
+        "JOB-01",
+        "FILE-03"
+      ],
+      "endpoints": [
+        "GET /api/account/privacy/consents",
+        "POST /api/account/privacy/consents/revoke"
+      ]
     }
   },
   "operations": [

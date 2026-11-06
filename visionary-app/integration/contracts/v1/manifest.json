@@ -19,6 +19,8 @@
     "hosted integration and recovery"
   ],
   "currentRoutes": {
+    "GET /api/account/privacy/consents": "existing-json",
+    "POST /api/account/privacy/consents/revoke": "existing-json",
     "GET /api/auth/methods": "existing-json",
     "GET /api/auth/csrf": "existing-json",
     "POST /api/auth/session": "auth-session",

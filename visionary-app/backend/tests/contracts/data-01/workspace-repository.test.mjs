@@ -1,6 +1,6 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { createHash, createHmac } from 'node:crypto';
 import fixture from './postgres-fixture.cjs';
 const { WorkspaceRepository } = fixture.req('./dist/src/workspaces/workspace.repository.js');
 let env, db, repo, ws;
@@ -218,6 +218,21 @@ test('failed consent delivery rolls back its owning-store write and releases rev
   await assert.rejects(repo.assertConsent(uid, 'downloads', undefined, 'delivery-v1'), /revoked/);
 });
 
+test('consent expiry during the owning-store callback rolls back delivery', async () => {
+  const uid = 'delivery-callback-expiry'; await repo.ensurePerson(uid);
+  const grant = await repo.grantAccountConsent(uid, 'downloads', 'delivery-v1', 60);
+  const [clock] = await db.$queryRaw`SELECT clock_timestamp() AS now`;
+  await db.consentGrant.update({ where: { id: grant.id }, data: { expiresAt: new Date(clock.now.getTime() + 2000) } });
+  let entered = false;
+  await assert.rejects(repo.withConsentDelivery(uid, 'downloads', undefined, 'delivery-v1', async tx => {
+    entered = true;
+    await tx.outboxEvent.create({ data: { uid, topic: 'synthetic.delivery', payload: {} } });
+    await tx.$queryRaw`SELECT 1 AS waited FROM pg_sleep(2.2)`;
+  }), /unavailable/);
+  assert.equal(entered, true);
+  assert.equal(await db.outboxEvent.count({ where: { uid, topic: 'synthetic.delivery' } }), 0);
+});
+
 test('consent validity uses the database clock when the application clock drifts', async (t) => {
   const [clock] = await db.$queryRaw`SELECT clock_timestamp() AS now`;
   const ahead = clock.now.getTime() + 60 * 60 * 1000;
@@ -307,4 +322,68 @@ test('separate connections serialize per-UID commit order with durable unique se
     assert.equal(events[0].payload.slug, 'workspace-cursor-one');
     assert.equal(events[1].payload.slug, 'workspace-cursor-two');
   } finally { release(); await firstClient.$disconnect(); await secondClient.$disconnect(); }
+});
+
+test('actual consent HTTP service pages by signed account scope and commits owner-only revocation', async () => {
+  const { Module, UnauthorizedException } = fixture.req('@nestjs/common');
+  const { NestFactory } = fixture.req('@nestjs/core');
+  const { ConfigService } = fixture.req('@nestjs/config');
+  const cookieParser = fixture.req('cookie-parser');
+  const { FirebaseProductService } = fixture.req('./dist/src/auth/firebase-product/firebase-product.service.js');
+  const { ProductConsentService } = fixture.req('./dist/src/consent/product-consent.service.js');
+  const { ProductConsentController } = fixture.req('./dist/src/consent/product-consent.controller.js');
+  const uid = 'http-consent-subject', foreign = 'http-consent-foreign';
+  await repo.ensurePerson(uid); await repo.ensurePerson(foreign);
+  await db.consentGrant.createMany({ data: Array.from({ length: 21 }, (_, i) => ({ id: 'http-grant-' + String(i).padStart(2, '0'),
+    uid, purpose: 'downloads', version: 'http-v1', consentVersion: 'http-v1', resourceId: 'http-resource-' + i })) });
+  const other = await db.consentGrant.create({ data: { uid: foreign, purpose: 'downloads', version: 'http-v1', consentVersion: 'http-v1' } });
+  const url = new URL(env.url); url.searchParams.set('connection_limit', '2'); url.searchParams.set('pool_timeout', '5'); url.searchParams.set('connect_timeout', '5');
+  const secret = 'synthetic-consent-cursor-key-0000000000000000';
+  const config = new ConfigService({ NODE_ENV: 'development', AUTH_PUBLIC_ORIGIN: 'http://localhost:5173',
+    AUTH_RATE_LIMIT_KEY: secret, DATA_CONSENT_ENABLED: 'true', DATA_WORKSPACE_DATABASE_MODE: 'synthetic',
+    DATA_WORKSPACE_RUNTIME_URL: String(url), DATA_WORKSPACE_RUNTIME_ROLE: decodeURIComponent(url.username), DATA_WORKSPACE_SCHEMA: env.schema });
+  const accounts = { async authenticate(session) { if (!['subject', 'foreign'].includes(session)) throw new UnauthorizedException(); return { uid: session === 'subject' ? uid : foreign }; }, async rateLimit() {} };
+  const service = new ProductConsentService(accounts, config);
+  class FixtureModule {}
+  Module({ controllers: [ProductConsentController], providers: [{ provide: FirebaseProductService, useValue: accounts },
+    { provide: ConfigService, useValue: config }, { provide: ProductConsentService, useValue: service }] })(FixtureModule);
+  const app = await NestFactory.create(FixtureModule, { logger: false }); app.use(cookieParser()); app.setGlobalPrefix('api'); await app.listen(0, '127.0.0.1');
+  const endpoint = (await app.getUrl()) + '/api/account/privacy/consents', csrf = 'c'.repeat(64);
+  const headers = { Origin: 'http://localhost:5173', Cookie: `visionary-session=subject; visionary-device=fixture; visionary-csrf=${csrf}`,
+    'X-Visionary-Account': uid, 'X-CSRF-Token': csrf, 'Content-Type': 'application/json' };
+  const revoke = (body, overrides = {}) => fetch(endpoint + '/revoke', { method: 'POST', headers: { ...headers, ...overrides }, body: JSON.stringify(body) });
+  try {
+    assert.equal((await fetch(endpoint)).status, 401);
+    assert.equal((await fetch(endpoint, { headers: { ...headers, 'X-Visionary-Account': foreign } })).status, 409);
+    assert.equal((await fetch(endpoint + '?uid=' + foreign, { headers })).status, 400);
+    const first = await fetch(endpoint, { headers }); assert.equal(first.status, 200); assert.equal(first.headers.get('cache-control'), 'no-store');
+    const page = await first.json(); assert.equal(page.uid, uid); assert.equal(page.grants.length, 20); assert.equal(typeof page.nextCursor, 'string');
+    assert.ok(page.grants.every(g => g.id.startsWith('http-grant-')));
+    const cursorUrl = endpoint + '?cursor=' + encodeURIComponent(page.nextCursor);
+    assert.equal((await fetch(cursorUrl, { headers: { ...headers, Cookie: 'visionary-session=foreign', 'X-Visionary-Account': foreign } })).status, 400);
+    const next = await (await fetch(cursorUrl, { headers })).json(); assert.equal(next.grants.length, 1); assert.equal(next.nextCursor, null);
+    const expired = Buffer.from(JSON.stringify({ u: uid, a: 'http-grant-19', e: 0 })).toString('base64url');
+    const signed = expired + '.' + createHmac('sha256', secret).update('consent-page:' + expired).digest('hex');
+    assert.equal((await fetch(endpoint + '?cursor=' + encodeURIComponent(signed), { headers })).status, 400);
+    assert.equal((await fetch(cursorUrl + 'x', { headers })).status, 400);
+    assert.equal((await revoke({ grantId: other.id })).status, 403);
+    assert.equal((await revoke({ grantId: page.grants[0].id, uid: foreign })).status, 400);
+    assert.equal((await revoke({ grantId: page.grants[0].id }, { Origin: 'https://attacker.invalid' })).status, 403);
+    assert.equal((await revoke({ grantId: page.grants[0].id }, { 'X-CSRF-Token': 'wrong' })).status, 403);
+    const response = await revoke({ grantId: page.grants[0].id }); assert.equal(response.status, 201); assert.equal(response.headers.get('cache-control'), 'no-store');
+    const receipt = await response.json(); assert.equal(receipt.uid, uid); assert.equal(receipt.id, page.grants[0].id);
+    assert.deepEqual(await (await revoke({ grantId: receipt.id })).json(), receipt);
+    assert.ok((await db.consentGrant.findUnique({ where: { id: receipt.id } })).revokedAt);
+    assert.equal((await db.consentGrant.findUnique({ where: { id: other.id } })).revokedAt, null);
+    assert.equal(await db.auditEvent.count({ where: { uid, operation: 'consent.revoked' } }), 1);
+    assert.equal(await db.outboxEvent.count({ where: { uid, topic: 'consent.revoked' } }), 1);
+    const refreshed = await (await fetch(endpoint, { headers })).json(); assert.equal(refreshed.grants[0].state, 'revoked');
+    const original = service.repository;
+    service.repository = { listAccountConsents: async () => { throw Error('private synthetic connection failure'); } };
+    const outage = await fetch(endpoint, { headers }); assert.equal(outage.status, 503); assert.ok(!(await outage.text()).includes('private synthetic'));
+    service.repository = original;
+  } finally { await app.close(); }
+  const disabled = new ProductConsentService(accounts, new ConfigService({}));
+  assert.deepEqual(await disabled.list(uid), { version: 1, uid, available: false, grants: [], nextCursor: null });
+  await assert.rejects(disabled.revoke(uid, 'http-grant-00'), error => error.getStatus() === 503);
 });

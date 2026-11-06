@@ -12,6 +12,10 @@
     "No client UID/role/workspace/consent flag, preview guard, signed URL, queue event, payer status or ML output independently grants authority."
   ],
   "stores": {
+    "consent": {
+      "state": "observed",
+      "authority": "Explicit opt-in PostgreSQL consent_grants/share_grants; UID-scoped canonical transaction, audit and outbox; no job/download consumer activation or hosted acceptance"
+    },
     "none": {
       "state": "observed",
       "authority": "No durable owning store for this operation; public config/static output or CSRF cookie only"
@@ -260,6 +264,28 @@
       ],
       "state": "observed"
     },
+    "consentRead": {
+      "actor": "Current session/device and expected account; cursor signed for this UID with bounded expiry",
+      "workspace": "No workspace selector or membership grant",
+      "object": "Explicit opt-in bounded SQL runtime; twenty own grants per page; erased subjects denied",
+      "source": "No private source bytes exposed",
+      "consent": "Consent status only; no new grant or policy publication",
+      "stores": [
+        "consent"
+      ],
+      "state": "observed"
+    },
+    "consentRevoke": {
+      "actor": "Current session/device, expected account, Origin/CSRF and per-UID rate admission",
+      "workspace": "No client account/workspace selector accepted",
+      "object": "Owner-only canonical SQL consent/share revocation, audit and outbox in one transaction; retries return the same receipt",
+      "source": "No source access granted or previously delivered bytes recalled",
+      "consent": "No new consent, deletion, default training or consumer deployment; connected delivery remains separately gated",
+      "stores": [
+        "consent"
+      ],
+      "state": "observed"
+    },
     "institutionInvitations": {
       "actor": "Current session, account and CSRF; verified provider email on acceptance; bounded UID rate admission",
       "workspace": "Canonical PostgreSQL workspace, admin-only recovery and configured independent reviewers",
@@ -432,6 +458,13 @@
       "exposure": "registered-controller"
     },
     {
+      "route": "GET /api/account/privacy/consents",
+      "profile": "consentRead",
+      "controller": "ProductConsentController",
+      "sourceFile": "backend/upstream/backend/src/consent/product-consent.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
       "route": "GET /api/account/privacy/policy",
       "profile": "ownerRead",
       "controller": "PrivacyPolicyController",
@@ -590,6 +623,13 @@
       "profile": "learningWrite",
       "controller": "LearningController",
       "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/privacy/consents/revoke",
+      "profile": "consentRevoke",
+      "controller": "ProductConsentController",
+      "sourceFile": "backend/upstream/backend/src/consent/product-consent.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -1439,8 +1479,12 @@
       "sha256Lf": "40aae7c7784d238592803fb9a42239833153aceb19446430b355f0266944e2c9"
     },
     {
+      "file": "backend/upstream/backend/src/consent/product-consent.controller.ts",
+      "sha256Lf": "f96b28399853cfe6de724b07c36919bf1d9d63caeb768c8da874e8a5e4bb4feb"
+    },
+    {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sha256Lf": "e89a17b4c891491ba48065f817f4573001a3af1ea7058d91671fc62b39e5e8bf"
+      "sha256Lf": "cb4c136c9b0c09fd4990848b5297586b79122e2d36ed25ebc78b033348f20fcd"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/request-authority.ts",
@@ -1493,6 +1537,14 @@
     {
       "file": "backend/upstream/backend/src/workspaces/personal-workspace.service.ts",
       "sha256Lf": "530c81fa0eaab1e6bb35399ac3525ebbce8921097e427a01d7940c61f904c75a"
+    },
+    {
+      "file": "backend/upstream/backend/src/consent/product-consent.service.ts",
+      "sha256Lf": "d0b61ea93c55f085ffba55a8c77b65cfd162374328483d93cd983491238934ba"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/workspace.repository.ts",
+      "sha256Lf": "6cd6ae354f49b1c8e749c3dd184520652a8312140fb007ba4862cf207ca4f8c7"
     },
     {
       "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
@@ -1548,11 +1600,11 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "597a1b432253d6646c9e225db1794760fe4bc1aa85fa83b2b1f629850afdcd8a"
+      "sha256Lf": "15f635fe5b032e66085ab1af7207a83df7020fb5c6d71259b21af9a17b29e7a3"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "8adbcc8b998b2cb5d7eac431d1bb9a6684641c0949f030924a5a532696155b0b"
+      "sha256Lf": "5f0bccc874940aa551ff17c10e835b27566a44b0b98f4d2356f0cd59f4bac85c"
     },
     {
       "file": "integration/contracts/v1/openapi.json",

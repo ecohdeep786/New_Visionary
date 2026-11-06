@@ -73,7 +73,8 @@ export class WorkspaceRepository {
       // transaction/statement-start clock may already be stale after this wait.
       const accounts = await tx.$queryRaw<Array<{ uid: string }>>`SELECT "uid" FROM "persons" WHERE "uid" = ${uid} FOR UPDATE`;
       if (!accounts.length) throw new ForbiddenException('Consent subject is unavailable.');
-      const grants = await tx.$queryRaw<Array<{ id: string }>>`
+      const authorized = async () => {
+        const grants = await tx.$queryRaw<Array<{ id: string }>>`
       SELECT grant_row.id
       FROM consent_grants AS grant_row
       WHERE grant_row.uid = ${uid}
@@ -89,8 +90,14 @@ export class WorkspaceRepository {
         )
       LIMIT 1
     `;
-      if (!grants.length) throw new ForbiddenException('Required consent is unavailable or revoked.');
-      return commit(tx);
+        if (!grants.length) throw new ForbiddenException('Required consent is unavailable or revoked.');
+      };
+      await authorized();
+      const result = await commit(tx);
+      // Database writes can wait too. Expiry during the callback must roll
+      // back its writes rather than commit a delivery using an earlier lease.
+      await authorized();
+      return result;
     });
   }
 
@@ -125,6 +132,24 @@ export class WorkspaceRepository {
         ...result, purpose: grant.purpose, resourceId: grant.resourceId, consentVersion: grant.consentVersion,
       } } });
       return result;
+    });
+  }
+
+  async listAccountConsents(uid: string, after?: string) {
+    if (typeof uid !== 'string' || !uid.trim() || uid.length > 128 ||
+        (after !== undefined && !/^[A-Za-z0-9_-]{1,128}$/.test(after))) throw new BadRequestException('Invalid consent page.');
+    return this.prisma.$transaction(async tx => {
+      const accounts = await tx.$queryRaw<Array<{ uid: string }>>`SELECT "uid" FROM "persons" WHERE "uid" = ${uid} FOR UPDATE`;
+      if (!accounts.length) return { grants: [], next: null };
+      if (await tx.deletionTombstone.findFirst({ where: { uid, resourceType: 'person' } })) throw new ForbiddenException('Consent subject is unavailable.');
+      const [clock] = await tx.$queryRaw<Array<{ now: Date }>>`SELECT clock_timestamp() AS now`;
+      const rows = await tx.consentGrant.findMany({ where: { uid, ...(after ? { id: { gt: after } } : {}) },
+        orderBy: { id: 'asc' }, take: 21, select: { id: true, purpose: true, resourceId: true, consentVersion: true,
+          grantedAt: true, expiresAt: true, revokedAt: true } });
+      return { grants: rows.slice(0, 20).map(row => ({ ...row,
+        state: row.revokedAt ? 'revoked' : row.grantedAt > clock.now ? 'pending' : row.expiresAt && row.expiresAt <= clock.now ? 'expired' : 'active',
+        grantedAt: row.grantedAt.toISOString(), expiresAt: row.expiresAt?.toISOString() ?? null, revokedAt: row.revokedAt?.toISOString() ?? null })),
+        next: rows.length > 20 ? rows[19].id : null };
     });
   }
 
