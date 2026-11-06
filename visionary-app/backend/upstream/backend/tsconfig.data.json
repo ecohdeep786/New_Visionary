@@ -8,5 +8,9 @@
     "sourceMap": false,
     "incremental": false
   },
-  "include": ["src/data/**/*.ts", "src/file/download*.ts"]
+  "include": [
+    "src/data/**/*.ts",
+    "src/consent/**/*.ts",
+    "src/file/download*.ts"
+  ]
 }

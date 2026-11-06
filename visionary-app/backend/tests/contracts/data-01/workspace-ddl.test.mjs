@@ -2,7 +2,7 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import fixture from './postgres-fixture.cjs';
 let env, db;
-before(async () => { env = await fixture.domainDatabase(); db = env.db; });
+before(async () => { env = await fixture.domainDatabase({ historical: true }); db = env.db; });
 after(async () => { if (env) await env.close(); });
 
 test('PostgreSQL creates all twelve domain tables with exact quoted field names', async () => {

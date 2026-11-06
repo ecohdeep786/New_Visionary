@@ -6,14 +6,16 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
-import PolicyTabs from "@/components/landing/PolicyTabs";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
+import stageHeroWebp from "@/assets/brand/hero-stage.webp";
+import stageHeroAvif from "@/assets/brand/hero-stage.avif";
+
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META } from "@/data/legalMeta";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 const COLORS = {
   ink: "#1d1d1f",
@@ -29,9 +31,8 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* ═══ Link grammar — the approved public quiet link / ink pill, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { quietLink, inkPill } = CTA_LAW;
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -56,7 +57,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -118,7 +119,7 @@ function Paragraph({ children }) {
 function IconTile({ Icon }) {
   return (
     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}>
-      <Icon className="h-5 w-5" strokeWidth={1.7} aria-hidden="true" />
+      <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
     </span>
   );
 }
@@ -206,12 +207,27 @@ export default function CookiesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-cookies min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <Breadcrumb page="Cookies" />
-      <PolicyTabs />
+      <LocalNav title="Cookies" />
 
       <main id="main">
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4), rendered from the single-source CinematicHero
+            under the LocalNav bar. Promises, action row and effective date
+            stay as the body opening below. */}
+        <FadeReveal visible={heroVisible}>
+          <CinematicHero
+            title="How we use cookies. And how"
+            accent="you control them."
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "A learner holding a laptop, ready to learn",
+            }}
+            inFlow={56}
+          />
+        </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
@@ -228,7 +244,7 @@ export default function CookiesPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
                           <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
                           <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
@@ -239,7 +255,7 @@ export default function CookiesPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       For how personal information is handled, see the Privacy Policy.
                     </p>
@@ -250,18 +266,11 @@ export default function CookiesPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY HERO — the same policies.google.com opening as Privacy */}
+              {/* POLICY BODY OPENING — promises, action row, effective date
+                  (the display hero lives in CinematicHero above; FAP-59
+                  phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
-                <div className="pb-12 pt-2">
-                  <div className="flex justify-center"><SpotIllustration subject="cookie" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Cookie policy</p>
-                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                    How we use cookies. And how <span className="accent-gradient">you control them.</span>
-                  </h1>
-                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
-                    The short version, then the full list. Only what's needed, nothing extra, nothing sold.
-                  </p>
-
+                <div className="pb-12 pt-10">
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {COOKIE_PROMISES.map((p) => (
                       <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
@@ -330,7 +339,7 @@ export default function CookiesPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="cookies-summary-title">
+                <section data-section="02-summary" aria-labelledby="cookies-summary-title">
                   <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="cookies-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -349,7 +358,7 @@ export default function CookiesPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 — WHAT COOKIES ARE */}
-                <section id="what-cookies-are" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-cookies-are" data-section="03-what-cookies-are" className="scroll-mt-24">
                   <SectionHeading number="01" title="What cookies are" />
                   <Paragraph>
                     Cookies are small files a website saves in your browser. They let the site recognize your session, remember your choices, and keep things working the way you expect between visits.
@@ -362,7 +371,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 02 — WHAT WE USE AND WHY */}
-                <section id="principles" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="principles" data-section="04-principles" className="scroll-mt-24">
                   <SectionHeading number="02" title="What we use and why" />
                   <Paragraph>
                     No advertising cookies. No tracking across other sites. Just what keeps Visionary running for you.
@@ -383,7 +392,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 03 — THE TYPES WE USE */}
-                <section id="types" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="types" data-section="05-types" className="scroll-mt-24">
                   <SectionHeading number="03" title="The types we use" />
                   <Paragraph>
                     Each type does one job. Here is the full list.
@@ -403,7 +412,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 04 — YOUR CHOICES AND CONTROLS */}
-                <section id="preferences" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="preferences" data-section="06-preferences" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your choices and controls" />
                   <Paragraph>
                     Optional choices are saved in this browser. They do not change settings on your other devices.
@@ -418,10 +427,14 @@ export default function CookiesPage() {
                           </div>
                           <button
                             type="button" role="switch" aria-label={`${row.label} cookies`} aria-checked={row.value} disabled={row.disabled} onClick={row.onChange}
-                            className="relative h-7 w-12 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] disabled:cursor-not-allowed"
-                            style={{ backgroundColor: row.value ? COLORS.ink : "#d2d2d7" }}
+                            className="relative flex h-11 w-[64px] shrink-0 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 disabled:cursor-not-allowed"
                           >
-                            <span className={`absolute top-1 h-5 w-5 rounded-full bg-white transition-transform ${row.value ? "left-6" : "left-1"}`} />
+                            <span
+                              className="relative h-7 w-12 rounded-full transition-colors motion-reduce:transition-none [transition-duration:var(--motion-duration-fast)]"
+                              style={{ backgroundColor: row.value ? COLORS.ink : "#d2d2d7" }}
+                            >
+                              <span className={`absolute top-1 left-1 h-5 w-5 rounded-full bg-white transition-transform motion-reduce:transition-none [transition-duration:var(--motion-duration-fast)] ${row.value ? "translate-x-5" : "translate-x-0"}`} />
+                            </span>
                           </button>
                         </div>
                       ))}
@@ -439,7 +452,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 05 — MANAGING COOKIES */}
-                <section id="managing" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="managing" data-section="07-managing" className="scroll-mt-24">
                   <SectionHeading number="05" title="Managing cookies" />
                   <Paragraph>
                     You control them, always. Clear them anytime from your browser or your Visionary settings. No emails, no waiting.
@@ -463,7 +476,7 @@ export default function CookiesPage() {
                 </section>
 
                 {/* 06 — QUESTIONS AND CONTACT */}
-                <section id="contact" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="contact" data-section="08-contact" className="scroll-mt-24">
                   <SectionHeading number="06" title="Questions and contact" />
                   <Paragraph>
                     We're transparent about every cookie we use and why. If something isn't clear, reach out.
@@ -488,7 +501,7 @@ export default function CookiesPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="9-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -510,7 +523,7 @@ export default function CookiesPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="10-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -522,7 +535,7 @@ export default function CookiesPage() {
               ].map(({ to, label, desc, Icon }) => (
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <Icon className="h-5 w-5" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
@@ -535,7 +548,7 @@ export default function CookiesPage() {
         {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
-        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+        <section data-section="11-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
             <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
               Questions about this policy?

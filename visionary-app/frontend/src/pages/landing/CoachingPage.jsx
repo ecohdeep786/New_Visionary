@@ -86,7 +86,7 @@ function useActiveStep(total) {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -237,7 +237,7 @@ function AuthMock({ state, onPause, onResume }) {
           key={`btn-${state}`}
           to={isSignIn ? "/login" : "/register"}
           aria-label={isSignIn ? "Sign in to Visionary" : "Create a free Visionary account"}
-          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f]"
+          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3.5 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f]"
           style={{ backgroundColor: COLORS.blue }}
         >
           {isSignIn ? "Sign in" : "Create account"}
@@ -498,7 +498,7 @@ function HowLoopSection() {
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActive(i)}
-                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${isActive ? "bg-[#1d1d1f] text-white" : "text-[#6e6e73] hover:bg-white"}`}
+                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-3 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${isActive ? "bg-[#1d1d1f] text-white" : "text-[#6e6e73] hover:bg-white"}`}
               >
                 <st.Icon className="h-4 w-4" strokeWidth={1.8} />
                 {st.label}
@@ -571,7 +571,7 @@ function HowDifferentPeopleSection() {
               {scenario.ui}
             </p>
             <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{scenario.outcome}</p>
-            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
+            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2">
               See the {scenario.tab.toLowerCase()} page
               <ChevronIcon className="h-4 w-4" />
             </Link>
@@ -600,13 +600,13 @@ function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="07-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}>See it with your own question.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
-          <Link to="/pricing" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <Link to="/pricing" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See pricing
             <ChevronIcon className="h-4 w-4" />
           </Link>

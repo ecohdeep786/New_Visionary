@@ -354,8 +354,6 @@ model Person {
   commandResults CommandResult[]
   auditEvents    AuditEvent[]
   outboxEvents   OutboxEvent[]
-  downloadGrants DownloadGrant[]
-  downloadExports DownloadExport[]
 
   @@map("persons")
 }
@@ -375,6 +373,7 @@ model Workspace {
   owner       Person                @relation(fields: [uid], references: [uid], onDelete: Cascade)
   memberships WorkspaceMembership[]
   invitations Invitation[]
+  institutionApprovals InstitutionApproval[]
   commandResults CommandResult[]
   outboxEvents OutboxEvent[]
   auditEvents AuditEvent[]
@@ -419,6 +418,7 @@ enum WorkspaceRole {
 model Invitation {
   id          String            @id @default(cuid())
   workspaceId String
+  institutionApprovalId String?
   email       String
   role        WorkspaceRole     @default(MEMBER)
   tokenHash   String? @unique   // SHA-256 of the one-time invite token
@@ -431,11 +431,33 @@ model Invitation {
   createdAt   DateTime          @default(now())
 
   workspace   Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  institutionApproval InstitutionApproval? @relation(fields: [institutionApprovalId, workspaceId], references: [id, workspaceId], onDelete: NoAction)
   acceptedBy  Person? @relation("AcceptedInvitation", fields: [acceptedByUid], references: [uid], onDelete: SetNull)
 
-  @@unique([workspaceId, email])
+  // A PostgreSQL partial unique index admits one pending/issued delivery while
+  // preserving revoked/expired/accepted invitation history for later reissue.
+  @@index([workspaceId, email])
   @@index([email])
   @@map("invitations")
+}
+
+model InstitutionApproval {
+  id               String   @id
+  workspaceId      String
+  administratorUid String
+  reviewerUid      String
+  policy           String
+  evidenceRef      String
+  approvedAt       DateTime
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  revokedByUid     String?
+  workspace        Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  invitations      Invitation[]
+
+  @@unique([id, workspaceId])
+  @@index([workspaceId, expiresAt])
+  @@map("institution_approvals")
 }
 
 enum InvitationStatus {
@@ -489,53 +511,6 @@ model ShareGrant {
   @@index([resourceType, resourceId])
   @@index([grantedToUid])
   @@map("share_grants")
-}
-
-/// Download grants for private immutable generations (FILE-03). The
-/// authenticated gateway re-checks state, owner, lease and read budget on
-/// every read; revocation on the gateway path is immediate.
-model DownloadGrant {
-  id             String    @id
-  ownerUid       String
-  objectId       String
-  generation     Int
-  digest         String
-  size           Int
-  type           String
-  channel        String // "gateway" | "signed_link"
-  state          String // ACTIVE | REVOKED | EXPIRED | USED
-  expiresAt      DateTime
-  token          String?   @unique
-  remainingReads Int
-  revokedAt      DateTime?
-  lastReadAt     DateTime?
-  bytesDelivered Int       @default(0)
-  createdAt      DateTime  @default(now())
-
-  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
-
-  @@index([ownerUid])
-  @@index([objectId, generation])
-  @@index([state])
-  @@map("download_grants")
-}
-
-/// Bounded owner-scoped export records (FILE-03); exports are read through
-/// the same authenticated gateway so export revocation is immediate too.
-model DownloadExport {
-  id             String   @id
-  ownerUid       String
-  objects        Json
-  state          String // ACTIVE | REVOKED | EXPIRED | USED
-  expiresAt      DateTime
-  createdAt      DateTime @default(now())
-  deliveredBytes Int      @default(0)
-
-  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
-
-  @@index([ownerUid])
-  @@index([state])
-  @@map("download_exports")
 }
 
 // ─── Command receipts (DATA-06) ────────────────────────────────────────────────
@@ -661,4 +636,46 @@ model DeletionTombstone {
   @@unique([uid, resourceType, resourceId])
   @@index([expiresAt])
   @@map("deletion_tombstones")
+}
+
+model DownloadGrant {
+  id             String    @id
+  ownerUid       String
+  objectId       String
+  generation     Int
+  digest         String
+  size           Int
+  type           String
+  channel        String // "gateway" | "signed_link"
+  state          String // ACTIVE | REVOKED | EXPIRED | USED
+  expiresAt      DateTime
+  token          String?   @unique
+  remainingReads Int
+  revokedAt      DateTime?
+  lastReadAt     DateTime?
+  bytesDelivered Int       @default(0)
+  createdAt      DateTime  @default(now())
+
+  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
+
+  @@index([ownerUid])
+  @@index([objectId, generation])
+  @@index([state])
+  @@map("download_grants")
+}
+
+model DownloadExport {
+  id             String   @id
+  ownerUid       String
+  objects        Json
+  state          String // ACTIVE | REVOKED | EXPIRED | USED
+  expiresAt      DateTime
+  createdAt      DateTime @default(now())
+  deliveredBytes Int      @default(0)
+
+  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
+
+  @@index([ownerUid])
+  @@index([state])
+  @@map("download_exports")
 }

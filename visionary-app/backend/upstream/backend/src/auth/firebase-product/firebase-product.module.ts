@@ -19,5 +19,10 @@ import { KnowledgeProjectionService } from '../../learning/knowledge-projection.
 import { PersonalWorkspaceController } from '../../workspaces/personal-workspace.controller';
 import { PersonalWorkspaceService } from '../../workspaces/personal-workspace.service';
 
-@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [PrivacyPolicyController, FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController, PersonalWorkspaceController], providers: [PrivacyPolicyService, FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService, PersonalWorkspaceService] })
+import { ProductInvitationController } from '../../invitations/product-invitation.controller';
+import { ProductInvitationService } from '../../invitations/product-invitation.service';
+import { ProductConsentController } from '../../consent/product-consent.controller';
+import { ProductConsentService } from '../../consent/product-consent.service';
+
+@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [ProductConsentController, ProductInvitationController, PrivacyPolicyController, FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController, PersonalWorkspaceController], providers: [ProductConsentService, ProductInvitationService, PrivacyPolicyService, FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService, PersonalWorkspaceService] })
 export class FirebaseProductModule {}

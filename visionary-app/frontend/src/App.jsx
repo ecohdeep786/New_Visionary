@@ -141,12 +141,16 @@ const RouteFallback = () => (
 )
 
 function LandingEntry() {
-  const { isAuthenticated, isLoadingAuth, authChecked, user } = useAuth();
-  if (isLoadingAuth || !authChecked) return <RouteFallback />;
-  // The landing page is always publicly accessible. Authenticated users who
-  // have completed onboarding are sent straight to their dashboard; everyone
-  // else (anonymous visitors and users mid-onboarding) sees the landing page.
-  if (isAuthenticated && user?.onboarding_complete) {
+  const { isAuthenticated, authChecked, user } = useAuth();
+  // The landing page is always publicly accessible. A market visitor must
+  // never sit on the route fallback while the auth probe resolves — the
+  // front door renders immediately, and the authenticated redirect is a
+  // follow-up navigation once the probe lands (a signed-in user may see the
+  // landing for a beat on a slow network; that is standard public-site
+  // behaviour, not a blocker). Authenticated users who have completed
+  // onboarding are sent straight to their dashboard; everyone else
+  // (anonymous visitors and users mid-onboarding) sees the landing page.
+  if (authChecked && isAuthenticated && user?.onboarding_complete) {
     return <Navigate to="/dashboard/home" replace />;
   }
   return <Landing />;

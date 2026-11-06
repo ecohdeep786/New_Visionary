@@ -4,46 +4,57 @@
  * sentence-case, claims-disciplined (MASTER_SPEC §8). Internal surfaces
  * (dashboard/onboarding/dev) are excluded — they keep document defaults.
  */
-import landingHeroImg from "@/assets/student-face-main.webp";
-import { HERO_SRCSETS, HEROES } from "@/lib/heroVariants";
+import { HERO_SIZES, HERO_AVIF_SOURCES, HEROES } from "@/lib/heroVariants";
 import { PRICING_FAQ } from "@/data/pricingConfig";
+
+/* D3 preload law: the LCP image preload byte-matches the <img> the route
+ * actually renders. Persona routes render <picture> (NewPersona), whose
+ * first candidate is the AVIF sizeset — so the preload is the AVIF family
+ * with type="image/avif" (about half the WebP wire for the same pixels).
+ * The "/" route's LCP element is the hero <div> (static backdrop + type),
+ * not an image — preloading student-face-main here fetched a below-the-fold
+ * portrait (~13.9KB at 12.8s in the 2026-10-25 lab baseline) and slowed the
+ * real LCP, so "/" ships without an image preload. */
+const heroPreload = (img) => {
+  const avif = HERO_AVIF_SOURCES[img];
+  return { src: avif.src, srcSet: avif.srcSet, sizes: HERO_SIZES, type: "image/avif" };
+};
 
 export const ROUTE_META = {
   "/": {
     title: "Visionary — Learn, ask, practice, and build",
     description: "One intelligence that helps anyone learn, teach, support, and build. Start free with Visionary.",
     image: "/og-image.jpg",
-    preloadImage: landingHeroImg,
   },
   "/student": {
     title: "Visionary for students | Learn at your pace",
     description: "Understand every concept deeply, practice with feedback, and build real projects — in the language you think in.",
     image: "/og-image.jpg",
-    preloadImage: { src: HEROES.studentHero, srcSet: HERO_SRCSETS[HEROES.studentHero] },
+    preloadImage: heroPreload(HEROES.studentHero),
   },
   "/teacher": {
     title: "Visionary for teachers | Prepare and teach",
     description: "Prepare lessons, assign practice, and see evidence-backed insights — Visionary assists, you stay in control.",
     image: "/og-image.jpg",
-    preloadImage: { src: HEROES.teacherHero, srcSet: HERO_SRCSETS[HEROES.teacherHero] },
+    preloadImage: heroPreload(HEROES.teacherHero),
   },
   "/parent": {
     title: "Visionary for parents | Follow their progress",
     description: "Get plain-language summaries of your child's learning, connect with teachers, and know how to help each week.",
     image: "/og-image.jpg",
-    preloadImage: { src: HEROES.parentHero, srcSet: HERO_SRCSETS[HEROES.parentHero] },
+    preloadImage: heroPreload(HEROES.parentHero),
   },
   "/professional": {
     title: "Visionary for professionals | Grow your skills",
     description: "Learn from real work problems, practice interviews, and build a portfolio of evidence-backed skills at your pace.",
     image: "/og-image.jpg",
-    preloadImage: { src: HEROES.proHero, srcSet: HERO_SRCSETS[HEROES.proHero] },
+    preloadImage: heroPreload(HEROES.proHero),
   },
   "/organization": {
     title: "Visionary for organizations | Teach at scale",
     description: "Give your institution one workspace for classes, cohorts, insights, and safety controls your people can trust.",
     image: "/og-image.jpg",
-    preloadImage: { src: HEROES.orgHero, srcSet: HERO_SRCSETS[HEROES.orgHero] },
+    preloadImage: heroPreload(HEROES.orgHero),
   },
   "/how-it-works": {
     title: "How Visionary works",

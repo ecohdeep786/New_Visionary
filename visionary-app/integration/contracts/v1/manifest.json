@@ -19,6 +19,8 @@
     "hosted integration and recovery"
   ],
   "currentRoutes": {
+    "GET /api/account/privacy/consents": "existing-json",
+    "POST /api/account/privacy/consents/revoke": "existing-json",
     "GET /api/auth/methods": "existing-json",
     "GET /api/auth/csrf": "existing-json",
     "POST /api/auth/session": "auth-session",
@@ -57,6 +59,14 @@
     "POST /api/account/learning/knowledge/project": "existing-json",
     "GET /api/account/learning/knowledge/projections": "existing-json",
     "GET /api/account/learning/knowledge/models": "existing-json",
+    "POST /api/account/invitations/issue": "existing-json",
+    "POST /api/account/invitations/accept": "existing-json",
+    "POST /api/account/invitations/pending": "existing-json",
+    "POST /api/account/invitations/revoke": "existing-json",
+    "POST /api/account/invitations/history": "existing-json",
+    "POST /api/account/invitations/membership": "existing-json",
+    "POST /api/account/invitations/institution/approve": "existing-json",
+    "POST /api/account/invitations/institution/revoke": "existing-json",
     "POST /api/account/workspace/provision": "existing-json"
   },
   "infrastructureSurfaces": [
