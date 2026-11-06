@@ -41,6 +41,8 @@ async function registerAccount(page, email) {
   const passwords = page.locator('input[type="password"]');
   await passwords.first().fill(PASSWORD, { timeout: 20000 });
   if (await passwords.count() > 1) await passwords.nth(1).fill(PASSWORD);
+  /* the register flow requires the terms checkbox before Create account enables */
+  await page.locator('input[type="checkbox"]:visible').first().check().catch(() => {});
   await page.locator('button[type="submit"]:visible').last().click();
   const otp = page.locator('input[autocomplete="one-time-code"], input[inputmode="numeric"]').first();
   await otp.waitFor({ state: 'visible', timeout: 30000 });
