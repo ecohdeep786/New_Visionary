@@ -20,7 +20,7 @@
 import { createHash } from 'node:crypto';
 import type { CommandOutcome, CommandResult, DeletionTombstone, DomainCommand, OutboxEvent } from './command-types';
 import type { CommandStore } from './command-store';
-import { CommandUniqueViolation } from './command-store';
+import { CommandStaleRevision, CommandUniqueViolation } from './command-store';
 
 export class CommandPolicyError extends Error {
   constructor(public readonly code: 'invalid_command' | 'wrong_owner' | 'conflict' | 'duplicate' | 'stale_revision' | 'tombstoned' | 'outbox_rollback') {
@@ -30,7 +30,6 @@ export class CommandPolicyError extends Error {
 
 /** Deletion tombstones live this long unless extended. */
 const TOMBSTONE_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 days
-const MAX_REVISION_BOUND = 1_000_000;
 
 export interface CommandServiceOptions {
   now?: () => Date;
@@ -80,12 +79,17 @@ export class CommandService {
   async execute(uid: string, input: unknown): Promise<CommandOutcome> {
     const command = this.validCommand(input);
 
-    // Unique command key: a replayed key must carry the identical payload digest.
+    // Unique command key: a replayed key must be the SAME command — identical
+    // uid, kind, workspace AND payload digest (review 10581: a reused key with
+    // an unchanged payload but a different workspace or operation must never
+    // return the prior scope's receipt).
     const existing = await this.store.resultByCommandId(command.commandId);
     if (existing) {
       if (existing.uid !== uid) throw new CommandPolicyError('wrong_owner');
       const samePayload = existing.payloadDigest === this.digest(command.payload);
-      if (!samePayload) throw new CommandPolicyError('conflict'); // same command key, changed payload
+      const sameOperation = existing.kind === command.kind;
+      const sameWorkspace = existing.workspaceId === (command.workspaceId ?? null);
+      if (!samePayload || !sameOperation || !sameWorkspace) throw new CommandPolicyError('conflict');
       return {
         commandId: existing.commandId,
         kind: existing.kind,
@@ -109,16 +113,13 @@ export class CommandService {
       if (blocked && this.tombstoneActive(blocked)) throw new CommandPolicyError('tombstoned');
     }
 
-    // Conditional revision: mismatch rejects as stale.
-    const maxRev = await this.store.maxRevision(uid, command.kind);
-    if (command.expectedRevision !== undefined && maxRev !== null && maxRev !== command.expectedRevision) {
-      throw new CommandPolicyError('stale_revision');
-    }
-    const revision = (command.expectedRevision ?? maxRev ?? 0) + 1;
-    if (revision < 1 || revision > MAX_REVISION_BOUND) throw new CommandPolicyError('stale_revision');
-
+    // The REVISION COMPARISON AND ASSIGNMENT live inside the owning-store
+    // transaction (review 10581): two independent connections racing the same
+    // uid+kind cannot both commit the same next revision — the store locks the
+    // uid anchor, re-reads the max revision, verifies the expectation and
+    // assigns the revision atomically.
     const at = this.when();
-    const result: CommandResult = {
+    const result: Omit<CommandResult, 'revision'> = {
       id: this.newId('cr'),
       uid,
       workspaceId: command.workspaceId ?? null,
@@ -130,40 +131,41 @@ export class CommandService {
       error: null,
       attemptedAt: at,
       committedAt: at,
-      revision,
     };
 
     // Transactional: command result + outbox event commit (or roll back) together.
+    let committed: CommandResult;
     try {
       const event: OutboxEvent = {
         id: this.newId('oe'),
         uid,
         workspaceId: result.workspaceId,
         topic: this.outboxTopic(command.kind),
-        payload: { commandId: command.commandId, kind: command.kind, revision },
+        payload: { commandId: command.commandId, kind: command.kind },
         cursor: this.nextCursor(),
         status: 'PENDING',
         createdAt: at,
         dispatchedAt: null,
         failureReason: null,
       };
-      await this.store.commitTransaction(result, event);
+      committed = await this.store.commitTransaction({ result, event, expectedRevision: command.expectedRevision });
     } catch (error) {
       if (error instanceof CommandUniqueViolation) throw new CommandPolicyError('duplicate');
+      if (error instanceof CommandStaleRevision) throw new CommandPolicyError('stale_revision');
       throw error instanceof CommandPolicyError ? error : new CommandPolicyError('outbox_rollback');
     }
 
     return {
-      commandId: command.commandId,
-      kind: command.kind,
+      commandId: committed.commandId,
+      kind: committed.kind,
       uid,
-      workspaceId: result.workspaceId,
+      workspaceId: committed.workspaceId,
       status: 'COMMITTED',
-      revision,
-      resultJson: result.resultJson,
+      revision: committed.revision,
+      resultJson: committed.resultJson,
       replayed: false,
       outboxEventId: null,
-      committedAt: at,
+      committedAt: committed.committedAt,
     };
   }
 
