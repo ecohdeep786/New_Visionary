@@ -72,13 +72,16 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks(id) {
-            // F-16-F4 / F-27: this shared copy module flipped between its own
-            // chunk and a merge into OrganizationContent between builds, which
-            // made the fail-closed chunk budget fail on unrelated lanes.
-            // Pinning it (standalone: three dashboard editors import it, and a
-            // merged chunk would drag OrganizationContent along) ends the flip.
-            if (id.includes('organizationAuthorCopy')) {
-              return 'organizationAuthorCopy';
+            // F-16-F4 / F-27 / F-28: shared copy modules flipped between their
+            // own chunks and merges into neighbouring chunks between builds
+            // (organizationAuthorCopy, then homeCopy/learningCopy/
+            // dailyPlanService on later builds), which made the fail-closed
+            // chunk budget fail on unrelated lanes. Every src/lib copy module
+            // is pinned to a name-stable chunk: routes still load only the
+            // copies they import, and the structure is deterministic.
+            const copyMatch = id.match(/[\\/]src[\\/]lib[\\/]([A-Za-z0-9_]+Copy)\.js$/);
+            if (copyMatch) {
+              return copyMatch[1];
             }
             if (id.includes('node_modules')) {
               if (id.includes('recharts')) {

@@ -1,6 +1,6 @@
 {
-  "task": "F-27 deterministic chunk pin + WOFF2 fonts (organizationAuthorCopy pinned standalone; flip ended; totals stable across builds)",
-  "measuredAt": "2026-11-06T17:49:15.580Z",
+  "task": "F-28 deterministic copy-module pin (every src/lib Copy module pinned name-stable; structure fixed at 153 chunks; sizes stable across builds)",
+  "measuredAt": "2026-11-06T18:32:36.445Z",
   "tolerancePercent": 2,
   "ledgerShape": "grouped-by-name (count + sizes/gzip arrays sorted descending, paired positionally at verify)",
   "chunks": [
@@ -18,74 +18,44 @@
       "file": "index.js",
       "count": 3,
       "bytes": [
-        183403,
+        184503,
         54514,
-        25927
+        25910
       ],
       "gzipBytes": [
-        57219,
+        57547,
         8492,
-        6560
+        6549
       ]
     },
     {
       "file": "WorkspaceTools.js",
       "count": 1,
       "bytes": [
-        134142
+        123704
       ],
       "gzipBytes": [
-        34658
-      ]
-    },
-    {
-      "file": "legacyLearningCopy.js",
-      "count": 1,
-      "bytes": [
-        133265
-      ],
-      "gzipBytes": [
-        29032
-      ]
-    },
-    {
-      "file": "organizationAuthorCopy.js",
-      "count": 1,
-      "bytes": [
-        111547
-      ],
-      "gzipBytes": [
-        23043
-      ]
-    },
-    {
-      "file": "LearningWorkspace.js",
-      "count": 1,
-      "bytes": [
-        74647
-      ],
-      "gzipBytes": [
-        20856
+        32626
       ]
     },
     {
       "file": "DashboardLayout.js",
       "count": 1,
       "bytes": [
-        70074
+        66787
       ],
       "gzipBytes": [
-        21760
+        20671
       ]
     },
     {
-      "file": "projectCopy.js",
+      "file": "LearningWorkspace.js",
       "count": 1,
       "bytes": [
-        62776
+        65840
       ],
       "gzipBytes": [
-        13473
+        18484
       ]
     },
     {
@@ -102,10 +72,10 @@
       "file": "DashboardHome.js",
       "count": 1,
       "bytes": [
-        55519
+        55955
       ],
       "gzipBytes": [
-        16881
+        17005
       ]
     },
     {
@@ -125,97 +95,127 @@
         54785
       ],
       "gzipBytes": [
-        11217
+        11218
       ]
     },
     {
       "file": "ClassDetail.js",
       "count": 1,
       "bytes": [
-        50054
+        50359
       ],
       "gzipBytes": [
-        13672
+        13786
       ]
     },
     {
       "file": "Guide.js",
       "count": 1,
       "bytes": [
-        47324
+        48259
       ],
       "gzipBytes": [
-        14827
+        15108
+      ]
+    },
+    {
+      "file": "learningCopy.js",
+      "count": 1,
+      "bytes": [
+        43209
+      ],
+      "gzipBytes": [
+        9921
       ]
     },
     {
       "file": "parentCopy.js",
       "count": 1,
       "bytes": [
-        40308
+        40306
       ],
       "gzipBytes": [
-        9182
+        9176
+      ]
+    },
+    {
+      "file": "organizationAuthorCopy.js",
+      "count": 1,
+      "bytes": [
+        38894
+      ],
+      "gzipBytes": [
+        8622
       ]
     },
     {
       "file": "PremiumExploreSection.js",
       "count": 1,
       "bytes": [
-        37192
+        37189
       ],
       "gzipBytes": [
-        9855
-      ]
-    },
-    {
-      "file": "CommunityTab.js",
-      "count": 1,
-      "bytes": [
-        35387
-      ],
-      "gzipBytes": [
-        10434
+        9849
       ]
     },
     {
       "file": "ArtifactStudio.js",
       "count": 1,
       "bytes": [
-        35093
+        35390
       ],
       "gzipBytes": [
-        10072
+        10171
+      ]
+    },
+    {
+      "file": "CommunityTab.js",
+      "count": 1,
+      "bytes": [
+        35381
+      ],
+      "gzipBytes": [
+        10433
       ]
     },
     {
       "file": "Plans.js",
       "count": 1,
       "bytes": [
-        34803
+        35015
       ],
       "gzipBytes": [
-        10318
+        10403
       ]
     },
     {
-      "file": "LearningRepresentation.js",
+      "file": "classTabCopy.js",
       "count": 1,
       "bytes": [
-        31892
+        34092
       ],
       "gzipBytes": [
-        9195
+        8389
+      ]
+    },
+    {
+      "file": "projectCopy.js",
+      "count": 1,
+      "bytes": [
+        32405
+      ],
+      "gzipBytes": [
+        7555
       ]
     },
     {
       "file": "OrganizationContent.js",
       "count": 1,
       "bytes": [
-        31454
+        31453
       ],
       "gzipBytes": [
-        8830
+        8825
       ]
     },
     {
@@ -235,7 +235,7 @@
         31125
       ],
       "gzipBytes": [
-        7714
+        7713
       ]
     },
     {
@@ -249,33 +249,53 @@
       ]
     },
     {
+      "file": "professionalCopy.js",
+      "count": 1,
+      "bytes": [
+        30437
+      ],
+      "gzipBytes": [
+        7403
+      ]
+    },
+    {
       "file": "PremiumJourneyFlowSection.js",
       "count": 1,
       "bytes": [
         30307
       ],
       "gzipBytes": [
-        7856
+        7851
       ]
     },
     {
       "file": "StudentClasses.js",
       "count": 1,
       "bytes": [
-        29432
+        29740
       ],
       "gzipBytes": [
-        8894
+        9007
       ]
     },
     {
-      "file": "privacyCopy.js",
+      "file": "guideCopy.js",
       "count": 1,
       "bytes": [
-        28479
+        28589
       ],
       "gzipBytes": [
-        7207
+        7612
+      ]
+    },
+    {
+      "file": "teacherCopy.js",
+      "count": 1,
+      "bytes": [
+        28273
+      ],
+      "gzipBytes": [
+        7215
       ]
     },
     {
@@ -289,13 +309,43 @@
       ]
     },
     {
+      "file": "organizationCopy.js",
+      "count": 1,
+      "bytes": [
+        27962
+      ],
+      "gzipBytes": [
+        6855
+      ]
+    },
+    {
+      "file": "legacyLearningCopy.js",
+      "count": 1,
+      "bytes": [
+        27536
+      ],
+      "gzipBytes": [
+        7201
+      ]
+    },
+    {
       "file": "SecurityPage.js",
       "count": 1,
       "bytes": [
         26696
       ],
       "gzipBytes": [
-        6752
+        6750
+      ]
+    },
+    {
+      "file": "RoleWorkspace.js",
+      "count": 1,
+      "bytes": [
+        26539
+      ],
+      "gzipBytes": [
+        8167
       ]
     },
     {
@@ -305,47 +355,37 @@
         26361
       ],
       "gzipBytes": [
-        8898
-      ]
-    },
-    {
-      "file": "RoleWorkspace.js",
-      "count": 1,
-      "bytes": [
-        26189
-      ],
-      "gzipBytes": [
-        8030
+        8896
       ]
     },
     {
       "file": "learningPipelineService.js",
       "count": 1,
       "bytes": [
-        26001
+        25994
       ],
       "gzipBytes": [
-        8487
+        8486
       ]
     },
     {
       "file": "TermsPage.js",
       "count": 1,
       "bytes": [
-        25251
+        25250
       ],
       "gzipBytes": [
-        7161
+        7159
       ]
     },
     {
       "file": "PartnersPage.js",
       "count": 1,
       "bytes": [
-        25232
+        25230
       ],
       "gzipBytes": [
-        6764
+        6760
       ]
     },
     {
@@ -355,37 +395,37 @@
         24955
       ],
       "gzipBytes": [
-        6781
+        6777
       ]
     },
     {
       "file": "CoachingPage.js",
       "count": 1,
       "bytes": [
-        24159
+        24156
       ],
       "gzipBytes": [
-        6735
+        6729
       ]
     },
     {
       "file": "ClassworkStudy.js",
       "count": 1,
       "bytes": [
-        21934
+        21937
       ],
       "gzipBytes": [
-        6664
+        6666
       ]
     },
     {
       "file": "voiceService.js",
       "count": 1,
       "bytes": [
-        21898
+        21897
       ],
       "gzipBytes": [
-        7266
+        7265
       ]
     },
     {
@@ -402,10 +442,10 @@
       "file": "CareersPage.js",
       "count": 1,
       "bytes": [
-        21558
+        21557
       ],
       "gzipBytes": [
-        6051
+        6049
       ]
     },
     {
@@ -415,17 +455,7 @@
         20900
       ],
       "gzipBytes": [
-        5876
-      ]
-    },
-    {
-      "file": "Profile.js",
-      "count": 1,
-      "bytes": [
-        20731
-      ],
-      "gzipBytes": [
-        5458
+        5875
       ]
     },
     {
@@ -435,84 +465,94 @@
         19471
       ],
       "gzipBytes": [
-        5444
+        5439
       ]
     },
     {
-      "file": "Support.js",
+      "file": "learningSurfaceCopy.js",
       "count": 1,
       "bytes": [
-        19384
+        19299
       ],
       "gzipBytes": [
-        5907
+        5241
       ]
     },
     {
       "file": "UpdatesPage.js",
       "count": 1,
       "bytes": [
-        18272
+        18271
       ],
       "gzipBytes": [
-        4994
-      ]
-    },
-    {
-      "file": "Cohorts.js",
-      "count": 1,
-      "bytes": [
-        18107
-      ],
-      "gzipBytes": [
-        5540
+        4991
       ]
     },
     {
       "file": "DownloadPage.js",
       "count": 1,
       "bytes": [
-        17985
+        17975
       ],
       "gzipBytes": [
-        4826
+        4817
       ]
     },
     {
       "file": "classroomService.js",
       "count": 1,
       "bytes": [
-        17917
+        17919
       ],
       "gzipBytes": [
-        5676
+        5677
+      ]
+    },
+    {
+      "file": "supportCopy.js",
+      "count": 1,
+      "bytes": [
+        17467
+      ],
+      "gzipBytes": [
+        5104
+      ]
+    },
+    {
+      "file": "privacyCopy.js",
+      "count": 1,
+      "bytes": [
+        17410
+      ],
+      "gzipBytes": [
+        4860
       ]
     },
     {
       "file": "AccessibilityPage.js",
       "count": 1,
       "bytes": [
-        16250
+        16247
       ],
       "gzipBytes": [
-        4898
+        4891
       ]
     },
     {
       "file": "ContactPage.js",
       "count": 1,
       "bytes": [
-        16028
+        16026
       ],
       "gzipBytes": [
-        4543
+        4538
       ]
     },
     {
       "file": "mentorStateService.js",
       "count": 1,
       "bytes": [
-        15783
+        15780
       ],
       "gzipBytes": [
         5574
@@ -522,10 +562,10 @@
       "file": "CollegePage.js",
       "count": 1,
       "bytes": [
-        15692
+        15691
       ],
       "gzipBytes": [
-        5898
+        5893
       ]
     },
     {
@@ -535,37 +575,37 @@
         15465
       ],
       "gzipBytes": [
-        4890
+        4888
       ]
     },
     {
       "file": "ParentPage.js",
       "count": 1,
       "bytes": [
-        15215
+        15219
       ],
       "gzipBytes": [
-        5790
+        5788
       ]
     },
     {
       "file": "TeacherPage.js",
       "count": 1,
       "bytes": [
-        15116
+        15120
       ],
       "gzipBytes": [
-        5722
+        5719
       ]
     },
     {
       "file": "StudentPage.js",
       "count": 1,
       "bytes": [
-        15102
+        15101
       ],
       "gzipBytes": [
-        5705
+        5702
       ]
     },
     {
@@ -575,7 +615,7 @@
         15026
       ],
       "gzipBytes": [
-        5355
+        5351
       ]
     },
     {
@@ -592,40 +632,60 @@
       "file": "CommunityPage.js",
       "count": 1,
       "bytes": [
-        14574
+        14573
       ],
       "gzipBytes": [
-        4637
+        4636
       ]
     },
     {
       "file": "TeacherHome.js",
       "count": 1,
       "bytes": [
-        14233
+        14446
       ],
       "gzipBytes": [
-        5321
+        5399
       ]
     },
     {
       "file": "SafetyPage.js",
       "count": 1,
       "bytes": [
-        14202
+        14201
       ],
       "gzipBytes": [
-        4236
+        4230
       ]
     },
     {
       "file": "Connections.js",
       "count": 1,
       "bytes": [
-        13819
+        14031
       ],
       "gzipBytes": [
-        4821
+        4903
+      ]
+    },
+    {
+      "file": "TopicDetail.js",
+      "count": 1,
+      "bytes": [
+        13735
+      ],
+      "gzipBytes": [
+        4769
+      ]
+    },
+    {
+      "file": "Learn.js",
+      "count": 1,
+      "bytes": [
+        13733
+      ],
+      "gzipBytes": [
+        4842
       ]
     },
     {
@@ -635,57 +695,57 @@
         13701
       ],
       "gzipBytes": [
-        4589
-      ]
-    },
-    {
-      "file": "TopicDetail.js",
-      "count": 1,
-      "bytes": [
-        13523
-      ],
-      "gzipBytes": [
-        4687
-      ]
-    },
-    {
-      "file": "Learn.js",
-      "count": 1,
-      "bytes": [
-        13338
-      ],
-      "gzipBytes": [
-        4705
+        4585
       ]
     },
     {
       "file": "stageTransitionService.js",
       "count": 1,
       "bytes": [
-        13256
+        13255
       ],
       "gzipBytes": [
-        4474
+        4470
       ]
     },
     {
       "file": "OrganizationPage.js",
       "count": 1,
       "bytes": [
-        13228
+        13227
       ],
       "gzipBytes": [
-        5205
+        5201
+      ]
+    },
+    {
+      "file": "roleNotificationCopy.js",
+      "count": 1,
+      "bytes": [
+        12741
+      ],
+      "gzipBytes": [
+        3651
+      ]
+    },
+    {
+      "file": "profileCopy.js",
+      "count": 1,
+      "bytes": [
+        12717
+      ],
+      "gzipBytes": [
+        2960
       ]
     },
     {
       "file": "Settings.js",
       "count": 1,
       "bytes": [
-        12034
+        12496
       ],
       "gzipBytes": [
-        4276
+        4441
       ]
     },
     {
@@ -699,13 +759,53 @@
       ]
     },
     {
+      "file": "settingsCopy.js",
+      "count": 1,
+      "bytes": [
+        11136
+      ],
+      "gzipBytes": [
+        3060
+      ]
+    },
+    {
+      "file": "learnerGoalCopy.js",
+      "count": 1,
+      "bytes": [
+        10986
+      ],
+      "gzipBytes": [
+        2976
+      ]
+    },
+    {
       "file": "Practice.js",
       "count": 1,
       "bytes": [
-        10208
+        10601
       ],
       "gzipBytes": [
-        3771
+        3911
+      ]
+    },
+    {
+      "file": "Cohorts.js",
+      "count": 1,
+      "bytes": [
+        9679
+      ],
+      "gzipBytes": [
+        3384
+      ]
+    },
+    {
+      "file": "LearningRepresentation.js",
+      "count": 1,
+      "bytes": [
+        9072
+      ],
+      "gzipBytes": [
+        3025
       ]
     },
     {
@@ -715,7 +815,27 @@
         9064
       ],
       "gzipBytes": [
-        3891
+        3889
+      ]
+    },
+    {
+      "file": "cohortCopy.js",
+      "count": 1,
+      "bytes": [
+        8601
+      ],
+      "gzipBytes": [
+        2695
+      ]
+    },
+    {
+      "file": "Profile.js",
+      "count": 1,
+      "bytes": [
+        8074
+      ],
+      "gzipBytes": [
+        3084
       ]
     },
     {
@@ -739,23 +859,33 @@
       ]
     },
     {
+      "file": "learningMilestoneCopy.js",
+      "count": 1,
+      "bytes": [
+        6342
+      ],
+      "gzipBytes": [
+        2005
+      ]
+    },
+    {
       "file": "Children.js",
       "count": 1,
       "bytes": [
-        6289
+        6326
       ],
       "gzipBytes": [
-        2373
+        2380
       ]
     },
     {
       "file": "Explore.js",
       "count": 1,
       "bytes": [
-        6068
+        6282
       ],
       "gzipBytes": [
-        2456
+        2535
       ]
     },
     {
@@ -765,7 +895,7 @@
         5328
       ],
       "gzipBytes": [
-        2276
+        2273
       ]
     },
     {
@@ -775,37 +905,47 @@
         5131
       ],
       "gzipBytes": [
-        2029
+        2027
       ]
     },
     {
       "file": "roleMentorService.js",
       "count": 1,
       "bytes": [
-        4304
+        4306
       ],
       "gzipBytes": [
-        1850
-      ]
-    },
-    {
-      "file": "LandingFAQ.js",
-      "count": 1,
-      "bytes": [
-        4106
-      ],
-      "gzipBytes": [
-        1525
+        1849
       ]
     },
     {
       "file": "Learners.js",
       "count": 1,
       "bytes": [
-        4088
+        4198
       ],
       "gzipBytes": [
-        1786
+        1825
+      ]
+    },
+    {
+      "file": "LandingFAQ.js",
+      "count": 1,
+      "bytes": [
+        4107
+      ],
+      "gzipBytes": [
+        1524
+      ]
+    },
+    {
+      "file": "notificationCopy.js",
+      "count": 1,
+      "bytes": [
+        3934
+      ],
+      "gzipBytes": [
+        1284
       ]
     },
     {
@@ -815,7 +955,7 @@
         3838
       ],
       "gzipBytes": [
-        1626
+        1623
       ]
     },
     {
@@ -825,7 +965,27 @@
         3709
       ],
       "gzipBytes": [
-        1552
+        1554
+      ]
+    },
+    {
+      "file": "representationEngagementCopy.js",
+      "count": 1,
+      "bytes": [
+        3658
+      ],
+      "gzipBytes": [
+        1325
+      ]
+    },
+    {
+      "file": "feedbackCopy.js",
+      "count": 1,
+      "bytes": [
+        3606
+      ],
+      "gzipBytes": [
+        1419
       ]
     },
     {
@@ -835,7 +995,7 @@
         3392
       ],
       "gzipBytes": [
-        1558
+        1552
       ]
     },
     {
@@ -845,7 +1005,7 @@
         3330
       ],
       "gzipBytes": [
-        1153
+        1151
       ]
     },
     {
@@ -859,23 +1019,33 @@
       ]
     },
     {
+      "file": "learningCatalogueCopy.js",
+      "count": 1,
+      "bytes": [
+        2916
+      ],
+      "gzipBytes": [
+        1104
+      ]
+    },
+    {
       "file": "ForgotPassword.js",
       "count": 1,
       "bytes": [
-        2754
+        2749
       ],
       "gzipBytes": [
-        1213
+        1211
       ]
     },
     {
       "file": "LessonObjectivePreview.js",
       "count": 1,
       "bytes": [
-        2249
+        2297
       ],
       "gzipBytes": [
-        943
+        967
       ]
     },
     {
@@ -885,7 +1055,7 @@
         2191
       ],
       "gzipBytes": [
-        922
+        919
       ]
     },
     {
@@ -905,7 +1075,7 @@
         2100
       ],
       "gzipBytes": [
-        1028
+        1027
       ]
     },
     {
@@ -919,13 +1089,23 @@
       ]
     },
     {
+      "file": "Support.js",
+      "count": 1,
+      "bytes": [
+        1985
+      ],
+      "gzipBytes": [
+        849
+      ]
+    },
+    {
       "file": "ValuesStrip.js",
       "count": 1,
       "bytes": [
         1941
       ],
       "gzipBytes": [
-        923
+        922
       ]
     },
     {
@@ -945,7 +1125,7 @@
         1633
       ],
       "gzipBytes": [
-        788
+        787
       ]
     },
     {
@@ -955,7 +1135,7 @@
         1530
       ],
       "gzipBytes": [
-        806
+        802
       ]
     },
     {
@@ -985,7 +1165,7 @@
         957
       ],
       "gzipBytes": [
-        521
+        520
       ]
     },
     {
@@ -995,7 +1175,7 @@
         881
       ],
       "gzipBytes": [
-        515
+        513
       ]
     },
     {
@@ -1005,7 +1185,7 @@
         875
       ],
       "gzipBytes": [
-        490
+        489
       ]
     },
     {
@@ -1340,7 +1520,7 @@
     }
   ],
   "totals": {
-    "jsBytes": 3085438,
-    "jsGzipBytes": 877572
+    "jsBytes": 3093926,
+    "jsGzipBytes": 893980
   }
 }
