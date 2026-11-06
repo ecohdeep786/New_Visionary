@@ -100,7 +100,7 @@ export class DownloadGateway {
   async issueGrant(opts: IssueGrantOptions): Promise<DownloadGrant> {
     if (opts.channel !== 'gateway' && opts.channel !== 'signed_link') throw new DownloadPolicyError('state_conflict');
     const maxLease = opts.channel === 'signed_link' ? this.policy.signedLinkTtlMs : this.policy.gatewayLeaseMs;
-    const readLimit = opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : Number.MAX_SAFE_INTEGER;
+    const readLimit = Math.min(opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : 2147483647, 2147483647);
     const leaseMs = opts.leaseMs ?? maxLease;
     const maxReads = opts.maxReads ?? readLimit;
     if (!Number.isSafeInteger(leaseMs) || leaseMs < 1 || leaseMs > maxLease ||

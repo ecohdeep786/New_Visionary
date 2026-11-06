@@ -149,3 +149,31 @@ test('export delivery: fenced by state and owner, accounting in one statement', 
   assert.deepEqual(await store.recordExportDelivery(record.id, 'owner-dl', 1024), { ok: false, reason: 'revoked' });
   assert.equal((await store.exportById(record.id)).deliveredBytes, 1024, 'the refused delivery wrote nothing');
 });
+for (const kind of ['grant', 'export']) test(`actual SQL ${kind} lease expires during an unchanged-row lock wait`, async () => {
+  const row = kind === 'grant' ? grant({ expiresAt: new Date(Date.now() + 600).toISOString() }) : {
+    id: 'export_wait_' + Math.random().toString(36).slice(2), ownerUid: 'owner-dl', objects: [], state: 'ACTIVE',
+    expiresAt: new Date(Date.now() + 600).toISOString(), createdAt: new Date().toISOString(), deliveredBytes: 0,
+  };
+  if (kind === 'grant') await store.insert(row); else await store.insertExport(row);
+  let release, locked, attempted;
+  const gate = new Promise(r => { release = r; }), ready = new Promise(r => { locked = r; }), reached = new Promise(r => { attempted = r; });
+  const table = kind === 'grant' ? 'download_grants' : 'download_exports';
+  const blocker = db.$transaction(async tx => {
+    await tx.$queryRawUnsafe('SELECT "id" FROM "' + table + '" WHERE "id"=$1 FOR UPDATE', row.id);
+    locked(); await gate;
+  });
+  let delivery;
+  try {
+    await ready;
+    const observed = { $transaction: action => db.$transaction(tx => action(new Proxy(tx, { get(target, key) {
+      if (key === '$queryRaw') return (strings, ...values) => { attempted(); return target.$queryRaw(strings, ...values); };
+      const value = Reflect.get(target, key); return typeof value === 'function' ? value.bind(target) : value;
+    } }))) };
+    const gateway = new PostgresDownloadStore(observed);
+    delivery = kind === 'grant' ? gateway.consumeGrant(row.id, row.ownerUid, 4) : gateway.recordExportDelivery(row.id, row.ownerUid, 4);
+    await reached; await db.$queryRaw`SELECT 1 AS waited FROM pg_sleep(0.8)`; release(); await blocker;
+    assert.deepEqual(await delivery, { ok: false, reason: 'expired' });
+    const saved = kind === 'grant' ? await store.grant(row.id) : await store.exportById(row.id);
+    assert.equal(kind === 'grant' ? saved.bytesDelivered : saved.deliveredBytes, 0);
+  } finally { release(); await blocker; if (delivery) await delivery; }
+});

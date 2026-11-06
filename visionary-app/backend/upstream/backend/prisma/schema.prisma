@@ -351,6 +351,8 @@ model Person {
   deletionTombstones DeletionTombstone[]
   shareGrants    ShareGrant[]
   consentGrants  ConsentGrant[]
+  downloadGrants DownloadGrant[]
+  downloadExports DownloadExport[]
   commandResults CommandResult[]
   auditEvents    AuditEvent[]
   outboxEvents   OutboxEvent[]

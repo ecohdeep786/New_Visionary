@@ -1,15 +1,15 @@
 // FILE-03 — durable PostgreSQL download store (the owning-store adapter).
 //
 // Implements the DownloadStore surface over the download_grants /
-// download_exports tables (migration 20261105000004_file_03_downloads) with
+// download_exports tables (migration 20261106000004_file_03_downloads) with
 // the identical fenced semantics as the synthetic store:
-//   - consumeGrant is ONE conditional statement: the row is consumed only
+//   - consumeGrant locks the row before its conditional update: the row is consumed only
 //     while it is ACTIVE, owned, unrevoked, unexpired and within its read
 //     budget, so a read paused across a concurrent revocation can never
 //     resurrect a revoked grant or overwrite its state (review 10583),
 //   - updateGrant(activeOnly) refuses to touch a row that is no longer
 //     ACTIVE, so a paused revoke cannot overwrite REVOKED with ACTIVE,
-//   - recordExportDelivery is the same single-statement fence for exports,
+//   - recordExportDelivery uses the same lock-first transaction for exports,
 //   - expiry is judged by the database clock cast to UTC (Prisma DateTime
 //     columns are UTC timestamp-without-time-zone; a bare timestamptz
 //     comparison would shift with the connection timezone).
@@ -58,7 +58,7 @@ function exportFrom(row: Row): ExportRecord {
 
 /** UTC wall clock as a timestamp-without-time-zone literal, matching the
  * Prisma TIMESTAMP(3) columns regardless of the connection timezone. */
-const UTC_NOW = "(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')";
+const UTC_NOW = "(clock_timestamp() AT TIME ZONE 'UTC')";
 
 export class PostgresDownloadStore implements DownloadStore {
   constructor(private readonly db: PrismaClient) {}
@@ -81,10 +81,12 @@ export class PostgresDownloadStore implements DownloadStore {
   }
 
   async consumeGrant(id: string, ownerUid: string, deliveredBytes: number): Promise<GrantWriteResult> {
-    // One conditional statement is the whole fence: a concurrent revoke that
+    return this.db.$transaction(async tx => {
+      await tx.$queryRaw`SELECT "id" FROM "download_grants" WHERE "id" = ${id} AND "ownerUid" = ${ownerUid} FOR UPDATE`;
+    // Lock first, then evaluate wall time in a later statement: a concurrent revoke that
     // commits first makes this UPDATE match zero rows; a read paused between
     // the grant check and this write cannot resurrect the grant.
-    const updated = await this.db.$queryRawUnsafe<Row[]>(`
+    const updated = await tx.$queryRawUnsafe<Row[]>(`
       UPDATE "download_grants" SET
         "remainingReads" = "remainingReads" - 1,
         "bytesDelivered" = "bytesDelivered" + ${Number(deliveredBytes)},
@@ -95,11 +97,12 @@ export class PostgresDownloadStore implements DownloadStore {
         AND "remainingReads" > 0 AND "expiresAt" > ${UTC_NOW}
       RETURNING *`);
     if (Array.isArray(updated) && updated.length) return { ok: true, grant: grantFrom(updated[0]) };
-    return { ok: false, ...(await this.classifyGrant(id, ownerUid)) };
+    return { ok: false, ...(await this.classifyGrant(id, ownerUid, tx)) };
+    });
   }
 
-  private async classifyGrant(id: string, ownerUid: string): Promise<{ reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' }> {
-    const row = await this.db.downloadGrant.findUnique({ where: { id } });
+  private async classifyGrant(id: string, ownerUid: string, db: Pick<PrismaClient, "downloadGrant"> = this.db): Promise<{ reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' }> {
+    const row = await db.downloadGrant.findUnique({ where: { id } });
     if (!row) return { reason: 'not_found' };
     if ((row as unknown as Row).ownerUid !== ownerUid) return { reason: 'unauthorized' };
     const g = grantFrom(row as unknown as Row);
@@ -159,19 +162,22 @@ export class PostgresDownloadStore implements DownloadStore {
   }
 
   async recordExportDelivery(id: string, ownerUid: string, deliveredBytes: number): Promise<ExportWriteResult> {
-    const updated = await this.db.$queryRawUnsafe<Row[]>(`
+    return this.db.$transaction(async tx => {
+      await tx.$queryRaw`SELECT "id" FROM "download_exports" WHERE "id" = ${id} AND "ownerUid" = ${ownerUid} FOR UPDATE`;
+    const updated = await tx.$queryRawUnsafe<Row[]>(`
       UPDATE "download_exports" SET
         "deliveredBytes" = "deliveredBytes" + ${Number(deliveredBytes)}
       WHERE "id" = ${this.sqlString(id)} AND "ownerUid" = ${this.sqlString(ownerUid)}
         AND "state" = 'ACTIVE' AND "expiresAt" > ${UTC_NOW}
       RETURNING *`);
     if (Array.isArray(updated) && updated.length) return { ok: true, record: exportFrom(updated[0]) };
-    const row = await this.db.downloadExport.findUnique({ where: { id } });
+    const row = await tx.downloadExport.findUnique({ where: { id } });
     if (!row) return { ok: false, reason: 'not_found' };
     if ((row as unknown as Row).ownerUid !== ownerUid) return { ok: false, reason: 'unauthorized' };
     const e = exportFrom(row as unknown as Row);
     if (e.state === 'REVOKED') return { ok: false, reason: 'revoked' };
     return { ok: false, reason: 'expired' };
+    });
   }
 
   async updateExport(id: string, ownerUid: string, patch: Pick<ExportRecord, 'state'>, activeOnly = false): Promise<ExportWriteResult> {

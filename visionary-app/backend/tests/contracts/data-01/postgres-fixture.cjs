@@ -24,7 +24,7 @@ async function domainDatabase({ historical = false } = {}) {
   const url = new URL(base);
   url.searchParams.set('schema', schema);
   const db = client(url);
-  for (const name of ['20261024000001_data_01_workspaces', '20261102000002_data_04_invitation_reissue', '20261103000003_data_04_institution_approval']) {
+  for (const name of ['20261024000001_data_01_workspaces', '20261102000002_data_04_invitation_reissue', '20261103000003_data_04_institution_approval', '20261106000004_file_03_downloads']) {
     if (historical && name !== '20261024000001_data_01_workspaces') break;
     const file = resolve(backend, 'prisma/migrations', name, 'migration.sql');
     if (!existsSync(file) && name !== '20261024000001_data_01_workspaces') continue;
