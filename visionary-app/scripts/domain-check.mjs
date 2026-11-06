@@ -30,3 +30,5 @@ run(['--test', '--test-reporter=tap', ...invitationTests.map(f => join(root, 'ba
 
 run([join(root, 'scripts/privacycore-check.mjs')]);
 run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-05/consent.test.mjs')]);
+
+run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-files/download.test.mjs'), join(root, 'backend/tests/contracts/data-files/download.sql.test.mjs')]);

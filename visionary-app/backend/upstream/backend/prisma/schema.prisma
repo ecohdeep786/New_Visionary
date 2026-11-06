@@ -351,6 +351,8 @@ model Person {
   deletionTombstones DeletionTombstone[]
   shareGrants    ShareGrant[]
   consentGrants  ConsentGrant[]
+  downloadGrants DownloadGrant[]
+  downloadExports DownloadExport[]
   commandResults CommandResult[]
   auditEvents    AuditEvent[]
   outboxEvents   OutboxEvent[]
@@ -636,4 +638,46 @@ model DeletionTombstone {
   @@unique([uid, resourceType, resourceId])
   @@index([expiresAt])
   @@map("deletion_tombstones")
+}
+
+model DownloadGrant {
+  id             String    @id
+  ownerUid       String
+  objectId       String
+  generation     Int
+  digest         String
+  size           Int
+  type           String
+  channel        String // "gateway" | "signed_link"
+  state          String // ACTIVE | REVOKED | EXPIRED | USED
+  expiresAt      DateTime
+  token          String?   @unique
+  remainingReads Int
+  revokedAt      DateTime?
+  lastReadAt     DateTime?
+  bytesDelivered BigInt    @default(0)
+  createdAt      DateTime  @default(now())
+
+  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
+
+  @@index([ownerUid])
+  @@index([objectId, generation])
+  @@index([state])
+  @@map("download_grants")
+}
+
+model DownloadExport {
+  id             String   @id
+  ownerUid       String
+  objects        Json
+  state          String // ACTIVE | REVOKED | EXPIRED | USED
+  expiresAt      DateTime
+  createdAt      DateTime @default(now())
+  deliveredBytes BigInt   @default(0)
+
+  person Person @relation(fields: [ownerUid], references: [uid], onDelete: Cascade)
+
+  @@index([ownerUid])
+  @@index([state])
+  @@map("download_exports")
 }
