@@ -159,8 +159,8 @@ export default function Login() {
           <div key="email" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={goToMethods} />
             {error && (
-              <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-                <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" />
+              <div role="alert" className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
+                <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" aria-hidden="true" />
                 <div>
                   <p className="text-sm text-[#e30000] font-medium">Account not found</p>
                   <p className="text-xs text-[#e30000] mt-1">{error}</p>
