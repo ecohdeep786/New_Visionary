@@ -42,7 +42,7 @@
   --lh-category-tagline: 1.14;
   --track-category-tagline: 0.007em;
   --lh-display: 1; /* Apple hero headline: 1.0 line-height */
-  --lh-body: 1.19048; /* Apple display body: 25px/21px */
+  --lh-body: 1.470588; /* Apple body: 25px at the 17px body size (styles/README law 17/25); the 1.19048 "25px/21px" ratio predates the 17px body scale and read ~19% tight (F-06-D1) */
   --radius-control: 999px;
   --radius-media: 12px;
   --radius-surface: 12px;
@@ -216,7 +216,7 @@ main p + h2.mt-4 {
   --lh-display: 1;
   --lh-product-section: 1.071429;
   --lh-section: 1.0625; /* Apple: 68px/64px */
-  --lh-body: 1.19048;
+  --lh-body: 1.470588; /* F-06-D1: body 17/25 law — see the :root note */
   --lh-feature: 1.142857;
   --lh-editorial-lead: 1.166667;
   --lh-emphasis: 1.05;
