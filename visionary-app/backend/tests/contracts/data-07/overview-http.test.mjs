@@ -17,7 +17,7 @@ test('real Nest routing and request authority: missing/changed account, bounds, 
   for (let i = 0; i < 25; i++) store.pushAudit({ id: 'a_' + i, uid: 'owner', operation: 'save', outcome: 'SUCCESS', resourceType: 'project', resourceId: null, createdAt: '2026-11-07T00:00:00Z', userAgent: 'private_marker' });
   // Explicit synthetic identity boundary: tests routing/authority composition,
   // not Firebase SDK/session verification or connected product acceptance.
-  const accounts = { async authenticate(cookie) {
+  const accounts = { async rateLimit() {}, async authenticate(cookie) {
     if (cookie !== 'synthetic-owner' && cookie !== 'synthetic-other') throw new UnauthorizedException();
     return { uid: cookie === 'synthetic-owner' ? 'owner' : 'other' };
   } };

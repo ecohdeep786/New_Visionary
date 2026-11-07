@@ -59,7 +59,7 @@ export class ProductOverviewStore implements OverviewStore, OnModuleDestroy {
       this.binding = binding;
       return this.adapter = new PostgresOverviewStore(this.client, { role, schema, database: url.pathname.slice(1) }, async uid => {
         const [details, billing] = await Promise.all([this.accounts.accountDetails(uid), this.billing.account(uid)]);
-        const name = details.identity.displayName ?? details.profile?.name ?? null;
+        const name = details.identity.displayName ?? details.profile?.full_name ?? null;
         const email = details.identity.email;
         return { profile: { displayName: name, emailHint: email ? email.slice(0, 1) + '***@' + email.split('@')[1] : null },
           billing: { plan: billing.plan ?? null, currency: 'INR', status: billing.subscription?.status ?? null }, redacted: [] };

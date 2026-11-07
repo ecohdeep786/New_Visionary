@@ -19010,6 +19010,60 @@
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
       "line": 28,
       "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/overview",
+      "controller": "OverviewController",
+      "handler": "getOverview",
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "line": 20,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/overview/audit",
+      "controller": "OverviewController",
+      "handler": "audit",
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "line": 34,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/overview/consents",
+      "controller": "OverviewController",
+      "handler": "consents",
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "line": 53,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/overview/history",
+      "controller": "OverviewController",
+      "handler": "history",
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "line": 27,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/overview/memberships",
+      "controller": "OverviewController",
+      "handler": "memberships",
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "line": 47,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/overview/workspaces",
+      "controller": "OverviewController",
+      "handler": "workspaces",
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "line": 41,
+      "column": 3
     }
   ],
   "controls": [
@@ -80371,7 +80425,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sourceSha256": "cb4c136c9b0c09fd4990848b5297586b79122e2d36ed25ebc78b033348f20fcd"
+      "sourceSha256": "80962c3571d545a8e59550df6f2d3d5c5bd162b93b842c4ee37f7370b412ad0e"
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
@@ -80400,6 +80454,10 @@
     {
       "file": "backend/upstream/backend/src/main-auth.ts",
       "sourceSha256": "6e90518e1fa053504ce2f73ddff15eed432e846dbbbc040a476454dbf4adc52d"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "sourceSha256": "c6777075de65521bde758ad789592ded3708da277c3fcbb8b89a60dbd38a50ed"
     },
     {
       "file": "backend/upstream/backend/src/privacycore/privacy-policy.controller.ts",
@@ -83859,7 +83917,7 @@
   },
   "counts": {
     "routes": 67,
-    "registeredEndpoints": 49,
+    "registeredEndpoints": 55,
     "controlDeclarations": 1656,
     "routeReachableDeclarations": 1504,
     "controlFiles": 238,

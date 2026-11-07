@@ -67,4 +67,10 @@ export class OverviewController extends ProductRequestAuthority {
       throw new ServiceUnavailableException('Account overview is temporarily unavailable. Your saved records are retained.');
     }
   }
+  protected async commandAccount(req: Request, touch = false) {
+    const current = await super.commandAccount(req, touch);
+    if (Object.keys(req.query ?? {}).some(key => !['after', 'limit'].includes(key))) throw new BadRequestException('Use only overview pagination parameters.');
+    await this.service.rateLimit('account-overview', current.uid, 30);
+    return current;
+  }
 }
