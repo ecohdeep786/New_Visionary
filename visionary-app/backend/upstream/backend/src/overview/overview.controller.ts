@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get, Header, Query, Req } from '@nestjs/common';
+import { BadRequestException, Controller, ForbiddenException, Get, Header, HttpException, Query, Req, ServiceUnavailableException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 import { FirebaseProductService } from '../auth/firebase-product/firebase-product.service';
@@ -8,8 +8,8 @@ import { OverviewPolicyError, OverviewService } from './overview.service';
 /**
  * DATA-07 owner-scoped overview endpoints. The uid is always server-derived
  * from the verified browser session; the repository only returns rows the uid
- * owns. Not wired into the connected runtime yet (Cloud SQL/Firestore adapter
- * + controller cutover is later integration); ship as a standalone module.
+ * owns. The product's SQL adapter is explicitly enabled; unavailable owning
+ * stores never fall back to fictional browser or in-memory projections.
  */
 @Controller('overview')
 export class OverviewController extends ProductRequestAuthority {
@@ -21,7 +21,7 @@ export class OverviewController extends ProductRequestAuthority {
   @Header('Cache-Control', 'no-store')
   async getOverview(@Req() req: Request) {
     const { uid } = await this.commandAccount(req, false);
-    return this.overview.overview(uid);
+    return this.read(() => this.overview.overview(uid));
   }
 
   @Get('history')
@@ -59,8 +59,12 @@ export class OverviewController extends ProductRequestAuthority {
   private async read<T>(operation: () => Promise<T>) {
     try { return await operation(); }
     catch (error) {
-      if (error instanceof OverviewPolicyError) throw new BadRequestException('Use a valid overview cursor and a limit from 1 to 50.');
-      throw error;
+      if (error instanceof OverviewPolicyError) {
+        if (error.code === 'unauthorized') throw new ForbiddenException('Account records are unavailable for this identity.');
+        throw new BadRequestException('Use a valid overview cursor and a limit from 1 to 50.');
+      }
+      if (error instanceof HttpException) throw error;
+      throw new ServiceUnavailableException('Account overview is temporarily unavailable. Your saved records are retained.');
     }
   }
 }
