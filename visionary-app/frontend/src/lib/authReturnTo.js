@@ -15,6 +15,13 @@ export function safeReturnTo() {
     const selected = billingSelection(window.location.search);
     if (selected) raw = billingPath(selected.plan, selected.interval);
     else if (window.location.pathname === '/dashboard/subscription') raw = window.location.pathname + window.location.search;
+    /* Deep-link recovery (F-01): the sign-in handoff navigates twice — the
+     * auth-state re-render Navigate consumes ?returnTo first, then the submit
+     * handler re-resolves from the already-recovered dashboard path. On a
+     * dashboard path the current path IS the intended destination, so a lost
+     * returnTo must never clobber it with the default. Routed through the
+     * same validation and app-param stripping as an explicit returnTo. */
+    else if (window.location.pathname?.startsWith('/dashboard/')) raw = window.location.pathname + window.location.search;
     else return "/dashboard/home";
   }
   try {

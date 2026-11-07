@@ -120,6 +120,17 @@ test("auth returns only to internal dashboard paths", () => {
   window.location.search="?returnTo="+encodeURIComponent("/dashboard/build?subject=Geometry");
   assert.equal(safeReturnTo(),"/dashboard/build?subject=Geometry");
 });
+test("a dashboard path without returnTo resolves to itself so the two-step sign-in handoff cannot clobber deep-link recovery (F-01)", () => {
+  window.location.pathname="/dashboard/learn"; window.location.search="";
+  assert.equal(safeReturnTo(),"/dashboard/learn");
+  window.location.pathname="/dashboard/learn"; window.location.search="?app_base_url=https://evil.example";
+  assert.equal(safeReturnTo(),"/dashboard/learn","app-bootstrap params must be stripped even on the dashboard-path fallback");
+  window.location.pathname="/dashboard/subscription"; window.location.search="";
+  assert.equal(safeReturnTo(),"/dashboard/subscription");
+  window.location.pathname="/login"; window.location.search="";
+  assert.equal(safeReturnTo(),"/dashboard/home","non-dashboard paths keep the workspace default");
+  delete window.location.pathname; window.location.search="";
+});
 test("preview account isolation, consent, persistence, and idempotent onboarding", async () => {
   const create = async (email,identity) => { await appClient.auth.register({email,password:"Preview-test-123!"}); await appClient.auth.verifyOtp({email}); return appClient.auth.updateMe({identity}); };
   const student=await create("learner@visionary.test","student");

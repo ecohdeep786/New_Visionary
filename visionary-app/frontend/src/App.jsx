@@ -189,7 +189,7 @@ const PublicApp = () => (
     <Route path="/security" element={<SecurityPage />} />
     <Route path="/accessibility" element={<AccessibilityPage />} />
     <Route path="/cookies" element={<CookiesPage />} />
-    <Route element={<ProtectedRoute unauthenticatedElement={<Login />} />}>
+    <Route element={<ProtectedRoute />}>
       <Route path="/onboarding" element={<Onboarding />} />
       <Route element={<OnboardingGate />}>
         <Route path="/dashboard" element={<DashboardLayout />}>

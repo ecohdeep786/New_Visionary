@@ -46495,9 +46495,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/ProtectedRoute.jsx:30:200",
+      "id": "frontend/src/components/ProtectedRoute.jsx:31:200",
       "file": "frontend/src/components/ProtectedRoute.jsx",
-      "line": 30,
+      "line": 31,
       "column": 200,
       "tag": "button",
       "events": [
@@ -78084,7 +78084,7 @@
     },
     {
       "file": "frontend/src/App.jsx",
-      "sourceSha256": "b99003551643d3fdf4048e90ba54d57848cd45723df0837255ac63782936b0d6"
+      "sourceSha256": "4a163e06d1c13757165afc294ee70cd187b9bf3703e3e15cf39a6e3832aab9dc"
     },
     {
       "file": "frontend/src/components/auth/AuthUI.jsx",
@@ -78844,7 +78844,7 @@
     },
     {
       "file": "frontend/src/components/ProtectedRoute.jsx",
-      "sourceSha256": "a6cdef07bf8a4fc95fdb579878c0ff564c80914266305212a177685918f0ff65"
+      "sourceSha256": "3c68b613e4ddc52fa6d0a5e977049fca05f07d74db7a799ac9e0603e81ef5863"
     },
     {
       "file": "frontend/src/components/ScrollToTop.jsx",
@@ -79136,7 +79136,7 @@
     },
     {
       "file": "frontend/src/lib/authReturnTo.js",
-      "sourceSha256": "95176d97066ed05c19fa4cff6e3758124fcef63e85fdcd2011bbde87c02e4a1e"
+      "sourceSha256": "4ca727e9d2c84ef7a491d205ad8a55d032756a0372b6e851c628f20ac6d62c80"
     },
     {
       "file": "frontend/src/lib/billingIntent.js",
