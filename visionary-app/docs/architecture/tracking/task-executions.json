@@ -2262,6 +2262,48 @@
         }
       ]
 
+    },
+    {
+      "checks": {
+        "backendBuild": true,
+        "productionCompilation": true,
+        "overviewTests": 37,
+        "cleanDataOutputTests": 37,
+        "dataIntegrationTests": 155,
+        "broaderBackendPassed": 162,
+        "broaderBackendFailed": 0,
+        "connectedBrowserVerified": true,
+        "browserGroups": 4,
+        "owningStoreAdapterVerified": true,
+        "hostedVerified": false
+      },
+      "jiraKey": "KAN-42",
+      "currentCheckpoint": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
+      "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-42-owner-projections",
+      "integration": {
+        "remotePublished": false
+      },
+      "remainingGates": [
+                "Candidate CI",
+        "Accepted published dev merge and integrated CI",
+        "Evidence preservation and worktree cleanup",
+        "Actual Jira transition"
+      ],
+      "branch": "codex/deepseek-kan-42-owner-projections",
+      "currentHandoff": "docs/architecture/delivery/KAN42_OWNER_OVERVIEW_FINAL.md",
+      "review": {
+        "state": "approved-backend-projection-engineering",
+        "implementer": "Codex /root",
+        "reviewer": "/root/kan42_final_review",
+        "candidateCommit": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
+        "approvedCommit": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
+        "originalCandidate": "2947c3860e5fc74f20c4cc9dc907e63e4967269f",
+        "originalDecision": "changes-requested"
+      },
+      "status": "Testing",
+      "fullFeatureAccepted": false,
+      "sourceId": "DATA-07",
+      "scope": "Backend owner projection API and real-store engineering acceptance; hosted rollout and ROLE-08 adapters remain separately gated"
     }
   ]
 }
