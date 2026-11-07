@@ -11,6 +11,8 @@ const controllerFiles = [
   'auth/firebase-product/firebase-product.controller.ts', 'auth/firebase-product/account.controller.ts',
   'billing/billing.controller.ts', 'feedback/feedback.controller.ts',
   'learning/learning.controller.ts', 'learning/knowledge-projection.controller.ts',
+  'workspaces/personal-workspace.controller.ts', 'privacycore/privacy-policy.controller.ts', 'invitations/product-invitation.controller.ts',
+  'consent/product-consent.controller.ts',
 ].map(file => backend + file);
 const provenanceFiles = [...controllerFiles, ...[
   'auth/firebase-product/firebase-product.module.ts', 'auth/firebase-product/request-authority.ts',
@@ -18,7 +20,12 @@ const provenanceFiles = [...controllerFiles, ...[
   'auth/firebase-product/session-policy.ts', 'auth/firebase-product/identity-admission.ts',
   'billing/billing.service.ts', 'billing/billing.repository.ts', 'billing/razorpay.provider.ts',
   'feedback/feedback.service.ts', 'learning/learning.service.ts', 'learning/learning.contract.ts',
-  'learning/knowledge-projection.service.ts', 'main-auth.ts', 'platform/production-http.ts',
+  'learning/knowledge-projection.service.ts', 'workspaces/personal-workspace.service.ts',
+  'consent/product-consent.service.ts', 'workspaces/workspace.repository.ts',
+  'invitations/product-invitation.service.ts', 'invitations/invitation.service.ts', 'invitations/invitation-store.ts', 'invitations/institution-approval.ts',
+  'privacycore/privacy-policy.service.ts', 'privacycore/privacy-policy.ts', 'privacycore/privacy-preservation-policy.v1.json',
+  'workspaces/provision-types.ts', 'workspaces/provision-store.ts', 'workspaces/firestore-provision-links.ts',
+  'workspaces/workspace-provisioner.ts', 'main-auth.ts', 'platform/production-http.ts',
 ].map(file => backend + file), 'integration/contracts/product-surface-review.json',
   'integration/contracts/request-limits.v1.json', 'integration/contracts/v1/openapi.json'];
 
@@ -28,7 +35,7 @@ export const profiles = {
   csrf: profile('Anonymous bootstrap; random CSRF cookie/token is not identity', 'No workspace grant', 'Current browser CSRF cookie only', 'Not applicable', 'Not consent to product/provider processing', ['none']),
   exchange: profile('Firebase-verified ID token, current identity admission and rate limits; existing cookie/device binding retained', 'Onboarding role/preferences grant no verified membership', 'Verified UID account/session/device; current session-policy epoch/cutoff', 'No educational source grant', 'No guardian or model-processing consent inferred', ['auth']),
   sessionRead: profile('Verified current session AND device; /me does not require expected-account header', 'No workspace membership inferred', 'Server-derived UID profile only', 'No source grant', 'No relationship consent inferred', ['auth']),
-  ownerRead: profile('Verified current session/device and compared X-Visionary-Account hint', 'Account-level only; no workspace grant', 'UID-derived account/device/invoice records; cursors stay within owner collection', 'No educational source grant', 'No staff/guardian/payer-to-learning grant', ['auth', 'billing']),
+  ownerRead: profile('Verified current session/device and compared X-Visionary-Account hint', 'Account-level only; no workspace grant', 'UID-derived account/device/invoice records and bounded approved preservation-policy reference; cursors stay within owner collection; policy reference grants no permissions', 'No educational source grant', 'No staff/guardian/payer-to-learning grant', ['auth', 'billing']),
   ownerWrite: profile('Verified current session/device, expected-account match, exact Origin and CSRF; rate limits', 'Self-reported role/workspace preferences are not membership', 'UID-owned profile/onboarding with transaction session-version check', 'No educational source grant', 'No guardian/organization proof inferred', ['auth']),
   logout: profile('Exact Origin/CSRF; device lookup plus expected UID OR matching cookie hash; no-op for absent/invalid device', 'No workspace grant', 'Only selected device/session revocation and cookie cleanup; not ordinary full-session authentication', 'Not applicable', 'No grant; revocation only', ['auth']),
   logoutAll: profile('Enabled action, verified session cookie/device binding and expected UID; transaction epoch and replay checks', 'No workspace grant', 'Current UID session-policy epoch/cutoff, device/session revocation and auth events', 'Not applicable', 'No grant; revocation only', ['auth']),
@@ -42,6 +49,10 @@ export const profiles = {
   learningWrite: profile('Current session/device/account plus Origin/CSRF', 'Owner records only; workspace tag consistency is not membership proof', 'UID-nested session/command/assessment transaction, expected revision and replay fingerprint; server scores stored authored key', 'Source/provider/criteria references and authored check input are bounded client input; no independent approved-source authority is established', 'No shared-classroom/guardian/model-provider consent established', ['learning']),
   knowledgeRead: profile('Current session/device and expected-account match', 'Owner projection scoped by workspace/concept/source/criteria; no verified membership added', 'UID-nested knowledge projection or selected model metadata; pKnown is not assessed mastery', 'Exact source/criteria/model compatibility, not published-source licensing', 'No cross-user reporting or model-data permission', ['knowledge']),
   knowledgeWrite: profile('Current session/device/account and Origin/CSRF', 'Scope derived from owned saved session/assessment; consistency checked', 'Owned immutable assessment receipt to projection/command/receipt/outbox transaction; bounded replay/rebuild checks', 'Pins stored source/criteria/model revisions; authoritative source/criteria service still gated', 'No cross-user or training permission', ['knowledge', 'learning']),
+  consentRead: profile('Current live visionary-research/named-default session/device and expected account; cursor signed for this UID with bounded expiry', 'No workspace selector or membership grant', 'Explicit environment/target binding and actual DML-only SQL role/schema/database; twenty own grants per page; erased subjects denied', 'No private source bytes exposed', 'Consent status only; no new grant or policy publication', ['consent']),
+  consentRevoke: profile('Current pinned live identity realm, session/device, expected account, Origin/CSRF and per-UID rate admission', 'No client account/workspace selector accepted', 'Actual DML-only bound runtime; owner-only SQL consent/share revocation, audit and outbox transaction; retries return the same receipt', 'No source access granted or previously delivered bytes recalled', 'No new consent, deletion, default training or consumer deployment; connected delivery remains separately gated', ['consent']),
+  institutionInvitations: profile('Current session, account and CSRF; verified provider email on acceptance; bounded UID rate admission', 'Canonical PostgreSQL workspace, admin-only recovery and configured independent reviewers', 'Local emulator and synthetic SQL only; transaction binds invitation to its locked issuance approval', 'No source publication or private learning access', 'Current adult privacy admission before issuing, looking up, accepting or approving; recovery returns no recipient or token', ['workspaceProvision']),
+  workspaceProvision: profile('Verified current session/device, expected-account match, exact Origin/CSRF and per-UID 10/minute rate admission; UID derived by commandAccount', 'Creates only the authenticated owner personal workspace and OWNER membership; caller role/workspace hints rejected', 'Explicit opt-in runtime-only SQL identity; target/UID-scoped command receipt, workspace, member, audit and outbox commit in one SQL transaction', 'No educational source or publication access granted', 'Existing Firestore account/profile/billing preserved; dedicated pending/completed locator is not a permission grant', ['workspaceProvision']),
   domain: profile('REQUIRED: server-verified UID/session, expected account, action-specific admission; writes require Origin/CSRF', 'REQUIRED: current verified membership/capability, never preview role or caller workspaceId', 'REQUIRED: current owner/object/action and exact revision/digest; reauthorize duplicate and in-flight work', 'REQUIRED: current published source/version/rights and permitted action; withdrawal checked', 'REQUIRED: current purpose/relationship/consent/entitlement; payment is not a role', ['domain'], 'proposed'),
   privateFile: profile('REQUIRED: current authenticated UID and permitted action; signed URL possession alone is insufficient', 'REQUIRED: current workspace/object/source authority', 'REQUIRED: private object/asset/export ownership, quarantine/finalize checks; reauthorize downloads and issuance', 'REQUIRED: approved media/source rights and permitted offline/export use', 'REQUIRED: purpose/consent, expiry/revocation; downloaded bytes have residual-access limits', ['domain', 'privateObjects'], 'proposed'),
   privateJob: profile('REQUIRED: verified queue/service identity, scoped operation and accountable operator where applicable', 'REQUIRED: reload original current owner/workspace/action; never authorize by queue payload', 'REQUIRED: owning-store receipt/outbox, immutable command identity, revision and cancellation; no cross-store ACID claim', 'REQUIRED: source/rights recheck at execution and delivery', 'REQUIRED: current purpose/consent/entitlement; expired/revoked work cannot commit', ['domain', 'jobs'], 'proposed'),
@@ -53,12 +64,14 @@ export const profiles = {
 };
 
 const storeDefinitions = {
+  consent: { state: 'observed', authority: 'Explicit opt-in PostgreSQL consent_grants/share_grants; UID-scoped canonical transaction, audit and outbox; no job/download consumer activation or hosted acceptance' },
   none: { state: 'observed', authority: 'No durable owning store for this operation; public config/static output or CSRF cookie only' },
   auth: { state: 'observed', authority: 'Firebase Auth verifies identity; Firestore visionary_accounts/{uid}, UID devices/authEvents, server session lookup and auth operational counters/events; IAM Admin SDK, not browser rules' },
   billing: { state: 'observed', authority: 'Firestore visionary_accounts/{uid}/billing/test plus commands/invoices; separate test queue, subscription/payment/event/invitation/membership indexes; provider verifies external payment facts' },
   feedback: { state: 'observed', authority: 'Firestore UID-nested feedback/commands and admission counters through current account authority' },
   learning: { state: 'observed', authority: 'Firestore visionary_accounts/{uid}/learningSessions with checks/assessments and learningCommands; owning transaction, no SQL cutover implied' },
   knowledge: { state: 'observed', authority: 'Firestore UID-nested knowledgeCommands/Receipts/Projections/Outbox; calibrated metadata is not a second learner-evidence owner' },
+  workspaceProvision: { state: 'observed', authority: 'Opt-in PostgreSQL domain transaction/receipt plus Firestore pending/completion reconciliation; local/staging developmentWorkspaceLinks are isolated from production domainLinks; existing account remains Firestore-owned; not distributed ACID or hosted acceptance' },
   domain: { state: 'proposed', authority: 'Selected reviewed owning domain store pending DATA-01 and authority/policy acceptance; legacy imported Prisma schema is not deployed authority' },
   privateObjects: { state: 'proposed', authority: 'Private object bytes plus owning-domain metadata; no upload/download service installed by this inventory' },
   jobs: { state: 'proposed', authority: 'Owning-domain transactional outbox/job receipt plus scoped worker orchestration; no independent queue authorization or cross-store transaction assumed' },
@@ -66,9 +79,11 @@ const storeDefinitions = {
 };
 
 const assignments = {
+  consentRead: ['GET /api/account/privacy/consents'],
+  consentRevoke: ['POST /api/account/privacy/consents/revoke'],
   public: ['GET /api/auth/methods', 'GET /api/billing/catalog'],
   csrf: ['GET /api/auth/csrf'], exchange: ['POST /api/auth/session'], sessionRead: ['GET /api/auth/me'],
-  ownerRead: ['GET /api/account/overview', 'GET /api/account/devices', 'GET /api/account/invoices'],
+  ownerRead: ['GET /api/account/privacy/policy', 'GET /api/account/overview', 'GET /api/account/devices', 'GET /api/account/invoices'],
   ownerWrite: ['POST /api/auth/onboarding', 'PATCH /api/auth/profile', 'POST /api/auth/onboarding/introduction'],
   logout: ['POST /api/auth/logout'], logoutAll: ['POST /api/auth/logout-all'],
   billingRead: ['GET /api/billing/account', 'GET /api/billing/invoices/:id', 'GET /api/billing/family/invitations/:id'],
@@ -79,6 +94,8 @@ const assignments = {
   learningWrite: ['POST /api/account/learning/sessions', 'POST /api/account/learning/sessions/:sessionId/checks', 'POST /api/account/learning/sessions/:sessionId/assessments', 'POST /api/account/learning/sessions/:sessionId/cancel'],
   knowledgeRead: ['GET /api/account/learning/knowledge/projections', 'GET /api/account/learning/knowledge/models'],
   knowledgeWrite: ['POST /api/account/learning/knowledge/project'],
+  institutionInvitations: ['POST /api/account/invitations/issue', 'POST /api/account/invitations/accept', 'POST /api/account/invitations/pending', 'POST /api/account/invitations/revoke', 'POST /api/account/invitations/membership', 'POST /api/account/invitations/history', 'POST /api/account/invitations/institution/approve', 'POST /api/account/invitations/institution/revoke'],
+  workspaceProvision: ['POST /api/account/workspace/provision'],
 };
 const groupProfiles = {
   'public-discovery': 'public', 'public-enquiry-careers-partners': 'public', 'public-updates-distribution': 'public',

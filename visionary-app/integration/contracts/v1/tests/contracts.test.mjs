@@ -44,10 +44,14 @@ for (const name of Object.keys(manifest.operations)) {
     if (key) { delete value[key]; assert.equal(validate(name, value).ok, false); }
   });
 }
-test('all declared DTOs have fixtures; legacy route inventory remains identical', () => {
+test('all declared DTOs have fixtures; current route inventory matches reviewed limits', () => {
   assert.deepEqual(Object.keys(manifest.operations).sort(), Object.keys(fixtures).sort());
-  assert.equal(Object.keys(manifest.currentRoutes).length, 37);
+  assert.equal(Object.keys(manifest.currentRoutes).length, 49);
+  assert.equal(manifest.currentRoutes['GET /api/account/privacy/consents'], 'existing-json');
+  assert.equal(manifest.currentRoutes['POST /api/account/privacy/consents/revoke'], 'existing-json');
+  assert.equal(manifest.currentRoutes['GET /api/account/privacy/policy'], 'existing-json');
   assert.deepEqual(manifest.currentRoutes, limits.currentRoutes);
+  assert.equal(manifest.currentRoutes['POST /api/account/workspace/provision'], 'existing-json');
   assert.deepEqual(manifest.infrastructureSurfaces, limits.infrastructureSurfaces.routes);
   assert.equal(manifest.frozen, false); assert.equal(manifest.runtimeEndpointsRegistered, 0);
   assert.equal(manifest.freezeGates.length, 3);
