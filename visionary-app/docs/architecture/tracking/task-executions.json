@@ -2262,6 +2262,45 @@
         }
       ]
 
+    },
+    {
+      "checks": {
+        "overviewTests": 22,
+        "blockedSuite": "privacycore requires loopback Firestore emulator",
+        "backendBuild": true,
+        "overviewFailed": 0,
+        "broaderBackendFailed": 1,
+        "owningStoreAdapterVerified": false,
+        "broaderBackendPassed": 110,
+        "connectedBrowserVerified": false
+      },
+      "jiraKey": "KAN-42",
+      "currentCheckpoint": "40fb1852142b0c655868d8bada55bc0ec1213a6b",
+      "worktree": "C:/Users/Administrator/nv-worktrees/qa-kan-42-overview",
+      "integration": {
+        "remotePublished": false
+      },
+      "remainingGates": [
+        "Separate review of replacement exact SHA",
+        "Real owning-store adapter and product registration",
+        "Applicable authority/deletion and database recovery checks",
+        "Connected browser acceptance",
+        "Live prerequisite acceptance"
+      ],
+      "branch": "codex/principal-kan-42-overview-repair",
+      "currentHandoff": "docs/architecture/reviews/KAN42_OVERVIEW_REPAIR_2026-11-07.md",
+      "review": {
+        "state": "pending-replacement-review",
+        "originalCandidate": "2947c3860e5fc74f20c4cc9dc907e63e4967269f",
+        "jiraCommentId": "10643",
+        "implementer": "Codex /root",
+        "candidateCommit": "40fb1852142b0c655868d8bada55bc0ec1213a6b",
+        "originalDecision": "changes-requested"
+      },
+      "status": "In Progress",
+      "fullFeatureAccepted": false,
+      "sourceId": "DATA-07",
+      "scope": "Repair candidate for redacted, bounded owner projections; real-store/product/browser acceptance incomplete"
     }
   ]
 }

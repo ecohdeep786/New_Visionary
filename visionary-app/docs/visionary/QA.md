@@ -1627,3 +1627,8 @@ Canonical synthetic Firebase/account eight-group test also passes on7a through A
 
 
 2026-10-21 / KAN-34 release choices: current c896dafa independent review passes18script/554frontend, full checks/build, six recovery/four sign-in compiled scenarios and two held-response/account-draft probes. Latest candidate source expands remembered-device policy and removes Apple under founder instruction; replacement review required. Real reset handoff is followed by old-password denial and pre-reset session denial; new-password sign-in is unobserved. Firebase template API returns400 EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED for each template, and console also rejects sender/subject-only save with explicit project restriction. Auth/provider/domain/callback/sending configuration read-back unchanged. No credential/mail/action-code data belongs in source/Jira.
+
+
+## 2026-11-07 — KAN-42 backend review and repair checkpoint
+
+Original 2947c386 rejected after executable credential-leak, wrong-role and invalid-limit probes despite 8/8 original tests. Repair 40fb1852142b0c655868d8bada55bc0ec1213a6b on codex/principal-kan-42-overview-repair: runtime allowlists, viewer roles, all-collection pagination, strict bounds and standalone HTTP routing; backend build and 22 focused tests pass. Broader backend 110 pass / 1 emulator-gated failure. Jira In Progress; replacement review, real-store/product registration and connected browser acceptance remain open. No dev merge or Done. See architecture/reviews/KAN42_OVERVIEW_REPAIR_2026-11-07.md. Thirteen verified merged local refs for actual Done KAN-31/33/35/37/38 removed; remote backups retained; active frontend F-04 untouched.

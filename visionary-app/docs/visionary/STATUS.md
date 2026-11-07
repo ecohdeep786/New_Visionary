@@ -1472,3 +1472,8 @@ visionary.org.in is live on visionary-research/asia-south1 via ALB34.8.58.39 wit
 
 
 2026-10-21 / KAN-34 continuation: founder removes Apple web sign-in and explicitly chooses native Firebase verification links after numeric-code delivery constraints are explained. Candidate now remembers server-owned device sessions for14days absolute/7days idle, retains revocation and memory-only Firebase tokens, rejects malformed expiry, and repairs sign-out outage wording. Onboarding recovery source c896dafa independently approved in report-only abf32913; newer source requires fresh review. Desired Firebase sender/subject/reset copy prepared, but all4API template writes and console metadata-only save reject EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED; no template deployment claimed. Existing visionary.org.in sender domain remains IN_PROGRESS. Full acceptance/integration/Done/cleanup pending.
+
+
+## 2026-11-07 — KAN-42 backend review and repair checkpoint
+
+Original 2947c386 rejected after executable credential-leak, wrong-role and invalid-limit probes despite 8/8 original tests. Repair 40fb1852142b0c655868d8bada55bc0ec1213a6b on codex/principal-kan-42-overview-repair: runtime allowlists, viewer roles, all-collection pagination, strict bounds and standalone HTTP routing; backend build and 22 focused tests pass. Broader backend 110 pass / 1 emulator-gated failure. Jira In Progress; replacement review, real-store/product registration and connected browser acceptance remain open. No dev merge or Done. See architecture/reviews/KAN42_OVERVIEW_REPAIR_2026-11-07.md. Thirteen verified merged local refs for actual Done KAN-31/33/35/37/38 removed; remote backups retained; active frontend F-04 untouched.
