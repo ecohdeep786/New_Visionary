@@ -13,8 +13,6 @@
     "src/consent/**/*.ts",
     "src/file/download*.ts",
     "src/commands/**/*.ts",
-    "src/overview/overview-types.ts",
-    "src/overview/overview-store.ts",
-    "src/overview/overview.service.ts"
+    "src/overview/**/*.ts"
   ]
 }
