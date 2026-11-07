@@ -2346,7 +2346,7 @@
       "branch": "zcode/kan-102-bill01-ingress-acceptance",
       "implementationCommit": "4ff0d2ea3f381814033fb7bdfb15a3f08a3d5dd0",
       "receiptCommit": "317c81ad4fbc7149e5a36b91b35259884995cf2c",
-      "base": "origin/dev 6cbf958b (KAN-42 reviewed merge)",
+      "base": "origin/dev 6cbf958b (KAN-42 reviewed merge); dev 4bb3c22d (KAN-43) merged into the candidate",
       "scope": "canonical HTTPS-ingress acceptance, local-maximum: the real production composition (configureProductionHttp) over the real controllers/services behind a real TLS terminator on the canonical origin https://visionary.org.in pinned to loopback; authorized Auth+Firestore emulator identity plane; registered npm run billing:ingress:check (protocol suite 11/11 + Edge browser journey 7/7; fail-fast law proven: BILL01_SELF_TEST_FAIL=1 exits 1); whole-repo npm run check exit 0",
       "externalGates": [
         "real Razorpay test-merchant keys absent on this box (founder-supplied CSV; procedure in the runbook)",
