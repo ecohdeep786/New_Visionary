@@ -7,6 +7,9 @@
 // implements the same contract.
 import type { WorkspaceProjection, MembershipProjection, ConsentProjection, CommandHistoryRow, AuditEventProjection, ProjectionRole } from './overview-types';
 import { MAX_PAGE_SIZE } from './overview-types';
+import { workspaceProjection, membershipProjection, consentProjection, commandProjection, auditProjection, accountProjection } from './overview-projections';
+
+type StorePage<T> = { rows: T[]; nextCursor: string | null };
 
 interface SeedWorkspace extends WorkspaceProjection { uid: string; }
 interface SeedMembership extends MembershipProjection { uid: string; }
@@ -21,9 +24,9 @@ export interface OverviewStore {
     redacted: string[];
   }>;
   /** Workspaces the uid created or is an explicit member of. Never ALL workspaces of a role. */
-  workspaceRows(uid: string): Promise<WorkspaceProjection[]>;
-  membershipRows(uid: string): Promise<MembershipProjection[]>;
-  consentRows(uid: string): Promise<ConsentProjection[]>;
+  workspaceRows(uid: string, after: string | null, size: number): Promise<StorePage<WorkspaceProjection>>;
+  membershipRows(uid: string, after: string | null, size: number): Promise<StorePage<MembershipProjection>>;
+  consentRows(uid: string, after: string | null, size: number): Promise<StorePage<ConsentProjection>>;
   commandHistory(uid: string, afterCursor: string | null, size: number): Promise<{ rows: CommandHistoryRow[]; nextCursor: string | null }>;
   auditRows(uid: string, afterCursor: string | null, size: number): Promise<{ rows: AuditEventProjection[]; nextCursor: string | null }>;
   workspaceRole(uid: string, workspaceId: string): Promise<ProjectionRole | null>;
@@ -43,42 +46,44 @@ export class InMemoryOverviewStore implements OverviewStore {
 
   async accountOverview(uid: string) {
     if (uid !== this.acc.uid) return { profile: null, billing: null, redacted: [] };
-    return { profile: this.acc.profile, billing: this.acc.billing, redacted: this.acc.redacted.slice() };
+    return accountProjection(this.acc);
   }
 
   seedWorkspace(w: SeedWorkspace, ownerUid: string) { this.workspaces.set(w.id, { ...w, uid: ownerUid }); }
-  async workspaceRows(uid: string): Promise<WorkspaceProjection[]> {
+  async workspaceRows(uid: string, after: string | null, size: number): Promise<StorePage<WorkspaceProjection>> {
     const memberWorkspaceIds = new Set<string>();
     for (const m of this.memberships.values()) if (m.uid === uid) memberWorkspaceIds.add(m.workspaceId);
-    return [...this.workspaces.values()]
+    const rows = [...this.workspaces.values()]
       .filter((w) => w.uid === uid || memberWorkspaceIds.has(w.id))
-      .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
-      .map(({ uid: _ignore, ...rest }) => rest);
+      .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id));
+    const page = this.pageRows(rows, after, size);
+    return { rows: page.rows.map(w => workspaceProjection({ ...w, role: w.uid === uid ? 'OWNER' : this.memberships.get(`${uid}:${w.id}`)!.role })), nextCursor: page.nextCursor };
   }
 
   seedMembership(m: SeedMembership) { this.memberships.set(`${m.uid}:${m.workspaceId}`, m); }
-  async membershipRows(uid: string): Promise<MembershipProjection[]> {
-    return [...this.memberships.values()].filter((m) => m.uid === uid).sort((a, b) => b.joinedAt.localeCompare(a.joinedAt));
+  async membershipRows(uid: string, after: string | null, size: number): Promise<StorePage<MembershipProjection>> {
+    const page = this.pageRows([...this.memberships.values()].filter((m) => m.uid === uid).sort((a, b) => b.joinedAt.localeCompare(a.joinedAt) || a.id.localeCompare(b.id)), after, size);
+    return { rows: page.rows.map(membershipProjection), nextCursor: page.nextCursor };
   }
 
   seedConsent(c: SeedConsent) { this.consents.set(c.id, c); }
-  async consentRows(uid: string): Promise<ConsentProjection[]> {
-    return [...this.consents.values()].filter((c) => c.uid === uid).sort((a, b) => b.grantedAt.localeCompare(a.grantedAt))
-      .map(({ uid: _ignore, ...rest }) => rest);
+  async consentRows(uid: string, after: string | null, size: number): Promise<StorePage<ConsentProjection>> {
+    const page = this.pageRows([...this.consents.values()].filter((c) => c.uid === uid).sort((a, b) => b.grantedAt.localeCompare(a.grantedAt) || a.id.localeCompare(b.id)), after, size);
+    return { rows: page.rows.map(consentProjection), nextCursor: page.nextCursor };
   }
 
-  pushCommand(row: SeedCommand) { this.commands.push(row); this.commands.sort((a, b) => (b.committedAt ?? '').localeCompare(a.committedAt ?? '')); }
+  pushCommand(row: SeedCommand) { this.commands.push(row); this.commands.sort((a, b) => (b.committedAt ?? '').localeCompare(a.committedAt ?? '') || a.id.localeCompare(b.id)); }
   async commandHistory(uid: string, afterCursor: string | null, size: number) {
     const limit = Math.min(size, MAX_PAGE_SIZE);
-    const rows = this.commands.filter((r) => r.uid === uid).map(({ uid: _ignore, ...rest }) => rest);
-    return this.pageRows(rows, afterCursor, limit);
+    const page = this.pageRows(this.commands.filter((r) => r.uid === uid), afterCursor, limit);
+    return { rows: page.rows.map(commandProjection), nextCursor: page.nextCursor };
   }
 
-  pushAudit(row: SeedAudit) { this.audits.push(row); this.audits.sort((a, b) => b.createdAt.localeCompare(a.createdAt)); }
+  pushAudit(row: SeedAudit) { this.audits.push(row); this.audits.sort((a, b) => b.createdAt.localeCompare(a.createdAt) || a.id.localeCompare(b.id)); }
   async auditRows(uid: string, afterCursor: string | null, size: number) {
     const limit = Math.min(size, MAX_PAGE_SIZE);
-    const rows = this.audits.filter((r) => r.uid === uid).map(({ uid: _ignore, ...rest }) => rest);
-    return this.pageRows(rows, afterCursor, limit);
+    const page = this.pageRows(this.audits.filter((r) => r.uid === uid), afterCursor, limit);
+    return { rows: page.rows.map(auditProjection), nextCursor: page.nextCursor };
   }
 
   async workspaceRole(uid: string, workspaceId: string): Promise<ProjectionRole | null> {
@@ -89,7 +94,7 @@ export class InMemoryOverviewStore implements OverviewStore {
   }
 
   private pageRows<T extends { id: string }>(rows: T[], after: string | null, limit: number) {
-    if (limit < 1) return { rows: [], nextCursor: null };
+    if (!Number.isSafeInteger(limit) || limit < 1 || limit > MAX_PAGE_SIZE) throw new RangeError('invalid_page');
     let index = 0;
     if (after) {
       const found = rows.findIndex((r) => r.id === after);

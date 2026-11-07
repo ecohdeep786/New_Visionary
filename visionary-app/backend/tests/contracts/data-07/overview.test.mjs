@@ -34,10 +34,10 @@ test('DATA-07 overview: returns the owner-scoped redacted account/domain project
   assert.equal(o.uid, 'uid-1');
   assert.equal(o.profile.displayName, 'Alice');
   assert.ok(o.redacted.includes('refresh_token'), 'private security fields are listed as redacted');
-  assert.equal(o.workspaces.length, 1);
-  assert.equal(o.workspaces[0].id, 'ws-1');
-  assert.equal(o.memberships.length, 1);
-  assert.equal(o.consents.length, 1);
+  assert.equal(o.workspaces.items.length, 1);
+  assert.equal(o.workspaces.items[0].id, 'ws-1');
+  assert.equal(o.memberships.items.length, 1);
+  assert.equal(o.consents.items.length, 1);
   // No projection may carry a private security field value.
   const serialized = JSON.stringify(o);
   for (const token of ['refresh_token=xyz', 'session_abc', 'ip=1.2.3.4']) {
@@ -50,7 +50,7 @@ test('DATA-07 deny: a foreign uid sees no account data (wrong-owner by construct
   s.seedAccount({ uid: 'uid-1', profile: { displayName: 'Alice', emailHint: 'a***@example.com' }, billing: null, redacted: [] });
   const o = await svc.overview('attacker-uid');
   assert.equal(o.profile, null, 'no profile leaks to a different uid');
-  assert.equal(o.redacted.length, 0);
+  assert.equal(o.billing, null);
 });
 
 test('DATA-07 owner-scoping: workspaces are only those the uid created or belongs to; a guest sees nothing', async () => {
@@ -60,15 +60,15 @@ test('DATA-07 owner-scoping: workspaces are only those the uid created or belong
   s.seedMembership({ id: 'm-1', uid: 'uid-1', workspaceId: 'ws-member', role: 'MEMBER', sourceVersion: 'v1', purpose: null, consentVersion: null, joinedAt: '2026-10-02T00:00:00Z' });
 
   const o = await svc.overview('uid-1');
-  const ids = o.workspaces.map((w) => w.id).sort();
+  const ids = o.workspaces.items.map((w) => w.id).sort();
   assert.deepEqual(ids, ['ws-member', 'ws-owner'], 'owner sees created + member workspaces, not ALL workspaces of a role');
 
   // A uid with no membership and no created workspace sees nothing.
   const stranger = await svc.overview('stranger-uid');
-  assert.equal(stranger.workspaces.length, 0, 'a non-member sees no workspaces');
+  assert.equal(stranger.workspaces.items.length, 0, 'a non-member sees no workspaces');
   // Merely sharing the same role never grants visibility: uid-9 created ws-owner? no — uid-9 owns ws-member by creation, not uid-1.
   const uid9 = await svc.overview('uid-9');
-  const uid9Ids = uid9.workspaces.map((w) => w.id);
+  const uid9Ids = uid9.workspaces.items.map((w) => w.id);
   assert.ok(!uid9Ids.includes('ws-owner'), 'another creator does not see uid-1\'s private workspace');
 });
 

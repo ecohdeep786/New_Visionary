@@ -5,7 +5,8 @@
 // user agents, payment identifiers) never appear in a projection. History is
 // cursor-paginated and bounded — there is no unlimited user-history document.
 import type { AccountOverviewDto, CommandHistoryRow, Page, PageCursor, WorkspaceProjection, MembershipProjection, ConsentProjection, AuditEventProjection } from './overview-types';
-import { DEFAULT_PAGE_SIZE } from './overview-types';
+import { DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE } from './overview-types';
+import { accountProjection, workspaceProjection, membershipProjection, consentProjection, commandProjection, auditProjection } from './overview-projections';
 import type { OverviewStore } from './overview-store';
 
 export class OverviewPolicyError extends Error {
@@ -27,12 +28,16 @@ export class OverviewService {
 
   private when() { return this.now().toISOString(); }
 
+  private assertUid(uid: string) {
+    if (typeof uid !== 'string' || !uid.trim() || uid.length > 128 || /[\x00-\x1f\x7f]/.test(uid)) throw new OverviewPolicyError('unauthorized');
+  }
+
   private assertPageSize(size: unknown): number {
-    if (size === undefined || size === null) return DEFAULT_PAGE_SIZE;
-    if (typeof size === 'number' && Number.isSafeInteger(size) && size >= 1) return size;
-    if (typeof size === 'string' && /^\d+$/.test(size)) {
+    if (size === undefined) return DEFAULT_PAGE_SIZE;
+    if (typeof size === 'number' && Number.isSafeInteger(size) && size >= 1 && size <= MAX_PAGE_SIZE) return size;
+    if (typeof size === 'string' && /^[1-9]\d?$/.test(size)) {
       const n = Number(size);
-      if (n >= 1) return n;
+      if (n <= MAX_PAGE_SIZE) return n;
     }
     throw new OverviewPolicyError('invalid_page');
   }
@@ -50,43 +55,63 @@ export class OverviewService {
   }
 
   /** The verified uid's redacted account/domain overview. Wrong-owner access is impossible by construction (uid is server-derived). */
-  async overview(uid: string): Promise<AccountOverviewDto & { workspaces: WorkspaceProjection[]; memberships: MembershipProjection[]; consents: ConsentProjection[]; history: Page<CommandHistoryRow>; audit: Page<AuditEventProjection> }> {
+  async overview(uid: string): Promise<AccountOverviewDto & { workspaces: Page<WorkspaceProjection>; memberships: Page<MembershipProjection>; consents: Page<ConsentProjection>; history: Page<CommandHistoryRow>; audit: Page<AuditEventProjection> }> {
+    this.assertUid(uid);
     const [account, workspaces, memberships, consents, history, audit] = await Promise.all([
       this.store.accountOverview(uid),
-      this.store.workspaceRows(uid),
-      this.store.membershipRows(uid),
-      this.store.consentRows(uid),
+      this.store.workspaceRows(uid, null, DEFAULT_PAGE_SIZE),
+      this.store.membershipRows(uid, null, DEFAULT_PAGE_SIZE),
+      this.store.consentRows(uid, null, DEFAULT_PAGE_SIZE),
       this.store.commandHistory(uid, null, DEFAULT_PAGE_SIZE),
       this.store.auditRows(uid, null, DEFAULT_PAGE_SIZE),
     ]);
     return {
       uid,
       asOf: this.when(),
-      profile: account.profile,
-      billing: account.billing,
-      redacted: account.redacted,
-      workspaces,
-      memberships,
-      consents,
-      history: this.page(history.rows, history.nextCursor),
-      audit: this.page(audit.rows, audit.nextCursor),
+      ...accountProjection(account),
+      workspaces: this.page(workspaces.rows.map(workspaceProjection), workspaces.nextCursor),
+      memberships: this.page(memberships.rows.map(membershipProjection), memberships.nextCursor),
+      consents: this.page(consents.rows.map(consentProjection), consents.nextCursor),
+      history: this.page(history.rows.map(commandProjection), history.nextCursor),
+      audit: this.page(audit.rows.map(auditProjection), audit.nextCursor),
     };
   }
 
   /** Paginated, redacted command history for the verified uid. */
   async history(uid: string, after?: unknown, size?: unknown): Promise<Page<CommandHistoryRow>> {
+    this.assertUid(uid);
     const cursor = this.assertCursor(after);
     const limit = this.assertPageSize(size);
     const { rows, nextCursor } = await this.store.commandHistory(uid, cursor, limit);
-    return this.page(rows, nextCursor);
+    return this.page(rows.map(commandProjection), nextCursor);
   }
 
   /** Paginated, redacted audit projection for the verified uid. */
   async audit(uid: string, after?: unknown, size?: unknown): Promise<Page<AuditEventProjection>> {
+    this.assertUid(uid);
     const cursor = this.assertCursor(after);
     const limit = this.assertPageSize(size);
     const { rows, nextCursor } = await this.store.auditRows(uid, cursor, limit);
-    return this.page(rows, nextCursor);
+    return this.page(rows.map(auditProjection), nextCursor);
+  }
+
+  async workspaces(uid: string, after?: unknown, size?: unknown): Promise<Page<WorkspaceProjection>> {
+    this.assertUid(uid);
+    const cursor = this.assertCursor(after), limit = this.assertPageSize(size);
+    const result = await this.store.workspaceRows(uid, cursor, limit);
+    return this.page(result.rows.map(workspaceProjection), result.nextCursor);
+  }
+  async memberships(uid: string, after?: unknown, size?: unknown): Promise<Page<MembershipProjection>> {
+    this.assertUid(uid);
+    const cursor = this.assertCursor(after), limit = this.assertPageSize(size);
+    const result = await this.store.membershipRows(uid, cursor, limit);
+    return this.page(result.rows.map(membershipProjection), result.nextCursor);
+  }
+  async consents(uid: string, after?: unknown, size?: unknown): Promise<Page<ConsentProjection>> {
+    this.assertUid(uid);
+    const cursor = this.assertCursor(after), limit = this.assertPageSize(size);
+    const result = await this.store.consentRows(uid, cursor, limit);
+    return this.page(result.rows.map(consentProjection), result.nextCursor);
   }
 }
 
