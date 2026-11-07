@@ -17,6 +17,7 @@ for (const [name, change] of [
   ['duplicate role would double-count its cap', p => p.workloads.push({ ...p.workloads[0] })],
   ['unlimited role', p => p.workloads[0].roleConnectionLimit = -1],
   ['unknown pool count', p => p.workloads[0].poolsPerInstance = []],
+  ['sparse pool inventory', p => p.workloads[0].poolsPerInstance = [3, , 3]],
   ['unknown plan field', p => p.extra = true], ['string count', p => p.workloads[0].maxInstances = '2'],
   ['infinite count', p => p.workloads[0].revisionOverlap = Infinity],
   ['unsafe multiplication', p => p.workloads[0].maxInstances = Number.MAX_SAFE_INTEGER],

@@ -12,6 +12,22 @@ const { WorkspaceMetadataCommands } = req('./dist/src/commands/workspace-metadat
 const { verifyPostgresConnectionBudget } = req('./dist/src/concurrency/connection-budget.js');
 const { PrismaClient } = req('@prisma/client');
 let f, second, target, a, b; const children = [], extraRoles = [];
+async function deadline(promise, label, milliseconds = 2000) {
+  let timer;
+  try { return await Promise.race([promise, new Promise((_, reject) => {
+    timer = setTimeout(() => reject(Error(label + ' deadline')), milliseconds);
+  })]); } finally { clearTimeout(timer); }
+}
+async function closeWorker(child) {
+  if (child.exitCode !== null) return;
+  const exited = new Promise(ok => child.once('exit', ok));
+  try {
+    if (child.connected) child.send('close');
+    await deadline(exited, 'Worker shutdown');
+  } finally {
+    if (child.exitCode === null) { child.kill(); await deadline(exited, 'Worker termination'); }
+  }
+}
 before(async () => {
   f = await stagingDatabase(); await new MigrationRunner(f.store(), canonicalMigrations(backend)).applyAll(); await f.grantRuntime();
   target = { role: f.runtimeRole, schema: f.schema, database: new URL(f.config.runtimeUrl).pathname.slice(1) };
@@ -20,10 +36,7 @@ before(async () => {
 });
 after(async () => {
   for (const child of children) {
-    if (child.exitCode !== null) continue;
-    if (child.connected) child.send('close');
-    await Promise.race([new Promise(ok => child.once('exit', ok)), new Promise(ok => setTimeout(ok, 2000))]);
-    if (child.exitCode === null) child.kill();
+    await closeWorker(child);
   }
   await second?.$disconnect();
   for (const role of extraRoles) await f.admin.$executeRawUnsafe('DROP ROLE "' + role + '"');
@@ -69,23 +82,32 @@ test('real simultaneous grants deduplicate canonical receipt; revoked version ca
   assert.equal(one.id, two.id);
   assert.equal(await f.db.consentGrant.count({ where: { uid: x.uid } }), 1);
   assert.equal(await f.db.auditEvent.count({ where: { uid: x.uid, operation: 'consent.granted' } }), 1);
+  assert.equal(await f.db.outboxEvent.count({ where: { uid: x.uid } }), 1);
   const held = holdSubjectLock(f.runtime), revoker = WorkspaceRepository.forConsentRuntime(held.hooked, target);
-  const revocation = revoker.revokeConsent(x.uid, one.id); await held.entered;
-  const grant = b.grantAccountConsent(x.uid, 'downloads', 'v1', 600); const observed = grant.catch(error => error);
-  try { await waitForDatabaseLock(); } finally { held.release(); }
-  await revocation; assert.match((await observed).message, /closed consent/);
+  const revocation = revoker.revokeConsent(x.uid, one.id); void revocation.catch(() => {});
+  let observed;
+  try {
+    await deadline(held.entered, 'Revocation row lock');
+    observed = b.grantAccountConsent(x.uid, 'downloads', 'v1', 600).catch(error => error);
+    await waitForDatabaseLock();
+  } finally { held.release(); await revocation; }
+  assert.match((await observed).message, /closed consent/);
   assert.ok((await f.db.consentGrant.findUnique({ where: { id: one.id } })).revokedAt);
   assert.equal(await f.db.auditEvent.count({ where: { uid: x.uid, operation: 'consent.revoked' } }), 1);
+  assert.equal(await f.db.outboxEvent.count({ where: { uid: x.uid } }), 2);
 });
 
 test('revocation lock precedes queued delivery: denied callback performs no committed write', async () => {
   const x = await setup(), grant = await a.grantAccountConsent(x.uid, 'downloads', 'v1', 600);
   const held = holdSubjectLock(f.runtime), revoker = WorkspaceRepository.forConsentRuntime(held.hooked, target);
-  const revocation = revoker.revokeConsent(x.uid, grant.id); await held.entered;
-  let delivered = false;
-  const delivery = b.withConsentDelivery(x.uid, 'downloads', undefined, 'v1', async () => { delivered = true; }).catch(error => error);
-  try { await waitForDatabaseLock(); } finally { held.release(); }
-  await revocation; assert.match((await delivery).message, /unavailable or revoked/); assert.equal(delivered, false);
+  const revocation = revoker.revokeConsent(x.uid, grant.id); void revocation.catch(() => {});
+  let delivered = false, delivery;
+  try {
+    await deadline(held.entered, 'Revocation row lock');
+    delivery = b.withConsentDelivery(x.uid, 'downloads', undefined, 'v1', async () => { delivered = true; }).catch(error => error);
+    await waitForDatabaseLock();
+  } finally { held.release(); await revocation; }
+  assert.match((await delivery).message, /unavailable or revoked/); assert.equal(delivered, false);
 });
 
 test('actual wrong UID/workspace/member role and changed-account replay cannot commit metadata', async () => {
@@ -161,13 +183,16 @@ test('independent processes obey actual database role capacity; closing a pool r
   const spawn = async () => {
     const child = fork(fileURLToPath(new URL('./connection-worker.cjs', import.meta.url)), { execArgv: [], windowsHide: true,
       env: { ...process.env, DATA08_WORKER_URL: String(url) }, stdio: ['ignore', 'ignore', 'pipe', 'ipc'] }); children.push(child);
-    const result = await Promise.race([new Promise(ok => child.once('message', ok)), new Promise((_, fail) => setTimeout(() => fail(Error('Worker deadline')), 10000).unref())]);
+    const result = await deadline(new Promise((ok, fail) => {
+      child.once('message', ok); child.once('error', fail);
+      child.once('exit', () => fail(Error('Worker exited before observation')));
+    }), 'Worker observation', 10000);
     return { child, result };
   };
   const active = await Promise.all([spawn(), spawn(), spawn()]);
   for (const row of active) assert.equal(row.result.type, 'connected');
   const excess = await spawn(); assert.equal(excess.result.type, 'failed'); assert.equal(excess.result.roleLimit, true);
-  active[0].child.send('close'); await new Promise(ok => active[0].child.once('exit', ok));
+  await closeWorker(active[0].child);
   const recovered = await spawn(); assert.equal(recovered.result.type, 'connected');
   const [observed] = await f.admin.$queryRawUnsafe('SELECT count(*)::integer AS n FROM pg_stat_activity WHERE usename=$1', role);
   assert.equal(observed.n, 3);

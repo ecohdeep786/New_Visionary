@@ -1,7 +1,7 @@
 # KAN-43 / DATA-08 final verification handoff
 
 7 November 2026. Original implementer: deepseek. Corrective implementer and
-verifier: Codex `/root`. Separate exact-source reviewer: pending.
+verifier: Codex `/root`. Separate exact-source reviewer: `/root/kan43_final_review` (renewed review pending).
 
 Original branch: `codex/deepseek-kan-43-concurrency`, original rejected candidate
 `2002da1f4f3fe699adeb39f650ab74bf87894bf0`. Accepted dev baseline
@@ -30,7 +30,7 @@ and release instance bounds. See [verification contract](../../../integration/DA
 ## Verification and limits
 
 - Whole Nest build and selected production TypeScript compilation passed.
-- Focused DATA-08 suite: 22 passed, including real PostgreSQL races/processes.
+- Focused DATA-08 suite: 23 passed, including real PostgreSQL races/processes.
 - DATA-01..08 aggregate: 213/214; the only failure was a production-binding
   configuration test inheriting an explicitly supplied emulator variable. The
   production realm correctly refused it. Isolated DATA-07 rerun: 37/37 passed.
@@ -55,3 +55,13 @@ Original Jira candidate returned to In Progress with actual findings in comment
 10650 (transition 31). Separate exact-source decision, candidate CI, published dev
 integration, integrated checks, evidence preservation, cleanup and actual Jira
 Done remain pending. No approval or completed merge is claimed here.
+
+## Independent review correction
+
+Reviewer requested changes on `bfc1f485580afbab0e5d38b434236f956ce0aafb`
+after an independent 22/22 run: sparse pool arrays could skip unknown slots, and
+barrier/worker-exit waits were unbounded. Sparse arrays now fail closed with a
+regression; waits have descriptive deadlines and lock/worker cleanup. Actual
+grant/revocation outbox counts are asserted. Corrected focused suite: 23/23.
+Earlier 214 total becomes 215 with this regression; unchanged suites retain
+their recorded checks. Exact corrected-source decision and CI remain pending.

@@ -31,7 +31,7 @@ export function connectionBudget(input: unknown) {
         typeof w.role !== 'string' || !/^[A-Za-z_][A-Za-z0-9_.@-]{0,62}$/.test(w.role) || roles.has(w.role) ||
         !integer(w.maxInstances) || !integer(w.revisionOverlap) || !integer(w.roleConnectionLimit) ||
         !Array.isArray(w.poolsPerInstance) || !w.poolsPerInstance.length || w.poolsPerInstance.length > 32 ||
-        w.poolsPerInstance.some(n => !integer(n))) fail();
+        Array.from(w.poolsPerInstance).some(n => !integer(n))) fail();
     roles.add(w.role);
     const demand = w.maxInstances * w.revisionOverlap * w.poolsPerInstance.reduce((a, b) => a + b, 0);
     if (!integer(demand) || demand > w.roleConnectionLimit) fail();
