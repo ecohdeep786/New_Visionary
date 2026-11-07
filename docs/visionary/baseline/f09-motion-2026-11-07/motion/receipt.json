@@ -1,0 +1,190 @@
+{
+  "task": "F-09 motion & interaction verification",
+  "at": "2026-11-07T16:57:23.007Z",
+  "base": "http://127.0.0.1:4201",
+  "lawCurve": "cubic-bezier(0.16, 1, 0.3, 1)",
+  "records": [
+    {
+      "check": "law-curve-computed",
+      "selector": ".cast-copy a / #main a / button",
+      "cta": {
+        "transitionProperty": "color, background-color, border-color, text-decoration-color, fill, stroke",
+        "duration": "0.2s",
+        "curve": "cubic-bezier(0.16, 1, 0.3, 1)"
+      },
+      "errors": []
+    },
+    {
+      "check": "entrance-animation-default",
+      "hero": {
+        "animationName": "none",
+        "duration": "0s",
+        "iteration": "1"
+      }
+    },
+    {
+      "check": "hover-feedback",
+      "hover": [
+        {
+          "text": "Start learning",
+          "changed": false,
+          "before": {
+            "bg": "rgb(29, 29, 31)",
+            "color": "rgb(255, 255, 255)",
+            "transform": "none"
+          },
+          "after": {
+            "bg": "rgb(29, 29, 31)",
+            "color": "rgb(255, 255, 255)",
+            "transform": "none"
+          }
+        },
+        {
+          "text": "See how it works",
+          "changed": false,
+          "before": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 102, 204)",
+            "transform": "none"
+          },
+          "after": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 102, 204)",
+            "transform": "none"
+          }
+        },
+        {
+          "text": "Students",
+          "changed": false,
+          "before": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(29, 29, 31)",
+            "transform": "none"
+          },
+          "after": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(29, 29, 31)",
+            "transform": "none"
+          }
+        },
+        {
+          "text": "Teachers",
+          "changed": true,
+          "before": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(110, 110, 115)",
+            "transform": "none"
+          },
+          "after": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(30, 30, 32)",
+            "transform": "none"
+          }
+        },
+        {
+          "text": "Parents",
+          "changed": true,
+          "before": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(110, 110, 115)",
+            "transform": "none"
+          },
+          "after": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(33, 33, 35)",
+            "transform": "none"
+          }
+        },
+        {
+          "text": "Professionals",
+          "changed": true,
+          "before": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(110, 110, 115)",
+            "transform": "none"
+          },
+          "after": {
+            "bg": "rgba(0, 0, 0, 0)",
+            "color": "rgb(31, 31, 33)",
+            "transform": "none"
+          }
+        }
+      ],
+      "anyHover": true
+    },
+    {
+      "check": "focus-visible-landing",
+      "focus": {
+        "tag": "a",
+        "text": "Skip to content",
+        "outline": "1px auto",
+        "boxShadow": "none",
+        "visible": true
+      }
+    },
+    {
+      "check": "reduced-motion",
+      "heroReduce": {
+        "animationName": "none",
+        "duration": "1e-05s",
+        "iteration": "1"
+      },
+      "probeReduce": {
+        "count": 5,
+        "animating": [
+          {
+            "animationName": "appleFadeIn",
+            "duration": "0.65s",
+            "transform": "none",
+            "opacity": "0.999734",
+            "cls": "apple-anim accent-gradient block whitesp"
+          },
+          {
+            "animationName": "appleFadeIn",
+            "duration": "0.65s",
+            "transform": "none",
+            "opacity": "0.999734",
+            "cls": "cast-slot-0 apple-anim relative flex-non"
+          },
+          {
+            "animationName": "appleFadeIn",
+            "duration": "0.65s",
+            "transform": "none",
+            "opacity": "0.999734",
+            "cls": "cast-slot-1 apple-anim relative flex-non"
+          },
+          {
+            "animationName": "appleFadeIn",
+            "duration": "0.65s",
+            "transform": "none",
+            "opacity": "0.999734",
+            "cls": "cast-slot-2 apple-anim relative flex-non"
+          },
+          {
+            "animationName": "appleFadeIn",
+            "duration": "0.65s",
+            "transform": "none",
+            "opacity": "0.999734",
+            "cls": "cast-slot-3 apple-anim relative flex-non"
+          }
+        ]
+      }
+    },
+    {
+      "check": "focus-law-wizard",
+      "wizardFocus": {
+        "text": "I am a LearnerExplore subjects",
+        "boxShadow": "none",
+        "outline": "2px solid rgb(0, 102, 204)",
+        "visible": true,
+        "tabs": 0
+      }
+    },
+    {
+      "check": "law-curve-wizard-submit",
+      "wizardTransition": null,
+      "errors": []
+    }
+  ],
+  "findings": []
+}
