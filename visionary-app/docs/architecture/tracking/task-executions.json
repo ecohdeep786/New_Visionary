@@ -675,6 +675,7 @@
       }
     },
     {
+
       "sourceId": "DATA-01",
       "jiraKey": "KAN-36",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-36",
@@ -1073,34 +1074,58 @@
       }
     },
     {
-      "sourceId": "FAP-D1",
-      "jiraKey": "FAP-53",
-      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-53",
-      "status": "Testing",
-      "scope": "D1 one motion law: --ease-out-apple curve + 180/280/420/650/900ms duration scale on the single token home; enforced end-to-end by qa-motion across 403 source files and scripts/tests/motion-law.test.mjs",
-      "branch": "opencode/fap-d1-motion",
+      "sourceId": "SCOPE-06",
+      "jiraKey": "KAN-33",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-33",
+      "status": "Done",
+      "scope": "Executable draft-schema/actual Learning HTTP and frontend local-service regression enabler, plus corrected existing default learning API route. First real released-source selection and full connected feature/release acceptance remain open.",
+      "branch": "codex/principal-kan-33-executable-invariants",
       "baseCommit": "777f27a30927949891eb1b7ae60b8678cbbb7693",
       "originalCandidate": "5fffa44af74916fda9ac6ad6547b21009dd0882a",
       "originalReview": "changes requested; fixture-only authority/cancellation and false shared-matrix assertions",
       "implementationCommits": [
-        "af6a80472f6d93d22abc41f7f141ad966a902363"
+        "d0bae0511b75962bc4c5501f5259f1dae97d6817",
+        "f3961d08ef8d58f9382990259f482eff5353c37c",
+        "caf9dcd49319f0a44ead67b8a7513234c0cab44f"
       ],
       "review": {
-        "state": "pending-reviewer-acceptance",
-        "implementer": "opencode",
-        "reviewer": null,
-        "candidateCommit": "af6a8047",
-        "jiraCommentId": "10175",
-        "note": "D-095 pending review lives in Jira Testing; Done requires a separate reviewer recording the exact reviewed commit. Founder-ordered continuous-progression tension recorded in D1_EVIDENCE.md"
+        "state": "approved scoped regression enabler and repaired existing transport",
+        "reviewer": "/root/kan33_independent_review",
+        "approvedCommit": "73e31d55473b178f2985644067b941bd2178fa05",
+        "report": "docs/architecture/reviews/KAN33_FINAL_REVIEW_73E31D55.md",
+        "reportCommit": "133019b725c88e90401d68c941bd92756bc361a4",
+        "originalReviewerReportCommit": "ca741598b641161f45b71179495de1bdf6b40ee7",
+        "jiraCommentId": "10511"
       },
       "checks": {
-        "fullCheck": "green (verify-layout, verify-imports, qa-continuity, qa-motion, script tests, lint, both typechecks, 624/624 tests, vite build 47.63s)",
-        "frontendTests": 624,
-        "qaMotionReceiptPair": {
-          "before": 123,
-          "after": 0,
-          "files": 403
-        }
+        "schemaCases": 5,
+        "actualLearningHttpCases": 12,
+        "frontendLocalServiceCases": 6,
+        "frontendTests": 625,
+        "scriptTests": 82,
+        "apiContracts": 35,
+        "postgresqlData01": 20,
+        "postgresqlData02": 39,
+        "provisioningTests": 11,
+        "deployedBackendTests": 99,
+        "deployedProvisioningTests": 11,
+        "infraJsTests": 31,
+        "infraPythonTests": 11,
+        "lint": true,
+        "typecheck": true,
+        "build": true,
+        "actualMigrationAndApiImages": true,
+        "cancellationWeakeningFailures": 2,
+        "changedCurrentInputWeakeningFailures": 4,
+        "independentReceiptFingerprintWeakeningFailures": 1,
+        "oldDefaultRouteRegressionFails": true,
+        "finalHeadCheckedCommit": "133019b725c88e90401d68c941bd92756bc361a4",
+        "finalHeadCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41219772606/attempts/2",
+        "integratedCheckedCommit": "10e455a0dba38c69b100fc04e6566f415f0fd8e6",
+        "integratedCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41220472624",
+        "integratedCiConclusion": "success",
+        "productionJob": "skipped",
+        "retainedFailure": "caf9 CI41217997684 attempt1: unchanged DATA02 fixture setup exceeded existing15s transaction bounds. Bounded unchanged retry and later heads passed; no deadline relaxation. Report133 CI41219772606 attempt1 passed38/39 DATA02; small-budget statement-timeout vs deadline concern is reopened KAN-37 comment10513. Unchanged bounded attempt2 and integrated CI passed."
       },
       "localProductVerification": {
         "date": "2026-10-31",
@@ -1136,7 +1161,7 @@
         "jiraReturnedStatus": "Done",
         "acceptanceScope": "Scoped regression enabler and corrected existing learning route only"
       },
-      "verifiedAt": "2026-10-24T06:25:28.874Z",
+      "verifiedAt": "2026-10-31T16:40:33Z",
       "worktreeCleanup": {
         "state": "eligible after actual Done and accepted integration; actual removal receipt follows in Jira",
         "worker": "principal-kan-33-executable-invariants",
@@ -1145,11 +1170,31 @@
         "configurationFilesByteVerified": 3,
         "preservationRoot": "C:/Users/Administrator/Visionary-local/kan33-completed-20261031",
         "rawEvidenceOutsideTaskCheckout": true
-      },
+      }
+,
+"sourceId": "FAP-D1",
+      "jiraKey": "FAP-53",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/FAP-53",
+      "status": "Testing",
+      "verifiedAt": "2026-10-24T06:25:28.874Z",
+      "scope": "D1 one motion law: --ease-out-apple curve + 180/280/420/650/900ms duration scale on the single token home; enforced end-to-end by qa-motion across 403 source files and scripts/tests/motion-law.test.mjs",
+      "branch": "opencode/fap-d1-motion",
+      "implementationCommits": [
+        "af6a80472f6d93d22abc41f7f141ad966a902363"
+      ],
       "betaIntegration": {
         "mergeCommit": "4dc833dd",
         "pushedAndVerified": true,
         "protocol": "founder-amended: agents merge task lane into beta and push; no beta<->dev merges by agents; dev untouched"
+      },
+      "checks": {
+        "fullCheck": "green (verify-layout, verify-imports, qa-continuity, qa-motion, script tests, lint, both typechecks, 624/624 tests, vite build 47.63s)",
+        "frontendTests": 624,
+        "qaMotionReceiptPair": {
+          "before": 123,
+          "after": 0,
+          "files": 403
+        }
       },
       "scopeAuditRebaseline": {
         "routes": 512,
@@ -1165,6 +1210,14 @@
         "frontend/artifacts/research/continuity-2026-10-24/d1-motion/d1-after-scan.json",
         "frontend/artifacts/research/continuity-2026-10-24/APPLE_BENCHMARK_STUDY_2026-10-23.md"
       ],
+      "review": {
+        "state": "pending-reviewer-acceptance",
+        "implementer": "opencode",
+        "reviewer": null,
+        "candidateCommit": "af6a8047",
+        "jiraCommentId": "10175",
+        "note": "D-095 pending review lives in Jira Testing; Done requires a separate reviewer recording the exact reviewed commit. Founder-ordered continuous-progression tension recorded in D1_EVIDENCE.md"
+      },
       "jira": {
         "transitions": [
           {
@@ -2208,6 +2261,7 @@
           "item": "founder-directed closeout: 13 Testing tickets + C9 + E2 + epics 38-40 closed Done with provenance; audit doc flipped production-ready (beta 8eefca24); follow-up design ticket created for the public-page polish program"
         }
       ]
+
     },
     {
       "checks": {
@@ -2224,16 +2278,19 @@
         "hostedVerified": false
       },
       "jiraKey": "KAN-42",
-      "currentCheckpoint": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
+      "currentCheckpoint": "10ed5f80f67dc90a6ed4ff82ff6a2112a3b375e4",
       "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-42-owner-projections",
       "integration": {
-        "remotePublished": false
+        "remotePublished": true,
+        "commit": "6cbf958b5887204f17c8cf81fa471131a511b41d",
+        "pullRequest": 46,
+        "candidateCi": 42386333562,
+        "integratedCi": 42386741309,
+        "focusedTests": 37,
+        "browserGroups": 4
       },
       "remainingGates": [
-        "Candidate CI",
-        "Accepted published dev merge and integrated CI",
-        "Evidence preservation and worktree cleanup",
-        "Actual Jira transition"
+        "Hosted rollout and ROLE-08 client acceptance remain separate"
       ],
       "branch": "codex/deepseek-kan-42-owner-projections",
       "currentHandoff": "docs/architecture/delivery/KAN42_OWNER_OVERVIEW_FINAL.md",
@@ -2241,15 +2298,45 @@
         "state": "approved-backend-projection-engineering",
         "implementer": "Codex /root",
         "reviewer": "/root/kan42_final_review",
-        "candidateCommit": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
-        "approvedCommit": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
+        "candidateCommit": "10ed5f80f67dc90a6ed4ff82ff6a2112a3b375e4",
+        "approvedCommit": "10ed5f80f67dc90a6ed4ff82ff6a2112a3b375e4",
         "originalCandidate": "2947c3860e5fc74f20c4cc9dc907e63e4967269f",
         "originalDecision": "changes-requested"
       },
-      "status": "Testing",
+      "status": "Done",
       "fullFeatureAccepted": false,
       "sourceId": "DATA-07",
-      "scope": "Backend owner projection API and real-store engineering acceptance; hosted rollout and ROLE-08 adapters remain separately gated"
+      "scope": "Backend owner projection API and real-store engineering acceptance; hosted rollout and ROLE-08 adapters remain separately gated",
+      "cleanup": {
+        "worktreeRemoved": true,
+        "localAndRemoteRefsRemoved": true,
+        "evidence": "C:/Users/Administrator/Visionary-local/kan42-final-10ed5f80"
+      },
+      "jiraReceipt": {
+        "status": "Done",
+        "commentId": 10648,
+        "transitionId": 51
+      }
+    },
+    {
+      "jiraKey": "KAN-43",
+      "sourceId": "DATA-08",
+      "status": "In Progress",
+      "branch": "codex/deepseek-kan-43-concurrency",
+      "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-43-concurrency",
+      "originalCandidate": "2002da1f4f3fe699adeb39f650ab74bf87894bf0",
+      "base": "6cbf958b5887204f17c8cf81fa471131a511b41d",
+      "scope": "Actual owning-store concurrency verification and read-only connection capacity preflight; hosted rollout/load qualification separately gated",
+      "review": {
+        "state": "pending",
+        "implementer": "Codex /root",
+        "originalDecision": "changes-requested"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN43_DATA08_FINAL.md",
+      "jiraReceipt": {
+        "changesRequestedComment": 10650,
+        "transitionId": 31
+      }
     },
     {
       "sourceId": "BILL-01",
@@ -2258,10 +2345,17 @@
       "status": "In Progress",
       "branch": "zcode/kan-102-bill01-ingress-acceptance",
       "implementationCommit": "4ff0d2ea3f381814033fb7bdfb15a3f08a3d5dd0",
+      "receiptCommit": "317c81ad4fbc7149e5a36b91b35259884995cf2c",
       "base": "origin/dev 6cbf958b (KAN-42 reviewed merge)",
-      "scope": "canonical HTTPS-ingress acceptance, local-maximum: real production composition (configureProductionHttp) + real controllers/services behind a real TLS terminator on https://visionary.org.in pinned to loopback; authorized Auth+Firestore emulator identity plane; registered npm run billing:ingress:check (protocol 11/11 + Edge browser journey 7/7; fail-fast law proven exit 1); npm run check exit 0",
-      "note": "Founder-selected local-maximum path (2026-11-07): every unclaimed To Do task is a hosted/commercial gate and ~81 tasks sit in Testing. External gates recorded, not simulated: (1) real Razorpay test-merchant keys absent on this box, (2) hosted deployment is owner-run per infrastructure/gcp/README.md. Jira NOT transitioned (no connector this session); the task does NOT move to Testing as fully satisfied. Reviewer pending per D-095.",
-      "at": "2026-11-07T19:28:14.353Z"
+      "scope": "canonical HTTPS-ingress acceptance, local-maximum: the real production composition (configureProductionHttp) over the real controllers/services behind a real TLS terminator on the canonical origin https://visionary.org.in pinned to loopback; authorized Auth+Firestore emulator identity plane; registered npm run billing:ingress:check (protocol suite 11/11 + Edge browser journey 7/7; fail-fast law proven: BILL01_SELF_TEST_FAIL=1 exits 1); whole-repo npm run check exit 0",
+      "externalGates": [
+        "real Razorpay test-merchant keys absent on this box (founder-supplied CSV; procedure in the runbook)",
+        "hosted canonical ingress deployment is owner-run per infrastructure/gcp/README.md with the reviewed KAN-45 platform config"
+      ],
+      "receipt": "docs/architecture/reviews/KAN102_BILL01_INGRESS_ACCEPTANCE_2026-11-07.md",
+      "runbook": "docs/architecture/delivery/BILL01_INGRESS_ACCEPTANCE.md",
+      "note": "Founder-selected local-maximum path (2026-11-07): every unclaimed To Do task is a hosted/commercial gate and the Testing queue awaits the single reviewer. Jira NOT transitioned (no connector in this session); the task does NOT move to Testing as fully satisfied. Reviewer pending per D-095.",
+      "at": "2026-11-07T19:45:00.000Z"
     }
   ]
 }
