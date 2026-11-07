@@ -9,6 +9,7 @@
     "incremental": false
   },
   "include": [
+    "src/concurrency/**/*.ts",
     "src/data/**/*.ts",
     "src/consent/**/*.ts",
     "src/file/download*.ts",
