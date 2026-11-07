@@ -12,12 +12,12 @@ import { chromium } from 'playwright-core';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { launchReviewedBrowser, openEvidenceDir } from './qa-env.mjs';
 
 const base = process.env.VISUAL_BASE_URL || 'http://127.0.0.1:4198';
 const productRoot = fileURLToPath(new URL('../../', import.meta.url));
 const evidence = path.resolve(productRoot, process.env.VISUAL_EVIDENCE_DIR || 'docs/visionary/baseline/f03-device-visual-2026-11-05');
-await fs.mkdir(evidence, { recursive: true });
-if (!process.env.CHROME_PATH) process.env.CHROME_PATH = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
+await openEvidenceDir(evidence);
 
 const SIZES = [
   { key: 'mobile', width: 390, height: 844 },
@@ -73,7 +73,7 @@ const ROLE_ANSWERS = {
 };
 const CONTINUE_LABEL = /^(Continue|Looks good|Get started|Finish|Complete setup|Next)$/i;
 
-const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
+const { browser } = await launchReviewedBrowser({ chromium });
 
 async function newContext(size) {
   const context = await browser.newContext({ viewport: { width: size.width, height: size.height }, deviceScaleFactor: 1 });

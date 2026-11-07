@@ -28,12 +28,12 @@ import { chromium } from 'playwright-core';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { launchReviewedBrowser, openEvidenceDir, receiptMeta } from './qa-env.mjs';
 
 const base = process.env.ROUTE_REVIEW_URL || 'http://127.0.0.1:4197';
 const productRoot = fileURLToPath(new URL('../../', import.meta.url));
 const evidence = path.resolve(productRoot, process.env.ROUTE_REVIEW_EVIDENCE_DIR || 'docs/visionary/baseline/f01-route-graph-2026-11-07');
-await fs.mkdir(evidence, { recursive: true });
-if (!process.env.CHROME_PATH) process.env.CHROME_PATH = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
+await openEvidenceDir(evidence);
 
 const PUBLIC_ROUTES = ['/', '/student', '/teacher', '/parent', '/professional', '/organization', '/how-it-works', '/help', '/pricing', '/download', '/about', '/research', '/community', '/updates', '/partners', '/referral', '/privacy', '/terms', '/cookies', '/safety', '/security', '/accessibility', '/careers', '/contact'];
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password', '/forgot-user-id', '/reset-password', '/auth/action'];
@@ -51,13 +51,12 @@ const WIZARD_ANSWERS = {
   'Which state are you in?': 'West Bengal',
 };
 
-const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
+const { browser, version: browserVersion } = await launchReviewedBrowser({ chromium });
 const failures = [];
 const results = {
   task: 'F-01 direct-URL route review',
-  at: new Date().toISOString(),
+  ...receiptMeta({ browser: `Microsoft Edge via playwright-core (${browserVersion})` }),
   base,
-  browser: 'Microsoft Edge (channel msedge) headless via playwright-core',
   mode: 'local preview repository (VITE_AUTH_MODE unset) — real register/OTP/onboarding journey, no fixture seeding; S05 is the only request interception and is an isolated failure simulation',
   scenarios: {}, sweep: [], redirects: [], authSurfaces: [],
 };

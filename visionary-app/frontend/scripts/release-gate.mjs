@@ -13,17 +13,17 @@ import { chromium } from 'playwright-core';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { launchReviewedBrowser, openEvidenceDir, receiptMeta } from './qa-env.mjs';
 
 const base = process.env.GATE_BASE_URL || 'http://127.0.0.1:4198';
 const productRoot = fileURLToPath(new URL('../../', import.meta.url));
 const evidence = path.resolve(productRoot, process.env.GATE_EVIDENCE_DIR || 'docs/visionary/baseline/f15-release-gate-2026-11-06');
-await fs.mkdir(evidence, { recursive: true });
-if (!process.env.CHROME_PATH) process.env.CHROME_PATH = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
+await openEvidenceDir(evidence);
 
 const PASSWORD = 'Visionary#Baseline2026';
 const gates = [];
 const failures = [];
-const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
+const { browser, version: browserVersion } = await launchReviewedBrowser({ chromium });
 
 const settle = async (page, ms = 2000) => {
   await page.waitForLoadState('load').catch(() => {});

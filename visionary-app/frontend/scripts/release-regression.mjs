@@ -47,7 +47,10 @@ for (const h of HARNESS) {
     encoding: 'utf8',
     timeout: 600000,
     windowsHide: true,
-    env: { ...process.env, [`${h.env}_BASE_URL`]: harnessBase, [`${h.env}_URL`]: harnessBase, [`${h.env}_EVIDENCE_DIR`]: dir },
+    /* The runner owns each harness's date-derived evidence directory, so it
+     * explicitly authorizes the F-02 overwrite guard for its own children —
+     * an operator running a harness by hand still gets the refusal. */
+    env: { ...process.env, ALLOW_EVIDENCE_OVERWRITE: '1', [`${h.env}_BASE_URL`]: harnessBase, [`${h.env}_URL`]: harnessBase, [`${h.env}_EVIDENCE_DIR`]: dir },
   });
   const tail = (run.stdout || '').trim().split('\n').slice(-3).join(' | ').slice(0, 300);
   results.push({
