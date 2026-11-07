@@ -27,7 +27,7 @@
     {
       "surface": "public-after-product",
       "width": 390,
-      "font": "\"Google Sans Flex\", \"Google Sans\", sans-serif"
+      "font": "\"Google Sans Flex\", sans-serif"
     },
     {
       "surface": "product",
@@ -56,7 +56,7 @@
     {
       "surface": "public-after-product",
       "width": 1440,
-      "font": "\"Google Sans Flex\", \"Google Sans\", sans-serif"
+      "font": "\"Google Sans Flex\", sans-serif"
     }
   ],
   "recovery": {
@@ -67,22 +67,22 @@
     {
       "family": "Google Sans Flex",
       "weight": "400",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans Flex",
       "weight": "500",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans Flex",
       "weight": "600",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans Flex",
       "weight": "700",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans",
@@ -97,22 +97,22 @@
     {
       "family": "Google Sans",
       "weight": "700",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans Flex Content",
       "weight": "400",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans Flex Content",
       "weight": "500",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans Flex Content",
       "weight": "600",
-      "status": "unloaded"
+      "status": "loaded"
     },
     {
       "family": "Google Sans Flex Content",

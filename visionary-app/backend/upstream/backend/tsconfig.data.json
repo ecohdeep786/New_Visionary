@@ -9,8 +9,11 @@
     "incremental": false
   },
   "include": [
-    "src/concurrency/concurrency-types.ts",
-    "src/concurrency/concurrency-store.ts",
-    "src/concurrency/concurrency.service.ts"
+    "src/concurrency/**/*.ts",
+    "src/data/**/*.ts",
+    "src/consent/**/*.ts",
+    "src/file/download*.ts",
+    "src/commands/**/*.ts",
+    "src/overview/**/*.ts"
   ]
 }

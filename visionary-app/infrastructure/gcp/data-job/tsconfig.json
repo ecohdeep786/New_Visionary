@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "module": "commonjs", "rootDir": ".", "outDir": "dist",
+    "skipLibCheck": true, "strict": true, "esModuleInterop": true
+  },
+  "include": ["src/data/**/*.ts"]
+}

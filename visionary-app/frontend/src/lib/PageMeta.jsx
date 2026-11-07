@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ROUTE_META, ROUTE_EXACT, PERSONA_OG } from "@/lib/routeMeta";
 
 /* Production origin for canonical/OG URLs. Override per environment with VITE_SITE_URL. */
-export const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://visionary.app").replace(/\/+$/, "");
+export const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://visionary.org.in").replace(/\/+$/, "");
 
 /* Pristine index.html head values, captured before any route modifies them. */
 const ORIGINAL = {
@@ -46,7 +46,7 @@ function upsertPreload(preload) {
     el.setAttribute("data-page-lcp", "");
     document.head.appendChild(el);
   }
-  const { src, srcSet, sizes } = typeof preload === "string" ? { src: preload } : preload;
+  const { src, srcSet, sizes, type } = typeof preload === "string" ? { src: preload } : preload;
   el.setAttribute("as", "image");
   /* href and imagesrcset are mutually exclusive — setting both makes this
      Chromium build fetch the href (4096w) instead of the viewport-matched
@@ -58,6 +58,11 @@ function upsertPreload(preload) {
     el.setAttribute("imagesrcset", srcSet);
     el.setAttribute("imagesizes", sizes || "100vw");
   }
+  /* D3 image law: the codec hint (type="image/avif") tells the browser the
+     preload is one candidate family of a <picture> — with the type set, the
+     preload matches the AVIF <source> byte-for-byte instead of fighting the
+     fallback <img> below the fold. */
+  if (type) el.setAttribute("type", type);
   el.setAttribute("fetchpriority", "high");
 }
 
