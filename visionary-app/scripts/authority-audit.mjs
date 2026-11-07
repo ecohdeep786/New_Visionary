@@ -13,6 +13,7 @@ const controllerFiles = [
   'learning/learning.controller.ts', 'learning/knowledge-projection.controller.ts',
   'workspaces/personal-workspace.controller.ts', 'privacycore/privacy-policy.controller.ts', 'invitations/product-invitation.controller.ts',
   'consent/product-consent.controller.ts',
+  'overview/overview.controller.ts',
 ].map(file => backend + file);
 const provenanceFiles = [...controllerFiles, ...[
   'auth/firebase-product/firebase-product.module.ts', 'auth/firebase-product/request-authority.ts',
@@ -22,6 +23,8 @@ const provenanceFiles = [...controllerFiles, ...[
   'feedback/feedback.service.ts', 'learning/learning.service.ts', 'learning/learning.contract.ts',
   'learning/knowledge-projection.service.ts', 'workspaces/personal-workspace.service.ts',
   'consent/product-consent.service.ts', 'workspaces/workspace.repository.ts',
+  'overview/overview.service.ts', 'overview/overview-projections.ts', 'overview/overview-types.ts',
+  'overview/product-overview.store.ts', 'overview/postgres-overview.store.ts',
   'invitations/product-invitation.service.ts', 'invitations/invitation.service.ts', 'invitations/invitation-store.ts', 'invitations/institution-approval.ts',
   'privacycore/privacy-policy.service.ts', 'privacycore/privacy-policy.ts', 'privacycore/privacy-preservation-policy.v1.json',
   'workspaces/provision-types.ts', 'workspaces/provision-store.ts', 'workspaces/firestore-provision-links.ts',
@@ -36,6 +39,7 @@ export const profiles = {
   exchange: profile('Firebase-verified ID token, current identity admission and rate limits; existing cookie/device binding retained', 'Onboarding role/preferences grant no verified membership', 'Verified UID account/session/device; current session-policy epoch/cutoff', 'No educational source grant', 'No guardian or model-processing consent inferred', ['auth']),
   sessionRead: profile('Verified current session AND device; /me does not require expected-account header', 'No workspace membership inferred', 'Server-derived UID profile only', 'No source grant', 'No relationship consent inferred', ['auth']),
   ownerRead: profile('Verified current session/device and compared X-Visionary-Account hint', 'Account-level only; no workspace grant', 'UID-derived account/device/invoice records and bounded approved preservation-policy reference; cursors stay within owner collection; policy reference grants no permissions', 'No educational source grant', 'No staff/guardian/payer-to-learning grant', ['auth', 'billing']),
+  overviewRead: profile('Verified current session/device, expected-account match and bounded per-UID read budget; passive read', 'Current SQL workspace owner or current MEMBER/ADMIN/GUEST; forged non-owner OWNER membership and erased workspace/owner denied', 'Own SQL subject records only; bounded owner/stream cursor pages, allowlisted fields, person tombstone recheck around Firestore account read; no raw results/errors/network fields', 'No source bytes, publication rights or mastery established', 'Consent status only, never a new grant or renewed sharing; unavailable stores return no partial record', ['overview', 'auth', 'billing']),
   ownerWrite: profile('Verified current session/device, expected-account match, exact Origin and CSRF; rate limits', 'Self-reported role/workspace preferences are not membership', 'UID-owned profile/onboarding with transaction session-version check', 'No educational source grant', 'No guardian/organization proof inferred', ['auth']),
   logout: profile('Exact Origin/CSRF; device lookup plus expected UID OR matching cookie hash; no-op for absent/invalid device', 'No workspace grant', 'Only selected device/session revocation and cookie cleanup; not ordinary full-session authentication', 'Not applicable', 'No grant; revocation only', ['auth']),
   logoutAll: profile('Enabled action, verified session cookie/device binding and expected UID; transaction epoch and replay checks', 'No workspace grant', 'Current UID session-policy epoch/cutoff, device/session revocation and auth events', 'Not applicable', 'No grant; revocation only', ['auth']),
@@ -64,6 +68,7 @@ export const profiles = {
 };
 
 const storeDefinitions = {
+  overview: { state: 'observed', authority: 'Lazy explicit opt-in PostgreSQL projection reads, actual bounded runtime identity/target checks and current tombstones; account/profile/test billing remain Firestore-owned; no dual writes, memory fallback or hosted rollout' },
   consent: { state: 'observed', authority: 'Explicit opt-in PostgreSQL consent_grants/share_grants; UID-scoped canonical transaction, audit and outbox; no job/download consumer activation or hosted acceptance' },
   none: { state: 'observed', authority: 'No durable owning store for this operation; public config/static output or CSRF cookie only' },
   auth: { state: 'observed', authority: 'Firebase Auth verifies identity; Firestore visionary_accounts/{uid}, UID devices/authEvents, server session lookup and auth operational counters/events; IAM Admin SDK, not browser rules' },
@@ -79,6 +84,7 @@ const storeDefinitions = {
 };
 
 const assignments = {
+  overviewRead: ['GET /api/overview', 'GET /api/overview/workspaces', 'GET /api/overview/memberships', 'GET /api/overview/consents', 'GET /api/overview/history', 'GET /api/overview/audit'],
   consentRead: ['GET /api/account/privacy/consents'],
   consentRevoke: ['POST /api/account/privacy/consents/revoke'],
   public: ['GET /api/auth/methods', 'GET /api/billing/catalog'],

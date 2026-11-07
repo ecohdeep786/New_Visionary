@@ -12,6 +12,10 @@
     "No client UID/role/workspace/consent flag, preview guard, signed URL, queue event, payer status or ML output independently grants authority."
   ],
   "stores": {
+    "overview": {
+      "state": "observed",
+      "authority": "Lazy explicit opt-in PostgreSQL projection reads, actual bounded runtime identity/target checks and current tombstones; account/profile/test billing remain Firestore-owned; no dual writes, memory fallback or hosted rollout"
+    },
     "consent": {
       "state": "observed",
       "authority": "Explicit opt-in PostgreSQL consent_grants/share_grants; UID-scoped canonical transaction, audit and outbox; no job/download consumer activation or hosted acceptance"
@@ -113,6 +117,19 @@
       "source": "No educational source grant",
       "consent": "No staff/guardian/payer-to-learning grant",
       "stores": [
+        "auth",
+        "billing"
+      ],
+      "state": "observed"
+    },
+    "overviewRead": {
+      "actor": "Verified current session/device, expected-account match and bounded per-UID read budget; passive read",
+      "workspace": "Current SQL workspace owner or current MEMBER/ADMIN/GUEST; forged non-owner OWNER membership and erased workspace/owner denied",
+      "object": "Own SQL subject records only; bounded owner/stream cursor pages, allowlisted fields, person tombstone recheck around Firestore account read; no raw results/errors/network fields",
+      "source": "No source bytes, publication rights or mastery established",
+      "consent": "Consent status only, never a new grant or renewed sharing; unavailable stores return no partial record",
+      "stores": [
+        "overview",
         "auth",
         "billing"
       ],
@@ -518,6 +535,48 @@
       "profile": "billingRead",
       "controller": "BillingController",
       "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/audit",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/consents",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/history",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/memberships",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/workspaces",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -1483,8 +1542,12 @@
       "sha256Lf": "f96b28399853cfe6de724b07c36919bf1d9d63caeb768c8da874e8a5e4bb4feb"
     },
     {
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "sha256Lf": "c6777075de65521bde758ad789592ded3708da277c3fcbb8b89a60dbd38a50ed"
+    },
+    {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sha256Lf": "cb4c136c9b0c09fd4990848b5297586b79122e2d36ed25ebc78b033348f20fcd"
+      "sha256Lf": "80962c3571d545a8e59550df6f2d3d5c5bd162b93b842c4ee37f7370b412ad0e"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/request-authority.ts",
@@ -1547,6 +1610,26 @@
       "sha256Lf": "8fd013d041f62db0bc9468650a2911841f724f29eb4bb425eba2e5c6d987ab8b"
     },
     {
+      "file": "backend/upstream/backend/src/overview/overview.service.ts",
+      "sha256Lf": "6bbdbf19ea1a01ab9642f93fbcc0e8897f4433d0513974ee0336455374651af8"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/overview-projections.ts",
+      "sha256Lf": "3e49ee9762a3b63ca419ba509e572341b6d835e94225ea94ed05c8bf8c977df7"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/overview-types.ts",
+      "sha256Lf": "f82e355490338451af4c18d565b805f0a2eaf39409bd4f096b27ba9a6ee13c7f"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/product-overview.store.ts",
+      "sha256Lf": "5720041de295bcff81023d76f382cdeafdbbb2194e68d9584f577c31187a659f"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/postgres-overview.store.ts",
+      "sha256Lf": "1dd51ec1ce8fdeb393cb5aae9148f308e7138cea8076345cd7578de8bd245965"
+    },
+    {
       "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
       "sha256Lf": "4a5ca5bd1af0b3f2ca09b7e72819b46f6bd2ffee3ddffce2633957881f01790f"
     },
@@ -1600,11 +1683,11 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "15f635fe5b032e66085ab1af7207a83df7020fb5c6d71259b21af9a17b29e7a3"
+      "sha256Lf": "9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "5f0bccc874940aa551ff17c10e835b27566a44b0b98f4d2356f0cd59f4bac85c"
+      "sha256Lf": "18bf98eb7776e9f23530ed957c3b302d9c793efd914a5ceadb759a1760e1ec6d"
     },
     {
       "file": "integration/contracts/v1/openapi.json",

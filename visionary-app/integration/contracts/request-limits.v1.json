@@ -37,6 +37,12 @@
     "file-intent": { "requestBytes": 8192, "responseBytes": 8192, "depth": 4, "arrayItems": 10, "objectKeys": 32, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000 }
   },
   "currentRoutes": {
+    "GET /api/overview": "existing-json",
+    "GET /api/overview/workspaces": "existing-json",
+    "GET /api/overview/memberships": "existing-json",
+    "GET /api/overview/consents": "existing-json",
+    "GET /api/overview/history": "existing-json",
+    "GET /api/overview/audit": "existing-json",
     "GET /api/account/privacy/consents": "existing-json",
     "POST /api/account/privacy/consents/revoke": "existing-json",
     "GET /api/auth/methods": "existing-json",

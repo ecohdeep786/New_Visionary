@@ -13,7 +13,7 @@ const route = name => mapping.registered.find(row => row.route === name);
 const mutation = change => { const value = structuredClone(mapping); change(value); return value; };
 
 test('committed source inventory is complete and reproducible', () => {
-  assert.deepEqual(verifyMapping(mapping), { registered:49, infrastructure:6, proposed:12, future:16, productGroups:32 });
+  assert.deepEqual(verifyMapping(mapping), { registered:55, infrastructure:6, proposed:12, future:16, productGroups:32 });
   assert.equal(route('GET /api/account/privacy/consents').profile, 'consentRead');
   assert.equal(route('POST /api/account/privacy/consents/revoke').profile, 'consentRevoke');
   assert.deepEqual(mapping, expected);
@@ -57,6 +57,13 @@ test('list and object reads remain owner-bound without broad staff or workspace 
   assert.equal(route('GET /api/billing/invoices/:id').profile,'billingRead');
   assert.match(mapping.profiles.ownerRead.object,/owner collection/);
   assert.match(mapping.profiles.feedbackRead.consent,/not training consent/);
+});
+
+test('overview pages retain actual SQL authority, deletion and owner boundaries', () => {
+  for (const suffix of ['', '/workspaces', '/memberships', '/consents', '/history', '/audit']) assert.equal(route('GET /api/overview' + suffix).profile, 'overviewRead');
+  assert.match(mapping.profiles.overviewRead.workspace, /forged non-owner OWNER/);
+  assert.match(mapping.profiles.overviewRead.object, /person tombstone recheck/);
+  assert.match(mapping.stores.overview.authority, /no dual writes, memory fallback/);
 });
 test('learning workspace/source/rubric limitations remain explicit rather than false grants', () => {
   assert.equal(route('POST /api/account/learning/sessions').profile,'learningWrite');
