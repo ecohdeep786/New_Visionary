@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 
@@ -25,9 +26,47 @@ const FAN_CENTRE = (FAN_WINDOW - 1) / 2;
 
 export default function HeroFanCards({ items, ariaLabel }) {
   const count = items.length;
+  /* Duplicates (positions beyond the centre window) are always decorative. */
+  const dupIndexes = new Set(Array.from({ length: FAN_WINDOW }, (_, i) => i).filter((i) => i > FAN_CENTRE));
+  const wrapperRef = useRef(null);
+  const cardRefs = useRef([]);
+  /* F-03-D2: the fan clips its horizontal bleed, so a card pushed fully
+   * outside the wrapper cannot be scrolled into view — yet the left-hand
+   * cards stay tabbable and keyboard focus disappears onto invisible links
+   * at every viewport width. The duplicates below already solve this with
+   * aria-hidden + tabIndex -1; this measured pass applies the same rule to
+   * width-dependent offscreen cards (inert also blocks click) and restores
+   * them when a resize brings them back into the window. */
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return undefined;
+    const update = () => {
+      const window_box = wrapper.getBoundingClientRect();
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+        const box = card.getBoundingClientRect();
+        const fullyOutside = box.width > 0 && (box.right < window_box.left + 1 || box.left > window_box.right - 1);
+        const suppress = dupIndexes.has(i) || fullyOutside;
+        if (suppress) {
+          card.setAttribute('inert', '');
+          card.setAttribute('aria-hidden', 'true');
+          card.setAttribute('tabindex', '-1');
+        } else {
+          card.removeAttribute('inert');
+          card.removeAttribute('aria-hidden');
+          card.removeAttribute('tabindex');
+        }
+      });
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(wrapper);
+    observer.observe(document.documentElement);
+    return () => observer.disconnect();
+  }, [count]);
   return (
     <div role="region" aria-label={ariaLabel} className="[--fan-drop-scale:0.55] sm:[--fan-drop-scale:0.8] xl:[--fan-drop-scale:1]">
-      <div className="flex w-full justify-center overflow-x-clip overflow-y-visible">
+      <div ref={wrapperRef} className="flex w-full justify-center overflow-x-clip overflow-y-visible">
         <div className="flex w-max shrink-0 items-start">
           {Array.from({ length: FAN_WINDOW }, (_, i) => {
             const offset = i - FAN_CENTRE;
@@ -37,6 +76,7 @@ export default function HeroFanCards({ items, ariaLabel }) {
             return (
               <Link
                 key={`${item.label}-${i}`}
+                ref={(el) => { cardRefs.current[i] = el; }}
                 to={item.to}
                 aria-hidden={dup || undefined}
                 tabIndex={dup ? -1 : undefined}

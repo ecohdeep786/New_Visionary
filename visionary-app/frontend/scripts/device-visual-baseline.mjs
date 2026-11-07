@@ -12,7 +12,8 @@ import { chromium } from 'playwright-core';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { launchReviewedBrowser, openEvidenceDir } from './qa-env.mjs';
+import { createHash } from 'node:crypto';
+import { launchReviewedBrowser, openEvidenceDir, receiptMeta } from './qa-env.mjs';
 
 const base = process.env.VISUAL_BASE_URL || 'http://127.0.0.1:4198';
 const productRoot = fileURLToPath(new URL('../../', import.meta.url));
@@ -25,6 +26,8 @@ const SIZES = [
   { key: 'desktop', width: 1440, height: 900 },
 ];
 
+/* Every live public route plus the two auth surfaces (V5 F-03: the full
+ * matrix, not a 12-route sample; the route contract test is the source). */
 const PUBLIC_ROUTES = [
   ['/', 'landing'],
   ['/about', 'about'],
@@ -35,9 +38,23 @@ const PUBLIC_ROUTES = [
   ['/parent', 'role-parent'],
   ['/professional', 'role-professional'],
   ['/organization', 'role-organization'],
+  ['/help', 'help'],
+  ['/download', 'download'],
+  ['/careers', 'careers'],
+  ['/research', 'research'],
+  ['/community', 'community'],
+  ['/contact', 'contact'],
+  ['/partners', 'partners'],
+  ['/updates', 'updates'],
+  ['/referral', 'referral'],
+  ['/safety', 'safety'],
+  ['/privacy', 'privacy'],
+  ['/terms', 'terms'],
+  ['/security', 'security'],
+  ['/accessibility', 'accessibility'],
+  ['/cookies', 'cookies'],
   ['/login', 'login'],
   ['/register', 'register'],
-  ['/privacy', 'privacy'],
 ];
 
 /* Role dashboard journeys mirror the recorded role-journey sweep surfaces. */
@@ -73,7 +90,7 @@ const ROLE_ANSWERS = {
 };
 const CONTINUE_LABEL = /^(Continue|Looks good|Get started|Finish|Complete setup|Next)$/i;
 
-const { browser } = await launchReviewedBrowser({ chromium });
+const { browser, version: browserVersion } = await launchReviewedBrowser({ chromium });
 
 async function newContext(size) {
   const context = await browser.newContext({ viewport: { width: size.width, height: size.height }, deviceScaleFactor: 1 });
@@ -101,7 +118,8 @@ async function settle(page, ms = 1200) {
 async function shoot(page, name, meta) {
   const file = `${name}.png`;
   await page.screenshot({ path: path.join(evidence, file) });
-  const record = { file, ...meta, h1: await heading(page), url: page.url() };
+  const bytes = await fs.readFile(path.join(evidence, file));
+  const record = { file, sha256: createHash('sha256').update(bytes).digest('hex').slice(0, 16), bytes: bytes.length, ...meta, h1: await heading(page), url: page.url() };
   captures.push(record);
   if (!record.h1) failures.push(`${file}: no h1/h2 heading rendered`);
   if (meta.errors?.length) failures.push(`${file}: page errors ${JSON.stringify(meta.errors)}`);
@@ -122,6 +140,161 @@ for (const size of SIZES) {
   }
   await context.close();
 }
+
+/* ── V5 F-03 public device matrix: DOM facts at every recorded width,
+ *    screenshots at the representative set. Facts are measured, not eyeballed:
+ *    horizontal overflow, broken images, essential controls outside the
+ *    viewport, blank mains and page errors each fail the receipt (S01/S02/S05/S06). */
+const MATRIX_WIDTHS = [320, 360, 390, 430, 768, 1024, 1280, 1440, 1920];
+const SHOT_WIDTHS = [320, 390, 768, 1440];
+const deviceMatrix = [];
+const interactions = [];
+{
+  const { context, page, errors } = await newContext({ width: 1440, height: 900 });
+  const domFacts = () => page.evaluate(() => {
+    const doc = document.documentElement;
+    const overflow = Math.max(0, doc.scrollWidth - doc.clientWidth);
+    const brokenImages = [...document.images].filter((img) => img.complete && img.naturalWidth === 0).length;
+    /* A control counts as unreachable-clipped only when NO scroll or interaction
+     * can use it: it must have no visible part (fully outside the viewport),
+     * have no scrollable-x ancestor (tiles inside an intended snap-x carousel
+     * are reachable by scrolling that container), and not be inert (the fan
+     * marks its decorative bleed cards inert by design — F-03-D2). */
+    const clippedControls = [...document.querySelectorAll('button, a, input, select, textarea')]
+      .filter((el) => el.offsetParent !== null && !el.closest('[inert]'))
+      .filter((el) => {
+        const box = el.getBoundingClientRect();
+        if (!(box.width > 0 && (box.right < -1 || box.left > doc.clientWidth + 1))) return false;
+        for (let p = el.parentElement; p; p = p.parentElement) {
+          const s = getComputedStyle(p);
+          if (s.overflowX === 'auto' || s.overflowX === 'scroll' || s.overflow === 'auto' || s.overflow === 'scroll') return false;
+        }
+        return true;
+      }).length;
+    const main = document.querySelector('main, #main');
+    const blankMain = !main || (main.innerText.trim().length < 40 && document.images.length === 0);
+    return { overflow, brokenImages, clippedControls, blankMain };
+  });
+  for (const [route, name] of PUBLIC_ROUTES.filter(([r]) => r !== '/login' && r !== '/register')) {
+    for (const width of MATRIX_WIDTHS) {
+      try {
+        await page.setViewportSize({ width, height: width < 768 ? 844 : 900 });
+        await page.goto(base + route, { waitUntil: 'load', timeout: 90000 });
+        await settle(page, 500);
+        const facts = await domFacts();
+        const entry = { route, width, ...facts, pageErrors: [...errors] };
+        deviceMatrix.push(entry);
+        if (facts.overflow > 1) failures.push(`matrix ${route} @ ${width}px: horizontal overflow ${facts.overflow}px (S02)`);
+        if (facts.brokenImages) failures.push(`matrix ${route} @ ${width}px: ${facts.brokenImages} broken image(s) (S05)`);
+        if (facts.clippedControls) failures.push(`matrix ${route} @ ${width}px: ${facts.clippedControls} control(s) outside the viewport (S02)`);
+        if (facts.blankMain) failures.push(`matrix ${route} @ ${width}px: blank main (S05)`);
+        if (errors.length) failures.push(`matrix ${route} @ ${width}px: page errors ${JSON.stringify([...errors])} (S05)`);
+        if (SHOT_WIDTHS.includes(width)) {
+          const file = `matrix-${name}-${width}.png`;
+          await page.screenshot({ path: path.join(evidence, file) });
+          const bytes = await fs.readFile(path.join(evidence, file));
+          captures.push({ file, sha256: createHash('sha256').update(bytes).digest('hex').slice(0, 16), bytes: bytes.length, surface: 'matrix', route, width, ...facts, errors: [...errors] });
+        }
+        errors.length = 0;
+        if (width === 1440) {
+          await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+          await page.waitForTimeout(400);
+          const footerFile = `matrix-${name}-1440-footer.png`;
+          await page.screenshot({ path: path.join(evidence, footerFile) });
+          const footerBytes = await fs.readFile(path.join(evidence, footerFile));
+          captures.push({ file: footerFile, sha256: createHash('sha256').update(footerBytes).digest('hex').slice(0, 16), bytes: footerBytes.length, surface: 'matrix-footer', route, width: 1440, errors: [] });
+        }
+      } catch (error) {
+        failures.push(`matrix ${route} @ ${width}px: ${String(error).slice(0, 200)}`);
+        errors.length = 0;
+      }
+    }
+  }
+
+  /* S03: the mobile drawer opens and closes with touch and keyboard without
+   * stranding the page — Escape returns focus to the trigger, body scroll
+   * unlocks, and no drawer remains. */
+  try {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`${base}/`, { waitUntil: 'load', timeout: 90000 });
+    await settle(page, 500);
+    await page.getByRole('button', { name: 'Open menu' }).click();
+    await page.waitForTimeout(500);
+    const openState = await page.evaluate(() => ({
+      drawerOpen: Boolean(document.querySelector('header div.safe-b')),
+      bodyOverflow: document.body.style.overflow,
+      focusInDrawer: Boolean(document.activeElement?.closest?.('div.safe-b')),
+    }));
+    await page.screenshot({ path: path.join(evidence, 'interaction-mobile-drawer-open.png') });
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(500);
+    const closedState = await page.evaluate(() => ({
+      drawerGone: !document.querySelector('header div.safe-b'),
+      bodyOverflow: document.body.style.overflow,
+      focusLabel: document.activeElement?.getAttribute('aria-label') ?? null,
+    }));
+    await page.screenshot({ path: path.join(evidence, 'interaction-mobile-drawer-closed.png') });
+    const touchReopen = await page.evaluate(() => { const b = [...document.querySelectorAll('header button')].find(x => x.getAttribute('aria-label') === 'Open menu'); if (!b) return false; b.click(); return true; });
+    await page.waitForTimeout(500);
+    const reopened = await page.evaluate(() => Boolean(document.querySelector('header div.safe-b')) && document.body.style.overflow === 'hidden');
+    await page.evaluate(() => { const b = [...document.querySelectorAll('header button')].find(x => x.getAttribute('aria-label') === 'Close menu'); b?.click(); });
+    await page.waitForTimeout(300);
+    const drawerPass = openState.drawerOpen && openState.bodyOverflow === 'hidden' && closedState.drawerGone && closedState.bodyOverflow === '' && closedState.focusLabel === 'Open menu' && touchReopen && reopened;
+    interactions.push({ check: 'mobile-drawer', openState, closedState, touchReopen, reopened, result: drawerPass ? 'PASS' : 'FAIL' });
+    if (!drawerPass) failures.push(`interaction mobile-drawer: ${JSON.stringify({ openState, closedState, touchReopen, reopened })} (S03)`);
+  } catch (error) {
+    failures.push(`interaction mobile-drawer: ${String(error).slice(0, 200)} (S03)`);
+  }
+
+  /* 200% user zoom: the browser halves the CSS-pixel viewport, so the honest
+   * emulation is the half-size window (1280/2 × 900/2) — style.zoom would keep
+   * the desktop breakpoints active and misread the nav. The landing primary
+   * action must remain visible and unclipped at the emulated zoom. */
+  try {
+    await page.setViewportSize({ width: 640, height: 450 });
+    await page.goto(`${base}/`, { waitUntil: 'load', timeout: 90000 });
+    await settle(page, 500);
+    const zoomFacts = await domFacts();
+    await page.screenshot({ path: path.join(evidence, 'interaction-zoom-200-landing.png') });
+    interactions.push({ check: 'zoom-200-landing', ...zoomFacts, method: 'half-size CSS viewport (1280x900 at 200% zoom)', result: zoomFacts.overflow <= 1 && !zoomFacts.clippedControls ? 'PASS' : 'FAIL' });
+    if (interactions.at(-1).result === 'FAIL') failures.push(`interaction zoom-200-landing: overflow ${zoomFacts.overflow}px, clipped ${zoomFacts.clippedControls} (S02)`);
+  } catch (error) {
+    failures.push(`interaction zoom-200-landing: ${String(error).slice(0, 200)} (S02)`);
+  }
+
+  /* Reduced motion: the persona hero must render stably (no animation-driven
+   * layout shift) — captured and recorded as a distinct motion state. */
+  try {
+    const rmContext = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+    const rmPage = await rmContext.newPage();
+    await rmPage.goto(`${base}/student`, { waitUntil: 'load', timeout: 90000 });
+    await settle(rmPage, 800);
+    const headline = await rmPage.evaluate(() => document.querySelector('main h1, #main h1, h1')?.textContent?.trim() ?? null);
+    await rmPage.screenshot({ path: path.join(evidence, 'interaction-reduced-motion-student.png') });
+    await rmContext.close();
+    interactions.push({ check: 'reduced-motion-student', headline, result: headline ? 'PASS' : 'FAIL' });
+    if (!headline) failures.push('interaction reduced-motion-student: no headline rendered');
+  } catch (error) {
+    failures.push(`interaction reduced-motion-student: ${String(error).slice(0, 200)}`);
+  }
+
+  /* Landscape spot: a rotated phone must not overflow on the two densest
+     public surfaces. */
+  for (const route of ['/', '/pricing']) {
+    try {
+      await page.setViewportSize({ width: 844, height: 390 });
+      await page.goto(base + route, { waitUntil: 'load', timeout: 90000 });
+      await settle(page, 500);
+      const facts = await domFacts();
+      interactions.push({ check: `landscape-844x390 ${route}`, ...facts, result: facts.overflow <= 1 && !facts.clippedControls ? 'PASS' : 'FAIL' });
+      if (interactions.at(-1).result === 'FAIL') failures.push(`interaction landscape ${route}: overflow ${facts.overflow}px, clipped ${facts.clippedControls} (S02)`);
+    } catch (error) {
+      failures.push(`interaction landscape ${route}: ${String(error).slice(0, 200)}`);
+    }
+  }
+  await context.close();
+}
+
 
 /* ── Onboarding + dashboard journeys through the real preview flow ── */
 async function registerViaUi(page, email) {
@@ -303,23 +476,43 @@ await browser.close();
 /* ── Receipt and gates ── */
 const receipt = {
   task: 'F-03 device visual baseline',
-  at: new Date().toISOString(),
+  ...receiptMeta({ browser: `Microsoft Edge via playwright-core (${browserVersion ?? 'channel msedge'})`, viewport: 'multi', route: 'all public + 5 role journeys', role: 'five preview roles' }),
   base,
   mode: 'local preview repository (VITE_AUTH_MODE unset) — real register/OTP/onboarding/dashboard journey, no API interception, no fixture seeding',
   boundary: 'Firebase-mode authenticated sessions remain dependent on the QA-login bring-up recorded as F-02-F1; captured here in the product preview mode instead.',
   sizes: SIZES,
   publicRoutes: PUBLIC_ROUTES.map(([route]) => route),
+  matrixWidths: MATRIX_WIDTHS,
   roleJourneys: ROLE_JOURNEYS,
   captures,
+  deviceMatrix,
+  interactions,
   failures,
 };
 await fs.writeFile(path.join(evidence, 'receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
+/* Reusable evidence index: one row per route × viewport so a later owner can
+ * compare against this recorded beta SHA without re-deriving the matrix. */
+const indexRows = PUBLIC_ROUTES.filter(([r]) => r !== '/login' && r !== '/register')
+  .map(([route]) => {
+    const cells = deviceMatrix.filter((m) => m.route === route);
+    const worst = Math.max(0, ...cells.map((c) => c.overflow));
+    const state = cells.length === MATRIX_WIDTHS.length && worst <= 1 ? 'PASS' : 'FAIL';
+    return `| \`${route}\` | ${cells.length}/${MATRIX_WIDTHS.length} | ${worst}px | ${state} |`;
+  });
+const index = [
+  '# F-03 visual baseline index', '',
+  `Source SHA: \`${receipt.betaSha}\` · Browser: ${receipt.browser} · Mode: preview (local preview repository — NOT hosted acceptance) · Generated: ${receipt.timestamp}`, '',
+  '| Route | widths measured | worst horizontal overflow | state |', '|---|---|---|---|',
+  ...indexRows, '',
+  `Screenshots: ${captures.length} hashed captures · Interaction checks: ${interactions.length} · Failures: ${failures.length}`, '',
+].join('\n');
+await fs.writeFile(path.join(evidence, 'INDEX.md'), index + '\n');
 const files = await fs.readdir(evidence);
 const pngs = files.filter((f) => f.endsWith('.png'));
-console.log(`Captured ${captures.length} records, ${pngs.length} PNG files -> ${path.relative(productRoot, evidence)}`);
+console.log(`Captured ${captures.length} records, ${pngs.length} PNG files, ${deviceMatrix.length} matrix cells, ${interactions.length} interaction checks -> ${path.relative(productRoot, evidence)}`);
 if (failures.length) {
   console.log(`FAIL ${failures.length} failure(s):`);
   for (const failure of failures.slice(0, 20)) console.log(` - ${failure}`);
   process.exit(1);
 }
-console.log('PASS all captures rendered a heading with zero page errors.');
+console.log('PASS all captures rendered a heading with zero page errors and zero device-matrix defects.');

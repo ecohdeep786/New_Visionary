@@ -2149,7 +2149,7 @@
         "frontend/src/App.jsx:231:11",
         "frontend/src/components/landing/AboutUsHero.jsx:30:5",
         "frontend/src/components/landing/AboutUsHero.jsx:70:13",
-        "frontend/src/components/landing/HeroFanCards.jsx:38:15",
+        "frontend/src/components/landing/HeroFanCards.jsx:77:15",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
         "frontend/src/components/landing/LandingNav/index.jsx:150:7",
@@ -39705,15 +39705,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/HeroFanCards.jsx:38:15",
+      "id": "frontend/src/components/landing/HeroFanCards.jsx:77:15",
       "file": "frontend/src/components/landing/HeroFanCards.jsx",
-      "line": 38,
+      "line": 77,
       "column": 15,
       "tag": "Link",
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "e8910d0493d11069f0743f0fd3f64e6633f68ec5d2e1f878af4da5ff0e0e82a4",
+      "declarationSha256": "2e23ae881701a55d0a5a68edc4264253913b00060756c355981e55896c1c110d",
       "routeIds": [
         "/about"
       ],
@@ -78576,7 +78576,7 @@
     },
     {
       "file": "frontend/src/components/landing/HeroFanCards.jsx",
-      "sourceSha256": "b37afbb3769ef9592474c0c2a8316b1540e00584311fc997a966a39d2f7aa05e"
+      "sourceSha256": "1f8f3c4274c828d0ece468992e95fc61cdf1b9451374e27b1e90f98b8938bcd8"
     },
     {
       "file": "frontend/src/components/landing/LandingFAQ.jsx",
