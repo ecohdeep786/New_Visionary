@@ -2278,16 +2278,19 @@
         "hostedVerified": false
       },
       "jiraKey": "KAN-42",
-      "currentCheckpoint": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
+      "currentCheckpoint": "10ed5f80f67dc90a6ed4ff82ff6a2112a3b375e4",
       "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-42-owner-projections",
       "integration": {
-        "remotePublished": false
+        "remotePublished": true,
+        "commit": "6cbf958b5887204f17c8cf81fa471131a511b41d",
+        "pullRequest": 46,
+        "candidateCi": 42386333562,
+        "integratedCi": 42386741309,
+        "focusedTests": 37,
+        "browserGroups": 4
       },
       "remainingGates": [
-                "Candidate CI",
-        "Accepted published dev merge and integrated CI",
-        "Evidence preservation and worktree cleanup",
-        "Actual Jira transition"
+        "Hosted rollout and ROLE-08 client acceptance remain separate"
       ],
       "branch": "codex/deepseek-kan-42-owner-projections",
       "currentHandoff": "docs/architecture/delivery/KAN42_OWNER_OVERVIEW_FINAL.md",
@@ -2295,15 +2298,45 @@
         "state": "approved-backend-projection-engineering",
         "implementer": "Codex /root",
         "reviewer": "/root/kan42_final_review",
-        "candidateCommit": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
-        "approvedCommit": "7087b81451fd718dfe3c1b9bf10d615b62f40bae",
+        "candidateCommit": "10ed5f80f67dc90a6ed4ff82ff6a2112a3b375e4",
+        "approvedCommit": "10ed5f80f67dc90a6ed4ff82ff6a2112a3b375e4",
         "originalCandidate": "2947c3860e5fc74f20c4cc9dc907e63e4967269f",
         "originalDecision": "changes-requested"
       },
-      "status": "Testing",
+      "status": "Done",
       "fullFeatureAccepted": false,
       "sourceId": "DATA-07",
-      "scope": "Backend owner projection API and real-store engineering acceptance; hosted rollout and ROLE-08 adapters remain separately gated"
+      "scope": "Backend owner projection API and real-store engineering acceptance; hosted rollout and ROLE-08 adapters remain separately gated",
+      "cleanup": {
+        "worktreeRemoved": true,
+        "localAndRemoteRefsRemoved": true,
+        "evidence": "C:/Users/Administrator/Visionary-local/kan42-final-10ed5f80"
+      },
+      "jiraReceipt": {
+        "status": "Done",
+        "commentId": 10648,
+        "transitionId": 51
+      }
+    },
+    {
+      "jiraKey": "KAN-43",
+      "sourceId": "DATA-08",
+      "status": "In Progress",
+      "branch": "codex/deepseek-kan-43-concurrency",
+      "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-43-concurrency",
+      "originalCandidate": "2002da1f4f3fe699adeb39f650ab74bf87894bf0",
+      "base": "6cbf958b5887204f17c8cf81fa471131a511b41d",
+      "scope": "Actual owning-store concurrency verification and read-only connection capacity preflight; hosted rollout/load qualification separately gated",
+      "review": {
+        "state": "pending",
+        "implementer": "Codex /root",
+        "originalDecision": "changes-requested"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN43_DATA08_FINAL.md",
+      "jiraReceipt": {
+        "changesRequestedComment": 10650,
+        "transitionId": 31
+      }
     }
   ]
 }

@@ -36,3 +36,5 @@ run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-f
 run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-06/workspace-commands.sql.test.mjs')]);
 const overviewTests = readdirSync(join(root, 'backend/tests/contracts/data-07')).filter(f => f.endsWith('.test.mjs'));
 run(['--test', '--test-reporter=tap', ...overviewTests.map(f => join(root, 'backend/tests/contracts/data-07', f))]);
+const concurrencyTests = readdirSync(join(root, 'backend/tests/contracts/data-08')).filter(f => f.endsWith('.test.mjs'));
+run(['--test', '--test-reporter=tap', ...concurrencyTests.map(f => join(root, 'backend/tests/contracts/data-08', f))]);

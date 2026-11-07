@@ -5,11 +5,12 @@ checkpoint and the original disconnected DDL review for current execution state.
 
 Original implementer: deepseek. Corrective implementer/verifier: Codex `/root`.
 Separate reviewer: `/root/kan42_final_review`; exact decision recorded below once
-returned. Candidate implementation: `7087b81451fd718dfe3c1b9bf10d615b62f40bae`.
+returned. Backend implementation: `7087b81451fd718dfe3c1b9bf10d615b62f40bae`;
+final compatibility candidate: `10ed5f80f67dc90a6ed4ff82ff6a2112a3b375e4`.
 Original candidate: `2947c3860e5fc74f20c4cc9dc907e63e4967269f` (rejected).
 Current dev baseline: `d3bc3630cb0fd96c4140421b1dccb1111d780f6a`.
 Original branch: `codex/deepseek-kan-42-owner-projections`.
-Single checkout: `C:/Users/Administrator/nv-worktrees/deepseek-kan-42-owner-projections`.
+Completed checkout (removed): `C:/Users/Administrator/nv-worktrees/deepseek-kan-42-owner-projections`.
 Review/integration: [PR 46](https://github.com/ecohdeep786/New_Visionary/pull/46).
 
 ## Accepted scope to assess
@@ -87,10 +88,23 @@ These earlier incomplete results are superseded by the recorded successful runs.
 Independent exact-source decision: **approved** by `/root/kan42_final_review` for
 `7087b81451fd718dfe3c1b9bf10d615b62f40bae`; see
 [separate review](../reviews/KAN42_EXACT_SOURCE_REVIEW_7087B814.md).
-Candidate CI and integrated-dev CI: pending.
-Accepted dev merge and read-back: pending.
-Completed checkout retirement and final Jira status: pending.
+Final exact candidate `10ed5f80` was also independently approved after authority/
+request-limit and generated route inventories were reconciled. The reviewer
+repeated 60 authority/limit and 35 contract cases; the local script battery passed 133 cases.
 
-Do not advance to the next task until those receipts are populated. Earlier
+Candidate CI [42386333562](https://github.com/ecohdeep786/New_Visionary/actions/runs/42386333562)
+and integrated CI [42386741309](https://github.com/ecohdeep786/New_Visionary/actions/runs/42386741309)
+passed, production skipped. PR 46 merged to published dev
+`6cbf958b5887204f17c8cf81fa471131a511b41d`. Integrated tree equality, 37 focused
+tests and four actual Chromium groups passed again on that commit.
+
+Completed checkout removed and absence verified; local/remote task refs removed
+after checking accepted source in origin/dev. Dependency links detached without
+changing targets. Evidence copied/hash-verified outside the checkout at
+`C:/Users/Administrator/Visionary-local/kan42-final-10ed5f80`. Task-owned synthetic
+containers stopped/removed. Actual Jira Done, acceptance comment 10648,
+transition 51. Backend engineering accepted; hosted/client/launch gates stay open.
+
+All completion gates above were satisfied before KAN-43 started. Earlier
 retired repair-branch references are historical only: its commits were preserved
 by a fast-forward into the original branch and the duplicate ref was deleted.

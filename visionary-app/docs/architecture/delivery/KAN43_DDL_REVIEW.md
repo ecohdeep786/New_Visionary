@@ -1,5 +1,10 @@
 # KAN-43 — DATA-08 — prove wrong UID/workspace/role, concurrent grants/revocation, stale writes, account-switch races; bound connection pools; reconnect recovery
 
+7 November 2026: original submitted checkpoint, not current acceptance. Its
+in-memory authority/fleet claims were independently rejected. The original
+branch is being finalized against accepted dev with actual-store proofs; see
+[current verification](../../../integration/DATA08_VERIFICATION.md).
+
 ## Task review and verification handoff
 
 Jira key / source ID: KAN-43 (DATA-08)

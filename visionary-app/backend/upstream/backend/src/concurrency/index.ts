@@ -1,4 +1,2 @@
-// DATA-08 — public surface for concurrency/authority proof + bounded pool.
-export * from './concurrency-types';
-export * from './concurrency-store';
-export * from './concurrency.service';
+// DATA-08 verification library. Runtime authority stays in the owning stores.
+export * from './connection-budget';
