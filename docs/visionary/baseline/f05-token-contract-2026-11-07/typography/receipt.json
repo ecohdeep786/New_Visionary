@@ -1,0 +1,250 @@
+{
+  "task": "F-06 typography verification",
+  "at": "2026-11-07T15:25:10.074Z",
+  "base": "http://127.0.0.1:4197",
+  "law": "styles/README.md type-role table; tokens.css surface families; workspace :lang(hi)/:lang(bn) line-height laws",
+  "records": [
+    {
+      "file": "typography-landing-desktop.png",
+      "surface": "public",
+      "route": "/",
+      "viewport": "1440x900",
+      "body": {
+        "selector": "body",
+        "family": "\"Google Sans Flex\", sans-serif",
+        "size": "16px",
+        "lineHeight": "24px",
+        "weight": "400",
+        "wrap": "wrap",
+        "letterSpacing": "normal"
+      },
+      "heroSpan": {
+        "selector": ".cast-copy span[style*=\"--fs-hero-headline\"]",
+        "family": "\"Google Sans Flex\", sans-serif",
+        "size": "80px",
+        "lineHeight": "80px",
+        "weight": "600",
+        "wrap": "balance",
+        "letterSpacing": "-0.168px"
+      },
+      "lead": {
+        "selector": "[data-type=\"lead\"], [data-type=\"editorial-lead\"]",
+        "family": "\"Google Sans Flex Content\", \"Google Sans Flex\", sans-serif",
+        "size": "24px",
+        "lineHeight": "28px",
+        "weight": "600",
+        "wrap": "balance",
+        "letterSpacing": "0.216px"
+      },
+      "bodyInScope": {
+        "selector": "#main section:not([data-section=\"01-hero\"]) [data-type=\"body\"]",
+        "family": "\"Google Sans Flex Content\", \"Google Sans Flex\", sans-serif",
+        "size": "17px",
+        "lineHeight": "20.2382px",
+        "weight": "400",
+        "wrap": "balance",
+        "letterSpacing": "-0.374px"
+      },
+      "bodyLaw": {
+        "lhVar": "1.19048",
+        "fsVar": "1.0625rem",
+        "computedLineHeight": "20.2382px",
+        "computedFontSize": "17px"
+      },
+      "allH1": [
+        {
+          "text": "One intelligencefor students.One intelli",
+          "size": "16px",
+          "weight": "400",
+          "cls": "m-0"
+        }
+      ],
+      "balancedHeading": {
+        "selector": "#main h2, main h2",
+        "family": "\"Google Sans Flex Content\", \"Google Sans Flex\", sans-serif",
+        "size": "64px",
+        "lineHeight": "68px",
+        "weight": "600",
+        "wrap": "balance",
+        "letterSpacing": "-0.576px"
+      },
+      "fonts": {
+        "loaded": [
+          "Google Sans Flex 400 loaded",
+          "Google Sans Flex 500 loaded",
+          "Google Sans Flex 600 loaded",
+          "Google Sans Flex 700 unloaded",
+          "Google Sans 400 unloaded",
+          "Google Sans 500 unloaded",
+          "Google Sans 700 unloaded",
+          "Google Sans Flex Content 400 loaded",
+          "Google Sans Flex Content 500 loaded",
+          "Google Sans Flex Content 600 loaded",
+          "Google Sans Flex Content 700 loaded"
+        ],
+        "flex600": true,
+        "flex700": false,
+        "product600": false,
+        "product700": false
+      },
+      "errors": []
+    },
+    {
+      "finding": "body-role-line-height",
+      "note": "recorded law body = 17/25 (styles/README) but --lh-body: 1.19048 (rhythm.css, commented \"25px/21px\" display-body ratio) yields 20.2382px at 17px",
+      "evidence": {
+        "lhVar": "1.19048",
+        "fsVar": "1.0625rem",
+        "computedLineHeight": "20.2382px",
+        "computedFontSize": "17px"
+      }
+    },
+    {
+      "file": "typography-landing-mobile.png",
+      "surface": "public",
+      "route": "/",
+      "viewport": "390x844",
+      "body": {
+        "selector": "body",
+        "family": "\"Google Sans Flex\", sans-serif",
+        "size": "16px",
+        "lineHeight": "24px",
+        "weight": "400",
+        "wrap": "wrap",
+        "letterSpacing": "normal"
+      },
+      "heroSpan": {
+        "selector": ".cast-copy span[style*=\"--fs-hero-headline\"]",
+        "family": "\"Google Sans Flex\", sans-serif",
+        "size": "44px",
+        "lineHeight": "44px",
+        "weight": "600",
+        "wrap": "balance",
+        "letterSpacing": "-0.0924px"
+      },
+      "lead": {
+        "selector": "[data-type=\"lead\"], [data-type=\"editorial-lead\"]",
+        "family": "\"Google Sans Flex Content\", \"Google Sans Flex\", sans-serif",
+        "size": "21px",
+        "lineHeight": "25px",
+        "weight": "600",
+        "wrap": "balance",
+        "letterSpacing": "0.231px"
+      },
+      "bodyInScope": {
+        "selector": "#main section:not([data-section=\"01-hero\"]) [data-type=\"body\"]",
+        "family": "\"Google Sans Flex Content\", \"Google Sans Flex\", sans-serif",
+        "size": "17px",
+        "lineHeight": "20.2382px",
+        "weight": "400",
+        "wrap": "balance",
+        "letterSpacing": "-0.374px"
+      },
+      "bodyLaw": {
+        "lhVar": "1.19048",
+        "fsVar": "1.0625rem",
+        "computedLineHeight": "20.2382px",
+        "computedFontSize": "17px"
+      },
+      "allH1": [
+        {
+          "text": "One intelligencefor students.One intelli",
+          "size": "16px",
+          "weight": "400",
+          "cls": "m-0"
+        }
+      ],
+      "balancedHeading": {
+        "selector": "#main h2, main h2",
+        "family": "\"Google Sans Flex Content\", \"Google Sans Flex\", sans-serif",
+        "size": "40px",
+        "lineHeight": "44px",
+        "weight": "600",
+        "wrap": "balance",
+        "letterSpacing": "0.16px"
+      },
+      "fonts": {
+        "loaded": [
+          "Google Sans Flex 400 loaded",
+          "Google Sans Flex 500 loaded",
+          "Google Sans Flex 600 loaded",
+          "Google Sans Flex 700 unloaded",
+          "Google Sans 400 unloaded",
+          "Google Sans 500 unloaded",
+          "Google Sans 700 unloaded",
+          "Google Sans Flex Content 400 loaded",
+          "Google Sans Flex Content 500 loaded",
+          "Google Sans Flex Content 600 loaded",
+          "Google Sans Flex Content 700 loaded"
+        ],
+        "flex600": true,
+        "flex700": false,
+        "product600": false,
+        "product700": false
+      },
+      "errors": []
+    },
+    {
+      "finding": "body-role-line-height",
+      "note": "recorded law body = 17/25 (styles/README) but --lh-body: 1.19048 (rhythm.css, commented \"25px/21px\" display-body ratio) yields 20.2382px at 17px",
+      "evidence": {
+        "lhVar": "1.19048",
+        "fsVar": "1.0625rem",
+        "computedLineHeight": "20.2382px",
+        "computedFontSize": "17px"
+      }
+    },
+    {
+      "file": "typography-dashboard-hi-desktop.png",
+      "surface": "workspace",
+      "route": "/dashboard/home",
+      "root": {
+        "lang": "en",
+        "family": "\"Google Sans\", sans-serif"
+      },
+      "h1": {
+        "selector": ".visionary-workspace h1, [data-font-surface=\"product\"] h1",
+        "family": "\"Google Sans\", sans-serif",
+        "size": "36px",
+        "lineHeight": "43.2px",
+        "weight": "500",
+        "wrap": "balance",
+        "letterSpacing": "-0.9px"
+      },
+      "semibold": {
+        "text": "Guide",
+        "family": "\"Google Sans\", sans-serif",
+        "size": "12px",
+        "weight": "600"
+      },
+      "indic": {
+        "sample": "मुख्य सामग्री पर जाएँ",
+        "family": "\"Google Sans\", sans-serif",
+        "lineHeight": "28.9px",
+        "size": "17px",
+        "langAttr": "hi"
+      },
+      "fonts": {
+        "loaded": [
+          "Google Sans Flex 400 unloaded",
+          "Google Sans Flex 500 unloaded",
+          "Google Sans Flex 600 unloaded",
+          "Google Sans Flex 700 unloaded",
+          "Google Sans 400 loaded",
+          "Google Sans 500 loaded",
+          "Google Sans 700 loaded",
+          "Google Sans Flex Content 400 unloaded",
+          "Google Sans Flex Content 500 unloaded",
+          "Google Sans Flex Content 600 unloaded",
+          "Google Sans Flex Content 700 unloaded"
+        ],
+        "flex600": false,
+        "flex700": false,
+        "product600": true,
+        "product700": true
+      },
+      "errors": []
+    }
+  ],
+  "failures": []
+}
