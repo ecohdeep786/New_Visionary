@@ -117,7 +117,7 @@ function DownloadHeroSection() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-white p-8 pb-20">
             <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
-              <Globe className="h-5 w-5" strokeWidth={1.8} />
+              <Globe className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Continue on web</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
@@ -135,7 +135,7 @@ function DownloadHeroSection() {
 
           <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-white p-8 pb-20">
             <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
-              <Download className="h-5 w-5" strokeWidth={1.8} />
+              <Download className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
@@ -197,7 +197,7 @@ function DownloadPlatformsSection() {
                   </span>
                 )}
                 <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
-                  <p.Icon className="h-5 w-5" strokeWidth={1.8} />
+                  <p.Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <h3 className="mt-5 font-medium tracking-[0] leading-[1.15] text-[20px]" style={{ color: COLORS.ink }}>{p.name}</h3>
                 <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.meta}</p>
@@ -371,7 +371,7 @@ function DownloadTrustBand() {
     <section ref={ref} data-section="04b-strip" className="relative px-6" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
-          <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
+          <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} aria-hidden="true" />
           <p className="text-center font-normal tracking-[0.24px] text-[16px]" style={{ color: COLORS.ink }}>
             Signed builds and automatic updates are planned for every platform. The web is live today, and your data stays yours.
           </p>

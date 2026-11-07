@@ -2349,13 +2349,13 @@
         "frontend/src/components/landing/system/ui.jsx:302:9",
         "frontend/src/components/landing/system/ui.jsx:329:5",
         "frontend/src/pages/landing/AILearningPage.jsx:77:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:130:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:164:25",
-        "frontend/src/pages/landing/AILearningPage.jsx:208:15",
-        "frontend/src/pages/landing/AILearningPage.jsx:233:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:287:17",
-        "frontend/src/pages/landing/AILearningPage.jsx:316:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:319:11"
+        "frontend/src/pages/landing/AILearningPage.jsx:133:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:167:25",
+        "frontend/src/pages/landing/AILearningPage.jsx:211:15",
+        "frontend/src/pages/landing/AILearningPage.jsx:236:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:290:17",
+        "frontend/src/pages/landing/AILearningPage.jsx:319:11",
+        "frontend/src/pages/landing/AILearningPage.jsx:322:11"
       ],
       "operations": [
         "subscription-test-checkout",
@@ -70077,9 +70077,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:130:13",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:133:13",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 130,
+      "line": 133,
       "column": 13,
       "tag": "BillingToggle",
       "events": [
@@ -70106,9 +70106,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:164:25",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:167:25",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 164,
+      "line": 167,
       "column": 25,
       "tag": "Link",
       "events": [],
@@ -70130,9 +70130,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:208:15",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:211:15",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 208,
+      "line": 211,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -70154,9 +70154,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:233:13",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:236:13",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 233,
+      "line": 236,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -70178,9 +70178,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:287:17",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:290:17",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 287,
+      "line": 290,
       "column": 17,
       "tag": "button",
       "events": [
@@ -70209,9 +70209,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:316:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:319:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 316,
+      "line": 319,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -70234,9 +70234,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:319:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:322:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 319,
+      "line": 322,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -78588,7 +78588,7 @@
     },
     {
       "file": "frontend/src/components/landing/LandingNav/index.jsx",
-      "sourceSha256": "0859b9b744963975ed43a43b60e623607629249603e9c52fb35cbf9902dbd1b2"
+      "sourceSha256": "e82da581fc57db10b3f01723c0c7a725bfea4cf812fd0ccda1de2a91493e79a8"
     },
     {
       "file": "frontend/src/components/landing/LandingNav/nav-data.js",
@@ -79568,7 +79568,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "08880a777917f1b6ee2be915910918ebdab2fe15bfed9e5ef99c9da5038ff111"
+      "sourceSha256": "0f32395bc617f7c3627d0b9b8a1fa81259d779ffbb436e990f4ba862c7789a7c"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
@@ -79596,7 +79596,7 @@
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "sourceSha256": "db4ef7232f808fb3c24be99111a8fab847d92089741a1d574b97f72641bb3ef2"
+      "sourceSha256": "3149ce180410b002f1e6e0895b45320909eacb6b8cad889661954775f2ab8be8"
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
@@ -79612,7 +79612,7 @@
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "2701a619ffbe80c6cf2d183e7381c016bbdd087611acd5075ac7a78acc7ca9f1"
+      "sourceSha256": "149d06ef5fbe7ed9730937e3516adab3918555ce06f14796fb439e0903e94931"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",

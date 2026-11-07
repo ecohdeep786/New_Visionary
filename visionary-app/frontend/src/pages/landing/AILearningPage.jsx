@@ -95,10 +95,13 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
 });
 
 /* ═══ Comparison cell — the store-grade row values; strings render the
-   entitlement word for word, booleans the quiet ✓/– (truth: pricingConfig) ═══ */
+   entitlement word for word, booleans the quiet ✓/– (truth: pricingConfig).
+   The glyphs ARE the cell's content, so each carries its own accessible name
+   (F-07-D1): role="img" + label keeps the visual quiet mark while screen
+   readers hear Included / Not included instead of an unnamed graphic. ═══ */
 const CellValue = React.memo(function CellValue({ value }) {
-  if (value === true) return <Check className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.blue }} />;
-  if (value === false) return <Minus className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.lightGrey }} />;
+  if (value === true) return <Check role="img" aria-label="Included" className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.blue }} />;
+  if (value === false) return <Minus role="img" aria-label="Not included" className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.lightGrey }} />;
   return <span className="font-normal tracking-[-0.022em] text-[17px]" style={{ color: COLORS.ink }}>{value}</span>;
 });
 
