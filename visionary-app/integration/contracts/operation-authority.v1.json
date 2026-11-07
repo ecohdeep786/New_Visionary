@@ -1596,7 +1596,7 @@
     },
     {
       "file": "backend/upstream/backend/src/platform/production-http.ts",
-      "sha256Lf": "183b85f00ea99d915e5dd80a55f4fc4eb61033d16e5506089cbceb473c360c4f"
+      "sha256Lf": "30ba974ca5b153e28c5ddf7c913654ad0cdc9da13a72a6a34da64629743e3a6c"
     },
     {
       "file": "integration/contracts/product-surface-review.json",
