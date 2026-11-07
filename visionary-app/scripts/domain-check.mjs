@@ -38,3 +38,9 @@ const overviewTests = readdirSync(join(root, 'backend/tests/contracts/data-07'))
 run(['--test', '--test-reporter=tap', ...overviewTests.map(f => join(root, 'backend/tests/contracts/data-07', f))]);
 const concurrencyTests = readdirSync(join(root, 'backend/tests/contracts/data-08')).filter(f => f.endsWith('.test.mjs'));
 run(['--test', '--test-reporter=tap', ...concurrencyTests.map(f => join(root, 'backend/tests/contracts/data-08', f))]);
+
+// ACCEPT-07 (KAN-123): the full migration cutover rehearsal — originals ledger,
+// reviewed schema apply, canary + full backfill with digests/ownership, rollback
+// law (forward-only registry), exactly-one-executor evidence.
+const rehearsalTests = readdirSync(join(root, 'backend/tests/contracts/accept-07')).filter(f => f.endsWith('.test.mjs'));
+run(['--test', '--test-reporter=tap', ...rehearsalTests.map(f => join(root, 'backend/tests/contracts/accept-07', f))]);

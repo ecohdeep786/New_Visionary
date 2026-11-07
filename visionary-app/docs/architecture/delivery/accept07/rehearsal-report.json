@@ -1,0 +1,97 @@
+{
+  "task": "ACCEPT-07 / KAN-123",
+  "kind": "migration-cutover-rehearsal",
+  "date": "2026-11-07T21:57:26.146Z",
+  "database": "disposable synthetic PostgreSQL (local)",
+  "identitySeparation": {
+    "migrationRole": "accept07m_38fb527438…",
+    "runtimeRole": "accept07r_38fb527438…"
+  },
+  "registryDigest": "92ae843373053f7f61e54458acb1f2db54be045aac417f70a47dcd2dc353833c",
+  "versions": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "originals": {
+    "table": "legacy_learners",
+    "count": 24,
+    "digest": "5fb897d7716c8fa36cce9bcaa81584509f4ec7952dfe972158f1701759ec6c14",
+    "retainedAfterEveryStage": true
+  },
+  "canary": {
+    "processed": 5,
+    "definition": "9d7c1406dc946ab4abfca9062374807e862f3df21d9df8181226d796a41d0800"
+  },
+  "cutover": {
+    "processed": 24,
+    "persons": 24,
+    "workspaces": 24,
+    "memberships": 24,
+    "ownerFaithful": true
+  },
+  "rollback": {
+    "reviewedRegistry": "FORWARD-ONLY BY DESIGN — ROLLBACK_DENIED on every canonical migration",
+    "probe": "reversible synthetic migration: applied → rolled_back → verified → re-applied",
+    "recovery": "snapshot-based, never downgrade"
+  },
+  "singleExecutor": {
+    "concurrentApplies": "exactly one side-effecting",
+    "concurrentBackfills": "checkpoint serialization, zero duplicates"
+  },
+  "operatorChecklist": [
+    "Freeze writers: stop every product instance writing the target database before any side-effecting command (exactly one executor).",
+    "Snapshot the originals: full backup + the counts/digests ledger of every legacy table, recorded before the first command.",
+    "Separate identities: DATA_MIGRATION_ROLE (schema owner) and DATA_RUNTIME_ROLE (least-privilege DML only) must be distinct LOGIN roles.",
+    "Plan first: run the plan command and archive the registry digest + version list as the cutover record.",
+    "Apply the reviewed schema migration; re-verify the originals ledger digest is byte-identical afterwards.",
+    "Canary: run the local-data backfill bounded (maxRows) to a subset; verify ownership linkage and original digests before proceeding.",
+    "Resume to completion; verify global counts, per-row ownership faithfulness and the retained originals.",
+    "A populated-domain rollback is FORBIDDEN: the reviewed registry is forward-only by design (ROLLBACK_DENIED) — recovery is forward-only from the snapshot.",
+    "Archive the verified receipt with the release commit; production admission requires it (STAGING_RECEIPT_REQUIRED)."
+  ],
+  "stages": [
+    {
+      "name": "bootstrap: distinct migration/runtime roles own or read the schema",
+      "ok": true
+    },
+    {
+      "name": "originals ledger snapshotted",
+      "ok": true
+    },
+    {
+      "name": "reviewed plan artifact",
+      "ok": true
+    },
+    {
+      "name": "schema migration applied and verified",
+      "ok": true
+    },
+    {
+      "name": "originals retained through the schema migration",
+      "ok": true
+    },
+    {
+      "name": "runtime identity denied DDL and control writes (PostgreSQL ground truth)",
+      "ok": true
+    },
+    {
+      "name": "canary cutover: bounded subset migrated, originals untouched",
+      "ok": true
+    },
+    {
+      "name": "full cutover: counts, digests and ownership verified; originals retained",
+      "ok": true
+    },
+    {
+      "name": "rollback rehearsal: reviewed registry forward-only by design; reversible probe applies, rolls back, re-applies",
+      "ok": true
+    },
+    {
+      "name": "exactly one executor: concurrent applies serialize; concurrent backfills fence on the checkpoint",
+      "ok": true
+    }
+  ]
+}
