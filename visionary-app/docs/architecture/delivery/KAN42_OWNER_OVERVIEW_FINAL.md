@@ -84,7 +84,9 @@ These earlier incomplete results are superseded by the recorded successful runs.
 
 ## Review, integration and cleanup receipts
 
-Independent exact-source decision: pending.
+Independent exact-source decision: **approved** by `/root/kan42_final_review` for
+`7087b81451fd718dfe3c1b9bf10d615b62f40bae`; see
+[separate review](../reviews/KAN42_EXACT_SOURCE_REVIEW_7087B814.md).
 Candidate CI and integrated-dev CI: pending.
 Accepted dev merge and read-back: pending.
 Completed checkout retirement and final Jira status: pending.
