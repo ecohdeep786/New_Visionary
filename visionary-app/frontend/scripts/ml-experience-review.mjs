@@ -230,8 +230,8 @@ try {
   } catch { /* preview turns resolve without a network round-trip */ }
   await page.waitForTimeout(2500);
   const notConnectedText = await bodyText(page);
-  check('ask-not-connected-label', notConnectedText.includes('Teaching service not connected'),
-    'guide message renders the "Teaching service not connected" status label');
+  check('ask-not-connected-label', notConnectedText.includes('Your question is saved · no model answer yet'),
+    'guide message renders the outcome-first "Your question is saved · no model answer yet" status label (FAP-76)');
   check('ask-not-connected-honest-text', notConnectedText.includes('no model answer has been generated'),
     'honest text states no model answer has been generated; question saved locally');
   check('ask-busy-stop-control', busySeen || /Checking the teaching connection/i.test(notConnectedText) || true,

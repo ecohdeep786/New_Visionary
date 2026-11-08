@@ -28,9 +28,9 @@ const ageText: Record<Locale, string> = {
  bn: 'এই বয়সের প্রোফাইলের জন্য এই কার্যকলাপটি উপলব্ধ নয়। সাধারণ শেখার কার্যকলাপ বেছে নিন।',
 };
 const unavailableText: Record<Locale, string> = {
- en: 'Visionary Guide’s teaching service is not connected. Your workspace can keep your question and learning progress locally; no model answer has been generated.',
- hi: 'Visionary Guide की शिक्षण सेवा जुड़ी नहीं है। आपका कार्यक्षेत्र आपके प्रश्न और सीखने की प्रगति को इस उपकरण पर रख सकता है; मॉडल से कोई उत्तर नहीं बनाया गया है।',
- bn: 'Visionary Guide-এর শিক্ষণ পরিষেবা যুক্ত নেই। আপনার কর্মক্ষেত্র প্রশ্ন ও শেখার অগ্রগতি এই ডিভাইসে রাখতে পারে; মডেল থেকে কোনো উত্তর তৈরি করা হয়নি।',
+ en: 'Your question is saved in this workspace. Guided answers are not available in this workspace yet, so no model answer has been generated. You can keep learning from example lessons and your saved records.',
+ hi: 'आपका प्रश्न इस कार्यक्षेत्र में सहेजा गया है। इस कार्यक्षेत्र में निर्देशित उत्तर अभी उपलब्ध नहीं हैं, इसलिए मॉडल से कोई उत्तर नहीं बनाया गया है। आप उदाहरण पाठ और अपने सहेजे रिकॉर्ड से सीखना जारी रख सकते हैं।',
+ bn: 'আপনার প্রশ্ন এই কর্মক্ষেত্রে সংরক্ষিত হয়েছে। এই কর্মক্ষেত্রে নির্দেশিত উত্তর এখনও উপলব্ধ নয়, তাই মডেল থেকে কোনো উত্তর তৈরি করা হয়নি। আপনি উদাহরণ পাঠ ও সংরক্ষিত রেকর্ড থেকে শেখা চালিয়ে যেতে পারেন।',
 };
 function check(ctx: RequestContext) { if (ctx.signal?.aborted) throw new DOMException('Cancelled', 'AbortError'); return workspaceIdentity(ctx); }
 async function abortable<T>(request: Promise<T>, signal?: AbortSignal): Promise<T> {

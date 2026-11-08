@@ -1,0 +1,97 @@
+{
+  "stamp": "2026-11-08T16:39:56.967Z",
+  "base": "http://localhost:5174 (beta 35953237)",
+  "candidate": "http://localhost:5173 (zcode/fap-76-ask-next-step)",
+  "results": [
+    {
+      "name": "before register",
+      "ok": true,
+      "detail": "learner registered via http://localhost:5174, email fap76.before.1794155997364@example.com"
+    },
+    {
+      "name": "before old-label-shown",
+      "ok": true,
+      "detail": "status label rendered \"Teaching service not connected\""
+    },
+    {
+      "name": "before new-label-absent",
+      "ok": true,
+      "detail": "outcome-first label not present on base"
+    },
+    {
+      "name": "before no-affordance",
+      "ok": true,
+      "detail": "no next-step affordance with the jargon reply (0 found)"
+    },
+    {
+      "name": "before honest-text-kept",
+      "ok": true,
+      "detail": "base keeps the truthful no-model-answer sentence"
+    },
+    {
+      "name": "before screenshot",
+      "ok": true,
+      "detail": "C:\\Users\\Administrator\\nv-worktrees\\fap-76-ask-next-step\\visionary-app\\docs\\visionary\\baseline\\fap76-qa-2026-11-08\\before-ask-not-connected.png"
+    },
+    {
+      "name": "before page-errors",
+      "ok": true,
+      "detail": "no uncaught page errors during the probe"
+    },
+    {
+      "name": "after register",
+      "ok": true,
+      "detail": "learner registered via http://localhost:5173, email fap76.after.1794156010623@example.com"
+    },
+    {
+      "name": "after new-label-shown",
+      "ok": true,
+      "detail": "status label rendered \"Your question is saved · no model answer yet\""
+    },
+    {
+      "name": "after old-label-gone",
+      "ok": true,
+      "detail": "service-jargon label retired from the reply"
+    },
+    {
+      "name": "after outcome-first-sentence",
+      "ok": true,
+      "detail": "first visible sentence states the saved outcome"
+    },
+    {
+      "name": "after truthful-boundary",
+      "ok": true,
+      "detail": "reply still states no model answer has been generated"
+    },
+    {
+      "name": "after affordance-present",
+      "ok": true,
+      "detail": "next-step affordance rendered (button:1 link:0)"
+    },
+    {
+      "name": "after home-affordance",
+      "ok": true,
+      "detail": "Return Home secondary affordance rendered"
+    },
+    {
+      "name": "after activity-opens",
+      "ok": true,
+      "detail": "Try an example lesson opens the activity canvas in-pane"
+    },
+    {
+      "name": "after question-kept",
+      "ok": true,
+      "detail": "the learner question stays visible in the conversation"
+    },
+    {
+      "name": "after page-errors",
+      "ok": true,
+      "detail": "no uncaught page errors during the probe"
+    },
+    {
+      "name": "verdict",
+      "ok": true,
+      "detail": "17/17 checks passed"
+    }
+  ]
+}
