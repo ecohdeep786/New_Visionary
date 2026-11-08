@@ -1,0 +1,79 @@
+{
+  "at": "2026-11-08T08:41:00.405Z",
+  "base": "http://127.0.0.1:4198",
+  "roles": [
+    {
+      "role": "student",
+      "pageErrors": [],
+      "surfaces": [
+        {
+          "route": "/dashboard/home",
+          "h1": "Welcome back, QA.",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is a",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": null
+        },
+        {
+          "route": "/dashboard/learn",
+          "h1": "Let’s learn",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is a",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 15,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Try authored learning sample",
+            "html": "<button class=\"v-button\" type=\"button\">Try authored learning sample</button>"
+          }
+        },
+        {
+          "route": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is a",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(96, 100, 108)",
+            "bg": "rgb(255,255,255)",
+            "fs": 12,
+            "fw": 400,
+            "large": false,
+            "required": 4.5,
+            "ratio": 5.94,
+            "sample": "Or try an authored example",
+            "html": "<h3 id=\"guide-example-title\" class=\"guide-example-heading\">Or try an authored example</h3>"
+          }
+        },
+        {
+          "route": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is a",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 15,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Show all recorded history",
+            "html": "<button class=\"v-button\">Show all recorded history</button>"
+          }
+        }
+      ]
+    }
+  ],
+  "note": "local fixture journeys - the \"real-user\" hosted journeys need a signed-in founder session (honest boundary); the FAP-30 rendered audit is recorded per surface, and lowContrast/smallControls are findings, not gates here"
+}
