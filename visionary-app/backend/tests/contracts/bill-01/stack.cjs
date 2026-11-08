@@ -208,11 +208,13 @@ const FIXTURE_SECRETS = {
   razorpay: 'bill01-ingress-fixture-razorpay-key-secret-0123456789abcdef',
   webhook: 'bill01-ingress-fixture-webhook-secret-0123456789abcdef',
   release: 'b1a2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0',
+  // BILL-02: the scheduled-reconciliation job credential (64-hex, exact).
+  reconcile: '3f9c1a7d5e2b48f6a0c9d3e7b1f45a28c6d0e9b3a7f14c82d5e6b0a9c3f7d214',
 };
 
 let stack = null;
 
-async function startStack({ runDir, providerMode = 'fixture', razorpay = {} } = {}) {
+async function startStack({ runDir, providerMode = 'fixture', razorpay = {}, providerState: externalProviderState } = {}) {
   if (stack) throw Error('The acceptance stack is already running.');
   if (!existsSync(path.join(backend, 'dist/src/main-auth.js'))) {
     throw environmentFailure('the compiled product runtime is missing', 'Run `npm run backend:build` from visionary-app before this acceptance.');
@@ -243,6 +245,10 @@ async function startStack({ runDir, providerMode = 'fixture', razorpay = {} } = 
   if (realProvider && (!razorpay.keyId || !razorpay.secret)) {
     throw environmentFailure('real test-merchant mode needs founder-supplied Razorpay test credentials', 'Set BILL01_RAZORPAY_KEY_ID (rzp_test_...) and BILL01_RAZORPAY_KEY_SECRET from the founder-supplied test-key CSV.');
   }
+  // BILL-02 restart durability: the caller may supply the provider state so the
+  // fictional merchant survives a full product restart exactly as a real
+  // provider's records would.
+  const providerState = externalProviderState || { subscriptions: new Map(), invoices: new Map(), payments: new Map(), creates: 0 };
   const config = new ConfigService({
     FIREBASE_PROJECT_ID: AUTH_EMULATOR_PROJECT,
     FIREBASE_PROJECT_KIND: 'emulator',
@@ -256,6 +262,7 @@ async function startStack({ runDir, providerMode = 'fixture', razorpay = {} } = 
     RAZORPAY_KEY_ID: realProvider ? razorpay.keyId : 'rzp_test_ingressfixture',
     RAZORPAY_KEY_SECRET: realProvider ? razorpay.secret : FIXTURE_SECRETS.razorpay,
     RAZORPAY_WEBHOOK_SECRET: realProvider ? (razorpay.webhookSecret || '') : FIXTURE_SECRETS.webhook,
+    BILLING_RECONCILE_TOKEN: realProvider ? (razorpay.reconcileToken || '') : FIXTURE_SECRETS.reconcile,
     RAZORPAY_PLAN_PERSONAL_MONTHLY: realProvider ? razorpay.planPersonalMonthly : 'plan_personalmonth',
     RAZORPAY_PLAN_PERSONAL_ANNUAL: realProvider ? razorpay.planPersonalAnnual : 'plan_personalyear',
     RAZORPAY_PLAN_FAMILY_MONTHLY: realProvider ? razorpay.planFamilyMonthly : 'plan_familymonth',
@@ -266,7 +273,6 @@ async function startStack({ runDir, providerMode = 'fixture', razorpay = {} } = 
   const auth = new FirebaseProductService(admin, config);
   const repo = new BillingRepository(auth);
   const provider = new RazorpayProvider(config);
-  const providerState = { subscriptions: new Map(), invoices: new Map(), payments: new Map(), creates: 0 };
   if (!realProvider) {
     // Fictional provider: same request surface as Razorpay, zero network.
     provider.request = async (method, resource, body) => {
@@ -376,6 +382,33 @@ async function controlPlane(request, response, context) {
       send(200, { accounts: accounts.size, sessions: sessions.size, providerCreates: providerState.creates });
       return;
     }
+    if (url.pathname === '/fixture/refund-payment' && request.method === 'POST') {
+      // BILL-02 fixture-only mutation: mark a provider payment refunded so the
+      // reconciliation's own provider read-back can observe the refund. The
+      // product's refund state always comes from the provider, never from here.
+      if (realProvider) { send(409, { error: 'Real refunds happen on the merchant dashboard; see the runbook.' }); return; }
+      let raw = '';
+      request.on('data', chunk => { raw += chunk; if (raw.length > 1024) request.destroy(); });
+      request.on('end', () => {
+        const body = JSON.parse(raw || '{}');
+        const payment = providerState.payments.get(body.paymentId);
+        if (!payment) { send(404, { error: 'Unknown fixture payment.' }); return; }
+        payment.amount_refunded = Number(body.amountRefunded);
+        payment.status = payment.amount_refunded >= payment.amount ? 'refunded' : 'captured';
+        send(200, { id: payment.id, amount_refunded: payment.amount_refunded });
+      });
+      return;
+    }
+    if (url.pathname === '/fixture/billing' && request.method === 'GET') {
+      // BILL-02 fixture-only snapshot: the durable billing records for one uid.
+      const uid = new URL(request.url, 'http://127.0.0.1').searchParams.get('uid');
+      const db = auth.getDatabase();
+      const account = uid ? (await db.collection('visionary_accounts').doc(uid).collection('billing').doc('test').get()).data() : null;
+      const events = uid ? (await db.collection('visionary_billing_test_events').get()).docs.map(d => ({ id: d.id, event: d.data().event, state: d.data().state, uid: d.data().uid })) : [];
+      const queue = uid ? (await db.collection('visionary_billing_test_queue').doc(uid).get()).data() : null;
+      send(200, { account: account || null, events: events.map(e => ({ id: e.id ?? null, event: e.event, state: e.state, uid: e.uid })), queue: queue || null });
+      return;
+    }
     send(404, { error: 'Fixture control plane: fixture-only endpoints under /fixture.' });
   } catch (error) {
     send(500, { error: 'Fixture control plane failure.', detail: String(error && error.message || error).slice(0, 200) });
@@ -408,7 +441,9 @@ async function stopStack() {
 
 function ingressRequest({ method = 'GET', pathname, headers = {}, body, deviceIp = '203.0.113.10', jar }) {
   return new Promise((resolve, reject) => {
-    const payload = body === undefined ? null : JSON.stringify(body);
+    // A Buffer is the exact signed raw bytes (BILL-02 provider webhooks); any
+    // other body is JSON-encoded exactly once.
+    const payload = body === undefined ? null : (Buffer.isBuffer(body) ? body : JSON.stringify(body));
     const request = https.request({
       host: HOSTNAME, port: PORTS.ingress, path: pathname, method,
       servername: HOSTNAME,
@@ -474,5 +509,5 @@ function sha256(value) { return createHash('sha256').update(value).digest('hex')
 module.exports = {
   assertRunnable, startEmulators, stopEmulators, exportEmulators, startStack, stopStack,
   ingressRequest, cookieJar, delay, portBusy, sha256, discoverJava, discoverOpenssl,
-  CANONICAL_ORIGIN, HOSTNAME, AUTH_EMULATOR_PROJECT, PORTS, environmentFailure,
+  CANONICAL_ORIGIN, HOSTNAME, AUTH_EMULATOR_PROJECT, PORTS, environmentFailure, FIXTURE_SECRETS,
 };

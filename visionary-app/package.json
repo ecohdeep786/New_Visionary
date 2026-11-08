@@ -45,6 +45,7 @@
     "rea": "node scripts/product.mjs rea cli",
     "privacycore:check": "node scripts/privacycore-check.mjs",
     "data:check": "node scripts/domain-check.mjs",
-    "billing:ingress:check": "node scripts/billing-ingress-check.mjs"
+    "billing:ingress:check": "node scripts/billing-ingress-check.mjs",
+    "billing:webhook:acceptance": "node scripts/billing-webhook-acceptance.mjs"
   }
 }

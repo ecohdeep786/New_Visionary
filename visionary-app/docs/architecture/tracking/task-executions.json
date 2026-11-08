@@ -2356,6 +2356,22 @@
       "runbook": "docs/architecture/delivery/BILL01_INGRESS_ACCEPTANCE.md",
       "note": "Founder-selected local-maximum path (2026-11-07): every unclaimed To Do task is a hosted/commercial gate and the Testing queue awaits the single reviewer. Jira NOT transitioned (no connector in this session); the task does NOT move to Testing as fully satisfied. Reviewer pending per D-095.",
       "at": "2026-11-07T19:45:00.000Z"
+    },
+    {
+      "id": "KAN-103",
+      "task": "BILL-02",
+      "title": "Register actual test webhooks after an ingress exists, preserve raw signed bytes/limits, and prove duplicate/reordered/late/refund/dispute notifications and reconciliation after restart",
+      "date": "2026-11-08",
+      "lane": "zcode-backend-ml",
+      "branch": "zcode/kan-103-bill02-webhook-acceptance (stacked on zcode/kan-102-bill01-ingress-acceptance)",
+      "baseCommit": "5373b268 (kan-102 tip; base origin/dev 4bb3c22d)",
+      "worktree": "nv-worktrees/kan-103-bill02 (left for reviewer)",
+      "status": "IMPLEMENTED_PENDING_REVIEW",
+      "delivery": "backend/tests/contracts/bill-02/bill02-webhook-acceptance.test.mjs (8 tests + deliberate-failure law proof); scripts/billing-webhook-acceptance.mjs registered as npm run billing:webhook:acceptance; additive bill-01 harness extensions (reconcile job token, caller-supplied provider state, raw-Buffer ingress, fixture refund/state probes); runbook docs/architecture/delivery/BILL02_WEBHOOK_ACCEPTANCE.md",
+      "evidence": "8/8 green on the canonical TLS ingress: provider-shaped webhook (no origin/cookies/CSRF) accepted 201; tampered/missing-id/malformed/oversize 403/400/400/413; duplicate delivery idempotent with exactly-once adjustment; same-id different-body 409; reordered/late/unmapped recorded honestly; mapped refund converged ONLY by the scheduled reconciliation job from provider records (partially_refunded 10000); dispute never fabricates refund state; job credential 403 without token; queued adjustment survives a FULL product restart and reconciles to refunded 29900; BILL02_SELF_TEST_FAIL=1 exits 1",
+      "gates": "billing:webhook:acceptance 0; self-test-fail 1; bill-01 protocol regression 11/11; backend:build 0; check 0; npm test 672/672 (dev base)",
+      "receipt": "docs/architecture/reviews/KAN103_BILL02_WEBHOOK_ACCEPTANCE_2026-11-08.md",
+      "notes": "No product source change; webhook handler/queue/reconciliation consumed as shipped on dev. External gates: Razorpay-registered webhook URL + provider-sent test events (owner-run). Jira transition NOT performed (no connector in session); reviewer pending per D-095."
     }
   ]
 }
