@@ -292,7 +292,7 @@ export default function TeacherPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <TeacherHeroSection />
         <TeacherStruggleSection />
         <TeacherJourneySection />
