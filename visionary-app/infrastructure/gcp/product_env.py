@@ -34,7 +34,7 @@ def environment(kind="production", project=None, number=None):
         project, number = project or PROJECT, number or NUMBER
         if (project, number) != (PROJECT, NUMBER):
             raise PlanError("PRODUCTION_TARGET_MISMATCH")
-    if (not isinstance(project, str) or not re.fullmatch(r"[a-z][a-z0-9-]{4,61}[a-z0-9]", project)
+    if (not isinstance(project, str) or not re.fullmatch(r"[a-z][a-z0-9-]{4,28}[a-z0-9]", project)
             or not isinstance(number, str) or not re.fullmatch(r"[1-9][0-9]{5,19}", number)
             or kind == "staging" and (project == PROJECT or number == NUMBER)):
         raise PlanError("EXPLICIT_ISOLATED_PROJECT_REQUIRED")
@@ -54,7 +54,7 @@ def environment(kind="production", project=None, number=None):
         "sql": {"instance": prefix + "-sql", "databaseVersion": "POSTGRES_16", "edition": "ENTERPRISE", "region": REGION,
             "tier": "db-custom-1-3840", "network": network, "publicIp": False, "sslMode": "ENCRYPTED_ONLY", "iamAuthentication": True,
             "backupEnabled": True, "pointInTimeRecoveryEnabled": True, "retainedBackups": 30, "deletionProtection": True,
-            "databases": ["visionary_app", "visionary_retrieval"]},
+            "databases": ["visionary_app", "visionary_retrieval"] if kind == "production" else ["visionary_data_staging_app", "visionary_data_staging_retrieval"]},
         "bucket": {"name": project + "-product-private", "location": REGION.upper(), "uniformBucketLevelAccess": True,
             "publicAccessPrevention": "enforced", "versioning": True, "storageClass": "STANDARD", "runtimeRole": "roles/storage.objectUser"},
         "queue": {"name": prefix + "-jobs", "location": REGION, "maxDispatchesPerSecond": 5, "maxConcurrentDispatches": 10,
@@ -78,7 +78,7 @@ def validate(config):
 
 class Gcloud:
     def __init__(self, project):
-        if not isinstance(project, str) or not re.fullmatch(r"[a-z][a-z0-9-]{4,61}[a-z0-9]", project):
+        if not isinstance(project, str) or not re.fullmatch(r"[a-z][a-z0-9-]{4,28}[a-z0-9]", project):
             raise PlanError("INVALID_PROJECT")
         self.project = project
 
@@ -95,7 +95,10 @@ class Gcloud:
                 return None
             raise PlanError("GCLOUD_COMMAND_FAILED")
         try:
-            return json.loads(result.stdout) if result.stdout.strip() else {}
+            value = json.loads(result.stdout) if result.stdout.strip() else {}
+            if not isinstance(value, (dict, list)):
+                raise PlanError("INVALID_GCLOUD_RESPONSE")
+            return value
         except ValueError as error:
             raise PlanError("INVALID_GCLOUD_RESPONSE") from error
 

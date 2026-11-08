@@ -17,6 +17,14 @@ retain their platform/data/job/release gates. Browser UI is N/A: this changes no
 product route or frontend source. Existing production-image/API checks in CI
 remain the regression gate; no fictional browser result represents deployed GCP.
 
+The accepted `migrationJobPlan` and backend `CloudSqlTarget` still pin
+`visionary-research`; they **cannot yet target the project-isolated staging plan**.
+Staging database names use `visionary_data_staging_*` to preserve its accepted
+database boundary, but new-project migration identity/job/runtime binding must
+be separately implemented and reviewed at DATA-02 / PLAT-03..06 before actual
+staging acceptance. Their current project guards remain intact. A generated
+isolated plan is not a working current staging deployment.
+
 Original branch carried 367 files/27k lines from unrelated unreviewed task
 ancestors. Their original commits remain retained in this branch's history.
 Scope commit `1ab5b19f` restored the candidate tree to accepted dev plus KAN-45's
@@ -89,3 +97,18 @@ Sources checked for the actual command/API shapes:
 Reviewer decision, final candidate/CI, published squash integration, integrated
 verification, evidence preservation, cleanup and actual Jira Done remain pending.
 Jira findings comment10699 returned the issue to In Progress. No self-approval.
+
+## Independent review correction
+
+`/root/kan45_final_review` independently passed32 Python tests and verified the
+seven-file scope/baseline isolation at `6d981e12`, then requested changes. Project
+IDs longer than30 passed the local regex despite GCP's limit, and SDK success
+with JSON`null` could become missing-resource/create permission. Both now fail
+closed, with boundary and null/scalar regressions. Staging database names and the
+explicit current migration-project integration gap above were also corrected.
+Source/command hashes change with these fixes; renewed exact-source review and
+CI are required before integration.
+
+Corrected full Python suite:35/35 passed (24 environment +11 foundation),
+including actual staging-shaped command/observation contracts and a complete
+reconcile transport case proving successful JSONnull cannot trigger creation.

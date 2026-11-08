@@ -27,8 +27,7 @@ def observed(c):
                 "databaseFlags": [{"name": "cloudsql.iam_authentication", "value": "on"}],
                 "ipConfiguration": {"ipv4Enabled": False, "privateNetwork": "https://www.googleapis.com/compute/v1/" + n["resource"], "sslMode": "ENCRYPTED_ONLY", "authorizedNetworks": []},
                 "backupConfiguration": {"enabled": True, "pointInTimeRecoveryEnabled": True, "startTime": "03:00", "backupRetentionSettings": {"retainedBackups": 30}}}},
-        "database-visionary_app": {"name": "visionary_app", "instance": s["instance"], "project": c["project"]},
-        "database-visionary_retrieval": {"name": "visionary_retrieval", "instance": s["instance"], "project": c["project"]},
+        **{"database-" + name: {"name": name, "instance": s["instance"], "project": c["project"]} for name in s["databases"]},
         "bucket": [{"name": b["name"], "projectNumber": c["projectNumber"], "location": "ASIA-SOUTH1", "storageClass": "STANDARD",
             "iamConfiguration": {"publicAccessPrevention": "enforced", "uniformBucketLevelAccess": {"enabled": True}}, "versioning": {"enabled": True}},
             {"bindings": [{"role": "roles/storage.objectUser", "members": ["serviceAccount:" + c["runtime"]]}]}],
@@ -101,6 +100,15 @@ class PlanTests(unittest.TestCase):
         self.assertIsNone(c["foundation"]["domain"])
         self.assertNotIn(p.PROJECT, p.canonical(p.reviewed_plan(c)))
         self.assertNotEqual(p.digest(c), p.digest(p.environment()))
+        self.assertEqual(c["sql"]["databases"], ["visionary_data_staging_app", "visionary_data_staging_retrieval"])
+
+    def test_project_ids_longer_than_gcp_limit_cannot_be_approved(self):
+        for length in (5, 31, 63):
+            with self.assertRaises(p.PlanError):
+                p.environment("staging", "a" * length, "111222333444")
+            with self.assertRaises(p.PlanError):
+                p.Gcloud("a" * length)
+        self.assertEqual(p.validate(p.environment("staging", "a" * 30, "111222333444")), [])
 
     def test_unknown_or_unsafe_settings_cannot_pass_review(self):
         for section, key, value in [("sql", "publicIp", True), ("sql", "pointInTimeRecoveryEnabled", False), ("sql", "sslMode", "ALLOW_UNENCRYPTED_AND_ENCRYPTED"),
@@ -151,6 +159,15 @@ class ReconcileTests(unittest.TestCase):
                 count = len(client.mutations)
                 self.assertEqual(self.apply(client)["createdOrAttached"], [])
                 self.assertEqual(count, len(client.mutations))
+
+    def test_isolated_staging_command_contracts_reconcile_all_modes(self):
+        for mode in ("network", "data", "storage", "queue"):
+            with self.subTest(mode=mode):
+                c = p.environment("staging", "visionary-staging-check", "111222333444")
+                owned = p.resources(c, mode)[1]
+                client = Client(c, mode, [r.key for r in owned])
+                self.assertEqual(self.apply(client)["createdOrAttached"], [r.key for r in owned])
+                self.assertNotIn(p.PROJECT, p.canonical(client.mutations))
 
     def test_known_drift_and_missing_prerequisites_stop_all_mutations(self):
         c = p.environment(); client = Client(c, "data", ["sql", "network"])
@@ -309,6 +326,30 @@ class TransportTests(unittest.TestCase):
         with patch.object(p, "run_gcloud", return_value=SimpleNamespace(returncode=0, stdout="not-json")):
             with self.assertRaisesRegex(p.PlanError, "INVALID_GCLOUD_RESPONSE"):
                 p.Gcloud(p.PROJECT)(["example"])
+
+    def test_successful_null_or_scalar_is_never_missing_resource_permission(self):
+        for stdout in ("null", "false", "0", '"missing"'):
+            with self.subTest(stdout=stdout), patch.object(p, "run_gcloud", return_value=SimpleNamespace(returncode=0, stdout=stdout)) as run:
+                with self.assertRaisesRegex(p.PlanError, "INVALID_GCLOUD_RESPONSE"):
+                    p.Gcloud(p.PROJECT)(["tasks", "queues", "describe", "example"], missing=True)
+                self.assertEqual(run.call_count, 1)
+
+        c = p.environment(); commands = []
+        def sdk(args, **kwargs):
+            commands.append(args)
+            if args[:2] == ["projects", "describe"]:
+                value = {"projectId": c["project"], "projectNumber": c["projectNumber"], "lifecycleState": "ACTIVE"}
+            elif args[:2] == ["services", "list"]:
+                value = [{"config": {"name": x}} for x in c["foundation"]["requiredApis"]]
+            elif args[:3] == ["tasks", "queues", "describe"]:
+                value = None
+            else:
+                self.fail("Invalid observation caused a mutation: " + str(args[:3]))
+            return SimpleNamespace(returncode=0, stdout=json.dumps(value))
+        with patch.object(p, "run_gcloud", side_effect=sdk):
+            with self.assertRaisesRegex(p.PlanError, "INVALID_GCLOUD_RESPONSE"):
+                p.reconcile(c, "queue", p.digest(c), p.Gcloud(c["project"]))
+        self.assertFalse(any("create" in args for args in commands))
 
 
 if __name__ == "__main__":
