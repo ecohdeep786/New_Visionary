@@ -246,7 +246,7 @@ test('unconnected teaching returns an honest status for all modes and creates no
  for (const method of ['requestExplanation', 'requestPracticeQuestion', 'requestFeedback', 'requestProjectGuidance']) {
   const response = await api[method]({ input: 'My question' });
   assert.equal(response.status, 'not_connected'); assert.equal(response.source, 'not_connected'); assert.equal(response.question, undefined);
-  assert.match(response.text, /not connected/);
+  assert.match(response.text, /no model answer has been generated/);
  }
  assert.deepEqual(memory, before);
 });

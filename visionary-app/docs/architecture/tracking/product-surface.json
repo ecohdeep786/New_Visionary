@@ -5366,9 +5366,12 @@
         "frontend/src/pages/dashboard/Guide.jsx:259:50",
         "frontend/src/pages/dashboard/Guide.jsx:259:130",
         "frontend/src/pages/dashboard/Guide.jsx:267:30",
-        "frontend/src/pages/dashboard/Guide.jsx:268:835",
-        "frontend/src/pages/dashboard/Guide.jsx:268:1024",
-        "frontend/src/pages/dashboard/Guide.jsx:268:1149",
+        "frontend/src/pages/dashboard/Guide.jsx:268:849",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1038",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1163",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1417",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1573",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1683",
         "frontend/src/pages/dashboard/Guide.jsx:270:40",
         "frontend/src/pages/dashboard/Guide.jsx:278:409",
         "frontend/src/pages/dashboard/Guide.jsx:280:47",
@@ -6358,9 +6361,12 @@
         "frontend/src/pages/dashboard/Guide.jsx:259:50",
         "frontend/src/pages/dashboard/Guide.jsx:259:130",
         "frontend/src/pages/dashboard/Guide.jsx:267:30",
-        "frontend/src/pages/dashboard/Guide.jsx:268:835",
-        "frontend/src/pages/dashboard/Guide.jsx:268:1024",
-        "frontend/src/pages/dashboard/Guide.jsx:268:1149",
+        "frontend/src/pages/dashboard/Guide.jsx:268:849",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1038",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1163",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1417",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1573",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1683",
         "frontend/src/pages/dashboard/Guide.jsx:270:40",
         "frontend/src/pages/dashboard/Guide.jsx:278:409",
         "frontend/src/pages/dashboard/Guide.jsx:280:47",
@@ -8297,9 +8303,12 @@
         "frontend/src/pages/dashboard/Guide.jsx:259:50",
         "frontend/src/pages/dashboard/Guide.jsx:259:130",
         "frontend/src/pages/dashboard/Guide.jsx:267:30",
-        "frontend/src/pages/dashboard/Guide.jsx:268:835",
-        "frontend/src/pages/dashboard/Guide.jsx:268:1024",
-        "frontend/src/pages/dashboard/Guide.jsx:268:1149",
+        "frontend/src/pages/dashboard/Guide.jsx:268:849",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1038",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1163",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1417",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1573",
+        "frontend/src/pages/dashboard/Guide.jsx:268:1683",
         "frontend/src/pages/dashboard/Guide.jsx:270:40",
         "frontend/src/pages/dashboard/Guide.jsx:278:409",
         "frontend/src/pages/dashboard/Guide.jsx:280:47",
@@ -54542,10 +54551,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Guide.jsx:268:835",
+      "id": "frontend/src/pages/dashboard/Guide.jsx:268:849",
       "file": "frontend/src/pages/dashboard/Guide.jsx",
       "line": 268,
-      "column": 835,
+      "column": 849,
       "tag": "button",
       "events": [
         {
@@ -54577,10 +54586,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Guide.jsx:268:1024",
+      "id": "frontend/src/pages/dashboard/Guide.jsx:268:1038",
       "file": "frontend/src/pages/dashboard/Guide.jsx",
       "line": 268,
-      "column": 1024,
+      "column": 1038,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -54605,10 +54614,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Guide.jsx:268:1149",
+      "id": "frontend/src/pages/dashboard/Guide.jsx:268:1163",
       "file": "frontend/src/pages/dashboard/Guide.jsx",
       "line": 268,
-      "column": 1149,
+      "column": 1163,
       "tag": "button",
       "events": [
         {
@@ -54621,6 +54630,99 @@
       ],
       "disabled": null,
       "declarationSha256": "c4643dda13bfef688b39da6c85fd22fd7f12e24400eadbd94b7ef568c1a51e9d",
+      "routeIds": [
+        "/dashboard#index",
+        "/dashboard/home",
+        "/dashboard/ask"
+      ],
+      "reviewProfile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "classificationReason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/dashboard/Guide.jsx:268:1417",
+      "file": "frontend/src/pages/dashboard/Guide.jsx",
+      "line": 268,
+      "column": 1417,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => openActivity(suggestions[0].id)}"
+        }
+      ],
+      "calls": [
+        "openActivity"
+      ],
+      "disabled": null,
+      "declarationSha256": "6fbc5a80d37676e2a1e62b48e02301541841a8571189a5102c4b87034e982c68",
+      "routeIds": [
+        "/dashboard#index",
+        "/dashboard/home",
+        "/dashboard/ask"
+      ],
+      "reviewProfile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "classificationReason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/dashboard/Guide.jsx:268:1573",
+      "file": "frontend/src/pages/dashboard/Guide.jsx",
+      "line": 268,
+      "column": 1573,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "destination": "/dashboard/learn",
+      "disabled": null,
+      "declarationSha256": "e2ad8877bdc1f3d5a015cb0df060e158e716fc51c3dade18a37f0c831b2ea622",
+      "routeIds": [
+        "/dashboard#index",
+        "/dashboard/home",
+        "/dashboard/ask"
+      ],
+      "reviewProfile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "classificationReason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/dashboard/Guide.jsx:268:1683",
+      "file": "frontend/src/pages/dashboard/Guide.jsx",
+      "line": 268,
+      "column": 1683,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "destination": "/dashboard/home",
+      "disabled": null,
+      "declarationSha256": "876ae84a201a83f09250421f54cd21059f5d61c21bd6b08a53e3645201b93dc2",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -79420,7 +79522,7 @@
     },
     {
       "file": "frontend/src/lib/guideCopy.js",
-      "sourceSha256": "2193741e96f13ea5debea02c9e24368b6f40cebd872efd0bc6b41dc8dc024b7b"
+      "sourceSha256": "aa673bf78c19cdabb7251eb5cbbbbc6177c2f248addcdc1dc152b780f2608618"
     },
     {
       "file": "frontend/src/lib/heroVariants.js",
@@ -79648,7 +79750,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Guide.jsx",
-      "sourceSha256": "80350066a711182b6b6fc040e82145a4625906ea1e76d376f54f7f63b941cadd"
+      "sourceSha256": "e39332a160dc22eb9004ad45f030a2cad4cdaa096f4ac0f3f95007e2006793c0"
     },
     {
       "file": "frontend/src/pages/dashboard/Learn.jsx",
@@ -80072,7 +80174,7 @@
     },
     {
       "file": "frontend/src/services/teachingInterface.ts",
-      "sourceSha256": "8b934eca445d9bfff2a70cbe7a49877375cbd1da49cea82ae07c5d6721ab8471"
+      "sourceSha256": "4b608333071a306de942d4837b88cfd2562529e01ac5608f66240cc7826f405b"
     },
     {
       "file": "frontend/src/services/voiceService.ts",
@@ -83555,12 +83657,12 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 37,
-    "controlDeclarations": 1653,
-    "routeReachableDeclarations": 1501,
+    "controlDeclarations": 1656,
+    "routeReachableDeclarations": 1504,
     "controlFiles": 237,
     "states": {
       "connected": 509,
-      "preview": 933,
+      "preview": 936,
       "missing": 59,
       "intentionally-unreleased": 152
     }
