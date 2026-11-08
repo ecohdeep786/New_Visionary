@@ -2425,6 +2425,38 @@
         "changesRequestedComment": 10699,
         "transitionId": 31
       }
+    },
+    {
+      "jiraKey": "KAN-108",
+      "sourceId": "BILL-07",
+      "status": "Testing",
+      "branch": "zcode/kan-108-bill07-live-mode",
+      "worktree": "C:/Users/Administrator/nv-worktrees/kan-108-bill07",
+      "base": "2e0b1fbb",
+      "scope": "Explicitly configured live billing mode/records/secrets/plan provisioning separated from test; UID retained, no test-to-live history, startup provisions nothing; isolated and fail-closed against fictional provider; real live-merchant money acceptance remains a hosted gate",
+      "review": {
+        "state": "pending",
+        "implementer": "Senior Principal Backend & ML Engineer (ZCode lane)"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN108_BILL07_LIVE_MODE_2026-11-08.md",
+      "currentCheckpoint": "d5723aa8",
+      "verification": {
+        "suite": "billing-live-mode.test.cjs 11/11 via npm run billing:live:mode",
+        "legacyRegressions": "62/62 (account-storage, billing, firebase-product)",
+        "productionCheck": "locked compile 113/113, provisioning 11/11, 37/37, privacy 52/52; exit 0",
+        "npmRunCheck": "exit 0",
+        "lint": "exit 0",
+        "typecheck": "exit 0",
+        "npmTest": "672/672",
+        "authorityAudit": "hash-only, counts unchanged",
+        "surfaceAudit": "line-coordinates only, counts unchanged"
+      },
+      "remainingGates": [
+        "Real live-merchant money acceptance (rzp_live_* keys, approved merchant, seller/tax data, provider live-plan provisioning)",
+        "Hosted ingress and registered webhooks (BILL-01/02)",
+        "Reviewed tax/commercial policy (BILL-06)",
+        "D-095 reviewer approval and integration into dev"
+      ]
     }
   ]
 }
