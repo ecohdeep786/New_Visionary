@@ -202,9 +202,16 @@ function HeroCard({ idPrefix = "hero" }) {
 
   return (
     <form onSubmit={submit} noValidate>
-      <h1 className="max-w-[700px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
+      {/* FAP-71 heading law: the page's single h1 lives at the section level
+          (sr-only) so the responsive desktop/mobile hero cards never author
+          duplicate h1 elements; the visible card titles are presentation <p>s
+          carrying data-hero-law="careers" — the unified h1 role law
+          (apple-typography.css) retags that marker to the identical
+          44/64/80 · 600 · 1.05 · -0.015em hero profile, so pixels are
+          unchanged from the former heading element. */}
+      <p aria-hidden="true" data-hero-law="careers" className="max-w-[700px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
         Build the <span className="accent-gradient">future of learning.</span>
-      </h1>
+      </p>
       <div className="mt-8 space-y-5">
         <div>
           <label htmlFor={`${idPrefix}-area`} className="mb-2 block text-[14px] text-[#6e6e73]">Interested in</label>
@@ -248,8 +255,12 @@ export default function CareersPage() {
 
             {/* HERO — full-bleed photograph with the overlapping white card
                 (Google careers home). Desktop: card floats left over the photo.
-                Mobile: card drops below the photo with the same overlap. */}
+                Mobile: card drops below the photo with the same overlap.
+                FAP-71: exactly one h1 on this page, independent of viewport —
+                the sr-only heading below carries the document outline; the two
+                responsive hero cards render their titles as presentation <p>s. */}
             <section id="overview" data-section="01-hero" className="scroll-mt-32">
+              <h1 className="sr-only">Build the future of learning.</h1>
               <div className="relative h-[380px] overflow-hidden sm:h-[480px] lg:h-[600px]">
                 <img src={imgHero} alt="A Visionary team member at work"
                   loading="eager" decoding="async" className="absolute inset-0 h-full w-full object-cover" />

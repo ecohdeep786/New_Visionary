@@ -2517,20 +2517,20 @@
         "frontend/src/pages/landing/CareersPage.jsx:147:13",
         "frontend/src/pages/landing/CareersPage.jsx:170:13",
         "frontend/src/pages/landing/CareersPage.jsx:204:5",
-        "frontend/src/pages/landing/CareersPage.jsx:212:13",
-        "frontend/src/pages/landing/CareersPage.jsx:222:11",
-        "frontend/src/pages/landing/CareersPage.jsx:228:9",
-        "frontend/src/pages/landing/CareersPage.jsx:316:19",
-        "frontend/src/pages/landing/CareersPage.jsx:343:29",
-        "frontend/src/pages/landing/CareersPage.jsx:350:25",
-        "frontend/src/pages/landing/CareersPage.jsx:358:19",
-        "frontend/src/pages/landing/CareersPage.jsx:391:19",
-        "frontend/src/pages/landing/CareersPage.jsx:419:23",
-        "frontend/src/pages/landing/CareersPage.jsx:424:23",
-        "frontend/src/pages/landing/CareersPage.jsx:449:21",
-        "frontend/src/pages/landing/CareersPage.jsx:457:21",
-        "frontend/src/pages/landing/CareersPage.jsx:475:19",
-        "frontend/src/pages/landing/CareersPage.jsx:479:19"
+        "frontend/src/pages/landing/CareersPage.jsx:219:13",
+        "frontend/src/pages/landing/CareersPage.jsx:229:11",
+        "frontend/src/pages/landing/CareersPage.jsx:235:9",
+        "frontend/src/pages/landing/CareersPage.jsx:327:19",
+        "frontend/src/pages/landing/CareersPage.jsx:354:29",
+        "frontend/src/pages/landing/CareersPage.jsx:361:25",
+        "frontend/src/pages/landing/CareersPage.jsx:369:19",
+        "frontend/src/pages/landing/CareersPage.jsx:402:19",
+        "frontend/src/pages/landing/CareersPage.jsx:430:23",
+        "frontend/src/pages/landing/CareersPage.jsx:435:23",
+        "frontend/src/pages/landing/CareersPage.jsx:460:21",
+        "frontend/src/pages/landing/CareersPage.jsx:468:21",
+        "frontend/src/pages/landing/CareersPage.jsx:486:19",
+        "frontend/src/pages/landing/CareersPage.jsx:490:19"
       ],
       "operations": [
         "public-enquiry-careers-partners"
@@ -70352,9 +70352,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:212:13",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:219:13",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 212,
+      "line": 219,
       "column": 13,
       "tag": "select",
       "events": [
@@ -70383,9 +70383,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:222:11",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:229:11",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 222,
+      "line": 229,
       "column": 11,
       "tag": "input",
       "events": [
@@ -70414,9 +70414,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:228:9",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:235:9",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 228,
+      "line": 235,
       "column": 9,
       "tag": "button",
       "events": [],
@@ -70438,9 +70438,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:316:19",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:327:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 316,
+      "line": 327,
       "column": 19,
       "tag": "QuietLink",
       "events": [],
@@ -70463,9 +70463,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:343:29",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:354:29",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 343,
+      "line": 354,
       "column": 29,
       "tag": "a",
       "events": [],
@@ -70487,9 +70487,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:350:25",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:361:25",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 350,
+      "line": 361,
       "column": 25,
       "tag": "Link",
       "events": [],
@@ -70512,9 +70512,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:358:19",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:369:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 358,
+      "line": 369,
       "column": 19,
       "tag": "QuietLink",
       "events": [],
@@ -70537,9 +70537,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:391:19",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:402:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 391,
+      "line": 402,
       "column": 19,
       "tag": "QuietLink",
       "events": [],
@@ -70561,9 +70561,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:419:23",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:430:23",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 419,
+      "line": 430,
       "column": 23,
       "tag": "a",
       "events": [],
@@ -70585,9 +70585,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:424:23",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:435:23",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 424,
+      "line": 435,
       "column": 23,
       "tag": "a",
       "events": [
@@ -70618,9 +70618,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:449:21",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:460:21",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 449,
+      "line": 460,
       "column": 21,
       "tag": "a",
       "events": [],
@@ -70642,9 +70642,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:457:21",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:468:21",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 457,
+      "line": 468,
       "column": 21,
       "tag": "Link",
       "events": [],
@@ -70667,9 +70667,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:475:19",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:486:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 475,
+      "line": 486,
       "column": 19,
       "tag": "a",
       "events": [],
@@ -70691,9 +70691,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CareersPage.jsx:479:19",
+      "id": "frontend/src/pages/landing/CareersPage.jsx:490:19",
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "line": 479,
+      "line": 490,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -79572,7 +79572,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
-      "sourceSha256": "c1c6b76e12e5cacbe89ad0ad42b35abc02e8b6ebfa2952ab2521fcf9024e5bfa"
+      "sourceSha256": "fb0da4b5e242b4df18f62930649fe7f4ed354f37f8fa066bd76e1b827e51ba20"
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
