@@ -2388,6 +2388,22 @@
       "gates": "data:accept07:rehearsal 0; data:check 0; backend:build 0; check 0; npm test 672/672 (dev base)",
       "receipt": "docs/architecture/reviews/KAN123_ACCEPT07_MIGRATION_REHEARSAL_2026-11-07.md",
       "notes": "No migration-infrastructure source change; rehearsal consumes the reviewed runner/store/command/registry as shipped on dev. Staging cutover remains the operator action. Jira transition NOT performed (no connector in session); reviewer pending per D-095."
+    },
+    {
+      "id": "KAN-128",
+      "task": "RELEASE-05",
+      "title": "Execute SQL/Firestore/object restore, reconnect, region-outage procedure, deletion replay, payment reconciliation and deployment rollback against the stated RPO/RTO objectives",
+      "date": "2026-11-08",
+      "lane": "zcode-backend-ml",
+      "branch": "zcode/kan-128-release05-restore-drills (lane stack: kan-102 -> kan-103 -> merge kan-123 -> this)",
+      "baseCommit": "0eb757a9 (kan-103 tip; base origin/dev 4bb3c22d)",
+      "worktree": "nv-worktrees/kan-128-release05 (left for reviewer)",
+      "status": "IMPLEMENTED_PENDING_REVIEW",
+      "delivery": "backend/tests/contracts/release-05/restore-drills.test.mjs (5 drills); scripts/release05-restore-drill.mjs registered as npm run release:restore:drill; merged the ACCEPT-07 rehearsal lane for the shared synthetic data-domain fixture (conflicts resolved keeping ALL lane entries, file still purely additive); runbook docs/architecture/delivery/RELEASE05_RECOVERY_DRILLS.md",
+      "evidence": "5/5 green: logical SQL corruption restored into an INDEPENDENT database from an explicit dump (pg_dump -n schema + pg_dumpall globals) with byte-faithful counts/records and RTO measured against the stated <=4h target (RPO exposure 0); deletion replay: pre-deletion backup resurrects the identity and loses the tombstone (the hazard), the tombstone journal recorded at damage time replayed after restore (soft-delete marker law - FK Restrict forbids hard person delete under a tombstone); forward-only deployment rollback law (ROLLBACK_DENIED) + drifted registry fails preflight (schema compatibility verified); Firestore logical damage restored from the explicit emulator-export recovery point with account/revision/invoice byte-faithful and NO fresh Free record over uncertain subscription state; stale cookies fail closed after restore restart, fresh sign-in reconnects, scheduled reconciliation still converges from provider facts",
+      "gates": "release:restore:drill 0; data:check 0; billing:webhook:acceptance 0; backend:build 0; check 0; npm test 672/672 (dev base)",
+      "receipt": "docs/architecture/reviews/KAN128_RELEASE05_RECOVERY_DRILLS_2026-11-08.md",
+      "notes": "No product source change. External gates: full region-outage drill (manual DR 24h/24h), hosted PITR controls, object-storage restore (owner-run). Jira transition NOT performed (no connector in session); reviewer pending per D-095."
     }
   ]
 }
