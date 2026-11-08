@@ -48,6 +48,7 @@
     "billing:ingress:check": "node scripts/billing-ingress-check.mjs",
     "billing:webhook:acceptance": "node scripts/billing-webhook-acceptance.mjs",
     "data:accept07:rehearsal": "node scripts/accept07-rehearsal.mjs",
-    "release:restore:drill": "node scripts/release05-restore-drill.mjs"
+    "release:restore:drill": "node scripts/release05-restore-drill.mjs",
+    "release:security:review": "node scripts/release06-security-review.mjs"
   }
 }

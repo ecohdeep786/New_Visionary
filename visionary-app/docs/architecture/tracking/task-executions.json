@@ -2404,6 +2404,22 @@
       "gates": "release:restore:drill 0; data:check 0; billing:webhook:acceptance 0; backend:build 0; check 0; npm test 672/672 (dev base)",
       "receipt": "docs/architecture/reviews/KAN128_RELEASE05_RECOVERY_DRILLS_2026-11-08.md",
       "notes": "No product source change. External gates: full region-outage drill (manual DR 24h/24h), hosted PITR controls, object-storage restore (owner-run). Jira transition NOT performed (no connector in session); reviewer pending per D-095."
+    },
+    {
+      "id": "KAN-129",
+      "task": "RELEASE-06",
+      "title": "Complete release-path security/dependency/image reviews, controlled access review, secret rotation and incident/support/on-call runbooks with named responders",
+      "date": "2026-11-08",
+      "lane": "zcode-backend-ml",
+      "branch": "zcode/kan-129-release06-release-security (lane stack: kan-102 -> kan-103 -> kan-123 -> kan-128@033eadfb -> this)",
+      "baseCommit": "e90020a6 (kan-128 pre-amend tip; base origin/dev 4bb3c22d)",
+      "worktree": "nv-worktrees/kan-129-release06 (left for reviewer)",
+      "status": "IMPLEMENTED_PENDING_REVIEW",
+      "delivery": "backend/tests/contracts/release-06/release-security.test.mjs (5 tests); scripts/release06-security-review.mjs registered as npm run release:security:review; additive fixture-mode webhook/job credential overrides in the bill-01 stack; runbook docs/architecture/delivery/RELEASE06_RELEASE_SECURITY.md (rotation procedure + incident/on-call skeleton with responder gates)",
+      "evidence": "5/5 green: all 9 recorded upstream patches byte-match their recorded sha256 with decisions and file lists (import-baseline-relative stale paths recorded as findings, never silently ignored); all 5 dependency-carrying workspaces lock every dependency to exact integrity-hashed versions; zero secret material in product source with config-only secrets; LIVE rotation drill - unregistered-secret webhook 403 pre-rotation, and after a FULL product restart with rotated credentials: stale secret 403 / rotated 201 / stale job token 403 / rotated 201",
+      "gates": "release:security:review 0; billing:webhook:acceptance 0; release:restore:drill green (after merging amended kan-128@033eadfb - the damage-billing fixture route had been left uncommitted there; amended with --force-with-lease, recorded for the reviewer); backend:build 0; check 0; npm test 672/672 (dev base)",
+      "receipt": "docs/architecture/reviews/KAN129_RELEASE06_RELEASE_SECURITY_2026-11-08.md",
+      "notes": "No product source change. External gates: image review (no container runtime on host), IAM review, advisory review, NAMED responders (owner-run). Jira transition NOT performed (no connector in session); reviewer pending per D-095."
     }
   ]
 }
