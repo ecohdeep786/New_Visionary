@@ -10,12 +10,13 @@ import DashboardSidebar from "./DashboardSidebar";
 import DashboardTopbar from "./DashboardTopbar";
 import { useAuth } from "@/lib/AuthContext";
 import { ThemeColorProvider } from "@/hooks/useThemeColor";
-import { canAccessDashboardPath, navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
+import { canAccessDashboardPath, isOrganizationArea, navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
 import { presentNavigation } from '@/lib/navigationPresentation';
 import { saveLastPath,organizationAccess } from '@/services/workspaceService';
 import {organizationPathAllowed} from '@/services/organizationPolicy';
 import OrganizationAccessHome from '@/pages/dashboard/OrganizationAccessHome';
 import OrganizationBilling from '@/pages/dashboard/OrganizationBilling';
+import RoleAreaUnavailable from '@/pages/dashboard/RoleAreaUnavailable';
 import { getStagePresentation } from '@/services/stagePresentation';
 import './workspace.css';
 import './workspace-design.css';
@@ -96,7 +97,12 @@ export default function DashboardLayout() {
   function unavailable(message){return <main data-font-surface="product" className="p-8" lang={locale}><h1 className="v-title">{recoveryCopy('Workspace unavailable')}</h1><p className="v-notice v-error mt-4" role="alert" lang="en">{message}</p><p className="v-muted mt-3">{recoveryCopy('Your saved records remain on this device. Restore readable records, then retry.')}</p><button className="v-button mt-4" onClick={recover}>{recoveryCopy('Retry workspace')}</button></main>;}
   if(workspaceError||scopeError)return unavailable(workspaceError||scopeError);
   if(!activeWorkspace)return <main data-font-surface="product" lang={locale} className="p-8" role="status" aria-busy="true">{t("openingWorkspace")}</main>;
-  if (!canAccessDashboardPath(user?.identity, location.pathname)) return <Navigate to="/dashboard/home" replace />;
+  if (!canAccessDashboardPath(user?.identity, location.pathname)) {
+    const section = location.pathname.split("/")[2] || "home";
+    // FAP-75: never silently rewrite the address bar for an organization-area deep link.
+    if (isOrganizationArea(section)) return <RoleAreaUnavailable />;
+    return <Navigate to="/dashboard/home" replace />;
+  }
   const ctx={personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'};
   let policy;
   try{if(ctx.role==='organization')policy=organizationAccess(ctx);}catch(error){return unavailable(error.message);}
