@@ -1,0 +1,202 @@
+[
+  {
+    "ts": "2026-11-08T15:44:25.833Z",
+    "which": "before",
+    "step": "/dashboard/cohorts",
+    "brief": {
+      "requested": "/dashboard/cohorts",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera."
+    }
+  },
+  {
+    "ts": "2026-11-08T15:44:27.561Z",
+    "which": "before",
+    "step": "/dashboard/curriculum",
+    "brief": {
+      "requested": "/dashboard/curriculum",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera."
+    }
+  },
+  {
+    "ts": "2026-11-08T15:44:29.287Z",
+    "which": "before",
+    "step": "/dashboard/people",
+    "brief": {
+      "requested": "/dashboard/people",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera."
+    }
+  },
+  {
+    "ts": "2026-11-08T15:44:31.004Z",
+    "which": "before",
+    "step": "/dashboard/analytics",
+    "brief": {
+      "requested": "/dashboard/analytics",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera."
+    }
+  },
+  {
+    "ts": "2026-11-08T15:44:39.589Z",
+    "which": "after",
+    "step": "/dashboard/cohorts",
+    "brief": {
+      "finalUrl": "/dashboard/cohorts",
+      "h1": "Cohorts",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    }
+  },
+  {
+    "ts": "2026-11-08T15:44:41.001Z",
+    "which": "after",
+    "step": "/dashboard/curriculum",
+    "brief": {
+      "finalUrl": "/dashboard/curriculum",
+      "h1": "Curriculum",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    }
+  },
+  {
+    "ts": "2026-11-08T15:44:42.418Z",
+    "which": "after",
+    "step": "/dashboard/people",
+    "brief": {
+      "finalUrl": "/dashboard/people",
+      "h1": "People",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    }
+  },
+  {
+    "ts": "2026-11-08T15:44:43.835Z",
+    "which": "after",
+    "step": "/dashboard/analytics",
+    "brief": {
+      "finalUrl": "/dashboard/analytics",
+      "h1": "Insights",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    }
+  },
+  {
+    "ts": "2026-11-08T15:45:22.688Z",
+    "which": "after",
+    "step": "learner /dashboard/learn regression",
+    "brief": {
+      "finalUrl": "/dashboard/learn",
+      "h1": "Let’s learn",
+      "status": "",
+      "buttons": [
+        {
+          "t": "Open previous saved topics and exa",
+          "k": "a[/dashboard/learn?legacy=1]"
+        }
+      ]
+    }
+  },
+  {
+    "ts": "2026-11-08T15:45:24.390Z",
+    "which": "after",
+    "step": "learner /dashboard/home regression",
+    "brief": {
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Ravi.",
+      "status": "",
+      "buttons": [
+        {
+          "t": "Review learning stage",
+          "k": "a[/dashboard/personalization]"
+        },
+        {
+          "t": "Choose a learning journey",
+          "k": "a[/dashboard/learn]"
+        },
+        {
+          "t": "Explore a project",
+          "k": "a[/dashboard/build]"
+        },
+        {
+          "t": "View or clear memory",
+          "k": "a[/dashboard/privacy]"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "k": "a[/dashboard/ask]"
+        }
+      ]
+    }
+  }
+]

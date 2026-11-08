@@ -2683,6 +2683,18 @@
         "POST /api/auth/session",
         "GET /api/auth/me"
       ]
+    },
+    "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Workspace access-boundary notice (FAP-75): renders where an organization-only area is deep-linked by another identity; browser-local surfaces only, no server authority claimed.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
     }
   },
   "operations": [
