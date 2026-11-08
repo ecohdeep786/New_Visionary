@@ -208,6 +208,62 @@ try {
     await interrupted.page.waitForFunction(() => document.body.innerText.includes('payment attempt was not confirmed'));
     await interrupted.page.screenshot({ path: path.join(output, 'recoverable-failure.png'), fullPage: true });
     results.push({ scenario: 'dismissal and provider failure preserve the same attempt', passed: true });
+    /* V5 F-26 extension: an interrupted confirmation must recover the saved
+       attempt after a reload and never create a second provider subscription. */
+    const storageCheck = page => page.evaluate(() => fetch('/__test/storage-check').then(response => response.json()));
+    const reloader = await pageFor('billing-review-reloader');
+    await reloader.page.goto(origin + '/dashboard/subscription?plan=personal&billing=monthly', { waitUntil: 'networkidle2' });
+    const beforeReload = await storageCheck(reloader.page);
+    await reloader.page.evaluate(() => { window.__paymentOutcome = 'dismiss'; });
+    await reviewAndContinue(reloader.page);
+    await reloader.page.waitForFunction(() => document.body.innerText.includes('Checkout closed.'), { timeout: 30000 });
+    await reloader.page.reload({ waitUntil: 'networkidle2' });
+    await reloader.page.waitForFunction(() => document.body.innerText.includes('not yet confirmed'), { timeout: 30000 });
+    assert.equal(await reloader.page.$('[data-billing-review]'), null);
+    await reloader.page.screenshot({ path: path.join(output, 'reload-recovery.png'), fullPage: true });
+    await clickText(reloader.page, 'button', 'Review saved checkout');
+    await reviewAndContinue(reloader.page);
+    await reloader.page.waitForFunction(() => document.body.innerText.includes('Test payment confirmed.'), { timeout: 60000 });
+    const afterReload = await storageCheck(reloader.page);
+    assert.equal(afterReload.providerCreateCount, beforeReload.providerCreateCount + 1);
+    assert.equal(afterReload.hasSubscription, true);
+    results.push({ scenario: 'reload during checkout recovers the saved attempt without a second provider subscription', passed: true });
+    await reloader.context.close();
+    /* V5 F-26 extension: family seats are server-owned — counts, member
+       benefits and owner removal stay exactly what the server reports. */
+    const familyMember = await pageFor('billing-review-family-member');
+    await familyMember.page.goto(origin + '/dashboard/subscription', { waitUntil: 'networkidle2' });
+    await familyMember.page.waitForFunction(() => document.body.innerText.includes('Current plan'), { timeout: 30000 });
+    assert.equal(await familyMember.page.$eval('body', node => node.innerText.includes('Family billing')), false);
+    const familyOwner = await pageFor('billing-review-family-owner');
+    await familyOwner.page.goto(origin + '/dashboard/subscription?plan=family&billing=monthly', { waitUntil: 'networkidle2' });
+    await reviewAndContinue(familyOwner.page);
+    await familyOwner.page.waitForFunction(() => document.body.innerText.includes('Test payment confirmed.'), { timeout: 60000 });
+    await familyOwner.page.waitForFunction(() => document.body.innerText.includes('Family billing'), { timeout: 30000 });
+    await familyOwner.page.type('input[type="email"]', 'billing-review-family-member@visionary.test');
+    await clickText(familyOwner.page, 'button', 'Create invite link');
+    await familyOwner.page.waitForSelector('input[aria-label="Family invitation link"]', { timeout: 30000 });
+    await familyOwner.page.waitForFunction(() => document.body.innerText.replace(/\s+/g, ' ').includes('1 joined · 1 pending'), { timeout: 30000 });
+    const inviteLink = await familyOwner.page.$eval('input[aria-label="Family invitation link"]', node => node.value);
+    await familyOwner.page.screenshot({ path: path.join(output, 'family-invite.png'), fullPage: true });
+    await familyMember.page.goto(inviteLink, { waitUntil: 'networkidle2' });
+    await familyMember.page.waitForFunction(() => document.body.innerText.includes('billing family'), { timeout: 30000 });
+    await clickText(familyMember.page, 'button', 'Accept Family invitation');
+    await familyMember.page.waitForFunction(() => document.body.innerText.includes('Family membership saved.'), { timeout: 30000 });
+    await clickText(familyOwner.page, 'button', 'Refresh');
+    await familyOwner.page.waitForFunction(() => document.body.innerText.replace(/\s+/g, ' ').includes('2 joined · 0 pending'), { timeout: 30000 });
+    await familyOwner.page.screenshot({ path: path.join(output, 'family-two-seats.png'), fullPage: true });
+    await familyMember.page.goto(origin + '/dashboard/subscription', { waitUntil: 'networkidle2' });
+    await familyMember.page.waitForFunction(() => document.body.innerText.includes('Benefits managed by your Family billing owner.'), { timeout: 30000 });
+    assert.equal(await familyMember.page.$eval('body', node => node.innerText.includes('Create invite link')), false);
+    await familyMember.page.screenshot({ path: path.join(output, 'family-member-view.png'), fullPage: true });
+    await clickText(familyOwner.page, 'button', 'Remove member');
+    await familyOwner.page.waitForFunction(() => document.body.innerText.replace(/\s+/g, ' ').includes('1 joined · 0 pending'), { timeout: 30000 });
+    await familyMember.page.goto(origin + '/dashboard/subscription', { waitUntil: 'networkidle2' });
+    await familyMember.page.waitForFunction(() => document.body.innerText.includes('Current plan'), { timeout: 30000 });
+    assert.equal(await familyMember.page.$eval('body', node => node.innerText.includes('Benefits managed by your Family billing owner.')), false);
+    results.push({ scenario: 'family seats are server-owned: correct counts, member benefits, owner removal revokes', passed: true });
+    await familyMember.context.close(); await familyOwner.context.close();
     assert.deepEqual(errors, []);
   }
   await fs.writeFile(path.join(output, 'results.json'), JSON.stringify({ mode: real ? 'actual-provider-test' : 'fictional-provider', productionPreview: preview, realFirestore: false, results, errors }, null, 2));

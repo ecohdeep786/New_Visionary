@@ -1,0 +1,40 @@
+{
+  "mode": "fictional-provider",
+  "productionPreview": false,
+  "realFirestore": false,
+  "results": [
+    {
+      "scenario": "public annual pricing preserves intent and requires sign-in",
+      "passed": true
+    },
+    {
+      "scenario": "Free is saved under the Auth UID, appears in account menu/profile, and creates no payment",
+      "passed": true
+    },
+    {
+      "scenario": "annual review, signed verification and receipt",
+      "passed": true
+    },
+    {
+      "scenario": "second device reads subscription and printable invoice",
+      "passed": true
+    },
+    {
+      "scenario": "confirmed cancellation retains paid period",
+      "passed": true
+    },
+    {
+      "scenario": "dismissal and provider failure preserve the same attempt",
+      "passed": true
+    },
+    {
+      "scenario": "reload during checkout recovers the saved attempt without a second provider subscription",
+      "passed": true
+    },
+    {
+      "scenario": "family seats are server-owned: correct counts, member benefits, owner removal revokes",
+      "passed": true
+    }
+  ],
+  "errors": []
+}
