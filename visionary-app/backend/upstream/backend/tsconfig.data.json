@@ -9,8 +9,12 @@
     "incremental": false
   },
   "include": [
-    "src/admission/admission-types.ts",
-    "src/admission/admission-store.ts",
-    "src/admission/admission.service.ts"
+    "src/admission/**/*.ts",
+    "src/concurrency/**/*.ts",
+    "src/data/**/*.ts",
+    "src/consent/**/*.ts",
+    "src/file/download*.ts",
+    "src/commands/**/*.ts",
+    "src/overview/**/*.ts"
   ]
 }
