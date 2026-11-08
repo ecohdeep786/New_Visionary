@@ -63,7 +63,7 @@ test('downloads do not bypass the retained-data migration gate or mutate existin
 }));
 
 test('accepted empty-staging versions 1-4 upgrade to resource revision storage with historical receipts intact',()=>fixture(async f=>{
-  const registry=canonicalMigrations(backend),store=f.store();
+  const registry=canonicalMigrations(backend).slice(0,5),store=f.store();
   assert.deepEqual(registry.map(m=>m.version),[1,2,3,4,5]);
   await new MigrationRunner(store,registry.slice(0,4)).applyAll();
   const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');

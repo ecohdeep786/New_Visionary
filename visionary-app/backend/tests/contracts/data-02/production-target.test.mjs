@@ -55,7 +55,7 @@ test('actual command executes and verifies durable canonical migration with quot
   try{
     const env={DATA_DATABASE_MODE:'synthetic',DATA_MIGRATION_DATABASE_URL:f.config.migrationUrl,DATA_RUNTIME_DATABASE_URL:f.config.runtimeUrl,
       DATA_MIGRATION_ROLE:f.migrationRole,DATA_RUNTIME_ROLE:f.runtimeRole,DATA_DATABASE_SCHEMA:f.schema,VISIONARY_RELEASE_COMMIT:source};
-    const plan=await runMigrationCommand('plan',env,backend);assert.deepEqual(plan.versions,[1,2,3,4,5]);
+    const plan=await runMigrationCommand('plan',env,backend);assert.deepEqual(plan.versions,[1,2,3,4,5,6]);
     const result=await runMigrationCommand('apply',env,backend);assert.equal(result.status,'verified');
     const fresh=await runMigrationCommand('verify',env,backend);assert.equal(fresh.registryDigest,result.registryDigest);
     assert.equal((await f.db.$queryRawUnsafe('SELECT "appliedBy" FROM "_visionary_migrations"'))[0].appliedBy,f.migrationRole);

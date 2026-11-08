@@ -65,3 +65,16 @@ regression; waits have descriptive deadlines and lock/worker cleanup. Actual
 grant/revocation outbox counts are asserted. Corrected focused suite: 23/23.
 Earlier 214 total becomes 215 with this regression; unchanged suites retain
 their recorded checks. Exact corrected-source decision and CI remain pending.
+
+## Actual completed closeout
+
+Separate reviewer `/root/kan43_final_review` approved exact
+`1c73aff6771b1c97f620d72a55cefabceb9fdec1` after23/23 and data compilation.
+PR47 merged to published dev`4bb3c22dfd403e4be73e124e79e5e584d8472bdd`.
+Candidate CI42390393447 and integrated CI42390838554 passed; production skipped.
+Integrated tree equality,23 focused tests and4 Chromium groups passed again.
+Evidence preserved/hash-verified outside checkout at
+`C:/Users/Administrator/Visionary-local/kan43-final-evidence`. Completed checkout,
+local/remote task refs and task-owned containers removed. Actual Jira Done
+confirmed via transition51, final comment10688, before starting KAN44.
+Earlier pending statements describe their historical checkpoint only.

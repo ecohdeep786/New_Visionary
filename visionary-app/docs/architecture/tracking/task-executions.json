@@ -2321,20 +2321,63 @@
     {
       "jiraKey": "KAN-43",
       "sourceId": "DATA-08",
-      "status": "In Progress",
+      "status": "Done",
       "branch": "codex/deepseek-kan-43-concurrency",
       "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-43-concurrency",
       "originalCandidate": "2002da1f4f3fe699adeb39f650ab74bf87894bf0",
       "base": "6cbf958b5887204f17c8cf81fa471131a511b41d",
       "scope": "Actual owning-store concurrency verification and read-only connection capacity preflight; hosted rollout/load qualification separately gated",
       "review": {
+        "state": "approved-engineering-verification",
+        "reviewer": "/root/kan43_final_review",
+        "approvedCommit": "1c73aff6771b1c97f620d72a55cefabceb9fdec1"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN43_DATA08_FINAL.md",
+      "jiraReceipt": {
+        "status": "Done",
+        "commentId": 10688,
+        "transitionId": 51
+      },
+      "currentCheckpoint": "1c73aff6771b1c97f620d72a55cefabceb9fdec1",
+      "integration": {
+        "commit": "4bb3c22dfd403e4be73e124e79e5e584d8472bdd",
+        "remotePublished": true,
+        "pullRequest": 47,
+        "candidateCi": 42390393447,
+        "integratedCi": 42390838554,
+        "integratedFocusedTests": 23,
+        "integratedBrowserGroups": 4
+      },
+      "cleanup": {
+        "worktreeRemoved": true,
+        "localAndRemoteRefsRemoved": true,
+        "evidence": "C:/Users/Administrator/Visionary-local/kan43-final-evidence"
+      },
+      "remainingGates": [
+        "Hosted fleet inventory, production role-limit installation/load/provisioning and connected feature acceptance remain separately gated"
+      ]
+    },
+    {
+      "jiraKey": "KAN-44",
+      "sourceId": "DATA-09",
+      "status": "In Progress",
+      "branch": "codex/deepseek-kan-44-admission",
+      "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-44-admission",
+      "originalCandidate": "14fc87bd",
+      "base": "4bb3c22dfd403e4be73e124e79e5e584d8472bdd",
+      "scope": "Durable reviewer-mediated all-age eligibility and guardian-first admission enabler; connected activation/operational/hosted acceptance remain separately gated",
+      "founderClarification": {
+        "date": "2026-11-08",
+        "instruction": "all age approved"
+      },
+      "review": {
         "state": "pending",
         "implementer": "Codex /root",
         "originalDecision": "changes-requested"
       },
-      "currentHandoff": "docs/architecture/reviews/KAN43_DATA08_FINAL.md",
+      "currentHandoff": "docs/architecture/reviews/KAN44_ADMISSION_FINAL.md",
       "jiraReceipt": {
-        "changesRequestedComment": 10650,
+        "changesRequestedComment": 10689,
         "transitionId": 31
       }
     }

@@ -356,6 +356,9 @@ model Person {
   commandResults CommandResult[]
   auditEvents    AuditEvent[]
   outboxEvents   OutboxEvent[]
+  admissionAssurance AdmissionAssurance?
+  admissionAsChild GuardianAdmissionLink? @relation("AdmissionChild")
+  admissionAsGuardian GuardianAdmissionLink[] @relation("AdmissionGuardian")
 
   @@map("persons")
 }
@@ -689,4 +692,39 @@ model DownloadExport {
   @@index([ownerUid])
   @@index([state])
   @@map("download_exports")
+}
+
+/// Minimal reviewed classification, never a client age/DOB or identity document.
+model AdmissionAssurance {
+  uid String @id
+  classification String
+  reviewerUid String
+  evidenceRef String
+  policy String
+  issuedAt DateTime @db.Timestamp(3)
+  expiresAt DateTime @db.Timestamp(3)
+  revokedAt DateTime? @db.Timestamp(3)
+  revision Int
+  person Person @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  @@map("admission_assurances")
+}
+
+/// A relationship grants account admission only, never reports or content access.
+model GuardianAdmissionLink {
+  minorUid String @id
+  guardianUid String
+  state String
+  policy String
+  revision Int
+  minorAssuranceRevision Int
+  guardianAssuranceRevision Int
+  reviewerUid String?
+  evidenceRef String?
+  expiresAt DateTime? @db.Timestamp(3)
+  confirmedAt DateTime? @db.Timestamp(3)
+  revokedAt DateTime? @db.Timestamp(3)
+  minor Person @relation("AdmissionChild", fields: [minorUid], references: [uid], onDelete: Cascade)
+  guardian Person @relation("AdmissionGuardian", fields: [guardianUid], references: [uid], onDelete: Cascade)
+  @@index([guardianUid])
+  @@map("guardian_admission_links")
 }

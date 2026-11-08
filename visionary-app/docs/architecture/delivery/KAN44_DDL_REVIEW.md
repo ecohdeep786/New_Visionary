@@ -1,5 +1,10 @@
 # KAN-44 — DATA-09 — approved age/admission and guardian-first account/linking workflow
 
+Historical submitted checkpoint below, rejected during8 November2026 review.
+Its claims are superseded by the actual-store corrective implementation and
+[current handoff](../reviews/KAN44_ADMISSION_FINAL.md). Founder approved all-age
+eligibility; original invented13-year cutoff and memory authority are removed.
+
 ## Task review and verification handoff
 
 Jira key / source ID: KAN-44 (DATA-09)
