@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: mode resolution is fail-closed: absent, empty or unknown values are test
+ok 1 - mode resolution is fail-closed: absent, empty or unknown values are test
+  ---
+  duration_ms: 1.3268
+  type: 'test'
+  ...
+# Subtest: the test namespace is exactly the historical collections and document id
+ok 2 - the test namespace is exactly the historical collections and document id
+  ---
+  duration_ms: 0.1607
+  type: 'test'
+  ...
+# Subtest: the live namespace is disjoint from the test namespace
+ok 3 - the live namespace is disjoint from the test namespace
+  ---
+  duration_ms: 0.2614
+  type: 'test'
+  ...
+# Subtest: test spending writes only test records; live stays empty (no cross-mode history)
+ok 4 - test spending writes only test records; live stays empty (no cross-mode history)
+  ---
+  duration_ms: 5.4073
+  type: 'test'
+  ...
+# Subtest: a live account retains the same UID but never inherits test subscription history
+ok 5 - a live account retains the same UID but never inherits test subscription history
+  ---
+  duration_ms: 1.4294
+  type: 'test'
+  ...
+# Subtest: live mode without the explicit second opt-in is refused with a typed 503 and no provider call
+ok 6 - live mode without the explicit second opt-in is refused with a typed 503 and no provider call
+  ---
+  duration_ms: 0.8433
+  type: 'test'
+  ...
+# Subtest: credentials are mode-typed: a test key is refused live and a live key is refused in test
+ok 7 - credentials are mode-typed: a test key is refused live and a live key is refused in test
+  ---
+  duration_ms: 0.333
+  type: 'test'
+  ...
+# Subtest: startup, catalogue and account reads perform no provider call (no provisioning, no charge)
+ok 8 - startup, catalogue and account reads perform no provider call (no provisioning, no charge)
+  ---
+  duration_ms: 1.0363
+  type: 'test'
+  ...
+# Subtest: mode is reported truthfully across catalogue, account, checkout and invoice documents
+ok 9 - mode is reported truthfully across catalogue, account, checkout and invoice documents
+  ---
+  duration_ms: 2.4257
+  type: 'test'
+  ...
+# Subtest: plan provisioning is mode-typed: live never charges a test-provisioned plan
+ok 10 - plan provisioning is mode-typed: live never charges a test-provisioned plan
+  ---
+  duration_ms: 1.7013
+  type: 'test'
+  ...
+# Subtest: a webhook in one mode never maps a subscription belonging to the other
+ok 11 - a webhook in one mode never maps a subscription belonging to the other
+  ---
+  duration_ms: 2.2793
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 827.4563

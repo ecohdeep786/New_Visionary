@@ -1,0 +1,100 @@
+{
+  "task": "BILL-07",
+  "jira": "KAN-108",
+  "title": "Explicit separately configured live mode/records/secrets/plan provisioning and acceptance",
+  "branch": "zcode/kan-108-bill07-live-mode",
+  "base": "2e0b1fbb",
+  "date": "2026-11-08",
+  "checklistLine": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md P09 BILL-07",
+  "laws": [
+    "Fail closed: only the exact string 'live' selects live; every absent/empty/unknown value resolves to test (byte-identical prior behavior).",
+    "Separate records: per-mode collections, per-account document id (test|live), invoice prefix (VTEST|V) and catalog version; the namespaces never alias.",
+    "Double opt-in: live charges require BILLING_MODE=live AND BILLING_LIVE_ENABLED=true; live without the opt-in is a typed 503 with zero provider calls.",
+    "Separate secrets and plans: rzp_test_* in test and rzp_live_* in live (both mismatch directions refused); planId() appends _LIVE in live mode so a live charge never names a test plan.",
+    "Startup/scaling provision nothing: onModuleInit, catalog() and account read make zero provider calls; a missing live plan is a typed 503, never an invented plan.",
+    "Retained UID, no converted history: the same UID holds two disjoint histories; a live account inherits no test subscription or invoice and a test invoice is unreadable through the live receipt path.",
+    "No invented legal fields: live invoices keep legalTaxInvoice=false and totals.tax=null; the mode is recorded in the document and drives the frontend badge/notice/provider line."
+  ],
+  "changedFiles": {
+    "new": [
+      "backend/upstream/backend/src/billing/billing-mode.ts",
+      "backend/tests/billing-live-mode.test.cjs",
+      "scripts/billing-live-mode.mjs",
+      "docs/architecture/delivery/BILL07_LIVE_MODE_SEPARATION.md",
+      "docs/architecture/delivery/bill07/billing-live-mode.tap",
+      "docs/architecture/delivery/bill07/evidence.json",
+      "docs/architecture/reviews/KAN108_BILL07_LIVE_MODE_2026-11-08.md"
+    ],
+    "modified": [
+      "backend/upstream/backend/src/auth/firebase-product/account-storage.ts",
+      "backend/upstream/backend/src/billing/billing-account.ts",
+      "backend/upstream/backend/src/billing/billing.repository.ts",
+      "backend/upstream/backend/src/billing/billing.service.ts",
+      "backend/upstream/backend/src/billing/catalog.ts",
+      "backend/upstream/backend/src/billing/invoice.ts",
+      "backend/upstream/backend/src/billing/razorpay.provider.ts",
+      "backend/tests/firebase-product.test.cjs",
+      "backend/.env.razorpay.example",
+      "frontend/src/components/dashboard/BillingInvoice.jsx",
+      "frontend/src/components/dashboard/ConnectedBilling.jsx",
+      "infrastructure/PAYMENTS_GCP_HANDOFF.md",
+      "package.json",
+      "scripts/production-check.mjs",
+      "integration/contracts/operation-authority.v1.json",
+      "docs/architecture/tracking/product-surface.json",
+      "docs/architecture/tracking/task-executions.json"
+    ]
+  },
+  "evidence": {
+    "suite": {
+      "file": "backend/tests/billing-live-mode.test.cjs",
+      "command": "npm run billing:live:mode",
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "tap": "docs/architecture/delivery/bill07/billing-live-mode.tap",
+      "providerContacted": false,
+      "liveKeyUsed": false,
+      "sharedStoreBothModes": true
+    },
+    "gates": [
+      { "gate": "legacy billing + account-storage + firebase-product regressions", "result": "62/62 pass" },
+      { "gate": "node scripts/production-check.mjs", "result": "locked compile 113/113; provisioning 11/11; 37/37; privacy 52/52; exit 0" },
+      { "gate": "npm run check", "result": "exit 0 (roots separation, 3842-file import baseline + 10 patches, qa:continuity, qa:motion, qa:taps, surface audit, build)" },
+      { "gate": "npm run lint", "result": "exit 0" },
+      { "gate": "npm run typecheck", "result": "exit 0" },
+      { "gate": "npm test", "result": "672/672 pass" },
+      { "gate": "node scripts/authority-audit.mjs --write", "result": "hash-only drift; counts unchanged 55/6/12/16/32" },
+      { "gate": "node scripts/surface-audit.mjs --write", "result": "line-coordinate drift only; 67 routes / 55 endpoints / 1656 controls unchanged" }
+    ]
+  },
+  "defectsFoundAndFixed": [
+    {
+      "where": "test fixture (billing-live-mode.test.cjs)",
+      "finding": "An initial live plan id containing underscores was correctly rejected by the product's own /^plan_[A-Za-z0-9]+$/ contract. The product was right; the fixture was corrected.",
+      "productChange": false
+    },
+    {
+      "where": "test isolation (billing-live-mode.test.cjs)",
+      "finding": "ConfigService.set() writes through to process.env and an empty internal value falls back to it, so blanking a plan id leaked into later fixtures. Teardown now deletes the variable and asserts no environment residue.",
+      "productChange": false
+    },
+    {
+      "where": "test construction (firebase-product.test.cjs)",
+      "finding": "The stub repository implemented only the pre-split literal surface, so mode-scoped reads failed with an untyped TypeError. Replaced with a real BillingRepository over the fixture database.",
+      "productChange": false
+    },
+    {
+      "where": "backend/upstream/backend/src/billing/razorpay.provider.ts",
+      "finding": "planId() read the same variable in both modes, so live would have reused test plan ids. Now appends _LIVE in live mode.",
+      "productChange": true
+    }
+  ],
+  "externalGatesNotClaimed": [
+    "Real live-merchant money acceptance: actual rzp_live_* keys, approved live merchant, seller/tax invoice data and provider live-plan provisioning. No live credentials exist on this host; live keys are prohibited in the harness.",
+    "Hosted ingress and registered webhooks (BILL-01/02): canonical HTTPS origin, real signed provider delivery, second device.",
+    "Reviewed seller/tax/refund/commercial policy (BILL-06): this change invents no legal field."
+  ],
+  "hostedVerified": false,
+  "reviewer": "pending per D-095"
+}

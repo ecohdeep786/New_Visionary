@@ -28,6 +28,7 @@ export default function ConnectedBilling({ profile }) {
   const mounted = useRef(true), active = useRef(false), popup = useRef(null), sequence = useRef(0), command = useRef(null);
   const invoiceTrigger = useRef(null);
   const uid = profile?.id;
+
   const client = useMemo(() => createBillingClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id }), []);
   const check = useCallback(() => { if (!mounted.current || appClient.auth.currentProfile?.()?.id !== uid) throw new Error('Your account changed. Return to Plans before continuing.'); }, [uid]);
   const reportFailure = useCallback(failure => {
@@ -104,12 +105,17 @@ export default function ConnectedBilling({ profile }) {
       } else {
         const confirmed = await client.verify({ attemptId: checkout.attemptId, razorpay_payment_id: result.razorpay_payment_id, razorpay_subscription_id: result.razorpay_subscription_id, razorpay_signature: result.razorpay_signature });
         apply(confirmed);
-        setNotice(confirmed.plan !== 'start' ? 'Test payment confirmed. Your plan is saved to this account and available on your other signed-in devices.' : 'Razorpay authorization received. Payment is still being confirmed. Your current access is unchanged.');
+        setNotice(confirmed.plan !== 'start' ? `${confirmed.mode === 'live' ? 'Payment confirmed' : 'Test payment confirmed'}. Your plan is saved to this account and available on your other signed-in devices.` : 'Razorpay authorization received. Payment is still being confirmed. Your current access is unchanged.');
       }
     });
     if (mounted.current) void refresh().catch(() => {});
   }
   const chosen = catalog?.plans.find(plan => plan.id === selected);
+  // The server is authoritative about the billing environment (BILL-07 / KAN-108).
+  // Both the catalogue and the account view report it, so the surface never
+  // claims "test" for a live deployment (or the reverse) while the catalogue is
+  // still loading.
+  const live = (data?.mode || catalog?.mode) === 'live';
   const sub = data?.subscription;
   const hasSubscription = sub && (!['cancelled', 'completed', 'expired'].includes(sub.status) || data.plan !== 'start');
   const blocksSelection = data?.family?.member || hasSubscription && !(data?.pending?.recoverable && selected === sub.plan && interval === sub.interval);
@@ -123,7 +129,7 @@ export default function ConnectedBilling({ profile }) {
   if (!profile) return <div lang="en" className="v-page" role="status">Loading your account…</div>;
   if (!data || !catalog) return <div lang="en" className="v-page"><h1 className="v-title">Plans & payments</h1>{error ? <><p role="alert" className="v-notice v-error">{error}</p><button className="v-button" onClick={() => action('Loading billing…', async () => { const [c, a] = await Promise.all([client.catalog(), client.account()]); check(); setCatalog(c); apply(a); })}>Retry billing</button></> : <p role="status">Loading your saved plan and payment history…</p>}</div>;
   return <div lang="en" className="v-page billing-page" data-font-surface="product">
-    <header className="billing-heading"><div><p className="billing-eyebrow">YOUR VISIONARY ACCOUNT</p><h1 className="v-title">Plans & payments</h1><p className="v-muted mt-2">A little more room to learn.</p></div><span className="billing-test-badge"><ShieldCheck size={14} aria-hidden="true" />Test mode · No real charges</span></header>
+    <header className="billing-heading"><div><p className="billing-eyebrow">YOUR VISIONARY ACCOUNT</p><h1 className="v-title">Plans & payments</h1><p className="v-muted mt-2">A little more room to learn.</p></div>{live ? <span className="billing-test-badge" data-billing-mode="live"><ShieldCheck size={14} aria-hidden="true" />Secure checkout · Razorpay</span> : <span className="billing-test-badge" data-billing-mode="test"><ShieldCheck size={14} aria-hidden="true" />Test mode · No real charges</span>}</header>
     {error && <div role="alert" className="v-notice v-error"><p>{error}</p>{error.includes('Sign in again') && <Link className="underline" to={authLink('/login')}>Sign in again</Link>}</div>}
     {notice && <p role="status" className="v-notice">{notice}</p>}
     {busy && <p role="status" aria-live="polite" className="v-muted">{busy}</p>}

@@ -9696,41 +9696,41 @@
         "frontend/src/components/dashboard/AudioPresence.jsx:277:46",
         "frontend/src/components/dashboard/AudioPresence.jsx:277:336",
         "frontend/src/components/dashboard/AudioPresence.jsx:277:471",
-        "frontend/src/components/dashboard/BillingInvoice.jsx:18:10",
-        "frontend/src/components/dashboard/BillingInvoice.jsx:19:5",
-        "frontend/src/components/dashboard/BillingInvoice.jsx:23:34",
-        "frontend/src/components/dashboard/BillingInvoice.jsx:23:151",
-        "frontend/src/components/dashboard/BillingInvoice.jsx:35:11",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:124:179",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:127:112",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:130:262",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:132:534",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:135:76",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:137:436",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:137:662",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:139:328",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:140:1035",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:142:93",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:143:44",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:145:330",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:147:7",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:147:354",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:147:497",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:148:176",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:148:315",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:149:152",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:150:165",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:152:603",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:5",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:723",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1109",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1393",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1575",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1737",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:154:5",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:154:532",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:154:899",
-        "frontend/src/components/dashboard/ConnectedBilling.jsx:155:5",
+        "frontend/src/components/dashboard/BillingInvoice.jsx:22:10",
+        "frontend/src/components/dashboard/BillingInvoice.jsx:23:5",
+        "frontend/src/components/dashboard/BillingInvoice.jsx:27:34",
+        "frontend/src/components/dashboard/BillingInvoice.jsx:27:151",
+        "frontend/src/components/dashboard/BillingInvoice.jsx:39:11",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:130:179",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:133:112",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:136:262",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:138:534",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:141:76",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:143:436",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:143:662",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:145:328",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:146:1035",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:148:93",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:149:44",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:151:330",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:7",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:354",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:153:497",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:154:176",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:154:315",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:155:152",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:156:165",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:158:603",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:159:5",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:159:723",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1109",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1393",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1575",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1737",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:160:5",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:160:532",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:160:899",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx:161:5",
         "frontend/src/components/dashboard/DashboardLayout.jsx:96:374",
         "frontend/src/components/dashboard/DashboardLayout.jsx:109:7",
         "frontend/src/components/dashboard/DashboardLayout.jsx:110:7",
@@ -21784,9 +21784,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:18:10",
+      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:22:10",
       "file": "frontend/src/components/dashboard/BillingInvoice.jsx",
-      "line": 18,
+      "line": 22,
       "column": 10,
       "tag": "Dialog",
       "events": [
@@ -21815,9 +21815,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:19:5",
+      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:23:5",
       "file": "frontend/src/components/dashboard/BillingInvoice.jsx",
-      "line": 19,
+      "line": 23,
       "column": 5,
       "tag": "DialogContent",
       "events": [
@@ -21832,7 +21832,7 @@
         "returnFocus?.current?.focus"
       ],
       "disabled": null,
-      "declarationSha256": "f2bfb3817a5000ed5abcdbbde7772e9f87f77a0f1e9292acde1ac0cf59119a96",
+      "declarationSha256": "60cff68715bdf54611fd5e71827768df57b989ba431292c037afa911aea31224",
       "routeIds": [
         "/dashboard/subscription"
       ],
@@ -21848,9 +21848,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:23:34",
+      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:27:34",
       "file": "frontend/src/components/dashboard/BillingInvoice.jsx",
-      "line": 23,
+      "line": 27,
       "column": 34,
       "tag": "button",
       "events": [
@@ -21879,9 +21879,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:23:151",
+      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:27:151",
       "file": "frontend/src/components/dashboard/BillingInvoice.jsx",
-      "line": 23,
+      "line": 27,
       "column": 151,
       "tag": "button",
       "events": [
@@ -21908,9 +21908,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:35:11",
+      "id": "frontend/src/components/dashboard/BillingInvoice.jsx:39:11",
       "file": "frontend/src/components/dashboard/BillingInvoice.jsx",
-      "line": 35,
+      "line": 39,
       "column": 11,
       "tag": "button",
       "events": [
@@ -23317,9 +23317,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:124:179",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:130:179",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 124,
+      "line": 130,
       "column": 179,
       "tag": "button",
       "events": [
@@ -23370,9 +23370,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:127:112",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:133:112",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 127,
+      "line": 133,
       "column": 112,
       "tag": "Link",
       "events": [],
@@ -23410,9 +23410,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:130:262",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:136:262",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 130,
+      "line": 136,
       "column": 262,
       "tag": "button",
       "events": [
@@ -23462,9 +23462,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:132:534",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:138:534",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 132,
+      "line": 138,
       "column": 534,
       "tag": "button",
       "events": [
@@ -23511,9 +23511,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:135:76",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:141:76",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 135,
+      "line": 141,
       "column": 76,
       "tag": "button",
       "events": [
@@ -23558,9 +23558,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:137:436",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:143:436",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 137,
+      "line": 143,
       "column": 436,
       "tag": "button",
       "events": [
@@ -23607,9 +23607,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:137:662",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:143:662",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 137,
+      "line": 143,
       "column": 662,
       "tag": "summary",
       "events": [],
@@ -23647,9 +23647,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:139:328",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:145:328",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 139,
+      "line": 145,
       "column": 328,
       "tag": "button",
       "events": [
@@ -23694,9 +23694,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:140:1035",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:146:1035",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 140,
+      "line": 146,
       "column": 1035,
       "tag": "button",
       "events": [
@@ -23743,9 +23743,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:142:93",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:148:93",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 142,
+      "line": 148,
       "column": 93,
       "tag": "Link",
       "events": [],
@@ -23784,9 +23784,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:143:44",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:149:44",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 143,
+      "line": 149,
       "column": 44,
       "tag": "summary",
       "events": [],
@@ -23824,9 +23824,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:145:330",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:151:330",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 145,
+      "line": 151,
       "column": 330,
       "tag": "button",
       "events": [
@@ -23874,9 +23874,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:147:7",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:7",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 147,
+      "line": 153,
       "column": 7,
       "tag": "form",
       "events": [
@@ -23927,9 +23927,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:147:354",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:354",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 147,
+      "line": 153,
       "column": 354,
       "tag": "input",
       "events": [
@@ -23974,9 +23974,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:147:497",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:497",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 147,
+      "line": 153,
       "column": 497,
       "tag": "button",
       "events": [],
@@ -24014,9 +24014,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:148:176",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:154:176",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 148,
+      "line": 154,
       "column": 176,
       "tag": "input",
       "events": [
@@ -24061,9 +24061,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:148:315",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:154:315",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 148,
+      "line": 154,
       "column": 315,
       "tag": "button",
       "events": [
@@ -24110,9 +24110,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:149:152",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:155:152",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 149,
+      "line": 155,
       "column": 152,
       "tag": "button",
       "events": [
@@ -24159,9 +24159,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:150:165",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:156:165",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 150,
+      "line": 156,
       "column": 165,
       "tag": "button",
       "events": [
@@ -24208,9 +24208,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:152:603",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:158:603",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 152,
+      "line": 158,
       "column": 603,
       "tag": "button",
       "events": [
@@ -24258,9 +24258,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:5",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:159:5",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 153,
+      "line": 159,
       "column": 5,
       "tag": "Dialog",
       "events": [
@@ -24305,9 +24305,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:723",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:159:723",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 153,
+      "line": 159,
       "column": 723,
       "tag": "summary",
       "events": [],
@@ -24345,9 +24345,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1109",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1109",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 153,
+      "line": 159,
       "column": 1109,
       "tag": "input",
       "events": [
@@ -24392,9 +24392,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1393",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1393",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 153,
+      "line": 159,
       "column": 1393,
       "tag": "Link",
       "events": [],
@@ -24433,9 +24433,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1575",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1575",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 153,
+      "line": 159,
       "column": 1575,
       "tag": "button",
       "events": [
@@ -24478,9 +24478,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:153:1737",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:159:1737",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 153,
+      "line": 159,
       "column": 1737,
       "tag": "button",
       "events": [
@@ -24523,9 +24523,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:154:5",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:160:5",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 154,
+      "line": 160,
       "column": 5,
       "tag": "Dialog",
       "events": [
@@ -24568,9 +24568,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:154:532",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:160:532",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 154,
+      "line": 160,
       "column": 532,
       "tag": "button",
       "events": [
@@ -24619,9 +24619,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:154:899",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:160:899",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 154,
+      "line": 160,
       "column": 899,
       "tag": "button",
       "events": [
@@ -24666,9 +24666,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:155:5",
+      "id": "frontend/src/components/dashboard/ConnectedBilling.jsx:161:5",
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "line": 155,
+      "line": 161,
       "column": 5,
       "tag": "BillingInvoice",
       "events": [
@@ -78675,7 +78675,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/BillingInvoice.jsx",
-      "sourceSha256": "386f89b44e289783071b1d31ca8c9077901d21caa41414780cb6ed80d6f6331d"
+      "sourceSha256": "42637fcb53b6302801d86107e35fa610cf4c922886162b8dec77362ceb83fe2c"
     },
     {
       "file": "frontend/src/components/dashboard/BreathingExercise.jsx",
@@ -78719,7 +78719,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "sourceSha256": "fc1c7c2b9e74013035672641b484399ab5aa28eec119a412150a5b0e0a6f754e"
+      "sourceSha256": "5e70d42ec42e8d934f8e8f105fa7cc0d6d8f15d67d28fa9e7c19ad50a94e5576"
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedPlanBadge.jsx",

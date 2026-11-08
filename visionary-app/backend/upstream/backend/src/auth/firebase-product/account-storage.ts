@@ -1,13 +1,24 @@
 import { Timestamp, Firestore } from 'firebase-admin/firestore';
+import type { BillingMode } from '../../billing/billing-mode';
 
 export const ACCOUNT_STORAGE_VERSION = 2;
+// Test-lineage names. Legacy billing accounts and the migration/verification
+// helpers below operate on test records only: there is no pre-existing live
+// history to migrate, and a live environment starts empty. The mode-aware
+// billing surface resolves its own namespace via `billing-mode.ts`, so these
+// constants are deliberately NOT the live namespace (a test transaction can
+// therefore never be carried into live history).
 export const LEGACY_BILLING_ACCOUNTS = 'visionary_billing_test_accounts';
 export const BILLING_QUEUE = 'visionary_billing_test_queue';
 export const accountPath = (uid: string) => `visionary_accounts/${uid}`;
-export const billingPath = (uid: string) => `${accountPath(uid)}/billing/test`;
+// `mode` defaults to the test document so every pre-existing caller (account
+// migration, tree verifier, sign-in bootstrap and the operator scripts) keeps
+// byte-identical behavior. Only the billing service/repository pass an explicit
+// mode; the per-account doc id is `test` or `live`, never shared.
+export const billingPath = (uid: string, mode: BillingMode = 'test') => `${accountPath(uid)}/billing/${mode}`;
 export const devicePath = (uid: string, id: string) => `${accountPath(uid)}/devices/${id}`;
 export const accountDocument = (db: Firestore, uid: string) => db.collection('visionary_accounts').doc(uid);
-export const billingDocument = (db: Firestore, uid: string) => db.collection(`${accountPath(uid)}/billing`).doc('test');
+export const billingDocument = (db: Firestore, uid: string, mode: BillingMode = 'test') => db.collection(`${accountPath(uid)}/billing`).doc(mode);
 export const deviceDocument = (db: Firestore, uid: string, id: string) => db.collection(`${accountPath(uid)}/devices`).doc(id);
 export const eventDocument = (db: Firestore, uid: string, id: string) => db.collection(`${accountPath(uid)}/authEvents`).doc(id);
 

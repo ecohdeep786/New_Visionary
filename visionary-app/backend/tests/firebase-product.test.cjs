@@ -73,7 +73,12 @@ test('phone verification cannot claim an email-addressed Family invitation witho
   assert.equal(f.rows.get(`visionary_accounts/${f.identity.uid}`).email, '');
   await f.service.completeOnboarding(f.identity.uid, { full_name: 'Phone fixture', identity: 'professional', age_band: 'adult', preferred_language: 'English' });
   const { BillingService } = req('./dist/src/billing/billing.service.js');
-  const billing = new BillingService({ safely: operation => operation(), db: () => f.db }, {}, f.service);
+  const { BillingRepository } = req('./dist/src/billing/billing.repository.js');
+  // Billing record access is mode-scoped through the repository (BILL-07 /
+  // KAN-108), so bind a real repository over this fixture's database rather than
+  // a hand-written stub: the invitation row below is read through the same
+  // test-namespace path the product uses.
+  const billing = new BillingService(new BillingRepository({ getDatabase: () => f.db }), {}, f.service);
   const token = randomUUID(), key = `visionary_billing_test_invitations/${token}`;
   f.rows.set(key, { email: f.identity.email, status: 'pending', expiresAt: Date.now() + 60000, ownerName: 'Fixture payer' });
   await assert.rejects(billing.familyInvitation(f.identity.uid, token), e => e.getStatus() === 404);

@@ -1,11 +1,10 @@
 import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException, OnModuleDestroy, OnModuleInit, ServiceUnavailableException } from '@nestjs/common';
 import { createHash, randomUUID } from 'node:crypto';
 import { FirebaseProductService } from '../auth/firebase-product/firebase-product.service';
-import { BILLING_PLANS, CATALOG_VERSION, externalId, offer, recordInput } from './catalog';
+import { BILLING_PLANS, externalId, offer, recordInput } from './catalog';
 import { BillingRepository } from './billing.repository';
 import { freeBillingAccount } from './billing-account';
 import { invoiceDocument } from './invoice';
-import { BILLING_QUEUE, LEGACY_BILLING_ACCOUNTS } from '../auth/firebase-product/account-storage';
 import { PaymentProviderError, RazorpayProvider, validSignature } from './razorpay.provider';
 
 const terminal = new Set(['cancelled', 'completed', 'expired']);
@@ -20,9 +19,20 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
   private running = false;
   private stopping = false;
   constructor(private readonly repo: BillingRepository, private readonly provider: RazorpayProvider, private readonly auth: FirebaseProductService) {}
+  // The environment (test|live) is owned by the repository, which resolved it
+  // from configuration and bound every record path. Reading it here — rather
+  // than re-deriving it — keeps one source of truth, so what a response reports
+  // is exactly the namespace the data was read from (BILL-07 / KAN-108).
+  private get mode() { return this.repo.mode; }
+  private get paths() { return this.repo.paths; }
   catalog() {
     this.provider.settings();
-    return { mode: 'test', version: CATALOG_VERSION, currency: 'INR', taxNote: 'Test prices only. No real money is collected. Live tax invoices are not enabled.', plans: BILLING_PLANS, maximumYears: 10 };
+    const live = this.mode === 'live';
+    return { mode: this.mode, version: this.paths.catalogVersion, currency: 'INR',
+      taxNote: live
+        ? 'Live prices. Tax treatment follows the approved merchant policy; this catalogue is not a tax invoice.'
+        : 'Test prices only. No real money is collected. Live tax invoices are not enabled.',
+      plans: BILLING_PLANS, maximumYears: 10 };
   }
   private async payer(uid: string) {
     const profile = await this.auth.me(uid);
@@ -33,9 +43,9 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     return this.repo.transaction(async tx => {
       const ref = this.repo.account(uid), snapshot = await tx.get(ref);
       const account = await tx.get(this.repo.db().collection('visionary_accounts').doc(uid));
-      const legacy = !snapshot.exists ? await tx.get(this.repo.db().collection(LEGACY_BILLING_ACCOUNTS).doc(uid)) : null;
+      const legacy = !snapshot.exists ? await tx.get(this.repo.db().collection(this.paths.legacyAccounts).doc(uid)) : null;
       if (legacy?.exists || account.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your saved account storage upgrade must finish before payment.');
-      const current: any = snapshot.data() || freeBillingAccount(uid);
+      const current: any = snapshot.data() || freeBillingAccount(uid, Date.now(), this.mode);
       if (current.uid && current.uid !== uid) throw new ServiceUnavailableException('Billing identity could not be verified.');
       const next = await change(current, tx);
       if (!next) return current;
@@ -50,7 +60,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     const sub = data.subscription;
     const paid = sub?.paidThrough > seconds() && sub?.paidFrom <= seconds();
     return {
-      uid, mode: 'test', revision: data.revision, asOf: new Date().toISOString(), lastSyncedAt: data.lastSyncedAt || null,
+      uid, mode: this.mode, revision: data.revision, asOf: new Date().toISOString(), lastSyncedAt: data.lastSyncedAt || null,
       plan: paid ? sub.plan : 'start', entitlement: { plan: paid ? sub.plan : 'start', validUntil: paid ? iso(sub.paidThrough) : null, source: paid ? 'personal-subscription' : 'free' },
       subscription: sub ? { id: sub.id, plan: sub.plan, interval: sub.interval, amount: sub.amount, currency: 'INR', status: sub.status, paidThrough: iso(sub.paidThrough), periodStart: iso(sub.periodStart), periodEnd: iso(sub.periodEnd), cancelAtPeriodEnd: !!sub.cancelAtPeriodEnd, renewalAt: sub.cancelAtPeriodEnd || terminal.has(sub.status) ? null : iso(sub.chargeAt), paymentMethod: sub.paymentMethod || null } : null,
       pending: data.attempt && !['ended', 'failed'].includes(data.attempt.state) && !paid ? { id: data.attempt.id, plan: data.attempt.plan, interval: data.attempt.interval, state: data.attempt.state, subscriptionId: data.attempt.subscriptionId || null, recoverable: !!data.attempt.subscriptionId && ['created', 'authenticated'].includes(sub?.status) } : null,
@@ -60,7 +70,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
   async account(uid: string) {
     const data = await this.repo.read(uid);
     const own = this.view(uid, data);
-    const membership = await this.repo.safely(async () => (await this.repo.db().collection('visionary_billing_test_memberships').doc(uid).get()).data());
+    const membership = await this.repo.safely(async () => (await this.repo.membership(uid).get()).data());
     if (membership?.owner && membership.owner !== uid) {
       const owner = this.view(membership.owner, await this.repo.read(membership.owner));
       if (owner.plan === 'family') { own.plan = 'family'; own.entitlement = { ...owner.entitlement, source: 'family-membership' }; }
@@ -71,19 +81,19 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
   private checkoutView(data: any) {
     const attempt = data.attempt;
     if (!attempt?.subscriptionId) throw new ConflictException('This payment is being reconciled. Refresh its status before starting another checkout.');
-    return { attemptId: attempt.id, subscriptionId: attempt.subscriptionId, keyId: this.provider.settings().keyId, mode: 'test', offer: offer(attempt.plan, attempt.interval) };
+    return { attemptId: attempt.id, subscriptionId: attempt.subscriptionId, keyId: this.provider.settings().keyId, mode: this.mode, offer: offer(attempt.plan, attempt.interval, this.paths.catalogVersion) };
   }
   async checkout(uid: string, input: unknown) {
     const payer = await this.payer(uid); this.provider.settings();
     const body = recordInput(input, ['plan', 'interval', 'commandId', 'catalogVersion']);
-    const selected = offer(body.plan, body.interval), providerPlan = this.provider.planId(selected);
-    if (body.catalogVersion !== CATALOG_VERSION) throw new ConflictException('Pricing changed. Review the latest price before continuing.');
+    const selected = offer(body.plan, body.interval, this.paths.catalogVersion), providerPlan = this.provider.planId(selected);
+    if (body.catalogVersion !== this.paths.catalogVersion) throw new ConflictException('Pricing changed. Review the latest price before continuing.');
     if (typeof body.commandId !== 'string' || !/^[a-f0-9-]{36}$/.test(body.commandId)) throw new BadRequestException('A payment command identifier is required.');
     const id = randomUUID(), now = Date.now();
     const data = await this.update(uid, async (current, tx) => {
       const commandRef = this.repo.account(uid).collection('commands').doc(body.commandId);
       const previousCommand = (await tx.get(commandRef)).data();
-      const membership = await tx.get(this.repo.db().collection('visionary_billing_test_memberships').doc(uid));
+      const membership = await tx.get(this.repo.membership(uid));
       if (membership.exists) throw new ConflictException('Leave your billing family before purchasing another subscription.');
       if (previousCommand && (previousCommand.plan !== body.plan || previousCommand.interval !== body.interval || previousCommand.attemptId !== current.attempt?.id || ['ended', 'failed', 'succeeded'].includes(current.attempt?.state))) throw new ConflictException('This checkout request was already completed or closed. Refresh billing before choosing a new payment.');
       if (current.attempt?.commandId === body.commandId && (current.attempt.plan !== body.plan || current.attempt.interval !== body.interval)) throw new ConflictException('This checkout request was already used for another plan.');
@@ -105,7 +115,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     }
     let created: any;
     try {
-      created = await this.provider.request('POST', 'subscriptions', { plan_id: providerPlan, quantity: 1, total_count: selected.interval === 'annual' ? 10 : 120, customer_notify: false, notes: { visionary_attempt: id, visionary_catalog: CATALOG_VERSION }, expire_by: seconds() + 86400 });
+      created = await this.provider.request('POST', 'subscriptions', { plan_id: providerPlan, quantity: 1, total_count: selected.interval === 'annual' ? 10 : 120, customer_notify: false, notes: { visionary_attempt: id, visionary_catalog: this.paths.catalogVersion }, expire_by: seconds() + 86400 });
       externalId(created.id, 'sub');
       if (created.plan_id !== providerPlan) throw new PaymentProviderError(true);
     } catch (error) {
@@ -177,12 +187,12 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
           if (!Number.isInteger(refund) || refund < 0 || refund > invoice.amount) paymentState = 'unconfirmed';
           if (paymentState === 'captured' && refund < invoice.amount && invoice.billing_start <= seconds() && invoice.billing_end > paidThrough) { paidFrom = invoice.billing_start; paidThrough = invoice.billing_end; }
         }
-        receipts.push(invoiceDocument(uid, { id: invoice.id, number: `VTEST-${invoice.id.slice(4)}`, mode: 'test', plan: claimed.subscription.plan, interval: claimed.subscription.interval, amount: invoice.amount, billedTo: claimed.subscription.billedTo, currency: 'INR', issuedAt: iso(invoice.issued_at || invoice.date || invoice.paid_at), paidAt: iso(invoice.paid_at), periodStart: iso(invoice.billing_start), periodEnd: iso(invoice.billing_end), subscriptionId: subId, paymentId: invoice.payment_id, status: refund >= invoice.amount ? 'refunded' : refund > 0 ? 'partially_refunded' : paymentState === 'captured' ? 'paid' : 'processing', amountRefunded: refund }));
+        receipts.push(invoiceDocument(uid, { id: invoice.id, number: `${this.paths.invoicePrefix}-${invoice.id.slice(4)}`, mode: this.mode, plan: claimed.subscription.plan, interval: claimed.subscription.interval, amount: invoice.amount, billedTo: claimed.subscription.billedTo, currency: 'INR', issuedAt: iso(invoice.issued_at || invoice.date || invoice.paid_at), paidAt: iso(invoice.paid_at), periodStart: iso(invoice.billing_start), periodEnd: iso(invoice.billing_end), subscriptionId: subId, paymentId: invoice.payment_id, status: refund >= invoice.amount ? 'refunded' : refund > 0 ? 'partially_refunded' : paymentState === 'captured' ? 'paid' : 'processing', amountRefunded: refund }));
       }
       const adjustments = (claimed.paymentAdjustments || []).slice(0, 10);
       for (const paymentId of adjustments) {
         withinBudget();
-        const mapping = await this.repo.safely(async () => (await this.repo.db().collection('visionary_billing_test_payments').doc(paymentId).get()).data());
+        const mapping = await this.repo.safely(async () => (await this.repo.payment(paymentId).get()).data());
         if (!mapping || mapping.uid !== uid) continue;
         const original = await this.repo.safely(async () => (await this.repo.receipt(uid, mapping.invoiceId).get()).data());
         if (!original) continue;
@@ -194,7 +204,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       await this.update(uid, (current, tx) => {
         if (current.syncLease?.id !== lease || current.subscription?.id !== subId) return null;
         const history = new Map((current.invoices || []).map(row => [row.id, row]));
-        for (const receipt of receipts) { history.set(receipt.id, receipt); tx.set(this.repo.receipt(uid, receipt.id), { ...receipt, uid }); tx.set(this.repo.db().collection('visionary_billing_test_payments').doc(receipt.paymentId), { uid, invoiceId: receipt.id, subscriptionId: receipt.subscriptionId, merchant: fingerprint(this.provider.settings().keyId) }); }
+        for (const receipt of receipts) { history.set(receipt.id, receipt); tx.set(this.repo.receipt(uid, receipt.id), { ...receipt, uid }); tx.set(this.repo.payment(receipt.paymentId), { uid, invoiceId: receipt.id, subscriptionId: receipt.subscriptionId, merchant: fingerprint(this.provider.settings().keyId) }); }
         current.paymentAdjustments = (current.paymentAdjustments || []).filter(id => !adjustments.includes(id));
         if (terminal.has(sub.status)) current.cancelRequested = false;
         return { ...current, subscription: { ...current.subscription, status: sub.status, periodStart: sub.current_start || 0, periodEnd: sub.current_end || 0, chargeAt: sub.charge_at || 0, paidFrom, paidThrough, paymentMethod: sub.payment_method || null }, attempt: current.attempt?.subscriptionId === subId ? { ...current.attempt, state: paidThrough > seconds() ? 'succeeded' : terminal.has(sub.status) ? 'ended' : 'processing' } : current.attempt, invoices: [...history.values()].sort((a: any, b: any) => String(b.paidAt).localeCompare(String(a.paidAt))).slice(0, 50), lastSyncedAt: Date.now(), syncLease: null, nextSyncAt: terminal.has(sub.status) && !paidThrough ? Date.now() + 86400000 : Date.now() + 60000 };
@@ -247,14 +257,14 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       const pending = (current.familyInvitations || []).filter(row => row.expiresAt > Date.now());
       if (pending.some(row => row.email === email) || (current.familyMembers || []).some(row => row.email === email)) throw new ConflictException('This member already has a seat or pending invitation.');
       if ((current.familyMembers?.length || 0) + pending.length >= 5) throw new ConflictException('All six Family places are reserved, including yours. Remove a member or pending invitation first.');
-      tx.create(this.repo.db().collection('visionary_billing_test_invitations').doc(token), { ...invitation, owner: uid, ownerName: profile.full_name, status: 'pending' });
+      tx.create(this.repo.invitation(token), { ...invitation, owner: uid, ownerName: profile.full_name, status: 'pending' });
       return { ...current, familyInvitations: [...pending, invitation] };
     });
     return { ...invitation, path: `/dashboard/subscription?invite=${token}` };
   }
   async familyInvitation(uid: string, token: string) {
     if (!/^[a-f0-9-]{36}$/.test(token)) throw new NotFoundException('This invitation is unavailable.');
-    const profile = await this.payer(uid), row = await this.repo.safely(async () => (await this.repo.db().collection('visionary_billing_test_invitations').doc(token).get()).data());
+    const profile = await this.payer(uid), row = await this.repo.safely(async () => (await this.repo.invitation(token).get()).data());
     if (!row || row.status !== 'pending' || row.expiresAt <= Date.now() || row.email !== profile.email.toLowerCase()) throw new NotFoundException('This invitation is expired, unavailable, or addressed to another account.');
     return { id: token, ownerName: row.ownerName, expiresAt: row.expiresAt };
   }
@@ -262,10 +272,10 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     const body = recordInput(input, ['invitationId']);
     await this.familyInvitation(uid, body.invitationId);
     await this.repo.transaction(async tx => {
-      const inviteRef = this.repo.db().collection('visionary_billing_test_invitations').doc(body.invitationId), invite = (await tx.get(inviteRef)).data();
+      const inviteRef = this.repo.invitation(body.invitationId), invite = (await tx.get(inviteRef)).data();
       if (invite.status !== 'pending' || invite.expiresAt <= Date.now()) throw new ConflictException('This invitation is no longer available.');
       const ownerRef = this.repo.account(invite.owner), owner: any = (await tx.get(ownerRef)).data(), own: any = (await tx.get(this.repo.account(uid))).data();
-      const memberRef = this.repo.db().collection('visionary_billing_test_memberships').doc(uid), member = await tx.get(memberRef);
+      const memberRef = this.repo.membership(uid), member = await tx.get(memberRef);
       if (invite.owner === uid || member.exists || (own?.subscription && (!terminal.has(own.subscription.status) || own.subscription.paidThrough > seconds())) || (own?.attempt && ['creating', 'reconciling'].includes(own.attempt.state))) throw new ConflictException('Resolve your existing subscription or billing family before joining.');
       if (!owner || this.view(invite.owner, owner).plan !== 'family' || (owner.familyMembers?.length || 0) >= 5 || !owner.familyInvitations?.some(row => row.id === body.invitationId)) throw new ConflictException('A Family place is no longer available.');
       tx.set(memberRef, { owner: invite.owner, joinedAt: Date.now() });
@@ -282,12 +292,12 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       if (!owner || owner.subscription?.plan !== 'family') throw new ForbiddenException('Only the Family billing owner can manage places.');
       if (body.memberUid) {
         if (!owner.familyMembers?.some(row => row.uid === body.memberUid)) throw new NotFoundException('This member is unavailable.');
-        const ref = this.repo.db().collection('visionary_billing_test_memberships').doc(body.memberUid), membership = await tx.get(ref);
+        const ref = this.repo.membership(body.memberUid), membership = await tx.get(ref);
         if (membership.data()?.owner !== uid) throw new ConflictException('This membership changed. Refresh billing.');
         tx.delete(ref); tx.update(ownerRef, { revision: owner.revision + 1, familyMembers: owner.familyMembers.filter(row => row.uid !== body.memberUid) });
       } else {
         if (!owner.familyInvitations?.some(row => row.id === body.invitationId)) throw new NotFoundException('This invitation is unavailable.');
-        tx.update(this.repo.db().collection('visionary_billing_test_invitations').doc(body.invitationId), { status: 'revoked' });
+        tx.update(this.repo.invitation(body.invitationId), { status: 'revoked' });
         tx.update(ownerRef, { revision: owner.revision + 1, familyInvitations: owner.familyInvitations.filter(row => row.id !== body.invitationId) });
       }
     });
@@ -295,7 +305,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
   }
   async leaveFamily(uid: string) {
     await this.repo.transaction(async tx => {
-      const ref = this.repo.db().collection('visionary_billing_test_memberships').doc(uid), member = (await tx.get(ref)).data();
+      const ref = this.repo.membership(uid), member = (await tx.get(ref)).data();
       if (!member) return;
       const ownerRef = this.repo.account(member.owner), owner: any = (await tx.get(ownerRef)).data();
       tx.delete(ref);
@@ -314,7 +324,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     const digest = fingerprint(raw.toString('utf8')), key = fingerprint(`${settings.keyId}:${eventId}`);
     let mapping = subscriptionId && /^sub_[A-Za-z0-9]+$/.test(subscriptionId) ? await this.repo.safely(async () => (await this.repo.mapping(subscriptionId).get()).data()) : null;
     if (!mapping && /^pay_[A-Za-z0-9]+$/.test(paymentId || '')) {
-      mapping = await this.repo.safely(async () => (await this.repo.db().collection('visionary_billing_test_payments').doc(paymentId).get()).data());
+      mapping = await this.repo.safely(async () => (await this.repo.payment(paymentId).get()).data());
       subscriptionId = mapping?.subscriptionId;
     }
     await this.repo.transaction(async tx => {
@@ -337,7 +347,13 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
   }
   onModuleInit() {
     // Durable due times + transactional leases allow restart and multiple workers.
-    if (process.env.K_SERVICE) return; // Cloud Run uses authenticated scheduled HTTP work.
+    // Startup never provisions anything (BILL-07 / KAN-108): there is no plan
+    // creation, no charge and no provider call here. Provider plan ids come only
+    // from configuration (`RAZORPAY_PLAN_*`), so a missing plan is a typed error
+    // at checkout rather than an invented plan created at boot. This method only
+    // starts a read-only reconciliation timer; Cloud Run uses authenticated
+    // scheduled HTTP work instead of an in-process timer.
+    if (process.env.K_SERVICE) return;
     this.timer = setInterval(() => { void this.reconcileDue(); }, 15000); this.timer.unref();
   }
   async scheduledReconciliation(token: unknown) {
@@ -350,7 +366,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     let processed = 0, failed = 0;
     try {
       this.provider.settings();
-      const due = await this.repo.db().collection(BILLING_QUEUE).where('nextSyncAt', '>', 0).where('nextSyncAt', '<=', Date.now()).limit(20).get();
+      const due = await this.repo.db().collection(this.paths.queue).where('nextSyncAt', '>', 0).where('nextSyncAt', '<=', Date.now()).limit(20).get();
       const startedAt = Date.now();
       for (const row of due.docs) {
         if (this.stopping || Date.now() - startedAt > 45000) break;
