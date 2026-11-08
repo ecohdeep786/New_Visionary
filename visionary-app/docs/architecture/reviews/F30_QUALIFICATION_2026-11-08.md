@@ -138,14 +138,26 @@ Approved exceptions or unverified external dependencies: hosted/firebase/live-bi
   (HOLD launch; CONTRACT_GAPS); NVDA/VoiceOver hardware passes absent (F-10 precedent)
 Self-review of diff and blast radius: docs + evidence only; no product source diff; blast radius nil
 Repository review/branch policy status: merged to beta only (ff-only), reviewer pending per D-095; main/dev untouched
-Candidate SHA, remote beta SHA (if merged), post-merge test proof: candidate <candidate SHA>; merged beta <beta SHA>;
-  post-merge smoke: qa:continuity + release-gate/browser smoke per §H
+Candidate SHA, remote beta SHA (if merged), post-merge test proof: candidate b0d1538c; merged beta = origin/beta
+  b0d1538c (ff-only merge of 600a6170..b0d1538c pushed); post-merge smoke on the merged beta: qa:continuity
+  exit 0 + release-gate 5/5 (base :4199) — route-sweep 27/27 (0 without h1, 0 page errors), keyboard-skip-link,
+  focus-visible, accessibility-spot 0/0, critical-navigation reached-dashboard; F30 evidence tree + receipt
+  present at the merged tree (127 files)
 Final status: DONE_AND_VERIFIED_BETA
 Next task: NOT STARTED; waiting for founder.
 ```
 
 ## H. Post-integration smoke (after beta landing)
 
-Filled at merge time per the program protocol: refresh latest origin/beta, confirm the remote SHA, verify the
-F-30 evidence tree + receipt are present at the new beta tree, run qa:continuity and the release-gate harness
-against the merged beta server, record exit codes here.
+Executed per the program protocol at merge time (2026-11-08, merged beta `b0d1538c`):
+
+- Refreshed `origin/beta` → confirmed `b0d1538c` (pushed `600a6170..b0d1538c` via `git push origin beta`).
+- Verified the F-30 evidence tree + this receipt are present at the merged tree (`git ls-tree -r b0d1538c` → 127 files).
+- `npm run qa:continuity` from the merged primary checkout: **exit 0**, all recorded public-surface laws pass.
+- `node scripts/release-gate.mjs` with `GATE_BASE_URL=http://127.0.0.1:4199` (the merged-beta preview server),
+  temp evidence dir: **exit 0, GATES 5, failures 0** — route-sweep 27 routes / 0 without h1 / 0 page errors,
+  keyboard-skip-link, keyboard-focus-visible, accessibility-spot 0 low-contrast / 0 small controls,
+  critical-navigation reached-dashboard. RELEASE GATE PASS.
+
+Post-merge product smoke on the merged beta: PASS. Merge is the factual record; the earlier §C table remains the
+evidence at the qualified candidate tree (identical product source).
