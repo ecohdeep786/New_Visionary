@@ -46,6 +46,7 @@
     "privacycore:check": "node scripts/privacycore-check.mjs",
     "data:check": "node scripts/domain-check.mjs",
     "billing:ingress:check": "node scripts/billing-ingress-check.mjs",
-    "billing:webhook:acceptance": "node scripts/billing-webhook-acceptance.mjs"
+    "billing:webhook:acceptance": "node scripts/billing-webhook-acceptance.mjs",
+    "data:accept07:rehearsal": "node scripts/accept07-rehearsal.mjs"
   }
 }

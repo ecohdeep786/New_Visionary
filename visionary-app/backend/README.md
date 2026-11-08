@@ -48,6 +48,18 @@ For Windows, an isolated PostgreSQL binary distribution can be obtained through 
 [official PostgreSQL download page](https://www.postgresql.org/download/windows/);
 no Windows service or cloud resource is needed for these tests.
 
+D-110 adds the ACCEPT-07 migration cutover rehearsal (`npm run data:accept07:rehearsal`,
+also appended to `npm run data:check`): against one disposable synthetic database it
+exercises the complete operator sequence with the reviewed identity separation — an
+immutable originals ledger (counts + per-row digests), the reviewed schema migration
+through the operator command path, a bounded canary backfill and full cutover with
+owner-faithful UID linkage and byte-identical retained originals, the forward-only
+rollback law (the reviewed registry is non-reversible by design; recovery is
+snapshot-based), production admission requiring an approved source SHA plus a
+verified staging receipt, and exactly-one-executor evidence for concurrent applies
+and backfills. A rehearsal is practice evidence; the real staging cutover remains
+the operator's action — see the [ACCEPT-07 delivery runbook](../docs/architecture/delivery/ACCEPT07_MIGRATION_REHEARSAL.md).
+
 `node scripts/domain-ddl.mjs --write` regenerates only the proposed DATA-01 migration
 from its marked section in `prisma/schema.prisma`. The generator also records the
 explicit PostgreSQL-only personal-workspace and account-wide-consent partial indexes

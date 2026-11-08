@@ -2372,6 +2372,22 @@
       "gates": "billing:webhook:acceptance 0; self-test-fail 1; bill-01 protocol regression 11/11; backend:build 0; check 0; npm test 672/672 (dev base)",
       "receipt": "docs/architecture/reviews/KAN103_BILL02_WEBHOOK_ACCEPTANCE_2026-11-08.md",
       "notes": "No product source change; webhook handler/queue/reconciliation consumed as shipped on dev. External gates: Razorpay-registered webhook URL + provider-sent test events (owner-run). Jira transition NOT performed (no connector in session); reviewer pending per D-095."
+    },
+    {
+      "id": "KAN-123",
+      "task": "ACCEPT-07",
+      "title": "Rehearse reviewed schema/local-data migration with originals retained, canary cutover and rollback; exactly one executor per side-effecting command",
+      "date": "2026-11-07",
+      "lane": "zcode-backend-ml",
+      "branch": "zcode/kan-123-accept07-migration-rehearsal",
+      "baseCommit": "4bb3c22dfd403e4be73e124e79e5e584d8472bdd",
+      "worktree": "nv-worktrees/kan-123-accept07 (left for reviewer)",
+      "status": "IMPLEMENTED_PENDING_REVIEW",
+      "delivery": "backend/tests/contracts/accept-07/rehearsal.test.mjs + rehearsal-fixture.cjs; scripts/accept07-rehearsal.mjs registered as npm run data:accept07:rehearsal and appended to npm run data:check; runbook docs/architecture/delivery/ACCEPT07_MIGRATION_REHEARSAL.md; committed report docs/architecture/delivery/accept07/rehearsal-report.json",
+      "evidence": "10-stage green rehearsal on disposable loopback synthetic PostgreSQL: immutable originals ledger (24 rows, per-row digests) byte-identical after schema apply, canary (bounded 5/24) and full cutover (24/24 owner-faithful UID linkage); distinct migration/runtime LOGIN roles with PostgreSQL ground-truth denials; production admission MIGRATION_SOURCE_NOT_APPROVED / STAGING_RECEIPT_REQUIRED / valid-receipt-admits; reviewed registry FORWARD-ONLY BY DESIGN (ROLLBACK_DENIED; reversible synthetic probe proves the rollback path); exactly-one-executor via advisory-lock serialization and checkpoint-fenced non-idempotent probe backfill",
+      "gates": "data:accept07:rehearsal 0; data:check 0; backend:build 0; check 0; npm test 672/672 (dev base)",
+      "receipt": "docs/architecture/reviews/KAN123_ACCEPT07_MIGRATION_REHEARSAL_2026-11-07.md",
+      "notes": "No migration-infrastructure source change; rehearsal consumes the reviewed runner/store/command/registry as shipped on dev. Staging cutover remains the operator action. Jira transition NOT performed (no connector in session); reviewer pending per D-095."
     }
   ]
 }
