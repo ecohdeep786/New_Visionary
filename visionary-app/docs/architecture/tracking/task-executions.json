@@ -2420,6 +2420,8 @@
       "gates": "release:security:review 0; billing:webhook:acceptance 0; release:restore:drill green (after merging amended kan-128@033eadfb - the damage-billing fixture route had been left uncommitted there; amended with --force-with-lease, recorded for the reviewer); backend:build 0; check 0; npm test 672/672 (dev base)",
       "receipt": "docs/architecture/reviews/KAN129_RELEASE06_RELEASE_SECURITY_2026-11-08.md",
       "notes": "No product source change. External gates: image review (no container runtime on host), IAM review, advisory review, NAMED responders (owner-run). Jira transition NOT performed (no connector in session); reviewer pending per D-095."
+    },
+    {
     }
   ]
 }

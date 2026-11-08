@@ -409,6 +409,19 @@ async function controlPlane(request, response, context) {
       send(200, { account: account || null, events: events.map(e => ({ id: e.id ?? null, event: e.event, state: e.state, uid: e.uid })), queue: queue || null });
       return;
     }
+    if (url.pathname === '/fixture/damage-billing' && request.method === 'POST') {
+      // RELEASE-05 drill-only mutation: destroy the durable billing record to
+      // simulate logical damage AFTER the recovery point. Never a product path.
+      let raw = '';
+      request.on('data', chunk => { raw += chunk; if (raw.length > 1024) request.destroy(); });
+      request.on('end', async () => {
+        const body = JSON.parse(raw || '{}');
+        const db = auth.getDatabase();
+        await db.collection('visionary_accounts').doc(body.uid).collection('billing').doc('test').delete();
+        send(200, { damaged: true });
+      });
+      return;
+    }
     send(404, { error: 'Fixture control plane: fixture-only endpoints under /fixture.' });
   } catch (error) {
     send(500, { error: 'Fixture control plane failure.', detail: String(error && error.message || error).slice(0, 200) });
