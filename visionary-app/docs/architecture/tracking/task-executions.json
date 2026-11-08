@@ -2425,6 +2425,28 @@
         "changesRequestedComment": 10699,
         "transitionId": 31
       }
+    },
+    {
+      "jiraKey": "KAN-126",
+      "sourceId": "RELEASE-03",
+      "status": "Testing",
+      "branch": "zcode/kan-126-release03-admission-ceilings",
+      "worktree": "C:/Users/Administrator/nv-worktrees/kan-126-release03",
+      "base": "2e0b1fbbb8cb005bde34738b8c4696ce20ff57d2",
+      "scope": "Admission-control enabler: Retry-After on typed 429/503 in the shared production HTTP composition; new billing provider circuit breaker wired into RazorpayProvider; connected proof of per-UID/shared-coordinator quotas, tenant fairness, fail-closed dependency failure, queue drain and user-visible throttling. No real provider contacted; hosted provider quotas remain an external gate.",
+      "review": {
+        "state": "pending"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN126_RELEASE03_ADMISSION_CEILINGS_2026-11-08.md",
+      "verification": {
+        "command": "npm run release:admission",
+        "result": "18/18 PASS (breaker law 9/9 + connected admission proof 9/9); lint 0, typecheck 0, npm test 672/672, build 0"
+      },
+      "remainingGates": [
+        "Actual provider quotas (speech/model service + Razorpay) must be obtained from provider consoles",
+        "Fleet-wide global cap and SQL-backed instance/pool ceilings under production load = staging capacity gate",
+        "Real provider outage and real test-merchant mode (--razorpay-test) not exercised in this environment"
+      ]
     }
   ]
 }

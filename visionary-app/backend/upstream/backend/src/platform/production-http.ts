@@ -4,6 +4,28 @@ import { static as serveStatic, json, raw } from 'express';
 import * as cookieParser from 'cookie-parser';
 import { AUTH_SESSION_POLICY_VERSION } from '../auth/firebase-product/session-policy';
 
+// Admission/overload responses must carry clear retry timing. The launch
+// operations plan requires "typed 429/503 with clear retry timing rather than
+// allowing unbounded in-memory waiting". Controllers and the provider layer
+// throw typed Nest exceptions (429 Too Many Requests, 503 Service Unavailable)
+// for both deliberate throttling and dependency failure; this composition adds
+// the `Retry-After` header to every such response exactly once, so a client (or
+// the frontend transport) can back off instead of hammering a saturated or
+// failing dependency. It never changes the thrown body or status, and it does
+// not add the header to successful or unrelated error responses.
+const RETRY_AFTER_SECONDS: Record<number, number> = { 429: 30, 503: 15 };
+function admissionRetryAfter(_request: any, response: any, next: any) {
+  const writeHead = response.writeHead.bind(response);
+  response.writeHead = (statusCode: number, ...rest: any[]) => {
+    // Set the header before the response line is written; never overwrite an
+    // explicit Retry-After a handler may already have supplied.
+    const seconds = RETRY_AFTER_SECONDS[statusCode];
+    if (seconds && !response.getHeader('Retry-After')) response.setHeader('Retry-After', String(seconds));
+    return writeHead(statusCode, ...rest);
+  };
+  next();
+}
+
 // Separate production composition; the local auth entrypoint and its callers
 // retain their current behavior. Proxy depth is explicit: one managed Cloud Run
 // edge now; two only for a separately verified load-balancer deployment.
@@ -19,6 +41,9 @@ export function configureProductionHttp(app: any, options: { publicRoot: string;
   });
   app.use('/api/billing/webhooks/razorpay', raw({ type: 'application/json', limit: '256kb' }));
   app.use(json({ limit: '24kb' })); app.use(cookieParser());
+  // Installed after the security headers and body parsers so it wraps every
+  // API response, including the webhook/fixture control paths.
+  app.use(admissionRetryAfter);
   const authPolicy = { version: AUTH_SESSION_POLICY_VERSION, globalSignOut: options.globalLogoutEnabled === true };
   const health = (req: any, res: any, next: any) => ['GET', 'HEAD'].includes(req.method) && req.path === '/' ? res.status(200).json({ status: 'ok', authPolicy }) : next();
   // Keep the container-local probe and expose an API probe for hosted checks.

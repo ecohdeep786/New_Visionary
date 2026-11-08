@@ -2,6 +2,7 @@ import { ForbiddenException, Injectable, ServiceUnavailableException } from '@ne
 import { ConfigService } from '@nestjs/config';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { offer } from './catalog';
+import { ProviderCircuitBreaker, type CircuitSnapshot } from './provider-circuit-breaker';
 
 export class PaymentProviderError extends ServiceUnavailableException {
   constructor(public readonly ambiguous: boolean) { super('Razorpay could not confirm this request. Check the saved payment status before trying again.'); }
@@ -12,7 +13,9 @@ export function validSignature(raw: Buffer | string, signature: unknown, secret:
 }
 @Injectable()
 export class RazorpayProvider {
-  constructor(private readonly config: ConfigService) {}
+  private readonly breaker: ProviderCircuitBreaker;
+  constructor(private readonly config: ConfigService) { this.breaker = new ProviderCircuitBreaker(config); }
+  circuit(): CircuitSnapshot { return this.breaker.snapshot(); }
   settings() {
     const keyId = this.config.get<string>('RAZORPAY_KEY_ID'), secret = this.config.get<string>('RAZORPAY_KEY_SECRET');
     if (this.config.get('BILLING_MODE') !== 'test' || !/^rzp_test_[A-Za-z0-9]+$/.test(keyId || '') || !secret) throw new ServiceUnavailableException('Test billing is not configured. Please retry later.');
@@ -29,14 +32,19 @@ export class RazorpayProvider {
   }
   async request(method: string, resource: string, body?: unknown): Promise<any> {
     const settings = this.settings();
+    // Fail fast while the provider is known to be failing (typed 503 + retry
+    // timing via the composition), instead of opening another 12s call that the
+    // provider cannot serve. One probe is admitted once the cooling window ends.
+    this.breaker.admit();
     let response: Response;
     try {
       response = await fetch(`https://api.razorpay.com/v1/${resource}`, {
         method, headers: { Authorization: `Basic ${Buffer.from(`${settings.keyId}:${settings.secret}`).toString('base64')}`, 'Content-Type': 'application/json' },
         ...(body === undefined ? {} : { body: JSON.stringify(body) }), signal: AbortSignal.timeout(12000),
       });
-    } catch { throw new PaymentProviderError(true); }
-    if (!response.ok) throw new PaymentProviderError(response.status >= 500 || response.status === 429);
+    } catch { this.breaker.settle(false); throw new PaymentProviderError(true); }
+    if (!response.ok) { this.breaker.settle(false); throw new PaymentProviderError(response.status >= 500 || response.status === 429); }
+    this.breaker.settle(true);
     try { return await response.json(); } catch { throw new PaymentProviderError(true); }
   }
   getSubscription(id: string) { return this.request('GET', `subscriptions/${id}`); }

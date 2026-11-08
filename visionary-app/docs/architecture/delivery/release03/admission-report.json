@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-11-08T10:06:32.728Z",
+  "laws": [
+    {
+      "law": "source",
+      "detail": "docs/architecture/discussions/launch-operations.md § Admission control",
+      "scopes": [
+        "session-ip 20/min",
+        "session-uid 10/min",
+        "profile 20/min",
+        "logout-all-session 5/min",
+        "billing 12/min (sync 30)",
+        "consent-list 30/min",
+        "consent-revoke 10/min",
+        "account-overview (per policy)",
+        "personal-workspace-provision (per policy)",
+        "institution-invite-issue 10/min",
+        "institution-invite-accept 10/min"
+      ]
+    },
+    {
+      "law": "per-uid-quota",
+      "scope": "consent-revoke 10/min",
+      "allowed": 10,
+      "throttled": 11,
+      "retryAfterSeconds": 30
+    },
+    {
+      "law": "shared-coordinator-cap",
+      "concurrentRequests": 21,
+      "throttled": 11
+    },
+    {
+      "law": "tenant-fairness",
+      "scope": "billing 12/min",
+      "victimStatuses": [
+        201,
+        201,
+        201,
+        201,
+        201,
+        201,
+        201,
+        201,
+        201,
+        201,
+        201,
+        201,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429
+      ],
+      "otherTenantStatus": 201
+    },
+    {
+      "law": "dependency-failure-fail-closed",
+      "status": 503,
+      "retryAfterSeconds": 15,
+      "providerCreatesDelta": 0
+    },
+    {
+      "law": "queue-drain-after-recovery",
+      "status": 201,
+      "processed": 3,
+      "failed": 0
+    },
+    {
+      "law": "provider-circuit-breaker",
+      "openedState": "open",
+      "consecutiveFailures": 3,
+      "fastRefusalStatus": 503,
+      "providerReadsDelta": 0
+    },
+    {
+      "law": "breaker-half-open-recovery",
+      "status": 201,
+      "closedState": "closed",
+      "processed": 4
+    },
+    {
+      "law": "no-false-backpressure",
+      "status": 200
+    }
+  ],
+  "breakerAccount": "jLUZhp9lym5ggwcHF94TBm17nJTd"
+}

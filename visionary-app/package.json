@@ -14,6 +14,7 @@
     "typecheck": "node scripts/frontend.mjs typecheck",
     "test": "node scripts/frontend.mjs test",
     "check": "node scripts/check.mjs",
+    "release:admission": "node scripts/release03-admission.mjs",
     "frontend:install": "node scripts/frontend.mjs install",
     "frontend:qa:navigation": "node scripts/frontend.mjs qa:navigation",
     "frontend:qa:fonts": "node scripts/frontend.mjs qa:fonts",
