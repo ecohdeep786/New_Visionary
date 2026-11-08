@@ -1,0 +1,72 @@
+{
+  "task": "RELEASE-01",
+  "jira": "KAN-124",
+  "title": "Replace workload guesses with beta request/token/duration/byte distributions (polling, synchronized class starts, retries, Build demand; no double-counting turns)",
+  "branch": "zcode/kan-124-release01-workload",
+  "base": "2e0b1fbb",
+  "date": "2026-11-08",
+  "checklistLine": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md P12 RELEASE-01",
+  "laws": [
+    "chunking: aiTurnsPerDauDay counts distinct questions, never chunks; aiAdmissionsPerDauDay counts every chunk as one runtime/token admission event; per-turn tokens aggregate chunk means once",
+    "polling: device-sync polls are API requests that raise coreCallsPerDauDay and request-seconds, never AI turns or admissions",
+    "retry: measured attempts-per-primary histogram drives providerAttemptMultiplier; retries = attempts - turns, never new logical turns",
+    "synchronized class-start: measured peak/mean ratio is a capacity guardrail report, not a uniform spread and not a cost input",
+    "Build/offline: one logical Build run across N chunks counts once; chunks remain the admission surface; reconnects are one replay work item each; Build/reconnect are worker demand, never foreground questions",
+    "voice: ASR input tokens from capture minutes, TTS output audio bytes from spoken seconds, turn wall-time includes capture + ASR + text + TTS",
+    "provenance fail-closed: a beta claim without windowStart/windowEnd/positive activeUsers/daysCaptured is rejected; synthetic profiles are explicit; measured overrides only flow from distribution-kind values",
+    "bridge: workloadToCostOverrides emits only the keys the D-075 estimate() accepts, and the projected turns/attempts/core must disagree with the naive chunk count"
+  ],
+  "changedFiles": {
+    "new": [
+      "scripts/workload-model.mjs",
+      "scripts/tests/workload-model.test.mjs",
+      "scripts/tests/fixtures/workload-profile.synthetic.json",
+      "docs/architecture/delivery/RELEASE01_WORKLOAD_DISTRIBUTIONS.md",
+      "docs/architecture/delivery/release01/workload-projection.json",
+      "docs/architecture/delivery/release01/workload-model.tap",
+      "docs/architecture/delivery/release01/evidence.json",
+      "docs/architecture/reviews/KAN124_RELEASE01_WORKLOAD_2026-11-08.md"
+    ],
+    "modified": [
+      "package.json",
+      "scripts/check.mjs",
+      "docs/architecture/tracking/task-executions.json"
+    ]
+  },
+  "evidence": {
+    "suite": {
+      "file": "scripts/tests/workload-model.test.mjs",
+      "commands": ["npm run workload:test", "npm run cost:test"],
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "tap": "docs/architecture/delivery/release01/workload-model.tap",
+      "projection": "docs/architecture/delivery/release01/workload-projection.json",
+      "synthetic": true,
+      "profile": "scripts/tests/fixtures/workload-profile.synthetic.json"
+    },
+    "gates": [
+      { "gate": "npm run workload:test", "result": "10/10 pass" },
+      { "gate": "npm run cost:test", "result": "10/10 pass — existing cost engine untouched" },
+      { "gate": "npm run check", "result": "exit 0 — script-tests 124/124 incl. workload-model; qa:continuity/motion/taps; import baseline 3842 files; surface audit; lint; typecheck; npm test 672/672; build" }
+    ]
+  },
+  "defectsFoundAndFixed": [
+    {
+      "where": "engine (scripts/workload-model.mjs)",
+      "finding": "buildAdmissions used summarizeHistogram().total (the observation/run count, 2400) instead of the weighted chunk total (6120). Fixed: admission surface = weighted sum of build-chunks histogram.",
+      "productChange": true
+    },
+    {
+      "where": "test suite",
+      "finding": "Floating-point exactness: 1.095 - 1 asserted equal to 0.095 failed by 1e-17. Changed to tolerance assertions.",
+      "productChange": false
+    }
+  ],
+  "externalGatesNotClaimed": [
+    "Real beta request/token/duration/byte distributions from the hosted beta with capture.source 'beta', windowStart/windowEnd, activeUsers and daysCaptured. No hosted beta exists on this host; no beta measurement is claimed.",
+    "Any cost projection built from a real beta profile (the engine ships the schema and the fail-closed ingestion, not the capture)."
+  ],
+  "hostedVerified": false,
+  "reviewer": "pending per D-095"
+}

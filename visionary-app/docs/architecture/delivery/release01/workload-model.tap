@@ -1,0 +1,71 @@
+TAP version 13
+#     logicalTotal=290880 (questions 48000 + polls 240000 + builds 2400 + reconnects 480)
+# Subtest: histogram summary derives mean/p95/total only from buckets and rejects malformed shapes
+ok 1 - histogram summary derives mean/p95/total only from buckets and rejects malformed shapes
+  ---
+  duration_ms: 1.3525
+  type: 'test'
+  ...
+# Subtest: chunking law: pipeline chunks aggregate to ONE logical turn, never N user questions
+ok 2 - chunking law: pipeline chunks aggregate to ONE logical turn, never N user questions
+  ---
+  duration_ms: 0.7867
+  type: 'test'
+  ...
+# Subtest: polling law: device-sync polls are API requests, never AI turns
+ok 3 - polling law: device-sync polls are API requests, never AI turns
+  ---
+  duration_ms: 0.2438
+  type: 'test'
+  ...
+# Subtest: retry law: a retry adds an attempt (provider cost + runtime seconds) but is never a new logical turn
+ok 4 - retry law: a retry adds an attempt (provider cost + runtime seconds) but is never a new logical turn
+  ---
+  duration_ms: 0.2442
+  type: 'test'
+  ...
+# Subtest: synchronized class-start law: the measured peak/mean ratio is the burst guardrail, never a uniform spread
+ok 5 - synchronized class-start law: the measured peak/mean ratio is the burst guardrail, never a uniform spread
+  ---
+  duration_ms: 0.5735
+  type: 'test'
+  ...
+# Subtest: Build law: a declarative Build run is one logical work item across N chunks; offline reconnects count once
+ok 6 - Build law: a declarative Build run is one logical work item across N chunks; offline reconnects count once
+  ---
+  duration_ms: 0.9536
+  type: 'test'
+  ...
+# Subtest: voice law: ASR/TTS durations drive tokens, bytes and wall-time; text-only baseline would understate
+ok 7 - voice law: ASR/TTS durations drive tokens, bytes and wall-time; text-only baseline would understate
+  ---
+  duration_ms: 0.3012
+  type: 'test'
+  ...
+# Subtest: provenance fail-closed: a beta claim without observation metadata is refused; synthetic is explicit
+ok 8 - provenance fail-closed: a beta claim without observation metadata is refused; synthetic is explicit
+  ---
+  duration_ms: 0.2628
+  type: 'test'
+  ...
+# Subtest: bridge: workloadToCostOverrides emits only measured cost keys and feeds the D-075 estimate
+ok 9 - bridge: workloadToCostOverrides emits only measured cost keys and feeds the D-075 estimate
+  ---
+  duration_ms: 2.2243
+  type: 'test'
+  ...
+# Subtest: no double-counting invariant across every law at once
+ok 10 - no double-counting invariant across every law at once
+  ---
+  duration_ms: 0.7385
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.2007

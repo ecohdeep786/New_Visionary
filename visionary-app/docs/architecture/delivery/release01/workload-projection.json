@@ -1,0 +1,167 @@
+{
+  "capture": {
+    "source": "synthetic",
+    "measured": false
+  },
+  "counts": {
+    "questions": 48000,
+    "chunks": 61200,
+    "pollRequests": 240000,
+    "attempts": 52560,
+    "retries": 4560,
+    "logicalBuildRuns": 2400,
+    "buildAdmissions": 6120,
+    "offlineReconnects": 480,
+    "mau": 100000,
+    "dau": 20000,
+    "days": 30
+  },
+  "measuredOverrides": {
+    "aiTurnsPerDauDay": 0.08,
+    "coreCallsPerDauDay": 0.48000000000000004,
+    "inputTokensPerTurn": 2552.5,
+    "outputTokensPerTurn": 566.6666666666666,
+    "providerAttemptMultiplier": 1.095,
+    "aiMeanSeconds": 48.909803921568624,
+    "apiMeanCoreSeconds": 0.08888888888888889,
+    "apiResponseKib": 1.3894335511982572,
+    "apiRequestKib": 0.5,
+    "workerJobsPerMau": 0.0288,
+    "workerMeanSeconds": 22.44375,
+    "aiResponseKib": 1.3894335511982572
+  },
+  "provenance": {
+    "aiTurnsPerDauDay": {
+      "value": 0.08,
+      "kind": "distribution",
+      "via": "logical distinct questions / dau / days — chunking law (never chunk count)",
+      "p95": null
+    },
+    "aiAdmissionsPerDauDay": {
+      "value": 0.10200000000000001,
+      "kind": "distribution",
+      "via": "chunks / dau / days — runtime & token admission surface, distinct from turns",
+      "p95": null
+    },
+    "coreCallsPerDauDay": {
+      "value": 0.48000000000000004,
+      "kind": "distribution",
+      "via": "logical turns + device-sync polls / dau / days — polling law (polls are requests, never turns)",
+      "p95": null
+    },
+    "pollRequestsPerDauDay": {
+      "value": 0.4,
+      "kind": "distribution",
+      "via": "deviceSyncPolls.count / dau / days — polling law",
+      "p95": null
+    },
+    "chunksPerTurn": {
+      "value": 1.275,
+      "kind": "distribution",
+      "via": "chunks / distinctQuestions — chunking law",
+      "p95": null
+    },
+    "inputTokensPerTurn": {
+      "value": 2552.5,
+      "kind": "distribution",
+      "via": "mean input tokens per chunk x chunks per logical turn — aggregation law, no double count",
+      "p95": null
+    },
+    "outputTokensPerTurn": {
+      "value": 566.6666666666666,
+      "kind": "distribution",
+      "via": "mean output tokens per chunk x chunks per logical turn — aggregation law, no double count",
+      "p95": null
+    },
+    "providerAttemptMultiplier": {
+      "value": 1.095,
+      "kind": "distribution",
+      "via": "measured attempts per primary turn — retry law (retries are attempts, never new turns)",
+      "p95": null
+    },
+    "retriesPerTurn": {
+      "value": 0.09499999999999997,
+      "kind": "distribution",
+      "via": "attempts per turn - 1 — retry law",
+      "p95": null
+    },
+    "aiMeanSeconds": {
+      "value": 48.909803921568624,
+      "kind": "distribution",
+      "via": "text turn seconds + capture + ASR + TTS — voice law (audio-duration measured)",
+      "p95": null
+    },
+    "apiMeanCoreSeconds": {
+      "value": 0.08888888888888889,
+      "kind": "distribution",
+      "via": "weighted foreground core + poll seconds — polling law (foreground share assumed 0.2s per request)",
+      "p95": null
+    },
+    "apiResponseKib": {
+      "value": 1.3894335511982572,
+      "kind": "distribution",
+      "via": "foreground + poll response KiB means — byte distribution",
+      "p95": null
+    },
+    "apiRequestKib": {
+      "value": 0.5,
+      "kind": "distribution",
+      "via": "foreground + poll request KiB means — byte distribution",
+      "p95": null
+    },
+    "voiceCaptureMinutesPerTurnMean": {
+      "value": 0.5,
+      "kind": "distribution",
+      "via": "capture minutes per turn — voice law",
+      "p95": null
+    },
+    "asrInputTokensPerTurnMean": {
+      "value": 210,
+      "kind": "distribution",
+      "via": "capture minutes x ASR input tokens per minute — voice law",
+      "p95": null
+    },
+    "ttsAudioGiBPerTurnMean": {
+      "value": 0.0000095367431640625,
+      "kind": "distribution",
+      "via": "TTS output seconds x audio bytes per second — voice law",
+      "p95": null
+    },
+    "peakConcurrencyMultiplier": {
+      "value": 12.432432432432432,
+      "kind": "distribution",
+      "via": "observed peak / observed mean concurrency during synchronized class starts — class-start law",
+      "p95": null
+    },
+    "workerJobsPerMau": {
+      "value": 0.0288,
+      "kind": "distribution",
+      "via": "logical Build runs + offline reconnects per MAU — Build law (each counted once)",
+      "p95": null
+    },
+    "workerMeanSeconds": {
+      "value": 22.44375,
+      "kind": "distribution",
+      "via": "weighted mean of Build (chunks x sec/chunk) and reconnect replay seconds",
+      "p95": null
+    },
+    "buildRunsPerMau": {
+      "value": 0.024,
+      "kind": "distribution",
+      "via": "logical Build runs / mau — one logical run per Build, never per chunk",
+      "p95": null
+    },
+    "buildAdmissionsPerMau": {
+      "value": 0.0612,
+      "kind": "distribution",
+      "via": "total Build generation chunks / mau — runtime surface distinct from runs",
+      "p95": null
+    },
+    "offlineReconnectsPerMau": {
+      "value": 0.0048,
+      "kind": "distribution",
+      "via": "reconnect replay work items / mau — counted once per reconnect",
+      "p95": null
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "capture": {
+    "source": "synthetic",
+    "title": "Demo workload profile exercising every counting law",
+    "note": "NO hosted beta exists yet (recorded external gate). This profile is a SYNTHETIC demonstration of the schema and counting laws with invented numeric shapes. It must never be passed as measured: an honest beta profile overrides capture.source with 'beta' and fills windowStart/windowEnd/activeUsers from real observation.",
+    "windowStart": null,
+    "windowEnd": null,
+    "activeUsers": null,
+    "daysCaptured": null
+  },
+  "demand": {
+    "foregroundTurns": {
+      "distinctQuestions": 48000,
+      "chunks": 61200,
+      "inputTokensPerChunkHistogram": [
+        { "value": 600, "count": 9000 },
+        { "value": 1200, "count": 26000 },
+        { "value": 2400, "count": 19000 },
+        { "value": 4800, "count": 6000 },
+        { "value": 9600, "count": 1200 }
+      ],
+      "outputTokensPerChunkHistogram": [
+        { "value": 120, "count": 9000 },
+        { "value": 260, "count": 26000 },
+        { "value": 520, "count": 19000 },
+        { "value": 1100, "count": 6000 },
+        { "value": 2400, "count": 1200 }
+      ],
+      "secondsPerTurnHistogram": [
+        { "value": 3, "count": 9000 },
+        { "value": 6, "count": 26000 },
+        { "value": 12, "count": 19000 },
+        { "value": 24, "count": 6000 },
+        { "value": 48, "count": 1200 }
+      ],
+      "responseKibHistogram": [
+        { "value": 1, "count": 9000 },
+        { "value": 2, "count": 26000 },
+        { "value": 4, "count": 19000 },
+        { "value": 8, "count": 6000 },
+        { "value": 16, "count": 1200 }
+      ],
+      "requestKibHistogram": [
+        { "value": 0.5, "count": 61200 }
+      ],
+      "chunkingLaw": "61200 chunks across 48000 distinct questions: each logical question spans on average 1.275 chunks; chunks aggregate to 1 logical turn for planning, each chunk is one admission event for runtime/token accounting."
+    },
+    "deviceSyncPolls": {
+      "count": 240000,
+      "secondsPerPollHistogram": [
+        { "value": 0.05, "count": 200000 },
+        { "value": 0.15, "count": 40000 }
+      ],
+      "responseKibHistogram": [
+        { "value": 1, "count": 240000 }
+      ],
+      "requestKibHistogram": [
+        { "value": 0.5, "count": 240000 }
+      ],
+      "pollingLaw": "Device sync/visibility polls are cheap API requests. They add to API request volume and request-seconds but are NEVER counted as AI turns."
+    },
+    "synchronizedClassStarts": {
+      "sessions": 1200,
+      "startsPerSessionMean": 18,
+      "burstWindowSeconds": 120,
+      "peakConcurrencyObserved": 92,
+      "meanConcurrencyDuringSession": 7.4,
+      "classStartLaw": "Synchronized class starts concentrate demand into burst windows. The measured peak/mean ratio (92/7.4 ~= 12.4) is the peak-concurrency multiplier; spreading the same turns uniformly would understate peak demand. This multiplier is reported as a capacity guardrail and feeds effective-concurrency admission."
+    },
+    "providerRetries": {
+      "attemptsPerPrimaryHistogram": [
+        { "value": 1, "count": 44160 },
+        { "value": 2, "count": 3120 },
+        { "value": 3, "count": 720 }
+      ],
+      "retryLaw": "Retries are measured as attempts per primary logical turn. Attempts (including retries) drive provider cost and runtime seconds; a retry is NEVER a new logical turn."
+    },
+    "buildRuns": {
+      "runs": 2400,
+      "chunksPerBuildHistogram": [
+        { "value": 1, "count": 600 },
+        { "value": 2, "count": 1080 },
+        { "value": 4, "count": 600 },
+        { "value": 8, "count": 120 }
+      ],
+      "secondsPerBuildChunkHistogram": [
+        { "value": 8, "count": 4200 },
+        { "value": 16, "count": 1800 }
+      ],
+      "inputTokensPerBuildChunkHistogram": [
+        { "value": 1000, "count": 6000 }
+      ],
+      "outputTokensPerBuildChunkHistogram": [
+        { "value": 400, "count": 6000 }
+      ],
+      "offlineReconnects": {
+        "count": 480,
+        "secondsPerReconnectReplayHistogram": [
+          { "value": 1, "count": 300 },
+          { "value": 3, "count": 150 },
+          { "value": 8, "count": 30 }
+        ],
+        "law": "An offline reconnect is a replay/sync work item counted once per reconnect, never as new user questions."
+      },
+      "buildLaw": "A declarative Build run is one logical work item even when it spans several generation chunks. Build chunks add admission/token/runtime volume; a Build is never counted as a foreground user question."
+    },
+    "voice": {
+      "captureMinutesPerTurnMean": 0.5,
+      "captureSecondsPerMinute": 60,
+      "asrInputTokensPerCaptureMinute": 420,
+      "asrSecondsPerCaptureMinute": 1.8,
+      "ttsOutputSecondsPerTurnMean": 8,
+      "audioBytesPerAsrSecond": 1280,
+      "audioBytesPerTtsSecond": 1280,
+      "speechDurationsMeasured": true,
+      "voiceLaw": "Voice turns are measured by audio duration, not by an invented text-only figure: ASR input tokens derive from capture minutes, TTS output audio bytes derive from spoken output seconds, and the turn wall-time includes capture + ASR + TTS. These durations replace the text-baseline guess for voice turns."
+    }
+  }
+}
