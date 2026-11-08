@@ -74,3 +74,10 @@ link state, and retains the guardian-change check. The regression now requires
 the revoker to be observed waiting on the actual SQL lock until callback commit.
 The container's remaining physical ledger assertion now includes migration6.
 Renewed exact-source review and CI are required; earlier approval is not claimed.
+
+The separate reviewer approved corrected source `8b32fbb2` after19/19, compilation
+and replayed DDL checks. Candidate CI42454517419 then stopped on the required
+import provenance check: the intentional schema change lacked its upstream
+patch receipt. The byte-hashed patch and chained before/after hashes now record
+exactly that schema delta. Runtime source is unchanged by this provenance repair;
+the resulting final commit still requires explicit reviewer confirmation and CI.
