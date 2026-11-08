@@ -1,0 +1,48 @@
+{
+  "conversations": [],
+  "sessions": [],
+  "artifacts": [],
+  "resources": [],
+  "notifications": [
+    {
+      "id": "c750be80-b04b-4b4f-8fbd-156096a1158f",
+      "text": "Progress-sharing permission changed.",
+      "read": false,
+      "path": "/dashboard/child",
+      "kind": "guardian",
+      "childId": "e8b6e6a2-7118-4dcc-8393-877a19bbf340",
+      "event": "accepted",
+      "at": "2026-11-08T09:32:05.238Z"
+    },
+    {
+      "id": "ef91d53e-de77-4477-9f81-91a306ffd403",
+      "text": "Progress-sharing permission changed.",
+      "read": false,
+      "path": "/dashboard/child",
+      "kind": "guardian",
+      "childId": "e8b6e6a2-7118-4dcc-8393-877a19bbf340",
+      "event": "requested",
+      "at": "2026-11-08T09:31:54.005Z"
+    }
+  ],
+  "audit": [],
+  "preferences": {
+    "locale": "en",
+    "interfaceLocale": "en",
+    "notificationLocale": "en",
+    "bilingual": false,
+    "lowBandwidth": false,
+    "notifications": "weekly",
+    "memory": true,
+    "voice": true,
+    "agiAnimation": "girl"
+  },
+  "subscription": {
+    "plan": "Free",
+    "state": "active",
+    "invoices": [],
+    "usage": 0,
+    "usageDay": "2026-11-08"
+  },
+  "legacyImported": true
+}
