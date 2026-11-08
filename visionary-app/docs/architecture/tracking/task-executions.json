@@ -2360,7 +2360,7 @@
     {
       "jiraKey": "KAN-44",
       "sourceId": "DATA-09",
-      "status": "In Progress",
+      "status": "Done",
       "branch": "codex/deepseek-kan-44-admission",
       "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-44-admission",
       "originalCandidate": "14fc87bd",
@@ -2371,13 +2371,58 @@
         "instruction": "all age approved"
       },
       "review": {
+        "state": "approved-backend-enabler",
+        "reviewer": "/root/kan44_final_review",
+        "approvedCommit": "3a3247d49d4ebf6e6ba53f033288eb5573ab0f81"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN44_ADMISSION_FINAL.md",
+      "jiraReceipt": {
+        "status": "Done",
+        "commentId": 10697,
+        "transitionId": 51
+      },
+      "currentCheckpoint": "3a3247d49d4ebf6e6ba53f033288eb5573ab0f81",
+      "integration": {
+        "commit": "9b0102dfed78f8baf13965dedeba1cc51cadef91",
+        "remotePublished": true,
+        "pullRequest": 48,
+        "candidateCi": 42454760794,
+        "integratedCi": 42455149202,
+        "focusedTests": 19,
+        "browserGroups": 4
+      },
+      "cleanup": {
+        "worktreeRemoved": true,
+        "localAndRemoteRefsRemoved": true,
+        "evidence": "C:/Users/Administrator/Visionary-local/kan44-final-evidence"
+      },
+      "remainingGates": [
+        "Operational age/relationship verification and reviewer trust installation, connected activation and hosted safety/role/release acceptance remain separately gated"
+      ]
+    },
+    {
+      "jiraKey": "KAN-45",
+      "sourceId": "PLAT-01",
+      "status": "In Progress",
+      "branch": "codex/principal-kan-45-product-env",
+      "worktree": "C:/Users/Administrator/nv-worktrees/principal-kan-45-product-env",
+      "originalCandidate": "dcc9c11ad14f6e673f3a778c825284fb63b5304f",
+      "base": "9b0102dfed78f8baf13965dedeba1cc51cadef91",
+      "historyIsolation": {
+        "scopeCommit": "1ab5b19f",
+        "baselineMerge": "d2e48a55",
+        "requiredIntegrationMethod": "squash",
+        "reason": "Original lane includes unrelated unreviewed tasks; preserve history without integrating their source or acceptance ancestry"
+      },
+      "scope": "Reviewed environment configuration/command/observed-state enabler; no actual cloud apply or hosted acceptance",
+      "review": {
         "state": "pending",
         "implementer": "Codex /root",
         "originalDecision": "changes-requested"
       },
-      "currentHandoff": "docs/architecture/reviews/KAN44_ADMISSION_FINAL.md",
+      "currentHandoff": "docs/architecture/reviews/KAN45_PRODUCT_ENV_FINAL.md",
       "jiraReceipt": {
-        "changesRequestedComment": 10689,
+        "changesRequestedComment": 10699,
         "transitionId": 31
       }
     }

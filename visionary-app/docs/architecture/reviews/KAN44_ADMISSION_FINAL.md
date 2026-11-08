@@ -81,3 +81,16 @@ import provenance check: the intentional schema change lacked its upstream
 patch receipt. The byte-hashed patch and chained before/after hashes now record
 exactly that schema delta. Runtime source is unchanged by this provenance repair;
 the resulting final commit still requires explicit reviewer confirmation and CI.
+
+## Actual completed closeout
+
+Separate reviewer `/root/kan44_final_review` approved final exact
+`3a3247d49d4ebf6e6ba53f033288eb5573ab0f81`. PR48 merged to published dev
+`9b0102dfed78f8baf13965dedeba1cc51cadef91`. Candidate CI42454760794 and
+integrated CI42455149202 passed, production skipped. Integrated tree equality,
+19 actualSQL cases and4realAuth/Firestore Chromium groups passed again.
+Evidence preserved/hash-verified at
+`C:/Users/Administrator/Visionary-local/kan44-final-evidence`. Original completed
+checkout and local/remote task refs removed; task-owned containers removed.
+Actual Jira Done confirmed, transition51/comment10697, before starting KAN45.
+Earlier pending statements describe their historical checkpoints only.
