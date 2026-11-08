@@ -61,6 +61,39 @@ time:
 | Bad schema migration | Forward-only: recovery is snapshot-based; drift preflight refuses unknown registries (ACCEPT-07 + RELEASE-05 drills) | **GATE: name responder** |
 | Region outage | Manual DR runbook (RTO/RPO ≤24h) — EXTERNAL GATE, owner-run | owner |
 
+## Advisory-database review (executed 2026-11-08, production deps)
+
+`npm audit --omit=dev` per workspace against the pinned lockfiles, then
+non-breaking `npm audit fix` where available. Point-in-time result
+(advisory databases change daily — re-run before launch):
+
+| Workspace | Before fix | After fix | Remaining findings |
+| --- | --- | --- | --- |
+| root | 0 | 0 | — |
+| frontend | 11 (1 moderate, 10 high) | 11 | unfixable non-breaking (fix requires breaking majors; owner decision) |
+| backend runtime | 25 (11 mod, 12 high, **2 critical**) | 19 (9 mod, 9 high, 1 critical) | `tar` ≤7.5.20 (critical, path traversal) arrives via the DEPRECATED `bull` queue chain — breaking-only fix; owner decision is the bullmq migration |
+| integration contracts | 0 | 0 | — |
+| infra runtime | 10 moderate | 10 | unfixable non-breaking (owner decision) |
+
+Bumped by the fix (all within declared semver ranges, lockfile-auditable:
+295 lines / 30 versions, no `package.json` range change): **`proxy-addr`
+2.0.7 → 2.0.8 (the critical IP-spoofing advisory GHSA-jqcg-44mw-7w3h — this
+package implements the Express IP-trust evaluation underlying the product's
+`trustedProxyHops` device-attribution surface, so this is a real fix, not a
+formality)**, `nodemailer` 8.0.5 → 8.0.11, `ws` 8.20.0 → 8.22.1, `qs`
+6.14.2 → 6.14.3, `semver` 7.7.4 → 7.8.5, plus 3 dedupe removals. Re-proven
+after the bump: backend:build, all lane suites, `npm test` 672/672,
+`npm run check`, `npm run data:check` — all green.
+
+Honest notes: a frontend `npm audit fix` run rewrote that lockfile purely
+cosmetically (identical versions, 25k lines of reordering) — reverted, so the
+security commit carries only auditable dependency changes.
+
+## Container/registry review (attempted, blocked)
+
+The image review needs a container runtime; this host has none (no nested
+virtualization on t3.xlarge). Recorded as an owner gate, unchanged.
+
 ## External gates (owner)
 
 1. **Container image review** — no container runtime on this host (no nested
@@ -69,6 +102,6 @@ time:
 2. **Controlled access / IAM review** — hosted identities and bindings.
 3. **Named responders** — the founder records accountable names in the table
    above.
-4. **Advisory-database review** (`npm audit` equivalents) — network-dependent;
-   run in a connected environment per the pinned-lockfile surface proven
-   here.
+4. **Advisory follow-ups** — the backend `tar`-via-`bull` critical needs the
+   bullmq migration (breaking); the frontend/infra residual multiples need
+   breaking upgrades; re-run `npm audit` at release time.

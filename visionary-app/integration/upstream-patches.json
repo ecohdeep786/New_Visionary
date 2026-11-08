@@ -220,6 +220,22 @@
           "afterSha256": "dd9f18594335d17b029d47277c7ce90fbcaf2f399cc8acfb00612f789642273a"
         }
       ]
+    },
+    {
+      "id": "2026-11-08-release-06-advisory-pins",
+      "date": "2026-11-08",
+      "decision": "D-113 (KAN-129 / RELEASE-06 release-path security review: non-breaking advisory fixes)",
+      "reason": "RELEASE-06 executed the advisory-database review. Non-breaking npm audit fix raises the critical proxy-addr IP-spoofing advisory (GHSA-jqcg-44mw-7w3h - the Express IP-trust evaluation behind the product trustedProxyHops device attribution) plus nodemailer, ws, qs and semver within their declared semver ranges; lockfile-only, no package.json range change. Re-proven after the bump: backend build, all lane acceptance suites, npm test 672/672, npm run check, npm run data:check. The residual critical (tar via the deprecated bull chain) needs a breaking bullmq migration and remains an owner decision.",
+      "diff": "integration/upstream-patches/2026-11-08-release-06-advisory-pins.patch",
+      "diffSha256": "d1c470bbecce196c4b42a273d94decf596a180a9ae0aac68d91c75871f52a1f7",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/package-lock.json",
+          "beforeSha256": "adf2864153b92e52cf3afbfa8f09a553d5b2e672567ad62deb706ab9166f261b",
+          "afterSha256": "32843f483c0384b828ed3e77880f185fea1c6ae733a9d961b0569e764b9de1d9"
+        }
+      ]
     }
   ]
 }
