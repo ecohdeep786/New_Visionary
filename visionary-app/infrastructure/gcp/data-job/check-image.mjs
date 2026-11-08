@@ -80,7 +80,7 @@ try{
   assert.throws(()=>run('rollback',production,mount));
   assert.equal(JSON.parse(run('verify',production,mount)).status,'verified','Denied rollback preserves the applied state.');
   const versions=psql('visionary_product_image',"SELECT string_agg(version::text,',' ORDER BY version) FROM product._visionary_migrations WHERE status='applied';");
-  assert.match(versions,/(?:^|\r?\n)\s*1,2,3,4,5\s*(?:\r?\n|$)/);
+  assert.match(versions,/(?:^|\r?\n)\s*1,2,3,4,5,6\s*(?:\r?\n|$)/);
   console.log('PASS: actual image staging apply/verify/replay and pinned-receipt production apply/verify over isolated PostgreSQL Unix socket; irreversible rollback denied.');
 }finally{
   spawnSync('docker',['rm','--force','--volumes',server],{stdio:'ignore',timeout:20000});

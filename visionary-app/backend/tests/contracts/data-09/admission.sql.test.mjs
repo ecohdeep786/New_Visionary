@@ -248,3 +248,52 @@ test('native constraints reject unsupported classification, self guardian and mi
   await assert.rejects(f.db.guardianAdmissionLink.update({ where: { minorUid: x.child }, data: { state: 'linked', confirmedAt: new Date() } }));
   assert.equal((await repo.admission(x.child)).status, 'pending_guardian');
 });
+
+test('same guardian relink between lookup and lock cannot escape guardian revocation serialization', async () => {
+  const x = await family(true); await repo.execute(x.guardian, command(x.child, 'link.revoke', 3));
+  const barrier = () => { let release; return { promise: new Promise(ok => release = ok), release: () => release() }; };
+  const seenRead = barrier(), readGate = barrier(), seenCallback = barrier(), callbackGate = barrier();
+  async function within(promise, label) {
+    let timer; try { return await Promise.race([promise, new Promise((_, fail) => timer = setTimeout(() => fail(Error(label + ' deadline')), 3000))]); }
+    finally { clearTimeout(timer); }
+  }
+  let first = true;
+  const client = new Proxy(f.runtime, { get(object, key) {
+    if (key === '$transaction') return (fn, options) => object.$transaction(tx => fn(new Proxy(tx, { get(t, name) {
+      if (name === 'guardianAdmissionLink') return new Proxy(t[name], { get(model, method) {
+        if (method === 'findUnique') return async (...args) => {
+          const row = await model.findUnique(...args);
+          if (first) { first = false; seenRead.release(); await readGate.promise; } return row;
+        };
+        const value = model[method]; return typeof value === 'function' ? value.bind(model) : value;
+      } });
+      const value = t[name]; return typeof value === 'function' ? value.bind(t) : value;
+    } })), options);
+    const value = object[key]; return typeof value === 'function' ? value.bind(object) : value;
+  } });
+  const delayed = new AdmissionRepository(client, target, new Set([reviewer, reviewer2]));
+  const operation = delayed.withAdmission(x.child, async tx => {
+    seenCallback.release(); await callbackGate.promise;
+    return tx.auditEvent.create({ data: { uid: x.child, operation: 'serialized-admission', actorType: 'user', resourceType: 'test', outcome: 'SUCCESS' } });
+  }); void operation.catch(() => {});
+  let revocation;
+  try {
+    await within(seenRead.promise, 'Initial link observation');
+    await repo.execute(x.guardian, command(x.child, 'link.request', 4));
+    await repo.execute(reviewer, command(x.child, 'link.review', 5, { evidenceRef: proof(), expiresAt: expiry() }));
+    await repo.execute(x.guardian, command(x.child, 'link.confirm', 6));
+    readGate.release(); await within(seenCallback.promise, 'Admitted callback');
+    revocation = otherRepo.execute(reviewer, command(x.guardian, 'age.revoke', 1)); void revocation.catch(() => {});
+    const observe = async () => {
+      const end = Date.now() + 2000;
+      while (Date.now() < end) {
+        const [row] = await f.admin.$queryRawUnsafe("SELECT count(*)::int AS n FROM pg_stat_activity WHERE usename=$1 AND wait_event_type='Lock'", f.runtimeRole);
+        if (row.n) return; await new Promise(ok => setTimeout(ok, 10));
+      }
+      throw Error('Guardian revocation was not observed waiting on SQL lock');
+    };
+    await Promise.race([observe(), revocation.then(() => { throw Error('Guardian revocation escaped the admitted transaction lock'); })]);
+  } finally { readGate.release(); callbackGate.release(); await operation; await revocation; }
+  assert.equal((await repo.admission(x.child)).status, 'pending_guardian');
+  assert.equal(await f.db.auditEvent.count({ where: { uid: x.child, operation: 'serialized-admission' } }), 1);
+});

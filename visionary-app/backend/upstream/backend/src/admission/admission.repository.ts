@@ -75,7 +75,9 @@ export class AdmissionRepository {
             identity.privileged || identity.controls) throw new AdmissionError('unavailable');
         const before = await tx.guardianAdmissionLink.findUnique({ where: { minorUid: subjectUid } });
         const required = [subjectUid, actorUid];
-        const uids = [...new Set([...required, ...(before && before.state !== 'revoked' ? [before.guardianUid] : [])])].sort();
+        // Even a revoked link can be re-established with the same guardian
+        // before lock acquisition. Lock its guardian regardless of state.
+        const uids = [...new Set([...required, ...(before ? [before.guardianUid] : [])])].sort();
         // Canonical per-person lock order serializes assurance/revocation and
         // authorized DB work with each other, without a global admission lock.
         const persons = await tx.$queryRawUnsafe<Array<{ uid: string }>>('SELECT uid FROM persons WHERE uid=ANY($1::text[]) ORDER BY uid FOR UPDATE', uids);
