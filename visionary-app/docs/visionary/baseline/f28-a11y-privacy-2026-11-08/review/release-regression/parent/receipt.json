@@ -1,0 +1,114 @@
+{
+  "task": "F-20 parent experience review",
+  "at": "2026-11-08T08:13:37.521Z",
+  "base": "http://127.0.0.1:4198",
+  "records": [
+    {
+      "check": "learner-registered",
+      "ok": true,
+      "detail": "learner journey reached the dashboard"
+    },
+    {
+      "check": "parent-registered",
+      "ok": true,
+      "detail": "parent journey reached the dashboard"
+    },
+    {
+      "file": "parent-child-request-form.png",
+      "surface": "child",
+      "connectState": {
+        "honestNotice": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Microphone idle. Text is always available. | A | Home | Children | Reports | Connections | Ask | Preferences & account | Notifications | Personalization | Privacy | Plans & usage | Your children | "
+      },
+      "errors": []
+    },
+    {
+      "check": "child-connect-honest-notice",
+      "ok": true,
+      "detail": "{\"honestNotice\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or too"
+    },
+    {
+      "file": "parent-connection-pending.png",
+      "surface": "child",
+      "pending": {
+        "pendingShown": true,
+        "expiry": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Microphone idle. Text is always available. | A | Home | Children | Reports | Connections | Ask | Preferences & account | Notifications | Personalization | Privacy | Plans & usage | Your children | "
+      }
+    },
+    {
+      "check": "connection-pending",
+      "ok": true,
+      "detail": "{\"pendingShown\":true,\"expiry\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, conne"
+    },
+    {
+      "file": "learner-connection-request.png",
+      "surface": "connections",
+      "learnerSide": {
+        "pendingVisible": true,
+        "acceptButton": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | S | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Personalization | Privacy | "
+      }
+    },
+    {
+      "check": "learner-accepts-request",
+      "ok": true,
+      "detail": "{\"learnerSide\":{\"pendingVisible\":true,\"acceptButton\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or"
+    },
+    {
+      "file": "parent-connection-connected.png",
+      "surface": "child",
+      "connected": {
+        "connectedShown": true,
+        "viewReport": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Microphone idle. Text is always available. | A | Home | Children | Reports | Connections | Ask | Preferences & account | Notifications | Personalization | Privacy | Plans & u"
+      }
+    },
+    {
+      "check": "parent-sees-connected",
+      "ok": true,
+      "detail": "{\"connectedShown\":true,\"viewReport\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connectio"
+    },
+    {
+      "file": "parent-progress-report.png",
+      "surface": "reports",
+      "report": {
+        "path": "/dashboard/reports",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Microphone idle. Text is always available. | A | Home | Children | Reports | Connections | Ask | Preferences & account | Notifications | Personalization | Privacy | Plans & usage | Return to children | Their learning, in context"
+      },
+      "errors": []
+    },
+    {
+      "check": "parent-progress-report",
+      "ok": true,
+      "detail": "{\"path\":\"/dashboard/reports\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or tools"
+    },
+    {
+      "file": "parent-notifications.png",
+      "surface": "notifications",
+      "notifications": {
+        "h1": "Family updates",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Microphone idle. Text is always available. | A | Home | Children | Reports | Connect"
+      }
+    },
+    {
+      "check": "notifications-surface",
+      "ok": true,
+      "detail": "{\"h1\":\"Family updates\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | F"
+    },
+    {
+      "file": "parent-privacy.png",
+      "surface": "privacy",
+      "privacy": {
+        "h1": "Privacy & consent",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Microphone idle. Text is always available. | A | Home | Children | Reports | Connect"
+      }
+    },
+    {
+      "check": "parent-privacy-surface",
+      "ok": true,
+      "detail": "{\"h1\":\"Privacy & consent\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Parent | + Add a role "
+    }
+  ],
+  "defects": []
+}

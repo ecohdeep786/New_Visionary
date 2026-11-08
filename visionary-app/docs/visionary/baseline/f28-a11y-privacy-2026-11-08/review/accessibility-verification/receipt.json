@@ -1,0 +1,206 @@
+{
+  "task": "F-10 accessibility verification",
+  "at": "2026-11-08T06:52:18.253Z",
+  "base": "http://127.0.0.1:4198",
+  "records": [
+    {
+      "file": "a11y-landing-desktop.png",
+      "surface": "public",
+      "route": "/",
+      "audit": {
+        "lowContrast": 0,
+        "smallControls": 0,
+        "sampled": 24,
+        "controlCount": 38
+      },
+      "semantic": {
+        "imgsWithoutAlt": [],
+        "inputsWithoutLabel": [],
+        "headingLevels": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3
+        ],
+        "skippedHeading": null,
+        "landmarks": {
+          "main": true,
+          "nav": 2,
+          "header": true,
+          "footer": true
+        }
+      },
+      "skip": {
+        "skipLink": {
+          "text": "Skip to content",
+          "tag": "a",
+          "href": "#main"
+        },
+        "activated": true,
+        "focusAfter": {
+          "tag": "main",
+          "insideMain": true,
+          "text": "One intelligencefor teachers.O"
+        }
+      },
+      "errors": []
+    },
+    {
+      "file": "a11y-login-desktop.png",
+      "surface": "public",
+      "route": "/login",
+      "audit": {
+        "lowContrast": 0,
+        "smallControls": 0,
+        "sampled": 0,
+        "controlCount": 0
+      },
+      "semantic": {
+        "imgsWithoutAlt": [],
+        "inputsWithoutLabel": [],
+        "headingLevels": [
+          1
+        ],
+        "skippedHeading": null,
+        "landmarks": {
+          "main": true,
+          "nav": 0,
+          "header": false,
+          "footer": false
+        }
+      },
+      "skip": null,
+      "errors": []
+    },
+    {
+      "file": "a11y-pricing-desktop.png",
+      "surface": "public",
+      "route": "/pricing",
+      "audit": {
+        "lowContrast": 0,
+        "smallControls": 0,
+        "sampled": 17,
+        "controlCount": 19
+      },
+      "semantic": {
+        "imgsWithoutAlt": [],
+        "inputsWithoutLabel": [],
+        "headingLevels": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "skippedHeading": null,
+        "landmarks": {
+          "main": true,
+          "nav": 2,
+          "header": true,
+          "footer": true
+        }
+      },
+      "skip": null,
+      "errors": []
+    },
+    {
+      "file": "a11y-dashboard/home.png",
+      "surface": "workspace",
+      "route": "/dashboard/home",
+      "audit": {
+        "lowContrast": 0,
+        "smallControls": 0,
+        "sampled": 12,
+        "controlCount": 6
+      },
+      "semantic": {
+        "imgsWithoutAlt": [],
+        "inputsWithoutLabel": [],
+        "headingLevels": [
+          1,
+          2,
+          2
+        ],
+        "skippedHeading": null,
+        "landmarks": {
+          "main": true,
+          "nav": 2,
+          "header": true,
+          "footer": false
+        }
+      },
+      "errors": []
+    },
+    {
+      "file": "a11y-dashboard/learn.png",
+      "surface": "workspace",
+      "route": "/dashboard/learn",
+      "audit": {
+        "lowContrast": 0,
+        "smallControls": 0,
+        "sampled": 5,
+        "controlCount": 4
+      },
+      "semantic": {
+        "imgsWithoutAlt": [],
+        "inputsWithoutLabel": [],
+        "headingLevels": [
+          1
+        ],
+        "skippedHeading": null,
+        "landmarks": {
+          "main": true,
+          "nav": 2,
+          "header": true,
+          "footer": false
+        }
+      },
+      "errors": []
+    },
+    {
+      "file": "a11y-dashboard/settings.png",
+      "surface": "workspace",
+      "route": "/dashboard/settings",
+      "audit": {
+        "lowContrast": 0,
+        "smallControls": 0,
+        "sampled": 7,
+        "controlCount": 4
+      },
+      "semantic": {
+        "imgsWithoutAlt": [],
+        "inputsWithoutLabel": [],
+        "headingLevels": [
+          1,
+          2,
+          2,
+          2
+        ],
+        "skippedHeading": null,
+        "landmarks": {
+          "main": true,
+          "nav": 2,
+          "header": true,
+          "footer": false
+        }
+      },
+      "errors": []
+    }
+  ],
+  "defects": []
+}

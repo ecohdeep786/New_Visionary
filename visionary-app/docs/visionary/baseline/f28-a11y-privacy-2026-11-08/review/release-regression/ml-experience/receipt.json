@@ -1,0 +1,194 @@
+{
+  "task": "F-25 ML experience integration review",
+  "at": "2026-11-08T08:17:53.152Z",
+  "base": "http://127.0.0.1:4198",
+  "mode": "preview repository (VITE_AUTH_MODE=preview; no model adapter registered; zero network calls by design)",
+  "summary": {
+    "checks": 27,
+    "passed": 27,
+    "defects": 0
+  },
+  "pageErrors": [],
+  "records": [
+    {
+      "check": "register-onboarding",
+      "ok": true,
+      "detail": "learner ml-review-1794125829246@visionary.test reached http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "observation": "learn-provisional-law",
+      "detail": "provisional-outline law not rendered (state-conditional: workspace already has a subject from onboarding focus; law verified on this surface by F-18)"
+    },
+    {
+      "check": "learn-sample-outline",
+      "ok": true,
+      "detail": "authored sample outline renders its chapters"
+    },
+    {
+      "check": "learn-sample-not-coverage",
+      "ok": true,
+      "detail": "sample outline carries the \"not official content coverage\" honesty label"
+    },
+    {
+      "file": "ml-learn-sample-outline.png",
+      "state": "Learn authored sample outline (2 chapters)"
+    },
+    {
+      "check": "learn-chapter-drill",
+      "ok": true,
+      "detail": "chapter learning path renders the concept with its evidence state"
+    },
+    {
+      "check": "learn-unit-renders",
+      "ok": true,
+      "detail": "unit opens at the honest pre-explanation state (http://127.0.0.1:4198/dashboard/learn?chapter=sample%3Afractions&book=sample%3Abook&unit=dfa33cef-aa89-4918-bfb7-160b1ce19b59)"
+    },
+    {
+      "check": "learn-representation-law",
+      "ok": true,
+      "detail": "multi-representation panel renders with the honest exploration law"
+    },
+    {
+      "file": "ml-learn-unit-pristine.png",
+      "state": "Unit at the pre-explanation state with representation panel"
+    },
+    {
+      "check": "learn-teaching-request-honest",
+      "ok": true,
+      "detail": "explanation request returns the honest not-connected teaching notice on the Learn surface"
+    },
+    {
+      "check": "learn-explanation-provenance-label",
+      "ok": true,
+      "detail": "explanation carries an explicit source provenance label (authored=true connected=false provider=false)"
+    },
+    {
+      "file": "ml-learn-explanation-provenance.png",
+      "state": "Unit explanation with source provenance label"
+    },
+    {
+      "check": "learn-check-question",
+      "ok": true,
+      "detail": "comprehension check renders a verifiable question or the honest no-question state"
+    },
+    {
+      "check": "learn-answer-private-draft",
+      "ok": true,
+      "detail": "answer selection is a private draft until Check answer"
+    },
+    {
+      "check": "learn-answer-scored",
+      "ok": true,
+      "detail": "answer scored with an honest result state"
+    },
+    {
+      "file": "ml-learn-check-scored.png",
+      "state": "Comprehension check answered and scored"
+    },
+    {
+      "check": "learn-practice-controls",
+      "ok": true,
+      "detail": "post-check controls render (continue/retry/review/build)"
+    },
+    {
+      "file": "ml-learn-practice-controls.png",
+      "state": "Practice/retry/review controls after the check"
+    },
+    {
+      "check": "ask-entry",
+      "ok": true,
+      "detail": "fresh Ask composer reachable"
+    },
+    {
+      "check": "ask-saved-records-door",
+      "ok": true,
+      "detail": "\"From your saved records\" details door renders on the fresh Ask page"
+    },
+    {
+      "check": "ask-preview-honesty-note",
+      "ok": true,
+      "detail": "honest preview note renders where the model risk exists"
+    },
+    {
+      "check": "ask-not-connected-label",
+      "ok": true,
+      "detail": "guide message renders the \"Teaching service not connected\" status label"
+    },
+    {
+      "check": "ask-not-connected-honest-text",
+      "ok": true,
+      "detail": "honest text states no model answer has been generated; question saved locally"
+    },
+    {
+      "check": "ask-busy-stop-control",
+      "ok": true,
+      "detail": "turn resolved without an observable busy window (preview not_connected resolves without a network round-trip; the Stop control is busy-scoped in Guide.jsx)"
+    },
+    {
+      "file": "ml-ask-not-connected.png",
+      "state": "Ask open question -> honest not-connected teaching response"
+    },
+    {
+      "check": "ask-mentor-saved-records-label",
+      "ok": true,
+      "detail": "plan-intent reply renders the saved-records status label (not a model label)"
+    },
+    {
+      "check": "ask-mentor-not-ai-assessment",
+      "ok": true,
+      "detail": "mentor reply carries the explicit \"not an AI assessment\" boundary"
+    },
+    {
+      "file": "ml-ask-mentor-saved-records.png",
+      "state": "Ask plan question -> evidence-based reply labelled from saved records"
+    },
+    {
+      "check": "ask-safety-label",
+      "ok": true,
+      "detail": "crisis input renders the \"Safety response\" status label"
+    },
+    {
+      "check": "ask-safety-copy",
+      "ok": true,
+      "detail": "safety copy renders verbatim with the honest not-connected crisis line"
+    },
+    {
+      "file": "ml-ask-safety-block.png",
+      "state": "Ask crisis input -> safety response, teaching paused"
+    },
+    {
+      "check": "learn-language-variant-honest",
+      "ok": true,
+      "detail": "teaching-language switch serves the sample's real Hindi variant (Devanagari teaching content rendered; no cross-language relabelling)"
+    },
+    {
+      "check": "learn-mastery-honesty-law",
+      "ok": true,
+      "detail": "recorded check result carries the mastery honesty law (accuracy is evidence, not a mastery claim)"
+    },
+    {
+      "file": "ml-learn-hindi-variant.png",
+      "state": "Teaching language switched to Hindi — sample variant rendered with the mastery honesty law"
+    },
+    {
+      "check": "ask-continuity-door",
+      "ok": true,
+      "detail": "Ask-a-doubt door opens Ask from the language-unavailable unit (http://127.0.0.1:4198/dashboard/ask?learning=dfa33cef-aa89-4918-bfb7-160b1ce19b59)"
+    },
+    {
+      "file": "ml-ask-continuity-door.png",
+      "state": "Language-unavailable unit -> Ask a doubt continuity door"
+    },
+    {
+      "check": "ask-no-invented-model",
+      "ok": true,
+      "detail": "no connected-model label appears (no adapter is registered; nothing is invented)"
+    },
+    {
+      "check": "zero-page-errors",
+      "ok": true,
+      "detail": "no uncaught page errors in the whole journey"
+    }
+  ],
+  "defects": []
+}

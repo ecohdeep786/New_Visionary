@@ -295,12 +295,13 @@ export function TabBar({ tabs, active, onSelect, label }) {
 /** Carousel progress dots; the active dot stretches into a pill.
  *  `pill` tone renders the AirPods-style uniform dots inside the light pill
  *  with a taller active bar (the landing's story pager anatomy).
- *  Target-size law (F-27): each button is its own >=24px tap target — the
- *  old 8px button with a ±18px ::after expansion produced overlapping
+ *  Target-size law (F-27/F-28): each button is its own >=44px tap target —
+ *  the old 8px button with a ±18px ::after expansion produced overlapping
  *  invisible hit areas that failed Lighthouse target-size on `/` and made
- *  real taps unattributable. The visible dot is an inner span, so the
- *  rendered dot stays 8px tall with the same colors; the non-pill pitch
- *  (touching 24px boxes) matches the approved pill anatomy's 24px rhythm. */
+ *  real taps unattributable, while the FAP-30 44px law had credited that same
+ *  expansion. Real 44×44 boxes touching (zero gap) satisfy both laws without
+ *  overlap; the visible dot is an inner span, so the rendered dot keeps the
+ *  approved 8px height, colors and active-pill length. */
 export function ProgressDots({ total, active, onSelect, label = "Carousel slides", pill = false }) {
   return (
     <div className={`flex items-center ${pill ? "gap-4" : ""}`} role="group" aria-label={label}>
@@ -311,14 +312,14 @@ export function ProgressDots({ total, active, onSelect, label = "Carousel slides
           aria-label={`Go to slide ${i + 1}`}
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative flex h-6 items-center justify-center rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
-            i === active ? (pill ? "w-12" : "w-10") : "w-6 hover:opacity-70"
+          className={`relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
+            i === active ? "" : "hover:opacity-70"
           }`}
         >
           <span
             className="block h-2 rounded-full transition-all duration-300"
             style={{
-              width: i === active ? "100%" : "8px",
+              width: i === active ? (pill ? "100%" : "40px") : "8px",
               backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? color.ink : `${color.ink}33`,
             }}
           />

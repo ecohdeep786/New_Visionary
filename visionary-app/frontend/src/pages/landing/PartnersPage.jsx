@@ -174,10 +174,12 @@ function WhatCarousel() {
         <button type="button" onClick={() => go(index - 1)} aria-label="Previous slide" className={arrowCls}>
           <ChevronLeft className="h-5 w-5" aria-hidden="true" />
         </button>
-        {/* Target-size law (F-27): >=24px button boxes with the visible dot as
-            an inner span — the ±18px ::after expansion created overlapping
-            invisible hit areas (the same defect Lighthouse flagged on / and
-            /student). Touching 24px boxes keep the approved 24px dot pitch. */}
+        {/* Target-size law (F-27/F-28): >=44px button boxes with the visible
+            dot as an inner span — the ±18px ::after expansion created
+            overlapping invisible hit areas (the same defect Lighthouse flagged
+            on / and /student) while the FAP-30 44px law credited that same
+            expansion; real touching 44×44 boxes satisfy both laws. The active
+            bar keeps its approved 24px visible length. */}
         <div className="flex items-center" role="tablist" aria-label="Choose slide">
           {SLIDES.map((slide, i) => (
             <button
@@ -186,9 +188,9 @@ function WhatCarousel() {
               aria-selected={i === index}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => setIndex(i)}
-              className="group relative flex h-6 w-6 items-center justify-center rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+              className="group relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
-              <span className={`block h-2 rounded-full transition-all duration-300 ${i === index ? "w-full bg-[#0066cc]" : "w-2 bg-[#d2d2d7] group-hover:bg-[#86868b]"}`} />
+              <span className={`block h-2 rounded-full transition-all duration-300 ${i === index ? "w-6 bg-[#0066cc]" : "w-2 bg-[#d2d2d7] group-hover:bg-[#86868b]"}`} />
             </button>
           ))}
         </div>
