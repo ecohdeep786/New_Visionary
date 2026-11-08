@@ -1,0 +1,294 @@
+{
+  "generatedAt": "2026-11-08T08:01:42.814Z",
+  "baseline": {
+    "source": "docs/architecture/discussions/launch-operations.md",
+    "decision": "D-075",
+    "corePerSecond": 150,
+    "coreBurstPerSecond": 300,
+    "aiRunsPerSecond": 16.7,
+    "aiBurstPerSecond": 33.4,
+    "paymentStormEvents": 10000,
+    "paymentStormWindowSeconds": 3600,
+    "duplicateEventsPerHour": 100000,
+    "classEventUsers": 1000
+  },
+  "profiles": [
+    {
+      "profile": "core-sustained",
+      "label": "core sustained (per worker)",
+      "kind": "core",
+      "arrivalPerSecond": 25,
+      "durationSeconds": 10,
+      "issued": 250,
+      "achievedPerSecond": 25,
+      "buckets": {
+        "success": 250,
+        "overload": 0,
+        "client": 0,
+        "server": 0,
+        "transport": 0,
+        "other": 0
+      },
+      "overloadCodes": [],
+      "successRate": 100,
+      "latency": {
+        "count": 250,
+        "min": 0.6827,
+        "p50": 23.2906,
+        "p95": 67.5694,
+        "p99": 81.7253,
+        "max": 110.1853,
+        "mean": 29.74
+      },
+      "latencyWithinTarget": 100,
+      "verdict": "ok",
+      "baselineReference": 150
+    },
+    {
+      "profile": "ai-sustained",
+      "label": "learning-run sustained (per worker)",
+      "kind": "ai",
+      "arrivalPerSecond": 3,
+      "durationSeconds": 10,
+      "issued": 30,
+      "achievedPerSecond": 3,
+      "buckets": {
+        "success": 30,
+        "overload": 0,
+        "client": 0,
+        "server": 0,
+        "transport": 0,
+        "other": 0
+      },
+      "overloadCodes": [],
+      "successRate": 100,
+      "latency": {
+        "count": 30,
+        "min": 13.4364,
+        "p50": 26.548,
+        "p95": 74.4718,
+        "p99": 76.085,
+        "max": 76.085,
+        "mean": 34.61
+      },
+      "latencyWithinTarget": 100,
+      "verdict": "ok",
+      "baselineReference": 16.7
+    },
+    {
+      "profile": "payment-storm",
+      "label": "payment webhook storm",
+      "kind": "webhook",
+      "arrivalPerSecond": 20,
+      "durationSeconds": 3,
+      "issued": 60,
+      "achievedPerSecond": 20,
+      "buckets": {
+        "success": 60,
+        "overload": 0,
+        "client": 0,
+        "server": 0,
+        "transport": 0,
+        "other": 0
+      },
+      "overloadCodes": [],
+      "successRate": 100,
+      "latency": {
+        "count": 60,
+        "min": 5.128,
+        "p50": 7.8925,
+        "p95": 12.767,
+        "p99": 17.7721,
+        "max": 17.7721,
+        "mean": 8.53
+      },
+      "latencyWithinTarget": 100,
+      "verdict": "ok",
+      "baselineReference": null
+    },
+    {
+      "profile": "class-start",
+      "label": "synchronized class start (per worker)",
+      "kind": "core",
+      "arrivalPerSecond": 50,
+      "durationSeconds": 4,
+      "issued": 200,
+      "achievedPerSecond": 50,
+      "buckets": {
+        "success": 200,
+        "overload": 0,
+        "client": 0,
+        "server": 0,
+        "transport": 0,
+        "other": 0
+      },
+      "overloadCodes": [],
+      "successRate": 100,
+      "latency": {
+        "count": 200,
+        "min": 0.6736,
+        "p50": 18.14,
+        "p95": 30.5369,
+        "p99": 41.3508,
+        "max": 46.5171,
+        "mean": 17.69
+      },
+      "latencyWithinTarget": 100,
+      "verdict": "ok",
+      "baselineReference": 300
+    },
+    {
+      "profile": "saturation",
+      "label": "saturation burst (>=8x worker rate)",
+      "kind": "core",
+      "arrivalPerSecond": 200,
+      "durationSeconds": 4,
+      "issued": 800,
+      "achievedPerSecond": 200,
+      "buckets": {
+        "success": 597,
+        "overload": 203,
+        "client": 0,
+        "server": 0,
+        "transport": 0,
+        "other": 0
+      },
+      "overloadCodes": [
+        {
+          "status": 503,
+          "count": 203
+        }
+      ],
+      "successRate": 74.63,
+      "latency": {
+        "count": 597,
+        "min": 0.834,
+        "p50": 83.9744,
+        "p95": 13436.6054,
+        "p99": 19405.9945,
+        "max": 22626.439,
+        "mean": 1303.05
+      },
+      "latencyWithinTarget": 78.73,
+      "verdict": "degraded",
+      "baselineReference": null
+    },
+    {
+      "profile": "soak-bounded",
+      "label": "bounded soak (20s)",
+      "kind": "core",
+      "arrivalPerSecond": 20,
+      "durationSeconds": 20,
+      "issued": 400,
+      "achievedPerSecond": 20,
+      "buckets": {
+        "success": 400,
+        "overload": 0,
+        "client": 0,
+        "server": 0,
+        "transport": 0,
+        "other": 0
+      },
+      "overloadCodes": [],
+      "successRate": 100,
+      "latency": {
+        "count": 400,
+        "min": 0.6204,
+        "p50": 16.4665,
+        "p95": 34.3115,
+        "p99": 55.029,
+        "max": 67.5455,
+        "mean": 17.21
+      },
+      "latencyWithinTarget": 100,
+      "verdict": "ok",
+      "baselineReference": null
+    }
+  ],
+  "notes": [
+    {
+      "queueAgeOfAuthoritativeWriteMs": {
+        "count": 8,
+        "min": 22,
+        "p50": 31,
+        "p95": 36,
+        "p99": 36,
+        "max": 36,
+        "mean": 29.75
+      }
+    },
+    {
+      "externalGate": "Run the recorded baseline profiles (150+16.7 sustained 60min, 300/33.4 burst 5min, 24h soak) against the hosted autoscaled fleet and a sized SQL pool; this loopback harness proves the runtime path and degradation law, not hosted capacity."
+    }
+  ],
+  "saturationLaw": {
+    "issued": 800,
+    "successRate": 74.63,
+    "overloadCodes": [
+      {
+        "status": 503,
+        "count": 203
+      }
+    ],
+    "server": 0,
+    "transport": 0,
+    "verdict": "degraded"
+  },
+  "soak": {
+    "boundedSeconds": 20,
+    "issued": 400,
+    "successRate": 100,
+    "latency": {
+      "count": 400,
+      "min": 0.6204,
+      "p50": 16.4665,
+      "p95": 34.3115,
+      "p99": 55.029,
+      "max": 67.5455,
+      "mean": 17.21
+    },
+    "note": "Bounded on this host. Run the recorded 24h soak against the hosted fleet; record DB/pool/quota/cost at each stage (release matrix)."
+  },
+  "scaling": {
+    "coreWorkersForBaseline": 6,
+    "aiWorkersForBaseline": 6,
+    "note": "One loopback worker is not a hosted instance; the fleet is sized by the blueprint (2/30 API + 2/60 AI). This arithmetic only shows the baseline is reachable by horizontal scaling, and never certifies hosted capacity."
+  },
+  "hostedGateProfiles": [
+    {
+      "id": "core-sustained",
+      "label": "core sustained",
+      "arrivalPerSecond": 150,
+      "durationSeconds": 3600,
+      "kind": "core"
+    },
+    {
+      "id": "core-burst",
+      "label": "core burst",
+      "arrivalPerSecond": 300,
+      "durationSeconds": 300,
+      "kind": "core"
+    },
+    {
+      "id": "ai-sustained",
+      "label": "learning-run sustained",
+      "arrivalPerSecond": 16.7,
+      "durationSeconds": 3600,
+      "kind": "ai"
+    },
+    {
+      "id": "payment-storm",
+      "label": "payment webhook storm",
+      "arrivalPerSecond": 27.77777777777778,
+      "durationSeconds": 3600,
+      "kind": "webhook"
+    },
+    {
+      "id": "class-start",
+      "label": "synchronized class start",
+      "arrivalPerSecond": 1000,
+      "durationSeconds": 1,
+      "kind": "core"
+    }
+  ]
+}

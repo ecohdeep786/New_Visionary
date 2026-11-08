@@ -2380,6 +2380,16 @@
         "changesRequestedComment": 10689,
         "transitionId": 31
       }
+    }    ,{
+      "jiraKey": "KAN-125",
+      "sourceId": "RELEASE-02",
+      "status": "In Progress",
+      "branch": "zcode/kan-125-realistic-load-soak",
+      "worktree": "C:/Users/Administrator/nv-worktrees/kan-125-load-soak",
+      "base": "9b0102df",
+      "scope": "Realistic data/index load and soak acceptance against the documented D-075 baseline (150 core/s + 16.7 AI runs/s sustained, 300/33.4 burst, class-start, isolated payment storm) over the real connected runtime; hosted capacity, 24h soak and provider quotas remain gated",
+      "review": { "state": "pending", "implementer": "ZCode backend/ML lane" },
+      "currentHandoff": "docs/architecture/reviews/KAN125_RELEASE02_LOAD_SOAK_2026-11-08.md"
     }
   ]
 }

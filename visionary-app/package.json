@@ -44,6 +44,7 @@
     "rea:build": "node scripts/product.mjs rea build",
     "rea": "node scripts/product.mjs rea cli",
     "privacycore:check": "node scripts/privacycore-check.mjs",
-    "data:check": "node scripts/domain-check.mjs"
+    "data:check": "node scripts/domain-check.mjs",
+    "release:load:soak": "node scripts/release02-load-soak.mjs"
   }
 }
