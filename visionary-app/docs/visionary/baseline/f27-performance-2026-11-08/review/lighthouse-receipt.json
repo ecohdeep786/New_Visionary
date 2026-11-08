@@ -1,0 +1,211 @@
+{
+  "at": "2026-11-08T06:28:24.729Z",
+  "base": "http://127.0.0.1:4173",
+  "gates": {
+    "accessibility": 0.95,
+    "seo": 0.95
+  },
+  "routes": [
+    {
+      "route": "/",
+      "categories": {
+        "performance": 0.82,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 0.49
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": 918.172,
+        "largest-contentful-paint": 4730.973,
+        "total-blocking-time": 6,
+        "cumulative-layout-shift": 0.06798161008230452,
+        "speed-index": 1822.899005618052
+      },
+      "evidence": "docs\\visionary\\baseline\\f27-performance-2026-11-08\\review\\lighthouse-root.json"
+    },
+    {
+      "route": "/pricing",
+      "categories": {
+        "performance": 0.88,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": 918.8253,
+        "largest-contentful-paint": 3861.856925,
+        "total-blocking-time": 1,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1365.095248567039
+      },
+      "evidence": "docs\\visionary\\baseline\\f27-performance-2026-11-08\\review\\lighthouse-pricing.json"
+    },
+    {
+      "route": "/download",
+      "categories": {
+        "performance": null,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": null
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": null,
+        "largest-contentful-paint": null,
+        "total-blocking-time": null,
+        "cumulative-layout-shift": null,
+        "speed-index": null
+      },
+      "evidence": "docs\\visionary\\baseline\\f27-performance-2026-11-08\\review\\lighthouse-download.json"
+    },
+    {
+      "route": "/student",
+      "categories": {
+        "performance": null,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": null
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": null,
+        "largest-contentful-paint": null,
+        "total-blocking-time": null,
+        "cumulative-layout-shift": null,
+        "speed-index": null
+      },
+      "evidence": "docs\\visionary\\baseline\\f27-performance-2026-11-08\\review\\lighthouse-student.json"
+    },
+    {
+      "route": "/safety",
+      "categories": {
+        "performance": 0.88,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": 914.1514,
+        "largest-contentful-paint": 3976.3027999999995,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1369.6298879355313
+      },
+      "evidence": "docs\\visionary\\baseline\\f27-performance-2026-11-08\\review\\lighthouse-safety.json"
+    }
+  ],
+  "perfNote": "performance is recorded, not gated - the D3 ledger holds the raw Fast3G LCP receipts and the fast-LCP next-wave lever"
+}

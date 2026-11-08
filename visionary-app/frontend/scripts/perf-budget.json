@@ -1,6 +1,6 @@
 {
-  "task": "F-28 deterministic copy-module pin (every src/lib Copy module pinned name-stable; structure fixed at 153 chunks; sizes stable across builds)",
-  "measuredAt": "2026-11-06T18:32:36.445Z",
+  "task": "F-27 re-record (2026-11-08): the 2026-11-06 F-28 record predates the V5 wave source repairs (F-01 authReturnTo deep-link recovery, F-03 HeroFanCards inert treatment, F-07 icon semantics, F-09 ScrollToTop hash re-land, F-10 login alert roles) which legitimately grew authReturnTo.js (+110B) and AboutUsPage.js (+666B); chunk set verified deterministic (two consecutive builds byte-identical) before recording",
+  "measuredAt": "2026-11-08T06:21:21.543Z",
   "tolerancePercent": 2,
   "ledgerShape": "grouped-by-name (count + sizes/gzip arrays sorted descending, paired positionally at verify)",
   "chunks": [
@@ -18,14 +18,14 @@
       "file": "index.js",
       "count": 3,
       "bytes": [
-        184503,
+        185018,
         54514,
-        25910
+        24935
       ],
       "gzipBytes": [
-        57547,
+        57673,
         8492,
-        6549
+        6177
       ]
     },
     {
@@ -35,7 +35,7 @@
         123704
       ],
       "gzipBytes": [
-        32626
+        32627
       ]
     },
     {
@@ -45,7 +45,7 @@
         66787
       ],
       "gzipBytes": [
-        20671
+        20672
       ]
     },
     {
@@ -55,7 +55,7 @@
         65840
       ],
       "gzipBytes": [
-        18484
+        18478
       ]
     },
     {
@@ -75,7 +75,7 @@
         55955
       ],
       "gzipBytes": [
-        17005
+        17001
       ]
     },
     {
@@ -105,7 +105,7 @@
         50359
       ],
       "gzipBytes": [
-        13786
+        13784
       ]
     },
     {
@@ -115,7 +115,7 @@
         48259
       ],
       "gzipBytes": [
-        15108
+        15106
       ]
     },
     {
@@ -152,10 +152,10 @@
       "file": "PremiumExploreSection.js",
       "count": 1,
       "bytes": [
-        37189
+        37390
       ],
       "gzipBytes": [
-        9849
+        9861
       ]
     },
     {
@@ -165,7 +165,7 @@
         35390
       ],
       "gzipBytes": [
-        10171
+        10172
       ]
     },
     {
@@ -175,7 +175,7 @@
         35381
       ],
       "gzipBytes": [
-        10433
+        10432
       ]
     },
     {
@@ -265,7 +265,7 @@
         30307
       ],
       "gzipBytes": [
-        7851
+        7852
       ]
     },
     {
@@ -275,7 +275,7 @@
         29740
       ],
       "gzipBytes": [
-        9007
+        9004
       ]
     },
     {
@@ -302,10 +302,10 @@
       "file": "PrivacyPage.js",
       "count": 1,
       "bytes": [
-        28016
+        28037
       ],
       "gzipBytes": [
-        7693
+        7684
       ]
     },
     {
@@ -335,7 +335,7 @@
         26696
       ],
       "gzipBytes": [
-        6750
+        6748
       ]
     },
     {
@@ -345,7 +345,7 @@
         26539
       ],
       "gzipBytes": [
-        8167
+        8163
       ]
     },
     {
@@ -355,7 +355,7 @@
         26361
       ],
       "gzipBytes": [
-        8896
+        8897
       ]
     },
     {
@@ -365,7 +365,7 @@
         25994
       ],
       "gzipBytes": [
-        8486
+        8484
       ]
     },
     {
@@ -375,7 +375,7 @@
         25250
       ],
       "gzipBytes": [
-        7159
+        7157
       ]
     },
     {
@@ -395,7 +395,7 @@
         24955
       ],
       "gzipBytes": [
-        6777
+        6780
       ]
     },
     {
@@ -405,7 +405,7 @@
         24156
       ],
       "gzipBytes": [
-        6729
+        6728
       ]
     },
     {
@@ -415,7 +415,7 @@
         21937
       ],
       "gzipBytes": [
-        6666
+        6667
       ]
     },
     {
@@ -445,7 +445,7 @@
         21557
       ],
       "gzipBytes": [
-        6049
+        6048
       ]
     },
     {
@@ -455,17 +455,17 @@
         20900
       ],
       "gzipBytes": [
-        5875
+        5873
       ]
     },
     {
       "file": "AboutUsPage.js",
       "count": 1,
       "bytes": [
-        19471
+        20137
       ],
       "gzipBytes": [
-        5439
+        5714
       ]
     },
     {
@@ -485,17 +485,17 @@
         18271
       ],
       "gzipBytes": [
-        4991
+        4992
       ]
     },
     {
       "file": "DownloadPage.js",
       "count": 1,
       "bytes": [
-        17975
+        18059
       ],
       "gzipBytes": [
-        4817
+        4824
       ]
     },
     {
@@ -535,7 +535,7 @@
         16247
       ],
       "gzipBytes": [
-        4891
+        4889
       ]
     },
     {
@@ -545,7 +545,7 @@
         16026
       ],
       "gzipBytes": [
-        4538
+        4537
       ]
     },
     {
@@ -555,7 +555,7 @@
         15780
       ],
       "gzipBytes": [
-        5574
+        5573
       ]
     },
     {
@@ -565,7 +565,7 @@
         15691
       ],
       "gzipBytes": [
-        5893
+        5894
       ]
     },
     {
@@ -575,7 +575,7 @@
         15465
       ],
       "gzipBytes": [
-        4888
+        4887
       ]
     },
     {
@@ -585,7 +585,7 @@
         15219
       ],
       "gzipBytes": [
-        5788
+        5786
       ]
     },
     {
@@ -605,7 +605,7 @@
         15101
       ],
       "gzipBytes": [
-        5702
+        5700
       ]
     },
     {
@@ -615,17 +615,17 @@
         15026
       ],
       "gzipBytes": [
-        5351
+        5352
       ]
     },
     {
       "file": "AILearningPage.js",
       "count": 1,
       "bytes": [
-        14628
+        14702
       ],
       "gzipBytes": [
-        4109
+        4125
       ]
     },
     {
@@ -645,7 +645,7 @@
         14446
       ],
       "gzipBytes": [
-        5399
+        5400
       ]
     },
     {
@@ -655,7 +655,7 @@
         14201
       ],
       "gzipBytes": [
-        4230
+        4228
       ]
     },
     {
@@ -685,7 +685,7 @@
         13733
       ],
       "gzipBytes": [
-        4842
+        4837
       ]
     },
     {
@@ -695,7 +695,7 @@
         13701
       ],
       "gzipBytes": [
-        4585
+        4586
       ]
     },
     {
@@ -715,7 +715,7 @@
         13227
       ],
       "gzipBytes": [
-        5201
+        5202
       ]
     },
     {
@@ -745,7 +745,7 @@
         12496
       ],
       "gzipBytes": [
-        4441
+        4439
       ]
     },
     {
@@ -785,7 +785,7 @@
         10601
       ],
       "gzipBytes": [
-        3911
+        3906
       ]
     },
     {
@@ -795,7 +795,7 @@
         9679
       ],
       "gzipBytes": [
-        3384
+        3383
       ]
     },
     {
@@ -815,7 +815,7 @@
         9064
       ],
       "gzipBytes": [
-        3889
+        3891
       ]
     },
     {
@@ -835,7 +835,7 @@
         8074
       ],
       "gzipBytes": [
-        3084
+        3085
       ]
     },
     {
@@ -852,10 +852,10 @@
       "file": "Login.js",
       "count": 1,
       "bytes": [
-        6728
+        6762
       ],
       "gzipBytes": [
-        2234
+        2247
       ]
     },
     {
@@ -875,7 +875,7 @@
         6326
       ],
       "gzipBytes": [
-        2380
+        2379
       ]
     },
     {
@@ -885,7 +885,7 @@
         6282
       ],
       "gzipBytes": [
-        2535
+        2533
       ]
     },
     {
@@ -895,7 +895,7 @@
         5328
       ],
       "gzipBytes": [
-        2273
+        2272
       ]
     },
     {
@@ -905,7 +905,7 @@
         5131
       ],
       "gzipBytes": [
-        2027
+        2026
       ]
     },
     {
@@ -915,7 +915,7 @@
         4306
       ],
       "gzipBytes": [
-        1849
+        1850
       ]
     },
     {
@@ -965,7 +965,7 @@
         3709
       ],
       "gzipBytes": [
-        1554
+        1555
       ]
     },
     {
@@ -995,7 +995,7 @@
         3392
       ],
       "gzipBytes": [
-        1552
+        1555
       ]
     },
     {
@@ -1005,7 +1005,7 @@
         3330
       ],
       "gzipBytes": [
-        1151
+        1152
       ]
     },
     {
@@ -1045,7 +1045,7 @@
         2297
       ],
       "gzipBytes": [
-        967
+        966
       ]
     },
     {
@@ -1055,7 +1055,7 @@
         2191
       ],
       "gzipBytes": [
-        919
+        920
       ]
     },
     {
@@ -1075,7 +1075,7 @@
         2100
       ],
       "gzipBytes": [
-        1027
+        1028
       ]
     },
     {
@@ -1095,7 +1095,7 @@
         1985
       ],
       "gzipBytes": [
-        849
+        848
       ]
     },
     {
@@ -1105,7 +1105,7 @@
         1941
       ],
       "gzipBytes": [
-        922
+        923
       ]
     },
     {
@@ -1125,7 +1125,7 @@
         1633
       ],
       "gzipBytes": [
-        787
+        788
       ]
     },
     {
@@ -1135,7 +1135,7 @@
         1530
       ],
       "gzipBytes": [
-        802
+        801
       ]
     },
     {
@@ -1152,10 +1152,10 @@
       "file": "authReturnTo.js",
       "count": 1,
       "bytes": [
-        1191
+        1301
       ],
       "gzipBytes": [
-        588
+        595
       ]
     },
     {
@@ -1215,7 +1215,7 @@
         759
       ],
       "gzipBytes": [
-        519
+        520
       ]
     },
     {
@@ -1520,7 +1520,7 @@
     }
   ],
   "totals": {
-    "jsBytes": 3093926,
-    "jsGzipBytes": 893980
+    "jsBytes": 3094656,
+    "jsGzipBytes": 894020
   }
 }

@@ -174,7 +174,11 @@ function WhatCarousel() {
         <button type="button" onClick={() => go(index - 1)} aria-label="Previous slide" className={arrowCls}>
           <ChevronLeft className="h-5 w-5" aria-hidden="true" />
         </button>
-        <div className="flex items-center gap-2.5" role="tablist" aria-label="Choose slide">
+        {/* Target-size law (F-27): >=24px button boxes with the visible dot as
+            an inner span — the ±18px ::after expansion created overlapping
+            invisible hit areas (the same defect Lighthouse flagged on / and
+            /student). Touching 24px boxes keep the approved 24px dot pitch. */}
+        <div className="flex items-center" role="tablist" aria-label="Choose slide">
           {SLIDES.map((slide, i) => (
             <button
               key={slide.title}
@@ -182,10 +186,10 @@ function WhatCarousel() {
               aria-selected={i === index}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => setIndex(i)}
-              className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-[18px] after:-inset-x-[18px] after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
-                i === index ? "w-6 bg-[#0066cc]" : "w-2 bg-[#d2d2d7] hover:bg-[#86868b]"
-              }`}
-            />
+              className="group relative flex h-6 w-6 items-center justify-center rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+            >
+              <span className={`block h-2 rounded-full transition-all duration-300 ${i === index ? "w-full bg-[#0066cc]" : "w-2 bg-[#d2d2d7] group-hover:bg-[#86868b]"}`} />
+            </button>
           ))}
         </div>
         <button type="button" onClick={() => go(index + 1)} aria-label="Next slide" className={arrowCls}>
