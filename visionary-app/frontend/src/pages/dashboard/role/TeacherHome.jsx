@@ -20,6 +20,9 @@ import { createTeacherClass } from "@/services/classroomService";
  * when the class list exists (classes.length > 0); on an empty list the
  * friendly "Create your first class" empty-state CTA is the page's only create
  * affordance — never two equal create controls on one screen. No plan redirects here.
+ * The empty-state CTA paints from the workspace action tokens (v-button primary),
+ * like the header control — one color language for the create-a-class journey
+ * (FAP-79); the account accent stays on supported non-chrome accents only.
  */
 export default function TeacherHome() {
   const {
@@ -136,15 +139,13 @@ export default function TeacherHome() {
             <h3 className="text-[18px] font-medium text-[#121317] mb-2"> {copy("No classes yet")} </h3>
             <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed"> {copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")} </p>
           </div>
-          <button onClick={() => setShowCreate(true)} className="inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-medium text-white transition-colors" style={{
-        backgroundColor: accent
-      }}>
+          <button onClick={() => setShowCreate(true)} className="v-button primary">
             <Plus className="w-4 h-4" /> {copy("Create your first class")} </button>
         </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {classes.map(c => <ClassCard key={c.id} classroom={c} />)}
         </div>}
 
-      {showCreate && <CreateClassModal key={ctx?.personId + ':' + ctx?.workspaceId} onClose={() => setShowCreate(false)} onCreate={handleCreate} accent={accent} />}
+      {showCreate && <CreateClassModal key={ctx?.personId + ':' + ctx?.workspaceId} onClose={() => setShowCreate(false)} onCreate={handleCreate} />}
       <details className="v-home-module"><summary className="font-medium">{copy("Grow as a teacher")}</summary><TeacherUpskillCard accent={accent}/></details>
     </div>;
 }

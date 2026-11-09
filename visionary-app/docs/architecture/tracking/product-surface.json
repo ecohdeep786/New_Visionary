@@ -5164,14 +5164,14 @@
         "frontend/src/components/dashboard/StageProfileEditor.jsx:92:2483",
         "frontend/src/components/dashboard/StageProfileEditor.jsx:92:2600",
         "frontend/src/components/dashboard/teacher/ClassCard.jsx:21:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:53:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:59:9",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:65:15",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:71:45",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:96",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:263",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:56",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:228",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:52:10",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:58:9",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:64:15",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:70:45",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:96",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:263",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:56",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:160",
         "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx:21:228",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:54:9",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:62:7",
@@ -5584,11 +5584,11 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:112:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:114:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:139:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
@@ -6159,14 +6159,14 @@
         "frontend/src/components/dashboard/StageProfileEditor.jsx:92:2483",
         "frontend/src/components/dashboard/StageProfileEditor.jsx:92:2600",
         "frontend/src/components/dashboard/teacher/ClassCard.jsx:21:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:53:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:59:9",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:65:15",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:71:45",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:96",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:263",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:56",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:228",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:52:10",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:58:9",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:64:15",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:70:45",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:96",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:263",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:56",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:160",
         "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx:21:228",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:54:9",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:62:7",
@@ -6579,11 +6579,11 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:112:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:114:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:139:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
@@ -6895,14 +6895,14 @@
         "frontend/src/components/dashboard/NumberLineRepresentation.jsx:5:896",
         "frontend/src/components/dashboard/NumberLineRepresentation.jsx:5:1365",
         "frontend/src/components/dashboard/teacher/ClassCard.jsx:21:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:53:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:59:9",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:65:15",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:71:45",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:96",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:263",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:56",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:228",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:52:10",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:58:9",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:64:15",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:70:45",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:96",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:263",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:56",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:160",
         "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx:21:228",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:54:9",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:62:7",
@@ -6923,11 +6923,11 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:112:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:114:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:139:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
         "frontend/src/pages/dashboard/StudentClasses.jsx:292:9",
@@ -8101,14 +8101,14 @@
         "frontend/src/components/dashboard/StageProfileEditor.jsx:92:2483",
         "frontend/src/components/dashboard/StageProfileEditor.jsx:92:2600",
         "frontend/src/components/dashboard/teacher/ClassCard.jsx:21:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:53:10",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:59:9",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:65:15",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:71:45",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:96",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:263",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:56",
-        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:228",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:52:10",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:58:9",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:64:15",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:70:45",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:96",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:263",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:56",
+        "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:160",
         "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx:21:228",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:54:9",
         "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx:62:7",
@@ -8521,11 +8521,11 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:112:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:114:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:139:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
@@ -37118,9 +37118,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:53:10",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:52:10",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 53,
+      "line": 52,
       "column": 10,
       "tag": "Dialog",
       "events": [
@@ -37154,9 +37154,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:59:9",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:58:9",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 59,
+      "line": 58,
       "column": 9,
       "tag": "form",
       "events": [
@@ -37188,9 +37188,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:65:15",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:64:15",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 65,
+      "line": 64,
       "column": 15,
       "tag": "input",
       "events": [
@@ -37203,7 +37203,7 @@
         "setForm"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "142fd37bcd7e08744ab0dc4a8d90c7cbe3556c0cfbf826b9021c35d3d771d45c",
+      "declarationSha256": "1d3a2d7aa4fe00eda9d8a3fca42f32238230ad6abc756d48b47f38de68d2656c",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -37224,9 +37224,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:71:45",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:70:45",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 71,
+      "line": 70,
       "column": 45,
       "tag": "button",
       "events": [
@@ -37260,9 +37260,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:96",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:96",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 78,
+      "line": 77,
       "column": 96,
       "tag": "button",
       "events": [
@@ -37297,9 +37297,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:78:263",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:77:263",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 78,
+      "line": 77,
       "column": 263,
       "tag": "button",
       "events": [
@@ -37331,9 +37331,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:56",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:56",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 80,
+      "line": 79,
       "column": 56,
       "tag": "button",
       "events": [
@@ -37344,7 +37344,7 @@
       ],
       "calls": [],
       "disabled": "disabled={busy}",
-      "declarationSha256": "7188843770a25d59215ff82e8f7f3da3d0bc8b52b7ca5f3ea69d8955f424aa69",
+      "declarationSha256": "97d6aac8a1140c79882d0eef9e1751ce48aa20b3b886f60bc8525464a8027faf",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -37365,15 +37365,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:80:228",
+      "id": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx:79:160",
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "line": 80,
-      "column": 228,
+      "line": 79,
+      "column": 160,
       "tag": "button",
       "events": [],
       "calls": [],
       "disabled": "disabled={busy || !form.name.trim()}",
-      "declarationSha256": "6972456ef74c531e4500efae108b4cd66234b57f5a675a1007d5ebe7d0148b98",
+      "declarationSha256": "b0bc62f4e1bd2a571b731936b0c8898b55e0515c53fc77f068ebd30ed878878e",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -66044,9 +66044,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:112:251",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 112,
+      "line": 115,
       "column": 251,
       "tag": "button",
       "events": [
@@ -66080,9 +66080,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:114:114",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 114,
+      "line": 117,
       "column": 114,
       "tag": "button",
       "events": [
@@ -66114,9 +66114,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:139:11",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 139,
+      "line": 142,
       "column": 11,
       "tag": "button",
       "events": [
@@ -66129,7 +66129,7 @@
         "setShowCreate"
       ],
       "disabled": null,
-      "declarationSha256": "d0df60630abbbc3973175d7296f9214eebeff573c7fc0e89d96fd7b09409d336",
+      "declarationSha256": "899e540c0ed2a167b998b96812c409d2246d359138ac964f1584c6f6b07d560c",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -66150,9 +66150,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:22",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 147,
+      "line": 148,
       "column": 22,
       "tag": "CreateClassModal",
       "events": [
@@ -66169,7 +66169,7 @@
         "setShowCreate"
       ],
       "disabled": null,
-      "declarationSha256": "0902632f01af5e885b25d626bdbe44626eb9dc361497b171d2878d6e1cd686e5",
+      "declarationSha256": "7dd77d2361e7073015e2e345aab5894144e2f599ab72450ff3d12173ae3c19b3",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -66190,9 +66190,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:42",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 148,
+      "line": 149,
       "column": 42,
       "tag": "summary",
       "events": [],
@@ -78810,7 +78810,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "sourceSha256": "b997581598f26526578334ff65d00bc9e3cf5db9175bc58e2bf6e03d5d4ff552"
+      "sourceSha256": "ffb18e70ba7b433047c6923deabc2873579fbb37c1510d37c43e93297981f981"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/tabs/ClassworkTab.jsx",
@@ -79838,7 +79838,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "sourceSha256": "0e4ea3bb46f89f4a9df205d23bf5856ccea1a18a7646c59e0949534d60c2e43e"
+      "sourceSha256": "f055f3febab56f4329c0e728160cf2f1badcd356f861d662dc72d74d9e232cda"
     },
     {
       "file": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx",
