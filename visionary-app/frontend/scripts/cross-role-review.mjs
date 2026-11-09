@@ -195,13 +195,15 @@ try {
   await settle(page, 1800);
   const teacherShell = await page.evaluate(() => ({
     h1: (document.querySelector('h1, h2')?.textContent || '').trim().slice(0, 40),
-    createBtn: [...document.querySelectorAll('#main button, main button')].some((b) => /create class/i.test(b.textContent || '')),
+    // exactly one create control per state (FAP-78): either label matches
+    createBtn: [...document.querySelectorAll('#main button, main button')].some((b) => /create (?:your first )?class/i.test(b.textContent || '')),
   }));
   await shoot(page, 'cross-teacher-classes', { surface: 'teacher-classes', teacherShell, errors: [...errors] });
   check('teacher-classes-shell', teacherShell.h1.includes('Your classes') && teacherShell.createBtn, JSON.stringify(teacherShell).slice(0, 160));
 
   /* 2. Create the class through the real modal; capture scope notice + join code */
-  await page.getByRole('button', { name: /Create class/i }).first().click();
+  // exactly one create control per state: header "Create class" when classes exist, empty-state "Create your first class" otherwise (FAP-78)
+  await page.getByRole('button', { name: /Create (your first )?class/i }).first().click();
   await page.waitForSelector('[role="dialog"]', { timeout: 15000 });
   const scopeNotice = await page.evaluate(() => ({
     independent: /Independent teaching · This class belongs to your personal workspace\./.test(document.body.innerText),

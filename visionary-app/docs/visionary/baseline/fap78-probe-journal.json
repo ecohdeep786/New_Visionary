@@ -1,0 +1,75 @@
+{
+  "ticket": "FAP-78",
+  "title": "Empty Classes page shows two equal-weight 'Create class' affordances (header + empty-state)",
+  "date": "2026-11-09",
+  "reference": "Apple HIG Writing re-read 2026-11-09 in browser: 'Choose words that are easily understood and convey the right thing. Check each word to be sure it needs to be there. If you can use fewer words, do so.' … 'Write for everyone. … Choose simple, plain language …' (Education, Education Initiative and K–12 pages remain open reference tabs for T02)",
+  "law": "Exactly one create affordance per state on the teacher Classes page: zero classes → the friendly 'Create your first class' empty-state CTA alone; at least one class → the header 'Create class' control alone. Modal, creation flow, ?create=1 deep link and copy untouched.",
+  "persona_note": "Every probe registered a REAL fresh teacher through the live register → onboarding journey; the landed workspace topbar captured 'Personal · Teacher' in the body text of every run. (The wizard's aria-pressed state was sometimes cleared by the time the persona check ran after a forward click, so the probe relies on the recorded topbar string as the persona evidence.) The app-wide sidebar command-palette quick action 'Create a class' (present on every page, both sides, opens the same modal via the deep link) is outside the two equal page-level controls of the accepted defect pair and is not counted.",
+  "matrix": [
+    {
+      "probe": "empty-state",
+      "side": "before",
+      "server": "base origin/beta a245fb47 @ http://localhost:5174",
+      "persona": "fresh teacher (Personal · Teacher), real register→onboarding journey",
+      "expected": "the observed defect: two equal create controls on the empty page",
+      "verdict": "PASS",
+      "result": "totalCreateControls=2 (header 'Create class' + empty-state 'Create your first class'), 'No classes yet' visible",
+      "evidence": "empty-state-before.json + empty-state-before-empty-state-final.png"
+    },
+    {
+      "probe": "empty-state",
+      "side": "after",
+      "server": "candidate zcode/fap-78-classes-affordance @ http://localhost:5173",
+      "persona": "fresh teacher per probe",
+      "expected": "exactly one create affordance: the empty-state CTA",
+      "verdict": "PASS",
+      "result": "totalCreateControls=1, headerCreateCount=0, firstClassCount=1, 'No classes yet' visible",
+      "evidence": "empty-state-after.json + empty-state-after-empty-state-final.png"
+    },
+    {
+      "probe": "create-flow",
+      "side": "after",
+      "server": "candidate @ http://localhost:5173",
+      "persona": "fresh teacher per probe",
+      "expected": "click the single create control → dialog → fields → submit → 'Your class is ready.' + class card + populated page shows exactly one create control (header)",
+      "verdict": "PASS",
+      "result": "'Your class is ready. Add a first assignment…' shown; class card 'Physics 9A · 0 students' in grid; stats Classes=1; populated totalCreateControls=1 (header), firstClassCount=0",
+      "evidence": "create-flow-after.json + create-flow-after-modal.png + create-flow-after-after-create.png"
+    },
+    {
+      "probe": "create-flow",
+      "side": "before",
+      "server": "base @ http://localhost:5174",
+      "persona": "fresh teacher per probe",
+      "expected": "creation works at base (acceptance: the flow itself never changed) while the empty page still shows the two-control defect",
+      "verdict": "PASS",
+      "result": "defect recorded honestly at click time: clickError='expected exactly 1 create control, found 2'; creation then succeeded (Physics 9A, 'Your class is ready.'); populated state totalCreateControls=1 (populated was never the defect)",
+      "evidence": "create-flow-before.json + create-flow-before-modal.png + create-flow-before-after-create.png"
+    }
+  ],
+  "harnesses": [
+    { "harness": "route-direct-url-review.mjs (67 routes + auth/redirect/recovery surfaces)", "verdict": "ROUTE REVIEW PASSED", "evidence": "route-review/DIRECT_URL_RESULTS.json" },
+    { "harness": "teacher-review.mjs (updated in-ticket to click the state's single create control)", "verdict": "21 records, 0 defects — class creation, tabs, curriculum, assignment, learners, insights", "evidence": "teacher/" },
+    { "harness": "cross-role-review.mjs (updated in-ticket)", "verdict": "37 records, 0 defects — teacher→class→invite/code→learners→assignment→submission→teacher visibility across three accounts", "evidence": "cross-role/" },
+    { "harness": "ml-experience-review.mjs", "verdict": "27/27 checks, 0 defects", "evidence": "ml-experience/receipt.json" },
+    { "harness": "student-review.mjs", "verdict": "16 records, 0 defects (learner Classes keeps its single join-by-code affordance)", "evidence": "student/" }
+  ],
+  "surface_delta": {
+    "artifact": "docs/architecture/tracking/product-surface.json (refreshed via npm run scope:audit:write)",
+    "routes": "67 = 67 (equal)",
+    "endpoints": "37 = 37 (equal)",
+    "review_section": "equal",
+    "controls": "1656 rows both sides; exactly 5 index positions differ, all in TeacherHome.jsx — each = the same declaration shifted +3 lines by the expanded component doc comment (id embeds file:line:col; events/calls/tags identical). No control added, removed or behaviorally changed at the source level.",
+    "controlIds_note": "routes 34/35/36/39 mirror the same 5 TeacherHome ids into their controlIds arrays (same +3-line shift, no membership change)",
+    "source_sha_changed": [
+      "frontend/src/pages/dashboard/role/TeacherHome.jsx"
+    ]
+  },
+  "gates": {
+    "lint": "0 issues",
+    "typecheck": "0 issues",
+    "tests": "723/723 (716 baseline at beta a245fb47 + new frontend/tests/fap78-create-affordance.test.mjs, 7 tests)",
+    "build": "0 errors",
+    "check": "EXIT=0"
+  }
+}
