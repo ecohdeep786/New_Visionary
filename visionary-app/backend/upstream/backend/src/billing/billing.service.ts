@@ -105,7 +105,11 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     }
     let created: any;
     try {
-      created = await this.provider.request('POST', 'subscriptions', { plan_id: providerPlan, quantity: 1, total_count: selected.interval === 'annual' ? 10 : 120, customer_notify: false, notes: { visionary_attempt: id, visionary_catalog: CATALOG_VERSION }, expire_by: seconds() + 86400 });
+      // The subscription commit is the spend being admitted: the plan amount
+      // times the created billing cycles (10 annual / 120 monthly). When spend
+      // enforcement is enabled this refuses a new commit with a typed 503 once
+      // the enforced cap would be exceeded (RELEASE-04 spend admission).
+      created = await this.provider.request('POST', 'subscriptions', { plan_id: providerPlan, quantity: 1, total_count: selected.interval === 'annual' ? 10 : 120, customer_notify: false, notes: { visionary_attempt: id, visionary_catalog: CATALOG_VERSION }, expire_by: seconds() + 86400 }, selected.amount * (selected.interval === 'annual' ? 10 : 120));
       externalId(created.id, 'sub');
       if (created.plan_id !== providerPlan) throw new PaymentProviderError(true);
     } catch (error) {

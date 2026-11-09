@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "capture": {
+    "source": "synthetic",
+    "windowStart": "2026-11-02T00:00:00Z",
+    "windowEnd": "2026-11-09T00:00:00Z",
+    "activeUsers": 20000,
+    "daysCaptured": 7
+  },
+  "tasks": {
+    "completed": 48000,
+    "failedAttempts": 4560
+  },
+  "cost": {
+    "providerPerAttemptHistogram": [
+      { "value": 0.004, "count": 48000 },
+      { "value": 0.004, "count": 4560 }
+    ],
+    "storageTotalUnits": 320,
+    "egressTotalUnits": 240,
+    "supportTotalUnits": 150,
+    "operationsTotalUnits": 90
+  },
+  "latency": {
+    "transportSecondsHistogram": [
+      { "value": 2, "count": 40000 },
+      { "value": 8, "count": 7800 },
+      { "value": 19, "count": 200 }
+    ],
+    "backendSecondsHistogram": [
+      { "value": 1.5, "count": 40000 },
+      { "value": 7, "count": 7800 },
+      { "value": 17, "count": 200 }
+    ]
+  },
+  "quality": {
+    "rubricVersion": "usefulness-v1",
+    "sourceVersion": "curriculum-2026-10-15",
+    "modelVersion": "gpt-4o",
+    "usefulRateHistogram": [
+      { "value": 0, "count": 2400 },
+      { "value": 1, "count": 45600 }
+    ],
+    "heldOut": true,
+    "independentReview": true
+  }
+}

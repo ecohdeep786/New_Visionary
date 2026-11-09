@@ -2,6 +2,7 @@ import { ForbiddenException, Injectable, ServiceUnavailableException } from '@ne
 import { ConfigService } from '@nestjs/config';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { offer } from './catalog';
+import { BillingSpendAdmission, type SpendAdmissionSnapshot } from './spend-admission';
 
 export class PaymentProviderError extends ServiceUnavailableException {
   constructor(public readonly ambiguous: boolean) { super('Razorpay could not confirm this request. Check the saved payment status before trying again.'); }
@@ -12,7 +13,9 @@ export function validSignature(raw: Buffer | string, signature: unknown, secret:
 }
 @Injectable()
 export class RazorpayProvider {
-  constructor(private readonly config: ConfigService) {}
+  private readonly spendAdmission: BillingSpendAdmission;
+  constructor(private readonly config: ConfigService) { this.spendAdmission = new BillingSpendAdmission(config); }
+  spend(): SpendAdmissionSnapshot { return this.spendAdmission.snapshot(); }
   settings() {
     const keyId = this.config.get<string>('RAZORPAY_KEY_ID'), secret = this.config.get<string>('RAZORPAY_KEY_SECRET');
     if (this.config.get('BILLING_MODE') !== 'test' || !/^rzp_test_[A-Za-z0-9]+$/.test(keyId || '') || !secret) throw new ServiceUnavailableException('Test billing is not configured. Please retry later.');
@@ -27,7 +30,13 @@ export class RazorpayProvider {
     const expected = this.config.get<string>('BILLING_RECONCILE_TOKEN');
     if (!/^[a-f0-9]{64}$/.test(expected || '') || typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token) || !timingSafeEqual(Buffer.from(expected), Buffer.from(token))) throw new ForbiddenException('Invalid reconciliation credentials.');
   }
-  async request(method: string, resource: string, body?: unknown): Promise<any> {
+  async request(method: string, resource: string, body?: unknown, spendUnits = 0): Promise<any> {
+    // Enforced spend admission (RELEASE-04, launch-operations.md: "Alerts-only
+    // budgets are not spending caps"): admitting committed spend is checked
+    // before the outbound call and refused with a typed 503 when the enforced
+    // cap would be exceeded. With no enforcement configured the gate is off and
+    // behavior is byte-identical to the pre-existing runtime.
+    this.spendAdmission.admit(spendUnits);
     const settings = this.settings();
     let response: Response;
     try {
@@ -35,9 +44,9 @@ export class RazorpayProvider {
         method, headers: { Authorization: `Basic ${Buffer.from(`${settings.keyId}:${settings.secret}`).toString('base64')}`, 'Content-Type': 'application/json' },
         ...(body === undefined ? {} : { body: JSON.stringify(body) }), signal: AbortSignal.timeout(12000),
       });
-    } catch { throw new PaymentProviderError(true); }
-    if (!response.ok) throw new PaymentProviderError(response.status >= 500 || response.status === 429);
-    try { return await response.json(); } catch { throw new PaymentProviderError(true); }
+    } catch { this.spendAdmission.settle(spendUnits); throw new PaymentProviderError(true); }
+    if (!response.ok) { this.spendAdmission.settle(spendUnits); throw new PaymentProviderError(response.status >= 500 || response.status === 429); }
+    try { return await response.json(); } catch { this.spendAdmission.settle(spendUnits); throw new PaymentProviderError(true); }
   }
   getSubscription(id: string) { return this.request('GET', `subscriptions/${id}`); }
   invoices(id: string) { return this.request('GET', `invoices?subscription_id=${id}&count=100`); }
