@@ -123,17 +123,17 @@ try {
   await settle(page, 1800);
   const learn = await page.evaluate(() => ({
     h1: (document.querySelector('h1')?.textContent || '').trim().slice(0, 50),
-    hasSamplePath: /Try authored learning sample/i.test(document.body.innerText),
+    hasExamplePath: /Try an example lesson/i.test(document.body.innerText),
     hasOutlinePath: /Open my outline/i.test(document.body.innerText),
   }));
   await shoot(page, 'student-learn-topics', { surface: 'learn', learn, errors: [...errors] });
-  check('learn-entry', Boolean(learn.h1) && learn.hasSamplePath && learn.hasOutlinePath, JSON.stringify(learn));
+  check('learn-entry', Boolean(learn.h1) && learn.hasExamplePath && learn.hasOutlinePath, JSON.stringify(learn));
 
   /* The authored learning sample is the honest fixture path (SAMPLE_SELECTION). */
   await page.evaluate(() => [...document.querySelectorAll('#main summary, main summary')].find((el) => (el.textContent || '').includes('Choose a subject'))?.click()).catch(() => {});
   await page.waitForTimeout(500);
   const sampleClicked = await page.evaluate(() => {
-    const btn = [...document.querySelectorAll('#main button, main button')].find((b) => /Try authored learning sample/i.test(b.textContent || '') && b.offsetParent !== null);
+    const btn = [...document.querySelectorAll('#main button, main button')].find((b) => /Try an example lesson/i.test(b.textContent || '') && b.offsetParent !== null);
     if (btn) { btn.click(); return true; }
     return false;
   }).catch(() => false);

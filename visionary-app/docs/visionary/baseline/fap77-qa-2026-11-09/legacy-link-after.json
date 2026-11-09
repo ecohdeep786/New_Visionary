@@ -1,0 +1,111 @@
+{
+  "side": "after",
+  "behavior": "legacy-link",
+  "url": "http://localhost:5173",
+  "started": "2026-11-09T05:32:14.366Z",
+  "stages": [
+    {
+      "stage": "wizard-step-0",
+      "title": "Make Visionary your own",
+      "url": "http://localhost:5173/onboarding"
+    },
+    {
+      "stage": "card-clicks-0",
+      "didClick": [
+        {
+          "target": "I am a Learner",
+          "level": 0,
+          "tag": "BUTTON",
+          "cls": "relative flex min-w-0 items-start gap-4 p-5 rounded-2xl bord"
+        }
+      ],
+      "anyEnabled": true
+    },
+    {
+      "stage": "wizard-step-1",
+      "title": "A little about you",
+      "url": "http://localhost:5173/onboarding"
+    },
+    {
+      "stage": "card-clicks-1",
+      "didClick": [],
+      "anyEnabled": false
+    },
+    {
+      "stage": "wizard-step-2",
+      "title": "What are you learning?",
+      "url": "http://localhost:5173/onboarding"
+    },
+    {
+      "stage": "card-clicks-2",
+      "didClick": [
+        {
+          "target": "School",
+          "level": 0,
+          "tag": "BUTTON",
+          "cls": "relative flex min-w-0 items-start gap-2 p-3 rounded-2xl bord"
+        }
+      ],
+      "anyEnabled": true
+    },
+    {
+      "stage": "wizard-step-3",
+      "title": "Choose your school context",
+      "url": "http://localhost:5173/onboarding"
+    },
+    {
+      "stage": "card-clicks-3",
+      "didClick": [
+        {
+          "target": "School",
+          "level": 0,
+          "tag": "DIV",
+          "cls": ""
+        }
+      ],
+      "anyEnabled": false
+    },
+    {
+      "stage": "wizard-step-4",
+      "title": "Ready to start with Visionary?",
+      "url": "http://localhost:5173/onboarding"
+    },
+    {
+      "stage": "onboard",
+      "sawDashboardish": true,
+      "finalUrl": "http://localhost:5173/dashboard/home"
+    },
+    {
+      "stage": "learn-entry",
+      "url": "http://localhost:5173/dashboard/learn"
+    }
+  ],
+  "entry": {
+    "labels": {
+      "exampleLesson": true,
+      "workplaceExampleLesson": false,
+      "examplesFromMoreBooks": true,
+      "openMyOutline": true,
+      "legacyEntry": false,
+      "legacyWorkplace": false,
+      "legacyMultiBook": false,
+      "legacyPrevTopics": true
+    },
+    "emptyStateSentence": ""
+  },
+  "afterClick": {
+    "clicked": "Open previous saved topics and examples",
+    "url": "http://localhost:5173/dashboard/learn?legacy=1",
+    "navigated": false,
+    "sawMathematics": false,
+    "sawSampleLibrary": false,
+    "sawBooksCount": false,
+    "sawBookNames": false,
+    "sawAuthoredMathExamples": false,
+    "sawLegacyParam": true,
+    "gotOutline": false
+  },
+  "behaviorOk": true,
+  "verdict": "PASS",
+  "finished": "2026-11-09T05:32:42.227Z"
+}

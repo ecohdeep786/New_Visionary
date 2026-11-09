@@ -79546,11 +79546,11 @@
     },
     {
       "file": "frontend/src/lib/learningCatalogueCopy.js",
-      "sourceSha256": "76eefef91753c940279d43e6d18a933cf6708a58e188192667b1078b15664225"
+      "sourceSha256": "ab0c4b89a8d106ca8e62926e3ee6311ca30144a16d21bf30f78a59786424d49d"
     },
     {
       "file": "frontend/src/lib/learningCopy.js",
-      "sourceSha256": "0716e5e059b169c344079bdce71a8950c527af93fa78da8285cd402f55509632"
+      "sourceSha256": "3391d71d737bd13005bb190a985699d590e669559087c424c4678c2b511b6ebe"
     },
     {
       "file": "frontend/src/lib/learningMetrics.js",
@@ -79574,7 +79574,7 @@
     },
     {
       "file": "frontend/src/lib/legacyLearningCopy.js",
-      "sourceSha256": "d25ca76063c88405dcdf33cbdfc759e17506dcb6a4dd714d0027b69d32db3bed"
+      "sourceSha256": "baec35e09ab4d1e1311360ea9b38efcbdbcddb70c84b2659450e7e93a70e2c9a"
     },
     {
       "file": "frontend/src/lib/navigationPresentation.js",
@@ -79766,7 +79766,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/LearningWorkspace.jsx",
-      "sourceSha256": "4c3e00673eeccd1ac2fcbeefacafd97f9f6c7fff03cca4fb9f0d3cdb8936b3be"
+      "sourceSha256": "aace0653a44cc07c0c1945d570430711b8aeceec0a4eaa7246b5a563431a51ca"
     },
     {
       "file": "frontend/src/pages/dashboard/OrganizationAccessHome.jsx",
