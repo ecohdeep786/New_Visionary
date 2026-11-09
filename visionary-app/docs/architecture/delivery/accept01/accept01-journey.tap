@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: public pricing is reachable without any session and reports the test catalog
+ok 1 - public pricing is reachable without any session and reports the test catalog
+  ---
+  duration_ms: 11661.8226
+  type: 'test'
+  ...
+# Subtest: auth/verification starts a real session with HttpOnly cookies on the canonical origin
+ok 2 - auth/verification starts a real session with HttpOnly cookies on the canonical origin
+  ---
+  duration_ms: 74.6795
+  type: 'test'
+  ...
+# Subtest: onboarding completes the bounded role profile
+ok 3 - onboarding completes the bounded role profile
+  ---
+  duration_ms: 185.2244
+  type: 'test'
+  ...
+# Subtest: the Free profile exists under the verified account before any purchase
+ok 4 - the Free profile exists under the verified account before any purchase
+  ---
+  duration_ms: 83.2064
+  type: 'test'
+  ...
+# Subtest: the test subscription is created, completed and synced to a paid period
+ok 5 - the test subscription is created, completed and synced to a paid period
+  ---
+  duration_ms: 553.8137
+  type: 'test'
+  ...
+# Subtest: the invoice is recorded and owner-readable
+ok 6 - the invoice is recorded and owner-readable
+  ---
+  duration_ms: 156.7839
+  type: 'test'
+  ...
+# Subtest: the durable learning loop starts, presents a check and assesses it
+ok 7 - the durable learning loop starts, presents a check and assesses it
+  ---
+  duration_ms: 287.7112
+  type: 'test'
+  ...
+# Subtest: the project step provisions a REAL SQL-backed personal workspace and replays idempotently
+ok 8 - the project step provisions a REAL SQL-backed personal workspace and replays idempotently
+  ---
+  duration_ms: 62.4916
+  type: 'test'
+  ...
+# Subtest: a second device signs in on the same account and resumes the same state
+ok 9 - a second device signs in on the same account and resumes the same state
+  ---
+  duration_ms: 266.0538
+  type: 'test'
+  ...
+# Subtest: wrong-user: a stranger cannot read another account's invoice or learning session
+ok 10 - wrong-user: a stranger cannot read another account's invoice or learning session
+  ---
+  duration_ms: 236.0643
+  type: 'test'
+  ...
+# Subtest: failure states: duplicate checkout is refused, stale revision conflicts, cancellation is revision-bound
+ok 11 - failure states: duplicate checkout is refused, stale revision conflicts, cancellation is revision-bound
+  ---
+  duration_ms: 634.074
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 30620.1621

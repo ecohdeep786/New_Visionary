@@ -1,0 +1,59 @@
+{
+  "task": "ACCEPT-01",
+  "jira": "KAN-117",
+  "title": "Exercise public pricing => auth/verification => onboarding => Free profile => test subscription => invoice => learning => project => second-device resume on the hosted system.",
+  "branch": "zcode/kan-117-accept01-journey-rehearsal",
+  "base": "2e0b1fbb",
+  "date": "2026-11-09",
+  "checklistLine": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md P11 ACCEPT-01",
+  "scope": "Engineering half delivered end-to-end: the released journey chain rehearsed over the REAL production HTTP composition (configureProductionHttp), Auth/Firestore emulators, TLS terminator on the canonical loopback origin, fictional payment provider, and a REAL disposable SQL staging schema for the personal-workspace step. Hosted walk (real adapters/staging data/devices) recorded as the primary external gate per BILL-01 local-maximum. No product source change.",
+  "journey": [
+    {"step": "public-pricing", "evidence": "unauthenticated GET /api/billing/catalog => 200, mode test, plans present"},
+    {"step": "auth-verification", "evidence": "real Auth-emulator token exchange => product session 201, HttpOnly cookie, uid resolved via /api/auth/me"},
+    {"step": "onboarding", "evidence": "bounded role profile => 201, profile reports onboarding_complete"},
+    {"step": "free-profile", "evidence": "fresh account => plan start, entitlement.source free, no subscription"},
+    {"step": "test-subscription", "evidence": "checkout 201 -> fictional provider payment + HMAC signature -> verify 201 -> synced active with paidThrough"},
+    {"step": "invoice", "evidence": "recorded under account; owner reads by id; uid matches"},
+    {"step": "learning", "evidence": "durable loop start 201, check present, server assess => check_passed"},
+    {"step": "project", "evidence": "REAL PostgreSQL workspace provisioned (personalWorkspaceId cmw9n2mhj0003fd6gwik9697c), same command replays with replay:true"},
+    {"step": "second-device-resume", "evidence": "second device signs in on SAME uid; sees active subscription + invoices"},
+    {"step": "failure-wrong-user", "evidence": "stranger 404 on another account's invoice AND learning session"},
+    {"step": "failure-states", "evidence": "duplicate checkout 409, stale-revision cancel 409, valid cancel -> cancelAtPeriodEnd true with paid access retained"}
+  ],
+  "changedFiles": {
+    "new": [
+      "backend/tests/contracts/accept-01/journey-stack.cjs",
+      "backend/tests/contracts/accept-01/accept01-journey.test.mjs",
+      "scripts/accept01-journey.mjs",
+      "docs/architecture/delivery/ACCEPT01_JOURNEY_REHEARSAL.md",
+      "docs/architecture/delivery/accept01/accept01-journey.tap",
+      "docs/architecture/delivery/accept01/journey-report.json",
+      "docs/architecture/reviews/KAN117_ACCEPT01_JOURNEY_REHEARSAL_2026-11-09.md"
+    ],
+    "modified": [
+      "package.json"
+    ]
+  },
+  "evidence": {
+    "journeyRunner": {
+      "command": "npm run accept:journey",
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "tap": "docs/architecture/delivery/accept01/accept01-journey.tap",
+      "report": "docs/architecture/delivery/accept01/journey-report.json",
+      "provider": "real production HTTP composition + Auth/Firestore emulators + TLS terminator (canonical loopback origin) + fictional payment provider + real disposable SQL staging schema; zero network"
+    },
+    "gates": [
+      { "gate": "npm run check", "result": "exit 0 (roots, 3842-file import baseline, qa laws, script tests, surface audit, lint, typecheck, unit tests, build)" }
+    ]
+  },
+  "externalGatesNotClaimed": [
+    "The hosted walk itself: same chain on the hosted system with real hosted adapters, real staging data, real devices/browsers (ACCEPT-01 exit)",
+    "Real merchant/provider adapters (Razorpay test/live wiring, real mail, real object storage)",
+    "Cross-family journey depth (durable change-feeds, offline, timed assessment, Build) - depends on the unmerged queued stack and feature-family acceptance gates",
+    "D-095 reviewer approval and integration into dev"
+  ],
+  "hostedVerified": false,
+  "reviewer": "pending per D-095"
+}

@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-11-09T19:12:59.926Z",
+  "journey": [
+    {
+      "step": "public-pricing",
+      "status": 200,
+      "mode": "test"
+    },
+    {
+      "step": "auth-verification",
+      "uid": "Jhd4UmbyFZezsgqBbDfahfjjWaY6"
+    },
+    {
+      "step": "onboarding",
+      "status": 201
+    },
+    {
+      "step": "free-profile",
+      "plan": "start"
+    },
+    {
+      "step": "test-subscription",
+      "subscriptionId": "sub_fixture1",
+      "status": "active"
+    },
+    {
+      "step": "invoice",
+      "invoiceId": "inv_fixture1"
+    },
+    {
+      "step": "learning",
+      "sessionId": "2b3fe012-2ec7-457f-96fc-aaaf5c61bd71",
+      "phase": "check_passed"
+    },
+    {
+      "step": "project",
+      "workspaceId": "cmw9n2mhj0003fd6gwik9697c",
+      "replay": true
+    },
+    {
+      "step": "second-device-resume",
+      "uid": "Jhd4UmbyFZezsgqBbDfahfjjWaY6",
+      "subscriptionVisible": true
+    }
+  ],
+  "failures": [
+    {
+      "failure": "wrong-user",
+      "invoice": 404,
+      "learning": 404
+    },
+    {
+      "failure": "duplicate-checkout-409",
+      "staleRevision": 409,
+      "cancelAtPeriodEnd": true
+    }
+  ]
+}

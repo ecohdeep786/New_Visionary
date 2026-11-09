@@ -34,6 +34,7 @@
     "cost:estimate": "node scripts/cost-model.mjs",
     "cost:report": "node scripts/cost-model.mjs --write",
     "cost:test": "node --test scripts/tests/cost-model.test.mjs",
+    "accept:journey": "node scripts/accept01-journey.mjs",
     "backend:auth:dev": "node scripts/product.mjs backend auth-dev",
     "backend:firebase-check": "node scripts/product.mjs backend firebase-check",
     "ml:install": "node scripts/product.mjs ml install",
