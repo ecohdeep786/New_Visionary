@@ -11,8 +11,7 @@ const COLORS = [["Blue", "#4285F4"], ["Green", "#137333"], ["Red", "#b3261e"], [
 const FIELDS = [["name", "Class name", "e.g. Algebra II"], ["section", "Section (optional)", "e.g. Period 2"], ["subject", "Subject (optional)", "e.g. Mathematics"], ["room", "Room (optional)", "e.g. 204"]];
 export default function CreateClassModal({
   onClose,
-  onCreate,
-  accent = "#4285F4"
+  onCreate
 }) {
   const {
     data: copyWorkspace,ctx
@@ -65,7 +64,7 @@ export default function CreateClassModal({
               <input disabled={busy} required={key === "name"} maxLength={100} value={form[key]} onChange={e => setForm(current => ({
             ...current,
             [key]: e.target.value
-          }))} placeholder={copy(placeholder)} className="mt-2 h-11 w-full rounded-lg border border-[#5f6368] px-3 font-normal outline-none focus:border-[#4285F4] focus:ring-1 focus:ring-[#4285F4]" />
+          }))} placeholder={copy(placeholder)} className="mt-2 h-11 w-full rounded-lg border border-[#5f6368] px-3 font-normal outline-none focus:border-[var(--v-action)] focus:ring-1 focus:ring-[var(--v-action)]" />
             </label>)}
           <fieldset><legend className="mb-3 text-sm font-medium text-[#121317]"> {copy("Class color")} </legend><div className="flex flex-wrap gap-3">
             {COLORS.map(([label, color]) => <button key={color} type="button" disabled={busy} onClick={() => setForm(current => ({
@@ -77,9 +76,7 @@ export default function CreateClassModal({
           </div></fieldset>
           {backupError&&<p role="alert" className="text-sm text-[#b3261e]">{copy(backupError)} <button type="button" onClick={()=>downloadText('visionary-class-draft.json',JSON.stringify(form,null,2))} className="underline">{copy("Export class edits")}</button> <button type="button" onClick={restore} className="underline">{copy("Retry class draft recovery")}</button></p>}
           {error && <p role="alert" lang={copy(error)===error?"en":locale} className="text-sm text-[#b3261e]">{copy(error)}</p>}
-          <div className="mt-3 flex justify-end gap-2"><button type="button" disabled={busy} onClick={onClose} className="h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#ffffff]"> {copy("Cancel")} </button><button type="submit" disabled={busy || !form.name.trim()} className="inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-50" style={{
-            backgroundColor: accent
-          }}>{busy && <Loader2 className="h-4 w-4 animate-spin" />}{busy ? copy("Creating\u2026") : copy("Create class")}</button></div>
+          <div className="mt-3 flex justify-end gap-2"><button type="button" disabled={busy} onClick={onClose} className="v-button"> {copy("Cancel")} </button><button type="submit" disabled={busy || !form.name.trim()} className="v-button primary">{busy && <Loader2 className="h-4 w-4 animate-spin" />}{busy ? copy("Creating\u2026") : copy("Create class")}</button></div>
         </form>
       </DialogContent>
     </Dialog>;
