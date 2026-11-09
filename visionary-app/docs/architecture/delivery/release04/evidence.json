@@ -1,0 +1,96 @@
+{
+  "task": "RELEASE-04",
+  "jira": "KAN-127",
+  "title": "Measure useful-answer/artifact quality, latency/error budgets and cost per completed task including failed attempts, storage/egress, support and operations. Apply enforced spend admission, not alerts alone.",
+  "branch": "zcode/kan-127-release04-per-task-economics",
+  "base": "2e0b1fbb",
+  "date": "2026-11-09",
+  "checklistLine": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md P12 RELEASE-04",
+  "scope": "Engineering half delivered end-to-end: enforced spend admission (product gate, fail-closed, typed 503) + per-completed-task economics model (failed attempts charged but never completed; storage/egress/support/ops attribution; latency/error budgets; pinned-quality provenance). Hosted provider cost figures, calibrated human review, real outage/latency telemetry and merchant/GA acceptance recorded as external gates per the BILL-01 local-maximum doctrine.",
+  "laws": [
+    "enforced spend admission: a configured spend cap must actually refuse (typed 503), never alert alone; enforcement is explicit opt-in, and a misconfigured cap while enabled is itself a refusal, never 'no limit'",
+    "byte-identical when off: with no BILLING_SPEND_ADMISSION=enabled the gate records nothing and the existing test-mode runtime is unchanged (legacy billing 22/22)",
+    "unit-economics denominator is completed tasks only: a failed attempt charges provider cost but is never a completed task",
+    "attribution is explicit: provider, storage, retained-inactive storage (D-090 retention is not deletion), egress, support and operations each appear as a separate line",
+    "latency budgets measured: observed whole-op/backend p95 vs the documented 20s/18s envelopes (provider <=14s recorded); outside-budget marked",
+    "error budget: failure share vs the 99.9% objective (43.2 minutes/month), reported as steering, not an invented hosted outage figure",
+    "quality is only measured with pinned rubric/source/model versions (D-084); independent held-out review marks distribution vs assumption",
+    "beta provenance fail-closed: a capture.source='beta' claim without windowStart/windowEnd/activeUsers/daysCaptured is refused (mirrors RELEASE-01 workload-model)"
+  ],
+  "changedFiles": {
+    "new": [
+      "backend/upstream/backend/src/billing/spend-admission.ts",
+      "backend/tests/contracts/release-04/spend-admission-law.test.mjs",
+      "scripts/per-task-economics.mjs",
+      "scripts/release04-economics.mjs",
+      "scripts/tests/per-task-economics.test.mjs",
+      "scripts/tests/fixtures/task-economics.synthetic.json",
+      "docs/architecture/delivery/RELEASE04_PER_TASK_ECONOMICS.md",
+      "docs/architecture/delivery/release04/evidence.json",
+      "docs/architecture/delivery/release04/per-task-economics.tap",
+      "docs/architecture/delivery/release04/per-task-economics-report.json",
+      "docs/architecture/delivery/release04/spend-admission-law.tap",
+      "docs/architecture/reviews/KAN127_RELEASE04_PER_TASK_ECONOMICS_2026-11-09.md"
+    ],
+    "modified": [
+      "backend/upstream/backend/src/billing/billing.service.ts",
+      "backend/upstream/backend/src/billing/razorpay.provider.ts",
+      "scripts/check.mjs",
+      "package.json",
+      "integration/contracts/operation-authority.v1.json",
+      "docs/architecture/tracking/task-executions.json",
+      "backend/tests/contracts/data-04/invitations.test.mjs"
+    ]
+  },
+  "evidence": {
+    "releaseRunner": {
+      "command": "npm run release:economics",
+      "suites": [
+        { "file": "backend/tests/contracts/release-04/spend-admission-law.test.mjs", "tests": 6, "pass": 6, "fail": 0, "tap": "docs/architecture/delivery/release04/spend-admission-law.tap", "provider": "compiled product module (dist/src/billing/spend-admission.js), ConfigService-driven, zero network" },
+        { "file": "scripts/tests/per-task-economics.test.mjs", "tests": 8, "pass": 8, "fail": 0, "tap": "docs/architecture/delivery/release04/per-task-economics.tap", "provider": "pure model over scripts/tests/fixtures/task-economics.synthetic.json, zero network" }
+      ]
+    },
+    "gates": [
+      { "gate": "node scripts/authority-audit.mjs --write", "result": "hash-only drift (2 sha256Lf lines for billing.service.ts and razorpay.provider.ts), counts unchanged 55/6/12/16/32; runtime changes false" },
+      { "gate": "npm run check", "result": "exit 0 (roots, 3842-file import baseline + patches, continuity/motion/taps, 122 script tests incl. new 8, surface audit, lint, typecheck, unit tests, build)" },
+      { "gate": "tsc -p tsconfig.json (backend)", "result": "exit 0" },
+      { "gate": "legacy billing regression", "result": "22/22 pass with the spend gate off (byte-identical)" },
+      { "gate": "node scripts/production-check.mjs", "result": "exit 0: locked compile 102/102; provisioning 11/11; data-04 37/37; privacy 52/52" }
+    ],
+    "modelReport": {
+      "file": "docs/architecture/delivery/release04/per-task-economics-report.json",
+      "synthetic": {
+        "completed": 48000, "failed": 4560, "attempts": 52560,
+        "costPerCompletedTask": 0.02104666666666667,
+        "failureShare": 0.0867579908675799,
+        "errorBudgetMinutesPerMonth": 43.2,
+        "transportP95": 8, "backendP95": 7, "budgetOutside": false,
+        "usefulRate": 0.95, "qualityPins": ["usefulness-v1", "curriculum-2026-10-15", "gpt-4o"], "heldOut": true, "independentReview": true
+      }
+    }
+  },
+  "preExistingDefectFixed": {
+    "location": "backend/tests/contracts/data-04/invitations.test.mjs",
+    "finding": "hardcoded injected clock at = 2026-11-02T00:00Z; 7-day default expiry (2026-11-09T00:00Z) becomes strictly past vs real DB clock_timestamp on and after 2026-11-09, so every default invite threw InvitationPolicyError('expired') — 22/37 data-04 tests failed, reproduced byte-identically on pristine dev and identical to the fix already recorded on the BILL-06 branch (61ecc15e), which is not yet in dev",
+    "fix": "rolling per-run base Date.now() - 1 day, preserving the suite's own at+7d > now > at invariant deterministically within a run; test-fixture only, separate commit, no product/assertion change",
+    "productChange": false
+  },
+  "defectsFoundAndFixed": [
+    {
+      "where": "test suite (per-task-economics.test.mjs)",
+      "finding": "float precision on 43.2 minutes (43.20000000000004) and p95 expectation mismatch — first two drafts asserted exact equality", 
+      "fix": "tolerance assertion and p95 = smallest bucket whose cumulative share reaches 0.95",
+      "productChange": false
+    }
+  ],
+  "externalGatesNotClaimed": [
+    "Actual provider/model cost figures and the reviewed enforced live spend cap (configuration + provider-console gate; live keys prohibited here)",
+    "Calibrated human quality review (hosted evaluation gate; model requires pins and marks independent held-out review)",
+    "Hosted measurement of real outage minutes and production latency (release/load gate, RELEASE-01/02 lineage)",
+    "Real second-device/outage privacy-recovery evidence for affected operations (ACCEPT-04 classified under KAN-120, hosted)",
+    "Merchant/GA acceptance configuration and controlled cohort release (RELEASE-07, hosted)",
+    "D-095 reviewer approval and integration into dev"
+  ],
+  "hostedVerified": false,
+  "reviewer": "pending per D-095"
+}

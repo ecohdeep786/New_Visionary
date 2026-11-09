@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: histogram summary derives mean/p95 only from buckets and rejects malformed shapes
+ok 1 - histogram summary derives mean/p95 only from buckets and rejects malformed shapes
+  ---
+  duration_ms: 1.1178
+  type: 'test'
+  ...
+# Subtest: unit-economics law: failed attempts charge provider cost but never complete
+ok 2 - unit-economics law: failed attempts charge provider cost but never complete
+  ---
+  duration_ms: 0.5144
+  type: 'test'
+  ...
+# Subtest: failure share equals failed / attempts and is reported for the error budget
+ok 3 - failure share equals failed / attempts and is reported for the error budget
+  ---
+  duration_ms: 0.2194
+  type: 'test'
+  ...
+# Subtest: latency budgets: p95 measured against the documented transport/backend envelopes
+ok 4 - latency budgets: p95 measured against the documented transport/backend envelopes
+  ---
+  duration_ms: 0.1377
+  type: 'test'
+  ...
+# Subtest: quality is only measured with pinned rubric/source/model versions
+ok 5 - quality is only measured with pinned rubric/source/model versions
+  ---
+  duration_ms: 0.3223
+  type: 'test'
+  ...
+# Subtest: beta provenance is fail-closed: a measured claim must record window and population
+ok 6 - beta provenance is fail-closed: a measured claim must record window and population
+  ---
+  duration_ms: 0.2728
+  type: 'test'
+  ...
+# Subtest: spend admission is enforced, not alert-only: over-cap commits are refused, misconfigured cap refuses, off admits
+ok 7 - spend admission is enforced, not alert-only: over-cap commits are refused, misconfigured cap refuses, off admits
+  ---
+  duration_ms: 0.1373
+  type: 'test'
+  ...
+# Subtest: taskEconomicsToReport keeps provenance and only carries measured cost shapes into overrides
+ok 8 - taskEconomicsToReport keeps provenance and only carries measured cost shapes into overrides
+  ---
+  duration_ms: 0.2199
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 76.8607

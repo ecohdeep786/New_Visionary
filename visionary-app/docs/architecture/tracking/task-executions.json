@@ -2425,6 +2425,38 @@
         "changesRequestedComment": 10699,
         "transitionId": 31
       }
+    },
+    {
+      "jiraKey": "KAN-127",
+      "sourceId": "RELEASE-04",
+      "status": "Testing",
+      "branch": "zcode/kan-127-release04-per-task-economics",
+      "worktree": "C:/Users/Administrator/nv-worktrees/kan-127-release04",
+      "base": "2e0b1fbb",
+      "scope": "Measure useful-answer/artifact quality, latency/error budgets and cost per completed task including failed attempts, storage/egress, support and operations. Engineering half delivered end-to-end: enforced spend admission (product gate - explicit opt-in, fail-closed cap, typed 503 refusal, never alert-only; wired into the provider boundary; the subscription commit passes its committed value) + per-completed-task economics model (completed-only denominator; failed attempts charged but never completed; provider/storage/retained-inactive/egress/support/operations attributed separately; latency p95 vs the 20s/18s envelopes; 43.2-minute monthly error budget at the 99.9% objective; quality only from pinned rubric/source/model versions; beta provenance fail-closed). Hosted provider prices, reviewed live cap, calibrated human review and real outage/latency telemetry remain external gates (BILL-01 local-maximum)",
+      "review": {
+        "state": "pending",
+        "implementer": "Senior Principal Backend & ML Engineer (ZCode lane)"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN127_RELEASE04_PER_TASK_ECONOMICS_2026-11-09.md",
+      "currentCheckpoint": "fb9b38d7",
+      "verification": {
+        "releaseEconomics": "14/14 - spend-admission law 6 + per-task-economics 8",
+        "productionCheck": "exit 0 - locked compile 102/102, provisioning 11/11, data-04 37/37, privacy 52/52",
+        "npmRunCheck": "exit 0 - roots, 3842-file import baseline, qa laws, 122 script tests incl. new 8, surface audit, lint, typecheck, unit, build",
+        "legacyBilling": "22/22 byte-identical with the spend gate off",
+        "authorityAudit": "hash-only (2 sha256Lf lines), counts unchanged 55/6/12/16/32"
+      },
+      "notes": [
+        "Separate fixup commit 20cf2bbf: data-04 invitation-test clock time-bomb (frozen 2026-11-02 base expired on 2026-11-09) - pre-existing, test-fixture only, identical to the fix recorded on the BILL-06 branch (61ecc15e), not yet in dev",
+        "Depth on the unmerged reviewer stack: kan-102..129 deliveries + this branch await D-095"
+      ],
+      "remainingGates": [
+        "Actual provider/model cost figures and the reviewed enforced live spend cap (owner/provider-console gate)",
+        "Calibrated human quality review (hosted evaluation gate)",
+        "Hosted measurement of real outage minutes and production latency (release/load gate, RELEASE-01/02 lineage)",
+        "D-095 reviewer approval and integration into dev"
+      ]
     }
   ]
 }

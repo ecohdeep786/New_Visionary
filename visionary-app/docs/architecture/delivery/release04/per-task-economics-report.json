@@ -1,0 +1,84 @@
+{
+  "provenance": {
+    "completedTasks": {
+      "value": 48000,
+      "kind": "distribution",
+      "via": "completed tasks in the window — the denominator"
+    },
+    "failedAttempts": {
+      "value": 4560,
+      "kind": "distribution",
+      "via": "failed attempts — charged for provider cost, never completed"
+    },
+    "providerTotal": {
+      "value": 210.24,
+      "kind": "distribution",
+      "via": "mean provider charge per attempt x attempts — reliability law (failed attempts charged, never completed)"
+    },
+    "storageTotal": {
+      "value": 320,
+      "kind": "assumption",
+      "via": "attributable storage charges in the window"
+    },
+    "egressTotal": {
+      "value": 240,
+      "kind": "assumption",
+      "via": "attributable egress charges in the window"
+    },
+    "supportTotal": {
+      "value": 150,
+      "kind": "assumption",
+      "via": "attributable support charges in the window"
+    },
+    "operationsTotal": {
+      "value": 90,
+      "kind": "assumption",
+      "via": "attributable operations charges in the window"
+    },
+    "attributableTotal": {
+      "value": 1010.24,
+      "kind": "assumption",
+      "via": "sum of provider + storage + egress + support + operations"
+    },
+    "costPerCompletedTask": {
+      "value": 0.02104666666666667,
+      "kind": "assumption",
+      "via": "attributable total / completed tasks — unit-economics law"
+    }
+  },
+  "costPerCompletedTask": 0.02104666666666667,
+  "providerPerAttemptKind": "distribution",
+  "errorBudget": {
+    "allowedMinutesPerMonth": 43.20000000000004,
+    "objective": 0.999,
+    "failureShare": 0.0867579908675799
+  },
+  "latencyBudget": {
+    "transportBudgetSeconds": 20,
+    "backendBudgetSeconds": 18,
+    "providerBudgetSeconds": 14,
+    "observedTransportP95": 8,
+    "observedBackendP95": 7,
+    "withinTransportBudget": true,
+    "withinBackendBudget": true
+  },
+  "quality": {
+    "usefulRate": {
+      "value": 0.95,
+      "via": "useful-rate from pinned assessment (rubric usefulness-v1 / source curriculum-2026-10-15 / model gpt-4o)",
+      "kind": "distribution",
+      "p95": null
+    },
+    "reviewedIndependently": true,
+    "heldOut": true
+  },
+  "counts": {
+    "completed": 48000,
+    "failed": 4560,
+    "attempts": 52560
+  },
+  "capture": {
+    "source": "synthetic",
+    "measured": false
+  }
+}
