@@ -2425,6 +2425,33 @@
         "changesRequestedComment": 10699,
         "transitionId": 31
       }
+    },
+    {
+      "jiraKey": "KAN-124",
+      "sourceId": "RELEASE-01",
+      "status": "Testing",
+      "branch": "zcode/kan-124-release01-workload",
+      "worktree": "C:/Users/Administrator/nv-worktrees/kan-124-release01",
+      "base": "2e0b1fbb",
+      "scope": "Replace workload guesses with measured beta request/token/duration/byte distributions: polling, synchronized class starts, retries and Build/offline/voice/ASR/TTS demand, no double-counting turns; counting-law engine + fail-closed provenance + bridge into the D-075 cost engine; real beta capture remains a hosted gate",
+      "review": {
+        "state": "pending",
+        "implementer": "Senior Principal Backend & ML Engineer (ZCode lane)"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN124_RELEASE01_WORKLOAD_2026-11-08.md",
+      "currentCheckpoint": "6d4cc821",
+      "verification": {
+        "workloadTest": "scripts/tests/workload-model.test.mjs 10/10 via npm run workload:test (synthetic profile exercises every law)",
+        "costTest": "10/10 — existing cost engine untouched",
+        "npmRunCheck": "exit 0 — script-tests 124/124, continuity/motion/taps, import baseline 3842, surface audit, lint, typecheck, 672/672 unit, build",
+        "authorityAudit": "clean without regen — no backend src module added",
+        "surfaceAudit": "clean without regen — no frontend control file touched"
+      },
+      "remainingGates": [
+        "Real beta request/token/duration/byte distributions captured from the hosted beta (capture.source beta + windowStart/windowEnd/activeUsers/daysCaptured)",
+        "Cost projections built from a real beta profile",
+        "D-095 reviewer approval and integration into dev"
+      ]
     }
   ]
 }
