@@ -2425,6 +2425,36 @@
         "changesRequestedComment": 10699,
         "transitionId": 31
       }
+    },
+    {
+      "jiraKey": "KAN-117",
+      "sourceId": "ACCEPT-01",
+      "status": "Testing",
+      "branch": "zcode/kan-117-accept01-journey-rehearsal",
+      "worktree": "C:/Users/Administrator/nv-worktrees/kan-117-accept01",
+      "base": "2e0b1fbb",
+      "scope": "Exercise public pricing -> auth/verification -> onboarding -> Free profile -> test subscription -> invoice -> learning -> project -> second-device resume on the hosted system. Engineering half delivered end-to-end: the RELEASED journey chain rehearsed over the REAL production HTTP composition (configureProductionHttp) with Auth+Firestore emulators, a TLS terminator on the canonical loopback origin, the fictional payment provider, and a REAL disposable SQL staging schema for the personal-workspace step; failure states included (wrong-user 404, duplicate checkout 409, stale-revision 409, revision-bound cancel). Hosted walk with real adapters/staging/devices remains the ACCEPT-01 external gate (BILL-01 local-maximum). No product source change",
+      "review": {
+        "state": "pending",
+        "implementer": "Senior Principal Backend & ML Engineer (ZCode lane)"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN117_ACCEPT01_JOURNEY_REHEARSAL_2026-11-09.md",
+      "currentCheckpoint": "20b842ce",
+      "verification": {
+        "acceptJourney": "11/11 - journey chain + failure states over emulators + real SQL + TLS + fictional provider, zero network",
+        "npmRunCheck": "exit 0 - roots, 3842-file import baseline, qa laws, script tests, surface audit, lint, typecheck, unit, build",
+        "productSourceChange": "none (test/evidence only; authority inventory unchanged)"
+      },
+      "notes": [
+        "Adapted from the RELEASE-03 admission stack (same lane/author); the reviewer may dedupe the shared driver at merge",
+        "Depth on the unmerged reviewer stack: kan-102..129 + this branch await D-095"
+      ],
+      "remainingGates": [
+        "The hosted walk itself with real hosted adapters, real staging data and real devices/browsers (ACCEPT-01 exit)",
+        "Real merchant/provider adapters (Razorpay test/live wiring, real mail, real object storage)",
+        "Cross-family journey depth (durable change-feeds, offline, timed assessment, Build) on the queued Testing stack",
+        "D-095 reviewer approval and integration into dev"
+      ]
     }
   ]
 }
