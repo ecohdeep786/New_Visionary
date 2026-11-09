@@ -1,0 +1,79 @@
+{
+  "side": "before",
+  "behavior": "empty-state",
+  "url": "http://localhost:5174",
+  "started": "2026-11-09T06:04:01.266Z",
+  "stages": [
+    {
+      "stage": "wizard-step-0",
+      "title": "Make Visionary your own",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-0",
+      "didClick": [
+        {
+          "target": "I am a Teacher",
+          "level": 0,
+          "tag": "BUTTON",
+          "cls": "relative flex min-w-0 items-start gap-4 p-5 rounded-2xl bord"
+        }
+      ],
+      "personaState": {
+        "teacherPressed": 1,
+        "learnerPressed": 0
+      }
+    },
+    {
+      "stage": "wizard-step-1",
+      "title": "A little about you",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-1",
+      "didClick": [],
+      "personaState": {
+        "teacherPressed": 0,
+        "learnerPressed": 0
+      }
+    },
+    {
+      "stage": "wizard-step-2",
+      "title": "Make Visionary work for you",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "wizard-step-3",
+      "title": "Ready to start with Visionary?",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "onboard",
+      "sawDashboardish": true,
+      "finalUrl": "http://localhost:5174/dashboard/home",
+      "personaState": {
+        "teacherPressed": 0,
+        "learnerPressed": 0
+      }
+    },
+    {
+      "stage": "classes-empty"
+    }
+  ],
+  "emptyState": {
+    "url": "http://localhost:5174/dashboard/classes",
+    "h1": "Your classes",
+    "createControls": [
+      "Create class",
+      "Create your first class"
+    ],
+    "headerCreateCount": 1,
+    "firstClassCount": 1,
+    "totalCreateControls": 2,
+    "noClassesYet": true,
+    "readyMessage": false,
+    "text": "Skip to main content\nisionary\nActive workspace\nPersonal · Teacher\n+ Add a role\nFind teaching pages and tools\nCtrl K\nCreate a class\nGuide\nMicrophone idle. Text is always available.\nM\nHome\nPrepare\nClasses\nLearners\nInsights\n\nWorkspace tools\n\nAsk\nTeacher Growth\nLibrary\nBuild\nProgress\n\nPreferences & account\n\nNotifications\nPersonalization\nPrivacy\nPlans & usage\nYour classes\n\nCreate a class, add students, and start teaching\n\nCreate class\nNo classes yet\n\nCreate your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.\n\nCreate your first class\nGrow as a teacher"
+  },
+  "verdict": "PASS",
+  "finished": "2026-11-09T06:04:26.628Z"
+}

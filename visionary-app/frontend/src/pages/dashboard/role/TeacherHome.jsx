@@ -16,7 +16,10 @@ import { createTeacherClass } from "@/services/classroomService";
 /**
  * Teacher home — Google Classroom vibe with Visionary's AI layer on top.
  * Greeting → AI teaching insight (the moat) → real stats → classes grid.
- * One clear primary action: Create class. No plan redirects here.
+ * One clear primary action per state: the header "Create class" control shows
+ * when the class list exists (classes.length > 0); on an empty list the
+ * friendly "Create your first class" empty-state CTA is the page's only create
+ * affordance — never two equal create controls on one screen. No plan redirects here.
  */
 export default function TeacherHome() {
   const {
@@ -106,7 +109,7 @@ export default function TeacherHome() {
     icon: ClipboardList
   }];
   return <div className="v-page" lang={locale}>
-      <header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{copy("Your classes")}</h1><p className="v-muted mt-2">{copy("Create a class, add students, and start teaching")}</p></div><button onClick={()=>setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true"/>{copy("Create class")}</button></header>
+      <header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{copy("Your classes")}</h1><p className="v-muted mt-2">{copy("Create a class, add students, and start teaching")}</p></div>{classes.length > 0 && <button onClick={()=>setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true"/>{copy("Create class")}</button>}</header>
 
       {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"> {copy(error)}  <button onClick={load} className="ml-2 font-medium underline"> {copy("Retry")} </button></div>}
       {!loading && !error && classes.length > 0 && <TeacherInsightCard accent={accent} classes={classes} assignmentCount={assignmentCount} pendingReviews={pendingReviews} />}
