@@ -2425,6 +2425,37 @@
         "changesRequestedComment": 10699,
         "transitionId": 31
       }
+    },
+    {
+      "jiraKey": "KAN-107",
+      "sourceId": "BILL-06",
+      "status": "Testing",
+      "branch": "zcode/kan-107-bill06-invoice-integrity",
+      "worktree": "C:/Users/Administrator/nv-worktrees/kan-107-bill06",
+      "base": "2e0b1fbb",
+      "scope": "Preserve immutable original invoices (write-once charge documents) and accurate refunds (per-payment adjustment ledger, bounded + idempotent); do not invent legal fields (fail-closed until a reviewed merchant-policy record exists). Owner half - reviewed seller/tax/refund/commercial policy - recorded as the external gate",
+      "review": {
+        "state": "pending",
+        "implementer": "Senior Principal Backend & ML Engineer (ZCode lane)"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN107_BILL06_INVOICE_INTEGRITY_2026-11-09.md",
+      "currentCheckpoint": "ab1918b1",
+      "verification": {
+        "billingSuites": "71/71 (legacy 62 + billing-invoice-integrity 9)",
+        "productionCheck": "exit 0 - locked compile 111/111, provisioning 11/11, data-04 37/37, privacy 52/52",
+        "npmRunCheck": "exit 0 - lint, typecheck, 672/672 unit, build, laws",
+        "authorityAudit": "hash-only, counts unchanged"
+      },
+      "notes": [
+        "Separate fixup commit 61ecc15e: data-04 invitation-test clock time-bomb (frozen 2026-11-02 base expired on 2026-11-09) - pre-existing, test-fixture only",
+        "Depth on the unmerged reviewer stack: kan-102..124 + this branch await D-095"
+      ],
+      "remainingGates": [
+        "Reviewed seller/tax/invoice/refund/commercial policy and recurring-method acceptance for the actual merchant (owner)",
+        "Real live-merchant money acceptance (BILL-07 held gate)",
+        "Any invoice displaying legal/tax fields - refused until a reviewed policy record exists",
+        "D-095 reviewer approval and integration into dev"
+      ]
     }
   ]
 }
