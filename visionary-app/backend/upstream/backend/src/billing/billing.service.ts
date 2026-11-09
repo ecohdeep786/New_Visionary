@@ -4,7 +4,7 @@ import { FirebaseProductService } from '../auth/firebase-product/firebase-produc
 import { BILLING_PLANS, CATALOG_VERSION, externalId, offer, recordInput } from './catalog';
 import { BillingRepository } from './billing.repository';
 import { freeBillingAccount } from './billing-account';
-import { invoiceDocument } from './invoice';
+import { invoiceDocument, chargeDocument } from './invoice';
 import { BILLING_QUEUE, LEGACY_BILLING_ACCOUNTS } from '../auth/firebase-product/account-storage';
 import { PaymentProviderError, RazorpayProvider, validSignature } from './razorpay.provider';
 
@@ -164,6 +164,9 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       const invoiceResult = await this.provider.invoices(subId);
       if (!Array.isArray(invoiceResult.items)) throw new ServiceUnavailableException('Razorpay invoice confirmation is unavailable.');
       const receipts = [], candidates = invoiceResult.items.filter(inv => inv.subscription_id === subId && inv.status === 'paid');
+      // BILL-06 (KAN-107): confirmed refund adjustments are recorded on a
+      // separate per-payment ledger under the immutable invoice, never on it.
+      const refundAdjustments: any[] = [];
       let paidThrough = 0, paidFrom = 0;
       for (const invoice of candidates) {
         withinBudget();
@@ -175,7 +178,10 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
           if (payment.invoice_id !== invoice.id || payment.id !== invoice.payment_id || payment.amount !== invoice.amount || payment.currency !== 'INR' || payment.status !== 'captured' || payment.captured !== true) { paymentState = 'unconfirmed'; }
           refund = Number(payment.amount_refunded || 0);
           if (!Number.isInteger(refund) || refund < 0 || refund > invoice.amount) paymentState = 'unconfirmed';
-          if (paymentState === 'captured' && refund < invoice.amount && invoice.billing_start <= seconds() && invoice.billing_end > paidThrough) { paidFrom = invoice.billing_start; paidThrough = invoice.billing_end; }
+          if (paymentState === 'captured') {
+            if (refund > 0) refundAdjustments.push({ paymentId: invoice.payment_id, invoiceId: invoice.id, refunded: refund, currency: invoice.currency, amount: invoice.amount });
+            if (refund < invoice.amount && invoice.billing_start <= seconds() && invoice.billing_end > paidThrough) { paidFrom = invoice.billing_start; paidThrough = invoice.billing_end; }
+          }
         }
         receipts.push(invoiceDocument(uid, { id: invoice.id, number: `VTEST-${invoice.id.slice(4)}`, mode: 'test', plan: claimed.subscription.plan, interval: claimed.subscription.interval, amount: invoice.amount, billedTo: claimed.subscription.billedTo, currency: 'INR', issuedAt: iso(invoice.issued_at || invoice.date || invoice.paid_at), paidAt: iso(invoice.paid_at), periodStart: iso(invoice.billing_start), periodEnd: iso(invoice.billing_end), subscriptionId: subId, paymentId: invoice.payment_id, status: refund >= invoice.amount ? 'refunded' : refund > 0 ? 'partially_refunded' : paymentState === 'captured' ? 'paid' : 'processing', amountRefunded: refund }));
       }
@@ -187,14 +193,34 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
         const original = await this.repo.safely(async () => (await this.repo.receipt(uid, mapping.invoiceId).get()).data());
         if (!original) continue;
         const payment = await this.provider.payment(paymentId);
+        // Accurate refund bounds: the payment must reference the exact invoice and
+        // the refunded amount must be an integer within [0, original amount]; any
+        // mismatch is refused (never silently applied).
         if (payment.id !== paymentId || payment.invoice_id !== original.id || payment.amount !== original.amount || payment.currency !== original.currency || !Number.isInteger(payment.amount_refunded || 0) || payment.amount_refunded < 0 || payment.amount_refunded > original.amount) throw new ServiceUnavailableException('A payment adjustment could not be confirmed.');
         const refunded = payment.amount_refunded || 0;
+        refundAdjustments.push({ paymentId, invoiceId: original.id, refunded, currency: original.currency, amount: original.amount });
         receipts.push({ ...original, amountRefunded: refunded, status: refunded >= original.amount ? 'refunded' : refunded > 0 ? 'partially_refunded' : original.status });
       }
-      await this.update(uid, (current, tx) => {
+      await this.update(uid, async (current, tx) => {
         if (current.syncLease?.id !== lease || current.subscription?.id !== subId) return null;
         const history = new Map((current.invoices || []).map(row => [row.id, row]));
-        for (const receipt of receipts) { history.set(receipt.id, receipt); tx.set(this.repo.receipt(uid, receipt.id), { ...receipt, uid }); tx.set(this.repo.db().collection('visionary_billing_test_payments').doc(receipt.paymentId), { uid, invoiceId: receipt.id, subscriptionId: receipt.subscriptionId, merchant: fingerprint(this.provider.settings().keyId) }); }
+        const invoiceRefs = receipts.map(receipt => this.repo.receipt(uid, receipt.id));
+        // Reads first, then writes (read-before-write order a transaction requires).
+        const prior = await Promise.all(invoiceRefs.map(ref => tx.get(ref)));
+        for (let index = 0; index < receipts.length; index++) {
+          const receipt = receipts[index];
+          history.set(receipt.id, receipt);
+          // The immutable invoice document holds the ORIGINAL charge only; derived
+          // display state (status/amountRefunded) lives in the account list, never
+          // on the document. A rewrite that changes a charge fact is refused.
+          const candidate = chargeDocument(uid, receipt);
+          this.repo.assertImmutableInvoice(prior[index].exists ? prior[index].data() : null, candidate);
+          if (!prior[index].exists) tx.create(invoiceRefs[index], candidate);
+          tx.set(this.repo.db().collection('visionary_billing_test_payments').doc(receipt.paymentId), { uid, invoiceId: receipt.id, subscriptionId: receipt.subscriptionId, merchant: fingerprint(this.provider.settings().keyId) });
+        }
+        for (const adjustment of refundAdjustments) {
+          tx.set(this.repo.adjustment(uid, adjustment.invoiceId, adjustment.paymentId), { uid, invoiceId: adjustment.invoiceId, paymentId: adjustment.paymentId, amountRefunded: adjustment.refunded, currency: adjustment.currency, amount: adjustment.amount, recordedAt: Date.now() });
+        }
         current.paymentAdjustments = (current.paymentAdjustments || []).filter(id => !adjustments.includes(id));
         if (terminal.has(sub.status)) current.cancelRequested = false;
         return { ...current, subscription: { ...current.subscription, status: sub.status, periodStart: sub.current_start || 0, periodEnd: sub.current_end || 0, chargeAt: sub.charge_at || 0, paidFrom, paidThrough, paymentMethod: sub.payment_method || null }, attempt: current.attempt?.subscriptionId === subId ? { ...current.attempt, state: paidThrough > seconds() ? 'succeeded' : terminal.has(sub.status) ? 'ended' : 'processing' } : current.attempt, invoices: [...history.values()].sort((a: any, b: any) => String(b.paidAt).localeCompare(String(a.paidAt))).slice(0, 50), lastSyncedAt: Date.now(), syncLease: null, nextSyncAt: terminal.has(sub.status) && !paidThrough ? Date.now() + 86400000 : Date.now() + 60000 };

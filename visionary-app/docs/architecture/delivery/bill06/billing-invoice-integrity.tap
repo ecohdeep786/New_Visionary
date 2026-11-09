@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: chargeDocument strips derived display state so no refund can mutate the original
+ok 1 - chargeDocument strips derived display state so no refund can mutate the original
+  ---
+  duration_ms: 0.8431
+  type: 'test'
+  ...
+# Subtest: an invoice document is written once and a rewrite mutating a charge fact is refused
+ok 2 - an invoice document is written once and a rewrite mutating a charge fact is refused
+  ---
+  duration_ms: 6.2676
+  type: 'test'
+  ...
+# Subtest: a full refund never mutates the original document; the refund is a separate adjustment and the view projects refunded
+ok 3 - a full refund never mutates the original document; the refund is a separate adjustment and the view projects refunded
+  ---
+  duration_ms: 3.9658
+  type: 'test'
+  ...
+# Subtest: a partial refund keeps the original and the projection shows partially_refunded
+ok 4 - a partial refund keeps the original and the projection shows partially_refunded
+  ---
+  duration_ms: 2.4818
+  type: 'test'
+  ...
+# Subtest: repeated refund notifications are idempotent: one adjustment record per payment
+ok 5 - repeated refund notifications are idempotent: one adjustment record per payment
+  ---
+  duration_ms: 3.6398
+  type: 'test'
+  ...
+# Subtest: accurate refund bounds: an out-of-range refunded amount is refused, never applied
+ok 6 - accurate refund bounds: an out-of-range refunded amount is refused, never applied
+  ---
+  duration_ms: 3.637
+  type: 'test'
+  ...
+# Subtest: no legal field is invented: the guard refuses tax, seller registration and legal-invoice claims
+ok 7 - no legal field is invented: the guard refuses tax, seller registration and legal-invoice claims
+  ---
+  duration_ms: 0.6759
+  type: 'test'
+  ...
+# Subtest: no reviewed merchant policy exists, so no stored invoice carries a legal field
+ok 8 - no reviewed merchant policy exists, so no stored invoice carries a legal field
+  ---
+  duration_ms: 2.5028
+  type: 'test'
+  ...
+# Subtest: every immutable field on a stored document is covered by the guard list
+ok 9 - every immutable field on a stored document is covered by the guard list
+  ---
+  duration_ms: 1.5723
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 823.2548

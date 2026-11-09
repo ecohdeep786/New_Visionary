@@ -1,0 +1,78 @@
+{
+  "task": "BILL-06",
+  "jira": "KAN-107",
+  "title": "Preserve immutable original invoices and accurate refunds; do not invent legal fields (reviewed merchant/tax policy = external gate)",
+  "branch": "zcode/kan-107-bill06-invoice-integrity",
+  "base": "2e0b1fbb",
+  "date": "2026-11-09",
+  "checklistLine": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md P09 BILL-06",
+  "scope": "Engineering half of BILL-06 delivered end-to-end; owner half (reviewed merchant/tax/invoice/refund/commercial policy + recurring-method acceptance) recorded as external gate per BILL-01 local-maximum.",
+  "laws": [
+    "write-once invoice document: charge facts (id, number, currency, amount, plan, interval, periods, issued/paid, subscription/payment ids, billedTo, seller, lineItems, totals, recordKind) never change after first write; a mutation is a typed 503, never a silent overwrite",
+    "refund-not-mutating: derived status/amountRefunded never stored on the document; a refund is a separate write-once per-payment adjustment under the invoice; the account view projects refund state at read time",
+    "accurate refund bounds: integer 0 <= amountRefunded <= original amount, exact payment->invoice refs; out-of-range or mismatch refuses (never applied); repeated notifications idempotent (one adjustment per payment id)",
+    "no invented legal fields: tax figure, seller GST/registration/address and legalTaxInvoice claims are hard errors without a reviewed merchant-policy record; the policy record would be the sole authorized source",
+    "transaction order reads-then-writes (matches both the transactional double's contract and Firestore best practice)"
+  ],
+  "changedFiles": {
+    "new": [
+      "backend/tests/billing-invoice-integrity.test.cjs",
+      "docs/architecture/delivery/BILL06_INVOICE_INTEGRITY.md",
+      "docs/architecture/delivery/bill06/billing-invoice-integrity.tap",
+      "docs/architecture/delivery/bill06/evidence.json",
+      "docs/architecture/reviews/KAN107_BILL06_INVOICE_INTEGRITY_2026-11-09.md"
+    ],
+    "modified": [
+      "backend/upstream/backend/src/billing/invoice.ts",
+      "backend/upstream/backend/src/billing/billing.repository.ts",
+      "backend/upstream/backend/src/billing/billing.service.ts",
+      "scripts/production-check.mjs",
+      "integration/contracts/operation-authority.v1.json",
+      "docs/architecture/tracking/task-executions.json",
+      "backend/tests/contracts/data-04/invitations.test.mjs"
+    ]
+  },
+  "evidence": {
+    "suite": {
+      "file": "backend/tests/billing-invoice-integrity.test.cjs",
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "tap": "docs/architecture/delivery/bill06/billing-invoice-integrity.tap",
+      "provider": "fictional in-memory over real BillingService/BillingRepository + billing-memory double; zero network"
+    },
+    "gates": [
+      { "gate": "billing + account-storage + firebase-product regressions + new 9", "result": "71/71 pass" },
+      { "gate": "node scripts/production-check.mjs", "result": "locked compile 111/111 (incl. 9 invoice-integrity); provisioning 11/11; data-04 37/37; privacy 52/52; exit 0" },
+      { "gate": "npm run check", "result": "exit 0 (roots, 3842-file import baseline + 10 patches, continuity/motion/taps, surface audit, lint, typecheck, npm test 672/672, build)" },
+      { "gate": "npm run lint", "result": "exit 0" },
+      { "gate": "npm run typecheck", "result": "exit 0" },
+      { "gate": "node scripts/authority-audit.mjs --write", "result": "hash-only (2 sha256Lf lines), counts unchanged 55/6/12/16/32" }
+    ]
+  },
+  "preExistingDefectFixed": {
+    "location": "backend/tests/contracts/data-04/invitations.test.mjs",
+    "finding": "hardcoded injected clock at = 2026-11-02T00:00Z; 7-day default expiry (2026-11-09T00:00Z) becomes strictly past vs real DB clock_timestamp on and after 2026-11-09, so every default invite threw InvitationPolicyError('expired') — 22/37 data-04 tests failed, reproduced byte-identically on a pristine dev worktree (NOT caused by this change)",
+    "fix": "rolling per-run base Date.now() - 1 day, preserving the suite's own at+7d > now > at invariant deterministically within a run; test-fixture only, separate commit, no product/assertion change",
+    "productChange": false
+  },
+  "defectsFoundAndFixed": [
+    {
+      "where": "test suite (billing-invoice-integrity.test.cjs)",
+      "finding": "assert.throws(() => service.sync(...)) cannot catch an async promise rejection; bad bounds tests reported 'Missing expected exception'. Fixed with assert.rejects.",
+      "productChange": false
+    },
+    {
+      "where": "transaction (sync())",
+      "finding": "initial writeOnceInvoice-per-receipt interleaved reads and writes, violating the billing-memory double's reads-before-writes contract. Restructured to read-all-then-write-all.",
+      "productChange": true
+    }
+  ],
+  "externalGatesNotClaimed": [
+    "Reviewed seller/tax/invoice/refund/commercial policy and recurring-method acceptance for the actual merchant (owner/merchant gate — the owner half of BILL-06).",
+    "Real live-merchant money acceptance (BILL-07 held gate).",
+    "Any invoice displaying legal/tax fields — refuse until a reviewed policy record exists."
+  ],
+  "hostedVerified": false,
+  "reviewer": "pending per D-095"
+}

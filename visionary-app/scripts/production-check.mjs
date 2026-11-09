@@ -22,7 +22,7 @@ try {
   cpSync(join(root, 'backend/upstream/backend/prisma/schema.prisma'), join(backend, 'prisma/schema.prisma'));
   symlinkSync(realpathSync(join(runtime, 'node_modules')), join(backend, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
   run([join(runtime, 'node_modules/prisma/build/index.js'), 'generate', '--schema', join(backend, 'prisma/schema.prisma')], backend);
-  const tests = ['firebase-admin', 'firebase-product', 'account-storage', 'billing', 'feedback', 'production-http'];
+  const tests = ['firebase-admin', 'firebase-product', 'account-storage', 'billing', 'billing-invoice-integrity', 'feedback', 'production-http'];
   // Main predates the independently delivered account-directory feature. Its
   // source and regressions must arrive together when that feature is released.
   const hasDirectory = existsSync(join(backend, 'src/auth/firebase-product/account-directory.ts'));
