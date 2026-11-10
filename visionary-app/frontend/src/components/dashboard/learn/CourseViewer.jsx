@@ -166,8 +166,8 @@ export default function CourseViewer({
         </div>
       </header>
       <div className="min-h-[280px] p-5 sm:p-8">
-        {loading ? <p role="status" className="flex items-center justify-center gap-3 py-16 text-sm text-[#5f6368]"><Loader2 className="h-5 w-5 animate-spin" /> {copy("Preparing an explanation")}</p> : lesson ? <div lang={topic.locale || undefined}><ReactMarkdown className="prose prose-sm max-w-none break-words text-[#5f6368] [&_pre]:overflow-x-auto">{lesson}</ReactMarkdown></div> : <div className="flex flex-col items-center gap-3 py-10 text-center"><BookOpen className="h-8 w-8 text-[#5f6368]" /><h3 className="text-base font-medium">{copy("Your topic is ready to explore")}</h3><p className="max-w-md text-sm leading-6 text-[#5f6368]">{copy("Published lesson content will appear here when available. Keep a question, connect with your class, or request an explanation.")}</p><button onClick={generateLesson} className="mt-2 inline-flex items-center gap-2 rounded-full border border-[#dadce0] px-5 py-2 text-sm font-medium" style={{
-          color: theme.accent
+        {loading ? <p role="status" className="flex items-center justify-center gap-3 py-16 text-sm text-[#5f6368]"><Loader2 className="h-5 w-5 animate-spin" /> {copy("Preparing an explanation")}</p> : lesson ? <div lang={topic.locale || undefined}><ReactMarkdown className="prose prose-sm max-w-none break-words text-[#5f6368] [&_pre]:overflow-x-auto">{lesson}</ReactMarkdown></div> : <div className="flex flex-col items-center gap-3 py-10 text-center"><BookOpen className="h-8 w-8 text-[#5f6368]" /><h3 className="text-base font-medium">{copy("Your topic is ready to explore")}</h3><p className="max-w-md text-sm leading-6 text-[#5f6368]">{copy("Published lesson content will appear here when available. Keep a question, connect with your class, or request an explanation.")}</p><button onClick={generateLesson} className="v-accent-ink mt-2 inline-flex items-center gap-2 rounded-full border border-[#dadce0] px-5 py-2 text-sm font-medium" style={{
+          "--v-user-accent": theme.accent
         }}><Sparkles className="h-4 w-4" /> {copy("Request explanation")}</button></div>}
         {backupFailure&&<p className="v-notice v-error" role="alert"><span lang="en">{error}</span> <button type="button" className="v-button" onClick={()=>setBackupRetry(value=>value+1)}>{copy("Retry question recovery")}</button></p>}
         {error&&!backupFailure && <p lang="en" role="alert" className="mt-4 rounded-lg border border-[#dadce0] bg-[#ffffff] p-4 text-sm leading-6 text-[#5f6368]">{error}</p>}
@@ -179,8 +179,8 @@ export default function CourseViewer({
       <form onSubmit={saveQuestion} className="border-t border-[#dadce0] p-5"><label htmlFor="lesson-question" className="mb-3 block text-sm font-medium">{copy("Keep a question for later")}</label><div className="flex items-center gap-2 rounded-lg border border-[#dadce0] p-2"><input disabled={saving} id="lesson-question" maxLength={6000} value={question} onChange={e => {
           setQuestion(e.target.value);
           setSaved(false);
-        }} placeholder={copy("What would you like to understand?")} className="min-w-0 flex-1 bg-transparent px-2 text-sm outline-none" /><button disabled={saving || !question.trim()} title={copy("Save question")} aria-label={copy("Save question")} className="rounded-full p-2 text-white disabled:opacity-40" style={{
-          backgroundColor: theme.accent
+        }} placeholder={copy("What would you like to understand?")} className="min-w-0 flex-1 bg-transparent px-2 text-sm outline-none" /><button disabled={saving || !question.trim()} title={copy("Save question")} aria-label={copy("Save question")} className="v-accent-fill rounded-full p-2 text-white disabled:opacity-40" style={{
+          "--v-user-accent": theme.accent
         }}><Send className="h-4 w-4" /></button></div>{saved && <p role="status" className="mt-3 flex items-center gap-2 text-sm text-[#137333]"><Check className="h-4 w-4" /> {copy("Question saved.")} <Link to={`/dashboard/ask?${context}`} state={{
           initialQuestion: savedQuestion
         }} className="underline">{copy("Open this question in Ask")}</Link></p>}</form>

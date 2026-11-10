@@ -563,6 +563,11 @@ body:has(.visionary-workspace) #root > a[href="#main"] {display: none}
 .visionary-workspace .cube-stage {background: var(--v-soft)}
 .visionary-workspace .learning-cube span {background: color-mix(in srgb,var(--v-soft) 85%,transparent);color: var(--v-action);border-color: var(--v-action);font-size: 1.25rem}
 .visionary-workspace :is(.v-field,input,select,textarea) {accent-color: var(--v-action)}
+/* FAP-80 accent paint: light mode keeps the learner's chosen accent through a
+   custom property; dark mode yields to the semantic action pair so inline
+   accents can never strand a light literal on a dark surface. */
+.visionary-workspace .v-accent-ink {color: var(--v-user-accent,var(--v-action))}
+.visionary-workspace .v-accent-fill {background-color: var(--v-user-accent,var(--v-action));color:#fff}
 /* Voice remains an explicit tool. State text and controls scale independently
    of its decorative preview, with a quiet semantic surface in either theme. */
 body:has(.visionary-workspace) .workspace-voice-panel {max-height: calc(100dvh - 1.5rem);overflow-y: auto}
@@ -651,7 +656,34 @@ body:has(.visionary-workspace) .workspace-voice-preview-glow {display: none}
     & :is([class~="text-[#b3261e]"],[class~="text-[#d93025]"],[class~="text-[#dd483c]"]) {color: var(--v-error)}
     & [class~="bg-[#fef7e0]"] {background-color: var(--v-warning-soft)}
     & :is([class~="text-[#b06000]"],[class~="text-[#fbbc05]"]) {color: var(--v-warning)}
+    /* FAP-80: the remaining legacy palette classes in dashboard source join the
+       token contract. Every value below is dark-only; light mode keeps the
+       authored literal. bg-[#121317]/40 is deliberately absent: it is an image
+       scrim whose dark wash is the legibility device in both color schemes. */
+    & :is([class~="text-[#0b57d2]"],[class~="text-[#0b57d0]"],[class~="text-[#4285f4]"]) {color: var(--v-action)}
+    & :is([class~="hover:text-[#4285f4]"],[class~="hover:text-[#0b57d2]"]):hover {color: var(--v-action-hover)}
+    & [class~="hover:text-[#121317]"]:hover {color: var(--v-text)}
+    & [class~="text-[#dadce0]"] {color: var(--v-border)}
+    & [class~="text-[#6e6e73]"] {color: var(--v-muted)}
+    & [class~="placeholder:text-[#5f6368]"]::placeholder {color: var(--v-muted);opacity: 1}
+    & [class~="disabled:text-[#5f6368]"]:disabled {color: var(--v-muted)}
+    & :is([class~="bg-[#0b57d2]"],[class~="bg-[#4285f4]"]) {background-color: var(--v-action);color: var(--v-on-action)}
+    & [class~="bg-[#dadce0]"] {background-color: var(--v-raised)}
+    & [class~="hover:bg-[#dadce0]"]:hover {background-color: var(--v-soft)}
+    & [class~="bg-[#e8f0fe]"] {background-color: var(--v-soft)}
+    & [class~="bg-[#1d1d1f]"] {background-color: var(--v-text)}
+    & [class~="bg-[#121317]/5"] {background-color: var(--v-raised)}
+    & :is([class~="border-[#dadce0]"],[class~="border-[#dadce0]/60"],[class~="border-[#dadce0]/50"],[class~="border-[#dadce0]/40"],[class~="border-[#dadce0]/20"],[class~="border-[#d2d2d7]"]) {border-color: var(--v-border)}
+    & [class~="border-[#0b57d2]"] {border-color: var(--v-action)}
+    & [class~="focus:border-[#4285f4]"]:focus {border-color: var(--v-action)}
+    & :is([class~="divide-[#dadce0]"],[class~="divide-[#e2e8f0]"]) > :not([hidden]) ~ :not([hidden]) {border-color: var(--v-border)}
+    & [class~="ring-[#4285f4]"] {--tw-ring-color: var(--v-action)}
+    & [class~="ring-[#dadce0]"] {--tw-ring-color: var(--v-border)}
   }
+  /* FAP-80: accent paint yields to the action tokens in dark, so an inline
+     user accent can never paint a light literal on a dark surface. */
+  .visionary-workspace .v-accent-ink {color: var(--v-action)}
+  .visionary-workspace .v-accent-fill {background-color: var(--v-action);color: var(--v-on-action)}
   body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {background: var(--v-surface);border-color: var(--v-border)}
   .visionary-workspace :is(.guide-mobile-tabs,.guide-entry-context) {background: var(--v-canvas)}
   .visionary-workspace .guide-mobile-tabs [aria-selected="false"] {background: var(--v-surface);color: var(--v-muted)}
