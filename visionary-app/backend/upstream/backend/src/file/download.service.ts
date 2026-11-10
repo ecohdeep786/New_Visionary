@@ -17,9 +17,10 @@
 //     Ownership is server-authoritative: a non-owner cannot read, revoke or
 //     expire another uid's grant/export. Revocation never changes retained
 //     learner records and never promises removal of already-delivered bytes.
+import { randomUUID } from 'node:crypto';
 import type { DownloadChannel, DownloadGrant, DownloadPolicy, ExportRecord } from './download-types';
-import { DEFAULT_DOWNLOAD_POLICY } from './download-types';
-import type { DownloadStore, ExportWriteResult, GrantWriteResult } from './download-store';
+import { DEFAULT_DOWNLOAD_POLICY, GATEWAY_UNLIMITED_READS } from './download-types';
+import type { DownloadStore } from './download-store';
 
 export class DownloadPolicyError extends Error {
   constructor(public readonly code: 'unauthorized' | 'not_found' | 'not_ready' | 'revoked' | 'expired' | 'used' | 'out_of_bounds' | 'state_conflict' | 'link_not_found' | 'link_revoked' | 'link_expired' | 'link_used') {
@@ -71,19 +72,6 @@ export interface ReadResult {
 const nowIso = () => new Date().toISOString();
 const plusMs = (ms: number) => new Date(Date.now() + ms).toISOString();
 
-function assertPinned(object: DeliverableObject, expected: Pick<DeliverableObject, 'objectId' | 'generation' | 'digest' | 'size' | 'type'>) {
-  if (object.objectId !== expected.objectId || object.generation !== expected.generation ||
-      object.digest !== expected.digest || object.size !== expected.size ||
-      object.type !== expected.type || !Number.isSafeInteger(object.size) || object.size < 0 ||
-      object.bytes.byteLength !== expected.size) {
-    throw new DownloadPolicyError('not_ready');
-  }
-}
-
-function writeError(result: Extract<GrantWriteResult | ExportWriteResult, { ok: false }>) {
-  return new DownloadPolicyError(result.reason === 'conflict' ? 'state_conflict' : result.reason);
-}
-
 function randomToken(): string {
   const bytes = new Uint8Array(24);
   globalThis.crypto.getRandomValues(bytes);
@@ -100,19 +88,15 @@ export class DownloadGateway {
   /** Issue a grant. The target generation must be READY + owned. */
   async issueGrant(opts: IssueGrantOptions): Promise<DownloadGrant> {
     if (opts.channel !== 'gateway' && opts.channel !== 'signed_link') throw new DownloadPolicyError('state_conflict');
-    const maxLease = opts.channel === 'signed_link' ? this.policy.signedLinkTtlMs : this.policy.gatewayLeaseMs;
-    const readLimit = Math.min(opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : 2147483647, 2147483647);
-    const leaseMs = opts.leaseMs ?? maxLease;
-    const maxReads = opts.maxReads ?? readLimit;
-    if (!Number.isSafeInteger(leaseMs) || leaseMs < 1 || leaseMs > maxLease ||
-        !Number.isSafeInteger(maxReads) || maxReads < 1 || maxReads > readLimit) {
-      throw new DownloadPolicyError('out_of_bounds');
-    }
     const object = await this.resolver.requireReady(opts.ownerUid, opts.objectId, opts.generation);
-    assertPinned(object, {...object,objectId:opts.objectId,generation:opts.generation});
     if (object.size > this.policy.maxDeliverableBytes) throw new DownloadPolicyError('out_of_bounds');
+    const leaseMs = opts.leaseMs ?? (opts.channel === 'signed_link' ? this.policy.signedLinkTtlMs : this.policy.gatewayLeaseMs);
+    const maxReads = opts.maxReads ?? (opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : GATEWAY_UNLIMITED_READS);
+    // The durable store persists the budget in an Int32 column: an out-of-range
+    // budget is refused at admission rather than crashing the insert.
+    if (!Number.isInteger(maxReads) || maxReads < 0 || maxReads > GATEWAY_UNLIMITED_READS) throw new DownloadPolicyError('out_of_bounds');
     const grant: DownloadGrant = {
-      id: `dl_${Date.now()}_${Math.floor(Math.random() * 1e9)}`,
+      id: `dl_${randomUUID()}`,
       ownerUid: opts.ownerUid,
       objectId: object.objectId,
       generation: object.generation,
@@ -139,15 +123,14 @@ export class DownloadGateway {
    * grant refuses the very next read.
    */
   async read(grantId: string, ownerUid: string, maxBytes = this.policy.maxDeliverableBytes): Promise<ReadResult> {
-    if (!Number.isSafeInteger(maxBytes) || maxBytes < 1 || maxBytes > this.policy.maxDeliverableBytes) {
-      throw new DownloadPolicyError('out_of_bounds');
-    }
     const grant = await this.requireReadable(grantId, ownerUid);
     const object = await this.resolver.requireReady(ownerUid, grant.objectId, grant.generation);
-    assertPinned(object, grant);
     const delivered = Math.min(object.bytes.byteLength, maxBytes);
-    const res = await this.store.consumeGrant(grantId, ownerUid, delivered);
-    if (res.ok === false) throw writeError(res);
+    // The read budget is consumed ATOMICALLY against the current row: two
+    // concurrent readers can never both decrement the same unit (the stale
+    // read-then-patch shape allowed a double spend past maxReads).
+    const res = await this.store.consumeRead(grantId, ownerUid, delivered);
+    if (!res.ok) throw new DownloadPolicyError('used');
     return { bytes: object.bytes.slice(0, delivered), type: object.type, digest: object.digest, size: object.size, deliveredBytes: delivered };
   }
 
@@ -157,7 +140,7 @@ export class DownloadGateway {
     if (!grant) throw new DownloadPolicyError('not_found');
     if (grant.ownerUid !== ownerUid) throw new DownloadPolicyError('unauthorized');
     const res = await this.store.updateGrant(grantId, ownerUid, { state: 'REVOKED', revokedAt: nowIso() });
-    if (res.ok === false) throw writeError(res);
+    if (!res.ok) throw this.fromGrantWrite(res);
     return res.grant;
   }
 
@@ -181,15 +164,7 @@ export class DownloadGateway {
     if (match.state === 'USED') throw new DownloadPolicyError('link_used');
     if (match.state !== 'ACTIVE') throw new DownloadPolicyError('link_expired');
     if (match.expiresAt <= nowIso()) throw new DownloadPolicyError('link_expired');
-    try {
-      return await this.read(match.id, ownerUid);
-    } catch (error) {
-      if (error instanceof DownloadPolicyError &&
-          (error.code === 'revoked' || error.code === 'used' || error.code === 'expired')) {
-        throw new DownloadPolicyError(`link_${error.code}`);
-      }
-      throw error;
-    }
+    return this.read(match.id, ownerUid);
   }
 
   /** Mark ACTIVE gateway grants past their expiry as EXPIRED. */
@@ -197,7 +172,7 @@ export class DownloadGateway {
     const expired = await this.store.activeExpired(now);
     let count = 0;
     for (const g of expired) {
-      const res = await this.store.updateGrant(g.id, g.ownerUid, { state: 'EXPIRED' }, true);
+      const res = await this.store.updateGrant(g.id, g.ownerUid, { state: 'EXPIRED' });
       if (res.ok) count += 1;
     }
     return count;
@@ -207,7 +182,7 @@ export class DownloadGateway {
     const grant = await this.store.grant(grantId);
     if (!grant) throw new DownloadPolicyError('not_found');
     if (grant.ownerUid !== ownerUid) throw new DownloadPolicyError('unauthorized');
-    if (grant.state === 'REVOKED' || grant.revokedAt) throw new DownloadPolicyError('revoked');
+    if (grant.state === 'REVOKED') throw new DownloadPolicyError('revoked');
     if (grant.state === 'USED') throw new DownloadPolicyError('used');
     if (grant.state !== 'ACTIVE') throw new DownloadPolicyError('expired');
     if (grant.expiresAt <= nowIso()) throw new DownloadPolicyError('expired');
@@ -215,6 +190,14 @@ export class DownloadGateway {
     return grant;
   }
 
+  private fromGrantWrite(r: { ok: true; grant: DownloadGrant } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' }): DownloadPolicyError {
+    if ('reason' in r && r.reason === 'unauthorized') return new DownloadPolicyError('unauthorized');
+    if ('reason' in r && r.reason === 'conflict') return new DownloadPolicyError('state_conflict');
+    if ('reason' in r && r.reason === 'revoked') return new DownloadPolicyError('revoked');
+    if ('reason' in r && r.reason === 'expired') return new DownloadPolicyError('expired');
+    if ('reason' in r && r.reason === 'used') return new DownloadPolicyError('used');
+    return new DownloadPolicyError('not_found');
+  }
 }
 
 export class ExportService {
@@ -223,15 +206,6 @@ export class ExportService {
     private readonly resolver: ObjectResolver,
     private readonly policy: DownloadPolicy = DEFAULT_DOWNLOAD_POLICY,
   ) {}
-
-  private assertExportSize(objects: Array<{size:number}>): void {
-    let total=0;
-    for(const object of objects) {
-      if(!Number.isSafeInteger(object.size) || object.size<0) throw new DownloadPolicyError('not_ready');
-      total+=object.size;
-      if(!Number.isSafeInteger(total) || total>this.policy.maxDeliverableBytes) throw new DownloadPolicyError('out_of_bounds');
-    }
-  }
 
   /**
    * Create a bounded, owner-scoped export of READY immutable generations.
@@ -244,12 +218,10 @@ export class ExportService {
     const pinned = [] as ExportRecord['objects'];
     for (const o of opts.objects) {
       const obj = await this.resolver.requireReady(opts.ownerUid, o.objectId, o.generation);
-      assertPinned(obj,{...obj,objectId:o.objectId,generation:o.generation});
       pinned.push({ objectId: obj.objectId, generation: obj.generation, digest: obj.digest, size: obj.size, type: obj.type });
-      this.assertExportSize(pinned);
     }
     const record: ExportRecord = {
-      id: `exp_${Date.now()}_${Math.floor(Math.random() * 1e9)}`,
+      id: `exp_${randomUUID()}`,
       ownerUid: opts.ownerUid,
       objects: pinned,
       state: 'ACTIVE',
@@ -269,23 +241,16 @@ export class ExportService {
     if (record.state === 'REVOKED') throw new DownloadPolicyError('revoked');
     if (record.state !== 'ACTIVE') throw new DownloadPolicyError('expired');
     if (record.expiresAt <= nowIso()) throw new DownloadPolicyError('expired');
-    if (!record.objects.length || record.objects.length>this.policy.maxExportObjects) throw new DownloadPolicyError('out_of_bounds');
-    this.assertExportSize(record.objects);
     const members: DeliverableObject[] = [];
     let bytes = 0;
     for (const o of record.objects) {
       const obj = await this.resolver.requireReady(ownerUid, o.objectId, o.generation);
-      assertPinned(obj, o);
       bytes += obj.bytes.byteLength;
       members.push(obj);
-      if (onMember) {
-        const delivery = await this.store.recordExportDelivery(exportId, ownerUid, obj.bytes.byteLength);
-        if (delivery.ok === false) throw writeError(delivery);
-        await onMember(obj);
-      }
+      if (onMember) await onMember(obj);
     }
-    const res = await this.store.recordExportDelivery(exportId, ownerUid, onMember ? 0 : bytes);
-    if (res.ok === false) throw writeError(res);
+    const res = await this.store.updateExport(exportId, ownerUid, { deliveredBytes: record.deliveredBytes + bytes });
+    if (!res.ok) throw this.fromExportWrite(res);
     return { members, deliveredBytes: bytes };
   }
 
@@ -295,7 +260,7 @@ export class ExportService {
     if (!record) throw new DownloadPolicyError('not_found');
     if (record.ownerUid !== ownerUid) throw new DownloadPolicyError('unauthorized');
     const res = await this.store.updateExport(exportId, ownerUid, { state: 'REVOKED' });
-    if (res.ok === false) throw writeError(res);
+    if (!res.ok) throw this.fromExportWrite(res);
     return res.record;
   }
 
@@ -304,10 +269,18 @@ export class ExportService {
     const expired = await this.store.exportedExpired(now);
     let count = 0;
     for (const e of expired) {
-      const res = await this.store.updateExport(e.id, e.ownerUid, { state: 'EXPIRED' }, true);
+      const res = await this.store.updateExport(e.id, e.ownerUid, { state: 'EXPIRED' });
       if (res.ok) count += 1;
     }
     return count;
   }
 
+  private fromExportWrite(r: { ok: true; record: ExportRecord } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' }): DownloadPolicyError {
+    if ('reason' in r && r.reason === 'unauthorized') return new DownloadPolicyError('unauthorized');
+    if ('reason' in r && r.reason === 'conflict') return new DownloadPolicyError('state_conflict');
+    if ('reason' in r && r.reason === 'revoked') return new DownloadPolicyError('revoked');
+    if ('reason' in r && r.reason === 'expired') return new DownloadPolicyError('expired');
+    if ('reason' in r && r.reason === 'used') return new DownloadPolicyError('used');
+    return new DownloadPolicyError('not_found');
+  }
 }

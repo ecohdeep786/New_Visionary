@@ -148,6 +148,24 @@ export class PostgresDownloadStore implements DownloadStore {
     return { ok: false, ...(await this.classifyGrant(id, ownerUid)) };
   }
 
+  /** Atomic read consumption: one conditional UPDATE re-checks ACTIVE + unexpired
+   * + remaining budget against the CURRENT row and decrements once — concurrent
+   * readers can never both spend the same unit (double-spend would need two rows
+   * to pass WHERE "remainingReads" > 0 at the same unit). */
+  async consumeRead(id: string, ownerUid: string, deliveredBytes: number): Promise<GrantWriteResult> {
+    const updated = await this.db.$queryRawUnsafe<Row[]>(`
+      UPDATE "download_grants" SET
+        "remainingReads" = "remainingReads" - 1,
+        "bytesDelivered" = "bytesDelivered" + ${BigInt(Math.max(0, Math.floor(deliveredBytes)))},
+        "lastReadAt" = ${UTC_NOW},
+        "state" = CASE WHEN "remainingReads" - 1 <= 0 THEN 'USED' ELSE "state" END
+      WHERE "id" = ${this.sqlString(id)} AND "ownerUid" = ${this.sqlString(ownerUid)}
+        AND "state" = 'ACTIVE' AND "expiresAt" > ${UTC_NOW} AND "remainingReads" > 0
+      RETURNING *`);
+    if (Array.isArray(updated) && updated.length) return { ok: true, grant: grantFrom(updated[0]) };
+    return { ok: false, ...(await this.classifyGrant(id, ownerUid)) };
+  }
+
   async grantTokens(ownerUid: string): Promise<DownloadGrant[]> {
     const rows = await this.db.downloadGrant.findMany({ where: { ownerUid }, orderBy: { createdAt: 'asc' } });
     return rows.map((r) => grantFrom(r as unknown as Row));

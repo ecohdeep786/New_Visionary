@@ -27,6 +27,9 @@
     "src/file/manifest-types.ts",
     "src/file/manifest-store.ts",
     "src/file/manifest.service.ts",
-    "src/file/file-security.ts"
+    "src/file/file-security.ts",
+    "src/file/download-types.ts",
+    "src/file/download-store.ts",
+    "src/file/download.service.ts"
   ]
 }
