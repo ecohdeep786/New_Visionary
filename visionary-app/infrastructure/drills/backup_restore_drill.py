@@ -51,6 +51,8 @@ class BackupDrill:
             self._store[record["id"]] = deepcopy(record)
 
     def snapshot(self, label: str) -> dict[str, Any]:
+        if any(s["label"] == label for s in self._snapshots):
+            raise DrillError("Duplicate snapshot label: point-in-time labels must be unambiguous")
         entry = {"label": label, "digest": _digest(self._store), "state": deepcopy(self._store), "takenAt": _now().isoformat(), "retentionUntil": (_now() + timedelta(days=RETENTION_DAYS)).isoformat()}
         self._snapshots.append(entry)
         return {"label": label, "digest": entry["digest"], "retentionUntil": entry["retentionUntil"]}
@@ -72,7 +74,16 @@ class BackupDrill:
         target = next((s for s in self._snapshots if s["label"] == label), None)
         if target is None:
             raise DrillError("Unknown point-in-time label")
-        self._store = deepcopy(target["state"])
+        restored = deepcopy(target["state"])
+        # the same byte-identity and identity guarantees as restore_latest:
+        # a PITR rebuild that diverges from its recorded digest or loses an
+        # owner identity is a failed restore, not a recovery
+        if _digest(restored) != target["digest"]:
+            raise DrillError("Point-in-time restore diverged from the snapshot digest")
+        for record in restored.values():
+            if not record.get("ownerUid"):
+                raise DrillError("Point-in-time restore lost an owner identity")
+        self._store = restored
         return {"restoredTo": label, "digest": _digest(self._store)}
 
     def delete_snapshot(self, label: str, actor_now: datetime | None = None) -> None:

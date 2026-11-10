@@ -40,6 +40,23 @@ class BackupDrillTest(unittest.TestCase):
         with self.assertRaises(DrillError):
             drill.restore_point_in_time("ghost")
 
+    def test_point_in_time_restore_verifies_digest_and_identities(self):
+        drill = BackupDrill()
+        drill.seed(RECORDS)
+        drill.snapshot("checked")
+        # white-box: corrupt the recorded instant; the PITR rebuild must refuse
+        # exactly like restore_latest instead of silently restoring divergence
+        drill._snapshots[0]["state"]["wsp-1"]["ownerUid"] = ""
+        with self.assertRaises(DrillError):
+            drill.restore_point_in_time("checked")
+
+    def test_duplicate_snapshot_labels_are_refused(self):
+        drill = BackupDrill()
+        drill.seed(RECORDS)
+        drill.snapshot("t1")
+        with self.assertRaises(DrillError):
+            drill.snapshot("t1")  # ambiguous point-in-time label
+
     def test_retention_lock_is_immutable(self):
         drill = BackupDrill()
         drill.seed(RECORDS)
