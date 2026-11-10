@@ -17,6 +17,7 @@
 //     Ownership is server-authoritative: a non-owner cannot read, revoke or
 //     expire another uid's grant/export. Revocation never changes retained
 //     learner records and never promises removal of already-delivered bytes.
+import { randomUUID } from 'node:crypto';
 import type { DownloadChannel, DownloadGrant, DownloadPolicy, ExportRecord } from './download-types';
 import { DEFAULT_DOWNLOAD_POLICY } from './download-types';
 import type { DownloadStore } from './download-store';
@@ -92,7 +93,7 @@ export class DownloadGateway {
     const leaseMs = opts.leaseMs ?? (opts.channel === 'signed_link' ? this.policy.signedLinkTtlMs : this.policy.gatewayLeaseMs);
     const maxReads = opts.maxReads ?? (opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : Number.MAX_SAFE_INTEGER);
     const grant: DownloadGrant = {
-      id: `dl_${Date.now()}_${Math.floor(Math.random() * 1e9)}`,
+      id: `dl_${randomUUID()}`,
       ownerUid: opts.ownerUid,
       objectId: object.objectId,
       generation: object.generation,
@@ -122,14 +123,11 @@ export class DownloadGateway {
     const grant = await this.requireReadable(grantId, ownerUid);
     const object = await this.resolver.requireReady(ownerUid, grant.objectId, grant.generation);
     const delivered = Math.min(object.bytes.byteLength, maxBytes);
-    const remaining = grant.remainingReads - 1;
-    const res = await this.store.updateGrant(grantId, ownerUid, {
-      remainingReads: remaining,
-      bytesDelivered: grant.bytesDelivered + delivered,
-      lastReadAt: nowIso(),
-      state: remaining <= 0 ? 'USED' : grant.state,
-    });
-    if (!res.ok) throw this.fromGrantWrite(res);
+    // The read budget is consumed ATOMICALLY against the current row: two
+    // concurrent readers can never both decrement the same unit (the stale
+    // read-then-patch shape allowed a double spend past maxReads).
+    const res = await this.store.consumeRead(grantId, ownerUid, delivered);
+    if (!res.ok) throw new DownloadPolicyError('used');
     return { bytes: object.bytes.slice(0, delivered), type: object.type, digest: object.digest, size: object.size, deliveredBytes: delivered };
   }
 
@@ -217,7 +215,7 @@ export class ExportService {
       pinned.push({ objectId: obj.objectId, generation: obj.generation, digest: obj.digest, size: obj.size, type: obj.type });
     }
     const record: ExportRecord = {
-      id: `exp_${Date.now()}_${Math.floor(Math.random() * 1e9)}`,
+      id: `exp_${randomUUID()}`,
       ownerUid: opts.ownerUid,
       objects: pinned,
       state: 'ACTIVE',

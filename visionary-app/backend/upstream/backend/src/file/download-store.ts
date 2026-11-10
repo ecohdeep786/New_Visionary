@@ -16,6 +16,10 @@ export interface DownloadStore {
   grant(id: string): Promise<DownloadGrant | null>;
   /** Fenced update: applies `patch` only when owned by `ownerUid`. */
   updateGrant(id: string, ownerUid: string, patch: Partial<Pick<DownloadGrant, 'state' | 'remainingReads' | 'bytesDelivered' | 'lastReadAt' | 'revokedAt'>>): Promise<GrantWriteResult>;
+  /** Atomic read consumption: re-checks state/expiry/budget against the CURRENT row
+   * and decrements from it — a stale caller can never double-spend the read budget
+   * (the SQL adapter implements this as one conditional UPDATE ... WHERE remaining_reads > 0). */
+  consumeRead(id: string, ownerUid: string, deliveredBytes: number): Promise<GrantWriteResult>;
   grantTokens(ownerUid: string): Promise<DownloadGrant[]>;
   /** Grants that are ACTIVE but already past their expiry (for the sweep step). */
   activeExpired(now: string): Promise<DownloadGrant[]>;
@@ -34,6 +38,19 @@ export class InMemoryDownloadStore implements DownloadStore {
   async insert(grant: DownloadGrant): Promise<void> { this.grants.set(grant.id, grant); }
   async grant(id: string): Promise<DownloadGrant | null> { return this.grants.get(id) ?? null; }
 
+  /** Atomic read consumption: re-checks state/expiry/budget against the CURRENT row
+   * and decrements from it — a stale caller can never double-spend the read budget
+   * (the SQL adapter implements this as one conditional UPDATE ... WHERE remaining_reads > 0). */
+  async consumeRead(id: string, ownerUid: string, deliveredBytes: number): Promise<GrantWriteResult> {
+    const cur = this.grants.get(id);
+    if (!cur) return { ok: false, reason: 'not_found' };
+    if (cur.ownerUid !== ownerUid) return { ok: false, reason: 'unauthorized' };
+    const now = new Date().toISOString();
+    if (cur.state !== 'ACTIVE' || cur.expiresAt <= now || cur.remainingReads <= 0) return { ok: false, reason: 'conflict' };
+    const next = { ...cur, remainingReads: cur.remainingReads - 1, bytesDelivered: cur.bytesDelivered + deliveredBytes, lastReadAt: now, state: cur.remainingReads - 1 <= 0 ? 'USED' : cur.state } as DownloadGrant;
+    this.grants.set(id, next);
+    return { ok: true, grant: next };
+  }
   async updateGrant(id: string, ownerUid: string, patch: Partial<Pick<DownloadGrant, 'state' | 'remainingReads' | 'bytesDelivered' | 'lastReadAt' | 'revokedAt'>>): Promise<GrantWriteResult> {
     const cur = this.grants.get(id);
     if (!cur) return { ok: false, reason: 'not_found' };
