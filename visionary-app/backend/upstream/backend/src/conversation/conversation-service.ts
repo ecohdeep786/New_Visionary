@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // LEARN-05 (KAN-71) — owned Ask/Guide conversation state and typed
 // model-response adapters with truthful disconnected/blocked/partial states.
 //
@@ -43,8 +44,6 @@ function hash(value: string): string {
 const CLAIMING_OUTCOMES: ModelOutcome[] = ['final', 'partial'];
 
 export class ConversationService {
-  private conversationCounter = 0;
-  private turnCounter = 0;
 
   constructor(private readonly store: ConversationStore) {}
 
@@ -55,17 +54,14 @@ export class ConversationService {
     channel: ConversationChannel,
   ): Promise<Conversation> {
     const payloadHash = hash(`create|${commandKey}|${channel}`);
-    const prior = await this.store.commandPayload(commandKey);
-    if (prior && prior !== payloadHash) throw new ConversationError('command_changed');
-    if (prior && prior === payloadHash) {
-      const ref = await this.store.commandResultRef(commandKey);
-      if (ref) {
-        const existing = await this.store.conversation(ref);
-        if (existing) return existing;
-      }
+    const claim = await this.store.claimCommand(commandKey, payloadHash);
+    if (claim.state === 'changed') throw new ConversationError('command_changed');
+    if (claim.state === 'existing' && claim.resultRef) {
+      const existing = await this.store.conversation(claim.resultRef);
+      if (existing) return existing;
     }
     const conversation: Conversation = {
-      conversationId: `conv_${++this.conversationCounter}`,
+      conversationId: `conv_${randomUUID()}`,
       owner: { ...owner },
       channel,
       status: 'active',
@@ -87,14 +83,14 @@ export class ConversationService {
     if (conversation.status === 'revoked') throw new ConversationError('conversation_revoked');
     if (!content?.trim()) throw new ConversationError('turn_invalid');
     const payloadHash = hash(`learner|${commandKey}|${conversationId}|${content}`);
-    const prior = await this.store.commandPayload(commandKey);
-    if (prior && prior !== payloadHash) throw new ConversationError('command_changed');
-    if (prior && prior === payloadHash) {
+    const claim = await this.store.claimCommand(commandKey, payloadHash);
+    if (claim.state === 'changed') throw new ConversationError('command_changed');
+    if (claim.state === 'existing') {
       const existing = await this.turnByRef(commandKey);
       if (existing) return existing as LearnerTurn;
     }
     const turn: LearnerTurn = {
-      turnId: `trn_${++this.turnCounter}`,
+      turnId: `trn_${randomUUID()}`,
       conversationId,
       role: 'learner',
       content,
@@ -128,14 +124,14 @@ export class ConversationService {
       throw new ConversationError('adapter_not_accepted');
     }
     const payloadHash = hash(`model|${commandKey}|${conversationId}|${outcome}|${adapterId}|${reason}|${content ?? ''}`);
-    const prior = await this.store.commandPayload(commandKey);
-    if (prior && prior !== payloadHash) throw new ConversationError('command_changed');
-    if (prior && prior === payloadHash) {
+    const claim = await this.store.claimCommand(commandKey, payloadHash);
+    if (claim.state === 'changed') throw new ConversationError('command_changed');
+    if (claim.state === 'existing') {
       const existing = await this.turnByRef(commandKey);
       if (existing) return existing as ModelTurn;
     }
     const turn: ModelTurn = {
-      turnId: `trn_${++this.turnCounter}`,
+      turnId: `trn_${randomUUID()}`,
       conversationId,
       role: 'model',
       outcome,

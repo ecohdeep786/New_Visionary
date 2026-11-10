@@ -12,6 +12,12 @@ export interface ConversationStore {
   turns(conversationId: string): Promise<ConversationTurn[]>;
   /** Command dedup ledger: commandKey -> { payloadHash, resultRef }. */
   recordCommand(commandKey: string, payloadHash: string, resultRef: string): Promise<void>;
+  /** ATOMIC command claim: unseen key is claimed and 'new'; a seen key with the
+   * SAME payload hash returns its result ref ('existing'); a seen key with a
+   * DIFFERENT payload is 'changed'. Two concurrent creates with one commandKey
+   * can never both claim 'new' (SQL adapter: INSERT ... ON CONFLICT DO NOTHING
+   * then read, inside one statement). */
+  claimCommand(commandKey: string, payloadHash: string): Promise<{ state: 'new' } | { state: 'existing'; resultRef: string | undefined } | { state: 'changed' }>;
   commandPayload(commandKey: string): Promise<string | undefined>;
   commandResultRef(commandKey: string): Promise<string | undefined>;
   /** Whether an evaluated connected model-response adapter is ACCEPTED (P07). */
@@ -51,6 +57,13 @@ export class InMemoryConversationStore implements ConversationStore {
   async recordCommand(commandKey: string, payloadHash: string, resultRef: string): Promise<void> {
     const prior = this.commands.get(commandKey);
     this.commands.set(commandKey, { hash: payloadHash, resultRef: resultRef || prior?.resultRef || '' });
+  }
+  async claimCommand(commandKey: string, payloadHash: string): Promise<{ state: 'new' } | { state: 'existing'; resultRef: string | undefined } | { state: 'changed' }> {
+    const prior = this.commands.get(commandKey);
+    if (prior && prior.hash !== payloadHash) return { state: 'changed' };
+    if (prior) return { state: 'existing', resultRef: prior.resultRef || undefined };
+    this.commands.set(commandKey, { hash: payloadHash, resultRef: '' });
+    return { state: 'new' };
   }
   async commandPayload(commandKey: string): Promise<string | undefined> {
     return this.commands.get(commandKey)?.hash;
