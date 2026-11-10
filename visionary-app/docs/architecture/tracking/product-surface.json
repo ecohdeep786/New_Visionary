@@ -80298,6 +80298,10 @@
       "sourceSha256": "a990ad6ceb6903cf0823b4bb04f44d5c3f4dc18801634dd33692976e62ebc4d0"
     },
     {
+      "file": "frontend/src/services/learningDeviceState.ts",
+      "sourceSha256": "3829955d865c0446e28d03b66e5b681891e6c6a63de6a3b31ad4ad63a3396efe"
+    },
+    {
       "file": "frontend/src/services/learningPipelineService.ts",
       "sourceSha256": "3daaaa074b409c699e72918f83649e8b19c95164312c784532bd3887ecba5c2a"
     },
@@ -80396,6 +80400,14 @@
     {
       "file": "frontend/src/services/stageTransitionService.ts",
       "sourceSha256": "6ff03c5900a6b34fe6b5f1abf3987a081737d98a40957afb2e16b958a22d66e2"
+    },
+    {
+      "file": "frontend/src/services/syncCoordinator.ts",
+      "sourceSha256": "b5b01a11dab8894a387bb2cd5dbd3e3c7e3dd60bcf97ce339bcf7efaadd0e3b7"
+    },
+    {
+      "file": "frontend/src/services/syncTypes.ts",
+      "sourceSha256": "6ab995d9830bfec38eebf7605d144ab665bc9dac055ad485bd3b5bf31ab35100"
     },
     {
       "file": "frontend/src/services/teachingInterface.ts",
