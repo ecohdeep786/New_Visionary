@@ -8,20 +8,33 @@ export class EmailService {
   private transporter: nodemailer.Transporter;
 
   constructor(private config: ConfigService) {
-    this.transporter = nodemailer.createTransport({
-      host: this.config.get("SMTP_HOST"),
-      port: Number(this.config.get("SMTP_PORT") ?? 587),
-      secure: this.config.get("SMTP_SECURE") === "true",
-      auth: {
-        user: this.config.get("SMTP_USER"),
-        pass: this.config.get("SMTP_PASS"),
-      },
-    });
+    /* Intentional upstream patch (FAP-67, 2026-11-04): without SMTP_HOST the
+       service uses a JSON transport that logs the mail (the verification code
+       lands in the backend log) instead of crashing registration with an
+       SMTP connection refusal. Recorded per the AGENTS.md upstream-patch rule. */
+    const host = this.config.get("SMTP_HOST");
+    this.transporter = host
+      ? nodemailer.createTransport({
+          host,
+          port: Number(this.config.get("SMTP_PORT") ?? 587),
+          secure: this.config.get("SMTP_SECURE") === "true",
+          auth: {
+            user: this.config.get("SMTP_USER"),
+            pass: this.config.get("SMTP_PASS"),
+          },
+        })
+      : nodemailer.createTransport({ jsonTransport: true });
   }
 
   async sendOtp(email: string, otp: string) {
     const from = this.config.get("SMTP_FROM") || "Visionary <noreply@visionary.com>";
     const frontendUrl = this.config.get("FRONTEND_URL") || "http://localhost:3000";
+
+    /* FAP-67 dev transport: without SMTP the code lands in the backend log so
+       QA can complete verification without a mail server. */
+    if (!this.config.get("SMTP_HOST")) {
+      this.logger.log(`[dev] OTP for ${email}: ${otp}`);
+    }
 
     await this.transporter.sendMail({
       from,

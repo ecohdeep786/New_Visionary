@@ -27,7 +27,8 @@ export default function Breadcrumb({ section, page }) {
   const hubTo = section ? null : CLUSTER[slug]?.[1] ?? null;
   /* a hub that points back to the current page is a duplicate — drop it */
   const showHub = Boolean(hub) && hubTo !== pathname;
-  const crumbCls = "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] rounded-sm";
+  /* hit union: crumbs are 13px ink rows — the ::after pad lifts every crumb to a 44px target without moving layout */
+  const crumbCls = "relative after:absolute after:-inset-y-3 after:-inset-x-2 text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] rounded-sm";
   return (
     <nav aria-label="Breadcrumb" className="w-full bg-white">
       <div className="mx-auto flex w-full max-w-[1240px] items-center gap-2 whitespace-nowrap px-6 pt-40 text-[13px] sm:px-8" style={{ color: "#6e6e73" }}>
