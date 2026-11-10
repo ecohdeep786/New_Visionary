@@ -29,6 +29,7 @@
 //     optional OutboxLimits runner; a refused enqueue never enters the queue.
 //   - every job transition records a durable JobEvent through OutboxLimits so
 //     devices can replay/refetch authorized state.
+import { randomUUID } from 'node:crypto';
 import type { BackoffPolicy, Job, JobState, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
 import type { JobPatch, JobWriteResult, OutboxStore } from './outbox-store';
@@ -80,36 +81,34 @@ export class OutboxDispatcher {
     const nextAttempt = event.attempts + 1;
     if (nextAttempt > this.policy.maxAttempts) {
       // Quarantine: bounded ceiling reached. Never silently dropped; marked FAILED.
-      await this.mark(event.cursor, { status: 'FAILED', attempts: nextAttempt, lastError: 'MAX_ATTEMPTS_REACHED', dispatchedAt: new Date().toISOString() });
+      await this.store.markOutbox(event.cursor, { status: 'FAILED', attempts: nextAttempt, lastError: 'MAX_ATTEMPTS_REACHED', dispatchedAt: new Date().toISOString() });
       return 'FAILED';
     }
-    // Durable claim: bump attempts and set the next retry time BEFORE delivering.
+    // Durable claim: bump attempts and set the earliest re-claim time BEFORE
+    // delivering. Store failures propagate — a lost claim must never be
+    // mistaken for a delivered one (the ack below may only run after the
+    // claim is durable).
     const delay = backoffDelay(this.policy, nextAttempt);
-    const claimed = await this.mark(event.cursor, {
+    const claimed = await this.store.markOutbox(event.cursor, {
       attempts: nextAttempt,
       nextAttemptAt: new Date(Date.now() + delay).toISOString(),
       dispatchedAt: new Date().toISOString(),
     });
     if (!claimed) throw new JobPolicyError('unknown_event');
-    // Acknowledge atomically; if the ack fails (crash) the row stays claimable by
-    // nextAttemptAt and recovery re-delivers without a duplicate commit.
+    // Acknowledge atomically; if the ack fails (crash) the row stays PENDING
+    // and immediately reclaimable (the ack handler clears the backoff) so the
+    // next poll recovers the delivery without a duplicate commit.
     await this.ack(event.cursor);
     return 'DISPATCHED';
   }
 
-  private async mark(cursor: number, patch: Partial<Pick<OutboxEvent, 'status' | 'dispatchedAt' | 'attempts' | 'nextAttemptAt' | 'lastError'>>): Promise<OutboxEvent | null> {
-    try {
-      return await this.store.markOutbox(cursor, patch);
-    } catch {
-      // Crash between claim and ack: leave PENDING for recovery (do not lose the row).
-      return await this.store.outboxByCursor(cursor);
-    }
-  }
-
   private async ack(cursor: number): Promise<void> {
-    // Idempotent completion keyed on durable cursor. If ack is lost the next
-    // poll sees attempt count and re-delivers; duplicates never re-commit.
-    await this.store.markOutbox(cursor, { status: 'DONE' }).catch(() => undefined);
+    // Idempotent completion keyed on durable cursor. If the ack is lost, the
+    // row's backoff is cleared so recovery re-delivers on the next poll
+    // instead of waiting out a delay that belongs to a real action failure.
+    await this.store.markOutbox(cursor, { status: 'DONE' }).catch(async () => {
+      await this.store.markOutbox(cursor, { nextAttemptAt: null }).catch(() => undefined);
+    });
   }
 
   /** Enqueue a job into a per-workload queue, validating the client owns the queue and admission limits allow it. */
@@ -126,7 +125,7 @@ export class OutboxDispatcher {
       }
     }
     const job: Job = {
-      id: `job_${Date.now()}_${Math.floor(Math.random() * 1e6)}`,
+      id: `job_${randomUUID()}`,
       uid,
       workspaceId: scope.workspaceId,
       queue,
@@ -168,8 +167,8 @@ export class OutboxDispatcher {
       // Backoff window not yet closed; do not run early.
       throw new JobPolicyError('conflict');
     }
-    const leaseToken = `lease_${Date.now()}_${Math.floor(Math.random() * 1e6)}`;
-    const attemptToken = `attempt_${id}_${Date.now()}_${Math.floor(Math.random() * 1e6)}`;
+    const leaseToken = `lease_${randomUUID()}`;
+    const attemptToken = `attempt_${id}_${randomUUID()}`;
     const result = await this.store.transition(id, ['PENDING'], null, {
       state: 'CLAIMED',
       claimedUntil: new Date(Date.parse(at) + leaseMs).toISOString(),

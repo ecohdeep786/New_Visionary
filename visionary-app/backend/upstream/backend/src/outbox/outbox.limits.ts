@@ -24,8 +24,6 @@ export class AdmissionError extends Error {
 }
 
 export class OutboxLimits {
-  private eventSeq = 0;
-
   constructor(private readonly store: OutboxStore, private readonly limits: AdmissionLimits = DEFAULT_ADMISSION) {}
 
   /** Check whether `job` may be enqueued under the current live-slot budgets. */
@@ -60,7 +58,9 @@ export class OutboxLimits {
     return this.store.commitProviderExecution(provider, units);
   }
 
-  /** Append a durable JobEvent for a job transition. Returns the stored event (with assigned cursor). */
+  /** Append a durable JobEvent for a job transition. Returns the STORED event —
+   * the store owns cursor assignment (durable per-job ordering); a local
+   * counter would hand callers a cursor that replay() cannot honor. */
   async recordEvent(job: Job, type: JobEventType, reason?: string | null): Promise<JobEvent> {
     const base: Omit<JobEvent, 'cursor' | 'createdAt'> = {
       uid: job.uid,
@@ -70,10 +70,7 @@ export class OutboxLimits {
       type,
       payload: { state: job.state, reason: reason ?? null },
     };
-    this.eventSeq += 1;
-    const event: JobEvent = { ...base, cursor: this.eventSeq, createdAt: new Date().toISOString() };
-    await this.store.appendJobEvent(event);
-    return event;
+    return this.store.appendJobEvent({ ...base, cursor: 0, createdAt: new Date().toISOString() });
   }
 
   /** Replay/refetch: return events for `jobId` strictly after `afterCursor`. */
