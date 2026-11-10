@@ -1,0 +1,143 @@
+{
+  "task": "F-17 shell & navigation review",
+  "at": "2026-11-05T23:07:59.622Z",
+  "base": "http://127.0.0.1:4198",
+  "records": [
+    {
+      "check": "student-sidebar",
+      "ok": true,
+      "detail": "[\"Home\",\"Learn\",\"Ask\",\"Practice\",\"Build\",\"Classes\",\"Connections\",\"Progress\",\"Notifications\",\"Personalization\",\"Privacy\",\"Plans & usage\"]"
+    },
+    {
+      "file": "shell-teacher-desktop.png",
+      "role": "teacher",
+      "sidebar": [
+        "Home",
+        "Prepare",
+        "Classes",
+        "Learners",
+        "Insights",
+        "Ask",
+        "Teacher Growth",
+        "Library",
+        "Build",
+        "Progress",
+        "Notifications",
+        "Personalization",
+        "Privacy",
+        "Plans & usage"
+      ],
+      "topbarCta": "isionary",
+      "errors": []
+    },
+    {
+      "check": "teacher-sidebar",
+      "ok": true,
+      "detail": "expected [\"Home\",\"Prepare\",\"Classes\",\"Learners\",\"Insights\"] got [\"Home\",\"Prepare\",\"Classes\",\"Learners\",\"Insights\",\"Ask\",\"Teacher Growth\",\"Library\",\"Build\",\"Progress\",\"Notifications\",\"Personalization\",\"Privacy\",\"Plans & usage\"]"
+    },
+    {
+      "check": "teacher-cta",
+      "detail": "isionary"
+    },
+    {
+      "file": "shell-organization-desktop.png",
+      "role": "organization",
+      "sidebar": [
+        "Home",
+        "People",
+        "Cohorts",
+        "Curriculum",
+        "Insights",
+        "Content",
+        "Audit",
+        "Notifications",
+        "Personalization",
+        "Privacy",
+        "Seats & billing"
+      ],
+      "topbarCta": "isionary",
+      "errors": []
+    },
+    {
+      "check": "organization-sidebar",
+      "ok": true,
+      "detail": "expected [\"Home\",\"People\",\"Cohorts\",\"Curriculum\",\"Insights\"] got [\"Home\",\"People\",\"Cohorts\",\"Curriculum\",\"Insights\",\"Content\",\"Audit\",\"Notifications\",\"Personalization\",\"Privacy\",\"Seats & billing\"]"
+    },
+    {
+      "check": "organization-cta",
+      "detail": "isionary"
+    },
+    {
+      "file": "shell-professional-desktop.png",
+      "role": "professional",
+      "sidebar": [
+        "Home",
+        "Learn",
+        "Ask",
+        "Practice",
+        "Build",
+        "Career",
+        "Classes",
+        "Connections",
+        "Progress",
+        "Notifications",
+        "Personalization",
+        "Privacy",
+        "Plans & usage"
+      ],
+      "topbarCta": "isionary",
+      "errors": []
+    },
+    {
+      "check": "professional-sidebar",
+      "ok": true,
+      "detail": "expected [\"Home\",\"Learn\",\"Ask\",\"Practice\",\"Build\",\"Career\"] got [\"Home\",\"Learn\",\"Ask\",\"Practice\",\"Build\",\"Career\",\"Classes\",\"Connections\",\"Progress\",\"Notifications\",\"Personalization\",\"Privacy\",\"Plans & usage\"]"
+    },
+    {
+      "check": "professional-cta",
+      "detail": "isionary"
+    },
+    {
+      "file": "shell-parent-desktop.png",
+      "role": "parent",
+      "sidebar": [
+        "Home",
+        "Children",
+        "Reports",
+        "Connections",
+        "Ask",
+        "Notifications",
+        "Personalization",
+        "Privacy",
+        "Plans & usage"
+      ],
+      "topbarCta": "isionary",
+      "errors": []
+    },
+    {
+      "check": "parent-sidebar",
+      "ok": true,
+      "detail": "expected [\"Home\",\"Children\",\"Reports\",\"Connections\"] got [\"Home\",\"Children\",\"Reports\",\"Connections\",\"Ask\",\"Notifications\",\"Personalization\",\"Privacy\",\"Plans & usage\"]"
+    },
+    {
+      "check": "parent-cta",
+      "detail": "isionary"
+    },
+    {
+      "check": "workspace-switch-student",
+      "ok": true,
+      "detail": "[\"Home\",\"Learn\",\"Ask\",\"Practice\",\"Build\",\"Classes\",\"Connections\",\"Progress\",\"Notifications\",\"Personalization\",\"Privacy\",\"Plans & usage\"]"
+    },
+    {
+      "check": "allowlist-guard-prepare-as-student",
+      "ok": true,
+      "detail": "{\"path\":\"/dashboard/home\",\"onPrepare\":false,\"bodyStart\":\"Skip to main content | isionary | Active workspace | Personal · Learner | Personal · Tea\"}"
+    },
+    {
+      "check": "mobile-more-sheet",
+      "ok": true,
+      "detail": "{\"opened\":true,\"links\":[\"Home\",\"Learn\",\"Ask\",\"Practice\",\"Build\",\"Classes\",\"Connections\",\"Progress\",\"Notifications\",\"Personalization\",\"Privacy\",\"Plans & usage\"]}"
+    }
+  ],
+  "defects": []
+}
