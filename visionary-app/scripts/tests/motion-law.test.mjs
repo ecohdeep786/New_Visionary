@@ -7,6 +7,8 @@ import run, {
   easeClassViolations,
   jsMotionValues,
   motionValueVerdicts,
+  reducedMotionBlockRanges,
+  reducedMotionEscapes,
   stripLineComments,
   timingSignal,
 } from '../../frontend/scripts/qa-motion.mjs';
@@ -167,6 +169,36 @@ test('ease-in/out/in-out/spring/google utility names fail; ease-linear and ease-
   ].join('\n');
   const hits = easeClassViolations(text);
   assert.deepEqual(hits.map(h => h.ease), ['out', 'in-out', 'spring']);
+});
+
+/* ── Law 9: reduced-motion escape hatches ───────────────────────────────── */
+
+test('a pre-fix marquee declaration escapes the global kill; the guarded form does not', () => {
+  const escape = '.cm-left { animation: community-marquee-left 60s linear infinite !important; }';
+  assert.equal(reducedMotionEscapes(escape, cssMotionValues(escape)).length, 1);
+  const guarded = [
+    '.cm-left { animation: community-marquee-left 60s linear infinite; }',
+    '@media (prefers-reduced-motion: reduce) { .cm-left { animation: none !important; } }',
+  ].join('\n');
+  assert.deepEqual(reducedMotionEscapes(guarded, cssMotionValues(guarded)), []);
+});
+
+test('the escape law follows media-block nesting, not just prose order', () => {
+  const text = '@media (prefers-reduced-motion: reduce) { .a { animation: none !important; } } .b { transition: opacity 280ms var(--ease-out-apple) !important; }';
+  const ranges = reducedMotionBlockRanges(text);
+  assert.equal(ranges.length, 1);
+  const hits = reducedMotionEscapes(text, cssMotionValues(text));
+  assert.equal(hits.length, 1);
+  assert.equal(hits[0].name, 'transition');
+});
+
+test('jsx <style> templates and inline style objects are both covered', () => {
+  const template = '<style>{`.cm-left { animation: marquee 60s linear infinite !important; }`}</style>';
+  assert.equal(reducedMotionEscapes(template, jsMotionValues(template)).length, 1);
+  const inline = '<span style={{ animation: "voiceDot 1.2s var(--ease-out-apple) infinite !important" }} />';
+  assert.equal(reducedMotionEscapes(inline, jsMotionValues(inline)).length, 1);
+  const guardedInline = '<style>{`@media (prefers-reduced-motion: reduce) { .cm-left { animation: none !important; } }`}</style>';
+  assert.deepEqual(reducedMotionEscapes(guardedInline, jsMotionValues(guardedInline)), []);
 });
 
 test('line comments are blanked without shifting line positions', () => {
