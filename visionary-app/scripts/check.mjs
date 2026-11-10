@@ -40,7 +40,6 @@ if (scope06Frontend.status !== 0) process.exit(scope06Frontend.status ?? 1);
 const coverageCheck = spawnSync(process.execPath, [path.join(root, 'scripts/coverage-matrix.mjs')], { cwd: root, stdio: 'inherit' });
 if (coverageCheck.error) throw coverageCheck.error;
 if (coverageCheck.status !== 0) process.exit(coverageCheck.status ?? 1);
-dev
 const surfaceCheck = spawnSync(process.execPath, [path.join(root, 'scripts/surface-audit.mjs')], { cwd: root, stdio: 'inherit' });
 if (surfaceCheck.error) throw surfaceCheck.error;
 if (surfaceCheck.status !== 0) process.exit(surfaceCheck.status ?? 1);

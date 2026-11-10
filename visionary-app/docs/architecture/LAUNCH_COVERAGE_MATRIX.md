@@ -80,7 +80,7 @@ The inspector returns engineering reasons and always `runtimeAuthorization: fals
 
 All seven normalized source revisions are also pinned independently in the checker. A matrix-only digest refresh cannot certify a changed producer, consumer or authority mapping; inspect the changed source and submit the updated tooling/contract for exact-SHA review.
 
-- `integration/contracts/product-surface-review.json` — normalized SHA-256 `9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805`
+- `integration/contracts/product-surface-review.json` — normalized SHA-256 `78ced2baab2b3f0080a95e992cb88b8d97856460de2ce2a6f074efde699a634e`
 - `frontend/src/components/onboarding/stepConfigs.jsx` — normalized SHA-256 `d3ce5bda017e38e61697bc099d67f2cc2f081c4c912b43f52378f454d0e6b564`
 - `frontend/src/components/onboarding/ProductSetupFields.jsx` — normalized SHA-256 `0b423579460b86c9d1c32c8d269c8dfd0546f741be2758b12d614190d2e82475`
 - `frontend/src/domain/workspace.ts` — normalized SHA-256 `cd820b052fc31c17c1f86f2c0919d259cb2b6019f0517f8d9f5100ca9eddb87d`

@@ -8,7 +8,7 @@ const requireCondition = (condition, message) => { if (!condition) throw new Err
 // matrix-only rehash must not bless later mutations, aliases or inline options.
 // Updating these revisions requires source inspection and a new exact-SHA review.
 const reviewedSources = {
-  'integration/contracts/product-surface-review.json': '9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805',
+  'integration/contracts/product-surface-review.json': '78ced2baab2b3f0080a95e992cb88b8d97856460de2ce2a6f074efde699a634e',
   'frontend/src/components/onboarding/stepConfigs.jsx': 'd3ce5bda017e38e61697bc099d67f2cc2f081c4c912b43f52378f454d0e6b564',
   'frontend/src/components/onboarding/ProductSetupFields.jsx': '0b423579460b86c9d1c32c8d269c8dfd0546f741be2758b12d614190d2e82475',
   'frontend/src/domain/workspace.ts': 'cd820b052fc31c17c1f86f2c0919d259cb2b6019f0517f8d9f5100ca9eddb87d',

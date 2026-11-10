@@ -73,7 +73,9 @@
     "POST /api/account/invitations/membership": "existing-json",
     "POST /api/account/invitations/institution/approve": "existing-json",
     "POST /api/account/invitations/institution/revoke": "existing-json",
-    "POST /api/account/workspace/provision": "existing-json"
+    "POST /api/account/workspace/provision": "existing-json",
+    "GET /api/account/coverage": "existing-json",
+    "POST /api/account/coverage/check": "onboarding"
   },
   "infrastructureSurfaces": [
     "GET /healthz",

@@ -430,7 +430,7 @@
   "sourceAnchors": [
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256": "9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805"
+      "sha256": "78ced2baab2b3f0080a95e992cb88b8d97856460de2ce2a6f074efde699a634e"
     },
     {
       "file": "frontend/src/components/onboarding/stepConfigs.jsx",

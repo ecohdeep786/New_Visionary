@@ -13,7 +13,7 @@ const route = name => mapping.registered.find(row => row.route === name);
 const mutation = change => { const value = structuredClone(mapping); change(value); return value; };
 
 test('committed source inventory is complete and reproducible', () => {
-  assert.deepEqual(verifyMapping(mapping), { registered:55, infrastructure:6, proposed:12, future:16, productGroups:32 });
+  assert.deepEqual(verifyMapping(mapping), { registered:57, infrastructure:6, proposed:12, future:16, productGroups:32 });
   assert.equal(route('GET /api/account/privacy/consents').profile, 'consentRead');
   assert.equal(route('POST /api/account/privacy/consents/revoke').profile, 'consentRevoke');
   assert.deepEqual(mapping, expected);
