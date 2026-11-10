@@ -51,6 +51,15 @@ test('missing dependency audits refuse', () => {
   assert.match(refused.detail, /found 0/);
 });
 
+test('a static service-account key reference refuses even with WIF present', () => {
+  // the key reference previously escaped the static-key refusal whenever
+  // workload_identity_provider: appeared anywhere in the workflow
+  const withKey = realWorkflow.replace('workload_identity_provider:', 'service_account_key: \${{ secrets.STATIC_KEY }}\n          workload_identity_provider:');
+  const refused = runCiAudit({ workflow: withKey, releaseSource: realRelease }).find(r => r.check === 'dependency-secret-checks');
+  assert.equal(refused.pass, false);
+  assert.match(refused.detail, /static service account key/);
+});
+
 test('weakened permissions refuse least privilege', () => {
   const broken = realWorkflow.replace('permissions:\n  contents: read', 'permissions:\n  contents: write');
   assert.equal(auditLeastPrivilege(broken).pass, false);

@@ -58,9 +58,11 @@ export function auditDependencyAndSecretChecks(workflow) {
   for (const [pattern, label] of SECRET_PATTERNS) {
     if (pattern.test(workflow)) return refuse(`workflow contains a ${label}`);
   }
-  if (/google-github-actions\/auth/.test(workflow) && /service_account_key|create_credentials_file:\s*false/.test(workflow) === false && /workload_identity_provider:/.test(workflow) === false) {
-    return refuse('cloud auth must use Workload Identity Federation, not a static key');
-  }
+  // A static service-account key reference refuses outright — the mixed
+  // alternation this replaces also carried the GOOD posture marker
+  // (create_credentials_file: false), so a workflow could reference a static
+  // key and still pass whenever workload_identity_provider appeared anywhere.
+  if (/service_account_key/.test(workflow)) return refuse('workflow references a static service account key; use Workload Identity Federation, never a key');
   if (!/workload_identity_provider:/.test(workflow)) return refuse('production auth must use Workload Identity Federation');
   return pass(`${audits} high-severity dependency audits, no secret literals, WIF-only cloud auth`);
 }
