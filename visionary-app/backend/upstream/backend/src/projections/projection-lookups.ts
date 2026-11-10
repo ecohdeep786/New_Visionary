@@ -10,7 +10,12 @@ export interface EvidenceStore {
 }
 
 export interface SnapshotStore {
-  saveSnapshot(snapshot: ProjectionSnapshot): Promise<void>;
+  /** CAS save: applies only when the stored latest version still equals
+   * expectedPreviousVersion (0 = none). Two concurrent projections with
+   * different evidence can never both claim the same version — the loser
+   * receives the current snapshot for a recompute. (SQL adapter: one
+   * conditional INSERT guarded by a NOT EXISTS on the version.) */
+  saveSnapshot(snapshot: ProjectionSnapshot, expectedPreviousVersion: number): Promise<{ ok: true } | { ok: false; current: ProjectionSnapshot | undefined }>;
   latestSnapshot(owner: ProjectionOwner, conceptId: string): Promise<ProjectionSnapshot | undefined>;
 }
 
@@ -36,8 +41,11 @@ export class InMemoryProjectionStore implements EvidenceStore, SnapshotStore {
     return found ? { ...found, owner: { ...found.owner } } : undefined;
   }
 
-  async saveSnapshot(snapshot: ProjectionSnapshot): Promise<void> {
+  async saveSnapshot(snapshot: ProjectionSnapshot, expectedPreviousVersion: number): Promise<{ ok: true } | { ok: false; current: ProjectionSnapshot | undefined }> {
+    const current = await this.latestSnapshot(snapshot.owner, snapshot.conceptId);
+    if ((current?.projectionVersion ?? 0) !== expectedPreviousVersion) return { ok: false, current };
     this.snapshots.push({ ...snapshot, owner: { ...snapshot.owner }, projection: { ...snapshot.projection, assessed: { ...snapshot.projection.assessed }, reviewDue: { ...snapshot.projection.reviewDue } } });
+    return { ok: true };
   }
 
   async latestSnapshot(owner: ProjectionOwner, conceptId: string): Promise<ProjectionSnapshot | undefined> {

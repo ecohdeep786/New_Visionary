@@ -50,17 +50,28 @@ export class ProjectionService {
     if (previous && previous.evidenceFingerprint === fingerprint) {
       return previous; // identical evidence => identical projection (no churn)
     }
-    const projection = this.compute(events);
-    const snapshot: ProjectionSnapshot = {
-      owner: { ...owner },
-      conceptId,
-      projectionVersion: (previous?.projectionVersion ?? 0) + 1,
-      evidenceFingerprint: fingerprint,
-      projection,
-      computedAt: this.now().toISOString(),
-    };
-    await this.snapshots.saveSnapshot(snapshot);
-    return snapshot;
+    // The version is claimed ATOMICALLY against the previous version: two
+    // concurrent projections with different evidence can never both claim the
+    // same version (the loser recomputes against the winner, and identical
+    // evidence converges to the winner's snapshot — deterministic).
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const latest = await this.snapshots.latestSnapshot(owner, conceptId);
+      if (latest && latest.evidenceFingerprint === fingerprint) return latest;
+      const projection = this.compute(events);
+      const snapshot: ProjectionSnapshot = {
+        owner: { ...owner },
+        conceptId,
+        projectionVersion: (latest?.projectionVersion ?? 0) + 1,
+        evidenceFingerprint: fingerprint,
+        projection,
+        computedAt: this.now().toISOString(),
+      };
+      const saved = await this.snapshots.saveSnapshot(snapshot, latest?.projectionVersion ?? 0);
+      if (saved.ok) return snapshot;
+    }
+    const winner = await this.snapshots.latestSnapshot(owner, conceptId);
+    return winner!;
+
   }
 
   private fingerprint(events: readonly EvidenceEvent[]): string {
