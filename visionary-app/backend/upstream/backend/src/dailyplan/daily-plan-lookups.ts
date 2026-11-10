@@ -7,7 +7,11 @@ import type { DailyPlan, LearningGoal, PlanOwner, ScheduledReview } from './dail
 export interface PlanStore {
   saveGoal(goal: LearningGoal): Promise<void>;
   goalsFor(owner: PlanOwner): Promise<LearningGoal[]>;
-  savePlan(plan: DailyPlan): Promise<void>;
+  /** CAS save: applies only when the stored version count for (owner, planDate)
+   * still equals expectedPreviousVersion. Two concurrent rebuilds can never
+   * claim the same version — the loser recomputes against the winner.
+   * (SQL adapter: one conditional INSERT guarded by NOT EXISTS on the version.) */
+  savePlan(plan: DailyPlan, expectedPreviousVersion: number): Promise<{ ok: true } | { ok: false; current: DailyPlan[] }>;
   plansFor(owner: PlanOwner, planDate: string): Promise<DailyPlan[]>;
   saveReview(review: ScheduledReview): Promise<void>;
   reviewsFor(owner: PlanOwner): Promise<ScheduledReview[]>;
@@ -49,8 +53,11 @@ export class InMemoryPlanStore implements PlanStore, EvidenceLedgerReader {
       .map((g) => ({ ...g, owner: { ...g.owner } }));
   }
 
-  async savePlan(plan: DailyPlan): Promise<void> {
+  async savePlan(plan: DailyPlan, expectedPreviousVersion: number): Promise<{ ok: true } | { ok: false; current: DailyPlan[] }> {
+    const current = await this.plansFor(plan.owner, plan.planDate);
+    if (current.length !== expectedPreviousVersion) return { ok: false, current };
     this.plans.push({ ...plan, owner: { ...plan.owner }, items: plan.items.map((i) => ({ ...i })) });
+    return { ok: true };
   }
 
   async plansFor(owner: PlanOwner, planDate: string): Promise<DailyPlan[]> {

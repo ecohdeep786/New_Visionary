@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // LEARN-04 (KAN-70) — permitted goals, daily plans, review scheduling and
 // eligible discovery with understandable reasons.
 //
@@ -30,8 +31,6 @@ import type {
 } from './daily-plan-lookups';
 
 export class DailyPlanService {
-  private planCounter = 0;
-  private reviewCounter = 0;
   constructor(
     private readonly store: PlanStore,
     private readonly eligibility: PlanEligibilityLookup,
@@ -64,17 +63,25 @@ export class DailyPlanService {
     for (const due of await this.reviewDue.dueReviews(owner)) {
       items.push({ conceptId: due.conceptId, origin: 'review', reason: `Review due — ${due.reason}` });
     }
-    const prior = await this.store.plansFor(owner, planDate);
-    const plan: DailyPlan = {
-      planId: `plan_${++this.planCounter}`,
-      owner: { ...owner },
-      planDate,
-      items,
-      version: prior.length + 1,
-      builtAt: this.now().toISOString(),
-    };
-    await this.store.savePlan(plan);
-    return plan;
+    // The plan version is claimed ATOMICALLY against the current count: two
+    // concurrent rebuilds can never claim the same version (the loser
+    // recomputes against the winner — the content is deterministic given the
+    // same goals and due reviews).
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const prior = await this.store.plansFor(owner, planDate);
+      const plan: DailyPlan = {
+        planId: `plan_${randomUUID()}`,
+        owner: { ...owner },
+        planDate,
+        items,
+        version: prior.length + 1,
+        builtAt: this.now().toISOString(),
+      };
+      const saved = await this.store.savePlan(plan, prior.length);
+      if (saved.ok) return plan;
+    }
+    const winner = (await this.store.plansFor(owner, planDate)).sort((a, b) => b.version - a.version)[0];
+    return winner!;
   }
 
   /** Schedule a review for a concept that is actually DUE (with its reason). */
@@ -85,7 +92,7 @@ export class DailyPlanService {
       throw new DailyPlanError('concept_not_eligible');
     }
     const review: ScheduledReview = {
-      reviewId: `rev_${++this.reviewCounter}`,
+      reviewId: `rev_${randomUUID()}`,
       owner: { ...owner },
       conceptId,
       reason: due.reason,
