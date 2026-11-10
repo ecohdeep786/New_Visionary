@@ -30382,7 +30382,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "854695a8547120fbb798d3a6ce7abdc980a828cc7235dd1570c1bc2dd0fdada7",
+      "declarationSha256": "25ada2fbe92be4bacc944c70a6b91d990cfba4a591cfddcfd14a2b7951c84aeb",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -30558,7 +30558,7 @@
       "events": [],
       "calls": [],
       "disabled": "disabled={saving || !question.trim()}",
-      "declarationSha256": "ad9c1898f356096d395342e21c9778e56f7273db4d30e423eef7466fbcad4396",
+      "declarationSha256": "f193270ac8121d20ebd5ab64383e0b2ed28b5885aaa289ad444fd3d0b1298e06",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -78634,7 +78634,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/learn/CourseViewer.jsx",
-      "sourceSha256": "073d1e0c39cda1bf8f41dfe9a87ff99de015e3e723912fef49fdf34745e1b72b"
+      "sourceSha256": "f10e741000cc0df2fc164e4ebd671b59d19a5523e1ba59198b316d36e7602074"
     },
     {
       "file": "frontend/src/components/dashboard/learn/QuestionBar.jsx",
