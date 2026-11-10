@@ -8,9 +8,14 @@ export class DocumentsService {
   private supabase;
 
   constructor(private prisma: PrismaService, private config: ConfigService) {
+    /* Intentional upstream patch (FAP-67, 2026-11-04): a missing Supabase
+       configuration no longer crashes the whole boot — the client constructs
+       against a placeholder and only the document-storage calls fail, with a
+       clear auth error, until the founder adds SUPABASE_URL/KEY. Recorded
+       per the AGENTS.md upstream-patch rule. */
     this.supabase = createClient(
-      this.config.get("SUPABASE_URL"),
-      this.config.get("SUPABASE_SERVICE_KEY")
+      this.config.get("SUPABASE_URL") || "https://unconfigured.supabase.local",
+      this.config.get("SUPABASE_SERVICE_KEY") || "unconfigured"
     );
   }
 

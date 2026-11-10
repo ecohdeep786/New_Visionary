@@ -1,0 +1,192 @@
+{
+  "task": "F-26 payments, consent and data integrity review",
+  "at": "2026-11-06T20:03:54.699Z",
+  "base": "http://127.0.0.1:4198",
+  "mode": "preview repository (VITE_AUTH_MODE=preview; billing simulated; no payment method exists)",
+  "summary": {
+    "checks": 29,
+    "passed": 29,
+    "defects": 0
+  },
+  "pageErrors": [],
+  "records": [
+    {
+      "check": "learner-registered",
+      "ok": true,
+      "detail": "learner reached http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "check": "plans-simulation-banner",
+      "ok": true,
+      "detail": "Plans surface opens with the explicit simulation banner"
+    },
+    {
+      "check": "plans-invoice-honesty",
+      "ok": true,
+      "detail": "invoice area states there is no payment method in this preview"
+    },
+    {
+      "check": "plans-service-info",
+      "ok": true,
+      "detail": "contact and service information discloses the unconnected billing reality"
+    },
+    {
+      "file": "pay-plans-entry.png",
+      "state": "Preview Plans & usage — simulated billing surface"
+    },
+    {
+      "check": "checkout-dialog-disclosure",
+      "ok": true,
+      "detail": "checkout dialog carries the anti-phishing and unconfigured-terms disclosures"
+    },
+    {
+      "check": "checkout-failed-honest",
+      "ok": true,
+      "detail": "failed demo checkout states no charge and unchanged plan (server-owned outcome, not local entitlement)"
+    },
+    {
+      "check": "plan-unchanged-after-failure",
+      "ok": true,
+      "detail": "the recorded plan state reflects the failure without granting access"
+    },
+    {
+      "file": "pay-checkout-failed.png",
+      "state": "Demo checkout failure outcome — no charge, plan unchanged"
+    },
+    {
+      "check": "checkout-success-honest",
+      "ok": true,
+      "detail": "successful demo checkout states explicitly that no payment was collected"
+    },
+    {
+      "file": "pay-checkout-success.png",
+      "state": "Demo checkout success — no payment collected"
+    },
+    {
+      "check": "cancel-dialog-honest",
+      "ok": true,
+      "detail": "cancel dialog discloses that no real subscription changes"
+    },
+    {
+      "check": "cancel-retains-access",
+      "ok": true,
+      "detail": "cancelled state retains access until the period ends (no punitive lock-out)"
+    },
+    {
+      "check": "resume-restores-state",
+      "ok": true,
+      "detail": "resume flow completes with saved work retained"
+    },
+    {
+      "check": "usage-entitlement-disclosure",
+      "ok": true,
+      "detail": "usage meter is labelled a demo count and core access is preserved at the limit"
+    },
+    {
+      "check": "parent-registered",
+      "ok": true,
+      "detail": "parent reached http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "check": "guardianship-honest-notice",
+      "ok": true,
+      "detail": "guardian connect surface states the preview does not verify guardianship"
+    },
+    {
+      "check": "connection-pending-expiry",
+      "ok": true,
+      "detail": "connection request is pending with a visible expiry window"
+    },
+    {
+      "file": "pay-parent-request-pending.png",
+      "state": "Parent connection request pending with expiry"
+    },
+    {
+      "check": "learner-accepts-request",
+      "ok": true,
+      "detail": "learner accepts the pending guardian request through Connections"
+    },
+    {
+      "file": "pay-learner-accepts.png",
+      "state": "Learner Connections — accepting the guardian request"
+    },
+    {
+      "check": "parent-connected-scoped",
+      "ok": true,
+      "detail": "parent sees the connected state scoped to progress summaries only"
+    },
+    {
+      "check": "parent-report-consent-scoped",
+      "ok": true,
+      "detail": "View report lands on the consent-scoped summary (http://127.0.0.1:4198/dashboard/reports?child=3915bca7-cef2-4ae7-8e14-b52bcf79d661)"
+    },
+    {
+      "check": "parent-report-scoped-law",
+      "ok": true,
+      "detail": "shared report carries the scoping law (summaries not conversations)"
+    },
+    {
+      "check": "parent-report-exclusion-law",
+      "ok": true,
+      "detail": "shared report carries the exclusion law (answers/grades/private feedback excluded)"
+    },
+    {
+      "file": "pay-parent-report.png",
+      "state": "Parent consent-scoped progress report"
+    },
+    {
+      "check": "parent-plans-simulated",
+      "ok": true,
+      "detail": "parent Plans surface carries the same simulation banner"
+    },
+    {
+      "check": "privacy-guardian-billing-boundary",
+      "ok": true,
+      "detail": "privacy surface states family billing never grants guardian access"
+    },
+    {
+      "check": "privacy-scope-honesty",
+      "ok": true,
+      "detail": "privacy surface scopes itself honestly (local preview, not verified cloud security)"
+    },
+    {
+      "check": "privacy-future-services",
+      "ok": true,
+      "detail": "privacy surface records the future-services boundary for correction/deletion/verification"
+    },
+    {
+      "file": "pay-privacy-surface.png",
+      "state": "Privacy & consent — sharing boundaries and export"
+    },
+    {
+      "check": "workspace-export-downloads",
+      "ok": true,
+      "detail": "workspace export downloaded as visionary-workspace.json"
+    },
+    {
+      "check": "workspace-export-is-local-workspace",
+      "ok": true,
+      "detail": "export contains local workspace records with no payment credentials inside"
+    },
+    {
+      "check": "privacy-export-notice",
+      "ok": true,
+      "detail": "the export notice states exactly what the export contains"
+    },
+    {
+      "file": "pay-workspace-export.png",
+      "state": "Workspace export downloaded from the privacy surface"
+    },
+    {
+      "check": "learner-state-persisted",
+      "ok": true,
+      "detail": "learner billing state persists across sessions without inventing a payment method"
+    },
+    {
+      "check": "zero-page-errors",
+      "ok": true,
+      "detail": "no uncaught page errors in the whole journey"
+    }
+  ],
+  "defects": []
+}
