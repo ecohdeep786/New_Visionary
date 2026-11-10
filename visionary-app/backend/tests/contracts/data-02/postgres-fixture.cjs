@@ -1,9 +1,10 @@
 const {randomUUID}=require('node:crypto');
 const {req,backend,testUrl,client}=require('../data-01/postgres-fixture.cjs');
 const {PostgresMigrationStore}=req('./dist/src/data/migration-store.js');
-async function stagingDatabase(){
+async function stagingDatabase(options={}){
   const base=testUrl(),admin=client(base),id=randomUUID().replaceAll('-',''),schema='data02_'+id;
-  const migrationRole='data02m_'+id,runtimeRole='data02r_'+id;
+  const suffix=options.iam?'@project.iam':'';
+  const migrationRole='data02m_'+id+suffix,runtimeRole='data02r_'+id+suffix;
   const password='synthetic-local-only';
   await admin.$executeRawUnsafe('CREATE ROLE "'+migrationRole+'" LOGIN PASSWORD '+ "'" +password+"'");
   await admin.$executeRawUnsafe('CREATE ROLE "'+runtimeRole+'" LOGIN PASSWORD '+ "'" +password+"'");

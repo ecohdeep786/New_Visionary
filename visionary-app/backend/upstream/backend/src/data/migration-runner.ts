@@ -45,10 +45,12 @@ export class MigrationRunner {
       return {applied:pending.length,skipped:receipts.length,receipts:await this.store.appliedReceipts(tx)};
     });
   }
-  async verify():Promise<VerifyResult>{
+  async verify(expectedApplied:readonly number[]=this.migrations.map(m=>m.version)):Promise<VerifyResult>{
     return this.store.transaction(async tx=>{
       const issues=await this.issues(tx),applied=new Set((await this.store.appliedReceipts(tx)).map(r=>r.version));
-      for(const m of this.migrations)if(!applied.has(m.version))issues.push('migration not applied: '+m.version);
+      if(new Set(expectedApplied).size!==expectedApplied.length||expectedApplied.some(v=>!this.migrations.some(m=>m.version===v)))issues.push('invalid expected migration state');
+      for(const version of expectedApplied)if(!applied.has(version))issues.push('migration not applied: '+version);
+      for(const version of applied)if(!expectedApplied.includes(version))issues.push('unexpected applied migration: '+version);
       return {consistent:!issues.length,issues};
     });
   }
@@ -62,7 +64,7 @@ export class MigrationRunner {
       if(!(await this.store.isDomainEmpty(tx)))throw Error('NON_EMPTY_STAGING_DENIED');
       for(const sql of m.down)await tx.$executeRawUnsafe(sql);
       await this.store.recordReceipt(tx,m,'rolled_back');
-      const history=await this.store.history(tx);return history[history.length-1];
+      const history=await this.store.history(tx);return {...history[history.length-1],remainingVersions:receipts.slice(0,-1).map(r=>r.version)};
     });
   }
 }
