@@ -12,6 +12,14 @@
     "No client UID/role/workspace/consent flag, preview guard, signed URL, queue event, payer status or ML output independently grants authority."
   ],
   "stores": {
+    "overview": {
+      "state": "observed",
+      "authority": "Lazy explicit opt-in PostgreSQL projection reads, actual bounded runtime identity/target checks and current tombstones; account/profile/test billing remain Firestore-owned; no dual writes, memory fallback or hosted rollout"
+    },
+    "consent": {
+      "state": "observed",
+      "authority": "Explicit opt-in PostgreSQL consent_grants/share_grants; UID-scoped canonical transaction, audit and outbox; no job/download consumer activation or hosted acceptance"
+    },
     "none": {
       "state": "observed",
       "authority": "No durable owning store for this operation; public config/static output or CSRF cookie only"
@@ -35,6 +43,10 @@
     "knowledge": {
       "state": "observed",
       "authority": "Firestore UID-nested knowledgeCommands/Receipts/Projections/Outbox; calibrated metadata is not a second learner-evidence owner"
+    },
+    "workspaceProvision": {
+      "state": "observed",
+      "authority": "Opt-in PostgreSQL domain transaction/receipt plus Firestore pending/completion reconciliation; local/staging developmentWorkspaceLinks are isolated from production domainLinks; existing account remains Firestore-owned; not distributed ACID or hosted acceptance"
     },
     "domain": {
       "state": "proposed",
@@ -101,10 +113,23 @@
     "ownerRead": {
       "actor": "Verified current session/device and compared X-Visionary-Account hint",
       "workspace": "Account-level only; no workspace grant",
-      "object": "UID-derived account/device/invoice records; cursors stay within owner collection",
+      "object": "UID-derived account/device/invoice records and bounded approved preservation-policy reference; cursors stay within owner collection; policy reference grants no permissions",
       "source": "No educational source grant",
       "consent": "No staff/guardian/payer-to-learning grant",
       "stores": [
+        "auth",
+        "billing"
+      ],
+      "state": "observed"
+    },
+    "overviewRead": {
+      "actor": "Verified current session/device, expected-account match and bounded per-UID read budget; passive read",
+      "workspace": "Current SQL workspace owner or current MEMBER/ADMIN/GUEST; forged non-owner OWNER membership and erased workspace/owner denied",
+      "object": "Own SQL subject records only; bounded owner/stream cursor pages, allowlisted fields, person tombstone recheck around Firestore account read; no raw results/errors/network fields",
+      "source": "No source bytes, publication rights or mastery established",
+      "consent": "Consent status only, never a new grant or renewed sharing; unavailable stores return no partial record",
+      "stores": [
+        "overview",
         "auth",
         "billing"
       ],
@@ -253,6 +278,50 @@
       "stores": [
         "knowledge",
         "learning"
+      ],
+      "state": "observed"
+    },
+    "consentRead": {
+      "actor": "Current live visionary-research/named-default session/device and expected account; cursor signed for this UID with bounded expiry",
+      "workspace": "No workspace selector or membership grant",
+      "object": "Explicit environment/target binding and actual DML-only SQL role/schema/database; twenty own grants per page; erased subjects denied",
+      "source": "No private source bytes exposed",
+      "consent": "Consent status only; no new grant or policy publication",
+      "stores": [
+        "consent"
+      ],
+      "state": "observed"
+    },
+    "consentRevoke": {
+      "actor": "Current pinned live identity realm, session/device, expected account, Origin/CSRF and per-UID rate admission",
+      "workspace": "No client account/workspace selector accepted",
+      "object": "Actual DML-only bound runtime; owner-only SQL consent/share revocation, audit and outbox transaction; retries return the same receipt",
+      "source": "No source access granted or previously delivered bytes recalled",
+      "consent": "No new consent, deletion, default training or consumer deployment; connected delivery remains separately gated",
+      "stores": [
+        "consent"
+      ],
+      "state": "observed"
+    },
+    "institutionInvitations": {
+      "actor": "Current session, account and CSRF; verified provider email on acceptance; bounded UID rate admission",
+      "workspace": "Canonical PostgreSQL workspace, admin-only recovery and configured independent reviewers",
+      "object": "Local emulator and synthetic SQL only; transaction binds invitation to its locked issuance approval",
+      "source": "No source publication or private learning access",
+      "consent": "Current adult privacy admission before issuing, looking up, accepting or approving; recovery returns no recipient or token",
+      "stores": [
+        "workspaceProvision"
+      ],
+      "state": "observed"
+    },
+    "workspaceProvision": {
+      "actor": "Verified current session/device, expected-account match, exact Origin/CSRF and per-UID 10/minute rate admission; UID derived by commandAccount",
+      "workspace": "Creates only the authenticated owner personal workspace and OWNER membership; caller role/workspace hints rejected",
+      "object": "Explicit opt-in runtime-only SQL identity; target/UID-scoped command receipt, workspace, member, audit and outbox commit in one SQL transaction",
+      "source": "No educational source or publication access granted",
+      "consent": "Existing Firestore account/profile/billing preserved; dedicated pending/completed locator is not a permission grant",
+      "stores": [
+        "workspaceProvision"
       ],
       "state": "observed"
     },
@@ -406,6 +475,20 @@
       "exposure": "registered-controller"
     },
     {
+      "route": "GET /api/account/privacy/consents",
+      "profile": "consentRead",
+      "controller": "ProductConsentController",
+      "sourceFile": "backend/upstream/backend/src/consent/product-consent.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/account/privacy/policy",
+      "profile": "ownerRead",
+      "controller": "PrivacyPolicyController",
+      "sourceFile": "backend/upstream/backend/src/privacycore/privacy-policy.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
       "route": "GET /api/auth/csrf",
       "profile": "csrf",
       "controller": "FirebaseProductController",
@@ -455,6 +538,48 @@
       "exposure": "registered-controller"
     },
     {
+      "route": "GET /api/overview",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/audit",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/consents",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/history",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/memberships",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "GET /api/overview/workspaces",
+      "profile": "overviewRead",
+      "controller": "OverviewController",
+      "sourceFile": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
       "route": "PATCH /api/auth/profile",
       "profile": "ownerWrite",
       "controller": "FirebaseProductController",
@@ -466,6 +591,62 @@
       "profile": "feedbackWrite",
       "controller": "FeedbackController",
       "sourceFile": "backend/upstream/backend/src/feedback/feedback.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/accept",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/history",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/institution/approve",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/institution/revoke",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/issue",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/membership",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/pending",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/invitations/revoke",
+      "profile": "institutionInvitations",
+      "controller": "ProductInvitationController",
+      "sourceFile": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -501,6 +682,20 @@
       "profile": "learningWrite",
       "controller": "LearningController",
       "sourceFile": "backend/upstream/backend/src/learning/learning.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/privacy/consents/revoke",
+      "profile": "consentRevoke",
+      "controller": "ProductConsentController",
+      "sourceFile": "backend/upstream/backend/src/consent/product-consent.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/workspace/provision",
+      "profile": "workspaceProvision",
+      "controller": "PersonalWorkspaceController",
+      "sourceFile": "backend/upstream/backend/src/workspaces/personal-workspace.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -831,7 +1026,7 @@
     {
       "id": "public-enquiry-careers-partners",
       "profile": "public",
-      "datedCheckpointClassification": "missing",
+      "datedCheckpointClassification": "intentionally-unreleased",
       "currentAuthorityNotEstablishedByCheckpoint": true,
       "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
       "registeredRoutes": [],
@@ -842,7 +1037,7 @@
     {
       "id": "public-updates-distribution",
       "profile": "public",
-      "datedCheckpointClassification": "missing",
+      "datedCheckpointClassification": "intentionally-unreleased",
       "currentAuthorityNotEstablishedByCheckpoint": true,
       "summaryOnly": "Route entries govern observed operations; future families separately distinguish end-user requests, worker execution, private downloads and scoped staff access. Public groups describe navigation only, not delivered forms/distribution/installers.",
       "registeredRoutes": [],
@@ -1331,16 +1526,36 @@
       "sha256Lf": "84520838bc7477cdb606a67457f73630172f0d8ceecd2d6d3b05e240d65c9ff8"
     },
     {
+      "file": "backend/upstream/backend/src/workspaces/personal-workspace.controller.ts",
+      "sha256Lf": "6a3f92ce1f774399fc36d6b5701f4327a231e2767d595dc5055aca3a38e952f6"
+    },
+    {
+      "file": "backend/upstream/backend/src/privacycore/privacy-policy.controller.ts",
+      "sha256Lf": "f2c713500f932eaa8c1c462945d9921f9ce2706f34d65de3913a9207a4cefe68"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/product-invitation.controller.ts",
+      "sha256Lf": "40aae7c7784d238592803fb9a42239833153aceb19446430b355f0266944e2c9"
+    },
+    {
+      "file": "backend/upstream/backend/src/consent/product-consent.controller.ts",
+      "sha256Lf": "f96b28399853cfe6de724b07c36919bf1d9d63caeb768c8da874e8a5e4bb4feb"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/overview.controller.ts",
+      "sha256Lf": "c6777075de65521bde758ad789592ded3708da277c3fcbb8b89a60dbd38a50ed"
+    },
+    {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sha256Lf": "83762ac31d426eda4ce6041de30c4c5598bdb93005b3d3805f2cd842e5335638"
+      "sha256Lf": "80962c3571d545a8e59550df6f2d3d5c5bd162b93b842c4ee37f7370b412ad0e"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/request-authority.ts",
-      "sha256Lf": "01b3589e243f5497cf5c824766f863ead7ef3770f0d1f5e658ba13e04592e1e1"
+      "sha256Lf": "07a570e900e8e7e7dbec28e4d3155462f35964f1a606758fc3cd92d3c98f08d3"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.service.ts",
-      "sha256Lf": "0bff953d340c7cafdd7b632faffb458b8abee99d8a221f3f2be1d201e0b14d12"
+      "sha256Lf": "c4bc749f11249df210a252d033473f57961e5fe12792544362e43d4a2d4d9535"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/account-storage.ts",
@@ -1383,6 +1598,82 @@
       "sha256Lf": "f1c210da74d220b8c73f93d8f9d3a10d50ba6a5065f5494c288485b2af6632fe"
     },
     {
+      "file": "backend/upstream/backend/src/workspaces/personal-workspace.service.ts",
+      "sha256Lf": "530c81fa0eaab1e6bb35399ac3525ebbce8921097e427a01d7940c61f904c75a"
+    },
+    {
+      "file": "backend/upstream/backend/src/consent/product-consent.service.ts",
+      "sha256Lf": "d6cacaf20bbcb6c5f752ada30956bbb82f9e427441f347bb7a8e00cacb12c6f1"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/workspace.repository.ts",
+      "sha256Lf": "8fd013d041f62db0bc9468650a2911841f724f29eb4bb425eba2e5c6d987ab8b"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/overview.service.ts",
+      "sha256Lf": "6bbdbf19ea1a01ab9642f93fbcc0e8897f4433d0513974ee0336455374651af8"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/overview-projections.ts",
+      "sha256Lf": "3e49ee9762a3b63ca419ba509e572341b6d835e94225ea94ed05c8bf8c977df7"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/overview-types.ts",
+      "sha256Lf": "f82e355490338451af4c18d565b805f0a2eaf39409bd4f096b27ba9a6ee13c7f"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/product-overview.store.ts",
+      "sha256Lf": "5720041de295bcff81023d76f382cdeafdbbb2194e68d9584f577c31187a659f"
+    },
+    {
+      "file": "backend/upstream/backend/src/overview/postgres-overview.store.ts",
+      "sha256Lf": "1dd51ec1ce8fdeb393cb5aae9148f308e7138cea8076345cd7578de8bd245965"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/product-invitation.service.ts",
+      "sha256Lf": "4a5ca5bd1af0b3f2ca09b7e72819b46f6bd2ffee3ddffce2633957881f01790f"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/invitation.service.ts",
+      "sha256Lf": "37d724ff1c74eb82b78468adec31e39d77eb11a990c5cec133aef8805582f689"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/invitation-store.ts",
+      "sha256Lf": "ba3d9c610cf7615ab4393a114214e04131bc3311ef23eb20bee68e1f59691794"
+    },
+    {
+      "file": "backend/upstream/backend/src/invitations/institution-approval.ts",
+      "sha256Lf": "15113363fac5b78065c97df4844697809b56acd581d4bde3fc610fed62d2152c"
+    },
+    {
+      "file": "backend/upstream/backend/src/privacycore/privacy-policy.service.ts",
+      "sha256Lf": "5f12256143de4f27d9c6f42ceb689f9ccfdf36772064995f548cec1f38351cef"
+    },
+    {
+      "file": "backend/upstream/backend/src/privacycore/privacy-policy.ts",
+      "sha256Lf": "483e0e254fcf019d961d1e3c9be76b64fc95d58b522561a14ea490e4f317268d"
+    },
+    {
+      "file": "backend/upstream/backend/src/privacycore/privacy-preservation-policy.v1.json",
+      "sha256Lf": "e14041f9c67f68c73d900063ad993456d2c5b29748238724d0c56789b076e261"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/provision-types.ts",
+      "sha256Lf": "73b0189727582d04bc86772ec681d2dd0738538a2d05de74a6a07993769945cc"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/provision-store.ts",
+      "sha256Lf": "f5d66ac0cf832126e67dce64d8d3acb5e129e4c4b84d25279663457da4d1cb6e"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/firestore-provision-links.ts",
+      "sha256Lf": "57054dfdd7ec483cd1d233553c5f9af6fe82dc338d120fa1dd9017db55a9c149"
+    },
+    {
+      "file": "backend/upstream/backend/src/workspaces/workspace-provisioner.ts",
+      "sha256Lf": "56fc0ee56088552243e9519df145015b1ae9eb6d9f615c8ebcd669dd8fa6f10b"
+    },
+    {
       "file": "backend/upstream/backend/src/main-auth.ts",
       "sha256Lf": "6e90518e1fa053504ce2f73ddff15eed432e846dbbbc040a476454dbf4adc52d"
     },
@@ -1392,11 +1683,11 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "3a751105cb525eca0c6caae4f9520e9e51533e4fa2afbcf23dd17d31f89d4270"
+      "sha256Lf": "9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "152e09a48ca1da0382e70c66bff6404fc972b0c07c5374b2debdb0a487222a02"
+      "sha256Lf": "18bf98eb7776e9f23530ed957c3b302d9c793efd914a5ceadb759a1760e1ec6d"
     },
     {
       "file": "integration/contracts/v1/openapi.json",
