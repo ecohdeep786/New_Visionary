@@ -12,7 +12,14 @@ let env, target, service, reviewerStore;
 const reviewerUid = 'institution-reviewer';
 const approve = (ws, owner) => reviewerStore.approveInstitution({ workspaceId: ws, administratorUid: owner, reviewerUid,
   evidenceRef: 'proof_synthetic_fixture_001', expiresAt: new Date(Date.now() + 86400_000) });
-const at = new Date('2026-11-02T00:00:00Z');
+// Frozen per-run clock, one day before process start, so the 7-day default
+// expiry (at + 7d) always lies in the future against the real DB clock
+// (clock_timestamp) while at stays a 'recent past' reference for revokes. The
+// previous hardcoded 2026-11-02 base turned every default invite into an
+// 'expired' on and after 2026-11-09 (date-rollover time-bomb; identical fix
+// recorded on the BILL-06 61ecc15e, RELEASE-04 20cf2bbf and ACCEPT-07 42b08be6
+// branches).
+const at = new Date(Date.now() - 86400_000);
 const fresh = db => new InvitationService(new PostgresInvitationStore(db, target), () => at);
 const code = value => error => error.code === value;
 before(async () => {
