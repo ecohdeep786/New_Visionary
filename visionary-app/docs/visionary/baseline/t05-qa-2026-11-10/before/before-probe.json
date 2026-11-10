@@ -1,0 +1,369 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "side": "before",
+  "started": "2026-11-10T12:31:24.816Z",
+  "modes": {
+    "reduce": {
+      "t0": {
+        "url": "http://127.0.0.1:5174/community",
+        "reduce": true,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "community-marquee-left",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -78.8397, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "community-marquee-right",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -1865.16, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 6,
+            "loadedImages": 6
+          }
+        ],
+        "running": [
+          {
+            "name": "community-marquee-left",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-left mb-5"
+          },
+          {
+            "name": "community-marquee-right",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-right"
+          }
+        ],
+        "runningCount": 2,
+        "infiniteRunningCount": 2
+      },
+      "t1": {
+        "url": "http://127.0.0.1:5174/community",
+        "reduce": true,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "community-marquee-left",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -124.194, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "community-marquee-right",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -1819.81, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 6,
+            "loadedImages": 6
+          }
+        ],
+        "running": [
+          {
+            "name": "community-marquee-left",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-left mb-5"
+          },
+          {
+            "name": "community-marquee-right",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-right"
+          }
+        ],
+        "runningCount": 2,
+        "infiniteRunningCount": 2
+      },
+      "staticBetweenSamples": [
+        false,
+        false
+      ]
+    },
+    "no-preference": {
+      "t0": {
+        "url": "http://127.0.0.1:5174/community",
+        "reduce": false,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "community-marquee-left",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -79.9149, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "community-marquee-right",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -1864.09, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 6,
+            "loadedImages": 6
+          }
+        ],
+        "running": [
+          {
+            "name": "community-marquee-left",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-left mb-5"
+          },
+          {
+            "name": "community-marquee-right",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-right"
+          }
+        ],
+        "runningCount": 2,
+        "infiniteRunningCount": 2
+      },
+      "t1": {
+        "url": "http://127.0.0.1:5174/community",
+        "reduce": false,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "community-marquee-left",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -125.273, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "community-marquee-right",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -1818.73, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 6,
+            "loadedImages": 6
+          }
+        ],
+        "running": [
+          {
+            "name": "community-marquee-left",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-left mb-5"
+          },
+          {
+            "name": "community-marquee-right",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-right"
+          }
+        ],
+        "runningCount": 2,
+        "infiniteRunningCount": 2
+      },
+      "staticBetweenSamples": [
+        false,
+        false
+      ]
+    }
+  },
+  "sweep": [
+    {
+      "route": "/",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/community",
+      "reduce": true,
+      "running": 2,
+      "infinite": 2,
+      "names": [
+        "community-marquee-left",
+        "community-marquee-right"
+      ]
+    },
+    {
+      "route": "/about",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/research",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/careers",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/pricing",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/download",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/help",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/student",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/teacher",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/parent",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/professional",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/organization",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/how-it-works",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/safety",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/accessibility",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    }
+  ],
+  "errors": [
+    {
+      "mode": "sweep",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passe"
+    },
+    {
+      "mode": "sweep",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passe"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\opencode\\t05-qa-2026-11-10\\before\\before-community-reduce.png",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\opencode\\t05-qa-2026-11-10\\before\\before-community-no-preference.png"
+  ],
+  "finished": "2026-11-10T12:32:09.679Z",
+  "verdict": {
+    "afterReduceStatic": null,
+    "beforeReduceRuns": true,
+    "noPreferenceRuns": true,
+    "noPreferenceMoves": true,
+    "rowsVisible": true,
+    "sweepOnlyCommunity": [
+      "/community"
+    ]
+  }
+}

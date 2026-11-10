@@ -48,8 +48,14 @@ function PhotoMarquee() {
       <style>{`
         @keyframes community-marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes community-marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-        .cm-left { animation: community-marquee-left 60s linear infinite !important; }
-        .cm-right { animation: community-marquee-right 60s linear infinite !important; }
+        .cm-left { animation: community-marquee-left 60s linear infinite; }
+        .cm-right { animation: community-marquee-right 60s linear infinite; }
+        /* Reduced motion: the rows hold still and stay fully visible. The global
+           contract cannot win here alone because a class selector would out-
+           specify its universal kill, so the component carries the guard. */
+        @media (prefers-reduced-motion: reduce) {
+          .cm-left, .cm-right { animation: none; }
+        }
       `}</style>
       {[{ cls: "cm-left mb-5", photos: MARQUEE_TOP }, { cls: "cm-right", photos: MARQUEE_BOTTOM }].map((row) => (
         <div key={row.cls} className="overflow-hidden">

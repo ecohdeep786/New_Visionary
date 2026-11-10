@@ -2824,13 +2824,13 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/CommunityPage.jsx:183:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:187:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:203:15",
-        "frontend/src/pages/landing/CommunityPage.jsx:237:23",
-        "frontend/src/pages/landing/CommunityPage.jsx:268:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:303:15",
-        "frontend/src/pages/landing/CommunityPage.jsx:306:15"
+        "frontend/src/pages/landing/CommunityPage.jsx:189:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:193:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:209:15",
+        "frontend/src/pages/landing/CommunityPage.jsx:243:23",
+        "frontend/src/pages/landing/CommunityPage.jsx:274:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:309:15",
+        "frontend/src/pages/landing/CommunityPage.jsx:312:15"
       ],
       "operations": [
         "public-updates-distribution"
@@ -71396,9 +71396,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:183:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:189:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 183,
+      "line": 189,
       "column": 17,
       "tag": "a",
       "events": [
@@ -71429,9 +71429,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:187:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:193:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 187,
+      "line": 193,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71454,9 +71454,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:203:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:209:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 203,
+      "line": 209,
       "column": 15,
       "tag": "a",
       "events": [
@@ -71486,9 +71486,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:237:23",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:243:23",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 237,
+      "line": 243,
       "column": 23,
       "tag": "Link",
       "events": [],
@@ -71510,9 +71510,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:268:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:274:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 268,
+      "line": 274,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -71534,9 +71534,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:303:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:309:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 303,
+      "line": 309,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -71559,9 +71559,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:306:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:312:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 306,
+      "line": 312,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -79906,7 +79906,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "53b2c22c9069d5c83c8cfeccc2586d1f916a7e55a69b496acb6513d9cf214c6d"
+      "sourceSha256": "37b69b02bd95547dbe5070596d9fa1975010f8e9d07ac1f4435581217ce17e10"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",

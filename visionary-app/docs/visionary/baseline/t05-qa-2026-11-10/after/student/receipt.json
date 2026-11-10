@@ -1,0 +1,134 @@
+{
+  "task": "F-18 student experience review",
+  "at": "2026-11-10T12:37:22.130Z",
+  "base": "http://127.0.0.1:5173",
+  "records": [
+    {
+      "file": "student-learn-topics.png",
+      "surface": "learn",
+      "learn": {
+        "h1": "Let’s learn",
+        "hasExamplePath": true,
+        "hasOutlinePath": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learn-entry",
+      "ok": true,
+      "detail": "{\"h1\":\"Let’s learn\",\"hasExamplePath\":true,\"hasOutlinePath\":true}"
+    },
+    {
+      "file": "student-learn-outline.png",
+      "surface": "learn",
+      "sampleClicked": true,
+      "outline": {
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | A | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Personalization | Privacy | Plans & usage | Explore and understand | Let’s learn | Pick a subject, then choose a book. | Your subjec",
+        "headings": [
+          "Your subjects",
+          "Mathematics"
+        ],
+        "chapterButtons": 1
+      },
+      "errors": []
+    },
+    {
+      "check": "learn-sample-outline",
+      "ok": true,
+      "detail": "{\"body\":\"Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide"
+    },
+    {
+      "file": "student-learn-topic-detail.png",
+      "surface": "learn",
+      "detail": {
+        "h1": "Let’s learn",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | A | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Pers"
+      },
+      "errors": []
+    },
+    {
+      "check": "learn-topic-detail",
+      "ok": true,
+      "detail": "drilled: \"Authored sample activities2 ch\" {\"h1\":\"Let’s learn\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Learner "
+    },
+    {
+      "file": "student-ask-question.png",
+      "surface": "ask",
+      "ask": {
+        "replied": true,
+        "honestMarker": true,
+        "body": "kspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Personalization | Privacy | Plans & usage | Visionary Guide | What is the difference between area and perimeter? | Visionary Guide · Your question is saved · no model answer yet | Your question is saved in this workspace. Guided answers are not available in this workspace "
+      },
+      "errors": []
+    },
+    {
+      "check": "ask-interaction",
+      "ok": true,
+      "detail": "{\"replied\":true,\"honestMarker\":true,\"body\":\"kspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Not"
+    },
+    {
+      "file": "student-practice.png",
+      "surface": "practice",
+      "practice": {
+        "h1": "Your next practice",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | A | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Pers",
+        "buttons": []
+      },
+      "errors": []
+    },
+    {
+      "check": "practice-state",
+      "ok": true,
+      "detail": "{\"h1\":\"Your next practice\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, "
+    },
+    {
+      "file": "student-build.png",
+      "surface": "build",
+      "build": {
+        "h1": "Build something of your own",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | A | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Pers"
+      },
+      "errors": []
+    },
+    {
+      "check": "build-state",
+      "ok": true,
+      "detail": "{\"h1\":\"Build something of your own\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a "
+    },
+    {
+      "file": "student-progress.png",
+      "surface": "progress",
+      "progress": {
+        "h1": "Your learning evidence",
+        "honestEmpty": true,
+        "inventedAchievements": 0,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | A | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Pers"
+      },
+      "errors": []
+    },
+    {
+      "check": "progress-honest-state",
+      "ok": true,
+      "detail": "{\"h1\":\"Your learning evidence\",\"honestEmpty\":true,\"inventedAchievements\":0,\"body\":\"Skip to main content | isionary | Active workspace | Pers"
+    },
+    {
+      "file": "student-classes-join.png",
+      "surface": "classes",
+      "classesJoin": {
+        "joinInputs": 0,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | A | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Pers"
+      },
+      "classesAfter": {
+        "honestJoin": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Microphone idle. Text is always available. | A | Home | Learn | Ask | Workspace tools | Practice | Build | Classes | Connections | Progress | Preferences & account | Notifications | Pers"
+      },
+      "errors": []
+    },
+    {
+      "check": "classes-join-honest",
+      "ok": true,
+      "detail": "{\"honestJoin\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Learner | + Add a role | Find a subject, topic, o"
+    }
+  ],
+  "defects": []
+}
