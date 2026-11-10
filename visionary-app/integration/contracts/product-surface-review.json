@@ -1209,7 +1209,17 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/LandingNav.jsx": {
+    "frontend/src/components/landing/LandingNav/index.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LandingNav/nav-shared.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -1239,7 +1249,7 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/persona/PersonaSections.jsx": {
+    "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -1249,7 +1259,7 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/persona/PremiumPersonaSections.jsx": {
+    "frontend/src/components/landing/persona/sections/CarouselDots.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -1259,7 +1269,157 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/PolicyTabs.jsx": {
+    "frontend/src/components/landing/persona/sections/ExploreCard.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/JourneyCategoryCard.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/JourneyGallery.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/JourneyModal.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/LanguageChips.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/StageDropdown.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/StruggleChapter.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/TrustCard.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LocalNav.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -2157,16 +2317,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/pages/DemoPreview.jsx": {
-      "profile": "development-scenario-only",
-      "state": "intentionally-unreleased",
-      "execution": "development-only",
-      "reason": "DemoPreview is imported only under import.meta.env.DEV. Fictional scenario selectors are excluded from production entry and are not real account admission.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
     "frontend/src/pages/ForgotPassword.jsx": {
       "profile": "configured-account-flow",
       "state": "connected",
@@ -2546,6 +2696,21 @@
         "POST /api/auth/session",
         "GET /api/auth/me"
       ]
+    },
+    "frontend/src/components/dashboard/CloudConsentControls.jsx": {
+      "profile": "server-consent-self-service",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated own-consent listing and committed revocation receipts through an explicit opt-in SQL runtime. Disabled by default. No consent grant, job/download consumer activation, policy publication or hosted acceptance.",
+      "followUp": [
+        "DATA-05",
+        "JOB-01",
+        "FILE-03"
+      ],
+      "endpoints": [
+        "GET /api/account/privacy/consents",
+        "POST /api/account/privacy/consents/revoke"
+      ]
     }
   },
   "operations": [
@@ -2576,7 +2741,7 @@
     },
     {
       "id": "public-enquiry-careers-partners",
-      "state": "missing",
+      "state": "intentionally-unreleased",
       "execution": "client-or-mail-link",
       "routes": [
         "/contact",
@@ -2584,7 +2749,7 @@
         "/partners"
       ],
       "files": [],
-      "reason": "No public delivery controller is registered. Device drafts, mail-client links and unavailable responses must not be treated as server-delivered applications/enquiries.",
+      "reason": "Server-backed public enquiry/application delivery is deliberately not part of the current release (C4/FAP-52); the published channel is a manual mail draft the visitor opens and sends themselves. Pages must present the draft openly (no promoted forms implying submission) and must not treat device drafts, mail-client links or unavailable responses as server-delivered applications/enquiries. PRIV-07 and the paired backend intake task still gate real delivery.",
       "followUp": [
         "PRIV-07"
       ],
@@ -2592,7 +2757,7 @@
     },
     {
       "id": "public-updates-distribution",
-      "state": "missing",
+      "state": "intentionally-unreleased",
       "execution": "client",
       "routes": [
         "/updates",
@@ -2600,7 +2765,7 @@
         "/community"
       ],
       "files": [],
-      "reason": "Public pages exist; no registered mailing/community/research publication service certifies distribution or membership.",
+      "reason": "A registered mailing/community/research publication service certifying distribution or membership is deliberately not part of the current release (C4/FAP-52); the published signup channel prepares a manual mail draft the visitor opens and sends themselves, so updates membership is intentionally not offered from the page. No automatic subscription may be claimed or implied. PRIV-07 and CONTENT-05 still gate real distribution.",
       "followUp": [
         "PRIV-07",
         "CONTENT-05"

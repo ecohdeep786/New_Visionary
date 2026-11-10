@@ -9,57 +9,63 @@
 
 @font-face {
   font-family: 'Google Sans Flex';
-  src: url('/fonts/GoogleSansFlex-Regular.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans Flex';
-  src: url('/fonts/GoogleSansFlex-Medium.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans Flex';
-  src: url('/fonts/GoogleSansFlex-Semibold.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans Flex';
-  src: url('/fonts/GoogleSansFlex-Bold.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Regular.ttf') format('truetype');
+  src: url('/fonts/GoogleSans-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Medium.ttf') format('truetype');
+  src: url('/fonts/GoogleSans-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Bold.ttf') format('truetype');
+  src: url('/fonts/GoogleSans-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-public: 'Google Sans Flex', 'Google Sans', sans-serif;
-  --font-public-content: 'Google Sans Flex Content', 'Google Sans Flex', 'Google Sans', sans-serif;
+  /* Public-family fallbacks stop at the generic: the Google Sans Flex set
+     carries 400/500/600/700 already, so any public list resolving to the
+     static 'Google Sans' face would pull a ~1.9MB truetype into the landing
+     render wave (observed 2026-10-27 css-initiated on '/' at ~5.4s). Public
+     surfaces therefore never list the static family; --font-product keeps it
+     for the internal product surface only. */
+  --font-public: 'Google Sans Flex', sans-serif;
+  --font-public-content: 'Google Sans Flex Content', 'Google Sans Flex', sans-serif;
   --font-product: 'Google Sans', sans-serif;
   --font-brand: var(--font-public);
 }
@@ -68,28 +74,28 @@
    content face cannot alter existing fixed heroes or navigation. */
 @font-face {
   font-family: 'Google Sans Flex Content';
-  src: url('/fonts/GoogleSansFlex-Regular.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans Flex Content';
-  src: url('/fonts/GoogleSansFlex-Medium.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans Flex Content';
-  src: url('/fonts/GoogleSansFlex-Semibold.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Google Sans Flex Content';
-  src: url('/fonts/GoogleSansFlex-Bold.ttf') format('truetype');
+  src: url('/fonts/GoogleSansFlex-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -102,4 +108,28 @@ body:has(.visionary-workspace, [data-font-surface="product"]),
 [data-font-surface="product"] {
   --font-brand: var(--font-product);
   font-family: var(--font-product);
+}
+
+/* ─── Motion law (D1, 2026-10-24) ─────────────────────────────────────────
+   One curve, one duration scale, everywhere on the product surface:
+
+   • --ease-out-apple is THE resolve-out curve for every transition and
+     entrance animation. No other cubic-bezier is permitted in source.
+   • Bounce/elastic curves (overshoot beyond the 0–1 output range) are
+     banned outright.
+   • One five-step duration scale: fast 180 / base 280 / slow 420 /
+     statement 650 / cinematic 900.
+   • `linear` is legal only on self-running indicators (spinner, marquee,
+     progress) — an `infinite` or WheelMask-style non-interactive loop.
+   • prefers-reduced-motion: reduce collapses motion to static-and-visible.
+     The global contract lives in index.css; per-sheet contracts in
+     premium.css, workspace.css, workspace-design.css and cast.css.
+   qa-motion.mjs (npm run qa:motion; in check) enforces these laws. */
+:root {
+  --ease-out-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-duration-fast: 180ms;
+  --motion-duration-base: 280ms;
+  --motion-duration-slow: 420ms;
+  --motion-duration-statement: 650ms;
+  --motion-duration-cinematic: 900ms;
 }

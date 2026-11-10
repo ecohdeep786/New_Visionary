@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 import { FirebaseProductService } from '../auth/firebase-product/firebase-product.service';
@@ -28,12 +28,7 @@ export class WorkspacesController extends ProductRequestAuthority {
     return this.workspaceRepo.createWorkspace(uid, body);
   }
 
-  @Post('invitations/:token/accept')
-  async acceptInvitation(@Req() req: Request, @Param('token') token: string) {
-    this.csrf(req);
-    const { uid } = await this.commandAccount(req);
-    return this.workspaceRepo.acceptInvitation(uid, token);
-  }
+  // Invitation acceptance is owned by the guarded DATA-04 flow.
 
   @Get()
   async list(@Req() req: Request) {
