@@ -10,6 +10,7 @@
 //     underlying action twice because completion is keyed on the durable cursor.
 //   - per-workload queues: jobs are routed by `queue`; a client cannot inject a
 //     queue it does not own (server-authoritative assertAuthorized).
+import { randomUUID } from 'node:crypto';
 import type { BackoffPolicy, Job, JobState, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
 import type { OutboxStore } from './outbox-store';
@@ -43,36 +44,34 @@ export class OutboxDispatcher {
     const nextAttempt = event.attempts + 1;
     if (nextAttempt > this.policy.maxAttempts) {
       // Quarantine: bounded ceiling reached. Never silently dropped; marked FAILED.
-      await this.mark(event.cursor, { status: 'FAILED', attempts: nextAttempt, lastError: 'MAX_ATTEMPTS_REACHED', dispatchedAt: new Date().toISOString() });
+      await this.store.markOutbox(event.cursor, { status: 'FAILED', attempts: nextAttempt, lastError: 'MAX_ATTEMPTS_REACHED', dispatchedAt: new Date().toISOString() });
       return 'FAILED';
     }
-    // Durable claim: bump attempts and set the next retry time BEFORE delivering.
+    // Durable claim: bump attempts and set the earliest re-claim time BEFORE
+    // delivering. Store failures propagate — a lost claim must never be
+    // mistaken for a delivered one (the ack below may only run after the
+    // claim is durable).
     const delay = backoffDelay(this.policy, nextAttempt);
-    const claimed = await this.mark(event.cursor, {
+    const claimed = await this.store.markOutbox(event.cursor, {
       attempts: nextAttempt,
       nextAttemptAt: new Date(Date.now() + delay).toISOString(),
       dispatchedAt: new Date().toISOString(),
     });
     if (!claimed) throw new JobPolicyError('unknown_event');
-    // Acknowledge atomically; if the ack fails (crash) the row stays claimable by
-    // nextAttemptAt and recovery re-delivers without a duplicate commit.
+    // Acknowledge atomically; if the ack fails (crash) the row stays PENDING
+    // and immediately reclaimable (the ack handler clears the backoff) so the
+    // next poll recovers the delivery without a duplicate commit.
     await this.ack(event.cursor);
     return 'DISPATCHED';
   }
 
-  private async mark(cursor: number, patch: Partial<Pick<OutboxEvent, 'status' | 'dispatchedAt' | 'attempts' | 'nextAttemptAt' | 'lastError'>>): Promise<OutboxEvent | null> {
-    try {
-      return await this.store.markOutbox(cursor, patch);
-    } catch {
-      // Crash between claim and ack: leave PENDING for recovery (do not lose the row).
-      return await this.store.outboxByCursor(cursor);
-    }
-  }
-
   private async ack(cursor: number): Promise<void> {
-    // Idempotent completion keyed on durable cursor. If ack is lost the next
-    // poll sees attempt count and re-delivers; duplicates never re-commit.
-    await this.store.markOutbox(cursor, { status: 'DONE' }).catch(() => undefined);
+    // Idempotent completion keyed on durable cursor. If the ack is lost, the
+    // row's backoff is cleared so recovery re-delivers on the next poll
+    // instead of waiting out a delay that belongs to a real action failure.
+    await this.store.markOutbox(cursor, { status: 'DONE' }).catch(async () => {
+      await this.store.markOutbox(cursor, { nextAttemptAt: null }).catch(() => undefined);
+    });
   }
 
   /** Enqueue a job into a per-workload queue, validating the client uid owns it. */
@@ -80,7 +79,7 @@ export class OutboxDispatcher {
     const authorized = await this.store.assertAuthorized(uid, queue);
     if (!authorized) throw new JobPolicyError('unauthorized_queue');
     const job: Job = {
-      id: `job_${Date.now()}_${Math.floor(Math.random() * 1e6)}`,
+      id: `job_${randomUUID()}`,
       uid,
       workspaceId: null,
       queue,
@@ -102,8 +101,11 @@ export class OutboxDispatcher {
   async runJob(id: string, cancelToken?: string): Promise<void> {
     const job = await this.store.jobById(id);
     if (!job) return;
-    if (job.state === 'CANCELLED' || (job.cancellationToken && job.cancellationToken !== cancelToken)) {
-      return; // fencing: a stale/disconnected caller cannot run a cancelled job
+    // Terminal states are final: re-running a DONE/FAILED/CANCELLED job would
+    // execute the job body twice, so the run is refused outright.
+    if (job.state === 'DONE' || job.state === 'FAILED' || job.state === 'CANCELLED') return;
+    if (job.cancellationToken && job.cancellationToken !== cancelToken) {
+      return; // fencing: a stale/disconnected caller cannot run a fenced job
     }
     try {
       await this.store.updateJob(id, { state: 'RUNNING' as JobState });
