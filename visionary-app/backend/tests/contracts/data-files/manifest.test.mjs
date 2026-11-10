@@ -123,3 +123,14 @@ test('FILE-02 before-DB-commit contract: an unreferenced published generation is
   await m.collectUnattached();
   await assert.rejects(m.commitReference({ objectId: 'obj-1', generation: 1, ownerUid: 'uid-1' }), (e) => e.code === 'collected');
 });
+
+test('FILE-02 collected generations are immutable at the store: no retain/release/reference after collection', async () => {
+  const { m } = setup();
+  const manifest = await m.publish({ objectId: 'obj-2', ownerUid: 'uid-1', digest: 'b'.repeat(64), size: 512, type: 'text/markdown' });
+  await m.collectUnattached(); // detaches the unattached generation
+  // the store itself refuses every further mutation of a detached generation
+  // (defense in depth behind the service-level collected checks)
+  await assert.rejects(m.retain({ objectId: 'obj-2', generation: 1, ownerUid: 'uid-1', reason: 'rev-1' }), (e) => e.code === 'collected'); // service-level verifyReference refusal
+  await assert.rejects(m.release({ objectId: 'obj-2', generation: 1, ownerUid: 'uid-1', reason: 'rev-1' }), (e) => e.code === 'immutable'); // store-level guard (release bypasses verifyReference)
+  await assert.rejects(m.commitReference({ objectId: 'obj-2', generation: 1, ownerUid: 'uid-1' }), (e) => e.code === 'collected');
+});

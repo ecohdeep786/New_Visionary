@@ -41,6 +41,10 @@ export class InMemoryManifestStore implements ManifestStore {
     for (const field of immutableFields) {
       if (field in patch) return { ok: false, reason: 'immutable' };
     }
+    // A collected generation is detached: the only mutation it accepts is the
+    // collection stamp itself. Retain/release/reference after collection would
+    // resurrect a detached object behind the sweeper's back.
+    if (cur.collectedAt && !('collectedAt' in patch)) return { ok: false, reason: 'immutable' };
     const next = { ...cur, ...patch } as ObjectManifest;
     this.manifests.set(this.key(objectId, generation), next);
     return { ok: true, manifest: next };
