@@ -8,8 +8,8 @@
 // a durable adapter can reproduce the identical behavior.
 import type { DownloadGrant, DownloadState, ExportRecord } from './download-types';
 
-export type GrantWriteResult = { ok: true; grant: DownloadGrant } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' };
-export type ExportWriteResult = { ok: true; record: ExportRecord } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' };
+export type GrantWriteResult = { ok: true; grant: DownloadGrant } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' };
+export type ExportWriteResult = { ok: true; record: ExportRecord } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' };
 
 export interface DownloadStore {
   insert(grant: DownloadGrant): Promise<void>;

@@ -187,9 +187,12 @@ export class DownloadGateway {
     return grant;
   }
 
-  private fromGrantWrite(r: { ok: true; grant: DownloadGrant } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' }): DownloadPolicyError {
+  private fromGrantWrite(r: { ok: true; grant: DownloadGrant } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' }): DownloadPolicyError {
     if ('reason' in r && r.reason === 'unauthorized') return new DownloadPolicyError('unauthorized');
     if ('reason' in r && r.reason === 'conflict') return new DownloadPolicyError('state_conflict');
+    if ('reason' in r && r.reason === 'revoked') return new DownloadPolicyError('revoked');
+    if ('reason' in r && r.reason === 'expired') return new DownloadPolicyError('expired');
+    if ('reason' in r && r.reason === 'used') return new DownloadPolicyError('used');
     return new DownloadPolicyError('not_found');
   }
 }
@@ -269,9 +272,12 @@ export class ExportService {
     return count;
   }
 
-  private fromExportWrite(r: { ok: true; record: ExportRecord } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' }): DownloadPolicyError {
+  private fromExportWrite(r: { ok: true; record: ExportRecord } | { ok: false; reason: 'not_found' | 'conflict' | 'unauthorized' | 'revoked' | 'expired' | 'used' }): DownloadPolicyError {
     if ('reason' in r && r.reason === 'unauthorized') return new DownloadPolicyError('unauthorized');
     if ('reason' in r && r.reason === 'conflict') return new DownloadPolicyError('state_conflict');
+    if ('reason' in r && r.reason === 'revoked') return new DownloadPolicyError('revoked');
+    if ('reason' in r && r.reason === 'expired') return new DownloadPolicyError('expired');
+    if ('reason' in r && r.reason === 'used') return new DownloadPolicyError('used');
     return new DownloadPolicyError('not_found');
   }
 }
