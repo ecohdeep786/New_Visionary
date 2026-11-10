@@ -104,3 +104,70 @@ proving the clock fix on every branch that re-runs it.
   to build next.
 - Remaining owner gates after the merge: hosted acceptance walks, real merchant
   wiring, real device QA, release/growth decisions (see LAUNCH_READINESS_MAP.md).
+
+## STACK 2 — the reviewer-corrector lane (13 more REVIEWER-READY branches, 2026-11-10)
+
+Beyond the 12-branch stack above, the reviewer-corrector lane finalized 13 more
+Testing branches (each: reviewed, corrected, dev-integrated at `2e0b1fbb`,
+byte-identical data-04 fix, executed gates incl. real-SQL suites, live product
+verification, receipt doc + Jira handoff). All pushed; worktrees under
+`nv-worktrees/` are NOT kept for this stack — the main repo checkout was swapped
+per task and restored to beta after.
+
+### Group B — platform audits (independent of each other; each contains dev)
+
+| Order | Branch | Task | Tip | Gates at head |
+|---|---|---|---|---|
+| any | `zcode/codex/deepseek-kan-47-identity-isolation` | PLAT-03 | `6d11fce3` | identity suite 9/9; data:check 315/315; check 0 |
+| any | `zcode/codex/deepseek-kan-48-origin-routing` | PLAT-04 | `a2fee4b3` | origin 8/8; **LIVE 7/7 PASS** vs visionary.org.in rev 23921342 |
+| any | `zcode/codex/deepseek-kan-49-session-boundary` | PLAT-05 | `d52f5c65` | session 7/7; **LIVE 6/6 PASS** |
+| any | `zcode/codex/deepseek-kan-50-ci-audit` | PLAT-06 | `f6c222af` | ci suite 12/12; audit CLI 9/9 vs current workflow |
+| any | `zcode/codex/principal-kan-52-backup-drills` | PLAT-08 | `64443844` | drill 6/6; gcp 34/34; vmm 296/296 |
+
+Conflict map: these five touch disjoint code (gcp audit tools / drills); they
+share only `tsconfig.data.json` includes and `production.yml` (kan-50) — union
+resolutions, mechanical. Merge BEFORE Group C if you want their audit tools
+present when C's batteries run (not required).
+
+### Group C — outbox/file/content (STACKED: merge in ascending numeric order)
+
+| Order | Branch | Task | Tip | Contains | Gates at head |
+|---|---|---|---|---|---|
+| **C1** | `zcode/codex/deepseek-kan-53-outbox-jobs` | JOB-01 | `dd520a57` | dev + corrections `6af47b16` | outbox 10/10 |
+| C2 | `zcode/codex/deepseek-kan-54-job-fencing` | JOB-02 | `d2099d82` | ⊇ 53 | data-jobs 19/19 |
+| C3 | `zcode/codex/deepseek-kan-55-admission-limits` | JOB-03 | `77b03774` | ⊇ 53 | data-jobs 26/26 |
+| C4 | `zcode/codex/deepseek-kan-56-upload-lifecycle` | FILE-01 | `8623dd4f` | ⊇ 53 | family 36/36 |
+| C5 | `zcode/codex/deepseek-kan-57-object-manifests` | FILE-02 | `d7dd1f6a` | ⊇ 53 | family 44/44 |
+| C6 | `zcode/codex/deepseek-kan-58-private-downloads` | FILE-03 | `f23c2819` | ⊇ 53 | download 10/10 + **SQL 13/13** |
+| C7 | `zcode/codex/deepseek-kan-59-file-security` | FILE-04 | `689b64a3` | ⊇ {53, 58} | full battery 74/74 |
+| C8 | `zcode/codex/deepseek-kan-60-content-catalog` | CONTENT-01 | `ed0ff00b` | ⊇ 53 | full battery 89/89 |
+
+**Merge C1 first** — it carries the corrected JOB-01 laws (pendingOutbox
+due-filter, propagating claim failures, ack-clears-backoff, UUID ids) that the
+later branches already contain byte-identically, so C2..C8 merge with identical-
+hunk auto-resolution. Do NOT merge a C-branch before C1: their bases predate
+the JOB-01 corrections and the corrections live in the stack, not in dev.
+`download-store.sql.ts`/download files: KAN-58's side is authoritative (its SQL
+adapter implements the atomic `consumeRead`; 53's incidental older download
+generation is superseded — resolved ours-in-58, keep that resolution).
+`src/file/index.ts` unions on C5/C7 (all four FILE surfaces exported).
+`content`/`file` tsconfig includes union mechanically.
+
+The C-family's real-SQL suites (`download.sql.test.mjs` et al.) run inside
+`data:check` against the disposable PostgreSQL — after C6 lands, dev's
+data:check exercises the durable download store too.
+
+### Stack 2 gate evidence (this host, single serialized invocations)
+
+- Full FILE+JOB+CONTENT battery at C8's head: **89/89** (content, security,
+  download, download.sql on real PostgreSQL 16, upload, manifest, outbox, jobs,
+  admission).
+- Live real-user journey (in-app browser, 2026-11-10): pricing → register →
+  email step → auth guards with `returnTo` — verified against the live origin.
+- data-04 fix: byte-identical on every Stack-2 branch (17 branches total now
+  carry it); first landing fixes dev permanently; later branches drop theirs.
+
+### KAN-51 and KAN-46 (not in any stack)
+
+KAN-46 (PLAT-02) is Codex's active In-Progress task; KAN-51 (PLAT-07) is
+In-Progress/actively owned — both deliberately untouched by this lane.
