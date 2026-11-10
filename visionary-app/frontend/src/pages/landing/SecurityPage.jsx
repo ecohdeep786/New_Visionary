@@ -6,15 +6,17 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
 import ValuesStrip from "@/components/landing/ValuesStrip";
-import PolicyTabs from "@/components/landing/PolicyTabs";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
+import stageHeroWebp from "@/assets/brand/hero-stage.webp";
+import stageHeroAvif from "@/assets/brand/hero-stage.avif";
+
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META } from "@/data/legalMeta";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 const COLORS = {
   ink: "#1d1d1f",
@@ -30,10 +32,9 @@ const COLORS = {
   graphite: "#6e6e73",
 };
 
-/* ═══ Link grammar — the approved public quiet link / ink pill / grey pill, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[16px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { quietLink, inkPill } = CTA_LAW;
+const greyPill = "inline-flex h-11 items-center justify-center rounded-full bg-[#f5f5f7] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -58,7 +59,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -124,7 +125,7 @@ function Paragraph({ children }) {
 function IconTile({ Icon }) {
   return (
     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}>
-      <Icon className="h-5 w-5" strokeWidth={1.7} aria-hidden="true" />
+      <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
     </span>
   );
 }
@@ -208,12 +209,27 @@ export default function SecurityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-security min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <Breadcrumb page="Security" />
-      <PolicyTabs />
+      <LocalNav title="Security" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1}>
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4), rendered from the single-source CinematicHero
+            under the LocalNav bar. Promises, action row and effective date
+            stay as the body opening below. */}
+        <FadeReveal visible={heroVisible}>
+          <CinematicHero
+            title="Secure by design,"
+            accent="protected end to end."
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "A learner holding a laptop, ready to learn",
+            }}
+            inFlow={56}
+          />
+        </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
@@ -230,7 +246,7 @@ export default function SecurityPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
                           <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
                           <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
@@ -241,7 +257,7 @@ export default function SecurityPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       Security and privacy work together. For personal data and your rights, see the Privacy Policy.
                     </p>
@@ -252,18 +268,11 @@ export default function SecurityPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY HERO — the same policies.google.com opening as Privacy */}
+              {/* POLICY BODY OPENING — promises, action row, effective date
+                  (the display hero lives in CinematicHero above; FAP-59
+                  phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
-                <div className="pb-12 pt-2">
-                  <div className="flex justify-center"><SpotIllustration subject="shield" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p data-type="label" className="mt-10" style={{ color: COLORS.grey }}>Security</p>
-                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                    Secure by design, <span className="accent-gradient">protected end to end.</span>
-                  </h1>
-                  <p className="mt-8 max-w-[760px] text-[17px] leading-[25px]" style={{ color: COLORS.grey }}>
-                    Encryption, access controls, and clear account tools, described plainly, without security promises we cannot keep.
-                  </p>
-
+                <div className="pb-12 pt-10">
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {SECURITY_PROMISES.map((p) => (
                       <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
@@ -332,7 +341,7 @@ export default function SecurityPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="security-summary-title">
+                <section data-section="02-summary" aria-labelledby="security-summary-title">
                   <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="security-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -351,7 +360,7 @@ export default function SecurityPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 */}
-                <section id="your-information" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-information" data-section="03-your-information" className="scroll-mt-24">
                   <SectionHeading number="01" title="Your information" />
                   <Paragraph>Security starts with understanding what information moves through a product.</Paragraph>
                   <div className="mt-5"><Paragraph>Depending on how you use Visionary, this can include information such as your account details, conversations, learning activity, content you provide, and information needed to operate the service.</Paragraph></div>
@@ -360,7 +369,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 02 */}
-                <section id="protected-in-transit" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="protected-in-transit" data-section="04-protected-in-transit" className="scroll-mt-24">
                   <SectionHeading number="02" title="Protected as it moves" />
                   <Paragraph>Information can move between your device, Visionary, and the systems that help provide the service.</Paragraph>
                   <div className="mt-5"><Paragraph>Visionary uses encrypted HTTPS connections when information travels between your browser and the service. Keep your browser and operating system updated so they can use current connection protections.</Paragraph></div>
@@ -368,7 +377,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 03 */}
-                <section id="protected-when-stored" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="protected-when-stored" data-section="05-protected-when-stored" className="scroll-mt-24">
                   <SectionHeading number="03" title="Protected when stored" />
                   <Paragraph>Information that needs to remain available to operate Visionary may be stored in our systems.</Paragraph>
                   <div className="mt-5"><Paragraph>Stored information is protected through technical and organizational measures, including controls around infrastructure, systems, credentials, and access.</Paragraph></div>
@@ -377,7 +386,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 04 */}
-                <section id="access-controlled" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="access-controlled" data-section="06-access-controlled" className="scroll-mt-24">
                   <SectionHeading number="04" title="Access is controlled" />
                   <Paragraph>Not everyone who works on a system should have access to everything inside it.</Paragraph>
                   <div className="mt-5"><Paragraph>Visionary limits access to systems and information according to what a person or service needs to perform its role.</Paragraph></div>
@@ -393,7 +402,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 05 */}
-                <section id="your-control" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-control" data-section="07-your-control" className="scroll-mt-24">
                   <SectionHeading number="05" title="Your control matters" />
                   <Paragraph>Security is not separate from privacy or account control.</Paragraph>
                   <div className="mt-5"><Paragraph>You should be able to understand what happens to your information and use the controls Visionary provides to manage your account and data.</Paragraph></div>
@@ -408,7 +417,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 06 */}
-                <section id="security-over-time" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="security-over-time" data-section="08-security-over-time" className="scroll-mt-24">
                   <SectionHeading number="06" title="Security is ongoing" />
                   <Paragraph>A secure product is never finished.</Paragraph>
                   <div className="mt-5"><Paragraph>Software changes. New vulnerabilities are discovered. New threats appear. Security therefore requires continuous attention as Visionary's product and infrastructure evolve.</Paragraph></div>
@@ -417,7 +426,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 07 */}
-                <section id="report-security" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="report-security" data-section="09-report-security" className="scroll-mt-24">
                   <SectionHeading number="07" title="When something goes wrong" />
                   <Paragraph>Finding a security problem is the first step toward fixing it.</Paragraph>
                   <div className="mt-5"><Paragraph>If you believe you have discovered a vulnerability, unauthorized access, or another security issue involving Visionary, please report it through our security contact channel.</Paragraph></div>
@@ -431,12 +440,12 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 08 */}
-                <section id="commitments" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="commitments" data-section="10-commitments" className="scroll-mt-24">
                   <SectionHeading number="08" title="Our security commitments" />
                   <div className="mt-8 max-w-[880px] space-y-4">
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Protect information</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Use appropriate technical and organizational measures to protect information handled by the service.</p>
@@ -445,7 +454,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <UserRound className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <UserRound className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Limit access</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Restrict access to systems and information according to legitimate operational needs.</p>
@@ -454,7 +463,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Respond to problems</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Investigate reported security concerns and improve the service when weaknesses are found.</p>
@@ -463,7 +472,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Be clear about what we know</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Avoid making security promises that are not supported by Visionary's actual systems and practices.</p>
@@ -474,7 +483,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 09 · SYNC DEVICES — the master-order product requirement */}
-                <section id="sync-devices" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="sync-devices" data-section="11-sync-devices" className="scroll-mt-24">
                   <SectionHeading number="09" title="Sync devices" />
                   <Paragraph>
                     Sign in with your Sync Encrypted ID and Visionary carries your learning to every device you use: your questions, progress, and memory arrive as they were, and only you can open them.
@@ -482,7 +491,7 @@ export default function SecurityPage() {
                   <div className="mt-8 max-w-[880px] space-y-4">
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Sign in with your Sync Encrypted ID</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>One encrypted identity opens Visionary on a new device. The encryption stays with your account, not with the device.</p>
@@ -491,7 +500,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Your learning follows you</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Progress, notes, and memory sync across phone, tablet, and laptop. Pick up exactly where you stopped.</p>
@@ -500,7 +509,7 @@ export default function SecurityPage() {
                     </div>
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                        <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>You see every device</h3>
                           <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Review the devices signed in to your account and remove any of them, at any time, from your settings.</p>
@@ -516,7 +525,7 @@ export default function SecurityPage() {
                 </section>
 
                 {/* 10 */}
-                <section id="contact" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="contact" data-section="12-contact" className="scroll-mt-24">
                   <SectionHeading number="10" title="Contact" />
                   <Paragraph>Security questions, vulnerability reports, and security concerns can be sent to:</Paragraph>
                   <div className="mt-6">
@@ -536,7 +545,7 @@ export default function SecurityPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="13-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -558,7 +567,7 @@ export default function SecurityPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="14-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -570,7 +579,7 @@ export default function SecurityPage() {
               ].map(({ to, label, desc, Icon }) => (
                 <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <Icon className="h-5 w-5" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
@@ -583,7 +592,7 @@ export default function SecurityPage() {
         {/* B2/FAP-47 — the page's one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
-        <section aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-14 sm:px-8 lg:px-10">
+        <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
             <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
               Questions about this policy?

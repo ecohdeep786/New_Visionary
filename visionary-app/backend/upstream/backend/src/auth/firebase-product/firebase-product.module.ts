@@ -19,5 +19,13 @@ import { KnowledgeProjectionService } from '../../learning/knowledge-projection.
 import { PersonalWorkspaceController } from '../../workspaces/personal-workspace.controller';
 import { PersonalWorkspaceService } from '../../workspaces/personal-workspace.service';
 
-@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [PrivacyPolicyController, FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController, PersonalWorkspaceController], providers: [PrivacyPolicyService, FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService, PersonalWorkspaceService] })
+import { ProductInvitationController } from '../../invitations/product-invitation.controller';
+import { ProductInvitationService } from '../../invitations/product-invitation.service';
+import { ProductConsentController } from '../../consent/product-consent.controller';
+import { ProductConsentService } from '../../consent/product-consent.service';
+import { OverviewController } from '../../overview/overview.controller';
+import { OverviewService } from '../../overview/overview.service';
+import { ProductOverviewStore } from '../../overview/product-overview.store';
+
+@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [OverviewController, ProductConsentController, ProductInvitationController, PrivacyPolicyController, FirebaseProductController, BillingController, AccountController, FeedbackController, KnowledgeProjectionController, LearningController, PersonalWorkspaceController], providers: [ProductOverviewStore, { provide: OverviewService, useFactory: (store: ProductOverviewStore) => new OverviewService(store), inject: [ProductOverviewStore] }, ProductConsentService, ProductInvitationService, PrivacyPolicyService, FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService, KnowledgeProjectionService, LearningService, PersonalWorkspaceService] })
 export class FirebaseProductModule {}
