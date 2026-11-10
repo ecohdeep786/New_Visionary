@@ -430,15 +430,15 @@
   "sourceAnchors": [
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256": "566001b1989e4ee7fb5e7174931480fff4da866a35097d2bb8b7a57db48caae4"
+      "sha256": "9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805"
     },
     {
       "file": "frontend/src/components/onboarding/stepConfigs.jsx",
-      "sha256": "aacb7dbccb8c704f15708a638701428ec411aad8e0559bf0b6950e59f840ba1c"
+      "sha256": "d3ce5bda017e38e61697bc099d67f2cc2f081c4c912b43f52378f454d0e6b564"
     },
     {
       "file": "frontend/src/components/onboarding/ProductSetupFields.jsx",
-      "sha256": "909ceb2cb2f7a4d4cda2935aab9c94efb8c66f4f802cf3d4abc534596f9327f8"
+      "sha256": "0b423579460b86c9d1c32c8d269c8dfd0546f741be2758b12d614190d2e82475"
     },
     {
       "file": "frontend/src/domain/workspace.ts",
@@ -450,7 +450,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/profile.ts",
-      "sha256": "fa05afdff5429cb192b3188501ae3a690fc89b0621228fb67d49daf2c6de0e9c"
+      "sha256": "15f841620d57d5dc7d7e1afc494ec1e7e700c7369d15ff771bc924af21466782"
     },
     {
       "file": "frontend/src/lib/onboardingLearningContext.js",

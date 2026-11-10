@@ -80,10 +80,10 @@ The inspector returns engineering reasons and always `runtimeAuthorization: fals
 
 All seven normalized source revisions are also pinned independently in the checker. A matrix-only digest refresh cannot certify a changed producer, consumer or authority mapping; inspect the changed source and submit the updated tooling/contract for exact-SHA review.
 
-- `integration/contracts/product-surface-review.json` — normalized SHA-256 `566001b1989e4ee7fb5e7174931480fff4da866a35097d2bb8b7a57db48caae4`
-- `frontend/src/components/onboarding/stepConfigs.jsx` — normalized SHA-256 `aacb7dbccb8c704f15708a638701428ec411aad8e0559bf0b6950e59f840ba1c`
-- `frontend/src/components/onboarding/ProductSetupFields.jsx` — normalized SHA-256 `909ceb2cb2f7a4d4cda2935aab9c94efb8c66f4f802cf3d4abc534596f9327f8`
+- `integration/contracts/product-surface-review.json` — normalized SHA-256 `9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805`
+- `frontend/src/components/onboarding/stepConfigs.jsx` — normalized SHA-256 `d3ce5bda017e38e61697bc099d67f2cc2f081c4c912b43f52378f454d0e6b564`
+- `frontend/src/components/onboarding/ProductSetupFields.jsx` — normalized SHA-256 `0b423579460b86c9d1c32c8d269c8dfd0546f741be2758b12d614190d2e82475`
 - `frontend/src/domain/workspace.ts` — normalized SHA-256 `cd820b052fc31c17c1f86f2c0919d259cb2b6019f0517f8d9f5100ca9eddb87d`
 - `frontend/tests/curriculum-category-acceptance.test.mjs` — normalized SHA-256 `8c7380c8b01a5aefb016fe527461a610740b5c8c186f37b60c4255ccf112d303`
-- `backend/upstream/backend/src/auth/firebase-product/profile.ts` — normalized SHA-256 `fa05afdff5429cb192b3188501ae3a690fc89b0621228fb67d49daf2c6de0e9c`
+- `backend/upstream/backend/src/auth/firebase-product/profile.ts` — normalized SHA-256 `15f841620d57d5dc7d7e1afc494ec1e7e700c7369d15ff771bc924af21466782`
 - `frontend/src/lib/onboardingLearningContext.js` — normalized SHA-256 `db69839445a86dcc7d084acb9beb9f6de79a804f87c44bad6d5775e1bd7c4d06`
