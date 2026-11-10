@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // LEARN-01 (KAN-67) — owned learning sessions, checkpoints and resume cursors.
 //
 // Core responsibilities (server-owned; wrong user/workspace/revision denied):
@@ -31,7 +32,6 @@ import type { LearningSessionStore, SourceRevisionLookup } from './learning-sess
 type SettleSuccess = { ok: true; status: SessionStatus; revision: number };
 
 export class LearningSessionService {
-  private sessionCounter = 0;
   constructor(
     private readonly store: LearningSessionStore,
     private readonly revisions: SourceRevisionLookup,
@@ -44,7 +44,7 @@ export class LearningSessionService {
       throw new LearningSessionError('source_revision_unknown');
     }
     const session: LearningSession = {
-      sessionId: `ls_${++this.sessionCounter}`,
+      sessionId: `ls_${randomUUID()}`,
       owner: { ...owner },
       pin: { ...pin },
       status: 'active',
@@ -79,19 +79,24 @@ export class LearningSessionService {
       return { ok: false as const, reason: 'revision_conflict', preservedLocal: true as const, currentRevision: session.revision };
     }
 
-    const revision = session.revision + 1;
-    const checkpoint: Checkpoint = {
-      commandId: input.commandId,
+    // The revision fence is enforced ATOMICALLY by the store against the
+    // current row: two concurrent checkpoints with the same expectedRevision
+    // can never both advance (the loser receives the current revision for a
+    // preserved-local retry).
+    const committed = await this.store.commitCheckpoint({
       sessionId: input.sessionId,
-      committedBy: { ...input.owner },
+      owner: input.owner,
+      commandId: input.commandId,
+      expectedRevision: input.expectedRevision,
       deviceId: input.deviceId,
       payload: input.payload,
-      revision,
       committedAt: this.now().toISOString(),
-    };
-    await this.store.insertCheckpoint(checkpoint);
-    await this.store.updateSession({ ...session, revision, updatedAt: checkpoint.committedAt });
-    return { outcome: 'committed', sessionId: input.sessionId, revision, commandId: input.commandId };
+    });
+    if (committed.ok === false) {
+      if (committed.reason === 'duplicate') return { outcome: 'duplicate', sessionId: input.sessionId, revision: session.revision, commandId: input.commandId };
+      return { ok: false as const, reason: 'revision_conflict', preservedLocal: true as const, currentRevision: session.revision };
+    }
+    return { outcome: 'committed', sessionId: input.sessionId, revision: committed.revision, commandId: input.commandId };
   }
 
   /** Complete an owned session (idempotent; wrong owner refused). */
