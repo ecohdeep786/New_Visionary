@@ -148,3 +148,15 @@ test('FILE-01 authorization: an upload cannot be read or mutated by a non-owner 
   await assert.rejects(u.requireReady(record.id, 'uid-9'), (e) => e.code === 'unauthorized');
   await assert.rejects(u.cancel(record.id, 'uid-9'), (e) => e.code === 'unauthorized');
 });
+
+test('FILE-01 expansion policy: a non-expandable type is an opaque blob and refuses parser output', async () => {
+  const { s, u } = setup();
+  const record = await u.createIntent({ uid: 'uid-1', name: 'photo.bin', declaredType: 'image/png', declaredSize: 8 });
+  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: bytes('PNGDATA!') });
+  const scanning = await u.verify(record.id, 'uid-1', { sniff });
+  assert.equal(scanning.state, 'SCANNING');
+  await assert.rejects(u.expandArchive(record.id, 'uid-1', 100), (e) => e.code === 'not_expandable');
+  const ready = await u.scan(record.id, 'uid-1', 'clean');
+  assert.equal(ready.state, 'READY');
+  await assert.rejects(u.expandArchive(ready.id, 'uid-1', 100), (e) => e.code === 'not_expandable');
+});

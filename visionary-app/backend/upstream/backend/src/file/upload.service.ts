@@ -14,12 +14,13 @@
 //   - parser/archive expansion is bounded by policy (max parser output bytes and
 //     archive entry count); exceeding the bounds rejects without continuing to
 //     spend resources.
+import { randomUUID } from 'node:crypto';
 import type { FilePolicy, FileRecord, FileState } from './file-types';
 import { DEFAULT_FILE_POLICY, sha256Hex } from './file-types';
 import type { FileStore } from './file-store';
 
 export class FilePolicyError extends Error {
-  constructor(public readonly code: 'unauthorized' | 'not_found' | 'state_conflict' | 'size_mismatch' | 'digest_required' | 'verification_failed' | 'scan_failed' | 'bounds_exceeded' | 'not_ready') {
+  constructor(public readonly code: 'unauthorized' | 'not_found' | 'state_conflict' | 'size_mismatch' | 'digest_required' | 'verification_failed' | 'scan_failed' | 'bounds_exceeded' | 'not_ready' | 'not_expandable') {
     super(code);
   }
 }
@@ -38,7 +39,7 @@ export class UploadService {
   async createIntent(opts: { uid: string; workspaceId?: string | null; name: string; declaredType: string; declaredSize: number }): Promise<FileRecord> {
     if (opts.declaredSize > this.policy.maxFileBytes) throw new FilePolicyError('bounds_exceeded');
     const record: FileRecord = {
-      id: `file_${Date.now()}_${Math.floor(Math.random() * 1e6)}`,
+      id: `file_${randomUUID()}`,
       uid: opts.uid,
       workspaceId: opts.workspaceId ?? null,
       name: opts.name,
@@ -120,6 +121,12 @@ export class UploadService {
     const moved = await this.store.transition(id, uid, ['UPLOADING', 'INTENT'], { state: 'VERIFYING' });
     if (!moved.ok) throw new FilePolicyError('state_conflict');
     const bytes = this.assemble(id);
+    // The received-byte counter is durable but the chunk parts are volatile:
+    // after a service restart a resumed upload could assemble a truncated body
+    // while the counter still matches expectedSize. Verify the assembly
+    // against the counter — a divergence is a typed refusal, never silent
+    // corruption of the admitted object.
+    if (bytes.length !== record.bytesReceived) throw new FilePolicyError('verification_failed');
     const digest = await sha256Hex(bytes);
     const sniffedType = opts.sniff(bytes);
     // Note: for this enabler the digest is stored after a completed verify; a
@@ -142,10 +149,12 @@ export class UploadService {
     if (result !== 'clean') {
       const rejected = await this.store.transition(id, uid, ['SCANNING'], { state: 'REJECTED', scanResult: 'infected', rejectionReason: 'scan_infected' });
       if (!rejected.ok) throw new FilePolicyError('scan_failed');
+      this.bytes.delete(id); // terminal: release the volatile chunk parts
       return rejected.record;
     }
     const ready = await this.store.transition(id, uid, ['SCANNING'], { state: 'READY', scanResult: 'clean' });
     if (!ready.ok) throw new FilePolicyError('scan_failed');
+    this.bytes.delete(id); // terminal: release the volatile chunk parts
     return ready.record;
   }
 
@@ -159,6 +168,13 @@ export class UploadService {
     if (!record) throw new FilePolicyError('not_found');
     if (record.uid !== uid) throw new FilePolicyError('unauthorized');
     if (record.state !== 'SCANNING' && record.state !== 'READY') throw new FilePolicyError('state_conflict');
+    // Policy law: only expandable types may be parsed/archived — every other
+    // type passes as an opaque blob, so parser output can never be recorded
+    // for it. The declared type is the caller's contract for expansion; the
+    // sniffed type is recorded alongside and the admitting layer reconciles
+    // any divergence (FILE-01 records, FILE-04 enforces format admission).
+    const declaredBase = record.declaredType.split(';')[0].trim().toLowerCase();
+    if (!this.policy.expandableTypes.includes(declaredBase)) throw new FilePolicyError('not_expandable');
     if (record.parserOutputBytes + parsedBytes > record.maxParserOutputBytes) {
       const rej = await this.store.transition(id, uid, ['SCANNING', 'READY'], { state: 'REJECTED', rejectionReason: 'parser_output_bound' });
       if (!rej.ok) throw new FilePolicyError('bounds_exceeded');
