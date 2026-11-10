@@ -129,9 +129,12 @@ export class FileSecurityGuard {
   }
 
   /**
-   * Sanitize a payload before handing it to a converter/parser. Any
-   * account/payment credential field is removed so third-party parser code
-   * never sees secrets; the scope is otherwise bounded to the object metadata.
+   * Screen a payload before handing it to a converter/parser. A payload
+   * carrying any account/payment credential field is REFUSED with the typed
+   * credential_leak error before parse (fail closed — the reviewed contract);
+   * it is not silently stripped, because a refusal tells the caller their
+   * payload mix is wrong while a silent strip could mask a smuggling attempt.
+   * Clean payloads pass through bounded to the object metadata.
    */
   converterScope(record: FileRecord, payload: Record<string, unknown>): ConverterScope {
     const scrubbed: Record<string, unknown> = {};
