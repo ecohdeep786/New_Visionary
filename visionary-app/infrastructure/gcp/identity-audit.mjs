@@ -35,6 +35,11 @@ export function auditRuntimeProjectIam(policy) {
   const missing = expected.runtimeProjectRoles.filter(role => !roles.includes(role));
   if (extra.length) return refuse(`runtime identity holds unreviewed project roles: ${extra.join(', ')}`);
   if (missing.length) return refuse(`runtime identity is missing reviewed project roles: ${missing.join(', ')}`);
+  // A conditioned grant is outside the reviewed unconditional law even when
+  // the role itself is reviewed: the desired state holds none, so any
+  // conditional binding for the runtime identity refuses (fail closed).
+  const conditioned = (policy.bindings || []).filter(b => b.condition && (b.members || []).includes(member(expected.runtime))).map(b => b.role);
+  if (conditioned.length) return refuse(`runtime identity holds unreviewed conditional project roles: ${conditioned.join(', ')}`);
   return pass(`exactly ${roles.join(', ')}`);
 }
 
@@ -58,7 +63,6 @@ export function auditRuntimeSecretIam(policy) {
 export function auditDeployerIdentity(account, keys, projectBindings, serviceBindings, repositoryBindings, runtimeBindings) {
   if (!account || account.disabled) return refuse('deployer identity is missing or disabled');
   if ((keys || []).length) return refuse(`deployer identity has ${keys.length} key(s); federation only, delete the keys`);
-  const has = (bindings, role, target) => (bindings || []).some(b => b.role === role && (b.members || []).some(m => m === `serviceAccount:${expected.deployer}`) && (!b.condition) && (target === undefined || (b.role === role)));
   const principal = `principalSet://iam.googleapis.com/projects/${expected.project}/locations/global/workloadIdentityPools/${expected.pool}/attribute.repository_id/${expected.repositoryId}`;
   const wif = (projectBindings || []).some(b => b.role === 'roles/iam.workloadIdentityUser' && !b.condition && (b.members || []).includes(principal));
   if (!wif) return refuse(`deployer lacks Workload Identity User for the reviewed repository principal ${principal}`);
@@ -78,10 +82,23 @@ export function auditWorkloadIdentityPool(pool, provider) {
   if (!provider || provider.state !== 'ACTIVE') return refuse('workload identity provider is missing or not ACTIVE');
   if (provider.oidc?.issuerUri !== expected.issuer) return refuse(`provider issuer is ${provider.oidc?.issuerUri}`);
   const condition = provider.attributeCondition || '';
-  // bootstrap.py pins the GitHub OIDC claims (assertion.repository_id ...);
-  // accept the same claim pinned to the reviewed repository id only.
-  if (!new RegExp(`(attribute|assertion)\\.repository_id\\s*==\\s*['"]${expected.repositoryId}['"]`).test(condition)) {
-    return refuse(`provider condition does not pin repository_id ${expected.repositoryId}: ${condition}`);
+  // bootstrap.py writes the reviewed conjunction
+  // (assertion.repository_id == '<id>' && repository_owner_id && ref &&
+  // workflow_ref && (event_name == 'push' || 'workflow_dispatch')). Trust is
+  // exclusive to the reviewed repository: every repository_id equality in the
+  // condition must equal the reviewed id (an extra disjunct pinning another
+  // repository widens federation trust and refuses), name-form repository
+  // claims are not the reviewed claim form, and a top-level disjunction
+  // (outside parentheses) could bypass the pin entirely and refuses.
+  const pins = [...condition.matchAll(/(?:attribute|assertion)\.repository_id\s*==\s*['"]([^'"]*)['"]/g)].map(m => m[1]);
+  if (!pins.length || !pins.every(id => id === expected.repositoryId)) {
+    return refuse(`provider condition does not pin repository_id ${expected.repositoryId} exclusively: ${condition}`);
+  }
+  if (/(?:attribute|assertion)\.repository\s*==/.test(condition)) {
+    return refuse(`provider condition uses a non-reviewed repository claim form: ${condition}`);
+  }
+  if (condition.replace(/\([^()]*\)/g, '').includes('||')) {
+    return refuse(`provider condition contains a top-level disjunction that could bypass the repository pin: ${condition}`);
   }
   return pass(`ACTIVE pool/provider for ${expected.issuer} pinned to repository ${expected.repositoryId}`);
 }
