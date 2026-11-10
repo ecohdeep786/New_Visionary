@@ -148,12 +148,13 @@ test('JOB-01 backoff gates claiming: a claimed row is not re-claimable until its
   assert.equal((await s.outboxByCursor(1)).status, 'DONE');
 });
 
-test('JOB-01 idempotent jobs: re-running a DONE job does not execute it again', async () => {
+test('JOB-01/JOB-02 idempotent completion: completing a DONE job twice never re-executes it', async () => {
   const { s, d } = setup();
   const job = await d.enqueue('uid-1', 'uid-1:documents', 'documents.export');
-  await d.runJob(job.id);
-  await d.runJob(job.id); // second run must be a no-op, never a second execution
-  const after = await s.jobById(job.id);
-  assert.equal(after.state, 'DONE');
-  assert.ok(after.completedAt, 'completion timestamp from the first run is preserved');
+  const claim = await d.claim(job.id, 60_000);
+  const first = await d.complete(job.id, claim, '2026-11-10T00:00:00.000Z');
+  assert.equal(first.state, 'DONE');
+  const second = await d.complete(job.id, claim, '2026-11-10T00:01:00.000Z'); // replayed ack must be a no-op
+  assert.equal(second.state, 'DONE');
+  assert.equal(second.completedAt, first.completedAt, 'the first completion timestamp is preserved, never overwritten');
 });
