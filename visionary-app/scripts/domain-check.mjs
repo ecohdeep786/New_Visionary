@@ -16,10 +16,28 @@ function run(args, cwd = root) {
 const cli = join(backend, 'node_modules/prisma/build/index.js');
 run([cli, 'validate'], backend);
 run([cli, 'generate'], backend);
-run([join(root, 'scripts/domain-ddl.mjs')]);
 run([join(backend, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.workspace.json'], backend);
 run([join(backend, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.data.json'], backend);
+run([join(backend, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.invitations.json'], backend);
+run([join(root, 'scripts/domain-ddl.mjs')]);
 const tests = readdirSync(join(root, 'backend/tests/contracts/data-01')).filter((f) => f.endsWith('.test.mjs'));
 run(['--test', '--test-reporter=tap', ...tests.map((f) => join(root, 'backend/tests/contracts/data-01', f))]);
 const migrationTests = readdirSync(join(root, 'backend/tests/contracts/data-02')).filter((f) => f.endsWith('.test.mjs'));
 run(['--test', '--test-reporter=tap', ...migrationTests.map((f) => join(root, 'backend/tests/contracts/data-02', f))]);
+run([join(root, 'scripts/provision-check.mjs')]);
+const invitationTests = readdirSync(join(root, 'backend/tests/contracts/data-04')).filter(f => f.endsWith('.test.mjs'));
+run(['--test', '--test-reporter=tap', ...invitationTests.map(f => join(root, 'backend/tests/contracts/data-04', f))]);
+
+run([join(root, 'scripts/privacycore-check.mjs')]);
+run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-05/consent.test.mjs')]);
+
+run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-files/download.test.mjs'), join(root, 'backend/tests/contracts/data-files/download.sql.test.mjs')]);
+
+run(['--test', '--test-reporter=tap', join(root, 'backend/tests/contracts/data-06/workspace-commands.sql.test.mjs')]);
+const overviewTests = readdirSync(join(root, 'backend/tests/contracts/data-07')).filter(f => f.endsWith('.test.mjs'));
+run(['--test', '--test-reporter=tap', ...overviewTests.map(f => join(root, 'backend/tests/contracts/data-07', f))]);
+const concurrencyTests = readdirSync(join(root, 'backend/tests/contracts/data-08')).filter(f => f.endsWith('.test.mjs'));
+run(['--test', '--test-reporter=tap', ...concurrencyTests.map(f => join(root, 'backend/tests/contracts/data-08', f))]);
+
+const admissionTests = readdirSync(join(root, 'backend/tests/contracts/data-09')).filter(f => f.endsWith('.test.mjs'));
+run(['--test', '--test-reporter=tap', ...admissionTests.map(f => join(root, 'backend/tests/contracts/data-09', f))]);

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "scope": "purpose-minimization-and-record-preservation-baseline",
+  "policySnapshot": {
+    "policy": {
+      "policyVersion": "priv-preservation-2026-11-02.v1",
+      "admission": {
+        "minimumSelfServeAge": 18,
+        "under18Activation": "blocked"
+      },
+      "classes": [
+        {
+          "dataClass": "auth_device",
+          "purpose": "Authenticate and secure the owning account.",
+          "permittedFields": [
+            "uid",
+            "deviceHash",
+            "lastSeenAt",
+            "authMethod"
+          ],
+          "access": "owner",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "learning_text",
+          "purpose": "Deliver private learning and resume for the owner.",
+          "permittedFields": [
+            "uid",
+            "conversationId",
+            "turnBody",
+            "sourceVersion",
+            "createdAt"
+          ],
+          "access": "owner",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "source_files",
+          "purpose": "Use permitted owner source references.",
+          "permittedFields": [
+            "uid",
+            "fileRef",
+            "sourceVersion",
+            "manifestDigest",
+            "uploadedAt"
+          ],
+          "access": "owner",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "billing_audit",
+          "purpose": "Support authorized billing and security audit operations.",
+          "permittedFields": [
+            "uid",
+            "invoiceRef",
+            "amountMinor",
+            "currency",
+            "occurredAt"
+          ],
+          "access": "operator",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "model_artifacts",
+          "purpose": "Record reviewed operation metadata without private learning text.",
+          "permittedFields": [
+            "uid",
+            "runId",
+            "modelVersion",
+            "evidenceDigest",
+            "occurredAt",
+            "policyDigest",
+            "policyVersion",
+            "serviceUid"
+          ],
+          "access": "service",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "admission_proof",
+          "purpose": "Keep minimal reviewed relationship/purpose/version proof references.",
+          "permittedFields": [
+            "uid",
+            "relatedUid",
+            "purpose",
+            "policyVersion",
+            "proofRef",
+            "status",
+            "expiresAt"
+          ],
+          "access": "owner",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "voice_transcript",
+          "purpose": "Use explicitly requested voice/text input; no always-on recording or default training.",
+          "permittedFields": [
+            "uid",
+            "inputRef",
+            "purpose",
+            "createdAt"
+          ],
+          "access": "owner",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "offline_pack",
+          "purpose": "Deliver explicitly permitted scoped offline material.",
+          "permittedFields": [
+            "uid",
+            "packRef",
+            "sourceVersion",
+            "expiresAt"
+          ],
+          "access": "owner",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        },
+        {
+          "dataClass": "pilot_feedback",
+          "purpose": "Use minimized, separately reviewed pilot/evaluation metadata.",
+          "permittedFields": [
+            "uid",
+            "feedbackRef",
+            "purpose",
+            "policyVersion",
+            "createdAt"
+          ],
+          "access": "owner",
+          "retention": {
+            "mode": "owner_controlled",
+            "rationale": "Preserve existing records under the Founder-approved baseline. No automatic purge or default training; lifecycle actions require separately accepted owning-domain workflows."
+          }
+        }
+      ]
+    },
+    "approval": {
+      "state": "approved",
+      "policyVersion": "priv-preservation-2026-11-02.v1",
+      "policyDigest": "2f928ca888cf4d2bddf7b35898788fd3ca093b351ef9344e1db572608140b577",
+      "approvedBy": "policy-owner-md-shahid-ali",
+      "approvedAt": "2026-11-02T17:26:14.508Z"
+    }
+  },
+  "humanApproval": {
+    "ownerId": "policy-owner-md-shahid-ali",
+    "name": "Md Shahid Ali",
+    "role": "Founder & CEO",
+    "instruction": "approve the policy and my name is Md Shahid Ali, Founder & CEO",
+    "source": "Direct user instruction in the KAN-110 delivery conversation",
+    "recordedAt": "2026-11-02T17:26:14.508Z",
+    "identityMeaning": "Human policy-owner attribution; not a Firebase account UID, authenticated app session, institution or guardian grant."
+  },
+  "boundaries": {
+    "preserveExistingRecords": true,
+    "automaticPurge": false,
+    "defaultTraining": false,
+    "under18Activation": "blocked",
+    "livePolicyPublication": false,
+    "runtimeReviewerTrustInstalled": false,
+    "lifecycleCompletion": false,
+    "remaining": [
+      "Specific retention periods and applicable legal authority are not invented.",
+      "Guardian/institution verification, revocation and reconsent need their own accepted rules and integration.",
+      "Owning-domain consumers, lifecycle/export/deletion/support workflows and hosted acceptance remain required."
+    ]
+  }
+}
