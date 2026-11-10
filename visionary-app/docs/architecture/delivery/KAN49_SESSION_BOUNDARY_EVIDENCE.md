@@ -45,3 +45,27 @@ Repeat command: `node infrastructure/gcp/session-audit.mjs` (read-only; exit cod
 - Proxy hop verification against the real edge is the production workflow's forged-forwarding-header deployment probe (`/__deploy-check`), structurally audited in KAN-50 and executed on every main release.
 
 PLAT-06 (Testing, KAN-50), PLAT-07 (Testing, principal lane) and PLAT-08 (founder-gated gcloud) remain separate gates.
+
+## REVIEWER-PREP pass (2026-11-10, before D-095 review — corrections committed on this branch)
+
+The reviewer-corrector lane reviewed the implementation, corrected two findings, integrated the current dev baseline and re-ran every gate INCLUDING a fresh live run. Commits on `codex/deepseek-kan-49-session-boundary`: corrections `32519817`, dev integration `7625bb1a` (merge of `2e0b1fbb`), data-04 rolling-clock fixup `8bb84374` (byte-identical to the fix carried on the prepared Testing branches).
+
+### Corrections (all in `infrastructure/gcp/`)
+
+1. **`__Host-` cookie contract completed** in `auditCsrfCookiePosture`: `Path=/` is now required and any `Domain=` attribute refuses, per the `__Host-` spec — browsers silently reject the cookie otherwise, which would break CSRF end to end while the old audit passed it (the same gap fixed on the PLAT-04 tool; here the live cookie already carries `Path=/` so the reviewed state passes). Two new refuse tests.
+2. **The CSP auth-domain audit is now wildcard-proof**: the check required the reviewed hosts to be *present* but a `connect-src *`, scheme-wildcard (`https:`) or `'unsafe-…'` source would have voided the allowlist and still passed. Sources are now tokenized; a wildcard/scheme-wildcard/unsafe token refuses (the legitimate `'self'` source is tolerated). Three new refuse tests. Unlike the PLAT-04 SPA-leak case this is hardening rather than a dead assertion — the live CSP uses explicit hosts and passes unchanged.
+
+### Gate evidence on this branch (merged tree, this host)
+
+| Gate | Command | Result |
+| --- | --- | --- |
+| Session-audit offline suite | `node --test infrastructure/gcp/tests/session-audit.test.mjs` | **7/7 pass** (incl. the new cookie-contract and CSP-wildcard cases) |
+| Full infrastructure suite | `node --test infrastructure/gcp/tests/*.test.mjs` | **37/41 pass**; the 4 refusals are this host's missing Python (`bootstrap.test.mjs`, `product-env.test.mjs`), not code failures |
+| Data contracts | `npm run data:check` (disposable loopback PostgreSQL 16 + Java 21 under `nv-tools/`) | **exit 0 — 315/315 across 11 suites**, incl. data-04 invitations 37/37 |
+| Product check gate | `npm run check` | **exit 0 — 844 test lines green, frontend build ok** |
+| **LIVE session audit (fresh, post-corrections)** | `node infrastructure/gcp/session-audit.mjs` | **6/6 PASS, exit 0 against https://visionary.org.in on 2026-11-10** — reviewed sign-in methods (email/google/phone) live and attested, `__Host-` cookie with the full posture incl. `Path=/`, invalid-credential session attempt refused 401 with no session/device cookie issued, anonymous boundaries 401 no-store, CSP pinned to the reviewed auth domains, committed cookie contract verified at source |
+
+### Notes for the reviewer
+
+- The real-account sign-in observation, email verification/reset delivery and console provider settings remain founder-gated exactly as the original evidence records; this pass adds no claims there.
+- The live run re-executes the same read-only probe set (plus the one garbage-token session refusal probe recorded by the implementer) against the **corrected** tool on 2026-11-10.
