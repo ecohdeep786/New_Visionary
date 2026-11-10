@@ -19,7 +19,7 @@
 //     learner records and never promises removal of already-delivered bytes.
 import { randomUUID } from 'node:crypto';
 import type { DownloadChannel, DownloadGrant, DownloadPolicy, ExportRecord } from './download-types';
-import { DEFAULT_DOWNLOAD_POLICY } from './download-types';
+import { DEFAULT_DOWNLOAD_POLICY, GATEWAY_UNLIMITED_READS } from './download-types';
 import type { DownloadStore } from './download-store';
 
 export class DownloadPolicyError extends Error {
@@ -91,7 +91,10 @@ export class DownloadGateway {
     const object = await this.resolver.requireReady(opts.ownerUid, opts.objectId, opts.generation);
     if (object.size > this.policy.maxDeliverableBytes) throw new DownloadPolicyError('out_of_bounds');
     const leaseMs = opts.leaseMs ?? (opts.channel === 'signed_link' ? this.policy.signedLinkTtlMs : this.policy.gatewayLeaseMs);
-    const maxReads = opts.maxReads ?? (opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : Number.MAX_SAFE_INTEGER);
+    const maxReads = opts.maxReads ?? (opts.channel === 'signed_link' ? this.policy.signedLinkMaxReads : GATEWAY_UNLIMITED_READS);
+    // The durable store persists the budget in an Int32 column: an out-of-range
+    // budget is refused at admission rather than crashing the insert.
+    if (!Number.isInteger(maxReads) || maxReads < 0 || maxReads > GATEWAY_UNLIMITED_READS) throw new DownloadPolicyError('out_of_bounds');
     const grant: DownloadGrant = {
       id: `dl_${randomUUID()}`,
       ownerUid: opts.ownerUid,

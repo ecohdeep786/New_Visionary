@@ -84,6 +84,13 @@ export interface DownloadPolicy {
   exportLeaseMs: number;
 }
 
+/**
+ * Effectively-unlimited gateway read budget that still fits the SQL Int32
+ * column: Number.MAX_SAFE_INTEGER overflows INT4 at insert (the durable store
+ * is authoritative), so the gateway default is the largest Int32 value.
+ */
+export const GATEWAY_UNLIMITED_READS = 2_147_483_647;
+
 export const DEFAULT_DOWNLOAD_POLICY: DownloadPolicy = {
   maxDeliverableBytes: 25 * 1024 * 1024,
   gatewayLeaseMs: 15 * 60 * 1000, // 15 minutes; re-checked on every read
