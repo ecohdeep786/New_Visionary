@@ -9,7 +9,8 @@ import { accountPath } from './account-storage';
 import { accountDirectory } from './account-directory';
 import { accountCoverage } from '../../launch-coverage/coverage.repository';
 import { SESSION_IDLE_MS, sessionVersion } from './session-policy';
-ller('account')
+
+@Controller('account')
 export class AccountController extends ProductRequestAuthority {
   constructor(service: FirebaseProductService, config: ConfigService, private readonly billing: BillingService) { super(service, config); }
   @Get('coverage')
