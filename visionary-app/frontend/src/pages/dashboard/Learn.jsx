@@ -12,6 +12,7 @@ import SubjectPills from "@/components/dashboard/learn/SubjectPills";
 import TopicCard from "@/components/dashboard/learn/TopicCard";
 import JourneyCatalogue from '@/components/dashboard/JourneyCatalogue';
 import LearningWorkspace from './LearningWorkspace';
+import CoverageAvailability from '@/components/dashboard/CoverageAvailability';
 const filters = [{
   value: "all",
   label: "All topics"
@@ -30,7 +31,7 @@ const filters = [{
 }];
 export default function Learn() {
   const [params] = useSearchParams();const {ctx}=useWorkspace();
-  return params.get('legacy') === '1' || params.has('subject') && !params.has('unit') ? <LegacyLearn key={ctx?.personId+':'+ctx?.workspaceId}/> : <LearningWorkspace />;
+  return <><CoverageAvailability />{params.get('legacy') === '1' || params.has('subject') && !params.has('unit') ? <LegacyLearn key={ctx?.personId+':'+ctx?.workspaceId}/> : <LearningWorkspace />}</>;
 }
 function LegacyLearn() {
   const {

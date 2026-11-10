@@ -419,6 +419,13 @@
   },
   "registered": [
     {
+      "route": "GET /api/account/coverage",
+      "profile": "ownerRead",
+      "controller": "AccountController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
       "route": "GET /api/account/devices",
       "profile": "ownerRead",
       "controller": "AccountController",
@@ -584,6 +591,13 @@
       "profile": "ownerWrite",
       "controller": "FirebaseProductController",
       "sourceFile": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
+      "route": "POST /api/account/coverage/check",
+      "profile": "ownerWrite",
+      "controller": "AccountController",
+      "sourceFile": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
       "exposure": "registered-controller"
     },
     {
@@ -1507,7 +1521,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "sha256Lf": "ee6270ae4bb3e751dd58eda36eca7d8f9bd32044014f23637195e4f63ae13f80"
+      "sha256Lf": "b37228eab429961039be759c690fffeac886bf8116a82742ff3b449fec6a6876"
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
@@ -1683,11 +1697,11 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "9969ade4aef6e12eb14614ac3cb1a2eea7b7a00b3af08b870ebfd52b7b934805"
+      "sha256Lf": "78ced2baab2b3f0080a95e992cb88b8d97856460de2ce2a6f074efde699a634e"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "18bf98eb7776e9f23530ed957c3b302d9c793efd914a5ceadb759a1760e1ec6d"
+      "sha256Lf": "93f0e8ebe2bd92406323d4815be0d579dd8a24a09f1ee8b3149f20a29d84d0a8"
     },
     {
       "file": "integration/contracts/v1/openapi.json",

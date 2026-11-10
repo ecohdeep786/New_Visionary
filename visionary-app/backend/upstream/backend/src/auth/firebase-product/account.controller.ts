@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Req, BadRequestException, ServiceUnavailableException } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req, BadRequestException, ServiceUnavailableException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FieldPath } from 'firebase-admin/firestore';
 import { Request } from 'express';
@@ -7,11 +7,23 @@ import { FirebaseProductService } from './firebase-product.service';
 import { BillingService } from '../../billing/billing.service';
 import { accountPath } from './account-storage';
 import { accountDirectory } from './account-directory';
+import { accountCoverage } from '../../launch-coverage/coverage.repository';
 import { SESSION_IDLE_MS, sessionVersion } from './session-policy';
 
 @Controller('account')
 export class AccountController extends ProductRequestAuthority {
   constructor(service: FirebaseProductService, config: ConfigService, private readonly billing: BillingService) { super(service, config); }
+  @Get('coverage')
+  async coverage(@Req() req: Request) {
+    const { uid } = await this.commandAccount(req, false);
+    return accountCoverage(this.service.getDatabase(), uid);
+  }
+  @Post('coverage/check')
+  async checkCoverage(@Req() req: Request, @Body() body: unknown) {
+    this.csrf(req);
+    const { uid } = await this.commandAccount(req, false);
+    return accountCoverage(this.service.getDatabase(), uid, body);
+  }
   @Get('overview')
   async overview(@Req() req: Request) {
     const { uid } = await this.commandAccount(req, false);

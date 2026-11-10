@@ -6,6 +6,8 @@
   "scripts": {
     "scope:audit": "node scripts/surface-audit.mjs",
     "scope:audit:write": "node scripts/surface-audit.mjs --write",
+    "coverage:check": "node scripts/coverage-matrix.mjs",
+    "coverage:write": "node scripts/coverage-matrix.mjs --write",
     "dev": "node scripts/frontend.mjs dev",
     "build": "node scripts/frontend.mjs build",
     "preview": "node scripts/frontend.mjs preview",

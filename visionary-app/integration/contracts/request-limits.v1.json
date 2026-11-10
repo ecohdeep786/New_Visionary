@@ -26,15 +26,131 @@
     "projectSubmissionEndpointRegistered": false
   },
   "profiles": {
-    "existing-json": { "requestBytes": 24576, "responseBytes": 262144, "depth": 8, "arrayItems": 100, "objectKeys": 100, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000 },
-    "auth-session": { "requestBytes": 24576, "responseBytes": 65536, "depth": 4, "arrayItems": 50, "objectKeys": 64, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000, "text": { "idToken": { "max": 12000, "unit": "utf16" } } },
-    "onboarding": { "requestBytes": 24576, "responseBytes": 65536, "depth": 4, "arrayItems": 50, "objectKeys": 64, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000, "text": { "full_name": { "max": 80, "unit": "utf16" }, "preference": { "max": 2000, "unit": "utf16" } } },
-    "feedback": { "requestBytes": 24576, "responseBytes": 262144, "depth": 4, "arrayItems": 50, "objectKeys": 64, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000, "text": { "comment": { "max": 1000, "unit": "utf16" } } },
-    "webhook": { "requestBytes": 262144, "responseBytes": 4096, "depth": 16, "arrayItems": 100, "objectKeys": 100, "clientDeadlineMs": null, "serverDeadlineMs": 10000 },
-    "project-revision": { "requestBytes": 131072, "responseBytes": 262144, "depth": 8, "arrayItems": 100, "objectKeys": 64, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000, "text": { "title": { "max": 200, "unit": "codepoints" }, "body": { "max": 24000, "unit": "codepoints" } } },
-    "submission-revision": { "requestBytes": 65536, "responseBytes": 131072, "depth": 8, "arrayItems": 50, "objectKeys": 64, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000, "text": { "body": { "max": 12000, "unit": "codepoints" } } },
-    "teaching-turn": { "requestBytes": 24576, "responseBytes": 65536, "depth": 8, "arrayItems": 50, "objectKeys": 64, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000, "text": { "input": { "max": 4000, "unit": "codepoints" } } },
-    "file-intent": { "requestBytes": 8192, "responseBytes": 8192, "depth": 4, "arrayItems": 10, "objectKeys": 32, "clientDeadlineMs": 20000, "serverDeadlineMs": 18000 }
+    "existing-json": {
+      "requestBytes": 24576,
+      "responseBytes": 262144,
+      "depth": 8,
+      "arrayItems": 100,
+      "objectKeys": 100,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000
+    },
+    "auth-session": {
+      "requestBytes": 24576,
+      "responseBytes": 65536,
+      "depth": 4,
+      "arrayItems": 50,
+      "objectKeys": 64,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000,
+      "text": {
+        "idToken": {
+          "max": 12000,
+          "unit": "utf16"
+        }
+      }
+    },
+    "onboarding": {
+      "requestBytes": 24576,
+      "responseBytes": 65536,
+      "depth": 4,
+      "arrayItems": 50,
+      "objectKeys": 64,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000,
+      "text": {
+        "full_name": {
+          "max": 80,
+          "unit": "utf16"
+        },
+        "preference": {
+          "max": 2000,
+          "unit": "utf16"
+        }
+      }
+    },
+    "feedback": {
+      "requestBytes": 24576,
+      "responseBytes": 262144,
+      "depth": 4,
+      "arrayItems": 50,
+      "objectKeys": 64,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000,
+      "text": {
+        "comment": {
+          "max": 1000,
+          "unit": "utf16"
+        }
+      }
+    },
+    "webhook": {
+      "requestBytes": 262144,
+      "responseBytes": 4096,
+      "depth": 16,
+      "arrayItems": 100,
+      "objectKeys": 100,
+      "clientDeadlineMs": null,
+      "serverDeadlineMs": 10000
+    },
+    "project-revision": {
+      "requestBytes": 131072,
+      "responseBytes": 262144,
+      "depth": 8,
+      "arrayItems": 100,
+      "objectKeys": 64,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000,
+      "text": {
+        "title": {
+          "max": 200,
+          "unit": "codepoints"
+        },
+        "body": {
+          "max": 24000,
+          "unit": "codepoints"
+        }
+      }
+    },
+    "submission-revision": {
+      "requestBytes": 65536,
+      "responseBytes": 131072,
+      "depth": 8,
+      "arrayItems": 50,
+      "objectKeys": 64,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000,
+      "text": {
+        "body": {
+          "max": 12000,
+          "unit": "codepoints"
+        }
+      }
+    },
+    "teaching-turn": {
+      "requestBytes": 24576,
+      "responseBytes": 65536,
+      "depth": 8,
+      "arrayItems": 50,
+      "objectKeys": 64,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000,
+      "text": {
+        "input": {
+          "max": 4000,
+          "unit": "codepoints"
+        }
+      }
+    },
+    "file-intent": {
+      "requestBytes": 8192,
+      "responseBytes": 8192,
+      "depth": 4,
+      "arrayItems": 10,
+      "objectKeys": 32,
+      "clientDeadlineMs": 20000,
+      "serverDeadlineMs": 18000
+    }
   },
   "currentRoutes": {
     "GET /api/overview": "existing-json",
@@ -91,7 +207,9 @@
     "POST /api/account/invitations/membership": "existing-json",
     "POST /api/account/invitations/institution/approve": "existing-json",
     "POST /api/account/invitations/institution/revoke": "existing-json",
-    "POST /api/account/workspace/provision": "existing-json"
+    "POST /api/account/workspace/provision": "existing-json",
+    "GET /api/account/coverage": "existing-json",
+    "POST /api/account/coverage/check": "onboarding"
   },
   "proposedOperations": {
     "project.revision.save": "project-revision",
@@ -101,16 +219,53 @@
     "file.upload.intent": "file-intent"
   },
   "infrastructureSurfaces": {
-    "routes": ["GET /healthz", "HEAD /healthz", "GET /api/health", "HEAD /api/health", "GET /__deploy-check", "HEAD /__deploy-check"],
+    "routes": [
+      "GET /healthz",
+      "HEAD /healthz",
+      "GET /api/health",
+      "HEAD /api/health",
+      "GET /__deploy-check",
+      "HEAD /__deploy-check"
+    ],
     "observedRequestJsonBytes": 24576,
     "proposedResponseJsonBytes": 4096,
     "rule": "currentRoutes enumerates only the 38 Nest controller routes. Production additionally registers these fixed-shape health/probe responses (HEAD has no response body). They retain global JSON parser ingress; probe-specific trust checks remain authoritative. Static assets and SPA fallback are non-JSON surfaces outside proposed JSON response caps. Proxy/edge/header/query/time budgets remain separate gates. No whole-operation server timer is installed by the production composition."
   },
-  "pagination": { "defaultItems": 20, "maxItems": 50, "cursorBytes": 512, "rule": "Server-issued opaque cursor bound to current UID/workspace/filter/order and expiry; legacy routes retain their current cursor formats. Apply response byte cap as well as item cap, with stable continuation and explicit unavailable state if one item cannot fit." },
-  "stream": { "state": "proposed-unregistered", "eventBytes": 8192, "framingBytes": 256, "maxEvents": 256, "totalBytes": 1048576, "deadlineMs": 18000, "idleMs": 10000, "rule": "Count all frames, heartbeats and UTF-8 framing bytes; apply backpressure. On timeout/disconnect/cancel, abort downstream work and retain partial output only as an uncommitted draft. Complete event is observation only; refetch authorized durable receipt before claiming save. Resume requires current authority and bounded server cursor; expired cursor requires refetch." },
-  "files": { "inlineBase64Allowed": false, "rule": "No file bytes in JSON. Future authenticated upload intent specifies approved MIME, bounded byte size, digest and expiry, then private quarantine upload, verification/scan and owner-authorized finalize. Media/MIME and size policy require separate accepted file/voice scope; do not issue URLs until accepted. Downloads reauthorize current rights and disclose offline residual access." },
-  "errors": { "invalidJsonOrStructure": 400, "requestBodyTooLarge": 413, "responseInvalidOrTooLarge": 503, "unsupportedMedia": 415, "staleRevisionOrChangedCommand": 409, "rateLimited": 429, "unavailable": 503, "deadline": 504, "rule": "Proposed errors contain bounded public code/message/request ID and optional retryAfter; never echo body, token, prompt, payment signature or private text. Preserve existing route error shapes until KAN-30 compatibility review. Request over-limit rejection precedes side effects and retains browser draft. Generated response overflow returns a bounded unavailable error, not a client-input 413; after an unknown write outcome read the durable receipt before replay." },
-  "retry": { "readAttempts": 2, "rule": "Read retry shares original deadline and rechecks authority. Writes do not retry automatically on unknown outcome; read durable receipt/status with same command identity, reauthorize, then replay only identical payload after confirmed no commit. Changed payload or expected revision conflicts preserve draft. Current auth CSRF refresh retry is a specific pre-command rejection path, not permission to replay arbitrary writes. Webhooks keep provider event identity/digest and transaction deduplication." },
+  "pagination": {
+    "defaultItems": 20,
+    "maxItems": 50,
+    "cursorBytes": 512,
+    "rule": "Server-issued opaque cursor bound to current UID/workspace/filter/order and expiry; legacy routes retain their current cursor formats. Apply response byte cap as well as item cap, with stable continuation and explicit unavailable state if one item cannot fit."
+  },
+  "stream": {
+    "state": "proposed-unregistered",
+    "eventBytes": 8192,
+    "framingBytes": 256,
+    "maxEvents": 256,
+    "totalBytes": 1048576,
+    "deadlineMs": 18000,
+    "idleMs": 10000,
+    "rule": "Count all frames, heartbeats and UTF-8 framing bytes; apply backpressure. On timeout/disconnect/cancel, abort downstream work and retain partial output only as an uncommitted draft. Complete event is observation only; refetch authorized durable receipt before claiming save. Resume requires current authority and bounded server cursor; expired cursor requires refetch."
+  },
+  "files": {
+    "inlineBase64Allowed": false,
+    "rule": "No file bytes in JSON. Future authenticated upload intent specifies approved MIME, bounded byte size, digest and expiry, then private quarantine upload, verification/scan and owner-authorized finalize. Media/MIME and size policy require separate accepted file/voice scope; do not issue URLs until accepted. Downloads reauthorize current rights and disclose offline residual access."
+  },
+  "errors": {
+    "invalidJsonOrStructure": 400,
+    "requestBodyTooLarge": 413,
+    "responseInvalidOrTooLarge": 503,
+    "unsupportedMedia": 415,
+    "staleRevisionOrChangedCommand": 409,
+    "rateLimited": 429,
+    "unavailable": 503,
+    "deadline": 504,
+    "rule": "Proposed errors contain bounded public code/message/request ID and optional retryAfter; never echo body, token, prompt, payment signature or private text. Preserve existing route error shapes until KAN-30 compatibility review. Request over-limit rejection precedes side effects and retains browser draft. Generated response overflow returns a bounded unavailable error, not a client-input 413; after an unknown write outcome read the durable receipt before replay."
+  },
+  "retry": {
+    "readAttempts": 2,
+    "rule": "Read retry shares original deadline and rechecks authority. Writes do not retry automatically on unknown outcome; read durable receipt/status with same command identity, reauthorize, then replay only identical payload after confirmed no commit. Changed payload or expected revision conflicts preserve draft. Current auth CSRF refresh retry is a specific pre-command rejection path, not permission to replay arbitrary writes. Webhooks keep provider event identity/digest and transaction deduplication."
+  },
   "enforcementHandoff": [
     "All profile response/depth/structure/deadline caps are proposals unless specifically listed in observed; route mapping is complete inventory, not proof of runtime enforcement.",
     "KAN-30 owns API DTO/schema paths and must reconcile names and field validation. KAN-31 owns current authority requirements. Neither a size check nor a stream grants permission.",

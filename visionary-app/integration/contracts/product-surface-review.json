@@ -2711,6 +2711,19 @@
         "GET /api/account/privacy/consents",
         "POST /api/account/privacy/consents/revoke"
       ]
+    },
+    "frontend/src/components/dashboard/CoverageAvailability.jsx": {
+      "profile": "connected-coverage-status",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Reads authenticated owner coverage from the current Firestore release policy; translated status, category detail and retry preserve account/context. A summary never grants learning execution or proves source/provider qualification.",
+      "followUp": [
+        "SCOPE-02",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/account/coverage"
+      ]
     }
   },
   "operations": [

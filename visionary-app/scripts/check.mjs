@@ -8,6 +8,7 @@ for (const file of ['verify-layout.mjs', 'verify-imports.mjs']) {
   if (result.error) throw result.error;
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
+
 const continuityCheck = spawnSync(process.execPath, [path.join(root, 'frontend/scripts/qa-continuity.mjs')], { cwd: root, stdio: 'inherit' });
 if (continuityCheck.error) throw continuityCheck.error;
 if (continuityCheck.status !== 0) process.exit(continuityCheck.status ?? 1);
@@ -17,7 +18,7 @@ if (motionCheck.status !== 0) process.exit(motionCheck.status ?? 1);
 const tapsCheck = spawnSync(process.execPath, [path.join(root, 'frontend/scripts/qa-taps.mjs')], { cwd: root, stdio: 'inherit' });
 if (tapsCheck.error) throw tapsCheck.error;
 if (tapsCheck.status !== 0) process.exit(tapsCheck.status ?? 1);
-const scriptTests = spawnSync(process.execPath, ['--test', ...['upstream-patches.test.mjs', 'backend-runtime.test.mjs', 'cost-model.test.mjs', 'continuity-law.test.mjs', 'motion-law.test.mjs', 'tap-law.test.mjs', 'request-limits.test.mjs', 'authority-audit.test.mjs'].map(file => path.join(root, 'scripts/tests', file))], { cwd: root, stdio: 'inherit' });
+const scriptTests = spawnSync(process.execPath, ['--test', ...['upstream-patches.test.mjs', 'backend-runtime.test.mjs', 'cost-model.test.mjs', 'continuity-law.test.mjs', 'motion-law.test.mjs', 'tap-law.test.mjs', 'request-limits.test.mjs', 'authority-audit.test.mjs', 'launch-coverage.test.mjs', 'release-package.test.mjs'].map(file => path.join(root, 'scripts/tests', file))], { cwd: root, stdio: 'inherit' });
 if (scriptTests.error) throw scriptTests.error;
 if (scriptTests.status !== 0) process.exit(scriptTests.status ?? 1);
 const apiContracts = spawnSync(process.execPath, [path.join(root, 'integration/contracts/v1/check.mjs')], { cwd: root, stdio: 'inherit' });
@@ -34,6 +35,11 @@ if (scope06Runtime.status !== 0) process.exit(scope06Runtime.status ?? 1);
 const scope06Frontend = spawnSync(process.execPath, ['--test', path.join(root, 'frontend/tests/contracts/scope-06/scope-06.test.mjs')], { cwd: root, stdio: 'inherit' });
 if (scope06Frontend.error) throw scope06Frontend.error;
 if (scope06Frontend.status !== 0) process.exit(scope06Frontend.status ?? 1);
+
+
+const coverageCheck = spawnSync(process.execPath, [path.join(root, 'scripts/coverage-matrix.mjs')], { cwd: root, stdio: 'inherit' });
+if (coverageCheck.error) throw coverageCheck.error;
+if (coverageCheck.status !== 0) process.exit(coverageCheck.status ?? 1);
 const surfaceCheck = spawnSync(process.execPath, [path.join(root, 'scripts/surface-audit.mjs')], { cwd: root, stdio: 'inherit' });
 if (surfaceCheck.error) throw surfaceCheck.error;
 if (surfaceCheck.status !== 0) process.exit(surfaceCheck.status ?? 1);
