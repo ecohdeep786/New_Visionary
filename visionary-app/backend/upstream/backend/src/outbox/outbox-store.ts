@@ -58,8 +58,9 @@ export class InMemoryOutboxStore implements OutboxStore {
     this.outbox.set(event.cursor, event);
   }
   async pendingOutbox(limit: number): Promise<OutboxEvent[]> {
+    const now = new Date().toISOString();
     return [...this.outbox.values()]
-      .filter((e) => e.status === 'PENDING')
+      .filter((e) => e.status === 'PENDING' && (!e.nextAttemptAt || e.nextAttemptAt <= now))
       .sort((a, b) => a.cursor - b.cursor)
       .slice(0, limit);
   }
