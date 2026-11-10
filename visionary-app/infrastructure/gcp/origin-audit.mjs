@@ -19,10 +19,11 @@ export const expected = Object.freeze({
 
 const pass = detail => ({ pass: true, detail });
 const refuse = detail => ({ pass: false, detail });
-const GET = { redirect: 'manual', signal: AbortSignal.timeout(15000) };
 
+// Each probe gets its own fresh 15 s budget: a module-level signal would start
+// counting at import time and abort every later probe instantly.
 async function read(url, options = {}, fetchImpl = fetch) {
-  const response = await fetchImpl(url, { ...GET, ...options });
+  const response = await fetchImpl(url, { redirect: 'manual', signal: AbortSignal.timeout(15000), ...options });
   return { response, body: new TextDecoder().decode(await response.arrayBuffer()) };
 }
 
@@ -73,13 +74,15 @@ export async function auditAnonymousBoundaries(fetchImpl = fetch, origin = expec
 }
 
 // The __Host- CSRF cookie must be Secure, HttpOnly, SameSite=Strict with a
-// 64-hex token; a forged cross-origin command must be refused 403.
+// 64-hex token; a forged cross-origin command must be refused 403. The
+// __Host- contract also requires Path=/ and no Domain attribute — browsers
+// silently reject the cookie otherwise, which would break CSRF end to end.
 export async function auditCsrfPosture(fetchImpl = fetch, origin = expected.origin) {
   const { response: csrf, body: csrfBody } = await read(origin + '/api/auth/csrf', {}, fetchImpl);
   const cookie = csrf.headers.get('set-cookie') || '';
   const token = JSON.parse(csrfBody.toString() || '{}').token;
   if (csrf.status !== 200 || !/^[a-f0-9]{64}$/.test(token || '')) return refuse('CSRF token missing or not 64 hex');
-  if (!cookie.startsWith('__Host-visionary-csrf=') || !/Secure/i.test(cookie) || !/HttpOnly/i.test(cookie) || !/SameSite=Strict/i.test(cookie)) return refuse(`CSRF cookie posture rejected: ${cookie.split(';').slice(0, 4).join(';')}`);
+  if (!cookie.startsWith('__Host-visionary-csrf=') || !/Secure/i.test(cookie) || !/HttpOnly/i.test(cookie) || !/SameSite=Strict/i.test(cookie) || !/Path=\//i.test(cookie) || /Domain=/i.test(cookie)) return refuse(`CSRF cookie posture rejected: ${cookie.split(';').slice(0, 5).join(';')}`);
   const forged = await read(origin + '/api/auth/onboarding', { method: 'POST', headers: { Origin: 'https://invalid.example', Cookie: cookie.split(';')[0], 'X-CSRF-Token': token, 'Content-Type': 'application/json' }, body: '{}' }, fetchImpl);
   if (forged.response.status !== 403) return refuse(`forged cross-origin command returned ${forged.response.status}, expected 403 refusal`);
   if (forged.response.headers.get('cache-control') !== 'no-store') return refuse('forged command response is cacheable');
@@ -87,16 +90,18 @@ export async function auditCsrfPosture(fetchImpl = fetch, origin = expected.orig
 }
 
 // The direct run.app URL must not serve the product: no revision attestation
-// and no product identity may leak through the direct origin.
+// and no product identity may leak through the direct origin. Any doctype-html
+// body through the direct origin refuses even with the revision header
+// stripped — a stripped-header SPA shell must not pass (fail closed).
 export async function auditDirectOriginBypass(fetchImpl = fetch, directOrigin = expected.directOrigin) {
   for (const path of ['/', '/api/health']) {
-    let response;
-    try { ({ response } = await read(directOrigin + path, {}, fetchImpl)); }
+    let response, body;
+    try { ({ response, body } = await read(directOrigin + path, {}, fetchImpl)); }
     catch { continue; } // unreachable direct origin is also a closed bypass
     const revision = response.headers.get('x-visionary-revision');
     if (revision) return refuse(`direct origin ${path} served a product response (revision ${revision.slice(0, 12)}…); ingress bypass is open`);
-    if (response.status === 200 && response.headers.get('content-type')?.includes('text/html') && (await response.arrayBuffer()).toString().includes('<!doctype html>')) {
-      return refuse(`direct origin ${path} served the SPA; ingress bypass is open`);
+    if (body.toString().includes('<!doctype html>')) {
+      return refuse(`direct origin ${path} served an html document (status ${response.status}); ingress bypass is open`);
     }
   }
   return pass('direct run.app origin refuses or serves no product response');

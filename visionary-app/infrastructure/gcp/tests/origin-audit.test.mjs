@@ -68,6 +68,19 @@ test('CSRF posture: __Host Secure HttpOnly Strict cookie and forged-origin 403',
     ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.match((await auditCsrfPosture(weak)).detail, /CSRF cookie posture rejected/);
+  // __Host- without Path=/ is rejected by browsers (the cookie never exists),
+  // which would silently break CSRF end to end — the audit must catch it
+  const noPath = makeFetch([
+    ['/api/auth/csrf', json(200, { 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditCsrfPosture(noPath)).detail, /CSRF cookie posture rejected/);
+  // a Domain attribute violates the __Host- contract and must refuse
+  const withDomain = makeFetch([
+    ['/api/auth/csrf', json(200, { 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Domain=visionary.org.in; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditCsrfPosture(withDomain)).detail, /CSRF cookie posture rejected/);
   const accepting = makeFetch([
     ['/api/auth/csrf', json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/onboarding', json(200, { 'cache-control': 'no-store' }, { ok: true })],
@@ -85,6 +98,15 @@ test('the direct run.app origin must never serve the product', async () => {
   assert.match((await auditDirectOriginBypass(open)).detail, /bypass is open/);
   const productJson = async () => json(200, { 'x-visionary-revision': revision, 'cache-control': 'no-store' }, { status: 'ok' });
   assert.match((await auditDirectOriginBypass(productJson)).detail, /bypass is open/);
+  // the revision header stripped but the SPA shell served must still refuse —
+  // a leak must not pass just because the attestation was removed
+  const stripped = async () => respond(200, { 'content-type': 'text/html' }, '<!doctype html><div id="root"></div>');
+  const refusedStripped = await auditDirectOriginBypass(stripped);
+  assert.equal(refusedStripped.pass, false);
+  assert.match(refusedStripped.detail, /bypass is open/);
+  // Google Frontend's real refusal shape (404, empty body) stays a closed bypass
+  const googleFrontend = async () => respond(404, { 'content-type': 'text/html; charset=UTF-8' }, '');
+  assert.equal((await auditDirectOriginBypass(googleFrontend)).pass, true);
 });
 
 test('hashed assets cache explicitly and publicly', async () => {
