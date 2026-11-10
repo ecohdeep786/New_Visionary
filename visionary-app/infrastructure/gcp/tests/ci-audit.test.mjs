@@ -80,8 +80,11 @@ test('missing job timeouts refuse bounds', () => {
 });
 
 test('trigger narrowing refuses', () => {
-  const broken = realWorkflow.replace('branches: [dev, main]\n  pull_request:\n    branches: [dev, main]', 'branches: [dev]\n  pull_request:\n    branches: [dev]');
-  assert.match(auditTriggers(broken).detail, /push trigger|pull_request trigger/);
+  const broken = realWorkflow.replace(/branches: \[[^\]]*\]\n  pull_request:\n    branches: \[[^\]]*\]/, 'branches: [dev]\n  pull_request:\n    branches: [dev]');
+  assert.match(auditTriggers(broken).detail, /must cover dev and main|pull_request trigger/);
+  // an unreviewed branch refuses even though dev and main stay covered
+  const widened = realWorkflow.replace(/branches: \[([^\]]*)\]\n  pull_request:\n    branches: \[([^\]]*)\]/, (m, p, q) => `branches: [${p}, experimental]\n  pull_request:\n    branches: [${q}, experimental]`);
+  assert.match(auditTriggers(widened).detail, /unreviewed branches: experimental/);
 });
 
 test('dropping the component battery refuses', () => {

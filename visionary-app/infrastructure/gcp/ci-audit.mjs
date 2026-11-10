@@ -22,10 +22,24 @@ const SECRET_PATTERNS = [
 ];
 
 export function auditTriggers(workflow) {
-  if (!/\n  push:\s*\n\s*branches: \[dev, main\]/.test(workflow)) return refuse('push trigger must cover branches [dev, main]');
-  if (!/\n  pull_request:\s*\n\s*branches: \[dev, main\]/.test(workflow)) return refuse('pull_request trigger must cover branches [dev, main]');
+  // The reviewed trigger set: dev and main must be covered; beta (the
+  // frontend integration branch whose product checks merged through KAN-45's
+  // generation) is the one reviewed extension; anything else refuses. The
+  // release boundary itself stays pinned at runtime (release.mjs trustedRun
+  // requires refs/heads/main) and the deploy stays behind the repository
+  // switch, so wider check coverage does not widen deployment.
+  const reviewed = ['dev', 'main', 'beta'];
+  for (const trigger of ['push', 'pull_request']) {
+    const match = workflow.match(new RegExp(`\\n  ${trigger}:\\s*\\n\\s*branches: \\[([^\\]]*)\\]`));
+    if (!match) return refuse(`${trigger} trigger must declare its branch allowlist`);
+    const branches = match[1].split(',').map(b => b.trim()).filter(Boolean);
+    const missing = ['dev', 'main'].filter(b => !branches.includes(b));
+    if (missing.length) return refuse(`${trigger} trigger must cover dev and main, missing: ${missing.join(', ')}`);
+    const unknown = branches.filter(b => !reviewed.includes(b));
+    if (unknown.length) return refuse(`${trigger} trigger covers unreviewed branches: ${unknown.join(', ')} (reviewed set: dev, main, beta)`);
+  }
   if (!/workflow_dispatch:/.test(workflow)) return refuse('workflow_dispatch must remain available for controlled owner runs');
-  return pass('push + pull_request to dev and main, plus workflow_dispatch');
+  return pass(`push + pull_request cover the reviewed branches (${reviewed.join(', ')}), plus workflow_dispatch`);
 }
 
 export function auditLeastPrivilege(workflow) {
