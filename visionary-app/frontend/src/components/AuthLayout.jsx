@@ -15,8 +15,9 @@ export default function AuthLayout({
   const displaySubtitle = subtitle || supportingText;
   return (
     <div data-font-surface="product" className="min-h-dvh flex flex-col bg-[#f5f5f7]">
-      {/* Card area — centered, takes remaining space */}
-      <div className="flex-1 flex items-center justify-center px-4 py-4 min-h-0">
+      {/* Card area — centered, takes remaining space. The main landmark covers
+          the sign-in content; the footer bar stays outside it. */}
+      <main className="flex-1 flex items-center justify-center px-4 py-4 min-h-0">
         <div className="w-full max-w-[960px] bg-white rounded-[28px] shadow-[0_1px_2px_rgba(60,64,67,0.08),0_2px_6px_2px_rgba(60,64,67,0.06)] overflow-hidden border border-[#d2d2d7]/30">
           <div className="grid md:grid-cols-2 h-full">
             {/* Left: Branding — desktop only */}
@@ -70,7 +71,7 @@ export default function AuthLayout({
             </div>
           </div>
         </div>
-      </div>
+      </main>
       {/* Footer bar */}
       <div className="shrink-0 w-full max-w-[960px] mx-auto flex items-center justify-between px-4 py-2">
         <LanguageSelector />
