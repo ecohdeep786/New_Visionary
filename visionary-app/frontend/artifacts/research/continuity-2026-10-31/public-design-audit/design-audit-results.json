@@ -1,0 +1,1841 @@
+[
+ {
+  "group": "reference",
+  "route": "/",
+  "h1": {
+   "text": "One intelligencefor students.One intelli",
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "lineHeight": "24px",
+   "letterSpacing": "normal",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "20.2382px",
+   "color": "rgb(245, 245, 247)"
+  },
+  "cta": {
+   "text": "Start learning",
+   "h": 44,
+   "fontSize": "17px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "21px"
+  },
+  "sections": {
+   "count": 9,
+   "paddings": [
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "none",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "16px": 2,
+   "140px": 2,
+   "56px": 1,
+   "117px": 1,
+   "17px": 70,
+   "12px": 5,
+   "64px": 9,
+   "24px": 2,
+   "48px": 4,
+   "28px": 13,
+   "19px": 12,
+   "21px": 1
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/student",
+  "h1": {
+   "text": "Learning,Learning, to master, to build.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "69.12px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": null,
+  "cta": {
+   "text": "Start learning free",
+   "h": 44,
+   "fontSize": "17px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "21px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "860px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "64px": 22,
+   "28px": 10,
+   "17px": 118,
+   "24px": 4,
+   "12px": 6,
+   "48px": 6,
+   "32px": 4,
+   "14px": 1,
+   "19px": 6
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/teacher",
+  "h1": {
+   "text": "Teaching.Teaching, to grow, to reach.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "69.12px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": null,
+  "cta": {
+   "text": "Start teaching free",
+   "h": 44,
+   "fontSize": "17px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "21px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "860px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "64px": 22,
+   "28px": 10,
+   "17px": 119,
+   "24px": 4,
+   "12px": 6,
+   "48px": 6,
+   "32px": 4,
+   "14px": 1,
+   "19px": 6
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/parent",
+  "h1": {
+   "text": "Parenting.Parenting, to see, to help.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "69.12px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": null,
+  "cta": {
+   "text": "Start free",
+   "h": 44,
+   "fontSize": "17px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "21px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "860px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "64px": 22,
+   "28px": 10,
+   "17px": 119,
+   "24px": 4,
+   "12px": 6,
+   "48px": 6,
+   "32px": 4,
+   "14px": 1,
+   "19px": 6
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/professional",
+  "h1": {
+   "text": "Building.Building, to apply, to grow.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "69.12px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": null,
+  "cta": {
+   "text": "Start building free",
+   "h": 44,
+   "fontSize": "17px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "21px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "860px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "64px": 22,
+   "28px": 10,
+   "17px": 119,
+   "24px": 4,
+   "12px": 6,
+   "48px": 6,
+   "32px": 4,
+   "14px": 1,
+   "19px": 6
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/organization",
+  "h1": {
+   "text": "to scale.Leading, to scale, to last.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "69.12px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": null,
+  "cta": {
+   "text": "Talk to us",
+   "h": 44,
+   "fontSize": "17px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "21px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "860px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "64px": 22,
+   "28px": 10,
+   "17px": 111,
+   "24px": 4,
+   "12px": 4,
+   "48px": 4,
+   "32px": 4,
+   "14px": 1,
+   "19px": 6
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/how-it-works",
+  "h1": {
+   "text": "How Visionary works.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "67.84px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "17px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.374px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Create account",
+   "h": 47,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "0px"
+  },
+  "sections": {
+   "count": 5,
+   "paddings": [
+    {
+     "pt": 112,
+     "pb": 64
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1006.85px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "64px": 7,
+   "17px": 65,
+   "40px": 1,
+   "16px": 1,
+   "14px": 23,
+   "24px": 3,
+   "28px": 1
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/pricing",
+  "h1": {
+   "text": "Plans for every journey.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "67.84px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Monthly",
+   "h": 44,
+   "fontSize": "14px",
+   "fontWeight": "400",
+   "radius": "9999px",
+   "px": "20px"
+  },
+  "sections": {
+   "count": 5,
+   "paddings": [
+    {
+     "pt": 112,
+     "pb": 80
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1440px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "64px": 5,
+   "17px": 78,
+   "14px": 6,
+   "12px": 7,
+   "21px": 4,
+   "20px": 6
+  },
+  "overflow": []
+ },
+ {
+  "group": "reference",
+  "route": "/download",
+  "h1": {
+   "text": "Get Visionary on every device.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "21px",
+   "fontWeight": "600",
+   "letterSpacing": "0.231px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Open Visionary",
+   "h": 44,
+   "fontSize": "17px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "21px"
+  },
+  "sections": {
+   "count": 7,
+   "paddings": [
+    {
+     "pt": 112,
+     "pb": 96
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 90,
+     "pb": 90
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 90,
+     "pb": 90
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1080px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "21px": 1,
+   "64px": 3,
+   "17px": 57,
+   "16px": 2,
+   "31.68px": 2,
+   "14px": 3,
+   "28px": 2,
+   "24px": 4
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/about",
+  "h1": {
+   "text": "Helping people turn questions into under",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "21px",
+   "fontWeight": "600",
+   "letterSpacing": "0.231px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "See how it works",
+   "h": 48,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "28px"
+  },
+  "sections": {
+   "count": 7,
+   "paddings": [
+    {
+     "pt": 232,
+     "pb": 40
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "21px": 1,
+   "64px": 8,
+   "17px": 57,
+   "16px": 66,
+   "22px": 64,
+   "24px": 4,
+   "88px": 1,
+   "40px": 1,
+   "14px": 9,
+   "12px": 3,
+   "28px": 3
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/careers",
+  "h1": null,
+  "eyebrow": null,
+  "sub": null,
+  "cta": null,
+  "sections": {
+   "count": 0,
+   "paddings": []
+  },
+  "container": null,
+  "fonts": [
+   "Google Sans Flex"
+  ],
+  "bodySizes": {
+   "14px": 1
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/contact",
+  "h1": {
+   "text": "Guidance to get you going on Visionary",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "12px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.192px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Students",
+   "h": 44,
+   "fontSize": "14px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "20px"
+  },
+  "sections": {
+   "count": 7,
+   "paddings": [
+    {
+     "pt": 64,
+     "pb": 64
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 12,
+   "64px": 6,
+   "17px": 69,
+   "24px": 5,
+   "12px": 11,
+   "28px": 4
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/partners",
+  "h1": {
+   "text": "Better learning, together.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "21px",
+   "fontWeight": "600",
+   "letterSpacing": "0.231px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Discuss a partnership",
+   "h": 48,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "28px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 64,
+     "pb": 96
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 9,
+   "21px": 1,
+   "64px": 9,
+   "17px": 95,
+   "16px": 1,
+   "24px": 7,
+   "28px": 13,
+   "12px": 7
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/updates",
+  "h1": {
+   "text": "What’s new at Visionary.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "21px",
+   "fontWeight": "600",
+   "letterSpacing": "0.231px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Get updates by email",
+   "h": 48,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "28px"
+  },
+  "sections": {
+   "count": 6,
+   "paddings": [
+    {
+     "pt": 64,
+     "pb": 64
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 90,
+     "pb": 90
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 37,
+   "21px": 1,
+   "64px": 4,
+   "17px": 51,
+   "16px": 2,
+   "28px": 2,
+   "24px": 2
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/referral",
+  "h1": {
+   "text": "Share a better way to learn.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "21px",
+   "fontWeight": "600",
+   "letterSpacing": "0.231px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Copy your invite link",
+   "h": 48,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "28px"
+  },
+  "sections": {
+   "count": 8,
+   "paddings": [
+    {
+     "pt": 64,
+     "pb": 64
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 90,
+     "pb": 90
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 7,
+   "21px": 1,
+   "64px": 8,
+   "17px": 57,
+   "16px": 4,
+   "24px": 5,
+   "12px": 4
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/research",
+  "h1": {
+   "text": "One intelligence,every learner.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "17px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.374px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "18px",
+   "lineHeight": "29.7px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": null,
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 34,
+   "64px": 11,
+   "18px": 1,
+   "28px": 11,
+   "17px": 92,
+   "24px": 1
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/community",
+  "h1": {
+   "text": "Communities and programs for everyone le",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "0px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "21px",
+   "fontWeight": "600",
+   "letterSpacing": "0.231px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Find your community",
+   "h": 48,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "28px"
+  },
+  "sections": {
+   "count": 5,
+   "paddings": [
+    {
+     "pt": 104,
+     "pb": 40
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 10,
+   "21px": 1,
+   "64px": 6,
+   "17px": 47,
+   "16px": 1,
+   "28px": 3,
+   "24px": 2
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/help",
+  "h1": {
+   "text": "Find your answer.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "67.84px",
+   "letterSpacing": "-0.576px",
+   "marginTop": "32px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": null,
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "27.2px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "password",
+   "h": 47,
+   "fontSize": "14px",
+   "fontWeight": "400",
+   "radius": "9999px",
+   "px": "20px"
+  },
+  "sections": {
+   "count": 3,
+   "paddings": [
+    {
+     "pt": 112,
+     "pb": 64
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    }
+   ]
+  },
+  "container": "1006.85px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "16px": 3,
+   "64px": 2,
+   "17px": 35,
+   "14px": 5,
+   "28px": 1
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/safety",
+  "h1": {
+   "text": "Safe by design,for every learner.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "28px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "17px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.374px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Built-in protections",
+   "h": 44,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "24px"
+  },
+  "sections": {
+   "count": 7,
+   "paddings": [
+    {
+     "pt": 64,
+     "pb": 64
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    },
+    {
+     "pt": 158,
+     "pb": 158
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 9,
+   "16px": 7,
+   "64px": 10,
+   "17px": 51,
+   "28px": 7,
+   "24px": 3
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/privacy",
+  "h1": {
+   "text": "Your learning is personal. Privacy shoul",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "12px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.192px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "01What we collect",
+   "h": 44,
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "radius": "9999px",
+   "px": "12px"
+  },
+  "sections": {
+   "count": 14,
+   "paddings": [
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "16px": 14,
+   "12px": 10,
+   "14px": 21,
+   "21px": 1,
+   "64px": 2,
+   "17px": 141,
+   "28px": 13
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/terms",
+  "h1": {
+   "text": "Clear rules, written to be understood.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "12px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.192px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "01Who can use Visionary",
+   "h": 44,
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "radius": "9999px",
+   "px": "12px"
+  },
+  "sections": {
+   "count": 16,
+   "paddings": [
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "16px": 15,
+   "12px": 12,
+   "14px": 23,
+   "21px": 1,
+   "64px": 2,
+   "17px": 120,
+   "28px": 15
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/security",
+  "h1": {
+   "text": "Secure by design, protected end to end.",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "12px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.192px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "01Your information",
+   "h": 44,
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "radius": "9999px",
+   "px": "12px"
+  },
+  "sections": {
+   "count": 14,
+   "paddings": [
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "16px": 15,
+   "12px": 10,
+   "14px": 21,
+   "21px": 1,
+   "64px": 2,
+   "17px": 96,
+   "28px": 13
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/accessibility",
+  "h1": {
+   "text": "Help every learner learn how they learn ",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "21px",
+   "fontWeight": "600",
+   "letterSpacing": "0.231px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "Explore what's built in",
+   "h": 48,
+   "fontSize": "16px",
+   "fontWeight": "500",
+   "radius": "9999px",
+   "px": "28px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 64,
+     "pb": 56
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "14px": 16,
+   "21px": 1,
+   "64px": 4,
+   "17px": 78,
+   "16px": 10,
+   "28px": 12,
+   "24px": 8
+  },
+  "overflow": []
+ },
+ {
+  "group": "rest",
+  "route": "/cookies",
+  "h1": {
+   "text": "How we use cookies. And how you control ",
+   "fontSize": "64px",
+   "fontWeight": "600",
+   "lineHeight": "68.48px",
+   "letterSpacing": "-0.32px",
+   "marginTop": "16px",
+   "fontFamily": "\"Google Sans Flex\", sans-serif",
+   "family": "Google Sans Flex"
+  },
+  "eyebrow": {
+   "fontSize": "12px",
+   "fontWeight": "600",
+   "letterSpacing": "-0.192px",
+   "textTransform": "none"
+  },
+  "sub": {
+   "fontSize": "17px",
+   "lineHeight": "25px",
+   "color": "rgb(110, 110, 115)"
+  },
+  "cta": {
+   "text": "01What cookies are",
+   "h": 44,
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "radius": "9999px",
+   "px": "12px"
+  },
+  "sections": {
+   "count": 10,
+   "paddings": [
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    },
+    {
+     "pt": 160,
+     "pb": 160
+    }
+   ]
+  },
+  "container": "1240px",
+  "fonts": [
+   "Google Sans Flex",
+   "Google Sans Flex Content"
+  ],
+  "bodySizes": {
+   "16px": 10,
+   "12px": 6,
+   "14px": 17,
+   "21px": 1,
+   "64px": 2,
+   "17px": 90,
+   "28px": 9
+  },
+  "overflow": []
+ }
+]
