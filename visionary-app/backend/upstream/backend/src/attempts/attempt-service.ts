@@ -60,30 +60,20 @@ export class AttemptService {
     }
     if (!(await this.eligibility.checkExists(input.check))) return { ok: false, reason: 'check_unknown' };
 
-    // Attempt number derives from ACCEPTED submissions only.
-    const prior = await this.store.attemptsFor(input.owner, input.check);
-    const attemptNo = prior.length + 1;
-    const attempt: Attempt = {
+    // The attempt number is allocated ATOMICALLY from the current accepted
+    // count: two concurrent different submissions can never share an
+    // attemptNo, and an already-committed submissionId is a duplicate.
+    const committed = await this.store.recordAttempt({
       submissionId: input.submissionId,
-      owner: { ...input.owner },
+      owner: input.owner,
       sessionId: input.sessionId,
-      check: { ...input.check },
+      check: input.check,
       answer: input.answer,
-      evidence: { ...input.evidence },
-      attemptNo,
+      evidence: input.evidence,
       submittedAt: this.now().toISOString(),
-    };
-    await this.store.insertAttempt(attempt);
-    const entry: AttemptHistoryEntry = {
-      submissionId: attempt.submissionId,
-      attemptNo,
-      check: { ...attempt.check },
-      answer: attempt.answer,
-      evidence: { ...attempt.evidence },
-      committedAt: attempt.submittedAt,
-    };
-    await this.store.appendHistory(entry);
-    return { outcome: 'committed', submissionId: attempt.submissionId, attemptNo };
+    });
+    if (!committed.ok) return { outcome: 'duplicate', submissionId: input.submissionId, attemptNo: (await this.store.bySubmissionId(input.submissionId))!.attemptNo };
+    return { outcome: 'committed', submissionId: input.submissionId, attemptNo: committed.attemptNo };
   }
 
   /** The learner's private attempts for one check (owner-scoped read). */
