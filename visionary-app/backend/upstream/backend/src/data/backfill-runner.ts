@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { performance } from 'node:perf_hooks';
 import { DataTransaction,PostgresMigrationStore } from './migration-store';
 export interface BackfillRow { key:string; [field:string]:unknown }
 export interface BackfillSource {
@@ -20,11 +21,12 @@ function stable(value:unknown):unknown{
 function bounded(n:number,min:number,max:number):number{
   if(!Number.isSafeInteger(n)||n<min||n>max)throw Error('BACKFILL_BOUNDS');return n;
 }
-async function deadline<T>(work:(signal:AbortSignal)=>Promise<T>,until:number,parent?:AbortSignal):Promise<T>{
+async function deadline<T>(work:(signal:AbortSignal)=>Promise<T>,until:number,parent?:AbortSignal,errorCode=(kind:string)=>kind):Promise<T>{
   const controller=new AbortController(); let timer:ReturnType<typeof setTimeout>,rejectAbort:(e:Error)=>void;
-  const cancel=()=>{controller.abort();rejectAbort?.(Error('BACKFILL_CANCELLED'));};
-  if(parent?.aborted)throw Error('BACKFILL_CANCELLED');
-  const guard=new Promise<never>((_,reject)=>{rejectAbort=reject;timer=setTimeout(()=>{controller.abort();reject(Error('BACKFILL_DEADLINE'));},Math.max(1,until-Date.now()));});
+  const cancel=()=>{controller.abort();rejectAbort?.(Error(errorCode('BACKFILL_CANCELLED')));};
+  if(parent?.aborted)throw Error(errorCode('BACKFILL_CANCELLED'));
+  if(performance.now()>=until)throw Error(errorCode('BACKFILL_DEADLINE'));
+  const guard=new Promise<never>((_,reject)=>{rejectAbort=reject;timer=setTimeout(()=>{controller.abort();reject(Error(errorCode('BACKFILL_DEADLINE')));},Math.max(1,until-performance.now()));});
   parent?.addEventListener('abort',cancel,{once:true});
   try{return await Promise.race([work(controller.signal),guard]);}
   finally{clearTimeout(timer!);parent?.removeEventListener('abort',cancel);}
@@ -37,11 +39,18 @@ export class BackfillRunner {
     if(!/^[a-zA-Z0-9_-]{1,80}$/.test(o.name)||!/^[a-f0-9]{64}$/.test(o.definition))throw Error('BACKFILL_DEFINITION_REQUIRED');
     const size=bounded(o.batchSize??100,1,500),maxRows=bounded(o.maxRows??1000,1,10000),
       maxBatches=bounded(o.maxBatches??10,1,100),duration=bounded(o.maxDurationMs??10000,100,30000);
-    const until=Date.now()+duration;let batches=0,invocationRows=0,result:BackfillResult;
-    while(batches<maxBatches&&invocationRows<maxRows&&Date.now()<until){
+    const until=performance.now()+duration;let batches=0,invocationRows=0,result:BackfillResult|undefined;
+    while(batches<maxBatches&&invocationRows<maxRows&&performance.now()<until){
       if(o.signal?.aborted)throw Error('BACKFILL_CANCELLED');
-      const budget=Math.min(15000,Math.max(100,until-Date.now()));
-      const batch=await this.store.transaction(tx=>deadline(async signal=>{
+      const budget=Math.floor(Math.min(15000,until-performance.now()));
+      if(budget<1)throw Error('BACKFILL_DEADLINE');
+      let commitMayHaveStarted=false;
+      const batch=await deadline(outerSignal=>{
+        const bounds={remainingMs:()=>until-performance.now(),assertActive:()=>{
+          if(o.signal?.aborted)throw Error('BACKFILL_CANCELLED');
+          if(outerSignal.aborted||performance.now()>=until)throw Error('BACKFILL_DEADLINE');
+        },beforeCommit:()=>{commitMayHaveStarted=true;}};
+        return this.store.transaction((tx,availableMs)=>deadline(async signal=>{
         await tx.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "_visionary_backfills" (
           name TEXT PRIMARY KEY,definition TEXT NOT NULL,cursor TEXT,processed INTEGER NOT NULL DEFAULT 0,
           done BOOLEAN NOT NULL DEFAULT FALSE,"updatedAt" TIMESTAMPTZ NOT NULL DEFAULT clock_timestamp())`);
@@ -66,7 +75,7 @@ export class BackfillRunner {
         }
         let added=0;
         for(const row of page.rows){
-          if(signal.aborted||o.signal?.aborted||Date.now()>=until)throw Error('BACKFILL_CANCELLED_OR_DEADLINE');
+          if(signal.aborted||o.signal?.aborted||performance.now()>=until)throw Error('BACKFILL_CANCELLED_OR_DEADLINE');
           if(!row||Object.getPrototypeOf(row)!==Object.prototype||typeof row.key!=='string'||!row.key||row.key.length>200)throw Error('BACKFILL_ROW_INVALID');
           const payload=JSON.stringify(stable(row));if(payload.length>65536)throw Error('BACKFILL_ROW_INVALID');
           const digest=hash(payload);
@@ -76,11 +85,12 @@ export class BackfillRunner {
           if(signal.aborted||o.signal?.aborted)throw Error('BACKFILL_CANCELLED');
           await tx.$executeRawUnsafe(`INSERT INTO "_visionary_backfill_rows"(name,key,digest) VALUES($1,$2,$3)`,o.name,row.key,digest);added++;
         }
-        if(signal.aborted||o.signal?.aborted||Date.now()>=until)throw Error('BACKFILL_CANCELLED_OR_DEADLINE');
+        if(signal.aborted||o.signal?.aborted||performance.now()>=until)throw Error('BACKFILL_CANCELLED_OR_DEADLINE');
         await tx.$executeRawUnsafe(`UPDATE "_visionary_backfills" SET cursor=$2,processed=processed+$3,done=$4,"updatedAt"=clock_timestamp() WHERE name=$1`,
           o.name,page.nextCursor,added,page.done);
         return {result:{name:o.name,processed:checkpoint.processed+added,batches:batches+1,done:page.done,cursor:page.nextCursor},rows:page.rows.length,executed:true};
-      },Math.min(until,Date.now()+Math.max(1,budget-500)),o.signal),budget);
+      },Math.min(until,performance.now()+Math.max(1,(availableMs??budget)-Math.min(500,Math.floor((availableMs??budget)/10)))),outerSignal),budget,bounds);
+      },until,o.signal,kind=>kind+(commitMayHaveStarted?'_COMMIT_UNKNOWN':''));
       result=batch.result;invocationRows+=batch.rows;if(batch.executed)batches++;
       if(result.done)return result;
     }

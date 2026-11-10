@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdtempSync, mkdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdtempSync, mkdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,7 +18,10 @@ try {
   mkdirSync(backend, { recursive: true });
   for (const name of ['src', 'tsconfig.json', 'tsconfig.product.json']) cpSync(join(root, 'backend/upstream/backend', name), join(backend, name), { recursive: true });
   cpSync(join(runtime, 'package.json'), join(backend, 'package.json'));
+  mkdirSync(join(backend, 'prisma'), { recursive: true });
+  cpSync(join(root, 'backend/upstream/backend/prisma/schema.prisma'), join(backend, 'prisma/schema.prisma'));
   symlinkSync(realpathSync(join(runtime, 'node_modules')), join(backend, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
+  run([join(runtime, 'node_modules/prisma/build/index.js'), 'generate', '--schema', join(backend, 'prisma/schema.prisma')], backend);
   const tests = ['firebase-admin', 'firebase-product', 'account-storage', 'billing', 'feedback', 'production-http'];
   // Main predates the independently delivered account-directory feature. Its
   // source and regressions must arrive together when that feature is released.
@@ -43,9 +46,41 @@ try {
     const source = `src/auth/firebase-product/${name}.ts`;
     if (existsSync(join(backend, source))) config.files.push(source);
   }
+  const hasProvisioning = existsSync(join(backend, 'src/workspaces/personal-workspace.service.ts'));
+  const hasInvitations = existsSync(join(backend, 'src/invitations/invitation.service.ts'));
+  const invitationTests = hasInvitations ? readdirSync(join(root, 'backend/tests/contracts/data-04')).filter(name => name.endsWith('.test.mjs')) : [];
+  if (hasInvitations) {
+    config.files.push('src/invitations/invitation.service.ts', 'src/invitations/invitation-store.ts', 'src/invitations/institution-approval.ts');
+    if (!invitationTests.length) throw Error('Invitation source without registered regressions.');
+    for (const name of invitationTests) {
+      const destination = join(testRoot, 'contracts/data-04', name); mkdirSync(dirname(destination), { recursive: true });
+      cpSync(join(root, 'backend/tests/contracts/data-04', name), destination);
+    }
+  }
+  if (hasProvisioning) {
+    config.files.push('src/data/migration-runner.ts', 'src/data/migration-store.ts', 'src/data/migration-registry.ts');
+    cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261024000001_data_01_workspaces'), join(backend, 'prisma/migrations/20261024000001_data_01_workspaces'), { recursive: true });
+    if (hasInvitations) cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261102000002_data_04_invitation_reissue'), join(backend, 'prisma/migrations/20261102000002_data_04_invitation_reissue'), { recursive: true });
+    if (hasInvitations) cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261103000003_data_04_institution_approval'), join(backend, 'prisma/migrations/20261103000003_data_04_institution_approval'), { recursive: true });
+    cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261106000004_file_03_downloads'), join(backend, 'prisma/migrations/20261106000004_file_03_downloads'), { recursive: true });
+    cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261106000005_data_06_command_revision'), join(backend, 'prisma/migrations/20261106000005_data_06_command_revision'), { recursive: true });
+    cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261108000006_data_09_admission'), join(backend, 'prisma/migrations/20261108000006_data_09_admission'), { recursive: true });
+    for (const file of ['data-01/postgres-fixture.cjs', 'data-02/postgres-fixture.cjs', 'data-03/provisioning.test.mjs']) {
+      const destination = join(testRoot, 'contracts', file); mkdirSync(dirname(destination), { recursive: true });
+      cpSync(join(root, 'backend/tests/contracts', file), destination);
+    }
+  }
+  const hasPrivacy = existsSync(join(backend, 'src/privacycore/privacy-core-service.ts'));
+  if (hasPrivacy) {
+    config.files.push('src/privacycore/privacy-core-service.ts', 'src/privacycore/firestore-privacy-store.ts');
+    cpSync(join(root, 'backend/tests/privacycore.test.cjs'), join(testRoot, 'privacycore.test.cjs'));
+  }
   writeFileSync(join(backend, 'tsconfig.tests.json'), JSON.stringify(config));
   run([join(runtime, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.tests.json'], backend);
   run(['--test', '--test-reporter=tap', ...tests.map(name => join(testRoot, `${name}.test.cjs`))], root);
+  if (hasProvisioning) run([join(root, 'scripts/provision-check.mjs'), '--root', temporary], root);
+  if (hasInvitations) run(['--test', '--test-reporter=tap', ...invitationTests.map(name => join(testRoot, 'contracts/data-04', name))], root);
+  if (hasPrivacy) run([join(root, 'scripts/provision-check.mjs'), '--suite', 'privacycore', '--root', temporary], root);
 } finally {
   const actual = realpathSync(temporary);
   if (dirname(actual) !== realpathSync(tmpdir()) || !basename(actual).startsWith('visionary-production-check-')) throw Error('Temporary check cleanup boundary mismatch.');
