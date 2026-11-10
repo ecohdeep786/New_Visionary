@@ -1,6 +1,6 @@
-# Landing — the designed experience (v11 spec)
+# Landing — the designed experience (v14 spec)
 
-Status: **built and verified (2026-10-19) — awaiting the founder's review of the rendered page.** v5's return refit stands (§4); v6 reworked the flow (§9); §10 rebuilt the close; §11 the problem chapter; §12 put every persona's door on the first screen; §13 the section-by-section Apple pass; §14 rebuilds the problem as Apple's story chapter, the return as a 2×2 values chapter, and binds the landing's card rows to the measured 48px card-chapter tier. Every word of copy is preserved (the five-journey route line moved from the return to the CTA).
+Status: **built and verified (2026-10-20) — awaiting the founder's review of the rendered page.** v5's return refit stands (§4); v6 reworked the flow (§9); §10 rebuilt the close; §11 the problem chapter; §12 put every persona's door on the first screen; §13 the section-by-section Apple pass; §14 rebuilt the problem as Apple's story chapter, the return as a 2×2 values chapter, and bound the landing's card rows to the measured 48px card-chapter tier; §15 mirrored Apple's measured layout — its chapter breathing (140/122/120), its 1264px card-row measure, its statement tiers, its accessory-row grid and its global-nav proportions; §16 measured Apple's **band anatomy** and rebuilt our bands on it — the media is now the band's floor and the trust chapter is Apple's values row. Every word of copy is preserved (the five-journey route line moved from the return to the CTA).
 
 Date: 2026-10-19. Fifth R&D pass (section anatomy: apple.com/apple-vision-pro, apple.com/in/education, apple.com/in/education-initiative at 1440 — section maps + filmstrips). Evidence: `frontend/artifacts/research/landing-v10-apple-reread-2026-10-19/` (`apple-reread.json`, filmstrips, `V10_REWORK.md`, verify crops). Fourth pass (close structure: apple.com/watch, beatsbydre.com, apple.com/airpods at 1440). Evidence: `frontend/artifacts/research/landing-apple-close-study-2026-10-19/` (`close-study.json`, filmstrips), plus `landing-v7-close-2026-10-19/`, `landing-v8-story-split-2026-10-19/` and `landing-v9-universal-entry-2026-10-19/` (persona walkthrough + audience-rail record). Third pass (formatting + flow): `landing-flow-study-2026-10-19/` (`FLOW_STUDY.md`). Second pass (interaction): `landing-final-study-2026-10-19/interaction/` — per-site filmstrips, sticky/media/motion probes, CTA hover deltas (`interaction-probe.json`).
 
@@ -404,3 +404,116 @@ Gate: `scope:audit:write` (68 / 26 / **1,645**) → eslint clean → both typech
 The route line moved to the CTA (same words/links); the problem band is grey and takes the shared rhythm (+~170px at 1440); the suite heading is now the measured 48 tier; persona line-ups stay at 64 unless he wants the role applied there too.
 
 ### 14.5 No commits — the founder holds version commits.
+
+---
+
+## 15. v12 — Apple's own layout, measured and mirrored (2026-10-20)
+
+### 15.0 The ask
+
+Go to the given Apple pages in the browser, check **each layout, design, margin, padding, breathing, section and device layout**, then work on our landing page so its layout, position, spacing and margins match — and its design match our product in Apple's premium language. Student page used as a read-only idea source. **Landing page only** until the founder's command.
+
+### 15.1 R&D — the Apple layout law, measured live
+
+`artifacts/research/landing-v12-apple-layout-2026-10-20/apple-layout-spec.json` (apple.com, /in/education-initiative/, /apple-vision-pro/ at 1440/1024/834/390).
+
+- **Chapter breathing 140/140** at 1440, **122/130** at 1024–834, **120/120** at 390 (education-initiative `section-router` / `section-values`).
+- **Editorial spine 980** (gut 230 @1440) for statements and the story card; **card rows 1264** (gut 88 @1440) for values/accessory/product grids.
+- **Product band 56** (48/32) — apple.com "iPhone Duo", the vision-pro dark chapters; **story chapter 64/68** with a 24/600 lead; **card chapter 48/52** (40/44, 32/36); **black statement band 48**; **closing band 56**.
+- **Global nav 48 tall, 12px labels, ~1024 container**; the education audience row 12px/400.
+- Apple's accessory anatomy: **one row of four** white cards, media well on top, name + copy below.
+
+### 15.2 Built (landing only; copy preserved)
+
+1. **Breathing** → 140/140 · 122/130 · 120/120 (landing-scoped rule; the shared token still serves every other page). Hero and the black promise keep their own stages.
+2. **Statement tiers** → new measured public role `product-band` (56/60 · 48/52 · 32/36): hero 80 → **64**, product band 80 → **56**, promise 64 → **48**, trust 72 → **64**, closer 72 → **56**. Story 64, values 48, line-up 48 unchanged. One 64px statement per page, the way Apple paces a page.
+3. **Card rows → 1264** (gut 88 @1440) on the return, the journeys rail and the suite; the return's two broad cards are the same two-column geometry as vision-pro's "Take a closer look."
+4. **Suite → Apple's accessory anatomy**: one row of four white tiles (media well on top, name + copy, arrow in the card).
+5. **Chrome**: 12px nav labels and Apple's ~1024 nav frame (landing-scoped); the audience row drops to Apple's 12px.
+
+### 15.3 Measured
+
+docH **9,259** @1440 (v11 9,668) / 8,878 @1024 / 10,043 @834 / 11,009 @390 — **zero horizontal overflow 375–1920**; console only the two pre-existing entries; a full scroll walkthrough at 1440 and 390 captured in `walk/`.
+
+**Other pages untouched** (re-measured at 1440×844 against their pre-v12 numbers): `/student` 12,970, `/teacher` 13,090, `/parent` 13,118, `/professional` 13,113, `/organization` 13,381 — identical; explore 64, band 80, trust 72, CTA 72, hero 79.9, nav 14px unchanged.
+
+Gate: `scope:audit:write` (68 / 26 / **1,645**) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Evidence: `landing-v12-apple-layout-2026-10-20/` (`V12_PLAN.md`, `apple-layout-spec.json`, `our-layout-spec.json`, `our-type-spec.json`, `ours/`, `walk/`).
+
+### 15.4 Flags for the founder
+
+The hero statement dropped 80 → 64 (Apple's landing-statement tier) — the one change that alters the first impression; the persona heroes keep their 80. The nav keeps our 56px height (our mega sheets are anchored to it) with Apple's 12px labels. The landing's chapter breathing is now Apple's; other pages still ride the shared 96–158 token until he says so.
+
+### 15.5 No commits — the founder holds version commits.
+
+---
+
+## 16. v13 — Apple's band anatomy: the media is the band's floor (2026-10-20)
+
+### 16.0 The ask
+
+The product still did not match Apple's breathing and layout; the landing must look very premium, match our product, and make the user excited to know more and explore every page. "Think and do R&D as an Apple engineer in our product." Landing page only.
+
+### 16.1 R&D — band anatomy, measured live
+
+`artifacts/research/landing-v13-apple-composition-2026-10-20/apple-band-anatomy.json` (apple.com, /in/education-initiative/, /apple-vision-pro/ at 1440 + 390: per band — the type block's offsets, the media's insets/bleeds, the doors, the surfaces).
+
+- A band is a **scene**: apple.com's hero media is 3,008 wide (it bleeds and overflows the viewport) and the band **ends on the media**; vision-pro's gallery media is 1,440 wide (full-bleed) with its statement at 1,092 of a 2,129 band.
+- Apple's **values cards** (apple.com/in/education): white, radius 28, **title 28, body 17 on a 25px line, a 17px "Learn more" in #0066cc**.
+- Apple's story media: **980×516** on the editorial spine with 181px of air below.
+
+### 16.2 Built (landing only; copy preserved)
+
+1. **The product band is a scene now**: the mark floats on the band's own ground (its canvas tone dissolved into the band — no card, no seam), grows 560 → **820**, and the band **ends on it** (padding 140/**0**). Band 1,340 → 1,200.
+2. **The trust chapter is Apple's values row** (new landing-only `variant="cards"`): 64px statement + 19px lead, then four **white cards on the grey floor** — mark well, 28px title, 17px body, a blue "Learn more" each. The grey close-card panel retires; the persona pages keep their anatomy.
+3. **New measured role `card-body`** (17/25) for the landing's value cards; the persona values columns keep 19/23.
+4. **The story card matches Apple's story media**: 980×**516**.
+
+### 16.3 Measured
+
+docH **9,148** @1440 (v12 9,259) / 8,793 @1024 / 9,934 @834 / 11,044 @390 — **zero horizontal overflow 375–1920**; console only the two pre-existing entries; a full scroll walkthrough at 1440 and 390 in `walk/`.
+
+**Other pages untouched**: `/student` 12,970 · `/teacher` 13,090 · `/parent` 13,118 · `/professional` 13,113 · `/organization` 13,381 — identical.
+
+Gate: `scope:audit:write` (68 / 26 / **1,649**) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Evidence: `landing-v13-apple-composition-2026-10-20/`.
+
+### 16.4 No commits — the founder holds version commits.
+
+---
+
+## 17. v14 — one grammar: the front-door alignment (2026-10-20)
+
+### 17.0 The ask
+
+What if "Who it's for" and its sub-head show in centre with a large heading size, and the problem section does the same; and how would the card section be improved to match Apple's premium section, and all the other sections, to make a full-page premium vibe?
+
+### 17.1 R&D — Apple's alignment grammar (measured live, 1440)
+
+| page | statements | alignment |
+| --- | --- | --- |
+| apple.com (front door) | "iPhone Duo" 56 · "iPhone 18 Pro" 56 · "Endless entertainment." 56 (card gallery) · grid card titles 40 | **center — every one** |
+| apple.com/in/education (page-level) | "Designed for every kind of learner." 64 · "Education that's a grade ahead." 80 | **center** |
+| apple.com/in/education (chapters) · education-initiative · vision-pro gallery | 48–64 | start / left |
+| apple.com/watch | "Explore the lineup." 48 | start |
+
+**Law:** alignment on Apple is a grammar, not a mix — a front door centres every statement, an editorial page left-aligns every statement. Our landing is a front door and was mixing the two (the band + promise centred, the story / return / journeys / suite / trust left) — that mix is what stopped the page reading as one system.
+
+**Apple's premium card law** (apple.com/in/education): white, radius 28, 40px padding, title 28, body 17/25, a 17px "Learn more" in #0066cc with a chevron, media full-bleed on the card's top, the icon **bare** on the card.
+
+### 17.2 Built (landing only; copy preserved)
+
+**The founder's call, applied exactly:** centre the "Who it's for" section and the problem section — the rest of the page stays as the previous version was.
+
+1. **"Who it's for" → centred, 56px** (apple.com's card-gallery tier, 48 → 56), with its 17px eyebrow and its 21px intro centred with it. The rail of five journey cards is untouched.
+2. **The problem chapter centres** its eyebrow, its 64px statement and its 24/600 lead; the story card below stays the object.
+3. **Every other chapter keeps the previous version's alignment and size**: the band (56, centred), the promise (48, centred), the return's founder quote (48, left, 500 — unaltered), the suite (48, left) and the trust statement (64, left).
+4. **The card sections take Apple's premium card law** (the founder's second ask): the trust's values cards take radius 28, 40px padding and bare 32px icons (the circle wells retire), 28px titles, 17px bodies and the blue "Learn more"; the suite's tiles take radius 28 and a 20px media well. (The bridge hijacks the literal `rounded-[28px]` utility to 12px — the site's escape is `rounded-[1.75rem]`, which the return cards already use.)
+
+### 17.3 Measured
+
+docH **9,204** @1440 / 8,833 @1024 / 9,998 @834 / 11,133 @390 — **zero horizontal overflow 375–1920**; console only the two pre-existing entries; a full scroll walkthrough at 1440 and 390 in `walk/`.
+
+**Other pages untouched**: `/student` 12,970 · `/teacher` 13,090 · `/parent` 13,118 · `/professional` 13,113 · `/organization` 13,381 — identical; the centring is opt-in through the landing's own props.
+
+Gate: `scope:audit:write` (68 / 26 / **1,649**) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Evidence: `landing-v13-apple-composition-2026-10-20/V14_GRAMMAR.md`.
+
+### 17.4 No commits — the founder holds version commits.

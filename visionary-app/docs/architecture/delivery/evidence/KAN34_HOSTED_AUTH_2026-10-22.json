@@ -1,0 +1,115 @@
+{
+  "jiraKey": "KAN-34",
+  "date": "2026-10-22",
+  "implementationCommit": "445267487faef036a1b07fa7cb5abd85255f889d",
+  "independentReview": "docs/architecture/reviews/KAN34_GLOBAL_SESSION_REVIEW_44526748.md",
+  "devIntegrationCommit": "54fe8e9d6b29af9a84c5cec8a9e130a771e7fb23",
+  "mainCommit": "1ae078dc469846246bb5571717e39a6afe7a402e",
+  "tree": "84a2a08c5c2f500fa63372493250e420350411ef",
+  "sourceCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39820287068",
+  "devCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39821768315",
+  "implementationPullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/17",
+  "promotionPullRequest": "https://github.com/ecohdeep786/New_Visionary/pull/18",
+  "compatibility": {
+    "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39822077619",
+    "artifactId": 12445182237,
+    "commit": "1ae078dc469846246bb5571717e39a6afe7a402e",
+    "image": "asia-south1-docker.pkg.dev/visionary-research/visionary-product/product@sha256:2f5f8e3d5d8c998115f9eb386d548109345f0ba8385c32bcdef8a4b2013c5610",
+    "revision": "visionary-product-g1ae078dc4698-39822077619-1",
+    "authPolicy": {
+      "version": 1,
+      "globalSignOut": false
+    },
+    "previous": "visionary-product-g7aee2324024c-39405370084-1",
+    "previousCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+    "previousAuthPolicy": {
+      "version": 0,
+      "globalSignOut": false
+    },
+    "verified": true
+  },
+  "activation": {
+    "run": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39822825126",
+    "artifactId": 12445317414,
+    "commit": "1ae078dc469846246bb5571717e39a6afe7a402e",
+    "image": "asia-south1-docker.pkg.dev/visionary-research/visionary-product/product@sha256:e651bff799a7b02efe34eb9643f9cbaaa3d6c59f89c15db17ec681d4bef33595",
+    "revision": "visionary-product-g1ae078dc4698-39822825126-1",
+    "authPolicy": {
+      "version": 1,
+      "globalSignOut": true
+    },
+    "previous": "visionary-product-g1ae078dc4698-39822077619-1",
+    "previousCommit": "1ae078dc469846246bb5571717e39a6afe7a402e",
+    "previousAuthPolicy": {
+      "version": 1,
+      "globalSignOut": false
+    },
+    "verified": true
+  },
+  "canonical": {
+    "origin": "https://visionary.org.in",
+    "expectedCommitVerified": true,
+    "compiledPolicyVersion": 1,
+    "globalSignOut": true,
+    "health": 200,
+    "anonymousMe": 401,
+    "anonymousAccount": 401,
+    "unknownApi": 404,
+    "secureHttpOnlyHostCsrfCookie": true,
+    "sameSite": "Strict",
+    "originAndCsrfDenialVerified": true,
+    "candidateForwardedIpSanitizationVerified": true
+  },
+  "nativeAcceptance": {
+    "observer": "/root",
+    "realFirebaseAndFirestore": true,
+    "realCanonicalBrowserEmailSignIn": true,
+    "savedSetupRestored": true,
+    "reloadRestored": true,
+    "firstStageLocalLogoutRetainedSeparatePeer": true,
+    "googleOAuth": true,
+    "existingGooglePendingSetupRetained": true,
+    "googleSetupSubmitted": false,
+    "googleTestSessionLocallySignedOut": true,
+    "productionUiGlobalLogout": true,
+    "independentHostedCookieJars": 2,
+    "bothHostedPeersRejected": 401,
+    "separateLocalPeerRejectedOnReload": true,
+    "globalEpochBefore": 1,
+    "globalEpochAfter": 2,
+    "savedProfileVersionBefore": 2,
+    "savedProfileVersionAfter": 2,
+    "wrongPasswordRejectedWithSafeUi": true,
+    "freshPostRevocationSignInRestoredSameSetup": true,
+    "finalBrowserSignedOut": true,
+    "fixtureDisabled": true,
+    "fixtureTokensRevoked": true,
+    "fixtureDeleted": false,
+    "finalCleanupEpoch": 3,
+    "ownerCredentialsOrOnboardingChanged": false,
+    "protectedRecordsOrCredentialsIncluded": false
+  },
+  "checks": {
+    "backend": 104,
+    "frontend": 617,
+    "script": 18,
+    "gcpJavascript": 26,
+    "compiledBrowser": 14,
+    "independentFocused": 65
+  },
+  "remainingGates": {
+    "mailCustomDomain": "IN_PROGRESS",
+    "mailVerificationRequestTime": "2026-10-22T16:44:51.371Z",
+    "liveTemplateUpdates": "Provider rejected prior writes; not claimed applied",
+    "emailVerification": "Firebase native links, founder selected",
+    "unavailableMethods": [
+      "Apple web removed",
+      "phone",
+      "Microsoft",
+      "organization SSO"
+    ],
+    "kan29Content": "Founder deferred",
+    "broadProductOrProviderParityClaim": false
+  },
+  "acceptedScope": "Email/Google/global-session base release only. New phone SMS extension is outside this receipt."
+}

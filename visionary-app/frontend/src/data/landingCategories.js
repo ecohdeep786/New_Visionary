@@ -4,11 +4,11 @@ import {
 } from "lucide-react";
 
 export const CATEGORIES = [
-  { slug: "student", label: "Student", tagline: "Understand more. Build what comes next.", icon: GraduationCap, color: "#4285F4", path: "/student" },
-  { slug: "teacher", label: "Teacher", tagline: "See who is ready for the next lesson.", icon: BookOpen, color: "#34A853", path: "/teacher" },
-  { slug: "parent", label: "Parent", tagline: "See where your child needs support.", icon: Baby, color: "#EA4335", path: "/parent" },
+  { slug: "student", label: "Student", tagline: "Understand more. Build what comes next.", icon: GraduationCap, color: "#0066cc", path: "/student" },
+  { slug: "teacher", label: "Teacher", tagline: "See who is ready for the next lesson.", icon: BookOpen, color: "#34c759", path: "/teacher" },
+  { slug: "parent", label: "Parent", tagline: "See where your child needs support.", icon: Baby, color: "#e30000", path: "/parent" },
   { slug: "professional", label: "Professional", tagline: "Turn what you know into useful work.", icon: Building2, color: "#9334E9", path: "/professional" },
-  { slug: "organization", label: "Organization", tagline: "Help teams carry knowledge forward.", icon: Network, color: "#1a73e8", path: "/organization" },
+  { slug: "organization", label: "Organization", tagline: "Help teams carry knowledge forward.", icon: Network, color: "#0066cc", path: "/organization" },
 
 ];
 
@@ -18,11 +18,11 @@ export function getCategory(slug) {
 
 
 /**
- * { slug: "school", label: "School", tagline: "Transform your school's learning", icon: School, color: "#4285F4", path: "/school" },
+ * { slug: "school", label: "School", tagline: "Transform your school's learning", icon: School, color: "#0066cc", path: "/school" },
   { slug: "college", label: "College", tagline: "Modernize your college's education", icon: Building2, color: "#9334E9", path: "/college" },
-  { slug: "coaching", label: "Coaching Institute", tagline: "Exam preparation, reimagined", icon: FlaskConical, color: "#FBBC04", path: "/coaching" },
- * { slug: "competitive-exams", label: "Competitive Exams", tagline: "Crack any competitive exam", icon: Target, color: "#EA4335", path: "/competitive-exams" },
+  { slug: "coaching", label: "Coaching Institute", tagline: "Exam preparation, reimagined", icon: FlaskConical, color: "#ff9500", path: "/coaching" },
+ * { slug: "competitive-exams", label: "Competitive Exams", tagline: "Crack any competitive exam", icon: Target, color: "#e30000", path: "/competitive-exams" },
   { slug: "ai-learning", label: "AI Learning", tagline: "Learn with AI, not against it", icon: Brain, color: "#9334E9", path: "/ai-learning" },
-  { slug: "research", label: "Research", tagline: "Accelerate your research", icon: Microscope, color: "#34A853", path: "/research" },
-  { slug: "career", label: "Career", tagline: "From learning to earning", icon: Briefcase, color: "#1a73e8", path: "/career" },
+  { slug: "research", label: "Research", tagline: "Accelerate your research", icon: Microscope, color: "#34c759", path: "/research" },
+  { slug: "career", label: "Career", tagline: "From learning to earning", icon: Briefcase, color: "#0066cc", path: "/career" },
  */

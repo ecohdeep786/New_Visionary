@@ -49,6 +49,24 @@ The commands below use a signed-in Cloud Shell in project `visionary-research`, 
 
 ## Recovery and evidence
 
+KAN-34 session compatibility rollout (22 October 2026): deployment verifies the
+serving revision's pinned environment and its actual canonical health response.
+The compiled `authPolicy.version=1` means session epochs and stale-token cutoffs
+remain enforced, even with `AUTH_GLOBAL_LOGOUT_ENABLED=false`. The first main
+deployment against a legacy rollback target keeps global sign-out disabled and
+offers local sign-out. A subsequent trusted main workflow run enables global
+sign-out only with that policy-aware revision as its verified fallback. Candidate
+and canonical probes attest both policy version and enabled state. Deployment
+receipts record `authPolicy` and `previousAuthPolicy` alongside immutable images.
+
+After activation, never manually restore an image without compiled policy v1
+(including historical `7aee2324`), remove account epoch/cutoff fields, or bypass
+the compatibility checks. Such recovery can revive revoked sessions. Use a
+policy-aware image with the action disabled, retaining admission enforcement.
+The baseline command is only for initial placeholder recovery; it is not an
+escape hatch for downgrading a live account schema. Before any manual recovery,
+verify the target image's policy and current main/traffic/source evidence.
+
 The deployment artifact records the source commit, image digest, candidate/previous revision and the previous main commit. A failed new candidate leaves production traffic on the previous revision. A post-promotion failure moves traffic back to the previous verified main revision and re-runs canonical checks. There is no one-time legacy baseline in the new project; the first canonical baseline is created explicitly in step 5. The former project remains untouched for recovery until the new origin is accepted.
 
 Check the GitHub Actions artifact `main-release-<sha>-<run>-<attempt>`, `baseline-release.json` and test logs before diagnosing a release. Confirm `X-Visionary-Revision` on canonical health/API/static responses and verify anonymous account APIs remain unauthorized. The health-only canary response reports only whether its deliberate forwarded-IP sentinel was removed; it never returns an address. Do not treat a passing health check as acceptance of open real-source coverage, provider, privacy, billing-live, load or full-product launch gates.

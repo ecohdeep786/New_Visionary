@@ -6,30 +6,33 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
-import PolicyTabs from "@/components/landing/PolicyTabs";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import QuietLink from "@/components/landing/QuietLink";
+import LocalNav from "@/components/landing/LocalNav";
+import CinematicHero from "@/components/landing/CinematicHero";
+import stageHeroWebp from "@/assets/brand/hero-stage.webp";
+import stageHeroAvif from "@/assets/brand/hero-stage.avif";
+
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META } from "@/data/legalMeta";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 const COLORS = {
-  ink: "#121317",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
-  mist: "#dadce0",
-  border: "#dadce0",
-  soft: "#f8f9fa",
-  canvas: "#f7f8fa",
-  blue: "#4285F4",
-  navy: "#0b57d0",
+  ink: "#1d1d1f",
+  grey: "#6e6e73",
+  lightGrey: "#86868b",
+  mist: "#d2d2d7",
+  border: "#d2d2d7",
+  soft: "#f5f5f7",
+  canvas: "#f5f5f7",
+  blue: "#0066cc",
+  navy: "#0066cc",
   white: "#ffffff",
-  graphite: "#5f6368",
+  graphite: "#6e6e73",
 };
 
-/* ═══ Link grammar — the approved public quiet link, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { quietLink } = CTA_LAW;
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -54,7 +57,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -101,7 +104,7 @@ const SECTIONS = [
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
+      <div className="mb-3 apple-eyebrow" style={{ color: COLORS.grey }}>
         {number}
       </div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
@@ -123,7 +126,7 @@ function BulletList({ items }) {
   return (
     <ul className="mt-6 max-w-[760px] rounded-[30px] bg-[#f5f5f7] p-6">
       {items.map((item, index) => (
-        <li key={index} className="flex items-start gap-3 py-1.5 text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>
+        <li key={index} className="flex items-start gap-3 py-1.5 text-[16px] leading-[1.65]" style={{ color: COLORS.grey }}>
           <span aria-hidden="true" className="mt-[0.68em] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
           <span>{item}</span>
         </li>
@@ -200,18 +203,33 @@ export default function TermsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-terms min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <Breadcrumb page="Terms" />
-      <PolicyTabs />
+      <LocalNav title="Terms" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1}>
+        {/* HERO — the student stage carrying Apple-privacy's centered voice
+            (FAP-59 phase 4), rendered from the single-source CinematicHero
+            under the LocalNav bar. Promises, action row and effective date
+            stay as the body opening below. */}
+        <FadeReveal visible={heroVisible}>
+          <CinematicHero
+            title="Clear rules, written"
+            accent="to be understood."
+            image={{
+              src: stageHeroWebp,
+              avifSrcSet: stageHeroAvif,
+              alt: "A learner holding a laptop, ready to learn",
+            }}
+            inFlow={56}
+          />
+        </FadeReveal>
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
             {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
             <aside className="hidden lg:block">
               <div className="sticky top-24 py-10">
-                <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</div>
+                <div className="mb-4 apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</div>
                 <nav aria-label="Terms sections">
                   <div className="space-y-1">
                     {SECTIONS.map((section) => {
@@ -222,10 +240,10 @@ export default function TermsPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active ? "bg-[#f5f5f7]" : "text-[#5f6368] hover:text-[#121317]"}`}
+                          className={`group flex w-full items-start gap-3 rounded-full px-3 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-[#f5f5f7]" : "text-[#6e6e73] hover:text-[#1d1d1f]"}`}
                         >
-                          <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0b57d0]" : ""}`}>{section.number}</span>
-                          <span className={`text-[13px] leading-[1.45] ${active ? "text-[#121317]" : ""}`}>{section.title}</span>
+                          <span className={`mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
+                          <span className={`text-[13px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
                         </button>
                       );
                     })}
@@ -233,7 +251,7 @@ export default function TermsPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       These Terms are read together with the Privacy Policy and the Cookie policy.
                     </p>
@@ -244,18 +262,11 @@ export default function TermsPage() {
 
             {/* CONTENT COLUMN */}
             <div className="min-w-0">
-              {/* POLICY HERO — the same policies.google.com opening as Privacy */}
+              {/* POLICY BODY OPENING — promises, action row, effective date
+                  (the display hero lives in CinematicHero above; FAP-59
+                  phase 3 keeps the utility content intact). */}
               <FadeReveal visible={heroVisible}>
-                <div className="pb-12 pt-2">
-                  <div className="flex justify-center"><SpotIllustration subject="document" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
-                  <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Terms of service</p>
-                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                    Clear rules, written <span className="accent-gradient">to be understood.</span>
-                  </h1>
-                  <p className="mt-8 max-w-[760px] text-[17.5px] leading-[25px]" style={{ color: COLORS.grey }}>
-                    What you can expect from Visionary, and what we expect from the people who use it, without the obscure language.
-                  </p>
-
+                <div className="pb-12 pt-10">
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {TERMS_PROMISES.map((p) => (
                       <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
@@ -272,7 +283,7 @@ export default function TermsPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Questions about these Terms?</p>
-                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>The team reads every message about how these rules apply.</p>
+                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>The team reads every message about how these rules apply.</p>
                       <a href="mailto:legal@visionary.org.in" className={`mt-1.5 ${quietLink}`}>
                         legal@visionary.org.in
                         <ChevronIcon className="h-4 w-4" aria-hidden="true" />
@@ -292,11 +303,11 @@ export default function TermsPage() {
                     onClick={() => setShowMobileContents((value) => !value)}
                     aria-expanded={showMobileContents}
                     aria-controls="terms-mobile-contents"
-                    className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                   >
                     <span>
-                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
-                      <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
+                      <span className="block apple-eyebrow" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="mt-1 block text-[16px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
                   </button>
@@ -311,10 +322,10 @@ export default function TermsPage() {
                               type="button"
                               onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
                               aria-current={active ? "location" : undefined}
-                              className={`flex min-h-12 w-full items-start gap-4 rounded-[16px] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active ? "bg-white" : "text-[#5f6368]"}`}
+                              className={`flex min-h-12 w-full items-start gap-4 rounded-[16px] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${active ? "bg-white" : "text-[#6e6e73]"}`}
                             >
-                              <span className={`mt-0.5 text-[12px] font-medium tabular-nums ${active ? "text-[#0b57d0]" : ""}`}>{section.number}</span>
-                              <span className={`text-[14px] leading-[1.45] ${active ? "text-[#121317]" : ""}`}>{section.title}</span>
+                              <span className={`mt-0.5 text-[12px] font-medium tabular-nums ${active ? "text-[#0066cc]" : ""}`}>{section.number}</span>
+                              <span className={`text-[14px] leading-[1.45] ${active ? "text-[#1d1d1f]" : ""}`}>{section.title}</span>
                             </button>
                           );
                         })}
@@ -324,16 +335,16 @@ export default function TermsPage() {
                 </div>
 
                 {/* AT A GLANCE */}
-                <section className="py-12" aria-labelledby="terms-summary-title">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Start here</p>
+                <section data-section="02-summary" aria-labelledby="terms-summary-title">
+                  <p className="apple-eyebrow" style={{ color: COLORS.grey }}>Start here</p>
                   <h2 id="terms-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                         <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.navy }}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
-                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
+                        <span className="mt-5 flex items-center gap-2 text-[16px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
-                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                       </a>
                     ))}
                   </div>
@@ -343,7 +354,7 @@ export default function TermsPage() {
               {/* LEGAL CONTENT */}
               <article className="divide-y divide-[rgba(18,19,23,0.12)]">
                 {/* 01 */}
-                <section id="who-can-use" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="who-can-use" data-section="03-who-can-use" className="scroll-mt-24">
                   <SectionHeading number="01" title="Who can use Visionary" />
                   <Paragraph>You may use Visionary only if you are legally permitted to enter into these Terms.</Paragraph>
                   <div className="mt-5"><Paragraph>For younger learners, use of Visionary may require involvement or permission from a parent or legal guardian, depending on the learner's age and the applicable law.</Paragraph></div>
@@ -352,7 +363,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 02 */}
-                <section id="what-you-can-do" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-you-can-do" data-section="04-what-you-can-do" className="scroll-mt-24">
                   <SectionHeading number="02" title="What you can do" />
                   <Paragraph>Use Visionary to support learning, teaching, practice, creation, and work.</Paragraph>
                   <BulletList items={[
@@ -365,7 +376,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 03 */}
-                <section id="what-you-cannot-do" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-you-cannot-do" data-section="05-what-you-cannot-do" className="scroll-mt-24">
                   <SectionHeading number="03" title="What you cannot do" />
                   <Paragraph>Keep Visionary useful and safe for everyone.</Paragraph>
                   <BulletList items={[
@@ -381,7 +392,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 04 */}
-                <section id="what-we-provide" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="what-we-provide" data-section="06-what-we-provide" className="scroll-mt-24">
                   <SectionHeading number="04" title="What we provide" />
                   <Paragraph>Visionary provides technology designed to support learning, teaching, practice, creation, and connected progress.</Paragraph>
                   <div className="mt-5"><Paragraph>Features may change over time. We may add, improve, remove, or limit features as the product develops.</Paragraph></div>
@@ -391,7 +402,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 05 */}
-                <section id="your-content" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-content" data-section="07-your-content" className="scroll-mt-24">
                   <SectionHeading number="05" title="Your content" />
                   <Paragraph>You remain responsible for the content you submit, upload, create, or share through Visionary.</Paragraph>
                   <div className="mt-5"><Paragraph>You must have the necessary rights and permissions to provide that content.</Paragraph></div>
@@ -401,7 +412,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 06 */}
-                <section id="your-account" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="your-account" data-section="08-your-account" className="scroll-mt-24">
                   <SectionHeading number="06" title="Your account" />
                   <Paragraph>Keep your account information accurate and take reasonable steps to protect your account.</Paragraph>
                   <BulletList items={[
@@ -415,7 +426,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 07 */}
-                <section id="plans-payments" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="plans-payments" data-section="09-plans-payments" className="scroll-mt-24">
                   <SectionHeading number="07" title="Plans, payments, and cancellation" />
                   <Paragraph>Some Visionary features or services may require payment.</Paragraph>
                   <div className="mt-5"><Paragraph>Prices, billing periods, available features, renewal terms, refunds, and cancellation rules are described on the Pricing page or at the time of purchase.</Paragraph></div>
@@ -425,7 +436,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 08 */}
-                <section id="changes" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="changes" data-section="10-changes" className="scroll-mt-24">
                   <SectionHeading number="08" title="When Visionary or your access changes" />
                   <Paragraph>Products change. These Terms may need to change with them.</Paragraph>
                   <div className="mt-5"><Paragraph>We may update, suspend, or discontinue parts of Visionary when reasonably necessary, including for product development, security, legal, or operational reasons.</Paragraph></div>
@@ -434,7 +445,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 09 */}
-                <section id="restriction" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="restriction" data-section="11-restriction" className="scroll-mt-24">
                   <SectionHeading number="09" title="When access may be restricted" />
                   <Paragraph>We may restrict, suspend, or terminate access when necessary to protect users, Visionary, or the integrity of the service.</Paragraph>
                   <BulletList items={[
@@ -447,7 +458,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 10 */}
-                <section id="responsibility" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="responsibility" data-section="12-responsibility" className="scroll-mt-24">
                   <SectionHeading number="10" title="Disclaimers and responsibility" />
                   <Paragraph>Visionary operates subject to applicable law.</Paragraph>
                   <div className="mt-5"><Paragraph>We do not promise that the service will always be uninterrupted, error-free, completely accurate, or available in every circumstance.</Paragraph></div>
@@ -456,7 +467,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 11 */}
-                <section id="disputes" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="disputes" data-section="13-disputes" className="scroll-mt-24">
                   <SectionHeading number="11" title="Governing law and disputes" />
                   <Paragraph>If there is a disagreement, contact Visionary first and give us an opportunity to understand and resolve the issue.</Paragraph>
                   <div className="mt-5"><Paragraph>If a dispute cannot be resolved informally, the applicable governing law, jurisdiction, dispute-resolution procedure, arbitration provisions, and courts will be specified here.</Paragraph></div>
@@ -464,7 +475,7 @@ export default function TermsPage() {
                 </section>
 
                 {/* 12 */}
-                <section id="contact" className="scroll-mt-24 py-14 sm:py-16">
+                <section id="contact" data-section="14-contact" className="scroll-mt-24">
                   <SectionHeading number="12" title="Contact" />
                   <Paragraph>Questions about these Terms? Contact Visionary at:</Paragraph>
                   <div className="mt-6">
@@ -483,7 +494,7 @@ export default function TermsPage() {
         </div>
 
         {/* KEY TERMS — the policies.google.com glossary pattern */}
-        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section data-section="15-key-terms" aria-labelledby="key-terms-title" className="px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t border-[rgba(18,19,23,0.12)] pt-10 sm:grid-cols-2">
@@ -497,7 +508,7 @@ export default function TermsPage() {
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[16px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -505,7 +516,7 @@ export default function TermsPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-20 sm:px-8 lg:px-10">
+        <section data-section="16-related" aria-label="Related policies" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -515,16 +526,29 @@ export default function TermsPage() {
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                <Link key={to} to={to} className="group relative rounded-[20px] bg-white p-6 pb-16 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.navy }} />
-                    <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
+                    <Icon className="h-5 w-5" strokeWidth={1.8} style={{ color: COLORS.navy }} />
+                    <span className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
-                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+            clauses carry no per-module CTAs; the page ends with a way to
+            reach a person). */}
+        <section data-section="17-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
+          <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-6">
+            <p className="text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
+              Questions about this policy?
+            </p>
+            <QuietLink to="/contact" className="shrink-0">
+              Talk to a person <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+            </QuietLink>
           </div>
         </section>
       </main>

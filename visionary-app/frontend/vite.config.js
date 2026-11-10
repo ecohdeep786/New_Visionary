@@ -23,13 +23,13 @@ const productionSecurityHeaders = {
     "img-src 'self' data: https://storage.googleapis.com",
     "font-src 'self'",
     "style-src 'self' 'unsafe-inline'",
-    "script-src 'self' https://apis.google.com https://checkout.razorpay.com https://cdn.razorpay.com",
-    "frame-src https://visionary-research.firebaseapp.com https://api.razorpay.com https://checkout.razorpay.com",
-    "connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://visionary-research.firebaseapp.com https://api.razorpay.com https://checkout.razorpay.com https://lumberjack.razorpay.com",
+    "script-src 'self' https://apis.google.com https://checkout.razorpay.com https://cdn.razorpay.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/",
+    "frame-src https://visionary-research.firebaseapp.com https://api.razorpay.com https://checkout.razorpay.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/",
+    "connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://visionary-research.firebaseapp.com https://api.razorpay.com https://checkout.razorpay.com https://lumberjack.razorpay.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/",
   ].join('; '),
 }
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
   const authApiTarget = process.env.VISIONARY_AUTH_TEST_PROXY || 'http://127.0.0.1:3001';
   if (process.env.VISIONARY_AUTH_TEST_PROXY && (isProd || !process.env.VITE_FIREBASE_PROJECT_ID?.startsWith('demo-') || !/^http:\/\/127\.0\.0\.1:\d{1,5}$/.test(authApiTarget))) throw new Error('The test auth proxy requires a development demo project and loopback target.');
@@ -72,6 +72,17 @@ export default defineConfig(({ command, mode }) => {
       rollupOptions: {
         output: {
           manualChunks(id) {
+            // F-16-F4 / F-27 / F-28: shared copy modules flipped between their
+            // own chunks and merges into neighbouring chunks between builds
+            // (organizationAuthorCopy, then homeCopy/learningCopy/
+            // dailyPlanService on later builds), which made the fail-closed
+            // chunk budget fail on unrelated lanes. Every src/lib copy module
+            // is pinned to a name-stable chunk: routes still load only the
+            // copies they import, and the structure is deterministic.
+            const copyMatch = id.match(/[\\/]src[\\/]lib[\\/]([A-Za-z0-9_]+Copy)\.js$/);
+            if (copyMatch) {
+              return copyMatch[1];
+            }
             if (id.includes('node_modules')) {
               if (id.includes('recharts')) {
                 return 'vendor-charts';
@@ -100,8 +111,6 @@ export default defineConfig(({ command, mode }) => {
           },
         },
       },
-      // Increase parallel workers for faster builds
-      maxWorkersIncrease: 'max-memory',
     },
     resolve: {
       alias: {

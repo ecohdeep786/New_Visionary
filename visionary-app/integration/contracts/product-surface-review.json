@@ -943,6 +943,19 @@
         "SYNC-02"
       ]
     },
+    "frontend/src/components/dashboard/ApprovedPrivacyPolicy.jsx": {
+      "profile": "approved-privacy-reference",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated read of the Founder-approved preservation reference. Lifecycle and guardian verification remain separate.",
+      "followUp": [
+        "PRIV-01",
+        "PRIV-02"
+      ],
+      "endpoints": [
+        "GET /api/account/privacy/policy"
+      ]
+    },
     "frontend/src/components/dashboard/StageProfileEditor.jsx": {
       "profile": "local-stage-continuity",
       "state": "preview",
@@ -1196,7 +1209,17 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/LandingNav.jsx": {
+    "frontend/src/components/landing/LandingNav/index.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LandingNav/nav-shared.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -1226,7 +1249,7 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/persona/PersonaSections.jsx": {
+    "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -1236,7 +1259,7 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/persona/PremiumPersonaSections.jsx": {
+    "frontend/src/components/landing/persona/sections/CarouselDots.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -1246,24 +1269,184 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/PolicyTabs.jsx": {
+    "frontend/src/components/landing/persona/sections/ExploreCard.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
       "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/JourneyCategoryCard.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/JourneyGallery.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/JourneyModal.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/LanguageChips.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/StageDropdown.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/StruggleChapter.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/sections/TrustCard.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LocalNav.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/QuietLink.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Measured landing-system quiet-link primitive (B2/FAP-47): the one quiet next-step anatomy shared by door rows and header links. Client-side presentation and navigation only (router Link, plain anchors, optional mailto); callbacks are not attached. No server connection, data authority or educational coverage is claimed.",
       "followUp": [
         "SCOPE-06",
         "PLAT-01"
       ]
     },
     "frontend/src/components/landing/system/ui.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Measured landing-system primitives (CtaPair pill pair, Reveal, ProgressDots) are imported by the landing and persona pages. Client-side presentation and navigation only; no server connection, data authority or educational coverage is claimed.",
       "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
+        "SCOPE-06",
+        "PLAT-01"
       ]
     },
     "frontend/src/components/landing/ValuesStrip.jsx": {
@@ -1430,7 +1613,7 @@
       "profile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -2134,16 +2317,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/pages/DemoPreview.jsx": {
-      "profile": "development-scenario-only",
-      "state": "intentionally-unreleased",
-      "execution": "development-only",
-      "reason": "DemoPreview is imported only under import.meta.env.DEV. Fictional scenario selectors are excluded from production entry and are not real account admission.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
     "frontend/src/pages/ForgotPassword.jsx": {
       "profile": "configured-account-flow",
       "state": "connected",
@@ -2426,7 +2599,7 @@
       "profile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -2474,7 +2647,7 @@
       "profile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "reason": "Email/Google account flow and server UID-bound session/profile are connected. Phone is conditional on server availability and a supported origin; Apple/Microsoft/organization SSO are absent from this release. Native hosted SMS acceptance remains separate.",
       "followUp": [
         "SCOPE-07",
         "PLAT-01"
@@ -2508,17 +2681,35 @@
         "POST /api/auth/session"
       ]
     },
-    "frontend/src/components/dashboard/CoverageAvailability.jsx": {
-      "profile": "connected-coverage-status",
+    "frontend/src/components/auth/PhoneAuth.jsx": {
+      "profile": "configured-account-flow",
       "state": "connected",
       "execution": "server",
-      "reason": "Reads authenticated owner coverage from the current Firestore release policy; translated status, category detail and retry preserve account/context. A summary never grants learning execution or proves source/provider qualification.",
+      "reason": "Firebase SMS confirmation exchanges a verified phone identity for a server UID-bound session only when explicitly enabled. Native hosted SMS acceptance remains open; fictional emulator tests are separate. Phone and email identities are not automatically merged.",
       "followUp": [
-        "SCOPE-02",
+        "SCOPE-07",
         "PLAT-01"
       ],
       "endpoints": [
-        "GET /api/account/coverage"
+        "GET /api/auth/methods",
+        "GET /api/auth/csrf",
+        "POST /api/auth/session",
+        "GET /api/auth/me"
+      ]
+    },
+    "frontend/src/components/dashboard/CloudConsentControls.jsx": {
+      "profile": "server-consent-self-service",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated own-consent listing and committed revocation receipts through an explicit opt-in SQL runtime. Disabled by default. No consent grant, job/download consumer activation, policy publication or hosted acceptance.",
+      "followUp": [
+        "DATA-05",
+        "JOB-01",
+        "FILE-03"
+      ],
+      "endpoints": [
+        "GET /api/account/privacy/consents",
+        "POST /api/account/privacy/consents/revoke"
       ]
     }
   },
@@ -2550,7 +2741,7 @@
     },
     {
       "id": "public-enquiry-careers-partners",
-      "state": "missing",
+      "state": "intentionally-unreleased",
       "execution": "client-or-mail-link",
       "routes": [
         "/contact",
@@ -2558,7 +2749,7 @@
         "/partners"
       ],
       "files": [],
-      "reason": "No public delivery controller is registered. Device drafts, mail-client links and unavailable responses must not be treated as server-delivered applications/enquiries.",
+      "reason": "Server-backed public enquiry/application delivery is deliberately not part of the current release (C4/FAP-52); the published channel is a manual mail draft the visitor opens and sends themselves. Pages must present the draft openly (no promoted forms implying submission) and must not treat device drafts, mail-client links or unavailable responses as server-delivered applications/enquiries. PRIV-07 and the paired backend intake task still gate real delivery.",
       "followUp": [
         "PRIV-07"
       ],
@@ -2566,7 +2757,7 @@
     },
     {
       "id": "public-updates-distribution",
-      "state": "missing",
+      "state": "intentionally-unreleased",
       "execution": "client",
       "routes": [
         "/updates",
@@ -2574,7 +2765,7 @@
         "/community"
       ],
       "files": [],
-      "reason": "Public pages exist; no registered mailing/community/research publication service certifies distribution or membership.",
+      "reason": "A registered mailing/community/research publication service certifying distribution or membership is deliberately not part of the current release (C4/FAP-52); the published signup channel prepares a manual mail draft the visitor opens and sends themselves, so updates membership is intentionally not offered from the page. No automatic subscription may be claimed or implied. PRIV-07 and CONTENT-05 still gate real distribution.",
       "followUp": [
         "PRIV-07",
         "CONTENT-05"
@@ -2830,7 +3021,7 @@
       "files": [
         "frontend/src/pages/dashboard/LearningWorkspace.jsx"
       ],
-      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; server sessions, assessment and learning projections remain required.",
+      "reason": "The signed-in Learn UI uses the locally verified durable teaching loop; account knowledge projection remains a separate server enabler without UI binding. Authoritative criteria/content, SQL ownership, hosted learning and two-device acceptance remain open.",
       "followUp": [
         "LEARN-02",
         "LEARN-09",
@@ -2838,6 +3029,37 @@
         "SYNC-02"
       ],
       "endpoints": []
+    },
+    {
+      "id": "durable-teaching-loop-sessions",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/dashboard/learn",
+        "/dashboard/learn/:topicId",
+        "/dashboard/practice",
+        "/dashboard/progress"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/LearningWorkspace.jsx",
+        "frontend/src/services/learningSessionClient.js"
+      ],
+      "reason": "A signed-in owner records one authored check at a time, the server scores the selection against its stored key and an identical command replays after a lost response. Locally verified only: no hosted run, SQL owning store, authoritative content/criteria service or cross-device acceptance is claimed.",
+      "followUp": [
+        "LEARN-08",
+        "LEARN-09",
+        "LEARN-10",
+        "SYNC-01",
+        "SYNC-02"
+      ],
+      "endpoints": [
+        "GET /api/account/learning/sessions",
+        "POST /api/account/learning/sessions",
+        "GET /api/account/learning/sessions/:sessionId",
+        "POST /api/account/learning/sessions/:sessionId/checks",
+        "POST /api/account/learning/sessions/:sessionId/assessments",
+        "POST /api/account/learning/sessions/:sessionId/cancel"
+      ]
     },
     {
       "id": "ask-guide-model-turn",
@@ -3129,27 +3351,21 @@
       "endpoints": []
     },
     {
-      "id": "learning-coverage",
+      "id": "knowledge-projection-calibration",
       "state": "connected",
       "execution": "server",
-      "routes": [
-        "/dashboard/learn"
-      ],
-      "files": [
-        "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-        "backend/upstream/backend/src/launch-coverage/coverage.policy.ts",
-        "backend/upstream/backend/src/launch-coverage/coverage.repository.ts",
-        "frontend/src/services/coverageClient.js",
-        "frontend/src/components/dashboard/CoverageAvailability.jsx"
-      ],
-      "reason": "Owner-bound coverage summary and exact source/language/device check read current account and trusted release policy transactionally. Missing/expired/revoked or mismatched contexts fail closed; no execution grant. Live source qualification and hosted acceptance are separate.",
+      "routes": [],
+      "files": [],
+      "reason": "An authenticated owner projects immutable server-assessed learning receipts into one account-scoped knowledge estimate with server-selected calibrated parameters, a single receipt/projection/outbox transaction and rebuild-on-model-change. No mastery claim, UI binding, hosted run or two-device browser acceptance is claimed.",
       "followUp": [
-        "SCOPE-02",
-        "PLAT-01"
+        "LEARN-10",
+        "DATA-01",
+        "SYNC-02"
       ],
       "endpoints": [
-        "GET /api/account/coverage",
-        "POST /api/account/coverage/check"
+        "POST /api/account/learning/knowledge/project",
+        "GET /api/account/learning/knowledge/projections",
+        "GET /api/account/learning/knowledge/models"
       ]
     }
   ],
@@ -3203,7 +3419,7 @@
     },
     {
       "id": "hosted-release",
-      "finding": "KAN-162 production hosting and main-only CI/CD were independently accepted on 20 October 2026 in visionary-research. Canonical visionary.org.in DNS/TLS, the real main-push image deployment, bounded runtime, health, rollback/restoration and synthetic two-session account-store checks passed. This accepts hosting scope only; source, provider, guardian, content and learning-feature acceptance remain separate. Historical 17 October empty-service listings predate this deployment.",
+      "finding": "The main-only delivery workflow now targets visionary-research. Owner-run foundation and identity were applied on 20 October 2026, including the Artifact Registry repository, runtime/deployer identities, secret and bounded placeholder Cloud Run service. The product image, canonical baseline, edge/DNS/TLS cutover, hosted health and rollback acceptance remain open; a Git push alone does not deploy. The 17 October console observation predates the foundation and is retained as history; other hosting products were not inspected.",
       "followUp": [
         "PLAT-01",
         "PLAT-02",
@@ -3223,13 +3439,9 @@
     "localGcpCliAvailable": true,
     "foundationAppliedAt": "2026-10-20",
     "foundationProvisioned": true,
-    "hostedProductDeploymentVerified": true,
+    "hostedProductDeploymentVerified": false,
     "sourceDeliveryWorkflowAddedAt": "2026-10-20",
     "sourceDeliveryTargetProject": "visionary-research",
-    "sourceDeliveryProvisioned": true,
-    "productionAcceptanceAt": "2026-10-20",
-    "productionAcceptanceEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md",
-    "productionMainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
-    "productionCanonicalOrigin": "https://visionary.org.in"
+    "sourceDeliveryProvisioned": true
   }
 }

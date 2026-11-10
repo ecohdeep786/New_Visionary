@@ -8,8 +8,8 @@ import { BillingService } from '../../billing/billing.service';
 import { accountPath } from './account-storage';
 import { accountDirectory } from './account-directory';
 import { accountCoverage } from '../../launch-coverage/coverage.repository';
-
-@Controller('account')
+import { SESSION_IDLE_MS, sessionVersion } from './session-policy';
+ller('account')
 export class AccountController extends ProductRequestAuthority {
   constructor(service: FirebaseProductService, config: ConfigService, private readonly billing: BillingService) { super(service, config); }
   @Get('coverage')
@@ -41,14 +41,14 @@ export class AccountController extends ProductRequestAuthority {
   }
   @Get('devices')
   async devices(@Req() req: Request, @Query('after') after?: string, @Query('limit') limit?: string) {
-    const { uid, sessionId } = await this.commandAccount(req, false);
+    const { uid, sessionId, authSessionVersion } = await this.commandAccount(req, false);
     const page = await this.page(`${accountPath(uid)}/devices`, after, limit), now = Date.now();
     const iso = (value: any) => value?.toDate?.().toISOString() || null;
     return { uid, items: page.items.map(row => {
       const data = row.data(), seen = data.lastSeenAt?.toMillis?.(), expiry = data.expiresAt?.toMillis?.();
       return { id: row.id, current: row.id === sessionId, kind: 'browser-session', provider: data.provider || 'unknown',
         firstSeenAt: iso(data.firstSeenAt), lastSeenAt: iso(data.lastSeenAt), expiresAt: iso(data.expiresAt), revokedAt: iso(data.revokedAt),
-        status: data.revokedAt ? 'revoked' : !Number.isFinite(seen) || !Number.isFinite(expiry) ? 'unknown' : expiry <= now || now - seen >= 1800000 ? 'expired' : 'active',
+        status: data.revokedAt || sessionVersion(data) !== authSessionVersion ? 'revoked' : !Number.isFinite(seen) || !Number.isFinite(expiry) || seen > now + 60000 ? 'unknown' : expiry <= now || now - seen >= SESSION_IDLE_MS ? 'expired' : 'active',
         observedIp: (data.observedIp || '').slice(0, 64), userAgent: (data.userAgent || '').slice(0, 512) };
     }), nextCursor: page.nextCursor };
   }

@@ -4,15 +4,15 @@ import { BOARDS, CLASSES, INDIAN_STATES, LANGUAGES, COMPETITIVE_TARGETS, TEACHER
 
 function Select({ label, value, onChange, options, placeholder = 'Choose an option' }) {
   const id = useId();
-  return <div><label htmlFor={id} className="mb-2 block text-sm font-medium text-[#202124]">{label}</label>
-    <select id={id} value={value || ''} onChange={event => onChange(event.target.value)} className="min-h-12 w-full rounded-xl border border-[#dadce0] bg-white px-3 text-sm outline-none focus:border-[#0b57d0] focus:ring-2 focus:ring-[#d7e3fc]">
+  return <div><label htmlFor={id} className="mb-2 block text-sm font-medium text-[#1d1d1f]">{label}</label>
+    <select id={id} value={value || ''} onChange={event => onChange(event.target.value)} className="min-h-14 w-full rounded-xl border border-[#d2d2d7] bg-white px-3 text-sm outline-none focus:border-[#0066cc] focus:ring-2 focus:ring-[#0066cc]/10">
       <option value="">{placeholder}</option>{options.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
     </select></div>;
 }
 function Text({ label, value, onChange, maximum = 120, placeholder = '' }) {
   const id = useId();
-  return <div><label htmlFor={id} className="mb-2 block text-sm font-medium text-[#202124]">{label}</label>
-    <input id={id} type="text" maxLength={maximum} value={value || ''} onChange={event => onChange(event.target.value)} placeholder={placeholder} className="min-h-12 w-full rounded-xl border border-[#dadce0] px-3 text-sm outline-none focus:border-[#0b57d0] focus:ring-2 focus:ring-[#d7e3fc]" /></div>;
+  return <div><label htmlFor={id} className="mb-2 block text-sm font-medium text-[#1d1d1f]">{label}</label>
+    <input id={id} type="text" maxLength={maximum} value={value || ''} onChange={event => onChange(event.target.value)} placeholder={placeholder} className="min-h-14 w-full rounded-xl border border-[#d2d2d7] px-3 text-sm outline-none focus:border-[#0066cc] focus:ring-2 focus:ring-[#0066cc]/10" /></div>;
 }
 function Subjects({ value, onChange }) {
   const [text, setText] = useState(() => (value || []).join(', '));
@@ -25,7 +25,7 @@ export default function ProductSetupFields({ step, data, updateData, live }) {
     {step.id === 'about' && <>
       <Text label="What should we call you?" value={data.full_name} onChange={value => updateData('full_name', value)} maximum={80} placeholder="Your name" />
       <Select label="Your age range" value={data.age_band} onChange={value => updateData('age_band', value)} options={[{ id: 'adult', label: '18 or older' }, { id: 'minor', label: 'Under 18' }]} />
-      {data.age_band === 'minor' && (live || data.identity !== 'student') ? <p role="status" className="rounded-2xl bg-[#fef7e0] p-4 text-sm leading-6">Under-18 setup needs a verified guardian connection. It is not available yet. Your account and draft are kept; you can return when guardian setup is available.</p> : <p className="text-xs leading-5 text-[#5f6368]">This is a self-declared age range. It does not verify your identity.</p>}
+      {data.age_band === 'minor' && (live || data.identity !== 'student') ? <p role="status" className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6">Under-18 setup needs a verified guardian connection. It is not available yet. Your account and draft are kept; you can return when guardian setup is available.</p> : <p className="text-xs leading-5 text-[#6e6e73]">This is a self-declared age range. It does not verify your identity.</p>}
     </>}
     {step.id === 'focus' && <>
       <ChoiceGrid options={[{ id: 'school', label: 'School', desc: 'Classes and school subjects' }, { id: 'higher_ed', label: 'Higher education', desc: 'College, university or diploma' }, { id: 'competitive', label: 'Exam preparation', desc: 'A specific entrance or competitive exam' }, { id: 'professional', label: 'Independent learning', desc: 'Skills, interests and personal projects' }]} value={data.education_stage} onChange={value => updateData('education_stage', value)} dense />
@@ -51,8 +51,8 @@ export default function ProductSetupFields({ step, data, updateData, live }) {
       {language}
       {data.identity === 'professional' && <Text label="A skill or goal (optional)" value={data.career_goal} onChange={value => updateData('career_goal', value)} maximum={2000} placeholder="For example, develop my design skills" />}
       {data.identity === 'teacher' && subjectField('teacher_subjects')}
-      {data.identity === 'parent' && <p className="rounded-2xl bg-[#f5f8fc] p-4 text-sm leading-6 text-[#5f6368]">You’ll connect a child’s account after setup. You control your account; an approved connection determines which learning summaries you can see.</p>}
-      {data.identity === 'organization' && <p className="text-xs leading-6 text-[#5f6368]">This saves your starting preferences. Verification, people and shared content are set up separately.</p>}
+      {data.identity === 'parent' && <p className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6 text-[#6e6e73]">You’ll connect a child’s account after setup. You control your account; an approved connection determines which learning summaries you can see.</p>}
+      {data.identity === 'organization' && <p className="text-xs leading-6 text-[#6e6e73]">This saves your starting preferences. Verification, people and shared content are set up separately.</p>}
     </>}
   </div>;
 }

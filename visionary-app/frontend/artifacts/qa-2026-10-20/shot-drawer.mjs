@@ -1,0 +1,17 @@
+﻿import { chromium } from 'playwright-core';
+const base = 'http://127.0.0.1:5173';
+const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
+const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, reducedMotion: 'reduce' });
+const page = await ctx.newPage();
+await page.goto(base + '/', { waitUntil: 'load', timeout: 45000 });
+await page.waitForFunction(() => !document.body || !document.body.innerText.includes('Loading...'), { timeout: 20000 }).catch(() => {});
+await page.waitForTimeout(400);
+const btn = page.locator('header button', { hasText: /open menu|menu/i }).first();
+const anyHeaderBtn = page.locator('header button:visible').first();
+await anyHeaderBtn.click();
+await page.waitForTimeout(600);
+await page.screenshot({ path: 'artifacts/qa-2026-10-20/evidence/home-390-drawer.png' });
+await page.waitForTimeout(300);
+await page.locator('header button:visible').first().click().catch(() => {});
+console.log('drawer captured');
+await browser.close();

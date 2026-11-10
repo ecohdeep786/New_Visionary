@@ -35,14 +35,14 @@ export function ContinueCard({ subject, chapter, part, progress, sections }) {
           <span>{progress}% Completed</span>
           <span>{sections}</span>
         </div>
-        <div className="h-5 bg-whiteigma-color-11 rounded-full overflow-hidden">
+        <div className="h-5 bg-black/8 rounded-full overflow-hidden">
           <div
-            className="h-full bg-whiteigma-color-15 rounded-full"
+            className="h-full bg-[#1d1d1f] rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
-      <button className="self-end w-11 h-11 flex items-center justify-center bg-whiteigma-highlight rounded-xl text-figma-color-10 hover:opacity-80 transition-opacity">
+      <button className="self-end w-11 h-11 flex items-center justify-center bg-white border border-[#d2d2d7] rounded-xl text-[#1d1d1f] hover:opacity-80 transition-opacity">
         <ArrowRight className="w-5 h-5" />
       </button>
     </div>
@@ -64,7 +64,7 @@ export function CurriculumChart({ subjects }) {
           <div key={s.name} className="flex flex-col items-center gap-2 flex-1">
             <span className="text-xs text-muted">{s.progress}%</span>
             <div
-              className="w-8 rounded-lg bg-whiteigma-subtle"
+              className="w-8 rounded-lg bg-black/5"
               style={{ height: `${(s.progress / maxVal) * 100}%` }}
             />
             <span className="text-xs text-muted text-center truncate w-full">

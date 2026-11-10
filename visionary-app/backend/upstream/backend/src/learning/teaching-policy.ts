@@ -49,6 +49,7 @@ export function updateKnowledge(state: KnowledgeProjection, receipt: AssessedRec
 
 export type Pedagogy = 'socratic' | 'worked_example' | 'analogy' | 'visual' | 'practice';
 const strategies: Pedagogy[] = ['socratic', 'worked_example', 'analogy', 'visual', 'practice'];
+export const pedagogies: readonly Pedagogy[] = strategies;
 export interface TeachingLoop extends LearningScope {
   sessionId: string; revision: number; phase: 'explain' | 'check' | 'check_passed' | 'review_suggested';
   failedChecks: number; maxFailedChecks: number; previousStrategy: Pedagogy | null;
@@ -62,6 +63,24 @@ export function startTeachingLoop(scope: LearningScope, sessionId: string, maxFa
 function loopState(state: TeachingLoop) {
   sameLearningScope(state, state); text(state.sessionId); integer(state.revision); integer(state.failedChecks); integer(state.maxFailedChecks, 1);
   if (state.revision === Number.MAX_SAFE_INTEGER || state.maxFailedChecks > 3 || state.failedChecks > state.maxFailedChecks) invalid('Invalid bounded teaching state.');
+}
+/** Rebuilds and validates a loop read from durable storage. Corrupted, unbounded
+ * or fabricated state fails closed before any projection or command is applied. */
+export function teachingLoopState(value: unknown): TeachingLoop {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) invalid('Invalid stored teaching state.');
+  const state = value as TeachingLoop;
+  sameLearningScope(state, state); text(state.sessionId); integer(state.revision); integer(state.failedChecks); integer(state.maxFailedChecks, 1);
+  if (state.revision === Number.MAX_SAFE_INTEGER || state.maxFailedChecks > 3 || state.failedChecks > state.maxFailedChecks) invalid('Invalid bounded teaching state.');
+  if (state.phase !== 'explain' && state.phase !== 'check' && state.phase !== 'check_passed' && state.phase !== 'review_suggested') invalid('Invalid stored teaching phase.');
+  if (state.previousStrategy !== null && !strategies.includes(state.previousStrategy)) invalid('Invalid stored teaching strategy.');
+  if (state.checkId !== null) text(state.checkId);
+  if (state.lastReceiptId !== null) text(state.lastReceiptId);
+  if (state.lastReceiptDigest !== null) text(state.lastReceiptDigest);
+  return {
+    uid: state.uid, workspaceId: state.workspaceId, conceptId: state.conceptId, sourceVersion: state.sourceVersion, criteriaVersion: state.criteriaVersion,
+    sessionId: state.sessionId, revision: state.revision, phase: state.phase, failedChecks: state.failedChecks, maxFailedChecks: state.maxFailedChecks,
+    previousStrategy: state.previousStrategy, checkId: state.checkId, lastReceiptId: state.lastReceiptId, lastReceiptDigest: state.lastReceiptDigest,
+  };
 }
 export function presentTeachingCheck(state: TeachingLoop, candidate: LearningScope & { sessionId: string; strategy: Pedagogy; checkId: string; validation: 'passed' }): TeachingLoop {
   loopState(state); sameLearningScope(state, candidate);

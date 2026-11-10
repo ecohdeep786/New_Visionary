@@ -72,7 +72,7 @@ export default function MarketTrends({ subjects }) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {trends.map((t, i) => (
             <div key={i} className="flex flex-col gap-3 p-7 bg-white rounded-3xl border border-[#dadce0] hover:shadow-sm transition-all">
-              <span className="px-2.5 py-1 rounded-full bg-[#e8f0fd] text-[#4285F4] text-[10px] font-medium self-start">{t.subject}</span>
+              <span className="px-2.5 py-1 rounded-full bg-[#e8f0fd] text-[#4285F4] text-xs font-medium self-start">{t.subject}</span>
               <h3 className="text-sm font-bold text-[#121317] leading-snug">{t.title}</h3>
               <p className="text-xs text-[#5f6368] leading-relaxed">{t.summary}</p>
             </div>

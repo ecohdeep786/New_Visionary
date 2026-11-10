@@ -46,20 +46,20 @@ export default function ResetPassword() {
   };
   return <AuthLayout title={state === 'success' || state === 'sign-out' ? 'Password updated' : state === 'invalid' ? 'Request a new reset link' : 'Set a new password'} accountInfo={email || null} supportingText="Your saved account and learning setup will be kept.">
     <div className="flex flex-col gap-6" aria-busy={busy || state === 'checking'}>
-      {error && <p role="alert" id="reset-error" className="text-sm text-[#b3261e]">{error}</p>}
+      {error && <p role="alert" id="reset-error" className="text-sm text-[#e30000]">{error}</p>}
       {state === 'checking' && <p role="status" className="flex items-center gap-2"><Spinner /> Checking your reset link…</p>}
-      {state === 'invalid' && <><p className="text-sm text-[#5f6368]">This link is missing, expired or already used. Request a new email to continue.</p><Link to="/forgot-password" state={{ email }} className={primaryBtnAutoClass}>Request new link</Link></>}
+      {state === 'invalid' && <><p className="text-sm text-[#6e6e73]">This link is missing, expired or already used. Request a new email to continue.</p><Link to="/forgot-password" state={{ email }} className={primaryBtnAutoClass}>Request new link</Link></>}
       {state === 'unavailable' && <><p className="text-sm">We could not check this link. Your password has not been changed.</p><button className={primaryBtnAutoClass} onClick={() => window.location.reload()}>Try again</button></>}
       {state === 'ready' && <form onSubmit={submit} className="flex flex-col gap-6">
         <GooglePasswordField label="New password" autoComplete="new-password" value={password} onChange={event => setPassword(event.target.value)} disabled={busy} invalid={!!error} describedBy="reset-requirements" autoFocus required />
         <InputField label="Confirm password" type="password" autoComplete="new-password" value={confirm} onChange={event => setConfirm(event.target.value)} disabled={busy} required />
-        <ul id="reset-requirements" className="text-xs text-[#5f6368] list-disc pl-4">{requirements.map(requirement => <li key={requirement}>{requirement}</li>)}</ul>
-        <p className="text-xs text-[#5f6368]">After the reset, sign in again with your new password.</p>
+        <ul id="reset-requirements" className="text-xs text-[#6e6e73] list-disc pl-4">{requirements.map(requirement => <li key={requirement}>{requirement}</li>)}</ul>
+        <p className="text-xs text-[#6e6e73]">After the reset, sign in again with your new password.</p>
         <button type="submit" disabled={busy} className={primaryBtnAutoClass}>{busy ? <Spinner /> : 'Reset password'}</button>
       </form>}
       {state === 'success' && <><p role="status">Your password has been updated. Sign in with your new password.</p><Link to="/login" state={{ email }} className={primaryBtnAutoClass}>Sign in</Link></>}
       {state === 'sign-out' && <><p role="status">Your password has been updated. Finish signing out of this browser before continuing.</p><button disabled={busy} onClick={finishSignOut} className={primaryBtnAutoClass}>Finish signing out</button></>}
-      {state !== 'sign-out' && <Link to="/login" className="text-sm text-[#4285F4] hover:underline">Back to sign in</Link>}
+      {state !== 'sign-out' && <Link to="/login" className="text-sm text-[#0066cc] hover:underline">Back to sign in</Link>}
     </div>
   </AuthLayout>;
 }

@@ -1,5 +1,16 @@
 # Jira launch tracking
 
+21 October 2026 live reconciliation: two pages (100 + 64) cover all 164 current
+issues: **19 Done, 136 To Do, 2 In Progress, 7 Idea**. The active tasks are KAN-29
+and KAN-34. KAN-28/137/161/162 are scoped Done; KAN-145/146 are accepted
+development enablers with full learner feature gates retained in KAN-163/164.
+KAN-29's accepted real source/version/rights package is missing and the founder
+defers that discussion; its technical candidate remains unmerged. KAN-34 resumes
+its matching pushed task instance from verified dev `84a432ec`; see
+[the sign-in matrix and review handoff](../delivery/KAN34_SIGNIN_MATRIX.md).
+No status, calendar or requirement is changed by this read. Earlier board counts
+and the KAN-28 pending-review statements below are historical snapshots.
+
 D-095 current execution correction: KAN-28 / SCOPE-01 is **Testing**, pending a reviewer separate from its implementing agent. Native transition41 and comment10004 confirm this focused update. The earlier D-094 Done and checks are preserved as history in [execution receipts](task-executions.json); no other issue or dated full-board/calendar snapshot is changed. Use the [review workflow](../BRANCH_WORKFLOW.md) and [handoff template](../delivery/TASK_REVIEW_TEMPLATE.md): exact candidate → separate review → passed verification/integration → Done → next eligible task. This policy is not an installed Jira transition validator.
 
 D-094 execution update: KAN-28 / SCOPE-01 is Done for its reviewed source inventory and drift-check enabler. See [current execution receipts](task-executions.json) and [the audit](../PRODUCT_SURFACE_AUDIT.md). Full-board counts, calendar and requirements below retain their dated verification snapshots; this update does not assert a fresh global board count, reschedule other workers or close the linked domain/ML/hosted gates. Consult live Jira before choosing the next task.

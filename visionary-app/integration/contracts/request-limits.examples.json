@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "meaning": "Synthetic recipe fixtures, expanded in scripts/tests/request-limits.test.mjs; no customer data. These test proposed caps, not installed runtime enforcement or full DTO/authority validity.",
+  "byteBoundaries": { "profiles": "all", "directions": ["request", "response"], "offsets": [-1, 0, 1], "expectedOk": [true, true, false] },
+  "textCases": [
+    { "profile": "feedback", "field": "comment", "seed": "क", "repeat": 1000, "expectedOk": true },
+    { "profile": "feedback", "field": "comment", "seed": "ব", "repeat": 1001, "expectedOk": false },
+    { "profile": "feedback", "field": "comment", "seed": "😀", "repeat": 500, "expectedOk": true },
+    { "profile": "feedback", "field": "comment", "seed": "😀", "repeat": 501, "expectedOk": false },
+    { "profile": "project-revision", "field": "body", "seed": "😀", "repeat": 24000, "expectedOk": true },
+    { "profile": "project-revision", "field": "body", "seed": "😀", "repeat": 24001, "expectedOk": false },
+    { "profile": "submission-revision", "field": "body", "seed": "ব", "repeat": 12000, "expectedOk": true },
+    { "profile": "submission-revision", "field": "body", "seed": "ব", "repeat": 12001, "expectedOk": false }
+  ],
+  "pageCases": [
+    { "size": 0, "expectedOk": false }, { "size": 1, "expectedOk": true },
+    { "size": 49, "expectedOk": true }, { "size": 50, "expectedOk": true },
+    { "size": 51, "expectedOk": false }, { "size": 1.5, "expectedOk": false },
+    { "size": "50", "expectedOk": false }
+  ],
+  "streamCases": [
+    { "events": [{ "type": "delta", "text": "Synthetic partial explanation" }, { "type": "complete", "receiptId": "synthetic-pending-refetch" }], "expectedOk": true },
+    { "events": [{ "type": "delta", "text": "Uncommitted partial" }], "expectedOk": false },
+    { "events": [{ "type": "complete" }, { "type": "delta" }], "expectedOk": false },
+    { "events": [{ "type": "complete" }], "options": { "cancelled": true }, "expectedOk": false },
+    { "events": [{ "type": "complete" }], "options": { "disconnected": true }, "expectedOk": false },
+    { "events": [{ "type": "complete" }], "options": { "elapsedMs": 18000 }, "expectedOk": false },
+    { "events": [{ "type": "complete" }], "options": { "idleMs": 10000 }, "expectedOk": false }
+  ],
+  "retryCases": [
+    { "kind": "read", "outcome": "transient", "reauthorized": true, "expectedOk": true },
+    { "kind": "read", "outcome": "transient", "reauthorized": false, "expectedOk": false },
+    { "kind": "write", "outcome": "unknown", "sameCommand": true, "samePayload": true, "reauthorized": true, "expectedOk": false },
+    { "kind": "write", "outcome": "confirmed-not-committed", "sameCommand": true, "samePayload": true, "reauthorized": true, "expectedOk": true },
+    { "kind": "write", "outcome": "confirmed-not-committed", "sameCommand": true, "samePayload": false, "reauthorized": true, "expectedOk": false },
+    { "kind": "write", "outcome": "confirmed-not-committed", "sameCommand": false, "samePayload": true, "reauthorized": true, "expectedOk": false }
+  ]
+}

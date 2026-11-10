@@ -1,0 +1,8 @@
+== QA responsive sweep summary ==
+routes checked: 29 x 7 widths = 203 checks
+horizontal overflow routes/widths: none
+min nav target px observed: 40
+min footer link height px observed: 28
+390px nav >=44px pages: 5/29
+pageerror/console-error pages: none
+report: C:\Users\Administrator\New_Visionary\visionary-app\frontend\artifacts\qa-2026-10-20\evidence\sweep-report.json

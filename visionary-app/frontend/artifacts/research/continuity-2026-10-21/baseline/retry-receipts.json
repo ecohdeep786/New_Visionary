@@ -1,0 +1,25 @@
+{
+  "retriedAt": "2026-10-21T15:07:34.112Z",
+  "results": [
+    {
+      "route": "/partners",
+      "width": 1440,
+      "status": "ok"
+    },
+    {
+      "route": "/partners",
+      "width": 1024,
+      "status": "ok"
+    },
+    {
+      "route": "/accessibility",
+      "width": 1440,
+      "status": "ok"
+    },
+    {
+      "route": "/signin",
+      "width": 1024,
+      "status": "ok"
+    }
+  ]
+}

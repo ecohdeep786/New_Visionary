@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Globe } from "lucide-react";
 import { fontStack } from "@/components/landing/system/tokens";
 
-const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce0", white: "#ffffff", blue: "#4285F4" };
+const C = { ink: "#1d1d1f", graphite: "#1d1d1f", slate: "#6e6e73", mist: "#d2d2d7", white: "#ffffff", blue: "#0066cc" };
 
 const FOOTER_LINK =
-  "-mx-3 inline-block rounded-full px-3 py-1.5 text-[14px] font-normal tracking-[0.24px] transition-colors hover:bg-white hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]";
+  "-mx-3 inline-flex min-h-11 items-center rounded-full px-3 text-[16px] font-normal tracking-[0.24px] transition-colors hover:bg-white hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]";
 
 const FOOTER_SECTIONS = [
   {
@@ -18,7 +16,7 @@ const FOOTER_SECTIONS = [
       { label: "Professionals", to: "/professional" },
       { label: "Organizations", to: "/organization" },
       { label: "How it works", to: "/how-it-works" },
-      { label: "Download", to: "/download" },
+      { label: "Download Visionary", to: "/download" },
       { label: "Pricing", to: "/pricing" },
     ],
   },
@@ -74,24 +72,21 @@ const LEGAL_LINKS = [
 
 export default function LandingFooter({ variant = "brand" }) {
   const quiet = variant === "quiet";
-  const [language, setLanguage] = useState(() => {
-    try { return localStorage.getItem("visionary_lang") || "en"; } catch { return "en"; }
-  });
-  const onLanguageChange = (event) => {
-    const code = event.target.value;
-    setLanguage(code);
-    try { localStorage.setItem("visionary_lang", code); } catch { /* storage unavailable */ }
-    document.documentElement.lang = code;
-  };
+  /* The public site is English. Real language support (English, Hindi,
+     Bengali) lives in the signed-in workspace and onboarding, where the
+     choice changes content. A footer selector that only set <html lang>
+     and a storage key nothing read was removed as a false affordance
+     (F-31: do not label unimplemented translations as available). */
   return (
-    /* Apple's global footer surface: #F5F5F7, hairline seams, quiet 12px
-       links — the page ends in air, not a logo. */
+    /* Apple's global footer surface: #F5F5F7, hairline seams, quiet link
+       columns — sized for legibility (15px rows on 44px targets), so the
+       page ends in air, not a logo. */
     <footer className="border-t" style={{ fontFamily: fontStack, backgroundColor: "#F5F5F7", borderColor: "#d2d2d7" }}>
       <div className="public-frame public-frame-wide pt-16">
         <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: "#d2d2d7" }}>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="pt-10">
-              <h4 className="mb-4 text-[12px] font-medium tracking-[0.24px]" style={{ color: C.ink }}>{section.title}</h4>
+              <h3 className="mb-4 text-[13px] font-semibold tracking-[-0.010em]" style={{ color: C.ink }}>{section.title}</h3>
               <ul className="space-y-1">
                 {section.links.map((link) => (
                   <li key={link.label}>
@@ -116,22 +111,10 @@ export default function LandingFooter({ variant = "brand" }) {
       {/* Hairline + legal band */}
       <div className={`border-t ${quiet ? "" : "mt-12"}`} style={{ borderColor: "#d2d2d7" }}>
         <div className="public-frame public-frame-wide flex flex-col items-center justify-between gap-4 py-8 md:flex-row">
-          <p className="text-[12px] tracking-[0.24px]" style={{ color: C.slate }}>© {new Date().getFullYear()} Visionary. All rights reserved.</p>
+          <p className="text-[13px] tracking-[0.24px]" style={{ color: C.slate }}>© {new Date().getFullYear()} Visionary. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <label className="flex items-center gap-1.5 text-[12px] tracking-[0.24px]" style={{ color: C.slate }}>
-              <Globe className="h-3.5 w-3.5" style={{ color: C.slate }} />
-              <span>Language:</span>
-              <select value={language} onChange={onLanguageChange} aria-label="Select language" className="cursor-pointer bg-transparent text-[12px] tracking-[0.24px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.graphite }}>
-                <option value="en">English</option>
-                <option value="hi">हिन्दी</option>
-                <option value="bn">বাংলা</option>
-                <option value="ta">தமிழ்</option>
-                <option value="te">తెలుగు</option>
-                <option value="mr">मराठी</option>
-              </select>
-            </label>
             {LEGAL_LINKS.map((link) => (
-              <Link key={link.label} to={link.to || "#"} className="text-[13px] tracking-[0.2px] transition-colors hover:text-[#121317]" style={{ color: C.ink }}>
+              <Link key={link.label} to={link.to || "#"} className="inline-flex min-h-11 items-center text-[14px] tracking-[0.2px] transition-colors hover:text-[#1d1d1f]" style={{ color: C.ink }}>
                 {link.label}
               </Link>
             ))}

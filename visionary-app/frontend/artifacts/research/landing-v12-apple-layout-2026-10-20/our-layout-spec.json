@@ -1,0 +1,4530 @@
+{
+  "landing@1440": {
+    "vw": 1440,
+    "docH": 9259,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 844,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h1",
+          "text": "One intelligencefor parents.One intelligence, for students, teachers, ",
+          "size": 16,
+          "weight": "400",
+          "lh": 24,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 470,
+          "lines": 6
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 184,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "glass relative z-10 h-[clamp(200px,30svh",
+        "h": 270,
+        "bg": "rgba(255, 255, 255, 0.72)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": null,
+        "gutter": null,
+        "contentLeft": null,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 1096,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.504px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 443,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "19.2px",
+          "w": 551,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 201,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          },
+          {
+            "w": 560,
+            "h": 560,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-problem",
+        "h": 1028,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Teaching everyone is possible. Reaching everyone isn't.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 980,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Stories from a teacher, a parent, a student, and a professional about ",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(31, 31, 31)",
+          "mt": "-1px",
+          "w": 1,
+          "lines": 0
+        },
+        "cards": [
+          {
+            "w": 980,
+            "h": 440,
+            "radius": "28px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "I taught the whole class. Half of them still left lost.",
+              "size": 33.1,
+              "weight": "500",
+              "lh": 41.1,
+              "ls": "-0.3312px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 370,
+              "lines": 3
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "03-promise",
+        "h": 702,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "What if your intelligence never forgot where you were?",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.432px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 629,
+          "lines": 3
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-return",
+        "h": 1201,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h3",
+          "text": "Your hours stack.",
+          "size": 28,
+          "weight": "600",
+          "lh": 32,
+          "ls": "0.196px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "24px",
+          "w": 544,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "“A person should not have to start over every time life asks them to l",
+          "size": 48,
+          "weight": "500",
+          "lh": 56.6,
+          "ls": "-0.72px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 937,
+          "lines": 3
+        },
+        "cards": [
+          {
+            "w": 624,
+            "h": 289,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "40px 40px 40px 40px",
+            "type": {
+              "tag": "h3",
+              "text": "Your hours stack.",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 544,
+              "lines": 1
+            }
+          },
+          {
+            "w": 624,
+            "h": 289,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "40px 40px 40px 40px",
+            "type": {
+              "tag": "h3",
+              "text": "Your place is kept.",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 544,
+              "lines": 1
+            }
+          },
+          {
+            "w": 624,
+            "h": 289,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "40px 40px 40px 40px",
+            "type": {
+              "tag": "h3",
+              "text": "Your language works.",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 544,
+              "lines": 1
+            }
+          },
+          {
+            "w": 624,
+            "h": 289,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "40px 40px 40px 40px",
+            "type": {
+              "tag": "h3",
+              "text": "Your progress shows.",
+              "size": 28,
+              "weight": "600",
+              "lh": 32,
+              "ls": "0.196px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 544,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "13-explore",
+        "h": 1176,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence, five journeys.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.432px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 629,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Whether you are learning, teaching, guiding, building, or leading — Vi",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "0px",
+          "w": 813,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 372,
+            "h": 541,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Student",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 541,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 541,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 541,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 541,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "14-suite",
+        "h": 721,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1312,
+        "gutter": 64,
+        "contentLeft": 64,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore further.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.432px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 629,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 283,
+            "h": 180,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 283,
+            "h": 180,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 283,
+            "h": 180,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 283,
+            "h": 180,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "11-trust",
+        "h": 1024,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning stays yours.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 557,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "19.2px",
+          "w": 239,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 980,
+            "h": 743,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "64px 64px 64px 64px",
+            "type": {
+              "tag": "p",
+              "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(95, 99, 104)",
+              "mt": "19.2px",
+              "w": 239,
+              "lines": 4
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "12-cta",
+        "h": 605,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "140px",
+        "padBottom": "140px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your next step starts here.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60,
+          "ls": "-0.504px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 881,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask a question. Explore an idea. Start learning. Visionary is ready wh",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgba(255, 255, 255, 0.7)",
+          "mt": "19.2px",
+          "w": 504,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 141,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      }
+    ]
+  },
+  "landing@1024": {
+    "vw": 1024,
+    "docH": 8878,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 712,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h1",
+          "text": "One intelligencefor parents.One intelligence, for students, teachers, ",
+          "size": 16,
+          "weight": "400",
+          "lh": 24,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 417,
+          "lines": 5
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 184,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "glass relative z-10 h-[clamp(200px,30svh",
+        "h": 230,
+        "bg": "rgba(255, 255, 255, 0.72)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": null,
+        "gutter": null,
+        "contentLeft": null,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 1058,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.432px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 379,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "16.8px",
+          "w": 551,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 201,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          },
+          {
+            "w": 560,
+            "h": 560,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-problem",
+        "h": 1134,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Teaching everyone is possible. Reaching everyone isn't.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 692,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Stories from a teacher, a parent, a student, and a professional about ",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(31, 31, 31)",
+          "mt": "-1px",
+          "w": 1,
+          "lines": 0
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 548,
+            "radius": "28px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "I taught the whole class. Half of them still left lost.",
+              "size": 24,
+              "weight": "500",
+              "lh": 29.8,
+              "ls": "-0.24px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 343,
+              "lines": 3
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "03-promise",
+        "h": 599,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "What if your intelligence never forgot where you were?",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "-0.36px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 524,
+          "lines": 3
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-return",
+        "h": 1087,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h3",
+          "text": "Your hours stack.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "24px",
+          "w": 416,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "“A person should not have to start over every time life asks them to l",
+          "size": 41,
+          "weight": "500",
+          "lh": 48.3,
+          "ls": "-0.6144px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 799,
+          "lines": 3
+        },
+        "cards": [
+          {
+            "w": 480,
+            "h": 269,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your hours stack.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 416,
+              "lines": 1
+            }
+          },
+          {
+            "w": 480,
+            "h": 269,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your place is kept.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 416,
+              "lines": 1
+            }
+          },
+          {
+            "w": 480,
+            "h": 269,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your language works.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 416,
+              "lines": 1
+            }
+          },
+          {
+            "w": 480,
+            "h": 269,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your progress shows.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 416,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "13-explore",
+        "h": 1130,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence, five journeys.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "-0.36px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 524,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Whether you are learning, teaching, guiding, building, or leading — Vi",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "0px",
+          "w": 813,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 372,
+            "h": 542,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Student",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 542,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 542,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 542,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 542,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "14-suite",
+        "h": 690,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore further.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "-0.36px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 524,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 211,
+            "h": 164,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 211,
+            "h": 164,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 211,
+            "h": 164,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 211,
+            "h": 164,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "11-trust",
+        "h": 1085,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning stays yours.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 564,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "16.8px",
+          "w": 373,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 832,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "64px 64px 64px 64px",
+            "type": {
+              "tag": "p",
+              "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(95, 99, 104)",
+              "mt": "16.8px",
+              "w": 373,
+              "lines": 2
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "12-cta",
+        "h": 563,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your next step starts here.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.432px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 755,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask a question. Explore an idea. Start learning. Visionary is ready wh",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgba(255, 255, 255, 0.7)",
+          "mt": "16.8px",
+          "w": 504,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 141,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      }
+    ]
+  },
+  "landing@834": {
+    "vw": 834,
+    "docH": 10043,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 1056,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h1",
+          "text": "One intelligencefor parents.One intelligence, for students, teachers, ",
+          "size": 16,
+          "weight": "400",
+          "lh": 24,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 340,
+          "lines": 4
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 184,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "glass relative z-10 h-[clamp(200px,30svh",
+        "h": 334,
+        "bg": "rgba(255, 255, 255, 0.72)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": null,
+        "gutter": null,
+        "contentLeft": null,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 1058,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.432px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 379,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "16.8px",
+          "w": 551,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 201,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          },
+          {
+            "w": 560,
+            "h": 560,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-problem",
+        "h": 1098,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Teaching everyone is possible. Reaching everyone isn't.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 692,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Stories from a teacher, a parent, a student, and a professional about ",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(31, 31, 31)",
+          "mt": "-1px",
+          "w": 1,
+          "lines": 0
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 519,
+            "radius": "28px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "I taught the whole class. Half of them still left lost.",
+              "size": 24,
+              "weight": "500",
+              "lh": 29.8,
+              "ls": "-0.24px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 343,
+              "lines": 3
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "03-promise",
+        "h": 780,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "What if your intelligence never forgot where you were?",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "-0.36px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 524,
+          "lines": 3
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-return",
+        "h": 1101,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h3",
+          "text": "Your hours stack.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "24px",
+          "w": 321,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "“A person should not have to start over every time life asks them to l",
+          "size": 33.4,
+          "weight": "500",
+          "lh": 39.4,
+          "ls": "-0.5004px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 651,
+          "lines": 3
+        },
+        "cards": [
+          {
+            "w": 385,
+            "h": 292,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your hours stack.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 321,
+              "lines": 1
+            }
+          },
+          {
+            "w": 385,
+            "h": 292,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your place is kept.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 321,
+              "lines": 1
+            }
+          },
+          {
+            "w": 385,
+            "h": 292,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your language works.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 321,
+              "lines": 1
+            }
+          },
+          {
+            "w": 385,
+            "h": 292,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your progress shows.",
+              "size": 24,
+              "weight": "600",
+              "lh": 28,
+              "ls": "0.216px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 321,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "13-explore",
+        "h": 1106,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence, five journeys.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "-0.36px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 524,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Whether you are learning, teaching, guiding, building, or leading — Vi",
+          "size": 21,
+          "weight": "400",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "0px",
+          "w": 786,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 372,
+            "h": 534,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Student",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 534,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 534,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 534,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 534,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "14-suite",
+        "h": 937,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore further.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "-0.36px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 524,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 363,
+            "h": 133,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 363,
+            "h": 133,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 363,
+            "h": 133,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 363,
+            "h": 133,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "11-trust",
+        "h": 1029,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning stays yours.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 612,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "16.8px",
+          "w": 373,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 692,
+            "h": 776,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "48px 40px 48px 40px",
+            "type": {
+              "tag": "p",
+              "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(95, 99, 104)",
+              "mt": "16.8px",
+              "w": 373,
+              "lines": 2
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "12-cta",
+        "h": 653,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "122px",
+        "padBottom": "130px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your next step starts here.",
+          "size": 48,
+          "weight": "600",
+          "lh": 52,
+          "ls": "-0.432px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 755,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask a question. Explore an idea. Start learning. Visionary is ready wh",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgba(255, 255, 255, 0.7)",
+          "mt": "16.8px",
+          "w": 504,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 141,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      }
+    ]
+  },
+  "landing@390": {
+    "vw": 390,
+    "docH": 11009,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 788,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "64px",
+        "padBottom": "64px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 20,
+        "heading": {
+          "tag": "h1",
+          "text": "One intelligencefor teachers.One intelligence, for students, teachers,",
+          "size": 16,
+          "weight": "400",
+          "lh": 24,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 308,
+          "lines": 4
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 168,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 20px 0px 20px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "glass relative z-10 h-[clamp(200px,30svh",
+        "h": 253,
+        "bg": "rgba(255, 255, 255, 0.72)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": null,
+        "gutter": null,
+        "contentLeft": null,
+        "heading": null,
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 840,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "-0.288px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 253,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 201,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          },
+          {
+            "w": 342,
+            "h": 342,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-problem",
+        "h": 1112,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Teaching everyone is possible. Reaching everyone isn't.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "0.16px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 342,
+          "lines": 5
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Stories from a teacher, a parent, a student, and a professional about ",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(31, 31, 31)",
+          "mt": "-1px",
+          "w": 1,
+          "lines": 0
+        },
+        "cards": [
+          {
+            "w": 342,
+            "h": 463,
+            "radius": "28px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "I taught the whole class. Half of them still left lost.",
+              "size": 24,
+              "weight": "500",
+              "lh": 29.8,
+              "ls": "-0.24px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 294,
+              "lines": 3
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "03-promise",
+        "h": 658,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "What if your intelligence never forgot where you were?",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "-0.288px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 4
+        },
+        "lead": null,
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-return",
+        "h": 1725,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h3",
+          "text": "Your hours stack.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "24px",
+          "w": 278,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "“A person should not have to start over every time life asks them to l",
+          "size": 32,
+          "weight": "500",
+          "lh": 37.8,
+          "ls": "-0.48px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 342,
+            "h": 289,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your hours stack.",
+              "size": 21,
+              "weight": "600",
+              "lh": 25,
+              "ls": "0.231px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 278,
+              "lines": 1
+            }
+          },
+          {
+            "w": 342,
+            "h": 289,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your place is kept.",
+              "size": 21,
+              "weight": "600",
+              "lh": 25,
+              "ls": "0.231px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 278,
+              "lines": 1
+            }
+          },
+          {
+            "w": 342,
+            "h": 312,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your language works.",
+              "size": 21,
+              "weight": "600",
+              "lh": 25,
+              "ls": "0.231px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 278,
+              "lines": 1
+            }
+          },
+          {
+            "w": 342,
+            "h": 266,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "32px 32px 32px 32px",
+            "type": {
+              "tag": "h3",
+              "text": "Your progress shows.",
+              "size": 21,
+              "weight": "600",
+              "lh": 25,
+              "ls": "0.231px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "24px",
+              "w": 278,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 2
+      },
+      {
+        "band": "13-explore",
+        "h": 1088,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence, five journeys.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "-0.288px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 342,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Whether you are learning, teaching, guiding, building, or leading — Vi",
+          "size": 19,
+          "weight": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 320,
+            "h": 502,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Student",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 320,
+            "h": 502,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 320,
+            "h": 502,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 320,
+            "h": 502,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 320,
+            "h": 502,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 5
+      },
+      {
+        "band": "14-suite",
+        "h": 1515,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore further.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "-0.288px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 318,
+            "h": 130,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 318,
+            "h": 130,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 318,
+            "h": 130,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 318,
+            "h": 130,
+            "radius": "12px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "11-trust",
+        "h": 1163,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning stays yours.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "0.16px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 302,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(95, 99, 104)",
+          "mt": "16.8px",
+          "w": 302,
+          "lines": 3
+        },
+        "cards": [
+          {
+            "w": 342,
+            "h": 922,
+            "radius": "28px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "36px 20px 36px 20px",
+            "type": {
+              "tag": "p",
+              "text": "Your questions, conversations, ideas, and progress are personal. Visio",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(95, 99, 104)",
+              "mt": "16.8px",
+              "w": 302,
+              "lines": 3
+            }
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "12-cta",
+        "h": 651,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "120px",
+        "padBottom": "120px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your next step starts here.",
+          "size": 32,
+          "weight": "600",
+          "lh": 36,
+          "ls": "-0.288px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask a question. Explore an idea. Start learning. Visionary is ready wh",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgba(255, 255, 255, 0.7)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 320,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      }
+    ]
+  },
+  "student@1440": {
+    "vw": 1440,
+    "docH": 13322,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 844,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "to master.Learning, to master, to build.",
+          "size": 79.9,
+          "weight": "500",
+          "lh": 83.9,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 560,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Every concept you understand becomes the foundation for the next.",
+          "size": 20.2,
+          "weight": "500",
+          "lh": 28.2,
+          "ls": "normal",
+          "color": "rgb(18, 19, 23)",
+          "mt": "16px",
+          "w": 560,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 219,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-struggle",
+        "h": 1346,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Every student struggles withunderstanding.",
+          "size": 72,
+          "weight": "600",
+          "lh": 72,
+          "ls": "-0.648px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "24px",
+          "w": 980,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Studying isn't the difficulty. Knowing it landed is.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 944,
+          "lines": 1
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-journey",
+        "h": 1153,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Learning thatmeets your questions.",
+          "size": 72,
+          "weight": "600",
+          "lh": 72,
+          "ls": "-0.648px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 980,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Wherever you begin, Visionary helps your learning move forward from th",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 944,
+          "lines": 1
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 2849,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 80,
+          "weight": "600",
+          "lh": 84,
+          "ls": "-1.2px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 624,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "19.2px",
+          "w": 551,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 465,
+            "h": 496,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "07-language",
+        "h": 1422,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1392,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "The words change.Understanding doesn't.",
+          "size": 72,
+          "weight": "600",
+          "lh": 72,
+          "ls": "-0.648px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 1133,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask in the language you think in. The understanding that comes back is",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 944,
+          "lines": 1
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "09-achievement",
+        "h": 1242,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "See what you can achieve.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 1007,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get a clear picture of the subjects and skills that matter today.",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 316,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 1105,
+            "h": 760,
+            "radius": "30px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "Get a clear picture of the subjects and skills that matter today.",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 316,
+              "lines": 4
+            }
+          },
+          {
+            "w": 585,
+            "h": 680,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "10-journey-flow",
+        "h": 1441,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "New stage.Same intelligence.",
+          "size": 72,
+          "weight": "600",
+          "lh": 72,
+          "ls": "-0.648px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 1133,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "When the stage changes, your intelligence comes with you.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 944,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 440,
+            "h": 680,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Primary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 440,
+            "h": 680,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Secondary and higher secondary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 2
+            }
+          }
+        ],
+        "cardRowCount": 2
+      },
+      {
+        "band": "11-trust",
+        "h": 724,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your intelligence stays yours.",
+          "size": 72,
+          "weight": "600",
+          "lh": 72,
+          "ls": "-0.648px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 980,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. We ke",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 944,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "12-cta",
+        "h": 657,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1392,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning starts with where you are.",
+          "size": 72,
+          "weight": "600",
+          "lh": 72,
+          "ls": "-0.648px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 1133,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask your first question. Start building from what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.216px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "19.2px",
+          "w": 944,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 141,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "13-explore",
+        "h": 1051,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "158.4px",
+        "padBottom": "158.4px",
+        "spine": 1440,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Visionary.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 839,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 19.8,
+              "ls": "0.153px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 4
+      }
+    ]
+  },
+  "student@1024": {
+    "vw": 1024,
+    "docH": 11733,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 712,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "to master.Learning, to master, to build.",
+          "size": 56.8,
+          "weight": "500",
+          "lh": 59.7,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 506,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Every concept you understand becomes the foundation for the next.",
+          "size": 18,
+          "weight": "500",
+          "lh": 25.2,
+          "ls": "normal",
+          "color": "rgb(18, 19, 23)",
+          "mt": "16px",
+          "w": 506,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 219,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-struggle",
+        "h": 1078,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Every student struggles withunderstanding.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "18.432px",
+          "w": 976,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Studying isn't the difficulty. Knowing it landed is.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 826,
+          "lines": 1
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-journey",
+        "h": 962,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Learning thatmeets your questions.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Wherever you begin, Visionary helps your learning move forward from th",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 692,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 2401,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 506,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "16.8px",
+          "w": 551,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 489,
+            "h": 521,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "07-language",
+        "h": 1318,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 976,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "The words change.Understanding doesn't.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 881,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask in the language you think in. The understanding that comes back is",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 826,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "09-achievement",
+        "h": 1143,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "See what you can achieve.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 864,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get a clear picture of the subjects and skills that matter today.",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 316,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 864,
+            "h": 760,
+            "radius": "30px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "Get a clear picture of the subjects and skills that matter today.",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 316,
+              "lines": 4
+            }
+          },
+          {
+            "w": 344,
+            "h": 680,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "10-journey-flow",
+        "h": 1313,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "New stage.Same intelligence.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 881,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "When the stage changes, your intelligence comes with you.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 826,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 336,
+            "h": 680,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Primary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 336,
+            "h": 680,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Secondary and higher secondary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 2
+            }
+          }
+        ],
+        "cardRowCount": 2
+      },
+      {
+        "band": "11-trust",
+        "h": 733,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your intelligence stays yours.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. We ke",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 692,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "12-cta",
+        "h": 528,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 976,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning starts with where you are.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 881,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask your first question. Start building from what you know.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 826,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 141,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "13-explore",
+        "h": 953,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "112.64px",
+        "padBottom": "112.64px",
+        "spine": 1024,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Visionary.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 734,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 521,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 4
+      }
+    ]
+  },
+  "student@834": {
+    "vw": 834,
+    "docH": 13127,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 1056,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "0px",
+        "padBottom": "0px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "to master.Learning, to master, to build.",
+          "size": 48,
+          "weight": "500",
+          "lh": 50.4,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 560,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Every concept you understand becomes the foundation for the next.",
+          "size": 18,
+          "weight": "500",
+          "lh": 25.2,
+          "ls": "normal",
+          "color": "rgb(18, 19, 23)",
+          "mt": "16px",
+          "w": 560,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 219,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-struggle",
+        "h": 940,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Every student struggles withunderstanding.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "15.012px",
+          "w": 786,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Studying isn't the difficulty. Knowing it landed is.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 786,
+          "lines": 1
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-journey",
+        "h": 929,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Learning thatmeets your questions.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Wherever you begin, Visionary helps your learning move forward from th",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 692,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 2681,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 64,
+          "weight": "600",
+          "lh": 68,
+          "ls": "-0.576px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 506,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "16.8px",
+          "w": 551,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 440,
+            "h": 330,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 440,
+            "h": 330,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 440,
+            "h": 330,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 440,
+            "h": 330,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "07-language",
+        "h": 1285,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 786,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "The words change.Understanding doesn't.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 786,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask in the language you think in. The understanding that comes back is",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 786,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "09-achievement",
+        "h": 1084,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "See what you can achieve.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 786,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get a clear picture of the subjects and skills that matter today.",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 384,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 786,
+            "h": 774,
+            "radius": "30px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "Get a clear picture of the subjects and skills that matter today.",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 384,
+              "lines": 4
+            }
+          },
+          {
+            "w": 738,
+            "h": 372,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "10-journey-flow",
+        "h": 1771,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "New stage.Same intelligence.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 834,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "When the stage changes, your intelligence comes with you.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 826,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 440,
+            "h": 560,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Primary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 440,
+            "h": 560,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Secondary and higher secondary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 2
+            }
+          }
+        ],
+        "cardRowCount": 2
+      },
+      {
+        "band": "11-trust",
+        "h": 1099,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your intelligence stays yours.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 692,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. We ke",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 692,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "12-cta",
+        "h": 495,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 786,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning starts with where you are.",
+          "size": 56,
+          "weight": "600",
+          "lh": 56,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 786,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask your first question. Start building from what you know.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 786,
+          "lines": 1
+        },
+        "cards": [
+          {
+            "w": 141,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "13-explore",
+        "h": 895,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "96px",
+        "padBottom": "96px",
+        "spine": 834,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Visionary.",
+          "size": 56,
+          "weight": "600",
+          "lh": 60.8,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 734,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 372,
+            "h": 513,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 513,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 513,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 372,
+            "h": 513,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 4
+      }
+    ]
+  },
+  "student@390": {
+    "vw": 390,
+    "docH": 12823,
+    "overflow": 0,
+    "bands": [
+      {
+        "band": "01-hero",
+        "h": 788,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "64px",
+        "padBottom": "64px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h1",
+          "text": "to build.Learning, to master, to build.",
+          "size": 48,
+          "weight": "500",
+          "lh": 50.4,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Every concept you understand becomes the foundation for the next.",
+          "size": 18,
+          "weight": "500",
+          "lh": 25.2,
+          "ls": "normal",
+          "color": "rgb(18, 19, 23)",
+          "mt": "16px",
+          "w": 342,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 203,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 20px 0px 20px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "02-struggle",
+        "h": 957,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Every student struggles withunderstanding.",
+          "size": 40,
+          "weight": "600",
+          "lh": 40,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "14px",
+          "w": 342,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Studying isn't the difficulty. Knowing it landed is.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 2
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "04-journey",
+        "h": 908,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Learning thatchanges with your goals.",
+          "size": 40,
+          "weight": "600",
+          "lh": 40,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Wherever you begin, Visionary helps your learning move forward from th",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "05-intelligence",
+        "h": 2411,
+        "bg": "rgb(10, 13, 20)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "One intelligence.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "-0.8px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "0px",
+          "w": 309,
+          "lines": 1
+        },
+        "lead": {
+          "tag": "p",
+          "text": "From the first question to using what you know.",
+          "size": 24,
+          "weight": "600",
+          "lh": 28,
+          "ls": "0.264px",
+          "color": "rgb(245, 245, 247)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 342,
+            "h": 257,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 342,
+            "h": 257,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 342,
+            "h": 257,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          },
+          {
+            "w": 342,
+            "h": 257,
+            "radius": "30px",
+            "bg": "rgb(13, 16, 23)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 4
+      },
+      {
+        "band": "07-language",
+        "h": 1059,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 342,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "The words change.Understanding doesn't.",
+          "size": 40,
+          "weight": "600",
+          "lh": 40,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 342,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask in the language you think in. The understanding that comes back is",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "09-achievement",
+        "h": 1173,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "See what you can achieve.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "0.16px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Get a clear picture of the subjects and skills that matter today.",
+          "size": 17,
+          "weight": "400",
+          "lh": 20.2,
+          "ls": "-0.374px",
+          "color": "rgb(18, 19, 23)",
+          "mt": "0px",
+          "w": 294,
+          "lines": 4
+        },
+        "cards": [
+          {
+            "w": 342,
+            "h": 840,
+            "radius": "30px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "p",
+              "text": "Get a clear picture of the subjects and skills that matter today.",
+              "size": 17,
+              "weight": "400",
+              "lh": 20.2,
+              "ls": "-0.374px",
+              "color": "rgb(18, 19, 23)",
+              "mt": "0px",
+              "w": 294,
+              "lines": 4
+            }
+          },
+          {
+            "w": 310,
+            "h": 388,
+            "radius": "20px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "10-journey-flow",
+        "h": 1799,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "New stage.Same intelligence.",
+          "size": 40,
+          "weight": "600",
+          "lh": 40,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16px",
+          "w": 390,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "When the stage changes, your intelligence comes with you.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 390,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 342,
+            "h": 560,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Primary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 342,
+            "h": 560,
+            "radius": "18px",
+            "bg": "rgb(245, 245, 247)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Secondary and higher secondary",
+              "size": 17,
+              "weight": "600",
+              "lh": 21,
+              "ls": "-0.374px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 2
+            }
+          }
+        ],
+        "cardRowCount": 2
+      },
+      {
+        "band": "11-trust",
+        "h": 1087,
+        "bg": "rgb(255, 255, 255)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Your intelligence stays yours.",
+          "size": 40,
+          "weight": "600",
+          "lh": 40,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 2
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Your questions, conversations, ideas, and progress are personal. We ke",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 3
+        },
+        "cards": [],
+        "cardRowCount": 0
+      },
+      {
+        "band": "12-cta",
+        "h": 583,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 342,
+        "gutter": 24,
+        "contentLeft": 24,
+        "heading": {
+          "tag": "h2",
+          "text": "Your learning starts with where you are.",
+          "size": 40,
+          "weight": "600",
+          "lh": 40,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 3
+        },
+        "lead": {
+          "tag": "p",
+          "text": "Ask your first question. Start building from what you know.",
+          "size": 21,
+          "weight": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "16.8px",
+          "w": 342,
+          "lines": 2
+        },
+        "cards": [
+          {
+            "w": 320,
+            "h": 48,
+            "radius": "9999px",
+            "bg": "rgb(18, 19, 23)",
+            "pad": "0px 28px 0px 28px",
+            "type": null
+          }
+        ],
+        "cardRowCount": 1
+      },
+      {
+        "band": "13-explore",
+        "h": 842,
+        "bg": "rgb(245, 245, 247)",
+        "padTop": "93.6px",
+        "padBottom": "93.6px",
+        "spine": 390,
+        "gutter": 0,
+        "contentLeft": 0,
+        "heading": {
+          "tag": "h2",
+          "text": "Explore Visionary.",
+          "size": 40,
+          "weight": "600",
+          "lh": 44,
+          "ls": "0.16px",
+          "color": "rgb(29, 29, 31)",
+          "mt": "0px",
+          "w": 342,
+          "lines": 1
+        },
+        "lead": null,
+        "cards": [
+          {
+            "w": 320,
+            "h": 482,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Teacher",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 320,
+            "h": 482,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Parent",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 320,
+            "h": 481,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Professional",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          },
+          {
+            "w": 320,
+            "h": 482,
+            "radius": "18px",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "0px 0px 0px 0px",
+            "type": {
+              "tag": "h3",
+              "text": "Organization",
+              "size": 17,
+              "weight": "600",
+              "lh": 20.2,
+              "ls": "0.187px",
+              "color": "rgb(29, 29, 31)",
+              "mt": "0px",
+              "w": 201,
+              "lines": 1
+            }
+          }
+        ],
+        "cardRowCount": 4
+      }
+    ]
+  }
+}

@@ -1,0 +1,7110 @@
+{
+ "home": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "One intelligence for students. One intel",
+    "tag": "SPAN",
+    "text": "for students.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence.",
+    "tag": "SPAN",
+    "text": "One intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(138, 180, 248) 0%, rgb(165, 200, 255) 38%, rgb(200, 182, 255) 72%, rgb(120, 217, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Teaching everyone is possible. Reaching ",
+    "tag": "SPAN",
+    "text": "Reaching everyone isn't",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "What if your intelligence never forgot w",
+    "tag": "SPAN",
+    "text": "where you were?",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(138, 180, 248) 0%, rgb(165, 200, 255) 38%, rgb(200, 182, 255) 72%, rgb(120, 217, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence, five journeys.",
+    "tag": "SPAN",
+    "text": "five journeys.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your learning stays yours.",
+    "tag": "SPAN",
+    "text": "yours.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 6,
+  "pVoices": [
+   {
+    "text": "From the first question to using w",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Stories from a teacher, a parent, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Why Visionary exists",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Effort isn't the gap. Knowing whet",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "I taught the whole class. Half of ",
+    "dt": "editorial-lead",
+    "fs": "24px"
+   },
+   {
+    "text": "A teacher",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What you get",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "“A person should not have to start",
+    "dt": "card-chapter",
+    "fs": "48px"
+   },
+   {
+    "text": "Every lesson builds on the last. T",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Visionary remembers where you stop",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Ask, reason, and learn in the lang",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Teachers and parents see progress ",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Who it's for",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Whether you are learning, teaching",
+    "dt": "editorial-body",
+    "fs": "21px"
+   },
+   {
+    "text": "See the idea, practise it, and use",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Plan, explain, and check understan",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See the progress behind the report",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn a question, project, or new s",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Give teams a shared view of learni",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Get Visionary on every device.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Plans for every journey.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Find your answer.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What's new at Visionary.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your questions, conversations, ide",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You choose what Visionary remember",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Age-aware guidance and human revie",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Secure by design, protected end to",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Help every learner learn how they ",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Ask a question. Explore an idea. S",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See how it works for Students · Te",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Free to start. Private by design.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "cast-stage sticky top-0",
+    "linkCount": 7,
+    "lastDoor": "Organizations"
+   },
+   {
+    "id": "05-intelligence",
+    "tag": "scene-dark relative [overflow-x:clip]",
+    "linkCount": 1,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "02-problem",
+    "tag": "relative z-10 overflow-hidden",
+    "linkCount": 4,
+    "lastDoor": ""
+   },
+   {
+    "id": "03-promise",
+    "tag": "scene-dark relative z-10",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-return",
+    "tag": "relative isolate bg-white",
+    "linkCount": 4,
+    "lastDoor": "For parents"
+   },
+   {
+    "id": "13-explore",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 7,
+    "lastDoor": ""
+   },
+   {
+    "id": "14-suite",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 4,
+    "lastDoor": "Updates What's new at Visionar"
+   },
+   {
+    "id": "11-trust",
+    "tag": "public-values relative isolate",
+    "linkCount": 4,
+    "lastDoor": "Learn more"
+   },
+   {
+    "id": "12-cta",
+    "tag": "scene-dark relative isolate",
+    "linkCount": 7,
+    "lastDoor": "Organizations"
+   }
+  ],
+  "doorGaps": [
+   "03-promise"
+  ]
+ },
+ "student": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "to master. Learning, to master, to build",
+    "tag": "SPAN",
+    "text": "to master.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Every student struggles with understandi",
+    "tag": "SPAN",
+    "text": "understanding.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Learning that meets your questions.",
+    "tag": "SPAN",
+    "text": "meets your questions.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence.",
+    "tag": "SPAN",
+    "text": "One intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(138, 180, 248) 0%, rgb(165, 200, 255) 38%, rgb(200, 182, 255) 72%, rgb(120, 217, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "The words change. Understanding doesn't.",
+    "tag": "SPAN",
+    "text": "Understanding",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "See what you can achieve.",
+    "tag": "SPAN",
+    "text": "achieve.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "New stage. Same intelligence.",
+    "tag": "SPAN",
+    "text": "Same intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your intelligence stays yours.",
+    "tag": "SPAN",
+    "text": "yours.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Explore Visionary.",
+    "tag": "SPAN",
+    "text": "Visionary.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 9,
+  "pVoices": [
+   {
+    "text": "Every concept you understand becom",
+    "dt": "",
+    "fs": "28px"
+   },
+   {
+    "text": "Student learning challenges",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Where understanding slips",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Studying isn't the difficulty. Kno",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "I studied for hours. I still could",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Wherever you begin, Visionary help",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Primary. From your first questions",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "From the first question to using w",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary continues from where you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Open today's lesson. Visionary alr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every answer becomes a chance to p",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn every lesson into real thinki",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary continues from where you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Open today's lesson. Visionary alr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every answer becomes a chance to p",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn every lesson into real thinki",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every language",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Ask in the language you think in. ",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Why do objects fall?",
+    "dt": "feature",
+    "fs": "28px"
+   },
+   {
+    "text": "Listening in Hindi · understood in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use voice or text in the way you'r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Get a clear picture of the subject",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Set your goal and keep moving, wit",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn what you know into real proje",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your journey",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When the stage changes, your intel",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Build the basics. Build them right",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "One place for every subject.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your questions, conversations, ide",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We design every part of Visionary ",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We keep Visionary safe to grow wit",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We believe intelligence should hel",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Ask your first question. Start bui",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Free to start. Private by design.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See who needs another explanation.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See where your child needs support",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn what you know into useful wor",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Help teams carry knowledge forward",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative isolate flex",
+    "linkCount": 2,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "02-struggle",
+    "tag": "relative overflow-x-clip bg-white",
+    "linkCount": 4,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-journey",
+    "tag": "relative isolate overflow-hidden",
+    "linkCount": 9,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-intelligence",
+    "tag": "scene-dark relative [overflow-x:clip]",
+    "linkCount": 4,
+    "lastDoor": ""
+   },
+   {
+    "id": "07-language",
+    "tag": "relative isolate px-6",
+    "linkCount": 10,
+    "lastDoor": ""
+   },
+   {
+    "id": "09-achievement",
+    "tag": "relative isolate bg-white",
+    "linkCount": 3,
+    "lastDoor": "Build something from what you "
+   },
+   {
+    "id": "10-journey-flow",
+    "tag": "relative isolate bg-white",
+    "linkCount": 4,
+    "lastDoor": "See how Visionary keeps it con"
+   },
+   {
+    "id": "11-trust",
+    "tag": "public-values relative isolate",
+    "linkCount": 3,
+    "lastDoor": "Learn more"
+   },
+   {
+    "id": "12-cta",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 2,
+    "lastDoor": "Talk to our team"
+   },
+   {
+    "id": "13-explore",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 6,
+    "lastDoor": ""
+   }
+  ],
+  "doorGaps": []
+ },
+ "teacher": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "to grow. Teaching, to grow, to reach.",
+    "tag": "SPAN",
+    "text": "to grow.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Every teacher wonders about understandin",
+    "tag": "SPAN",
+    "text": "understanding.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Teaching that meets your questions.",
+    "tag": "SPAN",
+    "text": "meets your questions.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence.",
+    "tag": "SPAN",
+    "text": "One intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(138, 180, 248) 0%, rgb(165, 200, 255) 38%, rgb(200, 182, 255) 72%, rgb(120, 217, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Teach your way. Explain your way.",
+    "tag": "SPAN",
+    "text": "Explain",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "See what your class can achieve.",
+    "tag": "SPAN",
+    "text": "achieve.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "New stage. Same teaching.",
+    "tag": "SPAN",
+    "text": "Same teaching.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your teaching stays yours.",
+    "tag": "SPAN",
+    "text": "yours.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Explore Visionary.",
+    "tag": "SPAN",
+    "text": "Visionary.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 9,
+  "pVoices": [
+   {
+    "text": "One class, many minds. See who is ",
+    "dt": "",
+    "fs": "28px"
+   },
+   {
+    "text": "Teacher challenges",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What the classroom hides",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teaching isn't the difficulty. Kno",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "I taught the whole class. Half of ",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Wherever your class begins, Vision",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Lesson planning. Start from what y",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For you and your class, from first",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary continues from where you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When a concept doesn't land, you g",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See who got it, who didn't, and wh",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "New syllabus, new subject: your pr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary continues from where you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When a concept doesn't land, you g",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See who got it, who didn't, and wh",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "New syllabus, new subject: your pr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every language",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Plan, teach, and adapt in the lang",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Is concept ko simple tarike se kai",
+    "dt": "feature",
+    "fs": "28px"
+   },
+   {
+    "text": "Listening in Hindi · understood in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use voice or text in the way you'r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A clear picture of the learners an",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Set your goal and keep every learn",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn what you teach into projects ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your journey",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When the stage changes, your teach",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Plan the lesson. From where they a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teach it. Another way, any time.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your classes, conversations, ideas",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We design every part of Visionary ",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We keep Visionary safe to grow wit",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We believe intelligence should hel",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "See who understands. Adapt the nex",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Free to start. Private by design.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understand lessons, practise ideas",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See progress clearly and know when",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn what you learn into work you ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Help teams share context across pr",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative isolate flex",
+    "linkCount": 2,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "02-struggle",
+    "tag": "relative overflow-x-clip bg-white",
+    "linkCount": 5,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-journey",
+    "tag": "relative isolate overflow-hidden",
+    "linkCount": 9,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-intelligence",
+    "tag": "scene-dark relative [overflow-x:clip]",
+    "linkCount": 4,
+    "lastDoor": ""
+   },
+   {
+    "id": "07-language",
+    "tag": "relative isolate px-6",
+    "linkCount": 10,
+    "lastDoor": ""
+   },
+   {
+    "id": "09-achievement",
+    "tag": "relative isolate bg-white",
+    "linkCount": 3,
+    "lastDoor": "Build from what you teach."
+   },
+   {
+    "id": "10-journey-flow",
+    "tag": "relative isolate bg-white",
+    "linkCount": 4,
+    "lastDoor": "See how Visionary keeps it con"
+   },
+   {
+    "id": "11-trust",
+    "tag": "public-values relative isolate",
+    "linkCount": 3,
+    "lastDoor": "Learn more"
+   },
+   {
+    "id": "12-cta",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 2,
+    "lastDoor": "Talk to our team"
+   },
+   {
+    "id": "13-explore",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 6,
+    "lastDoor": ""
+   }
+  ],
+  "doorGaps": []
+ },
+ "parent": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "to see. Parenting, to see, to help.",
+    "tag": "SPAN",
+    "text": "to see.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Every parent wonders about progress.",
+    "tag": "SPAN",
+    "text": "progress.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Learning that meets their questions.",
+    "tag": "SPAN",
+    "text": "meets their questions.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence.",
+    "tag": "SPAN",
+    "text": "One intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(138, 180, 248) 0%, rgb(165, 200, 255) 38%, rgb(200, 182, 255) 72%, rgb(120, 217, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your child's progress. In your language.",
+    "tag": "SPAN",
+    "text": "In your language",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "See what your child can achieve.",
+    "tag": "SPAN",
+    "text": "achieve.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "New stage. Same understanding.",
+    "tag": "SPAN",
+    "text": "Same understanding.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your child's learning stays theirs.",
+    "tag": "SPAN",
+    "text": "theirs.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Explore Visionary.",
+    "tag": "SPAN",
+    "text": "Visionary.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 9,
+  "pVoices": [
+   {
+    "text": "Know what your child is learning b",
+    "dt": "",
+    "fs": "28px"
+   },
+   {
+    "text": "Parent concerns",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What report cards miss",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Caring isn't the difficulty. Seein",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "The report card says fine. I still",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Wherever your child begins, Vision",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Early years. First questions, firs",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "From the first question to the mom",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Not just what was covered. What ac",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See the exact idea that stopped th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understand whether confidence is b",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When you, your child, and the teac",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Not just what was covered. What ac",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See the exact idea that stopped th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understand whether confidence is b",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When you, your child, and the teac",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every language",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Follow your child's journey in the",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Priya iss hafte physics mein kaisi",
+    "dt": "feature",
+    "fs": "28px"
+   },
+   {
+    "text": "Listening in Hindi · understood in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use voice or text in the way you'r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A clear picture of what shaped you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Know when to help, how to explain,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See the wins, and turn them into l",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your journey",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When the stage changes, your under",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Be part of the first wins.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Follow the homework. Without the f",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your child's questions, conversati",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We design every part of Visionary ",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We keep Visionary safe to grow wit",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We believe intelligence should hel",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "See what they understand. Know whe",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Free to start. Private by design.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understand lessons, practise ideas",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Plan lessons and see who needs sup",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn what you learn into work you ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Help teams share context across pr",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative isolate flex",
+    "linkCount": 2,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "02-struggle",
+    "tag": "relative overflow-x-clip bg-white",
+    "linkCount": 5,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-journey",
+    "tag": "relative isolate overflow-hidden",
+    "linkCount": 9,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-intelligence",
+    "tag": "scene-dark relative [overflow-x:clip]",
+    "linkCount": 4,
+    "lastDoor": ""
+   },
+   {
+    "id": "07-language",
+    "tag": "relative isolate px-6",
+    "linkCount": 10,
+    "lastDoor": ""
+   },
+   {
+    "id": "09-achievement",
+    "tag": "relative isolate bg-white",
+    "linkCount": 3,
+    "lastDoor": "Celebrate every step forward."
+   },
+   {
+    "id": "10-journey-flow",
+    "tag": "relative isolate bg-white",
+    "linkCount": 4,
+    "lastDoor": "See how Visionary keeps it con"
+   },
+   {
+    "id": "11-trust",
+    "tag": "public-values relative isolate",
+    "linkCount": 3,
+    "lastDoor": "Learn more"
+   },
+   {
+    "id": "12-cta",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 2,
+    "lastDoor": "Talk to our team"
+   },
+   {
+    "id": "13-explore",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 6,
+    "lastDoor": ""
+   }
+  ],
+  "doorGaps": []
+ },
+ "help": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Find your answer.",
+    "tag": "SPAN",
+    "text": "your answer.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Search, or browse a topic, then re",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Browse by topic",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Getting started",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Create an account, ask your first ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Account & profile",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Sign in, passwords, email, and you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learning & practice",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Lessons, visual explanations, prac",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teaching & classes",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Create classes, follow learners, a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Family & privacy",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parent views, the Family plan, and",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Billing & plans",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Start, Personal, Family: upgrades,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Apps & devices",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Web, desktop, and mobile installs,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Safety & reporting",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Report content, family controls, a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Still stuck?",
+    "dt": "",
+    "fs": "28px"
+   },
+   {
+    "text": "We answer within one business day.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "(anon)",
+    "tag": "relative px-6 pb-16",
+    "linkCount": 5,
+    "lastDoor": "report"
+   },
+   {
+    "id": "(anon)",
+    "tag": "relative bg-white px-6",
+    "linkCount": 8,
+    "lastDoor": "Safety & reporting Report cont"
+   },
+   {
+    "id": "(anon)",
+    "tag": "relative px-6 py-24",
+    "linkCount": 2,
+    "lastDoor": "Report a safety issue"
+   }
+  ],
+  "doorGaps": []
+ },
+ "professional": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "to apply. Building, to apply, to grow.",
+    "tag": "SPAN",
+    "text": "to apply.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Every professional wonders about Applica",
+    "tag": "SPAN",
+    "text": "Application.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Work that meets your challenges.",
+    "tag": "SPAN",
+    "text": "meets your challenges.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence.",
+    "tag": "SPAN",
+    "text": "One intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(138, 180, 248) 0%, rgb(165, 200, 255) 38%, rgb(200, 182, 255) 72%, rgb(120, 217, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your work. In your language.",
+    "tag": "SPAN",
+    "text": "In your language",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "See what you can achieve.",
+    "tag": "SPAN",
+    "text": "achieve.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "New stage. Same work.",
+    "tag": "SPAN",
+    "text": "Same work.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your work stays yours.",
+    "tag": "SPAN",
+    "text": "yours.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Explore Visionary.",
+    "tag": "SPAN",
+    "text": "Visionary.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 9,
+  "pVoices": [
+   {
+    "text": "Turn what you learn into work that",
+    "dt": "",
+    "fs": "28px"
+   },
+   {
+    "text": "Career learning challenges",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What work doesn't show",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Working isn't the difficulty. Show",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "I took three courses. I still don'",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Wherever your career begins, Visio",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Early Career. Turn every first pro",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "From the first problem to using wh",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary reads the context, remem",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every decision, every failure, eve",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your knowledge shouldn't reset eve",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See whether your skills are compou",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary reads the context, remem",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every decision, every failure, eve",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your knowledge shouldn't reset eve",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See whether your skills are compou",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every language",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Think, ask, and solve in the langu",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Iss project ka architecture kaise ",
+    "dt": "feature",
+    "fs": "28px"
+   },
+   {
+    "text": "Listening in Hindi · understood in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use voice or text in the way you'r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See every problem through the lens",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Get past the stuck moment faster. ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn learning into shipped work — ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your journey",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When the stage changes, your work ",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Turn every first role into real sk",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Reason through the harder decision",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your projects, ideas, and career d",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We design every part of Visionary ",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We keep Visionary safe to grow wit",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We believe intelligence should hel",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Understand it faster. Solve it wit",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Free to start. Private by design.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Know how Visionary fits into your ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Know how Visionary fits into your ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Know how Visionary fits into your ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Know how Visionary fits across you",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative isolate flex",
+    "linkCount": 2,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "02-struggle",
+    "tag": "relative overflow-x-clip bg-white",
+    "linkCount": 5,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-journey",
+    "tag": "relative isolate overflow-hidden",
+    "linkCount": 9,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-intelligence",
+    "tag": "scene-dark relative [overflow-x:clip]",
+    "linkCount": 4,
+    "lastDoor": ""
+   },
+   {
+    "id": "07-language",
+    "tag": "relative isolate px-6",
+    "linkCount": 10,
+    "lastDoor": ""
+   },
+   {
+    "id": "09-achievement",
+    "tag": "relative isolate bg-white",
+    "linkCount": 3,
+    "lastDoor": "Build what you actually came t"
+   },
+   {
+    "id": "10-journey-flow",
+    "tag": "relative isolate bg-white",
+    "linkCount": 4,
+    "lastDoor": "See how Visionary keeps it con"
+   },
+   {
+    "id": "11-trust",
+    "tag": "public-values relative isolate",
+    "linkCount": 3,
+    "lastDoor": "Learn more"
+   },
+   {
+    "id": "12-cta",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 2,
+    "lastDoor": "Talk to our team"
+   },
+   {
+    "id": "13-explore",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 6,
+    "lastDoor": ""
+   }
+  ],
+  "doorGaps": []
+ },
+ "how-it-works": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "How Visionary works.",
+    "tag": "SPAN",
+    "text": "Visionary",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One loop, goal.",
+    "tag": "SPAN",
+    "text": "goal.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence. Different ways to use ",
+    "tag": "SPAN",
+    "text": "Different ways to use it.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 3,
+  "pVoices": [
+   {
+    "text": "Understand, ask, practise, then bu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 01: sign in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Already on Visionary? Sign in and ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your space, your progress, your co",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Sign in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Welcome back",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Email address",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Password",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Or continue with Google",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 01: sign in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Already on Visionary? Sign in and ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your space, your progress, your co",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Start as yourself",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Who are you?",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Student",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learn with a companion that keeps ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teacher",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See every learner and teach in you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parent",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Follow your child's journey with c",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Professional",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Grow the skills your work demands ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Organization",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Roll out learning across your inst",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 02 · Start as yourself",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Tell Visionary who you are and wha",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Student · Teacher · Parent · Profe",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your space",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Welcome back",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teacher",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Today",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Today: 23 students ready · 5 need ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 03 · Your space",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your personal space shows what mat",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Ask, practise, and continue from o",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Connected",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your journey, connected",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Yesterday",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Fractions — mastered",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Today",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Decimals — in progress",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Next",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Percentages — builds on decimals",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Connected to: Teacher · Parent · T",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 04 · Stay connected",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your learning never resets. Vision",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Yesterday's work becomes today's f",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The learning loop",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every subject in Visionary moves t",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Goal",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "You set the goal: a subject, a ski",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 1 of 8 · then check",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Different people",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The product doesn't change. What y",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Student — prompt",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "\"Explain this simply.\"",
+    "dt": "",
+    "fs": "28px"
+   },
+   {
+    "text": "I need to understand fractions.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The explanation clicks. You try th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Student",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Explain this simply.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "I need to understand fractions.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Same intelligence · shaped for stu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Free to start. Private by design.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative overflow-hidden px-6",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-journey",
+    "tag": "relative bg-white [overflow-x:clip]",
+    "linkCount": 1,
+    "lastDoor": "Sign in"
+   },
+   {
+    "id": "05-loop",
+    "tag": "relative rounded-t-[32px] px-6",
+    "linkCount": 8,
+    "lastDoor": "Reflect"
+   },
+   {
+    "id": "06-people",
+    "tag": "relative rounded-t-[32px] bg-white",
+    "linkCount": 6,
+    "lastDoor": "See the student page"
+   },
+   {
+    "id": "07-cta",
+    "tag": "relative rounded-t-[32px] px-6",
+    "linkCount": 2,
+    "lastDoor": "See pricing"
+   }
+  ],
+  "doorGaps": [
+   "01-hero"
+  ]
+ },
+ "organization": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "to scale. Leading, to scale, to last.",
+    "tag": "SPAN",
+    "text": "to scale.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Every organization wonders about adoptio",
+    "tag": "SPAN",
+    "text": "adoption.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Every organization learns differently. S",
+    "tag": "SPAN",
+    "text": "Schools see it first",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "One intelligence.",
+    "tag": "SPAN",
+    "text": "One intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(138, 180, 248) 0%, rgb(165, 200, 255) 38%, rgb(200, 182, 255) 72%, rgb(120, 217, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your organization. In every language.",
+    "tag": "SPAN",
+    "text": "In every language",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "See what your organization can achieve.",
+    "tag": "SPAN",
+    "text": "achieve.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Individual journeys. Shared intelligence",
+    "tag": "SPAN",
+    "text": "Shared intelligence.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Your people's learning stays yours.",
+    "tag": "SPAN",
+    "text": "yours.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Explore Visionary.",
+    "tag": "SPAN",
+    "text": "Visionary.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 9,
+  "pVoices": [
+   {
+    "text": "One intelligence across every clas",
+    "dt": "",
+    "fs": "28px"
+   },
+   {
+    "text": "Organization learning challenges",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What you can't see",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learning isn't the difficulty. See",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We rolled out three learning tools",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "One intelligence, shaped to the wa",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Schools. Connect students, teacher",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every learner, teacher, and profes",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learning activity becomes a clear ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Know where people are stuck before",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every role sees what matters to th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use real learning activity to impr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0104",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learning activity becomes a clear ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0204",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Know where people are stuck before",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0304",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every role sees what matters to th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "0404",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use real learning activity to impr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every language",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "People ask, learn, teach, and repo",
+    "dt": "body",
+    "fs": "17px"
+   },
+   {
+    "text": "Hamare learners kahan atak rahe ha",
+    "dt": "feature",
+    "fs": "28px"
+   },
+   {
+    "text": "Listening in Hindi · understood in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use voice or text in the way you'r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Move beyond completion rates and s",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Give teachers, coaches, and leader",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use connected learning activity to",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your journey",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When the context changes, the same",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "One school. One picture.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Departments connected. Outcomes vi",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your people's questions, conversat",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We design every part of Visionary ",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We keep Visionary safe to grow wit",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "We believe intelligence should hel",
+    "dt": "value-body",
+    "fs": "19px"
+   },
+   {
+    "text": "Start with one class, one team, an",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Free to start. Private by design.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understand lessons, practise ideas",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See who needs another explanation.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See where your child needs support",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn what you know into useful wor",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative isolate flex",
+    "linkCount": 2,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "02-struggle",
+    "tag": "relative overflow-x-clip bg-white",
+    "linkCount": 5,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-journey",
+    "tag": "relative isolate overflow-hidden",
+    "linkCount": 7,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-intelligence",
+    "tag": "scene-dark relative [overflow-x:clip]",
+    "linkCount": 4,
+    "lastDoor": ""
+   },
+   {
+    "id": "07-language",
+    "tag": "relative isolate px-6",
+    "linkCount": 10,
+    "lastDoor": ""
+   },
+   {
+    "id": "09-achievement",
+    "tag": "relative isolate bg-white",
+    "linkCount": 3,
+    "lastDoor": "Improve every program with evi"
+   },
+   {
+    "id": "10-journey-flow",
+    "tag": "relative isolate bg-white",
+    "linkCount": 4,
+    "lastDoor": "See how Visionary keeps it con"
+   },
+   {
+    "id": "11-trust",
+    "tag": "public-values relative isolate",
+    "linkCount": 3,
+    "lastDoor": "Learn more"
+   },
+   {
+    "id": "12-cta",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 2,
+    "lastDoor": "Talk to our team"
+   },
+   {
+    "id": "13-explore",
+    "tag": "relative isolate bg-[#f5f5f7]",
+    "linkCount": 6,
+    "lastDoor": ""
+   }
+  ],
+  "doorGaps": []
+ },
+ "download": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Get Visionary on every device.",
+    "tag": "SPAN",
+    "text": "Visionary",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Download",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "On the phone, tablet or laptop you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Full Visionary in your browser. No",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Native apps for desktop and mobile",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Supported platforms",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use Visionary on the web today. Na",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "No install · Always up to date",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Windows 10 or later",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "macOS 12 or later · Apple Silicon ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Ubuntu 20.04+ · .deb / .AppImage p",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "iPhone & iPad · iOS 16 or later",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Android 9 or later",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Be first in line at launch.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Native apps are in final testing. ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Start on one device. Pick Up on ev",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Conversations, progress, and conte",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "System requirements",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Any modern browser — Chrome, Edge,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Windows 10 or later · 4 GB RAM · 2",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "macOS 12 (Monterey) or later · App",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Ubuntu 20.04+ / Fedora 36+ · .deb,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "iOS 16 or later · iPhone and iPad",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Android 9 or later · ARM or x86",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Signed builds · Automatic updates ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "No install, no waiting. Pick up th",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative overflow-hidden px-6",
+    "linkCount": 2,
+    "lastDoor": "See platforms"
+   },
+   {
+    "id": "02-platforms",
+    "tag": "relative scroll-mt-24 bg-white",
+    "linkCount": 6,
+    "lastDoor": "Android app coming soon"
+   },
+   {
+    "id": "(anon)",
+    "tag": "relative bg-white px-6",
+    "linkCount": 1,
+    "lastDoor": "Prepare email request"
+   },
+   {
+    "id": "03-sync",
+    "tag": "relative px-6",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-requirements",
+    "tag": "relative bg-white px-6",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "(anon)",
+    "tag": "relative px-6 py-12",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-cta",
+    "tag": "relative rounded-t-[32px] px-6",
+    "linkCount": 2,
+    "lastDoor": "See how it works"
+   }
+  ],
+  "doorGaps": [
+   "03-sync",
+   "04-requirements",
+   "(anon)"
+  ]
+ },
+ "about": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Helping people turn questions into under",
+    "tag": "SPAN",
+    "text": "understanding.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "About Visionary",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "A learning product for people who ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Why Visionary exists",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "People move between classrooms, ho",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Our mission",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Build AI intelligence for anyone, ",
+    "dt": "",
+    "fs": "40px"
+   },
+   {
+    "text": "Visionary · the mission we build t",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A life in motion",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A first lesson, a new skill, a dif",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "An early question becomes somethin",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teachers, families, and mentors he",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learning becomes a skill, a projec",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Experience continues through work,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Wherever someone begins, what they",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The difference we want to make",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The challenge is bigger than answe",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "What Visionary is building toward",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Give each person a way to revisit ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What Visionary is building toward",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Make learning easier to understand",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What Visionary is building toward",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Help people connect what they alre",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For every perspective",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Find the experience that fits your",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "From first concepts to higher educ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Plan, explain, and support the peo",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understand progress and support th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn study and experience into pra",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Connect learning across classrooms",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Explore further",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The questions and ideas shaping ou",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Meet the work and find your place ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "How we think about safer use and c",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Follow what is changing across the",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Start where you are",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Explore the view that fits your ro",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative overflow-hidden bg-white",
+    "linkCount": 66,
+    "lastDoor": "Workplace learning"
+   },
+   {
+    "id": "02-mission",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 1,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "03-journey",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 1,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "04-impact",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 1,
+    "lastDoor": "See how Visionary works"
+   },
+   {
+    "id": "05-roles",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 5,
+    "lastDoor": "Organizations Connect learning"
+   },
+   {
+    "id": "06-explore",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 4,
+    "lastDoor": "Updates Follow what is changin"
+   },
+   {
+    "id": "07-cta",
+    "tag": "relative rounded-t-[32px] bg-[#f5f5f7]",
+    "linkCount": 2,
+    "lastDoor": "Contact Visionary"
+   }
+  ],
+  "doorGaps": []
+ },
+ "pricing": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Plans for every journey.",
+    "tag": "SPAN",
+    "text": "every journey",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Start free. Find the right fit for",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Begin with one question.",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Free forever · no card required",
+    "dt": "",
+    "fs": "12px"
+   },
+   {
+    "text": "What’s included",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "One person. Full intelligence.",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Billed yearly (₹2990) · 2 months f",
+    "dt": "",
+    "fs": "12px"
+   },
+   {
+    "text": "What’s included",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "A household that learns together.",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Billed yearly (₹4990) · 2 months f",
+    "dt": "",
+    "fs": "12px"
+   },
+   {
+    "text": "What’s included",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Schools, colleges, coaching, workp",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Pricing shaped with you · pilots a",
+    "dt": "",
+    "fs": "12px"
+   },
+   {
+    "text": "What’s included",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Prices in INR · Taxes may apply · ",
+    "dt": "",
+    "fs": "12px"
+   },
+   {
+    "text": "Student",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Start or Personal",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Begin free. Upgrade when you're re",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teacher",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Personal",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "One classroom, one intelligence.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parent",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Family",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every child, one plan.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Professional",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Personal",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Skills that compound.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Organization",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Institution",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Roll out across your people.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Scroll to compare all plans →",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Cancel anytime · Your memory stays",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "FAQ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Yes. Start is free forever — 20 qu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Any time. Upgrades apply immediate",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Nothing is deleted. Your journey i",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Yes. Students and teachers with a ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Each member's memory is completely",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Per active learner, annual invoici",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Upgrade only when Visionary has ea",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative px-4 pb-20",
+    "linkCount": 6,
+    "lastDoor": "Contact Visionary"
+   },
+   {
+    "id": "02-persona",
+    "tag": "relative bg-white px-6",
+    "linkCount": 5,
+    "lastDoor": "Organization Institution Roll "
+   },
+   {
+    "id": "03-compare",
+    "tag": "relative px-6",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "(anon)",
+    "tag": "relative bg-white px-6",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-faq",
+    "tag": "relative bg-white px-6",
+    "linkCount": 6,
+    "lastDoor": "How does Institution billing w"
+   },
+   {
+    "id": "05-cta",
+    "tag": "relative rounded-t-[32px] px-6",
+    "linkCount": 2,
+    "lastDoor": "Talk to sales"
+   }
+  ],
+  "doorGaps": [
+   "03-compare",
+   "(anon)"
+  ]
+ },
+ "careers": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Search for your place at Visionary.",
+    "tag": "SPAN",
+    "text": "your place",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H1",
+    "hText": "Search for your place at Visionary.",
+    "tag": "SPAN",
+    "text": "your place",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 2,
+  "pVoices": [
+   {
+    "text": "We are a small team solving a real",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Work tied to helping learners get ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your decisions ship to real learne",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Product, design, and engineering w",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Together, we build a product that ",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Build the application experiences ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Turn learner needs and open questi",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Make learning tools clear, usable,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Explore learning approaches carefu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Bring classroom practice and conte",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Help coordinate the practical work",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "How we hire",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We are a small, early-stage team, ",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Read the role carefully and decide",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Send a concise introduction with t",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If selected, conversations focus o",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We explain the role, process, and ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "This page is the single source for",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "There are no public vacancies at t",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We want career information and con",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If you need an accessible format o",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For accessibility information abou",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understand deeply, build from what",
+    "dt": "",
+    "fs": "24px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "scroll-mt-32",
+    "linkCount": 2,
+    "lastDoor": "Introduce yourself"
+   },
+   {
+    "id": "(anon)",
+    "tag": "mx-auto max-w-[1240px] px-4",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "02-why",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "03-teams",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 12,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-hiring",
+    "tag": "scroll-mt-32 bg-[#f5f5f7] px-4",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-roles",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 2,
+    "lastDoor": "How our process works"
+   },
+   {
+    "id": "06-contact",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 2,
+    "lastDoor": "Visionary accessibility"
+   },
+   {
+    "id": "07-cta",
+    "tag": "bg-[#f5f5f7] px-4 text-center",
+    "linkCount": 2,
+    "lastDoor": "About Visionary"
+   }
+  ],
+  "doorGaps": [
+   "(anon)",
+   "02-why",
+   "04-hiring"
+  ]
+ },
+ "research": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "One intelligence, every learner.",
+    "tag": "SPAN",
+    "text": "every learner.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "We are building a mentor that know",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The product contract is simple to ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary Intelligence",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Md Shahid Ali · Founder and CEO",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Home became a decision: one clear ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Vision Boy and Vision Girl ship as",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Class-scoped communities where lea",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "One intelligence, researched acros",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "For students",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The Learn, Ask, Practice, and Buil",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Home is a decision, not a grid: on",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A lesson interrupted by a refresh ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A project that fails to save partw",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Deeper adaptation from real outcom",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For teachers",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Prepare, publish, and review class",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teacher preparation flows to publi",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Class-scoped communities with repo",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Classwork joins a student's Daily ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The same concept presented for the",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For parents",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Follow a child's learning through ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parent reports show only what the ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Private doubts and personal projec",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Clearer summaries of what changed ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For professionals",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A professional declares a goal; th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A professional goal becomes real p",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Progress is described by evidence.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Outcome-level claims that independ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For organizations",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Schools, colleges, coaching instit",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Organization setup flows to cohort",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "One account can switch roles witho",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Server-side authorization repeatin",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The learning loop the research fee",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Where questions become the experie",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learners, teachers, and parents gr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The mentor's intelligence is an ad",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The mentor began with a question, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The method stays the same: begin w",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary has not published formal",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The first question",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Asked at the founding of Visionary",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learning involves trust. The resea",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learners, teachers, and parents us",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Help turn these questions into a p",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Write to the Visionary team.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative overflow-hidden",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "02-mission",
+    "tag": "px-4 sm:px-6 lg:px-10",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "03-quote",
+    "tag": "px-4 sm:px-6 lg:px-10",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-latest",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 5,
+    "lastDoor": "Learn more"
+   },
+   {
+    "id": "05-areas",
+    "tag": "scroll-mt-32 bg-[#f5f5f7] px-4",
+    "linkCount": 5,
+    "lastDoor": "Explore the organization exper"
+   },
+   {
+    "id": "06-projects",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 1,
+    "lastDoor": "More about the product"
+   },
+   {
+    "id": "07-domains",
+    "tag": "px-4 sm:px-6 lg:px-10",
+    "linkCount": 1,
+    "lastDoor": "Explore how it works"
+   },
+   {
+    "id": "08-origin",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 2,
+    "lastDoor": "Contact the research team"
+   },
+   {
+    "id": "09-responsible",
+    "tag": "bg-[#f5f5f7] px-4 sm:px-6",
+    "linkCount": 2,
+    "lastDoor": "Privacy"
+   },
+   {
+    "id": "10-future",
+    "tag": "scroll-mt-32 px-4 sm:px-6",
+    "linkCount": 3,
+    "lastDoor": "research@visionary.org.in"
+   }
+  ],
+  "doorGaps": [
+   "01-hero",
+   "02-mission",
+   "03-quote"
+  ]
+ },
+ "community": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Communities and programs for everyone le",
+    "tag": "SPAN",
+    "text": "learning together.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Visionary communities",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "Class-scoped spaces where learners",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Class-scoped spaces to discuss, as",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Ask and discuss with the people yo",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Post projects from Build and see c",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teachers keep the space safe with ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Reports reach the teacher with rat",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Reported content waits for the tea",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Community visibility follows conse",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parent and organization views rend",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Organization cohorts share institu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Keep your journey moving with the ",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Follow what is changing across the",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See the loop the communities grow ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Clear answers when something is un",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Only the people in that class, plu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The report goes straight to the te",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "No. Communities are scoped to the ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The community follows the product'",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Yes. Class communities with teache",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Communities grow around real learn",
+    "dt": "",
+    "fs": "24px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "relative overflow-hidden bg-white",
+    "linkCount": 2,
+    "lastDoor": "Community safety"
+   },
+   {
+    "id": "02-find",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 6,
+    "lastDoor": "Cohort spaces Organization coh"
+   },
+   {
+    "id": "03-more",
+    "tag": "scroll-mt-36 bg-[#f5f5f7] px-6",
+    "linkCount": 3,
+    "lastDoor": "Get help Clear answers when so"
+   },
+   {
+    "id": "04-faq",
+    "tag": "scroll-mt-36 px-6 sm:px-8",
+    "linkCount": 5,
+    "lastDoor": "Is community available today?"
+   },
+   {
+    "id": "05-closing",
+    "tag": "bg-[#f5f5f7] px-6 text-center",
+    "linkCount": 2,
+    "lastDoor": "Read community safety"
+   }
+  ],
+  "doorGaps": []
+ },
+ "contact": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Guidance to get you going on Visionary",
+    "tag": "SPAN",
+    "text": "get you going",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Find the answers and support you n",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "From how-to guides to safety and c",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "From the basics to beyond: informa",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We reply within 2 business days. P",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Tell us what you were doing, what ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Write to safety@visionary.org.in. ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Under India's DPDP Act, 2023, writ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Yes. Write to partnerships@visiona",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For additional guidance, visit the",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Contact routes",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Each option opens a message in you",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "For general questions about the pr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For schools, colleges, coaching te",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Contact the safety team about a sa",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For journalists, writers, and othe",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For questions about the learning q",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "There are no public vacancies list",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Privacy grievance",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For a privacy grievance under Indi",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "We acknowledge grievances within 7",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your email app will open a draft. ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Do not include passwords, payment ",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "px-6 pb-14 pt-10",
+    "linkCount": 1,
+    "lastDoor": "Help center"
+   },
+   {
+    "id": "02-resources",
+    "tag": "scroll-mt-32 px-6 sm:px-8",
+    "linkCount": 10,
+    "lastDoor": "More Visionary resources"
+   },
+   {
+    "id": "03-faq",
+    "tag": "scroll-mt-32 px-6 sm:px-8",
+    "linkCount": 8,
+    "lastDoor": "Show more"
+   },
+   {
+    "id": "04-help",
+    "tag": "bg-[#f5f5f7] px-6 sm:px-8",
+    "linkCount": 2,
+    "lastDoor": "hello@visionary.org.in"
+   },
+   {
+    "id": "05-routes",
+    "tag": "scroll-mt-32 px-6 sm:px-8",
+    "linkCount": 6,
+    "lastDoor": "hello@visionary.org.in"
+   },
+   {
+    "id": "06-grievance",
+    "tag": "scroll-mt-32 bg-[#f5f5f7] px-6",
+    "linkCount": 1,
+    "lastDoor": "grievance@visionary.org.in"
+   },
+   {
+    "id": "07-hygiene",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 1,
+    "lastDoor": "Privacy policy"
+   }
+  ],
+  "doorGaps": []
+ },
+ "partners": {
+  "kickers": [
+   {
+    "tag": "TH",
+    "text": "WHAT IS INCLUDED",
+    "cls": "px-5 py-4 text-[12px] font-medium uppercase tracking-[0.12em] text-[#6e6e73]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   }
+  ],
+  "kickerCount": 1,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Better learning, together.",
+    "tag": "SPAN",
+    "text": "together.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Visionary partnerships",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "Education, technology, and local k",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Partnership enquiries receive a re",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Reply within 5 business days",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Three things, agreed honestly: ena",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "A partnership gives your team the ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Language journeys run in English, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We study how people learn with Vis",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Partnerships start from different ",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Schools and educators can share th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Technology teams can explore integ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "People with regional or language e",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Colleges, coaching institutes, and",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The same foundations for every par",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Every partnership begins as a conv",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "The process",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Four steps from a first note to wo",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Step 01",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Send your organization, the learne",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 02",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A short conversation about needs, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 03",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Where the idea fits, we agree a bo",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Step 04",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We start, review against the measu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every partnership begins with shar",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For organizations seeking support",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Tell us about your organization, l",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Straight answers about how partner",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Schools, school systems, colleges,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Partnership enquiries receive a re",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "There is no programme fee to start",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Not today. This page is the single",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learner data stays governed by the",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A five-minute note is enough to st",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "px-6 pb-16 pt-10",
+    "linkCount": 2,
+    "lastDoor": "See how it works"
+   },
+   {
+    "id": "02-what",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 5,
+    "lastDoor": ""
+   },
+   {
+    "id": "03-who",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-includes",
+    "tag": "scroll-mt-28 bg-[#f5f5f7] px-6",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "05-depth",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "06-journey",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "07-statement",
+    "tag": "bg-[#f5f5f7] px-6 sm:px-8",
+    "linkCount": 2,
+    "lastDoor": "Looking for support instead?"
+   },
+   {
+    "id": "08-support",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 2,
+    "lastDoor": ""
+   },
+   {
+    "id": "09-faq",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 7,
+    "lastDoor": "Show more"
+   },
+   {
+    "id": "10-cta",
+    "tag": "bg-[#f5f5f7] px-6 text-center",
+    "linkCount": 2,
+    "lastDoor": "Or use the contact routes"
+   }
+  ],
+  "doorGaps": [
+   "03-who",
+   "04-includes",
+   "05-depth",
+   "06-journey"
+  ]
+ },
+ "updates": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "What’s new at Visionary.",
+    "tag": "SPAN",
+    "text": "new",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "News & updates",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "Product news, new languages, and l",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary’s language journeys run ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "September 2026",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The changes, by category",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Each entry names the month it land",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Learn, Ask, Practice, Build: one w",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Language journeys run in English, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parents follow the journey with co",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Organizations see patterns across ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Discussions stay safe with one-tap",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Findings from real use shape the l",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teachers can prepare and publish c",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We update safety policies as we le",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Research & learning",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We study how people learn with Vis",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Stay in the loop",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Choose your topics and prepare an ",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Nothing is submitted from this pag",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We use your information according ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Questions about updates?",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "px-6 pb-14 pt-10",
+    "linkCount": 2,
+    "lastDoor": "Browse the latest"
+   },
+   {
+    "id": "02-featured",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 1,
+    "lastDoor": "See how the loop works"
+   },
+   {
+    "id": "03-latest",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 5,
+    "lastDoor": "Community and events"
+   },
+   {
+    "id": "04-evidence",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 1,
+    "lastDoor": "Read Research & News"
+   },
+   {
+    "id": "05-signup",
+    "tag": "scroll-mt-28 bg-[#f5f5f7] px-6",
+    "linkCount": 10,
+    "lastDoor": "Privacy Policy"
+   },
+   {
+    "id": "06-contact",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 1,
+    "lastDoor": "hello@visionary.org.in"
+   }
+  ],
+  "doorGaps": []
+ },
+ "referral": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Share a better way to learn.",
+    "tag": "SPAN",
+    "text": "learn.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Referral programme",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "Invite someone to explore Visionar",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Sending an invite",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The more personal the share, the m",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Copy the standard sign-up link and",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The link opens the same clear sign",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If it fits, they create an account",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Pointing them well",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A share lands better when the page",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "The learning companion that keeps ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Prepare, publish, and review class",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Progress across the whole institut",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Ready to share?",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "It opens Visionary registration. I",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Works for every persona, no accoun",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Copying this link does not registe",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "There is no cash reward, account c",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Good to know",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Straight answers about sharing Vis",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "No referral reward or discount is ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "No. The shareable link opens ordin",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Anyone. The link leads to Visionar",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Start with what they need. The how",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Yes. Write to hello@visionary.org.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "More questions? hello@visionary.or",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Share thoughtfully. Don’t include ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Follow what changes, or meet the p",
+    "dt": "",
+    "fs": "24px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "px-6 pb-14 pt-10",
+    "linkCount": 2,
+    "lastDoor": "How sharing works"
+   },
+   {
+    "id": "02-how",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 1,
+    "lastDoor": "Copy the link now"
+   },
+   {
+    "id": "03-point",
+    "tag": "bg-[#f5f5f7] px-6 sm:px-8",
+    "linkCount": 6,
+    "lastDoor": "or the partner programme"
+   },
+   {
+    "id": "04-share",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 3,
+    "lastDoor": "Open registration"
+   },
+   {
+    "id": "05-honesty",
+    "tag": "bg-[#f5f5f7] px-6 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "06-faq",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 7,
+    "lastDoor": "hello@visionary.org.in"
+   },
+   {
+    "id": "07-privacy",
+    "tag": "bg-[#f5f5f7] px-6 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "08-closing",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 2,
+    "lastDoor": "Meet the community"
+   }
+  ],
+  "doorGaps": [
+   "05-honesty",
+   "07-privacy"
+  ]
+ },
+ "safety": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Safe by design, for every learner.",
+    "tag": "SPAN",
+    "text": "for every learner.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "The questions you ask every day, safer i",
+    "tag": "SPAN",
+    "text": "safer in all kinds of ways.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H3",
+    "hText": "Safety that fits the learner.",
+    "tag": "SPAN",
+    "text": "the learner.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H3",
+    "hText": "On from the first question.",
+    "tag": "SPAN",
+    "text": "first question.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H3",
+    "hText": "Your memory is yours.",
+    "tag": "SPAN",
+    "text": "yours.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "Set boundaries that are right for your f",
+    "tag": "SPAN",
+    "text": "right for your family.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "Seen something wrong? Flag it.",
+    "tag": "SPAN",
+    "text": "Flag it.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   }
+  ],
+  "blueCount": 7,
+  "pVoices": [
+   {
+    "text": "Protection is on from the start. S",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You shouldn't have to configure sa",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Age-aware experiences",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Safety guidance and product bounda",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Safe by default",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Core safeguards are part of the ex",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Private by design",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parents follow progress through co",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We work directly with the realitie",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "For parents",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parents and guardians follow the j",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For families",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Set boundaries that shape what you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For organizations",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Institutions see patterns across c",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Reporting is one tap away everywhe",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Flag",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Every answer can be flagged in one",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Review",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Safety reports are reviewed by a h",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Policy",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We review our safety policies regu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Most safety problems start with a ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Last updated: September 2026",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Tour the product's guardrails end ",
+    "dt": "",
+    "fs": "24px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "01-hero",
+    "tag": "px-6 pb-14 pt-10",
+    "linkCount": 4,
+    "lastDoor": "Before you share"
+   },
+   {
+    "id": "02-statement",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "03-protections",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "04-family",
+    "tag": "scroll-mt-28 bg-[#f5f5f7] px-6",
+    "linkCount": 3,
+    "lastDoor": "See organization features"
+   },
+   {
+    "id": "05-reporting",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 3,
+    "lastDoor": "Read the terms"
+   },
+   {
+    "id": "06-share",
+    "tag": "scroll-mt-28 px-6 sm:px-8",
+    "linkCount": 2,
+    "lastDoor": "Read the privacy policy"
+   },
+   {
+    "id": "07-closing",
+    "tag": "px-6 sm:px-8 lg:px-10",
+    "linkCount": 2,
+    "lastDoor": "Explore how it works"
+   }
+  ],
+  "doorGaps": [
+   "02-statement",
+   "03-protections"
+  ]
+ },
+ "privacy": {
+  "kickers": [
+   {
+    "tag": "DIV",
+    "text": "IN THIS POLICY",
+    "cls": "mb-4 text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   },
+   {
+    "tag": "SPAN",
+    "text": "In this policy",
+    "cls": "block text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   }
+  ],
+  "kickerCount": 2,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Your learning is personal. Privacy shoul",
+    "tag": "SPAN",
+    "text": "Privacy should be clear.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "For safety and security details, s",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Privacy policy",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "This policy explains what informat",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Review your data",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "Looking to see what is stored on t",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "Effective September 2026",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Start here",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The information involved depends o",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The email or identity details used",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Questions, materials, practice act",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Basic browser, device, and Visiona",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Choices such as language, accessib",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We use personal information to pro",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Answer questions, guide practice, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Retain selected learning records, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Diagnose issues, understand servic",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Prevent misuse, and keep accounts ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Service updates, and the email upd",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visibility follows the workspace r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Student",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learners can review their own work",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Teacher",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Class-linked learning evidence is ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Parent",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A parent view contains shared prog",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Institution",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The organization view is designed ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Service providers",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Trusted providers may process info",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We may also share information to m",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your controls depend on where info",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Inspect the personal workspace rec",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Change available language, audio, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "No self-service account export is ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Send an account or record deletion",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary uses access controls, se",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You can contact us to ask about pe",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "01",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Tell us which workspace or record ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "02",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Describe the account or informatio",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "03",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Review what is stored in this brow",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Send a privacy request",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We acknowledge grievances within 7",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Workspace records stored locally r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your privacy options.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Where a learner is a child under t",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Depending on how you use Visionary",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "To provide the service, keep your ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your account's role decides it. St",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We keep information only for as lo",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You can review the controls availa",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Information saved only on a device",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For questions about this policy or",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Grievance Officer (DPDP Act, 2023)",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "grievance@visionary.org.in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We acknowledge grievances within 7",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Workspace",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The learning environment you use i",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Learning records",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The activity and progress tied to ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Browser-local storage",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Records saved in your browser on t",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Account services",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The connected features that need a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Grievance officer",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The named person responsible for r",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "DPDP Act",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "India's Digital Personal Data Prot",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Essential cookies only.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "How your information is protected.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Guardrails for every learner.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Built for every kind of learner.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "(anon)",
+    "tag": "py-12",
+    "linkCount": 3,
+    "lastDoor": "03 Choose what happens next Fi"
+   },
+   {
+    "id": "what-we-collect",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "purpose",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "sharing",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "your-controls",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 5,
+    "lastDoor": "Review security practices"
+   },
+   {
+    "id": "security",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "How security works at Visionar"
+   },
+   {
+    "id": "data-requests",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "Contact the Grievance officer"
+   },
+   {
+    "id": "retention",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "younger-learners",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "How safety works for younger l"
+   },
+   {
+    "id": "explainers",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 6,
+    "lastDoor": "Does my information sync acros"
+   },
+   {
+    "id": "grievance-officer",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "grievance@visionary.org.in"
+   },
+   {
+    "id": "(anon)",
+    "tag": "px-6 py-16 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "(anon)",
+    "tag": "border-t border-[rgba(18,19,23,0.12)] px",
+    "linkCount": 4,
+    "lastDoor": "Accessibility Built for every "
+   }
+  ],
+  "doorGaps": [
+   "what-we-collect",
+   "purpose",
+   "sharing",
+   "retention",
+   "(anon)"
+  ]
+ },
+ "terms": {
+  "kickers": [
+   {
+    "tag": "DIV",
+    "text": "IN THIS POLICY",
+    "cls": "mb-4 text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   },
+   {
+    "tag": "SPAN",
+    "text": "In this policy",
+    "cls": "block text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   }
+  ],
+  "kickerCount": 2,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Clear rules, written to be understood.",
+    "tag": "SPAN",
+    "text": "to be understood.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "These Terms are read together with",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Terms of service",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "What you can expect from Visionary",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Questions about these Terms?",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "The team reads every message about",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "Effective September 2026",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Start here",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You may use Visionary only if you ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For younger learners, use of Visio",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If you are using Visionary on beha",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The final minimum-age and parental",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use Visionary to support learning,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You are responsible for how you us",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Keep Visionary useful and safe for",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary provides technology desi",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Features may change over time. We ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary can provide useful infor",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For decisions that require profess",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary is a learning and produc",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You remain responsible for the con",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You must have the necessary rights",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When operating Visionary requires ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your Privacy Policy explains separ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Keep your account information accu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You must not use another person's ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For organizational accounts, an au",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Some Visionary features or service",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Prices, billing periods, available",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A subscription does not transfer o",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The published Terms must stay cons",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Products change. These Terms may n",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We may update, suspend, or discont",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "When changes to these Terms are ma",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The updated Terms will show a new ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We may restrict, suspend, or termi",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Where reasonably possible and lega",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary operates subject to appl",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We do not promise that the service",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You remain responsible for reviewi",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Any limitation of liability, warra",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If there is a disagreement, contac",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If a dispute cannot be resolved in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Final jurisdiction, arbitration, g",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Questions about these Terms? Conta",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For privacy, safety, account, bill",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The learning workspace, its featur",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Workspace",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The learning environment you use i",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Content",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "What you submit, upload, create, o",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Plans",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Paid feature sets with the prices,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Organization administrator",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A person authorized to accept thes",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Service protections",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The usage limits, security measure",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your learning is personal.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Essential cookies only.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Guardrails for every learner.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Built for every kind of learner.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "(anon)",
+    "tag": "py-12",
+    "linkCount": 3,
+    "lastDoor": "03 See how plans work Billing,"
+   },
+   {
+    "id": "who-can-use",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "what-you-can-do",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "what-you-cannot-do",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "what-we-provide",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "your-content",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "Read the privacy policy"
+   },
+   {
+    "id": "your-account",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "plans-payments",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "See the Pricing page"
+   },
+   {
+    "id": "changes",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "restriction",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "responsibility",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "disputes",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "contact",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "legal@visionary.org.in"
+   },
+   {
+    "id": "(anon)",
+    "tag": "px-6 py-16 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "(anon)",
+    "tag": "border-t border-[rgba(18,19,23,0.12)] px",
+    "linkCount": 4,
+    "lastDoor": "Accessibility Built for every "
+   }
+  ],
+  "doorGaps": [
+   "who-can-use",
+   "what-you-can-do",
+   "what-you-cannot-do",
+   "what-we-provide",
+   "your-account",
+   "changes",
+   "restriction",
+   "responsibility",
+   "disputes",
+   "(anon)"
+  ]
+ },
+ "security": {
+  "kickers": [
+   {
+    "tag": "DIV",
+    "text": "IN THIS POLICY",
+    "cls": "mb-4 text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   },
+   {
+    "tag": "SPAN",
+    "text": "In this policy",
+    "cls": "block text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   }
+  ],
+  "kickerCount": 2,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Secure by design, protected end to end.",
+    "tag": "SPAN",
+    "text": "protected end to end.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "Security and privacy work together",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Security",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "Encryption, access controls, and c",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Found a security issue?",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "A clear description and the affect",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "Effective September 2026",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Start here",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Security starts with understanding",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Depending on how you use Visionary",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The privacy policy explains what i",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Security protects information. Pri",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Information can move between your ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary uses encrypted HTTPS con",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A secure connection protects infor",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Information that needs to remain a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Stored information is protected th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We design security around reducing",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Some workspace information can rem",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Not everyone who works on a system",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary limits access to systems",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Access is tied to authorized ident",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Access is limited to the systems a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Student, teacher, parent, and orga",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Security is not separate from priv",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You should be able to understand w",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "See what information Visionary col",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Keep your account credentials secu",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A secure product is never finished",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Software changes. New vulnerabilit",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Our engineering and operations pra",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "This page describes our security a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Finding a security problem is the ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If you believe you have discovered",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Include a clear description, the a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Use appropriate technical and orga",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Restrict access to systems and inf",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Investigate reported security conc",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Avoid making security promises tha",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Sign in with your Sync Encrypted I",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "One encrypted identity opens Visio",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Progress, notes, and memory sync a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Review the devices signed in to yo",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Security questions, vulnerability ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For privacy, safety, account, bill",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Encryption",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Scrambling information while it tr",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "HTTPS",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The encrypted connection used betw",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Sync Encrypted ID",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The single encrypted identity that",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Role-based access",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Access limited to what a student, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Workspace records",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The questions, practice, and proje",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Vulnerability",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A weakness that could be exploited",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your learning is personal.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Clear rules, written to be underst",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Essential cookies only.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Guardrails for every learner.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "(anon)",
+    "tag": "py-12",
+    "linkCount": 3,
+    "lastDoor": "03 Carry it across devices One"
+   },
+   {
+    "id": "your-information",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "protected-in-transit",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "protected-when-stored",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "access-controlled",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "your-control",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "security-over-time",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "report-security",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 1,
+    "lastDoor": "security@visionary.org.in"
+   },
+   {
+    "id": "commitments",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "sync-devices",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 3,
+    "lastDoor": "Review your devices"
+   },
+   {
+    "id": "contact",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 2,
+    "lastDoor": "Visit the Help center"
+   },
+   {
+    "id": "(anon)",
+    "tag": "px-6 py-16 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "(anon)",
+    "tag": "border-t border-[rgba(18,19,23,0.12)] px",
+    "linkCount": 4,
+    "lastDoor": "Safety Guardrails for every le"
+   }
+  ],
+  "doorGaps": [
+   "your-information",
+   "protected-in-transit",
+   "protected-when-stored",
+   "access-controlled",
+   "your-control",
+   "security-over-time",
+   "commitments",
+   "(anon)"
+  ]
+ },
+ "accessibility": {
+  "kickers": [],
+  "kickerCount": 0,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "Help every learner learn how they learn ",
+    "tag": "SPAN",
+    "text": "how they learn best.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   },
+   {
+    "hTag": "H2",
+    "hText": "Make information easier to read.",
+    "tag": "SPAN",
+    "text": "to read.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "Use your voice or your ears.",
+    "tag": "SPAN",
+    "text": "or your ears.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "Operated the way you already do.",
+    "tag": "SPAN",
+    "text": "you already do.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "The same idea, more than one way in.",
+    "tag": "SPAN",
+    "text": "more than one way in.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "One person. Every device. Anywhere.",
+    "tag": "SPAN",
+    "text": "Anywhere.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   },
+   {
+    "hTag": "H2",
+    "hText": "Accessibility is part of our design DNA.",
+    "tag": "SPAN",
+    "text": "our design DNA.",
+    "color": "rgb(0, 102, 204)",
+    "bg": ""
+   }
+  ],
+  "blueCount": 7,
+  "pVoices": [
+   {
+    "text": "Accessibility",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "One product, many ways in: vision,",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The goal is not to make everyone u",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Accessibility shapes the product e",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Seeing and reading",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visual presentation decides whethe",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Information stays structured when ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Clear hierarchy, readable typograp",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Works with browser and operating-s",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Movement respects the reduced-moti",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Hearing and speaking",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Voice can make interaction more na",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Voice interaction provides another",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Spoken output makes explanations e",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "A conversational interface reduces",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Voice, audio, and caption availabi",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Motor and navigation",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "An accessible interface is also an",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "The experience supports keyboard i",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Clear focus states show where you ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Controls are sized and spaced for ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Works with the input methods and a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Language and understanding",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Understanding should not depend on",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Language journeys run in English, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The interface favors clear, unders",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "One tap on any answer flags it for",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Read, hear, speak, or navigate: ac",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Sync & devices",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Sign in with your Sync Encrypted I",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "End to end encrypted. The key stay",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "One Sync Encrypted ID. The encrypt",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Resources",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Move at your own speed. Every reso",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Accessibility is not a checkbox th",
+    "dt": "",
+    "fs": "24px"
+   },
+   {
+    "text": "Accessibility is part of product d",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Accessibility becomes better when ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We avoid accessibility claims the ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary grows from the idea that",
+    "dt": "",
+    "fs": "24px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "(anon)",
+    "tag": "px-6 pb-12 pt-10",
+    "linkCount": 6,
+    "lastDoor": "Sync & devices"
+   },
+   {
+    "id": "(anon)",
+    "tag": "border-y border-[rgba(18,19,23,0.12)] px",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "vision",
+    "tag": "scroll-mt-28 px-6 py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "voice",
+    "tag": "scroll-mt-28 px-6 py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "motor",
+    "tag": "scroll-mt-28 px-6 py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "language",
+    "tag": "scroll-mt-28 px-6 py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "sync",
+    "tag": "scroll-mt-28 px-6 py-16",
+    "linkCount": 2,
+    "lastDoor": "Review your devices"
+   },
+   {
+    "id": "resources",
+    "tag": "scroll-mt-28 border-t border-[rgba(18,19",
+    "linkCount": 5,
+    "lastDoor": "Tell us what is missing Descri"
+   },
+   {
+    "id": "(anon)",
+    "tag": "border-t border-[rgba(18,19,23,0.12)] px",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "(anon)",
+    "tag": "px-6 pb-24 sm:px-8",
+    "linkCount": 2,
+    "lastDoor": "Explore the product"
+   }
+  ],
+  "doorGaps": [
+   "(anon)",
+   "vision",
+   "voice",
+   "motor",
+   "language",
+   "(anon)"
+  ]
+ },
+ "cookies": {
+  "kickers": [
+   {
+    "tag": "DIV",
+    "text": "IN THIS POLICY",
+    "cls": "mb-4 text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   },
+   {
+    "tag": "SPAN",
+    "text": "In this policy",
+    "cls": "block text-[12px] font-medium uppercase tracking-[0.12em]",
+    "fs": "12px",
+    "ls": "1.44px",
+    "fw": "500",
+    "color": "rgb(110, 110, 115)"
+   }
+  ],
+  "kickerCount": 2,
+  "blueInHeads": [
+   {
+    "hTag": "H1",
+    "hText": "How we use cookies. And how you control ",
+    "tag": "SPAN",
+    "text": "you control them.",
+    "color": "rgba(0, 0, 0, 0)",
+    "bg": "linear-gradient(92deg, rgb(0, 102, 204) 0%, rgb(41, 151, 255) 100%)"
+   }
+  ],
+  "blueCount": 1,
+  "pVoices": [
+   {
+    "text": "For how personal information is ha",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Cookie policy",
+    "dt": "",
+    "fs": "21px"
+   },
+   {
+    "text": "The short version, then the full l",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Manage cookies on this device",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "Optional choices are saved in this",
+    "dt": "",
+    "fs": "16px"
+   },
+   {
+    "text": "Effective September 2026",
+    "dt": "",
+    "fs": "14px"
+   },
+   {
+    "text": "Start here",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Cookies are small files a website ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Visionary uses them to keep you si",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "No advertising cookies. No trackin",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "These support sign-in, security, a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We don't use cookies to show you a",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "If we use analytics cookies, we as",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Each type does one job. Here is th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Session cookies",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Keep you signed in while you use V",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Preference cookies",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Remember things like your language",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Analytics (optional)",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Help us understand what's working ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Optional choices are saved in this",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Required for sign-in, security, an",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Remember choices such as language ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Allow product measurement that hel",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "You control them, always. Clear th",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your cookie options.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "We're transparent about every cook",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Write to the team",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "hello@visionary.org.in",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "For how personal information is ha",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Cookies",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Small files a website saves in you",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Essential cookies",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "The cookies required for sign-in, ",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Preference cookies",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Cookies that remember choices such",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Analytics cookies",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Optional cookies that measure what",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Browser storage",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Where cookies and on-device record",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Consent",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your explicit yes before we use op",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Your learning is personal.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Clear rules, written to be underst",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "How your information is protected.",
+    "dt": "",
+    "fs": "17px"
+   },
+   {
+    "text": "Built for every kind of learner.",
+    "dt": "",
+    "fs": "17px"
+   }
+  ],
+  "doors": [
+   {
+    "id": "(anon)",
+    "tag": "py-12",
+    "linkCount": 3,
+    "lastDoor": "03 Set your choices Turn optio"
+   },
+   {
+    "id": "what-cookies-are",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "principles",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "types",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "preferences",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 4,
+    "lastDoor": "Save choices"
+   },
+   {
+    "id": "managing",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "contact",
+    "tag": "scroll-mt-24 py-14 sm:py-16",
+    "linkCount": 2,
+    "lastDoor": "Read the privacy policy"
+   },
+   {
+    "id": "(anon)",
+    "tag": "px-6 py-16 sm:px-8",
+    "linkCount": 0,
+    "lastDoor": ""
+   },
+   {
+    "id": "(anon)",
+    "tag": "border-t border-[rgba(18,19,23,0.12)] px",
+    "linkCount": 4,
+    "lastDoor": "Accessibility Built for every "
+   }
+  ],
+  "doorGaps": [
+   "what-cookies-are",
+   "principles",
+   "types",
+   "managing",
+   "(anon)"
+  ]
+ }
+}

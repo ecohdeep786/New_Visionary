@@ -1,0 +1,333 @@
+{
+ "w1440": {
+  "width": 1440,
+  "pageOverflowX": 0,
+  "bodyOverflowers": 0,
+  "overflowScrollers": [
+   {
+    "scroll": 1240,
+    "client": 1240,
+    "isScroll": false
+   }
+  ],
+  "tableCols": 4,
+  "entRows": 11,
+  "firstCellVoice": {
+   "color": "rgb(29, 29, 31)"
+  },
+  "priceVoices": [
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹0"
+   },
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹249"
+   },
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹415"
+   }
+  ],
+  "fineVoices": [
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Free forever · no card required"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Billed yearly (₹2990) · 2 months free"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Billed yearly (₹4990) · 2 months free"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Pricing shaped with you · pilots available"
+   }
+  ],
+  "ctaPills": [
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Start for free",
+    "href": "/register?plan=start"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Get Personal",
+    "href": "/dashboard/subscription?plan=personal&billing=annual"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Get Family",
+    "href": "/dashboard/subscription?plan=family&billing=annual"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Contact Visionary",
+    "href": "/contact"
+   }
+  ],
+  "faq": {
+   "q": "Can I start free?",
+   "expanded": "false",
+   "afterClickExpanded": true
+  },
+  "stickyHeaderTopAtScroll": 56
+ },
+ "w768": {
+  "width": 768,
+  "pageOverflowX": 0,
+  "bodyOverflowers": 0,
+  "overflowScrollers": [
+   {
+    "scroll": 860,
+    "client": 720,
+    "isScroll": true
+   }
+  ],
+  "tableCols": 4,
+  "entRows": 11,
+  "firstCellVoice": {
+   "color": "rgb(29, 29, 31)"
+  },
+  "priceVoices": [
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹0"
+   },
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹249"
+   },
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹415"
+   }
+  ],
+  "fineVoices": [
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Free forever · no card required"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Billed yearly (₹2990) · 2 months free"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Billed yearly (₹4990) · 2 months free"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Pricing shaped with you · pilots available"
+   }
+  ],
+  "ctaPills": [
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Start for free",
+    "href": "/register?plan=start"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Get Personal",
+    "href": "/dashboard/subscription?plan=personal&billing=annual"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Get Family",
+    "href": "/dashboard/subscription?plan=family&billing=annual"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Contact Visionary",
+    "href": "/contact"
+   }
+  ],
+  "faq": {
+   "q": "Can I start free?",
+   "expanded": "false",
+   "afterClickExpanded": true
+  }
+ },
+ "w390": {
+  "width": 390,
+  "pageOverflowX": 0,
+  "bodyOverflowers": 0,
+  "overflowScrollers": [
+   {
+    "scroll": 860,
+    "client": 358,
+    "isScroll": true
+   }
+  ],
+  "tableCols": 4,
+  "entRows": 11,
+  "firstCellVoice": {
+   "color": "rgb(29, 29, 31)"
+  },
+  "priceVoices": [
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹0"
+   },
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹249"
+   },
+   {
+    "fs": "28px",
+    "fw": "500",
+    "ls": "-0.616px",
+    "lh": "32.2px",
+    "text": "₹415"
+   }
+  ],
+  "fineVoices": [
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Free forever · no card required"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Billed yearly (₹2990) · 2 months free"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Billed yearly (₹4990) · 2 months free"
+   },
+   {
+    "fs": "12px",
+    "lh": "18px",
+    "ls": "normal",
+    "color": "rgb(110, 110, 115)",
+    "text": "Pricing shaped with you · pilots available"
+   }
+  ],
+  "ctaPills": [
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Start for free",
+    "href": "/register?plan=start"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Get Personal",
+    "href": "/dashboard/subscription?plan=personal&billing=annual"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Get Family",
+    "href": "/dashboard/subscription?plan=family&billing=annual"
+   },
+   {
+    "bg": "rgb(0, 102, 204)",
+    "fs": "17px",
+    "h": 44,
+    "text": "Contact Visionary",
+    "href": "/contact"
+   }
+  ],
+  "faq": {
+   "q": "Can I start free?",
+   "expanded": "false",
+   "afterClickExpanded": true
+  }
+ },
+ "billingSwitch": {
+  "annual": "₹0|₹249|₹415",
+  "monthly": "₹0|₹299|₹499",
+  "changed": true
+ },
+ "billingHref": "/dashboard/subscription?plan=personal&billing=monthly",
+ "truthRows": {
+  "match": true,
+  "count": 11
+ },
+ "pinnedColumn": {
+  "before": 24,
+  "afterScroll": 24,
+  "pinned": true
+ }
+}

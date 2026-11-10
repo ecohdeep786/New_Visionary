@@ -1,0 +1,8072 @@
+{
+ "home@1440": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "One intelligence\nfor students.",
+    "fs": "16px",
+    "fw": "400",
+    "lh": "24px",
+    "ls": "normal",
+    "h": 206
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "67.2px",
+    "ls": "-0.96px",
+    "h": 67
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "section",
+    "text": "Teaching everyone is possible.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 136
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "emphasis",
+    "text": "What if your intelligence neve",
+    "fs": "64px",
+    "fw": "700",
+    "lh": "67.2px",
+    "ls": "-0.96px",
+    "h": 202
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "card-chapter",
+    "text": "One intelligence, five journey",
+    "fs": "48px",
+    "fw": "600",
+    "lh": "52.0032px",
+    "ls": "-0.432px",
+    "h": 104
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "card-chapter",
+    "text": "Explore further.",
+    "fs": "48px",
+    "fw": "600",
+    "lh": "52.0032px",
+    "ls": "-0.432px",
+    "h": 52
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your learning stays yours.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your next step starts here.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 64
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your hours stack.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 32
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your place is kept.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 32
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your language works.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 32
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your progress shows.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 32
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Organization",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Download",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "",
+    "text": "Pricing",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "",
+    "text": "Help",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "",
+    "text": "Updates",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Security",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to usi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Stories from a teacher, a pare",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "Why Visionary exists",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Effort isn't the gap. Knowing ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I taught the whole class. Half",
+    "fs": "33.12px",
+    "fw": "500",
+    "lh": "41.0688px",
+    "ls": "-0.3312px",
+    "h": 123
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "A teacher",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "What you get",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "card-chapter",
+    "text": "“A person should not have to s",
+    "fs": "48px",
+    "fw": "600",
+    "lh": "52.0032px",
+    "ls": "-0.432px",
+    "h": 156
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "value-body",
+    "text": "Every lesson builds on the las",
+    "fs": "19px",
+    "fw": "400",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 46
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "value-body",
+    "text": "Visionary remembers where you ",
+    "fs": "19px",
+    "fw": "400",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 46
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start learning",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "a",
+    "dt": "",
+    "text": "See how it works",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "student@1440": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Learning,\nLearning, to master,",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "69.12px",
+    "ls": "-0.576px",
+    "h": 69
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every student struggles with\nu",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 131
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Learning that\nmoves with you.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 132
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "67.2px",
+    "ls": "-0.96px",
+    "h": 67
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "The words change.\nUnderstandin",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what you can achieve.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame intelligence.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your intelligence stays yours.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 64
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your learning starts with wher",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what you're learnin",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "See it. Hear it.\nAsk it anothe",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Practice what you're learning.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Build from what you know.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 32
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what you're learnin",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "See it. Hear it.\nAsk it anothe",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Practice what you're learning.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Build from what you know.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Primary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Secondary and higher secondary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 42
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Every concept you understand b",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "31.92px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Student learning challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "Where understanding slips",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Studying isn't the difficulty.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I studied for hours. I still c",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever you begin, Visionary ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Primary. From your first quest",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to usi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary continues from where",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start learning free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "teacher@1440": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Teaching.\nTeaching, to grow, t",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "69.12px",
+    "ls": "-0.576px",
+    "h": 69
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every teacher wonders about\nun",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 131
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Teaching that\nmoves with your ",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 132
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "67.2px",
+    "ls": "-0.96px",
+    "h": 67
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Teach your way.\nExplain your w",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your class can achiev",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame teaching.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your teaching stays yours.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 64
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your teaching starts with wher",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what your class is ",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Show it, hear it, teach it ano",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know who's with you before the",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Learn what your teaching deman",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what your class is ",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Show it, hear it, teach it ano",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know who's with you before the",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Learn what your teaching deman",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Lesson planning",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "In class",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "One class, many minds. See who",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "31.92px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Teacher challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What the classroom hides",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Teaching isn't the difficulty.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I taught the whole class. Half",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your class begins, Vi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Lesson planning. Start from wh",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "For you and your class, from f",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary continues from where",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start teaching free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "parent@1440": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Parenting.\nParenting, to see, ",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "69.12px",
+    "ls": "-0.576px",
+    "h": 69
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every parent wonders about\npro",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 131
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Learning that\nmoves with them.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 132
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "67.2px",
+    "ls": "-0.96px",
+    "h": 67
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's progress.\nIn your",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your child can achiev",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame understanding.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's learning stays th",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 64
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's journey is alread",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "What your child understood thi",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know where your child is stuck",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "See which way learning is movi",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "You see more when everyone sha",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "What your child understood thi",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know where your child is stuck",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "See which way learning is movi",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "You see more when everyone sha",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Early years",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Primary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Know what your child is learni",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "31.92px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Parent concerns",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What report cards miss",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Caring isn't the difficulty. S",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "The report card says fine. I s",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your child begins, Vi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Early years. First questions, ",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to the",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Not just what was covered. Wha",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "professional@1440": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Building.\nBuilding, to apply, ",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "69.12px",
+    "ls": "-0.576px",
+    "h": 69
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every professional wonders abo",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 195
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Work that\nmoves with your care",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 132
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "67.2px",
+    "ls": "-0.96px",
+    "h": 67
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your work.\nIn your language.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what you can achieve.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame work.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your work stays yours.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 64
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your next project is already i",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand the work before you",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Turn every project into a less",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Carry your expertise across te",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know what your work is actuall",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand the work before you",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Turn every project into a less",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Carry your expertise across te",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know what your work is actuall",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Early Career",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Mid-Level",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Turn what you learn into work ",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "31.92px",
+    "ls": "0.196px",
+    "h": 96
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Career learning challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What work doesn't show",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Working isn't the difficulty. ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I took three courses. I still ",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your career begins, V",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Early Career. Turn every first",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first problem to usin",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary reads the context, r",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 61
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start building free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "organization@1440": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Leading.\nLeading, to scale, to",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "69.12px",
+    "ls": "-0.576px",
+    "h": 69
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every organization wonders abo",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 195
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every organization learns diff",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 196
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "67.2px",
+    "ls": "-0.96px",
+    "h": 67
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your organization.\nIn every la",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your organization can",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 136
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "Individual journeys.\nShared in",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your people's learning stays y",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Bring Visionary to your organi",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "64px",
+    "ls": "-0.576px",
+    "h": 128
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "64px",
+    "fw": "600",
+    "lh": "68px",
+    "ls": "-0.576px",
+    "h": 68
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "See what people understand.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Find gaps before they spread.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Support every role from one sy",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 64
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Improve the next decision.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 32
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "See what people understand.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Find gaps before they spread.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Support every role from one sy",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Improve the next decision.",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "32px",
+    "ls": "0.196px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Schools",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Colleges and universities",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "19.8333px",
+    "ls": "0.153px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "One intelligence across every ",
+    "fs": "28px",
+    "fw": "600",
+    "lh": "31.92px",
+    "ls": "0.196px",
+    "h": 96
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Organization learning challeng",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What you can't see",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Learning isn't the difficulty.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "We rolled out three learning t",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "One intelligence, shaped to th",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Schools. Connect students, tea",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "Every learner, teacher, and pr",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Learning activity becomes a cl",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Talk to us",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "home@1024": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "One intelligence\nfor students.",
+    "fs": "16px",
+    "fw": "400",
+    "lh": "24px",
+    "ls": "normal",
+    "h": 143
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "59.5px",
+    "ls": "-0.504px",
+    "h": 60
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "section",
+    "text": "Teaching everyone is possible.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 182
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "emphasis",
+    "text": "What if your intelligence neve",
+    "fs": "56px",
+    "fw": "700",
+    "lh": "59.5px",
+    "ls": "-0.84px",
+    "h": 179
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "card-chapter",
+    "text": "One intelligence, five journey",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.36px",
+    "h": 88
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "card-chapter",
+    "text": "Explore further.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.36px",
+    "h": 44
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your learning stays yours.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your next step starts here.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 56
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your hours stack.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your place is kept.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your language works.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your progress shows.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Organization",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Download",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "",
+    "text": "Pricing",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "",
+    "text": "Help",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "",
+    "text": "Updates",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Security",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to usi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Stories from a teacher, a pare",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "Why Visionary exists",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Effort isn't the gap. Knowing ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I taught the whole class. Half",
+    "fs": "24px",
+    "fw": "500",
+    "lh": "29.76px",
+    "ls": "-0.24px",
+    "h": 79
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "A teacher",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "What you get",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "card-chapter",
+    "text": "“A person should not have to s",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.36px",
+    "h": 132
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "value-body",
+    "text": "Every lesson builds on the las",
+    "fs": "19px",
+    "fw": "400",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 46
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "value-body",
+    "text": "Visionary remembers where you ",
+    "fs": "19px",
+    "fw": "400",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 46
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start learning",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "a",
+    "dt": "",
+    "text": "See how it works",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "student@1024": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Learning,\nLearning, to master,",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "61.6px",
+    "ls": "normal",
+    "h": 62
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every student struggles with\nu",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Learning that\nmoves with you.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "59.5px",
+    "ls": "-0.504px",
+    "h": 60
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "The words change.\nUnderstandin",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what you can achieve.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame intelligence.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your intelligence stays yours.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your learning starts with wher",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what you're learnin",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "See it. Hear it.\nAsk it anothe",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Practice what you're learning.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Build from what you know.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what you're learnin",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "See it. Hear it.\nAsk it anothe",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Practice what you're learning.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Build from what you know.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Primary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Secondary and higher secondary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 42
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Every concept you understand b",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28.08px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Student learning challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "Where understanding slips",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Studying isn't the difficulty.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I studied for hours. I still c",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever you begin, Visionary ",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Primary. From your first quest",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to usi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary continues from where",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start learning free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "teacher@1024": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Teaching.\nTeaching, to grow, t",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "61.6px",
+    "ls": "normal",
+    "h": 62
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every teacher wonders about\nun",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Teaching that\nmoves with your ",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "59.5px",
+    "ls": "-0.504px",
+    "h": 60
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Teach your way.\nExplain your w",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your class can achiev",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 122
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame teaching.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your teaching stays yours.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 56
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your teaching starts with wher",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what your class is ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Show it, hear it, teach it ano",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know who's with you before the",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Learn what your teaching deman",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what your class is ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Show it, hear it, teach it ano",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know who's with you before the",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Learn what your teaching deman",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Lesson planning",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "In class",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "One class, many minds. See who",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28.08px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Teacher challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What the classroom hides",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Teaching isn't the difficulty.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I taught the whole class. Half",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your class begins, Vi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Lesson planning. Start from wh",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "For you and your class, from f",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary continues from where",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start teaching free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "parent@1024": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Parenting.\nParenting, to see, ",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "61.6px",
+    "ls": "normal",
+    "h": 62
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every parent wonders about\npro",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Learning that\nmoves with them.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "59.5px",
+    "ls": "-0.504px",
+    "h": 60
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's progress.\nIn your",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your child can achiev",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame understanding.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's learning stays th",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's journey is alread",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "What your child understood thi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know where your child is stuck",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "See which way learning is movi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "You see more when everyone sha",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "What your child understood thi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know where your child is stuck",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "See which way learning is movi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "You see more when everyone sha",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Early years",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Primary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Know what your child is learni",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28.08px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Parent concerns",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What report cards miss",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Caring isn't the difficulty. S",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "The report card says fine. I s",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your child begins, Vi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Early years. First questions, ",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to the",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Not just what was covered. Wha",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "professional@1024": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Building.\nBuilding, to apply, ",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "61.6px",
+    "ls": "normal",
+    "h": 62
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every professional wonders abo",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Work that\nmoves with your care",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "59.5px",
+    "ls": "-0.504px",
+    "h": 60
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your work.\nIn your language.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what you can achieve.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame work.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your work stays yours.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 56
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your next project is already i",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand the work before you",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Turn every project into a less",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Carry your expertise across te",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know what your work is actuall",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand the work before you",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Turn every project into a less",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Carry your expertise across te",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know what your work is actuall",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Early Career",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Mid-Level",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Turn what you learn into work ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28.08px",
+    "ls": "0.216px",
+    "h": 84
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Career learning challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What work doesn't show",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Working isn't the difficulty. ",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I took three courses. I still ",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your career begins, V",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Early Career. Turn every first",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first problem to usin",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 28
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary reads the context, r",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 61
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start building free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "organization@1024": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Leading.\nLeading, to scale, to",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "61.6px",
+    "ls": "normal",
+    "h": 62
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every organization wonders abo",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 115
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every organization learns diff",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 171
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "59.5px",
+    "ls": "-0.504px",
+    "h": 60
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your organization.\nIn every la",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your organization can",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 122
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "Individual journeys.\nShared in",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your people's learning stays y",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Bring Visionary to your organi",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "56px",
+    "ls": "-0.28px",
+    "h": 112
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "56px",
+    "fw": "600",
+    "lh": "60.8px",
+    "ls": "normal",
+    "h": 61
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "See what people understand.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Find gaps before they spread.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Support every role from one sy",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 56
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Improve the next decision.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 28
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "See what people understand.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Find gaps before they spread.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Support every role from one sy",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Improve the next decision.",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.216px",
+    "h": 0
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Schools",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Colleges and universities",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "One intelligence across every ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28.08px",
+    "ls": "0.216px",
+    "h": 84
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Organization learning challeng",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What you can't see",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Learning isn't the difficulty.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "We rolled out three learning t",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "One intelligence, shaped to th",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Schools. Connect students, tea",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "Every learner, teacher, and pr",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Learning activity becomes a cl",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 40
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Talk to us",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "home@390": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "One intelligence\nfor students.",
+    "fs": "16px",
+    "fw": "400",
+    "lh": "24px",
+    "ls": "normal",
+    "h": 109
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.8px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "section",
+    "text": "Teaching everyone is possible.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 220
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "emphasis",
+    "text": "What if your intelligence neve",
+    "fs": "40px",
+    "fw": "700",
+    "lh": "44px",
+    "ls": "-0.6px",
+    "h": 176
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "card-chapter",
+    "text": "One intelligence, five journey",
+    "fs": "32px",
+    "fw": "600",
+    "lh": "36px",
+    "ls": "-0.288px",
+    "h": 72
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "card-chapter",
+    "text": "Explore further.",
+    "fs": "32px",
+    "fw": "600",
+    "lh": "36px",
+    "ls": "-0.288px",
+    "h": 36
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your learning stays yours.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your next step starts here.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your hours stack.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your place is kept.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your language works.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "feature",
+    "text": "Your progress shows.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Organization",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Download",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "",
+    "text": "Pricing",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "",
+    "text": "Help",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "",
+    "text": "Updates",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Security",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to usi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Stories from a teacher, a pare",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "Why Visionary exists",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Effort isn't the gap. Knowing ",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 84
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I taught the whole class. Half",
+    "fs": "24px",
+    "fw": "500",
+    "lh": "29.76px",
+    "ls": "-0.24px",
+    "h": 79
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "A teacher",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "What you get",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "card-chapter",
+    "text": "“A person should not have to s",
+    "fs": "32px",
+    "fw": "600",
+    "lh": "36px",
+    "ls": "-0.288px",
+    "h": 180
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "value-body",
+    "text": "Every lesson builds on the las",
+    "fs": "19px",
+    "fw": "400",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 69
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "value-body",
+    "text": "Visionary remembers where you ",
+    "fs": "19px",
+    "fw": "400",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 69
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start learning",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "a",
+    "dt": "",
+    "text": "See how it works",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "student@390": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Learning,\nLearning, to master,",
+    "fs": "40px",
+    "fw": "700",
+    "lh": "45.6px",
+    "ls": "0.28px",
+    "h": 46
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every student struggles with\nu",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 122
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Learning that\nmoves with you.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 82
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.8px",
+    "h": 44
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "The words change.Understanding",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what you can achieve.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 88
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame intelligence.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your intelligence stays yours.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your learning starts with wher",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 44
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what you're learnin",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "See it. Hear it.\nAsk it anothe",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Practice what you're learning.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Build from what you know.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what you're learnin",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "See it. Hear it.\nAsk it anothe",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Practice what you're learning.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Build from what you know.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Primary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Secondary and higher secondary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 42
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Every concept you understand b",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21.08px",
+    "ls": "-0.187px",
+    "h": 42
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Student learning challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "Where understanding slips",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Studying isn't the difficulty.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I studied for hours. I still c",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever you begin, Visionary ",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 75
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Primary. From your first quest",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to usi",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary continues from where",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start learning free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "teacher@390": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Teaching.\nTeaching, to grow, t",
+    "fs": "40px",
+    "fw": "700",
+    "lh": "45.6px",
+    "ls": "0.28px",
+    "h": 46
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every teacher wonders about\nun",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 122
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Teaching that\nmoves with your ",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.8px",
+    "h": 44
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Teach your way.Explain your wa",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your class can achiev",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 132
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame teaching.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your teaching stays yours.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your teaching starts with wher",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 44
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what your class is ",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Show it, hear it, teach it ano",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know who's with you before the",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Learn what your teaching deman",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand what your class is ",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Show it, hear it, teach it ano",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know who's with you before the",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Learn what your teaching deman",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Lesson planning",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "In class",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "One class, many minds. See who",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21.08px",
+    "ls": "-0.187px",
+    "h": 42
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Teacher challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What the classroom hides",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Teaching isn't the difficulty.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I taught the whole class. Half",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your class begins, Vi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 75
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Lesson planning. Start from wh",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "For you and your class, from f",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 84
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary continues from where",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start teaching free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "parent@390": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Parenting.\nParenting, to see, ",
+    "fs": "40px",
+    "fw": "700",
+    "lh": "45.6px",
+    "ls": "0.28px",
+    "h": 46
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every parent wonders about\npro",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 122
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Learning that\nmoves with them.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 82
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.8px",
+    "h": 44
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's progress.In your ",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your child can achiev",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 88
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame understanding.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's learning stays th",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your child's journey is alread",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 44
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "What your child understood thi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know where your child is stuck",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "See which way learning is movi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "You see more when everyone sha",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "What your child understood thi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know where your child is stuck",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "See which way learning is movi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "You see more when everyone sha",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Early years",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Primary",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Professional",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Know what your child is learni",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21.08px",
+    "ls": "-0.187px",
+    "h": 42
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Parent concerns",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What report cards miss",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Caring isn't the difficulty. S",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "The report card says fine. I s",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 70
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your child begins, Vi",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 75
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Early years. First questions, ",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first question to the",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 84
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Not just what was covered. Wha",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "professional@390": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Building.\nBuilding, to apply, ",
+    "fs": "40px",
+    "fw": "700",
+    "lh": "45.6px",
+    "ls": "0.28px",
+    "h": 46
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every professional wonders abo",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 162
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Work that\nmoves with your care",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.8px",
+    "h": 44
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your work.In your language.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what you can achieve.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 88
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "New stage.\nSame work.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your work stays yours.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 80
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your next project is already i",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 44
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand the work before you",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Turn every project into a less",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Carry your expertise across te",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know what your work is actuall",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "Understand the work before you",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Turn every project into a less",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Carry your expertise across te",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Know what your work is actuall",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Early Career",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Mid-Level",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "Turn what you learn into work ",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21.08px",
+    "ls": "-0.187px",
+    "h": 63
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Career learning challenges",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What work doesn't show",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Working isn't the difficulty. ",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "I took three courses. I still ",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 84
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "Wherever your career begins, V",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 75
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Early Career. Turn every first",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "From the first problem to usin",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 56
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Visionary reads the context, r",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Start building free",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ },
+ "organization@390": {
+  "h1": [
+   {
+    "i": 0,
+    "tag": "h1",
+    "dt": "",
+    "text": "Leading.\nLeading, to scale, to",
+    "fs": "40px",
+    "fw": "700",
+    "lh": "45.6px",
+    "ls": "0.28px",
+    "h": 46
+   }
+  ],
+  "h2": [
+   {
+    "i": 0,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every organization wonders abo",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 162
+   },
+   {
+    "i": 1,
+    "tag": "h2",
+    "dt": "",
+    "text": "Every organization learns diff",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 200
+   },
+   {
+    "i": 2,
+    "tag": "h2",
+    "dt": "",
+    "text": "One intelligence.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "-0.8px",
+    "h": 44
+   },
+   {
+    "i": 3,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your organization.In every lan",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 4,
+    "tag": "h2",
+    "dt": "",
+    "text": "See what your organization can",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 132
+   },
+   {
+    "i": 5,
+    "tag": "h2",
+    "dt": "",
+    "text": "Individual journeys.\nShared in",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 160
+   },
+   {
+    "i": 6,
+    "tag": "h2",
+    "dt": "",
+    "text": "Your people's learning stays y",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 7,
+    "tag": "h2",
+    "dt": "",
+    "text": "Bring Visionary to your organi",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "40px",
+    "ls": "normal",
+    "h": 120
+   },
+   {
+    "i": 8,
+    "tag": "h2",
+    "dt": "",
+    "text": "Explore Visionary.",
+    "fs": "40px",
+    "fw": "600",
+    "lh": "44px",
+    "ls": "0.16px",
+    "h": 44
+   }
+  ],
+  "h3": [
+   {
+    "i": 0,
+    "tag": "h3",
+    "dt": "",
+    "text": "See what people understand.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 1,
+    "tag": "h3",
+    "dt": "",
+    "text": "Find gaps before they spread.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 2,
+    "tag": "h3",
+    "dt": "",
+    "text": "Support every role from one sy",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 3,
+    "tag": "h3",
+    "dt": "",
+    "text": "Improve the next decision.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 0
+   },
+   {
+    "i": 4,
+    "tag": "h3",
+    "dt": "",
+    "text": "See what people understand.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 5,
+    "tag": "h3",
+    "dt": "",
+    "text": "Find gaps before they spread.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 6,
+    "tag": "h3",
+    "dt": "",
+    "text": "Support every role from one sy",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 7,
+    "tag": "h3",
+    "dt": "",
+    "text": "Improve the next decision.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 25
+   },
+   {
+    "i": 8,
+    "tag": "h3",
+    "dt": "",
+    "text": "Schools",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 9,
+    "tag": "h3",
+    "dt": "",
+    "text": "Colleges and universities",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21px",
+    "ls": "-0.374px",
+    "h": 21
+   },
+   {
+    "i": 10,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Privacy",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 11,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Safety",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 12,
+    "tag": "h3",
+    "dt": "value-title",
+    "text": "Responsibility",
+    "fs": "19px",
+    "fw": "600",
+    "lh": "23px",
+    "ls": "0.228px",
+    "h": 23
+   },
+   {
+    "i": 13,
+    "tag": "h3",
+    "dt": "",
+    "text": "Student",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 14,
+    "tag": "h3",
+    "dt": "",
+    "text": "Teacher",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   },
+   {
+    "i": 15,
+    "tag": "h3",
+    "dt": "",
+    "text": "Parent",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "20.2381px",
+    "ls": "0.187px",
+    "h": 20
+   }
+  ],
+  "p": [
+   {
+    "i": 0,
+    "tag": "p",
+    "dt": "",
+    "text": "One intelligence across every ",
+    "fs": "17px",
+    "fw": "600",
+    "lh": "21.08px",
+    "ls": "-0.187px",
+    "h": 63
+   },
+   {
+    "i": 1,
+    "tag": "p",
+    "dt": "",
+    "text": "Organization learning challeng",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 2,
+    "tag": "p",
+    "dt": "",
+    "text": "What you can't see",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 20
+   },
+   {
+    "i": 3,
+    "tag": "p",
+    "dt": "",
+    "text": "Learning isn't the difficulty.",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 50
+   },
+   {
+    "i": 4,
+    "tag": "p",
+    "dt": "",
+    "text": "We rolled out three learning t",
+    "fs": "24px",
+    "fw": "400",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 84
+   },
+   {
+    "i": 5,
+    "tag": "p",
+    "dt": "",
+    "text": "One intelligence, shaped to th",
+    "fs": "21px",
+    "fw": "600",
+    "lh": "25px",
+    "ls": "0.231px",
+    "h": 75
+   },
+   {
+    "i": 6,
+    "tag": "p",
+    "dt": "",
+    "text": "Schools. Connect students, tea",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 1
+   },
+   {
+    "i": 7,
+    "tag": "p",
+    "dt": "",
+    "text": "Every learner, teacher, and pr",
+    "fs": "24px",
+    "fw": "600",
+    "lh": "28px",
+    "ls": "0.264px",
+    "h": 84
+   },
+   {
+    "i": 8,
+    "tag": "p",
+    "dt": "",
+    "text": "0104",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   },
+   {
+    "i": 9,
+    "tag": "p",
+    "dt": "",
+    "text": "Learning activity becomes a cl",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "20.2382px",
+    "ls": "-0.374px",
+    "h": 0
+   }
+  ],
+  "pill": [
+   {
+    "i": 0,
+    "tag": "a",
+    "dt": "",
+    "text": "Talk to us",
+    "fs": "17px",
+    "fw": "500",
+    "lh": "25.5px",
+    "ls": "-0.187px",
+    "h": 44
+   },
+   {
+    "i": 1,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 2,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   },
+   {
+    "i": 3,
+    "tag": "button",
+    "dt": "",
+    "text": "",
+    "fs": "17px",
+    "fw": "400",
+    "lh": "22px",
+    "ls": "-0.374px",
+    "h": 8
+   }
+  ]
+ }
+}

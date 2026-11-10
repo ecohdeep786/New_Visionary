@@ -1,6 +1,24 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
+ * Reports prefers-reduced-motion reactively (matchMedia change aware).
+ * Landing and the premium sections each carried identical locals — this is
+ * the one shared implementation for the landing system.
+ */
+export function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return undefined;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener?.("change", onChange);
+    return () => mq.removeEventListener?.("change", onChange);
+  }, []);
+  return reduced;
+}
+
+/**
  * Cycles an index through `total` slides every `intervalMs`. Pass a falsy
  * interval to pause the rotation. Returns the index plus a manual goTo().
  * Auto-rotation must not gate on prefers-reduced-motion: environments that
@@ -65,28 +83,29 @@ export function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 
 /**
  * Tracks whether an element is currently in view (enters AND leaves), for
- * content that should animate every time it scrolls into frame.
+ * content that should animate every time it scrolls into frame. Under
+ * prefers-reduced-motion the story stays present: no hiding.
+ * IO can batch queued entries in one callback — entries[0] may be stale, so
+ * the LATEST entry always wins (this is what makes the exit wipe actually
+ * land after a fast scroll; consolidated from the landing page's local
+ * implementation at A5 activation).
  */
 export function useRevealContinuous(rootMargin = "-40% 0px -10% 0px") {
   const ref = useRef(null);
+  const reduced = usePrefersReducedMotion();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const node = ref.current;
-    if (!node) {
-      setVisible(true);
-      return undefined;
-    }
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return undefined;
-    }
+    if (reduced) { setVisible(true); return undefined; }
+    if (!node) { setVisible(true); return undefined; }
+    if (typeof IntersectionObserver === "undefined") { setVisible(true); return undefined; }
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
+      (entries) => setVisible(entries[entries.length - 1].isIntersecting),
       { threshold: 0, rootMargin }
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [rootMargin]);
+  }, [rootMargin, reduced]);
   return { ref, visible };
 }
 

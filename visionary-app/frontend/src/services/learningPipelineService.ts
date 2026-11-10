@@ -12,6 +12,9 @@ export interface LearningUnit {
  checkPassed:boolean; practicePassed?:boolean; difficulty:number; practiceRound:number; question?:ContentQuestion;
  answer?:{index:number;correct:boolean;id:string}; response?:TeachingResponse; explanation?:string;
  answerDraft?:{questionVersion:string;round:number;index:number};
+ durableSessionId?:string; durableRevision?:number; durableFailedChecks?:number; durableReviewSuggested?:boolean; durableCancelled?:boolean;
+ durableCheckId?:string; durablePreviousStrategy?:string; durableStrategyIndex?:number;
+ durableStart?:{commandId:string}; durablePresent?:{commandId:string;checkId:string;strategy:string}; durableAssess?:{commandId:string;checkId:string;selection:number};
  conversationId?:string; artifactId?:string; updatedAt:string; pending?:LearningOutcome;
 }
 interface LearningOutcome {id:string;conceptId:string;kind:'check'|'practice'|'application';correct?:number;total?:number;verified:boolean;sessionId:string;language:Locale;board?:string;classLevel?:string;classId?:string}
@@ -19,6 +22,26 @@ interface LearningSpace {selection?:ContentSelection;syllabusId?:string;units:Le
 interface Store {version:1;spaces:Record<string,LearningSpace>}
 const KEY='visionary_learning_pipeline_v1';
 const now=()=>workspaceNow().toISOString();
+/** Server-held receipt for one durable session revision. The authored answer key stays server-side. */
+export interface DurableLearningReceipt {
+ version:1; uid:string; sessionId:string; workspaceId:string; concept:{sourceVersion:string;criteriaVersion:string}; status:'active'|'cancelled';
+ phase:'explain'|'check'|'check_passed'|'review_suggested';
+ revision:number; failedChecks:number; maxFailedChecks:number; previousStrategy:string|null;
+ checkPassed:boolean; reviewSuggested:boolean; check:{checkId:string;strategy:string;optionCount:number}|null;
+ createdAt:string; updatedAt:string; cancelledAt?:string; receipt?:{id:string;checkId:string;passed:boolean};
+}
+export interface LearningSessionAdapter {
+ start(command:{version:1;commandId:string;workspaceId:string;conceptId:string;sourceVersion:string;criteriaVersion:string;provider:string;sourceId:string;maxFailedChecks?:number}):Promise<DurableLearningReceipt>;
+ get(sessionId:string):Promise<DurableLearningReceipt>;
+ present(sessionId:string,command:unknown):Promise<DurableLearningReceipt>;
+ assess(sessionId:string,command:unknown):Promise<DurableLearningReceipt>;
+ cancel(sessionId:string,command:unknown):Promise<DurableLearningReceipt>;
+}
+const durableStrategies=['worked_example','analogy','practice','visual','socratic'] as const;
+let durableSessions:LearningSessionAdapter|null=null;
+/** Unconfigured or unverified adapters keep every check local and unverified. */
+export function configureLearningSessionAdapter(adapter:LearningSessionAdapter|null){durableSessions=adapter;}
+export function learningSessionAdapterConfigured(){return durableSessions!==null;}
 function guard(ctx:RequestContext){const identity=workspaceIdentity(ctx);if(ctx.role==='professional'&&identity.person.ageBand!=='adult')throw Error('Professional journeys are available only to adult profiles. Use a general learning workspace.');if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');}
 function read():Store{const raw=localStorage.getItem(KEY);if(!raw)return{version:1,spaces:{}};try{const value=JSON.parse(raw);if(value.version!==1||!value.spaces||typeof value.spaces!=='object'||Array.isArray(value.spaces))throw Error();return value;}catch{throw Error('Your saved learning could not be read. No records were removed.');}}
 function validSourceContext(value:LearningUnit['sourceContext']){
@@ -27,7 +50,21 @@ function validSourceContext(value:LearningUnit['sourceContext']){
  const {selection,provenance}=value;
  return Boolean(selection&&typeof selection==='object'&&!Array.isArray(selection)&&['board','classLevel','subject'].every(key=>typeof selection[key as keyof ContentSelection]==='string'&&selection[key as keyof ContentSelection].trim())&&provenance&&typeof provenance==='object'&&!Array.isArray(provenance)&&['provider','sourceId','version'].every(key=>typeof provenance[key as keyof ContentProvenance]==='string'&&provenance[key as keyof ContentProvenance].trim()));
 }
-function own(db:Store,ctx:RequestContext){guard(ctx);const existing=db.spaces[ctx.workspaceId];if(existing!==undefined&&(!existing||typeof existing!=='object'||Array.isArray(existing)||!Array.isArray(existing.units)||existing.units.some(unit=>!unit||typeof unit.id!=='string'||!unit.id||typeof unit.conceptId!=='string'||typeof unit.title!=='string'||!validSourceContext(unit.sourceContext))||new Set(existing.units.map(unit=>unit.id)).size!==existing.units.length||(existing.selection!==undefined&&(!existing.selection||['board','classLevel','subject'].some(key=>typeof existing.selection![key as keyof ContentSelection]!=='string')))||(existing.syllabusId!==undefined&&typeof existing.syllabusId!=='string')))throw Error('Saved learning activities are incomplete or ambiguous. Original records were kept; retry after restoring a valid saved copy.');return existing??(db.spaces[ctx.workspaceId]={units:[]});}
+/** Durable linkage is only valid with its own session identity; partial state fails closed. */
+function validDurableState(unit:LearningUnit){
+ const strings=['durableSessionId','durableCheckId','durablePreviousStrategy'] as const;
+ for(const key of strings){const value=unit[key];if(value!==undefined&&(typeof value!=='string'||!value))return false;}
+ const numbers=['durableRevision','durableFailedChecks','durableStrategyIndex'] as const;
+ for(const key of numbers){const value=unit[key];if(value!==undefined&&(!Number.isSafeInteger(value)||value<0))return false;}
+ if(unit.durableReviewSuggested!==undefined&&typeof unit.durableReviewSuggested!=='boolean')return false;
+ if(unit.durableCancelled!==undefined&&typeof unit.durableCancelled!=='boolean')return false;
+ if(unit.durableSessionId===undefined&&(unit.durableRevision!==undefined||unit.durableCheckId!==undefined||unit.durablePreviousStrategy!==undefined||unit.durableReviewSuggested!==undefined||unit.durableCancelled!==undefined||unit.durablePresent!==undefined||unit.durableAssess!==undefined))return false;
+ if(unit.durableStart!==undefined&&(!unit.durableStart||typeof unit.durableStart.commandId!=='string'||!unit.durableStart.commandId))return false;
+ if(unit.durablePresent!==undefined&&(!unit.durablePresent||typeof unit.durablePresent.commandId!=='string'||!unit.durablePresent.commandId||typeof unit.durablePresent.checkId!=='string'||!unit.durablePresent.checkId||!durableStrategies.includes(unit.durablePresent.strategy as typeof durableStrategies[number])))return false;
+ if(unit.durableAssess!==undefined&&(!unit.durableAssess||typeof unit.durableAssess.commandId!=='string'||!unit.durableAssess.commandId||typeof unit.durableAssess.checkId!=='string'||!unit.durableAssess.checkId||!Number.isSafeInteger(unit.durableAssess.selection)||unit.durableAssess.selection<0))return false;
+ return true;
+}
+function own(db:Store,ctx:RequestContext){guard(ctx);const existing=db.spaces[ctx.workspaceId];if(existing!==undefined&&(!existing||typeof existing!=='object'||Array.isArray(existing)||!Array.isArray(existing.units)||existing.units.some(unit=>!unit||typeof unit.id!=='string'||!unit.id||typeof unit.conceptId!=='string'||typeof unit.title!=='string'||!validSourceContext(unit.sourceContext)||!validDurableState(unit))||new Set(existing.units.map(unit=>unit.id)).size!==existing.units.length||(existing.selection!==undefined&&(!existing.selection||['board','classLevel','subject'].some(key=>typeof existing.selection![key as keyof ContentSelection]!=='string')))||(existing.syllabusId!==undefined&&typeof existing.syllabusId!=='string')))throw Error('Saved learning activities are incomplete or ambiguous. Original records were kept; retry after restoring a valid saved copy.');return existing??(db.spaces[ctx.workspaceId]={units:[]});}
 function write(db:Store,ctx:RequestContext){guard(ctx);try{localStorage.setItem(KEY,JSON.stringify(db));}catch{throw Error('Learning changes could not be saved. Keep this page open and retry.');}if(typeof window!=='undefined')window.dispatchEvent(new CustomEvent('visionary:learning-change'));}
 function save(ctx:RequestContext,unit:LearningUnit){const db=read();const data=own(db,ctx);const index=data.units.findIndex(u=>u.id===unit.id);unit.updatedAt=now();if(index<0)data.units.push(unit);else data.units[index]=unit;write(db,ctx);return structuredClone(unit);}
 export function getLearningWorkspace(ctx:RequestContext){return structuredClone(own(read(),ctx));}
@@ -91,7 +128,10 @@ export async function startLearningUnit(ctx:RequestContext,conceptId:string,clas
  const existing=getLearningWorkspace(ctx).units.find(u=>{const prior=u.sourceContext?.provenance,current=concept.provenance;return u.conceptId===concept.id&&u.classId===classId&&u.stage!=='completed'&&(!prior||Boolean(current&&prior.provider===current.provider&&prior.sourceId===current.sourceId&&prior.version===current.version));});
  if(existing){if(existing.title!==concept.title)save(ctx,{...existing,title:concept.title});emitInteractionEvent(ctx,{app:'LEARN',action:'resume',sessionId:existing.id,conceptId:progressId,language:existing.locale,...curriculumFields(ctx,existing)});return getLearningUnit(ctx,existing.id);}
  const unit:LearningUnit={id:crypto.randomUUID(),conceptId:concept.id,title:concept.title,locale:ctx.locale,classId,sourceContext:getSavedConceptOrigin(ctx,concept.id),stage:'explain',checkPassed:false,difficulty:1,practiceRound:0,updatedAt:now()};
- save(ctx,unit);emitInteractionEvent(ctx,{app:'LEARN',action:'start',sessionId:unit.id,conceptId,language:unit.locale,...curriculumFields(ctx,unit)});return unit;
+ save(ctx,unit);emitInteractionEvent(ctx,{app:'LEARN',action:'start',sessionId:unit.id,conceptId,language:unit.locale,...curriculumFields(ctx,unit)});
+ // A connected account opens the durable session right away; an offline start keeps the pending identity for retry.
+ if(durableSessions&&unit.sourceContext?.provenance){try{return await ensureDurableSession(ctx,unit);}catch{return unit;}}
+ return unit;
 }
 export function assertLearningSource(unit:LearningUnit,concept:ContentConcept){
  const prior=unit.sourceContext?.provenance,current=concept.provenance;
@@ -101,6 +141,44 @@ async function currentLearningSource(ctx:RequestContext,unit:LearningUnit){
  const concept=await getContentRepository({...ctx,locale:unit.locale}).getConcept(unit.conceptId);
  if(!concept)throw Error('Content unavailable. Your position remains saved.');
  assertLearningSource(unit,concept);assertCurrentLearningUnit(ctx,unit);return concept;
+}
+function durableScope(ctx:RequestContext,unit:LearningUnit){const provenance=unit.sourceContext?.provenance;return provenance?{workspaceId:ctx.workspaceId,sourceVersion:provenance.version,criteriaVersion:provenance.version}:null;}
+function nextDurableStrategy(unit:LearningUnit){const index=unit.durableStrategyIndex||0;let strategy=durableStrategies[index%durableStrategies.length];if((unit.durableFailedChecks||0)>0&&strategy===unit.durablePreviousStrategy)strategy=durableStrategies[(index+1)%durableStrategies.length];unit.durableStrategyIndex=index+1;return strategy;}
+/** The exact command identity is saved before the network call, so a lost response replays it. */
+async function ensureDurableSession(ctx:RequestContext,unit:LearningUnit){
+ const adapter=durableSessions,scope=durableScope(ctx,unit),provenance=unit.sourceContext?.provenance;
+ if(!adapter||!scope||!provenance||unit.durableSessionId)return unit;
+ const pending=unit.durableStart||{commandId:crypto.randomUUID()};unit.durableStart=pending;save(ctx,unit);
+ const receipt=await adapter.start({version:1,commandId:pending.commandId,workspaceId:scope.workspaceId,conceptId:unit.conceptId,sourceVersion:scope.sourceVersion,criteriaVersion:scope.criteriaVersion,provider:provenance.provider,sourceId:provenance.sourceId,maxFailedChecks:3});
+ guard(ctx);assertCurrentLearningUnit(ctx,unit);
+ delete unit.durableStart;unit.durableSessionId=receipt.sessionId;unit.durableRevision=receipt.revision;unit.durableFailedChecks=receipt.failedChecks;unit.durableReviewSuggested=receipt.reviewSuggested;unit.durableCancelled=receipt.status==='cancelled';
+ return save(ctx,unit);
+}
+/** Presentation stays pinned to the saved source revision and reuses one identity on retry. */
+async function presentDurableCheck(ctx:RequestContext,unit:LearningUnit){
+ const adapter=durableSessions,scope=durableScope(ctx,unit),question=unit.question;
+ if(!adapter||!unit.durableSessionId||!scope||!question)throw Error('The connected check is not ready. Reopen the check and retry when connected.');
+ const prior=unit.durablePresent&&unit.durablePresent.checkId===question.id?unit.durablePresent:null;
+ const commandId=prior?prior.commandId:crypto.randomUUID(),strategy=prior?prior.strategy:nextDurableStrategy(unit);
+ unit.durablePresent={commandId,checkId:question.id,strategy};save(ctx,unit);
+ const receipt=await adapter.present(unit.durableSessionId,{version:1,commandId,expectedRevision:unit.durableRevision||0,workspaceId:scope.workspaceId,sourceVersion:scope.sourceVersion,criteriaVersion:scope.criteriaVersion,strategy,validation:'passed',checkId:question.id,prompt:question.prompt,options:[...question.options],answerIndex:question.answerIndex});
+ guard(ctx);assertCurrentLearningUnit(ctx,unit);
+ if(receipt.check?.checkId!==question.id)throw Error('The connected check did not confirm this question. Your saved work is kept; reopen the check before retrying.');
+ delete unit.durablePresent;unit.durableRevision=receipt.revision;unit.durableFailedChecks=receipt.failedChecks;unit.durableReviewSuggested=receipt.reviewSuggested;unit.durableCheckId=receipt.check.checkId;unit.durablePreviousStrategy=strategy;
+ return save(ctx,unit);
+}
+/** Only a server assessment counts; a graded answer keeps its exact identity for retry. */
+async function assessDurableAnswer(ctx:RequestContext,unit:LearningUnit,index:number){
+ const adapter=durableSessions,scope=durableScope(ctx,unit),checkId=unit.durableCheckId;
+ if(!adapter||!unit.durableSessionId||!scope||!checkId)throw Error('The connected check was not confirmed. Reopen the check and retry when connected.');
+ const prior=unit.durableAssess&&unit.durableAssess.checkId===checkId&&unit.durableAssess.selection===index?unit.durableAssess:null;
+ const commandId=prior?prior.commandId:crypto.randomUUID();
+ unit.durableAssess={commandId,checkId,selection:index};save(ctx,unit);
+ const receipt=await adapter.assess(unit.durableSessionId,{version:1,commandId,expectedRevision:unit.durableRevision||0,workspaceId:scope.workspaceId,sourceVersion:scope.sourceVersion,criteriaVersion:scope.criteriaVersion,checkId,selection:index});
+ guard(ctx);assertCurrentLearningUnit(ctx,unit);
+ if(receipt.sessionId!==unit.durableSessionId||receipt.workspaceId!==scope.workspaceId||receipt.concept?.sourceVersion!==scope.sourceVersion||receipt.concept?.criteriaVersion!==scope.criteriaVersion||!receipt.receipt||receipt.receipt.id!==commandId||receipt.receipt.checkId!==checkId)throw Error('The connected assessment did not confirm this answer. Your saved work is kept; retry when connected.');
+ delete unit.durableAssess;unit.durableRevision=receipt.revision;unit.durableFailedChecks=receipt.failedChecks;unit.durableReviewSuggested=receipt.reviewSuggested;delete unit.durableCheckId;
+ return {unit:save(ctx,unit),passed:receipt.receipt.passed,receiptId:receipt.receipt.id};
 }
 export async function updateLearningLanguage(ctx:RequestContext,id:string,locale:Locale){
  const unit=getLearningUnit(ctx,id);if(unit.locale===locale)return unit;
@@ -114,6 +192,11 @@ export async function updateLearningLanguage(ctx:RequestContext,id:string,locale
  // A connected response belongs to its original language. Do not relabel it as a translation.
  if(concept.explanation)unit.explanation=concept.explanation;else delete unit.explanation;
  if(unit.question){const translated=[concept.check,...(concept.practice||[])].find(q=>q?.id===unit.question?.id);if(translated)unit.question=translated;else delete unit.question;}
+ // A translated check keeps its durable link only while the pinned question identity survives.
+ if(unit.durableCheckId&&(!unit.question||unit.question.id!==unit.durableCheckId)){
+  delete unit.durableSessionId;delete unit.durableRevision;delete unit.durableFailedChecks;delete unit.durableReviewSuggested;delete unit.durableCancelled;
+  delete unit.durableCheckId;delete unit.durablePreviousStrategy;delete unit.durableStrategyIndex;delete unit.durablePresent;delete unit.durableAssess;delete unit.durableStart;
+ }
  delete unit.response;
  return save(ctx,unit);
 }
@@ -130,17 +213,65 @@ export async function requestUnitTeaching(ctx:RequestContext,id:string,mode:Teac
  if(mode==='practice'&&response.status!=='blocked')unit.question=response.question||(unit.stage==='check'?concept.check:concept.practice?.[Math.min(unit.difficulty-1,Math.max(0,(concept.practice?.length||1)-1))]);
  save(ctx,unit);emitInteractionEvent(ctx,{app,action:'response',sessionId:id,conceptId:unit.conceptId,language:unit.locale,latency:Date.now()-started,responseStatus:response.status,promptVersion:response.status==='ready'?response.promptVersion:undefined,pedagogy,...curriculumFields(ctx,unit)});return unit;
 }
-export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');await currentLearningSource(ctx,unit);if(unit.answer)unit.practiceRound++;unit.stage='check';delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
+export async function beginComprehension(ctx:RequestContext,id:string){
+ let unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');
+ await currentLearningSource(ctx,unit);
+ if(unit.durableReviewSuggested&&!unit.durableCancelled)throw Error('This topic reached its bounded check limit after three failed checks. Review the explanation and your saved work, or ask a trusted adult or teacher for help. Another check is not started automatically.');
+ if(unit.answer)unit.practiceRound++;unit.stage='check';delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);
+ const taught=await requestUnitTeaching(ctx,id,'practice');
+ if(!durableSessions)return taught;
+ if(taught.durableCancelled){
+  // An explicit new check starts a fresh connected session; the cancelled session and its recorded work stay untouched.
+  delete taught.durableSessionId;delete taught.durableRevision;delete taught.durableFailedChecks;delete taught.durableReviewSuggested;delete taught.durableCancelled;
+  delete taught.durableCheckId;delete taught.durablePreviousStrategy;delete taught.durableStrategyIndex;delete taught.durablePresent;delete taught.durableAssess;delete taught.durableStart;
+  save(ctx,taught);
+ }
+ try{
+  const started=await ensureDurableSession(ctx,taught);
+  if(started.durableCheckId&&started.question&&started.question.id===started.durableCheckId)return started;
+  return await presentDurableCheck(ctx,started);
+ }catch(failure){const current=getLearningUnit(ctx,taught.id);if(current.stage==='check'&&!current.durableCheckId){current.stage='explain';save(ctx,current);}throw failure;}
+}
+/** Reconnect/read-back for a saved activity; the server stays the authority for phase and counts. */
+export async function resumeLearningSession(ctx:RequestContext,id:string){
+ const adapter=durableSessions;if(!adapter)throw Error('Connected learning progress is unavailable in this session.');
+ const unit=getLearningUnit(ctx,id);if(!unit.durableSessionId)throw Error('This learning activity has no connected session yet.');
+ const receipt=await adapter.get(unit.durableSessionId);
+ guard(ctx);assertCurrentLearningUnit(ctx,unit);
+ unit.durableRevision=receipt.revision;unit.durableFailedChecks=receipt.failedChecks;unit.durableReviewSuggested=receipt.reviewSuggested;unit.durableCancelled=receipt.status==='cancelled';
+ if(receipt.previousStrategy)unit.durablePreviousStrategy=receipt.previousStrategy;else delete unit.durablePreviousStrategy;
+ if(receipt.check?.checkId)unit.durableCheckId=receipt.check.checkId;else delete unit.durableCheckId;
+ unit.checkPassed=unit.checkPassed||receipt.checkPassed;
+ return save(ctx,unit);
+}
+/** Explicit learner cancellation; recorded evidence and attempts are never removed. */
+export async function cancelLearningSession(ctx:RequestContext,id:string){
+ const adapter=durableSessions;const unit=getLearningUnit(ctx,id);
+ if(!adapter||!unit.durableSessionId)throw Error('This learning activity has no connected session to cancel.');
+ const scope=durableScope(ctx,unit);if(!scope)throw Error('This learning activity has no pinned source revision to cancel.');
+ const receipt=await adapter.cancel(unit.durableSessionId,{version:1,commandId:crypto.randomUUID(),expectedRevision:unit.durableRevision||0,workspaceId:scope.workspaceId,sourceVersion:scope.sourceVersion,criteriaVersion:scope.criteriaVersion});
+ guard(ctx);assertCurrentLearningUnit(ctx,unit);
+ unit.durableRevision=receipt.revision;unit.durableCancelled=receipt.status==='cancelled';unit.durableReviewSuggested=receipt.reviewSuggested;
+ // A cancelled session voids its open check; only an explicit new check may open another.
+ delete unit.durableCheckId;delete unit.durablePresent;delete unit.durableAssess;
+ return save(ctx,unit);
+}
 /** An outbox retains a scored local answer if the separate cognition adapter cannot write. */
 export function flushLearningOutcome(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.pending){recordLearningOutcome(ctx,unit.pending);delete unit.pending;save(ctx,unit);}return unit;}
 export async function answerLearningQuestion(ctx:RequestContext,id:string,index:number,expectedQuestion?:{version:string;round:number}){
  let unit=flushLearningOutcome(ctx,id);if(!['check','practice'].includes(unit.stage)||!unit.question||unit.response?.status==='blocked')throw Error('Open an available comprehension or practice question first.');
  if(expectedQuestion&&(expectedQuestion.version!==JSON.stringify(unit.question)||expectedQuestion.round!==unit.practiceRound))throw Error('This question changed. Your selection was not graded. Reload the saved activity before continuing.');
  if(!Number.isInteger(index)||!unit.question.options[index])throw Error('Choose one answer.');if(unit.answer)return unit;
+ const question=unit.question;
  await currentLearningSource(ctx,unit);
- const correct=index===unit.question.answerIndex;const eventId=`${id}:${unit.stage}:${unit.practiceRound}:${unit.question.id}`;
+ if(durableSessions&&unit.durableCancelled&&unit.stage==='check')throw Error('This connected check was cancelled. Begin a new check or open another saved activity.');
+ let correct:boolean,eventId:string;
+ if(durableSessions&&unit.durableSessionId&&!unit.durableCancelled&&unit.stage==='check'){
+  if(!unit.durableCheckId){if(!unit.durablePresent)throw Error('The connected check was not confirmed. Your selection is kept; reopen the check and retry when connected.');unit=await presentDurableCheck(ctx,unit);}
+  const graded=await assessDurableAnswer(ctx,unit,index);unit=graded.unit;correct=graded.passed;eventId=graded.receiptId;
+ }else{correct=index===question.answerIndex;eventId=`${id}:${unit.stage}:${unit.practiceRound}:${question.id}`;}
  delete unit.answerDraft;unit.answer={index,correct,id:eventId};unit.checkPassed=unit.checkPassed||(unit.stage==='check'&&correct);unit.practicePassed=unit.practicePassed||(unit.stage==='practice'&&correct);unit.difficulty=Math.max(1,Math.min(5,unit.difficulty+(correct?1:-1)));
- if(!unit.attempts?.some(item=>item.id===eventId))unit.attempts=[...(unit.attempts||[]),{id:eventId,kind:unit.stage==='check'?'check':'practice',question:unit.question,selectedIndex:index,correct,at:now(),locale:unit.locale}];
+ if(!unit.attempts?.some(item=>item.id===eventId))unit.attempts=[...(unit.attempts||[]),{id:eventId,kind:unit.stage==='check'?'check':'practice',question,selectedIndex:index,correct,at:now(),locale:unit.locale}];
  unit.pending={id:eventId,conceptId:unit.conceptId,kind:unit.stage==='check'?'check':'practice',correct:correct?1:0,total:1,verified:true,sessionId:id,language:unit.locale,classId:unit.classId,...curriculumFields(ctx,unit)};
  save(ctx,unit);unit=flushLearningOutcome(ctx,id);
  if(!correct){const response=await getTeachingInterface(ctx).requestExplanation({input:'Re-explain this concept after an incorrect check.',conceptId:unit.conceptId,sessionId:id,language:unit.locale,difficulty:unit.difficulty});await currentLearningSource(ctx,unit);unit.response=response;save(ctx,unit);}

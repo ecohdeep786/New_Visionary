@@ -4,8 +4,13 @@ exports.billingMemory = () => {
   const clone = value => value && typeof value === 'object' ? typeof value.toMillis === 'function' && typeof value.toDate === 'function' ? value : Array.isArray(value) ? value.map(clone) : Object.fromEntries(Object.entries(value).map(([key, item]) => [key, clone(item)])) : value;
   const rows = new Map(); let queue = Promise.resolve();
   const snapshot = key => ({ id: key.split('/').at(-1), exists: rows.has(key), data: () => clone(rows.get(key)) });
-  const document = key => ({ key, id: key.split('/').at(-1), get: async () => snapshot(key), collection: name => collection(`${key}/${name}`) });
-  const collection = (key, conditions = [], maximum = Infinity, after = null, ordered = false) => ({
+  const requirePath = (key, parity) => {
+    if (typeof key !== 'string' || !key || key.includes('//') || key.split('/').some(part => !part) || key.split('/').length % 2 !== parity)
+      throw Error('Invalid Firestore ' + (parity ? 'collection' : 'document') + ' path');
+    return key;
+  };
+  const document = key => (requirePath(key, 0), { key, id: key.split('/').at(-1), get: async () => snapshot(key), collection: name => collection(`${key}/${name}`) });
+  const collection = (key, conditions = [], maximum = Infinity, after = null, ordered = false) => (requirePath(key, 1), {
     doc: id => document(`${key}/${id || randomUUID()}`),
     where: (field, operator, value) => collection(key, [...conditions, [field, operator, value]], maximum, after, ordered),
     limit: count => collection(key, conditions, count, after, ordered),

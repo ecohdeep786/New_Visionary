@@ -2,6 +2,19 @@ D-099 / KAN-161: the [permanent UID account hierarchy](../../integration/USER_AC
 
 # Visionary internal product — current status
 
+21 October 2026 resume: live Jira verifies 164 items (19 Done, 136 To Do, two
+In Progress, seven Idea). KAN-28/137/161/162 are scoped Done. Main `7aee2324`
+has accepted KAN-162 hosting in `visionary-research`; a fresh canonical health
+request returns 200/no-store, which confirms liveness only. Dev `84a432ec`
+also contains accepted KAN-145/146 development enablers; their full connected
+learner acceptance remains open in KAN-163/164. KAN-29 coverage is In Progress
+pending an accepted real source/version/rights package, deferred by the founder.
+KAN-34 sign-in methods resumes in its matching task worktree with honest
+unavailable paths and separate provider/delivery/device acceptance. See the
+[current sign-in handoff](../architecture/delivery/KAN34_SIGNIN_MATRIX.md),
+[live Jira reconciliation](../architecture/tracking/JIRA_SYNC.md) and execution
+receipts. Older pending-deployment/review paragraphs below retain dated context.
+
 D-095 current delivery: documentation is organized through the [documentation map](../README.md), [architecture reviews](../architecture/reviews/README.md) and [internal design handoffs](design/README.md). Every worker now requires separate review and relevant verification before Jira Done or their next implementation task; see the [workflow](../architecture/BRANCH_WORKFLOW.md). KAN-28 is Testing pending an independent reviewer. Its implemented source-audit code and D-094 checks remain; the earlier Done below is historical, not current approval. Hosted/domain/model acceptance remains open.
 
 D-094 / KAN-28: [source route/control/operation audit](../architecture/PRODUCT_SURFACE_AUDIT.md) and [current execution receipt](../architecture/tracking/task-executions.json). The inventory/check enabler is accepted and released through the Git dev/main flow. This changes engineering checks and documentation; existing auth/test billing scope and pending real domain/ML/hosted integration remain as recorded. Authenticated GCP inspection of `visionary-research` lists no Cloud Run services and no Cloud Build triggers; the platform/deployment pipeline and hosted acceptance remain open.

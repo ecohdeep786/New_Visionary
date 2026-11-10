@@ -1,0 +1,42 @@
+{
+  "jiraKey": "KAN-34",
+  "date": "2026-10-23",
+  "scope": "Phone extension source and release procedure; native SMS not accepted yet",
+  "source": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
+  "sourceCi": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39908224000",
+  "independentReview": {
+    "state": "approved-source-and-rollout-native-sms-pending",
+    "reviewer": "/root/kan34_release_review",
+    "exactReviewedCommit": "3bf8aa9862892567d2dbed44d6d838a2d33bf98b",
+    "report": "docs/architecture/reviews/KAN34_PHONE_AUTH_REVIEW_3BF8AA98.md",
+    "reportCommit": "1398227ae1001db8626ac5916f20f50fab7038d0",
+    "fullFeatureAccepted": false,
+    "hostedPhoneAcceptancePending": true
+  },
+  "checks": {
+    "backendBuild": true,
+    "backendTests": 107,
+    "frontendTests": 624,
+    "scriptTests": 18,
+    "gcpJavascriptTests": 27,
+    "rootCheck": true,
+    "lint": true,
+    "typecheck": true,
+    "firebaseModeBuild": true,
+    "finalFirebaseBuildSeconds": 25.86,
+    "phoneEmulatorBrowserScenarios": 8,
+    "emailEmulatorBrowserScenarios": 11,
+    "realPhoneSmsAcceptance": false,
+    "failed": 0
+  },
+  "browserEnvironment": "Real Firebase Web SDK/Auth Emulator and Nest with transactional memory Firestore; fictional identities only",
+  "repairedReviewFindings": [
+    "Unresolved CAPTCHA operation lock",
+    "Unverified linked-email invitation authority",
+    "Late SDK currentUser replacing intended verification identity",
+    "Abandoned submitted session cookie mutation"
+  ],
+  "productionBeforeRelease": "1ae078dc469846246bb5571717e39a6afe7a402e",
+  "nativePhoneAcceptance": false,
+  "protectedRecordsOrCredentialsIncluded": false
+}

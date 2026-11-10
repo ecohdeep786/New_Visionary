@@ -90,6 +90,152 @@
           "afterSha256": "186c229ae7860e09b5851993177a582f3237298e477aa9ae9a04fb15bc154459"
         }
       ]
+    },
+    {
+      "id": "2026-10-25-data-01-schema",
+      "date": "2026-10-25",
+      "decision": "Founder-authorized KAN-36 rework",
+      "reason": "Reviewed canonical UID workspace-domain schema preparation; Firestore account/billing and connected runtime remain authoritative and unchanged. Source/policy/hosted gates remain open.",
+      "diff": "integration/upstream-patches/2026-10-25-data-01-schema.patch",
+      "diffSha256": "68dafca8f9312541e47ecd9fe1917db25f7017b0ddf5b4e15c034f245ba8d40e",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "f1f7683a9bee83650387a8c116e8acd508a8a9150b0b2cfb62ac99cbd5d87713",
+          "afterSha256": "10c22a2e2bfede742ece5db5dee356d5a584f1d75bc55422f23f01fa511ae087"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-02-data-04-invitation-reissue",
+      "date": "2026-11-02",
+      "decision": "Founder-authorized sequential KAN-39 product repair; exact review remains required",
+      "reason": "Replace permanent delivery-email uniqueness with a nonunique history lookup in the current model; version2 PostgreSQL partial uniqueness protects one normalized active invitation. Preserve immutable version1 DDL, all closed lifecycle history, authority and current child/policy guards. No live migration, runtime activation or release acceptance.",
+      "diff": "integration/upstream-patches/2026-11-02-data-04-invitation-reissue.patch",
+      "diffSha256": "6b44aceadb6928e1fc435b7b1a7eb6160ad33b04ebc2ae6aa6fca8e8c790ba05",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "10c22a2e2bfede742ece5db5dee356d5a584f1d75bc55422f23f01fa511ae087",
+          "afterSha256": "583c9140cb47636abb2d9cccb8865942aef9371a378dbeb26b014239414bfb7b"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-03-data-04-institution-approval",
+      "date": "2026-11-03",
+      "decision": "KAN-39 manual institution approval workflow",
+      "reason": "Add durable scoped approval history and bind invitations to their issuance approval.",
+      "diff": "integration/upstream-patches/2026-11-03-data-04-institution-approval.patch",
+      "diffSha256": "4428b8faaffcac3db75ab23e5dc1bc0fe56aaa20078e799a26e4e30d2e40ba79",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "583c9140cb47636abb2d9cccb8865942aef9371a378dbeb26b014239414bfb7b",
+          "afterSha256": "34662e52fd9e144c50b1744c46c2183d46aa9006d84ff69aaf153af96e75ca89"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-04-fap67-graceful-degradation",
+      "date": "2026-11-04",
+      "decision": "D-056",
+      "reason": "FAP-67 (quality engineer): the backend boots and degrades gracefully without third-party credentials — the Google OAuth strategy registers only when GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET are configured (a missing credential crashed the boot at the passport constructor, taking email auth down with it), the four OpenAI agent/orchestrator clients construct with an unconfigured fallback key (calls fail at request time with a clear auth error), the email service uses jsonTransport without SMTP (dev logs the verification code), and the document storage client degrades to a placeholder client without Supabase config (only storage calls fail). Recorded after the fact: the FAP-67 commits shipped the source changes without ledger entries, which broke scripts/verify-imports for every later run.",
+      "diff": "integration/upstream-patches/2026-11-04-fap67-graceful-degradation.patch",
+      "diffSha256": "12c9ac69c011755281c3632407d876dc855b23c457ea6211a1f0b47ec6c16631",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/src/agents/content/content-agent.service.ts",
+          "beforeSha256": "e9228a3bfa71e14afd5851fbac6dc0945efd0a5629ce906e68755bfacc21796f",
+          "afterSha256": "a03c063afc622c81878d4d69da54816d0a5d29353a9ed4c89f7c39b7d7ec37c3"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/agents/diagram/diagram-agent.service.ts",
+          "beforeSha256": "d9830823d3f14274673902b4b8fd8a709a803c7fb828422f08da63fced8caaec",
+          "afterSha256": "58cc3aceabc620e37a807ad5331479c3ec249d3d459a9ba6a34b9978b3c5a5a6"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/agents/resource/resource-agent.service.ts",
+          "beforeSha256": "fcb81ad1c40a9ae5b30f909a876365f43b6ba7e7030b1feb22bc8e0df735e58f",
+          "afterSha256": "00cfc5ceff50e75cd1bf9165b35643d2a02fb67c869ebe64d0f23e49a0389fd6"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/auth/auth.module.ts",
+          "beforeSha256": "787ac18e79d9c37410346c1f472eb58cae63920c32d26930ae50282633e9f8b3",
+          "afterSha256": "e3fe807c6423a5c19ffb69aefadcd26f453408703493182d9fed5581c9aaeecc"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/orchestrator/orchestrator.service.ts",
+          "beforeSha256": "551ef6ddd71707798a717c4d7ed37e5b195ea7e430910420332033464ec66525",
+          "afterSha256": "86b052081a39641d3a4d903081c280be2f41597cd14a1bdd98b0eb78625a649d"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/email/email.service.ts",
+          "beforeSha256": "b7cd0136de974a256c3202b43bb6dedc855a61288ea9a1b66e3b5de8475cbb81",
+          "afterSha256": "e055bd9e9906f2cfc18f5797e33a83b69a4e0fd45d42665e242b15bedf96a28c"
+        },
+        {
+          "source": "backend",
+          "path": "backend/src/documents/documents.service.ts",
+          "beforeSha256": "1a08db1697873e3889871190320fbeebd3157d7bf96dc4eea691fc735a9e67f3",
+          "afterSha256": "5b143a54ce87c55e87495e43e4195c99b3d4bc6c02bcf03fe6a34e564f30729c"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-06-file-03-downloads",
+      "reason": "Add durable download/export models with additive canonical migration4; preserve accepted migration history.",
+      "decision": "D-056 permits backend work; implementation checkpoint pending independent review and integration acceptance.",
+      "diff": "integration/upstream-patches/2026-11-06-file-03-downloads.patch",
+      "diffSha256": "ba74d361dc93d291d93216998067fa10d01e2335782cbfed1b427ffd76c3dcb0",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "34662e52fd9e144c50b1744c46c2183d46aa9006d84ff69aaf153af96e75ca89",
+          "afterSha256": "efbf7b8bfd0b107afb58f28c1c9980f41ca6770973d494c3beb9eaf6337a515e"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-06-data-06-resource-revision",
+      "reason": "Add independent workspace metadata revision storage surviving owner and receipt lifecycle; canonical additive migration5.",
+      "decision": "D-056 permits backend work; replacement under independent review, not product activation.",
+      "diff": "integration/upstream-patches/2026-11-06-data-06-resource-revision.patch",
+      "diffSha256": "081d62fd7ae715d46cd38358b0c009bb60b88ade0106766a14741190f8a5c47c",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "efbf7b8bfd0b107afb58f28c1c9980f41ca6770973d494c3beb9eaf6337a515e",
+          "afterSha256": "dd9f18594335d17b029d47277c7ce90fbcaf2f399cc8acfb00612f789642273a"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08-data-09-admission",
+      "date": "2026-11-08",
+      "decision": "Founder2026-11-08 all age approved; D-056 backend work and D-095 exact-source review, no live activation.",
+      "reason": "Add minimal reviewer-mediated age assurance and guardian admission-link models with additive migration6; retain existing identity, purpose boundaries and accepted migration history.",
+      "diff": "integration/upstream-patches/2026-11-08-data-09-admission.patch",
+      "diffSha256": "2a77a00e89134c09443e93ab572cef0a9a1c622037c2a9f054cb2c6f8abd4046",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "dd9f18594335d17b029d47277c7ce90fbcaf2f399cc8acfb00612f789642273a",
+          "afterSha256": "34d9e02de2d778a07a6abc5ba62fcb67bca0d3b83b2ade2418d2ff06df23e5f5"
+        }
+      ]
     }
   ]
 }

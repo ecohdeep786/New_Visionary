@@ -163,6 +163,7 @@ const entries = [
  ['· version','· संस्करण','· সংস্করণ'],
 ];
 entries.push(['Practice','अभ्यास','অনুশীলন'],['Open','खोलें','খুলুন'],['Check','जाँचें','যাচাই করুন'],['No evidence yet','अभी साक्ष्य नहीं है','এখনও প্রমাণ নেই']);
+entries.push(['This topic reached its bounded check limit after three failed checks. Review the explanation and your saved work, or ask a trusted adult or teacher for help. Another check is not started automatically.','तीन असफल जाँचों के बाद यह विषय अपनी सीमित जाँच सीमा तक पहुँच गया। व्याख्या और अपने सहेजे गए कार्य की समीक्षा करें, या सहायता के लिए किसी विश्वसनीय वयस्क या शिक्षक से पूछें। नई जाँच अपने आप शुरू नहीं होती।','তিনটি ব্যর্থ পরীক্ষার পর এই বিষয়টি তার সীমিত পরীক্ষার সীমায় পৌঁছেছে। ব্যাখ্যা এবং আপনার সংরক্ষিত কাজ পর্যালোচনা করুন, অথবা সহায়তার জন্য কোনো বিশ্বস্ত প্রাপ্তবয়স্ক বা শিক্ষকের কাছে জিজ্ঞাসা করুন। নতুন পরীক্ষা স্বয়ংক্রিয়ভাবে শুরু হয় না।']);
 const messages = Object.fromEntries(entries.map(([en, hi, bn]) => [en, { en, hi, bn }]));
 export const learningCopy = locale => (key, params = {}) =>
  (messages[key]?.[locale] || guideCopy(locale)(key)).replace(/\{(\w+)\}/g, (match, name) => String(params[name] ?? match));

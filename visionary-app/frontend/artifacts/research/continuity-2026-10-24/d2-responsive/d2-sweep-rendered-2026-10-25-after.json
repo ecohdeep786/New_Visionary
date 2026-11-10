@@ -1,0 +1,849 @@
+{
+ "captured": "2026-10-25T05:43:30.511Z",
+ "origin": "http://localhost:4173",
+ "build": "post-fix",
+ "dpr": 1.309999942779541,
+ "thresholdCssPx": 43.9,
+ "rows": [
+  {
+   "route": "/student",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 77
+  },
+  {
+   "route": "/student",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 77
+  },
+  {
+   "route": "/student",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 78
+  },
+  {
+   "route": "/student",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 78
+  },
+  {
+   "route": "/student",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 88
+  },
+  {
+   "route": "/teacher",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 78
+  },
+  {
+   "route": "/teacher",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 78
+  },
+  {
+   "route": "/teacher",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 79
+  },
+  {
+   "route": "/teacher",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 79
+  },
+  {
+   "route": "/teacher",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 89
+  },
+  {
+   "route": "/parent",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 78
+  },
+  {
+   "route": "/parent",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 78
+  },
+  {
+   "route": "/parent",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 79
+  },
+  {
+   "route": "/parent",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 79
+  },
+  {
+   "route": "/parent",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 89
+  },
+  {
+   "route": "/help",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 50
+  },
+  {
+   "route": "/help",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 50
+  },
+  {
+   "route": "/help",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 51
+  },
+  {
+   "route": "/help",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 51
+  },
+  {
+   "route": "/help",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 57
+  },
+  {
+   "route": "/professional",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 78
+  },
+  {
+   "route": "/professional",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 78
+  },
+  {
+   "route": "/professional",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 79
+  },
+  {
+   "route": "/professional",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 79
+  },
+  {
+   "route": "/professional",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 89
+  },
+  {
+   "route": "/how-it-works",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 53
+  },
+  {
+   "route": "/how-it-works",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 53
+  },
+  {
+   "route": "/how-it-works",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 54
+  },
+  {
+   "route": "/how-it-works",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 54
+  },
+  {
+   "route": "/how-it-works",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 60
+  },
+  {
+   "route": "/organization",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 76
+  },
+  {
+   "route": "/organization",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 76
+  },
+  {
+   "route": "/organization",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 77
+  },
+  {
+   "route": "/organization",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 77
+  },
+  {
+   "route": "/organization",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 87
+  },
+  {
+   "route": "/download",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 49
+  },
+  {
+   "route": "/download",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 49
+  },
+  {
+   "route": "/download",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 51
+  },
+  {
+   "route": "/download",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 51
+  },
+  {
+   "route": "/download",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 57
+  },
+  {
+   "route": "/about",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 114
+  },
+  {
+   "route": "/about",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 114
+  },
+  {
+   "route": "/about",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 115
+  },
+  {
+   "route": "/about",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 115
+  },
+  {
+   "route": "/about",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 121
+  },
+  {
+   "route": "/pricing",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 54
+  },
+  {
+   "route": "/pricing",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 54
+  },
+  {
+   "route": "/pricing",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 56
+  },
+  {
+   "route": "/pricing",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 56
+  },
+  {
+   "route": "/pricing",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 62
+  },
+  {
+   "route": "/careers",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 62
+  },
+  {
+   "route": "/careers",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 62
+  },
+  {
+   "route": "/careers",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 63
+  },
+  {
+   "route": "/careers",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 63
+  },
+  {
+   "route": "/careers",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 69
+  },
+  {
+   "route": "/research",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 57
+  },
+  {
+   "route": "/research",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 57
+  },
+  {
+   "route": "/research",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 59
+  },
+  {
+   "route": "/research",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 59
+  },
+  {
+   "route": "/research",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 65
+  },
+  {
+   "route": "/community",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 58
+  },
+  {
+   "route": "/community",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 58
+  },
+  {
+   "route": "/community",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 60
+  },
+  {
+   "route": "/community",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 60
+  },
+  {
+   "route": "/community",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 66
+  },
+  {
+   "route": "/contact",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 64
+  },
+  {
+   "route": "/contact",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 64
+  },
+  {
+   "route": "/contact",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 66
+  },
+  {
+   "route": "/contact",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 66
+  },
+  {
+   "route": "/contact",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 72
+  },
+  {
+   "route": "/partners",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 59
+  },
+  {
+   "route": "/partners",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 59
+  },
+  {
+   "route": "/partners",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 61
+  },
+  {
+   "route": "/partners",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 61
+  },
+  {
+   "route": "/partners",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 67
+  },
+  {
+   "route": "/updates",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 55
+  },
+  {
+   "route": "/updates",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 55
+  },
+  {
+   "route": "/updates",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 57
+  },
+  {
+   "route": "/updates",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 57
+  },
+  {
+   "route": "/updates",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 63
+  },
+  {
+   "route": "/referral",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 57
+  },
+  {
+   "route": "/referral",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 57
+  },
+  {
+   "route": "/referral",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 59
+  },
+  {
+   "route": "/referral",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 59
+  },
+  {
+   "route": "/referral",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 65
+  },
+  {
+   "route": "/safety",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 55
+  },
+  {
+   "route": "/safety",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 55
+  },
+  {
+   "route": "/safety",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 57
+  },
+  {
+   "route": "/safety",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 57
+  },
+  {
+   "route": "/safety",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 63
+  },
+  {
+   "route": "/privacy",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 68
+  },
+  {
+   "route": "/privacy",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 68
+  },
+  {
+   "route": "/privacy",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 69
+  },
+  {
+   "route": "/privacy",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 69
+  },
+  {
+   "route": "/privacy",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 84
+  },
+  {
+   "route": "/terms",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 52
+  },
+  {
+   "route": "/terms",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 52
+  },
+  {
+   "route": "/terms",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 54
+  },
+  {
+   "route": "/terms",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 54
+  },
+  {
+   "route": "/terms",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 71
+  },
+  {
+   "route": "/security",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 59
+  },
+  {
+   "route": "/security",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 59
+  },
+  {
+   "route": "/security",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 61
+  },
+  {
+   "route": "/security",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 61
+  },
+  {
+   "route": "/security",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 76
+  },
+  {
+   "route": "/accessibility",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 60
+  },
+  {
+   "route": "/accessibility",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 60
+  },
+  {
+   "route": "/accessibility",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 62
+  },
+  {
+   "route": "/accessibility",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 62
+  },
+  {
+   "route": "/accessibility",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 68
+  },
+  {
+   "route": "/cookies",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 55
+  },
+  {
+   "route": "/cookies",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 55
+  },
+  {
+   "route": "/cookies",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 57
+  },
+  {
+   "route": "/cookies",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 57
+  },
+  {
+   "route": "/cookies",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 68
+  },
+  {
+   "route": "/",
+   "w": 320,
+   "clientW": 314,
+   "scrollW": 314,
+   "controls": 73
+  },
+  {
+   "route": "/",
+   "w": 390,
+   "clientW": 385,
+   "scrollW": 385,
+   "controls": 73
+  },
+  {
+   "route": "/",
+   "w": 768,
+   "clientW": 762,
+   "scrollW": 762,
+   "controls": 74
+  },
+  {
+   "route": "/",
+   "w": 1024,
+   "clientW": 1018,
+   "scrollW": 1018,
+   "controls": 74
+  },
+  {
+   "route": "/",
+   "w": 1440,
+   "clientW": 1434,
+   "scrollW": 1434,
+   "controls": 80
+  }
+ ]
+}

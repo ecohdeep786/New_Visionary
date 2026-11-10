@@ -1,0 +1,608 @@
+{
+ "type-scale: story-card clamps (.text-[clamp(36,5vw,72)]…)": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ },
+ "type-scale: h2 story-card variants": {
+  "390": [
+   "student:1",
+   "teacher:1",
+   "professional:1",
+   "organization:1"
+  ],
+  "1024": [
+   "home:1",
+   "student:1",
+   "teacher:1",
+   "parent:1",
+   "professional:1",
+   "organization:1"
+  ],
+  "1440": [
+   "home:1",
+   "student:1",
+   "teacher:1",
+   "parent:1",
+   "professional:1",
+   "organization:1"
+  ]
+ },
+ "type-scale: card-title clamps": {
+  "390": [
+   "how-it-works:10",
+   "download:1",
+   "about:1",
+   "partners:2",
+   "referral:2",
+   "safety:2",
+   "accessibility:1"
+  ],
+  "1024": [
+   "how-it-works:10",
+   "download:1",
+   "about:1",
+   "partners:2",
+   "referral:2",
+   "safety:2",
+   "accessibility:1"
+  ],
+  "1440": [
+   "how-it-works:10",
+   "download:1",
+   "about:1",
+   "partners:2",
+   "safety:2",
+   "accessibility:1"
+  ]
+ },
+ "type-scale: h2 card-title variants": {
+  "390": [
+   "partners:2",
+   "referral:2",
+   "safety:2",
+   "accessibility:1"
+  ],
+  "1024": [
+   "partners:2",
+   "referral:2",
+   "safety:2",
+   "accessibility:1"
+  ],
+  "1440": [
+   "partners:2",
+   "safety:2",
+   "accessibility:1"
+  ]
+ },
+ "type-scale: p step-down (28/24 card→lead)": {
+  "390": [
+   "how-it-works:5",
+   "download:1",
+   "about:1"
+  ],
+  "1024": [
+   "how-it-works:5",
+   "download:1",
+   "about:1"
+  ],
+  "1440": [
+   "how-it-works:5",
+   "download:1",
+   "about:1"
+  ]
+ },
+ "type-scale: compact card h2 (20px clamps)": {
+  "390": [
+   "download:2"
+  ],
+  "1024": [
+   "download:2"
+  ],
+  "1440": [
+   "download:2"
+  ]
+ },
+ "type-scale: compact card label (20px clamps)": {
+  "390": [
+   "how-it-works:1",
+   "download:4"
+  ],
+  "1024": [
+   "how-it-works:1",
+   "download:4"
+  ],
+  "1440": [
+   "how-it-works:1",
+   "download:4"
+  ]
+ },
+ "body-size: text-[15px]/[16.5px]/[14.5px]/[17px]/[17.5px]": {
+  "390": [
+   "student:7",
+   "teacher:7",
+   "parent:7",
+   "help:6",
+   "professional:7",
+   "how-it-works:25",
+   "organization:7",
+   "download:7",
+   "about:11",
+   "pricing:18",
+   "careers:34",
+   "research:44",
+   "community:12",
+   "contact:31",
+   "partners:35",
+   "updates:23",
+   "referral:34",
+   "safety:34",
+   "privacy:56",
+   "terms:40",
+   "security:39",
+   "accessibility:32",
+   "cookies:31"
+  ],
+  "1024": [
+   "home:13",
+   "student:7",
+   "teacher:7",
+   "parent:7",
+   "help:6",
+   "professional:7",
+   "how-it-works:25",
+   "organization:7",
+   "download:7",
+   "about:11",
+   "pricing:18",
+   "careers:34",
+   "research:44",
+   "community:12",
+   "contact:31",
+   "partners:35",
+   "updates:23",
+   "referral:34",
+   "safety:34",
+   "privacy:56",
+   "terms:40",
+   "security:39",
+   "accessibility:32",
+   "cookies:31"
+  ],
+  "1440": [
+   "home:13",
+   "student:7",
+   "teacher:7",
+   "parent:7",
+   "help:6",
+   "professional:7",
+   "how-it-works:25",
+   "organization:7",
+   "download:7",
+   "about:11",
+   "pricing:18",
+   "careers:34",
+   "community:12",
+   "partners:35",
+   "updates:23",
+   "safety:34",
+   "privacy:56",
+   "terms:40",
+   "security:39",
+   "accessibility:32"
+  ]
+ },
+ "h2-step-law: h2.text-[30..56px]": {
+  "390": [
+   "download:3",
+   "about:6",
+   "careers:6",
+   "research:7",
+   "community:4",
+   "contact:5",
+   "partners:7",
+   "updates:4",
+   "referral:4",
+   "safety:3",
+   "privacy:12",
+   "terms:14",
+   "security:12",
+   "accessibility:7",
+   "cookies:8"
+  ],
+  "1024": [
+   "download:3",
+   "about:6",
+   "careers:6",
+   "research:7",
+   "community:4",
+   "contact:5",
+   "partners:7",
+   "updates:4",
+   "referral:4",
+   "safety:3",
+   "privacy:12",
+   "terms:14",
+   "security:12",
+   "accessibility:7",
+   "cookies:8"
+  ],
+  "1440": [
+   "download:3",
+   "about:6",
+   "careers:6",
+   "research:7",
+   "community:4",
+   "partners:7",
+   "updates:4",
+   "referral:4",
+   "safety:3",
+   "privacy:12",
+   "terms:14",
+   "security:12",
+   "accessibility:7"
+  ]
+ },
+ "radius: rounded-[14px]": {
+  "390": [
+   "download:8",
+   "careers:10",
+   "research:17",
+   "community:3",
+   "contact:10",
+   "partners:4",
+   "referral:3",
+   "safety:9",
+   "privacy:17",
+   "terms:4",
+   "security:8",
+   "accessibility:6",
+   "cookies:7"
+  ],
+  "1024": [
+   "home:4",
+   "download:8",
+   "careers:10",
+   "research:17",
+   "community:3",
+   "contact:10",
+   "partners:4",
+   "referral:3",
+   "safety:9",
+   "privacy:17",
+   "terms:4",
+   "security:8",
+   "accessibility:6",
+   "cookies:7"
+  ],
+  "1440": [
+   "home:4",
+   "download:8",
+   "careers:10",
+   "research:17",
+   "community:3",
+   "partners:4",
+   "referral:3",
+   "safety:9",
+   "privacy:17",
+   "terms:4",
+   "security:8",
+   "accessibility:6",
+   "cookies:7"
+  ]
+ },
+ "radius: rounded-[24px]": {
+  "390": [
+   "help:10",
+   "community:24",
+   "partners:1",
+   "referral:3",
+   "safety:3"
+  ],
+  "1024": [
+   "help:10",
+   "community:24",
+   "partners:1",
+   "referral:3",
+   "safety:3"
+  ],
+  "1440": [
+   "help:10",
+   "community:24",
+   "partners:1",
+   "referral:3",
+   "safety:3"
+  ]
+ },
+ "radius: rounded-[28px]": {
+  "390": [
+   "signin:1",
+   "login:1",
+   "register:1",
+   "about:64"
+  ],
+  "1024": [
+   "signin:1",
+   "login:1",
+   "register:1",
+   "about:64"
+  ],
+  "1440": [
+   "signin:1",
+   "login:1",
+   "register:1",
+   "about:64"
+  ]
+ },
+ "radius: rounded-[32px]": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ },
+ "radius: rounded-[48px]": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ },
+ "radius: rounded-[50px]": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ },
+ "radius: rounded-[60px]": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ },
+ "display: text-[clamp(48px,5.55vw,80px)]": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ },
+ "uppercase-kickerMain: p.uppercase (public)": {
+  "390": [
+   "how-it-works:4",
+   "download:3",
+   "about:11",
+   "careers:1",
+   "research:7",
+   "community:1",
+   "contact:2",
+   "partners:3",
+   "updates:4",
+   "referral:5",
+   "safety:9",
+   "privacy:2",
+   "terms:2",
+   "security:2",
+   "accessibility:7",
+   "cookies:2"
+  ],
+  "1024": [
+   "how-it-works:4",
+   "download:3",
+   "about:11",
+   "careers:1",
+   "research:7",
+   "community:1",
+   "contact:2",
+   "partners:3",
+   "updates:4",
+   "referral:5",
+   "safety:9",
+   "privacy:2",
+   "terms:2",
+   "security:2",
+   "accessibility:7",
+   "cookies:2"
+  ],
+  "1440": [
+   "how-it-works:4",
+   "download:3",
+   "about:11",
+   "careers:1",
+   "research:7",
+   "community:1",
+   "partners:3",
+   "updates:4",
+   "referral:5",
+   "safety:9",
+   "privacy:2",
+   "terms:2",
+   "security:2",
+   "accessibility:7",
+   "cookies:2"
+  ]
+ },
+ "h1-ladder: h1.text-[48px]": {
+  "390": [
+   "download:1",
+   "about:1",
+   "careers:2",
+   "research:1",
+   "community:1",
+   "contact:1",
+   "partners:1",
+   "updates:1",
+   "referral:1",
+   "safety:1",
+   "privacy:1",
+   "terms:1",
+   "security:1",
+   "accessibility:1",
+   "cookies:1"
+  ],
+  "1024": [
+   "download:1",
+   "about:1",
+   "careers:2",
+   "research:1",
+   "community:1",
+   "contact:1",
+   "partners:1",
+   "updates:1",
+   "referral:1",
+   "safety:1",
+   "privacy:1",
+   "terms:1",
+   "security:1",
+   "accessibility:1",
+   "cookies:1"
+  ],
+  "1440": [
+   "download:1",
+   "about:1",
+   "careers:2",
+   "research:1",
+   "community:1",
+   "partners:1",
+   "updates:1",
+   "referral:1",
+   "safety:1",
+   "privacy:1",
+   "terms:1",
+   "security:1",
+   "accessibility:1",
+   "cookies:1"
+  ]
+ },
+ "grey-lead-ink: p 17/17.5px grey-styled (old rgbmarkers)": {
+  "390": [
+   "home:3",
+   "student:2",
+   "teacher:2",
+   "parent:2",
+   "help:1",
+   "professional:2",
+   "how-it-works:11",
+   "organization:2",
+   "download:2",
+   "pricing:1",
+   "privacy:1",
+   "terms:1",
+   "security:1",
+   "cookies:1"
+  ],
+  "1024": [
+   "home:3",
+   "student:2",
+   "teacher:2",
+   "parent:2",
+   "help:1",
+   "professional:2",
+   "how-it-works:11",
+   "organization:2",
+   "download:2",
+   "pricing:1",
+   "privacy:1",
+   "terms:1",
+   "security:1",
+   "cookies:1"
+  ],
+  "1440": [
+   "home:3",
+   "student:2",
+   "teacher:2",
+   "parent:2",
+   "help:1",
+   "professional:2",
+   "how-it-works:11",
+   "organization:2",
+   "download:2",
+   "pricing:1",
+   "privacy:1",
+   "terms:1",
+   "security:1",
+   "cookies:1"
+  ]
+ },
+ "grey-lead-ink: SAME intent, new serialization (110, 110, 115)": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ },
+ "meta-floor: .text-[13px]": {
+  "390": [
+   "home:4",
+   "student:12",
+   "teacher:12",
+   "parent:12",
+   "help:11",
+   "professional:12",
+   "how-it-works:11",
+   "organization:12",
+   "download:13",
+   "about:8",
+   "pricing:12",
+   "careers:11",
+   "research:15",
+   "community:7",
+   "contact:7",
+   "partners:14",
+   "updates:25",
+   "referral:12",
+   "safety:8",
+   "privacy:18",
+   "terms:21",
+   "security:19",
+   "accessibility:13",
+   "cookies:16"
+  ],
+  "1024": [
+   "home:4",
+   "student:12",
+   "teacher:12",
+   "parent:12",
+   "help:11",
+   "professional:12",
+   "how-it-works:11",
+   "organization:12",
+   "download:13",
+   "about:8",
+   "pricing:12",
+   "careers:11",
+   "research:15",
+   "community:7",
+   "contact:7",
+   "partners:14",
+   "updates:25",
+   "referral:12",
+   "safety:8",
+   "privacy:18",
+   "terms:21",
+   "security:19",
+   "accessibility:13",
+   "cookies:16"
+  ],
+  "1440": [
+   "home:4",
+   "student:12",
+   "teacher:12",
+   "parent:12",
+   "help:11",
+   "professional:12",
+   "how-it-works:11",
+   "organization:12",
+   "download:13",
+   "about:8",
+   "pricing:12",
+   "careers:11",
+   "research:15",
+   "community:7",
+   "partners:14",
+   "updates:25",
+   "referral:12",
+   "safety:8",
+   "privacy:18",
+   "terms:21",
+   "security:19",
+   "accessibility:13",
+   "cookies:16"
+  ]
+ },
+ "display-tracking: story-card clamps (tracking rule)": {
+  "390": [],
+  "1024": [],
+  "1440": []
+ }
+}

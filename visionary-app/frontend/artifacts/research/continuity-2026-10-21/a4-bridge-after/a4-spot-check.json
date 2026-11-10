@@ -1,0 +1,74 @@
+{
+ "/about@1440": {
+  "h1t48": 1,
+  "t13": 8,
+  "clampedAny": 1,
+  "roundedArb": 87,
+  "uppercaseP": 11,
+  "h1Text": "Helping people turn questions ",
+  "mainNodes": 2160
+ },
+ "/download@1440": {
+  "h1t48": 1,
+  "t13": 13,
+  "clampedAny": 5,
+  "roundedArb": 26,
+  "uppercaseP": 3,
+  "h1Text": "Get Visionary on every device.",
+  "mainNodes": 141
+ },
+ "/how-it-works@1440": {
+  "h1t48": 0,
+  "t13": 11,
+  "clampedAny": 16,
+  "roundedArb": 28,
+  "uppercaseP": 4,
+  "h1Text": "How Visionary works.",
+  "mainNodes": 290
+ },
+ "/student@1440": {
+  "h1t48": 0,
+  "t13": 12,
+  "clampedAny": 26,
+  "roundedArb": 23,
+  "uppercaseP": 0,
+  "h1Text": "Learning,\nLearning, to master,",
+  "mainNodes": 949
+ },
+ "/about@390": {
+  "h1t48": 1,
+  "t13": 8,
+  "clampedAny": 1,
+  "roundedArb": 87,
+  "uppercaseP": 11,
+  "h1Text": "Helping people turn questions ",
+  "mainNodes": 2160
+ },
+ "/download@390": {
+  "h1t48": 1,
+  "t13": 13,
+  "clampedAny": 5,
+  "roundedArb": 26,
+  "uppercaseP": 3,
+  "h1Text": "Get Visionary on every device.",
+  "mainNodes": 141
+ },
+ "/how-it-works@390": {
+  "h1t48": 0,
+  "t13": 11,
+  "clampedAny": 16,
+  "roundedArb": 28,
+  "uppercaseP": 4,
+  "h1Text": "How Visionary works.",
+  "mainNodes": 290
+ },
+ "/student@390": {
+  "h1t48": 0,
+  "t13": 12,
+  "clampedAny": 26,
+  "roundedArb": 23,
+  "uppercaseP": 0,
+  "h1Text": "Learning,\nLearning, to master,",
+  "mainNodes": 949
+ }
+}

@@ -14,7 +14,7 @@ export const eventDocument = (db: Firestore, uid: string, id: string) => db.coll
 // Device records represent a browser session, never a permanent hardware identity.
 // Operational cookie hashes stay in the separate server-only session lookup.
 export function deviceRecord(uid: string, id: string, session: any, previous: any = {}) {
-  return { uid, deviceSessionId: id, recordVersion: 1, kind: 'browser-session',
+  return { uid, deviceSessionId: id, recordVersion: 1, kind: 'browser-session', authSessionVersion: session.authSessionVersion ?? 0,
     firstSeenAt: session.createdAt || previous.firstSeenAt || Timestamp.fromMillis(session.expires - 8 * 3600000),
     lastSeenAt: Timestamp.fromMillis(session.lastSeen), expiresAt: Timestamp.fromMillis(session.expires),
     revokedAt: session.revokedAt || null, provider: session.provider || previous.provider || 'unknown',

@@ -1,0 +1,583 @@
+{
+  "capturedAt": "2026-10-21T15:05:48.001Z",
+  "base": "origin/dev 84a432ec",
+  "viewportWidths": [
+    1440,
+    1024,
+    390
+  ],
+  "totalCaptures": 78,
+  "loadingStuck": [],
+  "failures": [
+    "/partners@1440",
+    "/accessibility@1440",
+    "/signin@1024",
+    "/partners@1024"
+  ],
+  "receipts": [
+    {
+      "route": "/",
+      "width": 1440,
+      "status": "ok",
+      "file": "home-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/signin",
+      "width": 1440,
+      "status": "ok",
+      "file": "signin-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/login",
+      "width": 1440,
+      "status": "ok",
+      "file": "login-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/register",
+      "width": 1440,
+      "status": "ok",
+      "file": "register-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/student",
+      "width": 1440,
+      "status": "ok",
+      "file": "student-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/teacher",
+      "width": 1440,
+      "status": "ok",
+      "file": "teacher-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/parent",
+      "width": 1440,
+      "status": "ok",
+      "file": "parent-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/help",
+      "width": 1440,
+      "status": "ok",
+      "file": "help-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/professional",
+      "width": 1440,
+      "status": "ok",
+      "file": "professional-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/how-it-works",
+      "width": 1440,
+      "status": "ok",
+      "file": "how-it-works-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/organization",
+      "width": 1440,
+      "status": "ok",
+      "file": "organization-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/download",
+      "width": 1440,
+      "status": "ok",
+      "file": "download-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "status": "ok",
+      "file": "about-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/pricing",
+      "width": 1440,
+      "status": "ok",
+      "file": "pricing-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/careers",
+      "width": 1440,
+      "status": "ok",
+      "file": "careers-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/research",
+      "width": 1440,
+      "status": "ok",
+      "file": "research-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/community",
+      "width": 1440,
+      "status": "ok",
+      "file": "community-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/contact",
+      "width": 1440,
+      "status": "ok",
+      "file": "contact-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/partners",
+      "width": 1440,
+      "status": "goto-failed: TimeoutError: page.goto: Timeout 12000ms exceeded.\nCall log:",
+      "file": "partners-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/updates",
+      "width": 1440,
+      "status": "ok",
+      "file": "updates-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/referral",
+      "width": 1440,
+      "status": "ok",
+      "file": "referral-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/safety",
+      "width": 1440,
+      "status": "ok",
+      "file": "safety-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/privacy",
+      "width": 1440,
+      "status": "ok",
+      "file": "privacy-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/terms",
+      "width": 1440,
+      "status": "ok",
+      "file": "terms-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/security",
+      "width": 1440,
+      "status": "ok",
+      "file": "security-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/accessibility",
+      "width": 1440,
+      "status": "shot-failed: TimeoutError: page.screenshot: Timeout 30000ms exceeded.\nCal",
+      "file": null
+    },
+    {
+      "route": "/cookies",
+      "width": 1440,
+      "status": "ok",
+      "file": "cookies-1440.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "status": "ok",
+      "file": "home-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/signin",
+      "width": 1024,
+      "status": "shot-failed: TimeoutError: page.screenshot: Timeout 30000ms exceeded.\nCal",
+      "file": null
+    },
+    {
+      "route": "/login",
+      "width": 1024,
+      "status": "ok",
+      "file": "login-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/register",
+      "width": 1024,
+      "status": "ok",
+      "file": "register-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/student",
+      "width": 1024,
+      "status": "ok",
+      "file": "student-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/teacher",
+      "width": 1024,
+      "status": "ok",
+      "file": "teacher-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/parent",
+      "width": 1024,
+      "status": "ok",
+      "file": "parent-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/help",
+      "width": 1024,
+      "status": "ok",
+      "file": "help-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/professional",
+      "width": 1024,
+      "status": "ok",
+      "file": "professional-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/how-it-works",
+      "width": 1024,
+      "status": "ok",
+      "file": "how-it-works-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/organization",
+      "width": 1024,
+      "status": "ok",
+      "file": "organization-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/download",
+      "width": 1024,
+      "status": "ok",
+      "file": "download-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1024,
+      "status": "ok",
+      "file": "about-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/pricing",
+      "width": 1024,
+      "status": "ok",
+      "file": "pricing-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/careers",
+      "width": 1024,
+      "status": "ok",
+      "file": "careers-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/research",
+      "width": 1024,
+      "status": "ok",
+      "file": "research-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/community",
+      "width": 1024,
+      "status": "ok",
+      "file": "community-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/contact",
+      "width": 1024,
+      "status": "ok",
+      "file": "contact-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/partners",
+      "width": 1024,
+      "status": "shot-failed: TimeoutError: page.screenshot: Timeout 30000ms exceeded.\nCal",
+      "file": null
+    },
+    {
+      "route": "/updates",
+      "width": 1024,
+      "status": "ok",
+      "file": "updates-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/referral",
+      "width": 1024,
+      "status": "ok",
+      "file": "referral-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/safety",
+      "width": 1024,
+      "status": "ok",
+      "file": "safety-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/privacy",
+      "width": 1024,
+      "status": "ok",
+      "file": "privacy-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/terms",
+      "width": 1024,
+      "status": "ok",
+      "file": "terms-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/security",
+      "width": 1024,
+      "status": "ok",
+      "file": "security-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/accessibility",
+      "width": 1024,
+      "status": "ok",
+      "file": "accessibility-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/cookies",
+      "width": 1024,
+      "status": "ok",
+      "file": "cookies-1024.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "status": "ok",
+      "file": "home-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/signin",
+      "width": 390,
+      "status": "ok",
+      "file": "signin-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/login",
+      "width": 390,
+      "status": "ok",
+      "file": "login-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/register",
+      "width": 390,
+      "status": "ok",
+      "file": "register-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/student",
+      "width": 390,
+      "status": "ok",
+      "file": "student-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/teacher",
+      "width": 390,
+      "status": "ok",
+      "file": "teacher-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/parent",
+      "width": 390,
+      "status": "ok",
+      "file": "parent-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/help",
+      "width": 390,
+      "status": "ok",
+      "file": "help-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/professional",
+      "width": 390,
+      "status": "ok",
+      "file": "professional-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/how-it-works",
+      "width": 390,
+      "status": "ok",
+      "file": "how-it-works-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/organization",
+      "width": 390,
+      "status": "ok",
+      "file": "organization-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/download",
+      "width": 390,
+      "status": "ok",
+      "file": "download-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "status": "ok",
+      "file": "about-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/pricing",
+      "width": 390,
+      "status": "ok",
+      "file": "pricing-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/careers",
+      "width": 390,
+      "status": "ok",
+      "file": "careers-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/research",
+      "width": 390,
+      "status": "ok",
+      "file": "research-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/community",
+      "width": 390,
+      "status": "ok",
+      "file": "community-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/contact",
+      "width": 390,
+      "status": "ok",
+      "file": "contact-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/partners",
+      "width": 390,
+      "status": "ok",
+      "file": "partners-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/updates",
+      "width": 390,
+      "status": "ok",
+      "file": "updates-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/referral",
+      "width": 390,
+      "status": "ok",
+      "file": "referral-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/safety",
+      "width": 390,
+      "status": "ok",
+      "file": "safety-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/privacy",
+      "width": 390,
+      "status": "ok",
+      "file": "privacy-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/terms",
+      "width": 390,
+      "status": "ok",
+      "file": "terms-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/security",
+      "width": 390,
+      "status": "ok",
+      "file": "security-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/accessibility",
+      "width": 390,
+      "status": "ok",
+      "file": "accessibility-390.jpeg",
+      "newConsoleErrors": 0
+    },
+    {
+      "route": "/cookies",
+      "width": 390,
+      "status": "ok",
+      "file": "cookies-390.jpeg",
+      "newConsoleErrors": 0
+    }
+  ]
+}

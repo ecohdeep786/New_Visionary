@@ -14,19 +14,23 @@ const results = [];
 const baseline = await (await fetch('http://127.0.0.1:3035/__test/status')).json();
 let activePage;
 try {
+  const isolate = async page => {
+    await page.setRequestInterception(true);
+    page.on('request', request => [origin, emulator].includes(new URL(request.url()).origin) ? request.continue() : request.abort());
+    page.setDefaultNavigationTimeout(90000);
+  };
   const page = await browser.newPage(); activePage = page; await page.setViewport({ width: 1280, height: 900 });
   page.setDefaultNavigationTimeout(90000);
   const errors = []; page.on('pageerror', error => errors.push(error.message));
-  await page.setRequestInterception(true);
-  page.on('request', request => {
-    const url = new URL(request.url());
-    if (![origin, emulator].includes(url.origin)) return request.abort();
-    return request.continue();
-  });
+  await isolate(page);
   const text = () => page.$eval('body', element => element.innerText);
   const click = async label => {
     await page.waitForFunction(label => [...document.querySelectorAll('button')].some(element => element.textContent.trim() === label && !element.disabled), {}, label);
     await page.evaluate(label => [...document.querySelectorAll('button')].find(element => element.textContent.trim() === label && !element.disabled).click(), label);
+  };
+  const clickAria = async label => {
+    await page.waitForFunction(label => [...document.querySelectorAll('button')].some(element => element.getAttribute('aria-label') === label && !element.disabled), {}, label);
+    await page.evaluate(label => [...document.querySelectorAll('button')].find(element => element.getAttribute('aria-label') === label && !element.disabled).click(), label);
   };
   const fill = async (selector, value) => { await page.waitForSelector(selector); await page.$eval(selector, element => { element.value = ''; element.dispatchEvent(new Event('input', { bubbles: true })); }); await page.type(selector, value); };
   const see = value => page.waitForFunction(value => document.body.innerText.includes(value), {}, value);
@@ -44,7 +48,7 @@ try {
   await click('Create account'); await see('I verified my email'); await assertSafe();
   results.push({ scenario: 'registration-awaits-verification', passed: true }); console.log('PASS: registration-awaits-verification');
   const verify = await code('VERIFY_EMAIL');
-  const actionPage = await browser.newPage(); await actionPage.goto(`${origin}/auth/action?mode=verifyEmail&oobCode=${encodeURIComponent(verify)}`, { waitUntil: 'networkidle0' });
+  const actionPage = await browser.newPage(); await isolate(actionPage); await actionPage.goto(`${origin}/auth/action?mode=verifyEmail&oobCode=${encodeURIComponent(verify)}`, { waitUntil: 'networkidle0' });
   await actionPage.waitForFunction(() => document.body.innerText.includes('Your email is verified.')); await actionPage.close();
   await click('I verified my email'); await page.waitForFunction(() => location.pathname === '/onboarding');
   results.push({ scenario: 'verified-signup-loads-first-time-onboarding', passed: true }); console.log('PASS: verified-signup-loads-first-time-onboarding');
@@ -77,9 +81,27 @@ try {
   results.push({ scenario: 'old-password-denied-with-human-message', passed: true }); console.log('PASS: old-password-denied-with-human-message');
   await signIn(updatedPassword); await page.waitForFunction(() => location.pathname === '/dashboard/home');
   results.push({ scenario: 'new-password-resumes-same-account', passed: true }); console.log('PASS: new-password-resumes-same-account');
+  // Phone-only SDK and account reuse are covered by phone-auth-review.mjs.
+  const signOut = async () => {
+    for (let attempt = 0; attempt < 4; attempt++) {
+      try {
+        await page.waitForFunction(() => [...document.querySelectorAll('button')].some(element => element.getAttribute('aria-label') === 'Open account menu' && !element.disabled), { timeout: 30000 });
+        await page.click('[aria-label="Open account menu"]');
+        await page.waitForSelector('[role="menu"]', { timeout: 6000 });
+        await page.evaluate(() => { const node = [...document.querySelectorAll('[role="menu"] [role="menuitem"], [role="menu"] button')].find(element => /Sign out/i.test(element.textContent || '')); if (!node) throw new Error('Sign out item not found in account menu'); node.click(); });
+        await page.waitForFunction(() => ['/login', '/', '/home'].includes(location.pathname), { timeout: 15000 });
+        return true;
+      } catch (error) {
+        if (attempt === 3) throw error;
+        await page.keyboard.press('Escape'); await new Promise(resolve => setTimeout(resolve, 1500));
+      }
+    }
+  };
+  await signOut();
   const status = await (await fetch('http://127.0.0.1:3035/__test/status')).json();
-  assert.equal(status.accounts, baseline.accounts + 1); assert.ok(status.events.some(event => event.type === 'sign_in' && event.hasIp && event.hasBrowser)); assert.ok(status.events.some(event => event.type === 'sign_out' && event.hasIp)); assert.ok(status.sessions.some(session => session.revoked));
+  assert.equal(status.accounts, baseline.accounts + 1); assert.ok(status.events.some(event => event.type === 'sign_in' && event.hasIp && event.hasBrowser)); assert.ok(status.events.some(event => event.type === 'sign_out_all' && event.hasIp)); assert.ok(status.sessions.some(session => session.revoked));
   const context = await browser.createBrowserContext(), duplicate = await context.newPage();
+  await isolate(duplicate);
   await duplicate.goto(`${origin}/register`, { waitUntil: 'networkidle0' });
   await duplicate.evaluate(() => [...document.querySelectorAll('button')].find(element => element.textContent.trim() === 'Continue with Email').click());
   await duplicate.waitForSelector('input[type="email"]'); await duplicate.type('input[type="email"]', email); await duplicate.evaluate(() => document.querySelector('button[type="submit"]').click());

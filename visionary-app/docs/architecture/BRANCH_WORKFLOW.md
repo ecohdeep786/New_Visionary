@@ -17,6 +17,14 @@ git -C <task-worktree> push -u origin codex/deepseek-kan-30-api-contracts
 
 The primary checkout remains on `dev`. Create a release checkout only when a release needs one. Do not merge over unrelated edits, reset away another worker's changes or force-push shared branches. Schema changes have one owner and reviewed compatibility with other tasks.
 
+Local product testing starts with root `npm run dev`. It refreshes `origin/main`
+and refuses to start a checkout missing the current production commit. First
+integrate accepted production history into `dev`, then create the task instance.
+If production advances during a task, merge `origin/main` into that task branch
+and review conflicts before restarting. The check never resets files or merges
+automatically. A running server does not update itself when production advances;
+restart through the root command for each verification run.
+
 ## Checkpoints and GitHub recovery
 
 Inspect and stage intended paths, commit coherent work and push before handoff or stopping. Record the current commit, checks, findings and next step in Jira. Compare actual remote refs with HEAD; a local commit is not a successful GitHub backup.

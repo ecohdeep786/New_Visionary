@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Apple type-scale demo — Visionary copy (font: Google Sans)</title>
+<style>
+  @font-face { font-family: 'GS'; src: url('file:///C:/Users/Administrator/New_Visionary/visionary-app/frontend/public/fonts/GoogleSans-Regular.ttf') format('truetype'); font-weight: 400; }
+  @font-face { font-family: 'GS'; src: url('file:///C:/Users/Administrator/New_Visionary/visionary-app/frontend/public/fonts/GoogleSans-Medium.ttf') format('truetype'); font-weight: 500; }
+  @font-face { font-family: 'GS'; src: url('file:///C:/Users/Administrator/New_Visionary/visionary-app/frontend/public/fonts/GoogleSans-Bold.ttf') format('truetype'); font-weight: 600 700; }
+  html { font-family: 'GS', sans-serif; }
+  body { margin: 0; background: #fff; color: #121317; }
+  .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; max-width: 1440px; margin: 0 auto; padding: 24px 0 48px; }
+  h1 { font-size: 15px; font-weight: 400; color: #5f6368; margin: 12px 24px; }
+  .colhead { position: sticky; top: 0; background: #fff; padding: 10px 24px 8px; border-bottom: 1px solid #dadce0; font-size: 13px; font-weight: 600; color: #4285F4; letter-spacing: .04em; text-transform: uppercase; }
+  .row { padding: 18px 24px; border-bottom: 1px solid #f1f3f4; }
+  .rowlabel { font-size: 11px; font-weight: 600; color: #9AA0A6; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+  .d1 { font-size: 140px; font-weight: 600; line-height: 1; letter-spacing: -0.002em; }
+  .d2 { font-size: 96px; font-weight: 600; line-height: 1; letter-spacing: -0.001em; }
+  .hero-phrase { font-size: 64px; font-weight: 600; line-height: 1.07; letter-spacing: -0.005em; }
+  .sec { font-size: 64px; font-weight: 600; line-height: 1.07; letter-spacing: -0.005em; }
+  .story { font-size: 48px; font-weight: 600; line-height: 1.08; letter-spacing: -0.003em; }
+  .card { font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: 0; }
+  .lead { font-size: 28px; font-weight: 400; line-height: 1.4; letter-spacing: 0.007em; color: #121317; }
+  .intro { font-size: 21px; font-weight: 400; line-height: 1.21; letter-spacing: 0.012em; color: #5f6368; max-width: 620px; }
+  .body { font-size: 17px; font-weight: 400; line-height: 1.47; letter-spacing: -0.011em; color: #5f6368; max-width: 620px; }
+  .cap { font-size: 12px; font-weight: 600; line-height: 1.33; letter-spacing: -0.010em; color: #9AA0A6; }
+  .eyebrow { font-size: 21px; font-weight: 600; line-height: 1.19; letter-spacing: 0.011em; color: #121317; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; background: #121317; color: #fff; border-radius: 980px; padding: 12px 22px; font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.016em; }
+  .nav { font-size: 12px; font-weight: 400; line-height: 1.33; letter-spacing: -0.010em; color: #121317; }
+  /* CURRENT column (measured from product today) */
+  .cur-hero { font-size: 80px; font-weight: 500; line-height: 1.05; letter-spacing: 0; }
+  .cur-ph { font-size: 56px; font-weight: 600; line-height: 1.06; letter-spacing: -0.005em; }
+  .cur-sec { font-size: 72px; font-weight: 600; line-height: 1; letter-spacing: -0.009em; }
+  .cur-story { font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -0.005em; }
+  .cur-card { font-size: 28px; font-weight: 600; line-height: 1.14; letter-spacing: 0.007em; }
+  .cur-lead { font-size: 48px; font-weight: 400; line-height: 1.25; color: #121317; }
+  .cur-intro { font-size: 19px; font-weight: 400; line-height: 1.33; color: #5f6368; max-width: 620px; }
+  .cur-body { font-size: 17px; font-weight: 400; line-height: 1.47; color: #5f6368; max-width: 620px; }
+  .cur-cap { font-size: 12px; font-weight: 500; line-height: 1.33; color: #9AA0A6; }
+  .cur-cta { display: inline-flex; align-items: center; background: #121317; color: #fff; border-radius: 999px; padding: 14px 24px; font-size: 15px; font-weight: 500; line-height: 1.2; }
+  .cur-eyebrow { font-size: 16px; font-weight: 600; letter-spacing: .04em; color: #4285F4; text-transform: uppercase; }
+  .cur-nav { font-size: 14px; font-weight: 500; color: #121317; }
+  .note { display: block; margin-top: 10px; font-size: 12px; color: #9AA0A6; line-height: 1.33; letter-spacing: -0.01em; }
+</style>
+</head>
+<body>
+<h1>Typography before → after. Same words, same brand font (Google Sans). Right column mirrors Apple's ladder measured on apple.com/in/education-initiative.</h1>
+<div class="wrap">
+  <div>
+    <div class="colhead">Current (measured in product today)</div>
+    <div class="row"><div class="rowlabel">Hero rotating word</div><div class="cur-hero">understanding.</div><span class="note">80px / 500 / lh1.05 — measured /student, / (desktop)</span></div>
+    <div class="row"><div class="rowlabel">Hero phrase line</div><div class="cur-ph">Learning to master,</div><span class="note">56px / 600 — varies 48–56 across pages, no fixed ladder</span></div>
+    <div class="row"><div class="rowlabel">Section headline (resource?</div></div><span></span>
+    <div class="row"><div class="rowlabel">Section headline</div><div class="cur-sec">The words change.</div><span class="note">72px / lh1.0 — /student h2 (desktop); inconsistent 56–80</span></div>
+    <div class="row"><div class="rowlabel">Chapter / feature heading</div><div class="cur-story">See it. Hear it. Ask it again.</div><span class="note">56px / lh1.0 — competes with section size</span></div>
+    <div class="row"><div class="rowlabel">Card title</div><div class="cur-card">Class discussions</div><span class="note">28px / lh1.14 — desktop cards</span></div>
+    <div class="row"><div class="rowlabel">Hero support copy</div><div class="cur-lead">In your class, in one intelligence.</div><span class="note">48px pill copy — Apple keeps lead ≤28</span></div>
+    <div class="row"><div class="rowlabel">Intro copy</div><div class="cur-intro">Visionary remembers where you were, so every session continues from there.</div><span class="note">19px / lh1.33 — okay but tight against body</span></div>
+    <div class="row"><div class="rowlabel">Body</div><div class="cur-body">Ask in the way that you think. Practice with feedback. Build from what you know. In the language you value.</div><span class="note">17px / 1.47 — matches Apple body ✓</span></div>
+    <div class="row"><div class="rowlabel">Caption / chip label</div><div class="cur-cap">SECONDARY • 2400w</div><span class="note">12px / 500</span></div>
+    <div class="row"><div class="rowlabel">CTA button</div><div class="cur-cta">Start learning</div><span class="note">15px / 500 — semibold CTA text</span></div>
+    <div class="row"><div class="rowlabel">Nav link</div><div class="cur-nav">Who you are</div><span class="note">14px / 500</span></div>
+  </div>
+  <div>
+    <div class="colhead">Apple-ladder spec (proposed)</div>
+    <div class="row"><div class="rowlabel">Hero rotating word · type-display</div><div class="d1">understanding.</div><span class="note">140px / 600 / lh1.0 / −0.002em @≥1440 · 96 @768–1024 · 64 @390 (Apple hero-headline ladder)</span></div>
+    <div class="row"><div class="rowlabel">Hero phrase line · type-hero-eyebrow</div><div class="d2">Learning to master,</div><span class="note">40 → 96 @768 · 56 @1440 / 600 / lh1.0 (education-initiative hero pattern)</span></div>
+    <div class="row"><div class="rowlabel">Section headline · type-h2</div><div class="sec">The words change.</div><span class="note">64px / 600 / lh1.07 / −0.005em @1440 · 40 @390 (Apple section-headline — final size capped 64, never 80)</span></div>
+    <div class="row"><div class="rowlabel">Chapter heading · type-h3</div><div class="story">See it. Hear it. Ask it again.</div><span class="note">48px / 600 / lh1.08 / −0.003em @1440 · 28 @390 (story-headline ladder)</span></div>
+    <div class="row"><div class="rowlabel">Card title · type-h4</div><div class="card">Class discussions</div><span class="note">40px / 600 / lh1.10 / 0em @1440 · 32 @768 · 28 @390</span></div>
+    <div class="row"><div class="rowlabel">Hero support copy · type-lead</div><div class="lead">In your class, in one intelligence.</div><span class="note">28px / 400 / lh1.4 / +0.009em @1440 · 24 @768–1024 · 19 @390 (Apple lead-copy ladder 19→24→28)</span></div>
+    <div class="row"><div class="rowlabel">Intro copy · type-intro</div><div class="intro">Visionary remembers where you were, so every session continues from there.</div><span class="note">21px / 400 / lh1.21 / +0.012em @≥768 · 19 @390 (eyebrow-reduced)</span></div>
+    <div class="row"><div class="rowlabel">Body · type-body</div><div class="body">Ask in the way that you think. Practice with feedback. Build from what you know. In the language you value.</div><span class="note">17px / 400 / lh1.47 (unchanged ✓) tracking −0.022em → −0.011em adapted for Google Sans</span></div>
+    <div class="row"><div class="rowlabel">Caption · type-caption</div><div class="cap">SECONDARY • 2400W</div><span class="note">12px / 600 / lh1.33 / −0.010em (Apple figure-caption)</span></div>
+    <div class="row"><div class="rowlabel">CTA button · type-button</div><div class="cta">Start learning →</div><span class="note">14px / 400 / lh1.29 / −0.016em — Apple chips/buttons are regular-weight (calm premium)</span></div>
+    <div class="row"><div class="rowlabel">Nav link · type-nav</div><div class="nav">Who you are</div><span class="note">12px / 400 / lh1.33 / −0.010em (Apple globalnav 12px) · 44px hit target kept</span></div>
+    <div class="row"><div class="rowlabel">Label above sections · type-label</div><div class="eyebrow">Apple has partnered with Malala Fund</div><span class="note">21→24px / 600 / lh1.19 / +0.011em — first-line bold labels (replaces 12px eyebrows for meaning-carrying text)</span></div>
+  </div>
+</div>
+</body>
+</html>
