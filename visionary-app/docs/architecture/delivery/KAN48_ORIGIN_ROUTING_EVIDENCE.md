@@ -47,3 +47,28 @@ TLS: subject=CN=visionary.org.in | issued by issuer=C=US, O=Google Trust Service
 - The audit proves the boundaries **from outside**; the WAF/Cloud Armor throttle rules and edge configuration are reviewed PLAT-01 configuration whose gcloud-side verification is founder-gated (owner session re-auth), consistent with KAN-47's remainder.
 - The boundary contract matches release.mjs `publicChecks` (the production workflow's post-promotion canonical checks); this tool makes the same contract verifiable on demand and adds the direct-origin bypass and asset-cache checks.
 - PLAT-05 (hosted cookies with real provider delivery), PLAT-06 (CI release), PLAT-07 (observability), PLAT-08 (backups) remain separate gates.
+
+## REVIEWER-PREP pass (2026-11-10, before D-095 review — corrections committed on this branch)
+
+The reviewer-corrector lane reviewed the implementation, fixed three defects (one dead security assertion, one incomplete cookie contract, one shared-timeout hazard), integrated the current dev baseline and re-ran every gate INCLUDING a fresh live run. Commits on `codex/deepseek-kan-48-origin-routing`: corrections `ef0c9f07`, dev integration `44dccfcd` (merge of `2e0b1fbb`), data-04 rolling-clock fixup `6742209e` (byte-identical to the fix carried on the prepared Testing branches).
+
+### Corrections (all in `infrastructure/gcp/`)
+
+1. **Dead SPA-leak assertion fixed** in `auditDirectOriginBypass`: the html-leak test evaluated `(await response.arrayBuffer()).toString()` — always the string `[object ArrayBuffer]`, never containing the doctest — and the body had already been consumed by `read()`, so a genuine 200-HTML leak through the direct origin would have thrown `body already used` (misleading `probe failed`) instead of the bypass-open refusal. The check only ever appeared to work because the live direct origin answers 404 with an empty body. It now reuses the decoded body and **refuses any doctype-html document through the direct origin even when the revision header is stripped** (fail closed). A new test drives a revision-less SPA shell (refuses — failed on the old code) and the real Google-Frontend empty-404 shape (stays a closed bypass; verified against the live run.app URL before tightening).
+2. **`__Host-` cookie contract completed** in `auditCsrfPosture`: `Path=/` is now required and any `Domain=` attribute refuses, per the `__Host-` spec — browsers silently reject the cookie otherwise, which would break CSRF end to end while the old audit passed it. Two new refuse tests.
+3. **Per-probe abort budget**: `GET` carried a module-load-time `AbortSignal.timeout(15000)` shared by every probe, so all seven checks shared a single 15-second budget that began at *import*; slow or delayed invocations would fail with instant `AbortError`s. Each probe now creates a fresh signal.
+
+### Gate evidence on this branch (merged tree, this host)
+
+| Gate | Command | Result |
+| --- | --- | --- |
+| Origin-audit offline suite | `node --test infrastructure/gcp/tests/origin-audit.test.mjs` | **8/8 pass** (incl. the new revision-less-leak and cookie-contract cases) |
+| Full infrastructure suite | `node --test infrastructure/gcp/tests/*.test.mjs` | **38/42 pass**; the 4 refusals are this host's missing Python (`bootstrap.test.mjs`, `product-env.test.mjs`), not code failures |
+| Data contracts | `npm run data:check` (disposable loopback PostgreSQL 16 `nv-tools/pgsql` on 127.0.0.1:5433 + Java 21 `nv-tools/jdk-21.0.13+9-jre`) | **exit 0 — 315/315 across 11 suites**, incl. data-04 invitations 37/37 |
+| Product check gate | `npm run check` | **exit 0 — 844 test lines green, frontend build ok** |
+| **LIVE origin audit (fresh, post-corrections)** | `node infrastructure/gcp/origin-audit.mjs` | **7/7 PASS, exit 0 against https://visionary.org.in on 2026-11-10** — revision `23921342fcab…`, hardened header set, API no-store, JSON-404 no-fallback, anonymous 401 without leakage, `__Host-` cookie + forged-origin 403, closed run.app bypass, explicit public asset caching; `TLS: CN=visionary.org.in, issued by Google Trust Services (WR3)` |
+
+### Notes for the reviewer
+
+- The live run is the same read-only ordinary-client probe set as the implementer's 2026-11-04 run, now executed against the **corrected** tool and the newer serving revision (`23921342` = the current release-promotion revision), upgrading the evidence from a pre-correction tool.
+- The strict doctype rule was validated against the live direct origin before landing: the real bypass answers `404` with `Content-Length: 0` (no html), so the fail-closed tightening cannot false-refuse the reviewed state.
