@@ -136,3 +136,25 @@ test('JOB-01 queues: jobs route to their per-workload queue and a cancelled job 
   const after = await s.jobById(job.id);
   assert.equal(after.state, 'CANCELLED');
 });
+
+test('JOB-01 backoff gates claiming: a claimed row is not re-claimable until its next-attempt time is due', async () => {
+  const { s, d } = setup();
+  const future = new Date(Date.now() + 60_000).toISOString();
+  await s.appendOutbox({ ...ev('uid-1', 'invite.accept', {}, 1), nextAttemptAt: future });
+  assert.equal((await d.dispatch(10)).length, 0, 'a claimed row before its retry time is not claimable');
+  await s.markOutbox(1, { nextAttemptAt: new Date(Date.now() - 1000).toISOString() });
+  const results = await d.dispatch(10);
+  assert.equal(results.length, 1);
+  assert.equal((await s.outboxByCursor(1)).status, 'DONE');
+});
+
+test('JOB-01/JOB-02 idempotent completion: completing a DONE job twice never re-executes it', async () => {
+  const { s, d } = setup();
+  const job = await d.enqueue('uid-1', 'uid-1:documents', 'documents.export');
+  const claim = await d.claim(job.id, 60_000);
+  const first = await d.complete(job.id, claim, '2026-11-10T00:00:00.000Z');
+  assert.equal(first.state, 'DONE');
+  const second = await d.complete(job.id, claim, '2026-11-10T00:01:00.000Z'); // replayed ack must be a no-op
+  assert.equal(second.state, 'DONE');
+  assert.equal(second.completedAt, first.completedAt, 'the first completion timestamp is preserved, never overwritten');
+});

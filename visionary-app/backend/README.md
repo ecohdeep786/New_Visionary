@@ -11,9 +11,11 @@ only its own verified schema/roles. Never use product credentials for this comma
 
 `src/data` exposes `canonicalMigrations(backendRoot)`, `PostgresMigrationStore`,
 `MigrationRunner` and `BackfillRunner`. The store requires explicit migration/runtime
-URLs, actual matching role names and schema; it refuses hosted or non-synthetic
-database URLs. There is no automatic startup migration, deployment command or
-production adapter. `applyAll()` binds execution to verified database identities;
+URLs, actual matching role names and schema. Synthetic mode refuses hosted or
+non-synthetic URLs. An explicit reviewed Cloud SQL target permits only its exact
+GCP socket/database with bounded pools; the separate [migration job](../infrastructure/gcp/data-job/README.md)
+provides source/staging admission and immutable image/deploy planning. There is
+no automatic product-startup migration. `applyAll()` binds execution to verified database identities;
 an `appliedBy` string or confirmation flag is not permission.
 
 Migration artifact hashes cover up/down SQL and metadata; physical schema fingerprints
