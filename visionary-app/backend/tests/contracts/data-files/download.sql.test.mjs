@@ -47,8 +47,10 @@ before(async () => {
   env = await domainDatabase();
   db = env.db;
   // Replay accepted history and the additive FILE-03 migration.
-  await db.person.create({ data: { uid: 'owner-dl' } });
-  await db.person.create({ data: { uid: 'member-dl' } });
+  // Idempotent seeding: the fixture must be re-runnable against any database
+  // state (a reused disposable DB already carries these persons).
+  await db.person.upsert({ where: { uid: 'owner-dl' }, create: { uid: 'owner-dl' }, update: {} });
+  await db.person.upsert({ where: { uid: 'member-dl' }, create: { uid: 'member-dl' }, update: {} });
   store = new PostgresDownloadStore(db);
 });
 
