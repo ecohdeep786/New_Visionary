@@ -8,5 +8,8 @@
     "sourceMap": false,
     "incremental": false
   },
-  "include": ["src/data/**/*.ts"]
+  "include": [
+    "src/data/**/*.ts",
+    "src/ingestion/*.ts"
+  ]
 }
