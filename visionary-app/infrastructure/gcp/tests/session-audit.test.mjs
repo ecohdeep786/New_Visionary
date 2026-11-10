@@ -34,6 +34,13 @@ test('CSRF cookie must carry the __Host- posture', async () => {
   assert.match((await auditCsrfCookiePosture(weak)).detail, /not __Host-visionary-csrf/);
   const noStrict = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': `${expected.cookiePrefix}csrf=x; Path=/; Secure; HttpOnly; SameSite=Lax` }, { token: 'f'.repeat(64) })]]);
   assert.match((await auditCsrfCookiePosture(noStrict)).detail, /missing/i);
+  // __Host- without Path=/ is rejected by browsers (the cookie never exists),
+  // which would silently break CSRF end to end — the audit must catch it
+  const noPath = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': `${expected.cookiePrefix}csrf=x; Secure; HttpOnly; SameSite=Strict` }, { token: 'f'.repeat(64) })]]);
+  assert.match((await auditCsrfCookiePosture(noPath)).detail, /missing/i);
+  // a Domain attribute violates the __Host- contract and must refuse
+  const withDomain = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': `${expected.cookiePrefix}csrf=x; Path=/; Domain=visionary.org.in; Secure; HttpOnly; SameSite=Strict` }, { token: 'f'.repeat(64) })]]);
+  assert.match((await auditCsrfCookiePosture(withDomain)).detail, /Domain attribute/);
 });
 
 test('invalid credentials are refused with no session/device cookie issued', async () => {
@@ -66,6 +73,13 @@ test('the CSP must pin exactly the reviewed auth domains', async () => {
   assert.equal((await auditAuthorizedAuthDomains(good)).pass, true);
   const missing = urlFetch([['/login', respond(200, { 'content-security-policy': csp.replace(' https://securetoken.googleapis.com', '') }, '<!doctype html>')]]);
   assert.match((await auditAuthorizedAuthDomains(missing)).detail, /missing reviewed auth hosts: securetoken\.googleapis\.com/);
+  // a wildcard or scheme-wildcard source defeats the host allowlist entirely
+  const star = urlFetch([['/login', respond(200, { 'content-security-policy': csp.replace("connect-src 'self'", 'connect-src *') }, '<!doctype html>')]]);
+  assert.match((await auditAuthorizedAuthDomains(star)).detail, /wildcard\/unsafe source \*/);
+  const schemeWildcard = urlFetch([['/login', respond(200, { 'content-security-policy': csp.replace('frame-src ', 'frame-src https: ') }, '<!doctype html>')]]);
+  assert.match((await auditAuthorizedAuthDomains(schemeWildcard)).detail, /wildcard\/unsafe source https:/);
+  const unsafe = urlFetch([['/login', respond(200, { 'content-security-policy': csp.replace("frame-src ", "frame-src 'unsafe-eval' ") }, '<!doctype html>')]]);
+  assert.match((await auditAuthorizedAuthDomains(unsafe)).detail, /wildcard\/unsafe source 'unsafe-eval'/);
 });
 
 test('the committed cookie contract keeps the reviewed flags and HTTPS refusal', () => {

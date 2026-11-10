@@ -38,17 +38,21 @@ export async function auditSignInMethods(fetchImpl = fetch, origin = expected.or
   return pass(`exactly the reviewed methods live: ${Object.keys(expected.methods).join(', ')}`);
 }
 
-// The CSRF cookie must carry the reviewed __Host- posture with a 64-hex token.
+// The CSRF cookie must carry the reviewed __Host- posture with a 64-hex
+// token. The __Host- contract also requires Path=/ and no Domain attribute —
+// browsers silently reject the cookie otherwise, which would break CSRF end
+// to end while looking correct here.
 export async function auditCsrfCookiePosture(fetchImpl = fetch, origin = expected.origin) {
   const response = await fetchImpl(origin + '/api/auth/csrf', { redirect: 'manual', signal: AbortSignal.timeout(15000) });
   const cookie = response.headers.get('set-cookie') || '';
   const token = (await response.json()).token;
   if (response.status !== 200 || !/^[a-f0-9]{64}$/.test(token || '')) return refuse('CSRF token missing or malformed');
   if (!cookie.startsWith(expected.cookiePrefix + 'csrf=')) return refuse(`cookie is not ${expected.cookiePrefix}csrf`);
-  for (const flag of [/HttpOnly/i, /Secure/i, /SameSite=Strict/i]) {
+  for (const flag of [/HttpOnly/i, /Secure/i, /SameSite=Strict/i, /Path=\//i]) {
     if (!flag.test(cookie)) return refuse(`CSRF cookie missing ${flag}`);
   }
-  return pass('__Host- prefixed Secure/HttpOnly/SameSite=Strict CSRF cookie');
+  if (/Domain=/i.test(cookie)) return refuse('CSRF cookie carries a Domain attribute, violating the __Host- contract');
+  return pass('__Host- prefixed Secure/HttpOnly/SameSite=Strict Path=/ CSRF cookie');
 }
 
 // A session issuance attempt with invalid credentials must be refused without
@@ -88,6 +92,12 @@ export async function auditAuthorizedAuthDomains(fetchImpl = fetch, origin = exp
   if (response.status !== 200) return refuse(`login page status ${response.status}`);
   const connect = (csp.match(/connect-src ([^;]+);?/) || [])[1] || '';
   const frame = (csp.match(/frame-src ([^;]+);?/) || [])[1] || '';
+  // a wildcard, scheme-wildcard or unsafe source defeats the reviewed host
+  // allowlist entirely
+  for (const [name, sources] of [['connect-src', connect], ['frame-src', frame]]) {
+    const bad = sources.trim().split(/\s+/).find(t => t === '*' || /:$/.test(t) || /unsafe-/.test(t));
+    if (bad) return refuse(`CSP ${name} allows wildcard/unsafe source ${bad}`);
+  }
   const connectHosts = [...connect.matchAll(/https:\/\/([a-z0-9.-]+)/g)].map(m => m[1]);
   const frameHosts = [...frame.matchAll(/https:\/\/([a-z0-9.-]+)/g)].map(m => m[1]);
   const missingConnect = expected.authConnectHosts.filter(host => !connectHosts.includes(host));
