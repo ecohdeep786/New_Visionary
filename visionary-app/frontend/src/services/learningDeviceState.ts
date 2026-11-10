@@ -1,3 +1,5 @@
+import { randomUUID } from 'node:crypto';
+
 // LEARN-06 (KAN-72) — authorized change cursors/refetch, stale-response
 // rejection, independent workspace selection per device, offline/conflict
 // recovery and sign-out/account-switch handling.
@@ -110,7 +112,7 @@ export class LearningDeviceState {
   issueCursor(surface: string, seq: number): DeviceCursor {
     const state = this.requireState(this.currentDevice);
     const cursor: DeviceCursor = {
-      token: `dc_${Math.random().toString(36).slice(2, 12)}${Date.now().toString(36)}`,
+      token: `dc_${randomUUID()}`,
       deviceRef: this.currentDevice,
       workspaceId: state.identity.workspaceId,
       surface,
@@ -149,7 +151,7 @@ export class LearningDeviceState {
   queueDraft(surface: string, baseRevision: number, op: Record<string, unknown>): QueuedDraft {
     const state = this.requireState(this.currentDevice);
     const draft: QueuedDraft = {
-      draftId: `dft_${Math.random().toString(36).slice(2, 10)}`,
+      draftId: `dft_${randomUUID()}`,
       surface,
       baseRevision,
       op,
