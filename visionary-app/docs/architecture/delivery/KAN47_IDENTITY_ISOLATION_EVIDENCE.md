@@ -47,3 +47,29 @@ Timestamps: suite run and live audit 2026-11-04 (session transcript carries the 
 ## Review handoff
 
 Exact candidate SHA, full-suite counts and the live-audit transcript are recorded in the Jira review comment. Reviewer must be separate from this lane. The repeatable live command for the reviewer/founder: `GOOGLE_APPLICATION_CREDENTIALS=<dev key> node infrastructure/gcp/identity-audit.mjs` (read-only, exit code is the verdict).
+
+## REVIEWER-PREP pass (2026-11-10, before D-095 review — corrections committed on this branch)
+
+The reviewer-corrector lane reviewed the implementation, corrected two security findings plus one hygiene item, integrated the current dev baseline and re-ran every runnable gate. Commits on `codex/deepseek-kan-47-identity-isolation`: corrections `c7c5ba37`, dev integration `ba04c44d` (merge of `2e0b1fbb`), data-04 rolling-clock fixup `a20d5e11` (byte-identical to the fix carried on the ten prepared Testing branches; the dev merge brings the data-04 invitation contract whose frozen `2026-11-02` clock base expired on 2026-11-09).
+
+### Corrections (all in `infrastructure/gcp/`)
+
+1. **Widened-trust hole closed** in `auditWorkloadIdentityPool`: the old check accepted any attribute condition merely *containing* `repository_id == '1357462978'`, so a condition such as `assertion.repository_id == '1357462978' || assertion.repository_id == '9999999'` (federating an extra repository) **passed**. Now every `repository_id` equality in the condition must equal the reviewed id exclusively, name-form `repository ==` claim forms refuse, and a top-level (outside-parentheses) disjunction refuses. The reviewed conjunction bootstrap.py writes — whose only `||` is the parenthesised `event_name` pair — still passes, pinned verbatim in the tests.
+2. **Conditional-binding blindness closed** in `auditRuntimeProjectIam`: an *extra conditioned* role held by the runtime identity passed silently; the least-privilege law is now full set equality and any conditional binding for the runtime identity refuses (the desired state holds none, so this cannot false-refuse).
+3. Dead never-called `has()` helper (with a tautological clause) removed from `auditDeployerIdentity`.
+4. The credential-chain test upgraded from a stub to a full offline contract: a real 2048-bit RSA key is generated per run; the test verifies the RS256 signature over `head.claims`, the exact claims (`iss` = key service account, `scope` = read-only `datastore`, `aud` = token endpoint, `exp − iat = 60`), that only the reviewed Firestore metadata URL is read with the exchanged bearer token, and that a failed token exchange refuses before any database read.
+
+### Gate evidence on this branch (merged tree, this host)
+
+| Gate | Command | Result |
+| --- | --- | --- |
+| Identity-audit offline suite | `node --test infrastructure/gcp/tests/identity-audit.test.mjs` | **9/9 pass** |
+| Full infrastructure suite | `node --test infrastructure/gcp/tests/*.test.mjs` (after `npm ci` in `infrastructure/gcp/runtime`) | **39/43 pass**; the 4 refusals are this host's missing Python (`bootstrap.test.mjs`, `product-env.test.mjs` shell out to `python`, not installed here) — not code failures; the deepseek lane's environment ran them green |
+| Data contracts | `npm run data:check` with `DATA_TEST_DATABASE_URL` on a disposable loopback PostgreSQL 16 (`nv-tools/pgsql`, fresh `visionary_data_test_kan47`) and Java 21 (`nv-tools/jdk-21.0.13+9-jre`) on PATH | **exit 0 — 315/315 across 11 suites**, including data-04 invitations 37/37 (clock fix proven on this branch) |
+| Product check gate | `npm run check` (layout purity, contracts incl. API contract suite after `npm ci` in `integration/contracts/v1`, scope-06 both sides, lint/typecheck/build) | **exit 0, 844 test lines green, frontend build ok** |
+| Live audit (honest refusal) | `node infrastructure/gcp/identity-audit.mjs` | **7/7 REFUSE, exit 1** — gcloud is not installed on this host and no product key is configured; every refusal is the typed fail-closed path (`read failed: …`), the named-database check refuses with the explicit `GOOGLE_APPLICATION_CREDENTIALS` message. The live PASS slice remains the founder-gated re-run documented above. |
+
+### Environment notes for the reviewer
+
+- The 4 Python-gated infrastructure tests and the live gcloud-backed checks require the owner environment (Python 3.15 launcher + gcloud 589.0.0 recorded by the implementer's live run); every other gate is reproducible on this host with the disposable PostgreSQL + Java 21 under `nv-tools/`.
+- `verify-layout.mjs` forbids `node_modules` at the product root: dependencies belong in `frontend/`, `backend/upstream/backend/`, `infrastructure/gcp/runtime/` and `integration/contracts/v1/` (each `npm ci` from its own lock). A root `npm install` will create the forbidden directory and fail the layout gate.
