@@ -34,7 +34,7 @@
 // nodes exist; nothing is invented for missing coverage.
 import type { ContentNode, ContentKind, RegisterNodeInput, SourceApproval, SourceVersion } from './content-types';
 import { PARENT_OF } from './content-types';
-import type { CatalogPatch, CatalogStore, CatalogWriteResult } from './content-store';
+import type { CatalogPatch, CatalogStore, CatalogStorePatch, CatalogWriteResult } from './content-store';
 
 export class CatalogError extends Error {
   constructor(
@@ -47,7 +47,8 @@ export class CatalogError extends Error {
       | 'unauthorized'
       | 'not_approved'
       | 'source_rejected'
-      | 'invalid_approval_transition',
+      | 'invalid_approval_transition'
+      | 'immutable_field',
   ) {
     super(code);
   }
@@ -114,8 +115,14 @@ export class CatalogService {
     return node;
   }
 
-  /** Owner-only metadata update; identity (publicId/kind/parent/provenance anchor) stays immutable. */
+  /** Owner-only metadata update; identity (publicId/kind/parent/provenance anchor) stays
+   * immutable, and so do the lifecycle gates: a metadata patch can never carry source
+   * approval or publication state — those travel only through their own owner-checked,
+   * forward-only methods, so metadata can never bypass approval/publish. */
   async updateMetadata(publicId: string, ownerUid: string, patch: CatalogPatch): Promise<ContentNode> {
+    for (const key of ['source', 'publication', 'publishedAt', 'withdrawnAt', 'rights'] as const) {
+      if (key in patch) throw new CatalogError('immutable_field');
+    }
     const res = await this.store.update(publicId, ownerUid, { ...patch, updatedAt: new Date().toISOString() });
     if (!res.ok) throw this.fromWriteResult(res);
     return res.node;

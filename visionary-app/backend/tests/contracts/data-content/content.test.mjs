@@ -187,3 +187,16 @@ test('KAN-60 metadata: grade/category/authored-language are recorded and editabl
   assert.equal(updated.source.provider, 'cisce');
   assert.equal(updated.source.edition, 'ed-2024');
 });
+
+test('CONTENT-01 metadata updates can never bypass the approval/publish gates', async () => {
+  const { svc } = setup();
+  const node = await svc.register({ kind: 'curriculum', name: 'Sneaky', parentId: null, ownerUid: 'uid-1', source: { provider: 'prov', edition: 'e1', version: '1.0' } });
+  // a metadata patch carrying lifecycle state is refused outright, even by the owner
+  await assert.rejects(svc.updateMetadata(node.publicId, 'uid-1', { publication: 'published' }), (e) => e.code === 'immutable_field');
+  await assert.rejects(svc.updateMetadata(node.publicId, 'uid-1', { source: { provider: 'prov', edition: 'e1', version: '2.0', approval: 'released' } }), (e) => e.code === 'immutable_field');
+  await assert.rejects(svc.updateMetadata(node.publicId, 'uid-1', { rights: { ownerUid: 'uid-1', visibility: 'public', license: null } }), (e) => e.code === 'immutable_field');
+  // the node stays draft/private with a pending source — no side effect leaked
+  const eligibility = await svc.eligibleForRetrieval(node.publicId);
+  assert.equal(eligibility.ok, false);
+  assert.match(eligibility.reason, /not_published/);
+});

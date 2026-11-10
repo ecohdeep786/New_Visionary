@@ -12,11 +12,12 @@ export type CatalogWriteResult =
 
 /**
  * Mutable metadata columns only. The durable identity — publicId, kind,
- * parentId, ownerUid, source provider/edition — is intentionally NOT patchable
- * through this type, so an update can never recycle a public ID or repurpose
- * provenance. Source approval and publication state travel through this patch
- * because they are lifecycle state (not identity), but their transitions are
- * service-enforced (forward-only source approval; owner-only publish/withdraw).
+ * parentId, ownerUid — is intentionally NOT patchable through this type, so an
+ * update can never recycle a public ID or repurpose provenance. Lifecycle
+ * state (source approval, publication) is NOT part of this patch: those travel
+ * only through their dedicated service methods (forward-only source approval;
+ * owner-only publish/withdraw), so a metadata update can never bypass the
+ * approval/publish gates.
  */
 export type CatalogPatch = Partial<
   Pick<
@@ -25,14 +26,17 @@ export type CatalogPatch = Partial<
     | 'grade'
     | 'category'
     | 'authoredLanguage'
-    | 'rights'
-    | 'source'
-    | 'publication'
-    | 'publishedAt'
-    | 'withdrawnAt'
     | 'updatedAt'
   >
->;
+  & { license?: string | null }>;
+
+/**
+ * The store-level patch: everything the service's own lifecycle methods may
+ * write (source approval state, publication bookkeeping) plus metadata. Still
+ * excludes the durable identity (publicId/kind/parentId) and raw rights —
+ * visibility changes ride publish/withdraw only, and ownerUid never changes.
+ */
+export type CatalogStorePatch = CatalogPatch & Partial<Pick<ContentNode, 'rights' | 'source' | 'publication' | 'publishedAt' | 'withdrawnAt'>>;
 
 export interface CatalogStore {
   insert(node: ContentNode): Promise<void>;
@@ -40,7 +44,7 @@ export interface CatalogStore {
   byKind(kind: ContentKind): Promise<ContentNode[]>;
   byParent(parentId: string): Promise<ContentNode[]>;
   /** Owner-scoped metadata/lifecycle update; identity fields stay immutable. */
-  update(publicId: string, ownerUid: string, patch: CatalogPatch): Promise<CatalogWriteResult>;
+  update(publicId: string, ownerUid: string, patch: CatalogStorePatch): Promise<CatalogWriteResult>;
 }
 
 export class InMemoryCatalogStore implements CatalogStore {
@@ -54,11 +58,15 @@ export class InMemoryCatalogStore implements CatalogStore {
   async byParent(parentId: string): Promise<ContentNode[]> {
     return [...this.nodes.values()].filter((n) => n.parentId === parentId);
   }
-  async update(publicId: string, ownerUid: string, patch: CatalogPatch): Promise<CatalogWriteResult> {
+  async update(publicId: string, ownerUid: string, patch: CatalogStorePatch): Promise<CatalogWriteResult> {
     const cur = this.nodes.get(publicId);
     if (!cur) return { ok: false, reason: 'not_found' };
     if (cur.rights.ownerUid !== ownerUid) return { ok: false, reason: 'unauthorized' };
-    const next = { ...cur, ...patch, rights: patch.rights ?? cur.rights, source: patch.source ?? cur.source } as ContentNode;
+    // license is metadata (metadata patches carry it standalone); visibility
+    // and ownerUid travel only with the publish/withdraw lifecycle patches.
+    const rights = patch.rights ?? ('license' in patch ? { ...cur.rights, license: patch.license ?? null } : cur.rights);
+    const { license: _license, ...rest } = patch;
+    const next = { ...cur, ...rest, rights, source: patch.source ?? cur.source } as ContentNode;
     this.nodes.set(publicId, next);
     return { ok: true, node: next };
   }
