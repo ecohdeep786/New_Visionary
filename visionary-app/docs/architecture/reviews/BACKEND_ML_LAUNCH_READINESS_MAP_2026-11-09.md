@@ -7,20 +7,26 @@ for the merge order and mechanical conflicts).
 
 ## Delivered engineering (all in Jira Testing, all gates green at their heads)
 
-| Task | Branch tip | What the engineering half proves | Proof at head |
+> **2026-11-09 reviewer-corrector pass COMPLETE:** every branch below has been
+> independently reviewed, re-tested end-to-end at its head, corrected (the only
+> change: the `[REVIEWER-PREP]` data-04 rolling-clock fix, committed on the ten
+> later branches; kan-102/103 predate that test) and finalized — clean worktree,
+> pushed, in sync. Tips below are the FINALIZED heads.
+
+| Task | Branch tip | What the engineering half proves | Proof re-run at head (reviewer pass) |
 |---|---|---|---|
-| BILL-01 · kan-102 | `5373b268` | Canonical HTTPS-ingress local-maximum acceptance over the real production `configureProductionHttp` (TLS terminator, `__Host-` cookies, Origin/CSRF) | `billing:ingress:check` protocol 11/11 + browser journey 7/7 |
-| BILL-02 · kan-103 | `0eb757a9` | Webhook acceptance: raw-bytes HMAC, limits, duplicate/reordered/late/refund/dispute, reconciliation after full restart, self-test-fail exits 1 | `billing:webhook:acceptance` 8/8 + BILL-01 regression 11/11 |
-| BILL-06 · kan-107 | `23b2cce8` | Immutable write-once invoices, exact refunds (per-payment ledger), no invented legal fields | billing suites 71/71; production-check 111/11/37/52 exit 0 |
-| BILL-07 · kan-108 | `7e09ac54` | Explicit separate live mode: fail-closed double opt-in, namespace isolation, no startup provisioning, mode-truthful views | `billing:live:mode` 11/11 + legacy 62/62; production-check 113/11/37/52 exit 0 |
-| ACCEPT-01 · kan-117 | `20a3652e` | Released journey chain rehearsal (pricing→auth→onboarding→Free→subscription→invoice→learning→project→second-device) incl. failure states; REAL SQL workspace | `accept:journey` 11/11; check exit 0 |
-| ACCEPT-07 · kan-123 | `3b61b4dd` | Migration cutover rehearsal: originals retained, canary→full backfill owner-faithful, forward-only rollback, exactly one executor | cutover 24/24; npm test 672/672 |
-| RELEASE-01 · kan-124 | `38a7030b` | Workload distributions replace D-075 guesses; counting laws + fail-closed beta provenance; bridge into the cost engine | `workload:test` 10/10 + `cost:test` 10/10 |
-| RELEASE-02 · kan-125 | `b9e35982` | Realistic load/soak vs documented rates: core 150/s & 16.7 AI runs/s sustained, degradation = typed 503s only | `release:load:soak` 10/10 |
-| RELEASE-03 · kan-126 | `311171e2` | Enforced admission ceilings + tenant fairness + provider circuit breaker; typed 429/503 with Retry-After; fail-closed dependency degradation | `release:admission` 18/18 (9 + 9) |
-| RELEASE-04 · kan-127 | `6d831a79` | Enforced spend admission (fail-closed cap, typed 503, not alert-only) + per-completed-task economics model | `release:economics` 14/14 (6 + 8); production-check 102/11/37/52 |
-| RELEASE-05 · kan-128 | `033eadfb` | Restore drills: SQL corruption restore (independent db), deletion replay, rollback, Firestore restore, reconnect+reconcile vs RPO/RTO | `release:restore:drill` 5/5 |
-| RELEASE-06 · kan-129 | `53cc0298` | Release-path security: upstream-patch hash law, lockfile pin law, secret-surface law, LIVE secret rotation, advisory DB executed | `release:security:review` 5/5; advisories 2 critical → 1 (residual = deprecated bull/tar chain) |
+| BILL-01 · kan-102 | `5373b268` | Canonical HTTPS-ingress local-maximum acceptance over the real production `configureProductionHttp` (TLS terminator, `__Host-` cookies, Origin/CSRF) | `billing:ingress:check` protocol 11/11 + browser journey 7/7; check 0 — no corrections |
+| BILL-02 · kan-103 | `0eb757a9` | Webhook acceptance: raw-bytes HMAC, limits, duplicate/reordered/late/refund/dispute, reconciliation after full restart, self-test-fail exits 1 | `billing:webhook:acceptance` 8/8 + BILL-01 regression 11/11; check 0 — no corrections |
+| BILL-06 · kan-107 | `23b2cce8` | Immutable write-once invoices, exact refunds (per-payment ledger), no invented legal fields | billing suites 71/71; production-check 111/11/37/52 exit 0; check 0 (data-04 fix pre-existing `61ecc15e`) |
+| BILL-07 · kan-108 | `a85acd34` | Explicit separate live mode: fail-closed double opt-in, namespace isolation, no startup provisioning, mode-truthful views | `billing:live:mode` 11/11; production-check 113/11/37/52 exit 0; check 0; npm test 672/672 |
+| ACCEPT-01 · kan-117 | `c92f9820` | Released journey chain rehearsal (pricing→auth→onboarding→Free→subscription→invoice→learning→project→second-device) incl. failure states; REAL SQL workspace | `accept:journey` 11/11; data:check 0; check exit 0 |
+| ACCEPT-07 · kan-123 | `42b08be6` | Migration cutover rehearsal: originals retained, canary→full backfill owner-faithful, forward-only rollback, exactly one executor | rehearsal 10/10; data:check 0; check 0 |
+| RELEASE-01 · kan-124 | `b5771920` | Workload distributions replace D-075 guesses; counting laws + fail-closed beta provenance; bridge into the cost engine | `workload:test` 10/10 + `cost:test` 10/10; data:check 0; check 0 |
+| RELEASE-02 · kan-125 | `1f3343d3` | Realistic load/soak vs documented rates: core 150/s & 16.7 AI runs/s sustained, degradation = typed 503s only | `release:load:soak` PASS; data:check 0; check 0 |
+| RELEASE-03 · kan-126 | `f9ef880e` | Enforced admission ceilings + tenant fairness + provider circuit breaker; typed 429/503 with Retry-After; fail-closed dependency degradation | `release:admission` 18/18 (9 + 9); data:check 0; check 0 |
+| RELEASE-04 · kan-127 | `6d831a79` | Enforced spend admission (fail-closed cap, typed 503, not alert-only) + per-completed-task economics model | `release:economics` 14/14 (6 + 8); production-check 102/11/37/52; check 0 (data-04 fix pre-existing `20cf2bbf`) |
+| RELEASE-05 · kan-128 | `f2a6e4ce` | Restore drills: SQL corruption restore (independent db), deletion replay, rollback, Firestore restore, reconnect+reconcile vs RPO/RTO | `release:restore:drill` 5/5; data:check 0; webhook PASS; check 0 |
+| RELEASE-06 · kan-129 | `40824fe8` | Release-path security: upstream-patch hash law, lockfile pin law, secret-surface law, LIVE secret rotation, advisory DB executed | `release:security:review` 5/5; data:check 0; webhook PASS; restore 5/5; check 0 |
 
 ## Remaining gates — owned elsewhere (each verified against its ticket)
 

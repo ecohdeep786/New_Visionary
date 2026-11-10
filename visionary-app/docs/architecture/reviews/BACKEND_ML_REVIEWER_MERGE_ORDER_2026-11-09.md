@@ -12,9 +12,9 @@ Every branch is pushed, receipt-recorded, and carries its own working tree under
 |---|---|---|---|---|---|---|
 | 1 | **merge first** | `zcode/kan-102-bill01-ingress-acceptance` | BILL-01 | `4bb3c22d` | `5373b268` | KAN102 review |
 | 2 | depends on 1 | `zcode/kan-103-bill02-webhook-acceptance` | BILL-02 | `4bb3c22d` | `0eb757a9` | KAN103 review |
-| 3 | parallel to 1 | `zcode/kan-123-accept07-migration-rehearsal` | ACCEPT-07 | `4bb3c22d` | `3b61b4dd` | KAN123 review |
-| 4 | after 3 | `zcode/kan-128-release05-restore-drills` | RELEASE-05 | `4bb3c22d` | `033eadfb` | KAN128 review |
-| 5 | depends on 4 | `zcode/kan-129-release06-release-security` | RELEASE-06 | `4bb3c22d` | `53cc0298` | KAN129 review |
+| 3 | parallel to 1 | `zcode/kan-123-accept07-migration-rehearsal` | ACCEPT-07 | `4bb3c22d` | `42b08be6` | KAN123 review |
+| 4 | after 3 | `zcode/kan-128-release05-restore-drills` | RELEASE-05 | `4bb3c22d` | `f2a6e4ce` | KAN128 review |
+| 5 | depends on 4 | `zcode/kan-129-release06-release-security` | RELEASE-06 | `4bb3c22d` | `40824fe8` | KAN129 review |
 | 6 | after 5 | `zcode/kan-125-realistic-load-soak` | RELEASE-02 | `9b0102df` | `1f3343d3` | KAN125 review |
 | 7 | independent | `zcode/kan-108-bill07-live-mode` | BILL-07 | `2e0b1fbb` | `a85acd34` | KAN108 review |
 | 8 | independent | `zcode/kan-124-release01-workload` | RELEASE-01 | `2e0b1fbb` | `b5771920` | KAN124 review |
