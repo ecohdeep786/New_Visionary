@@ -23,6 +23,12 @@ export class ProductRequestAuthority {
     if (req.get('Origin') !== settings.origin || typeof cookie !== 'string' || typeof header !== 'string' || !/^[a-f0-9]{64}$/.test(header) || cookie.length !== header.length || !timingSafeEqual(Buffer.from(cookie), Buffer.from(header))) throw new ForbiddenException('Reload this page before continuing.');
   }
   protected current(req: Request, touch = true) { const settings = this.settings(); return this.service.authenticate(req.cookies?.[settings.session], req.cookies?.[settings.device], touch); }
+  protected async invitationRecipient(req: Request) {
+    this.csrf(req);
+    const { uid } = await this.commandAccount(req, false);
+    return this.service.currentVerifiedInvitationRecipient(uid);
+  }
+
   protected async commandAccount(req: Request, touch = true) {
     const current = await this.current(req, touch);
     if (req.get('X-Visionary-Account') !== current.uid) throw new ConflictException('The signed-in account changed. Reload your account before saving.');
