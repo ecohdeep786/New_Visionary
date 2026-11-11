@@ -1785,6 +1785,16 @@
         "SCOPE-06"
       ]
     },
+    "frontend/src/components/ui/toaster.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
     "frontend/src/components/ui/toggle-group.jsx": {
       "profile": "client-widget-primitive",
       "state": "connected",

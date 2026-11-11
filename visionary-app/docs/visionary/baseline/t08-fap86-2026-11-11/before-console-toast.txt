@@ -1,0 +1,13 @@
+# BEFORE (beta f6b34750, dev server 127.0.0.1:5174) — real-store toast render, console warning/error inventory
+# Raw capture: t08-fap86-before.json (probe 2026-11-11, Edge headless, fresh context)
+1 warning:
+  Warning: Unknown event handler property `onOpenChange`. It will be ignored.
+    at div at _c5 (http://127.0.0.1:5174/src/components/ui/toast.jsx:75:41) at div at _c (...)
+# Probe technique (disclosed): no preview-reachable product toast exists (the register
+# Resend toast became connected-mode-only in FAP-70; the sign-out error toast is an error
+# path), so the probe dispatched through the REAL store — page import of the exact Vite
+# module the app uses (/src/components/ui/use-toast.jsx) calling its exported toast({…}),
+# which renders through the production Toaster. This is the same defect text receipted
+# from the real product toast in the FAP-70 before-capture (t08-fap70-before-register.json).
+# Also recorded: the toast x control did nothing — the toast was still rendered after the
+# click (shim had no onClick; removal timer is 1e6 ms).
