@@ -72,6 +72,17 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks(id) {
+            // F-16-F4 / F-27 / F-28: shared copy modules flipped between their
+            // own chunks and merges into neighbouring chunks between builds
+            // (organizationAuthorCopy, then homeCopy/learningCopy/
+            // dailyPlanService on later builds), which made the fail-closed
+            // chunk budget fail on unrelated lanes. Every src/lib copy module
+            // is pinned to a name-stable chunk: routes still load only the
+            // copies they import, and the structure is deterministic.
+            const copyMatch = id.match(/[\\/]src[\\/]lib[\\/]([A-Za-z0-9_]+Copy)\.js$/);
+            if (copyMatch) {
+              return copyMatch[1];
+            }
             if (id.includes('node_modules')) {
               if (id.includes('recharts')) {
                 return 'vendor-charts';
@@ -100,8 +111,6 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
-      // Increase parallel workers for faster builds
-      maxWorkersIncrease: 'max-memory',
     },
     resolve: {
       alias: {
