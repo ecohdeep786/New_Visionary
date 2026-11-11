@@ -17,7 +17,12 @@ export interface ExportStore {
   commandPayload(commandKey: string): Promise<string | undefined>;
   recordCommand(commandKey: string, payloadHash: string, resultRef: string): Promise<void>;
   commandResultRef(commandKey: string): Promise<string | undefined>;
-}
+
+  /** ATOMIC command claim: unseen key is claimed and 'new'; a seen key with the
+   * SAME payload hash returns its result ref ('existing'); a seen key with a
+   * DIFFERENT payload is 'changed'. (SQL adapter: INSERT ... ON CONFLICT DO
+   * NOTHING then read, in one statement.) */
+  claimCommand(commandKey: string, payloadHash: string): Promise<{ state: 'new' } | { state: 'existing'; resultRef: string | undefined } | { state: 'changed' }>;}
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -54,6 +59,13 @@ export class InMemoryExportStore implements ExportStore {
   }
   async commandPayload(commandKey: string): Promise<string | undefined> {
     return this.commands.get(commandKey)?.hash;
+  }
+  async claimCommand(commandKey: string, payloadHash: string): Promise<{ state: 'new' } | { state: 'existing'; resultRef: string | undefined } | { state: 'changed' }> {
+    const prior = this.commands.get(commandKey);
+    if (prior && prior.hash !== payloadHash) return { state: 'changed' };
+    if (prior) return { state: 'existing', resultRef: prior.resultRef || undefined };
+    this.commands.set(commandKey, { hash: payloadHash, resultRef: '' });
+    return { state: 'new' };
   }
   async recordCommand(commandKey: string, payloadHash: string, resultRef: string): Promise<void> {
     const prior = this.commands.get(commandKey);

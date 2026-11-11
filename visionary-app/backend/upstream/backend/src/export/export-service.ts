@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-05 (KAN-79) — explicit saved-revision Markdown/document export through
 // the private file lifecycle (P03); generation/preview cannot silently save,
 // share, submit or deploy.
@@ -43,7 +44,6 @@ function hash(value: string): string {
 const SUPPORTED_FORMATS: ExportFormat[] = ['markdown', 'plaintext', 'html'];
 
 export class ExportService {
-  private exportCounter = 0;
 
   constructor(private readonly store: ExportStore) {}
 
@@ -59,23 +59,23 @@ export class ExportService {
     format: ExportFormat,
   ): Promise<ExportArtifact> {
     if (!SUPPORTED_FORMATS.includes(format)) throw new ExportError('export_type_unsupported');
-    const payloadHash = hash(`export|${commandKey}|${revisionId}|${format}`);
-    const prior = await this.store.commandPayload(commandKey);
-    if (prior && prior !== payloadHash) throw new ExportError('command_changed');
-    if (prior && prior === payloadHash) {
-      const ref = await this.store.commandResultRef(commandKey);
-      if (ref) {
-        const existing = await this.store.artifact(ref);
-        if (existing) return existing;
-      }
-    }
+    // Validation FIRST: a refusal records nothing and consumes no command key.
     const revision = await this.store.savedRevision(revisionId);
     if (!revision) throw new ExportError('revision_not_saved');
     if (revision.owner.uid !== owner.uid) throw new ExportError('not_owner');
     if (revision.owner.workspaceId !== owner.workspaceId) throw new ExportError('workspace_mismatch');
+    // Then the ATOMIC command claim: unseen claims; same-hash replays return
+    // the committed artifact; a different payload under the same key refuses.
+    const payloadHash = hash(`export|${commandKey}|${revisionId}|${format}`);
+    const claim = await this.store.claimCommand(commandKey, payloadHash);
+    if (claim.state === 'changed') throw new ExportError('command_changed');
+    if (claim.state === 'existing' && claim.resultRef) {
+      const existing = await this.store.artifact(claim.resultRef);
+      if (existing) return existing;
+    }
     const body = renderExport(revision.contentMd, format);
     const artifact: ExportArtifact = {
-      exportId: `exp_${++this.exportCounter}`,
+      exportId: `exp_${randomUUID()}`,
       owner: { ...owner },
       revisionId,
       projectId: revision.projectId,
