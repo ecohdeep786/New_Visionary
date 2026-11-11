@@ -50,6 +50,6 @@ test("the unified h1 role law covers the marked presentation title with the iden
   for (const token of ["2.75rem", "600", "1.05", "-0.015em"]) {
     assert.ok(base[0].includes(token), `the base profile retains ${token} (identical to the former h1 rendering)`);
   }
-  const heroLaw = law.match(/@media \(min-width: 1280px\) \{[\s\S]*?main p\[data-hero-law="careers"\] \{ font-size: 5rem !important; \}[\s\S]*?\}/);
-  assert.ok(heroLaw, "the lg step keeps 5rem/80px for the careers title");
+  const heroLaw = law.match(/@media \(min-width: 1280px\) \{[\s\S]*?main p\[data-hero-law="careers"\] \{ font-size: min\(5rem, 14vw\) !important; \}[\s\S]*?\}/);
+  assert.ok(heroLaw, "the lg step keeps the 5rem/80px careers profile under the FAP-82 viewport cap (identical at default text)");
 });

@@ -1,0 +1,1265 @@
+{
+  "label": "before",
+  "base": "http://127.0.0.1:5174",
+  "sweep": [
+    {
+      "width": "320x720",
+      "route": "/",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "m-0",
+          "fs": "32px",
+          "beyond": 63,
+          "minContent": 445,
+          "text": "One intelligence for students. One intelligence, for student"
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 38,
+          "text": "About Privacy"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 25,
+          "text": "About Safety"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 52,
+          "text": "About Security"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 113,
+          "text": "About Accessibility"
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/student",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 38,
+          "minContent": 395,
+          "text": "Learning, Learning, to master, to build."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 16,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/teacher",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 41,
+          "minContent": 403,
+          "text": "Teaching. Teaching, to grow, to reach."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 60,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/parent",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 57,
+          "minContent": 435,
+          "text": "Parenting. Parenting, to see, to help."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 60,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/professional",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 24,
+          "minContent": 368,
+          "text": "Building. Building, to apply, to grow."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 60,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/organization",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 20,
+          "minContent": 360,
+          "text": "Leading. Leading, to scale, to last."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 60,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 32,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/help",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "mx-auto mt-8 max-w-[24ch] text-balance text-center font-semibold track",
+          "fs": "88px",
+          "beyond": 39,
+          "minContent": 311,
+          "text": "Find your answer."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/pricing",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H2",
+          "cls": "mt-[var(--gap-eyebrow-title-display)] max-w-[24ch] text-balance font-s",
+          "fs": "80px",
+          "beyond": 124,
+          "minContent": 396,
+          "text": "Questions about pricing, answered."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "14px",
+          "beyond": 35,
+          "text": "Annual 2 months free"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 124,
+          "text": "Can I start free?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 124,
+          "text": "Can I switch plans later?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 124,
+          "text": "What happens to my memory if I downgrade"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 124,
+          "text": "Do you offer education discounts?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 124,
+          "text": "How does Family privacy work?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 124,
+          "text": "How does Institution billing work?"
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/about",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H2",
+          "cls": "max-w-[760px] text-[40px] font-normal leading-[1.07] tracking-[-0.045e",
+          "fs": "80px",
+          "beyond": 296,
+          "minContent": 568,
+          "text": "Understanding should open the next door."
+        },
+        {
+          "tag": "H2",
+          "cls": "max-w-[780px] text-[36px] font-normal leading-[1.12] tracking-[-0.035e",
+          "fs": "80px",
+          "beyond": 177,
+          "minContent": 449,
+          "text": "One journey, many beginnings."
+        },
+        {
+          "tag": "H2",
+          "cls": "max-w-[790px] text-[36px] font-normal leading-[1.12] tracking-[-0.035e",
+          "fs": "80px",
+          "beyond": 14,
+          "minContent": 286,
+          "text": "AI can make the next step clearer."
+        },
+        {
+          "tag": "H2",
+          "cls": "max-w-[760px] text-[36px] font-normal leading-[1.12] tracking-[-0.035e",
+          "fs": "80px",
+          "beyond": 141,
+          "minContent": 413,
+          "text": "Different people, one connected journey."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "A",
+          "fs": "32px",
+          "beyond": 290,
+          "text": "Teachers"
+        },
+        {
+          "tag": "A",
+          "fs": "32px",
+          "beyond": 620,
+          "text": "Parents"
+        },
+        {
+          "tag": "A",
+          "fs": "32px",
+          "beyond": 948,
+          "text": "Professionals"
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/partners",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:tex",
+          "fs": "88px",
+          "beyond": 102,
+          "minContent": 374,
+          "text": "Better learning, together."
+        },
+        {
+          "tag": "H2",
+          "cls": "mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[",
+          "fs": "42px",
+          "beyond": 45,
+          "minContent": 104,
+          "text": "How deep the work can go"
+        },
+        {
+          "tag": "H2",
+          "cls": "text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.",
+          "fs": "80px",
+          "beyond": 83,
+          "minContent": 485,
+          "text": "If your organization works with learners, in a classroom, a "
+        },
+        {
+          "tag": "H2",
+          "cls": "mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[",
+          "fs": "42px",
+          "beyond": 100,
+          "minContent": 163,
+          "text": "Start with the support you need."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 108,
+          "text": ""
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 100,
+          "text": "Browse help topics"
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/careers",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H2",
+          "cls": "font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,",
+          "fs": "80px",
+          "beyond": 69,
+          "minContent": 305,
+          "text": "A fair process starts with clarity."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 69,
+          "text": "careers@visionary.org.in"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 42,
+          "text": "Visionary accessibility"
+        }
+      ]
+    },
+    {
+      "width": "320x720",
+      "route": "/research",
+      "vw": 320,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H2",
+          "cls": "font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,",
+          "fs": "80px",
+          "beyond": 183,
+          "minContent": 471,
+          "text": "Building the mentor intelligence."
+        },
+        {
+          "tag": "H2",
+          "cls": "text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-white s",
+          "fs": "80px",
+          "beyond": 74,
+          "minContent": 299,
+          "text": "The mind behind the mentor."
+        },
+        {
+          "tag": "H2",
+          "cls": "text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1",
+          "fs": "80px",
+          "beyond": 71,
+          "minContent": 338,
+          "text": "One question started it all."
+        },
+        {
+          "tag": "H2",
+          "cls": "text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1",
+          "fs": "80px",
+          "beyond": 177,
+          "minContent": 465,
+          "text": "Responsible research is at the heart of what we do."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "32px",
+          "beyond": 11,
+          "text": ""
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 41,
+          "text": "Learn more"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 41,
+          "text": "Learn more"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 41,
+          "text": "Learn more"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 16,
+          "text": "Explore the organization experience"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 74,
+          "text": "Explore how it works"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 69,
+          "text": "Visit product updates"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 71,
+          "text": "Contact the research team"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 96,
+          "text": "Our approach to safety"
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "m-0",
+          "fs": "32px",
+          "beyond": 28,
+          "minContent": 445,
+          "text": "One intelligence for students. One intelligence, for student"
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 43,
+          "text": "About Accessibility"
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/student",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 3,
+          "minContent": 395,
+          "text": "Learning, Learning, to master, to build."
+        }
+      ],
+      "controlsOffscreen": []
+    },
+    {
+      "width": "390x844",
+      "route": "/teacher",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 6,
+          "minContent": 403,
+          "text": "Teaching. Teaching, to grow, to reach."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 25,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/parent",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "category-hero-statement m-0",
+          "fs": "88px",
+          "beyond": 22,
+          "minContent": 435,
+          "text": "Parenting. Parenting, to see, to help."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 25,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/professional",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 25,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/organization",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 25,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/help",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [],
+      "controlsOffscreen": []
+    },
+    {
+      "width": "390x844",
+      "route": "/pricing",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H2",
+          "cls": "mt-[var(--gap-eyebrow-title-display)] max-w-[24ch] text-balance font-s",
+          "fs": "80px",
+          "beyond": 54,
+          "minContent": 396,
+          "text": "Questions about pricing, answered."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 54,
+          "text": "Can I start free?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 54,
+          "text": "Can I switch plans later?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 54,
+          "text": "What happens to my memory if I downgrade"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 54,
+          "text": "Do you offer education discounts?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 54,
+          "text": "How does Family privacy work?"
+        },
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 54,
+          "text": "How does Institution billing work?"
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/about",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H2",
+          "cls": "max-w-[760px] text-[40px] font-normal leading-[1.07] tracking-[-0.045e",
+          "fs": "80px",
+          "beyond": 226,
+          "minContent": 568,
+          "text": "Understanding should open the next door."
+        },
+        {
+          "tag": "H2",
+          "cls": "max-w-[780px] text-[36px] font-normal leading-[1.12] tracking-[-0.035e",
+          "fs": "80px",
+          "beyond": 107,
+          "minContent": 449,
+          "text": "One journey, many beginnings."
+        },
+        {
+          "tag": "H2",
+          "cls": "max-w-[760px] text-[36px] font-normal leading-[1.12] tracking-[-0.035e",
+          "fs": "80px",
+          "beyond": 71,
+          "minContent": 413,
+          "text": "Different people, one connected journey."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "A",
+          "fs": "32px",
+          "beyond": 255,
+          "text": "Teachers"
+        },
+        {
+          "tag": "A",
+          "fs": "32px",
+          "beyond": 585,
+          "text": "Parents"
+        },
+        {
+          "tag": "A",
+          "fs": "32px",
+          "beyond": 913,
+          "text": "Professionals"
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/partners",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H1",
+          "cls": "mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:tex",
+          "fs": "88px",
+          "beyond": 32,
+          "minContent": 374,
+          "text": "Better learning, together."
+        },
+        {
+          "tag": "H2",
+          "cls": "text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.",
+          "fs": "80px",
+          "beyond": 48,
+          "minContent": 485,
+          "text": "If your organization works with learners, in a classroom, a "
+        },
+        {
+          "tag": "H2",
+          "cls": "mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[",
+          "fs": "42px",
+          "beyond": 30,
+          "minContent": 163,
+          "text": "Start with the support you need."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "BUTTON",
+          "fs": "34px",
+          "beyond": 73,
+          "text": ""
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 30,
+          "text": "Browse help topics"
+        }
+      ]
+    },
+    {
+      "width": "390x844",
+      "route": "/careers",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [],
+      "controlsOffscreen": []
+    },
+    {
+      "width": "390x844",
+      "route": "/research",
+      "vw": 390,
+      "docOverflow": 0,
+      "headsOffscreen": [
+        {
+          "tag": "H2",
+          "cls": "font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,",
+          "fs": "80px",
+          "beyond": 113,
+          "minContent": 471,
+          "text": "Building the mentor intelligence."
+        },
+        {
+          "tag": "H2",
+          "cls": "text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-white s",
+          "fs": "80px",
+          "beyond": 4,
+          "minContent": 299,
+          "text": "The mind behind the mentor."
+        },
+        {
+          "tag": "H2",
+          "cls": "text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#1d1d1",
+          "fs": "80px",
+          "beyond": 107,
+          "minContent": 465,
+          "text": "Responsible research is at the heart of what we do."
+        }
+      ],
+      "controlsOffscreen": [
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 4,
+          "text": "Explore how it works"
+        },
+        {
+          "tag": "A",
+          "fs": "34px",
+          "beyond": 26,
+          "text": "Our approach to safety"
+        }
+      ]
+    }
+  ],
+  "pricing320_100": {
+    "vw": 320,
+    "docOverflow": 0,
+    "h1": {
+      "left": 16,
+      "right": 304,
+      "top": 245,
+      "h": 92,
+      "fs": "44px",
+      "w": 288
+    },
+    "span": {
+      "left": 18,
+      "right": 291,
+      "top": 287,
+      "h": 56,
+      "fs": "44px",
+      "w": 273
+    },
+    "toggle": {
+      "left": 25,
+      "right": 295,
+      "top": 471,
+      "h": 52,
+      "fs": "16px",
+      "w": 270
+    },
+    "toggleButtons": [
+      {
+        "text": "Monthly",
+        "left": 29,
+        "right": 113,
+        "pressed": "false"
+      },
+      {
+        "text": "Annual 2 months free",
+        "left": 113,
+        "right": 291,
+        "pressed": "true"
+      }
+    ],
+    "faqH2": {
+      "left": 24,
+      "right": 296,
+      "top": 4719,
+      "h": 132,
+      "fs": "40px",
+      "w": 272
+    },
+    "faqButtons": [
+      {
+        "id": "pricing-faq-question-0",
+        "left": 24,
+        "right": 296,
+        "expanded": "false"
+      },
+      {
+        "id": "pricing-faq-question-1",
+        "left": 24,
+        "right": 296,
+        "expanded": "false"
+      },
+      {
+        "id": "pricing-faq-question-2",
+        "left": 24,
+        "right": 296,
+        "expanded": "false"
+      },
+      {
+        "id": "pricing-faq-question-3",
+        "left": 24,
+        "right": 296,
+        "expanded": "false"
+      },
+      {
+        "id": "pricing-faq-question-4",
+        "left": 24,
+        "right": 296,
+        "expanded": "false"
+      },
+      {
+        "id": "pricing-faq-question-5",
+        "left": 24,
+        "right": 296,
+        "expanded": "false"
+      }
+    ]
+  },
+  "pricingFunctional200": {
+    "geom": {
+      "vw": 320,
+      "docOverflow": 0,
+      "h1": {
+        "left": 32,
+        "right": 288,
+        "top": 469,
+        "h": 370,
+        "fs": "88px",
+        "w": 256
+      },
+      "span": {
+        "left": 32,
+        "right": 335,
+        "top": 645,
+        "h": 202,
+        "fs": "88px",
+        "w": 303
+      },
+      "toggle": {
+        "left": 32,
+        "right": 288,
+        "top": 1031,
+        "h": 104,
+        "fs": "31.9002px",
+        "w": 256
+      },
+      "toggleButtons": [
+        {
+          "text": "Monthly",
+          "left": 40,
+          "right": 155,
+          "pressed": "false"
+        },
+        {
+          "text": "Annual 2 months free",
+          "left": 155,
+          "right": 355,
+          "pressed": "true"
+        }
+      ],
+      "faqH2": {
+        "left": 48,
+        "right": 444,
+        "top": 10643,
+        "h": 352,
+        "fs": "80px",
+        "w": 396
+      },
+      "faqButtons": [
+        {
+          "id": "pricing-faq-question-0",
+          "left": 48,
+          "right": 444,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-1",
+          "left": 48,
+          "right": 444,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-2",
+          "left": 48,
+          "right": 444,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-3",
+          "left": 48,
+          "right": 444,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-4",
+          "left": 48,
+          "right": 444,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-5",
+          "left": 48,
+          "right": 444,
+          "expanded": "false"
+        }
+      ]
+    },
+    "q0": {
+      "expanded": "true",
+      "hidden": "false",
+      "ansH": 398,
+      "ansVisible": "visible",
+      "ansRight": 444,
+      "textRight": 444
+    },
+    "pressed": [
+      {
+        "text": "Monthly",
+        "pressed": "false"
+      },
+      {
+        "text": "Annual 2 months free",
+        "pressed": "true"
+      }
+    ],
+    "afterOverflow": 0,
+    "clickError": null
+  },
+  "tokens": [
+    {
+      "width": "320",
+      "vw": 320,
+      "root": {
+        "heroEyebrow": "40px",
+        "heroHeadline": "44px",
+        "categoryStatement": "44px"
+      },
+      "section": {
+        "display": "40px",
+        "h2": "40px",
+        "productSection": "40px",
+        "heroEyebrow": "40px",
+        "heroHeadline": "44px"
+      },
+      "faqH2FontSize": "40px"
+    },
+    {
+      "width": "390",
+      "vw": 390,
+      "root": {
+        "heroEyebrow": "40px",
+        "heroHeadline": "44px",
+        "categoryStatement": "44px"
+      },
+      "section": {
+        "display": "40px",
+        "h2": "40px",
+        "productSection": "40px",
+        "heroEyebrow": "40px",
+        "heroHeadline": "44px"
+      },
+      "faqH2FontSize": "40px"
+    },
+    {
+      "width": "768",
+      "vw": 768,
+      "root": {
+        "heroEyebrow": "40px",
+        "heroHeadline": "64px",
+        "categoryStatement": "64px"
+      },
+      "section": {
+        "display": "56px",
+        "h2": "56px",
+        "productSection": "48px",
+        "heroEyebrow": "40px",
+        "heroHeadline": "64px"
+      },
+      "faqH2FontSize": "56px"
+    },
+    {
+      "width": "1024",
+      "vw": 1024,
+      "root": {
+        "heroEyebrow": "40px",
+        "heroHeadline": "64px",
+        "categoryStatement": "64px"
+      },
+      "section": {
+        "display": "56px",
+        "h2": "56px",
+        "productSection": "48px",
+        "heroEyebrow": "40px",
+        "heroHeadline": "64px"
+      },
+      "faqH2FontSize": "56px"
+    },
+    {
+      "width": "1440",
+      "vw": 1440,
+      "root": {
+        "heroEyebrow": "56px",
+        "heroHeadline": "80px",
+        "categoryStatement": "80px"
+      },
+      "section": {
+        "display": "64px",
+        "h2": "64px",
+        "productSection": "56px",
+        "heroEyebrow": "56px",
+        "heroHeadline": "140px"
+      },
+      "faqH2FontSize": "64px"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\opencode\\t06-fap82-ab-2026-11-11\\before-pricing-320-200-hero.png",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\opencode\\t06-fap82-ab-2026-11-11\\before-pricing-320-200-faq.png",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\opencode\\t06-fap82-ab-2026-11-11\\before-pricing-320-100-hero.png"
+  ]
+}

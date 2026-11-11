@@ -84,6 +84,6 @@ test('no :root token is defined twice with different values inside the same medi
 test('the recorded responsive :root steps remain the intentional pattern', () => {
   const rhythm = fs.readFileSync(path.join(frontendRoot, 'src/styles/rhythm.css'), 'utf8');
   assert.match(rhythm, /--fs-hero-headline: 5rem; \/\* desktop 80px — unified h1 role law/, 'the desktop unified h1 law must stay');
-  assert.match(rhythm, /--fs-hero-headline: 4rem; \/\* tablet 64px — unified h1 law step \*\//);
-  assert.match(rhythm, /--fs-hero-headline: 2\.75rem; \/\* phone 44px — unified h1 law step \*\//);
+  assert.match(rhythm, /--fs-hero-headline: min\(4rem, 14vw\); \/\* tablet 64px — unified h1 law step; FAP-82 vw cap \*\//, 'the tablet step keeps its recorded 4rem value under the FAP-82 viewport cap');
+  assert.match(rhythm, /--fs-hero-headline: min\(2\.75rem, 14vw\); \/\* phone 44px — unified h1 law step; FAP-82 vw cap \*\//, 'the phone step keeps its recorded 2.75rem value under the FAP-82 viewport cap');
 });
