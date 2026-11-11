@@ -48,5 +48,15 @@ export function splitSql(sql:string):string[] {
 }
 export function canonicalMigrations(backendRoot:string):readonly RegisteredMigration[] {
   const sql=readFileSync(resolve(backendRoot,'prisma/migrations/20261024000001_data_01_workspaces/migration.sql'),'utf8');
-  return [registerMigration({version:1,name:'data-01-workspace-domain',requires:[],statements:splitSql(sql),reversible:false})];
+  const reissue=readFileSync(resolve(backendRoot,'prisma/migrations/20261102000002_data_04_invitation_reissue/migration.sql'),'utf8');
+  const institution=readFileSync(resolve(backendRoot,'prisma/migrations/20261103000003_data_04_institution_approval/migration.sql'),'utf8');
+  const downloads=readFileSync(resolve(backendRoot,'prisma/migrations/20261106000004_file_03_downloads/migration.sql'),'utf8');
+  const commands=readFileSync(resolve(backendRoot,'prisma/migrations/20261106000005_data_06_command_revision/migration.sql'),'utf8');
+  const admission=readFileSync(resolve(backendRoot,'prisma/migrations/20261108000006_data_09_admission/migration.sql'),'utf8');
+  return [registerMigration({version:1,name:'data-01-workspace-domain',requires:[],statements:splitSql(sql),reversible:false}),
+    registerMigration({version:2,name:'data-04-invitation-reissue',requires:[1],statements:splitSql(reissue),reversible:false}),
+    registerMigration({version:3,name:'data-04-institution-approval',requires:[2],statements:splitSql(institution),reversible:false}),
+    registerMigration({version:4,name:'file-03-downloads',requires:[3],statements:splitSql(downloads),reversible:false}),
+    registerMigration({version:5,name:'data-06-command-revision',requires:[4],statements:splitSql(commands),reversible:false}),
+    registerMigration({version:6,name:'data-09-admission',requires:[5],statements:splitSql(admission),reversible:false})];
 }
