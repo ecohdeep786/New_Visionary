@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // AI-08 (KAN-90) — deadline/cancellation reconciliation with provider work.
 //
 // Core responsibilities (server-owned; partial/final distinction preserved):
@@ -24,7 +25,6 @@ import { DeadlineError } from './deadline-types';
 import type { DeadlineStore } from './deadline-lookups';
 
 export class DeadlineReconciliationService {
-  private requestCounter = 0;
   constructor(
     private readonly store: DeadlineStore,
     private readonly now: () => number = () => Date.now(),
@@ -32,7 +32,7 @@ export class DeadlineReconciliationService {
 
   /** Track a teaching request with its whole-request deadline. */
   async begin(owner: DeadlineOwner, deadlineAt: number): Promise<string> {
-    const requestId = `req_${++this.requestCounter}`;
+    const requestId = `req_${randomUUID()}`;
     await this.store.saveRequest({ requestId, owner: { ...owner }, deadlineAt, status: 'running', partialBody: null });
     return requestId;
   }
@@ -56,7 +56,8 @@ export class DeadlineReconciliationService {
       partialBody: request.partialBody,
       providerWorkStopped: hasProviderWork,
     };
-    await this.store.saveRequest({ ...request, status: 'deadline_hit' });
+    // ATOMIC: the checkpoint's terminal claim wins the race deterministically.
+    if (!(await this.store.transitionTerminal(requestId, 'running', 'deadline_hit', null))) return null;
     return outcome;
   }
 
@@ -71,7 +72,11 @@ export class DeadlineReconciliationService {
       partialBody: request.partialBody,
       providerWorkStopped: hasProviderWork,
     };
-    await this.store.saveRequest({ ...request, status: 'cancelled' });
+    // ATOMIC: a cancel racing complete (or another terminal path) loses
+    // deterministically and reports already_terminated.
+    if (!(await this.store.transitionTerminal(requestId, 'running', 'cancelled', null))) {
+      throw new DeadlineError('already_terminated');
+    }
     return outcome;
   }
 
@@ -81,11 +86,15 @@ export class DeadlineReconciliationService {
     if (request.status !== 'running') throw new DeadlineError('already_terminated');
     if (this.now() >= request.deadlineAt) {
       // The deadline passed while the provider finished: deliver as partial.
-      await this.store.saveRequest({ ...request, status: 'deadline_hit', partialBody: body });
+      if (!(await this.store.transitionTerminal(requestId, 'running', 'deadline_hit', body))) {
+        throw new DeadlineError('already_terminated');
+      }
       return { requestId, final: false, reason: 'deadline', partialBody: body, providerWorkStopped: true };
     }
     const outcome: RequestOutcome = { requestId, final: true, reason: 'completed', partialBody: null, providerWorkStopped: true };
-    await this.store.saveRequest({ ...request, status: 'completed' });
+    if (!(await this.store.transitionTerminal(requestId, 'running', 'completed', null))) {
+      throw new DeadlineError('already_terminated');
+    }
     void body;
     return outcome;
   }
@@ -101,7 +110,9 @@ export class DeadlineReconciliationService {
       partialBody: request.partialBody,
       providerWorkStopped: hasProviderWork,
     };
-    await this.store.saveRequest({ ...request, status: 'disconnected' });
+    if (!(await this.store.transitionTerminal(requestId, 'running', 'disconnected', null))) {
+      throw new DeadlineError('already_terminated');
+    }
     return outcome;
   }
 

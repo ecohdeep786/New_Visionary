@@ -96,7 +96,7 @@ test('disconnect cleanup: provider work stopped, partial not presented as final,
 });
 
 test('long Build jobs are refused the teaching deadline (they use the durable protocol); wrong users denied', async () => {
-  const { store, svc } = await makeService();
+  const { store, svc, requestId } = await makeService();
   store.registerDurableRun('run_long_build');
   await assert.rejects(
     () => svc.beginForLongJob(OWNER, 'run_long_build'),
@@ -106,7 +106,8 @@ test('long Build jobs are refused the teaching deadline (they use the durable pr
   // Even an unknown job id is refused the teaching deadline protocol.
   await assert.rejects(() => svc.beginForLongJob(OWNER, 'run_unknown'), (e) => e.code === 'long_job_requires_durable_protocol');
 
-  const { requestId } = await makeService();
+  // Wrong users denied on THIS service's own request (UUID ids no longer
+  // accidentally collide across service instances).
   await assert.rejects(() => svc.cancel(requestId, OTHER, true), (e) => e.code === 'not_owner');
   await assert.rejects(() => svc.complete('req_ghost', OWNER, {}), (e) => e.code === 'unknown_request');
 });
