@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {getCurriculumBridge} from '@/services/curriculumBridgeService';
 import {stageCopy} from '@/lib/stageCopy';
+import { dateLocale } from '@/lib/datetime';
 
 export default function CurriculumBridgePlan({ctx,transitionId,locale='en'}){
  const t=stageCopy(locale);
@@ -18,7 +19,7 @@ export default function CurriculumBridgePlan({ctx,transitionId,locale='en'}){
     <h4 className="font-medium">{row.title}</h4>
     <p className="mt-2 text-sm">{row.status==='equivalent'?<>{t('Reviewed equivalent:')} {row.target.title}</>:t(row.status==='current'?'Already in this curriculum':row.status==='archive'?'Archived from the new curriculum · resume anytime':'Mapping needs review')}</p>
     <p className="v-muted mt-2" lang={t(row.reason)===row.reason?'en':locale}>{t(row.reason)}</p>
-    {row.reviewedAt&&<p className="v-muted mt-2">{t('Mapping reviewed')} {new Date(row.reviewedAt).toLocaleDateString(locale)} · {row.source?.provider} · {t('version')} {row.source?.version}</p>}
+    {row.reviewedAt&&<p className="v-muted mt-2">{t('Mapping reviewed')} {new Date(row.reviewedAt).toLocaleDateString(dateLocale(locale))} · {row.source?.provider} · {t('version')} {row.source?.version}</p>}
     <Link className="v-button mt-2" to={row.originalPath}>{t('Resume original activity')}<span className="sr-only">: {row.title}</span></Link>
    </div>)}
    {plan.targets.map(target=><div className="rounded-xl border border-slate-200 p-3" key={`${target.subject}:${target.id}`}>

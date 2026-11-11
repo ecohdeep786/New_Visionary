@@ -1,0 +1,16 @@
+import { chromium } from 'playwright-core';
+const b = await chromium.launch({ channel:'msedge', headless:true, args:['--no-proxy-server'] });
+const c = await b.newContext({ viewport:{width:1440,height:900}, reducedMotion:'reduce' });
+const p = await c.newPage();
+p.on('response', r => { if ([401,403].includes(r.status())) console.log('HTTP', r.status(), r.request().method(), r.url().slice(0,160)); });
+await p.goto('http://localhost:5173/login', { waitUntil:'domcontentloaded', timeout:60000 });
+await p.waitForTimeout(2000);
+await p.getByRole('button',{name:'Continue with Email'}).first().click();
+await p.locator('input[type="email"]').first().fill('qa.designer@example.test');
+await p.getByRole('button',{name:/continue|next/i}).last().click();
+await p.waitForTimeout(1200);
+await p.locator('input[type="password"]').first().fill('Visionary#2026',{timeout:15000});
+await p.getByRole('button',{name:/sign in/i}).last().click();
+await p.waitForTimeout(8000);
+console.log('URL:', p.url());
+await b.close();
