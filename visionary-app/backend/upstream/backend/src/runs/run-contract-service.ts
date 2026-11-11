@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-04 (KAN-78) — durable run/status/event + proposal accept/reject
 // contracts.
 //
@@ -25,8 +26,6 @@ import { RunContractError } from './run-contract-types';
 import type { RunContractStore } from './run-contract-lookups';
 
 export class RunContractService {
-  private runCounter = 0;
-  private proposalCounter = 0;
   constructor(
     private readonly store: RunContractStore,
     private readonly now: () => Date = () => new Date(),
@@ -34,7 +33,7 @@ export class RunContractService {
 
   /** Start a durable run from a project base revision. */
   async startRun(owner: RunOwner, projectId: string, baseRevision: number): Promise<BuildRun> {
-    const runId = `run_${++this.runCounter}`;
+    const runId = `run_${randomUUID()}`;
     const event: RunEvent = { eventId: `${runId}_e1`, runId, status: 'queued', detail: 'run queued', at: this.now().toISOString() };
     const run: BuildRun = { runId, owner: { ...owner }, projectId, baseRevision, status: 'queued', events: [event] };
     await this.store.insertRun(run);
@@ -54,7 +53,7 @@ export class RunContractService {
     const run = await this.getOwned(runId, owner);
     if (run.status === 'cancelled') throw new RunContractError('cancelled_run_no_proposal');
     const proposal: AiProposal = {
-      proposalId: `prp_${++this.proposalCounter}`,
+      proposalId: `prp_${randomUUID()}`,
       runId,
       owner: { ...owner },
       projectId: run.projectId,
@@ -82,14 +81,22 @@ export class RunContractService {
     if (await this.store.permissionRevoked(input.owner, proposal.projectId)) {
       throw new RunContractError('permission_revoked');
     }
-    const current = await this.store.currentRevision(proposal.projectId);
-    if (current !== proposal.baseRevision) {
-      // New edits landed after the proposal was generated: acceptance blocked.
+    // The acceptance is ATOMIC at the store: unseen decision + current revision
+    // == proposal base + payload append + decision record, all together — two
+    // concurrent accepts (same or different proposals on the same base) can
+    // never both commit past the base the proposals were generated from.
+    const committed = await this.store.acceptProposalAtomic({
+      decisionId: input.decisionId,
+      proposalId: input.proposalId,
+      projectId: proposal.projectId,
+      baseRevision: proposal.baseRevision,
+      payload: proposal.payload,
+    });
+    if (committed.ok === false) {
+      if (committed.reason === 'duplicate') return { decisionId: input.decisionId, proposalId: input.proposalId, outcome: 'duplicate', newRevisionNo: null };
       throw new RunContractError('base_revision_moved');
     }
-    const newRevisionNo = await this.store.appendRevision(proposal.projectId, proposal.payload);
-    await this.store.recordDecision(input.decisionId, input.proposalId, 'accepted');
-    return { decisionId: input.decisionId, proposalId: input.proposalId, outcome: 'committed', newRevisionNo };
+    return { decisionId: input.decisionId, proposalId: input.proposalId, outcome: 'committed', newRevisionNo: committed.revisionNo };
   }
 
   /** Reject a proposal: records the decision; history untouched. */
