@@ -430,29 +430,29 @@
         "frontend/src/components/AuthLayout.jsx:81:11",
         "frontend/src/components/SocialAuthButtons.jsx:27:7",
         "frontend/src/components/ui/input-otp.jsx:8:3",
-        "frontend/src/pages/Register.jsx:144:13",
-        "frontend/src/pages/Register.jsx:155:13",
-        "frontend/src/pages/Register.jsx:162:35",
-        "frontend/src/pages/Register.jsx:163:28",
+        "frontend/src/pages/Register.jsx:156:13",
         "frontend/src/pages/Register.jsx:167:13",
-        "frontend/src/pages/Register.jsx:170:30",
-        "frontend/src/pages/Register.jsx:176:15",
-        "frontend/src/pages/Register.jsx:178:15",
-        "frontend/src/pages/Register.jsx:186:13",
-        "frontend/src/pages/Register.jsx:193:19",
-        "frontend/src/pages/Register.jsx:199:13",
-        "frontend/src/pages/Register.jsx:200:15",
-        "frontend/src/pages/Register.jsx:211:17",
-        "frontend/src/pages/Register.jsx:222:13",
-        "frontend/src/pages/Register.jsx:224:13",
-        "frontend/src/pages/Register.jsx:226:15",
-        "frontend/src/pages/Register.jsx:237:15",
-        "frontend/src/pages/Register.jsx:250:58",
-        "frontend/src/pages/Register.jsx:250:191",
-        "frontend/src/pages/Register.jsx:254:17",
-        "frontend/src/pages/Register.jsx:276:15",
-        "frontend/src/pages/Register.jsx:288:15",
-        "frontend/src/pages/Register.jsx:294:15"
+        "frontend/src/pages/Register.jsx:174:35",
+        "frontend/src/pages/Register.jsx:175:28",
+        "frontend/src/pages/Register.jsx:179:13",
+        "frontend/src/pages/Register.jsx:182:30",
+        "frontend/src/pages/Register.jsx:188:15",
+        "frontend/src/pages/Register.jsx:190:15",
+        "frontend/src/pages/Register.jsx:198:13",
+        "frontend/src/pages/Register.jsx:205:19",
+        "frontend/src/pages/Register.jsx:211:13",
+        "frontend/src/pages/Register.jsx:212:15",
+        "frontend/src/pages/Register.jsx:223:17",
+        "frontend/src/pages/Register.jsx:234:13",
+        "frontend/src/pages/Register.jsx:236:13",
+        "frontend/src/pages/Register.jsx:238:15",
+        "frontend/src/pages/Register.jsx:249:15",
+        "frontend/src/pages/Register.jsx:262:58",
+        "frontend/src/pages/Register.jsx:262:191",
+        "frontend/src/pages/Register.jsx:266:17",
+        "frontend/src/pages/Register.jsx:290:15",
+        "frontend/src/pages/Register.jsx:302:15",
+        "frontend/src/pages/Register.jsx:309:17"
       ],
       "operations": [
         "auth-session-profile",
@@ -77170,9 +77170,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:144:13",
+      "id": "frontend/src/pages/Register.jsx:156:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 144,
+      "line": 156,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -77202,9 +77202,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:155:13",
+      "id": "frontend/src/pages/Register.jsx:167:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 155,
+      "line": 167,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -77234,9 +77234,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:162:35",
+      "id": "frontend/src/pages/Register.jsx:174:35",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 162,
+      "line": 174,
       "column": 35,
       "tag": "EmailVerification",
       "events": [
@@ -77274,9 +77274,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:163:28",
+      "id": "frontend/src/pages/Register.jsx:175:28",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 163,
+      "line": 175,
       "column": 28,
       "tag": "PhoneAuth",
       "events": [
@@ -77313,9 +77313,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:167:13",
+      "id": "frontend/src/pages/Register.jsx:179:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 167,
+      "line": 179,
       "column": 13,
       "tag": "button",
       "events": [
@@ -77353,9 +77353,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:170:30",
+      "id": "frontend/src/pages/Register.jsx:182:30",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 170,
+      "line": 182,
       "column": 30,
       "tag": "button",
       "events": [
@@ -77392,9 +77392,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:176:15",
+      "id": "frontend/src/pages/Register.jsx:188:15",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 176,
+      "line": 188,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -77425,9 +77425,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:178:15",
+      "id": "frontend/src/pages/Register.jsx:190:15",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 178,
+      "line": 190,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -77458,9 +77458,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:186:13",
+      "id": "frontend/src/pages/Register.jsx:198:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 186,
+      "line": 198,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -77495,9 +77495,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:193:19",
+      "id": "frontend/src/pages/Register.jsx:205:19",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 193,
+      "line": 205,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -77527,9 +77527,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:199:13",
+      "id": "frontend/src/pages/Register.jsx:211:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 199,
+      "line": 211,
       "column": 13,
       "tag": "form",
       "events": [
@@ -77564,9 +77564,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:200:15",
+      "id": "frontend/src/pages/Register.jsx:212:15",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 200,
+      "line": 212,
       "column": 15,
       "tag": "InputField",
       "events": [
@@ -77603,9 +77603,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:211:17",
+      "id": "frontend/src/pages/Register.jsx:223:17",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 211,
+      "line": 223,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -77635,9 +77635,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:222:13",
+      "id": "frontend/src/pages/Register.jsx:234:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 222,
+      "line": 234,
       "column": 13,
       "tag": "BackButton",
       "events": [
@@ -77674,9 +77674,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:224:13",
+      "id": "frontend/src/pages/Register.jsx:236:13",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 224,
+      "line": 236,
       "column": 13,
       "tag": "form",
       "events": [
@@ -77711,9 +77711,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:226:15",
+      "id": "frontend/src/pages/Register.jsx:238:15",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 226,
+      "line": 238,
       "column": 15,
       "tag": "GooglePasswordField",
       "events": [
@@ -77750,9 +77750,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:237:15",
+      "id": "frontend/src/pages/Register.jsx:249:15",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 237,
+      "line": 249,
       "column": 15,
       "tag": "InputField",
       "events": [
@@ -77789,9 +77789,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:250:58",
+      "id": "frontend/src/pages/Register.jsx:262:58",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 250,
+      "line": 262,
       "column": 58,
       "tag": "Link",
       "events": [],
@@ -77821,9 +77821,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:250:191",
+      "id": "frontend/src/pages/Register.jsx:262:191",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 250,
+      "line": 262,
       "column": 191,
       "tag": "Link",
       "events": [],
@@ -77854,9 +77854,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:254:17",
+      "id": "frontend/src/pages/Register.jsx:266:17",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 254,
+      "line": 266,
       "column": 17,
       "tag": "button",
       "events": [],
@@ -77886,9 +77886,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:276:15",
+      "id": "frontend/src/pages/Register.jsx:290:15",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 276,
+      "line": 290,
       "column": 15,
       "tag": "InputOTP",
       "events": [
@@ -77923,9 +77923,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:288:15",
+      "id": "frontend/src/pages/Register.jsx:302:15",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 288,
+      "line": 302,
       "column": 15,
       "tag": "button",
       "events": [
@@ -77960,10 +77960,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Register.jsx:294:15",
+      "id": "frontend/src/pages/Register.jsx:309:17",
       "file": "frontend/src/pages/Register.jsx",
-      "line": 294,
-      "column": 15,
+      "line": 309,
+      "column": 17,
       "tag": "button",
       "events": [
         {
@@ -79990,7 +79990,7 @@
     },
     {
       "file": "frontend/src/pages/Register.jsx",
-      "sourceSha256": "e441be5bb13f0249991dfb26d5a971c9df7104d4bc7c872417438abb05e214fe"
+      "sourceSha256": "efa622d7911fd0b3b94543bf8154fd3c1fe1ffe59d8caa4db4c533121c1e9911"
     },
     {
       "file": "frontend/src/pages/ResetPassword.jsx",

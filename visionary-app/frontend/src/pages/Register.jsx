@@ -18,10 +18,22 @@ import { authErrorMessage } from '@/lib/authErrors';
 import PhoneAuth from '@/components/auth/PhoneAuth';
 import useSignInMethods from '@/hooks/useSignInMethods';
 
+/**
+ * Register — preview OTP truthfulness law (FAP-70):
+ * - In local preview (base44.auth.source !== 'firebase') no email transport
+ *   exists, so the verification step must not claim one was sent. The step
+ *   shows the established local-preview disclosure voice instead ("Local
+ *   preview — verification is simulated; no email is sent. Any 6-digit code
+ *   completes signup for <email>."), and the Resend control (whose toast
+ *   claims "Code sent") is connected-mode only.
+ * - The connected Firebase flow keeps its "Verify your email" copy and
+ *   Resend control byte-identical; only the preview branch differs.
+ */
 export default function Register() {
   const { user, isAuthenticated, isLoadingAuth, checkUserAuth, authError } = useAuth();
   const navigate = useNavigate();
   const submitting = useRef(false);
+  const preview = base44.auth.source !== 'firebase';
   const [view, setView] = useState("methods");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -90,7 +102,7 @@ export default function Register() {
     try {
       await base44.auth.register({ email, password });
       setPassword(''); setConfirmPassword('');
-      setView(base44.auth.source === 'firebase' ? 'verification' : "otp");
+      setView(preview ? "otp" : 'verification');
     } catch (err) {
       if (err.registrationCreated) { setPassword(''); setConfirmPassword(''); setView('verification'); }
       setDuplicate(err.code === 'auth/email-already-in-use');
@@ -266,9 +278,11 @@ export default function Register() {
               <div className="w-14 h-14 rounded-full bg-[rgba(0,102,204,0.10)] flex items-center justify-center mx-auto mb-4">
                 <Mail className="w-7 h-7 text-[#0066cc]" />
               </div>
-              <h2 className="text-2xl font-normal text-[#1d1d1f]">Verify your email</h2>
+              <h2 className="text-2xl font-normal text-[#1d1d1f]">{preview ? "Finish creating your account" : "Verify your email"}</h2>
               <p className="text-sm text-[#6e6e73] mt-2 leading-relaxed">
-                We sent a 6-digit code to <span className="font-medium text-[#1d1d1f]">{email}</span>
+                {preview
+                  ? <>Local preview — verification is simulated; no email is sent. Any 6-digit code completes signup for <span className="font-medium text-[#1d1d1f]">{email}</span>.</>
+                  : <>We sent a 6-digit code to <span className="font-medium text-[#1d1d1f]">{email}</span></>}
               </p>
             </div>
             {error && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#e30000] text-sm">{error}</div>}
@@ -289,12 +303,14 @@ export default function Register() {
                 {loading ? <Spinner /> : "Verify"}
               </button>
             </div>
-            <p className="text-center text-sm text-[#6e6e73]">
-              Didn't receive the code?{" "}
-              <button type="button" onClick={handleResend} className="text-[#0066cc] font-medium hover:underline">
-                Resend
-              </button>
-            </p>
+            {!preview && (
+              <p className="text-center text-sm text-[#6e6e73]">
+                Didn't receive the code?{" "}
+                <button type="button" onClick={handleResend} className="text-[#0066cc] font-medium hover:underline">
+                  Resend
+                </button>
+              </p>
+            )}
           </div>
         );
 
