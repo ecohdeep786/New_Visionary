@@ -62,6 +62,8 @@
     "draftrecovery:check": "node scripts/draftrecovery-check.mjs",
     "guidedbriefs:check": "node scripts/guidedbriefs-check.mjs",
     "runs:check": "node scripts/runs-check.mjs",
+    "export:check": "node scripts/export-check.mjs",
+    "sharing:check": "node scripts/sharing-check.mjs",
     "ingestion:check": "node scripts/ingestion-check.mjs",
     "publication:check": "node scripts/publication-check.mjs",
     "catalogadapter:check": "node scripts/catalogadapter-check.mjs",
@@ -78,6 +80,8 @@
     "projects:check": "node scripts/projects-check.mjs",
     "draftrecovery:check": "node scripts/draftrecovery-check.mjs",
     "guidedbriefs:check": "node scripts/guidedbriefs-check.mjs",
-    "runs:check": "node scripts/runs-check.mjs"
+    "runs:check": "node scripts/runs-check.mjs",
+    "export:check": "node scripts/export-check.mjs",
+    "sharing:check": "node scripts/sharing-check.mjs"
   }
 }
