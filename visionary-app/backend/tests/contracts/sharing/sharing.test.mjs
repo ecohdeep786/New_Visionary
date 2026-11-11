@@ -33,6 +33,7 @@ const PROJECT = 'prj_solar';
 async function makeService() {
   const store = new InMemorySharingStore();
   const svc = new SharingService(store);
+  await store.recordProjectOwner(PROJECT, OWNER);
   await store.appendRevision(PROJECT, { doc: 'revision 1' });
   await store.appendRevision(PROJECT, { doc: 'revision 2' });
   return { store, svc };
@@ -76,12 +77,14 @@ test('only ACCEPTED recipients can view; non-listed actors denied; unknown share
 });
 
 test('parent summaries are consent-bound: revoked/expired consent blocks generation immediately', async () => {
-  const { svc } = await makeService();
+  const { store, svc } = await makeService();
   const active = { summaryId: 'sum_1', guardianUid: 'uid_parent', studentUid: OWNER.uid, projectId: PROJECT, consentActive: true };
+  await store.setConsent('uid_parent', OWNER.uid, PROJECT, 'active'); // SERVER-DERIVED consent
   const summary = await svc.parentSummary(active, ['Completed 3 concepts', 'Struggled with fractions']);
   assert.equal(summary.summaryId, 'sum_1');
 
-  const revoked = { ...active, summaryId: 'sum_2', consentActive: false };
+  const revoked = { ...active, summaryId: 'sum_2', consentActive: true };
+  await store.setConsent('uid_parent', OWNER.uid, PROJECT, 'revoked'); // server-side revocation wins over any client flag
   await assert.rejects(
     () => svc.parentSummary(revoked, ['should not exist']),
     (e) => e.code === 'consent_not_active',

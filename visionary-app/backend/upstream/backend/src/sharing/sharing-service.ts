@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-06 (KAN-80) — exact-revision sharing, consent-bound summaries,
 // classroom-copy bridge.
 //
@@ -22,18 +23,22 @@ import { SharingError } from './sharing-types';
 import type { SharingStore } from './sharing-lookups';
 
 export class SharingService {
-  private shareCounter = 0;
   constructor(
     private readonly store: SharingStore,
     private readonly now: () => Date = () => new Date(),
   ) {}
 
-  /** Share ONE exact revision with named accepted recipients (owner-only). */
+  /** Share ONE exact revision with named accepted recipients (owner-only).
+   * Ownership is resolved SERVER-SIDE: the sharing domain never trusts a
+   * caller's claim, and a project with no known owner fails closed. */
   async shareRevision(owner: ShareOwner, projectId: string, revisionNo: number, recipients: readonly string[]): Promise<RevisionShare> {
+    const projectOwner = await this.store.projectOwnerOf(projectId);
+    if (!projectOwner) throw new SharingError('unknown_project');
+    if (projectOwner.uid !== owner.uid || projectOwner.workspaceId !== owner.workspaceId) throw new SharingError('not_owner');
     const payload = await this.store.payloadAt(projectId, revisionNo);
     if (payload === undefined) throw new SharingError('unknown_revision');
     const share: RevisionShare = {
-      shareId: `shr_${++this.shareCounter}`,
+      shareId: `shr_${randomUUID()}`,
       owner: { ...owner },
       projectId,
       revisionNo,
@@ -54,9 +59,11 @@ export class SharingService {
     return { projectId: share.projectId, revisionNo: share.revisionNo, payload };
   }
 
-  /** Consent-bound parent summary: blocked immediately when consent is gone. */
+  /** Consent-bound parent summary: consent is resolved SERVER-SIDE (a client
+   * flag is never authoritative) and blocks generation immediately when gone. */
   async parentSummary(request: ParentSummaryRequest, sections: string[]): Promise<{ summaryId: string; sections: string[] }> {
-    if (!request.consentActive) throw new SharingError('consent_not_active');
+    const consent = await this.store.consentFor(request.guardianUid, request.studentUid, request.projectId);
+    if (consent !== 'active') throw new SharingError('consent_not_active');
     await this.store.saveSummary(request, { sections });
     return { summaryId: request.summaryId, sections };
   }

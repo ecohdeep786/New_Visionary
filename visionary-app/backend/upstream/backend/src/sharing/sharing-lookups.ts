@@ -13,6 +13,13 @@ export interface SharingStore {
   createProject(owner: ShareOwner, title: string): Promise<string>;
   /** Private state that must NEVER cross a share/classroom boundary. */
   privateStateExists(projectId: string): Promise<boolean>;
+  /** SERVER-DERIVED ownership of a project (the enforcement source for
+   * shareRevision; the sharing domain never trusts a caller's claim). */
+  projectOwnerOf(projectId: string): Promise<ShareOwner | undefined>;
+  recordProjectOwner(projectId: string, owner: ShareOwner): Promise<void>;
+  /** SERVER-DERIVED guardian consent (client flags are never authoritative). */
+  consentFor(guardianUid: string, studentUid: string, projectId: string): Promise<'active' | 'revoked' | 'expired' | undefined>;
+  setConsent(guardianUid: string, studentUid: string, projectId: string, state: 'active' | 'revoked' | 'expired'): Promise<void>;
   saveSummary(request: ParentSummaryRequest, summary: { sections: string[] }): Promise<void>;
 }
 
@@ -21,6 +28,7 @@ export class InMemorySharingStore implements SharingStore {
   private shares = new Map<string, RevisionShare>();
   private revisions = new Map<string, unknown[]>();
   private projects = new Map<string, ShareOwner>();
+  private consents = new Map<string, 'active' | 'revoked' | 'expired'>();
   private privateState = new Set<string>();
   private nextProjectId = 0;
   summaries: { request: ParentSummaryRequest; sections: string[] }[] = [];
@@ -41,6 +49,22 @@ export class InMemorySharingStore implements SharingStore {
 
   async currentRevision(projectId: string): Promise<number> {
     return (this.revisions.get(projectId) ?? []).length;
+  }
+  async projectOwnerOf(projectId: string): Promise<ShareOwner | undefined> {
+    const owner = this.projects.get(projectId);
+    return owner ? { ...owner } : undefined;
+  }
+  async recordProjectOwner(projectId: string, owner: ShareOwner): Promise<void> {
+    if (!this.projects.has(projectId)) this.projects.set(projectId, { ...owner });
+  }
+  consentKey(guardianUid: string, studentUid: string, projectId: string): string {
+    return `${guardianUid}|${studentUid}|${projectId}`;
+  }
+  async consentFor(guardianUid: string, studentUid: string, projectId: string): Promise<'active' | 'revoked' | 'expired' | undefined> {
+    return this.consents.get(this.consentKey(guardianUid, studentUid, projectId));
+  }
+  async setConsent(guardianUid: string, studentUid: string, projectId: string, state: 'active' | 'revoked' | 'expired'): Promise<void> {
+    this.consents.set(this.consentKey(guardianUid, studentUid, projectId), state);
   }
 
   async appendRevision(projectId: string, payload: unknown): Promise<number> {
