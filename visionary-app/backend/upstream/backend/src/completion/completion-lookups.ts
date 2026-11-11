@@ -1,6 +1,7 @@
 // BUILD-07 (KAN-81) — the completion domain's typed state seams. The owning
 // stores (criteria, self-reviews, application evidence) implement these at
 // integration; the in-memory implementation is contract-true and fails closed.
+import { CompletionError } from './completion-types';
 import type {
   ApplicationEvidence,
   CompletionCriteria,
@@ -15,15 +16,29 @@ export interface CompletionStore {
   selfReviewsFor(owner: ReviewOwner, projectId: string): Promise<SelfReview[]>;
   saveEvidence(evidence: ApplicationEvidence): Promise<void>;
   byEvidenceId(evidenceId: string): Promise<ApplicationEvidence | undefined>;
-}
+
+  /** SERVER-DERIVED project ownership (the enforcement source; the completion
+   * domain never trusts a caller's claim). */
+  projectOwnerOf(projectId: string): Promise<ReviewOwner | undefined>;
+  recordProjectOwner(projectId: string, owner: ReviewOwner): Promise<void>;}
 
 /** Contract-true in-memory store; self-reviews append-only, evidence stateful. */
 export class InMemoryCompletionStore implements CompletionStore {
   private criteria = new Map<string, CompletionCriteria>();
   private reviews: SelfReview[] = [];
   private evidence = new Map<string, ApplicationEvidence>();
+  private projectOwners = new Map<string, ReviewOwner>();
 
-  async saveCriteria(c: CompletionCriteria): Promise<void> {
+  async projectOwnerOf(projectId: string): Promise<ReviewOwner | undefined> {
+    const owner = this.projectOwners.get(projectId);
+    return owner ? { ...owner } : undefined;
+  }
+  async recordProjectOwner(projectId: string, owner: ReviewOwner): Promise<void> {
+    if (!this.projectOwners.has(projectId)) this.projectOwners.set(projectId, { ...owner });
+  }
+  async saveCriteria(c: CompletionCriteria, expectedPreviousVersion?: number): Promise<void> {
+    const current = this.criteria.get(c.projectId);
+    if (expectedPreviousVersion !== undefined && (current?.version ?? 0) !== expectedPreviousVersion) throw new CompletionError('version_conflict');
     this.criteria.set(c.projectId, { ...c, items: [...c.items] });
   }
 

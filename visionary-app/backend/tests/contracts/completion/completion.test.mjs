@@ -32,6 +32,7 @@ const PROJECT = 'prj_portfolio';
 async function makeService() {
   const store = new InMemoryCompletionStore();
   const svc = new CompletionService(store);
+  await store.recordProjectOwner(PROJECT, OWNER);
   await svc.defineCriteria(OWNER, PROJECT, [
     { itemId: 'i1', description: 'Includes a personal statement' },
     { itemId: 'i2', description: 'Shows three work samples' },
@@ -109,8 +110,10 @@ test('wrong users denied on assessment; unknown evidence fails closed', async ()
     () => svc.recordAssessment(OWNER, 'ev_ghost', 'assess-x'),
     (e) => e.code === 'unknown_evidence',
   );
+  // A project the server has no ownership record for fails closed BEFORE the
+  // criteria lookup (server-derived ownership; no caller claim trusted).
   await assert.rejects(
     () => svc.assessCompletion(OWNER, 'prj_ghost', []),
-    (e) => e.code === 'unknown_criteria',
+    (e) => e.code === 'unknown_project',
   );
 });

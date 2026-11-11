@@ -72,6 +72,8 @@ export class CompletionError extends Error {
       | 'unknown_criteria'
       | 'unknown_evidence'
       | 'already_assessed'
+      | 'unknown_project'
+      | 'version_conflict'
   ) {
     super(code);
   }

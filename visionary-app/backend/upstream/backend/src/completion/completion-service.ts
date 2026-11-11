@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-07 (KAN-81) — completion criteria, versioned self-reviews, and
 // honestly-unverified application evidence.
 //
@@ -24,18 +25,23 @@ import { CompletionError } from './completion-types';
 import type { CompletionStore } from './completion-lookups';
 
 export class CompletionService {
-  private criteriaCounter = 0;
-  private reviewCounter = 0;
   constructor(
     private readonly store: CompletionStore,
     private readonly now: () => Date = () => new Date(),
   ) {}
 
+  private async requireProjectOwner(projectId: string, owner: ReviewOwner): Promise<void> {
+    const projectOwner = await this.store.projectOwnerOf(projectId);
+    if (!projectOwner) throw new CompletionError('unknown_project');
+    if (projectOwner.uid !== owner.uid || projectOwner.workspaceId !== owner.workspaceId) throw new CompletionError('not_owner');
+  }
+
   /** Define (or amend) versioned completion criteria; amendments append versions. */
   async defineCriteria(owner: ReviewOwner, projectId: string, items: CompletionCriteria['items']): Promise<CompletionCriteria> {
+    await this.requireProjectOwner(projectId, owner);
     const existing = await this.store.latestCriteria(projectId);
     const criteria: CompletionCriteria = {
-      criteriaId: existing?.criteriaId ?? `crit_${++this.criteriaCounter}`,
+      criteriaId: existing?.criteriaId ?? `crit_${randomUUID()}`,
       projectId,
       version: (existing?.version ?? 0) + 1,
       items: items.map((i) => ({ ...i })),
@@ -46,6 +52,7 @@ export class CompletionService {
 
   /** Deterministic completion verdict against the pinned criteria version. */
   async assessCompletion(owner: ReviewOwner, projectId: string, satisfiedItemIds: readonly string[]): Promise<CompletionVerdict> {
+    await this.requireProjectOwner(projectId, owner);
     const criteria = await this.store.latestCriteria(projectId);
     if (!criteria) throw new CompletionError('unknown_criteria');
     const satisfied = criteria.items.filter((i) => satisfiedItemIds.includes(i.itemId)).map((i) => i.itemId);
@@ -61,9 +68,10 @@ export class CompletionService {
 
   /** Submit a professional self-review: appends an immutable version. */
   async submitSelfReview(owner: ReviewOwner, projectId: string, sections: SelfReview['sections']): Promise<SelfReview> {
+    await this.requireProjectOwner(projectId, owner);
     const prior = await this.store.selfReviewsFor(owner, projectId);
     const review: SelfReview = {
-      reviewId: `rev_${++this.reviewCounter}`,
+      reviewId: `rev_${randomUUID()}`,
       owner: { ...owner },
       projectId,
       version: (prior[prior.length - 1]?.version ?? 0) + 1,
@@ -76,6 +84,7 @@ export class CompletionService {
 
   /** Submit application evidence: lands UNVERIFIED — never auto-verified. */
   async submitEvidence(owner: ReviewOwner, projectId: string, evidenceId: string, payload: unknown): Promise<ApplicationEvidence> {
+    await this.requireProjectOwner(projectId, owner);
     const evidence: ApplicationEvidence = {
       evidenceId,
       owner: { ...owner },
