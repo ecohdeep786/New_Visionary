@@ -12,6 +12,12 @@ export interface UsageStore {
    * Returns granted=false with the remaining balance when quota is insufficient.
    */
   tryReserve(owner: UsageOwner, amountTokens: number): Promise<{ granted: boolean; remaining: number }>;
+  /** ATOMIC terminal settlement: conditional on the reservation's status being
+   * 'reserved' — credits the remainder and marks settled TOGETHER, so two
+   * concurrent settles can never both credit (the ambiguous-timeout retry
+   * converges to duplicate). (SQL adapter: one UPDATE ... WHERE status =
+   * 'reserved' inside the credit transaction.) */
+  settleReservation(reservationId: string, measuredUsedTokens: number, settledAt: string): Promise<{ ok: true; releasedTokens: number } | { ok: false; reason: 'not_reserved' }>;
   saveReservation(reservation: UsageReservation): Promise<void>;
   byReservationId(reservationId: string): Promise<UsageReservation | undefined>;
   updateReservation(reservation: UsageReservation): Promise<void>;
@@ -58,6 +64,19 @@ export class InMemoryUsageStore implements UsageStore {
     this.reservations.set(reservation.reservationId, { ...reservation, owner: { ...reservation.owner } });
   }
 
+  async settleReservation(reservationId: string, measuredUsedTokens: number, settledAt: string): Promise<{ ok: true; releasedTokens: number } | { ok: false; reason: 'not_reserved' }> {
+    // CRITICAL SECTION: no await between the status check, the credit, and the
+    // settle mark (atomic — the concurrent second settle converges to duplicate).
+    const reservation = this.reservations.get(reservationId);
+    if (!reservation || reservation.status !== 'reserved') return { ok: false, reason: 'not_reserved' };
+    const released = reservation.reservedTokens - measuredUsedTokens;
+    if (released > 0) {
+      const key = this.key(reservation.owner);
+      this.balances.set(key, (this.balances.get(key) ?? 0) + released);
+    }
+    this.reservations.set(reservationId, { ...reservation, status: 'settled', settledUsedTokens: measuredUsedTokens });
+    return { ok: true, releasedTokens: released };
+  }
   async appendLedgerEntry(entry: UsageLedgerEntry): Promise<void> {
     // Append-only: the array is replaced with a new tail entry, never rewritten.
     this.ledger = [...this.ledger, { ...entry, owner: { ...entry.owner } }];

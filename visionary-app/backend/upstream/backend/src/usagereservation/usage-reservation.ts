@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // AI-07 (KAN-89) — atomic usage reservation, bounded execution, measured
 // ledger, terminal settlement.
 //
@@ -22,8 +23,6 @@ import { UsageError } from './usage-reservation-types';
 import type { UsageStore } from './usage-reservation-lookups';
 
 export class UsageReservationService {
-  private reservationCounter = 0;
-  private entryCounter = 0;
   constructor(
     private readonly store: UsageStore,
     private readonly now: () => Date = () => new Date(),
@@ -35,7 +34,7 @@ export class UsageReservationService {
     const attempt = await this.store.tryReserve(owner, requestedTokens);
     if (!attempt.granted) throw new UsageError('insufficient_quota');
     const reservation: UsageReservation = {
-      reservationId: `res_${++this.reservationCounter}`,
+      reservationId: `res_${randomUUID()}`,
       owner: { ...owner },
       reservedTokens: requestedTokens,
       status: 'reserved',
@@ -64,16 +63,17 @@ export class UsageReservationService {
     if (reservation.owner.uid !== owner.uid || reservation.owner.workspaceId !== owner.workspaceId) {
       return { ok: false, reason: 'not_owner' };
     }
-    if (reservation.status !== 'reserved') {
-      // Already settled (or released): the ambiguous-timeout retry converges
-      // here WITHOUT a second debit.
-      return { outcome: 'duplicate', usedTokens: reservation.settledUsedTokens ?? 0, releasedTokens: 0 };
-    }
     if (measuredUsedTokens > reservation.reservedTokens) throw new UsageError('bound_exceeded');
 
-    const released = reservation.reservedTokens - measuredUsedTokens;
-    if (released > 0) await this.store.tryReserve(owner, -released); // credit back
-    await this.store.updateReservation({ ...reservation, status: 'settled', settledUsedTokens: measuredUsedTokens });
+    // The settlement is ATOMIC at the store: conditional on the status being
+    // 'reserved', the remainder credit and the settle mark apply TOGETHER —
+    // two concurrent settles can never both credit (the ambiguous-timeout
+    // retry converges to duplicate WITHOUT a second debit).
+    const settled = await this.store.settleReservation(reservationId, measuredUsedTokens, this.now().toISOString());
+    if (!settled.ok) {
+      return { outcome: 'duplicate', usedTokens: reservation.settledUsedTokens ?? 0, releasedTokens: 0 };
+    }
+    const released = settled.releasedTokens;
     await this.appendEntry({ ...reservation, status: 'settled' }, 'settled', measuredUsedTokens);
     if (released > 0) await this.appendEntry({ ...reservation, status: 'settled' }, 'released', released);
     return { outcome: 'settled', usedTokens: measuredUsedTokens, releasedTokens: released };
@@ -81,7 +81,7 @@ export class UsageReservationService {
 
   private async appendEntry(reservation: UsageReservation, kind: UsageLedgerEntry['kind'], amountTokens: number): Promise<void> {
     const entry: UsageLedgerEntry = {
-      entryId: `uln_${++this.entryCounter}`,
+      entryId: `uln_${randomUUID()}`,
       reservationId: reservation.reservationId,
       owner: { ...reservation.owner },
       kind,
