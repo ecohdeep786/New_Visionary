@@ -1,0 +1,448 @@
+[
+  {
+    "route": "/",
+    "band": {
+      "h2s": [
+        "Your next step starts here."
+      ],
+      "paras": [
+        "Ask a question. Explore an idea. Start learning. Visionary is ready when you are.",
+        "See how it works for Students · Teachers · Parents · Professionals · Organizations",
+        "Free to start. Private by design."
+      ],
+      "links": [
+        {
+          "text": "Get started",
+          "href": "/register"
+        },
+        {
+          "text": "Talk to our team",
+          "href": "/contact"
+        },
+        {
+          "text": "Students",
+          "href": "/student"
+        },
+        {
+          "text": "Teachers",
+          "href": "/teacher"
+        },
+        {
+          "text": "Parents",
+          "href": "/parent"
+        },
+        {
+          "text": "Professionals",
+          "href": "/professional"
+        },
+        {
+          "text": "Organizations",
+          "href": "/organization"
+        }
+      ]
+    },
+    "secCount": 9
+  },
+  {
+    "route": "/student",
+    "band": {
+      "h2s": [
+        "Explore Visionary.",
+        "Teacher",
+        "Parent",
+        "Professional",
+        "Organization"
+      ],
+      "paras": [
+        "See who needs another explanation.",
+        "See where your child needs support.",
+        "Turn what you know into useful work."
+      ],
+      "links": [
+        {
+          "text": "TeacherSee who needs another explanation.Learn mor",
+          "href": "/teacher"
+        },
+        {
+          "text": "ParentSee where your child needs support.Learn mor",
+          "href": "/parent"
+        },
+        {
+          "text": "ProfessionalTurn what you know into useful work.Le",
+          "href": "/professional"
+        },
+        {
+          "text": "OrganizationHelp teams carry knowledge forward.Lea",
+          "href": "/organization"
+        }
+      ]
+    },
+    "secCount": 10
+  },
+  {
+    "route": "/teacher",
+    "band": {
+      "h2s": [
+        "Explore Visionary.",
+        "Student",
+        "Parent",
+        "Professional",
+        "Organization"
+      ],
+      "paras": [
+        "Understand lessons, practise ideas, and keep your place.",
+        "See progress clearly and know when to help.",
+        "Turn what you learn into work you can use."
+      ],
+      "links": [
+        {
+          "text": "StudentUnderstand lessons, practise ideas, and kee",
+          "href": "/student"
+        },
+        {
+          "text": "ParentSee progress clearly and know when to help.L",
+          "href": "/parent"
+        },
+        {
+          "text": "ProfessionalTurn what you learn into work you can ",
+          "href": "/professional"
+        },
+        {
+          "text": "OrganizationHelp teams share context across projec",
+          "href": "/organization"
+        }
+      ]
+    },
+    "secCount": 10
+  },
+  {
+    "route": "/parent",
+    "band": {
+      "h2s": [
+        "Explore Visionary.",
+        "Student",
+        "Teacher",
+        "Professional",
+        "Organization"
+      ],
+      "paras": [
+        "Understand lessons, practise ideas, and build with confidence.",
+        "Plan lessons and see who needs support.",
+        "Turn what you learn into work you can use."
+      ],
+      "links": [
+        {
+          "text": "StudentUnderstand lessons, practise ideas, and bui",
+          "href": "/student"
+        },
+        {
+          "text": "TeacherPlan lessons and see who needs support.Lear",
+          "href": "/teacher"
+        },
+        {
+          "text": "ProfessionalTurn what you learn into work you can ",
+          "href": "/professional"
+        },
+        {
+          "text": "OrganizationHelp teams share context across projec",
+          "href": "/organization"
+        }
+      ]
+    },
+    "secCount": 10
+  },
+  {
+    "route": "/professional",
+    "band": {
+      "h2s": [
+        "Explore Visionary.",
+        "Student",
+        "Teacher",
+        "Parent",
+        "Organization"
+      ],
+      "paras": [
+        "Know how Visionary fits into your learning.",
+        "Know how Visionary fits into your classroom.",
+        "Know how Visionary fits into your child's journey."
+      ],
+      "links": [
+        {
+          "text": "StudentKnow how Visionary fits into your learning.",
+          "href": "/student"
+        },
+        {
+          "text": "TeacherKnow how Visionary fits into your classroom",
+          "href": "/teacher"
+        },
+        {
+          "text": "ParentKnow how Visionary fits into your child's jo",
+          "href": "/parent"
+        },
+        {
+          "text": "OrganizationKnow how Visionary fits across your or",
+          "href": "/organization"
+        }
+      ]
+    },
+    "secCount": 10
+  },
+  {
+    "route": "/organization",
+    "band": {
+      "h2s": [
+        "Explore Visionary.",
+        "Student",
+        "Teacher",
+        "Parent",
+        "Professional"
+      ],
+      "paras": [
+        "Understand lessons, practise ideas, and keep your place.",
+        "See who needs another explanation.",
+        "See where your child needs support."
+      ],
+      "links": [
+        {
+          "text": "StudentUnderstand lessons, practise ideas, and kee",
+          "href": "/student"
+        },
+        {
+          "text": "TeacherSee who needs another explanation.Learn mor",
+          "href": "/teacher"
+        },
+        {
+          "text": "ParentSee where your child needs support.Learn mor",
+          "href": "/parent"
+        },
+        {
+          "text": "ProfessionalTurn what you know into useful work.Le",
+          "href": "/professional"
+        }
+      ]
+    },
+    "secCount": 10
+  },
+  {
+    "route": "/how-it-works",
+    "band": {
+      "h2s": [
+        "See it with your own question."
+      ],
+      "paras": [
+        "Free to start. Private by design."
+      ],
+      "links": [
+        {
+          "text": "Get started",
+          "href": "/register"
+        },
+        {
+          "text": "See pricing",
+          "href": "/pricing"
+        }
+      ]
+    },
+    "secCount": 5
+  },
+  {
+    "route": "/about",
+    "band": {
+      "h2s": [
+        "There is a place for you in Visionary."
+      ],
+      "paras": [
+        "Start where you are",
+        "Explore the view that fits your role, or begin with the question you have today."
+      ],
+      "links": [
+        {
+          "text": "Get started",
+          "href": "/register"
+        },
+        {
+          "text": "Contact Visionary",
+          "href": "/contact"
+        }
+      ]
+    },
+    "secCount": 7
+  },
+  {
+    "route": "/careers",
+    "band": {
+      "h2s": [
+        "What you learn here should stay with you."
+      ],
+      "paras": [
+        "Understand deeply, build from what you know, carry the learning forward."
+      ],
+      "links": [
+        {
+          "text": "Email the careers team",
+          "href": "mailto:careers@visionary.org.in?subject=General%20introduction%20%E2%80%94%20Visionary"
+        },
+        {
+          "text": "About Visionary",
+          "href": "/about"
+        }
+      ]
+    },
+    "secCount": 8
+  },
+  {
+    "route": "/research",
+    "band": {
+      "h2s": [
+        "Help us shape the future.",
+        "Join the community",
+        "Work with us",
+        "Have a research question?"
+      ],
+      "paras": [
+        "Learners, teachers, and parents use the product every day, and their experience is a primary source for every question on this pag",
+        "Help turn these questions into a product: research-minded people across engineering, design, and evidence.",
+        "Write to the Visionary team."
+      ],
+      "links": [
+        {
+          "text": "Join the communityLearners, teachers, and parents ",
+          "href": "/community"
+        },
+        {
+          "text": "Work with usHelp turn these questions into a produ",
+          "href": "/careers"
+        },
+        {
+          "text": "research@visionary.org.in",
+          "href": "mailto:research@visionary.org.in"
+        }
+      ]
+    },
+    "secCount": 10
+  },
+  {
+    "route": "/community",
+    "band": {
+      "h2s": [
+        "Bring your class together."
+      ],
+      "paras": [
+        "Communities grow around real learning. Start with the loop, and the space builds itself around it."
+      ],
+      "links": [
+        {
+          "text": "Get started",
+          "href": "/register"
+        },
+        {
+          "text": "Read community safety",
+          "href": "/safety"
+        }
+      ]
+    },
+    "secCount": 5
+  },
+  {
+    "route": "/contact",
+    "band": {
+      "h2s": [
+        "Before you send",
+        "Keep sensitive details out"
+      ],
+      "paras": [
+        "Your email app will open a draft. Review the recipient and message, then choose whether to send it. Nothing is submitted to Vision",
+        "Do not include passwords, payment card details, or sensitive learner information in an email. For information about personal data,"
+      ],
+      "links": [
+        {
+          "text": "Privacy policy",
+          "href": "/privacy"
+        }
+      ]
+    },
+    "secCount": 7
+  },
+  {
+    "route": "/partners",
+    "band": {
+      "h2s": [
+        "Bring Visionary closer to your learners."
+      ],
+      "paras": [
+        "A five-minute note is enough to start. Tell us your context, and the partnerships team will reply within five business days."
+      ],
+      "links": [
+        {
+          "text": "Email the partnerships team",
+          "href": "mailto:partnerships@visionary.org.in?subject=Partnership%20enquiry"
+        },
+        {
+          "text": "Or use the contact routes",
+          "href": "/contact"
+        }
+      ]
+    },
+    "secCount": 10
+  },
+  {
+    "route": "/updates",
+    "band": {
+      "h2s": [],
+      "paras": [
+        "Questions about updates?"
+      ],
+      "links": [
+        {
+          "text": "hello@visionary.org.in",
+          "href": "mailto:hello@visionary.org.in"
+        }
+      ]
+    },
+    "secCount": 6
+  },
+  {
+    "route": "/download",
+    "band": {
+      "h2s": [
+        "Still deciding? The web is one click away."
+      ],
+      "paras": [
+        "No install, no waiting. Pick up the app whenever you're ready."
+      ],
+      "links": [
+        {
+          "text": "Continue on web",
+          "href": "/register"
+        },
+        {
+          "text": "See how it works",
+          "href": "/how-it-works"
+        }
+      ]
+    },
+    "secCount": 7
+  },
+  {
+    "route": "/pricing",
+    "band": {
+      "h2s": [
+        "Your journey is already happening, so start free."
+      ],
+      "paras": [
+        "Upgrade only when Visionary has earned it."
+      ],
+      "links": [
+        {
+          "text": "Get started",
+          "href": "/register"
+        },
+        {
+          "text": "Talk to sales",
+          "href": "/contact"
+        }
+      ]
+    },
+    "secCount": 5
+  }
+]

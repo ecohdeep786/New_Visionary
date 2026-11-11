@@ -1,0 +1,71 @@
+Console capture at beta f8321b8d, Playwright Edge headless, 2026-11-11.
+Reproduced on /research, /accessibility, /privacy (6/6 in the repro loop; /terms, /security, /cookies share the component).
+
+== /research ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at Reveal (http://127.0.0.1:5174/src/pages/landing/ResearchNewsPage.jsx:164:19)
+    at main
+    at div
+    at ResearchNewsPage
+    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)
+    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)
+    at PublicApp
+    at Suspense
+    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794375812500:33:1)
+    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)
+    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)
+    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)
+    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)
+    at App
+
+== /accessibility ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at Reveal (http://127.0.0.1:5174/src/pages/landing/AccessibilityPage.jsx:39:19)
+    at main
+    at div
+    at AccessibilityPage
+    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)
+    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)
+    at PublicApp
+    at Suspense
+    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794375812500:33:1)
+    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)
+    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)
+    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)
+    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)
+    at App
+
+== /privacy ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/PrivacyPage.jsx:94:59)
+    at main
+    at div
+    at PrivacyPage (http://127.0.0.1:5174/src/pages/landing/PrivacyPage.jsx:221:33)
+    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)
+    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)
+    at PublicApp
+    at Suspense
+    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794375812500:33:1)
+    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)
+    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)
+    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)
+    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)
+    at App

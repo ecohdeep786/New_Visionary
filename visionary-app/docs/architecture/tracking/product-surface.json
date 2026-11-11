@@ -129,19 +129,19 @@
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:183:17",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:197:9",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:199:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:32:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:49:5",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:111:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:114:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:123:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:133:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:135:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:147:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:150:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:171:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:173:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:181:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:196:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:38:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:55:5",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:117:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:120:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:129:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:139:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:141:13",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:153:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:156:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:177:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:179:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:187:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:202:9",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:21:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:33:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:47:5",
@@ -890,19 +890,19 @@
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:183:17",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:197:9",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:199:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:32:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:49:5",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:111:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:114:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:123:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:133:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:135:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:147:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:150:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:171:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:173:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:181:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:196:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:38:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:55:5",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:117:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:120:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:129:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:139:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:141:13",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:153:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:156:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:177:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:179:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:187:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:202:9",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:21:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:33:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:47:5",
@@ -936,8 +936,8 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/StudentPage.jsx:283:7",
-        "frontend/src/pages/landing/StudentPage.jsx:284:21"
+        "frontend/src/pages/landing/StudentPage.jsx:280:7",
+        "frontend/src/pages/landing/StudentPage.jsx:281:21"
       ],
       "operations": [
         "public-discovery"
@@ -1081,19 +1081,19 @@
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:183:17",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:197:9",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:199:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:32:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:49:5",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:111:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:114:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:123:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:133:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:135:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:147:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:150:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:171:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:173:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:181:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:196:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:38:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:55:5",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:117:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:120:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:129:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:139:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:141:13",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:153:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:156:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:177:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:179:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:187:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:202:9",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:21:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:33:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:47:5",
@@ -1127,8 +1127,8 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/TeacherPage.jsx:283:7",
-        "frontend/src/pages/landing/TeacherPage.jsx:284:21"
+        "frontend/src/pages/landing/TeacherPage.jsx:280:7",
+        "frontend/src/pages/landing/TeacherPage.jsx:281:21"
       ],
       "operations": [
         "public-discovery"
@@ -1272,19 +1272,19 @@
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:183:17",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:197:9",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:199:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:32:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:49:5",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:111:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:114:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:123:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:133:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:135:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:147:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:150:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:171:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:173:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:181:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:196:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:38:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:55:5",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:117:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:120:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:129:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:139:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:141:13",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:153:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:156:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:177:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:179:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:187:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:202:9",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:21:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:33:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:47:5",
@@ -1318,8 +1318,8 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/ParentPage.jsx:282:7",
-        "frontend/src/pages/landing/ParentPage.jsx:283:21"
+        "frontend/src/pages/landing/ParentPage.jsx:279:7",
+        "frontend/src/pages/landing/ParentPage.jsx:280:21"
       ],
       "operations": [
         "public-discovery"
@@ -1551,19 +1551,19 @@
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:183:17",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:197:9",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:199:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:32:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:49:5",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:111:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:114:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:123:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:133:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:135:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:147:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:150:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:171:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:173:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:181:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:196:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:38:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:55:5",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:117:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:120:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:129:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:139:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:141:13",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:153:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:156:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:177:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:179:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:187:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:202:9",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:21:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:33:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:47:5",
@@ -1597,8 +1597,8 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/CollegePage.jsx:282:7",
-        "frontend/src/pages/landing/CollegePage.jsx:283:21"
+        "frontend/src/pages/landing/CollegePage.jsx:279:7",
+        "frontend/src/pages/landing/CollegePage.jsx:280:21"
       ],
       "operations": [
         "public-discovery"
@@ -1883,19 +1883,19 @@
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:183:17",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:197:9",
         "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx:199:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:32:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:49:5",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:111:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:114:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:123:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:133:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:135:13",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:147:9",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:150:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:171:15",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:173:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:181:17",
-        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:196:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:38:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:55:5",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:117:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:120:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:129:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:139:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:141:13",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:153:9",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:156:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:177:15",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:179:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:187:17",
+        "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:202:9",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:21:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:33:5",
         "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:47:5",
@@ -1929,8 +1929,8 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/OrganizationPage.jsx:251:7",
-        "frontend/src/pages/landing/OrganizationPage.jsx:252:21"
+        "frontend/src/pages/landing/OrganizationPage.jsx:248:7",
+        "frontend/src/pages/landing/OrganizationPage.jsx:249:21"
       ],
       "operations": [
         "public-discovery"
@@ -42888,9 +42888,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:32:15",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:38:15",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 32,
+      "line": 38,
       "column": 15,
       "tag": "button",
       "events": [
@@ -42924,9 +42924,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:49:5",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:55:5",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 49,
+      "line": 55,
       "column": 5,
       "tag": "button",
       "events": [
@@ -42958,9 +42958,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:111:9",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:117:9",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 111,
+      "line": 117,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -42987,9 +42987,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:114:9",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:120:9",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 114,
+      "line": 120,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -43016,9 +43016,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:123:9",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:129:9",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 123,
+      "line": 129,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -43045,9 +43045,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:133:9",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:139:9",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 133,
+      "line": 139,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -43074,9 +43074,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:135:13",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:141:13",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 135,
+      "line": 141,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -43104,9 +43104,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:147:9",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:153:9",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 147,
+      "line": 153,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -43133,9 +43133,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:150:15",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:156:15",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 150,
+      "line": 156,
       "column": 15,
       "tag": "PremiumOrbitDots",
       "events": [
@@ -43167,9 +43167,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:171:15",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:177:15",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 171,
+      "line": 177,
       "column": 15,
       "tag": "PremiumPlayPause",
       "events": [
@@ -43203,9 +43203,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:173:17",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:179:17",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 173,
+      "line": 179,
       "column": 17,
       "tag": "button",
       "events": [
@@ -43239,9 +43239,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:181:17",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:187:17",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 181,
+      "line": 187,
       "column": 17,
       "tag": "button",
       "events": [
@@ -43275,9 +43275,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:196:9",
+      "id": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx:202:9",
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "line": 196,
+      "line": 202,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -71336,9 +71336,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CollegePage.jsx:282:7",
+      "id": "frontend/src/pages/landing/CollegePage.jsx:279:7",
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "line": 282,
+      "line": 279,
       "column": 7,
       "tag": "JourneyGallery",
       "events": [
@@ -71365,9 +71365,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CollegePage.jsx:283:21",
+      "id": "frontend/src/pages/landing/CollegePage.jsx:280:21",
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "line": 283,
+      "line": 280,
       "column": 21,
       "tag": "JourneyModal",
       "events": [
@@ -72478,9 +72478,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/OrganizationPage.jsx:251:7",
+      "id": "frontend/src/pages/landing/OrganizationPage.jsx:248:7",
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "line": 251,
+      "line": 248,
       "column": 7,
       "tag": "JourneyGallery",
       "events": [
@@ -72507,9 +72507,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/OrganizationPage.jsx:252:21",
+      "id": "frontend/src/pages/landing/OrganizationPage.jsx:249:21",
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "line": 252,
+      "line": 249,
       "column": 21,
       "tag": "JourneyModal",
       "events": [
@@ -72538,9 +72538,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ParentPage.jsx:282:7",
+      "id": "frontend/src/pages/landing/ParentPage.jsx:279:7",
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "line": 282,
+      "line": 279,
       "column": 7,
       "tag": "JourneyGallery",
       "events": [
@@ -72567,9 +72567,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/ParentPage.jsx:283:21",
+      "id": "frontend/src/pages/landing/ParentPage.jsx:280:21",
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "line": 283,
+      "line": 280,
       "column": 21,
       "tag": "JourneyModal",
       "events": [
@@ -75089,9 +75089,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/StudentPage.jsx:283:7",
+      "id": "frontend/src/pages/landing/StudentPage.jsx:280:7",
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "line": 283,
+      "line": 280,
       "column": 7,
       "tag": "JourneyGallery",
       "events": [
@@ -75118,9 +75118,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/StudentPage.jsx:284:21",
+      "id": "frontend/src/pages/landing/StudentPage.jsx:281:21",
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "line": 284,
+      "line": 281,
       "column": 21,
       "tag": "JourneyModal",
       "events": [
@@ -75149,9 +75149,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TeacherPage.jsx:283:7",
+      "id": "frontend/src/pages/landing/TeacherPage.jsx:280:7",
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "line": 283,
+      "line": 280,
       "column": 7,
       "tag": "JourneyGallery",
       "events": [
@@ -75178,9 +75178,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/TeacherPage.jsx:284:21",
+      "id": "frontend/src/pages/landing/TeacherPage.jsx:281:21",
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "line": 284,
+      "line": 281,
       "column": 21,
       "tag": "JourneyModal",
       "events": [
@@ -78954,7 +78954,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx",
-      "sourceSha256": "403f0d123c17b02f38828178f17d15195ca5a630631f5f7a48e1ef7e408803a7"
+      "sourceSha256": "cf548cd22c33d374ccb2050597466840256b3ef528ca791de1ca570030b0a7ae"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx",
@@ -79902,7 +79902,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "7f9309360a56d9e80d373879b9791fd891dcb60309416408dbf0631f88f165e3"
+      "sourceSha256": "ac2c06256a12cdb2cb20e96b6e3f3f3c7a623682b0c2b3ca1d6753d0b437236f"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
@@ -79922,11 +79922,11 @@
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "sourceSha256": "8f6e33fbf665038e3ceeb04881157eaf2b2cebe64bc53a2d3de12a0ee02ce7fa"
+      "sourceSha256": "fc3649feec346ca97f4327e7501a0e4cb64304811656a2c1efd172cd17482913"
     },
     {
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "sourceSha256": "c247aed2eef062d6a27ebc58157a217d867c3bc42bf413134c1958ee15d670f6"
+      "sourceSha256": "635c3a11f64e4ac727c2d7d801b3c87d7cd5c7653874cce79b94ff3b3c63bed9"
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
@@ -79958,11 +79958,11 @@
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "sourceSha256": "2e4c81704b268464e0568ae2c6bf522bd0536ce44e684532da9cc67c86c10b78"
+      "sourceSha256": "a749d21aa32b9b8fe076fd752323512b9431cf1cd5224da6e927a35ffbc72802"
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "sourceSha256": "a2c96a43b4dbf74834768cbebbe9572b2dc7535555863e80f8dc74da549ffaa0"
+      "sourceSha256": "17f385c7bf1b9e23d16df6f14233ca7ce841e5f568ff4e086cce247ff14a5e6b"
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",

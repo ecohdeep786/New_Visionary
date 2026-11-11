@@ -104,15 +104,12 @@ const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
   { code: "bn", label: "Bengali" },
-  { code: "ta", label: "Tamil" },
-  { code: "kn", label: "Kannada" },
-  { code: "pa", label: "Punjabi" },
 ];
 
 const LANGUAGE_QUESTIONS = [
-  { hi: "Hamare learners kahan atak rahe hain?", en: "Where are our learners getting stuck?", bn: "আমাদের শিক্ষার্থীরা কোথায় আটকে আছে?", ta: "எங்கள் கற்பவர்கள் எங்கே சிக்கிக்கொண்டிருக்கிறார்கள்?", kn: "ನಮ್ಮ ಕಲಿಯುವವರು ಎಲ್ಲಿ ಸಿಕ್ಕಿಹಾಕಿಕೊಂಡಿದ್ದಾರೆ?", pa: "ਸਾਡੇ ਸਿੱਖਿਆਰਥੀ ਕਿੱਥੇ ਅੜਕੇ ਹੋਏ ਹਨ?" },
-  { hi: "Kaun si class ko zyada support chahiye?", en: "Which class needs more support?", bn: "কোন শ্রেণির বেশি সাহায্য দরকার?", ta: "எந்த வகுப்புக்கு அதிக உதவி தேவை?", kn: "ಯಾವ ತರಗತಿಗೆ ಹೆಚ್ಚಿನ ಸಹಾಯ ಬೇಕು?", pa: "ਕਿਹੜੀ ਜਮਾਤ ਨੂੰ ਵੱਧ ਮਦਦ ਚਾਹੀਦੀ ਹੈ?" },
-  { hi: "Training ka impact kahan dikh raha hai?", en: "Where is the training impact showing?", bn: "প্রশিক্ষণের প্রভাব কোথায় দেখা যাচ্ছে?", ta: "பயிற்சியின் தாக்கம் எங்கே தெரிகிறது?", kn: "ತರಬೇತಿಯ ಪ್ರಭಾವ ಎಲ್ಲಿ ಕಾಣುತ್ತಿದೆ?", pa: "ਸਿਖਲਾਈ ਦਾ ਅਸਰ ਕਿੱਥੇ ਦਿਖ ਰਿਹਾ ਹੈ?" },
+  { hi: "Hamare learners kahan atak rahe hain?", en: "Where are our learners getting stuck?", bn: "আমাদের শিক্ষার্থীরা কোথায় আটকে আছে?" },
+  { hi: "Kaun si class ko zyada support chahiye?", en: "Which class needs more support?", bn: "কোন শ্রেণির বেশি সাহায্য দরকার?" },
+  { hi: "Training ka impact kahan dikh raha hai?", en: "Where is the training impact showing?", bn: "প্রশিক্ষণের প্রভাব কোথায় দেখা যাচ্ছে?" },
 ];
 
 const ACHIEVEMENT_TABS = [
@@ -137,7 +134,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Eye, t: "See every learner.", c: "A clear picture of understanding across classes, not just attendance.", l: "How it works", to: "/how-it-works" },
       { Icon: UsersRound, t: "Parents stay close.", c: "Progress shared in ways that help at home, not only at report time.", l: "For parents", to: "/parent" },
-      { Icon: Globe2, t: "In every language.", c: "Learning and reporting in the language each family thinks in.", l: "Language support", to: "/how-it-works" },
+      { Icon: Globe2, t: "In the languages your people think in.", c: "Learning and reporting in English, Hindi, and Bengali today, with more on the roadmap.", l: "Language support", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Bring it to your school.", c: "Start with one class and grow from there.", l: "Talk to us", to: "/contact" },
     ],
   },
@@ -272,7 +269,7 @@ export default function OrganizationPage() {
           chips={LANGUAGE_CHIPS}
           questions={LANGUAGE_QUESTIONS}
           line1="Your organization."
-          accent="In every language"
+          accent="In your people's languages"
           tail="."
           sub="People ask, learn, teach, and report in different languages. Visionary keeps the meaning connected across them."
         />
