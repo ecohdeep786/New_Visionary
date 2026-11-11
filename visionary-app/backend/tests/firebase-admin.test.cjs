@@ -67,3 +67,50 @@ test('one provider cannot silently reuse another provider credential context', a
   });
   await owner.onModuleDestroy();
 });
+
+test('emulator Firestore initializes without discovering host credentials', { timeout: 10000 }, async () => {
+  const firestoreRequire = createRequire(backendRequire.resolve('@google-cloud/firestore'));
+  const gaxRequire = createRequire(firestoreRequire.resolve('google-gax'));
+  const { GoogleAuth } = gaxRequire('google-auth-library');
+  const { getFirestore } = backendRequire('firebase-admin/firestore');
+  const discovery = { environment: 0, wellKnown: 0, metadata: 0 };
+  const methods = {
+    _tryGetApplicationCredentialsFromEnvironmentVariable: 'environment',
+    _tryGetApplicationCredentialsFromWellKnownFile: 'wellKnown',
+    _checkIsGCE: 'metadata',
+  };
+  const originals = new Map(Object.keys(methods).map(name => [name, GoogleAuth.prototype[name]]));
+  const environment = {
+    FIREBASE_AUTH_EMULATOR_HOST: '127.0.0.1:59099',
+    FIRESTORE_EMULATOR_HOST: '127.0.0.1:59080',
+    GOOGLE_APPLICATION_CREDENTIALS: '',
+  };
+  const previous = new Map(Object.keys(environment).map(name => [name, process.env[name]]));
+  const service = new FirebaseAdminService(config({ FIREBASE_PROJECT_KIND: 'emulator' }));
+  let db;
+  try {
+    Object.assign(process.env, environment);
+    for (const [name, counter] of Object.entries(methods)) {
+      // Stop discovery before it reads a file or probes metadata.
+      GoogleAuth.prototype[name] = async () => { discovery[counter]++; return counter === 'metadata' ? false : null; };
+    }
+    db = getFirestore(service.getAuth().app);
+    let failure;
+    try {
+      // Initialize the real SDK stub without issuing a document or network RPC.
+      await db._clientPool.run('emulator-credential-regression', false, client => client.initialize());
+    } catch (error) { failure = error; }
+    assert.deepEqual(discovery, { environment: 0, wellKnown: 0, metadata: 0 });
+    if (failure) throw failure;
+    assert.equal(db._settings.servicePath, '127.0.0.1');
+    assert.equal(db._settings.ssl, false);
+  } finally {
+    if (db) await db.terminate();
+    await service.onModuleDestroy();
+    for (const [name, original] of originals) GoogleAuth.prototype[name] = original;
+    for (const [name, original] of previous) {
+      if (original === undefined) delete process.env[name];
+      else process.env[name] = original;
+    }
+  }
+});
