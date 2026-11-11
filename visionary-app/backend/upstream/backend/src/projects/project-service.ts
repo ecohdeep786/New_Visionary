@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-01 (KAN-75) — private projects with immutable revisions/manifests.
 //
 // Core responsibilities (server-owned; private; append-only):
@@ -29,7 +30,6 @@ function digest(payload: unknown): { contentDigest: string; byteSize: number } {
 }
 
 export class PrivateProjectService {
-  private projectCounter = 0;
   constructor(
     private readonly store: ProjectStore,
     private readonly now: () => Date = () => new Date(),
@@ -38,7 +38,7 @@ export class PrivateProjectService {
   /** Create a private project (owner-scoped; retried creation converges). */
   async createProject(owner: ProjectOwner, title: string): Promise<BuildProject> {
     const project: BuildProject = {
-      projectId: `prj_${++this.projectCounter}`,
+      projectId: `prj_${randomUUID()}`,
       owner: { ...owner },
       title,
       currentRevision: 0,
@@ -71,19 +71,25 @@ export class PrivateProjectService {
       return { ok: false, reason: 'revision_conflict', preservedLocal: true, currentRevision: project.currentRevision };
     }
 
-    const manifest: RevisionManifest = { ...digest(input.payload), restoredFrom: null };
-    const revision: ProjectRevision = {
+    // The revision fence is enforced ATOMICALLY by the store: two concurrent
+    // saves with the same expectedBaseRevision can never both commit.
+    const committed = await this.store.commitSave({
       projectId: input.projectId,
-      revisionNo: project.currentRevision + 1,
-      payload: input.payload,
-      manifest,
-      savedBy: { ...input.owner },
+      ownerUid: input.owner.uid,
       saveId: input.saveId,
+      payload: input.payload,
+      expectedBaseRevision: input.expectedBaseRevision,
       savedAt: this.now().toISOString(),
-    };
-    await this.store.insertRevision(revision);
-    await this.store.updateProject({ ...project, currentRevision: revision.revisionNo });
-    return { outcome: 'committed', projectId: input.projectId, revisionNo: revision.revisionNo, manifest };
+    });
+    if (committed.ok === false) {
+      if (committed.reason === 'duplicate') {
+        const dup = await this.store.bySaveId(input.projectId, input.saveId);
+        return { outcome: 'duplicate', projectId: input.projectId, revisionNo: dup!.revisionNo, manifest: { ...dup!.manifest } };
+      }
+      return { ok: false as const, reason: 'revision_conflict', preservedLocal: true as const, currentRevision: project.currentRevision };
+    }
+    const manifest: RevisionManifest = { ...digest(input.payload), restoredFrom: null };
+    return { outcome: 'committed', projectId: input.projectId, revisionNo: committed.revisionNo, manifest };
   }
 
   /** The append-only revision history (byte-stable; oldest first). */
@@ -109,22 +115,22 @@ export class PrivateProjectService {
       return { ok: false, reason: 'revision_conflict', preservedLocal: true, currentRevision: project.currentRevision };
     }
 
-    const source = (await this.store.revisionsFor(input.projectId)).find((r) => r.revisionNo === input.fromRevisionNo);
-    if (!source) throw new ProjectError('unknown_revision');
-
-    const manifest: RevisionManifest = { ...source.manifest, restoredFrom: source.revisionNo };
-    const revision: ProjectRevision = {
+    // RESTORE-AS-NEW-REVISION under the same atomic fence.
+    const restored = await this.store.commitRestore({
       projectId: input.projectId,
-      revisionNo: project.currentRevision + 1,
-      payload: source.payload,
-      manifest,
-      savedBy: { ...input.owner },
+      ownerUid: input.owner.uid,
       saveId: input.saveId,
+      fromRevisionNo: input.fromRevisionNo,
+      expectedBaseRevision: input.expectedBaseRevision,
       savedAt: this.now().toISOString(),
-    };
-    await this.store.insertRevision(revision);
-    await this.store.updateProject({ ...project, currentRevision: revision.revisionNo });
-    return { outcome: 'committed', projectId: input.projectId, revisionNo: revision.revisionNo, manifest };
+    });
+    if (restored.ok === false) {
+      if (restored.reason === 'unknown_revision') throw new ProjectError('unknown_revision');
+      return { ok: false as const, reason: 'revision_conflict', preservedLocal: true as const, currentRevision: project.currentRevision };
+    }
+    const source = (await this.store.revisionsFor(input.projectId)).find((r) => r.revisionNo === input.fromRevisionNo)!;
+    const manifest: RevisionManifest = { ...source.manifest, restoredFrom: source.revisionNo };
+    return { outcome: 'committed', projectId: input.projectId, revisionNo: restored.revisionNo, manifest };
   }
 
   /** Verify a revision's manifest integrity by re-digesting its payload. */
