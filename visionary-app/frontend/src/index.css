@@ -17,7 +17,7 @@
 /* ── Lazy image fade-in — no jarring pop when deferred images finish loading ── */
 .lazy-loading {
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--motion-duration-base) var(--ease-out-apple);
 }
 .lazy-loaded {
   opacity: 1;
@@ -56,7 +56,7 @@
 }
 
 .hero-fade-right {
-  animation: heroFadeRight 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: heroFadeRight var(--motion-duration-cinematic) var(--ease-out-apple) both;
 }
 
 /* text enters from the left */
@@ -487,7 +487,7 @@
 }
 
 .hero-fade-up {
-  animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: heroFadeUp var(--motion-duration-slow) var(--ease-out-apple) both;
 }
 
 /* Apple-style section scroll reveal — after the hero, children rise in place,
@@ -505,8 +505,8 @@
 .scroll-reveal.in-view .reveal-item > * {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.9s var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1)),
-    transform 0.9s var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
+  transition: opacity var(--motion-duration-cinematic) var(--ease-out-apple),
+    transform var(--motion-duration-cinematic) var(--ease-out-apple);
   transition-delay: calc(
     var(--reveal-base-delay, 0ms) + (var(--reveal-idx, 0) * 60ms)
   );
@@ -533,8 +533,8 @@
   opacity: 1;
   transform: translateY(0);
   transition:
-    opacity var(--motion-duration-cinematic, 0.9s) var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1)),
-    transform var(--motion-duration-cinematic, 0.9s) var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
+    opacity var(--motion-duration-cinematic) var(--ease-out-apple),
+    transform var(--motion-duration-cinematic) var(--ease-out-apple);
 }
 
 .scroll-reveal.in-view .stagger-group .stagger-child:nth-child(2) { transition-delay: 60ms; }
@@ -551,7 +551,7 @@
 
 .scroll-reveal.in-view .stagger-group .stagger-child .media-settle {
   transform: scale(1);
-  transition: transform 1.1s var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
+  transition: transform var(--motion-duration-cinematic) var(--ease-out-apple);
 }
 
 @media (prefers-reduced-motion: reduce) {
