@@ -4651,8 +4651,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -5592,8 +5592,8 @@
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:98:7",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:100:108",
@@ -6587,8 +6587,8 @@
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:98:7",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:100:108",
@@ -6931,8 +6931,8 @@
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/StudentClasses.jsx:292:9",
         "frontend/src/pages/dashboard/StudentClasses.jsx:299:112",
         "frontend/src/pages/dashboard/StudentClasses.jsx:300:120",
@@ -7364,8 +7364,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -7578,8 +7578,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/TopicDetail.jsx:95:125",
         "frontend/src/pages/dashboard/TopicDetail.jsx:96:354",
         "frontend/src/pages/dashboard/TopicDetail.jsx:103:22",
@@ -8529,8 +8529,8 @@
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
         "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:98:7",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:100:108",
@@ -8983,8 +8983,8 @@
         "frontend/src/pages/dashboard/Practice.jsx:120:260",
         "frontend/src/pages/dashboard/Practice.jsx:120:450",
         "frontend/src/pages/dashboard/Practice.jsx:120:797",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -9512,8 +9512,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -9810,8 +9810,8 @@
         "frontend/src/pages/dashboard/Plans.jsx:77:2",
         "frontend/src/pages/dashboard/Plans.jsx:77:311",
         "frontend/src/pages/dashboard/Plans.jsx:77:504",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -10134,8 +10134,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -10350,8 +10350,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -10669,8 +10669,8 @@
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:224",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:806",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:1248",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:98:7",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:100:108",
@@ -10997,8 +10997,8 @@
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:224",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:806",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:1248",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:98:7",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:100:108",
@@ -11325,8 +11325,8 @@
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:224",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:806",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:1248",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:98:7",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:100:108",
@@ -11653,8 +11653,8 @@
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:224",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:806",
         "frontend/src/pages/dashboard/OrganizationCurriculum.jsx:46:1248",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:98:7",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:100:108",
@@ -11880,8 +11880,8 @@
         "frontend/src/pages/dashboard/Profile.jsx:30:173",
         "frontend/src/pages/dashboard/Profile.jsx:30:464",
         "frontend/src/pages/dashboard/Profile.jsx:30:557",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -12363,8 +12363,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/Settings.jsx:25:9",
         "frontend/src/pages/dashboard/Settings.jsx:25:739",
         "frontend/src/pages/dashboard/Settings.jsx:25:1109",
@@ -12621,8 +12621,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -12831,8 +12831,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -13033,8 +13033,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/Support.jsx:21:168",
         "frontend/src/pages/dashboard/Support.jsx:22:189"
       ],
@@ -13497,8 +13497,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -13999,8 +13999,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -14500,8 +14500,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -15000,8 +15000,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -15505,8 +15505,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -16007,8 +16007,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -16511,8 +16511,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -17015,8 +17015,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -17519,8 +17519,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -18019,8 +18019,8 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:127:275",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:166:262",
         "frontend/src/pages/dashboard/WorkspaceTools.jsx:167:52",
@@ -18285,8 +18285,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -18496,8 +18496,8 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
-        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9"
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
+        "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9"
       ],
       "operations": [
         "auth-session-profile",
@@ -66251,9 +66251,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:32:11",
+      "id": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
       "file": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx",
-      "line": 32,
+      "line": 41,
       "column": 11,
       "tag": "NavLink",
       "events": [],
@@ -66309,9 +66309,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:34:9",
+      "id": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
       "file": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx",
-      "line": 34,
+      "line": 43,
       "column": 9,
       "tag": "NavLink",
       "events": [],
@@ -78685,7 +78685,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/DashboardLayout.jsx",
-      "sourceSha256": "a50e4699d522c570842c6d1624cc59775ed054514dc544578babd967e49de4c4"
+      "sourceSha256": "c78386db2c7118b7202b9a8b6683255013d41abffde8444d214d4bc1e4bff65a"
     },
     {
       "file": "frontend/src/components/dashboard/DashboardSidebar.jsx",
@@ -79641,7 +79641,7 @@
     },
     {
       "file": "frontend/src/lib/dashboardNavigation.js",
-      "sourceSha256": "982976323ca7476708a62b964799750fc30856bd2f928f3a828ef627b0d80a7d"
+      "sourceSha256": "1a0952134c24e098b66cf3d28588ee35c95087b27041c09699d53a5ba2b93646"
     },
     {
       "file": "frontend/src/lib/datetime.js",
@@ -79981,7 +79981,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx",
-      "sourceSha256": "88076881f7cf00534f95f755362249b805f7e0009f4548b2becc27b2ea034a39"
+      "sourceSha256": "1cb257619d8553643be1fac49895e8743ec1b30bf194a8a241c75f30405efc61"
     },
     {
       "file": "frontend/src/pages/dashboard/RoleWorkspace.jsx",
