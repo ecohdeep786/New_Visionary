@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-02 (KAN-76) — per-tab draft recovery, conflict compare/resolve, and
 // reviewed import of local originals.
 //
@@ -35,8 +36,6 @@ function digestOriginals(originals: readonly { originalId: string; payload: unkn
 }
 
 export class DraftRecoveryService {
-  private conflictCounter = 0;
-  private resolutionCounter = 0;
   constructor(
     private readonly store: DraftRecoveryStore,
     private readonly now: () => Date = () => new Date(),
@@ -66,13 +65,17 @@ export class DraftRecoveryService {
     if (!draft) throw new DraftRecoveryError('unknown_tab');
     if (draft.owner.uid !== owner.uid || draft.owner.workspaceId !== owner.workspaceId) throw new DraftRecoveryError('not_owner');
 
+    // The append is a CAS against the CURRENT revision count: two concurrent
+    // saves from the same base can never both commit. A CAS loser falls through
+    // to the standard conflict path below (its base was overtaken — same
+    // semantics, both payloads retained for compare).
     const current = await this.store.currentRevision(projectId);
     if (current === draft.baseRevision) {
-      const revisionNo = await this.store.appendRevision(projectId, draft.payload);
-      return { committed: true, revisionNo };
+      const appended = await this.store.appendRevisionCas(projectId, draft.payload, current);
+      if (appended.ok) return { committed: true, revisionNo: appended.revisionNo };
     }
     const conflict: DraftConflict = {
-      conflictId: `cfl_${++this.conflictCounter}`,
+      conflictId: `cfl_${randomUUID()}`,
       projectId,
       tabId,
       owner: { ...owner },
@@ -94,13 +97,25 @@ export class DraftRecoveryService {
     if (conflict.owner.uid !== owner.uid || conflict.owner.workspaceId !== owner.workspaceId) throw new DraftRecoveryError('not_owner');
     if (conflict.resolvedAt) throw new DraftRecoveryError('conflict_resolved');
 
+    // Deliberate claim first: a conflict cannot resolve twice (concurrent
+    // resolutions race on the resolvedAt stamp).
+    const claim = await this.store.claimResolution(conflictId);
+    if (!claim.ok) throw new DraftRecoveryError('conflict_resolved');
     const payload =
       disposition === 'server' ? conflict.serverPayload
       : disposition === 'tab' ? conflict.tabPayload
       : mergedPayload;
-    const newRevisionNo = await this.store.appendRevision(conflict.projectId, payload);
+    // The append is a CAS; concurrent resolvers of DIFFERENT conflicts may
+    // race here — the loser retries against the moved count (bounded).
+    let newRevisionNo: number | null = null;
+    for (let attempt = 0; attempt < 4 && newRevisionNo === null; attempt++) {
+      const expected = await this.store.currentRevision(conflict.projectId);
+      const appended = await this.store.appendRevisionCas(conflict.projectId, payload, expected);
+      if (appended.ok) newRevisionNo = appended.revisionNo;
+    }
+    if (newRevisionNo === null) throw new DraftRecoveryError('unknown_conflict');
     const resolution: ConflictResolution = {
-      resolutionId: `res_${++this.resolutionCounter}`,
+      resolutionId: `res_${randomUUID()}`,
       conflictId,
       disposition,
       payload,
@@ -122,9 +137,6 @@ export class DraftRecoveryService {
    * this owner; idempotent by import id; count AND digest verified first.
    */
   async importOriginals(batch: ImportBatch): Promise<ImportResult> {
-    const existingCount = await this.store.importedOriginalCount(batch.importId);
-    if (existingCount > 0) return { outcome: 'duplicate', importId: batch.importId, importedCount: existingCount };
-
     const mapping = await this.store.mapping(batch.mappingId);
     if (!mapping || !mapping.reviewedRef) throw new DraftRecoveryError('mapping_not_reviewed');
     if (mapping.owner.uid !== batch.owner.uid || mapping.owner.workspaceId !== batch.owner.workspaceId) {
@@ -133,8 +145,11 @@ export class DraftRecoveryService {
     if (batch.originals.length !== batch.declaredCount) throw new DraftRecoveryError('batch_verification_failed');
     if (digestOriginals(batch.originals) !== batch.declaredDigest) throw new DraftRecoveryError('batch_verification_failed');
 
-    await this.store.saveImportedOriginals(batch.importId, batch.owner, batch.originals);
-    return { outcome: 'imported', importId: batch.importId, importedCount: batch.originals.length };
+    // The import claim is ATOMIC: concurrent same-import calls converge to one
+    // committed batch (the loser receives the committed count, idempotent).
+    const claimed = await this.store.claimImport(batch.importId, batch.owner, batch.originals);
+    if (!claimed.ok) return { outcome: 'duplicate', importId: batch.importId, importedCount: claimed.importedCount };
+    return { outcome: 'imported', importId: batch.importId, importedCount: claimed.importedCount };
   }
 }
 

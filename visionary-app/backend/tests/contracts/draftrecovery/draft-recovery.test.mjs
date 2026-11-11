@@ -61,7 +61,7 @@ test('two tabs from the same base: first save commits; second gets an explicit c
   assert.deepEqual(first, { committed: true, revisionNo: 1 });
 
   const conflict = await svc.saveFromTab(OWNER, PROJECT, 'tab_b');
-  assert.equal(conflict.conflictId, 'cfl_1');
+  assert.match(conflict.conflictId, /^cfl_[0-9a-f][0-9a-f-]{35}$/);
   assert.deepEqual(conflict.serverPayload, { from: 'tabA' }, 'server payload surfaced for compare');
   assert.deepEqual(conflict.tabPayload, { from: 'tabB' }, 'tab payload surfaced for compare');
   assert.equal(conflict.serverRevision, 1);
@@ -89,9 +89,8 @@ test('resolution is deliberate (server/tab/merged), appends a new revision with 
 
   // A second conflict resolves with a MERGED payload.
   await svc.registerTabDraft(OWNER, PROJECT, 'tab_c', 1, { from: 'tabC' });
-  await svc.saveFromTab(OWNER, PROJECT, 'tab_b'); // tab_b's draft base is 0, current is 2 -> conflict? no: base 0 != 2 -> conflict
-  const conflict2 = await store.byConflictId('cfl_2');
-  assert.ok(conflict2, 'second conflict raised');
+  const conflict2 = await svc.saveFromTab(OWNER, PROJECT, 'tab_b'); // tab_b's draft base is 0, current is 2 -> conflict
+  assert.ok(conflict2.conflictId, 'second conflict raised');
   const res2 = await svc.resolveConflict(OWNER, conflict2.conflictId, 'merged', { from: 'tabC+server' });
   assert.deepEqual(res2.payload, { from: 'tabC+server' });
   assert.equal(res2.newRevisionNo, 3);

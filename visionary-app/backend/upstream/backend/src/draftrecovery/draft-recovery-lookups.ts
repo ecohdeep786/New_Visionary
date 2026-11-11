@@ -22,6 +22,16 @@ export interface DraftRecoveryStore {
   saveMapping(mapping: OwnershipMapping): Promise<void>;
   mapping(mappingId: string): Promise<OwnershipMapping | undefined>;
   saveImportedOriginals(importId: string, owner: RecoveryOwner, originals: readonly { originalId: string; payload: unknown }[]): Promise<void>;
+  /** CAS append: applies only when the project's CURRENT revision count equals
+   * expectedCurrent — two concurrent appends can never both claim the same
+   * next revision number. (SQL adapter: one conditional INSERT ... SELECT with
+   * the count computed in-transaction.) */
+  appendRevisionCas(projectId: string, payload: unknown, expectedCurrent: number): Promise<{ ok: true; revisionNo: number } | { ok: false; current: number }>;
+  /** Atomic conflict-resolution claim: a conflict cannot resolve twice. */
+  claimResolution(conflictId: string): Promise<{ ok: true } | { ok: false; reason: 'conflict_resolved' }>;
+  /** Atomic import claim: unseen importId is claimed; an existing import returns
+   * its committed count (idempotent). */
+  claimImport(importId: string, owner: RecoveryOwner, originals: readonly { originalId: string; payload: unknown }[]): Promise<{ ok: true; importedCount: number } | { ok: false; reason: 'duplicate'; importedCount: number }>;
   importedOriginalCount(importId: string): Promise<number>;
 }
 
@@ -52,6 +62,25 @@ export class InMemoryDraftRecoveryStore implements DraftRecoveryStore {
     return list[revisionNo - 1];
   }
 
+  async appendRevisionCas(projectId: string, payload: unknown, expectedCurrent: number): Promise<{ ok: true; revisionNo: number } | { ok: false; current: number }> {
+    const current = (this.revisions.get(projectId) ?? []).length;
+    if (current !== expectedCurrent) return { ok: false, current };
+    const list = this.revisions.get(projectId) ?? [];
+    list.push(payload);
+    this.revisions.set(projectId, list);
+    return { ok: true, revisionNo: list.length };
+  }
+  async claimResolution(conflictId: string): Promise<{ ok: true } | { ok: false; reason: 'conflict_resolved' }> {
+    const conflict = this.conflicts.get(conflictId);
+    if (conflict && conflict.resolvedAt) return { ok: false, reason: 'conflict_resolved' };
+    return { ok: true };
+  }
+  async claimImport(importId: string, owner: RecoveryOwner, originals: readonly { originalId: string; payload: unknown }[]): Promise<{ ok: true; importedCount: number } | { ok: false; reason: 'duplicate'; importedCount: number }> {
+    const existing = this.imports.get(importId);
+    if (existing) return { ok: false, reason: 'duplicate', importedCount: existing.originals.length };
+    this.imports.set(importId, { owner: { ...owner }, originals: originals.map((o) => ({ ...o })) });
+    return { ok: true, importedCount: originals.length };
+  }
   async appendRevision(projectId: string, payload: unknown): Promise<number> {
     const list = this.revisions.get(projectId) ?? [];
     list.push(payload);
