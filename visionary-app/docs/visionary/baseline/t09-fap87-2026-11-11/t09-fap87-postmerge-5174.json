@@ -1,0 +1,190 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "tag": "postmerge",
+  "roles": {
+    "student": {
+      "email": "t09fap87-student-1794388773560@visionary.test",
+      "cross": [
+        {
+          "final": "/dashboard/prepare",
+          "h1": "Prepare",
+          "notice": "This workspace area opens with a teaching workspace. You are currently working in a learning workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Prepare | This workspace area opens with a teaching workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/prepare",
+          "redirected": false,
+          "explained": true
+        },
+        {
+          "final": "/dashboard/learners",
+          "h1": "Learners",
+          "notice": "This workspace area opens with a teaching workspace. You are currently working in a learning workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Learners | This workspace area opens with a teaching workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/learners",
+          "redirected": false,
+          "explained": true
+        },
+        {
+          "final": "/dashboard/insights",
+          "h1": "Insights",
+          "notice": "This workspace area opens with a teaching workspace. You are currently working in a learning workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Insights | This workspace area opens with a teaching workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/insights",
+          "redirected": false,
+          "explained": true
+        },
+        {
+          "final": "/dashboard/child",
+          "h1": "Children",
+          "notice": "This workspace area opens with a family workspace. You are currently working in a learning workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Children | This workspace area opens with a family workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/child",
+          "redirected": false,
+          "explained": true
+        },
+        {
+          "final": "/dashboard/reports",
+          "h1": "Reports",
+          "notice": "This workspace area opens with a family workspace. You are currently working in a learning workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Reports | This workspace area opens with a family workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/reports",
+          "redirected": false,
+          "explained": true
+        },
+        {
+          "final": "/dashboard/career",
+          "h1": "Career",
+          "notice": "This workspace area opens with a professional workspace. You are currently working in a learning workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Career | This workspace area opens with a professional workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/career",
+          "redirected": false,
+          "explained": true
+        },
+        {
+          "final": "/dashboard/audit",
+          "h1": "Audit",
+          "notice": "This workspace area opens with an organization workspace. You are currently working in a learning workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Audit | This workspace area opens with an organization workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/audit",
+          "redirected": false,
+          "explained": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "teacher": {
+      "email": "t09fap87-teacher-1794388773560@visionary.test",
+      "cross": [
+        {
+          "final": "/dashboard/child",
+          "h1": "Children",
+          "notice": "This workspace area opens with a family workspace. You are currently working in a teaching workspace.",
+          "actions": [
+            "Prepare",
+            "Classes",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Children | This workspace area opens with a family workspace. You are currently working in a teaching workspace. | Prepare | Classes | Return to workspace",
+          "requested": "/dashboard/child",
+          "redirected": false,
+          "explained": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "parent": {
+      "email": "t09fap87-parent-1794388773560@visionary.test",
+      "cross": [
+        {
+          "final": "/dashboard/prepare",
+          "h1": "Prepare",
+          "notice": "This workspace area opens with a teaching workspace. You are currently working in a family workspace.",
+          "actions": [
+            "Children",
+            "Reports",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Prepare | This workspace area opens with a teaching workspace. You are currently working in a family workspace. | Children | Reports | Return to workspace",
+          "requested": "/dashboard/prepare",
+          "redirected": false,
+          "explained": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "organization": {
+      "email": "t09fap87-organization-1794388773560@visionary.test",
+      "cross": [
+        {
+          "final": "/dashboard/child",
+          "h1": "Children",
+          "notice": "This workspace area opens with a family workspace. You are currently working in a organization workspace.",
+          "actions": [
+            "People",
+            "Cohorts",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Children | This workspace area opens with a family workspace. You are currently working in a organization workspace. | People | Cohorts | Return to workspace",
+          "requested": "/dashboard/child",
+          "redirected": false,
+          "explained": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "professional": {
+      "email": "t09fap87-professional-1794388773560@visionary.test",
+      "cross": [
+        {
+          "final": "/dashboard/prepare",
+          "h1": "Prepare",
+          "notice": "This workspace area opens with a teaching workspace. You are currently working in a professional workspace.",
+          "actions": [
+            "Learn",
+            "Ask",
+            "Return to workspace"
+          ],
+          "main": "Skip to content | Prepare | This workspace area opens with a teaching workspace. You are currently working in a professional workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/prepare",
+          "redirected": false,
+          "explained": true
+        }
+      ],
+      "consoleErrors": []
+    }
+  }
+}
