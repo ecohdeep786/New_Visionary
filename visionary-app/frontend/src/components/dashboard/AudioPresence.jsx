@@ -11,6 +11,8 @@ import { newConversation, updateConversation, updatePreferences } from '@/servic
 import { sendMentorTurn } from '@/services/mentorCompanionService';
 import { cancelSpeech, getSessionAudioOverride, getVoiceCapabilities, getVoiceMode, startListening, stopListening, speak, subscribeVoiceMode, setSessionAudioOverride } from '@/services/voiceService';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import heroBotWebp from '@/assets/brand/visionary-bot.webp';
+import heroBotAvif from '@/assets/brand/visionary-bot.avif';
 
   // Two color presentations for one shared Guide, not separate models or memories.
 // The single shell instance sits by the desktop rail and in the mobile app bar. Tapping
@@ -259,7 +261,15 @@ export default function AudioPresence() {
     <div className="workspace-voice-panel-head"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">Talk with Guide</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label="Close voice panel"><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
     <span className={`workspace-voice-state state-${!effective ? 'off' : mode}`}><span aria-hidden="true" />{shortStatus}</span>
 
-    <div className="guide-voice-emblem"><GuideMark size={76} className={animation === 'girl' ? 'guide-mark-indigo' : ''} /></div><p className="workspace-voice-intro">Speak, review, then send.</p>
+    <div className="guide-voice-emblem">
+      {/* the mark — the Visionary bot (founder directive: the voice panel
+          shows the same bot the welcome popup and the public pages carry;
+          the Blue/Indigo style pickers keep the smaller GuideMark chips). */}
+      <picture>
+        <source type="image/avif" srcSet={heroBotAvif} />
+        <img src={heroBotWebp} alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" className="pointer-events-none h-20 w-20 select-none object-contain" />
+      </picture>
+    </div><p className="workspace-voice-intro">Speak, review, then send.</p>
     <div className="workspace-voice-actions"><button type="button" className="v-button primary" onClick={mode === 'listening' || mode === 'speaking' || processing ? () => { endVoiceSession(); setProcessing(false); } : beginListening} disabled={!capabilities.recognition}>{mode === 'listening' || mode === 'speaking' || processing ? <MicOff size={17} aria-hidden="true" /> : <Mic size={17} aria-hidden="true" />}{!capabilities.recognition ? 'Voice input unavailable' : mode === 'listening' || mode === 'speaking' || processing ? 'Stop voice session' : mode === 'denied' ? 'Retry microphone' : 'Start listening'}</button><button className="v-button" disabled={!capabilities.recognition && !capabilities.synthesis} onClick={toggleAudio}>{effective ? 'Turn audio off' : 'Turn audio on'}</button><Link className="v-button" to="/dashboard/ask" state={{initialQuestion:caption}} onClick={() => { endVoiceSession(); setSessionAudioOverride(false); setAudioOverride(false); setProcessing(false); setPanelOpen(false); }}><MessageCircle size={17} aria-hidden="true" />Use text instead</Link></div>
     <p className="workspace-voice-now" role="status">{processing ? 'Preparing your reply. Stop the session to cancel.' : mode === 'listening' ? 'Listening. Your question will appear below for review.' : caption ? 'Question ready to review. Edit it or send when ready.' : status}</p>
     {notice && <p className="v-notice" role="status">{notice}</p>}
