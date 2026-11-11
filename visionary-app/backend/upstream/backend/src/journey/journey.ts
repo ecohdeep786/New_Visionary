@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // LEARN-07 (KAN-73) — the composed learner-journey contract.
 //
 // Core responsibilities (server-owned; every refusal preserves local work):
@@ -25,7 +26,6 @@ import { JourneyError } from './journey-types';
 import type { JourneyStore } from './journey-lookups';
 
 export class LearnerJourneyService {
-  private journeyCounter = 0;
   constructor(
     private readonly store: JourneyStore,
     private readonly now: () => Date = () => new Date(),
@@ -36,7 +36,7 @@ export class LearnerJourneyService {
     if (!(await this.store.isSourceAvailable(conceptId, sourceVersion))) {
       throw new JourneyError('source_revision_unknown');
     }
-    const journeyId = `jn_${++this.journeyCounter}`;
+    const journeyId = `jn_${randomUUID()}`;
     await this.store.insertJourney({ journeyId, owner: { ...owner }, conceptId, sourceVersion, state: 'active', revision: 1 });
     return journeyId;
   }
@@ -66,17 +66,22 @@ export class LearnerJourneyService {
       return this.refusal('source_withdrawn');
     }
 
-    const revision = journey.revision + 1;
-    const attempt: JourneyAttempt = {
+    // The revision fence is enforced ATOMICALLY by the store: two concurrent
+    // commands with the same expectedRevision can never both advance.
+    const committed = await this.store.commitAttempt({
+      journeyId: input.journeyId,
+      ownerUid: input.owner.uid,
       submissionId: input.submissionId,
       checkId: input.checkId,
       answer: input.answer,
-      revision,
+      expectedRevision: input.expectedRevision,
       committedAt: this.now().toISOString(),
-    };
-    await this.store.insertAttempt({ ...attempt, journeyId: input.journeyId, owner: { ...input.owner } });
-    await this.store.updateJourney({ ...journey, revision });
-    return { outcome: 'committed', journeyId: input.journeyId, revision };
+    });
+    if (committed.ok === false) {
+      if (committed.reason === 'duplicate') return { outcome: 'duplicate', journeyId: input.journeyId, revision: journey.revision };
+      return { ok: false as const, reason: 'revision_conflict', preservedLocal: true as const, currentRevision: journey.revision };
+    }
+    return { outcome: 'committed', journeyId: input.journeyId, revision: committed.revision };
   }
 
   /**
@@ -109,11 +114,16 @@ export class LearnerJourneyService {
       return this.refusal('save_failed');
     }
 
-    const revision = journey.revision + 1;
-    const draft: JourneyDraft = { draftId: input.draftId, payload: input.payload, revision, savedAt: this.now().toISOString() };
-    await this.store.saveDraft(input.journeyId, draft);
-    await this.store.updateJourney({ ...journey, revision });
-    return { outcome: 'committed', journeyId: input.journeyId, revision };
+    const saved = await this.store.commitDraft({
+      journeyId: input.journeyId,
+      ownerUid: input.owner.uid,
+      draftId: input.draftId,
+      payload: input.payload,
+      expectedRevision: input.expectedRevision,
+      savedAt: this.now().toISOString(),
+    });
+    if (!saved.ok) return { ok: false as const, reason: 'revision_conflict', preservedLocal: true as const, currentRevision: journey.revision };
+    return { outcome: 'committed', journeyId: input.journeyId, revision: saved.revision };
   }
 
   /** The committed journey — what a second device resumes (owner-only). */

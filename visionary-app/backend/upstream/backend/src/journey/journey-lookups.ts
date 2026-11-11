@@ -27,6 +27,16 @@ export interface JourneyStore {
   /** Server-live source availability (retrieval-gate integration). */
   isSourceAvailable(conceptId: string, sourceVersion: string): Promise<boolean>;
   setSourceAvailable(conceptId: string, sourceVersion: string, available: boolean): Promise<void>;
+
+  /** Atomic revision-fenced attempt commit: unseen submissionId required; the
+   * journey's CURRENT revision must equal expectedRevision; the attempt row and
+   * the revision advance apply together. Two concurrent commands with the same
+   * expectedRevision can never both advance. (SQL adapter: one conditional
+   * UPDATE ... WHERE revision = expectedRevision inside the insert transaction.) */
+  commitAttempt(input: { journeyId: string; ownerUid: string; submissionId: string; checkId: string; answer: unknown; expectedRevision: number; committedAt: string }): Promise<{ ok: true; revision: number } | { ok: false; reason: 'unknown_journey' | 'duplicate' | 'revision_conflict' }>;
+  /** Atomic revision-fenced draft save: the draft row and the revision advance
+   * apply together under the same fence as commitAttempt. */
+  commitDraft(input: { journeyId: string; ownerUid: string; draftId: string; payload: unknown; expectedRevision: number; savedAt: string }): Promise<{ ok: true; revision: number } | { ok: false; reason: 'unknown_journey' | 'revision_conflict' }>;
 }
 
 /** Contract-true in-memory store; tests drive the full contract without a DB. */
@@ -49,6 +59,25 @@ export class InMemoryJourneyStore implements JourneyStore {
     this.journeys.set(record.journeyId, { ...record, owner: { ...record.owner } });
   }
 
+  async commitAttempt(input: { journeyId: string; ownerUid: string; submissionId: string; checkId: string; answer: unknown; expectedRevision: number; committedAt: string }): Promise<{ ok: true; revision: number } | { ok: false; reason: 'unknown_journey' | 'duplicate' | 'revision_conflict' }> {
+    const journey = this.journeys.get(input.journeyId);
+    if (!journey) return { ok: false, reason: 'unknown_journey' };
+    if (this.attemptRows.has(`${input.journeyId}|${input.submissionId}`)) return { ok: false, reason: 'duplicate' };
+    if (journey.revision !== input.expectedRevision) return { ok: false, reason: 'revision_conflict' };
+    const revision = journey.revision + 1;
+    this.attemptRows.set(`${input.journeyId}|${input.submissionId}`, { journeyId: input.journeyId, owner: { uid: input.ownerUid, workspaceId: journey.owner.workspaceId }, submissionId: input.submissionId, checkId: input.checkId, answer: input.answer, revision, committedAt: input.committedAt });
+    this.journeys.set(input.journeyId, { ...journey, revision });
+    return { ok: true, revision };
+  }
+  async commitDraft(input: { journeyId: string; ownerUid: string; draftId: string; payload: unknown; expectedRevision: number; savedAt: string }): Promise<{ ok: true; revision: number } | { ok: false; reason: 'unknown_journey' | 'revision_conflict' }> {
+    const journey = this.journeys.get(input.journeyId);
+    if (!journey) return { ok: false, reason: 'unknown_journey' };
+    if (journey.revision !== input.expectedRevision) return { ok: false, reason: 'revision_conflict' };
+    const revision = journey.revision + 1;
+    this.draftRows.set(`${input.journeyId}|${input.draftId}`, { draftId: input.draftId, payload: input.payload, revision, savedAt: input.savedAt });
+    this.journeys.set(input.journeyId, { ...journey, revision });
+    return { ok: true, revision };
+  }
   async insertAttempt(attempt: StoredAttempt): Promise<void> {
     this.attemptRows.set(`${attempt.journeyId}|${attempt.submissionId}`, { ...attempt, owner: { ...attempt.owner } });
   }

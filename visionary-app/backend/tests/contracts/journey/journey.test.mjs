@@ -186,5 +186,5 @@ test('journeys start only from released source revisions; unknown revisions refu
     (e) => e.code === 'source_revision_unknown',
   );
   const ok = await svc.startJourney(OWNER, CONCEPT, VERSION);
-  assert.match(ok, /^jn_\d+$/);
+  assert.match(ok, /^jn_[0-9a-f][0-9a-f-]{35}$/);
 });
