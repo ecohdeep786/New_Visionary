@@ -47791,6 +47791,35 @@
       "hostedVerified": false
     },
     {
+      "id": "frontend/src/components/ui/toaster.jsx:40:13",
+      "file": "frontend/src/components/ui/toaster.jsx",
+      "line": 40,
+      "column": 13,
+      "tag": "ToastClose",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => onOpenChange(false)}"
+        }
+      ],
+      "calls": [
+        "onOpenChange"
+      ],
+      "disabled": null,
+      "declarationSha256": "7c1fd191aa7084d6d5624fa55b4a17637216c439fdb652eaa1184f17e92a506f",
+      "routeIds": [],
+      "reviewProfile": "client-widget-primitive",
+      "state": "intentionally-unreleased",
+      "execution": "client",
+      "classificationReason": "No source-import path from a declared route entry was found. Retained source is not an exposed live feature.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
       "id": "frontend/src/components/ui/toggle-group.jsx:30:6",
       "file": "frontend/src/components/ui/toggle-group.jsx",
       "line": 30,
@@ -79460,7 +79489,7 @@
     },
     {
       "file": "frontend/src/components/ui/toaster.jsx",
-      "sourceSha256": "fc1bce32d9a45f5be28c67b486962b90eed76742f3c0995f5fb908ffc6bde3cd"
+      "sourceSha256": "d298e9e32fa4846dfc8ec913eda6b34a49e546d5fd550f37ec528c7b11008d05"
     },
     {
       "file": "frontend/src/components/ui/toggle-group.jsx",
@@ -82120,6 +82149,16 @@
           "SCOPE-06"
         ]
       },
+      "frontend/src/components/ui/toaster.jsx": {
+        "profile": "client-widget-primitive",
+        "state": "connected",
+        "execution": "client",
+        "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+        "followUp": [
+          "SCOPE-06",
+          "ACCEPT-05"
+        ]
+      },
       "frontend/src/components/ui/toggle-group.jsx": {
         "profile": "client-widget-primitive",
         "state": "connected",
@@ -83767,14 +83806,14 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 37,
-    "controlDeclarations": 1659,
+    "controlDeclarations": 1660,
     "routeReachableDeclarations": 1507,
-    "controlFiles": 237,
+    "controlFiles": 238,
     "states": {
       "connected": 512,
       "preview": 936,
       "missing": 59,
-      "intentionally-unreleased": 152
+      "intentionally-unreleased": 153
     }
   }
 }

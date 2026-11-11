@@ -1,0 +1,22 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "tag": "before",
+  "steps": [
+    {
+      "step": "toast-rendered",
+      "rendered": true,
+      "text": "FAP-86 probetoast shim A/B probe toast"
+    },
+    {
+      "step": "after-x-click",
+      "stillRendered": true
+    },
+    {
+      "step": "console",
+      "count": 1,
+      "msgs": [
+        "Warning: Unknown event handler property `%s`. It will be ignored.%s onOpenChange \n    at div\n    at _c5 (http://127.0.0.1:5174/src/components/ui/toast.jsx:75:41)\n    at div\n    at _c (http://127.0.0.1"
+      ]
+    }
+  ]
+}
