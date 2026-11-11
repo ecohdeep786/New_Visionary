@@ -70379,7 +70379,7 @@
         "onChange"
       ],
       "disabled": null,
-      "declarationSha256": "7835eaf097daadcbae82e55c4bd9920285c9fb678507f26798e3e667b89f3264",
+      "declarationSha256": "a40cd796b5cdd0a50f59ea46cf16b59782fedf0eb45a9fc833d6ee28ac83e9eb",
       "routeIds": [
         "/pricing"
       ],
@@ -79890,7 +79890,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "0f32395bc617f7c3627d0b9b8a1fa81259d779ffbb436e990f4ba862c7789a7c"
+      "sourceSha256": "f81154a9818be0721b381cbc1e7ca44d11ada322acb6be3200e7c668291d6efa"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",

@@ -93,18 +93,26 @@ main h2 + p.mt-6 {
 }
 
 /* Hero token complements — mirror the section-scope media blocks so the
-   01-hero stage (outside that scope) steps 140/96/64 like Apple's hero. */
+   01-hero stage (outside that scope) steps 140/96/64 like Apple's hero.
+
+   FAP-82 law: display-scale tokens in the phone/tablet ladder carry a
+   viewport cap min(<rem step>, <vw>). The rem step keeps the accepted
+   Apple ladder at default text (the vw side never binds at any supported
+   width), and the vw side keeps 200% text — the resize scenario the
+   product's own design-quality harness tests — inside the viewport
+   instead of clipped past it (WCAG 1.4.4; Apple HIG: adapt to
+   text-size changes). */
 @media (max-width: 1068px) {
   :root {
-    --fs-hero-eyebrow: 2.5rem; /* tablet 40px */
-    --fs-hero-headline: 4rem; /* tablet 64px — unified h1 law step */
+    --fs-hero-eyebrow: min(2.5rem, 13vw); /* tablet 40px; FAP-82 vw cap */
+    --fs-hero-headline: min(4rem, 14vw); /* tablet 64px — unified h1 law step; FAP-82 vw cap */
   }
 }
 
 @media (max-width: 734px) {
   :root {
-    --fs-hero-eyebrow: 2.5rem; /* phone 40px */
-    --fs-hero-headline: 2.75rem; /* phone 44px — unified h1 law step */
+    --fs-hero-eyebrow: min(2.5rem, 13vw); /* phone 40px; FAP-82 vw cap */
+    --fs-hero-headline: min(2.75rem, 14vw); /* phone 44px — unified h1 law step; FAP-82 vw cap */
   }
 }
 
@@ -112,7 +120,7 @@ main h2 + p.mt-6 {
    (out of the section scope, so they live at :root like the cast tokens). */
 @media (max-width: 1068px) {
   :root {
-    --fs-category-statement: 4rem; /* tablet 64px — unified h1 law step */
+    --fs-category-statement: min(4rem, 14vw); /* tablet 64px — unified h1 law step; FAP-82 vw cap */
     --lh-category-statement: 1.05;
     --track-category-statement: -0.015em;
     --fs-category-tagline: 1.5rem; /* tablet 24px */
@@ -123,7 +131,7 @@ main h2 + p.mt-6 {
 
 @media (max-width: 734px) {
   :root {
-    --fs-category-statement: 2.75rem; /* phone 44px — unified h1 law step */
+    --fs-category-statement: min(2.75rem, 14vw); /* phone 44px — unified h1 law step; FAP-82 vw cap */
     --lh-category-statement: 1.05;
     --track-category-statement: -0.015em;
     --fs-category-tagline: 1.0625rem; /* phone 17px */
@@ -279,10 +287,10 @@ main p + h2.mt-4 {
 
 @media (max-width: 1068px) {
   #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
-    --fs-display: 3.5rem;
-    --fs-product-section: 3rem;
+    --fs-display: min(3.5rem, 13vw); /* FAP-82 vw cap: scaled text stays inside the viewport */
+    --fs-product-section: min(3rem, 13vw); /* FAP-82 vw cap */
     --container-editorial: 43.25rem;
-    --fs-h2: 3.5rem;
+    --fs-h2: min(3.5rem, 13vw); /* FAP-82 vw cap */
     --fs-h3: 1.5rem;
     --fs-editorial-lead: 1.3125rem;
     --fs-emphasis: var(--fs-h2); /* FAP-34: statement tier = section tier (56px) */
@@ -312,8 +320,8 @@ main p + h2.mt-4 {
     --track-editorial-lead: 0.011em;
 
     /* Apple tablet-specific adjustments */
-    --fs-hero-eyebrow: 2.5rem;
-    --fs-hero-headline: 4rem;
+    --fs-hero-eyebrow: min(2.5rem, 13vw); /* FAP-82 vw cap */
+    --fs-hero-headline: min(4rem, 14vw); /* FAP-82 vw cap */
     --fs-statement-elevated: 4rem;
     --fs-highlights: 3rem;
     --fs-compact-chapter: 2.5rem;
@@ -331,9 +339,9 @@ main p + h2.mt-4 {
 
 @media (max-width: 734px) {
   #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
-    --fs-display: 2.5rem;
-    --fs-product-section: 2.5rem;
-    --fs-h2: 2.5rem;
+    --fs-display: min(2.5rem, 13vw); /* FAP-82 vw cap: scaled text stays inside the viewport */
+    --fs-product-section: min(2.5rem, 13vw); /* FAP-82 vw cap */
+    --fs-h2: min(2.5rem, 13vw); /* FAP-82 vw cap */
     --fs-h3: 1.3125rem;
     --fs-emphasis: var(--fs-h2); /* FAP-34: statement tier = section tier (40px) */
     --fs-card-name: 1.0625rem;
@@ -363,8 +371,8 @@ main p + h2.mt-4 {
     --track-large-card: 0.007em;
 
     /* Apple mobile-specific adjustments */
-    --fs-hero-eyebrow: 2.5rem;
-    --fs-hero-headline: 2.75rem;
+    --fs-hero-eyebrow: min(2.5rem, 13vw); /* FAP-82 vw cap */
+    --fs-hero-headline: min(2.75rem, 14vw); /* FAP-82 vw cap */
     --fs-statement-elevated: 2.5rem;
     --fs-highlights: 2rem;
     --fs-compact-chapter: 2rem;

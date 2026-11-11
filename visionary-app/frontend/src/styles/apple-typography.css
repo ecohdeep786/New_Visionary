@@ -72,10 +72,16 @@
      aria-hidden data-hero-law="careers"> (the page's one h1 is now the
      sr-only section heading). The marked <p> stays under this same profile
      so its pixels are byte-for-byte the values the old <h1> rendered. */
+  /* FAP-82: each hardcoded step carries the same viewport cap as the
+     --fs-hero-headline ladder in rhythm.css (min(<step>, 14vw)); the vw side
+     never binds at default text on its band's smallest width (44.8 >= 44 at
+     320, 89.6 >= 64 at 640, 179.2 >= 80 at 1280), so the accepted profile is
+     pixel-identical at default text while 200% text stays inside the
+     viewport. */
   main h1.text-\[48px\],
   main h1.text-\[clamp\(40px\,5vw\,64px\)\],
   main p[data-hero-law="careers"] {
-    font-size: 2.75rem !important;
+    font-size: min(2.75rem, 14vw) !important; /* FAP-82 vw cap: 200% text stays inside the viewport */
     font-weight: 600 !important;
     line-height: 1.05 !important;
     letter-spacing: -0.015em !important;
@@ -83,12 +89,12 @@
   @media (min-width: 640px) {
     main h1.text-\[48px\],
     main h1.text-\[clamp\(40px\,5vw\,64px\)\],
-    main p[data-hero-law="careers"] { font-size: 4rem !important; }
+    main p[data-hero-law="careers"] { font-size: min(4rem, 14vw) !important; } /* FAP-82 vw cap */
   }
   @media (min-width: 1280px) {
     main h1.text-\[48px\],
     main h1.text-\[clamp\(40px\,5vw\,64px\)\],
-    main p[data-hero-law="careers"] { font-size: 5rem !important; }
+    main p[data-hero-law="careers"] { font-size: min(5rem, 14vw) !important; } /* FAP-82 vw cap */
   }
 
   .apple-section-h2 {
