@@ -1,0 +1,22 @@
+Candidate (FAP-83 worktree) /research load console capture:
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5173/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at Reveal (http://127.0.0.1:5173/src/pages/landing/ResearchNewsPage.jsx:164:19)
+    at main
+    at div
+    at ResearchNewsPage
+    at RenderedRoute (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=9bdce4b9:6758:26)
+    at Routes (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=9bdce4b9:7700:3)
+    at PublicApp
+    at Suspense
+    at AppErrorBoundary (http://127.0.0.1:5173/src/App.jsx?t=1794377482469:33:1)
+    at Router (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=9bdce4b9:7639:13)
+    at BrowserRouter (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=9bdce4b9:10955:3)
+    at QueryClientProvider (http://127.0.0.1:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=2d03cf22:26:30)
+    at AuthProvider (http://127.0.0.1:5173/src/lib/AuthContext.jsx:24:32)
+    at App

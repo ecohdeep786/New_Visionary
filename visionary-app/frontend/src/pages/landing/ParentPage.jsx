@@ -114,15 +114,12 @@ const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
   { code: "bn", label: "Bengali" },
-  { code: "ta", label: "Tamil" },
-  { code: "kn", label: "Kannada" },
-  { code: "pa", label: "Punjabi" },
 ];
 
 const LANGUAGE_QUESTIONS = [
-  { hi: "Priya iss hafte physics mein kaisi rahi?", en: "How did Priya do in physics this week?", bn: "এই সপ্তাহে প্রিয়া পদার্থবিদ্যায় কেমন করল?", ta: "இந்த வாரம் இயற்பியலில் பிரியா எப்படி செய்தார்?", kn: "ಈ ವಾರ ಭೌತಶಾಸ್ತ್ರದಲ್ಲಿ ಪ್ರಿಯಾ ಹೇಗೆ ಮಾಡಿದಳು?", pa: "ਇਸ ਹਫ਼ਤੇ ਭੌਤਿਕ ਵਿਗਿਆਨ ਵਿੱਚ ਪ੍ਰਿਯਾ ਕਿਵੇਂ ਰਹੀ?" },
-  { hi: "Homework mein main kaise madad karoon?", en: "How do I help with homework?", bn: "হোমওয়ার্কে আমি কীভাবে সাহায্য করব?", ta: "வீட்டுப் பாடத்தில் எப்படி உதவுவது?", kn: "ಮನೆಪಾಠದಲ್ಲಿ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡುವುದು?", pa: "ਹੋਮਵਰਕ ਵਿੱਚ ਮੈਂ ਕਿਵੇਂ ਮਦਦ ਕਰਾਂ?" },
-  { hi: "Parent-teacher meeting se pehle kya jaanna chahiye?", en: "What should I know before the parent-teacher meeting?", bn: "অভিভাবক-শিক্ষক সভার আগে আমার কী জানা উচিত?", ta: "பெற்றோர்-ஆசிரியர் சந்திப்புக்கு முன் நான் என்ன அறிய வேண்டும்?", kn: "ಪೋಷಕ-ಶಿಕ್ಷಕ ಸಭೆಗೆ ಮೊದಲು ನಾನು ಏನು ತಿಳಿಯಬೇಕು?", pa: "ਮਾਪੇ-ਅਧਿਆਪਕ ਮੀਟਿੰਗ ਤੋਂ ਪਹਿਲਾਂ ਮੈਂ ਕੀ ਜਾਣਨਾ ਚਾਹੀਦਾ ਹੈ?" },
+  { hi: "Priya iss hafte physics mein kaisi rahi?", en: "How did Priya do in physics this week?", bn: "এই সপ্তাহে প্রিয়া পদার্থবিদ্যায় কেমন করল?" },
+  { hi: "Homework mein main kaise madad karoon?", en: "How do I help with homework?", bn: "হোমওয়ার্কে আমি কীভাবে সাহায্য করব?" },
+  { hi: "Parent-teacher meeting se pehle kya jaanna chahiye?", en: "What should I know before the parent-teacher meeting?", bn: "অভিভাবক-শিক্ষক সভার আগে আমার কী জানা উচিত?" },
 ];
 
 const ACHIEVEMENT_TABS = [
