@@ -525,15 +525,18 @@
         "frontend/src/components/AuthLayout.jsx:79:11",
         "frontend/src/components/AuthLayout.jsx:80:11",
         "frontend/src/components/AuthLayout.jsx:81:11",
-        "frontend/src/pages/ForgotPassword.jsx:39:9",
-        "frontend/src/pages/ForgotPassword.jsx:56:11",
-        "frontend/src/pages/ForgotPassword.jsx:57:11",
-        "frontend/src/pages/ForgotPassword.jsx:60:13",
-        "frontend/src/pages/ForgotPassword.jsx:65:11",
-        "frontend/src/pages/ForgotPassword.jsx:66:11",
-        "frontend/src/pages/ForgotPassword.jsx:67:13",
-        "frontend/src/pages/ForgotPassword.jsx:80:17",
-        "frontend/src/pages/ForgotPassword.jsx:85:15"
+        "frontend/src/pages/ForgotPassword.jsx:64:9",
+        "frontend/src/pages/ForgotPassword.jsx:92:15",
+        "frontend/src/pages/ForgotPassword.jsx:96:13",
+        "frontend/src/pages/ForgotPassword.jsx:99:15",
+        "frontend/src/pages/ForgotPassword.jsx:113:11",
+        "frontend/src/pages/ForgotPassword.jsx:114:11",
+        "frontend/src/pages/ForgotPassword.jsx:117:13",
+        "frontend/src/pages/ForgotPassword.jsx:123:11",
+        "frontend/src/pages/ForgotPassword.jsx:124:11",
+        "frontend/src/pages/ForgotPassword.jsx:125:13",
+        "frontend/src/pages/ForgotPassword.jsx:138:17",
+        "frontend/src/pages/ForgotPassword.jsx:143:15"
       ],
       "operations": [
         "auth-session-profile",
@@ -69541,9 +69544,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:39:9",
+      "id": "frontend/src/pages/ForgotPassword.jsx:64:9",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 39,
+      "line": 64,
       "column": 9,
       "tag": "Link",
       "events": [],
@@ -69574,9 +69577,116 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:56:11",
+      "id": "frontend/src/pages/ForgotPassword.jsx:92:15",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 56,
+      "line": 92,
+      "column": 15,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "c6bd9aeb0a57089eea3d28172ae574441e2cecff82cbcaf9ed648225f8c65216",
+      "routeIds": [
+        "/forgot-password"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/ForgotPassword.jsx:96:13",
+      "file": "frontend/src/pages/ForgotPassword.jsx",
+      "line": 96,
+      "column": 13,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => { setSent(false); setResetToken(''); setNotFound(false); setError(''); }}"
+        }
+      ],
+      "calls": [
+        "setError",
+        "setNotFound",
+        "setResetToken",
+        "setSent"
+      ],
+      "disabled": null,
+      "declarationSha256": "7c578e40a6d62c13e5dd88b3d1a32666264109197a5bb9edebb4954d457bcab9",
+      "routeIds": [
+        "/forgot-password"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/ForgotPassword.jsx:99:15",
+      "file": "frontend/src/pages/ForgotPassword.jsx",
+      "line": 99,
+      "column": 15,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "destination": "/register",
+      "disabled": null,
+      "declarationSha256": "418ecc2914be4e5c491a4b08a80501ea1e677a4909a4faf22aa512741efeede0",
+      "routeIds": [
+        "/forgot-password"
+      ],
+      "reviewProfile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/ForgotPassword.jsx:113:11",
+      "file": "frontend/src/pages/ForgotPassword.jsx",
+      "line": 113,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -69607,9 +69717,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:57:11",
+      "id": "frontend/src/pages/ForgotPassword.jsx:114:11",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 57,
+      "line": 114,
       "column": 11,
       "tag": "button",
       "events": [
@@ -69647,9 +69757,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:60:13",
+      "id": "frontend/src/pages/ForgotPassword.jsx:117:13",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 60,
+      "line": 117,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -69680,9 +69790,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:65:11",
+      "id": "frontend/src/pages/ForgotPassword.jsx:123:11",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 65,
+      "line": 123,
       "column": 11,
       "tag": "BackButton",
       "events": [],
@@ -69713,9 +69823,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:66:11",
+      "id": "frontend/src/pages/ForgotPassword.jsx:124:11",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 66,
+      "line": 124,
       "column": 11,
       "tag": "form",
       "events": [
@@ -69750,9 +69860,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:67:13",
+      "id": "frontend/src/pages/ForgotPassword.jsx:125:13",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 67,
+      "line": 125,
       "column": 13,
       "tag": "InputField",
       "events": [
@@ -69789,9 +69899,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:80:17",
+      "id": "frontend/src/pages/ForgotPassword.jsx:138:17",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 80,
+      "line": 138,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -69822,9 +69932,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/ForgotPassword.jsx:85:15",
+      "id": "frontend/src/pages/ForgotPassword.jsx:143:15",
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "line": 85,
+      "line": 143,
       "column": 15,
       "tag": "button",
       "events": [],
@@ -79874,7 +79984,7 @@
     },
     {
       "file": "frontend/src/pages/ForgotPassword.jsx",
-      "sourceSha256": "503206c16ec58a1a1a2b3a31543cf8f510dceded46686eb6a25a6ef22089feaf"
+      "sourceSha256": "36fc2ea2f792b58f8c4ae9f353d8e7e74573df34e59dc990d2662009dc784760"
     },
     {
       "file": "frontend/src/pages/ForgotUserId.jsx",
@@ -83657,11 +83767,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 37,
-    "controlDeclarations": 1656,
-    "routeReachableDeclarations": 1504,
+    "controlDeclarations": 1659,
+    "routeReachableDeclarations": 1507,
     "controlFiles": 237,
     "states": {
-      "connected": 509,
+      "connected": 512,
       "preview": 936,
       "missing": 59,
       "intentionally-unreleased": 152

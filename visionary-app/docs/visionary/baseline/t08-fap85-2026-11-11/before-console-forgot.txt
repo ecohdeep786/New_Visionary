@@ -1,0 +1,7 @@
+# BEFORE (beta a0aeb95b, dev server 127.0.0.1:5174) — forgot-password, console warning/error inventory
+# Raw capture: t08-fap85-before.json + t08-fap85-known.json (probes 2026-11-11, Edge headless, fresh contexts)
+0 warnings, 0 errors across register -> forgot-password -> /reset-password dead end.
+# Note: FAP-85 is a copy/truth-flow defect, not a console defect — the harm is the false
+# "Check your email / you'll receive a password reset link shortly" promise with no
+# transport, and a real single-use 15-minute reset token created in localStorage
+# (visionary_reset_tokens) that the UI never surfaces, leaving no recovery path.

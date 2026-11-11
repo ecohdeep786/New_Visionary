@@ -1,0 +1,84 @@
+{
+  "email": "t08-fp85a-1794383380987@visionary.test",
+  "steps": [
+    {
+      "step": "registered",
+      "url": "http://127.0.0.1:5173/onboarding"
+    },
+    {
+      "step": "form-copy",
+      "supporting": true,
+      "submitLabel": [
+        "Create reset token"
+      ]
+    },
+    {
+      "step": "after-success-copy",
+      "headings": [
+        "Finish resetting your password"
+      ],
+      "paragraphs": [
+        "Enter your account email to create a local password reset token.",
+        "Enter your account email to create a local password reset token.",
+        "Local preview — no email is sent. A single-use reset token was created in this browser's local storage and expires in 15 minutes. Continue to set a new password for t08-fp85a-1794383380987@visionary.test."
+      ],
+      "links": [
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        },
+        {
+          "text": "Continue to reset password",
+          "href": "/reset-password?token=65a63a74-c32a-43d4-94f3-1d94c7324298"
+        },
+        {
+          "text": "Sign up",
+          "href": "/register"
+        },
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        }
+      ],
+      "hasFakeClaim": false,
+      "hasCheckEmail": false
+    },
+    {
+      "step": "reset-view",
+      "url": "/reset-password?token=present",
+      "heading": "Set a new password",
+      "passwordFields": 2
+    },
+    {
+      "step": "after-reset",
+      "body": "Skip to content | isionary | Password updated | Your saved account and learning setup will be kept. | Your password has been updated. Sign in with your new password. | Sign in | Back to sign in | English | Help | Privacy | Terms"
+    },
+    {
+      "step": "old-password-rejected",
+      "hasError": true,
+      "body": "Skip to content | isionary | Enter your password | T | t08-fp85a-1794383380987@visionary.test | Don't have an account? Create account | Back | The email or password is incorrect. Try again or reset your password. | Forgot password? | Tr"
+    },
+    {
+      "step": "signin-with-new-password",
+      "url": "/onboarding",
+      "h1": "Make Visionary your own"
+    },
+    {
+      "step": "console",
+      "count": 0,
+      "msgs": []
+    },
+    {
+      "step": "after-unknown-copy",
+      "headings": [
+        "No local account found"
+      ],
+      "hasFakeClaim": false,
+      "body": "Skip to content | isionary | Reset your Visionary password | Enter your account email to create a local password reset token. | Back to sign in | No local account found | Local preview — no email is sent. No account exists for t08-fp85a-unknown-1794383405256@visionary.test in this browser's local preview. Create one to continue. | Use a different email | Don't have an account? Sign up | English | Help | Privacy | Terms"
+    },
+    {
+      "step": "after-mobile-success",
+      "body": "Skip to content | isionary | Reset your Visionary password | Enter your account email to create a local password reset token. | Finish resetting your password | Local preview — no email is sent. A single-use reset token was created in this browser's local storage and expires in 15 minutes. Continue to set a new password for t08-fp85a-m-1794383409097@visionary.test. | Continue to reset password | Use a different email | Don't have an account? Sign up | Back t"
+    }
+  ]
+}

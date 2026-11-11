@@ -1,0 +1,58 @@
+{
+  "email": "t08-fp85k-1794382694533@visionary.test",
+  "steps": [
+    {
+      "step": "registered",
+      "url": "http://127.0.0.1:5174/onboarding"
+    },
+    {
+      "step": "forgot-known-success-copy",
+      "headings": [
+        "Reset your Visionary password",
+        "Reset your Visionary password",
+        "Check your email"
+      ],
+      "paragraphs": [
+        "Enter your account email to request a password reset link.",
+        "Enter your account email to request a password reset link.",
+        "If an account exists for t08-fp85k-1794382694533@visionary.test, you'll receive a password reset link shortly.",
+        "Don't have an account? Sign up"
+      ],
+      "links": [
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        },
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        },
+        {
+          "text": "Sign up",
+          "href": "/register"
+        },
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        }
+      ]
+    },
+    {
+      "step": "token-state",
+      "count": 1,
+      "latest": {
+        "email": "t08-fp85k-1794382694533@visionary.test",
+        "tokenPreview": "6baf4c5f…",
+        "expiresMs": 898442
+      },
+      "uiUrl": "/forgot-password"
+    },
+    {
+      "step": "reset-with-stored-token-works",
+      "url": "/reset-password?token=present",
+      "heading": "Set a new password",
+      "hasPasswordFields": 2,
+      "body": "Skip to content | isionary | Set a new password | Your saved account and learning setup will be kept. | New password | Show password | Confirm password | Use at least 6 characters. | After the reset, sign in again with your new password. | Reset password | Back to sign in | English | Help | Privacy | Terms"
+    }
+  ]
+}
