@@ -1,0 +1,145 @@
+{
+  "task": "F-16 auth & onboarding UI review",
+  "at": "2026-11-06T19:20:08.023Z",
+  "base": "http://127.0.0.1:4198",
+  "records": [
+    {
+      "file": "auth-login-unknown-email.png",
+      "surface": "auth",
+      "state": {
+        "bodyHasHonest": true,
+        "stillOnLogin": true
+      },
+      "errors": []
+    },
+    {
+      "check": "unknown-email-honesty",
+      "ok": true,
+      "detail": "{\"bodyHasHonest\":true,\"stillOnLogin\":true}"
+    },
+    {
+      "check": "account-switch-reset",
+      "ok": true,
+      "detail": "pathname after switch: /login"
+    },
+    {
+      "file": "auth-wrong-password.png",
+      "surface": "auth",
+      "wrong": {
+        "errorShown": true,
+        "passwordCleared": true
+      },
+      "errors": []
+    },
+    {
+      "check": "wrong-password-recovery",
+      "ok": true,
+      "detail": "{\"errorShown\":true,\"passwordCleared\":true}"
+    },
+    {
+      "check": "duplicate-submit-guard",
+      "ok": true,
+      "detail": "first-click disabled state: false; email view advanced: true"
+    },
+    {
+      "file": "auth-forgot-password.png",
+      "surface": "auth",
+      "route": "/forgot-password",
+      "state": {
+        "h1": "Reset your Visionary password",
+        "empty": false
+      },
+      "errors": []
+    },
+    {
+      "check": "recovery-page-forgot-password",
+      "ok": true,
+      "detail": "{\"h1\":\"Reset your Visionary password\",\"empty\":false}"
+    },
+    {
+      "file": "auth-forgot-user-id.png",
+      "surface": "auth",
+      "route": "/forgot-user-id",
+      "state": {
+        "h1": "Find your sign-in email",
+        "empty": false
+      },
+      "errors": []
+    },
+    {
+      "check": "recovery-page-forgot-user-id",
+      "ok": true,
+      "detail": "{\"h1\":\"Find your sign-in email\",\"empty\":false}"
+    },
+    {
+      "file": "auth-reset-password.png",
+      "surface": "auth",
+      "route": "/reset-password?code=fictional-code",
+      "state": {
+        "h1": "Request a new reset link",
+        "empty": false
+      },
+      "errors": []
+    },
+    {
+      "check": "recovery-page-reset-password",
+      "ok": true,
+      "detail": "{\"h1\":\"Request a new reset link\",\"empty\":false}"
+    },
+    {
+      "file": "auth-auth-action.png",
+      "surface": "auth",
+      "route": "/auth/action?mode=resetPassword&oobCode=fictional&apiKey=demo",
+      "state": {
+        "h1": "Set a new password",
+        "empty": false
+      },
+      "errors": []
+    },
+    {
+      "check": "recovery-page-auth-action",
+      "ok": true,
+      "detail": "{\"h1\":\"Set a new password\",\"empty\":false}"
+    },
+    {
+      "check": "auth-action-bad-code-handled",
+      "ok": true,
+      "detail": "{\"errorShown\":true,\"crashed\":false}"
+    },
+    {
+      "check": "role-selection-coverage",
+      "ok": true,
+      "detail": "{\"learner\":true,\"teacher\":true,\"parent\":true,\"professional\":true,\"organization\":true}"
+    },
+    {
+      "file": "auth-role-selection.png",
+      "surface": "onboarding",
+      "roles": {
+        "learner": true,
+        "teacher": true,
+        "parent": true,
+        "professional": true,
+        "organization": true
+      }
+    },
+    {
+      "file": "auth-onboarding-resume.png",
+      "surface": "onboarding",
+      "draftKeys": [
+        "visionary_onboarding_bf709495-20a3-49ca-b6e2-d7603baf01b9"
+      ],
+      "resumed": {
+        "hasDraft": true,
+        "onTeacherPath": true,
+        "wizardVisible": true
+      },
+      "errors": []
+    },
+    {
+      "check": "onboarding-draft-persistence",
+      "ok": true,
+      "detail": "{\"draftKeys\":[\"visionary_onboarding_bf709495-20a3-49ca-b6e2-d7603baf01b9\"],\"resumed\":{\"hasDraft\":true,\"onTeacherPath\":true,\"wizardVisible\":true}}"
+    }
+  ],
+  "defects": []
+}
