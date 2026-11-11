@@ -1,0 +1,27 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index 3eea9709..db702abb 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -379,6 +379,7 @@ model Workspace {
+   commandResults CommandResult[]
+   outboxEvents OutboxEvent[]
+   auditEvents AuditEvent[]
++  commandRevision WorkspaceCommandRevision?
+ 
+   @@index([uid])
+ 
+@@ -640,6 +641,14 @@ model DeletionTombstone {
+   @@map("deletion_tombstones")
+ }
+ 
++model WorkspaceCommandRevision {
++  workspaceId String @id
++  revision Int @default(0)
++  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
++
++  @@map("workspace_command_revisions")
++}
++
+ model DownloadGrant {
+   id             String    @id
+   ownerUid       String
