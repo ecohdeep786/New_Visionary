@@ -1,0 +1,6 @@
+# AFTER (candidate zcode/fap-70-preview-otp-honesty @ Register.jsx fix, dev server 127.0.0.1:5173) — register OTP journey, console warning/error inventory
+# Raw capture: t08-fap70-after.json .steps[console] (probe 2026-11-11, Edge headless, fresh context)
+0 warnings, 0 errors across the register -> OTP -> verify -> /onboarding journey.
+# Scope note: no toast fires on this journey (preview Resend is gated off), so the FAP-86
+# `onOpenChange` toast-shim warning does not appear here. FAP-86 is still open in the codebase
+# and will warn whenever any toast renders; FAP-70 must not be read as fixing it.
