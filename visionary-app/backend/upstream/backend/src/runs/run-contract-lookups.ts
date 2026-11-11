@@ -15,6 +15,14 @@ export interface RunContractStore {
   currentRevision(projectId: string): Promise<number>;
   appendRevision(projectId: string, payload: unknown): Promise<number>;
   permissionRevoked(owner: RunOwner, projectId: string): Promise<boolean>;
+
+  /** ATOMIC proposal acceptance: unseen decisionId required (idempotent), the
+   * project's CURRENT revision must equal the proposal's base (base-moved
+   * refuses), the payload appends, and the decision records — all together.
+   * Two concurrent accepts (same or different proposals on the same base) can
+   * never both commit. (SQL adapter: one transaction with the conditional
+   * UPDATE + INSERT ... SELECT.) */
+  acceptProposalAtomic(input: { decisionId: string; proposalId: string; projectId: string; baseRevision: number; payload: unknown }): Promise<{ ok: true; revisionNo: number } | { ok: false; reason: 'duplicate' | 'base_revision_moved' }>;
 }
 
 /** Contract-true in-memory store; events append-only, status derived. */
@@ -60,6 +68,18 @@ export class InMemoryRunContractStore implements RunContractStore {
     if (proposal) this.proposals.set(proposalId, { ...proposal, status: decision });
   }
 
+  async acceptProposalAtomic(input: { decisionId: string; proposalId: string; projectId: string; baseRevision: number; payload: unknown }): Promise<{ ok: true; revisionNo: number } | { ok: false; reason: 'duplicate' | 'base_revision_moved' }> {
+    if (this.decisions.has(input.decisionId)) return { ok: false, reason: 'duplicate' };
+    const current = (this.revisions.get(input.projectId) ?? []).length;
+    if (current !== input.baseRevision) return { ok: false, reason: 'base_revision_moved' };
+    const list = this.revisions.get(input.projectId) ?? [];
+    list.push(input.payload);
+    this.revisions.set(input.projectId, list);
+    this.decisions.add(input.decisionId);
+    const proposal = this.proposals.get(input.proposalId);
+    if (proposal) this.proposals.set(input.proposalId, { ...proposal, status: 'accepted' });
+    return { ok: true, revisionNo: list.length };
+  }
   async currentRevision(projectId: string): Promise<number> {
     return (this.revisions.get(projectId) ?? []).length;
   }

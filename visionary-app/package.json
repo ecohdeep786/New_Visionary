@@ -62,8 +62,22 @@
     "draftrecovery:check": "node scripts/draftrecovery-check.mjs",
     "guidedbriefs:check": "node scripts/guidedbriefs-check.mjs",
     "runs:check": "node scripts/runs-check.mjs",
-    "sharing:check": "node scripts/sharing-check.mjs",
-    "completion:check": "node scripts/completion-check.mjs",
-    "deviceadapter:check": "node scripts/deviceadapter-check.mjs"
+    "ingestion:check": "node scripts/ingestion-check.mjs",
+    "publication:check": "node scripts/publication-check.mjs",
+    "catalogadapter:check": "node scripts/catalogadapter-check.mjs",
+    "retrievalgate:check": "node scripts/retrievalgate-check.mjs",
+    "coverage:check": "node scripts/coverage-check.mjs",
+    "mediagate:check": "node scripts/mediagate-check.mjs",
+    "attempts:check": "node scripts/attempts-check.mjs",
+    "projections:check": "node scripts/projections-check.mjs",
+    "dailyplan:check": "node scripts/dailyplan-check.mjs",
+    "conversation:check": "node scripts/conversation-check.mjs",
+    "learningsession:check": "node scripts/learningsession-check.mjs",
+    "journey:check": "node scripts/journey-check.mjs",
+    "evaluation:check": "node scripts/evaluation-check.mjs",
+    "projects:check": "node scripts/projects-check.mjs",
+    "draftrecovery:check": "node scripts/draftrecovery-check.mjs",
+    "guidedbriefs:check": "node scripts/guidedbriefs-check.mjs",
+    "runs:check": "node scripts/runs-check.mjs"
   }
 }
