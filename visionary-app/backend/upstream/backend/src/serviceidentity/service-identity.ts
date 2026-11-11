@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // AI-03 (KAN-85) — private service identity: server-issued grants bound to
 // audience/expiry/run; browser claims are never authority.
 //
@@ -24,7 +25,6 @@ import { IdentityError } from './service-identity-types';
 import type { ServiceIdentityStore } from './service-identity-lookups';
 
 export class ServiceIdentityService {
-  private grantCounter = 0;
   constructor(
     private readonly store: ServiceIdentityStore,
     private readonly now: () => Date = () => new Date(),
@@ -41,7 +41,7 @@ export class ServiceIdentityService {
   }): Promise<ServiceGrant> {
     if (input.ttlSeconds <= 0) throw new IdentityError('grant_expired');
     const grant: ServiceGrant = {
-      grantId: `gnt_${++this.grantCounter}`,
+      grantId: `gnt_${randomUUID()}`,
       owner: { ...input.owner },
       subject: input.subject,
       audience: input.audience,
@@ -63,7 +63,9 @@ export class ServiceIdentityService {
   }): Promise<AuthorizedContext> {
     const grant = await this.store.byGrantId(input.grantId);
     if (!grant) throw new IdentityError('unknown_grant');
-    if ((this.store as { isRevoked?: (id: string) => boolean }).isRevoked?.(input.grantId)) {
+    // Revocation is a REQUIRED store answer (awaited): an adapter that cannot
+    // answer it must fail compilation, not silently skip the check.
+    if (await this.store.isGrantRevoked(input.grantId)) {
       throw new IdentityError('grant_revoked');
     }
     if (this.now().getTime() >= Date.parse(grant.expiresAt)) throw new IdentityError('grant_expired');

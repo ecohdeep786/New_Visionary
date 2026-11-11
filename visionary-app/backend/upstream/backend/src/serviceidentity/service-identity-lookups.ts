@@ -7,6 +7,9 @@ export interface ServiceIdentityStore {
   saveGrant(grant: ServiceGrant): Promise<void>;
   byGrantId(grantId: string): Promise<ServiceGrant | undefined>;
   revokeGrant(grantId: string): Promise<void>;
+  /** Revocation state (REQUIRED, not optional): the fail-closed law depends on
+   * every adapter answering it. (SQL adapter: one SELECT on the revoked flag.) */
+  isGrantRevoked(grantId: string): Promise<boolean>;
 }
 
 /** Contract-true in-memory store; grants are server-private state. */
@@ -27,7 +30,7 @@ export class InMemoryServiceIdentityStore implements ServiceIdentityStore {
     this.revoked.add(grantId);
   }
 
-  isRevoked(grantId: string): boolean {
+  async isGrantRevoked(grantId: string): Promise<boolean> {
     return this.revoked.has(grantId);
   }
 }
