@@ -1,0 +1,18 @@
+# Main pass (localhost origin) + "I verified my email" guard — console warning/error inventory
+# Raw captures: t08-firebase-live-localhost.json (register/resend/gate, account
+# t08-firebase-1794386344873@visionary.test) and t08-firebase-gate-verified-click.json (same account).
+#
+# Register/resend/gate pass (two page loads):
+2 console messages, both:
+  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+  -> identified by the failures-all capture: GET http://localhost:5173/api/auth/me
+     body {"message":"Sign in to continue.","error":"Unauthorized","statusCode":401}
+  These are the expected signed-out session bootstrap probes (one per page load);
+  no session cookie exists in a fresh context. Not auth defects.
+# Zero other console messages. Zero responses >= 400 other than those two bootstraps.
+# identitytoolkit calls all 200: passwordPolicy, signUp, lookup (x3), sendOobCode (x2).
+#
+# "I verified my email" guard pass (one page load):
+1 console message: the same expected GET /api/auth/me 401 bootstrap.
+# api capture: lookup 200 (reload, still unverified) and NO /api/auth/session POST —
+# the exchange throws auth/email-not-verified pre-server (serverAuth.js:44).
