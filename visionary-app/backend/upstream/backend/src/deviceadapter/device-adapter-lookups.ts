@@ -43,6 +43,8 @@ export class DeviceAdapterStore implements RunContractStore, ProjectStore, Shari
   private revokedPermission = new Set<string>();
   private privateState = new Set<string>();
   private nextProjectCopyId = 0;
+  private projectOwners = new Map<string, ShareOwner>();
+  private consents = new Map<string, 'active' | 'revoked' | 'expired'>();
 
   // ---- project seam -------------------------------------------------------
 
@@ -59,6 +61,24 @@ export class DeviceAdapterStore implements RunContractStore, ProjectStore, Shari
     this.projects.set(project.projectId, { ...project, owner: { ...project.owner } });
   }
 
+  async commitSave(input: { projectId: string; ownerUid: string; saveId: string; payload: unknown; expectedBaseRevision: number; savedAt: string }): Promise<{ ok: true; revisionNo: number } | { ok: false; reason: 'unknown_project' | 'duplicate' | 'revision_conflict' }> {
+    const current = (this.ledger.get(input.projectId) ?? []).length;
+    if (current !== input.expectedBaseRevision) return { ok: false, reason: 'revision_conflict' };
+    const revisionNo = await this.appendRevision(input.projectId, input.payload);
+    const project = this.projects.get(input.projectId);
+    if (project) this.projects.set(input.projectId, { ...project, currentRevision: revisionNo });
+    return { ok: true, revisionNo };
+  }
+  async commitRestore(input: { projectId: string; ownerUid: string; saveId: string; fromRevisionNo: number; expectedBaseRevision: number; savedAt: string }): Promise<{ ok: true; revisionNo: number } | { ok: false; reason: 'unknown_project' | 'unknown_revision' | 'revision_conflict' }> {
+    const current = (this.ledger.get(input.projectId) ?? []).length;
+    if (current !== input.expectedBaseRevision) return { ok: false, reason: 'revision_conflict' };
+    const payload = await this.payloadAt(input.projectId, input.fromRevisionNo);
+    if (payload === undefined) return { ok: false, reason: 'unknown_revision' };
+    const revisionNo = await this.appendRevision(input.projectId, payload);
+    const project = this.projects.get(input.projectId);
+    if (project) this.projects.set(input.projectId, { ...project, currentRevision: revisionNo });
+    return { ok: true, revisionNo };
+  }
   async insertRevision(revision: ProjectRevision): Promise<void> {
     const list = this.ledger.get(revision.projectId) ?? [];
     this.ledger.set(revision.projectId, [
@@ -182,6 +202,39 @@ export class DeviceAdapterStore implements RunContractStore, ProjectStore, Shari
 
   async saveSummary(request: ParentSummaryRequest, summary: { sections: string[] }): Promise<void> {
     this.summaries = [...this.summaries, { request: { ...request }, sections: [...summary.sections] }];
+  }
+
+  // ---- corrected-sibling atomic laws (KAN-78/80/75) ------------------------
+
+  async acceptProposalAtomic(input: { decisionId: string; proposalId: string; projectId: string; baseRevision: number; payload: unknown }): Promise<{ ok: true; revisionNo: number } | { ok: false; reason: 'duplicate' | 'base_revision_moved' }> {
+    if (this.decisions.has(input.decisionId)) return { ok: false, reason: 'duplicate' };
+    const current = (this.ledger.get(input.projectId) ?? []).length;
+    if (current !== input.baseRevision) return { ok: false, reason: 'base_revision_moved' };
+    const appended = await this.appendRevision(input.projectId, input.payload);
+    this.decisions.add(input.decisionId);
+    const proposal = this.proposals.get(input.proposalId);
+    if (proposal) this.proposals.set(input.proposalId, { ...proposal, status: 'accepted' });
+    return { ok: true, revisionNo: appended };
+  }
+
+  async projectOwnerOf(projectId: string): Promise<ShareOwner | undefined> {
+    const seeded = this.projectOwners.get(projectId);
+    if (seeded) return { ...seeded };
+    // Adapter-created projects are owned by their creating actor.
+    const created = this.projects.get(projectId);
+    return created ? { uid: created.owner.uid, workspaceId: created.owner.workspaceId } : undefined;
+  }
+
+  async recordProjectOwner(projectId: string, owner: ShareOwner): Promise<void> {
+    if (!this.projectOwners.has(projectId)) this.projectOwners.set(projectId, { ...owner });
+  }
+
+  async consentFor(guardianUid: string, studentUid: string, projectId: string): Promise<'active' | 'revoked' | 'expired' | undefined> {
+    return this.consents.get(`${guardianUid}|${studentUid}|${projectId}`);
+  }
+
+  async setConsent(guardianUid: string, studentUid: string, projectId: string, state: 'active' | 'revoked' | 'expired'): Promise<void> {
+    this.consents.set(`${guardianUid}|${studentUid}|${projectId}`, state);
   }
 
   // ---- adapter-level guards + test hooks ----------------------------------
