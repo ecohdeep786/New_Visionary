@@ -19,12 +19,23 @@ export interface BriefEvidenceLookup {
 export interface GuidedBriefStore {
   saveBrief(brief: GuidedBrief): Promise<void>;
   briefsFor(owner: BriefOwner, projectId: string): Promise<GuidedBrief[]>;
-}
+
+  /** CAS save for amends: applies only when the brief's CURRENT latest version
+   * equals expectedPreviousVersion (0 = no previous). Two concurrent amends can
+   * never claim the same version — the loser recomputes. (SQL adapter: one
+   * conditional INSERT guarded by NOT EXISTS on the version.) */
+  saveBriefCas(brief: GuidedBrief, expectedPreviousVersion: number): Promise<{ ok: true } | { ok: false; current: GuidedBrief | undefined }>;}
 
 /** Contract-true in-memory store; verified briefs are immutable versions. */
 export class InMemoryGuidedBriefStore implements GuidedBriefStore {
   private briefs: GuidedBrief[] = [];
 
+  async saveBriefCas(brief: GuidedBrief, expectedPreviousVersion: number): Promise<{ ok: true } | { ok: false; current: GuidedBrief | undefined }> {
+    const current = (await this.briefsFor(brief.owner, brief.projectId)).filter((b) => b.briefId === brief.briefId).sort((a, b) => a.version - b.version).pop();
+    if ((current?.version ?? 0) !== expectedPreviousVersion) return { ok: false, current };
+    this.briefs = [...this.briefs, { ...brief, owner: { ...brief.owner }, pins: { ...brief.pins, practiceEvidenceIds: [...brief.pins.practiceEvidenceIds] } }];
+    return { ok: true };
+  }
   async saveBrief(brief: GuidedBrief): Promise<void> {
     this.briefs = [...this.briefs, { ...brief, owner: { ...brief.owner }, pins: { ...brief.pins, practiceEvidenceIds: [...brief.pins.practiceEvidenceIds] } }];
   }

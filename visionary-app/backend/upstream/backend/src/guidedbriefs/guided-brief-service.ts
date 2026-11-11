@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-03 (KAN-77) — verified guided briefs pinned to provable evidence.
 //
 // Core responsibilities (server-owned; blank projects ungated):
@@ -32,7 +33,6 @@ function digestPins(pins: BriefPins): string {
 }
 
 export class GuidedBriefService {
-  private briefCounter = 0;
   constructor(
     private readonly store: GuidedBriefStore,
     private readonly evidence: BriefEvidenceLookup,
@@ -51,7 +51,7 @@ export class GuidedBriefService {
     await this.verifyPins(owner, pins);
 
     const brief: GuidedBrief = {
-      briefId: `brf_${++this.briefCounter}`,
+      briefId: `brf_${randomUUID()}`,
       owner: { ...owner },
       projectId,
       pins: { ...pins, practiceEvidenceIds: [...pins.practiceEvidenceIds] },
@@ -77,18 +77,25 @@ export class GuidedBriefService {
     const latest = existing[existing.length - 1];
     await this.verifyPins(owner, pins);
 
-    const brief: GuidedBrief = {
-      briefId: latest.briefId,
-      owner: { ...owner },
-      projectId,
-      pins: { ...pins, practiceEvidenceIds: [...pins.practiceEvidenceIds] },
-      version: latest.version + 1,
-      pinsDigest: digestPins(pins),
-      status: 'verified',
-      createdAt: this.now().toISOString(),
-    };
-    await this.store.saveBrief(brief);
-    return brief;
+    // The amend version is claimed ATOMICALLY against the latest version: two
+    // concurrent amends can never claim the same version (the loser
+    // recomputes; deterministic content converges).
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const current = (await this.store.briefsFor(owner, projectId)).filter((b) => b.briefId === latest.briefId).sort((a, b) => a.version - b.version).pop();
+      const brief: GuidedBrief = {
+        briefId: latest.briefId,
+        owner: { ...owner },
+        projectId,
+        pins: { ...pins, practiceEvidenceIds: [...pins.practiceEvidenceIds] },
+        version: (current?.version ?? 0) + 1,
+        pinsDigest: digestPins(pins),
+        status: 'verified',
+        createdAt: this.now().toISOString(),
+      };
+      const saved = await this.store.saveBriefCas(brief, current?.version ?? 0);
+      if (saved.ok) return brief;
+    }
+    throw new GuidedBriefError('evidence_not_verified'); // bounded-retry exhaustion surfaces as a typed retryable refusal
   }
 
   private async verifyPins(owner: BriefOwner, pins: BriefPins): Promise<void> {
