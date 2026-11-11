@@ -10,7 +10,7 @@ import DashboardSidebar from "./DashboardSidebar";
 import DashboardTopbar from "./DashboardTopbar";
 import { useAuth } from "@/lib/AuthContext";
 import { ThemeColorProvider } from "@/hooks/useThemeColor";
-import { canAccessDashboardPath, isOrganizationArea, navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
+import { canAccessDashboardPath, dashboardAreaOwner, isOrganizationArea, navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
 import { presentNavigation } from '@/lib/navigationPresentation';
 import { saveLastPath,organizationAccess } from '@/services/workspaceService';
 import {organizationPathAllowed} from '@/services/organizationPolicy';
@@ -99,8 +99,8 @@ export default function DashboardLayout() {
   if(!activeWorkspace)return <main data-font-surface="product" lang={locale} className="p-8" role="status" aria-busy="true">{t("openingWorkspace")}</main>;
   if (!canAccessDashboardPath(user?.identity, location.pathname)) {
     const section = location.pathname.split("/")[2] || "home";
-    // FAP-75: never silently rewrite the address bar for an organization-area deep link.
-    if (isOrganizationArea(section)) return <RoleAreaUnavailable />;
+    // FAP-75/FAP-87: never silently rewrite the address bar for a restricted deep link.
+    if (isOrganizationArea(section) || dashboardAreaOwner(section)) return <RoleAreaUnavailable />;
     return <Navigate to="/dashboard/home" replace />;
   }
   const ctx={personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'};

@@ -16,5 +16,14 @@ export function canAccessDashboardPath(role,path){const section=path.split('/')[
  * silently rewriting the address bar to /dashboard/home. */
 export function isOrganizationArea(section){return ['people','cohorts','curriculum','analytics'].includes(section);}
 
+/* FAP-87: the role that owns each remaining restricted workspace section, so a
+ * deep link from an identity without access keeps its URL and explains itself
+ * (the FAP-75 law) instead of silently rewriting the address bar to
+ * /dashboard/home. Sections outside this map and outside isOrganizationArea
+ * keep the existing fallback. `class` detail routes belong to connected
+ * classrooms (student/professional/teacher access). */
+const areaOwners={prepare:'teacher',learners:'teacher',insights:'teacher',growth:'teacher',library:'teacher',child:'parent',reports:'parent',career:'professional',audit:'organization',class:'teacher'};
+export function dashboardAreaOwner(section){return areaOwners[section]||null;}
+
 export function navigationFor(role,locale="en"){return localizedNavigation(primaryNavigation(role),locale);}
 export function secondaryNavigation(role,locale="en"){return localizedNavigation(secondaryItems(role),locale);}

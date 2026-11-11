@@ -1,0 +1,24 @@
+{
+  "email": "t09fap87spot-1794388337184@visionary.test",
+  "base": "http://127.0.0.1:5173",
+  "checks": [
+    {
+      "final": "/dashboard/audit",
+      "h1": "Audit",
+      "notice": "This workspace area opens with an organization workspace. You are currently working in a learning workspace.",
+      "requested": "/dashboard/audit"
+    },
+    {
+      "final": "/dashboard/growth",
+      "h1": "Teacher Growth",
+      "notice": "This workspace area opens with a teaching workspace. You are currently working in a learning workspace.",
+      "requested": "/dashboard/growth"
+    },
+    {
+      "final": "/dashboard/library",
+      "h1": "Library",
+      "notice": "This workspace area opens with a teaching workspace. You are currently working in a learning workspace.",
+      "requested": "/dashboard/library"
+    }
+  ]
+}
