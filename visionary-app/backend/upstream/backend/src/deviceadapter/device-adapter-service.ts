@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // BUILD-08 (KAN-82) — the device-adapter API service. It composes the
 // durable-run (KAN-78), private-project (KAN-75) and exact-revision sharing
 // (KAN-80) services over ONE owning store, and exposes typed, session-bound
@@ -25,7 +26,6 @@ export class DeviceAdapterService {
   private readonly runs: RunContractService;
   private readonly projects: PrivateProjectService;
   private readonly sharing: SharingService;
-  private sessionCounter = 0;
   private sessions = new Map<string, DeviceSession>();
 
   constructor(private readonly store: DeviceAdapterStore) {
@@ -40,7 +40,7 @@ export class DeviceAdapterService {
    */
   async openSession(actor: DeviceActor): Promise<DeviceAdapter> {
     const session: DeviceSession = {
-      sessionId: `sess_${++this.sessionCounter}`,
+      sessionId: `sess_${randomUUID()}`,
       actor: { ...actor },
       openedAt: new Date().toISOString(),
       open: true,
