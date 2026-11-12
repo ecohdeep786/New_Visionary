@@ -12,7 +12,8 @@ let env, target, service, reviewerStore;
 const reviewerUid = 'institution-reviewer';
 const approve = (ws, owner) => reviewerStore.approveInstitution({ workspaceId: ws, administratorUid: owner, reviewerUid,
   evidenceRef: 'proof_synthetic_fixture_001', expiresAt: new Date(Date.now() + 86400_000) });
-const at = new Date('2026-11-02T00:00:00Z');
+// Keep callers consistent within a run while real SQL evaluates current time.
+const at = new Date();
 const fresh = db => new InvitationService(new PostgresInvitationStore(db, target), () => at);
 const code = value => error => error.code === value;
 before(async () => {
@@ -195,7 +196,8 @@ test('unknown identity, guessed token, expiration and revoked token cannot grant
   await assert.rejects(service.accept('unprovisioned', i.token, 'synthetic@example.invalid'), code('unauthorized'));
   await assert.rejects(service.accept(x.user, 'not-a-token', 'synthetic@example.invalid'), code('invalid_token'));
   await assert.rejects(service.accept(x.user, 'A'.repeat(43), 'synthetic@example.invalid'), code('invalid_token'));
-  const late = new InvitationService(new PostgresInvitationStore(env.runtime, target), () => new Date('2027-01-01T00:00:00Z'));
+  const afterExpiry = new Date(new Date(i.expiresAt).getTime() + 1);
+  const late = new InvitationService(new PostgresInvitationStore(env.runtime, target), () => afterExpiry);
   await assert.rejects(late.accept(x.user, i.token, 'synthetic@example.invalid'), code('expired'));
   await service.revoke(x.owner, i.invitationId);
   await assert.rejects(service.accept(x.user, i.token, 'synthetic@example.invalid'), code('revoked')); assert.equal(await membership(x), null);
