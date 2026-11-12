@@ -118,8 +118,12 @@ test('S02: a deliberately broken expectation fails the runner nonzero and the fa
     delete childEnv.NODE_TEST_CONTEXT;
     let failed = false;
     let output = '';
+    /* The reporter is pinned to tap: Node ≤22 defaulted piped `node --test`
+     * output to TAP (`# fail 1`), while Node 24 defaults it to the spec
+     * reporter (`ℹ fail 1`). Pinning the reporter keeps the evidence bytes
+     * and the `# fail 1` law below identical on every Node version. */
     try {
-      output = execFileSync(process.execPath, ['--test', brokenTest], { encoding: 'utf8', env: childEnv });
+      output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', brokenTest], { encoding: 'utf8', env: childEnv });
     } catch (error) {
       failed = true;
       output = `${error.stdout ?? ''}${error.stderr ?? ''}`;
