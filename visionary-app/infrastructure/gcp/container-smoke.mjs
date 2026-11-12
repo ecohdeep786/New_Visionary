@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { execFileSync, spawn, spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -37,18 +37,61 @@ try {
     })().catch(e=>{console.error(e.message);process.exitCode=1;});`;
   docker(['exec', name, 'node', '-e', script]); receipt.startupAndChecksMs = Date.now() - start;
 
-  // Hold a genuine partial HTTP request across SIGTERM, not only idle health.
-  docker(['exec', '--detach', name, 'node', '-e', `const fs=require('node:fs');const marker='/tmp/kan46-open-socket';const s=require('node:net').connect(8080,'127.0.0.1',()=>{s.write(['GET /api/health HTTP/1.1','Host: localhost',''].join(String.fromCharCode(13,10)));fs.writeFileSync(marker,'ready');});s.on('error',()=>process.exit(1));s.on('close',()=>{fs.rmSync(marker,{force:true});process.exit(0);});`]);
+  // An admitted request can finish while a stalled request body is bounded by
+  // the drain deadline. Both connections are open before SIGTERM.
+  docker(['exec', '--detach', name, 'node', '-e', `
+    const fs = require('node:fs');
+    const request = require('node:http').request('http://127.0.0.1:8080/api/kan46-stalled', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': '2', Expect: '100-continue' }
+    });
+    request.on('continue', () => { request.write('{'); fs.writeFileSync('/tmp/kan46-open-socket', 'ready'); });
+    request.on('error', () => process.exit(0));
+    request.flushHeaders();
+  `]);
+  const active = spawn('docker', ['exec', name, 'node', '-e', `
+    const http = require('node:http'), fs = require('node:fs');
+    const request = http.request('http://127.0.0.1:8080/api/kan46-drain', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': '2', Expect: '100-continue', Connection: 'close' }
+    }, response => {
+      response.resume();
+      response.on('end', () => { if (response.statusCode === 404) console.log('active response completed'); else process.exitCode = 1; });
+    });
+    request.on('continue', () => {
+      request.write('{');
+      fs.writeFileSync('/tmp/kan46-active-request', 'ready');
+      const wait = setInterval(() => {
+        if (!fs.existsSync('/tmp/kan46-finish-active')) return;
+        clearInterval(wait);
+        setTimeout(() => request.end('}'), 500);
+      }, 30);
+    });
+    request.on('error', () => process.exit(1));
+    request.flushHeaders();
+    setTimeout(() => process.exit(1), 12000).unref();
+  `], { timeout: 15000, stdio: ['ignore', 'pipe', 'pipe'] });
+  let activeOutput = '';
+  active.stdout.setEncoding('utf8').on('data', chunk => { activeOutput += chunk; });
+  const activeFinished = new Promise(resolve => { active.on('error', () => resolve(false)); active.on('close', code => resolve(code === 0)); });
   let held = false;
   for (let n = 0; n < 10; n++) {
-    const r = spawnSync('docker', ['exec', name, 'node', '-e', "if(!require('node:fs').existsSync('/tmp/kan46-open-socket'))process.exitCode=1"], { encoding: 'utf8', timeout: 5000 });
+    const r = spawnSync('docker', ['exec', name, 'node', '-e', "if(!['/tmp/kan46-open-socket','/tmp/kan46-active-request'].every(require('node:fs').existsSync))process.exitCode=1"], { encoding: 'utf8', timeout: 5000 });
     if (r.status === 0) { held = true; break; } await new Promise(ok => setTimeout(ok, 100));
   }
   assert.ok(held, 'The pending HTTP connection must actually exist before shutdown.');
-  const stopping = Date.now(); docker(['stop', '--time=10', name], true);
+  const stopping = Date.now();
+  docker(['kill', '--signal=SIGTERM', name], true);
+  docker(['exec', name, 'node', '-e', "require('node:fs').writeFileSync('/tmp/kan46-finish-active','go')"], true);
+  assert.ok(await activeFinished, 'An admitted request must finish after SIGTERM.');
+  assert.match(activeOutput, /active response completed/);
+  receipt.activeResponseDrained = true;
+  const wait = spawnSync('docker', ['wait', name], { encoding: 'utf8', timeout: Math.max(1, 11000 - (Date.now() - stopping)) });
+  assert.equal(wait.error, undefined, 'Container must exit within its shutdown grace.');
+  assert.equal(wait.status, 0);
+  assert.equal(wait.stdout.trim(), '0');
   const state = JSON.parse(docker(['inspect', '--format', '{{json .State}}', name], true));
   assert.equal(state.Status, 'exited'); assert.equal(state.ExitCode, 0); assert.equal(state.OOMKilled, false);
-  receipt.shutdownMs = Date.now() - stopping; assert.ok(receipt.shutdownMs < 12000, 'Shutdown must respect the 10-second container grace.');
+  receipt.shutdownMs = Date.now() - stopping;
+  assert.ok(receipt.shutdownMs >= 7000 && receipt.shutdownMs < 11000, 'Stalled request must reach the drain deadline and terminate within the grace window.');
 
   for (const [label, change] of [
     ['missing-budget', { AUTH_RATE_LIMIT_KEY: '' }], ['foreign-project', { FIREBASE_PROJECT_ID: 'foreign-project' }],

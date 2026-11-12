@@ -28,3 +28,28 @@ export function boundProductionHttp(server: Server) {
   server.maxRequestsPerSocket = 100;
   server.setTimeout(30000, socket => socket.destroy());
 }
+
+export function installProductionShutdown(server: Server, closeApplication: () => Promise<void>) {
+  let stopping = false;
+  const shutdown = async () => {
+    if (stopping) return;
+    stopping = true;
+    const deadline = setTimeout(() => server.closeAllConnections(), 7500);
+    try {
+      // Finish active responses before Nest destroys their backing services.
+      await new Promise<void>((resolve, reject) => {
+        server.close(error => error ? reject(error) : resolve());
+      });
+      await closeApplication();
+    } catch {
+      console.error('Product server could not shut down cleanly.');
+      process.exitCode = 1;
+    } finally {
+      clearTimeout(deadline);
+      process.off('SIGTERM', shutdown);
+      process.off('SIGINT', shutdown);
+    }
+  };
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
+}

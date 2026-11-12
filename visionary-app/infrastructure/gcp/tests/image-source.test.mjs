@@ -82,3 +82,12 @@ test('checkout and export attributes cannot transform attested source bytes', t 
   try { assert.equal(readFileSync(join(source.context, 'frontend/src/main.jsx'), 'utf8'), '$Format:%H$'); }
   finally { source.cleanup(); }
 });
+
+test('case aliases cannot attest two inputs for one filesystem path', t => {
+  const f = fixture(t);
+  f.git(['config', 'core.ignorecase', 'false']);
+  const object = f.git(['rev-parse', 'HEAD:visionary-app/frontend/src/main.jsx']);
+  f.git(['update-index', '--add', '--cacheinfo', '100644,' + object + ',visionary-app/frontend/src/MAIN.jsx']);
+  f.git(['commit', '--quiet', '-m', 'Synthetic case collision']);
+  assert.throws(() => createImageSource({ root: f.root, commit: f.git(['rev-parse', 'HEAD']) }), /Colliding image source paths/);
+});

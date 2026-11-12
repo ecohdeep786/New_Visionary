@@ -45,12 +45,23 @@ export function createImageSource({ root = appRoot, commit } = {}) {
   const prefix = git(root, ['rev-parse', '--show-prefix']).trim();
   if (prefix !== 'visionary-app/' || git(root, ['rev-parse', 'HEAD']).trim() !== commit) throw Error('Image commit must equal this checkout HEAD.');
   const repository = git(root, ['rev-parse', '--show-toplevel']).trim();
-  const entries = git(root, ['ls-tree', '-r', '-l', '-z', '--full-tree', commit, '--', ...imageInputs.map(p => prefix + p)])
+  const tree = git(root, ['ls-tree', '-r', '-l', '-z', '--full-tree', commit, '--', ...imageInputs.map(p => prefix + p)], { encoding: null });
+  const portablePaths = new Map();
+  const entries = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(tree)
     .split('\0').filter(Boolean).map(line => {
       const tab = line.indexOf('\t'), [mode, type, object, size] = line.slice(0, tab).trim().split(/\s+/), fullPath = line.slice(tab + 1);
       const path = fullPath.slice(prefix.length);
       if (tab < 0 || !fullPath.startsWith(prefix) || !allowed(path) || posix.normalize(fullPath) !== fullPath ||
-          /[\\:\x00-\x1f\x7f]/.test(fullPath) || !['100644', '100755'].includes(mode) || type !== 'blob' || !/^[a-f0-9]{40}$/.test(object)) throw Error('Unsupported image source entry.');
+          /[\\:<>"|?*\x00-\x1f\x7f]/.test(fullPath) || !['100644', '100755'].includes(mode) || type !== 'blob' || !/^[a-f0-9]{40}$/.test(object)) throw Error('Unsupported image source entry.');
+      let original = '';
+      for (const segment of path.split('/')) {
+        if (/[. ]$/.test(segment) || /^(?:con|prn|aux|nul|(?:com|lpt)[1-9¹²³])(?:\.|$)/i.test(segment)) throw Error('Unsupported image source path.');
+        original += '/' + segment;
+        const folded = original.normalize('NFC').toUpperCase();
+        const previous = portablePaths.get(folded);
+        if (previous && previous !== original) throw Error('Colliding image source paths.');
+        portablePaths.set(folded, original);
+      }
       return { path, object, mode, size: Number(size) };
     });
   if (!entries.length || entries.length > 20000 || entries.some(e => !Number.isSafeInteger(e.size) || e.size < 0) ||
@@ -73,7 +84,7 @@ export function createImageSource({ root = appRoot, commit } = {}) {
       if (object !== entry.object) throw Error('Exported image input bytes differ from reviewed HEAD.');
       if (credentialMaterial(entry.path, bytes)) throw Error('Credential material is forbidden in image input: ' + entry.path);
       const destination = join(context, entry.path); mkdirSync(dirname(destination), { recursive: true });
-      writeFileSync(destination, bytes, { mode: entry.mode === '100755' ? 0o755 : 0o644 });
+      writeFileSync(destination, bytes, { flag: 'wx', mode: entry.mode === '100755' ? 0o755 : 0o644 });
       return { path: entry.path, mode: entry.mode, sha256: sha256(bytes) };
     }).sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
     if (offset !== batch.length) throw Error('Unexpected trailing Git image input response.');
