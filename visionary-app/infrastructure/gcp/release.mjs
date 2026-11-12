@@ -10,7 +10,7 @@ export const production = Object.freeze({
   image: 'asia-south1-docker.pkg.dev/visionary-research/visionary-product/product',
   tag: 'ci-candidate', secret: 'visionary-product-auth-rate-limit',
   // Update these pins together in the reviewed change that rotates the key.
-  secretVersion: '1', rollbackSecretVersion: '1',
+  secretVersion: '2', rollbackSecretVersion: '1',
 });
 const shaPattern = /^[a-f0-9]{40}$/;
 export function trustedRun(env) {
