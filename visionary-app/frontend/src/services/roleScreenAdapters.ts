@@ -49,7 +49,6 @@ export class RoleAccessController {
   private registrations = new Map<string, RoleScreenRegistration>();
   private membership = new Map<string, MembershipState>(); // key memberKey
   private inFlight = new Map<string, InFlightOperation>();
-  private opCounter = 0;
   private locales: readonly string[];
 
   constructor(locales: readonly string[] = ['en-IN', 'bn']) {
@@ -97,7 +96,7 @@ export class RoleAccessController {
       throw new RoleAccessError('membership_expired');
     }
     if (!this.locales.includes(locale)) throw new RoleAccessError('role_screen_unregistered');
-    const opId = `op_${++this.opCounter}`;
+    const opId = `op_${globalThis.crypto.randomUUID()}`;
     this.inFlight.set(opId, { opId, surface, kind });
     return { opId, outcome: 'completed' };
   }
