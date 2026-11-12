@@ -18,7 +18,7 @@ const layout = readFileSync(new URL("../src/components/dashboard/DashboardLayout
 const page = readFileSync(new URL("../src/pages/dashboard/RoleAreaUnavailable.jsx", import.meta.url), "utf8");
 
 test("FAP-87: the section owner map covers exactly the restricted sections outside the organization areas", () => {
-  assert.match(navigation, /const areaOwners=\{prepare:'teacher',learners:'teacher',insights:'teacher',growth:'teacher',library:'teacher',child:'parent',reports:'parent',career:'professional',audit:'organization',class:'teacher'\};/);
+  assert.match(navigation, /const areaOwners=\{prepare:'teacher',learners:'teacher',insights:'teacher',growth:'teacher',library:'teacher',classes:'teacher',child:'parent',reports:'parent',career:'professional',audit:'organization',class:'teacher'\};/, "the map gains the Classes list (FAP-90): organization and family identities get the explanation instead of the rewrite");
   assert.match(navigation, /export function dashboardAreaOwner\(section\)\{return areaOwners\[section\]\|\|null;\}/);
 });
 

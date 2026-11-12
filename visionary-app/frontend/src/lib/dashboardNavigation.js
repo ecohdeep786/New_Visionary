@@ -21,8 +21,11 @@ export function isOrganizationArea(section){return ['people','cohorts','curricul
  * (the FAP-75 law) instead of silently rewriting the address bar to
  * /dashboard/home. Sections outside this map and outside isOrganizationArea
  * keep the existing fallback. `class` detail routes belong to connected
- * classrooms (student/professional/teacher access). */
-const areaOwners={prepare:'teacher',learners:'teacher',insights:'teacher',growth:'teacher',library:'teacher',child:'parent',reports:'parent',career:'professional',audit:'organization',class:'teacher'};
+ * classrooms (student/professional/teacher access). FAP-90: the plural
+ * Classes list is a teaching-workspace area too — without a mapping,
+ * organization and family identities deep-linking /dashboard/classes fell
+ * back to the Navigate-to-home rewrite. */
+const areaOwners={prepare:'teacher',learners:'teacher',insights:'teacher',growth:'teacher',library:'teacher',classes:'teacher',child:'parent',reports:'parent',career:'professional',audit:'organization',class:'teacher'};
 export function dashboardAreaOwner(section){return areaOwners[section]||null;}
 
 export function navigationFor(role,locale="en"){return localizedNavigation(primaryNavigation(role),locale);}
