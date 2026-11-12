@@ -86,7 +86,6 @@ export function zonedInstant(wallClock: WallClock): number {
 }
 
 export class AssignmentService {
-  private assignmentCounter = 0;
 
   constructor(
     private readonly store: AssignmentStore,
