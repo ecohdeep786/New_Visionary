@@ -254,6 +254,9 @@ test('BILL-05: the released lifecycle derives free/active/renewing and never ove
   assert.equal(active.state, 'active'); assert.ok(active.renewalAt);
   const renewing = lifecycleOf({ subscription: { status: 'active', plan: 'personal', chargeAt: Math.floor(Date.now() / 1000) + 3600 } });
   assert.equal(renewing.state, 'renewing');
+  const cancelling = lifecycleOf({ subscription: { status: 'active', plan: 'personal', chargeAt: Math.floor(Date.now() / 1000) + 3600, cancelAtPeriodEnd: true } });
+  assert.equal(cancelling.state, 'active', 'a cancel-at-period-end subscription keeps its paid period but never claims a renewal');
+  assert.equal(cancelling.renewalAt, null, 'lifecycle renewalAt agrees with the account view for the same condition');
   assert.equal(lifecycleOf({ subscription: { status: 'cancelled', plan: 'personal' } }).state, 'ended');
   assert.equal(lifecycleOf({ subscription: { status: 'created', plan: 'personal' } }).state, 'pending_activation');
   const caps = releasedCapabilities();

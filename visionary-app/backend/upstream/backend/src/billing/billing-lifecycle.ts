@@ -79,11 +79,14 @@ export function lifecycleOf(data: any): Lifecycle {
     return { version: BILLING_LIFECYCLE_VERSION, state: 'grace', plan, renewalAt: null, graceUntil: isoMillis(graceUntil || now + GRACE_MS), pastDueSince: isoMillis(pastDueSince || now), reason: dunning ? 'charge_failed' : null };
   }
   // Confirmed and not dunning: active, or renewing when the next charge is
-  // due within the renewal window.
+  // due within the renewal window. A cancel-at-period-end subscription will
+  // NOT be charged again, so it never claims a renewal — the paid period
+  // stays active and the surface agrees with the account view's
+  // subscription.renewalAt=null for the same condition.
   if (confirmed.has(sub.status)) {
     const chargeMs = sub.chargeAt ? sub.chargeAt * 1000 : 0;
-    const due = chargeMs && chargeMs <= now + RENEWAL_WINDOW_MS;
-    return { version: BILLING_LIFECYCLE_VERSION, state: due ? 'renewing' : 'active', plan, renewalAt: isoSeconds(sub.chargeAt), graceUntil: null, pastDueSince: null, reason: null };
+    const due = !!chargeMs && !sub.cancelAtPeriodEnd && chargeMs <= now + RENEWAL_WINDOW_MS;
+    return { version: BILLING_LIFECYCLE_VERSION, state: due ? 'renewing' : 'active', plan, renewalAt: due ? isoSeconds(sub.chargeAt) : null, graceUntil: null, pastDueSince: null, reason: null };
   }
   // An unconfirmed, non-dunning provider state ('created'/'pending'/…) reads
   // as pending activation: never advertised as active, never ended, with no
