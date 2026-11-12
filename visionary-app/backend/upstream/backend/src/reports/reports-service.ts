@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // ROLE-07 (KAN-99) — authorized teacher/guardian/organization reports with
 // provenance, permitted periods and approved aggregation/suppression rules;
 // private learner chat and drafts are excluded by default.
@@ -39,8 +40,6 @@ function clone<T>(value: T): T {
 }
 
 export class ReportsService {
-  private rulesCounter = 0;
-  private reportCounter = 0;
 
   constructor(private readonly store: ReportsStore) {}
 
@@ -125,7 +124,7 @@ export class ReportsService {
       }
     }
     const report: GeneratedReport = {
-      reportId: `rep_${++this.reportCounter}`,
+      reportId: `rep_${randomUUID()}`,
       recipientType,
       recipientId,
       subjectRef,
