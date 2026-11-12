@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // ROLE-06 (KAN-98) — organization membership/invitations/roles, approved
 // curriculum delivery/publication, settings permissions and scoped audited
 // administrative actions.
@@ -36,10 +37,6 @@ export interface OrgSettings {
 }
 
 export class OrganizationService {
-  private orgCounter = 0;
-  private inviteCounter = 0;
-  private curriculumCounter = 0;
-  private auditCounter = 0;
 
   constructor(
     private readonly store: OrganizationStore,
@@ -49,7 +46,7 @@ export class OrganizationService {
   /** Create an organization (creator becomes owner). */
   async createOrg(owner: OrgOwner, name: string): Promise<{ orgId: string }> {
     if (!name) throw new OrgError('org_definition_invalid');
-    const orgId = `org_${++this.orgCounter}`;
+    const orgId = `org_${randomUUID()}`;
     await this.store.saveMembership({ orgId, uid: owner.uid, role: 'owner', joinedAt: this.now().toISOString() });
     await this.audit(orgId, owner.uid, 'org_created', orgId);
     return { orgId };
@@ -59,11 +56,11 @@ export class OrganizationService {
   async inviteMember(admin: OrgOwner, orgId: string, inviteeUid: string, role: OrgRole, ttlMs: number): Promise<OrgInvite> {
     await this.requireAdmin(orgId, admin);
     const invite: OrgInvite = {
-      inviteId: `oinv_${++this.inviteCounter}`,
+      inviteId: `oinv_${randomUUID()}`,
       orgId,
       inviteeUid,
       role,
-      code: `join_${Math.random().toString(36).slice(2, 12)}`,
+      code: `join_${randomUUID()}`,
       expiresAt: new Date(this.now().getTime() + ttlMs).toISOString(),
       status: 'pending',
     };
@@ -89,8 +86,11 @@ export class OrganizationService {
       role: invite.role,
       joinedAt: this.now().toISOString(),
     };
-    await this.store.saveMembership(membership);
-    await this.store.saveInvite({ ...invite, status: 'accepted' });
+    // The join is claimed ATOMICALLY: the invite flips pending→accepted and the
+    // membership inserts together, conditional on the invite still being
+    // pending — a concurrent revocation wins and the join refuses.
+    const claimed = await this.store.claimMembership(invite.inviteId, membership);
+    if (!claimed.ok) throw new OrgError('invite_revoked');
     return membership;
   }
 
@@ -169,7 +169,7 @@ export class OrganizationService {
 
   private async audit(orgId: string, actorUid: string, action: string, target: string): Promise<void> {
     await this.store.appendAudit({
-      auditId: `aud_${++this.auditCounter}`,
+      auditId: `aud_${randomUUID()}`,
       orgId,
       actorUid,
       action,

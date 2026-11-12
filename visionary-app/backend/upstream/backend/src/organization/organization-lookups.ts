@@ -12,7 +12,12 @@ export interface OrganizationStore {
   latestCurriculumVersion(orgId: string, curriculumId: string): Promise<number>;
   appendAudit(entry: AuditEntry): Promise<void>;
   auditLog(orgId: string): Promise<AuditEntry[]>;
-}
+
+  /** ATOMIC join claim: flips the invite pending→accepted and inserts the
+   * membership TOGETHER, conditional on the invite still being pending — a
+   * concurrent revocation wins and the join refuses. (SQL adapter: one
+   * UPDATE ... WHERE status = 'pending' + INSERT inside the transaction.) */
+  claimMembership(inviteId: string, membership: OrgMembership): Promise<{ ok: true } | { ok: false; reason: 'revoked' }>;}
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -34,6 +39,14 @@ export class InMemoryOrganizationStore implements OrganizationStore {
     return found ? clone(found) : undefined;
   }
 
+  async claimMembership(inviteId: string, membership: OrgMembership): Promise<{ ok: true } | { ok: false; reason: 'revoked' }> {
+    // CRITICAL SECTION: no await between the invite check and both writes.
+    const invite = this.inviteList.get(inviteId);
+    if (!invite || invite.status !== 'pending') return { ok: false, reason: 'revoked' };
+    this.memberships.set(`${membership.orgId}|${membership.uid}`, clone(membership));
+    this.inviteList.set(inviteId, { ...invite, status: 'accepted' });
+    return { ok: true };
+  }
   async saveInvite(invite: OrgInvite): Promise<void> {
     this.inviteList.set(invite.inviteId, clone(invite));
   }

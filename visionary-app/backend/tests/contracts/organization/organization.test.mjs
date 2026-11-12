@@ -50,8 +50,10 @@ test('uniform invite refusal: unknown code and wrong invitee are invite_invalid;
   await assert.rejects(() => service.joinByInvite(STRANGER, invite.code), (e) => e.code === 'invite_invalid');
   await assert.rejects(() => service.joinByInvite(MEMBER, 'join_unknown'), (e) => e.code === 'invite_invalid');
   let clock = Date.now();
-  const { service: timed } = await makeService(() => new Date(clock));
-  const inv2 = await timed.inviteMember(ADMIN, orgId, MEMBER.uid, 'member', 1000);
+  // The timed instance is a FRESH service/store: it creates its own org (UUID
+  // ids no longer accidentally collide across service instances).
+  const { service: timed, orgId: timedOrgId } = await makeService(() => new Date(clock));
+  const inv2 = await timed.inviteMember(ADMIN, timedOrgId, MEMBER.uid, 'member', 1000);
   clock += 2000;
   await assert.rejects(() => timed.joinByInvite(MEMBER, inv2.code), (e) => e.code === 'invite_expired');
 });
