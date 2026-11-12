@@ -114,6 +114,8 @@ export function auditWorkloadIdentityPool(pool, provider, providers) {
   }
   if (provider.oidc?.issuerUri !== expected.issuer ||
       !isDeepStrictEqual(provider.oidc.allowedAudiences ?? [], []) ||
+      provider.oidc.jwksJson || provider.oidc.discoveryUri ||
+      !isDeepStrictEqual(provider.actorProviders ?? [], []) ||
       !isDeepStrictEqual(provider.attributeMapping, reviewedMapping) ||
       provider.attributeCondition !== reviewedCondition) {
     return refuse('Provider issuer, audience, mapping or full trust condition differs from bootstrap.');
@@ -123,10 +125,11 @@ export function auditWorkloadIdentityPool(pool, provider, providers) {
 
 // Check schedule metadata and the version pinned by release.mjs. Notification
 // delivery and rotation of a live serving revision require operational evidence.
+const secretResources = [expected.project, expected.projectNumber].map(project => `projects/${project}/secrets/${expected.secret}`);
+
 export function auditSecretRotation(secret, version, now = Date.now()) {
-  const names = [expected.project, expected.projectNumber].map(project => `projects/${project}/secrets/${expected.secret}`);
-  if (!names.includes(secret?.name)) return refuse('Product secret metadata is missing or foreign.');
-  if (version?.state !== 'ENABLED' || !names.some(name => version?.name === name + '/versions/1')) {
+  if (!secretResources.includes(secret?.name)) return refuse('Product secret metadata is missing or foreign.');
+  if (version?.state !== 'ENABLED' || !secretResources.some(name => version?.name === name + '/versions/1')) {
     return refuse('Pinned product secret version 1 is unavailable.');
   }
   const period = /^(\d+)(?:\.\d{1,9})?s$/.test(secret.rotation?.rotationPeriod ?? '') ? parseFloat(secret.rotation.rotationPeriod) : NaN;
@@ -138,6 +141,20 @@ export function auditSecretRotation(secret, version, now = Date.now()) {
     return refuse('Rotation notification schedule, future time or same-project topics are incomplete.');
   }
   return pass('Rotation notification metadata and enabled pinned version verified.');
+}
+
+function matchesPinnedSecret(reference, annotation) {
+  if (reference?.name !== expected.secret || reference.key !== '1' || reference.optional || reference.localObjectReference) return false;
+  if (annotation === undefined) return true;
+  if (typeof annotation !== 'string') return false;
+  const aliases = new Map();
+  for (const entry of annotation.split(',')) {
+    const match = /^([a-zA-Z0-9_-]+):(projects\/[a-z0-9-]+\/secrets\/[a-zA-Z0-9_-]+)$/.exec(entry);
+    if (!match || aliases.has(match[1])) return false;
+    aliases.set(match[1], match[2]);
+  }
+  const resource = aliases.get(reference.name);
+  return resource === undefined || secretResources.includes(resource);
 }
 
 // The serving service must run as the runtime identity with the reviewed
@@ -164,7 +181,7 @@ export function auditServiceIsolation(service, serviceIam, revision) {
   const override = /^(?:GOOGLE_APPLICATION_CREDENTIALS|FIREBASE_AUTH_EMULATOR_HOST|FIRESTORE_EMULATOR_HOST|FIREBASE_STORAGE_EMULATOR_HOST|STORAGE_EMULATOR_HOST|PUBSUB_EMULATOR_HOST)$/;
   if (Object.entries(settings).some(([key, value]) => env.get(key)?.value !== value || env.get(key)?.valueFrom) ||
       [...env.keys()].some(key => override.test(key)) || secret?.value !== undefined ||
-      secret?.valueFrom?.secretKeyRef?.name !== expected.secret || secret?.valueFrom?.secretKeyRef?.key !== '1') {
+      !matchesPinnedSecret(secret?.valueFrom?.secretKeyRef, revision.metadata.annotations?.['run.googleapis.com/secrets'])) {
     return refuse('Serving revision does not use the pinned realm, attached identity and secret version.');
   }
   const invokerCheck = annotations['run.googleapis.com/invoker-iam-disabled'] === 'true' ? 'disabled for the public edge' : 'enabled';

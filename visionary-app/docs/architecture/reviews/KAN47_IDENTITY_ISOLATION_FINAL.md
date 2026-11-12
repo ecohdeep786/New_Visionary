@@ -4,6 +4,8 @@ The audit runs read-only against the reviewed production project. It compares th
 
 The serving revision check uses the revision receiving all production traffic. It verifies the attached runtime identity, Firebase realm, Secret Manager version reference and reviewed edge ingress. It reports the invoker IAM mode separately. Firestore metadata is read with Cloud SDK impersonation of the reviewed runtime account and an explicit database ID of `default`.
 
+Independent review found two remaining ways to pass the wrong configuration. The audit now rejects unreviewed OIDC signing-key and discovery overrides and resolves Cloud Run secret aliases to the expected project and secret. [Workload Identity provider configuration](https://docs.cloud.google.com/iam/docs/reference/rest/v1/projects.locations.workloadIdentityPools.providers) · [Cloud Run secret references](https://docs.cloud.google.com/run/docs/reference/rest/v1/Container)
+
 The secret check verifies the pinned enabled version and notification schedule metadata. A successful notification, new secret version, serving revision rollout and rollback require live operational evidence. The audit observes direct policies on the named resources. Inherited IAM and access through additional resources require separate inventory.
 
 Run `node infrastructure/gcp/identity-audit.mjs` from the application directory with an authenticated Cloud SDK configuration that can read the listed IAM and resource metadata and impersonate the reviewed runtime account for the Firestore read. The host currently lacks an authenticated Cloud SDK session. The local command refused all seven live checks, and the synthetic contract tests exercise the positive and failure paths.

@@ -76,6 +76,9 @@ test('provider verifies complete bootstrap trust configuration and excludes sibl
   assert.equal(auditWorkloadIdentityPool(pool, provider, [provider, { name: 'another-provider' }]).pass, false);
   for (const change of [
     { disabled: true }, { oidc: { issuerUri: expected.issuer, allowedAudiences: ['foreign'] } },
+    { oidc: { issuerUri: expected.issuer, jwksJson: '{"keys":[]}' } },
+    { oidc: { issuerUri: expected.issuer, discoveryUri: expected.issuer + '/.well-known/other' } },
+    { actorProviders: ['synthetic-provider'] },
     { attributeMapping: { ...reviewedMapping, 'attribute.repository_id': "'1357462978'" } },
     { attributeCondition: "assertion.repository_id == '1357462978'" },
     { attributeCondition: reviewedCondition.replace("'refs/heads/main'", "'refs/heads/dev'") },
@@ -110,6 +113,16 @@ test('the active serving revision uses attached identity, pinned realm and pinne
   }
   const latest = { ...service, status: { traffic: [{ revisionName, percent: 100, latestRevision: true }] } };
   assert.throws(() => auditServiceIsolation(latest, servicePolicy, revision), /explicitly pinned/);
+});
+
+test('the rate-limit secret alias resolves to the reviewed project and resource', () => {
+  const alias = target => ({ ...revision, metadata: { ...revision.metadata, annotations: { 'run.googleapis.com/secrets': target } } });
+  const canonical = expected.secret + ':' + secretName;
+  assert.equal(auditServiceIsolation(service, servicePolicy, alias(canonical)).pass, true);
+  for (const drift of [
+    canonical.replace(expected.projectNumber, 'foreign'), canonical + '2',
+    canonical + ',' + canonical, 'malformed',
+  ]) assert.equal(auditServiceIsolation(service, servicePolicy, alias(drift)).pass, false);
 });
 
 test('Firestore metadata must identify the exact existing named Native database', () => {
