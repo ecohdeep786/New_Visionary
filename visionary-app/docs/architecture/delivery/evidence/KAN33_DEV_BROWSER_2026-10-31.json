@@ -1,0 +1,17 @@
+{
+  "source": "10e455a0dba38c69b100fc04e6566f415f0fd8e6",
+  "officialServersRestarted": true,
+  "authenticatedProfessionalHome": true,
+  "continueLearningRestoredCheckedStepsAndBuildStage": true,
+  "newLearningWritesRequested": false,
+  "consoleErrorsAndWarnings": 0,
+  "screenshot": {
+    "name": "browser-integrated-dev-learning-recovery",
+    "sha256": "807e2356726d9676f9ceeea6e57163edc088758f4d55491f5db205c84610a588",
+    "bytes": 86096,
+    "format": "jpeg",
+    "width": 1187,
+    "height": 1170
+  },
+  "startupNote": "First reload before server readiness produced connection-refused browser error; no product pass claimed for that attempt. After CLI readiness200, fresh IAB tab restored actual session and learning state."
+}
