@@ -1,0 +1,223 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "betaHead": "f8c3fd1d",
+  "fap81": {
+    "reduce": {
+      "reduced": "reduce",
+      "sample1": {
+        "running": 0,
+        "names": [],
+        "rowTransforms": [
+          "none",
+          "none"
+        ]
+      },
+      "sample2": {
+        "running": 0,
+        "rowTransforms": [
+          "none",
+          "none"
+        ]
+      },
+      "consoleErrors": []
+    },
+    "noPreference": {
+      "reduced": "no-preference",
+      "sample1": {
+        "running": 2,
+        "names": [
+          "community-marquee-left",
+          "community-marquee-right"
+        ],
+        "rowTransforms": [
+          "matrix(1, 0, 0, 1, -77.756, 0)",
+          "matrix(1, 0, 0, 1, -1866.24, 0)"
+        ]
+      },
+      "sample2": {
+        "running": 2,
+        "rowTransforms": [
+          "matrix(1, 0, 0, 1, -123.116, 0)",
+          "matrix(1, 0, 0, 1, -1820.88, 0)"
+        ]
+      },
+      "consoleErrors": []
+    },
+    "ok": true
+  },
+  "fap82": {
+    "320": {
+      "vw": 320,
+      "offscreenHeads": [
+        "Start",
+        "Personal",
+        "Family"
+      ],
+      "faqOff": 0,
+      "faq": {
+        "count": 6,
+        "before": "false",
+        "right": 272
+      },
+      "scrollW": 320,
+      "innerW": 320,
+      "clicked": {
+        "after": "true",
+        "answerVisible": true
+      },
+      "consoleErrors": []
+    },
+    "390": {
+      "vw": 390,
+      "offscreenHeads": [
+        "Start",
+        "Personal",
+        "Family"
+      ],
+      "faqOff": 0,
+      "faq": {
+        "count": 6,
+        "before": "false",
+        "right": 342
+      },
+      "scrollW": 390,
+      "innerW": 390,
+      "clicked": {
+        "after": "true",
+        "answerVisible": true
+      },
+      "consoleErrors": []
+    },
+    "ok": false
+  },
+  "fap83": {
+    "pages": {
+      "student": {
+        "section": true,
+        "eyebrow": "Your language",
+        "chipsPresent": [
+          "Hindi",
+          "English",
+          "Bengali"
+        ],
+        "unservedPresent": [],
+        "everyLanguageClaim": false,
+        "namesServed": true,
+        "roadmap": true,
+        "head": "Your language\n\nThe words change.\nUnderstanding doesn't.\n\nAsk in the language you think in. The understanding that comes back is the same.\n\nHow Visionary works\nHindi\n\nWhy do objects fall?\n\nListening in Hindi · understood in English, Hindi, and Bengali\n\nMore lan"
+      },
+      "teacher": {
+        "section": true,
+        "eyebrow": "Your language",
+        "chipsPresent": [
+          "Hindi",
+          "English",
+          "Bengali"
+        ],
+        "unservedPresent": [],
+        "everyLanguageClaim": false,
+        "namesServed": true,
+        "roadmap": true,
+        "head": "Your language\n\nTeach your way.\nExplain your way.\n\nPlan, teach, and adapt in the language you think in.\n\nHow Visionary works\nHindi\n\nIs concept ko simple tarike se kaise samjhaun?\n\nListening in Hindi · understood in English, Hindi, and Bengali\n\nMore languages ar"
+      },
+      "parent": {
+        "section": true,
+        "eyebrow": "Your language",
+        "chipsPresent": [
+          "Hindi",
+          "English",
+          "Bengali"
+        ],
+        "unservedPresent": [],
+        "everyLanguageClaim": false,
+        "namesServed": true,
+        "roadmap": true,
+        "head": "Your language\n\nYour child's progress.\nIn your language.\n\nFollow your child's journey in the language you think in.\n\nHow Visionary works\nHindi\n\nPriya iss hafte physics mein kaisi rahi?\n\nListening in Hindi · understood in English, Hindi, and Bengali\n\nMore langua"
+      },
+      "professional": {
+        "section": true,
+        "eyebrow": "Your language",
+        "chipsPresent": [
+          "Hindi",
+          "English",
+          "Bengali"
+        ],
+        "unservedPresent": [],
+        "everyLanguageClaim": false,
+        "namesServed": true,
+        "roadmap": true,
+        "head": "Your language\n\nYour work.\nIn your language.\n\nThink, ask, and solve in the language that feels natural to you.\n\nHow Visionary works\nHindi\n\nIss project ka architecture kaise behtar karun?\n\nListening in Hindi · understood in English, Hindi, and Bengali\n\nMore lang"
+      },
+      "organization": {
+        "section": true,
+        "eyebrow": "Your language",
+        "chipsPresent": [
+          "Hindi",
+          "English",
+          "Bengali"
+        ],
+        "unservedPresent": [],
+        "everyLanguageClaim": false,
+        "namesServed": true,
+        "roadmap": true,
+        "head": "Your language\n\nYour organization.\nIn your people's languages.\n\nPeople ask, learn, teach, and report in different languages. Visionary keeps the meaning connected across them.\n\nHow Visionary works\nHindi\n\nHamare learners kahan atak rahe hain?\n\nListening in Hindi"
+      }
+    },
+    "ok": true,
+    "consoleErrors": []
+  },
+  "fap84": {
+    "routes": {
+      "/": {
+        "unrecognizedWarnings": 0,
+        "heroImg": {
+          "fetchpriority": "high",
+          "loading": "eager"
+        }
+      },
+      "/research": {
+        "unrecognizedWarnings": 0,
+        "heroImg": {
+          "fetchpriority": "high",
+          "loading": "eager"
+        }
+      },
+      "/privacy": {
+        "unrecognizedWarnings": 0,
+        "heroImg": {
+          "fetchpriority": "high",
+          "loading": "eager"
+        }
+      },
+      "/terms": {
+        "unrecognizedWarnings": 0,
+        "heroImg": {
+          "fetchpriority": "high",
+          "loading": "eager"
+        }
+      },
+      "/security": {
+        "unrecognizedWarnings": 0,
+        "heroImg": {
+          "fetchpriority": "high",
+          "loading": "eager"
+        }
+      },
+      "/cookies": {
+        "unrecognizedWarnings": 0,
+        "heroImg": {
+          "fetchpriority": "high",
+          "loading": "eager"
+        }
+      },
+      "/accessibility": {
+        "unrecognizedWarnings": 0,
+        "heroImg": {
+          "fetchpriority": "high",
+          "loading": "eager"
+        }
+      }
+    },
+    "ok": true
+  }
+}

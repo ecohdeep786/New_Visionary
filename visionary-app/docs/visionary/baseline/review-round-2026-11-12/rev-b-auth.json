@@ -1,0 +1,49 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "betaHead": "f8c3fd1d",
+  "fap70": {
+    "email": "rev-fap70-1794474514583@visionary.test",
+    "view": {
+      "heading": "Create a Visionary account",
+      "claim": "Local preview — verification is simulated; no email is sent. Any 6-digit code completes signup for rev-fap70-1794474514583@visionary.test.",
+      "buttons": [
+        "Verify"
+      ],
+      "hasResend": false
+    },
+    "landedOn": "/onboarding",
+    "ok": false
+  },
+  "fap85": {
+    "formView": {
+      "copy": "Enter your account email to create a local password reset token.",
+      "buttons": [
+        "Create reset token"
+      ]
+    },
+    "success": {
+      "heading": "Reset your Visionary password",
+      "text": "isionary | Reset your Visionary password | Enter your account email to create a local password reset token. | Back to sign in | Finish resetting your password | Local preview — no email is sent. A single-use reset token was created in this browser's local storage and expires in 15 minutes. Continue to set a new passwor",
+      "continueHref": "/reset-password?token=e81e484b-0cb5-4e0c-968b-8f828b0360cc"
+    },
+    "resetDone": {
+      "url": "/reset-password",
+      "h": "Password updated",
+      "text": "isionary | Password updated | Your saved account and learning setup will be kept. | Your password has been updated. Sign in with your new password. | Sign in | Back to sign in"
+    },
+    "ok": false
+  },
+  "fap86": {
+    "fired": "dispatched",
+    "toastSeen": {
+      "present": false
+    },
+    "hadClose": 0,
+    "afterClose": {
+      "present": false
+    },
+    "shimWarns": [],
+    "ok": false
+  },
+  "consoleIssues": []
+}
