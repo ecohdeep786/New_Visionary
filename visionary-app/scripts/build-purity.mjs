@@ -14,6 +14,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const BACKEND_SRC = 'backend/upstream/backend/src';
+/** Only these two services may CONFIGURE a client from the emulator env (each with its own fail-closed contract). */
 const EMULATOR_READERS_ALLOWED = [
   'auth/firebase/firebase-admin.service.ts',
   'auth/firebase-product/firebase-product.service.ts',
@@ -29,6 +30,27 @@ const FAIL_CLOSED_MARKERS = {
     'Emulator mode requires FIREBASE_AUTH_EMULATOR_HOST; live fallback is prohibited',
   ],
 };
+/**
+ * Dev evolved three more emulator-env readers; each is a REFUSAL/CONSISTENCY
+ * read (never client configuration) and must carry its verified contract:
+ *   - overview store: the emulator realm is fenced to the disposable test
+ *     schema, and any emulator outside test mode throws;
+ *   - production runtime: production refuses every emulator env outright;
+ *   - provision links: the runtime mode must AGREE with the intent's declared
+ *     firestoreMode or the provision conflicts (409).
+ */
+const EMULATOR_REFUSERS = {
+  'overview/product-overview.store.ts': [
+    'No emulator realm may reuse the live bare-UID schema',
+    'demo-visionary-kan42',
+  ],
+  'platform/production-runtime.ts': [
+    'Production cannot use an emulator.',
+  ],
+  'workspaces/firestore-provision-links.ts': [
+    "throw new ProvisionError('CONFLICT', 409)",
+  ],
+};
 
 export function checkBackendEmulatorGating(repoRoot) {
   const problems = [];
@@ -41,7 +63,7 @@ export function checkBackendEmulatorGating(repoRoot) {
       const rel = full.slice(base.length + 1).replace(/\\/g, '/');
       const src = readFileSync(full, 'utf8');
       const readsEmulator = /FIRESTORE_EMULATOR_HOST|FIREBASE_AUTH_EMULATOR_HOST|USE_EMULATOR/.test(src);
-      if (readsEmulator && !EMULATOR_READERS_ALLOWED.includes(rel)) {
+      if (readsEmulator && !EMULATOR_READERS_ALLOWED.includes(rel) && !EMULATOR_REFUSERS[rel]) {
         problems.push(`ungated emulator reader outside the allowed services: ${rel}`);
       }
     }
@@ -53,6 +75,13 @@ export function checkBackendEmulatorGating(repoRoot) {
       if (!src.includes(marker)) problems.push(`fail-closed marker missing in ${rel}: "${marker.slice(0, 60)}…"`);
     }
   }
+  for (const [rel, markers] of Object.entries(EMULATOR_REFUSERS)) {
+    let src;
+    try { src = readFileSync(resolve(base, rel), 'utf8'); } catch { problems.push(`registered emulator refuser is missing: ${rel}`); continue; }
+    for (const marker of markers) {
+      if (!src.includes(marker)) problems.push(`refusal contract marker missing in ${rel}: "${marker.slice(0, 60)}…"`);
+    }
+  }
   return { check: 'backend-emulator-gating', problems };
 }
 
@@ -60,28 +89,45 @@ export function checkFrontendFixtureGating(repoRoot) {
   const problems = [];
   const appClient = readFileSync(resolve(repoRoot, 'frontend/src/api/appClient.js'), 'utf8');
   const app = readFileSync(resolve(repoRoot, 'frontend/src/App.jsx'), 'utf8');
-  if (!/if \(!enterDemoDev\) throw new Error\('Demo account selection is available only in development\.'\)/.test(appClient)) {
-    problems.push('enterDemo is not DEV-gated in appClient.js');
+  // The demo client surface was REMOVED from appClient.js upstream (dev): no
+  // enterDemo method, no demoFixtures import — absent is stronger than gated.
+  if (/enterDemo|demoFixtures/.test(appClient)) {
+    problems.push('appClient.js carries a demo surface; the client must have none (removed upstream)');
   }
-  if (!/person\.id\.startsWith\('demo-'\)/.test(appClient) || !/person\.email\.endsWith\('@visionary\.test'\)/.test(appClient)) {
-    problems.push('enterDemo does not restrict to fictional demo-* @visionary.test accounts');
-  }
-  if (!/await import\('\.\/demoFixtures\.js'\)/.test(appClient)) {
-    problems.push('demoFixtures must be reached only through the DEV-gated dynamic import');
-  }
-  if (!/const enterDemoDev = import\.meta\.env\?\.DEV \? async function/.test(appClient) || !/scenarioPersonas = import\.meta\.env\?\.DEV \? \[/.test(readFileSync(resolve(repoRoot, 'frontend/src/services/workspaceService.ts'), 'utf8'))) {
-    problems.push('the enterDemo implementation must be statically DEV-only (enterDemoDev) so production bundles eliminate it');
-  }
-  if (!/import\.meta\.env\.DEV \? lazy\(\(\) => import\('@\/pages\/DemoPreview'\)\) : null/.test(app)) {
+  // The demo route is removed from App.jsx upstream; if it ever returns it
+  // must be statically DEV-only again.
+  if (/DemoPreview/.test(app) && !/import\.meta\.env\.DEV \? lazy\(\(\) => import\('@\/pages\/DemoPreview'\)\) : null/.test(app)) {
     problems.push('the DemoPreview route is not statically DEV-only in App.jsx');
   }
+  // NO production activation path may reference the fixture surface: dev
+  // removed both callers (the demo client method and the demo route), so no
+  // src file outside workspaceService itself may import seedDemo /
+  // scenarioPersonas / demoFixtures — the fictional data is then unreachable
+  // in the production graph and the real-build dist scan proves the
+  // elimination empirically. (The SCOPE-06 test fixtures seed through
+  // seedDemo from frontend/tests — a test-only consumer, never shipped.)
+  const srcRoot = resolve(repoRoot, 'frontend/src');
+  const walk = (dir) => {
+    for (const name of readdirSync(dir)) {
+      const full = join(dir, name);
+      if (statSync(full).isDirectory()) { walk(full); continue; }
+      if (!/\.(ts|tsx|js|jsx)$/.test(name)) continue;
+      const rel = full.slice(srcRoot.length + 1).replace(/\\/g, '/');
+      if (rel === 'services/workspaceService.ts' || rel === 'api/demoFixtures.js') continue;
+      const src = readFileSync(full, 'utf8');
+      if (/seedDemo|scenarioPersonas|demoFixtures/.test(src)) {
+        problems.push(`production activation path references the fixture surface: ${rel}`);
+      }
+    }
+  };
+  walk(srcRoot);
   return { check: 'frontend-fixture-gating', problems };
 }
 
 export function checkBuiltDist(repoRoot, distDir) {
   const problems = [];
   /* Activation-surface markers only: the @visionary.test placeholders in Children/FamilyBilling are inert UI copy (recorded as a product note, not a purity failure). */
-  const markers = ['demoFixtures', 'seedConnectedFixtures', 'DemoPreview', 'seedDemo', 'scenarioPersonas'];
+  const markers = ['demoFixtures', 'seedConnectedFixtures', 'DemoPreview', 'seedDemo', 'scenarioPersonas', 'demoStages'];
   const walk = (dir) => {
     for (const name of readdirSync(dir)) {
       const full = join(dir, name);

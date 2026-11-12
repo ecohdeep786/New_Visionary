@@ -18,10 +18,15 @@ const KEY = 'visionary_workspace_v2';
 export function reportDays(days:number):7|30{if(days!==7&&days!==30)throw new Error('Choose a supported report period.');return days;}
 export const roleNames: Record<Role, string> = {student:'Learner',teacher:'Teacher',parent:'Parent',professional:'Professional',organization:'Organization admin'};
 export const plans: Plan[] = [{id:'Free',price:0,profiles:1,provisional:false},{id:'Premium',price:299,profiles:1,provisional:false},{id:'Family',price:499,profiles:6,provisional:true}];
-/* ACCEPT-06 (KAN-122): the fictional-persona fixture data is statically DEV-only. */
-export const scenarioPersonas = import.meta.env?.DEV ? [
+/* ACCEPT-06 (KAN-122): the fictional-persona fixture data has NO production
+   activation path — the demo client surface and demo route were removed
+   upstream, and no src file outside this module may import the fixture
+   surface (enforced by scripts/build-purity.mjs). The production bundle
+   tree-shakes it; the dist scan proves the elimination. The SCOPE-06 test
+   fixtures seed through seedDemo. */
+export const scenarioPersonas = [
  ['minor-cbse','Aarav · CBSE learner','student','minor'],['bengali','Maya · West Bengal learner','student','minor'],['exam','Riya · Exam preparation','student','adult'],['college','Kabir · Higher education','student','adult'],['adult','Asha · Independent learner','student','adult'],['teacher','Dev · Independent teacher','teacher','adult'],['school-teacher','Nila · Organization teacher','teacher','adult'],['parent','Anika · Parent of two','parent','adult'],['professional','Sam · Job-seeking professional','professional','adult'],['employee','Ira · Employer-sponsored','professional','adult'],['school-admin','School administrator','organization','adult'],['company-admin','Company learning administrator','organization','adult'],
-] as const : [];
+] as const;
 let clock = () => new Date();
 let latency = 180;
 let fault: 'none' | 'offline' | 'error' = 'none';
@@ -595,11 +600,14 @@ export function familyClassworkDigest(ctx:RequestContext,childId:string,days:7|3
    !submissions.some(item=>item.assignment_id===row.id&&item.student_email===person.email)).map(row=>({id:String(row.id),title:typeof row.title==='string'?row.title:'Class activity',dueDate:String(row.due_date)})).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
  return {period:`Last ${days} days`,returned,upcoming};
 }
-const demoStages:Record<string,string>=import.meta.env?.DEV?{exam:'competitive',college:'higher_ed',professional:'professional',employee:'professional'}:{};
-export const seedDemo = import.meta.env?.DEV ? function seedDemo(personaId:string){const persona=scenarioPersonas.find(p=>p[0]===personaId);if(!persona)throw new Error('Unknown demo scenario.');const db=read();for(const p of scenarioPersonas){const personId=`demo-${p[0]}`;let person=db.people.find(x=>x.id===personId);if(!person){person={id:personId,email:`${p[0]}@visionary.test`,name:p[1].split(' · ')[0]!,ageBand:p[3],roles:[p[2]]};db.people.push(person);const ws=addWorkspace(db,person,p[2]);db.active[personId]=ws.id;const data=db.data[ws.id]!;data.preferences.locale=p[0]==='bengali'?'bn':'en';data.notifications.push({id:`welcome-${personId}`,text:'Your demo workspace is ready. Start with one useful next step.',read:false,path:'/dashboard/home'});}if(!person.learningContext&&demoStages[p[0]])person.learningContext={stage:demoStages[p[0]],subjects:[]};}
+const demoStages:Record<string,string>={exam:'competitive',college:'higher_ed',professional:'professional',employee:'professional'};
+/* ACCEPT-06 (KAN-122): demo seeding has NO production activation path (see
+   the scenarioPersonas note) — the production bundle tree-shakes it and the
+   dist scan proves the elimination. */
+export const seedDemo = function seedDemo(personaId:string){const persona=scenarioPersonas.find(p=>p[0]===personaId);if(!persona)throw new Error('Unknown demo scenario.');const db=read();for(const p of scenarioPersonas){const personId=`demo-${p[0]}`;let person=db.people.find(x=>x.id===personId);if(!person){person={id:personId,email:`${p[0]}@visionary.test`,name:p[1].split(' · ')[0]!,ageBand:p[3],roles:[p[2]]};db.people.push(person);const ws=addWorkspace(db,person,p[2]);db.active[personId]=ws.id;const data=db.data[ws.id]!;data.preferences.locale=p[0]==='bengali'?'bn':'en';data.notifications.push({id:`welcome-${personId}`,text:'Your demo workspace is ready. Start with one useful next step.',read:false,path:'/dashboard/home'});}if(!person.learningContext&&demoStages[p[0]])person.learningContext={stage:demoStages[p[0]],subjects:[]};}
  const parent='demo-parent';for(const child of ['demo-minor-cbse','demo-bengali'])if(!db.relationships.some(r=>r.id===`${parent}:${child}`))db.relationships.push({id:`${parent}:${child}`,from:parent,to:child,type:'guardian',scope:['progress-summary'],status:'active'});
  const person=db.people.find(p=>p.id===`demo-${personaId}`)!;if(person.ageBand==='adult')for(const role of Object.keys(roleNames) as Role[]){if(!person.roles.includes(role))person.roles.push(role);addWorkspace(db,person,role);}write(db);return person;
-} : function seedDemo():never{ throw new Error('Demo seeding is available only in development.'); };
+};
 export function exportWorkspace(ctx:RequestContext){return JSON.stringify(snapshot(ctx),null,2);}
 export function selectConversation(ctx:RequestContext,conversationId:string|null){const db=read();const data=access(db,ctx);if(conversationId&&!data.conversations.some(c=>c.id===conversationId))throw new Error('Conversation not found.');data.activeConversationId=conversationId||undefined;write(db);}
 export function setDemoUsage(ctx:RequestContext,usage:number){const db=read();const data=access(db,ctx);data.subscription.usage=Math.max(0,usage);data.subscription.usageDay=now().slice(0,10);write(db);}
