@@ -1,0 +1,157 @@
+{
+  "task": "F-19 teacher experience review",
+  "at": "2026-11-05T23:45:32.695Z",
+  "base": "http://127.0.0.1:4198",
+  "records": [
+    {
+      "file": "teacher-prepare.png",
+      "surface": "prepare",
+      "prepare": {
+        "h1": "Prepare a lesson",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher Growth | Library | Build | Progress | Preferences & account | Notifications | Personalization | Privacy | Plans &"
+      },
+      "errors": []
+    },
+    {
+      "check": "prepare-surface",
+      "ok": true,
+      "detail": "{\"h1\":\"Prepare a lesson\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching page"
+    },
+    {
+      "file": "teacher-create-class-modal.png",
+      "surface": "classes",
+      "note": "CreateClassModal filled"
+    },
+    {
+      "file": "teacher-class-created.png",
+      "surface": "classes",
+      "created": {
+        "classVisible": true,
+        "joinCode": null,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher Growth | Library | Build | Progress | Preferences & acco"
+      },
+      "errors": []
+    },
+    {
+      "check": "class-created",
+      "ok": true,
+      "detail": "{\"classVisible\":true,\"joinCode\":null,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and to"
+    },
+    {
+      "file": "teacher-class-detail.png",
+      "surface": "class-detail",
+      "detail": {
+        "tabs": [
+          "Stream",
+          "Classwork",
+          "Curriculum",
+          "People",
+          "Insights",
+          "Community"
+        ],
+        "joinCode": "VISION-0C3ADD0C"
+      },
+      "errors": []
+    },
+    {
+      "check": "class-detail-tabs",
+      "ok": true,
+      "detail": "{\"tabs\":[\"Stream\",\"Classwork\",\"Curriculum\",\"People\",\"Insights\",\"Community\"],\"joinCode\":\"VISION-0C3ADD0C\"}"
+    },
+    {
+      "file": "teacher-class-curriculum.png",
+      "surface": "class-detail",
+      "curriculum": {
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher Growth | Library | Build | Progress | Preferences & account | Notifications | Personalization | Privacy | Plans &",
+        "honest": true
+      }
+    },
+    {
+      "check": "class-curriculum-tab",
+      "ok": true,
+      "detail": "{\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | C"
+    },
+    {
+      "file": "teacher-class-classwork.png",
+      "surface": "class-detail",
+      "classwork": {
+        "createBtn": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher Growth | Library | Build | Progress | Preferences & acco"
+      }
+    },
+    {
+      "check": "class-classwork-tab",
+      "ok": true,
+      "detail": "{\"createBtn\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and t"
+    },
+    {
+      "file": "teacher-assignment-form.png",
+      "surface": "class-detail",
+      "assignForm": {
+        "inlineForm": 1,
+        "fields": 8
+      }
+    },
+    {
+      "check": "assignment-creation-inline-form",
+      "ok": true,
+      "detail": "{\"inlineForm\":1,\"fields\":8}"
+    },
+    {
+      "file": "teacher-class-people.png",
+      "surface": "class-detail",
+      "people": {
+        "honestEmpty": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher"
+      }
+    },
+    {
+      "check": "class-people-honest",
+      "ok": true,
+      "detail": "{\"honestEmpty\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and"
+    },
+    {
+      "file": "teacher-class-insights.png",
+      "surface": "class-detail",
+      "insights": {
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher",
+        "honest": true
+      }
+    },
+    {
+      "check": "class-insights-honest",
+      "ok": true,
+      "detail": "{\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | C"
+    },
+    {
+      "file": "teacher-learners.png",
+      "surface": "learners",
+      "learners": {
+        "h1": "Learners",
+        "honest": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher Growth | Library | Build | Progress"
+      },
+      "errors": []
+    },
+    {
+      "check": "learners-honest",
+      "ok": true,
+      "detail": "{\"h1\":\"Learners\",\"honest\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teachin"
+    },
+    {
+      "file": "teacher-insights.png",
+      "surface": "insights",
+      "insights2": {
+        "h1": "Teaching insights",
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | Ask | Teacher Growth | Library | Build | Progress"
+      },
+      "errors": []
+    },
+    {
+      "check": "insights-surface",
+      "ok": true,
+      "detail": "{\"h1\":\"Teaching insights\",\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pag"
+    }
+  ],
+  "defects": []
+}

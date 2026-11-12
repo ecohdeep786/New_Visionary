@@ -1,0 +1,1526 @@
+{
+  "task": "F-28 deterministic copy-module pin (every src/lib Copy module pinned name-stable; structure fixed at 153 chunks; sizes stable across builds)",
+  "measuredAt": "2026-11-06T18:32:36.445Z",
+  "tolerancePercent": 2,
+  "ledgerShape": "grouped-by-name (count + sizes/gzip arrays sorted descending, paired positionally at verify)",
+  "chunks": [
+    {
+      "file": "vendor.js",
+      "count": 1,
+      "bytes": [
+        587188
+      ],
+      "gzipBytes": [
+        166666
+      ]
+    },
+    {
+      "file": "index.js",
+      "count": 3,
+      "bytes": [
+        184503,
+        54514,
+        25910
+      ],
+      "gzipBytes": [
+        57547,
+        8492,
+        6549
+      ]
+    },
+    {
+      "file": "WorkspaceTools.js",
+      "count": 1,
+      "bytes": [
+        123704
+      ],
+      "gzipBytes": [
+        32626
+      ]
+    },
+    {
+      "file": "DashboardLayout.js",
+      "count": 1,
+      "bytes": [
+        66787
+      ],
+      "gzipBytes": [
+        20671
+      ]
+    },
+    {
+      "file": "LearningWorkspace.js",
+      "count": 1,
+      "bytes": [
+        65840
+      ],
+      "gzipBytes": [
+        18484
+      ]
+    },
+    {
+      "file": "vendor-radix.js",
+      "count": 1,
+      "bytes": [
+        62308
+      ],
+      "gzipBytes": [
+        18841
+      ]
+    },
+    {
+      "file": "DashboardHome.js",
+      "count": 1,
+      "bytes": [
+        55955
+      ],
+      "gzipBytes": [
+        17005
+      ]
+    },
+    {
+      "file": "primaryWorkspaceCopy.js",
+      "count": 1,
+      "bytes": [
+        54873
+      ],
+      "gzipBytes": [
+        13166
+      ]
+    },
+    {
+      "file": "vendor-icons.js",
+      "count": 1,
+      "bytes": [
+        54785
+      ],
+      "gzipBytes": [
+        11218
+      ]
+    },
+    {
+      "file": "ClassDetail.js",
+      "count": 1,
+      "bytes": [
+        50359
+      ],
+      "gzipBytes": [
+        13786
+      ]
+    },
+    {
+      "file": "Guide.js",
+      "count": 1,
+      "bytes": [
+        48259
+      ],
+      "gzipBytes": [
+        15108
+      ]
+    },
+    {
+      "file": "learningCopy.js",
+      "count": 1,
+      "bytes": [
+        43209
+      ],
+      "gzipBytes": [
+        9921
+      ]
+    },
+    {
+      "file": "parentCopy.js",
+      "count": 1,
+      "bytes": [
+        40306
+      ],
+      "gzipBytes": [
+        9176
+      ]
+    },
+    {
+      "file": "organizationAuthorCopy.js",
+      "count": 1,
+      "bytes": [
+        38894
+      ],
+      "gzipBytes": [
+        8622
+      ]
+    },
+    {
+      "file": "PremiumExploreSection.js",
+      "count": 1,
+      "bytes": [
+        37189
+      ],
+      "gzipBytes": [
+        9849
+      ]
+    },
+    {
+      "file": "ArtifactStudio.js",
+      "count": 1,
+      "bytes": [
+        35390
+      ],
+      "gzipBytes": [
+        10171
+      ]
+    },
+    {
+      "file": "CommunityTab.js",
+      "count": 1,
+      "bytes": [
+        35381
+      ],
+      "gzipBytes": [
+        10433
+      ]
+    },
+    {
+      "file": "Plans.js",
+      "count": 1,
+      "bytes": [
+        35015
+      ],
+      "gzipBytes": [
+        10403
+      ]
+    },
+    {
+      "file": "classTabCopy.js",
+      "count": 1,
+      "bytes": [
+        34092
+      ],
+      "gzipBytes": [
+        8389
+      ]
+    },
+    {
+      "file": "projectCopy.js",
+      "count": 1,
+      "bytes": [
+        32405
+      ],
+      "gzipBytes": [
+        7555
+      ]
+    },
+    {
+      "file": "OrganizationContent.js",
+      "count": 1,
+      "bytes": [
+        31453
+      ],
+      "gzipBytes": [
+        8825
+      ]
+    },
+    {
+      "file": "stageCopy.js",
+      "count": 1,
+      "bytes": [
+        31176
+      ],
+      "gzipBytes": [
+        7188
+      ]
+    },
+    {
+      "file": "homeCopy.js",
+      "count": 1,
+      "bytes": [
+        31125
+      ],
+      "gzipBytes": [
+        7713
+      ]
+    },
+    {
+      "file": "classworkCopy.js",
+      "count": 1,
+      "bytes": [
+        30846
+      ],
+      "gzipBytes": [
+        6682
+      ]
+    },
+    {
+      "file": "professionalCopy.js",
+      "count": 1,
+      "bytes": [
+        30437
+      ],
+      "gzipBytes": [
+        7403
+      ]
+    },
+    {
+      "file": "PremiumJourneyFlowSection.js",
+      "count": 1,
+      "bytes": [
+        30307
+      ],
+      "gzipBytes": [
+        7851
+      ]
+    },
+    {
+      "file": "StudentClasses.js",
+      "count": 1,
+      "bytes": [
+        29740
+      ],
+      "gzipBytes": [
+        9007
+      ]
+    },
+    {
+      "file": "guideCopy.js",
+      "count": 1,
+      "bytes": [
+        28589
+      ],
+      "gzipBytes": [
+        7612
+      ]
+    },
+    {
+      "file": "teacherCopy.js",
+      "count": 1,
+      "bytes": [
+        28273
+      ],
+      "gzipBytes": [
+        7215
+      ]
+    },
+    {
+      "file": "PrivacyPage.js",
+      "count": 1,
+      "bytes": [
+        28016
+      ],
+      "gzipBytes": [
+        7693
+      ]
+    },
+    {
+      "file": "organizationCopy.js",
+      "count": 1,
+      "bytes": [
+        27962
+      ],
+      "gzipBytes": [
+        6855
+      ]
+    },
+    {
+      "file": "legacyLearningCopy.js",
+      "count": 1,
+      "bytes": [
+        27536
+      ],
+      "gzipBytes": [
+        7201
+      ]
+    },
+    {
+      "file": "SecurityPage.js",
+      "count": 1,
+      "bytes": [
+        26696
+      ],
+      "gzipBytes": [
+        6750
+      ]
+    },
+    {
+      "file": "RoleWorkspace.js",
+      "count": 1,
+      "bytes": [
+        26539
+      ],
+      "gzipBytes": [
+        8167
+      ]
+    },
+    {
+      "file": "Onboarding.js",
+      "count": 1,
+      "bytes": [
+        26361
+      ],
+      "gzipBytes": [
+        8896
+      ]
+    },
+    {
+      "file": "learningPipelineService.js",
+      "count": 1,
+      "bytes": [
+        25994
+      ],
+      "gzipBytes": [
+        8486
+      ]
+    },
+    {
+      "file": "TermsPage.js",
+      "count": 1,
+      "bytes": [
+        25250
+      ],
+      "gzipBytes": [
+        7159
+      ]
+    },
+    {
+      "file": "PartnersPage.js",
+      "count": 1,
+      "bytes": [
+        25230
+      ],
+      "gzipBytes": [
+        6760
+      ]
+    },
+    {
+      "file": "ResearchNewsPage.js",
+      "count": 1,
+      "bytes": [
+        24955
+      ],
+      "gzipBytes": [
+        6777
+      ]
+    },
+    {
+      "file": "CoachingPage.js",
+      "count": 1,
+      "bytes": [
+        24156
+      ],
+      "gzipBytes": [
+        6729
+      ]
+    },
+    {
+      "file": "ClassworkStudy.js",
+      "count": 1,
+      "bytes": [
+        21937
+      ],
+      "gzipBytes": [
+        6666
+      ]
+    },
+    {
+      "file": "voiceService.js",
+      "count": 1,
+      "bytes": [
+        21897
+      ],
+      "gzipBytes": [
+        7265
+      ]
+    },
+    {
+      "file": "contentRepository.js",
+      "count": 1,
+      "bytes": [
+        21644
+      ],
+      "gzipBytes": [
+        6930
+      ]
+    },
+    {
+      "file": "CareersPage.js",
+      "count": 1,
+      "bytes": [
+        21557
+      ],
+      "gzipBytes": [
+        6049
+      ]
+    },
+    {
+      "file": "CookiesPage.js",
+      "count": 1,
+      "bytes": [
+        20900
+      ],
+      "gzipBytes": [
+        5875
+      ]
+    },
+    {
+      "file": "AboutUsPage.js",
+      "count": 1,
+      "bytes": [
+        19471
+      ],
+      "gzipBytes": [
+        5439
+      ]
+    },
+    {
+      "file": "learningSurfaceCopy.js",
+      "count": 1,
+      "bytes": [
+        19299
+      ],
+      "gzipBytes": [
+        5241
+      ]
+    },
+    {
+      "file": "UpdatesPage.js",
+      "count": 1,
+      "bytes": [
+        18271
+      ],
+      "gzipBytes": [
+        4991
+      ]
+    },
+    {
+      "file": "DownloadPage.js",
+      "count": 1,
+      "bytes": [
+        17975
+      ],
+      "gzipBytes": [
+        4817
+      ]
+    },
+    {
+      "file": "classroomService.js",
+      "count": 1,
+      "bytes": [
+        17919
+      ],
+      "gzipBytes": [
+        5677
+      ]
+    },
+    {
+      "file": "supportCopy.js",
+      "count": 1,
+      "bytes": [
+        17467
+      ],
+      "gzipBytes": [
+        5104
+      ]
+    },
+    {
+      "file": "privacyCopy.js",
+      "count": 1,
+      "bytes": [
+        17410
+      ],
+      "gzipBytes": [
+        4860
+      ]
+    },
+    {
+      "file": "AccessibilityPage.js",
+      "count": 1,
+      "bytes": [
+        16247
+      ],
+      "gzipBytes": [
+        4891
+      ]
+    },
+    {
+      "file": "ContactPage.js",
+      "count": 1,
+      "bytes": [
+        16026
+      ],
+      "gzipBytes": [
+        4538
+      ]
+    },
+    {
+      "file": "mentorStateService.js",
+      "count": 1,
+      "bytes": [
+        15780
+      ],
+      "gzipBytes": [
+        5574
+      ]
+    },
+    {
+      "file": "CollegePage.js",
+      "count": 1,
+      "bytes": [
+        15691
+      ],
+      "gzipBytes": [
+        5893
+      ]
+    },
+    {
+      "file": "ReferralPage.js",
+      "count": 1,
+      "bytes": [
+        15465
+      ],
+      "gzipBytes": [
+        4888
+      ]
+    },
+    {
+      "file": "ParentPage.js",
+      "count": 1,
+      "bytes": [
+        15219
+      ],
+      "gzipBytes": [
+        5788
+      ]
+    },
+    {
+      "file": "TeacherPage.js",
+      "count": 1,
+      "bytes": [
+        15120
+      ],
+      "gzipBytes": [
+        5719
+      ]
+    },
+    {
+      "file": "StudentPage.js",
+      "count": 1,
+      "bytes": [
+        15101
+      ],
+      "gzipBytes": [
+        5702
+      ]
+    },
+    {
+      "file": "Landing.js",
+      "count": 1,
+      "bytes": [
+        15026
+      ],
+      "gzipBytes": [
+        5351
+      ]
+    },
+    {
+      "file": "AILearningPage.js",
+      "count": 1,
+      "bytes": [
+        14628
+      ],
+      "gzipBytes": [
+        4109
+      ]
+    },
+    {
+      "file": "CommunityPage.js",
+      "count": 1,
+      "bytes": [
+        14573
+      ],
+      "gzipBytes": [
+        4636
+      ]
+    },
+    {
+      "file": "TeacherHome.js",
+      "count": 1,
+      "bytes": [
+        14446
+      ],
+      "gzipBytes": [
+        5399
+      ]
+    },
+    {
+      "file": "SafetyPage.js",
+      "count": 1,
+      "bytes": [
+        14201
+      ],
+      "gzipBytes": [
+        4230
+      ]
+    },
+    {
+      "file": "Connections.js",
+      "count": 1,
+      "bytes": [
+        14031
+      ],
+      "gzipBytes": [
+        4903
+      ]
+    },
+    {
+      "file": "TopicDetail.js",
+      "count": 1,
+      "bytes": [
+        13735
+      ],
+      "gzipBytes": [
+        4769
+      ]
+    },
+    {
+      "file": "Learn.js",
+      "count": 1,
+      "bytes": [
+        13733
+      ],
+      "gzipBytes": [
+        4842
+      ]
+    },
+    {
+      "file": "SchoolPage.js",
+      "count": 1,
+      "bytes": [
+        13701
+      ],
+      "gzipBytes": [
+        4585
+      ]
+    },
+    {
+      "file": "stageTransitionService.js",
+      "count": 1,
+      "bytes": [
+        13255
+      ],
+      "gzipBytes": [
+        4470
+      ]
+    },
+    {
+      "file": "OrganizationPage.js",
+      "count": 1,
+      "bytes": [
+        13227
+      ],
+      "gzipBytes": [
+        5201
+      ]
+    },
+    {
+      "file": "roleNotificationCopy.js",
+      "count": 1,
+      "bytes": [
+        12741
+      ],
+      "gzipBytes": [
+        3651
+      ]
+    },
+    {
+      "file": "profileCopy.js",
+      "count": 1,
+      "bytes": [
+        12717
+      ],
+      "gzipBytes": [
+        2960
+      ]
+    },
+    {
+      "file": "Settings.js",
+      "count": 1,
+      "bytes": [
+        12496
+      ],
+      "gzipBytes": [
+        4441
+      ]
+    },
+    {
+      "file": "learningProgressCopy.js",
+      "count": 1,
+      "bytes": [
+        11383
+      ],
+      "gzipBytes": [
+        3389
+      ]
+    },
+    {
+      "file": "settingsCopy.js",
+      "count": 1,
+      "bytes": [
+        11136
+      ],
+      "gzipBytes": [
+        3060
+      ]
+    },
+    {
+      "file": "learnerGoalCopy.js",
+      "count": 1,
+      "bytes": [
+        10986
+      ],
+      "gzipBytes": [
+        2976
+      ]
+    },
+    {
+      "file": "Practice.js",
+      "count": 1,
+      "bytes": [
+        10601
+      ],
+      "gzipBytes": [
+        3911
+      ]
+    },
+    {
+      "file": "Cohorts.js",
+      "count": 1,
+      "bytes": [
+        9679
+      ],
+      "gzipBytes": [
+        3384
+      ]
+    },
+    {
+      "file": "LearningRepresentation.js",
+      "count": 1,
+      "bytes": [
+        9072
+      ],
+      "gzipBytes": [
+        3025
+      ]
+    },
+    {
+      "file": "useSignInMethods.js",
+      "count": 1,
+      "bytes": [
+        9064
+      ],
+      "gzipBytes": [
+        3889
+      ]
+    },
+    {
+      "file": "cohortCopy.js",
+      "count": 1,
+      "bytes": [
+        8601
+      ],
+      "gzipBytes": [
+        2695
+      ]
+    },
+    {
+      "file": "Profile.js",
+      "count": 1,
+      "bytes": [
+        8074
+      ],
+      "gzipBytes": [
+        3084
+      ]
+    },
+    {
+      "file": "Register.js",
+      "count": 1,
+      "bytes": [
+        7977
+      ],
+      "gzipBytes": [
+        2704
+      ]
+    },
+    {
+      "file": "Login.js",
+      "count": 1,
+      "bytes": [
+        6728
+      ],
+      "gzipBytes": [
+        2234
+      ]
+    },
+    {
+      "file": "learningMilestoneCopy.js",
+      "count": 1,
+      "bytes": [
+        6342
+      ],
+      "gzipBytes": [
+        2005
+      ]
+    },
+    {
+      "file": "Children.js",
+      "count": 1,
+      "bytes": [
+        6326
+      ],
+      "gzipBytes": [
+        2380
+      ]
+    },
+    {
+      "file": "Explore.js",
+      "count": 1,
+      "bytes": [
+        6282
+      ],
+      "gzipBytes": [
+        2535
+      ]
+    },
+    {
+      "file": "ClassworkProjectSubmission.js",
+      "count": 1,
+      "bytes": [
+        5328
+      ],
+      "gzipBytes": [
+        2273
+      ]
+    },
+    {
+      "file": "dailyPlanService.js",
+      "count": 1,
+      "bytes": [
+        5131
+      ],
+      "gzipBytes": [
+        2027
+      ]
+    },
+    {
+      "file": "roleMentorService.js",
+      "count": 1,
+      "bytes": [
+        4306
+      ],
+      "gzipBytes": [
+        1849
+      ]
+    },
+    {
+      "file": "Learners.js",
+      "count": 1,
+      "bytes": [
+        4198
+      ],
+      "gzipBytes": [
+        1825
+      ]
+    },
+    {
+      "file": "LandingFAQ.js",
+      "count": 1,
+      "bytes": [
+        4107
+      ],
+      "gzipBytes": [
+        1524
+      ]
+    },
+    {
+      "file": "notificationCopy.js",
+      "count": 1,
+      "bytes": [
+        3934
+      ],
+      "gzipBytes": [
+        1284
+      ]
+    },
+    {
+      "file": "ResetPassword.js",
+      "count": 1,
+      "bytes": [
+        3838
+      ],
+      "gzipBytes": [
+        1623
+      ]
+    },
+    {
+      "file": "curriculumBridgeService.js",
+      "count": 1,
+      "bytes": [
+        3709
+      ],
+      "gzipBytes": [
+        1554
+      ]
+    },
+    {
+      "file": "representationEngagementCopy.js",
+      "count": 1,
+      "bytes": [
+        3658
+      ],
+      "gzipBytes": [
+        1325
+      ]
+    },
+    {
+      "file": "feedbackCopy.js",
+      "count": 1,
+      "bytes": [
+        3606
+      ],
+      "gzipBytes": [
+        1419
+      ]
+    },
+    {
+      "file": "CubeLearningEntry.js",
+      "count": 1,
+      "bytes": [
+        3392
+      ],
+      "gzipBytes": [
+        1552
+      ]
+    },
+    {
+      "file": "stagePresentation.js",
+      "count": 1,
+      "bytes": [
+        3330
+      ],
+      "gzipBytes": [
+        1151
+      ]
+    },
+    {
+      "file": "learningMetrics.js",
+      "count": 1,
+      "bytes": [
+        3027
+      ],
+      "gzipBytes": [
+        1280
+      ]
+    },
+    {
+      "file": "learningCatalogueCopy.js",
+      "count": 1,
+      "bytes": [
+        2916
+      ],
+      "gzipBytes": [
+        1104
+      ]
+    },
+    {
+      "file": "ForgotPassword.js",
+      "count": 1,
+      "bytes": [
+        2749
+      ],
+      "gzipBytes": [
+        1211
+      ]
+    },
+    {
+      "file": "LessonObjectivePreview.js",
+      "count": 1,
+      "bytes": [
+        2297
+      ],
+      "gzipBytes": [
+        967
+      ]
+    },
+    {
+      "file": "dialog.js",
+      "count": 1,
+      "bytes": [
+        2191
+      ],
+      "gzipBytes": [
+        919
+      ]
+    },
+    {
+      "file": "billingClient.js",
+      "count": 1,
+      "bytes": [
+        2102
+      ],
+      "gzipBytes": [
+        1116
+      ]
+    },
+    {
+      "file": "CinematicHero.js",
+      "count": 1,
+      "bytes": [
+        2100
+      ],
+      "gzipBytes": [
+        1027
+      ]
+    },
+    {
+      "file": "workspacePresentationCopy.js",
+      "count": 1,
+      "bytes": [
+        2029
+      ],
+      "gzipBytes": [
+        880
+      ]
+    },
+    {
+      "file": "Support.js",
+      "count": 1,
+      "bytes": [
+        1985
+      ],
+      "gzipBytes": [
+        849
+      ]
+    },
+    {
+      "file": "ValuesStrip.js",
+      "count": 1,
+      "bytes": [
+        1941
+      ],
+      "gzipBytes": [
+        922
+      ]
+    },
+    {
+      "file": "Breadcrumb.js",
+      "count": 1,
+      "bytes": [
+        1862
+      ],
+      "gzipBytes": [
+        812
+      ]
+    },
+    {
+      "file": "resourceEditorDraft.js",
+      "count": 1,
+      "bytes": [
+        1633
+      ],
+      "gzipBytes": [
+        787
+      ]
+    },
+    {
+      "file": "JourneyCatalogue.js",
+      "count": 1,
+      "bytes": [
+        1530
+      ],
+      "gzipBytes": [
+        802
+      ]
+    },
+    {
+      "file": "hero-stage.js",
+      "count": 1,
+      "bytes": [
+        1482
+      ],
+      "gzipBytes": [
+        814
+      ]
+    },
+    {
+      "file": "authReturnTo.js",
+      "count": 1,
+      "bytes": [
+        1191
+      ],
+      "gzipBytes": [
+        588
+      ]
+    },
+    {
+      "file": "ForgotUserId.js",
+      "count": 1,
+      "bytes": [
+        957
+      ],
+      "gzipBytes": [
+        520
+      ]
+    },
+    {
+      "file": "CriterionFeedback.js",
+      "count": 1,
+      "bytes": [
+        881
+      ],
+      "gzipBytes": [
+        513
+      ]
+    },
+    {
+      "file": "useWorkspace.js",
+      "count": 1,
+      "bytes": [
+        875
+      ],
+      "gzipBytes": [
+        489
+      ]
+    },
+    {
+      "file": "LazyImage.js",
+      "count": 1,
+      "bytes": [
+        873
+      ],
+      "gzipBytes": [
+        541
+      ]
+    },
+    {
+      "file": "useThemeColor.js",
+      "count": 1,
+      "bytes": [
+        781
+      ],
+      "gzipBytes": [
+        457
+      ]
+    },
+    {
+      "file": "ConnectedPlanBadge.js",
+      "count": 1,
+      "bytes": [
+        759
+      ],
+      "gzipBytes": [
+        519
+      ]
+    },
+    {
+      "file": "useStudentData.js",
+      "count": 1,
+      "bytes": [
+        717
+      ],
+      "gzipBytes": [
+        457
+      ]
+    },
+    {
+      "file": "legalMeta.js",
+      "count": 1,
+      "bytes": [
+        711
+      ],
+      "gzipBytes": [
+        375
+      ]
+    },
+    {
+      "file": "QuietLink.js",
+      "count": 1,
+      "bytes": [
+        579
+      ],
+      "gzipBytes": [
+        365
+      ]
+    },
+    {
+      "file": "WorkspaceIntro.js",
+      "count": 1,
+      "bytes": [
+        574
+      ],
+      "gzipBytes": [
+        307
+      ]
+    },
+    {
+      "file": "GuideMark.js",
+      "count": 1,
+      "bytes": [
+        552
+      ],
+      "gzipBytes": [
+        388
+      ]
+    },
+    {
+      "file": "WorkspaceEmptyState.js",
+      "count": 1,
+      "bytes": [
+        452
+      ],
+      "gzipBytes": [
+        280
+      ]
+    },
+    {
+      "file": "ChevronIcon.js",
+      "count": 1,
+      "bytes": [
+        414
+      ],
+      "gzipBytes": [
+        308
+      ]
+    },
+    {
+      "file": "billingIntent.js",
+      "count": 1,
+      "bytes": [
+        373
+      ],
+      "gzipBytes": [
+        229
+      ]
+    },
+    {
+      "file": "classColors.js",
+      "count": 1,
+      "bytes": [
+        272
+      ],
+      "gzipBytes": [
+        238
+      ]
+    },
+    {
+      "file": "WorkspaceDetails.js",
+      "count": 1,
+      "bytes": [
+        253
+      ],
+      "gzipBytes": [
+        193
+      ]
+    },
+    {
+      "file": "downloadText.js",
+      "count": 1,
+      "bytes": [
+        204
+      ],
+      "gzipBytes": [
+        184
+      ]
+    },
+    {
+      "file": "organization-problem-3-1600w.js",
+      "count": 1,
+      "bytes": [
+        148
+      ],
+      "gzipBytes": [
+        123
+      ]
+    },
+    {
+      "file": "visionary-bot.js",
+      "count": 1,
+      "bytes": [
+        116
+      ],
+      "gzipBytes": [
+        113
+      ]
+    },
+    {
+      "file": "datetime.js",
+      "count": 1,
+      "bytes": [
+        97
+      ],
+      "gzipBytes": [
+        105
+      ]
+    },
+    {
+      "file": "organization-problem-1-1600w.js",
+      "count": 1,
+      "bytes": [
+        84
+      ],
+      "gzipBytes": [
+        104
+      ]
+    },
+    {
+      "file": "professional-problem-1-1600w.js",
+      "count": 1,
+      "bytes": [
+        84
+      ],
+      "gzipBytes": [
+        102
+      ]
+    },
+    {
+      "file": "problem-understanding.js",
+      "count": 1,
+      "bytes": [
+        77
+      ],
+      "gzipBytes": [
+        97
+      ]
+    },
+    {
+      "file": "student-competitive.js",
+      "count": 1,
+      "bytes": [
+        75
+      ],
+      "gzipBytes": [
+        95
+      ]
+    },
+    {
+      "file": "student-vocational.js",
+      "count": 1,
+      "bytes": [
+        74
+      ],
+      "gzipBytes": [
+        94
+      ]
+    },
+    {
+      "file": "student-secondary.js",
+      "count": 1,
+      "bytes": [
+        73
+      ],
+      "gzipBytes": [
+        93
+      ]
+    },
+    {
+      "file": "teacher-face-main.js",
+      "count": 1,
+      "bytes": [
+        73
+      ],
+      "gzipBytes": [
+        93
+      ]
+    },
+    {
+      "file": "teacher-problem-2.js",
+      "count": 1,
+      "bytes": [
+        73
+      ],
+      "gzipBytes": [
+        93
+      ]
+    },
+    {
+      "file": "parent-face-main.js",
+      "count": 1,
+      "bytes": [
+        72
+      ],
+      "gzipBytes": [
+        92
+      ]
+    },
+    {
+      "file": "problem-practice.js",
+      "count": 1,
+      "bytes": [
+        72
+      ],
+      "gzipBytes": [
+        92
+      ]
+    },
+    {
+      "file": "student-primary.js",
+      "count": 1,
+      "bytes": [
+        71
+      ],
+      "gzipBytes": [
+        91
+      ]
+    },
+    {
+      "file": "student-higher.js",
+      "count": 1,
+      "bytes": [
+        70
+      ],
+      "gzipBytes": [
+        90
+      ]
+    },
+    {
+      "file": "problem-exam.js",
+      "count": 1,
+      "bytes": [
+        68
+      ],
+      "gzipBytes": [
+        88
+      ]
+    },
+    {
+      "file": "student-face-main.js",
+      "count": 1,
+      "bytes": [
+        68
+      ],
+      "gzipBytes": [
+        88
+      ]
+    },
+    {
+      "file": "problem-revision.js",
+      "count": 1,
+      "bytes": [
+        67
+      ],
+      "gzipBytes": [
+        87
+      ]
+    },
+    {
+      "file": "vendor-router.js",
+      "count": 1,
+      "bytes": [
+        1
+      ],
+      "gzipBytes": [
+        21
+      ]
+    }
+  ],
+  "totals": {
+    "jsBytes": 3093926,
+    "jsGzipBytes": 893980
+  }
+}

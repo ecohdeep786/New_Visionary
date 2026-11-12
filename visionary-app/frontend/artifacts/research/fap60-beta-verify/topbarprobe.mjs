@@ -1,0 +1,24 @@
+import { chromium } from 'playwright-core';
+const b = await chromium.launch({ channel:'msedge', headless:true, args:['--no-proxy-server'] });
+const c = await b.newContext({ viewport:{width:1440, height:1000}, reducedMotion:'reduce' });
+const p = await c.newPage();
+await p.goto('http://127.0.0.1:4197/login', { waitUntil:'domcontentloaded', timeout:60000 });
+await p.waitForTimeout(2000);
+await p.getByRole('button',{name:'Continue with Email'}).first().click();
+await p.locator('input[type="email"]').first().fill('qa.designer@example.test');
+await p.getByRole('button',{name:/continue|next/i}).last().click();
+await p.waitForTimeout(1200);
+await p.locator('input[type="password"]').first().fill('Visionary#2026',{timeout:20000});
+await p.getByRole('button',{name:/sign in/i}).last().click();
+await p.waitForFunction(()=>{ try{const ws=JSON.parse(localStorage.getItem('visionary_workspace_v2')||'{}');return Object.keys(ws.active||{}).length>0;}catch{return false;} },{timeout:25000});
+await p.waitForTimeout(3000);
+console.log('URL:', p.url());
+const probe = await p.evaluate(()=>{
+  const sel=document.querySelector('select.workspace-switcher');
+  const allSelects=[...document.querySelectorAll('select')].map(s=>({cls:s.className, label:s.getAttribute('aria-label'), opts:[...s.options].map(o=>o.textContent), parent:s.closest('label')?.className||null}));
+  const personal=document.body.textContent.includes('Personal');
+  const header=document.querySelector('header');
+  return { url:location.pathname, hasSelect:!!sel, selectClasses:sel?sel.className:null, allSelects, personalText:personal, headerHTML: header? header.innerHTML.slice(0,500):'(no header)' };
+});
+console.log(JSON.stringify(probe,null,1));
+await b.close();
