@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import { loginViaUi } from './qa-session.mjs';
 
 const base=process.env.NAVIGATION_REVIEW_URL||'http://127.0.0.1:4197';
 const productRoot=fileURLToPath(new URL('../../',import.meta.url));
@@ -10,18 +11,12 @@ const output=path.resolve(productRoot,process.env.NAVIGATION_EVIDENCE_DIR||'docs
 await fs.mkdir(output,{recursive:true});
 const browser=await chromium.launch({channel:'msedge',headless:true,args:['--no-proxy-server']});
 const errors=[],samples=[];
-function seedWorkspace({role}) {
-   if(localStorage.getItem('visionary_workspace_v2'))return;
-   const now=Date.now(),user={id:'navigation-review',email:'navigation@example.test',full_name:'Alex',identity:role,roles:[role],age_band:'adult',onboarding_complete:true},id=user.id+':'+role;
-   const data={conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',voice:false,memory:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:new Date(now).toISOString().slice(0,10)},legacyImported:false};
-   localStorage.setItem('visionary_users',JSON.stringify([user]));localStorage.setItem('visionary_sessions',JSON.stringify([{token:user.id,userId:user.id,email:user.email,expiresAt:now+86400000}]));localStorage.setItem('visionary_session_token',user.id);
-   localStorage.setItem('visionary_workspace_v2',JSON.stringify({version:2,people:[{id:user.id,email:user.email,name:user.full_name,ageBand:'adult',roles:[role]}],workspaces:[{id,personId:user.id,role,name:'Personal'}],active:{[user.id]:id},relationships:[],data:{[id]:data}}));
-}
 try {
- for(const role of ['student','teacher','parent','professional','organization']) {
+ /* FAP-67: one Firebase QA account (student); the multi-role navigation pass needs the app's role-add flow — a recorded follow-up. */
+ for(const role of ['student']) {
   const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
-  await context.addInitScript(seedWorkspace,{role});
   const page=await context.newPage();page.on('pageerror',error=>errors.push(String(error)));
+  await loginViaUi(page, base);
   await page.goto(`${base}/dashboard/home`,{waitUntil:'networkidle'});
   await page.locator('.v-home-priority').waitFor();
   const destinations=await page.locator('#dashboard-navigation a').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href')));
@@ -59,8 +54,8 @@ try {
  }
  // Secondary destination selection, expansion and phone focus recovery.
  const context=await browser.newContext({viewport:{width:768,height:1000},reducedMotion:'reduce'});
- await context.addInitScript(seedWorkspace,{role:'student'});
  const page=await context.newPage();page.on('pageerror',error=>errors.push(String(error)));
+ await loginViaUi(page, base);
  await page.goto(`${base}/dashboard/progress`,{waitUntil:'networkidle'});
  await page.locator('.workspace-nav-more[data-active="true"]').waitFor();
  assert.equal(await page.locator('.workspace-nav-more').getAttribute('aria-current'),'true');
