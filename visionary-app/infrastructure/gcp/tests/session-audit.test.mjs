@@ -11,6 +11,8 @@ function respond(status, headers = {}, body = '') {
   return { status, headers: { get: name => map.get(name.toLowerCase()) ?? null }, json: async () => JSON.parse(body), arrayBuffer: async () => new TextEncoder().encode(body).buffer };
 }
 const json = (status, headers, value) => respond(status, { 'content-type': 'application/json', ...headers }, JSON.stringify(value));
+const anonymousError = () => json(401, { 'cache-control': 'no-store' }, { statusCode: 401, error: 'Unauthorized', message: 'Sign in to continue.' });
+const originBoundary = options => json(options.headers.Origin === expected.origin ? 401 : 403, { 'cache-control': 'no-store' }, {});
 const urlFetch = routes => async (url, options = {}) => {
   const path = new URL(url).pathname;
   const handler = routes.find(([match]) => path === match)?.[1];
@@ -25,6 +27,8 @@ test('sign-in methods must be the reviewed live set, cache-exempt and attested',
   assert.match((await auditSignInMethods(disabledPhone)).detail, /phone=false/);
   const extraMethod = urlFetch([['/api/auth/methods', json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { email: true, google: true, phone: true, apple: true })]]);
   assert.match((await auditSignInMethods(extraMethod)).detail, /unreviewed sign-in methods exposed: apple/);
+  const inheritedName = urlFetch([['/api/auth/methods', json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { ...expected.methods, constructor: true })]]);
+  assert.match((await auditSignInMethods(inheritedName)).detail, /unreviewed sign-in methods exposed: constructor/);
 });
 
 test('CSRF cookie must carry the __Host- posture', async () => {
@@ -69,9 +73,11 @@ test('invalid credentials are refused with no session/device cookie issued', asy
 });
 
 test('anonymous authority boundaries refuse 401 no-store', async () => {
-  const good = urlFetch([['/api/auth/me', json(401, { 'cache-control': 'no-store' }, {})], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
+  const good = urlFetch([['/api/auth/me', anonymousError()], ['/api/account/overview', anonymousError()]]);
   assert.equal((await auditAnonymousAuthorityBoundaries(good)).pass, true);
-  const leaky = urlFetch([['/api/auth/me', respond(200, { 'cache-control': 'no-store' }, '{}')], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
+  const identityLeak = urlFetch([['/api/auth/me', json(401, { 'cache-control': 'no-store' }, { statusCode: 401, error: 'Unauthorized', message: 'Sign in', id: 'synthetic-user' })]]);
+  assert.match((await auditAnonymousAuthorityBoundaries(identityLeak)).detail, /anonymous error envelope/);
+  const leaky = urlFetch([['/api/auth/me', respond(200, { 'cache-control': 'no-store' }, '{}')], ['/api/account/overview', anonymousError()]]);
   assert.match((await auditAnonymousAuthorityBoundaries(leaky)).detail, /\/api\/auth\/me returned 200/);
 });
 
@@ -103,9 +109,9 @@ test('full session audit passes on the reviewed behavior and fails closed otherw
   const good = urlFetch([
     ['/api/auth/methods', json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { email: true, google: true, phone: true })],
     ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
-    ['/api/auth/session', json(401, { 'cache-control': 'no-store' }, {})],
-    ['/api/auth/me', json(401, { 'cache-control': 'no-store' }, {})],
-    ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})],
+    ['/api/auth/onboarding', originBoundary],
+    ['/api/auth/me', anonymousError()],
+    ['/api/account/overview', anonymousError()],
     ['/login', respond(200, { 'content-security-policy': csp }, '<!doctype html>')],
   ]);
   const ok = await runSessionAudit({ fetchImpl: good, cookieSource: "const prefix = secure ? '__Host-visionary-' : 'visionary-'; const o = { httpOnly: true, secure: this.settings().secure, sameSite: 'strict' as const, path: '/' }; throw new Error('Production authentication requires HTTPS.');" });
@@ -115,12 +121,13 @@ test('full session audit passes on the reviewed behavior and fails closed otherw
   const open = urlFetch(good.routes === undefined ? [
     ['/api/auth/methods', json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { email: true, google: true, phone: true })],
     ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', originBoundary],
     ['/api/auth/session', respond(200, { 'set-cookie': `${expected.cookiePrefix}session=s; Path=/; Secure; HttpOnly; SameSite=Strict`, 'cache-control': 'no-store' }, '{}')],
-    ['/api/auth/me', json(401, { 'cache-control': 'no-store' }, {})],
-    ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})],
+    ['/api/auth/me', anonymousError()],
+    ['/api/account/overview', anonymousError()],
     ['/login', respond(200, { 'content-security-policy': csp }, '<!doctype html>')],
   ] : []);
-  const bad = await runSessionAudit({ fetchImpl: open, cookieSource: 'const x = 1;' });
+  const bad = await runSessionAudit({ fetchImpl: open, cookieSource: 'const x = 1;', probeInvalidSession: true });
   assert.equal(bad.passed, false);
   assert.equal(bad.results.find(r => r.check === 'invalid-session-refusal').pass, false);
   assert.equal(bad.results.find(r => r.check === 'session-cookie-contract').pass, false);

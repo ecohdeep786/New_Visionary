@@ -30,10 +30,13 @@ export async function auditSignInMethods(fetchImpl = fetch, origin = expected.or
   if (response.status !== 200) return refuse(`methods status ${response.status}`);
   if (response.headers.get('cache-control') !== 'no-store') return refuse('methods response is cacheable');
   if (!expected.revisionPattern.test(response.headers.get('x-visionary-revision') || '')) return refuse('methods response lacks revision attestation');
-  const methods = await response.json();
+  let methods;
+  try { methods = await response.json(); }
+  catch { return refuse('methods response is malformed'); }
+  if (!methods || typeof methods !== 'object' || Array.isArray(methods)) return refuse('methods response is not an object');
   const mismatch = Object.entries(expected.methods).filter(([name, enabled]) => methods[name] !== enabled);
   if (mismatch.length) return refuse(`sign-in methods deviate from the reviewed set: ${mismatch.map(([n, e]) => `${n}=${methods[n]} (expected ${e})`).join(', ')}`);
-  const extra = Object.keys(methods).filter(name => !(name in expected.methods));
+  const extra = Object.keys(methods).filter(name => !Object.hasOwn(expected.methods, name));
   if (extra.length) return refuse(`unreviewed sign-in methods exposed: ${extra.join(', ')}`);
   return pass(`exactly the reviewed methods live: ${Object.keys(expected.methods).join(', ')}`);
 }
@@ -87,12 +90,33 @@ export async function auditInvalidSessionRefusal(fetchImpl = fetch, origin = exp
   return pass(`invalid credentials refused ${response.status} with no session/device cookie issued`);
 }
 
+// A default audit uses a route that denies anonymous requests before writing.
+export async function auditSessionOriginAndCsrf(fetchImpl = fetch, origin = expected.origin) {
+  const { cookie, token } = await readCsrfCredential(fetchImpl, origin);
+  for (const [requestOrigin, status] of [[origin, 401], ['https://invalid.example', 403]]) {
+    const response = await fetchImpl(origin + '/api/auth/onboarding', {
+      method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(15000),
+      headers: { Origin: requestOrigin, Cookie: cookie, 'X-CSRF-Token': token, 'Content-Type': 'application/json' },
+      body: '{}',
+    });
+    if (response.status !== status || response.headers.get('cache-control') !== 'no-store') {
+      return refuse(`onboarding probe expected HTTP ${status} and no-store`);
+    }
+  }
+  return pass('same-origin anonymous request refused 401 and cross-origin request refused 403');
+}
+
 // Anonymous callers stay refused without identity leakage (PLAT-05 boundary).
 export async function auditAnonymousAuthorityBoundaries(fetchImpl = fetch, origin = expected.origin) {
   for (const path of ['/api/auth/me', '/api/account/overview']) {
     const response = await fetchImpl(origin + path, { redirect: 'manual', signal: AbortSignal.timeout(15000) });
     if (response.status !== 401) return refuse(`${path} returned ${response.status} for an anonymous caller`);
     if (response.headers.get('cache-control') !== 'no-store') return refuse(`${path} refusal is cacheable`);
+    let error;
+    try { error = await response.json(); }
+    catch { return refuse(`${path} did not return a JSON error envelope`); }
+    if (!error || Object.keys(error).length !== 3 || error.statusCode !== 401 ||
+        typeof error.error !== 'string' || typeof error.message !== 'string') return refuse(`${path} did not return the anonymous error envelope`);
   }
   return pass('anonymous authority boundaries refuse 401, no-store');
 }
@@ -135,6 +159,7 @@ export function auditSessionCookieContract(source = undefined) {
     [/httpOnly:\s*true/, 'httpOnly cookie flag'],
     [/sameSite:\s*'strict'/, 'SameSite=Strict cookie flag'],
     [/secure:\s*this\.settings\(\)\.secure/, 'secure cookie flag bound to the HTTPS origin'],
+    [/path:\s*'\/'/, 'Path=/ cookie flag'],
     [/Production authentication requires HTTPS/, 'production HTTPS refusal'],
   ]) {
     if (!pattern.test(text)) return refuse(`session cookie contract is missing: ${label}`);
@@ -142,21 +167,22 @@ export function auditSessionCookieContract(source = undefined) {
   return pass('__Host- prefix, httpOnly, Secure, SameSite=Strict and the production HTTPS refusal are all committed');
 }
 
-export async function runSessionAudit({ origin = expected.origin, fetchImpl = fetch, cookieSource = undefined } = {}) {
+export async function runSessionAudit({ origin = expected.origin, fetchImpl = fetch, cookieSource = undefined, probeInvalidSession = false } = {}) {
   const results = [];
   const step = async (check, action) => { try { results.push({ check, ...(await action()) }); } catch (error) { results.push({ check, ...refuse(`probe failed: ${String(error.message).slice(0, 160)}`) }); } };
   await step('sign-in-methods', () => auditSignInMethods(fetchImpl, origin));
   await step('csrf-cookie-posture', () => auditCsrfCookiePosture(fetchImpl, origin));
-  await step('invalid-session-refusal', () => auditInvalidSessionRefusal(fetchImpl, origin));
+  await step('session-origin-and-csrf', () => auditSessionOriginAndCsrf(fetchImpl, origin));
+  if (probeInvalidSession) await step('invalid-session-refusal', () => auditInvalidSessionRefusal(fetchImpl, origin));
   await step('anonymous-authority-boundaries', () => auditAnonymousAuthorityBoundaries(fetchImpl, origin));
   await step('authorized-auth-domains', () => auditAuthorizedAuthDomains(fetchImpl, origin));
   await step('session-cookie-contract', async () => auditSessionCookieContract(cookieSource));
   const failed = results.filter(r => !r.pass);
   for (const r of results) console.log(`${r.pass ? 'PASS' : 'REFUSE'} ${r.check}: ${r.detail}`);
-  console.log(failed.length ? `SESSION AUDIT FAILED: ${failed.length} check(s) refused.` : 'SESSION AUDIT PASSED: reviewed session/auth boundaries verified externally; real-account delivery acceptance stays founder-gated.');
+  console.log(failed.length ? `SESSION AUDIT FAILED: ${failed.length} check(s) refused.` : 'SESSION AUDIT PASSED: reviewed hosted session boundaries verified. Provider email delivery requires separate evidence.');
   return { results, passed: failed.length === 0 };
 }
 
 if (process.argv[1]?.endsWith('session-audit.mjs')) {
-  runSessionAudit().then(r => { if (!r.passed) process.exitCode = 1; }).catch(error => { console.error('SESSION AUDIT ERROR:', error.message); process.exitCode = 1; });
+  runSessionAudit({ probeInvalidSession: process.argv.includes('--probe-invalid-session') }).then(r => { if (!r.passed) process.exitCode = 1; }).catch(error => { console.error('SESSION AUDIT ERROR:', error.message); process.exitCode = 1; });
 }
