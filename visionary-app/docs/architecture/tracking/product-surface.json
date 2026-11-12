@@ -18977,6 +18977,15 @@
     },
     {
       "method": "POST",
+      "path": "/api/billing/jobs/backlog",
+      "controller": "BillingController",
+      "handler": "backlog",
+      "file": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "line": 28,
+      "column": 3
+    },
+    {
+      "method": "POST",
       "path": "/api/billing/jobs/reconcile",
       "controller": "BillingController",
       "handler": "scheduled",
@@ -19008,7 +19017,7 @@
       "controller": "BillingController",
       "handler": "webhook",
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
-      "line": 28,
+      "line": 29,
       "column": 3
     },
     {
@@ -80429,7 +80438,7 @@
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
-      "sourceSha256": "ebe6085120e810e6b3d02213fa4f690ae32a6fb886f48075766f6dd9b39ba19e"
+      "sourceSha256": "78b1c15ea2b235d204cb599a8856491b6250a84d924ad9a9f152f1033541d49d"
     },
     {
       "file": "backend/upstream/backend/src/consent/product-consent.controller.ts",
@@ -83917,7 +83926,7 @@
   },
   "counts": {
     "routes": 67,
-    "registeredEndpoints": 55,
+    "registeredEndpoints": 56,
     "controlDeclarations": 1656,
     "routeReachableDeclarations": 1504,
     "controlFiles": 238,

@@ -55,6 +55,7 @@
     "POST /api/billing/family/remove": "existing-json",
     "POST /api/billing/family/leave": "existing-json",
     "POST /api/billing/jobs/reconcile": "existing-json",
+    "POST /api/billing/jobs/backlog": "existing-json",
     "POST /api/billing/webhooks/razorpay": "webhook",
     "POST /api/account/learning/sessions": "existing-json",
     "GET /api/account/learning/sessions": "existing-json",

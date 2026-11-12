@@ -94,7 +94,7 @@ const assignments = {
   logout: ['POST /api/auth/logout'], logoutAll: ['POST /api/auth/logout-all'],
   billingRead: ['GET /api/billing/account', 'GET /api/billing/invoices/:id', 'GET /api/billing/family/invitations/:id'],
   billingWrite: ['POST /api/billing/checkouts', 'POST /api/billing/verify', 'POST /api/billing/sync', 'POST /api/billing/cancel', 'POST /api/billing/family/invitations', 'POST /api/billing/family/accept', 'POST /api/billing/family/remove', 'POST /api/billing/family/leave'],
-  billingJob: ['POST /api/billing/jobs/reconcile'], billingWebhook: ['POST /api/billing/webhooks/razorpay'],
+  billingJob: ['POST /api/billing/jobs/reconcile', 'POST /api/billing/jobs/backlog'], billingWebhook: ['POST /api/billing/webhooks/razorpay'],
   feedbackRead: ['GET /api/account/feedback'], feedbackWrite: ['POST /api/account/feedback'],
   learningRead: ['GET /api/account/learning/sessions', 'GET /api/account/learning/sessions/:sessionId'],
   learningWrite: ['POST /api/account/learning/sessions', 'POST /api/account/learning/sessions/:sessionId/checks', 'POST /api/account/learning/sessions/:sessionId/assessments', 'POST /api/account/learning/sessions/:sessionId/cancel'],

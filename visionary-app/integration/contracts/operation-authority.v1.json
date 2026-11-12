@@ -776,6 +776,13 @@
       "exposure": "registered-controller"
     },
     {
+      "route": "POST /api/billing/jobs/backlog",
+      "profile": "billingJob",
+      "controller": "BillingController",
+      "sourceFile": "backend/upstream/backend/src/billing/billing.controller.ts",
+      "exposure": "registered-controller"
+    },
+    {
       "route": "POST /api/billing/jobs/reconcile",
       "profile": "billingJob",
       "controller": "BillingController",
@@ -1511,7 +1518,7 @@
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
-      "sha256Lf": "ebe6085120e810e6b3d02213fa4f690ae32a6fb886f48075766f6dd9b39ba19e"
+      "sha256Lf": "78b1c15ea2b235d204cb599a8856491b6250a84d924ad9a9f152f1033541d49d"
     },
     {
       "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
@@ -1571,7 +1578,7 @@
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.service.ts",
-      "sha256Lf": "1f165a6e2fe6b7d979bec3a483be3900bc20f42794dcde8ffe4b203f331779e9"
+      "sha256Lf": "0d57521fc668de8125844d5ddac408c6fe5e20aec2192ffe69cacb28ae683ffb"
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.repository.ts",
@@ -1687,7 +1694,7 @@
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
-      "sha256Lf": "18bf98eb7776e9f23530ed957c3b302d9c793efd914a5ceadb759a1760e1ec6d"
+      "sha256Lf": "2d16d291956feccc9313b7c47d7dbe29ef53a46739e95e55e9f07fb5f4f0b5cc"
     },
     {
       "file": "integration/contracts/v1/openapi.json",
