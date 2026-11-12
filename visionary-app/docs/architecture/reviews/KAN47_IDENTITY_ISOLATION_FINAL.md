@@ -1,0 +1,15 @@
+# KAN-47 identity isolation review
+
+The audit runs read-only against the reviewed production project. It compares the full bootstrap GitHub federation condition, provider inventory, mappings, issuer and audience. It verifies the numeric pool principal on the deployer service account policy, the reviewed direct resource grants, and absence of user-managed deployer and runtime keys. Unexpected conditional secret grants also fail the audit.
+
+The serving revision check uses the revision receiving all production traffic. It verifies the attached runtime identity, Firebase realm, Secret Manager version reference and reviewed edge ingress. It reports the invoker IAM mode separately. Firestore metadata is read with Cloud SDK impersonation of the reviewed runtime account and an explicit database ID of `default`.
+
+Independent review found two remaining ways to pass the wrong configuration. The audit now rejects unreviewed OIDC signing-key and discovery overrides and resolves Cloud Run secret aliases to the expected project and secret. [Workload Identity provider configuration](https://docs.cloud.google.com/iam/docs/reference/rest/v1/projects.locations.workloadIdentityPools.providers) · [Cloud Run secret references](https://docs.cloud.google.com/run/docs/reference/rest/v1/Container)
+
+The secret check verifies the pinned enabled version and notification schedule metadata. A successful notification, new secret version, serving revision rollout and rollback require live operational evidence. The audit observes direct policies on the named resources. Inherited IAM and access through additional resources require separate inventory.
+
+Run `node infrastructure/gcp/identity-audit.mjs` from the application directory with an authenticated Cloud SDK configuration that can read the listed IAM and resource metadata and impersonate the reviewed runtime account for the Firestore read. The live audit at `af147017` passed six checks after the two reviewed runtime project grants were restored. Its Firestore check refused because the operator lacked runtime impersonation. A separate read with a temporary grant scoped to the runtime account then returned `projects/visionary-research/databases/default` in `FIRESTORE_NATIVE` mode. The grant was removed and the original runtime service account IAM bindings were verified. The runtime policy inventory and the runtime Firestore read were collected separately so the temporary grant was absent from the reviewed steady-state policy.
+
+The production secret has a 90-day notification schedule and a dedicated operator subscription. The subscription received Secret Manager's configuration test event. Production still serves secret version `1`. The next key needs a reviewed release with an explicit new version and version `1` retained as the rollback pin. Verify the candidate before promotion, then verify Firebase sign-in, rate limiting and rollback on the serving path.
+
+The owner removed `visionary-uat` from the product plan. This review contains no live staging acceptance. Keep the checkout active while exact-source review and the production rotation and rollback evidence are pending.

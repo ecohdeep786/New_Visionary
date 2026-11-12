@@ -2448,22 +2448,56 @@
     {
       "jiraKey": "KAN-46",
       "sourceId": "PLAT-02",
-      "status": "In Progress",
+      "status": "Done",
       "branch": "codex/deepseek-kan-46-product-image",
       "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-46-product-image",
       "originalCandidate": "944ca6e6253a866e887e9141e4248e1f995dee21",
       "base": "2e0b1fbbb8cb005bde34738b8c4696ce20ff57d2",
       "scope": "Exact-source minimal product-image and offline startup/probe/shutdown/container-browser engineering acceptance; hosted/provider gates remain separate",
       "review": {
-        "state": "pending",
+        "state": "approved-product-image",
         "implementer": "Codex /root",
-        "originalDecision": "changes-requested"
+        "originalDecision": "changes-requested",
+        "reviewer": "/root/kan46_final_review",
+        "approvedCommit": "b0cd750704b4194c14ac785b43e276377d03d596"
       },
       "currentHandoff": "docs/architecture/reviews/KAN46_PRODUCT_IMAGE_FINAL.md",
       "jiraReceipt": {
         "changesRequestedComment": 10707,
-        "transitionId": 31
+        "status": "Done",
+        "commentId": 10781,
+        "transitionId": 51
+      },
+      "integration": {
+        "pullRequest": 50,
+        "commit": "706d5c84362006abe2ba86ae0618f4231ce62698",
+        "candidateCi": 43161889953,
+        "integratedCi": 43162556220,
+        "identicalTree": "6cfa90eba0a3ebd6d37ee239491185cf1f220c47"
+      },
+      "cleanup": {
+        "worktreeRemoved": true,
+        "localAndRemoteRefsRemoved": true,
+        "evidence": "C:/Users/Administrator/Visionary-local/kan46-final-evidence"
       }
+    },
+    {
+      "jiraKey": "KAN-47",
+      "sourceId": "PLAT-03",
+      "status": "In Progress",
+      "branch": "codex/deepseek-kan-47-identity-isolation",
+      "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-47-identity-isolation",
+      "originalCandidate": "6d11fce37b7b6d8d2fcebfb9b97c9c8646d32bb2",
+      "base": "706d5c84362006abe2ba86ae0618f4231ce62698",
+      "currentHandoff": "docs/architecture/reviews/KAN47_IDENTITY_ISOLATION_FINAL.md",
+      "jiraReceipt": {
+        "changesRequestedComment": 10782,
+        "transitionId": 31
+      },
+      "remainingGates": [
+        "Independent review and live authenticated Cloud SDK audit",
+        "Production secret cutover and rollback; visionary-uat excluded by owner direction"
+      ]
     }
   ]
 }

@@ -9,6 +9,8 @@ export const production = Object.freeze({
   runtime: 'visionary-product-runtime@visionary-research.iam.gserviceaccount.com',
   image: 'asia-south1-docker.pkg.dev/visionary-research/visionary-product/product',
   tag: 'ci-candidate', secret: 'visionary-product-auth-rate-limit',
+  // Update these pins together in the reviewed change that rotates the key.
+  secretVersion: '1', rollbackSecretVersion: '1',
 });
 const shaPattern = /^[a-f0-9]{40}$/;
 export function trustedRun(env) {
@@ -56,13 +58,35 @@ export function environmentFlag(environment) {
 export function releaseDeployArgs({ commit, image, suffix, globalSignOut }) {
   if (typeof globalSignOut !== 'boolean') throw Error('An explicit rollout policy is required.');
   return ['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
-    '--ingress=internal-and-cloud-load-balancing', '--service-account=' + production.runtime, '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s', '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080', environmentFlag(releaseEnvironment(commit, globalSignOut)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1'];
+    '--ingress=internal-and-cloud-load-balancing', '--service-account=' + production.runtime, '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s', '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080', environmentFlag(releaseEnvironment(commit, globalSignOut)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':' + production.secretVersion];
 }
+export function matchesRateLimitSecret(reference, annotation, allowedVersions) {
+  if (reference?.name !== production.secret || typeof reference.key !== 'string' ||
+      !/^[1-9][0-9]*$/.test(reference.key) || !allowedVersions.includes(reference.key) ||
+      reference.optional || reference.localObjectReference) return false;
+  if (annotation === undefined) return true;
+  if (typeof annotation !== 'string') return false;
+  const aliases = new Map();
+  for (const entry of annotation.split(',')) {
+    const match = /^([a-zA-Z0-9_-]+):(projects\/[a-z0-9-]+\/secrets\/[a-zA-Z0-9_-]+)$/.exec(entry);
+    if (!match || aliases.has(match[1])) return false;
+    aliases.set(match[1], match[2]);
+  }
+  const resource = aliases.get(reference.name);
+  return resource === undefined || [production.project, production.projectNumber]
+    .some(project => resource === `projects/${project}/secrets/${production.secret}`);
+}
+
 export function verifyRevision(revision, expectedCommit, expectedImage) {
   revisionAuthPolicy(revision);
   const spec = revision.spec || {}, containers = spec.containers || [], container = containers[0];
   const env = Object.fromEntries((container?.env || []).map(row => [row.name, row.value ?? row.valueFrom]));
   const annotations = revision.metadata?.annotations || {};
+  const secretRows = (container?.env || []).filter(row => row.name === 'AUTH_RATE_LIMIT_KEY');
+  const secret = secretRows[0];
+  const allowedSecretVersions = expectedCommit || expectedImage
+    ? [production.secretVersion]
+    : [production.secretVersion, production.rollbackSecretVersion];
   if (containers.length !== 1 || spec.serviceAccountName !== production.runtime ||
       !container.image.startsWith(production.image + '@sha256:') || !/@sha256:[a-f0-9]{64}$/.test(container.image) ||
       (expectedImage && container.image !== expectedImage) ||
@@ -70,7 +94,8 @@ export function verifyRevision(revision, expectedCommit, expectedImage) {
       env.AUTH_PUBLIC_ORIGIN !== production.origin || env.AUTH_TRUST_PROXY_HOPS !== '2' || env.NODE_ENV !== 'production' ||
       env.FIREBASE_PROJECT_ID !== production.project || env.FIRESTORE_DATABASE_ID !== 'default' || env.FIREBASE_PROJECT_KIND !== 'production' ||
       env.FIREBASE_AUTH_DOMAIN !== production.authDomain || env.BILLING_MODE !== 'test' ||
-      env.AUTH_RATE_LIMIT_KEY?.secretKeyRef?.name !== production.secret || env.AUTH_RATE_LIMIT_KEY?.secretKeyRef?.key !== '1' ||
+      secretRows.length !== 1 || secret?.value !== undefined ||
+      !matchesRateLimitSecret(secret?.valueFrom?.secretKeyRef, annotations['run.googleapis.com/secrets'], allowedSecretVersions) ||
       container.resources?.limits?.cpu !== '1' || container.resources?.limits?.memory !== '512Mi' || spec.containerConcurrency !== 20 || spec.timeoutSeconds !== 30 ||
       annotations['autoscaling.knative.dev/maxScale'] !== '1' || ![undefined, '0'].includes(annotations['autoscaling.knative.dev/minScale']) ||
       annotations['run.googleapis.com/cpu-throttling'] !== 'true' || annotations['run.googleapis.com/startup-cpu-boost'] !== 'false' || annotations['run.googleapis.com/execution-environment'] !== 'gen2') {
@@ -271,7 +296,7 @@ async function baseline() {
     '--ingress=all', '--no-invoker-iam-check', '--service-account=' + production.runtime,
     '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s',
     '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080',
-    environmentFlag(releaseEnvironment(commit)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1']),
+    environmentFlag(releaseEnvironment(commit)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':' + production.secretVersion]),
   });
   writeFileSync('baseline-release.json', JSON.stringify(receipt, null, 2) + '\n');
   console.log(JSON.stringify(receipt));
