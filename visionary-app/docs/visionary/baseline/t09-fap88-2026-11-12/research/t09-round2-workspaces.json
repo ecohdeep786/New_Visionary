@@ -1,0 +1,398 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "ts": "2026-11-12T05:34:23.707Z",
+  "accounts": {
+    "adult": {
+      "email": "t09-r2-adult-1794461663438@visionary.test",
+      "steps": [
+        {
+          "step": "registered",
+          "url": "http://127.0.0.1:5174/onboarding"
+        },
+        {
+          "step": "age-selected",
+          "wanted": "adult",
+          "options": [
+            {
+              "v": "",
+              "t": "Choose an option"
+            },
+            {
+              "v": "adult",
+              "t": "18 or older"
+            },
+            {
+              "v": "minor",
+              "t": "Under 18"
+            }
+          ]
+        },
+        {
+          "step": "wizard-step-0",
+          "url": "/onboarding",
+          "h1": "Which exam are you preparing for?",
+          "main": "Made for your next step. | Learn. Explore. Build. | Which exam are you preparing for? | These details help you find relevant material. They do not connect you to an institution. | Using t09-r2-adult-1794461663438@visionary.test | Use a different account | Exam | Choose an option | JEE Main | JEE Advanced | NEET | UP"
+        },
+        {
+          "step": "wizard-step-1",
+          "url": "/onboarding",
+          "h1": "Ready to start with Visionary?",
+          "main": "Made for your next step. | Learn. Explore. Build. | Ready to start with Visionary? | A quick check before we save your preferences to this account. | Using t09-r2-adult-1794461663438@visionary.test | Use a different account | Change role | Edit details | Using Visionary as | Learner | Name | T09 Round2 fixture (adul"
+        },
+        {
+          "step": "onboarded",
+          "url": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a learning journey | Explore a project | Why this? | Things I remember a"
+        },
+        {
+          "step": "student-project-saved",
+          "url": "/dashboard/build",
+          "main": "Your project | Projects | Versions | Share | Share summary with parent | Save | Your project is private until you choose an accepted connection and confirm shar"
+        },
+        {
+          "step": "student-project-listed",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My pr",
+          "hasProject": true
+        },
+        {
+          "step": "switcher-before",
+          "options": [
+            {
+              "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:student",
+              "t": "Personal · Learner"
+            },
+            {
+              "v": "add",
+              "t": "+ Add a role"
+            }
+          ]
+        },
+        {
+          "step": "added-teacher-role",
+          "url": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Teacher | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Prepare your next lesson | Review the objective, explanation and checks before sharing with a class. | Open preparation | View classwork | Why this? | Classroom overview | Need help along the way? | ",
+          "adultCheckboxShown": false
+        },
+        {
+          "step": "teacher-classes-empty",
+          "main": "Your classes | Create a class, add students, and start teaching | No classes yet | Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept cove"
+        },
+        {
+          "step": "class-created",
+          "main": "Your classes | Create a class, add students, and start teaching | Create class | Your teaching overview | Your class is ready. Add a first assignment and tag the concepts it covers to start tracking l"
+        },
+        {
+          "step": "no-class-link",
+          "note": "no a[href*=classes] found; clicking card instead"
+        },
+        {
+          "step": "class-detail",
+          "url": "/dashboard/class/5586cfb7-984d-412a-9f35-eef2bdd6c1d1",
+          "h1": "T09 R2 Class 1794461663438",
+          "main": "T09 R2 Class 1794461663438 | T09 R2 Class 1794461663438 | Share this class code | VISION-7BA4137C | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | Keep your class in the loop | Post a welcome message to get started. | Record class promotio"
+        },
+        {
+          "step": "lastPath-before-switch",
+          "workspaces": [
+            {
+              "id": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:student",
+              "role": "student",
+              "lastPath": "/dashboard/build"
+            },
+            {
+              "id": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:teacher",
+              "role": "teacher",
+              "lastPath": "/dashboard/class/5586cfb7-984d-412a-9f35-eef2bdd6c1d1"
+            }
+          ]
+        },
+        {
+          "step": "switched-to-student",
+          "url": "/dashboard/classes?class=5586cfb7-984d-412a-9f35-eef2bdd6c1d1",
+          "h1": "Your classes",
+          "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code"
+        },
+        {
+          "step": "student-classes",
+          "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear he",
+          "LEAK_CLASS": false
+        },
+        {
+          "step": "student-build",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My pr",
+          "hasProject": true
+        },
+        {
+          "step": "switched-to-teacher",
+          "url": "/dashboard/class/5586cfb7-984d-412a-9f35-eef2bdd6c1d1",
+          "h1": "T09 R2 Class 1794461663438",
+          "main": "T09 R2 Class 1794461663438 | T09 R2 Class 1794461663438 | Share this class code | VISION-7BA4137C | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | Keep your class in the loop | Post a welcome message to get started. | Record class promotio",
+          "lastPathRestored": true
+        },
+        {
+          "step": "teacher-build",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My pr",
+          "LEAK_PROJECT": false
+        },
+        {
+          "step": "after-reload",
+          "url": "/dashboard/build",
+          "h1": "Build something of your own",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My pr",
+          "switcher": [
+            {
+              "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:student",
+              "t": "Personal · Learner"
+            },
+            {
+              "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:teacher",
+              "t": "Personal · Teacher"
+            },
+            {
+              "v": "add",
+              "t": "+ Add a role"
+            }
+          ]
+        },
+        {
+          "step": "mobile-classes",
+          "url": "/dashboard/classes",
+          "scrollWidth": 390,
+          "innerWidth": 390,
+          "headerButtons": [
+            "Toggle navigation",
+            "Find teaching pages and tools",
+            "Open Visionary voice panel. Indigo. Ready for voice.",
+            "Open account menu",
+            "Create class"
+          ],
+          "h1": "Your classes"
+        },
+        {
+          "step": "mobile-drawer",
+          "dashboardLinks": 14,
+          "anyVisible": true
+        },
+        {
+          "step": "storage-dump",
+          "entities": {
+            "visionary_entity_Classroom": 1
+          }
+        }
+      ],
+      "seed": {
+        "url": "/dashboard/build",
+        "h1": "Your project",
+        "main": "Your project | Projects | Versions | Share | Share summary with parent | Save | Your project is private until you choose an accepted connection and confirm sharing. | Project title | Your working document | Saves when you leave the editor or choose Save. | Artifact preview | T09 R2 Student Project 1794461663438 | Your"
+      },
+      "seedList": {
+        "url": "/dashboard/build",
+        "h1": "Build something of your own",
+        "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | T09 R2 Student Project 1794461663438 | draft | · | private | Open",
+        "hasProject": true
+      },
+      "switcherBefore": [
+        {
+          "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:student",
+          "t": "Personal · Learner"
+        },
+        {
+          "v": "add",
+          "t": "+ Add a role"
+        }
+      ],
+      "adultCheckboxShown": false,
+      "afterAddRole": {
+        "url": "/dashboard/home",
+        "h1": "Welcome back, T09.",
+        "main": "Teacher | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Prepare your next lesson | Review the objective, explanation and checks before sharing with a class. | Open preparation | View classwork | Why this? | Classroom overview | Need help along the way? | "
+      },
+      "teacherClassesEmpty": {
+        "url": "/dashboard/classes",
+        "h1": "Your classes",
+        "main": "Your classes | Create a class, add students, and start teaching | No classes yet | Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback. | Create your first class | Grow as a teacher"
+      },
+      "afterCreate": {
+        "url": "/dashboard/classes",
+        "h1": "Your classes",
+        "main": "Your classes | Create a class, add students, and start teaching | Create class | Your teaching overview | Your class is ready. Add a first assignment and tag the concepts it covers to start tracking learning. | Open class | 1 | Classes | 0 | Students | 0 | Assignments | T09 R2 Class 1794461663438 | 0 students | Grow"
+      },
+      "classDetail": {
+        "url": "/dashboard/class/5586cfb7-984d-412a-9f35-eef2bdd6c1d1",
+        "h1": "T09 R2 Class 1794461663438",
+        "main": "T09 R2 Class 1794461663438 | T09 R2 Class 1794461663438 | Share this class code | VISION-7BA4137C | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | Keep your class in the loop | Post a welcome message to get started. | Record class promotio"
+      },
+      "lastPathBefore": [
+        {
+          "id": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:student",
+          "role": "student",
+          "lastPath": "/dashboard/build"
+        },
+        {
+          "id": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:teacher",
+          "role": "teacher",
+          "lastPath": "/dashboard/class/5586cfb7-984d-412a-9f35-eef2bdd6c1d1"
+        }
+      ],
+      "switcherAfter": [
+        {
+          "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:student",
+          "t": "Personal · Learner"
+        },
+        {
+          "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:teacher",
+          "t": "Personal · Teacher"
+        },
+        {
+          "v": "add",
+          "t": "+ Add a role"
+        }
+      ],
+      "backToStudent": {
+        "url": "/dashboard/classes?class=5586cfb7-984d-412a-9f35-eef2bdd6c1d1",
+        "h1": "Your classes",
+        "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code"
+      },
+      "studentClasses": {
+        "url": "/dashboard/classes",
+        "h1": "Your classes",
+        "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code",
+        "leakClass": false
+      },
+      "studentBuild": {
+        "url": "/dashboard/build",
+        "h1": "Build something of your own",
+        "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | T09 R2 Student Project 1794461663438 | draft | · | private | Open",
+        "hasProject": true
+      },
+      "backToTeacher": {
+        "url": "/dashboard/class/5586cfb7-984d-412a-9f35-eef2bdd6c1d1",
+        "h1": "T09 R2 Class 1794461663438",
+        "main": "T09 R2 Class 1794461663438 | T09 R2 Class 1794461663438 | Share this class code | VISION-7BA4137C | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | Keep your class in the loop | Post a welcome message to get started. | Record class promotio",
+        "lastPathRestored": true
+      },
+      "teacherBuild": {
+        "url": "/dashboard/build",
+        "h1": "Build something of your own",
+        "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | Your first project starts here | Create a blank project or continue a concept in Learn. Your work stays yours.",
+        "leakProject": false
+      },
+      "afterReload": {
+        "url": "/dashboard/build",
+        "h1": "Build something of your own",
+        "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | Your first project starts here | Create a blank project or continue a concept in Learn. Your work stays yours.",
+        "switcher": [
+          {
+            "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:student",
+            "t": "Personal · Learner"
+          },
+          {
+            "v": "01ae0e1a-d326-4bb4-b9c9-c7017b84c8cd:teacher",
+            "t": "Personal · Teacher"
+          },
+          {
+            "v": "add",
+            "t": "+ Add a role"
+          }
+        ]
+      },
+      "mobile": {
+        "url": "/dashboard/classes",
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "headerButtons": [
+          "Toggle navigation",
+          "Find teaching pages and tools",
+          "Open Visionary voice panel. Indigo. Ready for voice.",
+          "Open account menu",
+          "Create class"
+        ],
+        "h1": "Your classes"
+      },
+      "mobileDrawer": {
+        "dashboardLinks": 14,
+        "anyVisible": true
+      },
+      "storage": {
+        "visionary_entity_Classroom": [
+          {
+            "id": "5586cfb7-984d-412a-9f35-eef2bdd6c1d1",
+            "owner": null,
+            "ws": null,
+            "name": "T09 R2 Class 1794461663438"
+          }
+        ]
+      },
+      "consoleErrors": [
+        "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o"
+      ],
+      "badResponses": []
+    },
+    "minor": {
+      "email": "t09-r2-minor-1794461663438@visionary.test",
+      "steps": [
+        {
+          "step": "registered",
+          "url": "http://127.0.0.1:5174/onboarding"
+        },
+        {
+          "step": "age-selected",
+          "wanted": "minor",
+          "options": [
+            {
+              "v": "",
+              "t": "Choose an option"
+            },
+            {
+              "v": "adult",
+              "t": "18 or older"
+            },
+            {
+              "v": "minor",
+              "t": "Under 18"
+            }
+          ]
+        },
+        {
+          "step": "wizard-step-0",
+          "url": "/onboarding",
+          "h1": "Which exam are you preparing for?",
+          "main": "Made for your next step. | Learn. Explore. Build. | Which exam are you preparing for? | These details help you find relevant material. They do not connect you to an institution. | Using t09-r2-minor-1794461663438@visionary.test | Use a different account | Exam | Choose an option | JEE Main | JEE Advanced | NEET | UP"
+        },
+        {
+          "step": "wizard-step-1",
+          "url": "/onboarding",
+          "h1": "Ready to start with Visionary?",
+          "main": "Made for your next step. | Learn. Explore. Build. | Ready to start with Visionary? | A quick check before we save your preferences to this account. | Using t09-r2-minor-1794461663438@visionary.test | Use a different account | Change role | Edit details | Using Visionary as | Learner | Name | T09 Round2 fixture (mino"
+        },
+        {
+          "step": "onboarded",
+          "url": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a learning journey | Explore a project | Why this? | Things I remember a"
+        },
+        {
+          "step": "minor-switcher-check",
+          "switcherCount": 0,
+          "options": "n/a (not rendered)"
+        },
+        {
+          "step": "minor-prepare",
+          "url": "/dashboard/prepare",
+          "h1": "Prepare",
+          "main": "Skip to content | Prepare | This workspace area opens with a teaching workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace"
+        }
+      ],
+      "switcherCount": 0,
+      "minorPrepare": {
+        "url": "/dashboard/prepare",
+        "h1": "Prepare",
+        "main": "Skip to content | Prepare | This workspace area opens with a teaching workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace"
+      },
+      "consoleErrors": [],
+      "badResponses": []
+    }
+  }
+}

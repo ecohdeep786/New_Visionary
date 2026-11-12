@@ -1,0 +1,35 @@
+{
+  "results": {
+    "email": "t09-r2-bisect-1794461923196@visionary.test",
+    "onboarded": {
+      "url": "http://127.0.0.1:5174/dashboard/home"
+    },
+    "teacher-role": {
+      "url": "http://127.0.0.1:5174/dashboard/home"
+    },
+    "A-empty-list": {
+      "url": "http://127.0.0.1:5174/dashboard/classes"
+    },
+    "B-modal-open": {
+      "url": "http://127.0.0.1:5174/dashboard/classes"
+    },
+    "C": {
+      "url": "/dashboard/classes",
+      "h1": "Your classes",
+      "cards": 1
+    },
+    "C-class-created-list": {
+      "url": "http://127.0.0.1:5174/dashboard/classes"
+    },
+    "D-class-detail": {
+      "url": "http://127.0.0.1:5174/dashboard/class/b940c6d9-cd0a-4d21-be40-e210665595dc"
+    }
+  },
+  "errs": [
+    {
+      "phase": "C-class-created-list",
+      "type": "error",
+      "text": "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and"
+    }
+  ]
+}
