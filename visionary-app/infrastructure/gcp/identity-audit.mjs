@@ -13,7 +13,7 @@ export const expected = Object.freeze({
   repository: 'visionary-product',
   deployer: 'visionary-github-deployer@visionary-research.iam.gserviceaccount.com',
   runtime: 'visionary-product-runtime@visionary-research.iam.gserviceaccount.com',
-  secret: 'visionary-product-auth-rate-limit',
+  secret: production.secret, secretVersion: production.secretVersion,
   runtimeProjectRoles: Object.freeze(['roles/datastore.user', 'roles/firebase.sdkAdminServiceAgent']),
   runtimeSecretRoles: Object.freeze(['roles/secretmanager.secretAccessor']),
   pool: 'visionary-github', provider: 'github-main',
@@ -129,8 +129,8 @@ const secretResources = [expected.project, expected.projectNumber].map(project =
 
 export function auditSecretRotation(secret, version, now = Date.now()) {
   if (!secretResources.includes(secret?.name)) return refuse('Product secret metadata is missing or foreign.');
-  if (version?.state !== 'ENABLED' || !secretResources.some(name => version?.name === name + '/versions/1')) {
-    return refuse('Pinned product secret version 1 is unavailable.');
+  if (version?.state !== 'ENABLED' || !secretResources.some(name => version?.name === name + '/versions/' + expected.secretVersion)) {
+    return refuse(`Pinned product secret version ${expected.secretVersion} is unavailable.`);
   }
   const period = /^(\d+)(?:\.\d{1,9})?s$/.test(secret.rotation?.rotationPeriod ?? '') ? parseFloat(secret.rotation.rotationPeriod) : NaN;
   const next = Date.parse(secret.rotation?.nextRotationTime);
@@ -144,7 +144,7 @@ export function auditSecretRotation(secret, version, now = Date.now()) {
 }
 
 function matchesPinnedSecret(reference, annotation) {
-  if (reference?.name !== expected.secret || reference.key !== '1' || reference.optional || reference.localObjectReference) return false;
+  if (reference?.name !== expected.secret || reference.key !== expected.secretVersion || reference.optional || reference.localObjectReference) return false;
   if (annotation === undefined) return true;
   if (typeof annotation !== 'string') return false;
   const aliases = new Map();
@@ -250,7 +250,7 @@ export async function runAudit({ io = { gcloud }, project = expected.project, re
   });
   describe('secret-rotation', () => {
     const secret = read('secrets', 'describe', expected.secret);
-    const version = read('secrets', 'versions', 'describe', '1', '--secret=' + expected.secret);
+    const version = read('secrets', 'versions', 'describe', expected.secretVersion, '--secret=' + expected.secret);
     return auditSecretRotation(secret, version);
   });
   describe('service-isolation', () => {
