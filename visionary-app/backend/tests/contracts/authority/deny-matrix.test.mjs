@@ -42,3 +42,22 @@ test('ACCEPT-03 deny matrix: missing guard or missing file is caught, fail-close
   assert.ok(verdict.problems.some((p) => p.includes('missing controller source')));
   assert.ok(verdict.problems.some((p) => p.includes('no server-authority guard')));
 });
+
+test('ACCEPT-03 live probe seam: probeLive awaits one result per private endpoint and reports failures honestly', async () => {
+  const { probeLive, publicRoutesFromRegistry } = require_(resolve(repoRoot, 'scripts/deny-matrix.mjs'));
+  const matrix = buildDenyMatrix(SURFACE);
+  const pending = probeLive(matrix, 'http://127.0.0.1:9', ['GET /api/auth/methods', 'GET /api/auth/csrf', 'GET /api/billing/catalog']);
+  assert.ok(pending instanceof Promise, 'probeLive returns ONE awaited promise over all probes, never a bare Promise[]');
+  const results = await pending;
+  assert.ok(Array.isArray(results), 'the resolved value is the result array itself');
+  assert.ok(results.length >= 20, 'every non-public registered endpoint is probed exactly once');
+  assert.equal(results.some((r) => r.endpoint === 'GET /api/auth/methods'), false, 'the public surface is excluded from the anonymous-denial expectation');
+  assert.equal(results.some((r) => r.endpoint === 'GET /api/auth/csrf'), false, 'the CSRF bootstrap is excluded');
+  for (const r of results) {
+    assert.equal(r.denied, false);
+    assert.equal(r.status, 0);
+    assert.ok(r.error, 'a connection failure is reported honestly, never a silent pass');
+  }
+  const registry = publicRoutesFromRegistry(resolve(repoRoot, 'integration/contracts/operation-authority.v1.json'));
+  assert.ok(registry.includes('GET /api/auth/methods') && registry.includes('GET /api/billing/catalog'), 'the registry-derived public set carries the reviewed public routes');
+});
