@@ -13,12 +13,12 @@ const json = (status, headers, value) => respond(status, { 'content-type': 'appl
 
 function makeFetch(routes) {
   // routes: [path, responseOrFn, hostHint?] — hostHint restricts by URL text.
-  return async (url) => {
+  return async (url, options) => {
     const parsed = new URL(url);
     for (const [match, handler, hostHint] of routes) {
       if (hostHint && !url.includes(hostHint)) continue;
       if (match.startsWith('/') ? parsed.pathname === match : url === match) {
-        return typeof handler === 'function' ? handler(url) : handler;
+        return typeof handler === 'function' ? handler(url, options) : handler;
       }
     }
     throw new Error('unrouted fetch: ' + url);
@@ -28,6 +28,8 @@ function makeFetch(routes) {
 test('canonical origin requires the SPA, revision attestation and hardened headers', async () => {
   const good = makeFetch([['/', respond(200, { 'content-type': 'text/html; charset=UTF-8', 'x-visionary-revision': revision, ...hardened }, '<!doctype html><title>x</title>')]]);
   assert.equal((await auditCanonicalOrigin(good)).pass, true);
+  const disabledHsts = makeFetch([['/', respond(200, { ...hardened, 'content-type': 'text/html', 'x-visionary-revision': revision, 'strict-transport-security': 'max-age=0' }, '<!doctype html>')]]);
+  assert.match((await auditCanonicalOrigin(disabledHsts)).detail, /HSTS/);
   assert.match((await auditCanonicalOrigin(makeFetch([['/', respond(200, { 'content-type': 'text/html', 'x-visionary-revision': 'short', ...hardened }, '<!doctype html>')]]))).detail, /x-visionary-revision/);
   assert.match((await auditCanonicalOrigin(makeFetch([['/', respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>')]]))).detail, /missing hardened headers/);
   assert.match((await auditCanonicalOrigin(makeFetch([['/', respond(200, { 'content-type': 'application/json', 'x-visionary-revision': revision, ...hardened }, '{}')]]))).detail, /did not serve the SPA/);
@@ -36,7 +38,9 @@ test('canonical origin requires the SPA, revision attestation and hardened heade
 test('every API response must be no-store', async () => {
   const good = makeFetch([['/api/health', json(200, { 'cache-control': 'no-store' }, { status: 'ok' })], ['/api/auth/me', json(401, { 'cache-control': 'no-store' }, {})], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
   assert.equal((await auditApiCachePolicy(good)).pass, true);
-  const cacheable = makeFetch([['/api/health', json(200, { 'cache-control': 'no-store' }, {})], ['/api/auth/me', json(401, {}, {})], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
+  const unhealthy = makeFetch([['/api/health', json(503, { 'cache-control': 'no-store' }, { status: 'ok' })]]);
+  assert.equal((await auditApiCachePolicy(unhealthy)).pass, false);
+  const cacheable = makeFetch([['/api/health', json(200, { 'cache-control': 'no-store' }, { status: 'ok' })], ['/api/auth/me', json(401, {}, {})], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
   assert.match((await auditApiCachePolicy(cacheable)).detail, /\/api\/auth\/me cache-control is null/);
 });
 
@@ -59,36 +63,43 @@ test('anonymous callers are refused without identity leakage', async () => {
 test('CSRF posture: __Host Secure HttpOnly Strict cookie and forged-origin 403', async () => {
   const cookie = '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Secure; HttpOnly; SameSite=Strict';
   const good = makeFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
-    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', (_url, options) => json(options.headers.Origin === expected.origin ? 401 : 403, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.equal((await auditCsrfPosture(good)).pass, true);
+  const denyAll = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditCsrfPosture(denyAll)).detail, /same-origin/);
+  const cachedToken = makeFetch([['/api/auth/csrf', json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) })]]);
+  assert.match((await auditCsrfPosture(cachedToken)).detail, /cacheable/);
   const weak = makeFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': 'visionary-csrf=x; Path=/; SameSite=Lax' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': 'visionary-csrf=x; Path=/; SameSite=Lax' }, { token: 'f'.repeat(64) })],
     ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.match((await auditCsrfPosture(weak)).detail, /CSRF cookie posture rejected/);
   // __Host- without Path=/ is rejected by browsers (the cookie never exists),
   // which would silently break CSRF end to end — the audit must catch it
   const noPath = makeFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
     ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.match((await auditCsrfPosture(noPath)).detail, /CSRF cookie posture rejected/);
   // a Domain attribute violates the __Host- contract and must refuse
   const withDomain = makeFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Domain=visionary.org.in; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Domain=visionary.org.in; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
     ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.match((await auditCsrfPosture(withDomain)).detail, /CSRF cookie posture rejected/);
   const wrongPath = makeFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': cookie.replace('Path=/', 'Path=/api') }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie.replace('Path=/', 'Path=/api') }, { token: 'f'.repeat(64) })],
   ]);
   const badCookie = await auditCsrfPosture(wrongPath);
   assert.equal(badCookie.pass, false);
   assert.doesNotMatch(badCookie.detail, /f{64}/);
   const accepting = makeFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/onboarding', json(200, { 'cache-control': 'no-store' }, { ok: true })],
   ]);
   assert.match((await auditCsrfPosture(accepting)).detail, /forged cross-origin command returned 200/);
@@ -100,6 +111,7 @@ test('the direct run.app origin must never serve the product', async () => {
     throw new Error('unexpected ' + url);
   };
   assert.equal((await auditDirectOriginBypass(hostFetch)).pass, true);
+  assert.equal((await auditDirectOriginBypass(hostFetch, 'https://unrelated.run.app')).pass, false);
   const open = async () => respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>');
   assert.match((await auditDirectOriginBypass(open)).detail, /bypass is open/);
   const productJson = async () => json(200, { 'x-visionary-revision': revision, 'cache-control': 'no-store' }, { status: 'ok' });
@@ -125,6 +137,8 @@ test('hashed assets cache explicitly and publicly', async () => {
   assert.equal((await auditStaticAssetCaching(makeFetch([['/', respond(200, {}, '<!doctype html>')]]))).pass, false);
   const revalidate = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'public, max-age=31536000, immutable, no-cache' }, 'js')]]);
   assert.equal((await auditStaticAssetCaching(revalidate)).pass, false);
+  const sharedDrift = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'public, max-age=31536000, s-maxage=0, immutable' }, 'js')]]);
+  assert.equal((await auditStaticAssetCaching(sharedDrift)).pass, false);
   const heuristics = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, {}, 'js')]]);
   assert.match((await auditStaticAssetCaching(heuristics)).detail, /no explicit max-age/);
   const priv = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'private, max-age=60' }, 'js')]]);
@@ -134,15 +148,15 @@ test('hashed assets cache explicitly and publicly', async () => {
 test('full origin audit fails closed and passes when every boundary holds', async () => {
   const cookie = '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Secure; HttpOnly; SameSite=Strict';
   const shell = respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision, ...hardened }, '<!doctype html><script src="/assets/index-abc123.js"></script>');
-  const good = async (url) => {
+  const good = async (url, options) => {
     const path = new URL(url).pathname;
     if (url.includes('run.app')) return respond(404, {}, '<html>404</html>');
     if (path === '/') return shell;
-    if (path === '/api/health') return json(200, { 'cache-control': 'no-store' }, { status: 'ok', authPolicy: { version: 1, globalSignOut: false } });
+    if (path === '/api/health') return json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { status: 'ok', authPolicy: { version: 1, globalSignOut: false } });
     if (path === '/api/auth/me' || path === '/api/account/overview') return json(401, { 'cache-control': 'no-store' }, { error: 'unauthorized' });
     if (path === '/api/__unknown-release-probe') return json(404, { 'cache-control': 'no-store' }, { message: 'x' });
-    if (path === '/api/auth/csrf') return json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) });
-    if (path === '/api/auth/onboarding') return json(403, { 'cache-control': 'no-store' }, {});
+    if (path === '/api/auth/csrf') return json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) });
+    if (path === '/api/auth/onboarding') return json(options.headers.Origin === expected.origin ? 401 : 403, { 'cache-control': 'no-store' }, {});
     if (path === '/assets/index-abc123.js') return respond(200, { 'cache-control': 'public, max-age=31536000, immutable' }, 'js');
     throw new Error('unrouted ' + path);
   };
@@ -153,7 +167,7 @@ test('full origin audit fails closed and passes when every boundary holds', asyn
   assert.equal(badTls.passed, false);
   assert.equal(badTls.results.find(r => r.check === 'tls').pass, false);
 
-  const bypassOpen = async (url) => (url.includes('run.app') ? respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>') : good(url));
+  const bypassOpen = async (url, options) => (url.includes('run.app') ? respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>') : good(url, options));
   const bad = await runOriginAudit({ fetchImpl: bypassOpen, tls: async () => ({}) });
   assert.equal(bad.passed, false);
   assert.equal(bad.results.find(r => r.check === 'direct-origin-bypass').pass, false);

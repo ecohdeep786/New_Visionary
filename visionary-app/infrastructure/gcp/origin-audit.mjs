@@ -14,7 +14,7 @@ export const expected = Object.freeze({
   // internal-and-cloud-load-balancing the Google frontend refuses direct
   // traffic; the audit proves no product response leaks through it. The URL
   // is discoverable from the deployment receipts / gcloud describe.
-  directOrigin: process.env.VISIONARY_DIRECT_ORIGIN_URL || 'https://visionary-product-elwsfnkuga-el.a.run.app',
+  directOrigin: 'https://visionary-product-elwsfnkuga-el.a.run.app',
   revisionPattern: /^[a-f0-9]{40}$/,
 });
 
@@ -39,15 +39,22 @@ export async function auditCanonicalOrigin(fetchImpl = fetch, origin = expected.
   const required = ['x-content-type-options: nosniff', 'x-frame-options: DENY', 'strict-transport-security', 'content-security-policy', 'referrer-policy: strict-origin-when-cross-origin'];
   const missing = required.filter(pair => !h.get(pair.split(': ')[0])?.toLowerCase().includes(pair.split(': ')[1]?.toLowerCase() || ''));
   if (missing.length) return refuse(`missing hardened headers: ${missing.join(', ')}`);
-  return pass(`revision ${h.get('x-visionary-revision').slice(0, 12)}… with the hardened header set`);
+  const hstsAges = h.get('strict-transport-security').toLowerCase().split(';').map(value => value.trim()).filter(value => /^max-age\s*=/.test(value));
+  if (hstsAges.length !== 1 || hstsAges[0] !== 'max-age=31536000') return refuse('canonical HSTS must specify a one-year max-age');
+  const revision = h.get('x-visionary-revision');
+  return { ...pass(`revision ${revision.slice(0, 12)}… with the hardened header set`), revision };
 }
 
 // Every /api response must be no-store: private responses must never rest in
 // a shared CDN cache.
-export async function auditApiCachePolicy(fetchImpl = fetch, origin = expected.origin) {
+export async function auditApiCachePolicy(fetchImpl = fetch, origin = expected.origin, revision) {
   for (const path of ['/api/health', '/api/auth/me', '/api/account/overview']) {
-    const { response } = await read(origin + path, {}, fetchImpl);
+    const { response, body } = await read(origin + path, {}, fetchImpl);
     if (response.headers.get('cache-control') !== 'no-store') return refuse(`${path} cache-control is ${response.headers.get('cache-control')}`);
+    if (path === '/api/health' && (response.status !== 200 || !response.headers.get('content-type')?.includes('application/json') ||
+        JSON.parse(body).status !== 'ok' || (revision && response.headers.get('x-visionary-revision') !== revision))) {
+      return refuse('API health did not confirm the healthy canonical release');
+    }
   }
   return pass('health/auth/account API responses are no-store');
 }
@@ -82,6 +89,7 @@ export async function auditCsrfPosture(fetchImpl = fetch, origin = expected.orig
   const { response: csrf, body: csrfBody } = await read(origin + '/api/auth/csrf', {}, fetchImpl);
   const cookie = csrf.headers.get('set-cookie') || '';
   const token = JSON.parse(csrfBody.toString() || '{}').token;
+  if (csrf.headers.get('cache-control') !== 'no-store') return refuse('CSRF token response is cacheable');
   if (csrf.status !== 200 || !/^[a-f0-9]{64}$/.test(token || '')) return refuse('CSRF token missing or not 64 hex');
   const [credential, ...attributes] = cookie.split(';').map(value => value.trim());
   const flags = attributes.map(value => value.toLowerCase());
@@ -91,11 +99,16 @@ export async function auditCsrfPosture(fetchImpl = fetch, origin = expected.orig
   const forged = await read(origin + '/api/auth/onboarding', { method: 'POST', headers: { Origin: 'https://invalid.example', Cookie: credential, 'X-CSRF-Token': token, 'Content-Type': 'application/json' }, body: '{}' }, fetchImpl);
   if (forged.response.status !== 403) return refuse(`forged cross-origin command returned ${forged.response.status}, expected 403 refusal`);
   if (forged.response.headers.get('cache-control') !== 'no-store') return refuse('forged command response is cacheable');
-  return pass('__Host Secure/HttpOnly/Strict cookie; forged cross-origin command refused 403');
+  const sameOrigin = await read(origin + '/api/auth/onboarding', { method: 'POST', headers: { Origin: origin, Cookie: credential, 'X-CSRF-Token': token, 'Content-Type': 'application/json' }, body: '{}' }, fetchImpl);
+  if (sameOrigin.response.status !== 401 || sameOrigin.response.headers.get('cache-control') !== 'no-store') {
+    return refuse('same-origin command did not reach the anonymous auth boundary');
+  }
+  return pass('__Host Secure/HttpOnly/Strict cookie, cross-origin 403, same-origin anonymous 401');
 }
 
 // Require an explicit edge refusal for both the shell and the health route.
 export async function auditDirectOriginBypass(fetchImpl = fetch, directOrigin = expected.directOrigin) {
+  if (directOrigin !== expected.directOrigin) return refuse('direct origin differs from the reviewed production service');
   for (const path of ['/', '/api/health']) {
     const { response, body } = await read(directOrigin + path, {}, fetchImpl);
     if (response.headers.get('x-visionary-revision') || /<!doctype\s+html\b/i.test(body) ||
@@ -116,6 +129,10 @@ export async function auditStaticAssetCaching(fetchImpl = fetch, origin = expect
   if (cache.includes('private')) return refuse(`hashed asset ${asset} is marked private`);
   const ages = cache.filter(directive => /^max-age\s*=/.test(directive));
   if (ages.length !== 1 || ages[0] !== 'max-age=31536000') return refuse(`hashed asset ${asset} has no explicit max-age=31536000`);
+  const sharedAges = cache.filter(directive => /^s-maxage\s*=/.test(directive));
+  if (sharedAges.length > 1 || (sharedAges.length === 1 && sharedAges[0] !== 's-maxage=31536000')) {
+    return refuse(`hashed asset ${asset} has a conflicting shared cache lifetime`);
+  }
   if (!cache.includes('public') || !cache.includes('immutable') || cache.includes('no-cache') || cache.includes('no-store')) {
     return refuse(`hashed asset ${asset} lacks an unambiguous public, immutable cache policy`);
   }
@@ -124,9 +141,15 @@ export async function auditStaticAssetCaching(fetchImpl = fetch, origin = expect
 
 export async function runOriginAudit({ origin = expected.origin, directOrigin = expected.directOrigin, fetchImpl = fetch, tls = captureTls } = {}) {
   const results = [];
-  const step = async (check, action) => { try { results.push({ check, ...(await action()) }); } catch (error) { results.push({ check, ...refuse(`probe failed: ${String(error.message).slice(0, 160)}`) }); } };
-  await step('canonical-origin', () => auditCanonicalOrigin(fetchImpl, origin));
-  await step('api-cache-policy', () => auditApiCachePolicy(fetchImpl, origin));
+  const step = async (check, action) => {
+    let result;
+    try { result = await action(); }
+    catch (error) { result = refuse(`probe failed: ${String(error.message).slice(0, 160)}`); }
+    results.push({ check, ...result });
+    return result;
+  };
+  const canonical = await step('canonical-origin', () => auditCanonicalOrigin(fetchImpl, origin));
+  await step('api-cache-policy', () => auditApiCachePolicy(fetchImpl, origin, canonical.revision));
   await step('no-api-fallback', () => auditNoApiFallback(fetchImpl, origin));
   await step('anonymous-boundaries', () => auditAnonymousBoundaries(fetchImpl, origin));
   await step('csrf-posture', () => auditCsrfPosture(fetchImpl, origin));
