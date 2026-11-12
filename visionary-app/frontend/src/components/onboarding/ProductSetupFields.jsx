@@ -1,6 +1,6 @@
 import { useId, useState } from 'react';
 import ChoiceGrid from './ChoiceGrid';
-import { BOARDS, CLASSES, INDIAN_STATES, LANGUAGES, COMPETITIVE_TARGETS, TEACHER_CATEGORIES, ORG_TYPES } from './stepConfigs';
+import { BOARDS, CLASSES, INDIAN_STATES, LANGUAGES, UI_LANGUAGE_NOTE, COMPETITIVE_TARGETS, TEACHER_CATEGORIES, ORG_TYPES } from './stepConfigs';
 
 function Select({ label, value, onChange, options, placeholder = 'Choose an option' }) {
   const id = useId();
@@ -19,7 +19,9 @@ function Subjects({ value, onChange }) {
   return <Text label="Subjects or interests (optional)" value={text} maximum={500} placeholder="For example, mathematics, design" onChange={next => { setText(next); onChange([...new Set(next.split(',').map(item => item.trim().slice(0, 100)).filter(Boolean))].slice(0, 20)); }} />;
 }
 export default function ProductSetupFields({ step, data, updateData, live }) {
-  const language = <Select label="Preferred learning language" value={data.preferred_language || data.medium || 'English'} options={LANGUAGES} onChange={value => updateData('preferred_language', value)} />;
+  // FAP-72: the full list is a saved content-interest preference, never a UI
+  // switch — the honest note sits under it so no language is implied switchable.
+  const language = <div><Select label="Preferred learning language" value={data.preferred_language || data.medium || 'English'} options={LANGUAGES} onChange={value => updateData('preferred_language', value)} /><p className="mt-1 text-xs leading-5 text-[#6e6e73]">{UI_LANGUAGE_NOTE}</p></div>;
   const subjectField = (field = 'subjects') => <Subjects value={data[field]} onChange={value => updateData(field, value)} />;
   return <div className="space-y-6">
     {step.id === 'about' && <>

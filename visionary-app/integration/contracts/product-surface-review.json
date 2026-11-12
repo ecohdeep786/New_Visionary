@@ -63,16 +63,6 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/auth/LanguageSelector.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
     "frontend/src/components/AuthLayout.jsx": {
       "profile": "client-presentation",
       "state": "connected",
