@@ -69,3 +69,11 @@ The reviewer-corrector lane reviewed the implementation, corrected two findings,
 
 - The real-account sign-in observation, email verification/reset delivery and console provider settings remain founder-gated exactly as the original evidence records; this pass adds no claims there.
 - The live run re-executes the same read-only probe set (plus the one garbage-token session refusal probe recorded by the implementer) against the **corrected** tool on 2026-11-10.
+
+## Production verification on 2026-11-12
+
+All seven structural tests and all six external probes passed against production commit `0245176141978bebe1a69907dce9f5cfc0f9bc50`. The session audit now requires a matching, noncacheable CSRF credential, a specific 401 for invalid Firebase credentials, and explicit reviewed CSP sources.
+
+A synthetic Firebase email and password sign-in through the live origin issued both `__Host-visionary-session` and `__Host-visionary-device` with Secure, HttpOnly, SameSite=Strict, and Path=/. Neither cookie had a Domain attribute. The authenticated request read the matching account from Firestore. The test identity and account records were removed. The canonical deployment probe verified proxy header sanitization and release provenance. The production Identity Platform configuration confirmed that `visionary.org.in` and `visionary-research.firebaseapp.com` are authorized and that email/password and phone sign-in are enabled.
+
+Actual verification and password-reset email delivery still need a controlled inbox. The hosted sign-in smoke used an administratively verified synthetic account.

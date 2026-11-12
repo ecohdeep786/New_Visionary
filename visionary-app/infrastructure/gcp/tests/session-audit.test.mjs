@@ -28,34 +28,41 @@ test('sign-in methods must be the reviewed live set, cache-exempt and attested',
 });
 
 test('CSRF cookie must carry the __Host- posture', async () => {
-  const good = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })]]);
+  const good = urlFetch([['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })]]);
   assert.equal((await auditCsrfCookiePosture(good)).pass, true);
-  const weak = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': 'visionary-csrf=x; Path=/' }, { token: 'f'.repeat(64) })]]);
+  const mismatch = urlFetch([['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'a'.repeat(64) })]]);
+  assert.match((await auditCsrfCookiePosture(mismatch)).detail, /does not match/);
+  const weak = urlFetch([['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': 'visionary-csrf=x; Path=/' }, { token: 'f'.repeat(64) })]]);
   assert.match((await auditCsrfCookiePosture(weak)).detail, /not __Host-visionary-csrf/);
-  const noStrict = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': `${expected.cookiePrefix}csrf=x; Path=/; Secure; HttpOnly; SameSite=Lax` }, { token: 'f'.repeat(64) })]]);
+  const noStrict = urlFetch([['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': `${expected.cookiePrefix}csrf=x; Path=/; Secure; HttpOnly; SameSite=Lax` }, { token: 'f'.repeat(64) })]]);
   assert.match((await auditCsrfCookiePosture(noStrict)).detail, /missing/i);
   // __Host- without Path=/ is rejected by browsers (the cookie never exists),
   // which would silently break CSRF end to end — the audit must catch it
-  const noPath = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': `${expected.cookiePrefix}csrf=x; Secure; HttpOnly; SameSite=Strict` }, { token: 'f'.repeat(64) })]]);
+  const noPath = urlFetch([['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': `${expected.cookiePrefix}csrf=x; Secure; HttpOnly; SameSite=Strict` }, { token: 'f'.repeat(64) })]]);
   assert.match((await auditCsrfCookiePosture(noPath)).detail, /missing/i);
   // a Domain attribute violates the __Host- contract and must refuse
-  const withDomain = urlFetch([['/api/auth/csrf', json(200, { 'set-cookie': `${expected.cookiePrefix}csrf=x; Path=/; Domain=visionary.org.in; Secure; HttpOnly; SameSite=Strict` }, { token: 'f'.repeat(64) })]]);
+  const withDomain = urlFetch([['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': `${expected.cookiePrefix}csrf=x; Path=/; Domain=visionary.org.in; Secure; HttpOnly; SameSite=Strict` }, { token: 'f'.repeat(64) })]]);
   assert.match((await auditCsrfCookiePosture(withDomain)).detail, /Domain attribute/);
 });
 
 test('invalid credentials are refused with no session/device cookie issued', async () => {
   const good = urlFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/session', json(401, { 'cache-control': 'no-store' }, { error: 'invalid token' })],
   ]);
   assert.equal((await auditInvalidSessionRefusal(good)).pass, true);
+  const genericDenial = urlFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/session', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditInvalidSessionRefusal(genericDenial)).detail, /expected 401/);
   const issuing = urlFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/session', respond(401, { 'set-cookie': `${expected.cookiePrefix}session=abc; Path=/; Secure; HttpOnly; SameSite=Strict`, 'cache-control': 'no-store' }, '{}')],
   ]);
   assert.match((await auditInvalidSessionRefusal(issuing)).detail, /session\/device cookie was issued/);
   const accepted = urlFetch([
-    ['/api/auth/csrf', json(200, { 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/session', json(200, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.match((await auditInvalidSessionRefusal(accepted)).detail, /was accepted/);
@@ -74,6 +81,8 @@ test('the CSP must pin exactly the reviewed auth domains', async () => {
   const missing = urlFetch([['/login', respond(200, { 'content-security-policy': csp.replace(' https://securetoken.googleapis.com', '') }, '<!doctype html>')]]);
   assert.match((await auditAuthorizedAuthDomains(missing)).detail, /missing reviewed auth hosts: securetoken\.googleapis\.com/);
   // a wildcard or scheme-wildcard source defeats the host allowlist entirely
+  const extraHost = urlFetch([['/login', respond(200, { 'content-security-policy': csp + ' https://unreviewed.example' }, '<!doctype html>')]]);
+  assert.match((await auditAuthorizedAuthDomains(extraHost)).detail, /unreviewed source/);
   const star = urlFetch([['/login', respond(200, { 'content-security-policy': csp.replace("connect-src 'self'", 'connect-src *') }, '<!doctype html>')]]);
   assert.match((await auditAuthorizedAuthDomains(star)).detail, /wildcard\/unsafe source \*/);
   const schemeWildcard = urlFetch([['/login', respond(200, { 'content-security-policy': csp.replace('frame-src ', 'frame-src https: ') }, '<!doctype html>')]]);
@@ -93,7 +102,7 @@ test('the committed cookie contract keeps the reviewed flags and HTTPS refusal',
 test('full session audit passes on the reviewed behavior and fails closed otherwise', async () => {
   const good = urlFetch([
     ['/api/auth/methods', json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { email: true, google: true, phone: true })],
-    ['/api/auth/csrf', json(200, { 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/session', json(401, { 'cache-control': 'no-store' }, {})],
     ['/api/auth/me', json(401, { 'cache-control': 'no-store' }, {})],
     ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})],
@@ -105,7 +114,7 @@ test('full session audit passes on the reviewed behavior and fails closed otherw
 
   const open = urlFetch(good.routes === undefined ? [
     ['/api/auth/methods', json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { email: true, google: true, phone: true })],
-    ['/api/auth/csrf', json(200, { 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': csrfCookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/session', respond(200, { 'set-cookie': `${expected.cookiePrefix}session=s; Path=/; Secure; HttpOnly; SameSite=Strict`, 'cache-control': 'no-store' }, '{}')],
     ['/api/auth/me', json(401, { 'cache-control': 'no-store' }, {})],
     ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})],

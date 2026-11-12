@@ -42,35 +42,48 @@ export async function auditSignInMethods(fetchImpl = fetch, origin = expected.or
 // token. The __Host- contract also requires Path=/ and no Domain attribute —
 // browsers silently reject the cookie otherwise, which would break CSRF end
 // to end while looking correct here.
-export async function auditCsrfCookiePosture(fetchImpl = fetch, origin = expected.origin) {
+async function readCsrfCredential(fetchImpl, origin) {
   const response = await fetchImpl(origin + '/api/auth/csrf', { redirect: 'manual', signal: AbortSignal.timeout(15000) });
-  const cookie = response.headers.get('set-cookie') || '';
-  const token = (await response.json()).token;
-  if (response.status !== 200 || !/^[a-f0-9]{64}$/.test(token || '')) return refuse('CSRF token missing or malformed');
-  if (!cookie.startsWith(expected.cookiePrefix + 'csrf=')) return refuse(`cookie is not ${expected.cookiePrefix}csrf`);
-  for (const flag of [/HttpOnly/i, /Secure/i, /SameSite=Strict/i, /Path=\//i]) {
-    if (!flag.test(cookie)) return refuse(`CSRF cookie missing ${flag}`);
+  if (response.status !== 200 || response.headers.get('cache-control') !== 'no-store') throw Error('CSRF token response must be HTTP 200 and no-store');
+  let token;
+  try { token = (await response.json())?.token; }
+  catch { throw Error('CSRF token response is malformed'); }
+  if (typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token)) throw Error('CSRF token missing or malformed');
+  const [cookie, ...flags] = (response.headers.get('set-cookie') || '').split(';').map(value => value.trim());
+  if (!cookie.startsWith(expected.cookiePrefix + 'csrf=')) throw Error(`cookie is not ${expected.cookiePrefix}csrf`);
+  const attributes = flags.map(value => value.toLowerCase());
+  if (attributes.some(value => /^domain(?:=|$)/.test(value))) throw Error('CSRF cookie carries a Domain attribute');
+  const scope = attributes.filter(value => /^(?:path|samesite)=/.test(value));
+  if (scope.length !== 2 || !['secure', 'httponly', 'samesite=strict', 'path=/'].every(flag => attributes.includes(flag))) {
+    throw Error('CSRF cookie is missing the required Secure, HttpOnly, SameSite=Strict, or Path=/ posture');
   }
-  if (/Domain=/i.test(cookie)) return refuse('CSRF cookie carries a Domain attribute, violating the __Host- contract');
+  if (cookie !== expected.cookiePrefix + 'csrf=' + token) throw Error('CSRF cookie does not match the response token');
+  return { cookie, token };
+}
+
+export async function auditCsrfCookiePosture(fetchImpl = fetch, origin = expected.origin) {
+  try { await readCsrfCredential(fetchImpl, origin); }
+  catch (error) { return refuse(error.message); }
   return pass('__Host- prefixed Secure/HttpOnly/SameSite=Strict Path=/ CSRF cookie');
 }
 
 // A session issuance attempt with invalid credentials must be refused without
 // issuing any session/device cookie.
 export async function auditInvalidSessionRefusal(fetchImpl = fetch, origin = expected.origin) {
-  const csrf = await fetchImpl(origin + '/api/auth/csrf', { redirect: 'manual', signal: AbortSignal.timeout(15000) });
-  const cookie = (csrf.headers.get('set-cookie') || '').split(';')[0];
-  const token = (await csrf.json()).token;
+  let credentials;
+  try { credentials = await readCsrfCredential(fetchImpl, origin); }
+  catch (error) { return refuse(error.message); }
+  const { cookie, token } = credentials;
   const response = await fetchImpl(origin + '/api/auth/session', {
     method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(15000),
     headers: { Origin: origin, Cookie: cookie, 'X-CSRF-Token': token, 'Content-Type': 'application/json' },
     body: JSON.stringify({ idToken: 'x'.repeat(600) }),
   });
-  if (response.status === 200) return refuse('an invalid credential session attempt was accepted');
-  if (!String(response.status).startsWith('4')) return refuse(`invalid session attempt returned ${response.status}`);
+  if (response.status >= 200 && response.status < 300) return refuse('an invalid credential session attempt was accepted');
+  if (response.status !== 401) return refuse(`invalid session attempt returned ${response.status}, expected 401`);
   if (response.headers.get('cache-control') !== 'no-store') return refuse('session refusal is cacheable');
   const setCookie = response.headers.get('set-cookie') || '';
-  if (setCookie.includes(expected.cookiePrefix + 'session=') || setCookie.includes(expected.cookiePrefix + 'device=')) return refuse('a session/device cookie was issued on a refused attempt');
+  if (/(?:^|,\s*)(?:__Host-)?visionary-(?:session|device)=/i.test(setCookie)) return refuse('a session/device cookie was issued on a refused attempt');
   return pass(`invalid credentials refused ${response.status} with no session/device cookie issued`);
 }
 
@@ -90,20 +103,24 @@ export async function auditAuthorizedAuthDomains(fetchImpl = fetch, origin = exp
   const response = await fetchImpl(origin + '/login', { redirect: 'manual', signal: AbortSignal.timeout(15000) });
   const csp = response.headers.get('content-security-policy') || '';
   if (response.status !== 200) return refuse(`login page status ${response.status}`);
-  const connect = (csp.match(/connect-src ([^;]+);?/) || [])[1] || '';
-  const frame = (csp.match(/frame-src ([^;]+);?/) || [])[1] || '';
-  // a wildcard, scheme-wildcard or unsafe source defeats the reviewed host
-  // allowlist entirely
-  for (const [name, sources] of [['connect-src', connect], ['frame-src', frame]]) {
-    const bad = sources.trim().split(/\s+/).find(t => t === '*' || /:$/.test(t) || /unsafe-/.test(t));
+  const authSources = hosts => hosts.map(host => 'https://' + host);
+  const approved = [
+    ['connect-src', authSources(expected.authConnectHosts), ["'self'", 'https://api.razorpay.com', 'https://checkout.razorpay.com',
+      'https://lumberjack.razorpay.com', 'https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/']],
+    ['frame-src', authSources(expected.authFrameHosts), ['https://api.razorpay.com', 'https://checkout.razorpay.com',
+      'https://www.google.com/recaptcha/', 'https://recaptcha.google.com/recaptcha/']],
+  ];
+  const directives = csp.split(';').map(value => value.trim().split(/\s+/));
+  for (const [name, required, optional] of approved) {
+    const matching = directives.filter(([directive]) => directive.toLowerCase() === name);
+    if (matching.length !== 1) return refuse(`CSP must declare ${name} exactly once`);
+    const sources = matching[0].slice(1);
+    const bad = sources.find(source => source.includes('*') || /:$/.test(source) || /unsafe-/.test(source));
     if (bad) return refuse(`CSP ${name} allows wildcard/unsafe source ${bad}`);
+    const missing = required.filter(source => !sources.includes(source));
+    if (missing.length) return refuse(`CSP ${name} is missing reviewed auth hosts: ${missing.map(source => new URL(source).hostname).join(', ')}`);
+    if (sources.some(source => !required.includes(source) && !optional.includes(source))) return refuse(`CSP ${name} contains an unreviewed source`);
   }
-  const connectHosts = [...connect.matchAll(/https:\/\/([a-z0-9.-]+)/g)].map(m => m[1]);
-  const frameHosts = [...frame.matchAll(/https:\/\/([a-z0-9.-]+)/g)].map(m => m[1]);
-  const missingConnect = expected.authConnectHosts.filter(host => !connectHosts.includes(host));
-  if (missingConnect.length) return refuse(`CSP connect-src is missing reviewed auth hosts: ${missingConnect.join(', ')}`);
-  const missingFrame = expected.authFrameHosts.filter(host => !frameHosts.includes(host));
-  if (missingFrame.length) return refuse(`CSP frame-src is missing the reviewed auth host: ${missingFrame.join(', ')}`);
   return pass('CSP connects/frames exactly the reviewed Firebase auth domains plus the reviewed payment/recaptcha hosts');
 }
 
