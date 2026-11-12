@@ -6,8 +6,8 @@ const commit = 'a'.repeat(40), previousCommit = 'b'.repeat(40);
 const revision = production.service + '-g' + commit.slice(0, 12) + '-1-1', previous = production.service + '-previous';
 const image = production.image + '@sha256:' + 'c'.repeat(64);
 const run = { GITHUB_REPOSITORY: 'ecohdeep786/New_Visionary', GITHUB_REF: 'refs/heads/main', GITHUB_EVENT_NAME: 'push', GITHUB_WORKFLOW_REF: 'ecohdeep786/New_Visionary/.github/workflows/production.yml@refs/heads/main', GITHUB_SHA: commit, GITHUB_RUN_ID: '1', GITHUB_RUN_ATTEMPT: '1' };
-function compatible(source = previousCommit, enabled = false) {
-  return { metadata: { annotations: { 'autoscaling.knative.dev/maxScale': '1', 'run.googleapis.com/cpu-throttling': 'true', 'run.googleapis.com/startup-cpu-boost': 'false', 'run.googleapis.com/execution-environment': 'gen2' } }, spec: { serviceAccountName: production.runtime, containerConcurrency: 20, timeoutSeconds: 30, containers: [{ image, resources: { limits: { cpu: '1', memory: '512Mi' } }, env: Object.entries({ ...releaseEnvironment(source, enabled), AUTH_RATE_LIMIT_KEY: undefined }).filter(([, value]) => value !== undefined).map(([name, value]) => ({ name, value })).concat([{ name: 'AUTH_RATE_LIMIT_KEY', valueFrom: { secretKeyRef: { name: production.secret, key: '1' } } }]) }] } };
+function compatible(source = previousCommit, enabled = false, secretVersion = source === previousCommit ? production.rollbackSecretVersion : production.secretVersion) {
+  return { metadata: { annotations: { 'autoscaling.knative.dev/maxScale': '1', 'run.googleapis.com/cpu-throttling': 'true', 'run.googleapis.com/startup-cpu-boost': 'false', 'run.googleapis.com/execution-environment': 'gen2' } }, spec: { serviceAccountName: production.runtime, containerConcurrency: 20, timeoutSeconds: 30, containers: [{ image, resources: { limits: { cpu: '1', memory: '512Mi' } }, env: Object.entries({ ...releaseEnvironment(source, enabled), AUTH_RATE_LIMIT_KEY: undefined }).filter(([, value]) => value !== undefined).map(([name, value]) => ({ name, value })).concat([{ name: 'AUTH_RATE_LIMIT_KEY', valueFrom: { secretKeyRef: { name: production.secret, key: secretVersion } } }]) }] } };
 }
 function fixture(overrides = {}) {
   const calls = []; let current = previous;
@@ -84,6 +84,7 @@ test('the production CLI command carries the derived rollout policy into pinned 
     await deployRelease(f.options);
     assert.ok(actual.includes('--image=' + image));
     assert.ok(actual.includes('--no-traffic'));
+    assert.ok(actual.includes('--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':' + production.secretVersion));
     assert.ok(actual.includes('--ingress=internal-and-cloud-load-balancing'));
     const environment = actual.find(arg => arg.startsWith('--set-env-vars='));
     assert.match(environment, /AUTH_SESSION_POLICY_VERSION=1/);
@@ -172,8 +173,12 @@ test('recovery never overwrites another operator release', async () => {
   await assert.rejects(deployRelease(f.options)); assert.equal(f.getCurrent(), 'operator-release'); assert.equal(f.calls.filter(x => x.startsWith('traffic:')).length, 1);
 });
 test('rollback validation rejects wrong project/auth domain/origin/proxy/identity/secrets/image and cost expansion', () => {
-  assert.equal(verifyRevision(compatible(), previousCommit, image), previousCommit);
-  assert.throws(() => verifyRevision(compatible(), previousCommit, production.image + '@sha256:' + 'd'.repeat(64)));
+  assert.equal(verifyRevision(compatible()), previousCommit);
+  assert.equal(verifyRevision(compatible(commit), commit, image), commit);
+  assert.throws(() => verifyRevision(compatible(commit), commit, production.image + '@sha256:' + 'd'.repeat(64)));
+  if (production.rollbackSecretVersion !== production.secretVersion) {
+    assert.throws(() => verifyRevision(compatible(), previousCommit, image), /not a compatible/);
+  }
   for (const mutate of [r => r.spec.containers[0].env.find(x => x.name === 'AUTH_TRUST_PROXY_HOPS').value = '1', r => r.spec.containers[0].env.find(x => x.name === 'FIREBASE_PROJECT_ID').value = 'visionary-fd6d2', r => r.spec.containers[0].env.find(x => x.name === 'FIREBASE_AUTH_DOMAIN').value = 'visionary-fd6d2.firebaseapp.com', r => r.spec.serviceAccountName = 'owner@example.test', r => r.spec.containers[0].resources.limits.memory = '1Gi', r => r.spec.containers[0].image = production.image + ':latest', r => r.spec.containers[0].env.at(-1).valueFrom.secretKeyRef.key = 'latest']) { const r = compatible(); mutate(r); assert.throws(() => verifyRevision(r)); }
   assert.throws(() => currentRevision({ status: { traffic: [{ revisionName: previous, percent: 50 }, { revisionName: revision, percent: 50 }] } }));
 });

@@ -24,7 +24,7 @@ const rotationTime = Date.now() + 86400_000;
 const secretName = `projects/${expected.projectNumber}/secrets/${expected.secret}`;
 const secret = { name: secretName, topics: [{ name: `projects/${expected.project}/topics/product-secret-rotation` }],
   rotation: { rotationPeriod: '2592000s', nextRotationTime: new Date(rotationTime).toISOString() } };
-const version = { name: secretName + '/versions/1', state: 'ENABLED' };
+const version = { name: secretName + '/versions/' + expected.secretVersion, state: 'ENABLED' };
 const revisionName = expected.service + '-reviewed';
 const service = { metadata: { name: expected.service, annotations: {
   'run.googleapis.com/ingress': expected.ingress, 'run.googleapis.com/invoker-iam-disabled': 'true',
@@ -34,7 +34,7 @@ const revision = { metadata: { name: revisionName, labels: { 'serving.knative.de
     { name: 'FIREBASE_PROJECT_ID', value: expected.project },
     { name: 'FIREBASE_PROJECT_KIND', value: 'production' },
     { name: 'FIRESTORE_DATABASE_ID', value: 'default' },
-    { name: 'AUTH_RATE_LIMIT_KEY', valueFrom: { secretKeyRef: { name: expected.secret, key: '1' } } },
+    { name: 'AUTH_RATE_LIMIT_KEY', valueFrom: { secretKeyRef: { name: expected.secret, key: expected.secretVersion } } },
   ] }] } };
 const database = { name: `projects/${expected.project}/databases/${expected.database}`, type: 'FIRESTORE_NATIVE' };
 
@@ -92,7 +92,7 @@ test('provider verifies complete bootstrap trust configuration and excludes sibl
 
 test('rotation metadata requires a same-project topic, valid future schedule and pinned enabled version', () => {
   assert.equal(auditSecretRotation(secret, version).pass, true);
-  assert.equal(auditSecretRotation(secret, { ...version, name: secretName + '/versions/2' }).pass, false);
+  assert.equal(auditSecretRotation(secret, { ...version, name: version.name + '0' }).pass, false);
   assert.equal(auditSecretRotation(secret, { ...version, state: 'DISABLED' }).pass, false);
   for (const candidate of [
     { ...secret, topics: [] }, { ...secret, topics: [{ name: 'projects/foreign/topics/rotation' }] },
@@ -146,7 +146,7 @@ const readResponses = new Map([
   ['iam service-accounts get-iam-policy ' + expected.runtime, runtimePolicy],
   ['secrets get-iam-policy ' + expected.secret, secretPolicy],
   ['secrets describe ' + expected.secret, secret],
-  ['secrets versions describe 1 --secret=' + expected.secret, version],
+  ['secrets versions describe ' + expected.secretVersion + ' --secret=' + expected.secret, version],
   ['run services describe ' + expected.service, service],
   ['run revisions describe ' + revisionName, revision],
   ['run services get-iam-policy ' + expected.service, servicePolicy],
