@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // ROLE-03 (KAN-95) — immutable submission copies, duplicate-safe submit,
 // teacher draft/release/return/request-revision, retained attempt/feedback
 // history; no silent resubmission replacement.
@@ -42,7 +43,6 @@ export interface SubmitInput {
 }
 
 export class SubmissionsService {
-  private attemptCounter = 0;
 
   constructor(private readonly store: SubmissionsStore) {}
 
@@ -69,8 +69,11 @@ export class SubmissionsService {
       const requests = await this.store.revisionRequests(input.assignmentId, input.version, learner.uid);
       throw new SubmissionsError(requests === 0 ? 'revision_not_requested' : 'attempt_bound_exceeded');
     }
+    // The attempt bound is enforced ATOMICALLY at the store: the CAS checks the
+    // CURRENT count against the granted bound — two concurrent ungranted
+    // resubmissions can never both pass.
     const attempt: AttemptRecord = {
-      attemptId: `att_${++this.attemptCounter}`,
+      attemptId: `att_${randomUUID()}`,
       assignmentId: input.assignmentId,
       version: input.version,
       learnerUid: learner.uid,
@@ -80,7 +83,8 @@ export class SubmissionsService {
       idempotencyKey: input.idempotencyKey ?? null,
       answersRevisionNo: attempts.length === 0 ? null : attempts.length,
     };
-    await this.store.appendAttempt(attempt);
+    const appended = await this.store.appendAttemptCas(attempt, attempts.length, granted);
+    if (!appended.ok) throw new SubmissionsError('attempt_bound_exceeded');
     return attempt;
   }
 

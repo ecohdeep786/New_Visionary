@@ -16,6 +16,11 @@ export interface SubmissionsStore {
   isEnrolled(classId: string, learnerUid: string): Promise<boolean>;
   classOf(assignmentId: string): Promise<string | undefined>;
   teacherOf(assignmentId: string): Promise<{ uid: string; workspaceId: string } | undefined>;
+  /** CAS append: applies only when the CURRENT attempt count equals expected —
+   * two concurrent ungranted resubmissions can never both pass the bound.
+   * (SQL adapter: one conditional INSERT ... SELECT with the count computed
+   * in-transaction.) */
+  appendAttemptCas(attempt: AttemptRecord, expectedCurrentCount: number, grantedBound: number): Promise<{ ok: true; attemptNo: number } | { ok: false; reason: 'bound_exceeded' }>;
 }
 
 function clone<T>(value: T): T {
@@ -42,6 +47,20 @@ export class InMemorySubmissionsStore implements SubmissionsStore {
     this.enrolled.add(`${classId}|${learnerUid}`);
   }
 
+  async appendAttemptCas(attempt: AttemptRecord, expectedCurrentCount: number, grantedBound: number): Promise<{ ok: true; attemptNo: number } | { ok: false; reason: 'bound_exceeded' }> {
+    // CRITICAL SECTION: no await between count check and append (atomic — the
+    // concurrent second submission deterministically loses the bound race).
+    const key = `${attempt.assignmentId}@${attempt.version}|${attempt.learnerUid}`;
+    const list = this.attemptList.get(key) ?? [];
+    if (list.length !== expectedCurrentCount || list.length + 1 > grantedBound) {
+      return { ok: false, reason: 'bound_exceeded' };
+    }
+    list.push(clone(attempt));
+    this.attemptList.set(key, list);
+    this.attemptById.set(attempt.attemptId, clone(attempt));
+    if (attempt.idempotencyKey) this.byKey.set(attempt.idempotencyKey, clone(attempt));
+    return { ok: true, attemptNo: list.length };
+  }
   async appendAttempt(attempt: AttemptRecord): Promise<void> {
     const key = `${attempt.assignmentId}@${attempt.version}|${attempt.learnerUid}`;
     const list = this.attemptList.get(key) ?? [];
