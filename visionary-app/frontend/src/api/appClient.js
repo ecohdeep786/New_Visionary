@@ -149,27 +149,19 @@ const verifyPassword = async (user, candidatePassword) => {
 
 /* ── Auth API ── */
 
-/* ACCEPT-06 (KAN-122): the whole demo/fixture implementation is statically
-   DEV-only so a production bundle eliminates it (the demo route is DEV-only
-   and this is its only caller). */
-const enterDemoDev = import.meta.env?.DEV ? async function (person) {
-  if (!person.id.startsWith('demo-') || !person.email.endsWith('@visionary.test')) throw new Error('Only fictional preview accounts are allowed.');
-  const {seedConnectedFixtures}=await import('./demoFixtures.js');seedConnectedFixtures();
-  let user = getUsers().find(u => u.id === person.id);
-  if (!user) { user = { id: person.id, email: person.email, full_name: person.name, identity: person.roles[0], onboarding_complete: true, demo: true, createdAt: Date.now() }; writeJson(USERS_KEY, [...getUsers(), user]); }
-  createSession(user);
-  return sanitizeUser(user);
-} : null;
-
 const auth = {
-  async enterDemo(person) {
-    if (!enterDemoDev) throw new Error('Demo account selection is available only in development.');
-    return enterDemoDev(person);
-  },
   async me() {
     const user = getCurrentUser();
     if (!user) throw new Error('Not signed in');
     return user;
+  },
+
+  /* Read-only existence check against the same store the credential gate
+   * verifies. The password step remains the only credential decision; this
+   * only routes the sign-in UI to the right local view (F-16). */
+  async emailRegistered(email) {
+    const normalizedEmail = email.trim().toLowerCase();
+    return getUsers().some((candidate) => candidate.email?.toLowerCase() === normalizedEmail);
   },
 
   async loginViaEmailPassword(email, password) {
@@ -177,13 +169,21 @@ const auth = {
     const users = getUsers();
     const user = users.find((candidate) => candidate.email?.toLowerCase() === normalizedEmail);
 
+    /* Same anti-enumeration message and credential-error code the firebase
+     * path maps (D-064), so the sign-in UI shows the same recovery view. */
+    const credentialError = () => {
+      const error = new Error('Incorrect email or password');
+      error.code = 'auth/invalid-credential';
+      return error;
+    };
+
     if (!user) {
-      throw new Error('Incorrect email or password');
+      throw credentialError();
     }
 
     const isValid = await verifyPassword(user, password);
     if (!isValid) {
-      throw new Error('Incorrect email or password');
+      throw credentialError();
     }
 
     createSession(user);
@@ -266,7 +266,9 @@ const auth = {
     const targetEmail = tokenRecord ? tokenRecord.email : null;
 
     if (!targetEmail) {
-      throw new Error('Reset link is invalid or has expired. Please request a new one.');
+      const error = new Error('Reset link is invalid or has expired. Please request a new one.');
+      error.code = 'auth/invalid-action-code';
+      throw error;
     }
 
     const users = getUsers();
