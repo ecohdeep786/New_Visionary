@@ -2484,7 +2484,7 @@
     {
       "jiraKey": "KAN-47",
       "sourceId": "PLAT-03",
-      "status": "In Progress",
+      "status": "Done",
       "branch": "codex/deepseek-kan-47-identity-isolation",
       "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-47-identity-isolation",
       "originalCandidate": "6d11fce37b7b6d8d2fcebfb9b97c9c8646d32bb2",
@@ -2492,12 +2492,9 @@
       "currentHandoff": "docs/architecture/reviews/KAN47_IDENTITY_ISOLATION_FINAL.md",
       "jiraReceipt": {
         "changesRequestedComment": 10782,
-        "transitionId": 31
+        "transitionId": 51
       },
-      "remainingGates": [
-        "Independent review and live authenticated Cloud SDK audit",
-        "Production secret cutover and rollback; visionary-uat excluded by owner direction"
-      ]
+      "remainingGates": []
     }
   ]
 }
