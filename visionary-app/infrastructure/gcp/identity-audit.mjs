@@ -1,15 +1,15 @@
 import { execFileSync, execSync } from 'node:child_process';
-import { createSign, randomUUID } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { isDeepStrictEqual } from 'node:util';
+import { pathToFileURL } from 'node:url';
+import { currentRevision, production } from './release.mjs';
 
 // PLAT-03 read-only identity/environment audit. The reviewed desired state is
 // the one bootstrap.py creates and production.yml consumes. This tool only
-// describes resources and reads one Firestore metadata document; it never
-// mutates cloud state, prints secret payloads or accepts a different
-// environment. Any deviation refuses the whole audit with the remedy.
+// describes resource metadata in the reviewed production project. Its policy
+// observations are direct grants on the named resources.
 
 export const expected = Object.freeze({
-  project: 'visionary-research', region: 'asia-south1', service: 'visionary-product',
+  project: production.project, projectNumber: production.projectNumber, region: production.region, service: production.service,
   repository: 'visionary-product',
   deployer: 'visionary-github-deployer@visionary-research.iam.gserviceaccount.com',
   runtime: 'visionary-product-runtime@visionary-research.iam.gserviceaccount.com',
@@ -21,16 +21,46 @@ export const expected = Object.freeze({
   database: 'default', databaseType: 'FIRESTORE_NATIVE',
   ingress: 'internal-and-cloud-load-balancing',
 });
+export const reviewedPool = `projects/${expected.projectNumber}/locations/global/workloadIdentityPools/${expected.pool}`;
+export const reviewedPrincipal = `principalSet://iam.googleapis.com/${reviewedPool}/attribute.repository_id/${expected.repositoryId}`;
+export const reviewedMapping = Object.freeze({
+  'google.subject': 'assertion.sub',
+  'attribute.repository_id': 'assertion.repository_id',
+  'attribute.repository_owner_id': 'assertion.repository_owner_id',
+  'attribute.ref': 'assertion.ref',
+});
+export const reviewedCondition = "assertion.repository_id == '1357462978' && " +
+  "assertion.repository_owner_id == '221676162' && " +
+  "assertion.ref == 'refs/heads/main' && " +
+  "assertion.workflow_ref == 'ecohdeep786/New_Visionary/.github/workflows/production.yml@refs/heads/main' && " +
+  "(assertion.event_name == 'push' || assertion.event_name == 'workflow_dispatch')";
 
 const member = account => `serviceAccount:${account}`;
 export const pass = detail => ({ pass: true, detail });
 export const refuse = detail => ({ pass: false, detail });
 
+function policyBindings(policy) {
+  if (!policy || typeof policy !== 'object' || Array.isArray(policy) ||
+      (policy.bindings === undefined && typeof policy.etag !== 'string')) throw Error('IAM policy response missing.');
+  const bindings = policy.bindings ?? [];
+  if (!Array.isArray(bindings) || bindings.some(row => typeof row?.role !== 'string' ||
+      !Array.isArray(row.members) || row.members.length === 0 || row.members.some(id => typeof id !== 'string'))) {
+    throw Error('IAM policy response malformed.');
+  }
+  return bindings;
+}
+
+function exactlyGrants(bindings, role, principal) {
+  return bindings.length === 1 && bindings[0].role === role && !bindings[0].condition &&
+    isDeepStrictEqual(bindings[0].members, [principal]);
+}
+
 // The runtime identity must hold exactly the reviewed project roles: the
 // Firebase Admin service agent and datastore user. Anything broader (owner,
 // editor, wildcard) or unknown refuses; least privilege is a set equality.
 export function auditRuntimeProjectIam(policy) {
-  const roles = (policy.bindings || []).filter(b => (b.members || []).includes(member(expected.runtime)) && !b.condition).map(b => b.role);
+  const bindings = policyBindings(policy);
+  const roles = bindings.filter(b => b.members.includes(member(expected.runtime)) && !b.condition).map(b => b.role);
   const extra = roles.filter(role => !expected.runtimeProjectRoles.includes(role));
   const missing = expected.runtimeProjectRoles.filter(role => !roles.includes(role));
   if (extra.length) return refuse(`runtime identity holds unreviewed project roles: ${extra.join(', ')}`);
@@ -38,7 +68,7 @@ export function auditRuntimeProjectIam(policy) {
   // A conditioned grant is outside the reviewed unconditional law even when
   // the role itself is reviewed: the desired state holds none, so any
   // conditional binding for the runtime identity refuses (fail closed).
-  const conditioned = (policy.bindings || []).filter(b => b.condition && (b.members || []).includes(member(expected.runtime))).map(b => b.role);
+  const conditioned = bindings.filter(b => b.condition && b.members.includes(member(expected.runtime))).map(b => b.role);
   if (conditioned.length) return refuse(`runtime identity holds unreviewed conditional project roles: ${conditioned.join(', ')}`);
   return pass(`exactly ${roles.join(', ')}`);
 }
@@ -46,116 +76,113 @@ export function auditRuntimeProjectIam(policy) {
 // Secret access is bound on the one product secret only, for the runtime
 // identity only. A binding for any other member or role refuses.
 export function auditRuntimeSecretIam(policy) {
-  const bindings = (policy.bindings || []).filter(b => !b.condition);
-  const foreign = bindings.filter(b => (b.members || []).some(m => m !== member(expected.runtime)));
-  if (foreign.length) return refuse(`secret policy binds members outside the runtime identity: ${foreign.map(b => b.role).join(', ')}`);
-  const roles = bindings.map(b => b.role);
-  const extra = roles.filter(role => !expected.runtimeSecretRoles.includes(role));
-  const missing = expected.runtimeSecretRoles.filter(role => !roles.includes(role));
-  if (extra.length) return refuse(`secret policy grants unreviewed roles: ${extra.join(', ')}`);
-  if (missing.length) return refuse(`secret policy is missing: ${missing.join(', ')}`);
-  return pass(`${roles.join(', ')} for the runtime identity only`);
+  if (!exactlyGrants(policyBindings(policy), expected.runtimeSecretRoles[0], member(expected.runtime))) {
+    return refuse('Direct secret policy differs from the single reviewed runtime accessor grant.');
+  }
+  return pass('Direct secret policy grants accessor to the runtime identity.');
 }
 
 // The deployer identity exists for Workload Identity Federation only: no
 // user-managed keys may exist, and its bindings are exactly the four reviewed
 // grants (WIF user, run developer, artifact registry writer, runtime act-as).
-export function auditDeployerIdentity(account, keys, projectBindings, serviceBindings, repositoryBindings, runtimeBindings) {
-  if (!account || account.disabled) return refuse('deployer identity is missing or disabled');
-  if ((keys || []).length) return refuse(`deployer identity has ${keys.length} key(s); federation only, delete the keys`);
-  const principal = `principalSet://iam.googleapis.com/projects/${expected.project}/locations/global/workloadIdentityPools/${expected.pool}/attribute.repository_id/${expected.repositoryId}`;
-  const wif = (projectBindings || []).some(b => b.role === 'roles/iam.workloadIdentityUser' && !b.condition && (b.members || []).includes(principal));
-  if (!wif) return refuse(`deployer lacks Workload Identity User for the reviewed repository principal ${principal}`);
-  const developer = (serviceBindings || []).some(b => b.role === 'roles/run.developer' && !b.condition && (b.members || []).includes(member(expected.deployer)));
-  if (!developer) return refuse('deployer lacks roles/run.developer on the product service');
-  const writer = (repositoryBindings || []).some(b => b.role === 'roles/artifactregistry.writer' && !b.condition && (b.members || []).includes(member(expected.deployer)));
-  if (!writer) return refuse('deployer lacks roles/artifactregistry.writer on the product repository');
-  const actAs = (runtimeBindings || []).some(b => b.role === 'roles/iam.serviceAccountUser' && !b.condition && (b.members || []).includes(member(expected.deployer)));
-  if (!actAs) return refuse('deployer lacks roles/iam.serviceAccountUser on the runtime identity');
-  return pass('federation-only deployer with exactly the four reviewed bindings and no keys');
+export function auditDeployerIdentity({ account, keys, project, deployer, service, repository, runtime }) {
+  if (account?.email !== expected.deployer || account.disabled) return refuse('Deployer identity is missing, foreign or disabled.');
+  if (!Array.isArray(keys) || keys.length) return refuse('Deployer user-managed key inventory is unavailable or nonempty.');
+  const deployerMember = member(expected.deployer);
+  const grantsToDeployer = policy => policyBindings(policy).filter(row => row.members.includes(deployerMember))
+    .map(row => ({ ...row, members: [deployerMember] }));
+  if (grantsToDeployer(project).length) return refuse('Deployer has an unreviewed direct project grant.');
+  if (!exactlyGrants(policyBindings(deployer), 'roles/iam.workloadIdentityUser', reviewedPrincipal)) {
+    return refuse('Deployer service account policy differs from the reviewed federation grant.');
+  }
+  if (!exactlyGrants(grantsToDeployer(service), 'roles/run.developer', deployerMember) ||
+      !exactlyGrants(grantsToDeployer(repository), 'roles/artifactregistry.writer', deployerMember) ||
+      !exactlyGrants(policyBindings(runtime), 'roles/iam.serviceAccountUser', deployerMember)) {
+    return refuse('Deployer service, repository or runtime account grant differs from the reviewed policy.');
+  }
+  return pass('Reviewed direct resource grants and no user-managed deployer keys.');
 }
 
 // The GitHub OIDC provider must be ACTIVE, trust the GitHub issuer, and pin
 // the trusted repository through its attribute condition.
-export function auditWorkloadIdentityPool(pool, provider) {
-  if (!pool || pool.state !== 'ACTIVE') return refuse('workload identity pool is missing or not ACTIVE');
-  if (!provider || provider.state !== 'ACTIVE') return refuse('workload identity provider is missing or not ACTIVE');
-  if (provider.oidc?.issuerUri !== expected.issuer) return refuse(`provider issuer is ${provider.oidc?.issuerUri}`);
-  const condition = provider.attributeCondition || '';
-  // bootstrap.py writes the reviewed conjunction
-  // (assertion.repository_id == '<id>' && repository_owner_id && ref &&
-  // workflow_ref && (event_name == 'push' || 'workflow_dispatch')). Trust is
-  // exclusive to the reviewed repository: every repository_id equality in the
-  // condition must equal the reviewed id (an extra disjunct pinning another
-  // repository widens federation trust and refuses), name-form repository
-  // claims are not the reviewed claim form, and a top-level disjunction
-  // (outside parentheses) could bypass the pin entirely and refuses.
-  const pins = [...condition.matchAll(/(?:attribute|assertion)\.repository_id\s*==\s*['"]([^'"]*)['"]/g)].map(m => m[1]);
-  if (!pins.length || !pins.every(id => id === expected.repositoryId)) {
-    return refuse(`provider condition does not pin repository_id ${expected.repositoryId} exclusively: ${condition}`);
+export function auditWorkloadIdentityPool(pool, provider, providers) {
+  const providerName = `${reviewedPool}/providers/${expected.provider}`;
+  if (pool?.name !== reviewedPool || pool.state !== 'ACTIVE' || pool.disabled) return refuse('Reviewed workload identity pool is unavailable.');
+  if (provider?.name !== providerName || provider.state !== 'ACTIVE' || provider.disabled) return refuse('Reviewed workload identity provider is unavailable.');
+  if (!Array.isArray(providers) || providers.length !== 1 || providers[0]?.name !== providerName) {
+    return refuse('Workload identity pool contains an unexpected provider inventory.');
   }
-  if (/(?:attribute|assertion)\.repository\s*==/.test(condition)) {
-    return refuse(`provider condition uses a non-reviewed repository claim form: ${condition}`);
+  if (provider.oidc?.issuerUri !== expected.issuer ||
+      !isDeepStrictEqual(provider.oidc.allowedAudiences ?? [], []) ||
+      !isDeepStrictEqual(provider.attributeMapping, reviewedMapping) ||
+      provider.attributeCondition !== reviewedCondition) {
+    return refuse('Provider issuer, audience, mapping or full trust condition differs from bootstrap.');
   }
-  if (condition.replace(/\([^()]*\)/g, '').includes('||')) {
-    return refuse(`provider condition contains a top-level disjunction that could bypass the repository pin: ${condition}`);
-  }
-  return pass(`ACTIVE pool/provider for ${expected.issuer} pinned to repository ${expected.repositoryId}`);
+  return pass('Reviewed GitHub provider, mappings and main-workflow condition.');
 }
 
-// The product secret must exist with an enabled version, and a rotation
-// schedule is part of PLAT-03. A missing schedule is reported as a failure
-// with the exact owner command; it is never silently accepted.
-export function auditSecretRotation(secret, versions) {
-  if (!secret) return refuse('product rate-limit secret is missing');
-  const enabled = (versions || []).filter(v => v.state === 'ENABLED').map(v => v.name?.split('/').pop());
-  if (!enabled.length) return refuse('product secret has no enabled version');
-  if (!secret.rotation?.rotationPeriod) return refuse(`secret rotation schedule is not configured; owner remedy: gcloud secrets update ${expected.secret} --rotation-period=2592000s --next-rotation-time=<future RFC3339>`);
-  return pass(`rotation every ${secret.rotation.rotationPeriod} with enabled version(s): ${enabled.join(', ')}`);
+// Check schedule metadata and the version pinned by release.mjs. Notification
+// delivery and rotation of a live serving revision require operational evidence.
+export function auditSecretRotation(secret, version, now = Date.now()) {
+  const names = [expected.project, expected.projectNumber].map(project => `projects/${project}/secrets/${expected.secret}`);
+  if (!names.includes(secret?.name)) return refuse('Product secret metadata is missing or foreign.');
+  if (version?.state !== 'ENABLED' || !names.some(name => version?.name === name + '/versions/1')) {
+    return refuse('Pinned product secret version 1 is unavailable.');
+  }
+  const period = /^(\d+)(?:\.\d{1,9})?s$/.test(secret.rotation?.rotationPeriod ?? '') ? parseFloat(secret.rotation.rotationPeriod) : NaN;
+  const next = Date.parse(secret.rotation?.nextRotationTime);
+  const topic = new RegExp(`^projects/(?:${expected.project}|${expected.projectNumber})/topics/[A-Za-z][A-Za-z0-9._~+%-]{2,254}$`);
+  if (!Number.isFinite(period) || period < 3600 || period > 3153600000 ||
+      !Number.isFinite(next) || next <= now || !Array.isArray(secret.topics) ||
+      secret.topics.length === 0 || secret.topics.some(row => !topic.test(row?.name ?? ''))) {
+    return refuse('Rotation notification schedule, future time or same-project topics are incomplete.');
+  }
+  return pass('Rotation notification metadata and enabled pinned version verified.');
 }
 
 // The serving service must run as the runtime identity with the reviewed
 // ingress cutover and no public invoker binding.
-export function auditServiceIsolation(service, serviceIam) {
+export function auditServiceIsolation(service, serviceIam, revision) {
   const annotations = service?.metadata?.annotations || {};
-  const account = service?.spec?.serviceAccountName;
-  if (account !== expected.runtime) return refuse(`service runs as ${account}`);
-  if (annotations['run.googleapis.com/ingress'] !== expected.ingress) return refuse(`service ingress is ${annotations['run.googleapis.com/ingress']}`);
-  const publicMembers = (serviceIam?.bindings || []).flatMap(b => b.members || []).filter(m => m === 'allUsers' || m === 'allAuthenticatedUsers');
-  if (publicMembers.length) return refuse('service IAM grants a public invoker binding');
-  return pass(`runtime identity + ${expected.ingress} + no public invoker`);
+  if (service?.metadata?.name !== expected.service || annotations['run.googleapis.com/ingress'] !== expected.ingress) {
+    return refuse('Service identity or ingress differs from the reviewed edge configuration.');
+  }
+  if (policyBindings(serviceIam).some(row => row.members.some(id => id === 'allUsers' || id === 'allAuthenticatedUsers'))) {
+    return refuse('Service IAM contains a public principal.');
+  }
+  const name = currentRevision(service);
+  const containers = revision?.spec?.containers;
+  if (revision?.metadata?.name !== name || revision?.metadata?.labels?.['serving.knative.dev/service'] !== expected.service ||
+      revision?.spec?.serviceAccountName !== expected.runtime || containers?.length !== 1) {
+    return refuse('Serving revision is missing or does not use the reviewed runtime identity.');
+  }
+  const rows = containers[0].env;
+  if (!Array.isArray(rows) || new Set(rows.map(row => row?.name)).size !== rows.length) return refuse('Serving revision environment is incomplete or ambiguous.');
+  const env = new Map(rows.map(row => [row.name, row]));
+  const settings = { FIREBASE_PROJECT_ID: expected.project, FIREBASE_PROJECT_KIND: 'production', FIRESTORE_DATABASE_ID: expected.database };
+  const secret = env.get('AUTH_RATE_LIMIT_KEY');
+  const override = /^(?:GOOGLE_APPLICATION_CREDENTIALS|FIREBASE_AUTH_EMULATOR_HOST|FIRESTORE_EMULATOR_HOST|FIREBASE_STORAGE_EMULATOR_HOST|STORAGE_EMULATOR_HOST|PUBSUB_EMULATOR_HOST)$/;
+  if (Object.entries(settings).some(([key, value]) => env.get(key)?.value !== value || env.get(key)?.valueFrom) ||
+      [...env.keys()].some(key => override.test(key)) || secret?.value !== undefined ||
+      secret?.valueFrom?.secretKeyRef?.name !== expected.secret || secret?.valueFrom?.secretKeyRef?.key !== '1') {
+    return refuse('Serving revision does not use the pinned realm, attached identity and secret version.');
+  }
+  const invokerCheck = annotations['run.googleapis.com/invoker-iam-disabled'] === 'true' ? 'disabled for the public edge' : 'enabled';
+  return pass(`Serving revision identity, realm, version and edge ingress verified. Invoker IAM check is ${invokerCheck}.`);
 }
 
-// Validate the existing named Firestore database through the product's own
-// credential chain (service account JSON per GOOGLE_APPLICATION_CREDENTIALS),
-// never through a guessed name or a different project.
-export function auditNamedDatabase(db, { project = expected.project, database = expected.database } = {}) {
+// The CLI describes this explicit database as the attached runtime principal.
+export function auditNamedDatabase(db) {
   if (!db) return refuse('named Firestore database was not resolved');
-  if (db.name !== `projects/${project}/databases/${database}`) return refuse(`database name is ${db.name}`);
-  if (db.type !== expected.databaseType) return refuse(`database type is ${db.type}`);
+  if (db.name !== `projects/${expected.project}/databases/${expected.database}`) return refuse('Firestore returned a different database resource.');
+  if (db.type !== expected.databaseType) return refuse('Firestore returned a database outside Native mode.');
   if (db.deleteTime) return refuse('database is deleted');
   return pass(`${db.name} type ${db.type}`);
 }
 
-// Exchange the reviewed service-account key for a read-only datastore token
-// (RS256 JWT, one minute headroom) and read the database metadata document.
-export async function fetchNamedDatabase({ keyPath = process.env.GOOGLE_APPLICATION_CREDENTIALS, database = expected.database, project = expected.project, now = Math.floor(Date.now() / 1000), tokenUrl = 'https://oauth2.googleapis.com/token', endpoint = undefined, fetchImpl = fetch } = {}) {
-  if (!keyPath) throw Error('GOOGLE_APPLICATION_CREDENTIALS is not configured for the product identity.');
-  const key = JSON.parse(readFileSync(keyPath, 'utf8'));
-  const head = Buffer.from(JSON.stringify({ alg: 'RS256', typ: 'JWT' })).toString('base64url');
-  const claims = Buffer.from(JSON.stringify({ iss: key.client_email, scope: 'https://www.googleapis.com/auth/datastore', aud: tokenUrl, iat: now, exp: now + 60 })).toString('base64url');
-  const signature = createSign('RSA-SHA256').update(`${head}.${claims}`).sign(key.private_key).toString('base64url');
-  const response = await fetchImpl(tokenUrl, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${head}.${claims}.${signature}` });
-  if (!response.ok) throw Error(`identity token exchange failed with status ${response.status}.`);
-  const token = (await response.json()).access_token;
-  const url = endpoint || `https://firestore.googleapis.com/v1/projects/${project}/databases/${database}`;
-  const read = await fetchImpl(url, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(15000) });
-  if (!read.ok) throw Error(`named database read failed with status ${read.status}.`);
-  return read.json();
-}
-
 function gcloud(args) {
-  const options = { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000, windowsHide: true };
+  const options = { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000, windowsHide: true,
+    env: { ...process.env, CLOUDSDK_CORE_DISABLE_PROMPTS: '1' } };
   if (process.platform === 'win32') {
     if (args.some(arg => typeof arg !== 'string' || /["&|<>^%!\r\n]/.test(arg) || arg.endsWith('\\'))) throw Error('Unsafe Windows gcloud argument.');
     return JSON.parse(execSync('gcloud.cmd ' + args.map(arg => `"${arg}"`).join(' '), options));
@@ -164,45 +191,66 @@ function gcloud(args) {
 }
 
 // Full read-only audit against the live project. Every check must pass for
-// the audit to succeed; the exit code is the verdict.
-export async function runAudit({ io = { gcloud, fetchNamedDatabase }, project = expected.project } = {}) {
+// the audit to succeed. The verdict covers the resources read during this run.
+export async function runAudit({ io = { gcloud }, project = expected.project, report = console.log } = {}) {
+  if (project !== expected.project) throw Error('Audit is bound to the reviewed production project.');
   const results = [];
-  const describe = async (check, action) => { try { results.push({ check, ...(await action()) }); } catch (error) { results.push({ check, ...refuse(`read failed: ${String(error.message).slice(0, 200)}`) }); } };
+  const read = (...args) => io.gcloud([...args, '--project=' + project, '--format=json', '--quiet']);
+  const accountPolicy = account => read('iam', 'service-accounts', 'get-iam-policy', account);
+  const keys = account => read('iam', 'service-accounts', 'keys', 'list', '--iam-account=' + account, '--managed-by=user');
+  const servicePolicy = () => read('run', 'services', 'get-iam-policy', expected.service, '--region=' + expected.region);
+  let projectPolicy, runPolicy;
+  const describe = (check, action) => {
+    try { results.push({ check, ...action() }); }
+    catch { results.push({ check, ...refuse('Read or validation failed. Verify Cloud SDK access and reviewed resource configuration.') }); }
+  };
 
-  await describe('workload-identity', async () => {
-    const pool = io.gcloud(['iam', 'workload-identity-pools', 'describe', expected.pool, '--location=global', '--project=' + project, '--format=json']);
-    const provider = io.gcloud(['iam', 'workload-identity-pools', 'providers', 'describe', expected.provider, '--workload-identity-pool=' + expected.pool, '--location=global', '--project=' + project, '--format=json']);
-    return auditWorkloadIdentityPool(pool, provider);
+  describe('workload-identity', () => {
+    const pool = read('iam', 'workload-identity-pools', 'describe', expected.pool, '--location=global');
+    const scope = ['--workload-identity-pool=' + expected.pool, '--location=global'];
+    const provider = read('iam', 'workload-identity-pools', 'providers', 'describe', expected.provider, ...scope);
+    const providers = read('iam', 'workload-identity-pools', 'providers', 'list', ...scope);
+    return auditWorkloadIdentityPool(pool, provider, providers);
   });
-  await describe('runtime-project-roles', async () => auditRuntimeProjectIam(io.gcloud(['projects', 'get-iam-policy', project, '--format=json'])));
-  await describe('runtime-secret-access', async () => auditRuntimeSecretIam(io.gcloud(['secrets', 'get-iam-policy', expected.secret, '--project=' + project, '--format=json'])));
-  await describe('deployer-federation-only', async () => {
-    const account = io.gcloud(['iam', 'service-accounts', 'describe', expected.deployer, '--project=' + project, '--format=json']);
-    const keys = io.gcloud(['iam', 'service-accounts', 'keys', 'list', '--iam-account=' + expected.deployer, '--project=' + project, '--format=json']);
-    return auditDeployerIdentity(account, keys,
-      io.gcloud(['projects', 'get-iam-policy', project, '--format=json']).bindings,
-      io.gcloud(['run', 'services', 'get-iam-policy', expected.service, '--region=' + expected.region, '--project=' + project, '--format=json']).bindings,
-      io.gcloud(['artifacts', 'repositories', 'get-iam-policy', expected.repository, '--location=' + expected.region, '--project=' + project, '--format=json']).bindings,
-      io.gcloud(['iam', 'service-accounts', 'get-iam-policy', expected.runtime, '--project=' + project, '--format=json']).bindings);
+  describe('runtime-project-roles', () => {
+    projectPolicy = read('projects', 'get-iam-policy', project);
+    const runtime = read('iam', 'service-accounts', 'describe', expected.runtime);
+    const runtimeKeys = keys(expected.runtime);
+    if (runtime?.email !== expected.runtime || runtime.disabled || !Array.isArray(runtimeKeys) || runtimeKeys.length) {
+      return refuse('Runtime account or user-managed key inventory differs from the reviewed identity.');
+    }
+    return auditRuntimeProjectIam(projectPolicy);
   });
-  await describe('secret-rotation', async () => {
-    const secret = io.gcloud(['secrets', 'describe', expected.secret, '--project=' + project, '--format=json']);
-    const versions = io.gcloud(['secrets', 'versions', 'list', '--secret=' + expected.secret, '--project=' + project, '--format=json']);
-    return auditSecretRotation(secret, versions);
+  describe('runtime-secret-access', () => auditRuntimeSecretIam(read('secrets', 'get-iam-policy', expected.secret)));
+  describe('deployer-federation-only', () => {
+    runPolicy = servicePolicy();
+    return auditDeployerIdentity({
+      account: read('iam', 'service-accounts', 'describe', expected.deployer), keys: keys(expected.deployer),
+      project: projectPolicy, deployer: accountPolicy(expected.deployer), service: runPolicy,
+      repository: read('artifacts', 'repositories', 'get-iam-policy', expected.repository, '--location=' + expected.region),
+      runtime: accountPolicy(expected.runtime),
+    });
   });
-  await describe('service-isolation', async () => {
-    const service = io.gcloud(['run', 'services', 'describe', expected.service, '--region=' + expected.region, '--project=' + project, '--format=json']);
-    const serviceIam = io.gcloud(['run', 'services', 'get-iam-policy', expected.service, '--region=' + expected.region, '--project=' + project, '--format=json']);
-    return auditServiceIsolation(service, serviceIam);
+  describe('secret-rotation', () => {
+    const secret = read('secrets', 'describe', expected.secret);
+    const version = read('secrets', 'versions', 'describe', '1', '--secret=' + expected.secret);
+    return auditSecretRotation(secret, version);
   });
-  await describe('named-firestore-database', async () => auditNamedDatabase(await io.fetchNamedDatabase()));
+  describe('service-isolation', () => {
+    const service = read('run', 'services', 'describe', expected.service, '--region=' + expected.region);
+    const revision = currentRevision(service);
+    if (!/^visionary-product-[a-z0-9-]{1,45}$/.test(revision)) return refuse('Serving revision name is outside the reviewed service.');
+    return auditServiceIsolation(service, runPolicy ?? servicePolicy(), read('run', 'revisions', 'describe', revision, '--region=' + expected.region));
+  });
+  describe('named-firestore-database', () => auditNamedDatabase(read('firestore', 'databases', 'describe',
+    '--database=' + expected.database, '--impersonate-service-account=' + expected.runtime)));
 
   const failed = results.filter(r => !r.pass);
-  for (const r of results) console.log(`${r.pass ? 'PASS' : 'REFUSE'} ${r.check}: ${r.detail}`);
-  console.log(failed.length ? `AUDIT FAILED: ${failed.length} check(s) refused. Remedy each REFUSE and re-run.` : 'AUDIT PASSED: reviewed identity/environment state verified.');
+  for (const r of results) report(`${r.pass ? 'PASS' : 'REFUSE'} ${r.check}: ${r.detail}`);
+  report(failed.length ? `AUDIT FAILED: ${failed.length} check(s) refused.` : 'AUDIT PASSED: reviewed direct identity and environment metadata verified.');
   return { results, passed: failed.length === 0 };
 }
 
-if (import.meta.url === `file://${process.argv[1]?.replace(/\\/g, '/')}` || process.argv[1]?.endsWith('identity-audit.mjs')) {
-  runAudit().then(r => { if (!r.passed) process.exitCode = 1; }).catch(error => { console.error('AUDIT ERROR:', error.message); process.exitCode = 1; });
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runAudit().then(r => { if (!r.passed) process.exitCode = 1; }).catch(() => { console.error('Identity audit could not run.'); process.exitCode = 1; });
 }

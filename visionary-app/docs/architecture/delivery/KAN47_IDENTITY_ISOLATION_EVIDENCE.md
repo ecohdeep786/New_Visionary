@@ -1,5 +1,7 @@
 # KAN-47 / PLAT-03 — identity, least-privilege and named-database validation evidence
 
+Historical submission. The [current review handoff](../reviews/KAN47_IDENTITY_ISOLATION_FINAL.md) describes the corrected audit and the live evidence still required.
+
 Implementer: deepseek lane (senior product engineer agent). This document supplies implementation evidence and requests separate review (D-095); the implementer cannot approve its own work.
 
 ## Scope
