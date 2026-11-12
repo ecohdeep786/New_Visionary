@@ -11,6 +11,8 @@ function respond(status, headers = {}, body = '') {
 }
 const json = (status, headers, value) => respond(status, { 'content-type': 'application/json', ...headers }, JSON.stringify(value));
 
+const apiError = status => json(status, { 'cache-control': 'no-store' }, { statusCode: status, error: 'Error', message: 'Request refused' });
+
 function makeFetch(routes) {
   // routes: [path, responseOrFn, hostHint?] — hostHint restricts by URL text.
   return async (url, options) => {
@@ -45,19 +47,23 @@ test('every API response must be no-store', async () => {
 });
 
 test('unknown API paths must be JSON 404 and never the SPA fallback', async () => {
-  const good = makeFetch([['/api/__unknown-release-probe', json(404, { 'cache-control': 'no-store' }, { message: 'Cannot GET' })]]);
+  const good = makeFetch([['/api/__unknown-release-probe', apiError(404)]]);
   assert.equal((await auditNoApiFallback(good)).pass, true);
   const fallback = makeFetch([['/api/__unknown-release-probe', respond(200, { 'content-type': 'text/html', 'cache-control': 'no-cache', 'x-visionary-revision': revision }, '<!doctype html>')]]);
   const refused = await auditNoApiFallback(fallback);
   assert.equal(refused.pass, false);
   assert.match(refused.detail, /returned 200|content-type|SPA/);
+  const mislabeled = makeFetch([['/api/__unknown-release-probe', respond(404, { 'content-type': 'application/json', 'cache-control': 'no-store' }, '<html>404</html>')]]);
+  assert.match((await auditNoApiFallback(mislabeled)).detail, /JSON error envelope/);
 });
 
 test('anonymous callers are refused without identity leakage', async () => {
-  const good = makeFetch([['/api/auth/me', json(401, { 'cache-control': 'no-store' }, { error: 'unauthorized' })], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, { error: 'unauthorized' })]]);
+  const good = makeFetch([['/api/auth/me', apiError(401)], ['/api/account/overview', apiError(401)]]);
   assert.equal((await auditAnonymousBoundaries(good)).pass, true);
   const leaking = makeFetch([['/api/auth/me', json(401, { 'cache-control': 'no-store' }, { uid: 'u1' })], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
-  assert.match((await auditAnonymousBoundaries(leaking)).detail, /leaked identity fields/);
+  assert.match((await auditAnonymousBoundaries(leaking)).detail, /anonymous JSON error envelope/);
+  const escaped = makeFetch([['/api/auth/me', respond(401, { 'content-type': 'application/json' }, '{"statusCode":401,"error":"Unauthorized","message":"Denied","\\u0075id":"synthetic"}')]]);
+  assert.equal((await auditAnonymousBoundaries(escaped)).pass, false);
 });
 
 test('CSRF posture: __Host Secure HttpOnly Strict cookie and forged-origin 403', async () => {
@@ -160,8 +166,8 @@ test('full origin audit fails closed and passes when every boundary holds', asyn
     if (url.includes('run.app')) return respond(404, {}, '<html>404</html>');
     if (path === '/') return shell;
     if (path === '/api/health') return json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { status: 'ok', authPolicy: { version: 1, globalSignOut: false } });
-    if (path === '/api/auth/me' || path === '/api/account/overview') return json(401, { 'cache-control': 'no-store' }, { error: 'unauthorized' });
-    if (path === '/api/__unknown-release-probe') return json(404, { 'cache-control': 'no-store' }, { message: 'x' });
+    if (path === '/api/auth/me' || path === '/api/account/overview') return apiError(401);
+    if (path === '/api/__unknown-release-probe') return apiError(404);
     if (path === '/api/auth/csrf') return json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) });
     if (path === '/api/auth/onboarding') return json(options.headers.Origin === expected.origin ? 401 : 403, { 'cache-control': 'no-store' }, {});
     if (path === '/assets/index-abc123.js') return respond(200, { 'cache-control': 'public, max-age=31536000, immutable' }, 'js');

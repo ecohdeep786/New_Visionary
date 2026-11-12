@@ -59,6 +59,14 @@ export async function auditApiCachePolicy(fetchImpl = fetch, origin = expected.o
   return pass('health/auth/account API responses are no-store');
 }
 
+function hasApiErrorEnvelope(body, status) {
+  let error;
+  try { error = JSON.parse(body); }
+  catch { return false; }
+  return error && Object.keys(error).length === 3 &&
+    error.statusCode === status && typeof error.error === 'string' && typeof error.message === 'string';
+}
+
 // An unknown API path must be a JSON 404 from the API boundary — never the
 // SPA fallback; a 200 HTML answer here would prove API-to-SPA fallback.
 export async function auditNoApiFallback(fetchImpl = fetch, origin = expected.origin) {
@@ -66,7 +74,7 @@ export async function auditNoApiFallback(fetchImpl = fetch, origin = expected.or
   if (response.status !== 404) return refuse(`unknown API path returned ${response.status}`);
   if (!response.headers.get('content-type')?.includes('application/json')) return refuse(`unknown API path content-type ${response.headers.get('content-type')}`);
   if (response.headers.get('cache-control') !== 'no-store') return refuse('unknown API path response is cacheable');
-  if (body.toString().includes('<!doctype html>')) return refuse('unknown API path leaked the SPA html');
+  if (!hasApiErrorEnvelope(body, 404)) return refuse('unknown API path did not return the JSON error envelope');
   return pass('unknown API paths are JSON 404, no-store, never the SPA');
 }
 
@@ -76,7 +84,7 @@ export async function auditAnonymousBoundaries(fetchImpl = fetch, origin = expec
     const { response, body } = await read(origin + path, {}, fetchImpl);
     if (response.status !== 401) return refuse(`${path} returned ${response.status} for an anonymous caller`);
     if (!response.headers.get('content-type')?.includes('application/json')) return refuse(`${path} content-type ${response.headers.get('content-type')}`);
-    if (body.toString().includes('"uid"') || body.toString().includes('"email"')) return refuse(`${path} leaked identity fields`);
+    if (!hasApiErrorEnvelope(body, 401)) return refuse(`${path} did not return the anonymous JSON error envelope`);
   }
   return pass('anonymous callers are refused 401 JSON with no identity fields');
 }
