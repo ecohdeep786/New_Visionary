@@ -1,7 +1,7 @@
 import { execFileSync, execSync } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
 import { pathToFileURL } from 'node:url';
-import { currentRevision, production } from './release.mjs';
+import { currentRevision, matchesRateLimitSecret, production } from './release.mjs';
 
 // PLAT-03 read-only identity/environment audit. The reviewed desired state is
 // the one bootstrap.py creates and production.yml consumes. This tool only
@@ -143,20 +143,6 @@ export function auditSecretRotation(secret, version, now = Date.now()) {
   return pass('Rotation notification metadata and enabled pinned version verified.');
 }
 
-function matchesPinnedSecret(reference, annotation) {
-  if (reference?.name !== expected.secret || reference.key !== expected.secretVersion || reference.optional || reference.localObjectReference) return false;
-  if (annotation === undefined) return true;
-  if (typeof annotation !== 'string') return false;
-  const aliases = new Map();
-  for (const entry of annotation.split(',')) {
-    const match = /^([a-zA-Z0-9_-]+):(projects\/[a-z0-9-]+\/secrets\/[a-zA-Z0-9_-]+)$/.exec(entry);
-    if (!match || aliases.has(match[1])) return false;
-    aliases.set(match[1], match[2]);
-  }
-  const resource = aliases.get(reference.name);
-  return resource === undefined || secretResources.includes(resource);
-}
-
 // The serving service must run as the runtime identity with the reviewed
 // ingress cutover and no public invoker binding.
 export function auditServiceIsolation(service, serviceIam, revision) {
@@ -181,7 +167,8 @@ export function auditServiceIsolation(service, serviceIam, revision) {
   const override = /^(?:GOOGLE_APPLICATION_CREDENTIALS|FIREBASE_AUTH_EMULATOR_HOST|FIRESTORE_EMULATOR_HOST|FIREBASE_STORAGE_EMULATOR_HOST|STORAGE_EMULATOR_HOST|PUBSUB_EMULATOR_HOST)$/;
   if (Object.entries(settings).some(([key, value]) => env.get(key)?.value !== value || env.get(key)?.valueFrom) ||
       [...env.keys()].some(key => override.test(key)) || secret?.value !== undefined ||
-      !matchesPinnedSecret(secret?.valueFrom?.secretKeyRef, revision.metadata.annotations?.['run.googleapis.com/secrets'])) {
+      !matchesRateLimitSecret(secret?.valueFrom?.secretKeyRef, revision.metadata.annotations?.['run.googleapis.com/secrets'],
+        [expected.secretVersion])) {
     return refuse('Serving revision does not use the pinned realm, attached identity and secret version.');
   }
   const invokerCheck = annotations['run.googleapis.com/invoker-iam-disabled'] === 'true' ? 'disabled for the public edge' : 'enabled';

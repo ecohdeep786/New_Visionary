@@ -182,6 +182,25 @@ test('rollback validation rejects wrong project/auth domain/origin/proxy/identit
   for (const mutate of [r => r.spec.containers[0].env.find(x => x.name === 'AUTH_TRUST_PROXY_HOPS').value = '1', r => r.spec.containers[0].env.find(x => x.name === 'FIREBASE_PROJECT_ID').value = 'visionary-fd6d2', r => r.spec.containers[0].env.find(x => x.name === 'FIREBASE_AUTH_DOMAIN').value = 'visionary-fd6d2.firebaseapp.com', r => r.spec.serviceAccountName = 'owner@example.test', r => r.spec.containers[0].resources.limits.memory = '1Gi', r => r.spec.containers[0].image = production.image + ':latest', r => r.spec.containers[0].env.at(-1).valueFrom.secretKeyRef.key = 'latest']) { const r = compatible(); mutate(r); assert.throws(() => verifyRevision(r)); }
   assert.throws(() => currentRevision({ status: { traffic: [{ revisionName: previous, percent: 50 }, { revisionName: revision, percent: 50 }] } }));
 });
+test('candidate and rollback secret aliases must resolve to the production secret', () => {
+  const alias = (project, secret = production.secret) => production.secret + ':projects/' + project + '/secrets/' + secret;
+  const annotation = 'run.googleapis.com/secrets';
+  const candidate = compatible(commit);
+  const rollback = compatible();
+  candidate.metadata.annotations[annotation] = alias(production.projectNumber);
+  rollback.metadata.annotations[annotation] = alias(production.project);
+  assert.equal(verifyRevision(candidate, commit, image), commit);
+  assert.equal(verifyRevision(rollback), previousCommit);
+
+  candidate.metadata.annotations[annotation] = alias('foreign-project');
+  rollback.metadata.annotations[annotation] = alias(production.project, 'foreign-secret');
+  assert.throws(() => verifyRevision(candidate, commit, image));
+  assert.throws(() => verifyRevision(rollback));
+
+  candidate.metadata.annotations[annotation] = alias(production.project);
+  candidate.spec.containers[0].env.unshift({ name: 'AUTH_RATE_LIMIT_KEY', value: 'synthetic-inline-key' });
+  assert.throws(() => verifyRevision(candidate, commit, image));
+});
 test('health requires expected source, JSON success and no-store and refuses redirects', async () => {
   const response = (status = 200, sha = commit, cache = 'no-store', sanitized = true) => new Response(JSON.stringify({ status: 'ok', forwardedForSanitized: sanitized }), { status, headers: { 'content-type': 'application/json', 'cache-control': cache, 'x-visionary-revision': sha } });
   await probe(production.origin, '/__deploy-check', commit, async (_url, options) => { assert.equal(options.redirect, 'manual'); assert.equal(options.headers['X-Forwarded-For'], '198.51.100.99'); return response(); });

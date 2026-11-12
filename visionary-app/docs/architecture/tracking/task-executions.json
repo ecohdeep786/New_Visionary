@@ -2496,7 +2496,7 @@
       },
       "remainingGates": [
         "Independent review and live authenticated Cloud SDK audit",
-        "Operational secret rotation and staging identity isolation"
+        "Production secret cutover and rollback; visionary-uat excluded by owner direction"
       ]
     }
   ]
