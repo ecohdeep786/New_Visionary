@@ -69,11 +69,13 @@
   .cast-slot-4 { margin-left: calc(var(--cast-h) * -0.1903); }
 }
 
+/* Reduced motion keeps the cast visible with a fade only — no movement
+   (static-and-visible per the D1 motion law; tokens.css is the curve home). */
 @media (prefers-reduced-motion: reduce) {
   .apple-anim {
     animation-name: appleFadeIn !important;
-    animation-duration: 0.7s !important;
-    animation-timing-function: ease-out !important;
+    animation-duration: var(--motion-duration-statement) !important;
+    animation-timing-function: var(--ease-out-apple) !important;
     animation-iteration-count: 1 !important;
   }
 }

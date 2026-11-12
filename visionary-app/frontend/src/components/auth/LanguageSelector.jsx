@@ -33,6 +33,8 @@ export default function LanguageSelector() {
     <div className="relative" ref={ref}>
       <button
         type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1.5 text-sm text-[#6e6e73] hover:text-[#1d1d1f] transition-colors"
       >

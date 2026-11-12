@@ -1,0 +1,41 @@
+import { chromium } from 'playwright-core';
+const b = await chromium.launch({ channel:'msedge', headless:true, args:['--no-proxy-server'] });
+const c = await b.newContext({ viewport:{width:1440, height:1000}, reducedMotion:'reduce' });
+const p = await c.newPage();
+const errs=[];
+p.on('pageerror', e => errs.push(String(e).slice(0,200)));
+await p.goto('http://127.0.0.1:4197/login', { waitUntil:'domcontentloaded', timeout:60000 });
+await p.waitForTimeout(2000);
+await p.getByRole('button',{name:'Continue with Email'}).first().click();
+await p.locator('input[type="email"]').first().fill('qa.designer@example.test');
+await p.getByRole('button',{name:/continue|next/i}).last().click();
+await p.waitForTimeout(1200);
+await p.locator('input[type="password"]').first().fill('Visionary#2026',{timeout:20000});
+await p.getByRole('button',{name:/sign in/i}).last().click();
+await p.waitForFunction(()=>{ try{const ws=JSON.parse(localStorage.getItem('visionary_workspace_v2')||'{}');return Object.keys(ws.active||{}).length>0;}catch{return false;} },{timeout:25000});
+await p.waitForTimeout(2500);
+await p.evaluate(()=>{ const d=document.querySelector('[role="dialog"]'); if(d){const x=d.querySelector('[aria-label*="lose"], button.absolute, [data-radix-dialog-close]'); if(x) x.click();} });
+await p.waitForTimeout(800);
+const readActive = () => p.evaluate(()=>{ const db=JSON.parse(localStorage.getItem('visionary_workspace_v2')); return {active:db.active, ws:db.workspaces.map(w=>w.id)}; });
+console.log('before:', JSON.stringify(await readActive()));
+// open the add-role dialog via the switcher select (aria-label locator)
+const sel = p.locator('select[aria-label="Active workspace"]');
+console.log('switcher found:', await sel.count());
+await sel.selectOption('add');
+await p.waitForTimeout(1000);
+const dlg = p.locator('[role="dialog"]');
+console.log('dialog open:', await dlg.count());
+await dlg.locator('select').first().selectOption('teacher');
+await p.waitForTimeout(300);
+await dlg.getByRole('button',{name:/Add role/i}).click();
+for (const t of [0, 300, 1000, 2000, 3500]) {
+  await p.waitForTimeout(t===0?0:t-(t===300?0:t>1000?1000:300)).catch(()=>{});
+  const snap = await readActive();
+  console.log('t+'+t+':', JSON.stringify(snap.active), 'url:', await p.evaluate(()=>location.pathname));
+  if (t>=2000) break;
+}
+console.log('dialog still open:', await p.evaluate(()=>!!document.querySelector('[role="dialog"]')));
+const dlgText = await p.evaluate(()=>{ const d=document.querySelector('[role="dialog"]'); return d? d.textContent.trim().slice(0,200):null; });
+console.log('dialog text:', dlgText);
+console.log('page errors:', errs.length? errs.slice(0,3):'none');
+await b.close();
