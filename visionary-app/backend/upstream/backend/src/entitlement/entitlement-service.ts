@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // ROLE-09 (KAN-101) — reconcile organization-sponsored entitlement
 // requirements with REAL approved commercial contracts.
 //
@@ -39,7 +40,6 @@ export interface ContractInput {
 }
 
 export class EntitlementService {
-  private requestCounter = 0;
 
   constructor(private readonly store: EntitlementStore) {}
 
@@ -54,7 +54,7 @@ export class EntitlementService {
     if (Date.parse(input.validTo) <= Date.parse(input.validFrom)) {
       throw new EntitlementError('seat_request_invalid');
     }
-    const contractId = `con_${Math.random().toString(36).slice(2, 10)}`;
+    const contractId = `con_${randomUUID()}`;
     await this.store.saveContract({ ...input, contractId });
     return contractId;
   }
@@ -79,7 +79,7 @@ export class EntitlementService {
       contractId = contract.contractId;
     }
     const request: SeatRequest = {
-      requestId: `req_${++this.requestCounter}`,
+      requestId: `req_${randomUUID()}`,
       companyId,
       requestedSeats,
       requestedBy: sponsor.uid,
