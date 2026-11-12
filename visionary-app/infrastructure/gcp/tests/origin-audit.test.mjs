@@ -81,6 +81,12 @@ test('CSRF posture: __Host Secure HttpOnly Strict cookie and forged-origin 403',
     ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.match((await auditCsrfPosture(withDomain)).detail, /CSRF cookie posture rejected/);
+  const wrongPath = makeFetch([
+    ['/api/auth/csrf', json(200, { 'set-cookie': cookie.replace('Path=/', 'Path=/api') }, { token: 'f'.repeat(64) })],
+  ]);
+  const badCookie = await auditCsrfPosture(wrongPath);
+  assert.equal(badCookie.pass, false);
+  assert.doesNotMatch(badCookie.detail, /f{64}/);
   const accepting = makeFetch([
     ['/api/auth/csrf', json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
     ['/api/auth/onboarding', json(200, { 'cache-control': 'no-store' }, { ok: true })],
@@ -105,6 +111,9 @@ test('the direct run.app origin must never serve the product', async () => {
   assert.equal(refusedStripped.pass, false);
   assert.match(refusedStripped.detail, /bypass is open/);
   // Google Frontend's real refusal shape (404, empty body) stays a closed bypass
+  assert.equal((await auditDirectOriginBypass(async () => respond(503))).pass, false);
+  assert.equal((await auditDirectOriginBypass(async () => json(404, {}, { error: 'app route' }))).pass, false);
+  await assert.rejects(auditDirectOriginBypass(async () => { throw Error('timeout'); }), /timeout/);
   const googleFrontend = async () => respond(404, { 'content-type': 'text/html; charset=UTF-8' }, '');
   assert.equal((await auditDirectOriginBypass(googleFrontend)).pass, true);
 });
@@ -113,6 +122,9 @@ test('hashed assets cache explicitly and publicly', async () => {
   const shell = respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision, ...hardened }, '<!doctype html><script src="/assets/index-abc123.js"></script>');
   const good = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'public, max-age=31536000, immutable' }, 'js')]]);
   assert.equal((await auditStaticAssetCaching(good)).pass, true);
+  assert.equal((await auditStaticAssetCaching(makeFetch([['/', respond(200, {}, '<!doctype html>')]]))).pass, false);
+  const revalidate = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'public, max-age=31536000, immutable, no-cache' }, 'js')]]);
+  assert.equal((await auditStaticAssetCaching(revalidate)).pass, false);
   const heuristics = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, {}, 'js')]]);
   assert.match((await auditStaticAssetCaching(heuristics)).detail, /no explicit max-age/);
   const priv = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'private, max-age=60' }, 'js')]]);
@@ -136,7 +148,10 @@ test('full origin audit fails closed and passes when every boundary holds', asyn
   };
   const ok = await runOriginAudit({ fetchImpl: good, tls: async () => ({ subject: 'CN=visionary.org.in', issuer: 'Google Trust Services' }) });
   assert.equal(ok.passed, true, JSON.stringify(ok.results));
-  assert.equal(ok.results.length, 7);
+  assert.equal(ok.results.length, 8);
+  const badTls = await runOriginAudit({ fetchImpl: good, tls: async () => { throw Error('certificate verification failed'); } });
+  assert.equal(badTls.passed, false);
+  assert.equal(badTls.results.find(r => r.check === 'tls').pass, false);
 
   const bypassOpen = async (url) => (url.includes('run.app') ? respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>') : good(url));
   const bad = await runOriginAudit({ fetchImpl: bypassOpen, tls: async () => ({}) });

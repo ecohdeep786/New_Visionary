@@ -1,4 +1,5 @@
-import { execFileSync } from 'node:child_process';
+import { connect } from 'node:tls';
+import { pathToFileURL } from 'node:url';
 
 // PLAT-04 external origin audit: read-only HTTPS probes against the canonical
 // origin. Proves the API/static routing boundaries, private-response cache
@@ -82,43 +83,43 @@ export async function auditCsrfPosture(fetchImpl = fetch, origin = expected.orig
   const cookie = csrf.headers.get('set-cookie') || '';
   const token = JSON.parse(csrfBody.toString() || '{}').token;
   if (csrf.status !== 200 || !/^[a-f0-9]{64}$/.test(token || '')) return refuse('CSRF token missing or not 64 hex');
-  if (!cookie.startsWith('__Host-visionary-csrf=') || !/Secure/i.test(cookie) || !/HttpOnly/i.test(cookie) || !/SameSite=Strict/i.test(cookie) || !/Path=\//i.test(cookie) || /Domain=/i.test(cookie)) return refuse(`CSRF cookie posture rejected: ${cookie.split(';').slice(0, 5).join(';')}`);
-  const forged = await read(origin + '/api/auth/onboarding', { method: 'POST', headers: { Origin: 'https://invalid.example', Cookie: cookie.split(';')[0], 'X-CSRF-Token': token, 'Content-Type': 'application/json' }, body: '{}' }, fetchImpl);
+  const [credential, ...attributes] = cookie.split(';').map(value => value.trim());
+  const flags = attributes.map(value => value.toLowerCase());
+  const scope = flags.filter(flag => /^(?:path|samesite|domain)=/.test(flag));
+  if (credential !== '__Host-visionary-csrf=' + token || !flags.includes('secure') || !flags.includes('httponly') ||
+      scope.length !== 2 || !scope.includes('samesite=strict') || !scope.includes('path=/')) return refuse('CSRF cookie posture rejected');
+  const forged = await read(origin + '/api/auth/onboarding', { method: 'POST', headers: { Origin: 'https://invalid.example', Cookie: credential, 'X-CSRF-Token': token, 'Content-Type': 'application/json' }, body: '{}' }, fetchImpl);
   if (forged.response.status !== 403) return refuse(`forged cross-origin command returned ${forged.response.status}, expected 403 refusal`);
   if (forged.response.headers.get('cache-control') !== 'no-store') return refuse('forged command response is cacheable');
   return pass('__Host Secure/HttpOnly/Strict cookie; forged cross-origin command refused 403');
 }
 
-// The direct run.app URL must not serve the product: no revision attestation
-// and no product identity may leak through the direct origin. Any doctype-html
-// body through the direct origin refuses even with the revision header
-// stripped — a stripped-header SPA shell must not pass (fail closed).
+// Require an explicit edge refusal for both the shell and the health route.
 export async function auditDirectOriginBypass(fetchImpl = fetch, directOrigin = expected.directOrigin) {
   for (const path of ['/', '/api/health']) {
-    let response, body;
-    try { ({ response, body } = await read(directOrigin + path, {}, fetchImpl)); }
-    catch { continue; } // unreachable direct origin is also a closed bypass
-    const revision = response.headers.get('x-visionary-revision');
-    if (revision) return refuse(`direct origin ${path} served a product response (revision ${revision.slice(0, 12)}…); ingress bypass is open`);
-    if (body.toString().includes('<!doctype html>')) {
-      return refuse(`direct origin ${path} served an html document (status ${response.status}); ingress bypass is open`);
+    const { response, body } = await read(directOrigin + path, {}, fetchImpl);
+    if (response.headers.get('x-visionary-revision') || /<!doctype\s+html\b/i.test(body) ||
+        ![403, 404].includes(response.status) || response.headers.get('content-type')?.includes('application/json')) {
+      return refuse(`direct origin ${path} did not show the expected edge refusal (HTTP ${response.status}); ingress bypass is open or unverified`);
     }
   }
-  return pass('direct run.app origin refuses or serves no product response');
+  return pass('direct run.app origin explicitly refused the shell and health requests');
 }
 
-// Hashed static assets may cache publicly; the audit only requires that a
-// hashed asset declares explicit caching (never heuristics-only).
 export async function auditStaticAssetCaching(fetchImpl = fetch, origin = expected.origin) {
   const { body } = await read(origin + '/', {}, fetchImpl);
-  const asset = body.toString().match(/(?:src|href)="(\/assets\/[^"]+)"/)?.[1];
-  if (!asset) return pass('no hashed asset referenced from the shell html (nothing to verify)');
+  const asset = body.match(/(?:src|href)="(\/assets\/[^"\s/]+-[\w-]{6,}\.(?:js|css))"/)?.[1];
+  if (!asset) return refuse('no hashed JavaScript or CSS asset referenced from the shell');
   const { response } = await read(origin + asset, {}, fetchImpl);
-  const cache = response.headers.get('cache-control') || '';
   if (response.status !== 200) return refuse(`asset ${asset} status ${response.status}`);
-  if (!/max-age/i.test(cache)) return refuse(`hashed asset ${asset} has no explicit max-age: '${cache}'`);
-  if (/private/i.test(cache)) return refuse(`hashed asset ${asset} is marked private`);
-  return pass(`hashed asset caches explicitly (${cache})`);
+  const cache = (response.headers.get('cache-control') || '').toLowerCase().split(',').map(value => value.trim());
+  if (cache.includes('private')) return refuse(`hashed asset ${asset} is marked private`);
+  const ages = cache.filter(directive => /^max-age\s*=/.test(directive));
+  if (ages.length !== 1 || ages[0] !== 'max-age=31536000') return refuse(`hashed asset ${asset} has no explicit max-age=31536000`);
+  if (!cache.includes('public') || !cache.includes('immutable') || cache.includes('no-cache') || cache.includes('no-store')) {
+    return refuse(`hashed asset ${asset} lacks an unambiguous public, immutable cache policy`);
+  }
+  return pass('hashed asset is public and immutable for one year');
 }
 
 export async function runOriginAudit({ origin = expected.origin, directOrigin = expected.directOrigin, fetchImpl = fetch, tls = captureTls } = {}) {
@@ -131,23 +132,34 @@ export async function runOriginAudit({ origin = expected.origin, directOrigin = 
   await step('csrf-posture', () => auditCsrfPosture(fetchImpl, origin));
   await step('direct-origin-bypass', () => auditDirectOriginBypass(fetchImpl, directOrigin));
   await step('static-asset-caching', () => auditStaticAssetCaching(fetchImpl, origin));
+  await step('tls', async () => {
+    const certificate = await tls(origin);
+    if (!certificate?.subject || !certificate?.issuer) return refuse('TLS certificate identity unavailable');
+    return pass(`certificate ${certificate.subject} issued by ${certificate.issuer}`);
+  });
   const failed = results.filter(r => !r.pass);
   for (const r of results) console.log(`${r.pass ? 'PASS' : 'REFUSE'} ${r.check}: ${r.detail}`);
   console.log(failed.length ? `ORIGIN AUDIT FAILED: ${failed.length} check(s) refused.` : 'ORIGIN AUDIT PASSED: canonical boundaries, cache policy and closed bypass verified.');
   return { results, passed: failed.length === 0 };
 }
 
-// Capture the serving certificate identity for the evidence record.
-export async function captureTls(origin = expected.origin) {
+// Node verifies the chain and hostname before reporting the certificate.
+export function captureTls(origin = expected.origin) {
   const url = new URL(origin);
-  const out = execFileSync('openssl', ['s_client', '-connect', `${url.hostname}:443`, '-servername', url.hostname], { input: '', encoding: 'utf8', timeout: 20000, stdio: ['ignore', 'pipe', 'ignore'] });
-  const subject = out.match(/subject=.*$/m)?.[0], issuer = out.match(/issuer=.*$/m)?.[0];
-  return { subject, issuer };
+  if (url.protocol !== 'https:') throw Error('TLS verification requires an HTTPS origin');
+  return new Promise((resolve, reject) => {
+    const socket = connect({ host: url.hostname, port: Number(url.port || 443), servername: url.hostname, rejectUnauthorized: true });
+    socket.setTimeout(15000, () => socket.destroy(Error('TLS handshake timed out')));
+    socket.once('error', reject);
+    socket.once('secureConnect', () => {
+      const certificate = socket.getPeerX509Certificate();
+      socket.destroy();
+      resolve({ subject: certificate?.subject?.replaceAll('\n', ', '), issuer: certificate?.issuer?.replaceAll('\n', ', ') });
+    });
+  });
 }
 
-if (process.argv[1]?.endsWith('origin-audit.mjs')) {
-  runOriginAudit().then(async r => {
-    try { const tls = await captureTls(); console.log(`TLS: ${tls.subject} | issued by ${tls.issuer}`); } catch (error) { console.log(`TLS capture unavailable: ${String(error.message).slice(0, 80)}`); }
-    if (!r.passed) process.exitCode = 1;
-  }).catch(error => { console.error('ORIGIN AUDIT ERROR:', error.message); process.exitCode = 1; });
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runOriginAudit().then(result => { if (!result.passed) process.exitCode = 1; })
+    .catch(error => { console.error('ORIGIN AUDIT ERROR:', error.message); process.exitCode = 1; });
 }
