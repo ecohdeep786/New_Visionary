@@ -1,5 +1,7 @@
 # KAN-46 / PLAT-02 — minimal product image: local build, smoke and shutdown evidence
 
+Historical submission. The [current review handoff](../reviews/KAN46_PRODUCT_IMAGE_FINAL.md) records the corrected build and verification scope.
+
 Implementer: deepseek lane (senior product engineer agent). This document supplies implementation evidence and requests separate review (D-095); the implementer cannot approve its own work.
 
 ## Scope

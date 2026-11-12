@@ -26,6 +26,7 @@ try {
     const fetcher=(url,options)=>fetch(url.replace(production.origin,'http://127.0.0.1:8080'),options);
     (async()=>{if(process.getuid()===0)throw Error('Root runtime');let ready=false;for(let n=0;n<25;n++){try{const r=await fetcher(production.origin+'/api/health');if(r.status===200){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,500));}
     if(!ready)throw Error('Startup failed');await publicChecks('${commit}',fetcher,undefined,{email:true,google:true,phone:true});
+    for(const path of ['/.env','/%2eenv','/.git/config']){const r=await fetcher(production.origin+path);if(r.status!==404)throw Error('Private path boundary: '+path);}
     for(const path of ['/api/fixtures','/api/__e2e/bootstrap','/api/legacy/login']){const r=await fetcher(production.origin+path);if(r.status!==404||!(r.headers.get('content-type')||'').includes('application/json'))throw Error('Fixture/legacy API boundary: '+path);}
     const fs=require('node:fs'),a=require('node:assert/strict');a.deepEqual(fs.readdirSync('/app').sort(),['backend','public']);a.deepEqual(fs.readdirSync('/app/backend').sort(),['dist','node_modules']);
     for(const path of ['/app/backend/dist','/app/backend/node_modules','/app/public']){a.equal(fs.statSync(path).uid,0);a.throws(()=>fs.accessSync(path,fs.constants.W_OK));}
