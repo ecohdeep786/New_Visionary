@@ -10,11 +10,11 @@ import { pathToFileURL } from 'node:url';
 
 export const expected = Object.freeze({
   origin: 'https://visionary.org.in',
-  // The run.app direct URL of the product service. With ingress
-  // internal-and-cloud-load-balancing the Google frontend refuses direct
-  // traffic; the audit proves no product response leaks through it. The URL
-  // is discoverable from the deployment receipts / gcloud describe.
-  directOrigin: 'https://visionary-product-elwsfnkuga-el.a.run.app',
+  directOrigins: Object.freeze([
+    'https://visionary-product-174851137514.asia-south1.run.app',
+    'https://visionary-product-elwsfnkuga-el.a.run.app',
+    'https://ci-candidate---visionary-product-elwsfnkuga-el.a.run.app',
+  ]),
   revisionPattern: /^[a-f0-9]{40}$/,
 });
 
@@ -88,9 +88,11 @@ export async function auditAnonymousBoundaries(fetchImpl = fetch, origin = expec
 export async function auditCsrfPosture(fetchImpl = fetch, origin = expected.origin) {
   const { response: csrf, body: csrfBody } = await read(origin + '/api/auth/csrf', {}, fetchImpl);
   const cookie = csrf.headers.get('set-cookie') || '';
-  const token = JSON.parse(csrfBody.toString() || '{}').token;
   if (csrf.headers.get('cache-control') !== 'no-store') return refuse('CSRF token response is cacheable');
-  if (csrf.status !== 200 || !/^[a-f0-9]{64}$/.test(token || '')) return refuse('CSRF token missing or not 64 hex');
+  let token;
+  try { token = JSON.parse(csrfBody)?.token; }
+  catch { return refuse('CSRF token response is malformed'); }
+  if (csrf.status !== 200 || typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token)) return refuse('CSRF token missing or not 64 hex');
   const [credential, ...attributes] = cookie.split(';').map(value => value.trim());
   const flags = attributes.map(value => value.toLowerCase());
   const scope = flags.filter(flag => /^(?:path|samesite|domain)=/.test(flag));
@@ -106,17 +108,18 @@ export async function auditCsrfPosture(fetchImpl = fetch, origin = expected.orig
   return pass('__Host Secure/HttpOnly/Strict cookie, cross-origin 403, same-origin anonymous 401');
 }
 
-// Require an explicit edge refusal for both the shell and the health route.
-export async function auditDirectOriginBypass(fetchImpl = fetch, directOrigin = expected.directOrigin) {
-  if (directOrigin !== expected.directOrigin) return refuse('direct origin differs from the reviewed production service');
-  for (const path of ['/', '/api/health']) {
-    const { response, body } = await read(directOrigin + path, {}, fetchImpl);
-    if (response.headers.get('x-visionary-revision') || /<!doctype\s+html\b/i.test(body) ||
-        ![403, 404].includes(response.status) || response.headers.get('content-type')?.includes('application/json')) {
-      return refuse(`direct origin ${path} did not show the expected edge refusal (HTTP ${response.status}); ingress bypass is open or unverified`);
+// Require an explicit edge refusal on every reviewed Cloud Run address.
+export async function auditDirectOriginBypass(fetchImpl = fetch) {
+  for (const origin of expected.directOrigins) {
+    for (const path of ['/', '/api/health']) {
+      const { response, body } = await read(origin + path, {}, fetchImpl);
+      if (response.headers.get('x-visionary-revision') || /<!doctype\s+html\b/i.test(body) ||
+          ![403, 404].includes(response.status) || response.headers.get('content-type')?.includes('application/json')) {
+        return refuse(`direct origin ${origin}${path} did not show the expected edge refusal (HTTP ${response.status}); ingress bypass is open or unverified`);
+      }
     }
   }
-  return pass('direct run.app origin explicitly refused the shell and health requests');
+  return pass('all reviewed run.app URLs explicitly refused the shell and health requests');
 }
 
 export async function auditStaticAssetCaching(fetchImpl = fetch, origin = expected.origin) {
@@ -139,7 +142,7 @@ export async function auditStaticAssetCaching(fetchImpl = fetch, origin = expect
   return pass('hashed asset is public and immutable for one year');
 }
 
-export async function runOriginAudit({ origin = expected.origin, directOrigin = expected.directOrigin, fetchImpl = fetch, tls = captureTls } = {}) {
+export async function runOriginAudit({ origin = expected.origin, fetchImpl = fetch, tls = captureTls } = {}) {
   const results = [];
   const step = async (check, action) => {
     let result;
@@ -153,7 +156,7 @@ export async function runOriginAudit({ origin = expected.origin, directOrigin = 
   await step('no-api-fallback', () => auditNoApiFallback(fetchImpl, origin));
   await step('anonymous-boundaries', () => auditAnonymousBoundaries(fetchImpl, origin));
   await step('csrf-posture', () => auditCsrfPosture(fetchImpl, origin));
-  await step('direct-origin-bypass', () => auditDirectOriginBypass(fetchImpl, directOrigin));
+  await step('direct-origin-bypass', () => auditDirectOriginBypass(fetchImpl));
   await step('static-asset-caching', () => auditStaticAssetCaching(fetchImpl, origin));
   await step('tls', async () => {
     const certificate = await tls(origin);

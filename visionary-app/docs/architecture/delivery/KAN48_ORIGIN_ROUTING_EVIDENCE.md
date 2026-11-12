@@ -36,7 +36,7 @@ TLS: subject=CN=visionary.org.in | issued by issuer=C=US, O=Google Trust Service
 
 - Serving revision at audit time: `592d47527d2fd8d414041aace2393b7c0d7b7898` (current production main head).
 - TLS: Google-managed certificate for `visionary.org.in` (Google Trust Services WR3), HTTP/3 advertised by the Google Frontend.
-- Repeat command: `node infrastructure/gcp/origin-audit.mjs` (read-only; exit code is the verdict; `VISIONARY_DIRECT_ORIGIN_URL` overrides the bypass target).
+- Repeat command: `node infrastructure/gcp/origin-audit.mjs` (read-only; exit code is the verdict; the current audit probes the reviewed Cloud Run addresses).
 
 ## Structural tests
 
@@ -75,6 +75,6 @@ The reviewer-corrector lane reviewed the implementation, fixed three defects (on
 
 ## Production verification on 2026-11-12
 
-The updated audit passed all eight checks against production commit `0245176141978bebe1a69907dce9f5cfc0f9bc50`. It verifies the TLS certificate chain and hostname through Node, requires an explicit refusal from the direct Cloud Run endpoint, and checks the full public immutable cache policy for hashed assets. The CSRF probe validates the cookie scope without logging the credential. All eight structural tests passed.
+The updated audit passed all eight checks against production commit `0245176141978bebe1a69907dce9f5cfc0f9bc50`. It verifies the TLS certificate chain and hostname through Node, requires explicit refusals from both Cloud Run service URLs and the tagged candidate URL, and checks the full public immutable cache policy for hashed assets. The CSRF probe validates the cookie scope without logging the credential. All eight structural tests passed.
 
 Both production load balancer backends have Cloud CDN disabled. Neither backend has a Cloud Armor policy attached. The production protection plan proposes `visionary-product-edge` on `visionary-product-web` and `visionary-product-candidate`, with a per-IP throttle at 600 requests per 60 seconds and HTTP 429 above that limit. Owner review of plan digest `11b7f5870572ba5a8ddbc89903ef5599d7d27818435ee8c64fd179f659b0b6f2`, live attachment verification and separate source review remain pending.

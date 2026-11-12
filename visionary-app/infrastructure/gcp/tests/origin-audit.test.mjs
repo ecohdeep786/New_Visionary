@@ -72,6 +72,10 @@ test('CSRF posture: __Host Secure HttpOnly Strict cookie and forged-origin 403',
     ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
   ]);
   assert.match((await auditCsrfPosture(denyAll)).detail, /same-origin/);
+  const malformed = makeFetch([['/api/auth/csrf', respond(200, { 'cache-control': 'no-store' }, 'synthetic-sensitive-data')]]);
+  const badToken = await auditCsrfPosture(malformed);
+  assert.equal(badToken.pass, false);
+  assert.doesNotMatch(badToken.detail, /synthetic-sensitive-data/);
   const cachedToken = makeFetch([['/api/auth/csrf', json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) })]]);
   assert.match((await auditCsrfPosture(cachedToken)).detail, /cacheable/);
   const weak = makeFetch([
@@ -111,7 +115,10 @@ test('the direct run.app origin must never serve the product', async () => {
     throw new Error('unexpected ' + url);
   };
   assert.equal((await auditDirectOriginBypass(hostFetch)).pass, true);
-  assert.equal((await auditDirectOriginBypass(hostFetch, 'https://unrelated.run.app')).pass, false);
+  const visited = new Set();
+  const deny = async url => { visited.add(new URL(url).origin); return respond(404); };
+  assert.equal((await auditDirectOriginBypass(deny)).pass, true);
+  assert.deepEqual(visited, new Set(expected.directOrigins));
   const open = async () => respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>');
   assert.match((await auditDirectOriginBypass(open)).detail, /bypass is open/);
   const productJson = async () => json(200, { 'x-visionary-revision': revision, 'cache-control': 'no-store' }, { status: 'ok' });
