@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-10-24T05:45:36.420Z",
+  "lawVersion": "D1-2026-10-24",
+  "scannedFiles": 403,
+  "curve": "cubic-bezier(0.16, 1, 0.3, 1)",
+  "durationScale": {
+    "fast": "180ms",
+    "base": "280ms",
+    "slow": "420ms",
+    "statement": "650ms",
+    "cinematic": "900ms"
+  },
+  "failures": [],
+  "durationHistogram": {
+    "120ms": 2,
+    "0.15s": 2,
+    "0.7s": 1,
+    "18s": 3,
+    "2s": 2,
+    "5s": 1,
+    "2.1s": 1,
+    "70s": 1,
+    "1500ms": 1,
+    "0.4s": 1,
+    "0.9s": 1,
+    "1.2s": 1,
+    "60s": 2,
+    "180ms": 4
+  }
+}
