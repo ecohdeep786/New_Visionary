@@ -23,7 +23,12 @@ export interface ClassroomStore {
   enrollments(classId: string): Promise<Enrollment[]>;
   saveAttachment(attachment: ClassAttachment): Promise<void>;
   attachment(attachmentId: string): Promise<ClassAttachment | undefined>;
-}
+
+  /** ATOMIC join claim: flips the invite pending→accepted and inserts the
+   * enrollment TOGETHER, conditional on the invite still being pending — a
+   * concurrent revocation wins and the join refuses. (SQL adapter: one
+   * UPDATE ... WHERE status = 'pending' + INSERT inside the transaction.) */
+  claimEnrollment(inviteId: string, enrollment: Enrollment): Promise<{ ok: true } | { ok: false; reason: 'revoked' }>;}
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -72,6 +77,14 @@ export class InMemoryClassroomStore implements ClassroomStore {
     this.enrollmentRecords.set(`${enrollment.classId}|${enrollment.learnerUid}`, clone(enrollment));
   }
 
+  async claimEnrollment(inviteId: string, enrollment: Enrollment): Promise<{ ok: true } | { ok: false; reason: 'revoked' }> {
+    // CRITICAL SECTION: no await between the invite check and both writes.
+    const invite = this.invites.get(inviteId);
+    if (!invite || invite.status !== 'pending') return { ok: false, reason: 'revoked' };
+    this.enrollmentRecords.set(`${enrollment.classId}|${enrollment.learnerUid}`, clone(enrollment));
+    this.invites.set(inviteId, { ...invite, status: 'accepted' });
+    return { ok: true };
+  }
   async enrollment(classId: string, learnerUid: string): Promise<Enrollment | undefined> {
     const found = this.enrollmentRecords.get(`${classId}|${learnerUid}`);
     return found ? clone(found) : undefined;

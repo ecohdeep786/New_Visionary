@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // ROLE-01 (KAN-93) — verified teacher/class ownership + checked enrollment/
 // join/invitation lifecycle service.
 //
@@ -39,9 +40,6 @@ export interface JoinResult {
 }
 
 export class ClassroomService {
-  private classCounter = 0;
-  private inviteCounter = 0;
-  private attachmentCounter = 0;
 
   constructor(
     private readonly store: ClassroomStore,
@@ -59,7 +57,7 @@ export class ClassroomService {
     const status = await this.store.teacherStatus(owner.uid, owner.workspaceId);
     if (!status?.verified) throw new ClassroomError('teacher_unverified');
     const classroom: Classroom = {
-      classId: `cls_${++this.classCounter}`,
+      classId: `cls_${randomUUID()}`,
       teacher: { ...owner },
       workspaceId: owner.workspaceId,
       title,
@@ -79,10 +77,10 @@ export class ClassroomService {
     const classroom = await this.requireClassTeacher(classId, owner);
     if (classroom.status === 'archived') throw new ClassroomError('class_archived');
     const invite: ClassInvite = {
-      inviteId: `inv_${++this.inviteCounter}`,
+      inviteId: `inv_${randomUUID()}`,
       classId,
       learnerUid,
-      code: `join_${Math.random().toString(36).slice(2, 12)}`,
+      code: `join_${randomUUID()}`,
       expiresAt: new Date(this.now().getTime() + ttlMs).toISOString(),
       status: 'pending',
     };
@@ -116,13 +114,16 @@ export class ClassroomService {
       // Idempotent duplicate: still exactly one enrollment record.
       return { classId: invite.classId, learnerUid: learner.uid, outcome: 'duplicate' };
     }
-    await this.store.saveEnrollment({
+    // The join is claimed ATOMICALLY: the invite flips pending→accepted and the
+    // enrollment inserts together, conditional on the invite still being
+    // pending — a concurrent revocation wins and the join refuses.
+    const claimed = await this.store.claimEnrollment(invite.inviteId, {
       classId: invite.classId,
       learnerUid: learner.uid,
       enrolledAt: this.now().toISOString(),
       status: 'enrolled',
     });
-    await this.store.saveInvite({ ...invite, status: 'accepted' });
+    if (!claimed.ok) throw new ClassroomError('invite_revoked');
     return { classId: invite.classId, learnerUid: learner.uid, outcome: 'enrolled' };
   }
 
@@ -136,7 +137,7 @@ export class ClassroomService {
     const classroom = await this.requireClassTeacher(classId, owner);
     if (classroom.status === 'archived') throw new ClassroomError('class_archived');
     const attachment: ClassAttachment = {
-      attachmentId: `att_${++this.attachmentCounter}`,
+      attachmentId: `att_${randomUUID()}`,
       classId,
       title,
       materialRef,
