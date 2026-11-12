@@ -8,4 +8,6 @@ The checks job builds the full image alongside the API target. Full-image smoke 
 
 Independent review of `6ebf6fdc` reproduced a Windows path collision and found that forced socket closure interrupted active requests. The exporter now rejects ambiguous Git paths and uses exclusive file creation. The shutdown drain and both regression checks address the review findings.
 
+PR CI run 43161476088 stopped in the existing SQL invitation suite because its fixed November 2 caller clock generated invitations already expired by the database clock. The suite now anchors its synthetic clock to test startup and derives its expiration case from the issued invitation. Production expiration rules are unchanged.
+
 Record the exact reviewer decision, CI runs and integrated image evidence in the PR and Jira. Hosted staging, provider acceptance and production rollout have separate acceptance criteria.
