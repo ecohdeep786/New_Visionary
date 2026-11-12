@@ -70,10 +70,13 @@ export default function TeacherHome() {
       const ownClasses = (classList || []).filter(c => c.teacher_email === user?.email || c.teacher_id === user?.id || c.created_by_id === user?.id || c.created_by === user?.email);
       const ids = new Set(ownClasses.map(c => c.id));
       setStudentCount(new Set(enrollments.filter(e=>ids.has(e.class_id)&&e.status==='active'&&typeof e.student_email==='string'&&e.student_email.trim()).map(e=>e.student_email)).size);
+      // FAP-88: guard every list render against duplicate class rows (one commit must
+      // never render two children with the same classroom id).
+      const seenClassIds=new Set();
       setClasses(ownClasses.map(c => ({
         ...c,
         student_count: new Set(enrollments.filter(e => e.class_id === c.id && e.status === "active" && typeof e.student_email==='string' && e.student_email.trim()).map(e => e.student_email)).size
-      })).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
+      })).filter(c => { if(seenClassIds.has(c.id))return false; seenClassIds.add(c.id); return true; }).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
       setAssignmentCount((allAssignments || []).filter(a => ids.has(a.class_id)).length);
       setPendingReviews(submissions.filter(s => ids.has(s.class_id) && s.status === "submitted").length);
     } catch {
@@ -94,7 +97,9 @@ export default function TeacherHome() {
     const currentScope=scope;
     const created = await createTeacherClass(ctx, data);
     if(currentScope!==scopeRef.current)return;
-    setClasses(prev => [created, ...prev]);
+    // FAP-88: the create write already dispatched workspace-change (appClient notifyChange),
+    // so a refetch carrying the new class may land before this append. Never blind-prepend.
+    setClasses(prev => prev.some(c => c.id === created.id) ? prev.map(c => c.id === created.id ? { ...created, student_count: c.student_count } : c) : [created, ...prev]);
     setShowCreate(false);
     window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
   };

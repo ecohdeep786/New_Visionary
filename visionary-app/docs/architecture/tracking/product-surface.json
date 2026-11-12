@@ -5587,11 +5587,11 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:120:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:122:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:153:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:154:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
@@ -6582,11 +6582,11 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:120:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:122:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:153:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:154:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
@@ -6926,11 +6926,11 @@
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:436",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1200",
         "frontend/src/pages/dashboard/OrganizationBilling.jsx:38:1486",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:120:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:122:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:153:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:154:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/StudentClasses.jsx:292:9",
@@ -8524,11 +8524,11 @@
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:630",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1064",
         "frontend/src/pages/dashboard/ProfessionalCareer.jsx:180:1374",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
-        "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:120:251",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:122:114",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:11",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:153:22",
+        "frontend/src/pages/dashboard/role/TeacherHome.jsx:154:42",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:41:11",
         "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx:43:9",
         "frontend/src/pages/dashboard/RoleWorkspace.jsx:37:139",
@@ -66076,9 +66076,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:115:251",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:120:251",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 115,
+      "line": 120,
       "column": 251,
       "tag": "button",
       "events": [
@@ -66112,9 +66112,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:117:114",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:122:114",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 117,
+      "line": 122,
       "column": 114,
       "tag": "button",
       "events": [
@@ -66146,9 +66146,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:142:11",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:147:11",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 142,
+      "line": 147,
       "column": 11,
       "tag": "button",
       "events": [
@@ -66182,9 +66182,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:148:22",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:153:22",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 148,
+      "line": 153,
       "column": 22,
       "tag": "CreateClassModal",
       "events": [
@@ -66222,9 +66222,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:149:42",
+      "id": "frontend/src/pages/dashboard/role/TeacherHome.jsx:154:42",
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "line": 149,
+      "line": 154,
       "column": 42,
       "tag": "summary",
       "events": [],
@@ -79977,7 +79977,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "sourceSha256": "f055f3febab56f4329c0e728160cf2f1badcd356f861d662dc72d74d9e232cda"
+      "sourceSha256": "1b36436a351a8fef0c9e4c6c1d69b1f2288c622429359796e3b529bd5dbfab99"
     },
     {
       "file": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx",
