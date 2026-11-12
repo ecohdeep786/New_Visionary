@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // ROLE-04 (KAN-96) — verified guardian relationships, granular purpose/expiry
 // grants and explicit fixed digests; revocation/reconsent never revives old
 // shares.
@@ -39,10 +40,6 @@ function clone<T>(value: T): T {
 }
 
 export class GuardianService {
-  private linkCounter = 0;
-  private grantCounter = 0;
-  private digestCounter = 0;
-  private shareCounter = 0;
 
   constructor(
     private readonly store: GuardianStore,
@@ -53,7 +50,7 @@ export class GuardianService {
   async verifyGuardianLink(learner: Owner, guardianUid: string, verifiedBy: string): Promise<GuardianLink> {
     if (!verifiedBy?.trim()) throw new GuardianError('guardian_unverified');
     const link: GuardianLink = {
-      linkId: `lnk_${++this.linkCounter}`,
+      linkId: `lnk_${randomUUID()}`,
       learnerUid: learner.uid,
       guardianUid,
       verified: true,
@@ -68,7 +65,7 @@ export class GuardianService {
     const links = await this.findVerifiedLink(learner.uid, guardianUid);
     if (!links.length) throw new GuardianError('guardian_unverified');
     const grant: AccessGrant = {
-      grantId: `grt_${++this.grantCounter}`,
+      grantId: `grt_${randomUUID()}`,
       learnerUid: learner.uid,
       guardianUid,
       purpose,
@@ -102,7 +99,7 @@ export class GuardianService {
       }
     }
     const digest: Digest = {
-      digestId: `dig_${++this.digestCounter}`,
+      digestId: `dig_${randomUUID()}`,
       learnerUid: learner.uid,
       purpose,
       content: { ...content },
@@ -124,7 +121,7 @@ export class GuardianService {
     }
     if (grant.purpose !== digest.purpose) throw new GuardianError('purpose_not_granted');
     const share: DigestShare = {
-      shareId: `shr_${++this.shareCounter}`,
+      shareId: `shr_${randomUUID()}`,
       digestId,
       grantId,
       guardianUid: grant.guardianUid,
@@ -164,12 +161,10 @@ export class GuardianService {
   }
 
   private async findVerifiedLink(learnerUid: string, guardianUid: string): Promise<GuardianLink[]> {
-    const links: GuardianLink[] = [];
-    for (let i = 1; i <= this.linkCounter; i++) {
-      const link = await this.store.link(`lnk_${i}`);
-      if (link && link.learnerUid === learnerUid && link.guardianUid === guardianUid) links.push(link);
-    }
-    return links.filter((l) => l.verified);
+    // SERVER-DERIVED lookup: the store is the authority for which links exist
+    // (no counter-probing of constructed ids — that only ever saw links
+    // created by this very service instance).
+    return (await this.store.linksFor(learnerUid, guardianUid)).filter((l) => l.verified);
   }
 
   private async requireOwnedGrant(learner: Owner, grantId: string): Promise<AccessGrant> {

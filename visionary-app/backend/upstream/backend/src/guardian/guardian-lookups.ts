@@ -11,7 +11,10 @@ export interface GuardianStore {
   saveShare(share: DigestShare): Promise<void>;
   share(shareId: string): Promise<DigestShare | undefined>;
   sharesByGrant(grantId: string): Promise<DigestShare[]>;
-}
+
+  /** SERVER-DERIVED verified-link lookup for a (learner, guardian) pair — the
+   * authority source for grants and reads (no counter-probing of ids). */
+  linksFor(learnerUid: string, guardianUid: string): Promise<GuardianLink[]>;}
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -26,6 +29,9 @@ export class InMemoryGuardianStore implements GuardianStore {
   async saveLink(link: GuardianLink): Promise<void> { this.links.set(link.linkId, clone(link)); }
   async link(linkId: string): Promise<GuardianLink | undefined> {
     const found = this.links.get(linkId); return found ? clone(found) : undefined;
+  }
+  async linksFor(learnerUid: string, guardianUid: string): Promise<GuardianLink[]> {
+    return [...this.links.values()].filter((x) => x.learnerUid === learnerUid && x.guardianUid === guardianUid).map(clone);
   }
   async saveGrant(grant: AccessGrant): Promise<void> { this.grants.set(grant.grantId, clone(grant)); }
   async grant(grantId: string): Promise<AccessGrant | undefined> {
