@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 // ROLE-05 (KAN-97) — separate professional personal/company records,
 // sponsored membership and explicit portfolio/project shares.
 //
@@ -31,17 +32,29 @@ import type { ProfessionalStore } from './professional-lookups';
 const PERSONAL_LEARNING_HINTS = ['learning', 'learner', 'mastery', 'session_ref', 'conversation'];
 
 export class ProfessionalService {
-  private recordCounter = 0;
-  private sponsorshipCounter = 0;
-  private shareCounter = 0;
 
   constructor(private readonly store: ProfessionalStore) {}
+
+  private async requireCompanyAffiliation(companyId: string, principal: ProOwner): Promise<void> {
+    // SERVER-DERIVED membership: an actor may only act on a company it
+    // belongs to (never a caller claim).
+    if (!(await this.store.companyMemberOf(companyId, principal.uid))) {
+      throw new ProfessionalError('sponsor_only');
+    }
+  }
+
+  private async requireCompanyPrincipal(companyId: string, principal: ProOwner): Promise<void> {
+    // Only the COMPANY-SIDE principal sponsors and views (the employee
+    // affiliation above is not enough for company-authority actions).
+    await this.requireCompanyAffiliation(companyId, principal);
+    if (!principal.uid.startsWith('company_')) throw new ProfessionalError('sponsor_only');
+  }
 
   /** Add a PERSONAL professional record (owner scope only). */
   async addPersonalRecord(owner: ProOwner, kind: string, value: string): Promise<ProRecord> {
     if (!kind || !value) throw new ProfessionalError('profile_definition_invalid');
     const record: ProRecord = {
-      recordId: `rec_${++this.recordCounter}`,
+      recordId: `rec_${randomUUID()}`,
       ownerUid: owner.uid,
       workspaceId: owner.workspaceId,
       scope: 'personal',
@@ -61,13 +74,16 @@ export class ProfessionalService {
     kind: string,
     value: string,
   ): Promise<ProRecord> {
+    // Definition validation FIRST (a malformed request is a malformed request
+    // regardless of authority), then the company-affiliation authorization.
     if (!companyId || !kind || !value) throw new ProfessionalError('profile_definition_invalid');
+    await this.requireCompanyAffiliation(companyId, owner);
     const lowered = `${kind} ${value}`.toLowerCase();
     if (PERSONAL_LEARNING_HINTS.some((h) => lowered.includes(h))) {
       throw new ProfessionalError('personal_learning_forbidden');
     }
     const record: ProRecord = {
-      recordId: `rec_${++this.recordCounter}`,
+      recordId: `rec_${randomUUID()}`,
       ownerUid: owner.uid,
       workspaceId: owner.workspaceId,
       scope: 'company',
@@ -96,13 +112,10 @@ export class ProfessionalService {
     memberUid: string,
     tier: string,
   ): Promise<Sponsorship> {
-    if (!sponsor.uid.startsWith('company_')) {
-      // The sponsor must be a company-side principal (company_<id> uid).
-      throw new ProfessionalError('sponsor_only');
-    }
+    await this.requireCompanyPrincipal(companyId, sponsor);
     if (!companyId || !memberUid || !tier) throw new ProfessionalError('profile_definition_invalid');
     const sponsorship: Sponsorship = {
-      sponsorshipId: `spn_${++this.sponsorshipCounter}`,
+      sponsorshipId: `spn_${randomUUID()}`,
       companyId,
       memberUid,
       tier,
@@ -123,7 +136,7 @@ export class ProfessionalService {
   ): Promise<ShareGrant> {
     if (!companyId || !itemRef || !purpose) throw new ProfessionalError('profile_definition_invalid');
     const share: ShareGrant = {
-      shareId: `shr_${++this.shareCounter}`,
+      shareId: `shr_${randomUUID()}`,
       ownerUid: owner.uid,
       companyId,
       itemType,
@@ -147,9 +160,7 @@ export class ProfessionalService {
    * granted items ONLY. Personal learning is structurally absent.
    */
   async companyView(companyPrincipal: ProOwner, companyId: string, memberUid: string) {
-    if (!companyPrincipal.uid.startsWith('company_')) {
-      throw new ProfessionalError('sponsor_only');
-    }
+    await this.requireCompanyPrincipal(companyId, companyPrincipal);
     const companyRecords = (await this.store.records(memberUid, 'company')).filter(
       (r) => r.companyId === companyId,
     );

@@ -10,7 +10,11 @@ export interface ProfessionalStore {
   saveShare(share: ShareGrant): Promise<void>;
   share(shareId: string): Promise<ShareGrant | undefined>;
   shares(companyId: string, memberUid: string): Promise<ShareGrant[]>;
-}
+
+  /** SERVER-DERIVED company membership (the enforcement source: a company-side
+   * principal may only act on the company it belongs to). */
+  companyMemberOf(companyId: string, principalUid: string): Promise<boolean>;
+  recordCompanyMember(companyId: string, principalUid: string): Promise<void>;}
 
 type RecordScopeOf = 'personal' | 'company';
 
@@ -20,10 +24,17 @@ function clone<T>(value: T): T {
 
 /** Contract-true in-memory store; every seam fails closed. */
 export class InMemoryProfessionalStore implements ProfessionalStore {
+  private companyMembers = new Set<string>();
   private recordList = new Map<string, ProRecord>();
   private sponsorships = new Map<string, Sponsorship>();
   private shareList = new Map<string, ShareGrant>();
 
+  async companyMemberOf(companyId: string, principalUid: string): Promise<boolean> {
+    return this.companyMembers.has(`${companyId}|${principalUid}`);
+  }
+  async recordCompanyMember(companyId: string, principalUid: string): Promise<void> {
+    this.companyMembers.add(`${companyId}|${principalUid}`);
+  }
   async saveRecord(record: ProRecord): Promise<void> {
     this.recordList.set(record.recordId, clone(record));
   }

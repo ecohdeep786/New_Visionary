@@ -22,6 +22,8 @@ const STRANGER = { uid: 'uid_stranger', workspaceId: 'ws_personal' };
 async function makeService() {
   const store = new InMemoryProfessionalStore();
   const service = new ProfessionalService(store);
+  await store.recordCompanyMember('company_acme', MEMBER.uid);
+  await store.recordCompanyMember('company_acme', COMPANY_PRINCIPAL.uid);
   return { store, service };
 }
 
