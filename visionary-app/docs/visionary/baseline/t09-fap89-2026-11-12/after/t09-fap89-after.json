@@ -1,0 +1,78 @@
+{
+  "email": "t09-fap89-after-1794464240008@visionary.test",
+  "base": "http://127.0.0.1:5173",
+  "candidate": "zcode/fap-89-org-denial-copy",
+  "routes": [
+    {
+      "url": "/dashboard/learn",
+      "h1": "Not available in this workspace",
+      "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace",
+      "requested": "/dashboard/learn",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/practice",
+      "h1": "Not available in this workspace",
+      "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace",
+      "requested": "/dashboard/practice",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/build",
+      "h1": "Not available in this workspace",
+      "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace",
+      "requested": "/dashboard/build",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/ask",
+      "h1": "Not available in this workspace",
+      "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace",
+      "requested": "/dashboard/ask",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/home",
+      "h1": "Welcome back, T09.",
+      "main": "My organization | Welcome back, T09. | Only connected work belongs here | Show getting started | Saved on this device | Next for you | Bring your people together | Start with invitations, then organize connected people into cohorts. | Manage people | Review cohorts | Why this? | Organization overview | Local learning preview",
+      "requested": "/dashboard/classes",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/people",
+      "h1": "People & connections",
+      "main": "People & connections | Manage local invitations and review who accepted, declined or lost access. | Invite someone to your organization | Requests | No organization connections in this section yet. | Connected | No organization connections in this section yet. | Closed history | No organization connections in this section yet. | Local preview: connections work between accounts stored in this browser. Cloud invitations, verifie",
+      "requested": "/dashboard/people",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/analytics",
+      "h1": "Institution analytics",
+      "main": "Organization | Institution analytics | A focused view of your institution’s roster and explicitly linked classrooms. | Linked classes | 0 | Connected people | 0 | Class assignments | 0 | Scoped learning evidence | Only recorded work from active learners in explicitly linked classes. Personal projects and conversations are excluded. | Evidence period | Last 7 days | Last 30 days | Last 7 days of recorded class evidence. Current linked-clas",
+      "requested": "/dashboard/analytics",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/audit",
+      "h1": "Organization audit",
+      "main": "Organization audit | Saved membership actions and changes in this organization workspace. This history is stored on this device. | Period | Last 7 days | Last 30 days | Action source | All sources | Membership | Workspace changes | Classwork states | Teacher promotions | 0 recorded actions in the selected period and source. | No recorded actions match this period and source. | Review people and connections | About this workspace",
+      "requested": "/dashboard/audit",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/subscription",
+      "h1": "Organization seats and billing",
+      "main": "Organization seats and billing | Plan an access request with your owner. Organization pricing and invoices are not connected. | Request seats | This saves a planning request on this device. Acknowledgement does not activate seats, grant access or create a charge. | Requested seats | Purpose | Save seat request | Request history | No saved seat requests.",
+      "requested": "/dashboard/subscription",
+      "newConsoleErrors": []
+    },
+    {
+      "url": "/dashboard/settings",
+      "h1": "Organization settings",
+      "main": "Organization settings | School · Revision 0 · This device only | Content and distribution | Organization type | School | Coaching organization | Company | Nonprofit organization | Default language for new content | English | हिन्दी | বাংলা | Sets the initial source language for a new draft. It does not translate or change existing content, reviews or learner preferences. | Allow new approved content deliveries to teachers | Pausing blocks ",
+      "requested": "/dashboard/settings",
+      "newConsoleErrors": []
+    }
+  ],
+  "consoleErrorsSweep": []
+}
