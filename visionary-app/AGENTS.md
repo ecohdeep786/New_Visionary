@@ -21,6 +21,15 @@ Older frontend `src/`, `public/` and `tests/` paths are now relative to `fronten
 
 ## Working rules
 
+When finalizing agent-completed Jira Testing work, locate and resume that task's
+existing implementation branch and checkout. Do not create a replacement task
+lane merely to continue its review; attach the original branch only if its
+checkout is absent. Process one task at a time: inspect the implementation,
+validate it, fix defects on that branch, retest, obtain the separate exact-source
+review, merge into dev, verify integration, safely retire the completed checkout,
+and record the actual Jira result before proceeding to the next task. Testing
+status is a submitted candidate, never proof of correctness or acceptance.
+
 Follow `docs/architecture/BRANCH_WORKFLOW.md` for agent delivery. `dev` owns integration; `main` owns production release history. Each worker uses its own branch and checkout, with one identified Jira task at a time and agreed file/contract ownership. Do not merge over unrelated uncommitted work, force-push shared branches, or mark user-facing launch features complete from local tests alone. Review and relevant integration checks precede merging into `dev`; release acceptance precedes promotion to `main`.
 
 Before selecting the next task, check live Jira and `docs/architecture/tracking/task-executions.json` when present. Dated requirement/calendar manifests retain their checkpoint scope and are not a substitute for current accepted execution receipts. Enabler completion never closes linked hosted, provider, content, privacy or feature acceptance gates.
