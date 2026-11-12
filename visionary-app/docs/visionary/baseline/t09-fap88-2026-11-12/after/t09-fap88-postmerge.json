@@ -1,0 +1,23 @@
+{
+  "results": {
+    "email": "t09-fap88-after-1794462847801@visionary.test",
+    "base": "http://127.0.0.1:5174",
+    "sample1": {
+      "url": "/dashboard/classes",
+      "h1": "Your classes",
+      "cardTitles": [
+        "FAP-88 Verify One 1794462847801"
+      ]
+    },
+    "sample2": {
+      "url": "/dashboard/classes",
+      "cardTitles": [
+        "FAP-88 Verify Two 1794462847801",
+        "FAP-88 Verify One 1794462847801"
+      ]
+    },
+    "duplicateKeyWarnings": 0,
+    "consoleIssues": []
+  },
+  "errs": []
+}
