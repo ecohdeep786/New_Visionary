@@ -27,13 +27,15 @@ RUN ./node_modules/.bin/prisma generate && ./node_modules/.bin/tsc -p tsconfig.p
 FROM node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5 AS product
 RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/*
 ARG VISIONARY_RELEASE_COMMIT
+ARG VISIONARY_SOURCE_MANIFEST_SHA256
 LABEL org.opencontainers.image.revision=$VISIONARY_RELEASE_COMMIT
+LABEL org.visionary.source-manifest-sha256=$VISIONARY_SOURCE_MANIFEST_SHA256
 ENV VISIONARY_RELEASE_COMMIT=$VISIONARY_RELEASE_COMMIT
 ENV NODE_ENV=production PORT=8080 PUBLIC_ROOT=/app/public
 WORKDIR /app/backend
-COPY --from=api --chown=node:node /build/backend/node_modules ./node_modules
-COPY --from=api --chown=node:node /build/backend/dist ./dist
-COPY --from=web --chown=node:node /build/frontend/dist /app/public
+COPY --from=api --chown=0:0 /build/backend/node_modules ./node_modules
+COPY --from=api --chown=0:0 /build/backend/dist ./dist
+COPY --from=web --chown=0:0 /build/frontend/dist /app/public
 USER node
 EXPOSE 8080
 CMD ["node", "dist/src/main-product.js"]
