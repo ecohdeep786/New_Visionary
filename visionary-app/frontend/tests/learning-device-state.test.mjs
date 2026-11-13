@@ -39,13 +39,32 @@ test('authorized cursors: bound to (device, workspace, surface) — another devi
 
 test('stale-response rejection: responses older than the applied generation never overwrite newer state', () => {
   const state = new LearningDeviceState(DEVICE_A, W1);
-  assert.equal(state.acceptResponse(3), true);
+  assert.equal(state.acceptResponse(DEVICE_A, 3), true);
   // Out-of-order delivery: generation 2 is stale.
-  assert.equal(state.acceptResponse(2), false);
-  assert.equal(state.currentGeneration(), 3);
+  assert.equal(state.acceptResponse(DEVICE_A, 2), false);
+  assert.equal(state.currentGeneration(DEVICE_A), 3);
   // Equal generation is also stale (no re-apply).
-  assert.equal(state.acceptResponse(3), false);
-  assert.equal(state.acceptResponse(4), true);
+  assert.equal(state.acceptResponse(DEVICE_A, 3), false);
+  assert.equal(state.acceptResponse(DEVICE_A, 4), true);
+});
+
+test('generations are PER DEVICE: one device applying a response never falsely rejects another device fresh response', () => {
+  const state = new LearningDeviceState(DEVICE_A, W1);
+  state.selectWorkspace(DEVICE_B, W1);
+  // Device A applies a response first (generation 5).
+  assert.equal(state.acceptResponse(DEVICE_A, 5), true);
+  // Device B's fresh response with a LOWER generation must still be accepted:
+  // under a single shared generation this was falsely rejected as stale.
+  assert.equal(state.acceptResponse(DEVICE_B, 3), true);
+  assert.equal(state.currentGeneration(DEVICE_B), 3);
+  // B's own stream still rejects stale responses, and accepts its own fresh ones.
+  assert.equal(state.acceptResponse(DEVICE_B, 2), false);
+  assert.equal(state.acceptResponse(DEVICE_B, 3), false);
+  assert.equal(state.acceptResponse(DEVICE_B, 4), true);
+  // A's applied generation is untouched by B's stream.
+  assert.equal(state.currentGeneration(DEVICE_A), 5);
+  assert.equal(state.acceptResponse(DEVICE_A, 4), false);
+  assert.equal(state.acceptResponse(DEVICE_A, 6), true);
 });
 
 test('offline/conflict recovery: a draft whose base still matches applies; a moved base becomes an explicit CONFLICT with both versions retained', () => {

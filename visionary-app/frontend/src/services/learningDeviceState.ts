@@ -1,4 +1,7 @@
-import { randomUUID } from 'node:crypto';
+// Browser-safe id source: this service runs in the browser, where node:crypto
+// does not exist; globalThis.crypto (Web Crypto) is available in every
+// supported browser and in the Node test runner.
+const newId = (): string => globalThis.crypto.randomUUID();
 
 // LEARN-06 (KAN-72) — authorized change cursors/refetch, stale-response
 // rejection, independent workspace selection per device, offline/conflict
@@ -60,13 +63,16 @@ interface DeviceState {
   applied: Map<string, number>;
   drafts: QueuedDraft[];
   conflicts: { draft: QueuedDraft; serverRevision: number }[];
+  // Stale-response generations are PER DEVICE: one device applying a response
+  // must never advance (and thereby falsely reject) another device's fresh
+  // response stream.
+  generation: number;
 }
 
 export class LearningDeviceState {
   private signedOut = false;
   private states = new Map<string, DeviceState>(); // keyed deviceRef
   private currentDevice: string;
-  private generation = 0;
 
   constructor(deviceRef: string, identity: DeviceIdentity) {
     this.currentDevice = deviceRef;
@@ -76,6 +82,7 @@ export class LearningDeviceState {
       applied: new Map(),
       drafts: [],
       conflicts: [],
+      generation: 0,
     });
   }
 
@@ -90,6 +97,7 @@ export class LearningDeviceState {
         applied: new Map(),
         drafts: [],
         conflicts: [],
+        generation: 0,
       });
       return;
     }
@@ -112,7 +120,7 @@ export class LearningDeviceState {
   issueCursor(surface: string, seq: number): DeviceCursor {
     const state = this.requireState(this.currentDevice);
     const cursor: DeviceCursor = {
-      token: `dc_${randomUUID()}`,
+      token: `dc_${newId()}`,
       deviceRef: this.currentDevice,
       workspaceId: state.identity.workspaceId,
       surface,
@@ -134,24 +142,30 @@ export class LearningDeviceState {
     return { surface: cursor.surface, fromSeq: cursor.seq };
   }
 
-  /** Stale-response rejection: monotonically increasing generations. */
-  acceptResponse(generation: number): boolean {
-    if (generation <= this.generation) {
+  /**
+   * Stale-response rejection, PER DEVICE: each device's response stream has
+   * its own monotonically increasing generation, so one device applying a
+   * response can never falsely reject another device's fresh response (the
+   * cross-device misfire a single shared generation caused).
+   */
+  acceptResponse(deviceRef: string, generation: number): boolean {
+    const state = this.requireState(deviceRef);
+    if (generation <= state.generation) {
       return false;
     }
-    this.generation = generation;
+    state.generation = generation;
     return true;
   }
 
-  currentGeneration(): number {
-    return this.generation;
+  currentGeneration(deviceRef: string): number {
+    return this.requireState(deviceRef).generation;
   }
 
   /** Queue a draft offline, bound to the base revision it was made against. */
   queueDraft(surface: string, baseRevision: number, op: Record<string, unknown>): QueuedDraft {
     const state = this.requireState(this.currentDevice);
     const draft: QueuedDraft = {
-      draftId: `dft_${randomUUID()}`,
+      draftId: `dft_${newId()}`,
       surface,
       baseRevision,
       op,
