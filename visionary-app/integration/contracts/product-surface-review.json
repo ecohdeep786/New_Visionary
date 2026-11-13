@@ -943,6 +943,19 @@
         "SYNC-02"
       ]
     },
+    "frontend/src/components/dashboard/ApprovedPrivacyPolicy.jsx": {
+      "profile": "approved-privacy-reference",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated read of the Founder-approved preservation reference. Lifecycle and guardian verification remain separate.",
+      "followUp": [
+        "PRIV-01",
+        "PRIV-02"
+      ],
+      "endpoints": [
+        "GET /api/account/privacy/policy"
+      ]
+    },
     "frontend/src/components/dashboard/StageProfileEditor.jsx": {
       "profile": "local-stage-continuity",
       "state": "preview",
@@ -2684,16 +2697,19 @@
         "GET /api/auth/me"
       ]
     },
-    "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx": {
-      "profile": "local-domain-workflow",
-      "state": "preview",
-      "execution": "browser-local",
-      "reason": "Workspace access-boundary notice (FAP-75): renders where an organization-only area is deep-linked by another identity; browser-local surfaces only, no server authority claimed.",
+    "frontend/src/components/dashboard/CloudConsentControls.jsx": {
+      "profile": "server-consent-self-service",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated own-consent listing and committed revocation receipts through an explicit opt-in SQL runtime. Disabled by default. No consent grant, job/download consumer activation, policy publication or hosted acceptance.",
       "followUp": [
-        "SCOPE-03",
-        "SCOPE-04",
-        "DATA-01",
-        "SYNC-02"
+        "DATA-05",
+        "JOB-01",
+        "FILE-03"
+      ],
+      "endpoints": [
+        "GET /api/account/privacy/consents",
+        "POST /api/account/privacy/consents/revoke"
       ]
     }
   },
