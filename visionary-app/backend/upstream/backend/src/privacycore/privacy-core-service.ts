@@ -1,123 +1,94 @@
-// PRIV-01 (KAN-110) — the privacy core service: enforceable access,
-// minimization, event-driven erasure covering derived state, and the
-// supported age/admission/guardian flows.
-//
-// Core responsibilities (server-owned; fail closed):
-//   1. accessCheck: enforce the class access rule — owner classes check
-//      uid+workspace; scoped-operator classes require the operator scope;
-//      system classes deny every interactive actor.
-//   2. minimize: strip a candidate record down to the class's permitted fields;
-//      the presence of a forbidden field refuses (field_not_minimized) —
-//      collection fails closed instead of silently dropping fields.
-//   3. requestErasure: EVENT-DRIVEN erasure — immediately revokes the owner's
-//      authorization (CACHE-01/scoped-cache composition) and deletes the
-//      owner's data across the erasable classes; billing/audit is retained per
-//      its legal minimum and reported honestly in the receipt.
-//   4. guardianFlow: the supported age/admission flow — a learner under the
-//      admission age requires an ACTIVE guardian consent to process learning
-//      data (`guardian_required` otherwise); the flow state is explicit.
-//   5. collectArtifact: model artifacts are redacted-only — the presence of
-//      raw private text refuses (`raw_text_in_artifact`).
-import type {
-  DataClass,
-  GuardianFlowState,
-  PrivacyError as PrivacyErrorType,
-  PrivacyPolicy,
-} from './privacy-core-types';
-import { PrivacyError } from './privacy-core-types';
-import type { PrivacyPolicyStore } from './privacy-core-lookups';
-
-export interface ErasureReceipt {
-  ownerUid: string;
-  revoked: true;
-  deletedClasses: readonly DataClass[];
-  /** Classes retained by legal minimum, reported honestly. */
-  retainedClasses: readonly { dataClass: DataClass; reason: string }[];
-  derivedCachesInvalidated: true;
-}
-
+import { approvedPolicy, digest, record, uid } from './privacy-policy';
+import { DataClass, ErasureRequest, PrivacyControlStore, PrivacyError, PrivacyTransaction } from './privacy-core-types';
+/** Internal control-plane boundary. Callers derive UIDs from current verified
+ * identities; this library neither authenticates HTTP nor replaces owning-store
+ * record authority. No live provider or product controller is installed here. */
 export class PrivacyCoreService {
-  constructor(
-    private readonly store: PrivacyPolicyStore,
-    private readonly now: () => Date = () => new Date(),
-  ) {}
-
-  /** Enforceable access check against the class policy. */
-  async accessCheck(dataClass: DataClass, actor: { uid: string; workspaceId: string; scopes?: readonly string[] }): Promise<{ allowed: true } | { allowed: false; reason: string }> {
-    const policy = await this.policyFor(dataClass);
-    if (policy.access === 'owner') {
-      // The caller must BE the owner (uid+workspace match the record's owner;
-      // here the store's ownership check via the actor identity).
-      const isOwner = await this.store.isOwner(dataClass, actor.uid, actor.workspaceId);
-      return isOwner ? { allowed: true } : { allowed: false, reason: 'owner_only' };
-    }
-    if (policy.access === 'scoped_operator') {
-      const hasScope = (actor.scopes ?? []).some((s) => s.startsWith('quality.review:') || s === 'audit.read');
-      return hasScope ? { allowed: true } : { allowed: false, reason: 'operator_scope_required' };
-    }
-    // system: no interactive actor passes.
-    return { allowed: false, reason: 'system_only' };
+  private readonly approvers: ReadonlySet<string>;
+  private readonly services: ReadonlySet<string>;
+  private readonly now: () => Date;
+  constructor(private readonly store: PrivacyControlStore, options: { trustedApprovers?: readonly string[]; trustedServices?: readonly string[]; now?: () => Date } = {}) {
+    this.approvers = new Set(options.trustedApprovers ?? []); this.services = new Set(options.trustedServices ?? []); this.now = options.now ?? (() => new Date());
   }
-
-  /** Minimization: refuse forbidden fields; return the minimized record. */
-  async minimize(dataClass: DataClass, candidate: Record<string, unknown>): Promise<Record<string, unknown>> {
-    const policy = await this.policyFor(dataClass);
-    const forbidden = Object.keys(candidate).filter((k) => !policy.permittedFields.includes(k));
-    if (forbidden.length > 0) throw new PrivacyError('field_not_minimized');
-    return candidate;
+  private identity(value: unknown): asserts value is string { if (!uid(value)) throw new PrivacyError('access_denied'); }
+  private async policy(tx: PrivacyTransaction) { return approvedPolicy(await tx.policy(), this.approvers, this.now()); }
+  async minimize(dataClass: DataClass, candidate: unknown) {
+    return this.store.transaction(async tx => { const { policy } = await this.policy(tx); return this.fields(policy.classes.find(c => c.dataClass === dataClass)?.permittedFields, candidate); });
   }
-
-  /**
-   * Event-driven erasure: revoke + delete across erasable classes; derived
-   * caches invalidated; legal-minimum classes reported honestly as retained.
-   */
-  async requestErasure(ownerUid: string, workspaceId: string): Promise<ErasureReceipt> {
-    const policy = await this.currentPolicy();
-    const deletedClasses: DataClass[] = [];
-    const retainedClasses: { dataClass: DataClass; reason: string }[] = [];
-    for (const c of policy.classes) {
-      if (c.retention.erasureTrigger === 'legal_minimum_elapsed') {
-        retainedClasses.push({ dataClass: c.dataClass, reason: `Retained per legal minimum: ${c.retention.justification}` });
-        continue;
+  private fields(allowed: readonly string[] | undefined, candidate: unknown) {
+    if (!allowed) throw new PrivacyError('policy_invalid');
+    // This helper accepts bounded scalar metadata only. Domain-owned structured
+    // text/documents require their own explicit schema; an allowed root field
+    // cannot smuggle an arbitrary private object/array into approved metadata.
+    try {
+      record(candidate, allowed);
+      for (const value of Object.values(candidate)) {
+        if (typeof value === 'string' && value.length <= 4000) continue;
+        if (typeof value === 'boolean') continue;
+        if (typeof value === 'number' && Number.isFinite(value)) continue;
+        throw Error();
       }
-      await this.store.deleteOwnerData(c.dataClass, ownerUid, workspaceId);
-      deletedClasses.push(c.dataClass);
-    }
-    // Derived caches + authorization revoke immediately (CACHE-01/AI-05 composition).
-    await this.store.revokeDerivedCaches(ownerUid);
-    return { ownerUid, revoked: true, deletedClasses, retainedClasses, derivedCachesInvalidated: true };
+      if (JSON.stringify(candidate).length > 16000) throw Error();
+    } catch { throw new PrivacyError('field_not_minimized'); }
+    return structuredClone(candidate);
   }
-
-  /** The supported age/admission/guardian flow for a learner. */
-  guardianFlow(input: { learnerAge: number; admissionAge: number; guardianConsentActive: boolean }): { state: GuardianFlowState; learningDataAllowed: boolean } {
-    if (input.learnerAge >= input.admissionAge) {
-      return { state: 'self_serve', learningDataAllowed: true };
-    }
-    if (input.guardianConsentActive) {
-      return { state: 'guardian_active', learningDataAllowed: true };
-    }
-    return { state: 'guardian_required', learningDataAllowed: false };
+  async admission(actorUid: string) {
+    this.identity(actorUid);
+    return this.store.transaction(async tx => {
+      const { policy, policyDigest } = await this.policy(tx);
+      if (await tx.restriction(actorUid)) return { allowed: false, state: 'processing_restricted' };
+      const subject = await tx.subject(actorUid);
+      try { record(subject, ['uid', 'ageBand', 'assurance', 'status', 'policyVersion', 'policyDigest', 'acknowledgementUid', 'acknowledgementPurpose', 'expiresAt', 'revokedAt']); } catch { return { allowed: false, state: 'review_required' }; }
+      if (subject.uid !== actorUid || subject.status !== 'active' || subject.policyVersion !== policy.policyVersion || subject.policyDigest !== policyDigest || subject.assurance !== 'declared' || subject.acknowledgementUid !== actorUid || subject.acknowledgementPurpose !== 'personal-policy-review' || subject.revokedAt !== null || !Number.isFinite(Date.parse(subject.expiresAt)) || Date.parse(subject.expiresAt) <= this.now().getTime()) return { allowed: false, state: 'review_required' };
+      if (subject.ageBand !== 'adult') return { allowed: false, state: 'guardian_review_required' };
+      return { allowed: true, state: 'adult_current_boundary', assurance: subject.assurance };
+    });
   }
-
-  /** Collect a model artifact: redacted-only, never raw private text. */
-  async collectArtifact(input: { runId: string; fields: Record<string, string | number>; rawPrivateText: readonly string[] }): Promise<void> {
-    const serialized = JSON.stringify(input.fields);
-    if (input.rawPrivateText.some((t) => serialized.includes(t))) {
-      throw new PrivacyError('raw_text_in_artifact');
-    }
-    await this.store.saveArtifact({ ...input.fields, runId: input.runId, occurredAt: this.now().toISOString() });
+  async requestErasure(actorUid: string, commandId: unknown): Promise<{ request: ErasureRequest; replay: boolean; deletionComplete: false }> {
+    this.identity(actorUid);
+    if (typeof commandId !== 'string' || !/^[A-Za-z0-9._:-]{1,128}$/.test(commandId)) throw new PrivacyError('invalid_command');
+    return this.store.transaction(async tx => {
+      const { policy, policyDigest } = await this.policy(tx), key = digest([actorUid, commandId]);
+      const existing = await tx.request(key), restriction = await tx.restriction(actorUid);
+      if (restriction) {
+        try { record(restriction, ['uid', 'requestId', 'policyDigest', 'state']); } catch { throw new PrivacyError('conflict'); }
+        if (!/^[a-f0-9]{64}$/.test(restriction.requestId) || restriction.uid !== actorUid || restriction.state !== 'restricted' || restriction.policyDigest !== policyDigest) throw new PrivacyError('conflict');
+      }
+      const pending = existing ?? (restriction ? await tx.request(restriction.requestId) : undefined);
+      if (pending) {
+        try { record(pending, ['id', 'uid', 'policyVersion', 'policyDigest', 'state', 'scope', 'requestedAt']); } catch { throw new PrivacyError('conflict'); }
+        if (restriction?.requestId !== pending.id || pending.id !== (existing ? key : restriction?.requestId) || pending.uid !== actorUid || pending.policyVersion !== policy.policyVersion || pending.policyDigest !== policyDigest || pending.state !== 'pending' || pending.scope !== 'personal_records' || !Number.isFinite(Date.parse(pending.requestedAt)) || Date.parse(pending.requestedAt) > this.now().getTime() || !restriction) throw new PrivacyError('conflict');
+        return { request: pending, replay: true, deletionComplete: false };
+      }
+      if (restriction) throw new PrivacyError('conflict');
+      const request: ErasureRequest = { id: key, uid: actorUid, policyVersion: policy.policyVersion, policyDigest, state: 'pending', scope: 'personal_records', requestedAt: this.now().toISOString() };
+      // One owning transaction commits the pending request and restriction before
+      // any consumer deletion. No customer data is deleted and no completion or
+      // global authorization-revocation acknowledgement is invented.
+      tx.restrict({ uid: actorUid, requestId: key, policyDigest, state: 'restricted' }); tx.createRequest(request);
+      return { request, replay: false, deletionComplete: false };
+    });
   }
-
-  private async policyFor(dataClass: DataClass) {
-    const policy = await this.currentPolicy();
-    const found = policy.classes.find((c) => c.dataClass === dataClass);
-    if (!found) throw new PrivacyError('unknown_class');
-    return found;
-  }
-
-  private async currentPolicy(): Promise<PrivacyPolicy> {
-    return this.store.currentPolicy();
+  async collectArtifact(actorUid: string, input: unknown) {
+    this.identity(actorUid);
+    if (!this.services.has(actorUid)) throw new PrivacyError('access_denied');
+    record(input, ['uid', 'runId', 'modelVersion', 'evidenceDigest']); this.identity(input.uid);
+    if (typeof input.runId !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(input.runId) || typeof input.modelVersion !== 'string' || !/^[A-Za-z0-9._:-]{1,64}$/.test(input.modelVersion) || typeof input.evidenceDigest !== 'string' || !/^[a-f0-9]{64}$/.test(input.evidenceDigest)) throw new PrivacyError('field_not_minimized');
+    const metadata = structuredClone(input) as Record<string, string>, key = digest([metadata.uid, metadata.runId]);
+    return this.store.transaction(async tx => {
+      const { policy, policyDigest } = await this.policy(tx);
+      if (await tx.restriction(metadata.uid)) throw new PrivacyError('processing_restricted');
+      const proposal = await tx.artifactProposal(key), prior = await tx.artifact(key);
+      try { record(proposal, ['uid', 'runId', 'modelVersion', 'evidenceDigest', 'policyVersion', 'policyDigest', 'purpose', 'status', 'expiresAt', 'revokedAt', 'serviceUid']); } catch { throw new PrivacyError('access_denied'); }
+      if (proposal.status !== 'approved' || proposal.revokedAt !== null || proposal.policyVersion !== policy.policyVersion || proposal.policyDigest !== policyDigest || proposal.purpose !== 'model-operation' || proposal.serviceUid !== actorUid || !Number.isFinite(Date.parse(proposal.expiresAt)) || Date.parse(proposal.expiresAt) <= this.now().getTime() || ['uid', 'runId', 'modelVersion', 'evidenceDigest'].some(k => proposal[k] !== metadata[k])) throw new PrivacyError('access_denied');
+      const value = { ...metadata, occurredAt: this.now().toISOString(), policyDigest, policyVersion: policy.policyVersion, serviceUid: actorUid };
+      const rule = policy.classes.find(c => c.dataClass === 'model_artifacts');
+      if (rule?.access !== 'service') throw new PrivacyError('access_denied'); this.fields(rule.permittedFields, value);
+      if (prior) {
+        try { record(prior, Object.keys(value)); } catch { throw new PrivacyError('conflict'); }
+        if (!Number.isFinite(Date.parse(prior.occurredAt)) || Date.parse(prior.occurredAt) > this.now().getTime() || ['uid', 'runId', 'modelVersion', 'evidenceDigest', 'policyDigest', 'policyVersion', 'serviceUid'].some(k => prior[k] !== value[k])) throw new PrivacyError('conflict'); return { replay: true };
+      }
+      tx.createArtifact(key, value); return { replay: false };
+    });
   }
 }
-
-export type { PrivacyErrorType };

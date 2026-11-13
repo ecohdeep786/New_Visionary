@@ -12,7 +12,7 @@
 .guide-premium .guide-composer textarea { min-height: 68px; font-size: 17px; }
 .guide-premium .guide-example-heading { font-size: 12px; font-weight: 400; color: var(--v-muted, #68717d); margin-bottom: 12px; }
 .guide-premium .guide-example-grid { gap: 12px; }
-.guide-premium .guide-example-card { position: relative; min-height: 108px; display: flex; flex-direction: row; align-items: center; padding: 14px; gap: 12px; border: 1px solid var(--v-border, #e7eaee); border-radius: 18px; background: var(--v-surface, #fff); box-shadow: none; transition: border-color .15s, background .15s; }
+.guide-premium .guide-example-card { position: relative; min-height: 108px; display: flex; flex-direction: row; align-items: center; padding: 14px; gap: 12px; border: 1px solid var(--v-border, #e7eaee); border-radius: 18px; background: var(--v-surface, #fff); box-shadow: none; transition: border-color var(--motion-duration-fast) var(--ease-out-apple), background var(--motion-duration-fast) var(--ease-out-apple); }
 .guide-premium .guide-example-card:hover { border-color: #a8bed8; background: var(--v-canvas, #f8fafc); transform: none; }
 .guide-premium .guide-example-visual { width: 48px; height: 56px; flex: 0 0 48px; border-radius: 12px; overflow: hidden; background: #f2f6fb; }
 .guide-premium .guide-example-copy { padding: 0; gap: 8px; }
