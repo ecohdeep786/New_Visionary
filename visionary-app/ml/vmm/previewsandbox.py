@@ -24,6 +24,7 @@ import re
 from copy import deepcopy
 from datetime import datetime, timezone
 from typing import Any
+from uuid import uuid4
 
 SANDBOX_CONTRACT = "vmm-previewsandbox.v1"
 
@@ -116,7 +117,6 @@ class PreviewSandbox:
         self.authorized_origin = authorized_origin
         self.session_ttl_ms = session_ttl_ms
         self._sessions: dict[str, PreviewSession] = {}
-        self._session_counter = 0
         self._messages: list[dict[str, Any]] = []
 
     def open_session(self, actor: dict[str, Any], artifact_digest: str) -> dict[str, Any]:
@@ -130,8 +130,9 @@ class PreviewSandbox:
         expires_at = datetime.fromtimestamp(
             datetime.now(timezone.utc).timestamp() + self.session_ttl_ms / 1000, timezone.utc
         ).isoformat()
-        self._session_counter += 1
-        session = PreviewSession(f"pv_{self._session_counter}", uid, artifact_digest, expires_at)
+        # UUID session ids (the lane's counter-collision law): two runtime
+        # instances or a restart must never collide on an access-boundary id.
+        session = PreviewSession(f"pv_{uuid4()}", uid, artifact_digest, expires_at)
         self._sessions[session.session_id] = session
         return {
             "sessionId": session.session_id,
