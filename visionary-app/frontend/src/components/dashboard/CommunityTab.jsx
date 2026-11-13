@@ -2,6 +2,7 @@ import { classTabCopy } from '@/lib/classTabCopy';
 import { useCallback, useEffect, useState } from 'react';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { getClassCommunity, postToClassCommunity, removeCommunityPost, reportCommunityPost, restoreCommunityPost } from '@/services/communityService';
+import { dateLocale } from '@/lib/datetime';
 const MAX_TEXT = 1000;
 
 // The class community: learners and the assigned teacher talk inside this class only.
@@ -122,7 +123,7 @@ export default function CommunityTab({
                   {item.authorRole === 'teacher' ? copy("Teacher") : copy("Learner")}
                 </span>
               </div>
-              <time dateTime={item.at} className="text-xs text-[#5f6368]">{new Date(item.at).toLocaleString(locale)}</time>
+              <time dateTime={item.at} className="text-xs text-[#5f6368]">{new Date(item.at).toLocaleString(dateLocale(locale))}</time>
             </div>
             <p className="mt-3 break-words whitespace-pre-wrap text-sm leading-relaxed text-[#121317]">{item.text}</p>
             {item.status === 'flagged' && role === 'teacher' && <p role="status" className="mt-2 text-xs font-medium text-[#b3261e]">{copy("A learner reported this post.")}</p>}
