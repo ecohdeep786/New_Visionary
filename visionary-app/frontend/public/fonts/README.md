@@ -25,3 +25,17 @@ Instance metadata:
   "sha256": "8b11adac519d26808d65064cc0f8533740bcc8377905dbd04741c90bb36d3b6c"
 }
 ```
+
+## F-27 WOFF2 deployment conversion (2026-11-06)
+
+All seven faces are now deployed as WOFF2 (`GoogleSans*.woff2`), converted from the
+recorded TTF sources with FontTools `ttLib.woff2 compress` (Brotli). Glyph outlines,
+name records and licensing metadata are unchanged — the WOFF2 container is a lossless
+recompression, so rendering is identical; only the transfer size changes. Measured:
+static Google Sans faces 1,903,204/1,906,032/1,905,536 B → 450,188/508,972/480,728 B
+(−73–76%); Flex faces 118–129 KB → 31–35 KB (−73–74%). Total shipped font weight
+6.2 MB → 1.6 MB. The TTF sources were removed from the deployed `public/fonts/`
+directory after conversion (they were copied verbatim into every `dist/`); this
+README records the source pin and generation recipe above for regeneration.
+`src/styles/tokens.css`, `index.html` preloads and
+`scripts/auth-font-handoff-review.mjs` reference the `.woff2` files.

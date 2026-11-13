@@ -1,12 +1,17 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
     "rootDir": ".",
-    "noEmit": false,
+    "outDir": "./dist",
+    "incremental": false,
     "declaration": false,
     "sourceMap": false,
-    "incremental": false
+    "resolveJsonModule": true
   },
-  "include": ["src/privacycore/**/*.ts"]
+  "include": [
+    "src/privacycore/**/*.ts"
+  ],
+  "files": [
+    "src/privacycore/privacy-preservation-policy.v1.json"
+  ]
 }
