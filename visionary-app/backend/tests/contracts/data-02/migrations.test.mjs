@@ -10,12 +10,15 @@ const {MigrationRunner}=req('./dist/src/data/migration-runner.js');
 const {PostgresMigrationStore}=req('./dist/src/data/migration-store.js');
 const {canonicalMigrations,registerMigration,splitSql}=req('./dist/src/data/migration-registry.js');
 const {WorkspaceRepository}=req('./dist/src/workspaces/workspace.repository.js');
-const canonical=()=>canonicalMigrations(backend);
+// These historical rollback/drift scenarios intentionally pin the immutable v1
+// baseline before adding their own synthetic v2/v3. DATA-04 tests apply the full
+// current registry and verify the actual invitation evolution separately.
+const canonical=()=>canonicalMigrations(backend).slice(0,1);
 const extra=(base,overrides={})=>registerMigration({version:2,name:'synthetic-additive',requires:[1],statements:['ALTER TABLE "workspaces" ADD COLUMN "syntheticOnly" TEXT'],down:['ALTER TABLE "workspaces" DROP COLUMN "syntheticOnly"'],reversible:true,...overrides});
 const fixture=async fn=>{const f=await stagingDatabase();try{await fn(f);}finally{await f.close();}};
 const column=async(f,name)=>(await f.db.$queryRawUnsafe('SELECT column_name FROM information_schema.columns WHERE table_schema=$1 AND column_name=$2',f.schema,name)).length;
 
-test('canonical registry executes all ten domain tables with real repository compatibility',()=>fixture(async f=>{
+test('historical v1 registry executes its ten domain tables with real repository compatibility',()=>fixture(async f=>{
   const registry=canonical(),s=f.store(),r=new MigrationRunner(s,registry);
   assert.deepEqual(registry[0].statements,splitSql(readFileSync(resolve(backend,'prisma/migrations/20261024000001_data_01_workspaces/migration.sql'),'utf8')));
   assert.equal((await r.applyAll()).applied,1);
@@ -27,6 +30,49 @@ test('canonical registry executes all ten domain tables with real repository com
   assert.equal((await r.applyAll()).applied,0);
   assert.equal((await r.verify()).consistent,true);
   assert.equal((await f.db.$queryRawUnsafe('SELECT "appliedBy" FROM "_visionary_migrations"'))[0].appliedBy,f.migrationRole);
+}));
+
+test('accepted empty-staging versions 1-3 upgrade additively without changing historical receipts',()=>fixture(async f=>{
+  const registry=canonicalMigrations(backend).slice(0,4),store=f.store();
+  assert.deepEqual(registry.map(m=>m.version),[1,2,3,4]);
+  await new MigrationRunner(store,registry.slice(0,3)).applyAll();
+  const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');
+  const upgrade=new MigrationRunner(store,registry);
+  const result=await upgrade.applyAll();
+  assert.equal(result.applied,1);assert.equal(result.skipped,3);
+  assert.deepEqual(await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" WHERE version<4 ORDER BY version'),receipts);
+  for(const name of ['download_grants','download_exports']) {
+    const tables=await f.db.$queryRawUnsafe('SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename=$2',f.schema,name);
+    assert.equal(tables.length,1);
+  }
+  assert.equal((await upgrade.applyAll()).applied,0);
+  assert.equal((await upgrade.verify()).consistent,true);
+}));
+
+test('downloads do not bypass the retained-data migration gate or mutate existing rows and receipts',()=>fixture(async f=>{
+  const registry=canonicalMigrations(backend),store=f.store();
+  await new MigrationRunner(store,registry.slice(0,3)).applyAll();
+  const repository=new WorkspaceRepository(f.db);
+  const workspace=await repository.createWorkspace('upgrade-owner',{name:'Retained',slug:'upgrade-retained',isPersonal:true,commandId:'upgrade-create'});
+  const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');
+  const before=await f.db.workspace.findUnique({where:{id:workspace.id}});
+  await assert.rejects(new MigrationRunner(store,registry).applyAll(),/NON_EMPTY_STAGING_DENIED/);
+  assert.deepEqual(await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version'),receipts);
+  assert.deepEqual(await f.db.workspace.findUnique({where:{id:workspace.id}}),before);
+  assert.equal((await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='download_grants'",f.schema)).length,0);
+}));
+
+test('accepted empty-staging versions 1-4 upgrade to resource revision storage with historical receipts intact',()=>fixture(async f=>{
+  const registry=canonicalMigrations(backend).slice(0,5),store=f.store();
+  assert.deepEqual(registry.map(m=>m.version),[1,2,3,4,5]);
+  await new MigrationRunner(store,registry.slice(0,4)).applyAll();
+  const receipts=await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');
+  const runner=new MigrationRunner(store,registry),result=await runner.applyAll();
+  assert.equal(result.applied,1);assert.equal(result.skipped,4);
+  assert.deepEqual(await f.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" WHERE version<5 ORDER BY version'),receipts);
+  assert.equal((await f.db.$queryRawUnsafe("SELECT tablename FROM pg_tables WHERE schemaname=$1 AND tablename='workspace_command_revisions'",f.schema)).length,1);
+  assert.equal((await runner.verify()).consistent,true);
+  assert.equal((await runner.applyAll()).applied,0);
 }));
 
 test('actual runtime permits domain DML and denies DDL and migration receipts',()=>fixture(async f=>{
@@ -79,7 +125,7 @@ test('concurrent connections serialize and restart reads durable history',()=>fi
   const results=await Promise.all([new MigrationRunner(f.store(),canonical()).applyAll(),new MigrationRunner(f.store(),canonical()).applyAll()]);
   assert.deepEqual(results.map(r=>r.applied).sort(),[0,1]);
   const modulePath=resolve(backend,'dist/src/data');
-  const child=spawnSync(process.execPath,['-e',`const {PostgresMigrationStore}=require(process.env.DATA_MODULE+'/migration-store.js');const {MigrationRunner}=require(process.env.DATA_MODULE+'/migration-runner.js');const {canonicalMigrations}=require(process.env.DATA_MODULE+'/migration-registry.js');(async()=>{const s=new PostgresMigrationStore(JSON.parse(process.env.DATA_CONFIG));try{const r=await new MigrationRunner(s,canonicalMigrations(process.env.DATA_BACKEND)).applyAll();if(r.applied!==0||r.skipped!==1)process.exitCode=1;console.log(JSON.stringify({applied:r.applied,skipped:r.skipped}));}finally{await s.close();}})().catch(()=>{process.exitCode=1;});`],
+  const child=spawnSync(process.execPath,['-e',`const {PostgresMigrationStore}=require(process.env.DATA_MODULE+'/migration-store.js');const {MigrationRunner}=require(process.env.DATA_MODULE+'/migration-runner.js');const {canonicalMigrations}=require(process.env.DATA_MODULE+'/migration-registry.js');(async()=>{const s=new PostgresMigrationStore(JSON.parse(process.env.DATA_CONFIG));try{const r=await new MigrationRunner(s,canonicalMigrations(process.env.DATA_BACKEND).slice(0,1)).applyAll();if(r.applied!==0||r.skipped!==1)process.exitCode=1;console.log(JSON.stringify({applied:r.applied,skipped:r.skipped}));}finally{await s.close();}})().catch(()=>{process.exitCode=1;});`],
     {env:{...process.env,DATA_CONFIG:JSON.stringify(f.config),DATA_MODULE:modulePath,DATA_BACKEND:backend},encoding:'utf8',timeout:20000,windowsHide:true});
   assert.equal(child.status,0,child.stderr);assert.match(child.stdout,/"applied":0/);
 }));
