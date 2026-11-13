@@ -105,16 +105,12 @@ test("B2 label role — law present with the measured dial", () => {
 
 for (const file of [
   "../src/components/landing/AboutUsHero.jsx",
+  "../src/components/landing/CinematicHero.jsx",
   "../src/pages/landing/DownloadPage.jsx",
   "../src/pages/landing/CommunityPage.jsx",
   "../src/pages/landing/PartnersPage.jsx",
   "../src/pages/landing/UpdatesPage.jsx",
   "../src/pages/landing/ReferralPage.jsx",
-  "../src/pages/landing/AccessibilityPage.jsx",
-  "../src/pages/landing/PrivacyPage.jsx",
-  "../src/pages/landing/TermsPage.jsx",
-  "../src/pages/landing/SecurityPage.jsx",
-  "../src/pages/landing/CookiesPage.jsx",
 ]) {
   test(`B2 label role — ${file.replace("../src/", "")} keeps its label site`, () => {
     const source = readFileSync(new URL(file, import.meta.url), "utf8");

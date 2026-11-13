@@ -46,8 +46,13 @@ for (const name of Object.keys(manifest.operations)) {
 }
 test('all declared DTOs have fixtures; current route inventory matches reviewed limits', () => {
   assert.deepEqual(Object.keys(manifest.operations).sort(), Object.keys(fixtures).sort());
-  assert.equal(Object.keys(manifest.currentRoutes).length, 39);
+  assert.equal(Object.keys(manifest.currentRoutes).length, 55);
+  assert.equal(manifest.currentRoutes['GET /api/account/privacy/consents'], 'existing-json');
+  assert.equal(manifest.currentRoutes['POST /api/account/privacy/consents/revoke'], 'existing-json');
   assert.equal(manifest.currentRoutes['GET /api/account/privacy/policy'], 'existing-json');
+  for (const suffix of ['', '/workspaces', '/memberships', '/consents', '/history', '/audit']) {
+    assert.equal(manifest.currentRoutes['GET /api/overview' + suffix], 'existing-json');
+  }
   assert.deepEqual(manifest.currentRoutes, limits.currentRoutes);
   assert.equal(manifest.currentRoutes['POST /api/account/workspace/provision'], 'existing-json');
   assert.deepEqual(manifest.infrastructureSurfaces, limits.infrastructureSurfaces.routes);

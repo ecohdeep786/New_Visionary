@@ -4,21 +4,22 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { FirebaseProductModule } from './auth/firebase-product/firebase-product.module';
 import { configureProductionHttp } from './platform/production-http';
+import { productionRuntimeSettings, boundProductionHttp, installProductionShutdown } from './platform/production-runtime';
 
 export async function bootstrapProduct() {
   const app = await NestFactory.create(FirebaseProductModule, { bodyParser: false });
   const config = app.get(ConfigService);
-  if (config.get('NODE_ENV') !== 'production' || typeof config.get('AUTH_RATE_LIMIT_KEY') !== 'string' || config.get<string>('AUTH_RATE_LIMIT_KEY').length < 32 || !config.get('FIREBASE_PROJECT_ID') || !config.get('FIRESTORE_DATABASE_ID')) throw Error('Production account configuration is incomplete.');
+  const runtime = productionRuntimeSettings(config);
   configureProductionHttp(app, {
-    publicRoot: config.get('PUBLIC_ROOT') || '/app/public', origin: config.get('AUTH_PUBLIC_ORIGIN'),
-    trustedProxyHops: Number(config.get('AUTH_TRUST_PROXY_HOPS')), firebaseAuthDomain: config.get('FIREBASE_AUTH_DOMAIN'),
-    releaseCommit: config.get('VISIONARY_RELEASE_COMMIT'), globalLogoutEnabled: globalLogoutEnabled(config.get('AUTH_GLOBAL_LOGOUT_ENABLED')),
+    publicRoot: config.get('PUBLIC_ROOT') || '/app/public', origin: config.get('AUTH_PUBLIC_ORIGIN'), trustedProxyHops: Number(config.get('AUTH_TRUST_PROXY_HOPS')), firebaseAuthDomain: config.get('FIREBASE_AUTH_DOMAIN'), releaseCommit: config.get('VISIONARY_RELEASE_COMMIT'), globalLogoutEnabled: globalLogoutEnabled(config.get('AUTH_GLOBAL_LOGOUT_ENABLED')),
     requestTelemetry: config.get('PRODUCT_REQUEST_TELEMETRY_ENABLED') === 'true'
       ? event => console.log(JSON.stringify(event))
       : undefined,
   });
-  app.enableShutdownHooks();
-  await app.listen(Number(config.get('PORT') || 8080), '0.0.0.0');
+  const server = app.getHttpServer();
+  boundProductionHttp(server);
+  await app.listen(runtime.port, '0.0.0.0');
+  installProductionShutdown(server, () => app.close());
   return app;
 }
 if (require.main === module) bootstrapProduct().catch(() => { console.error('Product server could not start. Verify reviewed production configuration.'); process.exitCode = 1; });
