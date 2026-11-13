@@ -16,7 +16,7 @@ target.DATA_MIGRATION_DATABASE_URL=url(target.DATA_MIGRATION_ROLE);target.DATA_R
 const envArgs=Object.entries(target).flatMap(([k,v])=>['--env',k+'='+v]);
 // No socket/network is supplied: plan must load the real compiled artifact without connecting.
 const plan=JSON.parse(execFileSync('docker',['run','--rm','--network=none',...envArgs,image,'plan'],{encoding:'utf8',timeout:20000}));
-assert.equal(plan.command,'plan');assert.deepEqual(plan.versions,[1]);assert.match(plan.registryDigest,/^[a-f0-9]{64}$/);
+assert.equal(plan.command,'plan');assert.deepEqual(plan.versions,[1,2,3,4,5,6]);assert.match(plan.registryDigest,/^[a-f0-9]{64}$/);
 const denied=spawnSync('docker',['run','--rm','--network=none',...envArgs,image,'apply'],{encoding:'utf8',timeout:20000});
 assert.notEqual(denied.status,0);assert.match(denied.stderr,/Migration command failed/);
 assert.ok(!denied.stderr.includes(target.DATA_MIGRATION_DATABASE_URL));
@@ -62,7 +62,7 @@ try{
   const staging={...target,DATA_MIGRATION_APPROVED_SHA:commit};
   const receiptBytes=run('apply',staging),receipt=JSON.parse(receiptBytes);
   assert.equal(receipt.status,'verified');assert.equal(receipt.environment,'staging');assert.equal(receipt.sourceCommit,commit);
-  assert.deepEqual(receipt.appliedVersions,[1]);assert.equal(receipt.registryDigest,plan.registryDigest);
+  assert.deepEqual(receipt.appliedVersions,[1,2,3,4,5,6]);assert.equal(receipt.registryDigest,plan.registryDigest);
   assert.equal(JSON.parse(run('verify',staging)).status,'verified');
   assert.equal(JSON.parse(run('apply',staging)).status,'verified','Repeated apply reconciles existing ledger.');
   writeFileSync(join(evidence,'staging.json'),receiptBytes);
@@ -79,8 +79,8 @@ try{
   // The canonical baseline is deliberately irreversible, even while empty.
   assert.throws(()=>run('rollback',production,mount));
   assert.equal(JSON.parse(run('verify',production,mount)).status,'verified','Denied rollback preserves the applied state.');
-  const versions=psql('visionary_product_image','SELECT version FROM product._visionary_migrations WHERE status=\'applied\';');
-  assert.match(versions,/1/);
+  const versions=psql('visionary_product_image',"SELECT string_agg(version::text,',' ORDER BY version) FROM product._visionary_migrations WHERE status='applied';");
+  assert.match(versions,/(?:^|\r?\n)\s*1,2,3,4,5,6\s*(?:\r?\n|$)/);
   console.log('PASS: actual image staging apply/verify/replay and pinned-receipt production apply/verify over isolated PostgreSQL Unix socket; irreversible rollback denied.');
 }finally{
   spawnSync('docker',['rm','--force','--volumes',server],{stdio:'ignore',timeout:20000});
