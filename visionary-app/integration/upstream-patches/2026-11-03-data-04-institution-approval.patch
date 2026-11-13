@@ -1,0 +1,30 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index f695fe3b..08d624d0 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -375,0 +376 @@ model Workspace {
++  institutionApprovals InstitutionApproval[]
+@@ -419,0 +421 @@ model Invitation {
++  institutionApprovalId String?
+@@ -431,0 +434 @@ model Invitation {
++  institutionApproval InstitutionApproval? @relation(fields: [institutionApprovalId, workspaceId], references: [id, workspaceId], onDelete: NoAction)
+@@ -440,0 +444,19 @@ model Invitation {
++model InstitutionApproval {
++  id               String   @id
++  workspaceId      String
++  administratorUid String
++  reviewerUid      String
++  policy           String
++  evidenceRef      String
++  approvedAt       DateTime
++  expiresAt        DateTime
++  revokedAt        DateTime?
++  revokedByUid     String?
++  workspace        Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
++  invitations      Invitation[]
++
++  @@unique([id, workspaceId])
++  @@index([workspaceId, expiresAt])
++  @@map("institution_approvals")
++}
++
