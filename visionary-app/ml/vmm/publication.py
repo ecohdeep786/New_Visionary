@@ -25,6 +25,7 @@ import json
 from copy import deepcopy
 from datetime import datetime, timezone
 from typing import Any
+from uuid import uuid4
 
 PUBLICATION_CONTRACT = "vmm-publication.v1"
 
@@ -45,7 +46,6 @@ class PublicationAuthority:
         self._approvals: dict[str, dict[str, Any]] = {}
         self._published: dict[str, dict[str, Any]] = {}
         self._revoked: set[str] = set()
-        self._publication_counter = 0
         self._connectors: dict[str, dict[str, Any]] = {}
 
     # ---- owner: request publication ------------------------------------------
@@ -138,9 +138,11 @@ class PublicationAuthority:
             if ref not in self._connectors:
                 raise PublicationError(f"Connector '{ref}' is not registered")
 
-        self._publication_counter += 1
+        # UUID publication ids (the lane's counter-collision law): the record
+        # itself keys on artifactDigest:revision, so the security laws are
+        # unaffected — the id is a receipt label that must still never collide.
         published = {
-            "publicationId": f"pub_{self._publication_counter}",
+            "publicationId": f"pub_{uuid4()}",
             "artifactDigest": artifact_digest,
             "revision": revision,
             "status": "published",
