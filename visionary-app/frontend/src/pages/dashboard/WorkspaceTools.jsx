@@ -4,6 +4,8 @@ import { teacherCopy } from '@/lib/teacherCopy';
 import { privacyCopy } from '@/lib/privacyCopy';
 import { Link } from 'react-router-dom';
 import LearningProgress from './LearningProgress';
+import { learningProgressText } from '@/lib/learningProgressCopy';
+import WorkspaceOpening from '@/components/dashboard/WorkspaceOpening';
 import WorkspaceNotifications from '@/components/dashboard/WorkspaceNotifications';
 import StageProfileEditor from '@/components/dashboard/StageProfileEditor';
 import { downloadText } from '@/lib/downloadText';
@@ -125,7 +127,7 @@ function WorkspaceToolsContent({
     }
   }
   if (error) return <div className="v-page" lang={data?.preferences.interfaceLocale || 'en'}><h1 className="v-title">{privacyCopy(data?.preferences.interfaceLocale || 'en')('Workspace unavailable')}</h1><p className="v-notice v-error mt-4" role="alert" lang="en">{error}</p><button className="v-button mt-4" onClick={refresh}>{privacyCopy(data?.preferences.interfaceLocale || 'en')('Retry workspace')}</button></div>;
-  if (!ctx || !data) return <div role="status" className="v-page">{copy("Loading workspace\u2026")}</div>;
+  if (!ctx || !data) return <WorkspaceOpening locale={interfaceLocale} title={area === 'progress' ? learningProgressText(interfaceLocale, 'title') : config ? copy(config.title) : copy("Loading workspace…")} note={copy("Loading workspace…")} />;
   if (area === 'progress') return <LearningProgress key={ctx.workspaceId} data={data} ctx={ctx} />;
   if (area === 'reports') return <ParentReport ctx={ctx} locale={data.preferences.interfaceLocale || 'en'} />;
   if (area === 'notifications' && ctx.role === 'parent') return <ParentNotifications ctx={ctx} data={data} />;

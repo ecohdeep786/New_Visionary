@@ -1,4 +1,5 @@
 import GuideMark from '@/components/dashboard/GuideMark';
+import WorkspaceOpening from '@/components/dashboard/WorkspaceOpening';
 import { guideCopy } from '@/lib/guideCopy';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
@@ -211,8 +212,8 @@ function GuideConversation() {
     requestAnimationFrame(() => field.current?.focus());
   }
   if (loadError) return <div role="alert" className="v-page"><h1 className="v-title">{copy("Your workspace needs attention")}</h1><p lang="en">{loadError}</p><button className="v-button" onClick={() => window.location.reload()}>{copy("Retry")}</button></div>;
-  if (!ctx || !data) return <div className="v-page" role="status">{copy("Preparing your workspace\u2026")}</div>;
-  if (renderedScope !== `${ctx.personId}:${ctx.workspaceId}`) return <div className="v-page" role="status" aria-busy="true">{copy("Opening this workspace\u2026")}</div>;
+  if (!ctx || !data) return <WorkspaceOpening locale={locale} title="Visionary Guide" note={copy("Preparing your workspace…")} />;
+  if (renderedScope !== `${ctx.personId}:${ctx.workspaceId}`) return <WorkspaceOpening locale={locale} title="Visionary Guide" note={copy("Opening this workspace…")} />;
   const recent = data.conversations[0];
   const suggestions = suggestedJourneys(ctx);
   let learning = null,
