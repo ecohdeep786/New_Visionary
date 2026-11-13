@@ -5,8 +5,20 @@
 import type { FeedCursor, FeedEvent, FeedOwner, FeedSurface } from './changefeed-types';
 
 export interface ChangefeedStore {
-  /** Append one immutable ordered record (owning-store outbox record). */
-  appendEvent(owner: FeedOwner, surface: FeedSurface, event: FeedEvent): Promise<void>;
+  /**
+   * ATOMIC append (the sequence fence lives INSIDE the store): the store
+   * assigns the strictly-increasing per-(owner,surface) seq in the SAME
+   * critical section as the insert — a caller-supplied seq is a read-then-
+   * write race (two concurrent appends would collide on the same seq).
+   * Integration law: one transaction computing INSERT with
+   * COALESCE(MAX(seq),0)+1 per (owner,surface), never read-then-insert.
+   * Returns the committed event with its store-assigned seq.
+   */
+  appendEvent(
+    owner: FeedOwner,
+    surface: FeedSurface,
+    event: Omit<FeedEvent, 'seq'>,
+  ): Promise<FeedEvent>;
   /** Events strictly after seq for one owner+surface, in seq order. */
   eventsAfter(owner: FeedOwner, surface: FeedSurface, afterSeq: number): Promise<FeedEvent[]>;
   latestSeq(owner: FeedOwner, surface: FeedSurface): Promise<number>;
@@ -31,11 +43,17 @@ export class InMemoryChangefeedStore implements ChangefeedStore {
     return `${owner.uid}|${owner.workspaceId}|${surface}`;
   }
 
-  async appendEvent(owner: FeedOwner, surface: FeedSurface, event: FeedEvent): Promise<void> {
+  async appendEvent(owner: FeedOwner, surface: FeedSurface, event: Omit<FeedEvent, 'seq'>): Promise<FeedEvent> {
     const key = this.key(owner, surface);
     const list = this.events.get(key) ?? [];
-    list.push(clone(event));
+    // The sequence fence lives HERE (single critical section): the next seq is
+    // derived from the last committed record inside the same append, so two
+    // concurrent callers can never collide on the same seq.
+    const seq = list.length ? list[list.length - 1].seq + 1 : 1;
+    const committed: FeedEvent = { ...clone(event), seq };
+    list.push(committed);
     this.events.set(key, list);
+    return clone(committed);
   }
 
   async eventsAfter(owner: FeedOwner, surface: FeedSurface, afterSeq: number): Promise<FeedEvent[]> {

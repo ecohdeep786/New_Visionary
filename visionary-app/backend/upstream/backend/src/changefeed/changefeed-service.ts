@@ -36,6 +36,7 @@ import type {
 } from './changefeed-types';
 import { ChangefeedError, RELEASED_SURFACES } from './changefeed-types';
 import type { ChangefeedStore } from './changefeed-lookups';
+import { randomUUID } from 'node:crypto';
 
 /** Field-name substrings that indicate raw private content in a record. */
 const PRIVATE_CONTENT_HINTS: readonly string[] = [
@@ -49,9 +50,6 @@ const PRIVATE_CONTENT_HINTS: readonly string[] = [
 ];
 
 export class ChangefeedService {
-  private seqCounter = 0;
-  private cursorCounter = 0;
-
   constructor(
     private readonly store: ChangefeedStore,
     private readonly limits: { maxPageSize: number; retentionWindow: number } = {
@@ -74,16 +72,16 @@ export class ChangefeedService {
         throw new ChangefeedError('private_content_refused');
       }
     }
-    const seq = (await this.store.latestSeq(owner, surface)) + 1;
-    const event: FeedEvent = {
+    // The sequence fence lives INSIDE the store's atomic append (the
+    // read-then-write shape here would let two concurrent appends collide on
+    // the same seq); the committed event comes back with its assigned seq.
+    const event: FeedEvent = await this.store.appendEvent(owner, surface, {
       surface,
-      seq,
       kind,
       refs: { ...refs },
       at: new Date().toISOString(),
       isCommitProof: false,
-    };
-    await this.store.appendEvent(owner, surface, event);
+    });
     return event;
   }
 
@@ -92,8 +90,9 @@ export class ChangefeedService {
     this.assertSurface(surface);
     await this.assertNotRevoked(owner);
     const cursor: FeedCursor = {
-      // Opaque: nonce-padded token — the sequence number is never exposed raw.
-      token: `cur_${++this.cursorCounter}_${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`,
+      // Opaque: a crypto-random capability token — the sequence number is
+      // never exposed raw and the token is not a guessable artifact.
+      token: `cur_${randomUUID()}`,
       owner: { ...owner },
       surface,
       seq: await this.store.latestSeq(owner, surface),

@@ -243,3 +243,24 @@ test('observation only: the feed never executes a command and never proves commi
     (e) => e.code === 'unknown_surface',
   );
 });
+
+test('the sequence fence is ATOMIC inside the store: concurrent appends never collide on the same seq (strictly increasing)', async () => {
+  const { store } = await makeService();
+  // Interleave eight concurrent appends for the same (owner, surface) — the
+  // fence lives in the store's single critical section, so every seq is
+  // unique and strictly increasing no matter how the promises interleave.
+  const committed = await Promise.all(
+    Array.from({ length: 8 }, (_, i) =>
+      store.appendEvent(OWNER, 'build', { surface: 'build', kind: `k${i}`, refs: {}, at: new Date().toISOString(), isCommitProof: false }),
+    ),
+  );
+  const seqs = committed.map((e) => e.seq).sort((a, b) => a - b);
+  assert.deepEqual(seqs, [1, 2, 3, 4, 5, 6, 7, 8], 'no duplicates, no gaps: strictly increasing 1..8');
+  assert.equal(await store.latestSeq(OWNER, 'build'), 8);
+  // The service's recorded events carry the store-assigned seq (1-based, ordered).
+  const svc = await makeService();
+  const first = await svc.service.recordEvent(OWNER, 'account', 'signed_in', {});
+  const second = await svc.service.recordEvent(OWNER, 'account', 'profile_updated', {});
+  assert.equal(first.seq, 1);
+  assert.equal(second.seq, 2, 'the second append continues the store-assigned sequence');
+});
