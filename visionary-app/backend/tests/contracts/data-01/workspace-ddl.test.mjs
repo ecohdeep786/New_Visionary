@@ -2,10 +2,10 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import fixture from './postgres-fixture.cjs';
 let env, db;
-before(async () => { env = await fixture.domainDatabase(); db = env.db; });
+before(async () => { env = await fixture.domainDatabase({ historical: true }); db = env.db; });
 after(async () => { if (env) await env.close(); });
 
-test('PostgreSQL creates all ten domain tables with exact quoted field names', async () => {
+test('historical v1 creates its ten domain tables with exact quoted field names', async () => {
   const tables = await db.$queryRawUnsafe('SELECT table_name FROM information_schema.tables WHERE table_schema = $1', env.schema);
   assert.equal(tables.length, 10);
   for (const name of ['persons','workspaces','workspace_memberships','invitations','consent_grants','share_grants','command_results','outbox_events','audit_events','deletion_tombstones']) assert.ok(tables.some((t) => t.table_name === name));

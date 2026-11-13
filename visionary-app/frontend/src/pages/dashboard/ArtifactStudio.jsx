@@ -15,6 +15,7 @@ import { recordProjectSave, validateProjectCompletion } from '@/services/learnin
 import { saveArtifactEditorDraft, getArtifactEditorDraft, clearArtifactEditorDraft, recoverArtifactEditorDraft, hasUnsavedArtifactEdits } from '@/services/artifactEditorDraft';
 import { downloadText } from './WorkspaceTools';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { dateLocale } from '@/lib/datetime';
 export default function ArtifactStudio() {
   const scope=useWorkspace();
   return <ArtifactWorkspace key={`${scope.ctx?.personId}:${scope.ctx?.workspaceId}`} scope={scope}/>;
@@ -232,7 +233,7 @@ const [params] = useSearchParams();
           });
           setShowVersions(false);
           setNotice('Previous version restored in the editor. Save to keep it.');
-        }}>{new Date(v.at).toLocaleString(locale)}<span>{t("Restore")}</span></button>) : <p className="v-muted">{t("Edit and save again to create a previous version.")}</p>}</DialogContent></Dialog>
+        }}>{new Date(v.at).toLocaleString(dateLocale(locale))}<span>{t("Restore")}</span></button>) : <p className="v-muted">{t("Edit and save again to create a previous version.")}</p>}</DialogContent></Dialog>
  <Dialog open={sharing} onOpenChange={setSharing}><DialogContent lang={locale} className="max-h-[85dvh] overflow-y-auto bg-white"><DialogTitle>{t("Share this artifact?")}</DialogTitle><DialogDescription>{t("Review the exact saved copy and recipient. Later edits stay private until you share an updated copy. This local preview does not verify an employer.")}</DialogDescription><label className="text-sm">{t("Accepted connection")}<select className="v-field mt-2" aria-label={t('Accepted connection')} value={recipient} onChange={e => setRecipient(e.target.value)}><option value="">{t("Choose a connection")}</option>{connections.map(r => <option key={r.id} value={r.from === ctx.personId ? r.to : r.from}>{r.name}</option>)}</select></label>{recipient && <section className="v-card mt-4 bg-white"><h3 className="text-sm font-medium">{t("Copy to share with")}{connections.find(r => (r.from === ctx.personId ? r.to : r.from) === recipient)?.name || t("this connection")}</h3><p className="v-muted mt-2 break-all">{t("Saved version:")}{draft.updatedAt}</p><p className="mt-3 text-sm font-medium">{draft.title}</p><p className="mt-2 max-h-40 overflow-y-auto whitespace-pre-wrap break-words text-sm">{draft.body || t("This project has no content yet.")}</p><p className="v-muted mt-3">{t("Only this title and document are included. Goals, conversations and other projects stay private.")}</p></section>}{draft.visibility === 'shared' && <button className="v-button" onClick={() => {
           try {
             stopSharingArtifact(ctx, draft.id);
