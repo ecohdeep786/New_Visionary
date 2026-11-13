@@ -17,9 +17,23 @@ if (motionCheck.status !== 0) process.exit(motionCheck.status ?? 1);
 const tapsCheck = spawnSync(process.execPath, [path.join(root, 'frontend/scripts/qa-taps.mjs')], { cwd: root, stdio: 'inherit' });
 if (tapsCheck.error) throw tapsCheck.error;
 if (tapsCheck.status !== 0) process.exit(tapsCheck.status ?? 1);
-const scriptTests = spawnSync(process.execPath, ['--test', ...['upstream-patches.test.mjs', 'backend-runtime.test.mjs', 'cost-model.test.mjs', 'continuity-law.test.mjs', 'motion-law.test.mjs', 'tap-law.test.mjs'].map(file => path.join(root, 'scripts/tests', file))], { cwd: root, stdio: 'inherit' });
+const scriptTests = spawnSync(process.execPath, ['--test', ...['upstream-patches.test.mjs', 'backend-runtime.test.mjs', 'cost-model.test.mjs', 'continuity-law.test.mjs', 'motion-law.test.mjs', 'tap-law.test.mjs', 'request-limits.test.mjs', 'authority-audit.test.mjs'].map(file => path.join(root, 'scripts/tests', file))], { cwd: root, stdio: 'inherit' });
 if (scriptTests.error) throw scriptTests.error;
 if (scriptTests.status !== 0) process.exit(scriptTests.status ?? 1);
+const apiContracts = spawnSync(process.execPath, [path.join(root, 'integration/contracts/v1/check.mjs')], { cwd: root, stdio: 'inherit' });
+if (apiContracts.error) throw apiContracts.error;
+if (apiContracts.status !== 0) process.exit(apiContracts.status ?? 1);
+// SCOPE-06: draft schema examples, actual learning HTTP/service invariants,
+// and distinct local frontend classroom scenarios. Each runs fail-fast.
+const scope06Backend = spawnSync(process.execPath, ['--test', path.join(root, 'backend/tests/contracts/scope-06/scope-06.test.mjs')], { cwd: root, stdio: 'inherit' });
+if (scope06Backend.error) throw scope06Backend.error;
+if (scope06Backend.status !== 0) process.exit(scope06Backend.status ?? 1);
+const scope06Runtime = spawnSync(process.execPath, [path.join(root, 'scripts/scope06-runtime-check.mjs')], { cwd: root, stdio: 'inherit' });
+if (scope06Runtime.error) throw scope06Runtime.error;
+if (scope06Runtime.status !== 0) process.exit(scope06Runtime.status ?? 1);
+const scope06Frontend = spawnSync(process.execPath, ['--test', path.join(root, 'frontend/tests/contracts/scope-06/scope-06.test.mjs')], { cwd: root, stdio: 'inherit' });
+if (scope06Frontend.error) throw scope06Frontend.error;
+if (scope06Frontend.status !== 0) process.exit(scope06Frontend.status ?? 1);
 const surfaceCheck = spawnSync(process.execPath, [path.join(root, 'scripts/surface-audit.mjs')], { cwd: root, stdio: 'inherit' });
 if (surfaceCheck.error) throw surfaceCheck.error;
 if (surfaceCheck.status !== 0) process.exit(surfaceCheck.status ?? 1);

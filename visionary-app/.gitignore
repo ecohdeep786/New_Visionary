@@ -70,3 +70,6 @@ ml/upstream/services/**/*.exe
 # Build architecture is source documentation, not generated build output.
 !docs/architecture/build/
 !docs/architecture/build/**
+
+# Main workflow migration image receipt is a retained Actions artifact.
+/published-data-job.json

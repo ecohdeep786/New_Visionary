@@ -1,0 +1,10 @@
+{
+  "name": "visionary-api-contracts-v1",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Draft offline API contracts; not registered product endpoints or an authorization service.",
+  "engines": { "node": ">=22 <25" },
+  "scripts": { "build": "node build.mjs", "test": "node --test tests/*.test.mjs", "check": "node check.mjs" },
+  "dependencies": { "ajv": "8.20.0", "ajv-formats": "3.0.1" }
+}

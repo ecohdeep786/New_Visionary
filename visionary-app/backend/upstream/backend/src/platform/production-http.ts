@@ -36,6 +36,10 @@ export function configureProductionHttp(app: any, options: { publicRoot: string;
   app.use((req: any, res: any, next: any) => {
     // Unknown /api paths must remain JSON errors, never the SPA HTML document.
     if (req.path === '/api' || req.path.startsWith('/api/') || !['GET', 'HEAD'].includes(req.method)) return next();
+    // Dotfiles denied by static serving must not fall through into SPA success.
+    let decodedPath: string;
+    try { decodedPath = decodeURIComponent(req.path); } catch { return res.status(400).end(); }
+    if (decodedPath.split('/').some(part => part.startsWith('.'))) return res.status(404).end();
     files(req, res, () => {
       if (extname(req.path)) return res.status(404).end();
       res.setHeader('Cache-Control', 'no-cache'); res.sendFile(join(options.publicRoot, 'index.html'));
