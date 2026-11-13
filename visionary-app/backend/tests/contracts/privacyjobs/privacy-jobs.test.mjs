@@ -10,7 +10,10 @@
  *   4. a mismatching store marks the job INCOMPLETE honestly with the store
  *      named — never a fake success,
  *   5. the job is idempotent per jobId (retry converges, no duplicate sweep),
- *   6. wrong users cannot run or inspect another's job.
+ *   6. wrong users cannot run or inspect another's job,
+ *   7. the claim is ATOMIC (conditional create): exactly one concurrent run of
+ *      the same jobId wins; the loser never freezes or sweeps — a concurrent
+ *      duplicate deletion job cannot double-delete (the reviewer's correction).
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -97,4 +100,34 @@ test('wrong users cannot run or inspect another\'s job; unknown jobs fail closed
     () => svc.inspect('job_ghost', OWNER),
     (e) => e.code === 'unknown_job',
   );
+});
+
+test('the job claim is ATOMIC: exactly one concurrent run of the same jobId wins — the loser never freezes or sweeps (no double deletion)', async () => {
+  const { store, svc } = await makeService();
+  // Claim semantics: the FIRST caller wins; every later caller for the same
+  // jobId claims false (the SQL ON CONFLICT DO NOTHING law at integration).
+  assert.equal(await store.claimJob('job_claim_semantics', OWNER, 'deletion'), true, 'the first claim wins');
+  assert.equal(await store.claimJob('job_claim_semantics', OWNER, 'deletion'), false, 'a concurrent duplicate claim loses');
+  assert.equal(await store.claimJob('job_claim_semantics', STRANGER, 'deletion'), false, 'even a different owner cannot re-claim the same jobId');
+
+  // A runJob racing an IN-FLIGHT claim (held by the concurrent winner, which
+  // has not committed its receipt yet) returns the honest pending marker and
+  // performs NO store work of its own.
+  await store.claimJob('job_inflight', OWNER, 'deletion');
+  const pending = await svc.runJob({ jobId: 'job_inflight', owner: OWNER, kind: 'deletion' });
+  assert.equal(pending.pending, true, 'the loser reports pending honestly');
+  assert.equal(pending.complete, false, 'pending is not a fake success');
+  assert.deepEqual(pending.stores, [], 'the loser swept nothing');
+  assert.equal(await store.isFrozen(OWNER.uid), false, 'the loser never froze the owner (the winner owns the freeze)');
+
+  // The winner commits (conditional-claim law: only the claim holder saves):
+  const winnerReceipt = { jobId: 'job_inflight', owner: OWNER, kind: 'deletion', complete: true, newWorkStoppedFirst: true, stores: [] };
+  await store.saveJobReceipt(winnerReceipt);
+  const retry = await svc.runJob({ jobId: 'job_inflight', owner: OWNER, kind: 'deletion' });
+  assert.deepEqual(retry, winnerReceipt, 'the retried job returns the winner\'s receipt — no second sweep');
+
+  // An UNCLAIMED jobId runs normally: the service's own claim wins.
+  const fresh = await svc.runJob({ jobId: 'job_fresh', owner: OWNER, kind: 'deletion' });
+  assert.equal(fresh.complete, true, 'a fresh job claims and completes normally');
+  assert.equal(fresh.pending, undefined);
 });

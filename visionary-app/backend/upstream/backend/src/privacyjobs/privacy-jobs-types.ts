@@ -48,6 +48,10 @@ export interface JobReceipt {
   stores: readonly StoreReconciliation[];
   /** Present when incomplete: the reconciliation failure. */
   mismatch?: { store: StoreKind; declared: number; actual: number };
+  /** Present when another run of the SAME jobId is still in flight and has
+   *  not committed its receipt yet: this caller neither froze nor swept
+   *  (the atomic claim law) and the winner's receipt is not ready. */
+  pending?: boolean;
 }
 
 export class PrivacyJobError extends Error {

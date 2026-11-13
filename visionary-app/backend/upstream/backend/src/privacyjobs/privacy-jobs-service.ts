@@ -31,6 +31,17 @@ export class PrivacyLifecycleJobService {
     const existing = await this.store.byJobId(input.jobId);
     if (existing) return existing as JobReceipt;
 
+    // ATOMIC CLAIM before any store is touched: exactly ONE concurrent run of
+    // the same jobId wins; the loser neither freezes nor sweeps (no double
+    // deletion, no duplicate export). The claim is a conditional create.
+    if (!(await this.store.claimJob(input.jobId, input.owner, input.kind))) {
+      const winner = await this.store.byJobId(input.jobId);
+      if (winner) return winner as JobReceipt;
+      // The winner is still in flight: an honest pending marker — this
+      // caller's receipt is not ready and it performed no store work.
+      return { jobId: input.jobId, owner: { ...input.owner }, kind: input.kind, complete: false, newWorkStoppedFirst: true, stores: [], pending: true };
+    }
+
     // STOP NEW WORK FIRST — before any store is touched.
     await this.store.freezeOwner(input.owner.uid);
 
