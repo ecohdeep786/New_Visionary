@@ -16,6 +16,7 @@
 //      content can be RESTRICTED pending review, and resolution records the
 //      outcome and closes the case honestly.
 //   5. The owner may inspect their own case (status and incident reference).
+import { randomUUID } from 'node:crypto';
 import type {
   CaseOwner,
   Incident,
@@ -26,9 +27,6 @@ import { SupportCaseError } from './support-case-types';
 import type { SupportCaseStore } from './support-case-lookups';
 
 export class SupportCaseService {
-  private caseCounter = 0;
-  private incidentCounter = 0;
-  private accessCounter = 0;
   constructor(
     private readonly store: SupportCaseStore,
     private readonly now: () => Date = () => new Date(),
@@ -38,7 +36,7 @@ export class SupportCaseService {
   async fileCase(owner: CaseOwner, reason: SupportCase['reason'], detail: string, reportedContentRef?: string): Promise<SupportCase> {
     if (!detail || detail.trim().length === 0) throw new SupportCaseError('reason_required');
     const supportCase: SupportCase = {
-      caseId: `case_${++this.caseCounter}`,
+      caseId: `case_${randomUUID()}`,
       owner: { ...owner },
       reason,
       detail,
@@ -76,7 +74,7 @@ export class SupportCaseService {
     if (!input.reason || input.reason.trim().length === 0) throw new SupportCaseError('reason_required');
     const supportCase = await this.getCase(input.caseId);
     await this.store.appendAudit({
-      accessId: `acc_${++this.accessCounter}`,
+      accessId: `acc_${randomUUID()}`,
       operatorId: input.operatorId,
       caseId: input.caseId,
       reason: input.reason,
@@ -93,7 +91,7 @@ export class SupportCaseService {
   /** Open an incident from an abuse/content report. */
   async openIncident(caseId: string, owner: CaseOwner, reportedContentRef: string): Promise<Incident> {
     const incident: Incident = {
-      incidentId: `inc_${++this.incidentCounter}`,
+      incidentId: `inc_${randomUUID()}`,
       caseId,
       reportedContentRef,
       restricted: true, // abuse/content response restricts pending review
@@ -118,7 +116,7 @@ export class SupportCaseService {
     const supportCase = await this.getCase(incident.caseId);
     await this.store.saveCase({ ...supportCase, status: 'resolved' });
     await this.store.appendAudit({
-      accessId: `acc_${++this.accessCounter}`,
+      accessId: `acc_${randomUUID()}`,
       operatorId: input.operatorId,
       caseId: incident.caseId,
       reason: `incident ${input.incidentId} resolved: ${input.outcome} — ${input.reason}`,
