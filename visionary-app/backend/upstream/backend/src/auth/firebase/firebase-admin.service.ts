@@ -1,6 +1,7 @@
 import { Injectable, OnModuleDestroy } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { readFileSync } from "node:fs";
+import { generateKeyPairSync } from "node:crypto";
 import { isAbsolute } from "node:path";
 import { App, applicationDefault, cert, deleteApp, getApps, initializeApp } from "firebase-admin/app";
 import { Auth, getAuth } from "firebase-admin/auth";
@@ -20,6 +21,9 @@ export function firebaseAdminSettings(config: ConfigService) {
   const kind = config.get<string>("FIREBASE_PROJECT_KIND") || "production";
   if (!["production", "staging", "emulator"].includes(kind)) {
     throw new FirebaseAdminConfigurationError("FIREBASE_PROJECT_KIND must be production, staging or emulator.");
+  }
+  if (kind === "staging" && projectId === "visionary-research") {
+    throw new FirebaseAdminConfigurationError("Staging Firebase must use a project separate from production.");
   }
   const emulatorHost = process.env.FIREBASE_AUTH_EMULATOR_HOST || config.get<string>("FIREBASE_AUTH_EMULATOR_HOST");
   if (emulatorHost) {
@@ -83,8 +87,15 @@ export class FirebaseAdminService implements OnModuleDestroy {
       try { credential = cert(account); }
       catch { throw new FirebaseAdminConfigurationError("The Firebase service-account credential cannot be parsed."); }
     } else if (settings.kind === "emulator") {
-      // No live key/ADC discovery, even if the surrounding host has credentials.
-      credential = { getAccessToken: async () => ({ access_token: "emulator-only", expires_in: 3600 }) };
+      // The SDK requires a certificate credential to initialize Firestore
+      // without ambient credential discovery. Generate this synthetic key only
+      // in memory; the demo-project and loopback guards fence emulator access.
+      const { privateKey } = generateKeyPairSync("rsa", { modulusLength: 2048 });
+      credential = cert({
+        projectId: settings.projectId,
+        clientEmail: `emulator@${settings.projectId}.iam.gserviceaccount.com`,
+        privateKey: privateKey.export({ type: "pkcs8", format: "pem" }).toString(),
+      });
     } else {
       credential = applicationDefault();
     }
