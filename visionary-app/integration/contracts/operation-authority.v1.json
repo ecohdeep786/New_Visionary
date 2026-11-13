@@ -1679,7 +1679,7 @@
     },
     {
       "file": "backend/upstream/backend/src/platform/production-http.ts",
-      "sha256Lf": "183b85f00ea99d915e5dd80a55f4fc4eb61033d16e5506089cbceb473c360c4f"
+      "sha256Lf": "4eaee2149b05fd8664c4a743e20ad74835c695d0f253e7e75409ad0360997429"
     },
     {
       "file": "integration/contracts/product-surface-review.json",
