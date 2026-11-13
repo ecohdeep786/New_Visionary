@@ -1,0 +1,9 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index cc80edf4..f695fe3b 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -434 +434,3 @@ model Invitation {
+-  @@unique([workspaceId, email])
++  // A PostgreSQL partial unique index admits one pending/issued delivery while
++  // preserving revoked/expired/accepted invitation history for later reissue.
++  @@index([workspaceId, email])
