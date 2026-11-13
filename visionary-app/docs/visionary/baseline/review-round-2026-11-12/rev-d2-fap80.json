@@ -1,0 +1,27 @@
+{
+  "base": "http://127.0.0.1:5175",
+  "betaHead": "f8c3fd1d",
+  "landed": "/dashboard/home",
+  "darkMedia": true,
+  "legacyList": {
+    "badgeBg": "rgb(37, 42, 52)",
+    "badgeColor": "rgb(182, 189, 202)",
+    "cardBorder": "rgb(60, 67, 80)",
+    "learningAreaColor": "rgb(170, 199, 255)",
+    "openLabColor": "rgb(170, 199, 255)",
+    "exploreColor": "rgb(170, 199, 255)"
+  },
+  "topicDetailPath": "/dashboard/learn/c3b11d08-e250-4cb0-a852-0d861d631cdf",
+  "topicDetail": {
+    "practiceColor": "rgb(170, 199, 255)",
+    "explainColor": "rgb(170, 199, 255)",
+    "h1": "Review FAP80 dark topic 1794549137577"
+  },
+  "consoleErrors": [],
+  "contrast": {
+    "badge": 7.6200076917596995,
+    "practice": 10.014002767808696,
+    "explain": 10.014002767808696
+  },
+  "ok": true
+}
