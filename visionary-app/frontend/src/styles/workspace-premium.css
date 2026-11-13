@@ -111,7 +111,7 @@
 .visionary-workspace .v-filter-bar > label {flex: 1; min-width: min(100%, 220px)}
 .visionary-workspace .v-filter-bar select {width: auto; max-width: 100%}
 .visionary-workspace .v-class-stats {padding: 18px 0; border-block: 1px solid var(--v-border); background: transparent}
-.visionary-workspace .v-class-card {border-color: var(--v-border); box-shadow: none; transition: border-color var(--v-motion), background-color var(--v-motion)}
+.visionary-workspace .v-class-card {border-color: var(--v-border); box-shadow: none; transition: border-color var(--v-motion) var(--ease-out-apple), background-color var(--v-motion) var(--ease-out-apple)}
 .visionary-workspace .v-class-card:hover {border-color: var(--v-action-border); box-shadow: none}
 .visionary-workspace .v-class-card-cover {min-height: 112px; height: auto; padding: 24px}
 .visionary-workspace .v-report-section {margin-top: 0}
