@@ -1,0 +1,1144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:visionary:api:v1",
+  "$defs": {
+    "Ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:._-]*$"
+    },
+    "Uuid": {
+      "type": "string",
+      "format": "uuid",
+      "maxLength": 36
+    },
+    "Revision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "Cursor": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+    },
+    "SourceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sourceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "sourceRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "criteriaRevision": {
+          "$ref": "#/$defs/Ref"
+        }
+      },
+      "required": [
+        "sourceId",
+        "sourceRevision",
+        "criteriaRevision"
+      ]
+    },
+    "ProjectDraft": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "projectId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 24000
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "projectId",
+        "title",
+        "body"
+      ]
+    },
+    "SubmissionRevision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "submissionId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "submissionId",
+        "source",
+        "body"
+      ]
+    },
+    "TeachingTurn": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "sessionId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "input": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "sessionId",
+        "source",
+        "input"
+      ]
+    },
+    "FileIntent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "filename": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "mediaType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$"
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "filename",
+        "mediaType",
+        "byteLength",
+        "digest"
+      ]
+    },
+    "ProposalDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "proposalId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "proposalDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "accept",
+            "reject"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "proposalId",
+        "proposalDigest",
+        "decision"
+      ]
+    },
+    "ActivityProposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "proposalId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "baseRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "document-revision",
+            "teaching-activity"
+          ]
+        },
+        "status": {
+          "const": "proposed",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "proposalId",
+        "workspaceId",
+        "baseRevision",
+        "source",
+        "digest",
+        "kind",
+        "status"
+      ]
+    },
+    "VoiceSession": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35,
+          "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$"
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "source",
+        "language"
+      ]
+    },
+    "VoiceChunk": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "sessionId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "turnId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "chunkId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "mediaRef": {
+          "$ref": "#/$defs/Ref"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "finalChunk": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "version",
+        "sessionId",
+        "turnId",
+        "chunkId",
+        "sequence",
+        "mediaRef",
+        "digest",
+        "finalChunk"
+      ]
+    },
+    "VoiceTranscript": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "sessionId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "turnId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "finality": {
+          "type": "string",
+          "enum": [
+            "interim",
+            "final"
+          ]
+        },
+        "kind": {
+          "const": "transcript",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "sessionId",
+        "turnId",
+        "sequence",
+        "text",
+        "finality",
+        "kind"
+      ]
+    },
+    "Cancel": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "targetId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "user-request",
+            "superseded"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "targetId",
+        "reason"
+      ]
+    },
+    "PackManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "packId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "policyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "maxLength": 40
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "entryId": {
+                "$ref": "#/$defs/Ref"
+              },
+              "digest": {
+                "$ref": "#/$defs/Digest"
+              },
+              "byteLength": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "entryId",
+              "digest",
+              "byteLength"
+            ]
+          },
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "version",
+        "packId",
+        "workspaceId",
+        "source",
+        "policyRevision",
+        "expiresAt",
+        "digest",
+        "entries"
+      ]
+    },
+    "OfflineReplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "packId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "packDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TeachingTurn"
+          },
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "version",
+        "packId",
+        "packDigest",
+        "commands"
+      ]
+    },
+    "StageEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "eventId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "expectedProfileRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "mappingId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "mappingRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "consentRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "propose",
+            "confirm",
+            "postpone",
+            "undo"
+          ]
+        },
+        "relatedReceiptId": {
+          "$ref": "#/$defs/Ref"
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "eventId",
+        "expectedProfileRevision",
+        "mappingId",
+        "mappingRevision",
+        "source",
+        "consentRevision",
+        "action"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "undo",
+                  "postpone"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "relatedReceiptId": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "required": [
+              "relatedReceiptId"
+            ]
+          }
+        }
+      ]
+    },
+    "StageMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mappingId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "revision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "fromStage": {
+          "$ref": "#/$defs/Ref"
+        },
+        "toStage": {
+          "$ref": "#/$defs/Ref"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "publicationReceiptId": {
+          "$ref": "#/$defs/Ref"
+        }
+      },
+      "required": [
+        "version",
+        "mappingId",
+        "revision",
+        "fromStage",
+        "toStage",
+        "source",
+        "publicationReceiptId"
+      ]
+    },
+    "ProfileSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "profileId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "revision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "stage": {
+          "$ref": "#/$defs/Ref"
+        },
+        "policyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "lastTransitionReceiptId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "projection": {
+          "type": "string",
+          "enum": [
+            "current",
+            "pending"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "profileId",
+        "revision",
+        "stage",
+        "policyRevision",
+        "lastTransitionReceiptId",
+        "projection"
+      ]
+    },
+    "CoachingGoal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "goalId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "visibility": {
+          "const": "private",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "goalId",
+        "text",
+        "visibility"
+      ]
+    },
+    "SummaryRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "expectedRevision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expectedPolicyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "self-review",
+            "authorized-progress-report"
+          ]
+        },
+        "audienceRef": {
+          "$ref": "#/$defs/Ref"
+        },
+        "relationshipRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "consentRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceBinding"
+        },
+        "summaryRevision": {
+          "$ref": "#/$defs/Revision"
+        }
+      },
+      "required": [
+        "version",
+        "mutationId",
+        "workspaceId",
+        "expectedRevision",
+        "expectedPolicyRevision",
+        "purpose",
+        "audienceRef",
+        "relationshipRevision",
+        "consentRevision",
+        "source",
+        "summaryRevision"
+      ]
+    },
+    "PageQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "cursor": {
+          "$ref": "#/$defs/Cursor"
+        }
+      },
+      "required": []
+    },
+    "ResourcePage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/Ref"
+              },
+              "revision": {
+                "$ref": "#/$defs/Revision"
+              }
+            },
+            "required": [
+              "id",
+              "revision"
+            ]
+          },
+          "maxItems": 50
+        },
+        "nextCursor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Cursor"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "items",
+        "nextCursor"
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "requestId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "code": {
+          "type": "string",
+          "enum": [
+            "INVALID_REQUEST",
+            "UNAUTHENTICATED",
+            "DENIED",
+            "NOT_FOUND",
+            "COMMAND_CONFLICT",
+            "STALE_REVISION",
+            "CURSOR_EXPIRED",
+            "PAYLOAD_TOO_LARGE",
+            "UNSUPPORTED_MEDIA",
+            "UNSUPPORTED_OPERATION",
+            "QUOTA_EXCEEDED",
+            "UNAVAILABLE",
+            "DEADLINE_EXCEEDED"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "retryAfterSeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3600
+        }
+      },
+      "required": [
+        "version",
+        "requestId",
+        "code",
+        "message",
+        "retryable"
+      ]
+    },
+    "CommitReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "receiptId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "policyRevision": {
+          "$ref": "#/$defs/Ref"
+        },
+        "status": {
+          "const": "committed",
+          "type": "string"
+        },
+        "projection": {
+          "type": "string",
+          "enum": [
+            "current",
+            "pending"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "receiptId",
+        "mutationId",
+        "workspaceId",
+        "revision",
+        "policyRevision",
+        "status",
+        "projection"
+      ]
+    },
+    "AcceptedRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "runId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "mutationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "status": {
+          "const": "accepted",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "runId",
+        "mutationId",
+        "status"
+      ]
+    },
+    "ChangeEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "eventId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "cursor": {
+          "$ref": "#/$defs/Cursor"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "resourceId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "invalidate",
+            "revoked"
+          ]
+        },
+        "action": {
+          "const": "refetch",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "eventId",
+        "sequence",
+        "cursor",
+        "workspaceId",
+        "resourceId",
+        "revision",
+        "kind",
+        "action"
+      ]
+    },
+    "StreamEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "runId": {
+          "$ref": "#/$defs/Ref"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "delta",
+            "complete",
+            "cancelled"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "committed": {
+          "const": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "version",
+        "runId",
+        "sequence",
+        "kind",
+        "text",
+        "committed"
+      ]
+    }
+  }
+}
