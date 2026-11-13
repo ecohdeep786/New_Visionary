@@ -37,11 +37,14 @@ try {
     console.log('PASS: real non-root product/static/API/CSRF/realm/time-budget boundaries');
     })().catch(e=>{console.error(e.message);process.exitCode=1;});`;
   docker(['exec', name, 'node', '-e', script]); receipt.startupAndChecksMs = Date.now() - start;
-  const logs = docker(['logs', name], true);
+  const captured = spawnSync('docker', ['logs', name], { encoding: 'utf8', timeout: 60000 });
+  assert.ifError(captured.error);
+  assert.equal(captured.status, 0, 'Could not read container logs.');
+  const logs = captured.stdout + '\n' + captured.stderr;
   const telemetry = logs.split(/\r?\n/)
     .filter(line => line.includes('"event":"product.api.request"'))
     .map(line => JSON.parse(line));
-  assert.ok(telemetry.some(event => event.route === '/api/auth/methods' && event.status === 200), 'Expected an auth methods telemetry event.');
+  assert.equal(telemetry.filter(event => event.route === '/api/auth/methods' && event.status === 200).length, 2, 'Both auth methods requests must emit telemetry.');
   for (const event of telemetry) {
     assert.deepEqual(Object.keys(event).sort(), ['event', 'latencyMs', 'route', 'status']);
     assert.equal(event.event, 'product.api.request');
