@@ -89,17 +89,31 @@ export function auditApiSchemaCompatibility(workflow) {
 
 export function auditImmutableReleaseAndSmoke(workflow) {
   const prod = workflow.slice(workflow.indexOf('  production:'));
-  for (const step of ['node infrastructure/gcp/build-image.mjs', 'node infrastructure/gcp/container-smoke.mjs', 'node infrastructure/gcp/release.mjs publish']) {
-    if (!prod.includes(step)) return refuse(`production job is missing: ${step}`);
-  }
-  if (prod.indexOf('container-smoke.mjs') > prod.indexOf('release.mjs publish')) return refuse('the container smoke must run before publish');
+  const commands = [...prod.matchAll(/^ {6}(?:- |  )run: ([^\r\n]+)$/gm)].map(match => match[1].trim());
+  const expected = [
+    'node infrastructure/gcp/build-image.mjs',
+    'node infrastructure/gcp/container-smoke.mjs',
+    'node infrastructure/gcp/release.mjs publish',
+  ];
+  const [build, smoke, publish] = expected.map(command => commands.indexOf(command));
+  const missing = expected.filter(command => !commands.includes(command));
+  if (missing.length) return refuse(`production job is missing: ${missing.join(' | ')}`);
+  if (build >= smoke || smoke >= publish) return refuse('the production job must build, smoke, and publish in that order');
   return pass('build → smoke → publish order; release.mjs publishes the digest-pinned immutable image');
 }
 
 export function auditCanaryAndRollback(workflow, releaseSource) {
   const prod = workflow.slice(workflow.indexOf('  production:'));
-  if (!prod.includes('node infrastructure/gcp/release.mjs deploy')) return refuse('production job must deploy through release.mjs deploy');
-  if (!/\$\{\{ vars\.PRODUCTION_DEPLOY_ENABLED/.test(prod)) return refuse('deployment must stay behind the reviewed repository switch');
+  const jobCondition = prod.match(/^ {4}if: >-?\r?\n((?: {6}[^\r\n]*\r?\n)+)/m)?.[1].trim().replace(/\s+/g, ' ');
+  const expectedJobCondition = [
+    "github.repository == 'ecohdeep786/New_Visionary'",
+    "github.ref == 'refs/heads/main'",
+    "(github.event_name == 'push' || github.event_name == 'workflow_dispatch')",
+    "vars.PRODUCTION_PUBLISH_ENABLED == 'true'",
+  ].join(' && ');
+  if (jobCondition !== expectedJobCondition) return refuse('production job must be restricted to the reviewed repository, main, trusted events, and the publish switch');
+  const deployStep = /^ {6}- if: vars\.PRODUCTION_DEPLOY_ENABLED == 'true'\r?\n {8}run: node infrastructure\/gcp\/release\.mjs deploy\s*$/m;
+  if (!deployStep.test(prod)) return refuse('production deploy step must use release.mjs deploy behind the reviewed deploy switch');
   for (const marker of ['no-traffic', "'--tag='", 'ci-candidate', 'canonicalChecks', 'moveTraffic']) {
     if (!releaseSource.includes(marker)) return refuse(`release.mjs canary implementation is missing: ${marker}`);
   }

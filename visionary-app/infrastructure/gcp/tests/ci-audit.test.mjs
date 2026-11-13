@@ -21,17 +21,23 @@ test('an unpinned action refuses provenance', () => {
 
 test('a production job that also runs on dev refuses the release boundary', () => {
   const broken = realWorkflow.replace("github.ref == 'refs/heads/main'", "github.ref == 'refs/heads/dev'");
-  const refused = runCiAudit({ workflow: broken, releaseSource: realRelease }).find(r => r.check === 'immutable-release-smoke' );
-  void refused;
-  // the production gate itself lives in release.mjs trustedRun; the workflow-level
-  // gate is the if: condition - assert the audit still passes structurally and
-  // verify the dev-gate through the canary check instead.
-  const canary = auditCanaryAndRollback(broken, realRelease);
-  assert.equal(canary.pass, true); // workflow shape unchanged; trustedRun pins main at runtime
+  const refused = auditCanaryAndRollback(broken, realRelease);
+  assert.equal(refused.pass, false);
+  assert.match(refused.detail, /production job must be restricted/);
+});
+
+test('deployment refuses a removed step guard even when its environment still references the switch', () => {
+  const broken = realWorkflow.replace("      - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'\n        run:", '      - run:');
+  const refused = auditCanaryAndRollback(broken, realRelease);
+  assert.equal(refused.pass, false);
+  assert.match(refused.detail, /behind the reviewed deploy switch/);
 });
 
 test('missing smoke before publish refuses', () => {
-  const broken = realWorkflow.replace('      - run: node infrastructure/gcp/container-smoke.mjs\n', '');
+  const production = realWorkflow.indexOf('\n  production:');
+  assert.notEqual(production, -1);
+  const broken = realWorkflow.slice(0, production) + realWorkflow.slice(production)
+    .replace('      - run: node infrastructure/gcp/container-smoke.mjs\n', '');
   const refused = runCiAudit({ workflow: broken, releaseSource: realRelease }).find(r => r.check === 'immutable-release-smoke');
   assert.equal(refused.pass, false);
   assert.match(refused.detail, /container-smoke\.mjs/);
