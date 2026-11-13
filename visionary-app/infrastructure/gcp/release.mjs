@@ -34,7 +34,7 @@ export function releaseEnvironment(commit, globalSignOut = false) {
     FIREBASE_PROJECT_ID: production.project, FIREBASE_PROJECT_KIND: 'production', FIRESTORE_DATABASE_ID: 'default',
     FIREBASE_AUTH_DOMAIN: production.authDomain, BILLING_MODE: 'test', VISIONARY_RELEASE_COMMIT: commit,
     AUTH_SESSION_POLICY_VERSION: '1', AUTH_GLOBAL_LOGOUT_ENABLED: globalSignOut === true ? 'true' : 'false',
-    AUTH_PHONE_SIGNIN_ENABLED: 'true',
+    AUTH_PHONE_SIGNIN_ENABLED: 'true', PRODUCT_REQUEST_TELEMETRY_ENABLED: 'true',
   };
 }
 export function revisionAuthPolicy(revision) {
