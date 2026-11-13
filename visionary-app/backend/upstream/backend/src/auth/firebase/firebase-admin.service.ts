@@ -22,6 +22,9 @@ export function firebaseAdminSettings(config: ConfigService) {
   if (!["production", "staging", "emulator"].includes(kind)) {
     throw new FirebaseAdminConfigurationError("FIREBASE_PROJECT_KIND must be production, staging or emulator.");
   }
+  if (kind === "staging" && projectId === "visionary-research") {
+    throw new FirebaseAdminConfigurationError("Staging Firebase must use a project separate from production.");
+  }
   const emulatorHost = process.env.FIREBASE_AUTH_EMULATOR_HOST || config.get<string>("FIREBASE_AUTH_EMULATOR_HOST");
   if (emulatorHost) {
     if (kind !== "emulator" || !projectId.startsWith("demo-") || config.get("NODE_ENV") === "production") {
