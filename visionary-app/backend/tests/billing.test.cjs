@@ -250,7 +250,7 @@ test('native HTTP billing requires session/device, exact Origin/CSRF and expecte
 test('BILL-05: the released lifecycle derives free/active/renewing and never over-advertises', async () => {
   const { lifecycleOf, releasedCapabilities, GRACE_MS, BILLING_LIFECYCLE_VERSION } = req('./dist/src/billing/billing-lifecycle.js');
   assert.equal(lifecycleOf({}).state, 'free');
-  const active = lifecycleOf({ subscription: { status: 'active', plan: 'personal', chargeAt: Date.now() + 10 * 86400000 } });
+  const active = lifecycleOf({ subscription: { status: 'active', plan: 'personal', chargeAt: Math.floor(Date.now() / 1000) + 10 * 86400 } });
   assert.equal(active.state, 'active'); assert.ok(active.renewalAt);
   const renewing = lifecycleOf({ subscription: { status: 'active', plan: 'personal', chargeAt: Math.floor(Date.now() / 1000) + 3600 } });
   assert.equal(renewing.state, 'renewing');

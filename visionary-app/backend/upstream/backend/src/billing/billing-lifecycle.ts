@@ -85,8 +85,15 @@ export function lifecycleOf(data: any): Lifecycle {
   // subscription.renewalAt=null for the same condition.
   if (confirmed.has(sub.status)) {
     const chargeMs = sub.chargeAt ? sub.chargeAt * 1000 : 0;
-    const due = !!chargeMs && !sub.cancelAtPeriodEnd && chargeMs <= now + RENEWAL_WINDOW_MS;
-    return { version: BILLING_LIFECYCLE_VERSION, state: due ? 'renewing' : 'active', plan, renewalAt: due ? isoSeconds(sub.chargeAt) : null, graceUntil: null, pastDueSince: null, reason: null };
+    // willCharge: a next charge WILL happen (so the next charge time is
+    // advertised as renewalAt regardless of how far out it is). due: that
+    // charge falls inside the renewal window (state reads 'renewing'). A
+    // cancel-at-period-end subscription never charges again, so it never
+    // claims a renewal — the paid period stays active with renewalAt null,
+    // agreeing with the account view for the same condition.
+    const willCharge = !!chargeMs && !sub.cancelAtPeriodEnd;
+    const due = willCharge && chargeMs <= now + RENEWAL_WINDOW_MS;
+    return { version: BILLING_LIFECYCLE_VERSION, state: due ? 'renewing' : 'active', plan, renewalAt: willCharge ? isoSeconds(sub.chargeAt) : null, graceUntil: null, pastDueSince: null, reason: null };
   }
   // An unconfirmed, non-dunning provider state ('created'/'pending'/…) reads
   // as pending activation: never advertised as active, never ended, with no
