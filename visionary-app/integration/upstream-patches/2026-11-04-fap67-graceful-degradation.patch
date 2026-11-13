@@ -1,0 +1,168 @@
+commit 65f3aa61cd2143b7c3112f25f576d5803cd1c5e7
+Author: ecohdeep786 <shahidali@visionary.org.in>
+Date:   Wed Nov 4 01:25:43 2026 +0530
+
+    FAP-67 (quality engineer): backend boots without third-party credentials - intentional upstream patches: (1) the Google OAuth strategy registers only when GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET are configured (a missing credential crashed the whole boot at the passport constructor, taking email auth down with it); (2) the four OpenAI agent/orchestrator clients construct with an 'unconfigured' fallback key so boot survives without OPENAI_API_KEY (calls fail at request time with a clear auth error instead). Next env gap when booting a fresh instance: SUPABASE_URL - the already-running instance (PID 9160) serves the QA needs; the QA scripts' localStorage session seeding predates server-backed auth and needs the API-token bootstrap migration (the real remaining FAP-67 work)
+
+diff --git a/visionary-app/backend/upstream/backend/src/agents/content/content-agent.service.ts b/visionary-app/backend/upstream/backend/src/agents/content/content-agent.service.ts
+index fecb97f2..e4f13780 100644
+--- a/visionary-app/backend/upstream/backend/src/agents/content/content-agent.service.ts
++++ b/visionary-app/backend/upstream/backend/src/agents/content/content-agent.service.ts
+@@ -7,7 +7,7 @@ export class ContentAgentService {
+   private openai: OpenAI;
+ 
+   constructor(private config: ConfigService) {
+-    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") });
++    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") ?? "unconfigured" });
+   }
+ 
+   async stream(prompt: string, onToken: (chunk: string) => void): Promise<void> {
+diff --git a/visionary-app/backend/upstream/backend/src/agents/diagram/diagram-agent.service.ts b/visionary-app/backend/upstream/backend/src/agents/diagram/diagram-agent.service.ts
+index ba5443b9..91f78262 100644
+--- a/visionary-app/backend/upstream/backend/src/agents/diagram/diagram-agent.service.ts
++++ b/visionary-app/backend/upstream/backend/src/agents/diagram/diagram-agent.service.ts
+@@ -7,7 +7,7 @@ export class DiagramAgentService {
+   private openai: OpenAI;
+ 
+   constructor(private config: ConfigService) {
+-    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") });
++    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") ?? "unconfigured" });
+   }
+ 
+   async generate(prompt: string, onToken: (chunk: string) => void): Promise<void> {
+diff --git a/visionary-app/backend/upstream/backend/src/agents/resource/resource-agent.service.ts b/visionary-app/backend/upstream/backend/src/agents/resource/resource-agent.service.ts
+index 9f9bf079..e7011b9a 100644
+--- a/visionary-app/backend/upstream/backend/src/agents/resource/resource-agent.service.ts
++++ b/visionary-app/backend/upstream/backend/src/agents/resource/resource-agent.service.ts
+@@ -7,7 +7,7 @@ export class ResourceAgentService {
+   private openai: OpenAI;
+ 
+   constructor(private config: ConfigService) {
+-    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") });
++    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") ?? "unconfigured" });
+   }
+ 
+   async fetch(prompt: string, onToken: (chunk: string) => void): Promise<void> {
+diff --git a/visionary-app/backend/upstream/backend/src/auth/auth.module.ts b/visionary-app/backend/upstream/backend/src/auth/auth.module.ts
+index 246780b7..133ce68b 100644
+--- a/visionary-app/backend/upstream/backend/src/auth/auth.module.ts
++++ b/visionary-app/backend/upstream/backend/src/auth/auth.module.ts
+@@ -9,6 +9,15 @@ import { GoogleStrategy } from "./strategies/google.strategy";
+ import { EmailModule } from "../email/email.module";
+ import { FirebaseAdminModule } from "./firebase/firebase-admin.module";
+ 
++/* Intentional upstream patch (FAP-67, 2026-11-04): the Google OAuth strategy
++   is registered only when its client credentials are configured. Without
++   this guard a missing GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET crashed the
++   whole boot at the passport strategy constructor, taking email/password
++   auth down with it. With the guard, the backend boots and serves the email
++   path; the Google endpoints stay unavailable until the founder adds the
++   OAuth credentials. Recorded per the AGENTS.md upstream-patch rule. */
++const googleConfigured = Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
++
+ @Module({
+   imports: [
+     FirebaseAdminModule,
+@@ -23,7 +32,7 @@ import { FirebaseAdminModule } from "./firebase/firebase-admin.module";
+     }),
+   ],
+   controllers: [AuthController],
+-  providers: [AuthService, JwtStrategy, GoogleStrategy],
++  providers: [AuthService, JwtStrategy, ...(googleConfigured ? [GoogleStrategy] : [])],
+   exports: [AuthService, JwtModule, FirebaseAdminModule],
+ })
+ export class AuthModule {}
+diff --git a/visionary-app/backend/upstream/backend/src/orchestrator/orchestrator.service.ts b/visionary-app/backend/upstream/backend/src/orchestrator/orchestrator.service.ts
+index fa4f1c4c..8ffb0f56 100644
+--- a/visionary-app/backend/upstream/backend/src/orchestrator/orchestrator.service.ts
++++ b/visionary-app/backend/upstream/backend/src/orchestrator/orchestrator.service.ts
+@@ -22,7 +22,7 @@ export class OrchestratorService {
+     private diagramAgent: DiagramAgentService,
+     private resourceAgent: ResourceAgentService
+   ) {
+-    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") });
++    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") ?? "unconfigured" });
+   }
+ 
+   async detectIntent(prompt: string): Promise<Intent> {
+commit 84930a01255859bc0a75d4f48253f6c783c1559d
+Author: ecohdeep786 <shahidali@visionary.org.in>
+Date:   Wed Nov 4 01:46:49 2026 +0530
+
+    FAP-67: the email service degrades gracefully without SMTP - jsonTransport logs the mail instead of crashing registration with an SMTP connection refusal, and the dev path logs the verification code so QA can complete onboarding without a mail server; upstream patch recorded
+
+diff --git a/visionary-app/backend/upstream/backend/src/email/email.service.ts b/visionary-app/backend/upstream/backend/src/email/email.service.ts
+index 82244465..af846963 100644
+--- a/visionary-app/backend/upstream/backend/src/email/email.service.ts
++++ b/visionary-app/backend/upstream/backend/src/email/email.service.ts
+@@ -8,21 +8,34 @@ export class EmailService {
+   private transporter: nodemailer.Transporter;
+ 
+   constructor(private config: ConfigService) {
+-    this.transporter = nodemailer.createTransport({
+-      host: this.config.get("SMTP_HOST"),
+-      port: Number(this.config.get("SMTP_PORT") ?? 587),
+-      secure: this.config.get("SMTP_SECURE") === "true",
+-      auth: {
+-        user: this.config.get("SMTP_USER"),
+-        pass: this.config.get("SMTP_PASS"),
+-      },
+-    });
++    /* Intentional upstream patch (FAP-67, 2026-11-04): without SMTP_HOST the
++       service uses a JSON transport that logs the mail (the verification code
++       lands in the backend log) instead of crashing registration with an
++       SMTP connection refusal. Recorded per the AGENTS.md upstream-patch rule. */
++    const host = this.config.get("SMTP_HOST");
++    this.transporter = host
++      ? nodemailer.createTransport({
++          host,
++          port: Number(this.config.get("SMTP_PORT") ?? 587),
++          secure: this.config.get("SMTP_SECURE") === "true",
++          auth: {
++            user: this.config.get("SMTP_USER"),
++            pass: this.config.get("SMTP_PASS"),
++          },
++        })
++      : nodemailer.createTransport({ jsonTransport: true });
+   }
+ 
+   async sendOtp(email: string, otp: string) {
+     const from = this.config.get("SMTP_FROM") || "Visionary <noreply@visionary.com>";
+     const frontendUrl = this.config.get("FRONTEND_URL") || "http://localhost:3000";
+ 
++    /* FAP-67 dev transport: without SMTP the code lands in the backend log so
++       QA can complete verification without a mail server. */
++    if (!this.config.get("SMTP_HOST")) {
++      this.logger.log(`[dev] OTP for ${email}: ${otp}`);
++    }
++
+     await this.transporter.sendMail({
+       from,
+       to: email,
+commit c2b1a8d2d015a3f44c02dd3b73094bb10f0ba0ab
+Author: ecohdeep786 <shahidali@visionary.org.in>
+Date:   Wed Nov 4 01:47:09 2026 +0530
+
+    FAP-67: the document storage client degrades gracefully without Supabase config (placeholder client; only storage calls fail) - upstream patch recorded
+
+diff --git a/visionary-app/backend/upstream/backend/src/documents/documents.service.ts b/visionary-app/backend/upstream/backend/src/documents/documents.service.ts
+index a4c36918..071a5113 100644
+--- a/visionary-app/backend/upstream/backend/src/documents/documents.service.ts
++++ b/visionary-app/backend/upstream/backend/src/documents/documents.service.ts
+@@ -8,9 +8,14 @@ export class DocumentsService {
+   private supabase;
+ 
+   constructor(private prisma: PrismaService, private config: ConfigService) {
++    /* Intentional upstream patch (FAP-67, 2026-11-04): a missing Supabase
++       configuration no longer crashes the whole boot — the client constructs
++       against a placeholder and only the document-storage calls fail, with a
++       clear auth error, until the founder adds SUPABASE_URL/KEY. Recorded
++       per the AGENTS.md upstream-patch rule. */
+     this.supabase = createClient(
+-      this.config.get("SUPABASE_URL"),
+-      this.config.get("SUPABASE_SERVICE_KEY")
++      this.config.get("SUPABASE_URL") || "https://unconfigured.supabase.local",
++      this.config.get("SUPABASE_SERVICE_KEY") || "unconfigured"
+     );
+   }
+ 
