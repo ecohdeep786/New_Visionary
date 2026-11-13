@@ -1,101 +1,50 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { runCiAudit, auditTriggers, auditLeastPrivilege, auditPinnedActions, auditComponentTestsAndBuilds, auditDependencyAndSecretChecks, auditCanaryAndRollback, auditJobBounds } from '../ci-audit.mjs';
+import { runCiAudit } from '../ci-audit.mjs';
 
-const realWorkflow = readFileSync(new URL('../../../../.github/workflows/production.yml', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
-const realRelease = readFileSync(new URL('../release.mjs', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+const workflow = readFileSync(new URL('../../../../.github/workflows/production.yml', import.meta.url), 'utf8')
+  .replace(/\r\n/g, '\n');
 
-test('the committed workflow satisfies every PLAT-06 element', () => {
-  const results = runCiAudit({ workflow: realWorkflow, releaseSource: realRelease });
-  assert.equal(results.filter(r => !r.pass).length, 0, JSON.stringify(results.filter(r => !r.pass)));
+test('the committed workflow passes the nine CI checks', () => {
+  const results = runCiAudit({ workflow });
+  assert.deepEqual(results.filter(result => !result.pass), []);
   assert.equal(results.length, 9);
 });
 
-test('an unpinned action refuses provenance', () => {
-  const broken = realWorkflow.replace(/uses: actions\/checkout@[a-f0-9]{40} # v6/, 'uses: actions/checkout@v6');
-  const refused = runCiAudit({ workflow: broken, releaseSource: realRelease }).find(r => r.check === 'pinned-actions');
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /pinned to full commit SHAs/);
-});
+const mutations = [
+  ['an unpinned action', 'pinned-actions', /actions\/checkout@[a-f0-9]{40}/, 'actions/checkout@v6'],
+  ['an action with a suffix after its SHA', 'pinned-actions', /actions\/checkout@[a-f0-9]{40}/, '$&-fake'],
+  ['an unreviewed branch', 'triggers', '[dev, main, beta]', '[dev, main, beta, extra]'],
+  ['a missing reviewed branch', 'triggers', '[dev, main, beta]', '[dev, beta]'],
+  ['write permissions in production', 'least-privilege-permissions', '      id-token: write', '$&\n      issues: write'],
+  ['write permissions at workflow level', 'least-privilege-permissions', '  contents: read\n\njobs:', '  contents: read\n  issues: write\n\njobs:'],
+  ['commented product checks', 'component-tests-builds', '      - run: npm run check', '      # - run: npm run check'],
+  ['conditional product checks', 'component-tests-builds', '      - run: npm run check', '      - if: false\n        run: npm run check'],
+  ['non-blocking product checks', 'component-tests-builds', '      - run: npm run check', '$&\n        continue-on-error: true'],
+  ['disabled dependency audits', 'dependency-secret-checks', /- run: npm audit/g, '- if: false\n        run: npm audit'],
+  ['a hardcoded private key', 'dependency-secret-checks', 'permissions:', '# BEGIN PRIVATE KEY\npermissions:'],
+  ['a static GCP credentials input', 'dependency-secret-checks', '          workload_identity_provider:', '          credentials_json: ${{ secrets.STATIC_KEY }}\n          workload_identity_provider:'],
+  ['a different WIF provider', 'dependency-secret-checks', 'providers/github-main', 'providers/github-other'],
+  ['a missing contracts install', 'api-schema-compatibility',
+    /      - run: npm ci [^\n]+\n        working-directory: visionary-app\/integration\/contracts\/v1\n/, ''],
+  ['a production job without checks', 'immutable-release-smoke', '    needs: checks\n', ''],
+  ['a production job on dev', 'immutable-release-smoke', "github.ref == 'refs/heads/main'", "github.ref == 'refs/heads/dev'"],
+  ['a production job without its smoke', 'immutable-release-smoke',
+    /(^  production:[\s\S]*?)      - run: node infrastructure\/gcp\/container-smoke\.mjs\n/m, '$1'],
+  ['a publish step after failed smoke', 'immutable-release-smoke', '      - id: publish', '$&\n        if: always()'],
+  ['a deploy step without its switch', 'canary-rollback-wiring',
+    "      - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'\n        run:", '      - run:'],
+  ['a deploy using a different image', 'canary-rollback-wiring', 'steps.publish.outputs.image', 'steps.other.outputs.image'],
+  ['cancellable deployments', 'canary-rollback-wiring', 'cancel-in-progress: false', 'cancel-in-progress: true'],
+  ['a production job with only a step timeout', 'job-bounds', '    timeout-minutes: 25\n', ''],
+];
 
-test('a production job that also runs on dev refuses the release boundary', () => {
-  const broken = realWorkflow.replace("github.ref == 'refs/heads/main'", "github.ref == 'refs/heads/dev'");
-  const refused = auditCanaryAndRollback(broken, realRelease);
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /production job must be restricted/);
-});
-
-test('deployment refuses a removed step guard even when its environment still references the switch', () => {
-  const broken = realWorkflow.replace("      - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'\n        run:", '      - run:');
-  const refused = auditCanaryAndRollback(broken, realRelease);
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /behind the reviewed deploy switch/);
-});
-
-test('missing smoke before publish refuses', () => {
-  const production = realWorkflow.indexOf('\n  production:');
-  assert.notEqual(production, -1);
-  const broken = realWorkflow.slice(0, production) + realWorkflow.slice(production)
-    .replace('      - run: node infrastructure/gcp/container-smoke.mjs\n', '');
-  const refused = runCiAudit({ workflow: broken, releaseSource: realRelease }).find(r => r.check === 'immutable-release-smoke');
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /container-smoke\.mjs/);
-});
-
-test('a hardcoded secret literal refuses', () => {
-  const broken = realWorkflow.replace('permissions:', 'permissions:\n# AKIAIOSFODNN7EXAMPLE');
-  const refused = runCiAudit({ workflow: broken, releaseSource: realRelease }).find(r => r.check === 'dependency-secret-checks');
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /AWS access key id/);
-});
-
-test('missing dependency audits refuse', () => {
-  const broken = realWorkflow.replaceAll('npm audit --omit=dev --audit-level=high', 'echo audit skipped');
-  const refused = runCiAudit({ workflow: broken, releaseSource: realRelease }).find(r => r.check === 'dependency-secret-checks');
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /found 0/);
-});
-
-test('a static service-account key reference refuses even with WIF present', () => {
-  // the key reference previously escaped the static-key refusal whenever
-  // workload_identity_provider: appeared anywhere in the workflow
-  const withKey = realWorkflow.replace('workload_identity_provider:', 'service_account_key: \${{ secrets.STATIC_KEY }}\n          workload_identity_provider:');
-  const refused = runCiAudit({ workflow: withKey, releaseSource: realRelease }).find(r => r.check === 'dependency-secret-checks');
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /static service account key/);
-});
-
-test('weakened permissions refuse least privilege', () => {
-  const broken = realWorkflow.replace('permissions:\n  contents: read', 'permissions:\n  contents: write');
-  assert.equal(auditLeastPrivilege(broken).pass, false);
-});
-
-test('missing rollback implementation refuses the canary check', () => {
-  const brokenRelease = realRelease.replace("'rollback verification failed'", "'ok'");
-  const refused = auditCanaryAndRollback(realWorkflow, brokenRelease);
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /rollback path is missing/);
-});
-
-test('missing job timeouts refuse bounds', () => {
-  const broken = realWorkflow.replace(/timeout-minutes: \d+/g, '# timeout removed');
-  const refused = auditJobBounds(broken);
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /timeout-minutes/);
-});
-
-test('trigger narrowing refuses', () => {
-  const broken = realWorkflow.replace(/branches: \[[^\]]*\]\n  pull_request:\n    branches: \[[^\]]*\]/, 'branches: [dev]\n  pull_request:\n    branches: [dev]');
-  assert.match(auditTriggers(broken).detail, /must cover dev and main|pull_request trigger/);
-  // an unreviewed branch refuses even though dev and main stay covered
-  const widened = realWorkflow.replace(/branches: \[([^\]]*)\]\n  pull_request:\n    branches: \[([^\]]*)\]/, (m, p, q) => `branches: [${p}, experimental]\n  pull_request:\n    branches: [${q}, experimental]`);
-  assert.match(auditTriggers(widened).detail, /unreviewed branches: experimental/);
-});
-
-test('dropping the component battery refuses', () => {
-  const broken = realWorkflow.replace('      - run: npm run check\n', '');
-  const refused = auditComponentTestsAndBuilds(broken);
-  assert.equal(refused.pass, false);
-  assert.match(refused.detail, /missing component steps: npm run check/);
-});
+for (const [name, expected, original, replacement] of mutations) {
+  test(`refuses ${name}`, () => {
+    const changed = workflow.replace(original, replacement);
+    assert.notEqual(changed, workflow);
+    const result = runCiAudit({ workflow: changed }).find(entry => entry.check === expected);
+    assert.equal(result?.pass, false);
+  });
+}

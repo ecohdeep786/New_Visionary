@@ -1,158 +1,153 @@
 import { readFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
 
-// PLAT-06 CI coverage audit: structurally verify that the product workflow
-// provides every checklist element - component tests/builds, provenance /
-// secrets / dependency checks, API/schema compatibility, immutable image
-// release, staging smoke, canary and rollback - with least-privilege
-// triggers and credentials. The audit reads the committed workflow (and
-// release.mjs for the canary/rollback implementation); it never runs it.
+const requireFrontend = createRequire(new URL('../../frontend/package.json', import.meta.url));
+const { load } = requireFrontend('js-yaml');
 
-export const pass = detail => ({ pass: true, detail });
-export const refuse = detail => ({ pass: false, detail });
-
-const ACTION_SHA = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+@[a-f0-9]{40}\b/;
-const SECRET_PATTERNS = [
-  [/BEGIN [A-Z ]*PRIVATE KEY/, 'embedded private key'],
-  [/AKIA[0-9A-Z]{16}/, 'AWS access key id'],
-  [/AIza[0-9A-Za-z_-]{35}/, 'Google API key literal'],
-  [/ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{40,}/, 'GitHub token literal'],
-  [/--set-password|password\s*=\s*['"][^'"]{8,}/i, 'embedded password literal'],
+const branches = ['beta', 'dev', 'main'];
+const app = 'visionary-app';
+const authAction = 'google-github-actions/auth';
+const identity = {
+  workload_identity_provider: 'projects/174851137514/locations/global/workloadIdentityPools/visionary-github/providers/github-main',
+  service_account: 'visionary-github-deployer@visionary-research.iam.gserviceaccount.com',
+};
+const publishGuard = [
+  "github.repository == 'ecohdeep786/New_Visionary'",
+  "github.ref == 'refs/heads/main'",
+  "(github.event_name == 'push' || github.event_name == 'workflow_dispatch')",
+  "vars.PRODUCTION_PUBLISH_ENABLED == 'true'",
+].join(' && ');
+const deployGuard = "vars.PRODUCTION_DEPLOY_ENABLED == 'true'";
+const secretPatterns = [
+  /BEGIN [A-Z ]*PRIVATE KEY/,
+  /AKIA[0-9A-Z]{16}/,
+  /AIza[0-9A-Za-z_-]{35}/,
+  /ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{40,}/,
 ];
 
-export function auditTriggers(workflow) {
-  // The reviewed trigger set: dev and main must be covered; beta (the
-  // frontend integration branch whose product checks merged through KAN-45's
-  // generation) is the one reviewed extension; anything else refuses. The
-  // release boundary itself stays pinned at runtime (release.mjs trustedRun
-  // requires refs/heads/main) and the deploy stays behind the repository
-  // switch, so wider check coverage does not widen deployment.
-  const reviewed = ['dev', 'main', 'beta'];
-  for (const trigger of ['push', 'pull_request']) {
-    const match = workflow.match(new RegExp(`\\n  ${trigger}:\\s*\\n\\s*branches: \\[([^\\]]*)\\]`));
-    if (!match) return refuse(`${trigger} trigger must declare its branch allowlist`);
-    const branches = match[1].split(',').map(b => b.trim()).filter(Boolean);
-    const missing = ['dev', 'main'].filter(b => !branches.includes(b));
-    if (missing.length) return refuse(`${trigger} trigger must cover dev and main, missing: ${missing.join(', ')}`);
-    const unknown = branches.filter(b => !reviewed.includes(b));
-    if (unknown.length) return refuse(`${trigger} trigger covers unreviewed branches: ${unknown.join(', ')} (reviewed set: dev, main, beta)`);
+const isMap = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const exact = (actual, expected) => isMap(actual) && Object.keys(actual).length === Object.keys(expected).length
+  && Object.entries(expected).every(([key, value]) => actual[key] === value);
+const requiredStep = (step, command) => step.run === command && step.if === undefined
+  && (step['continue-on-error'] === undefined || step['continue-on-error'] === false);
+const unconditionalJob = job => job.if === undefined && job.needs === undefined
+  && (job['continue-on-error'] === undefined || job['continue-on-error'] === false);
+const stepDirectory = (job, step) => step['working-directory'] ?? job.defaults?.run?.['working-directory'];
+const safeOrder = (steps, commands) => {
+  const indices = commands.map(command => steps.findIndex(step => requiredStep(step, command)));
+  return indices.every((index, position) => index >= 0 && (position === 0 || indices[position - 1] < index));
+};
+
+export function runCiAudit({
+  workflow = readFileSync(new URL('../../../.github/workflows/production.yml', import.meta.url), 'utf8'),
+} = {}) {
+  let config;
+  try {
+    config = load(workflow);
+  } catch {
+    return [{ check: 'workflow-shape', pass: false, detail: 'workflow must be valid YAML with unique keys' }];
   }
-  if (!/workflow_dispatch:/.test(workflow)) return refuse('workflow_dispatch must remain available for controlled owner runs');
-  return pass(`push + pull_request cover the reviewed branches (${reviewed.join(', ')}), plus workflow_dispatch`);
-}
-
-export function auditLeastPrivilege(workflow) {
-  const top = workflow.match(/permissions:\s*\n\s*contents:\s*(\w+)/)?.[1];
-  if (top !== 'read') return refuse(`top-level permissions must be contents: read, found: ${top}`);
-  const prodSection = workflow.slice(workflow.indexOf('  production:'));
-  if (!/contents:\s*read/.test(prodSection) || !/id-token:\s*write/.test(prodSection)) return refuse('production job must request only contents: read + id-token: write');
-  if (/permissions:\s*\n\s*contents:\s*write/.test(prodSection)) return refuse('production job must not take contents: write');
-  return pass('contents: read top-level; production job contents: read + id-token: write only');
-}
-
-export function auditPinnedActions(workflow) {
-  const uses = [...workflow.matchAll(/uses:\s*(\S+)/g)].map(m => m[1]).filter(step => step.includes('/') && !step.startsWith('docker://'));
-  const unpinned = uses.filter(step => !ACTION_SHA.test(step));
-  if (unpinned.length) return refuse(`actions must be pinned to full commit SHAs: ${unpinned.join(', ')}`);
-  return pass(`${uses.length} actions pinned to commit SHAs`);
-}
-
-export function auditComponentTestsAndBuilds(workflow) {
-  const required = ['npm run check', 'npm run data:check', 'node --test infrastructure/gcp/tests/*.test.mjs', "unittest discover -s infrastructure/gcp/tests"];
-  const missing = required.filter(step => !workflow.includes(step));
-  if (missing.length) return refuse(`checks job is missing component steps: ${missing.join(' | ')}`);
-  if (!workflow.includes('image: postgres:16')) return refuse('data:check requires the pinned postgres:16 service');
-  return pass('whole-product check battery + data suite on postgres:16 + infra node/python suites');
-}
-
-export function auditDependencyAndSecretChecks(workflow) {
-  const audits = [...workflow.matchAll(/npm audit --omit=dev --audit-level=high/g)].length;
-  if (audits < 3) return refuse(`expected at least 3 high-severity dependency audits (frontend, infra runtime, contracts), found ${audits}`);
-  for (const [pattern, label] of SECRET_PATTERNS) {
-    if (pattern.test(workflow)) return refuse(`workflow contains a ${label}`);
+  const jobs = Object.values(config?.jobs ?? {});
+  const checks = config?.jobs?.checks;
+  const production = config?.jobs?.production;
+  if (!checks || !production || !jobs.every(job =>
+    isMap(job) && Array.isArray(job.steps) && job.steps.every(isMap))) {
+    return [{ check: 'workflow-shape', pass: false, detail: 'workflow must define checks and production jobs with valid steps' }];
   }
-  // A static service-account key reference refuses outright — the mixed
-  // alternation this replaces also carried the GOOD posture marker
-  // (create_credentials_file: false), so a workflow could reference a static
-  // key and still pass whenever workload_identity_provider appeared anywhere.
-  if (/service_account_key/.test(workflow)) return refuse('workflow references a static service account key; use Workload Identity Federation, never a key');
-  if (!/workload_identity_provider:/.test(workflow)) return refuse('production auth must use Workload Identity Federation');
-  return pass(`${audits} high-severity dependency audits, no secret literals, WIF-only cloud auth`);
-}
 
-export function auditApiSchemaCompatibility(workflow) {
-  if (!workflow.includes('visionary-app/integration/contracts/v1')) return refuse('checks job must install the integration contracts package');
-  if (!workflow.includes('npm run check')) return refuse('api/schema compatibility runs inside the npm run check battery');
-  return pass('contracts package installed and its suite runs inside npm run check');
-}
-
-export function auditImmutableReleaseAndSmoke(workflow) {
-  const prod = workflow.slice(workflow.indexOf('  production:'));
-  const commands = [...prod.matchAll(/^ {6}(?:- |  )run: ([^\r\n]+)$/gm)].map(match => match[1].trim());
-  const expected = [
+  const check = (name, passed, detail) => ({ check: name, pass: Boolean(passed), detail });
+  const triggers = config.on ?? {};
+  const actions = jobs.flatMap(job => job.steps ?? []).flatMap(step => step.uses ? [step.uses] : []);
+  const authSteps = production.steps.filter(step => typeof step.uses === 'string' && step.uses.startsWith(authAction + '@'));
+  const [auth] = authSteps;
+  const componentCommands = [
+    'npm run check',
+    'npm run data:check',
+    'node infrastructure/gcp/data-job/check-image.mjs',
+    'node scripts/production-check.mjs',
+    'node infrastructure/gcp/check-product-api-image.mjs',
     'node infrastructure/gcp/build-image.mjs',
     'node infrastructure/gcp/container-smoke.mjs',
-    'node infrastructure/gcp/release.mjs publish',
+    'node --test infrastructure/gcp/tests/*.test.mjs',
+    "python3 -m unittest discover -s infrastructure/gcp/tests -p '*_test.py'",
   ];
-  const [build, smoke, publish] = expected.map(command => commands.indexOf(command));
-  const missing = expected.filter(command => !commands.includes(command));
-  if (missing.length) return refuse(`production job is missing: ${missing.join(' | ')}`);
-  if (build >= smoke || smoke >= publish) return refuse('the production job must build, smoke, and publish in that order');
-  return pass('build → smoke → publish order; release.mjs publishes the digest-pinned immutable image');
+  const auditDirectories = ['infrastructure/gcp/runtime', 'integration/contracts/v1', 'infrastructure/gcp/data-job'];
+  const hasCheckStep = (command, dir = app) => checks.steps.some(step =>
+    requiredStep(step, command) && stepDirectory(checks, step) === dir);
+  const publish = production.steps.find(step => requiredStep(step, 'node infrastructure/gcp/release.mjs publish'));
+  const deploy = production.steps.find(step => step.run === 'node infrastructure/gcp/release.mjs deploy');
+  const contractInstall = checks.steps.findIndex(step =>
+    requiredStep(step, 'npm ci --ignore-scripts --no-audit --no-fund')
+    && stepDirectory(checks, step) === app + '/integration/contracts/v1');
+  const productCheck = checks.steps.findIndex(step =>
+    requiredStep(step, 'npm run check') && stepDirectory(checks, step) === app);
+
+  return [
+    check('triggers',
+      Object.keys(triggers).length === 3 && Object.hasOwn(triggers, 'workflow_dispatch')
+        && ['push', 'pull_request'].every(event => {
+          const trigger = triggers[event];
+          return trigger && Object.keys(trigger).length === 1 && Array.isArray(trigger.branches)
+            && [...trigger.branches].sort().join(',') === branches.join(',');
+        }),
+      'push and pull request cover dev, main, and beta, with manual dispatch'),
+    check('least-privilege-permissions',
+      exact(config.permissions, { contents: 'read' })
+        && exact(production.permissions, { contents: 'read', 'id-token': 'write' })
+        && jobs.filter(job => job !== production).every(job =>
+          job.permissions === undefined || exact(job.permissions, { contents: 'read' })),
+      'only production receives OIDC access and all jobs are read-only for repository contents'),
+    check('pinned-actions',
+      actions.length > 0 && actions.every(action => /^[\w.-]+\/[\w.-]+(?:\/[\w.-]+)*@[a-f0-9]{40}$/.test(action)),
+      'external actions are pinned to full commit SHAs'),
+    check('component-tests-builds',
+      unconditionalJob(checks) && checks.services?.postgres?.image === 'postgres:16'
+        && componentCommands.every(command => hasCheckStep(command)),
+      'checks run the product, data, image, and infrastructure suites'),
+    check('dependency-secret-checks',
+      auditDirectories.every(dir => hasCheckStep('npm audit --omit=dev --audit-level=high', app + '/' + dir))
+        && !secretPatterns.some(pattern => pattern.test(workflow))
+        && authSteps.length === 1 && auth.if === undefined && exact(auth.with, identity)
+        && (auth['continue-on-error'] === undefined || auth['continue-on-error'] === false)
+        && jobs.flatMap(job => job.steps ?? []).filter(step => typeof step.uses === 'string'
+          && step.uses.startsWith(authAction + '@')).length === 1,
+      'runtime, contracts, and data-job dependency audits run with reviewed keyless production authentication'),
+    check('api-schema-compatibility',
+      contractInstall >= 0 && productCheck > contractInstall,
+      'the integration contracts package is installed before the product check battery'),
+    check('immutable-release-smoke',
+      production.needs === 'checks' && typeof production.if === 'string' && production.if.replace(/\s+/g, ' ').trim() === publishGuard
+        && production['continue-on-error'] === undefined
+        && safeOrder(production.steps, [
+          'node infrastructure/gcp/build-image.mjs',
+          'node infrastructure/gcp/container-smoke.mjs',
+          'node infrastructure/gcp/release.mjs publish',
+        ]) && production.defaults?.run?.['working-directory'] === app
+        && publish?.id === 'publish' && stepDirectory(production, publish) === app && production.steps.indexOf(auth) < production.steps.indexOf(publish)
+        && Boolean(auth) && production.steps.filter(step => step.id === 'publish').length === 1,
+      'production depends on successful checks and builds and smokes the image before publishing'),
+    check('canary-rollback-wiring',
+      deploy?.if === deployGuard && deploy['continue-on-error'] === undefined
+        && stepDirectory(production, deploy) === app && Boolean(publish)
+        && deploy.env?.PRODUCTION_IMAGE === '${{ steps.publish.outputs.image }}'
+        && deploy.env?.PRODUCTION_DEPLOY_ENABLED === '${{ vars.PRODUCTION_DEPLOY_ENABLED }}'
+        && production.steps.indexOf(deploy) > production.steps.indexOf(publish)
+        && exact(production.concurrency, { group: 'visionary-main-production', 'cancel-in-progress': false }),
+      'production deploys the published digest through the switch-gated serialized release command'),
+    check('job-bounds',
+      jobs.every(job => Number.isInteger(job['timeout-minutes'])
+        && job['timeout-minutes'] > 0 && job['timeout-minutes'] <= 60),
+      'each job has a positive timeout of at most 60 minutes'),
+  ];
 }
 
-export function auditCanaryAndRollback(workflow, releaseSource) {
-  const prod = workflow.slice(workflow.indexOf('  production:'));
-  const jobCondition = prod.match(/^ {4}if: >-?\r?\n((?: {6}[^\r\n]*\r?\n)+)/m)?.[1].trim().replace(/\s+/g, ' ');
-  const expectedJobCondition = [
-    "github.repository == 'ecohdeep786/New_Visionary'",
-    "github.ref == 'refs/heads/main'",
-    "(github.event_name == 'push' || github.event_name == 'workflow_dispatch')",
-    "vars.PRODUCTION_PUBLISH_ENABLED == 'true'",
-  ].join(' && ');
-  if (jobCondition !== expectedJobCondition) return refuse('production job must be restricted to the reviewed repository, main, trusted events, and the publish switch');
-  const deployStep = /^ {6}- if: vars\.PRODUCTION_DEPLOY_ENABLED == 'true'\r?\n {8}run: node infrastructure\/gcp\/release\.mjs deploy\s*$/m;
-  if (!deployStep.test(prod)) return refuse('production deploy step must use release.mjs deploy behind the reviewed deploy switch');
-  for (const marker of ['no-traffic', "'--tag='", 'ci-candidate', 'canonicalChecks', 'moveTraffic']) {
-    if (!releaseSource.includes(marker)) return refuse(`release.mjs canary implementation is missing: ${marker}`);
-  }
-  for (const marker of ['moveTraffic(previous)', 'rollback verification failed']) {
-    if (!releaseSource.includes(marker)) return refuse(`release.mjs rollback path is missing: ${marker}`);
-  }
-  if (!/concurrency:\s*\n\s*group:/.test(prod) || !/cancel-in-progress:\s*false/.test(prod)) return refuse('production job must serialize deploys with a concurrency group (cancel-in-progress: false)');
-  return pass('switch-gated no-traffic candidate → probes → promotion with automatic rollback, serialized');
-}
-
-export function auditJobBounds(workflow) {
-  const timeouts = [...workflow.matchAll(/timeout-minutes:\s*(\d+)/g)].map(m => Number(m[1]));
-  if (timeouts.length < 2) return refuse('every job must declare timeout-minutes');
-  if (timeouts.some(t => !Number.isFinite(t) || t <= 0 || t > 60)) return refuse(`job timeouts out of bounds: ${timeouts.join(', ')}`);
-  return pass(`job timeouts declared: ${timeouts.join(', ')} minutes`);
-}
-
-export function runCiAudit({ workflowPath = join(dirname(fileURLToPath(import.meta.url)), '../../../.github/workflows/production.yml'), releasePath = join(dirname(fileURLToPath(import.meta.url)), 'release.mjs'), workflow = undefined, releaseSource = undefined } = {}) {
-  const text = workflow ?? readFileSync(workflowPath, 'utf8');
-  const release = releaseSource ?? readFileSync(releasePath, 'utf8');
-  if (!text.includes('  production:')) return [{ check: 'workflow-shape', ...refuse('workflow has no production job') }];
-  const results = [];
-  const step = (check, fn) => { try { results.push({ check, ...fn() }); } catch (error) { results.push({ check, ...refuse(`audit failed: ${String(error.message).slice(0, 160)}`) }); } };
-  step('triggers', () => auditTriggers(text));
-  step('least-privilege-permissions', () => auditLeastPrivilege(text));
-  step('pinned-actions', () => auditPinnedActions(text));
-  step('component-tests-builds', () => auditComponentTestsAndBuilds(text));
-  step('dependency-secret-checks', () => auditDependencyAndSecretChecks(text));
-  step('api-schema-compatibility', () => auditApiSchemaCompatibility(text));
-  step('immutable-release-smoke', () => auditImmutableReleaseAndSmoke(text));
-  step('canary-rollback', () => auditCanaryAndRollback(text, release));
-  step('job-bounds', () => auditJobBounds(text));
-  return results;
-}
-
-if (process.argv[1]?.endsWith('ci-audit.mjs')) {
+if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {
   const results = runCiAudit();
-  const failed = results.filter(r => !r.pass);
-  for (const r of results) console.log(`${r.pass ? 'PASS' : 'REFUSE'} ${r.check}: ${r.detail}`);
-  console.log(failed.length ? `CI AUDIT FAILED: ${failed.length} check(s) refused.` : 'CI AUDIT PASSED: every PLAT-06 element is structurally provided by the committed workflow.');
-  if (failed.length) process.exitCode = 1;
+  const failures = results.filter(result => !result.pass);
+  for (const result of results) console.log(`${result.pass ? 'PASS' : 'REFUSE'} ${result.check}: ${result.detail}`);
+  console.log(failures.length
+    ? `CI AUDIT FAILED: ${failures.length} check(s) refused.`
+    : 'CI AUDIT PASSED: workflow checks verified. Hosted smoke, canary, and rollback require runtime evidence.');
+  if (failures.length) process.exitCode = 1;
 }
