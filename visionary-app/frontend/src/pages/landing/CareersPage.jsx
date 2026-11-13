@@ -16,6 +16,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgHero from "@/assets/pro-face-main-1600w.webp";
 import imgStory from "@/assets/student-competitive.webp";
@@ -96,7 +97,7 @@ function useRevealOnce() {
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <div ref={ref} className={`${className} transition-all duration-700 ease-google motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+    <div ref={ref} className={`${className} transition-all duration-700 ease-apple motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
       {children}
     </div>
   );
@@ -168,7 +169,7 @@ function MobileRail({ active }) {
           return (
             <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
               onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
-              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
+              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-3 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] ${
                 isActive ? "bg-[#f5f5f7] font-medium text-[#0066cc]" : "text-[#1d1d1f] hover:text-[#1d1d1f]"
               }`}>
               <Icon className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
@@ -202,7 +203,7 @@ function HeroCard({ idPrefix = "hero" }) {
   return (
     <form onSubmit={submit} noValidate>
       <h1 className="max-w-[700px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#1d1d1f] sm:text-[64px] lg:text-[76px]">
-        Search for <span className="accent-gradient">your place</span> at Visionary.
+        Build the <span className="accent-gradient">future of learning.</span>
       </h1>
       <div className="mt-8 space-y-5">
         <div>
@@ -225,7 +226,7 @@ function HeroCard({ idPrefix = "hero" }) {
       </div>
       <div className="mt-8">
         <button type="submit"
-          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
+          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
           Introduce yourself <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>
@@ -243,7 +244,7 @@ export default function CareersPage() {
         <CareersRail active={active} />
         <div className="min-w-0 flex-1">
           <MobileRail active={active} />
-          <main id="main">
+          <main id="main" tabIndex={-1}>
 
             {/* HERO — full-bleed photograph with the overlapping white card
                 (Google careers home). Desktop: card floats left over the photo.
@@ -267,12 +268,12 @@ export default function CareersPage() {
             </section>
 
             {/* PHOTO STRIP — the "life here" cards row under the hero */}
-            <section aria-label="Life at Visionary" className="mx-auto max-w-[1240px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+            <section data-section="01b-life" aria-label="Life at Visionary" className="mx-auto max-w-[1240px] px-4 py-6 sm:px-6 lg:px-10">
               <Reveal>
                 <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
                   {STRIP.map((photo) => (
                     <div key={photo.alt} className="overflow-hidden rounded-xl">
-                      <img src={photo.img} alt={photo.alt} loading="lazy" decoding="async"
+                      <LazyImage src={photo.img} alt={photo.alt}
                         className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03] motion-reduce:transform-none" />
                     </div>
                   ))}
@@ -334,7 +335,7 @@ export default function CareersPage() {
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {AREAS.map((area) => (
                       <article key={area.title} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white">
-                        <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
+                        <LazyImage src={area.photo} alt={area.alt} className="h-[180px] w-full object-cover" />
                         <div className="flex flex-1 flex-col p-7 pb-16">
                           <h3 className="text-[28px] font-normal leading-[1.3] text-[#1d1d1f]">{area.title}</h3>
                           <p className="mt-2 text-[16px] leading-[1.6] text-[#6e6e73]">{area.desc}</p>
@@ -346,7 +347,7 @@ export default function CareersPage() {
                             </a>
                           </div>
                         </div>
-                        <Link to="/about" aria-label={`Learn more about ${area.title}`} className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center">
+                        <Link to="/about" aria-label={`Learn more about ${area.title}`} className="absolute bottom-1.5 right-1.5 flex h-11 w-11 items-center justify-center">
                           <ArrowRight className="h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                         </Link>
                       </article>
@@ -365,8 +366,8 @@ export default function CareersPage() {
             <section id="hiring" data-section="04-hiring" className="scroll-mt-32 bg-[#f5f5f7] px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="overflow-hidden rounded-[20px]">
-                  <img src={imgStory} alt="A student writing through a problem at her desk"
-                    loading="lazy" decoding="async" className="aspect-[16/8] w-full object-cover" />
+                  <LazyImage src={imgStory} alt="A student writing through a problem at her desk"
+                    decoding="async" className="aspect-[16/8] w-full object-cover" />
                 </div>
                 <div className="mx-auto max-w-[820px] text-center">
                   <p className="mt-14 apple-eyebrow text-[#6e6e73]">How we hire</p>
@@ -435,7 +436,7 @@ export default function CareersPage() {
             <section id="contact" data-section="06-contact" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
                 <div>
-                  <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.03em] text-[#1d1d1f] sm:text-[38px]">
+                  <h2 data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
                     A fair process starts with clarity.
                   </h2>
                 </div>
@@ -445,7 +446,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     If you need an accessible format or an adjustment to a hiring conversation, email{" "}
-                    <a className="rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
+                    <a className="relative after:absolute after:-inset-y-3 after:-inset-x-2 rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                       href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Accessibility request (Careers)")}`}>
                       careers@visionary.org.in
                     </a>{" "}
@@ -453,7 +454,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     For accessibility information about the product, visit{" "}
-                    <Link className="rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" to="/accessibility">
+                    <Link className="relative after:absolute after:-inset-y-3 after:-inset-x-2 rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]" to="/accessibility">
                       Visionary accessibility
                     </Link>.
                   </p>
@@ -472,7 +473,7 @@ export default function CareersPage() {
                 </p>
                 <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
-                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
+                    className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
                     Email the careers team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </a>
                   <Link to="/about" className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
