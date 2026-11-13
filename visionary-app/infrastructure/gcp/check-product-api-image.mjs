@@ -1,21 +1,23 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { chmodSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
+import { createImageSource } from './image-source.mjs';
 
 // Build the actual API stage from the deployed lock, including the generated
 // SQL engine/client. No Firebase credential, database or cloud network is used.
 const commit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
 assert.match(commit, /^[a-f0-9]{40}$/);
+const source = createImageSource({ commit });
 const id = 'visionary-api-check-' + randomUUID(), image = id + ':local';
 const publicRoot = mkdtempSync(join(tmpdir(), 'visionary-api-public-'));
 const docker = args => execFileSync('docker', args, { encoding: 'utf8', timeout: 240000 });
 try {
   writeFileSync(join(publicRoot, 'index.html'), '<!doctype html><title>Synthetic API container check</title>');
   chmodSync(publicRoot, 0o755); chmodSync(join(publicRoot, 'index.html'), 0o644);
-  docker(['build', '--file', 'infrastructure/gcp/Dockerfile', '--target', 'api', '--tag', image, '.']);
+  docker(['build', '--file', join(source.context, 'infrastructure/gcp/Dockerfile'), '--target', 'api', '--tag', image, source.context]);
   const env = { NODE_ENV: 'production', PORT: '8080', PUBLIC_ROOT: '/smoke-public', AUTH_PUBLIC_ORIGIN: 'https://visionary.org.in',
     AUTH_TRUST_PROXY_HOPS: '1', AUTH_RATE_LIMIT_KEY: 'synthetic-container-check-only-0000000000', FIREBASE_PROJECT_ID: 'visionary-research',
     FIRESTORE_DATABASE_ID: 'default', FIREBASE_AUTH_DOMAIN: 'visionary-research.firebaseapp.com', VISIONARY_RELEASE_COMMIT: commit };
@@ -35,5 +37,8 @@ try {
   console.error((logs.stdout + logs.stderr).slice(-6000)); throw error;
 } finally {
   spawnSync('docker', ['rm', '--force', id], { stdio: 'ignore', timeout: 15000 });
-  rmSync(publicRoot, { recursive: true, force: true });
+  const actual = realpathSync(publicRoot);
+  if (dirname(actual) !== realpathSync(tmpdir()) || !basename(actual).startsWith('visionary-api-public-')) throw Error('API fixture cleanup boundary mismatch.');
+  rmSync(actual, { recursive: true });
+  source.cleanup();
 }
