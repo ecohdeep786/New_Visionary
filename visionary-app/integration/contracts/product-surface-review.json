@@ -2697,18 +2697,6 @@
         "GET /api/auth/me"
       ]
     },
-<<<<<<< HEAD
-    "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx": {
-      "profile": "local-domain-workflow",
-      "state": "preview",
-      "execution": "browser-local",
-      "reason": "Workspace access-boundary notice (FAP-75): renders where an organization-only area is deep-linked by another identity; browser-local surfaces only, no server authority claimed.",
-      "followUp": [
-        "SCOPE-03",
-        "SCOPE-04",
-        "DATA-01",
-        "SYNC-02"
-=======
     "frontend/src/components/dashboard/CloudConsentControls.jsx": {
       "profile": "server-consent-self-service",
       "state": "connected",
@@ -2722,7 +2710,18 @@
       "endpoints": [
         "GET /api/account/privacy/consents",
         "POST /api/account/privacy/consents/revoke"
->>>>>>> origin/dev
+      ]
+    },
+    "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Workspace access-boundary notice (FAP-75): renders where an organization-only area is deep-linked by another identity; browser-local surfaces only, no server authority claimed.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
       ]
     }
   },
