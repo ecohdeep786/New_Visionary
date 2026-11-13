@@ -1,0 +1,3250 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Visionary API v1 draft contracts",
+    "version": "0.1.0",
+    "description": "Offline preparation only. Freeze blocked by source, authority and admission decisions. Legacy routes remain unchanged."
+  },
+  "x-contract-state": "draft-preparation",
+  "x-freeze-gates": [
+    "KAN-29 source decisions",
+    "KAN-31 authority acceptance",
+    "KAN-32 admission and policy acceptance"
+  ],
+  "paths": {
+    "/api/v1/projects/{projectId}/draft": {
+      "put": {
+        "operationId": "ProjectDraft",
+        "x-runtime-registered": false,
+        "x-limit-profile": "project-revision",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Ref"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[0-9]+\"$"
+            },
+            "description": "Strong ETag of expectedRevision. Body and header must agree; stale is 412."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectDraft"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Owning-store committed receipt; projection may still be pending.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/submissions/{submissionId}/revisions": {
+      "post": {
+        "operationId": "SubmissionRevision",
+        "x-runtime-registered": false,
+        "x-limit-profile": "submission-revision",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          },
+          {
+            "name": "submissionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Ref"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmissionRevision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Owning-store committed receipt; projection may still be pending.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/teaching/turns": {
+      "post": {
+        "operationId": "TeachingTurn",
+        "x-runtime-registered": false,
+        "x-limit-profile": "teaching-turn",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeachingTurn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted durable operation, not a committed domain revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/files/intents": {
+      "post": {
+        "operationId": "FileIntent",
+        "x-runtime-registered": false,
+        "x-limit-profile": "file-intent",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FileIntent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted durable operation, not a committed domain revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/proposals/{proposalId}/decisions": {
+      "post": {
+        "operationId": "ProposalDecision",
+        "x-runtime-registered": false,
+        "x-limit-profile": "existing-json",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          },
+          {
+            "name": "proposalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Ref"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProposalDecision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Owning-store committed receipt; projection may still be pending.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/voice/sessions": {
+      "post": {
+        "operationId": "VoiceSession",
+        "x-runtime-registered": false,
+        "x-limit-profile": "teaching-turn",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoiceSession"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted durable operation, not a committed domain revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/voice/chunks": {
+      "post": {
+        "operationId": "VoiceChunk",
+        "x-runtime-registered": false,
+        "x-limit-profile": "file-intent",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoiceChunk"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted durable operation, not a committed domain revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cancellations": {
+      "post": {
+        "operationId": "Cancel",
+        "x-runtime-registered": false,
+        "x-limit-profile": "existing-json",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cancel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted durable operation, not a committed domain revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/offline/replay": {
+      "post": {
+        "operationId": "OfflineReplay",
+        "x-runtime-registered": false,
+        "x-limit-profile": "existing-json",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfflineReplay"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted durable operation, not a committed domain revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/profile/stage-events": {
+      "post": {
+        "operationId": "StageEvent",
+        "x-runtime-registered": false,
+        "x-limit-profile": "existing-json",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageEvent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Owning-store committed receipt; projection may still be pending.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/coaching/goals": {
+      "post": {
+        "operationId": "CoachingGoal",
+        "x-runtime-registered": false,
+        "x-limit-profile": "existing-json",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoachingGoal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Owning-store committed receipt; projection may still be pending.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/summaries": {
+      "post": {
+        "operationId": "SummaryRequest",
+        "x-runtime-registered": false,
+        "x-limit-profile": "existing-json",
+        "description": "DRAFT. Not registered. Revalidate current server authority on every attempt, including duplicate commands. No arbitrary model or spoken action execution.",
+        "parameters": [
+          {
+            "name": "X-Visionary-Account",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Expected account hint only; server authenticates session and device and compares UID."
+          }
+        ],
+        "security": [
+          {
+            "session": [],
+            "device": [],
+            "csrf": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SummaryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted durable operation, not a committed domain revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Changed mutation payload or expected-account conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Stale expected revision or mismatched strong ETag.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Explicit unsupported operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Safe typed error; no input echo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Operation deadline exceeded; inspect durable status before any replay.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Ref": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._-]*$"
+      },
+      "Uuid": {
+        "type": "string",
+        "format": "uuid",
+        "maxLength": 36
+      },
+      "Revision": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      },
+      "Digest": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "Cursor": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512,
+        "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+      },
+      "SourceBinding": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sourceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "sourceRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "criteriaRevision": {
+            "$ref": "#/components/schemas/Ref"
+          }
+        },
+        "required": [
+          "sourceId",
+          "sourceRevision",
+          "criteriaRevision"
+        ]
+      },
+      "ProjectDraft": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "projectId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 24000
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "projectId",
+          "title",
+          "body"
+        ]
+      },
+      "SubmissionRevision": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "submissionId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "submissionId",
+          "source",
+          "body"
+        ]
+      },
+      "TeachingTurn": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "sessionId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "input": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "sessionId",
+          "source",
+          "input"
+        ]
+      },
+      "FileIntent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "mediaType": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$"
+          },
+          "byteLength": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "digest": {
+            "$ref": "#/components/schemas/Digest"
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "filename",
+          "mediaType",
+          "byteLength",
+          "digest"
+        ]
+      },
+      "ProposalDecision": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "proposalId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "proposalDigest": {
+            "$ref": "#/components/schemas/Digest"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "accept",
+              "reject"
+            ]
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "proposalId",
+          "proposalDigest",
+          "decision"
+        ]
+      },
+      "ActivityProposal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "proposalId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "baseRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "digest": {
+            "$ref": "#/components/schemas/Digest"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "document-revision",
+              "teaching-activity"
+            ]
+          },
+          "status": {
+            "const": "proposed",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "proposalId",
+          "workspaceId",
+          "baseRevision",
+          "source",
+          "digest",
+          "kind",
+          "status"
+        ]
+      },
+      "VoiceSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "language": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 35,
+            "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$"
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "source",
+          "language"
+        ]
+      },
+      "VoiceChunk": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "sessionId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "turnId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "chunkId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65535
+          },
+          "mediaRef": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "digest": {
+            "$ref": "#/components/schemas/Digest"
+          },
+          "finalChunk": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "version",
+          "sessionId",
+          "turnId",
+          "chunkId",
+          "sequence",
+          "mediaRef",
+          "digest",
+          "finalChunk"
+        ]
+      },
+      "VoiceTranscript": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "sessionId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "turnId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          },
+          "finality": {
+            "type": "string",
+            "enum": [
+              "interim",
+              "final"
+            ]
+          },
+          "kind": {
+            "const": "transcript",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "sessionId",
+          "turnId",
+          "sequence",
+          "text",
+          "finality",
+          "kind"
+        ]
+      },
+      "Cancel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "targetId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "user-request",
+              "superseded"
+            ]
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "targetId",
+          "reason"
+        ]
+      },
+      "PackManifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "packId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "policyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 40
+          },
+          "digest": {
+            "$ref": "#/components/schemas/Digest"
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "entryId": {
+                  "$ref": "#/components/schemas/Ref"
+                },
+                "digest": {
+                  "$ref": "#/components/schemas/Digest"
+                },
+                "byteLength": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "entryId",
+                "digest",
+                "byteLength"
+              ]
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "version",
+          "packId",
+          "workspaceId",
+          "source",
+          "policyRevision",
+          "expiresAt",
+          "digest",
+          "entries"
+        ]
+      },
+      "OfflineReplay": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "packId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "packDigest": {
+            "$ref": "#/components/schemas/Digest"
+          },
+          "commands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TeachingTurn"
+            },
+            "maxItems": 20
+          }
+        },
+        "required": [
+          "version",
+          "packId",
+          "packDigest",
+          "commands"
+        ]
+      },
+      "StageEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "eventId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "expectedProfileRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "mappingId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "mappingRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "consentRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "propose",
+              "confirm",
+              "postpone",
+              "undo"
+            ]
+          },
+          "relatedReceiptId": {
+            "$ref": "#/components/schemas/Ref"
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "eventId",
+          "expectedProfileRevision",
+          "mappingId",
+          "mappingRevision",
+          "source",
+          "consentRevision",
+          "action"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "action": {
+                  "enum": [
+                    "undo",
+                    "postpone"
+                  ]
+                }
+              },
+              "required": [
+                "action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "relatedReceiptId": {
+                  "$ref": "#/components/schemas/Ref"
+                }
+              },
+              "required": [
+                "relatedReceiptId"
+              ]
+            }
+          }
+        ]
+      },
+      "StageMapping": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mappingId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "revision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "fromStage": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "toStage": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "publicationReceiptId": {
+            "$ref": "#/components/schemas/Ref"
+          }
+        },
+        "required": [
+          "version",
+          "mappingId",
+          "revision",
+          "fromStage",
+          "toStage",
+          "source",
+          "publicationReceiptId"
+        ]
+      },
+      "ProfileSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "profileId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "revision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "stage": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "policyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "lastTransitionReceiptId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "projection": {
+            "type": "string",
+            "enum": [
+              "current",
+              "pending"
+            ]
+          }
+        },
+        "required": [
+          "version",
+          "profileId",
+          "revision",
+          "stage",
+          "policyRevision",
+          "lastTransitionReceiptId",
+          "projection"
+        ]
+      },
+      "CoachingGoal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "goalId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "visibility": {
+            "const": "private",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "goalId",
+          "text",
+          "visibility"
+        ]
+      },
+      "SummaryRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "expectedRevision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "expectedPolicyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "self-review",
+              "authorized-progress-report"
+            ]
+          },
+          "audienceRef": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "relationshipRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "consentRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceBinding"
+          },
+          "summaryRevision": {
+            "$ref": "#/components/schemas/Revision"
+          }
+        },
+        "required": [
+          "version",
+          "mutationId",
+          "workspaceId",
+          "expectedRevision",
+          "expectedPolicyRevision",
+          "purpose",
+          "audienceRef",
+          "relationshipRevision",
+          "consentRevision",
+          "source",
+          "summaryRevision"
+        ]
+      },
+      "PageQuery": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "cursor": {
+            "$ref": "#/components/schemas/Cursor"
+          }
+        },
+        "required": []
+      },
+      "ResourcePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "$ref": "#/components/schemas/Ref"
+                },
+                "revision": {
+                  "$ref": "#/components/schemas/Revision"
+                }
+              },
+              "required": [
+                "id",
+                "revision"
+              ]
+            },
+            "maxItems": 50
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Cursor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "version",
+          "items",
+          "nextCursor"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "INVALID_REQUEST",
+              "UNAUTHENTICATED",
+              "DENIED",
+              "NOT_FOUND",
+              "COMMAND_CONFLICT",
+              "STALE_REVISION",
+              "CURSOR_EXPIRED",
+              "PAYLOAD_TOO_LARGE",
+              "UNSUPPORTED_MEDIA",
+              "UNSUPPORTED_OPERATION",
+              "QUOTA_EXCEEDED",
+              "UNAVAILABLE",
+              "DEADLINE_EXCEEDED"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "retryAfterSeconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3600
+          }
+        },
+        "required": [
+          "version",
+          "requestId",
+          "code",
+          "message",
+          "retryable"
+        ]
+      },
+      "CommitReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "receiptId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "policyRevision": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "status": {
+            "const": "committed",
+            "type": "string"
+          },
+          "projection": {
+            "type": "string",
+            "enum": [
+              "current",
+              "pending"
+            ]
+          }
+        },
+        "required": [
+          "version",
+          "receiptId",
+          "mutationId",
+          "workspaceId",
+          "revision",
+          "policyRevision",
+          "status",
+          "projection"
+        ]
+      },
+      "AcceptedRun": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "runId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "mutationId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "status": {
+            "const": "accepted",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "runId",
+          "mutationId",
+          "status"
+        ]
+      },
+      "ChangeEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "eventId": {
+            "$ref": "#/components/schemas/Uuid"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "cursor": {
+            "$ref": "#/components/schemas/Cursor"
+          },
+          "workspaceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "resourceId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "invalidate",
+              "revoked"
+            ]
+          },
+          "action": {
+            "const": "refetch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "eventId",
+          "sequence",
+          "cursor",
+          "workspaceId",
+          "resourceId",
+          "revision",
+          "kind",
+          "action"
+        ]
+      },
+      "StreamEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "const": 1,
+            "type": "integer"
+          },
+          "runId": {
+            "$ref": "#/components/schemas/Ref"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "delta",
+              "complete",
+              "cancelled"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "committed": {
+            "const": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "version",
+          "runId",
+          "sequence",
+          "kind",
+          "text",
+          "committed"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "session": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "__Host-visionary-session"
+      },
+      "device": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "__Host-visionary-device"
+      },
+      "csrf": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CSRF-Token",
+        "description": "64 hex characters matching the HttpOnly CSRF cookie; exact allowed Origin also required. Loopback cookie prefix is visionary-."
+      }
+    }
+  }
+}
