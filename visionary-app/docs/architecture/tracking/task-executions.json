@@ -2403,7 +2403,7 @@
     {
       "jiraKey": "KAN-45",
       "sourceId": "PLAT-01",
-      "status": "In Progress",
+      "status": "Done",
       "branch": "codex/principal-kan-45-product-env",
       "worktree": "C:/Users/Administrator/nv-worktrees/principal-kan-45-product-env",
       "originalCandidate": "dcc9c11ad14f6e673f3a778c825284fb63b5304f",
@@ -2416,14 +2416,69 @@
       },
       "scope": "Reviewed environment configuration/command/observed-state enabler; no actual cloud apply or hosted acceptance",
       "review": {
-        "state": "pending",
-        "implementer": "Codex /root",
-        "originalDecision": "changes-requested"
+        "state": "approved-environment-enabler",
+        "reviewer": "/root/kan45_final_review",
+        "approvedCommit": "d2fa27351cc9361034fc29caa060021a2e1f8a1a"
       },
       "currentHandoff": "docs/architecture/reviews/KAN45_PRODUCT_ENV_FINAL.md",
       "jiraReceipt": {
-        "changesRequestedComment": 10699,
-        "transitionId": 31
+        "status": "Done",
+        "commentId": 10705,
+        "transitionId": 51
+      },
+      "integration": {
+        "pullRequest": 49,
+        "method": "squash",
+        "commit": "2e0b1fbbb8cb005bde34738b8c4696ce20ff57d2",
+        "remotePublished": true,
+        "candidateCi": 42457544157,
+        "integratedCi": 42457952400,
+        "identicalTree": "8d23a7d6bf14724ab78b00374f39d3547cd8b57e"
+      },
+      "cleanup": {
+        "worktreeRemoved": true,
+        "localAndRemoteRefsRemoved": true,
+        "preservedPullRequestHead": "refs/pull/49/head",
+        "evidence": "C:/Users/Administrator/Visionary-local/kan45-final-evidence"
+      },
+      "remainingGates": [
+        "No cloud apply; hosted IAM, SQL grants, staging runtime/migration project binding, private ingress, release, load and restore qualification remain separate"
+      ]
+    },
+    {
+      "jiraKey": "KAN-46",
+      "sourceId": "PLAT-02",
+      "status": "Done",
+      "branch": "codex/deepseek-kan-46-product-image",
+      "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-46-product-image",
+      "originalCandidate": "944ca6e6253a866e887e9141e4248e1f995dee21",
+      "base": "2e0b1fbbb8cb005bde34738b8c4696ce20ff57d2",
+      "scope": "Exact-source minimal product-image and offline startup/probe/shutdown/container-browser engineering acceptance; hosted/provider gates remain separate",
+      "review": {
+        "state": "approved-product-image",
+        "implementer": "Codex /root",
+        "originalDecision": "changes-requested",
+        "reviewer": "/root/kan46_final_review",
+        "approvedCommit": "b0cd750704b4194c14ac785b43e276377d03d596"
+      },
+      "currentHandoff": "docs/architecture/reviews/KAN46_PRODUCT_IMAGE_FINAL.md",
+      "jiraReceipt": {
+        "changesRequestedComment": 10707,
+        "status": "Done",
+        "commentId": 10781,
+        "transitionId": 51
+      },
+      "integration": {
+        "pullRequest": 50,
+        "commit": "706d5c84362006abe2ba86ae0618f4231ce62698",
+        "candidateCi": 43161889953,
+        "integratedCi": 43162556220,
+        "identicalTree": "6cfa90eba0a3ebd6d37ee239491185cf1f220c47"
+      },
+      "cleanup": {
+        "worktreeRemoved": true,
+        "localAndRemoteRefsRemoved": true,
+        "evidence": "C:/Users/Administrator/Visionary-local/kan46-final-evidence"
       }
     },
     {
@@ -2456,6 +2511,21 @@
         "Any invoice displaying legal/tax fields - refused until a reviewed policy record exists",
         "D-095 reviewer approval and integration into dev"
       ]
+    },
+    {
+      "jiraKey": "KAN-47",
+      "sourceId": "PLAT-03",
+      "status": "Done",
+      "branch": "codex/deepseek-kan-47-identity-isolation",
+      "worktree": "C:/Users/Administrator/nv-worktrees/deepseek-kan-47-identity-isolation",
+      "originalCandidate": "6d11fce37b7b6d8d2fcebfb9b97c9c8646d32bb2",
+      "base": "706d5c84362006abe2ba86ae0618f4231ce62698",
+      "currentHandoff": "docs/architecture/reviews/KAN47_IDENTITY_ISOLATION_FINAL.md",
+      "jiraReceipt": {
+        "changesRequestedComment": 10782,
+        "transitionId": 51
+      },
+      "remainingGates": []
     }
   ]
 }
