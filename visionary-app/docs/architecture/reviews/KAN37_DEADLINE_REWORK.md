@@ -1,0 +1,170 @@
+# KAN-37 deadline rework checkpoint
+
+1 November 2026. State: implementation candidate, **not accepted or merged**.
+Implementer: Codex /root. Separate reviewer /root/kan38_final_review has
+accepted responsibility for the eventual exact candidate; no approval exists.
+
+Fresh branch: codex/principal-kan-37-deadline-rework, based on accepted
+dev3aa0d91957b31f44ca708f5af6b1a09515cd4f48. Earlier KAN-37 acceptance remains
+historical; native Jira was reopened Rework10513 then In Progress10518.
+
+## Reproduced actual boundary
+
+The unchanged real backend compiles with tsconfig.data.json. On an empty,
+authenticated loopback PostgreSQL16 instance, the existing never-resolving
+source test with maxDurationMs200 fails with SQLSTATE57014 statement_timeout
+instead of the expected deadline error. This is a product regression, not a
+passing test or a proven random CI-machine problem.
+
+The new registered DATA02 regression warms actual role connections, adds a
+real20ms pg_sleep at the metadata SQL stage, retains the200ms invocation
+budget, and checks failure, bounded return, zero target rows, rollback of
+uncommitted control/checkpoint tables and cold retry to exactly five rows.
+Those checks execute successfully before its final source-entry assertion
+fails: the source was never reached. The intentional before-fix test exits1.
+
+The rejected baseline subtracts1000ms for statement_timeout and500ms for
+the callback guard; both collapse small budgets to1ms. Identity checks occur
+before the transaction timer, and final privilege checks do not check the
+invocation deadline before commit admission.
+
+## Existing implementation repaired
+
+The candidate preserves the existing migrations, roles, SQL stores and job
+entry points. It changes backfill budget propagation and transaction admission;
+no replacement product or schema is introduced.
+
+The backfill uses one monotonic invocation deadline, callback time capped by
+the store's remaining batch budget and proportional capped safety reserves.
+It no longer extends nearly exhausted work to100ms or collapses a small budget
+to1ms. The optional store guard checks identity, SQL, work and final privileges,
+immediately before commit admission. Source/writer continuations resumed after
+cancellation cannot submit late guarded SQL. Migration-only callers retain
+their default15-second policy.
+
+Only explicit own bounded SQL statement-timeout and Prisma transaction-expiry
+diagnostics receive deadline classifications. User-request SQL cancellation,
+invalid transaction identity and authority errors retain their identity.
+Uncertain commit acknowledgement is marked COMMIT_UNKNOWN; cold retry reconciles
+durable checkpoints rather than promising rollback of a durable commit.
+
+Focused real PostgreSQL verification passes the original200ms case, controlled
+SQL setup/rollback/cold retry, late identity/source/writer and suspended final
+privilege cases. Commit-acknowledgement uncertainty preserves one durable row
+and cold-retries without duplicate batches; actual pg_sleep statement timeout
+rolls back and recovers. Three separately labelled policy-unit cases run the
+actual store/runner against explicit inert Prisma interfaces. The budget
+regression fails against the actual old store in an isolated probe, with
+original product files untouched. Final exact-head full checks, independent
+approval and actual browser evidence remain required.
+
+Physical setup may legitimately consume the unchanged200ms invocation budget.
+The SQL test therefore accepts source entry or genuine budget expiry while
+checking deadline outcome, no committed target/checkpoint data and cold recovery.
+It does not promise source entry on a slow host. The deterministic policy test
+separately rejects the old1ms SQL configuration.
+
+## Verification checkpoint and test correction
+
+Exact0278ee932bac3069122b151abb562d60c96eb9bb passed full CI41284013263
+(checks124781527038, production skipped), and full local product check passed.
+The full local data run retained a real failure:48/49 DATA02 passed, with the
+long-SQL test expecting only SQL_DEADLINE while the correctly bounded transaction
+expired first. This is not counted as a passing local data check.
+
+The replacement separates the competing-timer test (only documented SQL or
+transaction deadline outcomes accepted) from an actual explicit50ms server
+statement-timeout diagnostic inside the existing10s default invocation.
+Both corrected real-SQL cases pass, including rollback and cold retry. The
+unchanged200ms regression and deterministic policy test remain intact. No total
+deadline or authority assertion was weakened; the independent reviewer agreed
+that source entry and competing timer order cannot be host-speed promises.
+Final replacement-head full data verification and CI are still required.
+
+## Acceptance still required
+
+Use one monotonic invocation deadline through identity/setup/work/final
+authority checks and commit admission; reserve bounded proportional safety
+time without extending the requested total budget. Check expiry before
+invoking work and after awaited stages, so abandoned source/writer continuations
+cannot issue late transactional writes. Preserve authority/configuration errors
+and cancellation; do not relabel every57014/P2028 as a deadline. An uncertain
+commit acknowledgement needs cold checkpoint/receipt reconciliation, not a
+claim that an already durable commit rolled back.
+
+Add actual PostgreSQL cases for delayed identity, late source/writer release,
+final privilege delay, cancellation, cold retry and uncertain commit response.
+Run relevant registered full checks, separate exact-SHA review and actual
+real-Firebase browser regression before dev integration. Testing, accepted
+integration, actual Jira Done and configuration-preserving cleanup remain ahead.
+
+## Local evidence and configuration
+
+Raw logs and protected synthetic target configuration are outside Git at
+C:/Users/Administrator/Visionary-local/kan37-deadline-rework-20261101.
+before-hanging-source-authenticated.log reproduces57014; the new controlled
+regression log is before-deterministic-setup.log. Earlier missing-credential
+and dependency-cache-layout attempts are setup failures, not product results.
+
+The retained older SQL instance was restored to its stopped state. A fresh
+empty reusable synthetic cluster is bound only to127.0.0.1:55437, with generated
+test credentials kept outside Git. Stop it while idle. No cloud service or
+customer/account/profile/billing data is used. Dependency locks are unchanged;
+four verified cache junctions have proper node_modules layout and must be
+removed as link objects at eventual cleanup. No schema/role/source permission
+or frontend product behavior has changed at this checkpoint.
+
+## Submitted product and final-source verification
+
+Runtime/tests6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e are independently
+source/test approved. [Full CI41284731460](https://github.com/ecohdeep786/New_Visionary/actions/runs/41284731460)
+passed all registered checks, including SQL20+50+11, deployed99+11, actual
+migration/API images and frontend625; production skipped. Full local product
+check passed0278; runtime/frontend/infrastructure are byte-identical in6b40.
+Local SQL20+50 passed; the original whole local data command exited1 only when
+the unchanged emulator stage could not locate Java21. After configuring the
+existing official executable, its registered provision-check passed11/11.
+The original nonzero result remains retained and is not relabeled a pass.
+
+The actual product ran through official root commands at localhost5183/API3003
+with the existing real Firebase Professional account. A clean reload returned
+auth/me200 and restored Home/saved activity. Home -> Learn outline -> existing
+authored sample -> project -> scoped Ask -> Practice -> Privacy -> Home passed.
+Both recorded answers, learning stages, fictional-data project brief and private
+workspace context were retained. No chat/model prompt was submitted; no profile,
+billing, consent, export or deletion mutation was requested. Navigation state
+was restored. This browser regression is separate from actual administrative
+SQL/backfill execution; there is intentionally no backfill button in that flow.
+
+Initial cold-load automation waits expired. A later proxy500 was confirmed as
+ECONNREFUSED while the watched API restarted during verification/dependency
+generation. The owned API was restarted at6b40 after generation, then clean
+auth/me200 and the complete journey were observed. These earlier attempts are
+retained, not counted as successful runs. The final loaded document had zero
+console errors/warnings. The network buffer was truncated, so no full HAR is
+claimed. Six actual JPEGs have verified SHA256/bytes/dimensions1187x1170.
+
+[Sanitized SQL/browser receipt](../delivery/evidence/KAN37_REWORK_BROWSER_SQL_2026-11-01.json)
+records all results and limits. Raw/private evidence remains outside Git.
+Final evidence-head independent approval/CI, dev integration, actual Jira Done
+and evidence-preserving cleanup are still pending. Hosted/provider/content/
+domain/privacy/model/two-device and main release gates remain open.
+
+## Accepted scoped repair closeout - 2 November 2026
+
+Exact final55e7bb25 was independently approved in pushed reportdcab02ef;
+/root/kan37_final_evidence_review independently reconfirmed that evidence.
+Final-head CI41286130404 passed. PR35 published dev integration
+adff90473edf523f2d6a6210e80f13ae6c6e915d, whose whole tree equals the
+approved candidate. Integrated CI41395618094 checks125116183999 passed;
+production skipped. Native Jira transition51 returned Done, with receipt
+comment10525. This supersedes pending-gate statements above without erasing
+their historical timing or retained failures.
+
+Three ignored configuration files are byte-preserved outside Git at
+C:/Users/Administrator/Visionary-local/kan37-completed-20261102. Raw evidence
+remains outside Git in the original evidence root. Owned product/SQL ports
+are stopped. Completed worker/reviewer removal follows this evidence-only
+closeout publication; pushed source/review refs remain. No cleanup success is
+claimed in advance. Hosted/domain/provider/content/rights/privacy/model/
+two-device and release gates remain open. No main promotion.

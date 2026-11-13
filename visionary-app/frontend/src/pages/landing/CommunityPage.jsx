@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import LazyImage from "@/components/landing/LazyImage";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgM1 from "@/assets/student-primary.webp";
 import imgM2 from "@/assets/student-vocational.webp";
@@ -20,7 +21,10 @@ import imgM9 from "@/assets/organization-problem-2-1600w.webp";
 import imgM10 from "@/assets/professional-problem-1-1600w.webp";
 import imgM11 from "@/assets/student-higher.webp";
 import imgM12 from "@/assets/organization-problem-1-1600w.webp";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
+
+/* The A2 CTA law, imported from the one source — no page re-declares geometry. */
+const { inkPill } = CTA_LAW;
 
 /* ═══ Tokens — the public dialect (#1d1d1f ink, #0066cc actions, #f5f5f7
    trays, white rounded-[20px] cards, ink pills). ═══ */
@@ -52,7 +56,7 @@ function PhotoMarquee() {
           <div className={`flex w-max ${row.cls}`}>
             {[...row.photos, ...row.photos].map((photo, i) => (
               <div key={row.cls + i} className="mr-6 shrink-0 overflow-hidden rounded-[24px]">
-                <img src={photo.img} alt="" decoding="async" className="h-[190px] w-[300px] object-cover" />
+                <LazyImage src={photo.img} alt="" className="h-[190px] w-[300px] object-cover" />
               </div>
             ))}
           </div>
@@ -146,7 +150,7 @@ function useReveal() {
 
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useReveal();
-  return <div ref={ref} className={`${className} transition duration-700 ease-google motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
+  return <div ref={ref} className={`${className} transition duration-700 ease-apple motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
 }
 
 function scrollToSection(id) {
@@ -160,12 +164,12 @@ export default function CommunityPage() {
   return (
     <div className="page-community min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Breadcrumb page="Community" />
 
         {/* HERO — the communities.google layout: centered statement first,
             then the full-width fanned card strip with paging */}
-        <section data-section="01-hero" className="relative overflow-hidden bg-white" style={{ paddingTop: "calc(64px + 40px)", paddingBottom: "40px" }}>
+        <section data-section="01-hero" className="relative overflow-hidden bg-white pb-24" style={{ paddingTop: "clamp(7rem, 10vw, 9.5rem)", paddingBottom: "clamp(6rem, 8vw, 8rem)" }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
             <p data-type="label" className="text-center text-[#6e6e73]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
@@ -177,7 +181,7 @@ export default function CommunityPage() {
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                   Find your community
                 </a>
                 <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
@@ -198,7 +202,7 @@ export default function CommunityPage() {
             {ANCHORS.map((anchor) => (
               <a key={anchor.id} href={`#${anchor.id}`}
                 onClick={(event) => { event.preventDefault(); scrollToSection(anchor.id); }}
-                className="shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#6e6e73] transition-colors hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
+                className="shrink-0 rounded-full px-4 py-3 text-[14px] font-medium text-[#6e6e73] transition-colors hover:text-[#1d1d1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]">
                 {anchor.label}
               </a>
             ))}
@@ -296,7 +300,7 @@ export default function CommunityPage() {
               Communities grow around real learning. Start with the loop, and the space builds itself around it.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link to="/register" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#1d1d1f] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:w-auto">
+              <Link to="/register" className={`w-full sm:w-auto ${inkPill}`}>
                 Get started
               </Link>
               <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
