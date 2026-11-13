@@ -9,15 +9,13 @@ import QuietLink from "@/components/landing/QuietLink";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared public dialect (#1d1d1f ink pills, #0066cc quiet
    links, #f5f5f7 grounds, borderless white cards). ═══ */
 
-/* ═══ Link and pill grammar — the approved public classes, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[16px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2";
+/* ═══ Link and pill grammar — the A2 CTA law, imported from the one source ═══ */
+const { quietLink, inkPill, greyPill } = CTA_LAW;
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
    motion-reduce safe). ═══ */
@@ -38,7 +36,7 @@ function Reveal({ children, className = "", delay = 0 }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${
+      className={`transition-[opacity,transform] duration-700 ease-apple motion-reduce:transition-none ${
         shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
@@ -97,11 +95,11 @@ export default function ReferralPage() {
   return (
     <div className="page-referral min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Breadcrumb page="Referral" />
 
         {/* HERO — the reference's centered statement with the illustration trio */}
-        <section data-section="01-hero" className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
+        <section data-section="01-hero" className="px-6 pb-16 pt-10 text-center sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
           <Reveal className="mx-auto max-w-[880px]">
             <p data-type="label" className="text-[#6e6e73]">Referral programme</p>
             <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#1d1d1f]">
@@ -173,7 +171,7 @@ export default function ReferralPage() {
 
         {/* POINT THEM WELL — the reference's "redeeming" block, mapped to
             honest destinations */}
-        <section aria-labelledby="point-title" data-section="03-point" className="bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
+        <section aria-labelledby="point-title" data-section="03-point" className="bg-[#f5f5f7] px-6 py-24 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <p className="apple-eyebrow text-[#6e6e73]">Pointing them well</p>

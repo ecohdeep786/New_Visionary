@@ -1,0 +1,151 @@
+{
+  "route": "/",
+  "tag": "prefontlaw",
+  "via": "headless chromium via fast3g proxy",
+  "url": "http://localhost:4180/",
+  "ttfbMs": 189,
+  "dclMs": 4269,
+  "loadEndMs": 4269,
+  "fcpMs": 4348,
+  "finalLcpMs": 5584,
+  "finalLcp": {
+    "t": 5584,
+    "el": "IMG",
+    "src": "student-800w-CFiR_nJS.avif",
+    "attr": "student-800w-DtjnvTKH.webp",
+    "size": 94549,
+    "id": null
+  },
+  "lcpCount": 3,
+  "lcpTrail": [
+    {
+      "t": 4348,
+      "el": "SPAN",
+      "src": null,
+      "attr": null,
+      "size": 1116,
+      "id": null
+    },
+    {
+      "t": 5004,
+      "el": "SPAN",
+      "src": null,
+      "attr": null,
+      "size": 30520,
+      "id": null
+    },
+    {
+      "t": 5584,
+      "el": "IMG",
+      "src": "student-800w-CFiR_nJS.avif",
+      "attr": "student-800w-DtjnvTKH.webp",
+      "size": 94549,
+      "id": null
+    }
+  ],
+  "cls": 0.041,
+  "recorderError": null,
+  "ttf": [
+    {
+      "file": "GoogleSansFlex-Regular.ttf",
+      "initiator": "link",
+      "bytes": 128244,
+      "start": 285,
+      "end": 3047
+    },
+    {
+      "file": "GoogleSansFlex-Medium.ttf",
+      "initiator": "link",
+      "bytes": 128548,
+      "start": 287,
+      "end": 3703
+    },
+    {
+      "file": "GoogleSansFlex-Bold.ttf",
+      "initiator": "link",
+      "bytes": 128764,
+      "start": 287,
+      "end": 3756
+    },
+    {
+      "file": "GoogleSansFlex-Semibold.ttf",
+      "initiator": "link",
+      "bytes": 118544,
+      "start": 288,
+      "end": 3584
+    }
+  ],
+  "fontsDoubleFetched": false,
+  "avifCount": 5,
+  "avifTen": [
+    {
+      "file": "professional-800w-BIxDCCdL.avif",
+      "initiator": "img",
+      "bytes": 19161,
+      "start": 4740,
+      "end": 4926
+    },
+    {
+      "file": "teacher-800w-C4ORRitl.avif",
+      "initiator": "img",
+      "bytes": 25332,
+      "start": 4740,
+      "end": 5230
+    },
+    {
+      "file": "student-800w-CFiR_nJS.avif",
+      "initiator": "img",
+      "bytes": 28907,
+      "start": 4740,
+      "end": 5536
+    },
+    {
+      "file": "organization-800w-Y5jvkWeF.avif",
+      "initiator": "img",
+      "bytes": 23001,
+      "start": 4741,
+      "end": 5448
+    },
+    {
+      "file": "parent-800w-BafNAH3z.avif",
+      "initiator": "img",
+      "bytes": 35118,
+      "start": 4741,
+      "end": 5627
+    }
+  ],
+  "prefetchStarts": [
+    {
+      "file": "AboutUsPage-D0Pjvn0O.js",
+      "start": 7321
+    },
+    {
+      "file": "PrivacyPage-B0cF7kFT.js",
+      "start": 7322
+    },
+    {
+      "file": "SafetyPage-DPTeiAcO.js",
+      "start": 7322
+    },
+    {
+      "file": "StudentPage-BBk0X-sY.js",
+      "start": 7322
+    },
+    {
+      "file": "TeacherPage-DQEj_NSe.js",
+      "start": 7323
+    },
+    {
+      "file": "ParentPage-BzUfu7ET.js",
+      "start": 7323
+    },
+    {
+      "file": "OrganizationPage-ufJOhVvV.js",
+      "start": 7323
+    }
+  ],
+  "staticFontFetched": false,
+  "faviconBytes": 0,
+  "jsCount": 39,
+  "jsBytes": 332239
+}

@@ -1,79 +1,81 @@
-// PRIV-01 (KAN-110) — the shipped product-wide privacy policy by data class,
-// as executable data + a fail-closed validator (composing the CACHE-01
-// invariant pattern).
-import type { DataClass, DataClassPolicy, PrivacyPolicy } from './privacy-core-types';
-
-/** The five approved data classes — completeness is validated against this. */
-export const APPROVED_DATA_CLASSES: readonly DataClass[] = [
-  'auth_device',
-  'learning_text',
-  'source_files',
-  'billing_audit',
-  'model_artifacts',
-];
-
-/** The shipped, approved policy (versioned; tampering is detectable). */
-export function shippedPrivacyPolicy(): PrivacyPolicy {
-  return {
-    policyVersion: 'priv-v1',
-    classes: [
-      {
-        dataClass: 'auth_device',
-        purpose: 'Authenticate the user and secure their session on their devices.',
-        permittedFields: ['uid', 'deviceId', 'deviceKind', 'lastSeenAt', 'authMethod'],
-        retention: { days: 180, justification: 'Device trust window; shorter than a year, reviewed.', erasureTrigger: 'owner_erasure_request' },
-        access: 'owner',
-      },
-      {
-        dataClass: 'learning_text',
-        purpose: 'Deliver teaching, checks and resume for the owning learner only.',
-        permittedFields: ['uid', 'conversationId', 'turnBody', 'conceptId', 'sourceVersion', 'createdAt'],
-        retention: { days: 365, justification: 'Learning continuity for one school year; owner erasure always available.', erasureTrigger: 'owner_erasure_request' },
-        access: 'owner',
-      },
-      {
-        dataClass: 'source_files',
-        purpose: 'Store the owner\'s uploaded source content for their own retrieval.',
-        permittedFields: ['uid', 'fileRef', 'sourceVersion', 'manifestDigest', 'uploadedAt'],
-        retention: { days: 0, justification: 'Held only while the owner keeps the project; event-driven erasure on request.', erasureTrigger: 'owner_erasure_request' },
-        access: 'owner',
-      },
-      {
-        dataClass: 'billing_audit',
-        purpose: 'Maintain lawful billing records and a tamper-evident audit trail.',
-        permittedFields: ['uid', 'invoiceRef', 'amountMinor', 'currency', 'auditEvent', 'occurredAt'],
-        retention: { days: 2555, justification: 'Seven-year legal minimum for billing/audit records.', erasureTrigger: 'legal_minimum_elapsed' },
-        access: 'scoped_operator',
-      },
-      {
-        dataClass: 'model_artifacts',
-        purpose: 'Operate permitted ML features (redacted telemetry, evaluated outputs).',
-        permittedFields: ['runId', 'redactedFields', 'modelVersion', 'occurredAt'],
-        retention: { days: 90, justification: 'Short operational window; artifacts are redacted and purpose-bound.', erasureTrigger: 'owner_erasure_request' },
-        access: 'system',
-      },
-    ],
-  };
+import { createHash } from 'node:crypto';
+import { DATA_CLASSES, PrivacyError, PrivacyPolicy, PolicySnapshot } from './privacy-core-types';
+export function record(value: unknown, allowed: readonly string[]): asserts value is Record<string, any> {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.getPrototypeOf(value) !== Object.prototype || Reflect.ownKeys(value).some(k => typeof k !== 'string' || !allowed.includes(k)) || Object.values(Object.getOwnPropertyDescriptors(value)).some(d => !d.enumerable || !Object.prototype.hasOwnProperty.call(d, 'value'))) throw new PrivacyError('invalid_command');
 }
-
-/** Structural + semantic validation (fail closed). */
-export function validatePrivacyPolicy(policy: PrivacyPolicy): void {
-  const seen = new Set<string>();
-  for (const c of policy.classes) {
-    if (seen.has(c.dataClass)) throw new Error('policy_invalid: duplicate class');
-    seen.add(c.dataClass);
-    if (!c.purpose || c.purpose.trim().length === 0) throw new Error('policy_invalid: missing purpose');
-    if (c.permittedFields.length === 0) throw new Error('policy_invalid: empty minimization allowlist');
-    if (c.retention.days < 0 || !c.retention.justification || c.retention.justification.trim().length === 0) {
-      throw new Error('policy_invalid: retention must be explicit and justified');
+export const uid = (value: unknown): value is string => typeof value === 'string' && /^[A-Za-z0-9_-]{1,128}$/.test(value) && !/^__.*__$/.test(value);
+const text = (value: unknown, max: number) => typeof value === 'string' && value.trim().length > 0 && value.length <= max;
+function dataArray(value: unknown): value is any[] {
+  if (!Array.isArray(value) || Object.getPrototypeOf(value) !== Array.prototype) return false;
+  return Reflect.ownKeys(value).every(k => {
+    if (k === 'length') return true;
+    const descriptor = Object.getOwnPropertyDescriptor(value, k);
+    return typeof k === 'string' && /^(0|[1-9][0-9]*)$/.test(k) && !!descriptor?.enumerable && Object.prototype.hasOwnProperty.call(descriptor, 'value');
+  });
+}
+export function validatePrivacyPolicy(value: unknown): asserts value is PrivacyPolicy {
+  try {
+    record(value, ['policyVersion', 'admission', 'classes']);
+    if (typeof value.policyVersion !== 'string' || !/^[A-Za-z0-9._:-]{1,64}$/.test(value.policyVersion)) throw Error();
+    record(value.admission, ['minimumSelfServeAge', 'under18Activation']);
+    // Preserve the current product boundary; a configuration/guardian flag alone
+    // cannot enable children before the connected replacement is accepted.
+    if (value.admission.minimumSelfServeAge !== 18 || value.admission.under18Activation !== 'blocked') throw Error();
+    if (!dataArray(value.classes) || value.classes.length !== DATA_CLASSES.length) throw Error();
+    const seen = new Set();
+    for (const c of value.classes) {
+      record(c, ['dataClass', 'purpose', 'permittedFields', 'retention', 'access']);
+      if (!DATA_CLASSES.includes(c.dataClass) || seen.has(c.dataClass) || !text(c.purpose, 1000) || !['owner', 'operator', 'service'].includes(c.access)) throw Error();
+      seen.add(c.dataClass);
+      if (!dataArray(c.permittedFields) || !c.permittedFields.length || c.permittedFields.length > 40 || new Set(c.permittedFields).size !== c.permittedFields.length || c.permittedFields.some(f => typeof f !== 'string' || !/^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(f) || ['constructor', 'prototype'].includes(f) || /password|privatekey|paymentsecret|sessioncookie/i.test(f))) throw Error();
+      record(c.retention, ['mode', 'days', 'rationale', 'authorityRef']);
+      if (!text(c.retention.rationale, 1000)) throw Error();
+      switch (c.retention.mode) {
+        case 'decision_required': case 'owner_controlled':
+          if ('days' in c.retention || 'authorityRef' in c.retention) throw Error(); break;
+        case 'ephemeral':
+          if (c.retention.days !== 0 || 'authorityRef' in c.retention) throw Error(); break;
+        case 'bounded_days':
+          if (!Number.isSafeInteger(c.retention.days) || c.retention.days < 1 || !Number.isSafeInteger(c.retention.days * 86400000) || 'authorityRef' in c.retention) throw Error(); break;
+        case 'legal_hold':
+          if ('days' in c.retention || !text(c.retention.authorityRef, 256)) throw Error(); break;
+        default: throw Error();
+      }
     }
-    if (!['owner', 'scoped_operator', 'system'].includes(c.access)) throw new Error('policy_invalid: unknown access rule');
-  }
-  // Completeness: exactly the approved classes — no missing, no orphans.
-  for (const required of APPROVED_DATA_CLASSES) {
-    if (!seen.has(required)) throw new Error(`policy_invalid: missing class ${required}`);
-  }
-  for (const c of policy.classes) {
-    if (!APPROVED_DATA_CLASSES.includes(c.dataClass)) throw new Error(`policy_invalid: orphan class ${c.dataClass}`);
-  }
+  } catch { throw new PrivacyError('policy_invalid'); }
+}
+function canonical(value: any): any {
+  if (Array.isArray(value)) return value.map(canonical);
+  if (value && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map(k => [k, canonical(value[k])]));
+  return value;
+}
+export const digest = (value: unknown) => createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
+export function approvedPolicy(snapshot: unknown, trustedApprovers: ReadonlySet<string>, now: Date) {
+  if (!(now instanceof Date) || !Number.isFinite(now.getTime())) throw new PrivacyError('policy_unapproved');
+  if (!snapshot) throw new PrivacyError('policy_unapproved');
+  record(snapshot, ['policy', 'approval']); validatePrivacyPolicy(snapshot.policy);
+  const policy = structuredClone(snapshot.policy) as PrivacyPolicy, approval = snapshot.approval;
+  if (!approval || policy.classes.some(c => c.retention.mode === 'decision_required')) throw new PrivacyError('policy_unapproved');
+  record(approval, ['state', 'policyVersion', 'policyDigest', 'approvedBy', 'approvedAt']);
+  const timestamp = typeof approval.approvedAt === 'string' ? Date.parse(approval.approvedAt) : NaN;
+  if (approval.state !== 'approved' || approval.policyVersion !== policy.policyVersion || approval.policyDigest !== digest(policy) || !uid(approval.approvedBy) || !trustedApprovers.has(approval.approvedBy) || !Number.isFinite(timestamp) || timestamp > now.getTime()) throw new PrivacyError('policy_unapproved');
+  return { policy, policyDigest: approval.policyDigest as string };
+}
+/** A reviewable proposal, not a shipped/approved policy or a legal minimum. */
+export function privacyPolicyDraft(): PolicySnapshot {
+  const purposes = {
+    auth_device: ['Authenticate and secure the owning account.', ['uid', 'deviceHash', 'lastSeenAt', 'authMethod']],
+    learning_text: ['Deliver private learning and resume for the owner.', ['uid', 'conversationId', 'turnBody', 'sourceVersion', 'createdAt']],
+    source_files: ['Use permitted owner source references.', ['uid', 'fileRef', 'sourceVersion', 'manifestDigest', 'uploadedAt']],
+    billing_audit: ['Support authorized billing and security audit operations.', ['uid', 'invoiceRef', 'amountMinor', 'currency', 'occurredAt']],
+    model_artifacts: ['Record reviewed operation metadata without private learning text.', ['uid', 'runId', 'modelVersion', 'evidenceDigest', 'occurredAt', 'policyDigest', 'policyVersion', 'serviceUid']],
+    admission_proof: ['Keep minimal reviewed relationship/purpose/version proof references.', ['uid', 'relatedUid', 'purpose', 'policyVersion', 'proofRef', 'status', 'expiresAt']],
+    voice_transcript: ['Use explicitly requested voice/text input; no always-on recording or default training.', ['uid', 'inputRef', 'purpose', 'createdAt']],
+    offline_pack: ['Deliver explicitly permitted scoped offline material.', ['uid', 'packRef', 'sourceVersion', 'expiresAt']],
+    pilot_feedback: ['Use minimized, separately reviewed pilot/evaluation metadata.', ['uid', 'feedbackRef', 'purpose', 'policyVersion', 'createdAt']],
+  };
+  return { policy: { policyVersion: 'priv-review-v1', admission: { minimumSelfServeAge: 18, under18Activation: 'blocked' },
+    classes: DATA_CLASSES.map(dataClass => ({ dataClass, purpose: purposes[dataClass][0] as string, permittedFields: purposes[dataClass][1] as string[],
+      access: dataClass === 'model_artifacts' ? 'service' : dataClass === 'billing_audit' ? 'operator' : 'owner',
+      retention: { mode: 'decision_required', rationale: 'Await named policy-owner review; preserve current records and do not invent deletion or legal-retention periods.' } })) } };
 }
