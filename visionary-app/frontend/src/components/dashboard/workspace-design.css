@@ -13,6 +13,9 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
   --v-soft: #edf3ff;
   --v-action: #0071e3;
   --v-action-hover: #0077ed;
+  /* FAP-30: informative text on --v-soft must hold >=4.5:1 (0071e3 on edf3ff = 4.22).
+     #0066cc on the composited soft wash = 5.0:1; single definition point stays here. */
+  --v-action-on-soft: #0066cc;
   --v-on-action: #fff;
   --v-raised: #eef0f4;
   --v-outline: #7b8492;
@@ -22,7 +25,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
   --v-warning-soft: #fff4cf;
   --v-radius-control: 12px;
   --v-radius-panel: 20px;
-  --v-motion: 160ms;
+  --v-motion: var(--motion-duration-fast); /* D1 motion law: the fast step (180ms) */
   font-family: var(--font-product);
   color-scheme: light;
   -webkit-font-smoothing: antialiased;
@@ -51,7 +54,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .workspace-nav-more[data-active="true"] .workspace-nav-more-icon {background: var(--v-soft)}
 .workspace-shell #main {background: var(--v-surface);padding: 0;scrollbar-gutter: stable}
 .workspace-shell .workspace-surface {border: 0;border-radius: 0;background: var(--v-surface)}
-.v-page {max-width: 1200px;padding: 40px 40px 64px;gap: 32px;animation: v-content-appear 180ms ease-out}
+.v-page {max-width: 1200px;padding: 40px 40px 64px;gap: 32px;animation: v-content-appear var(--motion-duration-fast) var(--ease-out-apple)}
 .v-title,.v-home .v-title {font-size: clamp(1.75rem,2.5vw,2.25rem);font-weight: 500;line-height: 1.2;letter-spacing: -.025em;color: var(--v-text)}
 .v-page > header:not(.v-home-header):not(.v-lesson-header) {padding-bottom: 24px;border-bottom: 1px solid var(--v-border)}
 .v-page > header > div {min-width: 0}
@@ -70,16 +73,27 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-section-label svg {color: var(--v-action);flex: none}
 .v-workspace-intro-copy {max-width: none;width: 100%}
 .v-workspace-intro-actions {margin-top: 20px}
-.v-button {border-radius: var(--v-radius-control);border-color: var(--v-border);padding: 11px 18px;min-height: 44px;font-size: 0.875rem;line-height: 1.45;transition: background-color var(--v-motion),border-color var(--v-motion),box-shadow var(--v-motion)}
+.v-button {border-radius: var(--v-radius-control);border-color: var(--v-border);padding: 11px 18px;min-height: 44px;font-size: 0.875rem;line-height: 1.45;transition: background-color var(--v-motion) var(--ease-out-apple),border-color var(--v-motion) var(--ease-out-apple),box-shadow var(--v-motion) var(--ease-out-apple)}
 .v-button:not(.primary):hover:not(:disabled) {background: var(--v-soft);border-color: var(--v-border)}
 .v-button.primary {box-shadow: 0 1px 2px var(--v-action)1a}
 .v-button.primary:hover:not(:disabled) {box-shadow: 0 2px 6px var(--v-action)26}
 .v-button svg,.v-page svg.lucide,.workspace-topbar svg.lucide {stroke-width: 1.75;flex-shrink: 0}
 .v-card {border-radius: var(--v-radius-panel);border-color: var(--v-border);padding: 28px;background: var(--v-surface)}
-.v-page :is(a,button).v-card {text-decoration: none;transition: border-color var(--v-motion),background-color var(--v-motion);color: var(--v-text)}
+.v-page :is(a,button).v-card {text-decoration: none;transition: border-color var(--v-motion) var(--ease-out-apple),background-color var(--v-motion) var(--ease-out-apple);color: var(--v-text)}
 .v-page :is(a,button).v-card:hover {border-color: var(--v-action-border);background: var(--v-soft)}
 .v-field {border: 1px solid var(--v-outline);border-radius: var(--v-radius-control);min-height: 46px;background: var(--v-surface);padding: 11px 14px;line-height: 1.5;color: var(--v-text)}
 .v-field::placeholder {color: var(--v-muted);opacity: 1}
+/* FAP-28: styled listbox chrome for native selects on Settings - keeps the
+   native combobox role, keyboard behavior and mobile pickers while matching
+   the custom system (chevron, hover, focus ring). */
+.v-field.v-select {appearance: none;padding-right: 40px;background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2360646c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat: no-repeat;background-position: right 14px center;cursor: pointer}
+.v-field.v-select:hover {border-color: var(--v-action)}
+.v-field.v-select:focus-visible {outline: none;border-color: var(--v-action);box-shadow: 0 0 0 2px color-mix(in srgb, var(--v-action) 25%, transparent)}
+.v-field.v-select:disabled {opacity: .5;cursor: default}
+/* FAP-28: info panel groups long disclaimer lines into one intentional block
+   instead of stray muted lines. */
+.v-info-panel {display: flex;gap: 10px;align-items: flex-start;margin-top: 16px;padding: 12px 14px;border: 1px solid var(--v-border);border-radius: var(--v-radius-control);background: var(--v-canvas);font-size: 0.8125rem;line-height: 1.6;color: var(--v-muted)}
+.v-info-panel svg {flex: none;margin-top: 2px;color: var(--v-action-on-soft)}
 .v-page textarea.v-field {resize: vertical;min-height: 112px}
 .v-notice {border-radius: var(--v-radius-control);padding: 14px 18px;background: var(--v-soft);font-size: 0.8125rem;line-height: 1.65}
 .v-notice.v-error {background: var(--v-error-soft)}
@@ -87,7 +101,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-list-row {padding-block: 20px;gap: 20px;min-width: 0}
 .v-list-row h3.text-sm {font-size: 1rem;line-height: 1.5}
 .v-list-row .v-muted {margin-top: 4px}
-.v-list-row:is(button,a) {transition: background-color var(--v-motion)}
+.v-list-row:is(button,a) {transition: background-color var(--v-motion) var(--ease-out-apple)}
 .v-list-row:is(button,a):hover {background: var(--v-soft)}
 .v-page table {line-height: 1.6}
 .v-page thead {background: var(--v-canvas);color: var(--v-muted)}
@@ -123,7 +137,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-empty-actions {display: flex;align-items: center;justify-content: center;flex-wrap: wrap;gap: 12px;margin-top: 8px}
 .v-class-sections {gap: 8px;border-color: var(--v-border)}
 .v-class-sections button {position: relative;border: 0!important;border-radius: 10px 10px 0 0;min-height: 48px;color: var(--v-muted);background: transparent}
-.v-class-sections button:is([aria-selected="true"],[aria-pressed="true"]) {color: var(--v-action);background: var(--v-soft)}
+.v-class-sections button:is([aria-selected="true"],[aria-pressed="true"]) {color: var(--v-action-on-soft);background: var(--v-soft)}
 .v-class-sections button:is([aria-selected="true"],[aria-pressed="true"])::after {content: '';position: absolute;height: 3px;bottom: 0;left: 16px;right: 16px;border-radius: 3px 3px 0 0;background: var(--v-action)}
 .v-class-sections button:hover {background: var(--v-canvas)}
 .v-class-code,.v-class-form {border-color: var(--v-border);border-radius: 16px}
@@ -153,7 +167,7 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-review-controls > button {border-radius: var(--v-radius-control)}
 .workspace-account-item svg {width: 18px;height: 18px;stroke-width: 1.75;color: var(--v-muted)}
 .workspace-bottom-nav {box-shadow: 0 -1px 12px #172b4d05;border-color: var(--v-border);padding-top: 6px}
-.workspace-bottom-nav > * {border-radius: 14px;transition: background-color var(--v-motion)}
+.workspace-bottom-nav > * {border-radius: 14px;transition: background-color var(--v-motion) var(--ease-out-apple)}
 .workspace-bottom-nav > :is(a,button) {color: var(--v-muted)}
 .workspace-bottom-icon {display: grid;place-items: center;width: min(100%,64px);min-height: 32px;border-radius: 999px}
 .workspace-bottom-nav > :is([aria-current="page"],[data-active="true"]) {background: transparent;color: var(--v-action);font-weight: 600}
@@ -201,7 +215,7 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .guide-entry-content {display: flex;flex-direction: column;gap: 24px}
 .guide-example-heading {font-size: 0.8125rem;line-height: 1.5;color: var(--v-muted);font-weight: 500;margin-bottom: 12px}
 .guide-example-grid {display: grid;grid-template-columns: repeat(auto-fit,minmax(180px,1fr));gap: 14px}
-.guide-example-card {display: flex;flex-direction: column;min-width: 0;overflow: hidden;border: 1px solid var(--v-border);border-radius: 18px;text-align: left;color: var(--v-text);background: var(--v-surface);text-decoration: none!important;transition: border-color var(--v-motion),box-shadow var(--v-motion),background-color var(--v-motion)}
+.guide-example-card {display: flex;flex-direction: column;min-width: 0;overflow: hidden;border: 1px solid var(--v-border);border-radius: 18px;text-align: left;color: var(--v-text);background: var(--v-surface);text-decoration: none!important;transition: border-color var(--v-motion) var(--ease-out-apple),box-shadow var(--v-motion) var(--ease-out-apple),background-color var(--v-motion) var(--ease-out-apple)}
 .guide-example-card:hover {border-color: var(--v-action-border);box-shadow: 0 4px 16px #172b4d0a}
 .guide-example-card:focus-visible {outline: 3px solid var(--v-action);outline-offset: 3px}
 .guide-example-visual {display: grid;place-items: center;width: 100%;height: 110px;background: var(--v-soft)}
@@ -220,7 +234,7 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-mentor-next {font-size: 0.9375rem;font-weight: 500;line-height: 1.6;margin-top: 4px}
 .v-mentor-source {font-size: 0.75rem;line-height: 1.5;color: var(--v-muted);margin-top: 8px}
 .v-mentor-actions {display: flex;flex-wrap: wrap;gap: 8px;margin-top: 12px}
-.guide-recent-conversation {display: flex;align-items: center;align-self: flex-start;gap: 12px;max-width: 100%;padding: 14px 16px;border: 1px solid var(--v-border);border-radius: 14px;text-align: left;font-size: 0.875rem;line-height: 1.6;background: var(--v-surface);transition: background-color var(--v-motion)}
+.guide-recent-conversation {display: flex;align-items: center;align-self: flex-start;gap: 12px;max-width: 100%;padding: 14px 16px;border: 1px solid var(--v-border);border-radius: 14px;text-align: left;font-size: 0.875rem;line-height: 1.6;background: var(--v-surface);transition: background-color var(--v-motion) var(--ease-out-apple)}
 .guide-recent-conversation > svg {flex: none;color: var(--v-muted)}
 .guide-recent-conversation:hover {background: var(--v-soft)}
 .guide-recent-conversation:focus-visible {outline: 3px solid var(--v-action);outline-offset: 3px}
@@ -241,7 +255,7 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-cube-prediction {margin-top: 24px;padding-top: 20px;border-top: 1px solid var(--v-border)}
 .v-cube-prediction > summary {display: grid;grid-template-columns: 12px minmax(0,1fr);gap: 2px 8px;align-items: center;list-style: none;cursor: pointer;min-height: 44px;font-size: 0.9375rem;font-weight: 500;line-height: 1.6;color: var(--v-text)}
 .v-cube-prediction > summary::-webkit-details-marker {display: none}
-.v-cube-prediction > summary::before {content: '';grid-row: 1 / 3;width: 6px;height: 6px;border-right: 2px solid currentColor;border-bottom: 2px solid currentColor;transform: rotate(-45deg);transition: transform var(--v-motion)}
+.v-cube-prediction > summary::before {content: '';grid-row: 1 / 3;width: 6px;height: 6px;border-right: 2px solid currentColor;border-bottom: 2px solid currentColor;transform: rotate(-45deg);transition: transform var(--v-motion) var(--ease-out-apple)}
 .v-cube-prediction[open] > summary::before {transform: rotate(45deg)}
 .v-cube-prediction > summary > span {grid-column: 2}
 .v-cube-prediction > summary .v-exploration-label {color: var(--v-text);font-size: 0.9375rem}
@@ -250,7 +264,7 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-cube-prediction-options {display: flex;flex-wrap: wrap;gap: 10px;margin-top: 16px}
 .v-cube-prediction-feedback {padding: 16px 18px;background: var(--v-surface);border: 1px solid var(--v-border);border-radius: 14px;margin-top: 16px;line-height: 1.7}
 .v-cube-prediction-feedback .v-button {margin-top: 12px}
-.learning-cube {transition: transform 160ms ease-out}
+.learning-cube {transition: transform var(--v-motion) var(--ease-out-apple)}
 @media(max-width:1000px) {
   .guide-shell.has-activity .guide-example-grid {grid-template-columns: repeat(2,minmax(0,1fr))}
   .v-cube-exploration {grid-template-columns: minmax(0,1fr)}
@@ -375,9 +389,10 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-preference-choice {padding: 18px 0;border-top: 1px solid var(--v-border);line-height: 1.7}
 .v-preference-choice input {flex: none}
 .v-role-permission-art {width: 64px;height: 64px;flex: none}
-.v-role-class-link {color: var(--v-action)}
+.v-role-class-link {color: var(--v-action);min-height: 44px} /* FAP-29: tap law - class links in the insights table are controls */
+.v-home-secondary {color: #0066cc} /* FAP-29: these are links - C1 link token 5.24:1 on canvas (inherited action was 4.42:1) */
 .v-project-grid {display: grid;grid-template-columns: repeat(auto-fit,minmax(240px,1fr));gap: 16px;margin-top: 20px}
-.v-project-card {display: flex;flex-direction: column;align-items: stretch;gap: 16px;text-align: left;border: 1px solid var(--v-border);border-radius: 18px;padding: 22px;min-width: 0;background: var(--v-surface);transition: border-color var(--v-motion),background-color var(--v-motion)}
+.v-project-card {display: flex;flex-direction: column;align-items: stretch;gap: 16px;text-align: left;border: 1px solid var(--v-border);border-radius: 18px;padding: 22px;min-width: 0;background: var(--v-surface);transition: border-color var(--v-motion) var(--ease-out-apple),background-color var(--v-motion) var(--ease-out-apple)}
 .v-project-card:hover {border-color: var(--v-action-border);background: var(--v-soft)}
 .v-project-card h3 {font-size: 1rem;line-height: 1.6;font-weight: 500}
 .v-project-document {display: grid;place-items: center;height: 100px;border-radius: 12px;background: var(--v-soft);color: var(--v-action)}
@@ -603,6 +618,7 @@ body:has(.visionary-workspace) .workspace-voice-preview-glow {display: none}
     --v-brand: #aac7ff;
     --v-action: #aac7ff;
     --v-action-hover: #c7daff;
+    --v-action-on-soft: #aac7ff; /* 10:1 on the dark soft wash */
     --v-on-action: #092b61;
     --v-action-border: #637da7;
     --v-soft: #25354f;

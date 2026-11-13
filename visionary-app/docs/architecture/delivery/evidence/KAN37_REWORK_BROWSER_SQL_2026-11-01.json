@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "jiraKey": "KAN-37",
+  "date": "2026-11-01",
+  "verifiedRuntimeAndTests": "6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e",
+  "acceptanceScope": "Repair of existing bounded backfill/transaction development enabler; no domain activation or release approval",
+  "application": "BackfillRunner passes one monotonic invocation guard to the existing PostgreSQL store for each batch; guard checks identity, SQL, work, final privileges and commit admission. Existing migration/job and Firebase journeys retained.",
+  "fullCi": {
+    "url": "https://github.com/ecohdeep786/New_Visionary/actions/runs/41284731460",
+    "checksJob": 124783620444,
+    "conclusion": "success",
+    "production": "skipped",
+    "scripts": 82,
+    "contracts": 35,
+    "schema": 5,
+    "learningHttp": 12,
+    "frontendScope": 6,
+    "frontend": 625,
+    "sqlData01": 20,
+    "sqlData02": 50,
+    "sqlFirestoreProvisioning": 11,
+    "deployedBackend": 99,
+    "deployedProvisioning": 11,
+    "infraJs": 31,
+    "infraPython": 11,
+    "lintTypesBuild": true,
+    "actualMigrationApiImages": true
+  },
+  "localProductCheck": {
+    "completedUtc": "2026-11-01T07:23:17.4225614Z",
+    "check": "product",
+    "source": "0278ee932bac3069122b151abb562d60c96eb9bb",
+    "exitCode": 0
+  },
+  "localDataVerification": {
+    "originalCommandResult": {
+      "exitCode": 1,
+      "completedUtc": "2026-11-01T07:29:06.4359221Z",
+      "source": "6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e",
+      "check": "data"
+    },
+    "sqlStages": {
+      "data01": 20,
+      "data02": 50,
+      "failed": 0
+    },
+    "remainingStageSetupFailure": "Java21 executable not on default lookup path; original nonzero command result retained",
+    "resolvedStage": {
+      "command": "node scripts/provision-check.mjs",
+      "source": "6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e",
+      "completedUtc": "2026-11-01T07:34:43.5484248Z",
+      "exitCode": 0
+    },
+    "resolution": "Configured the already installed official Java21 executable for the registered provision-check command; all11 actual SQL/official Firestore emulator cases passed, emulator stopped. No claim that original whole local command exited0."
+  },
+  "negativeAndRecoveryEvidence": [
+    "Real original200ms PostgreSQL failure returned57014; new deterministic budget policy also fails against actual old store in an isolated probe",
+    "Late identity cannot open migration transaction; late source cannot invoke writer; late writer cannot submit guarded SQL",
+    "Cancellation during final privileges rolls back before commit admission; cold retry recovers",
+    "Commit completed before cancelled acknowledgement remains durable, explicitly uncertain, and cold retry executes no duplicate batch",
+    "Actual long SQL expires at documented own SQL/transaction budget; separate explicit50ms server timeout retains precise SQL diagnostic",
+    "Independent reviewer compiled exact source, executed5 additional probes including actual SQL division/user-cancellation error identity, and verified3 guard-weakening failures with bytes restored"
+  ],
+  "independentSourceReview": {
+    "reviewer": "/root/kan38_final_review",
+    "approvedCommit": "6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e",
+    "reportCommit": "c7bb784301ec7cac8642dfedb94b99bb8ebb0e0e",
+    "reportUrl": "https://github.com/ecohdeep786/New_Visionary/blob/c7bb784301ec7cac8642dfedb94b99bb8ebb0e0e/visionary-app/docs/architecture/reviews/KAN37_DEADLINE_INDEPENDENT_REVIEW.md",
+    "finalEvidenceReview": "pending"
+  },
+  "browser": {
+    "runtimeSource": "6b40d420d651e8b4dd9c6e2ad26a3ddc01c91b1e",
+    "backendOfficialRestartedAtSource": true,
+    "frontendSourceIdenticalTo0278": true,
+    "browser": "ChatGPT in-app browser",
+    "existingRealFirebaseProfessionalSession": true,
+    "cleanReloadAuthMeStatus": 200,
+    "cleanReloadHomeAndSavedActivityRestored": true,
+    "journey": [
+      "Home",
+      "Learn outline",
+      "existing authored sample unit with checked understanding/practice",
+      "Build project handoff",
+      "Ask with preserved learning context; no send",
+      "Practice with two retained answers",
+      "Privacy read-only",
+      "Home with navigation restored"
+    ],
+    "console": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "networkCaptureTruncated": true,
+    "networkScope": "Observed auth/me200 event and visible session restoration; not a complete HAR",
+    "retainedFailedAttempts": [
+      "Initial cold module load/automation waits timed out before visible page settled",
+      "Vite proxy auth/me500 with ECONNREFUSED during backend dev-watch restart after dependency generation; protected server logs retained; owned API restarted and clean auth/me200+Home verified"
+    ],
+    "limits": [
+      "Existing authored sample; not official curriculum or real source/rights coverage",
+      "Browser regression does not invoke administrative backfill; actual SQL service/transaction/recovery evidence is separate",
+      "No chat/model work submitted; no profile/billing/consent/export/deletion mutation requested",
+      "No new assessment, durable Build, hosted SQL, multi-device or mobile acceptance claim",
+      "SQL provisioning remains disabled in the real Firebase product"
+    ],
+    "rawEvidenceRoot": "C:/Users/Administrator/Visionary-local/kan37-deadline-rework-20261101"
+  },
+  "screenshots": [
+    {
+      "name": "browser-signed-in-home",
+      "format": "jpeg",
+      "bytes": 66660,
+      "sha256": "04a7b95d3bb25685b0fd3383d63fec0632d8186b6b5eb5d698024217687fa2a8",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-restored-learning",
+      "format": "jpeg",
+      "bytes": 86126,
+      "sha256": "716fa2debbc00e02d0c17996a882a94dd07f2a52cf0c241c73a256ae1faa2634",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-project-handoff",
+      "format": "jpeg",
+      "bytes": 83536,
+      "sha256": "0deeb5a57296b6797f14ad161592a85974971ea6483c3a9c3fc7307c0a64d80e",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-scoped-ask",
+      "format": "jpeg",
+      "bytes": 62646,
+      "sha256": "af1c0d0c865217034e664ea41ffd50f55778900d35f26aa7b922541b6269639e",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-practice-records",
+      "format": "jpeg",
+      "bytes": 44512,
+      "sha256": "76e6eb8b4e4e0cc21adb0915dc74d1e61dee106ec49864d3b6cb75f4028811ee",
+      "width": 1187,
+      "height": 1170
+    },
+    {
+      "name": "browser-privacy-boundaries",
+      "format": "jpeg",
+      "bytes": 107281,
+      "sha256": "503105a7f6f6772146fcd20511a1eb85a7233b0332895ee8cd039d00db3bd746",
+      "width": 1187,
+      "height": 1170
+    }
+  ],
+  "privacy": "Raw captures, exact runtime logs and ignored credentials stay outside Git. Public receipt contains no account UID, session/command/artifact IDs, cookies, tokens, profile or billing records.",
+  "remainingGates": [
+    "Independent exact final evidence-head approval and CI, accepted/published dev integration and actual scoped Jira Done before cleanup",
+    "Hosted SQL/IAM/network/production enablement, real source/rights, domain/provider/model/privacy/two-device and release acceptance remain open",
+    "Founder-prepared real books/curriculum remain KAN-29; English launch and final all-board/all-class scope unchanged"
+  ]
+}
