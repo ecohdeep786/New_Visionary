@@ -7,7 +7,7 @@ export class DiagramAgentService {
   private openai: OpenAI;
 
   constructor(private config: ConfigService) {
-    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") });
+    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") ?? "unconfigured" });
   }
 
   async generate(prompt: string, onToken: (chunk: string) => void): Promise<void> {

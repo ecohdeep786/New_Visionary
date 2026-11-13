@@ -1,0 +1,130 @@
+{
+  "task": "F-08 responsive verification",
+  "at": "2026-11-05T20:12:36.526Z",
+  "base": "http://127.0.0.1:4198",
+  "law": "viewport-fit=cover + env(safe-area-inset-*) laws; Apple-measured breakpoints (1068/734) + Tailwind scale; WCAG 1.4.10 reflow proxy at 320px",
+  "records": [
+    {
+      "file": "responsive-landing-320.png",
+      "surface": "public",
+      "route": "/",
+      "viewport": "320x700",
+      "reflow": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "errors": []
+    },
+    {
+      "file": "responsive-login-320.png",
+      "surface": "public",
+      "route": "/login",
+      "viewport": "320x700",
+      "reflow": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "errors": []
+    },
+    {
+      "file": "responsive-pricing-320.png",
+      "surface": "public",
+      "route": "/pricing",
+      "viewport": "320x700",
+      "reflow": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "errors": []
+    },
+    {
+      "file": "responsive-landing-390.png",
+      "surface": "public",
+      "route": "/",
+      "viewport": "390x844",
+      "reflow": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "errors": []
+    },
+    {
+      "file": "responsive-login-390.png",
+      "surface": "public",
+      "route": "/login",
+      "viewport": "390x844",
+      "reflow": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "errors": []
+    },
+    {
+      "file": "responsive-pricing-390.png",
+      "surface": "public",
+      "route": "/pricing",
+      "viewport": "390x844",
+      "reflow": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "errors": []
+    },
+    {
+      "file": "responsive-dialog-mobile.png",
+      "surface": "workspace",
+      "route": "/dashboard/home",
+      "note": "D-066 welcome dialog at 390x844"
+    },
+    {
+      "file": "responsive-dashboard-mobile.png",
+      "surface": "workspace",
+      "route": "/dashboard/home",
+      "viewport": "390x844",
+      "bottomNav": {
+        "visible": true,
+        "height": 79,
+        "paddingBottom": "0px",
+        "position": "fixed",
+        "links": 4
+      },
+      "reflow": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "errors": []
+    },
+    {
+      "file": "responsive-dashboard-landscape.png",
+      "surface": "workspace",
+      "route": "/dashboard/home",
+      "viewport": "844x390",
+      "reflow": {
+        "viewport": 844,
+        "scrollWidth": 844,
+        "overflowX": 0,
+        "offenders": []
+      },
+      "bottomNav": {
+        "visible": true,
+        "height": 0
+      },
+      "errors": []
+    }
+  ],
+  "failures": []
+}

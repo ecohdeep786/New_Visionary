@@ -1,0 +1,171 @@
+{
+  "task": "F-28 accessibility, browser and security validation",
+  "at": "2026-11-06T21:00:38.571Z",
+  "base": "http://127.0.0.1:4198",
+  "mode": "preview repository (VITE_AUTH_MODE=preview)",
+  "summary": {
+    "checks": 24,
+    "passed": 24,
+    "defects": 0
+  },
+  "pageErrors": [],
+  "records": [
+    {
+      "check": "kb-first-tab-skip-link",
+      "ok": true,
+      "detail": "first Tab lands on \"Skip to content\" (href #main)"
+    },
+    {
+      "check": "kb-skip-link-lands-main",
+      "ok": true,
+      "detail": "activating the skip link moves focus into the main landmark"
+    },
+    {
+      "file": "a11y-kb-skip-link.png",
+      "state": "Keyboard: skip link focused on the landing"
+    },
+    {
+      "check": "register-for-kb-journey",
+      "ok": true,
+      "detail": "learner kb-1793998768571@visionary.test registered for the keyboard journey"
+    },
+    {
+      "check": "kb-signin-journey",
+      "ok": true,
+      "detail": "keyboard-only sign-in with the registered account reached http://127.0.0.1:4198/dashboard/home (email step advances via Enter; password fields seen: 1)"
+    },
+    {
+      "file": "a11y-kb-signin.png",
+      "state": "Keyboard-only sign-in journey"
+    },
+    {
+      "check": "kb-dialog-trap",
+      "ok": true,
+      "detail": "dialog: 8 Tabs stayed inside (8/8), Escape closed (true), focus returned to trigger (true)"
+    },
+    {
+      "file": "a11y-kb-dialog-trap.png",
+      "state": "Dialog focus trap verified on the checkout dialog"
+    },
+    {
+      "check": "semantics-landmarks-student",
+      "ok": true,
+      "detail": "public role page has header + main landmarks"
+    },
+    {
+      "check": "semantics-h1-student",
+      "ok": true,
+      "detail": "role page exposes a visible h1 (1)"
+    },
+    {
+      "check": "semantics-img-alt-all-routes",
+      "ok": true,
+      "detail": "0 images missing alt across 6 routes"
+    },
+    {
+      "check": "semantics-doc-titles",
+      "ok": true,
+      "detail": "per-route document titles render ({\"/\":\"Visionary — Learn, Ask, Build\",\"/login\":\"Visionary — Learn, Ask, Build\",\"/register\":\"Visionary — Learn, Ask, Build\",\"/pricing\":\"Pricin)"
+    },
+    {
+      "check": "semantics-form-labels",
+      "ok": true,
+      "detail": "0 visible form inputs without an accessible label on /register"
+    },
+    {
+      "check": "sec-header-x-frame-options",
+      "ok": true,
+      "detail": "x-frame-options: DENY"
+    },
+    {
+      "check": "sec-header-x-content-type-options",
+      "ok": true,
+      "detail": "x-content-type-options: nosniff"
+    },
+    {
+      "check": "sec-header-referrer-policy",
+      "ok": true,
+      "detail": "referrer-policy: strict-origin-when-cross-origin"
+    },
+    {
+      "check": "sec-header-permissions-policy",
+      "ok": true,
+      "detail": "permissions-policy: camera=(), geolocation=(), microphone=()"
+    },
+    {
+      "check": "sec-header-coop",
+      "ok": true,
+      "detail": "COOP: same-origin-allow-popups"
+    },
+    {
+      "check": "sec-csp-script-src",
+      "ok": true,
+      "detail": "CSP script-src pins self + named hosts (production header set, config-verified; dev serves without CSP by design)"
+    },
+    {
+      "check": "sec-csp-frame-ancestors",
+      "ok": true,
+      "detail": "CSP frame-ancestors none (config-verified)"
+    },
+    {
+      "check": "sec-storage-no-plaintext-secrets",
+      "ok": true,
+      "detail": "web storage carries no plaintext password (4 local keys; preview fixture model: salted hash + token = true)"
+    },
+    {
+      "observation": "sec-storage-preview-fixture",
+      "detail": "preview auth stores salted password hash + local session token in localStorage by design (local preview, not verified cloud security); connected mode stores nothing — server-owned httpOnly session per the F-24 contract"
+    },
+    {
+      "check": "sec-tabnabbing",
+      "ok": true,
+      "detail": "0 target=_blank links; all carry rel=noopener/noreferrer"
+    },
+    {
+      "file": "sec-headers-storage.png",
+      "state": "Security headers verified; storage scanned"
+    },
+    {
+      "check": "recovery-unknown-public-route",
+      "ok": true,
+      "detail": "unknown public route renders a real surface (h1 \"404\")"
+    },
+    {
+      "file": "recovery-unknown-route.png",
+      "state": "Unknown route recovery surface"
+    },
+    {
+      "check": "device-mobile-landing",
+      "ok": true,
+      "detail": "mobile 412x823: h1 renders, horizontal overflow 0px"
+    },
+    {
+      "file": "device-mobile-landing.png",
+      "viewport": "412x823"
+    },
+    {
+      "check": "device-tablet-landing",
+      "ok": true,
+      "detail": "tablet 768x1024: h1 renders, horizontal overflow 0px"
+    },
+    {
+      "file": "device-tablet-landing.png",
+      "viewport": "768x1024"
+    },
+    {
+      "check": "device-desktop-landing",
+      "ok": true,
+      "detail": "desktop 1440x900: h1 renders, horizontal overflow 0px"
+    },
+    {
+      "file": "device-desktop-landing.png",
+      "viewport": "1440x900"
+    },
+    {
+      "check": "zero-page-errors",
+      "ok": true,
+      "detail": "no uncaught page errors in the whole validation"
+    }
+  ],
+  "defects": []
+}
