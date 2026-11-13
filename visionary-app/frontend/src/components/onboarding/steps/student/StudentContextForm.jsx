@@ -10,6 +10,7 @@ import {
   BOARDS,
   INDIAN_STATES,
   LANGUAGES,
+  UI_LANGUAGE_NOTE,
   CLASSES,
 } from "@/components/onboarding/stepConfigs";
 
@@ -73,6 +74,8 @@ export default function StudentContextForm({ data, updateData }) {
           singleSelect
           dense
         />
+        {/* FAP-72: the full list is a saved medium preference, never a UI switch. */}
+        <p className="mt-1 text-xs leading-5 text-[#5f6368]">{UI_LANGUAGE_NOTE}</p>
       </div>
 
       {/* Class */}
