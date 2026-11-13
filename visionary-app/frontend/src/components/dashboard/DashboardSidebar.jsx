@@ -33,7 +33,7 @@ export default function DashboardSidebar({ expanded, onNavigate, onExpand, id = 
       {({ isActive }) => <>
         <span className={`workspace-nav-icon flex h-8 items-center justify-center rounded-full transition-colors ${expanded ? "w-auto" : "w-14"}${!expanded && !isActive ? " group-hover:bg-[#eceef1]" : ""}`}
           style={!expanded && isActive ? { backgroundColor: "var(--v-soft)" } : undefined}>
-          <Icon aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={1.75} />
+          <Icon aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={1.8} />
         </span>
         <span className={expanded ? "text-sm" : "text-xs"} style={{ color: isActive ? "var(--v-action)" : undefined }}>{item.label}</span>
       </>}
