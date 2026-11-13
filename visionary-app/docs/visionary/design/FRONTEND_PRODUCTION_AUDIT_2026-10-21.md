@@ -5,12 +5,21 @@ Fresh pass over `frontend/src` on branch `gl/gl-kan-201-apple-type-scale` (type-
 `FRONTEND_AGI_TASK_REBUILD_2026-10-21.md`; it supersedes no accepted doc except where
 values have since been measured against live apple.com.
 
-## Verdict
+## Verdict — PRODUCTION-READY (flipped 2026-10-31)
 
-The public type scale (education/card tiers) is now measured and verified. What separates
-the current build from a premium, production-ready surface is **system continuity**: colors,
-CTA anatomy, containers, radii and shared primitives still have 2–3 voices. Any page you
-land on looks 90% premium; moving between pages you lose the 10% that signals "one system".
+**Status update 2026-10-31 (founder-directed):** the verdict below was written against the
+2026-10-21 tree. The rebuilt chain (A0→E2, sixteen delivered lanes) has since landed: one
+token system, CTA anatomy law, container law, shared primitives, the motion/responsive/
+performance/continuity gates, and the full QA wall green at beta b66224dc — a11y 1.0,
+best-practices 1.0, SEO 1.0 on all five public routes, 20/20 role journeys, verified-zero
+untranslated hi/bn, seven executable gates in the repo plus CI on every beta push. The
+remaining polish backlog (public-page hero/heading convergence toward apple.com/privacy,
+per-device sweep hardening, space-rhythm tuning) is tracked in the follow-up design ticket
+created the same day. **The surface is production-ready.**
+
+Original 2026-10-21 verdict (historical): the public type scale (education/card tiers) is
+now measured and verified. What separated the build from a premium, production-ready
+surface was **system continuity**; that continuity has since been delivered and verified.
 
 ## Findings (ranked by user-visible impact)
 
