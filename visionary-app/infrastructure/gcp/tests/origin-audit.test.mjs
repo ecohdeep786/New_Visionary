@@ -1,0 +1,187 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { expected, auditCanonicalOrigin, auditApiCachePolicy, auditNoApiFallback, auditAnonymousBoundaries, auditCsrfPosture, auditDirectOriginBypass, auditStaticAssetCaching, runOriginAudit } from '../origin-audit.mjs';
+
+const revision = 'a'.repeat(40);
+const hardened = { 'x-content-type-options': 'nosniff', 'x-frame-options': 'DENY', 'strict-transport-security': 'max-age=31536000', 'content-security-policy': "default-src 'self'", 'referrer-policy': 'strict-origin-when-cross-origin' };
+
+function respond(status, headers = {}, body = '') {
+  const map = new Map(Object.entries(headers));
+  return { status, headers: { get: name => map.get(name.toLowerCase()) ?? null }, arrayBuffer: async () => new TextEncoder().encode(body).buffer };
+}
+const json = (status, headers, value) => respond(status, { 'content-type': 'application/json', ...headers }, JSON.stringify(value));
+
+const apiError = status => json(status, { 'cache-control': 'no-store' }, { statusCode: status, error: 'Error', message: 'Request refused' });
+
+function makeFetch(routes) {
+  // routes: [path, responseOrFn, hostHint?] — hostHint restricts by URL text.
+  return async (url, options) => {
+    const parsed = new URL(url);
+    for (const [match, handler, hostHint] of routes) {
+      if (hostHint && !url.includes(hostHint)) continue;
+      if (match.startsWith('/') ? parsed.pathname === match : url === match) {
+        return typeof handler === 'function' ? handler(url, options) : handler;
+      }
+    }
+    throw new Error('unrouted fetch: ' + url);
+  };
+}
+
+test('canonical origin requires the SPA, revision attestation and hardened headers', async () => {
+  const good = makeFetch([['/', respond(200, { 'content-type': 'text/html; charset=UTF-8', 'x-visionary-revision': revision, ...hardened }, '<!doctype html><title>x</title>')]]);
+  assert.equal((await auditCanonicalOrigin(good)).pass, true);
+  const disabledHsts = makeFetch([['/', respond(200, { ...hardened, 'content-type': 'text/html', 'x-visionary-revision': revision, 'strict-transport-security': 'max-age=0' }, '<!doctype html>')]]);
+  assert.match((await auditCanonicalOrigin(disabledHsts)).detail, /HSTS/);
+  assert.match((await auditCanonicalOrigin(makeFetch([['/', respond(200, { 'content-type': 'text/html', 'x-visionary-revision': 'short', ...hardened }, '<!doctype html>')]]))).detail, /x-visionary-revision/);
+  assert.match((await auditCanonicalOrigin(makeFetch([['/', respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>')]]))).detail, /missing hardened headers/);
+  assert.match((await auditCanonicalOrigin(makeFetch([['/', respond(200, { 'content-type': 'application/json', 'x-visionary-revision': revision, ...hardened }, '{}')]]))).detail, /did not serve the SPA/);
+});
+
+test('every API response must be no-store', async () => {
+  const good = makeFetch([['/api/health', json(200, { 'cache-control': 'no-store' }, { status: 'ok' })], ['/api/auth/me', json(401, { 'cache-control': 'no-store' }, {})], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
+  assert.equal((await auditApiCachePolicy(good)).pass, true);
+  const unhealthy = makeFetch([['/api/health', json(503, { 'cache-control': 'no-store' }, { status: 'ok' })]]);
+  assert.equal((await auditApiCachePolicy(unhealthy)).pass, false);
+  const cacheable = makeFetch([['/api/health', json(200, { 'cache-control': 'no-store' }, { status: 'ok' })], ['/api/auth/me', json(401, {}, {})], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
+  assert.match((await auditApiCachePolicy(cacheable)).detail, /\/api\/auth\/me cache-control is null/);
+});
+
+test('unknown API paths must be JSON 404 and never the SPA fallback', async () => {
+  const good = makeFetch([['/api/__unknown-release-probe', apiError(404)]]);
+  assert.equal((await auditNoApiFallback(good)).pass, true);
+  const fallback = makeFetch([['/api/__unknown-release-probe', respond(200, { 'content-type': 'text/html', 'cache-control': 'no-cache', 'x-visionary-revision': revision }, '<!doctype html>')]]);
+  const refused = await auditNoApiFallback(fallback);
+  assert.equal(refused.pass, false);
+  assert.match(refused.detail, /returned 200|content-type|SPA/);
+  const mislabeled = makeFetch([['/api/__unknown-release-probe', respond(404, { 'content-type': 'application/json', 'cache-control': 'no-store' }, '<html>404</html>')]]);
+  assert.match((await auditNoApiFallback(mislabeled)).detail, /JSON error envelope/);
+});
+
+test('anonymous callers are refused without identity leakage', async () => {
+  const good = makeFetch([['/api/auth/me', apiError(401)], ['/api/account/overview', apiError(401)]]);
+  assert.equal((await auditAnonymousBoundaries(good)).pass, true);
+  const leaking = makeFetch([['/api/auth/me', json(401, { 'cache-control': 'no-store' }, { uid: 'u1' })], ['/api/account/overview', json(401, { 'cache-control': 'no-store' }, {})]]);
+  assert.match((await auditAnonymousBoundaries(leaking)).detail, /anonymous JSON error envelope/);
+  const escaped = makeFetch([['/api/auth/me', respond(401, { 'content-type': 'application/json' }, '{"statusCode":401,"error":"Unauthorized","message":"Denied","\\u0075id":"synthetic"}')]]);
+  assert.equal((await auditAnonymousBoundaries(escaped)).pass, false);
+});
+
+test('CSRF posture: __Host Secure HttpOnly Strict cookie and forged-origin 403', async () => {
+  const cookie = '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Secure; HttpOnly; SameSite=Strict';
+  const good = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', (_url, options) => json(options.headers.Origin === expected.origin ? 401 : 403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.equal((await auditCsrfPosture(good)).pass, true);
+  const denyAll = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditCsrfPosture(denyAll)).detail, /same-origin/);
+  const malformed = makeFetch([['/api/auth/csrf', respond(200, { 'cache-control': 'no-store' }, 'synthetic-sensitive-data')]]);
+  const badToken = await auditCsrfPosture(malformed);
+  assert.equal(badToken.pass, false);
+  assert.doesNotMatch(badToken.detail, /synthetic-sensitive-data/);
+  const cachedToken = makeFetch([['/api/auth/csrf', json(200, { 'set-cookie': cookie }, { token: 'f'.repeat(64) })]]);
+  assert.match((await auditCsrfPosture(cachedToken)).detail, /cacheable/);
+  const weak = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': 'visionary-csrf=x; Path=/; SameSite=Lax' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditCsrfPosture(weak)).detail, /CSRF cookie posture rejected/);
+  // __Host- without Path=/ is rejected by browsers (the cookie never exists),
+  // which would silently break CSRF end to end — the audit must catch it
+  const noPath = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditCsrfPosture(noPath)).detail, /CSRF cookie posture rejected/);
+  // a Domain attribute violates the __Host- contract and must refuse
+  const withDomain = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Domain=visionary.org.in; Secure; HttpOnly; SameSite=Strict' }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(403, { 'cache-control': 'no-store' }, {})],
+  ]);
+  assert.match((await auditCsrfPosture(withDomain)).detail, /CSRF cookie posture rejected/);
+  const wrongPath = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie.replace('Path=/', 'Path=/api') }, { token: 'f'.repeat(64) })],
+  ]);
+  const badCookie = await auditCsrfPosture(wrongPath);
+  assert.equal(badCookie.pass, false);
+  assert.doesNotMatch(badCookie.detail, /f{64}/);
+  const accepting = makeFetch([
+    ['/api/auth/csrf', json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) })],
+    ['/api/auth/onboarding', json(200, { 'cache-control': 'no-store' }, { ok: true })],
+  ]);
+  assert.match((await auditCsrfPosture(accepting)).detail, /forged cross-origin command returned 200/);
+});
+
+test('the direct run.app origin must never serve the product', async () => {
+  const hostFetch = async (url) => {
+    if (url.includes('run.app')) return respond(404, {}, '<html>404 Page not found</html>');
+    throw new Error('unexpected ' + url);
+  };
+  assert.equal((await auditDirectOriginBypass(hostFetch)).pass, true);
+  const visited = new Set();
+  const deny = async url => { visited.add(new URL(url).origin); return respond(404); };
+  assert.equal((await auditDirectOriginBypass(deny)).pass, true);
+  assert.deepEqual(visited, new Set(expected.directOrigins));
+  const open = async () => respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>');
+  assert.match((await auditDirectOriginBypass(open)).detail, /bypass is open/);
+  const productJson = async () => json(200, { 'x-visionary-revision': revision, 'cache-control': 'no-store' }, { status: 'ok' });
+  assert.match((await auditDirectOriginBypass(productJson)).detail, /bypass is open/);
+  // the revision header stripped but the SPA shell served must still refuse —
+  // a leak must not pass just because the attestation was removed
+  const stripped = async () => respond(200, { 'content-type': 'text/html' }, '<!doctype html><div id="root"></div>');
+  const refusedStripped = await auditDirectOriginBypass(stripped);
+  assert.equal(refusedStripped.pass, false);
+  assert.match(refusedStripped.detail, /bypass is open/);
+  // Google Frontend's real refusal shape (404, empty body) stays a closed bypass
+  assert.equal((await auditDirectOriginBypass(async () => respond(503))).pass, false);
+  assert.equal((await auditDirectOriginBypass(async () => json(404, {}, { error: 'app route' }))).pass, false);
+  await assert.rejects(auditDirectOriginBypass(async () => { throw Error('timeout'); }), /timeout/);
+  const googleFrontend = async () => respond(404, { 'content-type': 'text/html; charset=UTF-8' }, '');
+  assert.equal((await auditDirectOriginBypass(googleFrontend)).pass, true);
+});
+
+test('hashed assets cache explicitly and publicly', async () => {
+  const shell = respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision, ...hardened }, '<!doctype html><script src="/assets/index-abc123.js"></script>');
+  const good = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'public, max-age=31536000, immutable' }, 'js')]]);
+  assert.equal((await auditStaticAssetCaching(good)).pass, true);
+  assert.equal((await auditStaticAssetCaching(makeFetch([['/', respond(200, {}, '<!doctype html>')]]))).pass, false);
+  const revalidate = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'public, max-age=31536000, immutable, no-cache' }, 'js')]]);
+  assert.equal((await auditStaticAssetCaching(revalidate)).pass, false);
+  const sharedDrift = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'public, max-age=31536000, s-maxage=0, immutable' }, 'js')]]);
+  assert.equal((await auditStaticAssetCaching(sharedDrift)).pass, false);
+  const heuristics = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, {}, 'js')]]);
+  assert.match((await auditStaticAssetCaching(heuristics)).detail, /no explicit max-age/);
+  const priv = makeFetch([['/', shell], ['/assets/index-abc123.js', respond(200, { 'cache-control': 'private, max-age=60' }, 'js')]]);
+  assert.match((await auditStaticAssetCaching(priv)).detail, /marked private/);
+});
+
+test('full origin audit fails closed and passes when every boundary holds', async () => {
+  const cookie = '__Host-visionary-csrf=' + 'f'.repeat(64) + '; Path=/; Secure; HttpOnly; SameSite=Strict';
+  const shell = respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision, ...hardened }, '<!doctype html><script src="/assets/index-abc123.js"></script>');
+  const good = async (url, options) => {
+    const path = new URL(url).pathname;
+    if (url.includes('run.app')) return respond(404, {}, '<html>404</html>');
+    if (path === '/') return shell;
+    if (path === '/api/health') return json(200, { 'cache-control': 'no-store', 'x-visionary-revision': revision }, { status: 'ok', authPolicy: { version: 1, globalSignOut: false } });
+    if (path === '/api/auth/me' || path === '/api/account/overview') return apiError(401);
+    if (path === '/api/__unknown-release-probe') return apiError(404);
+    if (path === '/api/auth/csrf') return json(200, { 'cache-control': 'no-store', 'set-cookie': cookie }, { token: 'f'.repeat(64) });
+    if (path === '/api/auth/onboarding') return json(options.headers.Origin === expected.origin ? 401 : 403, { 'cache-control': 'no-store' }, {});
+    if (path === '/assets/index-abc123.js') return respond(200, { 'cache-control': 'public, max-age=31536000, immutable' }, 'js');
+    throw new Error('unrouted ' + path);
+  };
+  const ok = await runOriginAudit({ fetchImpl: good, tls: async () => ({ subject: 'CN=visionary.org.in', issuer: 'Google Trust Services' }) });
+  assert.equal(ok.passed, true, JSON.stringify(ok.results));
+  assert.equal(ok.results.length, 8);
+  const badTls = await runOriginAudit({ fetchImpl: good, tls: async () => { throw Error('certificate verification failed'); } });
+  assert.equal(badTls.passed, false);
+  assert.equal(badTls.results.find(r => r.check === 'tls').pass, false);
+
+  const bypassOpen = async (url, options) => (url.includes('run.app') ? respond(200, { 'content-type': 'text/html', 'x-visionary-revision': revision }, '<!doctype html>') : good(url, options));
+  const bad = await runOriginAudit({ fetchImpl: bypassOpen, tls: async () => ({}) });
+  assert.equal(bad.passed, false);
+  assert.equal(bad.results.find(r => r.check === 'direct-origin-bypass').pass, false);
+});
