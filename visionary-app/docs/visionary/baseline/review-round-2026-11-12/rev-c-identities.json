@@ -1,0 +1,119 @@
+{
+  "base": "http://127.0.0.1:5175",
+  "betaHead": "f8c3fd1d",
+  "identities": {
+    "student": {
+      "email": "rev-rl-student-1794548514963@visionary.test",
+      "landed": "/dashboard/home",
+      "prepare": {
+        "url": "/dashboard/prepare",
+        "h1": "Prepare",
+        "main": "Skip to content | Prepare | This workspace area opens with a teaching workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace"
+      },
+      "child": {
+        "url": "/dashboard/child",
+        "h1": "Children",
+        "main": "Skip to content | Children | This workspace area opens with a family workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace"
+      },
+      "newConsoleErrors": [],
+      "ok": true
+    },
+    "professional": {
+      "email": "rev-rl-professional-1794548514963@visionary.test",
+      "landed": "/dashboard/home",
+      "child": {
+        "url": "/dashboard/child",
+        "h1": "Children",
+        "main": "Skip to content | Children | This workspace area opens with a family workspace. You are currently working in a professional workspace. | Learn | Ask | Return to workspace"
+      },
+      "prepare": {
+        "url": "/dashboard/prepare",
+        "h1": "Prepare",
+        "main": "Skip to content | Prepare | This workspace area opens with a teaching workspace. You are currently working in a professional workspace. | Learn | Ask | Return to workspace"
+      },
+      "newConsoleErrors": [],
+      "ok": true
+    },
+    "organization": {
+      "email": "rev-rl-organization-1794548514963@visionary.test",
+      "landed": "/dashboard/home",
+      "learn": {
+        "url": "/dashboard/learn",
+        "h1": "Not available in this workspace",
+        "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace"
+      },
+      "practice": {
+        "url": "/dashboard/practice",
+        "h1": "Not available in this workspace",
+        "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace"
+      },
+      "build": {
+        "url": "/dashboard/build",
+        "h1": "Not available in this workspace",
+        "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace"
+      },
+      "ask": {
+        "url": "/dashboard/ask",
+        "h1": "Not available in this workspace",
+        "main": "Not available in this workspace | This section belongs to personal learning workspaces. It is not part of an organization workspace. | Return to workspace"
+      },
+      "people": {
+        "url": "/dashboard/people",
+        "h1": "People & connections",
+        "main": "People & connections | Manage local invitations and review who accepted, declined or lost access. | Invite someone to your organization | Requests | No organization connections in this section yet. | Connected | No organization connections in this section yet. | Closed history | No organization conn"
+      },
+      "analytics": {
+        "url": "/dashboard/analytics",
+        "h1": "Institution analytics",
+        "main": "Organization | Institution analytics | A focused view of your institution’s roster and explicitly linked classrooms. | Linked classes | 0 | Connected people | 0 | Class assignments | 0 | Scoped learning evidence | Only recorded work from active learners in explicitly linked classes. Personal project"
+      },
+      "classes": {
+        "url": "/dashboard/classes",
+        "h1": "Classes",
+        "main": "Skip to content | Classes | This workspace area opens with a teaching workspace. You are currently working in a organization workspace. | People | Cohorts | Return to workspace"
+      },
+      "personalHonest": true,
+      "capabilityOpen": true,
+      "classesExplained": true,
+      "newConsoleErrors": [],
+      "ok": true
+    },
+    "parent": {
+      "email": "rev-rl-parent-1794548514963@visionary.test",
+      "landed": "/dashboard/home",
+      "classes": {
+        "url": "/dashboard/classes",
+        "h1": "Classes",
+        "main": "Skip to content | Classes | This workspace area opens with a teaching workspace. You are currently working in a family workspace. | Children | Reports | Return to workspace"
+      },
+      "newConsoleErrors": [],
+      "ok": true
+    },
+    "teacher": {
+      "email": "rev-rl-teacher-1794548514963@visionary.test",
+      "landed": "/dashboard/home",
+      "classes": {
+        "url": "/dashboard/classes",
+        "h1": "Your classes",
+        "main": "Your classes | Create a class, add students, and start teaching | No classes yet | Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback. | Create your first class | Grow as a teacher"
+      },
+      "newConsoleErrors": [],
+      "ok": true
+    }
+  },
+  "consoleErrors": [
+    "PAGEERROR: Error: You do not have access to this workspace.",
+    "The above error occurred in the <DashboardLayout> component:\n\n    at DashboardLayout (http://127.0.0.1:5175/src/components/dashboard/DashboardLayout.jsx:48:69)\n    at RenderedRoute (http://127.0.0.1:5",
+    "[Visionary Resilience Diagnostic]: Error: You do not have access to this workspace.\n    at access (http://127.0.0.1:5175/src/services/workspaceService.ts:77:25)\n    at saveLastPath (http://127.0.0.1:5",
+    "PAGEERROR: Error: You do not have access to this workspace.",
+    "The above error occurred in the <DashboardLayout> component:\n\n    at DashboardLayout (http://127.0.0.1:5175/src/components/dashboard/DashboardLayout.jsx:48:69)\n    at RenderedRoute (http://127.0.0.1:5",
+    "[Visionary Resilience Diagnostic]: Error: You do not have access to this workspace.\n    at access (http://127.0.0.1:5175/src/services/workspaceService.ts:77:25)\n    at saveLastPath (http://127.0.0.1:5",
+    "PAGEERROR: Error: You do not have access to this workspace.",
+    "The above error occurred in the <DashboardLayout> component:\n\n    at DashboardLayout (http://127.0.0.1:5175/src/components/dashboard/DashboardLayout.jsx:48:69)\n    at RenderedRoute (http://127.0.0.1:5",
+    "[Visionary Resilience Diagnostic]: Error: You do not have access to this workspace.\n    at access (http://127.0.0.1:5175/src/services/workspaceService.ts:77:25)\n    at saveLastPath (http://127.0.0.1:5",
+    "PAGEERROR: Error: You do not have access to this workspace.",
+    "The above error occurred in the <DashboardLayout> component:\n\n    at DashboardLayout (http://127.0.0.1:5175/src/components/dashboard/DashboardLayout.jsx:48:69)\n    at RenderedRoute (http://127.0.0.1:5",
+    "[Visionary Resilience Diagnostic]: Error: You do not have access to this workspace.\n    at access (http://127.0.0.1:5175/src/services/workspaceService.ts:77:25)\n    at saveLastPath (http://127.0.0.1:5"
+  ],
+  "allOk": true
+}

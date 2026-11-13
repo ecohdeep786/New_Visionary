@@ -1,0 +1,57 @@
+{
+  "base": "http://127.0.0.1:5175",
+  "betaHead": "f8c3fd1d",
+  "fap70": {
+    "email": "rev-fap70-1794548493118@visionary.test",
+    "view": {
+      "otpTitle": "Finish creating your account",
+      "claim": "Local preview — verification is simulated; no email is sent. Any 6-digit code completes signup for rev-fap70-1794548493118@visionary.test.",
+      "buttons": [
+        "Verify"
+      ],
+      "hasResend": false
+    },
+    "landedOn": "/onboarding",
+    "ok": true
+  },
+  "fap85": {
+    "formView": {
+      "copy": "Enter your account email to create a local password reset token.",
+      "buttons": [
+        "Create reset token"
+      ]
+    },
+    "success": {
+      "heads": [
+        "Reset your Visionary password",
+        "Reset your Visionary password",
+        "Finish resetting your password"
+      ],
+      "text": "isionary | Reset your Visionary password | Enter your account email to create a local password reset token. | Back to sign in | Finish resetting your password | Local preview — no email is sent. A single-use reset token was created in this browser's local storage and expires in 15 minutes. Continue to set a new password for rev-fap70-1794548493118@visionary.test. | Continue to reset password | Use a different email | Don't have an account? Sign up",
+      "continueHref": "/reset-password?token=e726f0f7-625c-4217-9699-657a1544dd8f"
+    },
+    "resetDone": {
+      "url": "/reset-password",
+      "heads": [
+        "Password updated",
+        "Password updated"
+      ],
+      "text": "isionary | Password updated | Your saved account and learning setup will be kept. | Your password has been updated. Sign in with your new password. | Sign in | Back to sign in"
+    },
+    "ok": true
+  },
+  "fap86": {
+    "fired": "dispatched",
+    "toastSeen": {
+      "present": true,
+      "text": "REVIEW FAP-86independent review toast"
+    },
+    "hadClose": 1,
+    "afterClose": {
+      "present": false
+    },
+    "shimWarns": [],
+    "ok": true
+  },
+  "consoleIssues": []
+}
