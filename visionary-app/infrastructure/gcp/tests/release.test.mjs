@@ -90,6 +90,7 @@ test('the production CLI command carries the derived rollout policy into pinned 
     assert.match(environment, /AUTH_SESSION_POLICY_VERSION=1/);
     assert.match(environment, new RegExp('AUTH_GLOBAL_LOGOUT_ENABLED=' + enabled + '(,|$)'));
     assert.match(environment, /AUTH_PHONE_SIGNIN_ENABLED=true/);
+    assert.match(environment, /PRODUCT_REQUEST_TELEMETRY_ENABLED=true/);
   }
   assert.throws(() => releaseDeployArgs({ commit, image, suffix: 'fixture' }), /explicit rollout policy/);
 });
