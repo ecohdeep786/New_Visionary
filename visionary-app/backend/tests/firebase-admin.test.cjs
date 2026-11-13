@@ -24,6 +24,13 @@ test('production and staging identities reject injected emulator configuration',
     assert.throws(() => firebaseAdminSettings(config({ FIREBASE_PROJECT_KIND: 'emulator', NODE_ENV: 'production' })), /production runtime/);
   });
 });
+test('staging Firebase refuses the production realm before initializing Admin', () => {
+  withEmulatorHost(null, () => {
+    assert.throws(() => firebaseAdminSettings(config({ FIREBASE_PROJECT_ID: 'visionary-research' })), /separate from production/);
+    assert.equal(firebaseAdminSettings(config({ FIREBASE_PROJECT_ID: 'visionary-uat' })).projectId, 'visionary-uat');
+    assert.equal(firebaseAdminSettings(config({ FIREBASE_PROJECT_ID: 'visionary-research', FIREBASE_PROJECT_KIND: 'production' })).kind, 'production');
+  });
+});
 test('emulator setup cannot fall back to live APIs or load production keys', () => {
   withEmulatorHost(null, () => {
     assert.throws(() => firebaseAdminSettings(config({ FIREBASE_PROJECT_KIND: 'emulator' })), /live fallback/);
