@@ -14,7 +14,7 @@ assert.equal(info.Config.Labels['org.opencontainers.image.revision'], commit);
 assert.match(info.Config.Labels['org.visionary.source-manifest-sha256'], /^[a-f0-9]{64}$/);
 const env = { NODE_ENV: 'production', AUTH_PUBLIC_ORIGIN: production.origin, AUTH_TRUST_PROXY_HOPS: '2', FIREBASE_PROJECT_ID: production.project,
   FIREBASE_PROJECT_KIND: 'production', FIRESTORE_DATABASE_ID: 'default', FIREBASE_AUTH_DOMAIN: production.authDomain,
-  BILLING_MODE: 'test', AUTH_PHONE_SIGNIN_ENABLED: 'true', AUTH_RATE_LIMIT_KEY: 'synthetic-container-test-key-at-least-32-bytes' };
+  BILLING_MODE: 'test', AUTH_PHONE_SIGNIN_ENABLED: 'true', PRODUCT_REQUEST_TELEMETRY_ENABLED: 'true', AUTH_RATE_LIMIT_KEY: 'synthetic-container-test-key-at-least-32-bytes' };
 const limits = ['--read-only', '--network=none', '--cap-drop=ALL', '--security-opt=no-new-privileges', '--cpus=1', '--memory=512m', '--pids-limit=100', '--tmpfs=/tmp:rw,noexec,nosuid,size=16m'];
 const envArgs = value => Object.entries(value).flatMap(([key, value]) => ['--env', key + '=' + value]);
 const receipt = { commit, imageId: info.Id, sourceManifestSha256: info.Config.Labels['org.visionary.source-manifest-sha256'], passed: false, invalidStartupCases: [] };
@@ -26,6 +26,7 @@ try {
     const fetcher=(url,options)=>fetch(url.replace(production.origin,'http://127.0.0.1:8080'),options);
     (async()=>{if(process.getuid()===0)throw Error('Root runtime');let ready=false;for(let n=0;n<25;n++){try{const r=await fetcher(production.origin+'/api/health');if(r.status===200){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,500));}
     if(!ready)throw Error('Startup failed');await publicChecks('${commit}',fetcher,undefined,{email:true,google:true,phone:true});
+    const telemetryResponse=await fetcher(production.origin+'/api/auth/methods?qa=kan51-synthetic-private-marker');if(telemetryResponse.status!==200)throw Error('Telemetry smoke request failed');await telemetryResponse.text();
     for(const path of ['/.env','/%2eenv','/.git/config']){const r=await fetcher(production.origin+path);if(r.status!==404)throw Error('Private path boundary: '+path);}
     for(const path of ['/api/fixtures','/api/__e2e/bootstrap','/api/legacy/login']){const r=await fetcher(production.origin+path);if(r.status!==404||!(r.headers.get('content-type')||'').includes('application/json'))throw Error('Fixture/legacy API boundary: '+path);}
     const fs=require('node:fs'),a=require('node:assert/strict');a.deepEqual(fs.readdirSync('/app').sort(),['backend','public']);a.deepEqual(fs.readdirSync('/app/backend').sort(),['dist','node_modules']);
@@ -36,6 +37,18 @@ try {
     console.log('PASS: real non-root product/static/API/CSRF/realm/time-budget boundaries');
     })().catch(e=>{console.error(e.message);process.exitCode=1;});`;
   docker(['exec', name, 'node', '-e', script]); receipt.startupAndChecksMs = Date.now() - start;
+  const logs = docker(['logs', name], true);
+  const telemetry = logs.split(/\r?\n/)
+    .filter(line => line.includes('"event":"product.api.request"'))
+    .map(line => JSON.parse(line));
+  assert.ok(telemetry.some(event => event.route === '/api/auth/methods' && event.status === 200), 'Expected an auth methods telemetry event.');
+  for (const event of telemetry) {
+    assert.deepEqual(Object.keys(event).sort(), ['event', 'latencyMs', 'route', 'status']);
+    assert.equal(event.event, 'product.api.request');
+    assert.ok(Number.isInteger(event.latencyMs) && event.latencyMs >= 0 && event.latencyMs <= 3_600_000);
+  }
+  assert.ok(!logs.includes('kan51-synthetic-private-marker'));
+  receipt.requestTelemetryVerified = true;
 
   // An admitted request can finish while a stalled request body is bounded by
   // the drain deadline. Both connections are open before SIGTERM.
