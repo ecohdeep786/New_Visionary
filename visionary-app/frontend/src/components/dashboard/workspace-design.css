@@ -67,6 +67,20 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .guide-canvas .v-page {padding: 24px 0;gap: 24px;margin: 0}
 .guide-canvas .v-title {font-size: 1.75rem}
 .v-muted {color: var(--v-muted);font-size: 0.875rem;line-height: 1.65}
+/* FAP-73: the branded opening shell for workspace core-route mounts.
+   Same neutral chrome (v-page), a real h1 announcing the target route, and a
+   non-oversized skeleton that paints at mount. Token-driven, so dark mode and
+   contrast follow the system; the pulse runs only when motion is welcome and
+   the workspace-wide reduce law (below) disables it as a backstop. */
+.v-opening .v-opening-skeleton {display: grid;gap: 12px;max-width: 560px}
+.v-opening .v-opening-art {display: block;height: 88px;border-radius: var(--v-radius-control);background: var(--v-soft);border: 1px solid var(--v-border)}
+.v-opening .v-opening-row {display: block;height: 14px;border-radius: 7px;background: var(--v-raised);border: 1px solid var(--v-border)}
+@media(prefers-reduced-motion:no-preference) {
+  .v-opening .v-opening-art,.v-opening .v-opening-row {animation: v-opening-pulse 1.6s var(--ease-out-apple) infinite}
+  .v-opening .v-opening-row:nth-child(3) {animation-delay: .2s}
+  .v-opening .v-opening-row:nth-child(4) {animation-delay: .4s}
+}
+@keyframes v-opening-pulse {0%,100% {opacity: 1}50% {opacity: .55}}
 .v-page :is(h2,h3) {text-wrap: balance;overflow-wrap: anywhere}
 .v-page h2.text-lg {font-size: 1.25rem;line-height: 1.4;letter-spacing: -.012em}
 .v-section-label {display: flex;align-items: center;gap: 8px;color: var(--v-muted);font-size: 0.8125rem;font-weight: 500;line-height: 1.5;margin-bottom: 10px}

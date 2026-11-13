@@ -8,6 +8,7 @@ import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
 import { MetaManager } from '@/lib/PageMeta'
 import { RoutePrefetcher } from '@/lib/RoutePrefetcher'
+import { WorkspaceChunkPrefetcher } from '@/lib/WorkspaceChunkPrefetcher'
 import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import OnboardingGate from '@/components/OnboardingGate'
@@ -237,6 +238,7 @@ function App() {
           <ScrollToTop />
           <MetaManager />
           <RoutePrefetcher />
+          <WorkspaceChunkPrefetcher />
           <AppErrorBoundary>
             <Suspense fallback={<RouteFallback />}>
               <PublicApp />

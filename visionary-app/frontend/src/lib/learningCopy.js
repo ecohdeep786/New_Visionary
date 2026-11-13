@@ -19,6 +19,8 @@ const entries = [
  ['Restoring your saved learning activity…','सहेजी अध्ययन गतिविधि वापस ला रहे हैं…','সংরক্ষিত শেখার কার্যকলাপ ফেরানো হচ্ছে…'],
  ['Opening your learning outline…','अध्ययन रूपरेखा खोल रहे हैं…','শেখার রূপরেখা খোলা হচ্ছে…'],
  ['Opening your learning workspace…','अध्ययन कार्यक्षेत्र खोल रहे हैं…','শেখার কর্মক্ষেত্র খোলা হচ্ছে…'],
+ ['Learning workspace','अध्ययन कार्यक्षेत्र','শেখার কাজের স্থান'],
+ ['Practice','अभ्यास','অনুশীলন'],
  ['Saved learning unavailable','सहेजा अध्ययन उपलब्ध नहीं है','সংরক্ষিত শেখা অনুপলব্ধ'],
  ['Original records remain on this device. This page will not replace them or record an answer while they are unreadable. Restore a valid saved copy before retrying.','मूल रिकॉर्ड इस डिवाइस पर हैं। जब तक वे पढ़े नहीं जा सकते, यह पृष्ठ उन्हें बदलता या उत्तर दर्ज नहीं करता। फिर प्रयास करने से पहले मान्य सहेजी प्रति वापस लाएँ।','মূল রেকর্ড এই ডিভাইসে আছে। পড়া না গেলে এই পাতা তা বদলায় না বা উত্তর নথিভুক্ত করে না। আবার চেষ্টার আগে বৈধ সংরক্ষিত কপি ফেরান।'],
  ['Export current activity view','वर्तमान गतिविधि दृश्य निर्यात करें','বর্তমান কার্যকলাপের দৃশ্য রপ্তানি করুন'],

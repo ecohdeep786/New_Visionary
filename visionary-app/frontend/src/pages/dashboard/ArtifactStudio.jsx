@@ -1,5 +1,6 @@
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import { projectCopy } from '@/lib/projectCopy';
+import WorkspaceOpening from '@/components/dashboard/WorkspaceOpening';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Plus, Save, ArrowLeft, ArrowUpRight, FileText, History, Share2, Shapes } from 'lucide-react';
@@ -98,7 +99,7 @@ const [params] = useSearchParams();
     }
   }, [draft, baseRevision, ctx?.workspaceId]);
   if (error) return <div className="v-page" lang={locale}><h1 className="v-title">{t('Projects unavailable')}</h1><p className="v-notice v-error" role="alert" lang="en">{error}</p><button className="v-button mt-4" onClick={refresh}>{t('Retry projects')}</button>{draft && <button className="v-button mt-4 ml-3" onClick={() => downloadText('visionary-project-edits.json', JSON.stringify(draft, null, 2), 'application/json')}>{t('Export current project edits')}</button>}</div>;
-  if (!ctx || !data) return <div className="v-page" lang={locale} role="status">{t("Loading projects\u2026")}</div>;
+  if (!ctx || !data) return <WorkspaceOpening locale={locale} title={t('Build something of your own')} note={t("Loading projects…")} />;
   let received, connections;
   try {
     received = sharedArtifacts(ctx);

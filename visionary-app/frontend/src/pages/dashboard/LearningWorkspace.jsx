@@ -1,4 +1,5 @@
 import WorkspaceDetails from '@/components/dashboard/WorkspaceDetails';
+import WorkspaceOpening from '@/components/dashboard/WorkspaceOpening';
 import {workspacePresentationCopy} from '@/lib/workspacePresentationCopy';
 import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
 import SpotIllustration from '@/components/landing/SpotIllustration';
@@ -336,10 +337,10 @@ function CurriculumLearningWorkspace({
   function exportSavedActivity() {
     const savedActivity=getLearningUnit(ctx,unitId);downloadText('saved-activity-view.json',JSON.stringify({title:savedActivity.title,stage:savedActivity.stage,source:savedActivity.sourceContext,locale:savedActivity.locale,explanation:savedActivity.explanation,representation:savedActivity.representation,question:savedActivity.question?{id:savedActivity.question.id,prompt:savedActivity.question.prompt,options:savedActivity.question.options}:undefined,selectedIndex:learningAnswerSelection(savedActivity),attempts:savedActivity.attempts?.map(attempt=>({id:attempt.id,kind:attempt.kind,prompt:attempt.question.prompt,selectedIndex:attempt.selectedIndex,correct:attempt.correct,at:attempt.at}))},null,2),'application/json');
   }
-  if (workspaceError || !ctx) return <div className="v-page" role={workspaceError ? 'alert' : 'status'} lang={locale}>{workspaceError || copy('Opening your learning workspace…')}</div>;
-  if (renderedWorkspaceId !== ctx.workspaceId) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening this workspace\u2026")}</div>;
-  if (unitId && unit?.id !== unitId && busy) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Restoring your saved learning activity\u2026")}</div>;
-  if (!unitId && unit) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening your learning outline\u2026")}</div>;
+  if (workspaceError || !ctx) return workspaceError ? <div className="v-page" role="alert" lang={locale}>{workspaceError}</div> : <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy('Opening your learning workspace…')} />;
+  if (renderedWorkspaceId !== ctx.workspaceId) return <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy("Opening this workspace\u2026")} />;
+  if (unitId && unit?.id !== unitId && busy) return <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy("Restoring your saved learning activity\u2026")} />;
+  if (!unitId && unit) return <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy("Opening your learning outline\u2026")} />;
   if (activityConflict) return <div className="v-page" lang={locale}><h1 className="v-title">{copy('Saved activity changed')}</h1><p className="v-notice" role="alert">{copy('A newer version of this activity is saved. Reload it to continue with the latest language, view and recorded answers.')}</p><button className="v-button primary mt-4" onClick={() => setContentRetry(value => value + 1)}>{copy('Retry saved learning')}</button></div>;
   const professional = ctx.role === 'professional';
   const foundational = ctx.role === 'student' && getStagePresentation(ctx).tier === 'foundational';
