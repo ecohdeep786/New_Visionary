@@ -23,17 +23,19 @@ export function commandConfiguration(env:Environment):IdentityConfig {
   assertSeparateIdentities(config);return config;
 }
 
-export function assertProductionAdmission(env:Environment,config:IdentityConfig,registryDigest:string,receiptBytes?:string):void {
+export function assertProductionAdmission(env:Environment,config:IdentityConfig,registryDigest:string,receiptBytes:string|undefined,expectedVersions:readonly number[]):void {
   if(!/^[a-f0-9]{40}$/.test(env.VISIONARY_RELEASE_COMMIT??''))throw Error('MIGRATION_SOURCE_REQUIRED');
   if(!config.cloudSql)return;
   if(env.DATA_MIGRATION_APPROVED_SHA!==env.VISIONARY_RELEASE_COMMIT)throw Error('MIGRATION_SOURCE_NOT_APPROVED');
   if(config.cloudSql.environment!=='production')return;
   if(!receiptBytes||!env.DATA_STAGING_RECEIPT_SHA256||sha(receiptBytes)!==env.DATA_STAGING_RECEIPT_SHA256)throw Error('STAGING_RECEIPT_REQUIRED');
   const receipt=JSON.parse(receiptBytes),age=Date.now()-Date.parse(receipt.verifiedAt);
+  const validVersions=Array.isArray(expectedVersions)&&expectedVersions.length>0&&expectedVersions.every((v,i)=>Number.isSafeInteger(v)&&v>0&&(i===0||v>expectedVersions[i-1]));
   if(receipt.environment!=='staging'||receipt.sourceCommit!==env.VISIONARY_RELEASE_COMMIT||receipt.registryDigest!==registryDigest
     ||receipt.project!==config.cloudSql.project||receipt.region!==config.cloudSql.region||receipt.instance!==config.cloudSql.instance
     ||receipt.database===config.cloudSql.database||!/^visionary_data_staging(?:_|$)/.test(receipt.database??'')
-    ||receipt.schema!==config.schema||receipt.status!=='verified'||!Array.isArray(receipt.appliedVersions)||receipt.appliedVersions.length!==1||receipt.appliedVersions[0]!==1
+    ||receipt.schema!==config.schema||receipt.status!=='verified'||!validVersions||!Array.isArray(receipt.appliedVersions)
+    ||receipt.appliedVersions.length!==expectedVersions.length||receipt.appliedVersions.some((v:number,i:number)=>v!==expectedVersions[i])
     ||!Number.isFinite(age)||age<0||age>7*24*60*60*1000)throw Error('STAGING_RECEIPT_INVALID');
 }
 
@@ -42,7 +44,7 @@ export async function runMigrationCommand(command:string,env:Environment,backend
   if(!['plan','apply','verify','rollback'].includes(command))throw Error('MIGRATION_COMMAND_DENIED');
   const config=commandConfiguration(env),registry=canonicalMigrations(backendRoot),registryDigest=sha(JSON.stringify(registry));
   if(command==='plan')return {command,registryDigest,versions:registry.map(m=>m.version),target:config.cloudSql??{environment:'synthetic'},schema:config.schema};
-  assertProductionAdmission(env,config,registryDigest,receiptBytes);
+  assertProductionAdmission(env,config,registryDigest,receiptBytes,registry.map(m=>m.version));
   const store=new PostgresMigrationStore(config),runner=new MigrationRunner(store,registry);
   try{
     if(command==='apply')await runner.applyAll();
