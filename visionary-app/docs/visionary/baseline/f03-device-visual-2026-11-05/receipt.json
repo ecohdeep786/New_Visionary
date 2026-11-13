@@ -1,0 +1,1921 @@
+{
+  "task": "F-03 device visual baseline",
+  "at": "2026-11-05T19:09:20.239Z",
+  "base": "http://127.0.0.1:4198",
+  "mode": "local preview repository (VITE_AUTH_MODE unset) — real register/OTP/onboarding/dashboard journey, no API interception, no fixture seeding",
+  "boundary": "Firebase-mode authenticated sessions remain dependent on the QA-login bring-up recorded as F-02-F1; captured here in the product preview mode instead.",
+  "sizes": [
+    {
+      "key": "mobile",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "key": "desktop",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "publicRoutes": [
+    "/",
+    "/about",
+    "/how-it-works",
+    "/pricing",
+    "/student",
+    "/teacher",
+    "/parent",
+    "/professional",
+    "/organization",
+    "/login",
+    "/register",
+    "/privacy"
+  ],
+  "roleJourneys": {
+    "student": [
+      "/dashboard/home",
+      "/dashboard/learn",
+      "/dashboard/ask",
+      "/dashboard/progress"
+    ],
+    "teacher": [
+      "/dashboard/home",
+      "/dashboard/classes",
+      "/dashboard/prepare",
+      "/dashboard/insights"
+    ],
+    "parent": [
+      "/dashboard/home",
+      "/dashboard/child",
+      "/dashboard/reports",
+      "/dashboard/notifications"
+    ],
+    "professional": [
+      "/dashboard/home",
+      "/dashboard/career",
+      "/dashboard/build",
+      "/dashboard/settings"
+    ],
+    "organization": [
+      "/dashboard/home",
+      "/dashboard/people",
+      "/dashboard/curriculum",
+      "/dashboard/analytics"
+    ]
+  },
+  "captures": [
+    {
+      "file": "public-landing-mobile.png",
+      "surface": "public",
+      "route": "/",
+      "size": "mobile",
+      "errors": [],
+      "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+      "url": "http://127.0.0.1:4198/"
+    },
+    {
+      "file": "public-about-mobile.png",
+      "surface": "public",
+      "route": "/about",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Understanding. Built in.",
+      "url": "http://127.0.0.1:4198/about"
+    },
+    {
+      "file": "public-how-it-works-mobile.png",
+      "surface": "public",
+      "route": "/how-it-works",
+      "size": "mobile",
+      "errors": [],
+      "h1": "How Visionary works.",
+      "url": "http://127.0.0.1:4198/how-it-works"
+    },
+    {
+      "file": "public-pricing-mobile.png",
+      "surface": "public",
+      "route": "/pricing",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Plans for every journey.",
+      "url": "http://127.0.0.1:4198/pricing"
+    },
+    {
+      "file": "public-role-student-mobile.png",
+      "surface": "public",
+      "route": "/student",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Learning,Learning, to master, to build.",
+      "url": "http://127.0.0.1:4198/student"
+    },
+    {
+      "file": "public-role-teacher-mobile.png",
+      "surface": "public",
+      "route": "/teacher",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Teaching.Teaching, to grow, to reach.",
+      "url": "http://127.0.0.1:4198/teacher"
+    },
+    {
+      "file": "public-role-parent-mobile.png",
+      "surface": "public",
+      "route": "/parent",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Parenting.Parenting, to see, to help.",
+      "url": "http://127.0.0.1:4198/parent"
+    },
+    {
+      "file": "public-role-professional-mobile.png",
+      "surface": "public",
+      "route": "/professional",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Building.Building, to apply, to grow.",
+      "url": "http://127.0.0.1:4198/professional"
+    },
+    {
+      "file": "public-role-organization-mobile.png",
+      "surface": "public",
+      "route": "/organization",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Leading.Leading, to scale, to last.",
+      "url": "http://127.0.0.1:4198/organization"
+    },
+    {
+      "file": "public-login-mobile.png",
+      "surface": "public",
+      "route": "/login",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Sign in to Visionary",
+      "url": "http://127.0.0.1:4198/login"
+    },
+    {
+      "file": "public-register-mobile.png",
+      "surface": "public",
+      "route": "/register",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Create a Visionary account",
+      "url": "http://127.0.0.1:4198/register"
+    },
+    {
+      "file": "public-privacy-mobile.png",
+      "surface": "public",
+      "route": "/privacy",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Your learning is personal. Privacy should be clear.",
+      "url": "http://127.0.0.1:4198/privacy"
+    },
+    {
+      "file": "public-landing-tablet.png",
+      "surface": "public",
+      "route": "/",
+      "size": "tablet",
+      "errors": [],
+      "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+      "url": "http://127.0.0.1:4198/"
+    },
+    {
+      "file": "public-about-tablet.png",
+      "surface": "public",
+      "route": "/about",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Understanding. Built in.",
+      "url": "http://127.0.0.1:4198/about"
+    },
+    {
+      "file": "public-how-it-works-tablet.png",
+      "surface": "public",
+      "route": "/how-it-works",
+      "size": "tablet",
+      "errors": [],
+      "h1": "How Visionary works.",
+      "url": "http://127.0.0.1:4198/how-it-works"
+    },
+    {
+      "file": "public-pricing-tablet.png",
+      "surface": "public",
+      "route": "/pricing",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Plans for every journey.",
+      "url": "http://127.0.0.1:4198/pricing"
+    },
+    {
+      "file": "public-role-student-tablet.png",
+      "surface": "public",
+      "route": "/student",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Learning,Learning, to master, to build.",
+      "url": "http://127.0.0.1:4198/student"
+    },
+    {
+      "file": "public-role-teacher-tablet.png",
+      "surface": "public",
+      "route": "/teacher",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Teaching.Teaching, to grow, to reach.",
+      "url": "http://127.0.0.1:4198/teacher"
+    },
+    {
+      "file": "public-role-parent-tablet.png",
+      "surface": "public",
+      "route": "/parent",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Parenting.Parenting, to see, to help.",
+      "url": "http://127.0.0.1:4198/parent"
+    },
+    {
+      "file": "public-role-professional-tablet.png",
+      "surface": "public",
+      "route": "/professional",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Building.Building, to apply, to grow.",
+      "url": "http://127.0.0.1:4198/professional"
+    },
+    {
+      "file": "public-role-organization-tablet.png",
+      "surface": "public",
+      "route": "/organization",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Leading.Leading, to scale, to last.",
+      "url": "http://127.0.0.1:4198/organization"
+    },
+    {
+      "file": "public-login-tablet.png",
+      "surface": "public",
+      "route": "/login",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Sign in to Visionary",
+      "url": "http://127.0.0.1:4198/login"
+    },
+    {
+      "file": "public-register-tablet.png",
+      "surface": "public",
+      "route": "/register",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Create a Visionary account",
+      "url": "http://127.0.0.1:4198/register"
+    },
+    {
+      "file": "public-privacy-tablet.png",
+      "surface": "public",
+      "route": "/privacy",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Your learning is personal. Privacy should be clear.",
+      "url": "http://127.0.0.1:4198/privacy"
+    },
+    {
+      "file": "public-landing-desktop.png",
+      "surface": "public",
+      "route": "/",
+      "size": "desktop",
+      "errors": [],
+      "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+      "url": "http://127.0.0.1:4198/"
+    },
+    {
+      "file": "public-about-desktop.png",
+      "surface": "public",
+      "route": "/about",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Understanding. Built in.",
+      "url": "http://127.0.0.1:4198/about"
+    },
+    {
+      "file": "public-how-it-works-desktop.png",
+      "surface": "public",
+      "route": "/how-it-works",
+      "size": "desktop",
+      "errors": [],
+      "h1": "How Visionary works.",
+      "url": "http://127.0.0.1:4198/how-it-works"
+    },
+    {
+      "file": "public-pricing-desktop.png",
+      "surface": "public",
+      "route": "/pricing",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Plans for every journey.",
+      "url": "http://127.0.0.1:4198/pricing"
+    },
+    {
+      "file": "public-role-student-desktop.png",
+      "surface": "public",
+      "route": "/student",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Learning,Learning, to master, to build.",
+      "url": "http://127.0.0.1:4198/student"
+    },
+    {
+      "file": "public-role-teacher-desktop.png",
+      "surface": "public",
+      "route": "/teacher",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Teaching.Teaching, to grow, to reach.",
+      "url": "http://127.0.0.1:4198/teacher"
+    },
+    {
+      "file": "public-role-parent-desktop.png",
+      "surface": "public",
+      "route": "/parent",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Parenting.Parenting, to see, to help.",
+      "url": "http://127.0.0.1:4198/parent"
+    },
+    {
+      "file": "public-role-professional-desktop.png",
+      "surface": "public",
+      "route": "/professional",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Building.Building, to apply, to grow.",
+      "url": "http://127.0.0.1:4198/professional"
+    },
+    {
+      "file": "public-role-organization-desktop.png",
+      "surface": "public",
+      "route": "/organization",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Leading.Leading, to scale, to last.",
+      "url": "http://127.0.0.1:4198/organization"
+    },
+    {
+      "file": "public-login-desktop.png",
+      "surface": "public",
+      "route": "/login",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Sign in to Visionary",
+      "url": "http://127.0.0.1:4198/login"
+    },
+    {
+      "file": "public-register-desktop.png",
+      "surface": "public",
+      "route": "/register",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Create a Visionary account",
+      "url": "http://127.0.0.1:4198/register"
+    },
+    {
+      "file": "public-privacy-desktop.png",
+      "surface": "public",
+      "route": "/privacy",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Your learning is personal. Privacy should be clear.",
+      "url": "http://127.0.0.1:4198/privacy"
+    },
+    {
+      "file": "onboarding-student-mobile-identity.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "identity",
+      "size": "mobile",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-mobile-about.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "about",
+      "size": "mobile",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-mobile-step1.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "What are you learning?",
+      "size": "mobile",
+      "h1": "What are you learning?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-mobile-welcome1.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 1 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-student-mobile-welcome2.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 2 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-student-mobile-welcome3.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 3 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "student-dashboard-home-mobile.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/home",
+      "size": "mobile",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "student-dashboard-learn-mobile.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/learn",
+      "size": "mobile",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Let’s learn",
+      "url": "http://127.0.0.1:4198/dashboard/learn"
+    },
+    {
+      "file": "student-dashboard-ask-mobile.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/ask",
+      "size": "mobile",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Visionary Guide",
+      "url": "http://127.0.0.1:4198/dashboard/ask"
+    },
+    {
+      "file": "student-dashboard-progress-mobile.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/progress",
+      "size": "mobile",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Your learning evidence",
+      "url": "http://127.0.0.1:4198/dashboard/progress"
+    },
+    {
+      "file": "onboarding-teacher-mobile-identity.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "identity",
+      "size": "mobile",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-mobile-about.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "about",
+      "size": "mobile",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-mobile-step1.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "Make Visionary work for you",
+      "size": "mobile",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-mobile-welcome1.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 1 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-teacher-mobile-welcome2.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 2 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-teacher-mobile-welcome3.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 3 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "teacher-dashboard-home-mobile.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/home",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "teacher-dashboard-classes-mobile.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/classes",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Your classes",
+      "url": "http://127.0.0.1:4198/dashboard/classes"
+    },
+    {
+      "file": "teacher-dashboard-prepare-mobile.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/prepare",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Prepare a lesson",
+      "url": "http://127.0.0.1:4198/dashboard/prepare"
+    },
+    {
+      "file": "teacher-dashboard-insights-mobile.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/insights",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Teaching insights",
+      "url": "http://127.0.0.1:4198/dashboard/insights"
+    },
+    {
+      "file": "onboarding-parent-mobile-identity.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "identity",
+      "size": "mobile",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-mobile-about.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "about",
+      "size": "mobile",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-mobile-step1.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "Make Visionary work for you",
+      "size": "mobile",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-mobile-welcome1.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 1 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-parent-mobile-welcome2.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 2 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-parent-mobile-welcome3.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 3 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "parent-dashboard-home-mobile.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/home",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "parent-dashboard-child-mobile.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/child",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Your children",
+      "url": "http://127.0.0.1:4198/dashboard/child"
+    },
+    {
+      "file": "parent-dashboard-reports-mobile.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/reports",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Their learning, in context",
+      "url": "http://127.0.0.1:4198/dashboard/reports"
+    },
+    {
+      "file": "parent-dashboard-notifications-mobile.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/notifications",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Family updates",
+      "url": "http://127.0.0.1:4198/dashboard/notifications"
+    },
+    {
+      "file": "onboarding-professional-mobile-identity.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "identity",
+      "size": "mobile",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-mobile-about.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "about",
+      "size": "mobile",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-mobile-step1.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "Make Visionary work for you",
+      "size": "mobile",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-mobile-welcome1.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 1 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-professional-mobile-welcome2.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 2 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-professional-mobile-welcome3.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 3 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "professional-dashboard-home-mobile.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/home",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "professional-dashboard-career-mobile.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/career",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Your next capability",
+      "url": "http://127.0.0.1:4198/dashboard/career"
+    },
+    {
+      "file": "professional-dashboard-build-mobile.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/build",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Build something of your own",
+      "url": "http://127.0.0.1:4198/dashboard/build"
+    },
+    {
+      "file": "professional-dashboard-settings-mobile.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/settings",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Make Guide work for you",
+      "url": "http://127.0.0.1:4198/dashboard/settings"
+    },
+    {
+      "file": "onboarding-organization-mobile-identity.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "identity",
+      "size": "mobile",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-mobile-about.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "about",
+      "size": "mobile",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-mobile-step1.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "Make Visionary work for you",
+      "size": "mobile",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-mobile-welcome1.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 1 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-organization-mobile-welcome2.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 2 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-organization-mobile-welcome3.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 3 of 3",
+      "size": "mobile",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "organization-dashboard-home-mobile.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/home",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "organization-dashboard-people-mobile.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/people",
+      "size": "mobile",
+      "errors": [],
+      "h1": "People & connections",
+      "url": "http://127.0.0.1:4198/dashboard/people"
+    },
+    {
+      "file": "organization-dashboard-curriculum-mobile.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/curriculum",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Reviewed curriculum templates",
+      "url": "http://127.0.0.1:4198/dashboard/curriculum"
+    },
+    {
+      "file": "organization-dashboard-analytics-mobile.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/analytics",
+      "size": "mobile",
+      "errors": [],
+      "h1": "Institution analytics",
+      "url": "http://127.0.0.1:4198/dashboard/analytics"
+    },
+    {
+      "file": "onboarding-student-tablet-identity.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "identity",
+      "size": "tablet",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-tablet-about.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "about",
+      "size": "tablet",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-tablet-step1.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "What are you learning?",
+      "size": "tablet",
+      "h1": "What are you learning?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-tablet-welcome1.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 1 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-student-tablet-welcome2.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 2 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-student-tablet-welcome3.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 3 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "student-dashboard-home-tablet.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/home",
+      "size": "tablet",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "student-dashboard-learn-tablet.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/learn",
+      "size": "tablet",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Let’s learn",
+      "url": "http://127.0.0.1:4198/dashboard/learn"
+    },
+    {
+      "file": "student-dashboard-ask-tablet.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/ask",
+      "size": "tablet",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Visionary Guide",
+      "url": "http://127.0.0.1:4198/dashboard/ask"
+    },
+    {
+      "file": "student-dashboard-progress-tablet.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/progress",
+      "size": "tablet",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Your learning evidence",
+      "url": "http://127.0.0.1:4198/dashboard/progress"
+    },
+    {
+      "file": "onboarding-teacher-tablet-identity.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "identity",
+      "size": "tablet",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-tablet-about.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "about",
+      "size": "tablet",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-tablet-step1.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "Make Visionary work for you",
+      "size": "tablet",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-tablet-welcome1.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 1 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-teacher-tablet-welcome2.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 2 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-teacher-tablet-welcome3.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 3 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "teacher-dashboard-home-tablet.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/home",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "teacher-dashboard-classes-tablet.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/classes",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Your classes",
+      "url": "http://127.0.0.1:4198/dashboard/classes"
+    },
+    {
+      "file": "teacher-dashboard-prepare-tablet.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/prepare",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Prepare a lesson",
+      "url": "http://127.0.0.1:4198/dashboard/prepare"
+    },
+    {
+      "file": "teacher-dashboard-insights-tablet.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/insights",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Teaching insights",
+      "url": "http://127.0.0.1:4198/dashboard/insights"
+    },
+    {
+      "file": "onboarding-parent-tablet-identity.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "identity",
+      "size": "tablet",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-tablet-about.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "about",
+      "size": "tablet",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-tablet-step1.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "Make Visionary work for you",
+      "size": "tablet",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-tablet-welcome1.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 1 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-parent-tablet-welcome2.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 2 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-parent-tablet-welcome3.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 3 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "parent-dashboard-home-tablet.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/home",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "parent-dashboard-child-tablet.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/child",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Your children",
+      "url": "http://127.0.0.1:4198/dashboard/child"
+    },
+    {
+      "file": "parent-dashboard-reports-tablet.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/reports",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Their learning, in context",
+      "url": "http://127.0.0.1:4198/dashboard/reports"
+    },
+    {
+      "file": "parent-dashboard-notifications-tablet.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/notifications",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Family updates",
+      "url": "http://127.0.0.1:4198/dashboard/notifications"
+    },
+    {
+      "file": "onboarding-professional-tablet-identity.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "identity",
+      "size": "tablet",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-tablet-about.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "about",
+      "size": "tablet",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-tablet-step1.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "Make Visionary work for you",
+      "size": "tablet",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-tablet-welcome1.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 1 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-professional-tablet-welcome2.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 2 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-professional-tablet-welcome3.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 3 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "professional-dashboard-home-tablet.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/home",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "professional-dashboard-career-tablet.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/career",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Your next capability",
+      "url": "http://127.0.0.1:4198/dashboard/career"
+    },
+    {
+      "file": "professional-dashboard-build-tablet.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/build",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Build something of your own",
+      "url": "http://127.0.0.1:4198/dashboard/build"
+    },
+    {
+      "file": "professional-dashboard-settings-tablet.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/settings",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Make Guide work for you",
+      "url": "http://127.0.0.1:4198/dashboard/settings"
+    },
+    {
+      "file": "onboarding-organization-tablet-identity.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "identity",
+      "size": "tablet",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-tablet-about.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "about",
+      "size": "tablet",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-tablet-step1.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "Make Visionary work for you",
+      "size": "tablet",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-tablet-welcome1.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 1 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-organization-tablet-welcome2.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 2 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-organization-tablet-welcome3.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 3 of 3",
+      "size": "tablet",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "organization-dashboard-home-tablet.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/home",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "organization-dashboard-people-tablet.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/people",
+      "size": "tablet",
+      "errors": [],
+      "h1": "People & connections",
+      "url": "http://127.0.0.1:4198/dashboard/people"
+    },
+    {
+      "file": "organization-dashboard-curriculum-tablet.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/curriculum",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Reviewed curriculum templates",
+      "url": "http://127.0.0.1:4198/dashboard/curriculum"
+    },
+    {
+      "file": "organization-dashboard-analytics-tablet.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/analytics",
+      "size": "tablet",
+      "errors": [],
+      "h1": "Institution analytics",
+      "url": "http://127.0.0.1:4198/dashboard/analytics"
+    },
+    {
+      "file": "onboarding-student-desktop-identity.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "identity",
+      "size": "desktop",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-desktop-about.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "about",
+      "size": "desktop",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-desktop-step1.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "What are you learning?",
+      "size": "desktop",
+      "h1": "What are you learning?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-desktop-step2.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "Choose your school context",
+      "size": "desktop",
+      "h1": "Choose your school context",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-desktop-step3.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "Ready to start with Visionary?",
+      "size": "desktop",
+      "h1": "Ready to start with Visionary?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-student-desktop-welcome1.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 1 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-student-desktop-welcome2.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 2 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-student-desktop-welcome3.png",
+      "surface": "onboarding",
+      "role": "student",
+      "step": "welcome 3 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "student-dashboard-home-desktop.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/home",
+      "size": "desktop",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "student-dashboard-learn-desktop.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/learn",
+      "size": "desktop",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Let’s learn",
+      "url": "http://127.0.0.1:4198/dashboard/learn"
+    },
+    {
+      "file": "student-dashboard-ask-desktop.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/ask",
+      "size": "desktop",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Visionary Guide",
+      "url": "http://127.0.0.1:4198/dashboard/ask"
+    },
+    {
+      "file": "student-dashboard-progress-desktop.png",
+      "surface": "dashboard",
+      "role": "student",
+      "route": "/dashboard/progress",
+      "size": "desktop",
+      "wizardSteps": [
+        "What are you learning?",
+        "Choose your school context",
+        "Ready to start with Visionary?"
+      ],
+      "errors": [],
+      "h1": "Your learning evidence",
+      "url": "http://127.0.0.1:4198/dashboard/progress"
+    },
+    {
+      "file": "onboarding-teacher-desktop-identity.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "identity",
+      "size": "desktop",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-desktop-about.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "about",
+      "size": "desktop",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-desktop-step1.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "Make Visionary work for you",
+      "size": "desktop",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-desktop-step2.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "Ready to start with Visionary?",
+      "size": "desktop",
+      "h1": "Ready to start with Visionary?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-teacher-desktop-welcome1.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 1 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-teacher-desktop-welcome2.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 2 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-teacher-desktop-welcome3.png",
+      "surface": "onboarding",
+      "role": "teacher",
+      "step": "welcome 3 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "teacher-dashboard-home-desktop.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/home",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "teacher-dashboard-classes-desktop.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/classes",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Your classes",
+      "url": "http://127.0.0.1:4198/dashboard/classes"
+    },
+    {
+      "file": "teacher-dashboard-prepare-desktop.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/prepare",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Prepare a lesson",
+      "url": "http://127.0.0.1:4198/dashboard/prepare"
+    },
+    {
+      "file": "teacher-dashboard-insights-desktop.png",
+      "surface": "dashboard",
+      "role": "teacher",
+      "route": "/dashboard/insights",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Teaching insights",
+      "url": "http://127.0.0.1:4198/dashboard/insights"
+    },
+    {
+      "file": "onboarding-parent-desktop-identity.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "identity",
+      "size": "desktop",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-desktop-about.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "about",
+      "size": "desktop",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-desktop-step1.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "Make Visionary work for you",
+      "size": "desktop",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-desktop-step2.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "Ready to start with Visionary?",
+      "size": "desktop",
+      "h1": "Ready to start with Visionary?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-parent-desktop-welcome1.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 1 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-parent-desktop-welcome2.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 2 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-parent-desktop-welcome3.png",
+      "surface": "onboarding",
+      "role": "parent",
+      "step": "welcome 3 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "parent-dashboard-home-desktop.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/home",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "parent-dashboard-child-desktop.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/child",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Your children",
+      "url": "http://127.0.0.1:4198/dashboard/child"
+    },
+    {
+      "file": "parent-dashboard-reports-desktop.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/reports",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Their learning, in context",
+      "url": "http://127.0.0.1:4198/dashboard/reports"
+    },
+    {
+      "file": "parent-dashboard-notifications-desktop.png",
+      "surface": "dashboard",
+      "role": "parent",
+      "route": "/dashboard/notifications",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Family updates",
+      "url": "http://127.0.0.1:4198/dashboard/notifications"
+    },
+    {
+      "file": "onboarding-professional-desktop-identity.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "identity",
+      "size": "desktop",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-desktop-about.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "about",
+      "size": "desktop",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-desktop-step1.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "Make Visionary work for you",
+      "size": "desktop",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-desktop-step2.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "Ready to start with Visionary?",
+      "size": "desktop",
+      "h1": "Ready to start with Visionary?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-professional-desktop-welcome1.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 1 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-professional-desktop-welcome2.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 2 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-professional-desktop-welcome3.png",
+      "surface": "onboarding",
+      "role": "professional",
+      "step": "welcome 3 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "professional-dashboard-home-desktop.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/home",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "professional-dashboard-career-desktop.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/career",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Your next capability",
+      "url": "http://127.0.0.1:4198/dashboard/career"
+    },
+    {
+      "file": "professional-dashboard-build-desktop.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/build",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Build something of your own",
+      "url": "http://127.0.0.1:4198/dashboard/build"
+    },
+    {
+      "file": "professional-dashboard-settings-desktop.png",
+      "surface": "dashboard",
+      "role": "professional",
+      "route": "/dashboard/settings",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Make Guide work for you",
+      "url": "http://127.0.0.1:4198/dashboard/settings"
+    },
+    {
+      "file": "onboarding-organization-desktop-identity.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "identity",
+      "size": "desktop",
+      "h1": "Make Visionary your own",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-desktop-about.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "about",
+      "size": "desktop",
+      "h1": "A little about you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-desktop-step1.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "Make Visionary work for you",
+      "size": "desktop",
+      "h1": "Make Visionary work for you",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-desktop-step2.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "Ready to start with Visionary?",
+      "size": "desktop",
+      "h1": "Ready to start with Visionary?",
+      "url": "http://127.0.0.1:4198/onboarding"
+    },
+    {
+      "file": "onboarding-organization-desktop-welcome1.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 1 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-organization-desktop-welcome2.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 2 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "onboarding-organization-desktop-welcome3.png",
+      "surface": "onboarding",
+      "role": "organization",
+      "step": "welcome 3 of 3",
+      "size": "desktop",
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "organization-dashboard-home-desktop.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/home",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Welcome back, Alex.",
+      "url": "http://127.0.0.1:4198/dashboard/home"
+    },
+    {
+      "file": "organization-dashboard-people-desktop.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/people",
+      "size": "desktop",
+      "errors": [],
+      "h1": "People & connections",
+      "url": "http://127.0.0.1:4198/dashboard/people"
+    },
+    {
+      "file": "organization-dashboard-curriculum-desktop.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/curriculum",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Reviewed curriculum templates",
+      "url": "http://127.0.0.1:4198/dashboard/curriculum"
+    },
+    {
+      "file": "organization-dashboard-analytics-desktop.png",
+      "surface": "dashboard",
+      "role": "organization",
+      "route": "/dashboard/analytics",
+      "size": "desktop",
+      "errors": [],
+      "h1": "Institution analytics",
+      "url": "http://127.0.0.1:4198/dashboard/analytics"
+    }
+  ],
+  "failures": []
+}
