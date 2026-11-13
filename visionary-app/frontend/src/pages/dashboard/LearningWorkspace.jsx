@@ -545,7 +545,7 @@ function CurriculumLearningWorkspace({
       const RepresentationIcon = completed ? CheckCircle2 : c.representations.some(item => item.kind === 'cube') ? Box : c.representations.some(item => item.kind === 'number-line') ? LineChart : c.representations.some(item => item.kind === 'scene' || item.kind === 'diagram') ? Layers : BookOpen;
       return <li className="v-concept-path-item" key={c.id} data-next={current} data-recorded-complete={completed}>
         <div className="v-concept-row">
-          <span className="v-concept-symbol" aria-hidden="true"><RepresentationIcon size={22} strokeWidth={1.75}/></span>
+          <span className="v-concept-symbol" aria-hidden="true"><RepresentationIcon size={22} strokeWidth={1.8}/></span>
           <div className="v-concept-copy"><p className="font-medium" lang={c.locale || undefined}>{c.title}</p><p className="v-muted">{copy(state.concepts.find(s => s.conceptId === c.id)?.stage || 'No evidence yet')} · {c.languageUnavailable ? copy('Teaching content not loaded in {language}', {language: languageNames[ctx.locale]}) : c.prerequisiteIds.length ? copy('{count} prerequisites', {count: c.prerequisiteIds.length}) : copy("Starting concept")}</p></div>
           <button className={`v-button v-concept-action ${current ? 'primary' : ''}`} disabled={busy} onClick={() => run(() => openConcept(c.id))}>{activity ? copy("Continue") : current ? copy("Start") : copy('Open')}<span className="sr-only">: {c.title}</span><ArrowRight size={16} aria-hidden="true"/></button>
         </div>
