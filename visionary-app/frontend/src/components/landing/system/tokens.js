@@ -78,6 +78,33 @@ export const BUTTONS = {
   tertiary: "text-[#0066cc] hover:underline",
 };
 
+/**
+ * CTA law class strings — the ONE definition every public page imports.
+ *
+ * Measured drift (FAP-59 audit, 2026-10-31): the A2 law string was copy-pasted
+ * into six policy/support pages, so a single edit could not reach them all and
+ * the second anatomy (48px/16px/px-28) survived in the rest set. The strings
+ * live here beside the law they encode; pages compose them by name and never
+ * re-declare geometry.
+ *
+ *   `inkPill`   — the primary ink CTA (44px / 17px / -0.011em / px-21 / pill).
+ *   `quietLink` — the quiet next-step path (17px link + 44px hit area).
+ *   `chipPill`  — the grey in-page jump chip (same geometry, quiet tone).
+ */
+export const CTA_LAW = {
+  inkPill:
+    "inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4 motion-reduce:transform-none motion-reduce:transition-none",
+  quietLink:
+    "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4",
+  chipPill:
+    "inline-flex min-h-11 items-center justify-center rounded-full bg-[#f5f5f7] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-[#1d1d1f] transition-colors duration-200 hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4",
+  /* `greyPill` is the outline/secondary pair of the same law — the quiet grey
+     pill that sits beside an ink pill (referral share actions). Same geometry,
+     different tone: it is the `alpha` tone from BUTTONS at pill scale. */
+  greyPill:
+    "inline-flex h-11 items-center justify-center rounded-full bg-[#f5f5f7] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-[#1d1d1f] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 motion-reduce:transition-none",
+};
+
 /** Content roles resolve from src/styles/rhythm.css at the active breakpoint.
  * The established hero remains independent of the content scale. */
 export const type = {
