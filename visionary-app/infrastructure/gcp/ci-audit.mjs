@@ -29,13 +29,16 @@ const secretPatterns = [
 const isMap = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const exact = (actual, expected) => isMap(actual) && Object.keys(actual).length === Object.keys(expected).length
   && Object.entries(expected).every(([key, value]) => actual[key] === value);
-const requiredStep = (step, command) => step.run === command && step.if === undefined
+const requiredStep = (step, command) => step.run === command && step.if === undefined && step.shell === undefined
   && (step['continue-on-error'] === undefined || step['continue-on-error'] === false);
 const unconditionalJob = job => job.if === undefined && job.needs === undefined
   && (job['continue-on-error'] === undefined || job['continue-on-error'] === false);
 const stepDirectory = (job, step) => step['working-directory'] ?? job.defaults?.run?.['working-directory'];
-const safeOrder = (steps, commands) => {
-  const indices = commands.map(command => steps.findIndex(step => requiredStep(step, command)));
+const safeOrder = (job, commands) => {
+  const indices = commands.map(command => {
+    if (job.steps.filter(step => step.run === command).length !== 1) return -1;
+    return job.steps.findIndex(step => requiredStep(step, command) && stepDirectory(job, step) === app);
+  });
   return indices.every((index, position) => index >= 0 && (position === 0 || indices[position - 1] < index));
 };
 
@@ -102,7 +105,8 @@ export function runCiAudit({
       actions.length > 0 && actions.every(action => /^[\w.-]+\/[\w.-]+(?:\/[\w.-]+)*@[a-f0-9]{40}$/.test(action)),
       'external actions are pinned to full commit SHAs'),
     check('component-tests-builds',
-      unconditionalJob(checks) && checks.services?.postgres?.image === 'postgres:16'
+      unconditionalJob(checks) && checks.defaults?.run?.shell === undefined && config.defaults?.run?.shell === undefined
+        && checks.services?.postgres?.image === 'postgres:16'
         && componentCommands.every(command => hasCheckStep(command)),
       'checks run the product, data, image, and infrastructure suites'),
     check('dependency-secret-checks',
@@ -119,7 +123,8 @@ export function runCiAudit({
     check('immutable-release-smoke',
       production.needs === 'checks' && typeof production.if === 'string' && production.if.replace(/\s+/g, ' ').trim() === publishGuard
         && production['continue-on-error'] === undefined
-        && safeOrder(production.steps, [
+        && config.defaults?.run?.shell === undefined && production.defaults?.run?.shell === undefined
+        && safeOrder(production, [
           'node infrastructure/gcp/build-image.mjs',
           'node infrastructure/gcp/container-smoke.mjs',
           'node infrastructure/gcp/release.mjs publish',
@@ -128,7 +133,8 @@ export function runCiAudit({
         && Boolean(auth) && production.steps.filter(step => step.id === 'publish').length === 1,
       'production depends on successful checks and builds and smokes the image before publishing'),
     check('canary-rollback-wiring',
-      deploy?.if === deployGuard && deploy['continue-on-error'] === undefined
+      deploy?.if === deployGuard && deploy['continue-on-error'] === undefined && deploy.shell === undefined
+        && production.steps.filter(step => step.run === 'node infrastructure/gcp/release.mjs deploy').length === 1
         && stepDirectory(production, deploy) === app && Boolean(publish)
         && deploy.env?.PRODUCTION_IMAGE === '${{ steps.publish.outputs.image }}'
         && deploy.env?.PRODUCTION_DEPLOY_ENABLED === '${{ vars.PRODUCTION_DEPLOY_ENABLED }}'

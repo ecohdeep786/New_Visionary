@@ -37,6 +37,13 @@ const mutations = [
     "      - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'\n        run:", '      - run:'],
   ['a deploy using a different image', 'canary-rollback-wiring', 'steps.publish.outputs.image', 'steps.other.outputs.image'],
   ['cancellable deployments', 'canary-rollback-wiring', 'cancel-in-progress: false', 'cancel-in-progress: true'],
+  ['a product check with a custom shell', 'component-tests-builds', '      - run: npm run check', '$&\n        shell: echo {0}'],
+  ['a production smoke in a different directory', 'immutable-release-smoke',
+    /(^  production:[\s\S]*?      - run: node infrastructure\/gcp\/container-smoke\.mjs)$/m, '$&\n        working-directory: fake'],
+  ['a duplicate production publish', 'immutable-release-smoke', '      - id: publish',
+    '      - if: always()\n        run: node infrastructure/gcp/release.mjs publish\n      - id: publish'],
+  ['a duplicate production deploy', 'canary-rollback-wiring', "      - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'",
+    "      - run: node infrastructure/gcp/release.mjs deploy\n      - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'"],
   ['a production job with only a step timeout', 'job-bounds', '    timeout-minutes: 25\n', ''],
 ];
 
