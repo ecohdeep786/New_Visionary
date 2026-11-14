@@ -1,0 +1,115 @@
+{
+  "email": "t08-firebase-1794386344873@visionary.test",
+  "base": "http://localhost:5173",
+  "steps": [
+    {
+      "step": "auth-mode",
+      "source": "firebase",
+      "origin": "http://localhost:5173"
+    },
+    {
+      "step": "after-register-view",
+      "url": "/register",
+      "headings": [
+        "Confirm your email address"
+      ],
+      "status": null,
+      "body": "Skip to content | isionary | Create a Visionary account | Start a learning journey shaped around you. | I already have an account. Sign in | Confirm your email address | Check t08-firebase-1794386344873@visionary.test for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification. | I verified my email | Resend available in 59s | Sign in again | English | Help | Privacy | Terms",
+      "buttons": [
+        {
+          "t": "I verified my email",
+          "d": false
+        },
+        {
+          "t": "Resend available in 59s",
+          "d": true
+        }
+      ]
+    },
+    {
+      "step": "api-after-register",
+      "calls": [
+        {
+          "url": "identitytoolkit.googleapis.com/v2/passwordPolicy?key=<redacted>",
+          "status": 200,
+          "res": "{\n  \"customStrengthOptions\": {\n    \"minPasswordLength\": 6,\n    \"maxPasswordLength\": 4096\n  },\n  \"schemaVersion\": 1,\n  \"enforcementState\": \"ENFORCE\"\n}\n"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:signUp?key=<redacted>",
+          "status": 200,
+          "req": "{\"returnSecureToken\":true,\"email\":\"t08-firebase-1794386344873@visionary.test\",\"password\":\"correct-horse-9\",\"clientType\":\"CLIENT_TYPE_WEB\"}",
+          "res": "{\n  \"kind\": \"identitytoolkit#SignupNewUserResponse\",\n  \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidm"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:lookup?key=<redacted>",
+          "status": 200,
+          "req": "{\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc",
+          "res": "{\n  \"kind\": \"identitytoolkit#GetAccountInfoResponse\",\n  \"users\": [\n    {\n      \"localId\": \"LaDxOhsiI7QfYXTldUp43H41g3u2\",\n      \"email\": \"t08-firebase-1794386344873@visionary.test\",\n      \"passwordHash\": \"UkVEQUNURUQ=\",\n      \"emailVerified\": false,\n      \"pas"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=<redacted>",
+          "status": 200,
+          "req": "{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNo",
+          "res": "{\n  \"kind\": \"identitytoolkit#GetOobConfirmationCodeResponse\",\n  \"email\": \"t08-firebase-1794386344873@visionary.test\"\n}\n"
+        }
+      ]
+    },
+    {
+      "step": "cooldown-now",
+      "label": "Resend available in 59s",
+      "disabled": true
+    },
+    {
+      "step": "resend-ready",
+      "label": "Resend verification link",
+      "disabled": false
+    },
+    {
+      "step": "after-resend",
+      "status": "Verification link sent. Check your inbox and spam folder.",
+      "cooldownLabel": "Resend available in 57s",
+      "newApiCalls": [
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=<redacted>",
+          "status": 200,
+          "req": "{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNo",
+          "res": "{\n  \"kind\": \"identitytoolkit#GetOobConfirmationCodeResponse\",\n  \"email\": \"t08-firebase-1794386344873@visionary.test\"\n}\n"
+        }
+      ]
+    },
+    {
+      "step": "signin-gate",
+      "url": "/login",
+      "headings": [
+        "Confirm your email address"
+      ],
+      "status": null,
+      "hasVerifyError": true,
+      "body": "Skip to content | isionary | Sign in to Visionary | Use email or Google to continue. | Don't have an account? Create account | Confirm your email address | Check t08-firebase-1794386344873@visionary.test for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification. | I verified my email | Resend verification link | Sign in again | English | Help | Privacy | Terms"
+    },
+    {
+      "step": "failures-all",
+      "count": 2,
+      "failures": [
+        {
+          "url": "http://localhost:5173/api/auth/me",
+          "status": 401,
+          "body": "{\"message\":\"Sign in to continue.\",\"error\":\"Unauthorized\",\"statusCode\":401}"
+        },
+        {
+          "url": "http://localhost:5173/api/auth/me",
+          "status": 401,
+          "body": "{\"message\":\"Sign in to continue.\",\"error\":\"Unauthorized\",\"statusCode\":401}"
+        }
+      ]
+    },
+    {
+      "step": "console",
+      "count": 2,
+      "msgs": [
+        "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+        "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+      ]
+    }
+  ]
+}

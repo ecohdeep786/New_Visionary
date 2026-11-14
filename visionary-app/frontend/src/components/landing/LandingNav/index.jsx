@@ -438,7 +438,7 @@ export default function LandingNav() {
             className={iconBtn(false) + " lg:hidden"}
             style={{ color: C.graphite }}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </div>

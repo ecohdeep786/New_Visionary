@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, ArrowRight } from 'lucide-react';
 import WorkspaceIntro from './WorkspaceIntro';
+import WorkspaceOpening from './WorkspaceOpening';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { getLearningWorkspace, openCubeLearningSample } from '@/services/learningPipelineService';
 export default function CubeLearningEntry({
@@ -19,7 +20,8 @@ export default function CubeLearningEntry({
   const navigate = useNavigate();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');const [,setRetry]=useState(0);
-  if (workspaceError || !ctx) return <div className="v-page" role={workspaceError ? 'alert' : 'status'} lang={locale}>{workspaceError || copy("Opening your learning workspace\u2026")}</div>;
+  if (workspaceError) return <div className="v-page" role="alert" lang={locale}>{workspaceError}</div>;
+  if (!ctx) return <WorkspaceOpening locale={locale} title={from === 'practice' ? copy("Practice cube volume in your lesson") : copy("Explore cube volume in your lesson")} note={copy("Opening your learning workspace…")} />;
   let active;
   try {
     active = getLearningWorkspace(ctx).units.find(unit => unit.conceptId === 'sample:cube:concept' && !unit.classId && unit.stage !== 'completed');

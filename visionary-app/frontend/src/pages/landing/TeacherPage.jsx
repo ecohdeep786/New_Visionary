@@ -115,15 +115,12 @@ const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
   { code: "bn", label: "Bengali" },
-  { code: "ta", label: "Tamil" },
-  { code: "kn", label: "Kannada" },
-  { code: "pa", label: "Punjabi" },
 ];
 
 const TEACHER_LANGUAGE_QUESTIONS = [
-  { hi: "Is concept ko simple tarike se kaise samjhaun?", en: "How do I explain this concept simply?", bn: "এই ধারণাটি সহজে কীভাবে বোঝাব?", ta: "இந்தக் கருத்தை எப்படி எளிதாக விளக்குவது?", kn: "ಈ ಪರಿಕಲ್ಪನೆಯನ್ನು ಸುಲಭವಾಗಿ ಹೇಗೆ ವಿವರಿಸುವುದು?", pa: "ਇਸ ਧਾਰਨਾ ਨੂੰ ਸੌਖੇ ਢੰਗ ਨਾਲ ਕਿਵੇਂ ਸਮਝਾਵਾਂ?" },
-  { hi: "Kis bachche ko aur madad chahiye?", en: "Which child needs more help?", bn: "কোন শিশুর আরও সাহায্য দরকার?", ta: "எந்த குழந்தைக்கு மேலும் உதவி தேவை?", kn: "ಯಾವ ಮಗುವಿಗೆ ಇನ್ನಷ್ಟು ಸಹಾಯ ಬೇಕು?", pa: "ਕਿਹੜੇ ਬੱਚੇ ਨੂੰ ਹੋਰ ਮਦਦ ਚਾਹੀਦੀ ਹੈ?" },
-  { hi: "Agla lesson kaise behtar banaun?", en: "How do I make the next lesson better?", bn: "পরবর্তী পাঠ আরও ভালো কীভাবে করব?", ta: "அடுத்த பாடத்தை எப்படி மேம்படுத்துவது?", kn: "ಮುಂದಿನ ಪಾಠವನ್ನು ಇನ್ನಷ್ಟು ಉತ್ತಮಗೊಳಿಸುವುದು ಹೇಗೆ?", pa: "ਅਗਲਾ ਪਾਠ ਹੋਰ ਵਧੀਆ ਕਿਵੇਂ ਬਣਾਵਾਂ?" },
+  { hi: "Is concept ko simple tarike se kaise samjhaun?", en: "How do I explain this concept simply?", bn: "এই ধারণাটি সহজে কীভাবে বোঝাব?" },
+  { hi: "Kis bachche ko aur madad chahiye?", en: "Which child needs more help?", bn: "কোন শিশুর আরও সাহায্য দরকার?" },
+  { hi: "Agla lesson kaise behtar banaun?", en: "How do I make the next lesson better?", bn: "পরবর্তী পাঠ আরও ভালো কীভাবে করব?" },
 ];
 
 const ACHIEVEMENT_TABS = [

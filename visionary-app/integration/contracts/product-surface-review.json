@@ -63,16 +63,6 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/auth/LanguageSelector.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
     "frontend/src/components/AuthLayout.jsx": {
       "profile": "client-presentation",
       "state": "connected",
@@ -944,16 +934,12 @@
       ]
     },
     "frontend/src/components/dashboard/ApprovedPrivacyPolicy.jsx": {
-      "profile": "approved-privacy-reference",
-      "state": "connected",
+      "profile": "authenticated-account",
+      "state": "missing",
       "execution": "server",
-      "reason": "Authenticated read of the Founder-approved preservation reference. Lifecycle and guardian verification remain separate.",
+      "reason": "Uses the existing dev policy contract. Approved policy records require the deployed backend.",
       "followUp": [
-        "PRIV-01",
-        "PRIV-02"
-      ],
-      "endpoints": [
-        "GET /api/account/privacy/policy"
+        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/StageProfileEditor.jsx": {
@@ -2145,18 +2131,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/pages/dashboard/Plans.jsx": {
-      "profile": "local-domain-workflow",
-      "state": "preview",
-      "execution": "browser-local",
-      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
-      "followUp": [
-        "SCOPE-03",
-        "SCOPE-04",
-        "DATA-01",
-        "SYNC-02"
-      ]
-    },
     "frontend/src/pages/dashboard/Practice.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -2710,6 +2684,94 @@
       "endpoints": [
         "GET /api/account/privacy/consents",
         "POST /api/account/privacy/consents/revoke"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedAccountSecurity.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Lists the current account’s browser sessions and delegates account-wide sign-out to the server.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "GET /api/account/devices",
+        "POST /api/auth/logout-all"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedWorkspaces.jsx": {
+      "profile": "authenticated-account",
+      "state": "missing",
+      "execution": "server",
+      "reason": "Workspace list, personal provisioning and institution invitation acceptance use dev contracts. Beta requires the deployed overview store, workspace provisioner and institution invitation service.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedConsents.jsx": {
+      "profile": "authenticated-account",
+      "state": "missing",
+      "execution": "server",
+      "reason": "Uses the dev consent list and revocation endpoints. Live use requires the deployed consent service and its SQL configuration.",
+      "followUp": [
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedAccountLayout.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Production account navigation delegates sign-out to the existing authenticated adapter. Learning routes do not mount the local preview workspace.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedLearningHistory.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Reads owner-scoped saved learning from the server; no local data or interactive teaching is enabled.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "GET /api/account/learning/sessions"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedProfile.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Edits the account display name on the server with an expected-name conflict check.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "PATCH /api/auth/profile"
+      ]
+    },
+    "frontend/src/components/ui/toaster.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Workspace access-boundary notice (FAP-75): renders where an organization-only area is deep-linked by another identity; browser-local surfaces only, no server authority claimed.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
       ]
     }
   },

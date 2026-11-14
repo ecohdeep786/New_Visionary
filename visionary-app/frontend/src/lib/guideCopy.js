@@ -3,5 +3,6 @@ const entries=[["Learning activity · Demo content","अध्ययन गत�
 entries.push(['Text alternative','पाठ विकल्प','পাঠ্য বিকল্প'],['Secure','मज़बूत साक्ष्य','দৃঢ় প্রমাণ'],['Mastered','दक्षता का साक्ष्य','দক্ষতার প্রমাণ'],['Not started','शुरू नहीं हुआ','শুরু হয়নি'],['Needs review','समीक्षा चाहिए','পর্যালোচনা দরকার']);
 entries.push(['Parent','अभिभावक','অভিভাবক'],['Professional','पेशेवर','পেশাদার'],['Organization','संगठन','প্রতিষ্ঠান']);
 entries.push(['Local preview','स्थानीय पूर्वावलोकन','স্থানীয় প্রিভিউ']);
+entries.push(['Your question is saved · no model answer yet','आपका प्रश्न सहेजा गया · मॉडल उत्तर अभी नहीं','প্রশ্ন সংরক্ষিত · মডেল উত্তর এখনও নেই'],['Try an example lesson','उदाहरण पाठ आज़माएँ','উদাহরণ পাঠ চেষ্টা করুন'],['Return Home','होम पर लौटें','হোমে ফিরে যান']);
 const map=Object.fromEntries(entries.map(([en,hi,bn])=>[en,{en,hi,bn}]));
 export const guideCopy=locale=>(key,params={})=>(map[key]?.[locale]||classTabCopy(locale)(key)).replace(/\{(\w+)\}/g,(match,name)=>String(params[name]??match));

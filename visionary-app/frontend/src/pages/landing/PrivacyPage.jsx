@@ -279,7 +279,7 @@ export default function PrivacyPage() {
                 </nav>
                 <div className="mt-8 border-t border-[rgba(18,19,23,0.12)] pt-6">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} aria-hidden="true" />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
                       For safety and security details, see the Safety and Security pages.
                     </p>

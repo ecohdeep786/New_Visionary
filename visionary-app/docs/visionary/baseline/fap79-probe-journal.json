@@ -1,0 +1,59 @@
+{
+  "ticket": "FAP-79",
+  "title": "Create-a-class journey paints its primary controls from two color systems (token action vs inline account accent)",
+  "date": "2026-11-09",
+  "reference": "Apple HIG Color re-read 2026-11-09 in browser: 'Avoid using the same color to mean different things. Use color consistently throughout your interface, especially when you use it to help communicate information like status or interactivity.' Supporting basis also studied live: Apple HIG Typography (legibility law — font size/weight impact how easy text is to read) and Apple HIG Layout (consistent layout law); the product's own WCAG 4.5:1 informative-text contrast law (FAP-30).",
+  "law": "The create-a-class journey speaks one token color language: its interactive controls (empty-state CTA, modal submit, modal Cancel, modal field focus) paint from the workspace token system (--v-action #0071e3 light / #aac7ff dark, --v-on-action, single definition point). The account accent preference keeps personalizing supported learning views; it no longer redefines primary interactivity on the journey's controls. Copy, flow, field geometry, the class-color choices fieldset and the FAP-78 per-state singleton law untouched.",
+  "persona_note": "Every probe run registered a REAL fresh teacher through the live register → onboarding journey (shared helper frontend/scripts/registerFixturePersona.mjs; helper landed in this ticket as instrument enablement). The green-accent stage sets the account accent through the product's own Settings → Account appearance path (input[name=accent] saved green in both runs, recorded as C0_saved). The modal submit was measured in BOTH its disabled state (dialog just opened) and its enabled state (name typed — the real ready-to-create state); the BEFORE side's inline style overrode the system disabled paint, so the same-state comparison is disabled-vs-disabled and enabled-vs-enabled.",
+  "matrix": [
+    {
+      "probe": "color-journey",
+      "side": "before",
+      "server": "base origin/beta 5a9190e3 @ http://localhost:5174",
+      "persona": "fresh teacher per probe (Personal · Teacher), real register→onboarding journey",
+      "expected": "the observed defect: the journey paints same-intent primary controls from three systems (token action vs inline account accent vs hardcoded Google blues); dark Cancel informative contrast below the product's 4.5:1 law",
+      "verdict": "PASS (defect observation, 14/14 paint verdicts)",
+      "result": "empty CTA inline background-color rgb(11,87,210) (#0b57d2); modal submit inline #0b57d2 in BOTH states (disabled bg rgb(11,87,210), enabled bg rgb(11,87,210) + white); Cancel cls 'h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2]' color rgb(11,87,210) light ratio 6.35; field focus borderColor rgb(66,133,244) (#4285F4 legacy); header create rgb(0,113,227) v-button primary (unchanged token control); dark: submit still inline #0b57d2 (unmapped) both states, Cancel 2.69:1 FAIL; accent-green stage: settings save v-button primary #0071e3, then empty/submit inline rgb(19,115,51) (#137333) next to Cancel #0b57d2 in the same dialog; populated header stays token #0071e3",
+      "evidence": "before/before-probe.json + before/A1-empty-cta.png … before/after-final.png"
+    },
+    {
+      "probe": "color-journey",
+      "side": "after",
+      "server": "candidate zcode/fap-79-class-creation-color-tokens @ http://localhost:5173",
+      "persona": "fresh teacher per probe, accent set green via Settings in stage C",
+      "expected": "one token color language: submit/cancel/focus/CTA all from var(--v-action)/--v-on-action with automatic dark remap; no inline or hardcoded Google-blue paints in the journey; accent green cannot redefine the journey's primaries",
+      "verdict": "PASS (14/14 paint verdicts)",
+      "result": "empty CTA 'v-button primary' bg rgb(0,113,227) no inline; modal submit disabled bg rgb(238,240,244) (system raised, no inline), enabled 'v-button primary' bg rgb(0,113,227) + on-action white; Cancel 'v-button' token action text rgb(0,113,227) light ratio 4.7; field focus borderColor rgb(0,113,227) (var(--v-action)); header create unchanged token rgb(0,113,227); dark: submit disabled bg rgb(37,42,52) system, enabled bg rgb(170,199,255) (#aac7ff) + on-action rgb(9,43,97); Cancel dark 10.01:1 PASS; accent-green stage: submit enabled STILL #0071e3 token (accent ignored), Cancel token, header token; C0_saved green=true",
+      "evidence": "after/after-probe.json + after/A1-empty-cta.png … after/after-final.png"
+    }
+  ],
+  "design_quality_rendered_audit": {
+    "note": "frontend/scripts/design-quality-review.mjs (the house rendered design instrument) was blocked at login on the local dev runtime (no .env.local → local auth mode keeps visionary_users in context-local storage, so a fresh browser context cannot sign in across contexts). DESIGN_REGISTER_FIXTURE=1 makes the instrument create the QA persona in its own context through the real register → onboarding journey; the cross-context /login path stays the fallback for a VITE_AUTH_MODE=firebase runtime.",
+    "before": "PASS at base (beta 5a9190e3, localhost:5174): WCAG contrast across 8 theme/viewport combos green, 44px hit areas green, no overflow, 200% text, shared brand font, Hindi portal typography ≥1.49 leading — evidence committed at t03-research-2026-11-09/design-quality/ (persona credential fields redacted from the committed fixture snapshot; the harness regenerates its fixture per run)",
+    "after": "PASS at candidate (localhost:5173): same instrument path, same green set — evidence at fap79-qa-2026-11-09/design-quality-after/"
+  },
+  "harnesses": [
+    { "harness": "route-direct-url-review.mjs (67 routes + auth/redirect/recovery surfaces, 52 viewport-route states)", "verdict": "ROUTE REVIEW PASSED", "evidence": "fap79-qa-2026-11-09/route-review/DIRECT_URL_RESULTS.json" },
+    { "harness": "teacher-review.mjs", "verdict": "21 records, 0 defects — class creation (now the token-painted single control), tabs, curriculum, assignment, learners, insights", "evidence": "fap79-qa-2026-11-09/teacher-review/" },
+    { "harness": "cross-role-review.mjs", "verdict": "37 records, 0 defects — teacher→class→invite/code→learners→assignment→submission→teacher visibility across three accounts", "evidence": "fap79-qa-2026-11-09/cross-role-review/" },
+    { "harness": "ml-experience-review.mjs", "verdict": "27/27 checks, 0 defects (38 records, 10 captures)", "evidence": "fap79-qa-2026-11-09/ml-experience/receipt.json" },
+    { "harness": "student-review.mjs", "verdict": "16 records, 0 defects", "evidence": "fap79-qa-2026-11-09/student-review/" }
+  ],
+  "surface_delta": {
+    "artifact": "docs/architecture/tracking/product-surface.json (refreshed via npm run scope:audit:write)",
+    "routes": "67 = 67 (equal)",
+    "endpoints": "37 = 37 (equal)",
+    "controls": "1656 rows both sides (equal). Positional delta verifier (normalized trees): EQUAL — 13 declaration rows moved line/column inside the two touched files (CreateClassModal.jsx, TeacherHome.jsx) + 2 rows with a changed declarationSha256/sourceSha256; for the two touched files only id/line/column/sha fields were allowed to differ (class/layout CSS text is the intended change); events/calls/tags/disabled/state classes identical membership. No control added, removed or behaviorally changed at the source level; 13 mirrored id strings (incl. route controlIds) normalized to the same conclusion.",
+    "source_sha_changed": [
+      "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
+      "frontend/src/pages/dashboard/role/TeacherHome.jsx"
+    ]
+  },
+  "gates": {
+    "lint": "0 issues",
+    "typecheck": "0 issues",
+    "tests": "732/732 (723 baseline at beta 5a9190e3 + new frontend/tests/fap79-class-creation-color-tokens.test.mjs, 9 tests)",
+    "build": "0 errors",
+    "check": "EXIT=0"
+  }
+}

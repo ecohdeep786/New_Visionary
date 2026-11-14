@@ -1,0 +1,2232 @@
+[
+  {
+    "route": "/",
+    "ok": true,
+    "title": "Visionary — Learn, ask, practice, and build",
+    "h1": [
+      {
+        "text": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+        "rect": {
+          "top": 210,
+          "left": 478,
+          "w": 485,
+          "h": 143,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "One intelligence.",
+      "Seeing progress is easy. Knowing how to help isn't.",
+      "What if your intelligence never forgot where you were?",
+      "One intelligence, five journeys.",
+      "Explore further.",
+      "Your learning stays yours.",
+      "Your next step starts here."
+    ],
+    "subhead": null,
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 3305,
+          "left": 230,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 3305,
+          "left": 274,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 3305,
+          "left": 318,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 6534,
+          "left": 666,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 6534,
+          "left": 730,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 72,
+    "imgCount": 7,
+    "imgNoAlt": 6
+  },
+  {
+    "route": "/student",
+    "ok": true,
+    "title": "Visionary for students | Learn at your pace",
+    "h1": [
+      {
+        "text": "Learning,Learning, to master, to build.",
+        "rect": {
+          "top": 673,
+          "left": 72,
+          "w": 560,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Every student struggles withunderstanding.",
+      "Learning thatmoves with you.",
+      "One intelligence.",
+      "The words change.Understanding doesn't.",
+      "See what you can achieve.",
+      "New stage.Same intelligence.",
+      "Your intelligence stays yours.",
+      "Your learning starts with where you are.",
+      "Explore Visionary."
+    ],
+    "subhead": "Every concept you understand becomes the foundation for the next.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Student",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 101,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 445,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 676,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 791,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 632,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 676,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 720,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 764,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "PrimaryBuild the basics. Build them right.",
+        "rect": {
+          "top": 2683,
+          "left": 230,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      },
+      {
+        "text": "Secondary and higher secondaryOne place for every subject.",
+        "rect": {
+          "top": 2683,
+          "left": 1234,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      },
+      {
+        "text": "Competitive examsPrepare for the exam. Not just the syllabus",
+        "rect": {
+          "top": 2683,
+          "left": 2238,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 52,
+    "imgCount": 5,
+    "imgNoAlt": 3
+  },
+  {
+    "route": "/teacher",
+    "ok": true,
+    "title": "Visionary for teachers | Prepare and teach",
+    "h1": [
+      {
+        "text": "Teaching.Teaching, to grow, to reach.",
+        "rect": {
+          "top": 673,
+          "left": 72,
+          "w": 560,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Every teacher wonders aboutunderstanding.",
+      "Teaching thatmoves with your class.",
+      "One intelligence.",
+      "Teach your way.Explain your way.",
+      "See what your class can achieve.",
+      "New stage.Same teaching.",
+      "Your teaching stays yours.",
+      "Your teaching starts with where your class is.",
+      "Explore Visionary."
+    ],
+    "subhead": "One class, many minds. See who is with you before the next bell.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Teacher",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 101,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 445,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 676,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 791,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 610,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 654,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 698,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 742,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 786,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Lesson planningPlan the lesson. From where they are.",
+        "rect": {
+          "top": 2708,
+          "left": 230,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      },
+      {
+        "text": "In classTeach it. Another way, any time.",
+        "rect": {
+          "top": 2708,
+          "left": 1234,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 52,
+    "imgCount": 6,
+    "imgNoAlt": 4
+  },
+  {
+    "route": "/parent",
+    "ok": true,
+    "title": "Visionary for parents | Follow their progress",
+    "h1": [
+      {
+        "text": "Parenting.Parenting, to see, to help.",
+        "rect": {
+          "top": 673,
+          "left": 72,
+          "w": 560,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Every parent wonders aboutprogress.",
+      "Learning thatmoves with them.",
+      "One intelligence.",
+      "Your child's progress.In your language.",
+      "See what your child can achieve.",
+      "New stage.Same understanding.",
+      "Your child's learning stays theirs.",
+      "Your child's journey is already happening.",
+      "Explore Visionary."
+    ],
+    "subhead": "Know what your child is learning before the report card.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Parent",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 92,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 436,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 667,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 782,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 610,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 654,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 698,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 742,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2065,
+          "left": 786,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Early yearsBe part of the first wins.",
+        "rect": {
+          "top": 2708,
+          "left": 230,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      },
+      {
+        "text": "PrimaryFollow the homework. Without the fight.",
+        "rect": {
+          "top": 2708,
+          "left": 1234,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 52,
+    "imgCount": 6,
+    "imgNoAlt": 4
+  },
+  {
+    "route": "/professional",
+    "ok": true,
+    "title": "Visionary for professionals | Grow your skills",
+    "h1": [
+      {
+        "text": "Building.Building, to apply, to grow.",
+        "rect": {
+          "top": 641,
+          "left": 72,
+          "w": 560,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Every professional wonders aboutApplication.",
+      "Work thatmoves with your career.",
+      "One intelligence.",
+      "Your work.In your language.",
+      "See what you can achieve.",
+      "New stage.Same work.",
+      "Your work stays yours.",
+      "Your next project is already in front of you.",
+      "Explore Visionary."
+    ],
+    "subhead": "Turn what you learn into work that ships — skills, solutions, and projects that compound with your career.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Professional",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 128,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 610,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 654,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 698,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 742,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 786,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Early CareerTurn every first role into real skill.",
+        "rect": {
+          "top": 2776,
+          "left": 230,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      },
+      {
+        "text": "Mid-LevelReason through the harder decisions.",
+        "rect": {
+          "top": 2776,
+          "left": 1234,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 52,
+    "imgCount": 6,
+    "imgNoAlt": 4
+  },
+  {
+    "route": "/organization",
+    "ok": true,
+    "title": "Visionary for organizations | Teach at scale",
+    "h1": [
+      {
+        "text": "Leading.Leading, to scale, to last.",
+        "rect": {
+          "top": 641,
+          "left": 72,
+          "w": 560,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Every organization wonders aboutadoption.",
+      "Every organization learns differently.Visionary adapts to each.",
+      "One intelligence.",
+      "Your organization.In every language.",
+      "See what your organization can achieve.",
+      "Individual journeys.Shared intelligence.",
+      "Your people's learning stays yours.",
+      "Bring Visionary to your organization.",
+      "Explore Visionary."
+    ],
+    "subhead": "One intelligence across every classroom, team, and program. Understanding stays inside your institution.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Organization",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 133,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 477,
+          "w": 160,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 712,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 827,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 610,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 654,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 698,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 742,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 2133,
+          "left": 786,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "SchoolsOne school. One picture.",
+        "rect": {
+          "top": 2819,
+          "left": 230,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      },
+      {
+        "text": "Colleges and universitiesDepartments connected. Outcomes vis",
+        "rect": {
+          "top": 2819,
+          "left": 1234,
+          "w": 980,
+          "h": 516,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 52,
+    "imgCount": 6,
+    "imgNoAlt": 4
+  },
+  {
+    "route": "/how-it-works",
+    "ok": true,
+    "title": "How Visionary works",
+    "h1": [
+      {
+        "text": "How Visionary works.",
+        "rect": {
+          "top": 293,
+          "left": 91,
+          "w": 1259,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "One loop, goal.",
+      "One intelligence. Different ways to use it.",
+      "See it with your own question."
+    ],
+    "subhead": "Understand, ask, practise, then build.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 474,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 705,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 820,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "Goal",
+        "rect": {
+          "top": 4768,
+          "left": 268,
+          "w": 91,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Check",
+        "rect": {
+          "top": 4768,
+          "left": 371,
+          "w": 102,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Teach",
+        "rect": {
+          "top": 4768,
+          "left": 484,
+          "w": 98,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Ask",
+        "rect": {
+          "top": 4768,
+          "left": 594,
+          "w": 84,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Check again",
+        "rect": {
+          "top": 4768,
+          "left": 690,
+          "w": 138,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Practise",
+        "rect": {
+          "top": 4768,
+          "left": 840,
+          "w": 111,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Build",
+        "rect": {
+          "top": 4768,
+          "left": 963,
+          "w": 92,
+          "h": 44,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 45,
+    "imgCount": 0,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/about",
+    "ok": true,
+    "title": "About Visionary",
+    "h1": [
+      {
+        "text": "Understanding. Built in.",
+        "rect": {
+          "top": 229,
+          "left": 240,
+          "w": 960,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Understanding should open the next door.",
+      "One journey, many beginnings.",
+      "AI can make the next step clearer.",
+      "Different people, one connected journey.",
+      "The work around the product.",
+      "There is a place for you in Visionary."
+    ],
+    "subhead": "A learning product for people who want to understand, practise, and apply what they learn.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 89,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 61,
+    "imgCount": 1,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/careers",
+    "ok": true,
+    "title": "Careers | Visionary",
+    "h1": [
+      {
+        "text": "Build the future of learning.",
+        "rect": {
+          "top": -1,
+          "left": 95,
+          "w": 1,
+          "h": 1,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Why Visionary",
+      "Teams",
+      "How to prepare for our hiring process",
+      "Open roles",
+      "A fair process starts with clarity.",
+      "What you learn here should stay with you."
+    ],
+    "subhead": "Build the future of learning.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 89,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "Introduce yourself",
+        "rect": {
+          "top": 481,
+          "left": 192,
+          "w": 207,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Introduce yourself",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 72,
+    "imgCount": 5,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/research",
+    "ok": true,
+    "title": "Research | Visionary",
+    "h1": [
+      {
+        "text": "One intelligence, every learner.",
+        "rect": {
+          "top": 377,
+          "left": 240,
+          "w": 960,
+          "h": 168,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Building the mentor intelligence.",
+      "Read the latest",
+      "Our research drives real understanding.",
+      "See the work this research feeds.",
+      "The mind behind the mentor.",
+      "One question started it all.",
+      "Responsible research is at the heart of what we do.",
+      "Help us shape the future."
+    ],
+    "subhead": null,
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 89,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 63,
+    "imgCount": 2,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/community",
+    "ok": true,
+    "title": "Community | Visionary",
+    "h1": [
+      {
+        "text": "Communities and programs for everyone learning together.",
+        "rect": {
+          "top": 374,
+          "left": 220,
+          "w": 960,
+          "h": 252,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Find a community that's right for you",
+      "More ways to engage and learn",
+      "Have questions? We've got answers.",
+      "Bring your class together."
+    ],
+    "subhead": "Class-scoped spaces where learners, teachers, and families grow together, kept safe by teachers.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 89,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "Who can see a class community?",
+        "rect": {
+          "top": 4622,
+          "left": 301,
+          "w": 838,
+          "h": 72,
+          "visible": true
+        }
+      },
+      {
+        "text": "What happens when someone reports a post?",
+        "rect": {
+          "top": 4782,
+          "left": 301,
+          "w": 838,
+          "h": 72,
+          "visible": true
+        }
+      },
+      {
+        "text": "Can people outside my class join?",
+        "rect": {
+          "top": 4868,
+          "left": 301,
+          "w": 838,
+          "h": 72,
+          "visible": true
+        }
+      },
+      {
+        "text": "Does the community work in my language?",
+        "rect": {
+          "top": 4954,
+          "left": 301,
+          "w": 838,
+          "h": 72,
+          "visible": true
+        }
+      },
+      {
+        "text": "Is community available today?",
+        "rect": {
+          "top": 5040,
+          "left": 301,
+          "w": 838,
+          "h": 72,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 59,
+    "imgCount": 10,
+    "imgNoAlt": 10
+  },
+  {
+    "route": "/contact",
+    "ok": true,
+    "title": "Contact | Visionary",
+    "h1": [
+      {
+        "text": "We listen. We build.",
+        "rect": {
+          "top": 293,
+          "left": 280,
+          "w": 880,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Get help learning with Visionary",
+      "Your questions answered",
+      "Still need help?",
+      "Start with what you need.",
+      "A formal route for privacy concerns."
+    ],
+    "subhead": "Find the answers and support you need to make the most of Visionary.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 89,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "Students",
+        "rect": {
+          "top": 755,
+          "left": 446,
+          "w": 97,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Teachers",
+        "rect": {
+          "top": 755,
+          "left": 546,
+          "w": 96,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Parents",
+        "rect": {
+          "top": 755,
+          "left": 647,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Professionals",
+        "rect": {
+          "top": 755,
+          "left": 739,
+          "w": 123,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Organizations",
+        "rect": {
+          "top": 755,
+          "left": 866,
+          "w": 128,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Expand all",
+        "rect": {
+          "top": 2077,
+          "left": 1039,
+          "w": 101,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "How quickly will I get a reply?",
+        "rect": {
+          "top": 2138,
+          "left": 301,
+          "w": 838,
+          "h": 72,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 58,
+    "imgCount": 0,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/partners",
+    "ok": true,
+    "title": "Partners | Visionary",
+    "h1": [
+      {
+        "text": "Better learning, together.",
+        "rect": {
+          "top": 334,
+          "left": 100,
+          "w": 617,
+          "h": 168,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "What is a Visionary partnership?",
+      "Who we partner with",
+      "What a partnership includes",
+      "How deep the work can go",
+      "How a partnership begins.",
+      "If your organization works with learners, in a classroom, a system, or a region, we want to understand your context.",
+      "Start with the support you need.",
+      "Frequently asked questions",
+      "Bring Visionary closer to your learners."
+    ],
+    "subhead": "Education, technology, and local knowledge in one effort, measured by outcomes.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 89,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 1551,
+          "left": 586,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 1551,
+          "left": 654,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 1551,
+          "left": 698,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 1551,
+          "left": 742,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 1551,
+          "left": 810,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Expand all",
+        "rect": {
+          "top": 7354,
+          "left": 1039,
+          "w": 101,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Who can become a partner?",
+        "rect": {
+          "top": 7415,
+          "left": 301,
+          "w": 838,
+          "h": 72,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 53,
+    "imgCount": 0,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/updates",
+    "ok": true,
+    "title": "Updates | Visionary",
+    "h1": [
+      {
+        "text": "What’s new at Visionary.",
+        "rect": {
+          "top": 334,
+          "left": 280,
+          "w": 880,
+          "h": 168,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "One intelligence, every learner, in their language.",
+      "Latest updates.",
+      "Evidence over claims.",
+      "Get updates by email."
+    ],
+    "subhead": "Product news, new languages, and launch updates as they land, with the date on each one.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 818,
+          "w": 89,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "All",
+        "rect": {
+          "top": 1730,
+          "left": 782,
+          "w": 47,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Product updates",
+        "rect": {
+          "top": 1730,
+          "left": 838,
+          "w": 137,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Languages and access",
+        "rect": {
+          "top": 1730,
+          "left": 982,
+          "w": 174,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Research and learning",
+        "rect": {
+          "top": 1730,
+          "left": 1165,
+          "w": 171,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Community and events",
+        "rect": {
+          "top": 1782,
+          "left": 782,
+          "w": 178,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Product updatesNew features, improvements, and important cha",
+        "rect": {
+          "top": 3857,
+          "left": 112,
+          "w": 505,
+          "h": 82,
+          "visible": true
+        }
+      },
+      {
+        "text": "Languages and accessNew language experiences and accessibili",
+        "rect": {
+          "top": 3939,
+          "left": 112,
+          "w": 505,
+          "h": 82,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 47,
+    "imgCount": 0,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/download",
+    "ok": true,
+    "title": "Download Visionary",
+    "h1": [
+      {
+        "text": "Get Visionary on every device.",
+        "rect": {
+          "top": 334,
+          "left": 180,
+          "w": 1080,
+          "h": 168,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Continue on web",
+      "Get the app",
+      "Choose your platform.",
+      "What you need to run Visionary.",
+      "Still deciding? The web is one click away."
+    ],
+    "subhead": "On the phone, tablet or laptop you already own.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 703,
+          "w": 114,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 820,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "See platforms",
+        "rect": {
+          "top": 885,
+          "left": 959,
+          "w": 149,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Windows app coming soon",
+        "rect": {
+          "top": 1705,
+          "left": 559,
+          "w": 323,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Mac app coming soon",
+        "rect": {
+          "top": 1705,
+          "left": 949,
+          "w": 323,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Linux app coming soon",
+        "rect": {
+          "top": 1995,
+          "left": 168,
+          "w": 323,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "iOS app coming soon",
+        "rect": {
+          "top": 1995,
+          "left": 559,
+          "w": 323,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Android app coming soon",
+        "rect": {
+          "top": 1995,
+          "left": 949,
+          "w": 323,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Prepare email request",
+        "rect": {
+          "top": 2622,
+          "left": 809,
+          "w": 211,
+          "h": 44,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 48,
+    "imgCount": 0,
+    "imgNoAlt": 0
+  },
+  {
+    "route": "/pricing",
+    "ok": true,
+    "title": "Pricing | Visionary",
+    "h1": [
+      {
+        "text": "Plans for every journey.",
+        "rect": {
+          "top": 293,
+          "left": 91,
+          "w": 1259,
+          "h": 84,
+          "visible": true
+        }
+      }
+    ],
+    "h2s": [
+      "Start",
+      "Personal",
+      "Family",
+      "Every journey has a plan.",
+      "Questions about pricing, answered.",
+      "Your journey is already happening, so start free."
+    ],
+    "subhead": "Start free. Find the right fit for yourself, your family, or your organization.",
+    "heroPills": [],
+    "buttons": [
+      {
+        "text": "Who you are",
+        "rect": {
+          "top": 6,
+          "left": 233,
+          "w": 127,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "For organizations",
+        "rect": {
+          "top": 6,
+          "left": 472,
+          "w": 157,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Download",
+        "rect": {
+          "top": 6,
+          "left": 705,
+          "w": 113,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "About",
+        "rect": {
+          "top": 6,
+          "left": 820,
+          "w": 88,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "",
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        }
+      },
+      {
+        "text": "Monthly",
+        "rect": {
+          "top": 469,
+          "left": 581,
+          "w": 91,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Annual2 months free",
+        "rect": {
+          "top": 469,
+          "left": 673,
+          "w": 186,
+          "h": 44,
+          "visible": true
+        }
+      },
+      {
+        "text": "Can I start free?",
+        "rect": {
+          "top": 3294,
+          "left": 640,
+          "w": 720,
+          "h": 75,
+          "visible": true
+        }
+      },
+      {
+        "text": "Can I switch plans later?",
+        "rect": {
+          "top": 3370,
+          "left": 640,
+          "w": 720,
+          "h": 75,
+          "visible": true
+        }
+      },
+      {
+        "text": "What happens to my memory if I downgrade?",
+        "rect": {
+          "top": 3446,
+          "left": 640,
+          "w": 720,
+          "h": 75,
+          "visible": true
+        }
+      },
+      {
+        "text": "Do you offer education discounts?",
+        "rect": {
+          "top": 3522,
+          "left": 640,
+          "w": 720,
+          "h": 75,
+          "visible": true
+        }
+      },
+      {
+        "text": "How does Family privacy work?",
+        "rect": {
+          "top": 3598,
+          "left": 640,
+          "w": 720,
+          "h": 75,
+          "visible": true
+        }
+      }
+    ],
+    "deadLinks": [],
+    "totalLinks": 52,
+    "imgCount": 0,
+    "imgNoAlt": 0
+  }
+]

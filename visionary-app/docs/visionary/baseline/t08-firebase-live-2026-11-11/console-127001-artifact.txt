@@ -1,0 +1,20 @@
+# First pass (127.0.0.1 origin) — console warning/error inventory + artifact explanation
+# Raw capture: t08-firebase-live-127001.json (account t08-firebase-1794385955600@visionary.test).
+4 console messages:
+  401, 400, 400, 401 ("Failed to load resource...")
+#
+# The two 401s: the expected signed-out GET /api/auth/me bootstrap probes (one per
+# page load), same as the main pass (URL+body proven there).
+# The two 400s: accounts:sendOobCode (requestType VERIFY_EMAIL), twice — at register
+# and at the manual resend. Cause (disclosed): the adapter sets the verification
+# continue URL to window.location.origin + '/login' (authAdapter.js:18) and Firebase
+# Authorized domains includes 'localhost' by default but NOT '127.0.0.1', so the
+# dispatch was refused for this probe origin. Re-run on http://localhost:5173 gave
+# sendOobCode 200 twice (see t08-firebase-live-localhost.json). Not a product defect;
+# any future hosted origin must be added to Firebase Authorized domains (ops note).
+#
+# Resulting honest UI behavior in this pass (also evidence): the register view showed
+# the generic "Your account could not be created. Please try again." with the account
+# actually created (signUp 200) and routed to the verification view via
+# err.registrationCreated (serverAuth.js:84 -> Register.jsx:107); resend showed
+# "We could not finish that request. Please try again." (EmailVerification catch).

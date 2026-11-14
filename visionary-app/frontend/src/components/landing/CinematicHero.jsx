@@ -23,9 +23,14 @@ import { fontStack } from "@/components/landing/system/tokens";
  *     bottom-anchored contain fit) — the photograph rises from the fold
  *     under the centered copy; the subject never collides with the type.
  *     D3 image law: <picture> offers the AVIF sizeset first when the page
- *     wires it, WebP raster fallback, eager + fetchPriority high (it is
+ *     wires it, WebP raster fallback, eager + priority high (it is
  *     the stage), draggable off, maxWidth:none so the contain fit can
- *     window.
+ *     window. FAP-84 law: the priority request reaches the DOM as the
+ *     standard lowercase `fetchpriority` content attribute via the
+ *     {...{ fetchpriority: "high" }} passthrough (the A4 receipted
+ *     treatment, same as NewPersona) — React 18.2 warns on the camelCase
+ *     `fetchPriority` img prop, so the camelCase form must never appear
+ *     here or on any other raw img in landing source.
  *   - Copy column: centered on every width and both axes (the Apple
  *     privacy position): optional label, the two-part display
  *     (44 → 64 → 80, font-semibold, 1.05, -0.015em — Apple's measured
@@ -121,7 +126,7 @@ export default function CinematicHero({
               sizes={image.sizes}
               alt={image.alt || ""}
               loading="eager"
-              fetchPriority="high"
+              {...{ fetchpriority: "high" }}
               decoding="async"
               draggable="false"
               className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"

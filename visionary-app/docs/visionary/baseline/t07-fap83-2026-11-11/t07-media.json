@@ -1,0 +1,116 @@
+[
+  {
+    "route": "/",
+    "totalImgs": 7,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/student",
+    "totalImgs": 5,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/teacher",
+    "totalImgs": 6,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/parent",
+    "totalImgs": 6,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/professional",
+    "totalImgs": 6,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/organization",
+    "totalImgs": 6,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/how-it-works",
+    "totalImgs": 0,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/about",
+    "totalImgs": 1,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/careers",
+    "totalImgs": 5,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/research",
+    "totalImgs": 2,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": [
+      "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passe"
+    ]
+  },
+  {
+    "route": "/community",
+    "totalImgs": 10,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/contact",
+    "totalImgs": 0,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/partners",
+    "totalImgs": 0,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/updates",
+    "totalImgs": 0,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/download",
+    "totalImgs": 0,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  },
+  {
+    "route": "/pricing",
+    "totalImgs": 0,
+    "brokenAfterScroll": [],
+    "bgImgs": 0,
+    "consoleErrors": []
+  }
+]

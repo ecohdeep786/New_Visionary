@@ -8,9 +8,15 @@ import { color } from "@/components/landing/system/tokens";
 
 /* ═══════════════════════ 07 · LANGUAGE — the voice dial ═══════════════════════
    A centered feature statement with the chapter's one muted link, then the
-   dial: six wordless language dots gliding one step per beat on a hairline
-   ring, the language at 12 o'clock speaking its own subject question at the
-   center. The reel auto-advances while on screen and goes silent off-screen. */
+   dial: the served language set (English, Hindi, Bengali) as wordless dots
+   gliding one step per beat on a hairline ring, the language at 12 o'clock
+   speaking its own subject question at the center. The reel auto-advances
+   while on screen and goes silent off-screen.
+   FAP-83 law: the public showcase states the served set honestly. The dial
+   carries exactly the languages the product serves today (en/hi/bn — the
+   voice engine maps en/hi/bn to en-IN/hi-IN/bn-IN), the small print names
+   them, and the roadmap line covers what is coming; no "every language"
+   claim may appear in the section or its callers. */
 
 const PremiumOrbitDots = React.memo(function PremiumOrbitDots({ chips, activeIndex, onSelect, reduced }) {
   const stepDeg = 360 / chips.length;
@@ -71,7 +77,7 @@ const PremiumPlayPause = React.memo(function PremiumPlayPause({ playing, onClick
    chips (code/label), questions (array of {code: utterance} — the subject
    bank the dial tours across languages), and the header copy: eyebrow,
    line1, accent, tail (rendered as line1 <br/> accent tail). */
-function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", line1, accent, tail, sub }) {
+function PremiumLanguageSection({ chips, questions, eyebrow = "Your language", line1, accent, tail, sub }) {
   const reduced = usePrefersReducedMotion();
   const { ref } = useRevealOnce();
   const [index, setIndex] = useState(0);
@@ -196,10 +202,10 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Every language", 
         <RevealItem idx={5}>
           <div className="mx-auto mt-10 w-full max-w-[860px] sm:mt-12">
             <p className="text-center font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: color.muted }}>
-              Listening in {active.label} · understood in every language
+              Listening in {active.label} · understood in English, Hindi, and Bengali
             </p>
             <p className="mt-1 text-center font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: color.muted }}>
-              Use voice or text in the way you're comfortable.
+              More languages are on the roadmap. Use voice or text in the way you're comfortable.
             </p>
           </div>
         </RevealItem>

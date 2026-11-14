@@ -5,7 +5,8 @@ import { authFlowError, passwordRequirements } from '../../lib/authErrors.js';
 import { createAuthTransport } from './authTransport.js';
 import { popupProviderId } from './signInMethods.js';
 
-export const firebaseAuthEnabled = import.meta.env?.VITE_AUTH_MODE === 'firebase';
+import { notifySessionChange } from './sessionSignal.js';
+
 const pendingVerificationTimes = new Map();
 let phoneVerifier = null;
 const request = createAuthTransport();
@@ -49,6 +50,4 @@ const identity = {
   },
   logout: () => signOut(getFirebaseAuthClient()),
 };
-export const firebaseAuth = createServerAuth({ request, identity, notify: () => {
-  try { localStorage.setItem('visionary_auth_epoch', crypto.randomUUID()); } catch { /* Cookies remain authoritative when browser storage is unavailable. */ }
-} });
+export const firebaseAuth = createServerAuth({ request, identity, notify: notifySessionChange });

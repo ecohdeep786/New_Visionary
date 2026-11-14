@@ -5,4 +5,4 @@ Disallow: /onboarding
 Disallow: /dev
 Disallow: /reset-password
 
-Sitemap: https://visionary.app/sitemap.xml
+Sitemap: https://visionary.org.in/sitemap.xml

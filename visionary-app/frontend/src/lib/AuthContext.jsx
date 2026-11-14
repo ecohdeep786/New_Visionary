@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { openSessionChannel } from '@/api/firebase/sessionSignal';
 import { AuthContext } from './auth-context.js';
 import { appClient } from '@/api/appClient';
 import { queryClientInstance } from '@/lib/query-client';
@@ -16,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const accountEpoch = useRef(0), activeCommands = useRef(0), verifiedAt = useRef(0);
 
   useEffect(() => {
-    if (!user || !user.onboarding_complete) { setWorkspaceState(null); return; }
+    if (!import.meta.env.DEV || !user || !user.onboarding_complete) { setWorkspaceState(null); return; }
     const refresh = () => { try { setWorkspaceState(bootstrapPerson(user)); setWorkspaceError(''); } catch (error) { setWorkspaceError(error.message); } };
     refresh();
     window.addEventListener('visionary:v2-change', refresh);
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     return () => { window.removeEventListener('visionary:v2-change', refresh); window.removeEventListener('visionary:workspace-change', refresh); window.removeEventListener('storage', refresh); };
   }, [user]);
   const retryWorkspace = () => {
-    if (!user || !user.onboarding_complete) return;
+    if (!import.meta.env.DEV || !user || !user.onboarding_complete) return;
     try { setWorkspaceState(bootstrapPerson(user)); setWorkspaceError(''); }
     catch (error) { setWorkspaceError(error.message); }
   };
@@ -70,10 +71,9 @@ export const AuthProvider = ({ children }) => {
     if (!signingIn && !expectedId) throw authFlowError('auth/account-changed');
     ++activeCommands.current;
     try {
-      const result = await action();
-      const profile = appClient.auth.source === 'firebase' ? result : await appClient.auth.me();
+      const profile = await action();
       if (epoch !== accountEpoch.current || expectedId && profile?.id !== expectedId) throw authFlowError('auth/account-changed');
-      if (!profile || typeof profile.id !== 'string' || typeof profile.onboarding_complete !== 'boolean' || appClient.auth.source === 'firebase' && appClient.auth.currentProfile() !== profile) throw authFlowError('auth/profile-unavailable');
+      if (!profile || typeof profile.id !== 'string' || typeof profile.onboarding_complete !== 'boolean' || appClient.auth.currentProfile() !== profile) throw authFlowError('auth/profile-unavailable');
       // The authenticated mutation response is the authoritative transaction result.
       // Invalidate older reads rather than making a second network request to confirm it.
       ++requestVersion.current;
@@ -86,23 +86,21 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkUserAuth();
-    const syncSession = (event) => {
-      if (event.key === 'visionary_session_token' || event.key === 'visionary_users' || event.key === 'visionary_auth_epoch' || event.key === null) {
-        ++accountEpoch.current;
-        queryClientInstance.clear();
-        checkUserAuth();
-      }
-    };
-    window.addEventListener('storage', syncSession);
-    window.addEventListener('visionary:auth-change', checkUserAuth);
+    const sessionChannel = openSessionChannel();
+    sessionChannel?.addEventListener('message', event => {
+      if (event.data !== 'changed') return;
+      ++accountEpoch.current;
+      queryClientInstance.clear();
+      void checkUserAuth({ passive: true });
+    });
     let observing = false;
     const refresh = async (passive = true) => {
-      if (observing || appClient.auth.source !== 'firebase' || document.hidden) return;
+      if (observing || document.hidden) return;
       observing = true;
       try { await checkUserAuth({ quiet: true, background: true, passive }); }
       finally { observing = false; }
     };
-    const observe = () => { if (accountId.current) refresh(true); };
+    const observe = () => { if (accountId.current || !sessionChannel) refresh(true); };
     const timer = window.setInterval(observe, 30000);
     const activity = event => {
       if (event.isTrusted && accountId.current && !document.hidden && Date.now() - verifiedAt.current >= 5 * 60 * 1000) {
@@ -112,7 +110,7 @@ export const AuthProvider = ({ children }) => {
     window.addEventListener('focus', observe);
     document.addEventListener('visibilitychange', observe);
     window.addEventListener('pointerdown', activity, { passive: true, capture: true }); window.addEventListener('keydown', activity, { capture: true });
-    return () => { ++requestVersion.current; window.clearInterval(timer); window.removeEventListener('storage', syncSession); window.removeEventListener('visionary:auth-change', checkUserAuth); window.removeEventListener('focus', observe); document.removeEventListener('visibilitychange', observe); window.removeEventListener('pointerdown', activity, true); window.removeEventListener('keydown', activity, true); };
+    return () => { ++requestVersion.current; window.clearInterval(timer); sessionChannel?.close(); window.removeEventListener('focus', observe); document.removeEventListener('visibilitychange', observe); window.removeEventListener('pointerdown', activity, true); window.removeEventListener('keydown', activity, true); };
   }, [checkUserAuth]);
 
   const logout = useCallback(async (options) => {

@@ -1,4 +1,5 @@
 import GuideMark from '@/components/dashboard/GuideMark';
+import WorkspaceOpening from '@/components/dashboard/WorkspaceOpening';
 import { guideCopy } from '@/lib/guideCopy';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
@@ -211,8 +212,8 @@ function GuideConversation() {
     requestAnimationFrame(() => field.current?.focus());
   }
   if (loadError) return <div role="alert" className="v-page"><h1 className="v-title">{copy("Your workspace needs attention")}</h1><p lang="en">{loadError}</p><button className="v-button" onClick={() => window.location.reload()}>{copy("Retry")}</button></div>;
-  if (!ctx || !data) return <div className="v-page" role="status">{copy("Preparing your workspace\u2026")}</div>;
-  if (renderedScope !== `${ctx.personId}:${ctx.workspaceId}`) return <div className="v-page" role="status" aria-busy="true">{copy("Opening this workspace\u2026")}</div>;
+  if (!ctx || !data) return <WorkspaceOpening locale={locale} title="Visionary Guide" note={copy("Preparing your workspace…")} />;
+  if (renderedScope !== `${ctx.personId}:${ctx.workspaceId}`) return <WorkspaceOpening locale={locale} title="Visionary Guide" note={copy("Opening this workspace…")} />;
   const recent = data.conversations[0];
   const suggestions = suggestedJourneys(ctx);
   let learning = null,
@@ -265,7 +266,7 @@ function GuideConversation() {
                 }
               }} />
      {!selected && recent && <button className="guide-recent-conversation" onClick={() => chooseConversation(recent)}><History size={18} aria-hidden="true" /><span className="min-w-0"><span className="block text-xs text-[#5f6368]">{copy("Continue where you left off")}</span><span className="mt-1 block truncate">{recent.title}</span></span><ArrowUpRight size={16} aria-hidden="true" /></button>}
-    </div> : conversation.messages.map(message => <div key={message.id} className={`guide-message ${message.role === 'user' ? 'user' : ''}`}>{message.role === 'guide' && <p className="mb-2 flex items-center gap-2 text-xs font-medium text-[var(--v-action)]"><GuideMark size={18} />Visionary Guide · {message.status === 'not_connected' ? copy("Teaching service not connected") : message.status === 'blocked' ? copy("Safety response") : message.status === 'ready' ? copy("Connected teaching response") : message.status === 'mentor' ? copy("From your saved records") : message.status === 'model' ? copy("Connected mentor response") : copy("Authored demo response")}</p>}{message.blocks.map((block, i) => block.type === 'text' ? <p key={i} lang={block.locale} className="whitespace-pre-wrap">{block.text}</p> : block.type === 'activity' ? <button key={i} lang={block.locale} className="v-button mr-2 mt-3" onClick={() => openActivity(block.journeyId)}><BookOpen size={16} />{block.label}</button> : message.status === 'model' ? <Link lang={block.locale} className="v-button mt-3" key={i} to={block.path}>{block.label}<ArrowUpRight size={16} /></Link> : <button lang={block.locale} className="v-button mt-3" key={i} onClick={() => openCanvas(block.path)}>{block.label}<ArrowUpRight size={16} /></button>)}</div>)}
+    </div> : conversation.messages.map(message => <div key={message.id} className={`guide-message ${message.role === 'user' ? 'user' : ''}`}>{message.role === 'guide' && <p className="mb-2 flex items-center gap-2 text-xs font-medium text-[var(--v-action)]"><GuideMark size={18} />Visionary Guide · {message.status === 'not_connected' ? copy("Your question is saved · no model answer yet") : message.status === 'blocked' ? copy("Safety response") : message.status === 'ready' ? copy("Connected teaching response") : message.status === 'mentor' ? copy("From your saved records") : message.status === 'model' ? copy("Connected mentor response") : copy("Authored demo response")}</p>}{message.blocks.map((block, i) => block.type === 'text' ? <p key={i} lang={block.locale} className="whitespace-pre-wrap">{block.text}</p> : block.type === 'activity' ? <button key={i} lang={block.locale} className="v-button mr-2 mt-3" onClick={() => openActivity(block.journeyId)}><BookOpen size={16} />{block.label}</button> : message.status === 'model' ? <Link lang={block.locale} className="v-button mt-3" key={i} to={block.path}>{block.label}<ArrowUpRight size={16} /></Link> : <button lang={block.locale} className="v-button mt-3" key={i} onClick={() => openCanvas(block.path)}>{block.label}<ArrowUpRight size={16} /></button>)}{message.status === 'not_connected' ? <div className="mt-3 flex flex-wrap gap-2">{suggestions.length ? <button type="button" className="v-button" onClick={() => openActivity(suggestions[0].id)}><BookOpen size={16} />{copy("Try an example lesson")}</button> : <Link className="v-button" to="/dashboard/learn"><BookOpen size={16} />{copy("Try an example lesson")}</Link>}<Link className="v-button" to="/dashboard/home"><ArrowUpRight size={16} />{copy("Return Home")}</Link></div> : ''}</div>)}
    </div>
    {!!conversation?.messages.length && <GuideEntry compact role={ctx.role} value={conversation.ask || defaultAskContext} onChange={value => {
             try {

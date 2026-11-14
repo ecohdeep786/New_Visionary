@@ -49,7 +49,8 @@ for (const [route, label] of SURFACES) {
   const perLocale = {};
   /* FAP-67: the firebase profile carries the locale; the hi/bn passes need the app's language switcher — a recorded follow-up. */
   for (const locale of ['en']) {
-    const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+    /* F-28: the preview auth store is localStorage-per-context, so the QA session travels via a saved storageState (QA_STORAGE_STATE env; registered by the seeding step). */
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce', ...(process.env.QA_STORAGE_STATE ? { storageState: process.env.QA_STORAGE_STATE } : {}) });
     /* FAP-67: no localStorage seeding — the session comes from loginViaUi(). */
     const page = await context.newPage();
     await loginViaUi(page, base);

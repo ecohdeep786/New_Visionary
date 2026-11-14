@@ -1,6 +1,6 @@
 import test, {beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
-import {appClient} from '../src/api/appClient.js';
+import {appClient, previewSignIn} from '../src/api/appClient.js';
 import * as workspace from '../src/services/workspaceService.ts';
 import {createTeacherClass,teacherClasses,organizationRoster,saveCohort} from '../src/services/classroomService.js';
 import {getAssignedClasses,getStudentClasswork,getStudentClassLearningContext,recordLearningOutcome} from '../src/services/mentorStateService.ts';
@@ -11,7 +11,7 @@ globalThis.window={dispatchEvent(){},location:{origin:'http://localhost',search:
 globalThis.CustomEvent??=class {constructor(type){this.type=type;}};
 const ctx=(name,role,id=`demo-${name}:${role}`)=>({personId:`demo-${name}`,workspaceId:id,role,locale:'en'});
 const org=ctx('school-admin','organization');const teacher=ctx('school-teacher','teacher');
-function signIn(name,role){const user={id:`demo-${name}`,email:`${name}@visionary.test`,identity:role,full_name:name,onboarding_complete:true};localStorage.setItem('visionary_users',JSON.stringify([user]));localStorage.setItem('visionary_sessions',JSON.stringify([{token:'scope',userId:user.id,email:user.email,expiresAt:Date.now()+86400000}]));localStorage.setItem('visionary_session_token','scope');return user;}
+function signIn(name,role){const user={id:`demo-${name}`,email:`${name}@visionary.test`,identity:role,full_name:name,onboarding_complete:true};previewSignIn(user);return user;}
 function connect(){const invite=workspace.requestOrganizationInvite(org,'school-teacher@visionary.test','teacher');workspace.changeOrganizationInvite(teacher,invite.id,'active');const user=signIn('school-teacher','teacher');return workspace.bootstrapPerson(user).workspaces.find(row=>row.organizationId==='school-admin@visionary.test');}
 beforeEach(()=>{memory.clear();workspace.configureMock({latency:0,fault:'none',now:()=>new Date()});workspace.seedDemo('school-admin');});
 

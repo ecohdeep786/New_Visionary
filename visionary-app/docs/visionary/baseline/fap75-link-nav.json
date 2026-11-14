@@ -1,0 +1,29 @@
+[
+  {
+    "ts": "2026-11-08T15:46:08.901Z",
+    "step": "/dashboard/cohorts -> Prepare",
+    "brief": {
+      "landed": "/dashboard/prepare",
+      "expected": "/dashboard/prepare",
+      "pass": true
+    }
+  },
+  {
+    "ts": "2026-11-08T15:46:11.050Z",
+    "step": "/dashboard/people -> Classes",
+    "brief": {
+      "landed": "/dashboard/classes",
+      "expected": "/dashboard/classes",
+      "pass": true
+    }
+  },
+  {
+    "ts": "2026-11-08T15:46:13.201Z",
+    "step": "/dashboard/analytics -> Return to workspace",
+    "brief": {
+      "landed": "/dashboard/home",
+      "expected": "/dashboard/home",
+      "pass": true
+    }
+  }
+]

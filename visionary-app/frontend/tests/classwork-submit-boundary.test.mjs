@@ -1,14 +1,15 @@
 import test,{beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {storage,fixture,reset} from './fixtures/classCurriculum.mjs';
+import {signInAs} from './helpers/previewAuth.mjs';
 import {appClient} from '../src/api/appClient.js';
 import {submitClassworkResponses,reviewClasswork} from '../src/services/classroomService.js';
 import {classworkActivityRevision} from '../src/services/classworkPlayerService.js';
 beforeEach(reset);
 async function setup(revision=false){
- const f=await fixture();storage.set('visionary_session_token',f.learner.personId);
+ const f=await fixture();signInAs(f.learner.personId);
  const args={assignmentId:f.assignment.id,text:'Two equal parts.',selfReview:{parts:'Both parts have equal size.'},expectedRevision:classworkActivityRevision(f.assignment)};
- if(revision){const first=await submitClassworkResponses(f.learner,args);storage.set('visionary_session_token',f.teacher.personId);await reviewClasswork(f.teacher,{submissionId:first.id,status:'revision_requested',feedback:'Explain the intervals.'});storage.set('visionary_session_token',f.learner.personId);args.text='Two equal intervals make one whole.';}
+ if(revision){const first=await submitClassworkResponses(f.learner,args);signInAs(f.teacher.personId);await reviewClasswork(f.teacher,{submissionId:first.id,status:'revision_requested',feedback:'Explain the intervals.'});signInAs(f.learner.personId);args.text='Two equal intervals make one whole.';}
  return {...f,args};
 }
 async function during(method,change,run){
@@ -29,7 +30,7 @@ test('assignment content changed during response lookup cannot be submitted from
 });
 test('pending learner revision cannot discard newer teacher revision feedback',async()=>{
  const f=await setup(true);let newer;
- await during('update',async()=>{storage.set('visionary_session_token',f.teacher.personId);await reviewClasswork(f.teacher,{submissionId:JSON.parse(storage.get('visionary_entity_Submission'))[0].id,status:'revision_requested',feedback:'Newer feedback to preserve.'});storage.set('visionary_session_token',f.learner.personId);newer=storage.get('visionary_entity_Submission');},async()=>assert.rejects(submitClassworkResponses(f.learner,f.args),/review changed/));
+ await during('update',async()=>{signInAs(f.teacher.personId);await reviewClasswork(f.teacher,{submissionId:JSON.parse(storage.get('visionary_entity_Submission'))[0].id,status:'revision_requested',feedback:'Newer feedback to preserve.'});signInAs(f.learner.personId);newer=storage.get('visionary_entity_Submission');},async()=>assert.rejects(submitClassworkResponses(f.learner,f.args),/review changed/));
  assert.equal(storage.get('visionary_entity_Submission'),newer);
 });
 test('withdrawn enrollment at submission commit denies the write',async()=>{

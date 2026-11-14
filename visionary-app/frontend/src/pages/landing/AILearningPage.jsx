@@ -79,7 +79,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
             type="button"
             aria-pressed={active}
             onClick={() => onChange(b)}
-            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
+            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-[min(1rem,5vw)] text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
           >
             {b === "monthly" ? "Monthly" : "Annual"}
             {b === "annual" && (
@@ -95,10 +95,13 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
 });
 
 /* ═══ Comparison cell — the store-grade row values; strings render the
-   entitlement word for word, booleans the quiet ✓/– (truth: pricingConfig) ═══ */
+   entitlement word for word, booleans the quiet ✓/– (truth: pricingConfig).
+   The glyphs ARE the cell's content, so each carries its own accessible name
+   (F-07-D1): role="img" + label keeps the visual quiet mark while screen
+   readers hear Included / Not included instead of an unnamed graphic. ═══ */
 const CellValue = React.memo(function CellValue({ value }) {
-  if (value === true) return <Check className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.blue }} />;
-  if (value === false) return <Minus className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.lightGrey }} />;
+  if (value === true) return <Check role="img" aria-label="Included" className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.blue }} />;
+  if (value === false) return <Minus role="img" aria-label="Not included" className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.lightGrey }} />;
   return <span className="font-normal tracking-[-0.022em] text-[17px]" style={{ color: COLORS.ink }}>{value}</span>;
 });
 
@@ -274,7 +277,7 @@ function PricingFAQSection() {
   return (
     <section ref={ref} data-section="04-faq" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div>
             <p className="text-[18px] font-medium" style={{ color: COLORS.grey }}>FAQ</p>
             <h2 className="mt-[var(--gap-eyebrow-title-display)] max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>

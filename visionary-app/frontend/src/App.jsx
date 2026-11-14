@@ -8,10 +8,11 @@ import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
 import { MetaManager } from '@/lib/PageMeta'
 import { RoutePrefetcher } from '@/lib/RoutePrefetcher'
+import { WorkspaceChunkPrefetcher } from '@/lib/WorkspaceChunkPrefetcher'
 import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import OnboardingGate from '@/components/OnboardingGate'
-import { needsAssetReload } from '@/lib/assetRecovery'
+import { needsAssetReload, recoverRouteAssets } from '@/lib/assetRecovery'
 import { fontSurfaceForPath } from '@/lib/fontSurface'
 
 class AppErrorBoundary extends React.Component {
@@ -23,6 +24,7 @@ class AppErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ errorInfo })
+    if (import.meta.env.PROD && recoverRouteAssets(error)) return;
     console.error('[Visionary Resilience Diagnostic]:', error, errorInfo)
   }
 
@@ -34,7 +36,7 @@ class AppErrorBoundary extends React.Component {
   render() {
     if (this.state.error) {
       const internal = window.location.pathname.startsWith('/dashboard');
-      const reloadAssets = internal && needsAssetReload(this.state.error);
+      const reloadAssets = needsAssetReload(this.state.error);
       return (
         <main data-font-surface={fontSurfaceForPath(window.location.pathname)} className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#1d1d1f]">
           <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#d2d2d7]">
@@ -45,7 +47,7 @@ class AppErrorBoundary extends React.Component {
             </div>
             <h1 className="mt-5 text-xl font-medium tracking-tight">Something went wrong</h1>
             <p className="mt-2 text-sm text-[#6e6e73] leading-relaxed">
-              {internal ? reloadAssets ? 'This page needs the latest app files. Reload to reopen your workspace.' : 'This page could not open. Try again or return Home. Check your last saved work when you reopen it.' : 'Visionary encountered an unexpected state. Your session and data remain safe.'}
+              {reloadAssets ? 'This page could not load its files. Check your connection and reload.' : internal ? 'This page could not open. Try again or return Home. Check your last saved work when you reopen it.' : 'Visionary encountered an unexpected state. Your session and data remain safe.'}
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button
@@ -189,7 +191,7 @@ const PublicApp = () => (
     <Route path="/security" element={<SecurityPage />} />
     <Route path="/accessibility" element={<AccessibilityPage />} />
     <Route path="/cookies" element={<CookiesPage />} />
-    <Route element={<ProtectedRoute unauthenticatedElement={<Login />} />}>
+    <Route element={<ProtectedRoute />}>
       <Route path="/onboarding" element={<Onboarding />} />
       <Route element={<OnboardingGate />}>
         <Route path="/dashboard" element={<DashboardLayout />}>
@@ -237,6 +239,7 @@ function App() {
           <ScrollToTop />
           <MetaManager />
           <RoutePrefetcher />
+          {import.meta.env.DEV && <WorkspaceChunkPrefetcher />}
           <AppErrorBoundary>
             <Suspense fallback={<RouteFallback />}>
               <PublicApp />

@@ -226,6 +226,42 @@ export function cssMotionValues(text) {
   return out;
 }
 
+/* Ranges of `@media (prefers-reduced-motion: reduce)` blocks, by brace match.
+ * Inside these blocks !important is the point (it is the kill); outside it is
+ * the FAP-81 escape hatch that out-specifies the universal reduced-motion
+ * contract. Comment stripping is length-preserving, so indices map to source. */
+export function reducedMotionBlockRanges(text) {
+  const ranges = [];
+  const re = /@media[^{]*prefers-reduced-motion[^{]*\{/gi;
+  let m;
+  while ((m = re.exec(text))) {
+    let depth = 0;
+    for (let i = m.index + m[0].length - 1; i < text.length; i++) {
+      if (text[i] === '{') depth++;
+      else if (text[i] === '}') {
+        depth--;
+        if (depth === 0) {
+          ranges.push([m.index, i]);
+          break;
+        }
+      }
+    }
+  }
+  return ranges;
+}
+
+/* Motion declarations that carry !important outside a reduce block. The
+ * global contract kills motion through a universal selector with !important;
+ * any class-level !important shorthand wins on specificity and keeps running. */
+export function reducedMotionEscapes(text, values) {
+  const ranges = reducedMotionBlockRanges(text);
+  return values.filter(({ name, value, index }) => {
+    const isMotionProperty = /^(?:-webkit-)?(?:animation|transition)/i.test(name) || /^WebkitAnimation$/i.test(name);
+    if (!isMotionProperty || !/!\s*important/i.test(value)) return false;
+    return !ranges.some(([start, end]) => index >= start && index <= end);
+  });
+}
+
 /* JS/JSX motion sites. Comments are stripped first so prose never trips the
  * scanner. Extraction covers: keyed declaration strings, the reduced-motion
  * conditional guard (`name: reduced ? "none" : "<value>"` — judge the
@@ -367,6 +403,11 @@ function run({ out = console, outReceipt = null } = {}) {
     for (const v of easeClassViolations(text)) {
       metrics.easeClassFails++;
       pushFailure('ease-class-law', `${label}:${lineAt(text, v.index)} carries the ease-${v.ease} utility class (use the bare transition utilities — config routes them to the law curve)`);
+    }
+
+    /* Law 9 — no motion declaration escapes the global reduced-motion kill. */
+    for (const v of reducedMotionEscapes(text, values)) {
+      pushFailure('reduced-motion-escape', `${label}:${lineAt(text, v.index)} ${v.name} carries !important outside a prefers-reduced-motion:reduce block (it out-specifies the global kill)`);
     }
 
     /* Law 5 — the curve and the scale live only in tokens.css. */

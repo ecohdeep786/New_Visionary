@@ -6,6 +6,13 @@ import AuthLayout from "@/components/AuthLayout";
 import { primaryBtnAutoClass, Spinner, InputField, BackButton, ActionRow } from "@/components/auth/AuthUI";
 import { authErrorMessage } from '@/lib/authErrors';
 
+/**
+ * ForgotPassword — Firebase is the only identity source (FAP-93). There is no
+ * local reset token to fabricate: the request goes to the connected transport
+ * and the success step keeps its anti-enumeration "Check your email" view —
+ * no "reset link created" claim, no token continuation link. /reset-password
+ * still accepts the historical ?token param (FAP-85 regression guard).
+ */
 export default function ForgotPassword() {
   const location = useLocation(), pending = useRef(false);
   const [email, setEmail] = useState(typeof location.state?.email === 'string' ? location.state.email.slice(0, 320) : "");
