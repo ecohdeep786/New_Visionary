@@ -7,6 +7,8 @@ import { Spinner, primaryBtnAutoClass } from '@/components/auth/AuthUI';
 import { useAuth } from '@/lib/AuthContext';
 import { base44 } from '@/api/base44Client';
 import { authErrorMessage } from '@/lib/authErrors';
+import heroBotWebp from '@/assets/brand/visionary-bot.webp';
+import heroBotAvif from '@/assets/brand/visionary-bot.avif';
 import './product-onboarding.css';
 
 const firstSteps = {
@@ -39,7 +41,7 @@ function ProductIntroduction() {
     finally { lock.current = false; setBusy(false); }
   }
   const screens = [
-    { title: 'Welcome to Visionary', text: 'A place to learn, explore ideas and build what comes next. Here’s a quick look around.', art: 'compass' },
+    { title: 'Welcome to Visionary', text: 'A place to learn, explore ideas and build what comes next. Here’s a quick look around.', art: 'bot' },
     { title: 'Find your next step', text: 'Home brings your next action together. Use the navigation to explore learning, tools and your saved activity.', art: 'growth' },
     { title: 'You’re in control', text: 'Your goals and your privacy belong to you. Review preferences and permissions whenever you need to.', art: 'shield' },
   ];
@@ -53,7 +55,18 @@ function ProductIntroduction() {
         <div className="flex shrink-0 items-center justify-between px-5 py-4 sm:px-8"><p className="text-xs text-[#6e6e73]">Getting started · {page + 1} of 3</p><Dialog.Close asChild><button type="button" disabled={busy} aria-label="Close introduction" className="flex h-11 w-11 items-center justify-center rounded-full text-[#6e6e73] hover:bg-[#f5f5f7] focus-visible:outline focus-visible:outline-2"><X size={20} /></button></Dialog.Close></div>
         <div className="min-h-0 overflow-y-auto px-5 pb-6 sm:px-10 sm:pb-8">
           <div className="rounded-2xl bg-[#f5f5f7] px-4 py-7 text-center sm:py-9">
-            <SpotIllustration subject={screen.art} className="mx-auto h-24 w-24 sm:h-32 sm:w-32" />
+            {screen.art === 'bot' ? (
+              /* the mark — the Visionary bot (founder directive: the welcome
+                 popup opens on the product's own visual voice, not a stock
+                 illustration; the same bare bot the About mission card and
+                 the One-intelligence promo band carry). */
+              <picture>
+                <source type="image/avif" srcSet={heroBotAvif} />
+                <img src={heroBotWebp} alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false" className="pointer-events-none mx-auto h-28 w-28 select-none object-contain sm:h-36 sm:w-36" />
+              </picture>
+            ) : (
+              <SpotIllustration subject={screen.art} className="mx-auto h-24 w-24 sm:h-32 sm:w-32" />
+            )}
             <Dialog.Title ref={title} tabIndex={-1} id="getting-started-title" className="mt-5 text-[26px] font-medium leading-tight text-[#1d1d1f] outline-none sm:text-[34px]">{screen.title}</Dialog.Title>
             <Dialog.Description className="mx-auto mt-4 max-w-[520px] text-sm leading-6 text-[#6e6e73] sm:text-base sm:leading-7">{screen.text}</Dialog.Description>
           </div>

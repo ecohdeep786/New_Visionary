@@ -1,5 +1,10 @@
 # KAN-45 — PLAT-01 — reviewed product IaC/environment configuration (data, storage, queues, protection)
 
+Historical submitted checkpoint below, rejected during final review. See the
+[current corrective handoff](../reviews/KAN45_PRODUCT_ENV_FINAL.md). The original
+branch's unrelated lane ancestry is preserved but excluded from accepted scope;
+only KAN-45-owned configuration is eligible for squash integration.
+
 ## Task review and verification handoff
 
 Jira key / source ID: KAN-45 (PLAT-01)

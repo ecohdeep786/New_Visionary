@@ -12,16 +12,14 @@ import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { LEGAL_META, RESPONSE_TIMES } from "@/data/legalMeta";
-import { fontStack } from "@/components/landing/system/tokens";
+import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared public dialect (#1d1d1f ink pills, #0066cc quiet
    links, #f5f5f7 grounds, borderless white cards). ═══ */
 const SAFETY_EMAIL = "safety@visionary.org.in";
 
-/* ═══ Link, pill and chip grammar — the approved public classes, verbatim ═══ */
-const quietLink = "inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#1d1d1f] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
-const chipPill = "inline-flex min-h-11 items-center rounded-full bg-[#f5f5f7] px-6 text-[16px] font-medium tracking-[0.24px] text-[#1d1d1f] transition-colors duration-200 hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4";
+/* ═══ Link, pill and chip grammar — the A2 CTA law, imported from the one source ═══ */
+const { quietLink, inkPill, chipPill } = CTA_LAW;
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
    motion-reduce safe). ═══ */
@@ -42,7 +40,7 @@ function Reveal({ children, className = "", delay = 0 }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${
+      className={`transition-[opacity,transform] duration-700 ease-apple motion-reduce:transition-none ${
         shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
@@ -135,11 +133,11 @@ export default function SafetyPage() {
   return (
     <div className="page-safety min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Breadcrumb page="Safety" />
 
         {/* HERO — the reference's shield badge + two-tone heading + jump chips */}
-        <section data-section="01-hero" className="px-6 pb-14 pt-10 sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
+        <section data-section="01-hero" className="px-6 pb-16 pt-10 sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
           <Reveal className="mx-auto max-w-[880px]">
             <span className="flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
               <ShieldCheck className="h-7 w-7" strokeWidth={1.8} aria-hidden="true" />
@@ -163,7 +161,7 @@ export default function SafetyPage() {
         {/* STATEMENT + ICON STRIP — the reference's icon row */}
         <section data-section="02-statement" aria-labelledby="statement-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[880px] text-center">
-            <h2 id="statement-title" className="text-[clamp(24px,3vw,34px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#1d1d1f]">
+            <h2 id="statement-title" data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
               The questions you ask every day, <span className="text-[#1d1d1f]">safer in all kinds of ways.</span>
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">

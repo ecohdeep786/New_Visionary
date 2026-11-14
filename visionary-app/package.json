@@ -18,6 +18,8 @@
     "frontend:qa:navigation": "node scripts/frontend.mjs qa:navigation",
     "frontend:qa:fonts": "node scripts/frontend.mjs qa:fonts",
     "frontend:qa:design": "node scripts/frontend.mjs qa:design",
+    "frontend:qa:motion": "node scripts/frontend.mjs qa:motion",
+    "frontend:qa:taps": "node scripts/frontend.mjs qa:taps",
     "product:doctor": "node scripts/product.mjs doctor",
     "product:verify-layout": "node scripts/verify-layout.mjs",
     "product:verify-imports": "node scripts/verify-imports.mjs",
@@ -86,6 +88,8 @@
     "stage:check": "node scripts/stage-check.mjs",
     "conversation:check": "node scripts/conversation-check.mjs",
     "export:check": "node scripts/export-check.mjs",
-    "researchgate:check": "node scripts/researchgate-check.mjs"
+    "researchgate:check": "node scripts/researchgate-check.mjs",
+    "privacycore:check": "node scripts/privacycore-check.mjs",
+    "data:check": "node scripts/domain-check.mjs"
   }
 }
