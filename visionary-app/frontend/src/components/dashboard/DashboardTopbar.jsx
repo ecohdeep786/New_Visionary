@@ -8,7 +8,6 @@ import { useAuth } from "@/lib/AuthContext";
 import { useStudentData } from "@/hooks/useStudentData";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import { navigationFor,secondaryNavigation } from "@/lib/dashboardNavigation";
-import { PRODUCT_ACCESS } from "@/lib/productAccess";
 import WorkspaceSwitcher from './WorkspaceSwitcher';
 import AudioPresence from './AudioPresence';
 import { useWorkspace } from '@/hooks/useWorkspace';
@@ -17,7 +16,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { shellCopy } from './shellCopy';
 import { toast } from '@/components/ui/use-toast';
 import { authErrorMessage } from '@/lib/authErrors';
-import { appClient } from '@/api/appClient';
 import ConnectedPlanBadge from './ConnectedPlanBadge';
 
 export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpanded }) {
@@ -46,7 +44,6 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     : role === "parent" ? { label: "Connect your child", to: "/dashboard/child" }
     : { label: "Add people", to: "/dashboard/people" };
   connect.label=t('connect_'+role);
-  const plan = workspaceData?.subscription.plan || PRODUCT_ACCESS.plan;
   const destinations = [...navigationFor(role,locale), ...secondaryNavigation(role,locale), { label: t("profile"), to: "/dashboard/profile" }, { label: t("settings"), to: "/dashboard/settings" },{label:t('support'),to:'/dashboard/support'},
     ...(role === 'student' ? student.topics.map(t => ({ label: t.name, detail: t.subject, to: "/dashboard/learn/" + t.id })) : [])].filter(item=>allowed(item.to));
   const results = destinations.filter((item,index,all) => all.findIndex(destination => destination.to === item.to) === index).filter(item => (item.label + " " + item.to + " " + (item.detail || "")).toLowerCase().includes(query.trim().toLowerCase())).slice(0, 12);
@@ -76,7 +73,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     <DropdownMenu>
       <DropdownMenuTrigger asChild><button aria-label={t("accountMenu")} className="ml-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-sm font-medium text-white ring-offset-2 focus-visible:ring-2 focus-visible:ring-[var(--v-action)]">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
       <DropdownMenuContent lang={locale} align="end" sideOffset={8} className="workspace-account-menu w-[min(320px,calc(100vw-24px))] rounded-[20px] bg-white p-2">
-        <DropdownMenuLabel className="p-3 font-normal"><div className="flex items-center gap-3"><div aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-lg font-medium text-white">{userName.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-base font-medium text-[#121317]">{userName}</p><p className="mt-0.5 truncate text-xs text-[#5f6368]">{user?.email || user?.phone_number}</p></div></div><div className="mt-4 flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#e8f0fd] px-3 py-1 text-xs font-medium capitalize text-[var(--v-action)]">{t("role_"+role)} {t("workspace")}</span>{appClient.auth.source === 'firebase' ? <ConnectedPlanBadge key={user?.id} /> : <span className="rounded-full border border-[var(--v-border)] px-3 py-1 text-xs text-[#5f6368]">{plan} · {t("localPreview")}</span>}</div></DropdownMenuLabel>
+        <DropdownMenuLabel className="p-3 font-normal"><div className="flex items-center gap-3"><div aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-lg font-medium text-white">{userName.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-base font-medium text-[#121317]">{userName}</p><p className="mt-0.5 truncate text-xs text-[#5f6368]">{user?.email || user?.phone_number}</p></div></div><div className="mt-4 flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#e8f0fd] px-3 py-1 text-xs font-medium capitalize text-[var(--v-action)]">{t("role_"+role)} {t("workspace")}</span><ConnectedPlanBadge key={user?.id} /></div></DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => navigate("/dashboard/profile")} className="workspace-account-item gap-3"><UserCircle aria-hidden="true" />{t("yourProfile")}</DropdownMenuItem>
         {allowed("/dashboard/subscription")&&<DropdownMenuItem onSelect={() => navigate("/dashboard/subscription")} className="workspace-account-item gap-3"><Crown aria-hidden="true" />{t(role==='organization'?'billing':'plans')}</DropdownMenuItem>}

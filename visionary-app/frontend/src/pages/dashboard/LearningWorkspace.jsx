@@ -166,10 +166,10 @@ function CurriculumLearningWorkspace({
   const chapterId = params.get('chapter');
   const bookId = params.get('book');
   const fromClassId = params.get('fromClass');
-  // Connected learning sessions are owner-scoped server receipts; unconfigured or
-  // signed-out visitors keep the verified local-only behaviour.
+  // Connected learning sessions are owner-scoped server receipts keyed to the
+  // signed-in profile; signed-out visitors get no session adapter.
   useEffect(() => {
-    const accountId = appClient.auth.source === 'firebase' ? user?.id : null;
+    const accountId = user?.id;
     if (!accountId) { configureLearningSessionAdapter(null); return undefined; }
     configureLearningSessionAdapter(createLearningSessionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
     return () => configureLearningSessionAdapter(null);

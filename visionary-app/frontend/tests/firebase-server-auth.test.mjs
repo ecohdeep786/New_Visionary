@@ -105,6 +105,32 @@ test('onboarding is a dedicated server command; account changes reject old profi
   await assert.rejects(auth.updateMe({ full_name: 'Other' }, { expectedUserId: 'other-account' }), /account changed/);
   assert.equal(calls.length, 2);
 });
+test('profile PATCH sends only the account patch with its expectations and maps server conflicts to the stale-tab states', async () => {
+  const calls = [], auth = fixture(async (path, options) => {
+    calls.push({ path, options });
+    if (options?.body?.expectedThemeColor === 'stale-accent') throw Object.assign(new Error('Your account accent changed. Load the saved color and retry.'), { status: 409 });
+    if (options?.body?.expectedProfileName === 'stale-name') throw Object.assign(new Error('Your display name changed. Load the saved name and retry.'), { status: 409 });
+    return { ...complete, full_name: options?.body?.full_name ?? complete.full_name };
+  });
+  await auth.me();
+  const updated = await auth.updateMe({ full_name: 'Trimmed name' }, { expectedProfileName: 'Original name' });
+  assert.equal(calls[1].path, '/profile'); assert.equal(calls[1].options.method, 'PATCH');
+  assert.equal(calls[1].options.accountId, first.id);
+  assert.deepEqual(calls[1].options.body, { full_name: 'Trimmed name', expectedProfileName: 'Original name' });
+  assert.equal(updated.full_name, 'Trimmed name');
+  // The server owns every conflict; the adapter only restores the established
+  // stale-tab error names the settings and profile editors branch on (FAP-93).
+  await assert.rejects(auth.updateMe({ preferences: { theme_color: 'green' } }, { expectedThemeColor: 'stale-accent' }), error => error.name === 'AppearanceConflictError' && error.status === 409);
+  await assert.rejects(auth.updateMe({ full_name: 'Other' }, { expectedProfileName: 'stale-name' }), error => error.name === 'ProfileConflictError' && error.status === 409);
+  assert.equal(calls.length, 4);
+});
+test('a stale expected account is rejected before any profile request is sent', async () => {
+  let requests = 0;
+  const auth = createServerAuth({ request: async () => { requests++; return complete; }, identity: { login: async () => user } });
+  await auth.me();
+  await assert.rejects(auth.updateMe({ full_name: 'Other' }, { expectedUserId: 'other-account' }), error => error.code === 'auth/account-changed');
+  assert.equal(requests, 1);
+});
 test('failed server logout remains recoverable and does not report success', async () => {
   const auth = fixture(async path => { if (path === '/logout') throw new Error('Storage unavailable'); return complete; });
   await auth.me(); await assert.rejects(auth.logout(), /Storage unavailable/); assert.deepEqual(auth.currentProfile(), complete);

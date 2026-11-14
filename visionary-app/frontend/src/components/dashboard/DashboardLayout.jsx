@@ -6,6 +6,7 @@ import {useWorkspaceScroll} from '@/hooks/useWorkspaceScroll';
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Navigate, Outlet, useLocation, NavLink } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import ConnectedAccountLayout from './ConnectedAccountLayout';
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardTopbar from "./DashboardTopbar";
 import { useAuth } from "@/lib/AuthContext";
@@ -28,6 +29,10 @@ import FeedbackPrompt from './FeedbackPrompt';
 import { feedbackSurface } from '@/services/feedbackClient';
 
 export default function DashboardLayout() {
+  return import.meta.env.DEV ? <PreviewDashboardLayout /> : <ConnectedAccountLayout />;
+}
+
+function PreviewDashboardLayout() {
   const { user, activeWorkspace, workspaceError, retryWorkspace } = useAuth();
   const {data:scopeData,error:scopeError,refresh:refreshScope}=useWorkspace();
   const lastInterface=useRef({personId:null,workspaceId:null,locale:'en'});

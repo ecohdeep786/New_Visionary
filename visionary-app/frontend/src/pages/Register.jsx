@@ -3,8 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
-import { Mail, Phone, AlertCircle } from "lucide-react";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import { Mail, Phone } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
 import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
@@ -13,32 +12,26 @@ import {
   Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow,
 } from "@/components/auth/AuthUI";
 import { useAuth } from "@/lib/AuthContext";
-import { toast } from "@/components/ui/use-toast";
 import { authErrorMessage } from '@/lib/authErrors';
 import PhoneAuth from '@/components/auth/PhoneAuth';
 import useSignInMethods from '@/hooks/useSignInMethods';
 
 /**
- * Register — preview OTP truthfulness law (FAP-70):
- * - In local preview (base44.auth.source !== 'firebase') no email transport
- *   exists, so the verification step must not claim one was sent. The step
- *   shows the established local-preview disclosure voice instead ("Local
- *   preview — verification is simulated; no email is sent. Any 6-digit code
- *   completes signup for <email>."), and the Resend control (whose toast
- *   claims "Code sent") is connected-mode only.
- * - The connected Firebase flow keeps its "Verify your email" copy and
- *   Resend control byte-identical; only the preview branch differs.
+ * Register — Firebase is the only identity source (FAP-93). Every registration
+ * creates the account with the connected identity provider and continues to
+ * the real email-verification step (EmailVerification). There is no simulated
+ * OTP step: no local code entry, no "Code sent" resend, and no local account
+ * store to pre-check existence — a duplicate address surfaces at the create
+ * step as auth/email-already-in-use with its "Sign in instead" actions.
  */
 export default function Register() {
-  const { user, isAuthenticated, isLoadingAuth, checkUserAuth, authError } = useAuth();
+  const { user, isAuthenticated, isLoadingAuth, authError } = useAuth();
   const navigate = useNavigate();
   const submitting = useRef(false);
-  const preview = base44.auth.source !== 'firebase';
   const [view, setView] = useState("methods");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [otpCode, setOtpCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [duplicate, setDuplicate] = useState(false);
@@ -57,35 +50,10 @@ export default function Register() {
     return <Navigate to={authDestination(user)} replace />;
   }
 
-  const checkEmailExists = async (emailToCheck) => {
-    if (base44.auth.source === 'firebase') return false;
-    try {
-      /* Preview repository: check the same store the credential gate verifies
-       * against (F-16 — the entities.User store is empty in preview, which
-       * misreported every registered email as available). */
-      return await base44.auth.emailRegistered(emailToCheck);
-    } catch {
-      return false;
-    }
-  };
-
-  const handleEmailContinue = async (e) => {
+  const handleEmailContinue = (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
-    try {
-      const exists = await checkEmailExists(email);
-      if (exists) {
-        setError("This email is already registered. Try signing in instead.");
-        setLoading(false);
-        return;
-      }
-      setView("password");
-    } catch {
-      setView("password");
-    } finally {
-      setLoading(false);
-    }
+    setView("password");
   };
 
   const handleRegister = async (e) => {
@@ -102,7 +70,7 @@ export default function Register() {
     try {
       await base44.auth.register({ email, password });
       setPassword(''); setConfirmPassword('');
-      setView(preview ? "otp" : 'verification');
+      setView('verification');
     } catch (err) {
       if (err.registrationCreated) { setPassword(''); setConfirmPassword(''); setView('verification'); }
       setDuplicate(err.code === 'auth/email-already-in-use');
@@ -111,32 +79,6 @@ export default function Register() {
     } finally {
       submitting.current = false;
       setLoading(false);
-    }
-  };
-
-  const handleVerify = async () => {
-    setError("");
-    setLoading(true);
-    try {
-      const result = await base44.auth.verifyOtp({ email, otpCode });
-      if (result?.access_token) {
-        base44.auth.setToken(result.access_token);
-      }
-      navigate(authDestination(await checkUserAuth({ quiet: true })), { replace: true });
-    } catch (err) {
-      setError(authErrorMessage(err, 'That code could not be verified. Please try again.'));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleResend = async () => {
-    setError("");
-    try {
-      await base44.auth.resendOtp(email);
-      toast({ title: "Code sent", description: "Check your email for the new code." });
-    } catch (err) {
-      setError(authErrorMessage(err, 'The email could not be sent. Please try again.'));
     }
   };
 
@@ -196,18 +138,6 @@ export default function Register() {
         return (
           <div key="email" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={goToMethods} />
-            {error && (
-              <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-                <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm text-[#e30000] font-medium">Email already registered</p>
-                  <p className="text-xs text-[#e30000] mt-1">{error}</p>
-                  <Link to={authLink('/login')} className="text-xs text-[#0066cc] font-medium hover:underline mt-1.5 inline-block">
-                    Sign in instead →
-                  </Link>
-                </div>
-              </div>
-            )}
             <form onSubmit={handleEmailContinue} className="flex flex-col gap-6">
               <InputField
                 label="Email"
@@ -268,49 +198,6 @@ export default function Register() {
                 </button>
               </ActionRow>
             </form>
-          </div>
-        );
-
-      case "otp":
-        return (
-          <div key="otp" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-8">
-            <div className="text-center">
-              <div className="w-14 h-14 rounded-full bg-[rgba(0,102,204,0.10)] flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-7 h-7 text-[#0066cc]" />
-              </div>
-              <h2 className="text-2xl font-normal text-[#1d1d1f]">{preview ? "Finish creating your account" : "Verify your email"}</h2>
-              <p className="text-sm text-[#6e6e73] mt-2 leading-relaxed">
-                {preview
-                  ? <>Local preview — verification is simulated; no email is sent. Any 6-digit code completes signup for <span className="font-medium text-[#1d1d1f]">{email}</span>.</>
-                  : <>We sent a 6-digit code to <span className="font-medium text-[#1d1d1f]">{email}</span></>}
-              </p>
-            </div>
-            {error && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#e30000] text-sm">{error}</div>}
-            <div className="flex justify-center">
-              <InputOTP maxLength={6} value={otpCode} onChange={setOtpCode} autoFocus autoComplete="one-time-code">
-                <InputOTPGroup>
-                  <InputOTPSlot index={0} />
-                  <InputOTPSlot index={1} />
-                  <InputOTPSlot index={2} />
-                  <InputOTPSlot index={3} />
-                  <InputOTPSlot index={4} />
-                  <InputOTPSlot index={5} />
-                </InputOTPGroup>
-              </InputOTP>
-            </div>
-            <div className="flex justify-center">
-              <button type="button" onClick={handleVerify} disabled={loading || otpCode.length < 6} className={primaryBtnAutoClass}>
-                {loading ? <Spinner /> : "Verify"}
-              </button>
-            </div>
-            {!preview && (
-              <p className="text-center text-sm text-[#6e6e73]">
-                Didn't receive the code?{" "}
-                <button type="button" onClick={handleResend} className="text-[#0066cc] font-medium hover:underline">
-                  Resend
-                </button>
-              </p>
-            )}
           </div>
         );
 

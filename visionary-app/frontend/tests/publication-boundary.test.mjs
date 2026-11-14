@@ -1,6 +1,7 @@
 import test,{beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {storage,org,fixture,reset} from './fixtures/classCurriculum.mjs';
+import {signInAs} from './helpers/previewAuth.mjs';
 import {appClient} from '../src/api/appClient.js';
 import * as w from '../src/services/workspaceService.ts';
 import {curriculumPublicationRevision} from '../src/lib/curriculumPublication.js';
@@ -14,7 +15,7 @@ async function during(method,change,run,after=false){
 }
 test('published-copy replay rejects an account handoff during class lookup',async()=>{
  const f=await fixture();await publish(f);const before=storage.get('visionary_entity_Classroom');
- await during('get',()=>storage.set('visionary_session_token',f.learner.personId),async()=>assert.rejects(publish(f),/active.*workspace|teaching workspace/),true);
+ await during('get',()=>signInAs(f.learner.personId),async()=>assert.rejects(publish(f),/active.*workspace|teaching workspace/),true);
  assert.equal(storage.get('visionary_entity_Classroom'),before);
 });
 test('same-state publication replay rejects teacher membership revoked during class lookup',async()=>{

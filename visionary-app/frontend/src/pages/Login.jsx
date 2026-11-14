@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
 import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
 import { Mail, Phone, AlertCircle, RefreshCw, UserRound } from "lucide-react";
@@ -40,35 +39,10 @@ export default function Login() {
     return <Navigate to={authDestination(user)} replace />;
   }
 
-  const checkEmailExists = async (emailToCheck) => {
-    if (base44.auth.source === 'firebase') return true;
-    try {
-      /* Preview repository: check the same store the credential gate verifies
-       * against (F-16 — the entities.User store is empty in preview, which
-       * misrouted every registered email to the not-found error). */
-      return await base44.auth.emailRegistered(emailToCheck);
-    } catch {
-      return true;
-    }
-  };
-
-  const handleEmailContinue = async (e) => {
+  const handleEmailContinue = (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
-    try {
-      const exists = await checkEmailExists(email);
-      if (!exists) {
-        setError("Couldn't find your Visionary Account. Try a different email or create a new account.");
-        setLoading(false);
-        return;
-      }
-      setView("password");
-    } catch {
-      setView("password");
-    } finally {
-      setLoading(false);
-    }
+    setView("password");
   };
 
   const handlePasswordSubmit = async (e) => {
@@ -158,18 +132,6 @@ export default function Login() {
         return (
           <div key="email" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={goToMethods} />
-            {error && (
-              <div role="alert" className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
-                <AlertCircle className="w-5 h-5 text-[#e30000] shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <p className="text-sm text-[#e30000] font-medium">Account not found</p>
-                  <p className="text-xs text-[#e30000] mt-1">{error}</p>
-                  <Link to={authLink('/register')} className="text-xs text-[#0066cc] font-medium hover:underline mt-1.5 inline-block">
-                    Create a new account →
-                  </Link>
-                </div>
-              </div>
-            )}
             <form onSubmit={handleEmailContinue} className="flex flex-col gap-6">
               <InputField
                 label="Email"

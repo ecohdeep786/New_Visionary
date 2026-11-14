@@ -1,13 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { deriveLearningData } from "../src/lib/learningMetrics.js";
-import { initializeLearningWorkspace } from "../src/lib/learningProfile.js";
 import { scoreExercises, cubeExercises } from "../src/lib/practiceExercises.js";
 import { safeReturnTo } from "../src/lib/authReturnTo.js";
 import { appClient } from "../src/api/appClient.js";
 import { bootstrapPerson,snapshot,saveResource } from '../src/services/workspaceService.ts';
 import { assignReviewedLesson,teacherLearners,teacherClasses,submitClassworkResponses,reviewClasswork } from '../src/services/classroomService.js';
 import { getReviewDraft, saveReviewDraft, clearReviewDraft } from '../src/services/reviewDraftService.js';
+import { previewAccount, previewSignOut, signInAs } from './helpers/previewAuth.mjs';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key,value) => memory.set(key,String(value)), removeItem: key => memory.delete(key) };
@@ -35,8 +35,8 @@ test('teacher review drafts keep only the current attempt and survive a failed l
 
 test('reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped',async()=>{
   memory.clear();
-  const create=async(email,identity)=>{await appClient.auth.register({email,password:'Preview-test-123!'});await appClient.auth.verifyOtp({email});return appClient.auth.updateMe({identity,onboarding_complete:true});};
-  const teacher=await create('loop-teacher@visionary.test','teacher');const person=bootstrapPerson(teacher);const ctx={personId:teacher.id,workspaceId:person.active,role:'teacher',locale:'en'};
+  const create=(email,identity)=>{const user=previewAccount({id:email.split('@')[0],email,identity,onboarding_complete:true});return user;};
+  const teacher=create('loop-teacher@visionary.test','teacher');const person=bootstrapPerson(teacher);const ctx={personId:teacher.id,workspaceId:person.active,role:'teacher',locale:'en'};
   const classroom=await appClient.entities.Classroom.create({name:'Reasoning together',teacher_email:teacher.email,teacher_id:teacher.id,join_code:'LOOP-CUBE'});
   assert.throws(()=>saveResource(ctx,{title:'Incomplete',kind:'lesson',body:'',status:'reviewed'}),/outline/);
   assert.throws(()=>saveResource(ctx,{title:'Incomplete',kind:'lesson',body:'A draft.',status:'draft',checks:[{id:'check-1',prompt:''}]}),/complete questions/);
@@ -59,11 +59,11 @@ test('reviewed lesson → assignment → learner submission → returned feedbac
   assert.equal((await appClient.entities.Submission.get(submission.id)).text,submission.text);
   assert.deepEqual(submission.responses,[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]);
   await assert.rejects(appClient.entities.Submission.update(submission.id,{grade:10,status:'graded'}));
-  await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');
+  signInAs(teacher.id);
   const learners=await teacherLearners(ctx);assert.equal(learners[0].pending,1);assert.match(learners[0].evidence[0].response,/Three layers of nine unit cubes make 27/);
   await assert.rejects(reviewClasswork(ctx,{submissionId:submission.id,status:'revision_requested'}),/Explain what/);
   await reviewClasswork(ctx,{submissionId:submission.id,status:'revision_requested',feedback:'Label the cubic units.'});
-  await appClient.auth.loginViaEmailPassword(learner.email,'Preview-test-123!');
+  signInAs(learner.id);
   await assert.rejects(appClient.entities.Submission.update(submission.id,{text:'Replace without preserving feedback',status:'submitted'}));
   const setItem=localStorage.setItem;
   try {
@@ -75,10 +75,10 @@ test('reviewed lesson → assignment → learner submission → returned feedbac
   assert.equal(revised.id,submission.id);assert.equal(revised.attempt,2);assert.equal(revised.grade,null);assert.equal(revised.status,'submitted');
   assert.equal(revised.revision_history[0].feedback,'Label the cubic units.');assert.equal(revised.revision_history[0].text,submission.text);
   assert.equal((await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:revised.responses})).revision_history.length,1);
-  await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');
+  signInAs(teacher.id);
   await assert.rejects(reviewClasswork(ctx,{submissionId:submission.id,attempt:1,status:'graded',grade:10}),/newer response/);
   await reviewClasswork(ctx,{submissionId:submission.id,attempt:2,status:'graded',grade:8,feedback:'Good model. Label the cubic units.'});
-  await appClient.auth.loginViaEmailPassword(learner.email,'Preview-test-123!');assert.equal((await appClient.entities.Submission.get(submission.id)).feedback,'Good model. Label the cubic units.');
+  signInAs(learner.id);assert.equal((await appClient.entities.Submission.get(submission.id)).feedback,'Good model. Label the cubic units.');
   assert.equal(snapshot({personId:learner.id,workspaceId:`${learner.id}:student`,role:'student',locale:'en'}).sessions.length,0);
   const outsider=await create('loop-outsider@visionary.test','teacher');assert.equal((await appClient.entities.Submission.list()).length,0);assert.equal((await appClient.entities.Enrollment.list()).length,0);
   const outsiderPerson=bootstrapPerson(outsider);const outsiderCtx={personId:outsider.id,workspaceId:outsiderPerson.active,role:'teacher',locale:'en'};
@@ -131,25 +131,24 @@ test("a dashboard path without returnTo resolves to itself so the two-step sign-
   assert.equal(safeReturnTo(),"/dashboard/home","non-dashboard paths keep the workspace default");
   delete window.location.pathname; window.location.search="";
 });
-test("preview account isolation, consent, persistence, and idempotent onboarding", async () => {
-  const create = async (email,identity) => { await appClient.auth.register({email,password:"Preview-test-123!"}); await appClient.auth.verifyOtp({email}); return appClient.auth.updateMe({identity}); };
-  const student=await create("learner@visionary.test","student");
-  await initializeLearningWorkspace(appClient,student,{identity:"student",subjects:["Geometry"],subject_confidence:{Geometry:5}});
-  await initializeLearningWorkspace(appClient,student,{identity:"student",subjects:["Geometry"],subject_confidence:{Geometry:5}});
+test("account isolation, consent scopes and family-link visibility never expose private records", async () => {
+  const create = (email,identity) => previewAccount({id:email.split('@')[0],email,identity,onboarding_complete:true});
+  const student=create("learner@visionary.test","student");
+  await appClient.entities.Subject.create({name:"Geometry",overall_mastery:0});
   assert.equal((await appClient.entities.Subject.list()).length,1);
   assert.equal((await appClient.entities.Subject.list())[0].overall_mastery,0);
   const topic=await appClient.entities.Topic.create({name:"Private topic",subject:"Geometry"});
   await appClient.entities.StudyLog.create({date:"2026-09-13",duration_minutes:5,topic:"Volume"});
   await appClient.entities.Question.create({question:"Private question"});
-  appClient.auth.logout();
-  await create("parent@visionary.test","parent");
+  previewSignOut();
+  create("parent@visionary.test","parent");
   assert.equal((await appClient.entities.Topic.list()).length,0);
   await assert.rejects(appClient.entities.Topic.update(topic.id,{name:"wrong account"}));
   const request=await appClient.entities.FamilyLink.create({parent_email:"parent@visionary.test",child_email:"learner@visionary.test",status:"pending"});
   assert.equal((await appClient.entities.StudyLog.filter({owner_email:student.email})).length,0);
-  await appClient.auth.loginViaEmailPassword(student.email,"Preview-test-123!");
+  signInAs(student.id);
   await appClient.entities.FamilyLink.update(request.id,{status:"active"});
-  await appClient.auth.loginViaEmailPassword("parent@visionary.test","Preview-test-123!");
+  signInAs("parent");
   assert.equal((await appClient.entities.StudyLog.filter({owner_email:student.email})).length,1);
   assert.equal((await appClient.entities.Question.filter({owner_email:student.email})).length,0);
   await appClient.entities.FamilyLink.update(request.id,{status:"revoked"});
@@ -157,12 +156,8 @@ test("preview account isolation, consent, persistence, and idempotent onboarding
   await assert.rejects(appClient.integrations.Core.InvokeLLM(),/not available/);
 });
 
-test('onboarding keeps a competitive goal without inventing exam subjects', async () => {
+test('a competitive goal is stored without inventing local exam subjects', async () => {
   memory.clear();
-  const email='exam-no-subjects@visionary.test';
-  await appClient.auth.register({email,password:'Preview-test-123!'});
-  await appClient.auth.verifyOtp({email});
-  const student=await appClient.auth.updateMe({identity:'student'});
-  await initializeLearningWorkspace(appClient,student,{identity:'student',education_stage:'competitive',target_exam:'JEE Main'});
+  previewAccount({id:'exam-no-subjects',email:'exam-no-subjects@visionary.test',identity:'student',onboarding_complete:true,education_stage:'competitive',target_exam:'JEE Main'});
   assert.deepEqual(await appClient.entities.Subject.list(),[]);
 });

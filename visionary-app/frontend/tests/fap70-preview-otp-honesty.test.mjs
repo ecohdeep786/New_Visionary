@@ -1,18 +1,16 @@
-/** FAP-70 — the preview OTP step must not claim an email was sent.
+/** FAP-93 supersedes FAP-70 — the simulated preview OTP no longer exists.
  *
- *  Defect at beta 67edaa93: /register's preview OTP view claimed "We sent a
- *  6-digit code to <email>" although preview mode (base44.auth.source !==
- *  'firebase') has no email transport; "Resend" showed the toast "Code sent /
- *  Check your email for the new code." via resendOtp() — an unfulfilled
- *  promise (appClient.js resendOtp returns {ok:true}). Any 6 digits completed
- *  registration (verifyOtp ignores the code). The preview disclosure appeared
- *  only on the onboarding review step, not at the OTP step.
+ *  FAP-70 (beta 67edaa93) caught /register's preview OTP view claiming
+ *  "We sent a 6-digit code to <email>" while preview mode had no email
+ *  transport, a "Code sent" resend toast wired to a no-op resendOtp(), and
+ *  verifyOtp() accepting any 6 digits. Its law gated honest disclosure copy
+ *  around a mechanism that simulated verification.
  *
- *  The law: in preview, the verification step discloses the simulation
- *  truthfully ("Local preview — verification is simulated; no email is sent.
- *  Any 6-digit code completes signup for <email>.") and the Resend control is
- *  connected-mode only. The connected Firebase flow keeps "Verify your
- *  email", "We sent a 6-digit code to", and its Resend control unchanged.
+ *  FAP-93 removes the mechanism: Firebase is the only identity source, so
+ *  there is no preview auth source to disclose — every registration goes
+ *  through the connected identity provider and the real email-verification
+ *  step. The honesty law survives as an absence law: the simulated step,
+ *  its disclosure, and its any-code truth cannot silently return.
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -23,31 +21,20 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const source = readFileSync(join(root, "src/pages/Register.jsx"), "utf8");
 
-test("FAP-70: the preview flag gates the verification view and is derived from the auth source", () => {
-  assert.match(source, /const preview = base44\.auth\.source !== 'firebase';/, "single preview flag from the auth source");
-  assert.match(source, /\{preview \? "Finish creating your account" : "Verify your email"\}/, "OTP step title gated on preview");
-  assert.match(source, /setView\(preview \? "otp" : 'verification'\)/, "post-register view routing uses the same flag");
+test("FAP-93: the preview OTP mechanism and its preview flag are gone from registration", () => {
+  assert.doesNotMatch(source, /verifyOtp|resendOtp/, "no local code entry or resend remains");
+  assert.doesNotMatch(source, /base44\.auth\.source/, "no page branches on the removed preview auth source");
+  assert.doesNotMatch(source, /Any 6-digit code completes signup/, "the any-code truth is retired with the mechanism");
+  assert.doesNotMatch(source, /We sent a 6-digit code to/, "the sent-code claim has no local transport to be honest about");
 });
 
-test("FAP-70: the preview OTP step discloses the simulation and makes no sent-email claim", () => {
-  assert.match(source, /Local preview — verification is simulated; no email is sent\./, "honest disclosure present");
-  assert.match(source, /Any 6-digit code completes signup for/, "the any-code truth is stated, not hidden");
-  /* The fake claim may exist only inside the connected arm of the same
-   * ternary — the preview arm must not render it. Assert the claim sits on
-   * the `:` (connected) side by checking its position after the disclosure. */
-  const claimAt = source.indexOf("We sent a 6-digit code to");
-  const disclosureAt = source.indexOf("Local preview — verification is simulated");
-  assert.ok(claimAt > -1, "connected copy retained");
-  assert.ok(disclosureAt > -1 && disclosureAt < claimAt, "claim appears only after (in the connected arm of) the preview disclosure ternary");
+test("FAP-93: registration continues only to the connected email-verification step", () => {
+  assert.match(source, /setView\('verification'\)/, "the create step continues to verification");
+  assert.match(source, /<EmailVerification email=\{email\}/, "the connected verification view is the only survivor of the OTP era");
+  assert.match(source, /err\.registrationCreated/, "a created-but-undeliverable identity still reaches verification for retry");
 });
 
-test("FAP-70: Resend (and its 'Code sent' toast) is connected-mode only", () => {
-  const resendIndex = source.indexOf("{!preview && (");
-  assert.ok(resendIndex > -1, "Resend row wrapped in a !preview guard");
-  const guardWindow = source.slice(resendIndex, resendIndex + 400);
-  assert.match(guardWindow, /Didn't receive the code\?/, "the guarded block is the resend row");
-  assert.match(guardWindow, /Resend/, "the guarded block contains the Resend control");
-  const toastIndex = source.indexOf('title: "Code sent"');
-  assert.ok(toastIndex > -1, "the connected toast handler remains for the firebase flow");
-  assert.ok(toastIndex < resendIndex, "toast lives in handleResend (defined before the gated JSX), unreachable in preview");
+test("FAP-93: the connected verification gate itself is tested at the adapter contract", () => {
+  const contract = readFileSync(join(root, "tests/firebase-server-auth.test.mjs"), "utf8");
+  assert.match(contract, /auth\/email-not-verified/, "an unverified email never exchanges a token for a product session");
 });

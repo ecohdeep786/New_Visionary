@@ -18,7 +18,7 @@ function Subjects({ value, onChange }) {
   const [text, setText] = useState(() => (value || []).join(', '));
   return <Text label="Subjects or interests (optional)" value={text} maximum={500} placeholder="For example, mathematics, design" onChange={next => { setText(next); onChange([...new Set(next.split(',').map(item => item.trim().slice(0, 100)).filter(Boolean))].slice(0, 20)); }} />;
 }
-export default function ProductSetupFields({ step, data, updateData, live }) {
+export default function ProductSetupFields({ step, data, updateData }) {
   // FAP-72: the full list is a saved content-interest preference, never a UI
   // switch — the honest note sits under it so no language is implied switchable.
   const language = <div><Select label="Preferred learning language" value={data.preferred_language || data.medium || 'English'} options={LANGUAGES} onChange={value => updateData('preferred_language', value)} /><p className="mt-1 text-xs leading-5 text-[#6e6e73]">{UI_LANGUAGE_NOTE}</p></div>;
@@ -27,7 +27,7 @@ export default function ProductSetupFields({ step, data, updateData, live }) {
     {step.id === 'about' && <>
       <Text label="What should we call you?" value={data.full_name} onChange={value => updateData('full_name', value)} maximum={80} placeholder="Your name" />
       <Select label="Your age range" value={data.age_band} onChange={value => updateData('age_band', value)} options={[{ id: 'adult', label: '18 or older' }, { id: 'minor', label: 'Under 18' }]} />
-      {data.age_band === 'minor' && (live || data.identity !== 'student') ? <p role="status" className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6">Under-18 setup needs a verified guardian connection. It is not available yet. Your account and draft are kept; you can return when guardian setup is available.</p> : <p className="text-xs leading-5 text-[#6e6e73]">This is a self-declared age range. It does not verify your identity.</p>}
+      {data.age_band === 'minor' ? <p role="status" className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6">Under-18 setup needs a verified guardian connection. It is not available yet. Your account and draft are kept; you can return when guardian setup is available.</p> : <p className="text-xs leading-5 text-[#6e6e73]">This is a self-declared age range. It does not verify your identity.</p>}
     </>}
     {step.id === 'focus' && <>
       <ChoiceGrid options={[{ id: 'school', label: 'School', desc: 'Classes and school subjects' }, { id: 'higher_ed', label: 'Higher education', desc: 'College, university or diploma' }, { id: 'competitive', label: 'Exam preparation', desc: 'A specific entrance or competitive exam' }, { id: 'professional', label: 'Independent learning', desc: 'Skills, interests and personal projects' }]} value={data.education_stage} onChange={value => updateData('education_stage', value)} dense />

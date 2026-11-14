@@ -247,6 +247,13 @@
         "SCOPE-06"
       ]
     },
+    "frontend/src/components/dashboard/ConnectedAccountLayout.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Production account navigation delegates sign-out to the existing authenticated adapter. Learning routes do not mount the local preview workspace.",
+      "followUp": ["SCOPE-06", "PLAT-01"]
+    },
     "frontend/src/components/dashboard/ConnectedBilling.jsx": {
       "profile": "authenticated-test-billing",
       "state": "connected",
@@ -2121,18 +2128,6 @@
       ]
     },
     "frontend/src/pages/dashboard/ParentReportAsk.jsx": {
-      "profile": "local-domain-workflow",
-      "state": "preview",
-      "execution": "browser-local",
-      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
-      "followUp": [
-        "SCOPE-03",
-        "SCOPE-04",
-        "DATA-01",
-        "SYNC-02"
-      ]
-    },
-    "frontend/src/pages/dashboard/Plans.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
       "execution": "browser-local",

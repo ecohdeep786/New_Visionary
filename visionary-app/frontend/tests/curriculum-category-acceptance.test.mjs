@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {storage,fixture,reset,template} from './fixtures/classCurriculum.mjs';
+import {signInAs} from './helpers/previewAuth.mjs';
 import {getClassCurriculum,publishClassCurriculum} from '../src/services/classCurriculumService.js';
 import {getAssignedCurriculumOutline} from '../src/services/assignedCurriculumOutline.js';
 
@@ -25,7 +26,7 @@ for(const [category,learnerPersona,board,classLevel,subject] of categories) {
    const f=await fixture({learnerPersona,title:category+' curriculum',language,curriculumTemplate:curriculum});
    const saved=await publishClassCurriculum(f.teacher,{classId:f.classroom.id,deliveryId:f.delivery.id,expectedRevision:'[]'});
    const classBytes=storage.get('visionary_entity_Classroom'),assignmentBytes=storage.get('visionary_entity_Assignment');
-   storage.set('visionary_session_token',f.learner.personId);
+   signInAs(f.learner.personId);
    const view=await getClassCurriculum({...f.learner,locale:language},f.classroom.id),outline=await getAssignedCurriculumOutline({...f.learner,locale:language},f.classroom.id);
    const objective=view.publications[0].chapters[0].objectives[0];
    assert.equal(view.publications[0].id,saved.id);assert.equal(objective.objective.locale,language);assert.equal(objective.objective.title,title);assert.deepEqual(objective.objective.selection,{board,classLevel,subject});assert.deepEqual(objective.objective.provenance,{...curriculum.provenance,sourceId:category+' · Pages 1–4'});

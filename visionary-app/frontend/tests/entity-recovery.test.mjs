@@ -1,8 +1,8 @@
 import test,{beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
-import {appClient} from '../src/api/appClient.js';
+import {appClient, previewSignIn} from '../src/api/appClient.js';
 const memory=new Map();globalThis.localStorage={getItem:key=>memory.get(key)??null,setItem:(key,value)=>memory.set(key,String(value)),removeItem:key=>memory.delete(key)};globalThis.window={dispatchEvent(){},location:{origin:'http://localhost',search:''}};globalThis.CustomEvent??=class{constructor(type){this.type=type;}};
-beforeEach(()=>{memory.clear();const user={id:'entity-owner',email:'owner@entity.test',identity:'student',roles:['student']};localStorage.setItem('visionary_users',JSON.stringify([user]));localStorage.setItem('visionary_sessions',JSON.stringify([{token:'entity-session',userId:user.id,email:user.email,expiresAt:Date.now()+86400000}]));localStorage.setItem('visionary_session_token','entity-session');});
+beforeEach(()=>{memory.clear();const user={id:'entity-owner',email:'owner@entity.test',identity:'student',roles:['student']};previewSignIn(user);});
 test('unreadable or malformed entity stores reject reads and all mutations without replacing originals',async()=>{
  for(const raw of ['{broken','{}','[null]','["not a record"]']){
   memory.set('visionary_entity_Subject',raw);const before=new Map(memory);

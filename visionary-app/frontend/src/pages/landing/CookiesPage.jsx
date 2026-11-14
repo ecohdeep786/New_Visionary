@@ -141,23 +141,6 @@ export default function CookiesPage() {
   const heroReveal = useRevealOnce();
   const heroVisible = heroReveal.visible;
 
-  const readChoice = (key, fallback) => {
-    try {
-      const choice = localStorage.getItem(key);
-      return choice === null ? fallback : choice === "on";
-    } catch { return fallback; }
-  };
-  const [preferences, setPreferences] = useState(() => readChoice("visionary_cookie_preferences", true));
-  const [analytics, setAnalytics] = useState(() => readChoice("visionary_cookie_analytics", false));
-  const [saved, setSaved] = useState(false);
-  function savePreferences() {
-    try {
-      localStorage.setItem("visionary_cookie_preferences", preferences ? "on" : "off");
-      localStorage.setItem("visionary_cookie_analytics", analytics ? "on" : "off");
-    } catch { /* Preferences remain active for this session when storage is unavailable. */ }
-    setSaved(true);
-  }
-
   const activeSection = useMemo(
     () => SECTIONS.find((section) => section.id === activeId),
     [activeId]
@@ -202,8 +185,8 @@ export default function CookiesPage() {
 
   const preferenceRows = [
     { label: "Essential", description: "Required for sign-in, security, and core service behavior.", value: true, disabled: true, onChange: () => {} },
-    { label: "Preferences", description: "Remember choices such as language and appearance on this device.", value: preferences, onChange: () => { setPreferences((value) => !value); setSaved(false); } },
-    { label: "Analytics", description: "Allow product measurement that helps us understand and improve the experience.", value: analytics, onChange: () => { setAnalytics((value) => !value); setSaved(false); } },
+    { label: "Preferences", description: "Remember choices such as language and appearance on this device.", value: false, disabled: true },
+    { label: "Analytics", description: "Allow product measurement that helps us understand and improve the experience.", value: false, disabled: true },
   ];
 
   return (
@@ -287,7 +270,7 @@ export default function CookiesPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Manage cookies on this device</p>
-                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>Optional choices are saved in this browser only.</p>
+                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>Optional cookies are off.</p>
                       <button type="button" onClick={() => scrollToSection("preferences")} className={`mt-1.5 ${quietLink}`}>
                         Set your cookie choices
                         <ChevronIcon className="h-4 w-4" aria-hidden="true" />
@@ -365,7 +348,7 @@ export default function CookiesPage() {
                   </Paragraph>
                   <div className="mt-8 max-w-[760px] rounded-[30px] bg-[#f5f5f7] px-6 py-5">
                     <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      Visionary uses them to keep you signed in and remember your preferences, never to follow you around the internet or sell what it learns.
+                      Visionary uses an essential cookie to keep you signed in.
                     </p>
                   </div>
                 </section>
@@ -415,7 +398,7 @@ export default function CookiesPage() {
                 <section id="preferences" data-section="06-preferences" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your choices and controls" />
                   <Paragraph>
-                    Optional choices are saved in this browser. They do not change settings on your other devices.
+                    Visionary uses an essential session cookie. Optional preferences and analytics cookies are off.
                   </Paragraph>
                   <div className="mt-8 max-w-[720px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-8">
                     <div className="divide-y divide-[rgba(18,19,23,0.12)]">
@@ -439,15 +422,6 @@ export default function CookiesPage() {
                         </div>
                       ))}
                     </div>
-                    <div className="mt-6 flex items-center gap-4">
-                      <button
-                        type="button" onClick={savePreferences}
-                        className={inkPill}
-                      >
-                        Save choices
-                      </button>
-                      <p role="status" aria-live="polite" className="text-[13px]" style={{ color: "#188038" }}>{saved ? "Choices saved on this device." : ""}</p>
-                    </div>
                   </div>
                 </section>
 
@@ -455,16 +429,15 @@ export default function CookiesPage() {
                 <section id="managing" data-section="07-managing" className="scroll-mt-24">
                   <SectionHeading number="05" title="Managing cookies" />
                   <Paragraph>
-                    You control them, always. Clear them anytime from your browser or your Visionary settings. No emails, no waiting.
+                    You control them, always. Clear site cookies anytime from your browser.
                   </Paragraph>
                   <div className="mt-10 max-w-[880px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your cookie options.</p>
                     <ul className="mt-4 space-y-2.5">
                       {[
                         "Essential cookies cannot be turned off. They're what make Visionary work.",
-                        "Preference and analytics cookies are optional, and you can change your choices at any time using the controls in the “Your choices and controls” section above.",
+                        "Preference and analytics cookies are currently off.",
                         "Clear or block cookies anytime from your browser's site settings.",
-                        "Optional choices apply to this device only. Set them again on devices you use.",
                       ].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />

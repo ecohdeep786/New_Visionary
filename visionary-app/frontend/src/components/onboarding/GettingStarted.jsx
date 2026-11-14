@@ -5,7 +5,6 @@ import { ArrowLeft, ArrowRight, Compass, ShieldCheck, SlidersHorizontal, X } fro
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import { Spinner, primaryBtnAutoClass } from '@/components/auth/AuthUI';
 import { useAuth } from '@/lib/AuthContext';
-import { base44 } from '@/api/base44Client';
 import { authErrorMessage } from '@/lib/authErrors';
 import heroBotWebp from '@/assets/brand/visionary-bot.webp';
 import heroBotAvif from '@/assets/brand/visionary-bot.avif';
@@ -23,19 +22,18 @@ export default function GettingStarted() {
   return account?.onboarding_complete ? <ProductIntroduction key={account.id} /> : null;
 }
 function ProductIntroduction() {
-  const { account, user, completeIntroduction, updateUser } = useAuth();
+  const { account, user, completeIntroduction } = useAuth();
   const [open, setOpen] = useState(account.getting_started_complete === false);
   const [page, setPage] = useState(0), [busy, setBusy] = useState(false), [error, setError] = useState('');
   const lock = useRef(false), title = useRef(null);
-  const live = base44.auth.source === 'firebase', first = firstSteps[user?.identity] || firstSteps.student;
-  useEffect(() => { if (open) title.current?.focus({ preventScroll: true }); }, [page, open]);
+  const first = firstSteps[user?.identity] || firstSteps.student;  useEffect(() => { if (open) title.current?.focus({ preventScroll: true }); }, [page, open]);
   async function finish() {
     if (lock.current) return;
     if (account.getting_started_complete !== false) { setOpen(false); return; }
     lock.current = true; setBusy(true); setError('');
     try {
-      if (live) { const profile = await completeIntroduction(); if (!profile?.getting_started_complete) throw new Error('Introduction could not be confirmed'); }
-      else await updateUser({ getting_started_complete: true });
+      const profile = await completeIntroduction();
+      if (!profile?.getting_started_complete) throw new Error('Introduction could not be confirmed');
       setOpen(false);
     } catch (failure) { setError(authErrorMessage(failure, 'We couldn’t save your introduction. Try again; your Visionary setup is safe.')); }
     finally { lock.current = false; setBusy(false); }

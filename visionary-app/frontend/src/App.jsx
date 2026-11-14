@@ -238,7 +238,7 @@ function App() {
           <ScrollToTop />
           <MetaManager />
           <RoutePrefetcher />
-          <WorkspaceChunkPrefetcher />
+          {import.meta.env.DEV && <WorkspaceChunkPrefetcher />}
           <AppErrorBoundary>
             <Suspense fallback={<RouteFallback />}>
               <PublicApp />

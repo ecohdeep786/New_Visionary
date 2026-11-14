@@ -14,7 +14,6 @@ export default function FeedbackPrompt({ accountId, locale = 'en', surface = 'ge
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   useEffect(() => { if (open) firstRating.current?.focus(); else if (returnFocus.current) { returnFocus.current = false; trigger.current?.focus(); } }, [open]);
   const client = useMemo(() => createFeedbackClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }), [accountId]);
-  if (appClient.auth.source !== 'firebase') return null;
   function close() {
     returnFocus.current = true;
     setOpen(false); setRating(''); setComment(''); setError(''); setSaved(false); attempt.current = null;

@@ -1,6 +1,7 @@
 import test,{beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {storage,fixture,reset} from './fixtures/classCurriculum.mjs';
+import {signInAs,registerPreviewProfile} from './helpers/previewAuth.mjs';
 import {appClient} from '../src/api/appClient.js';
 import {addRole,selectWorkspace} from '../src/services/workspaceService.ts';
 import {submitClassworkResponses,reviewClasswork} from '../src/services/classroomService.js';
@@ -10,10 +11,10 @@ async function personalFixture(revised=false){
  selectWorkspace(teacher.personId,teacher.workspaceId);
  const classroom=await appClient.entities.Classroom.create({name:'Personal handoff class',teacher_id:teacher.personId,teacher_email:'teacher@visionary.test',join_code:'HANDOFF'});
  const assignment=await appClient.entities.Assignment.create({class_id:classroom.id,title:'Explain equal parts',description:'Describe equal intervals.',points:10,status:'published'});
- storage.set('visionary_session_token',learner.personId);selectWorkspace(learner.personId,learner.workspaceId);
+ signInAs(learner.personId);selectWorkspace(learner.personId,learner.workspaceId);
  await appClient.entities.Enrollment.create({class_id:classroom.id,student_email:'adult@visionary.test',student_id:learner.personId,status:'active',join_code:'HANDOFF'});
  const alternative=addRole(learner.personId,'professional'),args={assignmentId:assignment.id,text:'Two equal intervals.'};
- if(revised){const first=await submitClassworkResponses(learner,args);storage.set('visionary_session_token',teacher.personId);await reviewClasswork(teacher,{submissionId:first.id,status:'revision_requested',feedback:'Describe the lengths.'});storage.set('visionary_session_token',learner.personId);args.text='Both intervals have equal length.';}
+ if(revised){const first=await submitClassworkResponses(learner,args);signInAs(teacher.personId);await reviewClasswork(teacher,{submissionId:first.id,status:'revision_requested',feedback:'Describe the lengths.'});signInAs(learner.personId);args.text='Both intervals have equal length.';}
  return {teacher,learner,alternative,classroom,assignment,args};
 }
 async function during(method,change,run,after=false){
@@ -34,15 +35,14 @@ test('a request from an inactive learner workspace rejects before saving',async(
 });
 test('idempotent replay cannot return the previous learner response after account handoff',async()=>{
  const f=await personalFixture();await submitClassworkResponses(f.learner,f.args);
- const users=JSON.parse(storage.get('visionary_users')),sessions=JSON.parse(storage.get('visionary_sessions'));
- users.push({id:'demo-professional',email:'professional@visionary.test',identity:'professional',roles:['professional'],age_band:'adult',onboarding_complete:true});sessions.push({token:'other-learner',userId:'demo-professional',email:'professional@visionary.test',expiresAt:Date.now()+86400000});storage.set('visionary_users',JSON.stringify(users));storage.set('visionary_sessions',JSON.stringify(sessions));storage.set('visionary_session_token','other-learner');
+ registerPreviewProfile({id:'demo-professional',email:'professional@visionary.test',identity:'professional',roles:['professional'],age_band:'adult',onboarding_complete:true});signInAs('demo-professional');
  await appClient.entities.Enrollment.create({class_id:f.classroom.id,student_email:'professional@visionary.test',student_id:'demo-professional',status:'active',join_code:'HANDOFF'});
- storage.set('visionary_session_token',f.learner.personId);const before=storage.get('visionary_entity_Submission');
- await during('filter',()=>storage.set('visionary_session_token','other-learner'),async()=>assert.rejects(submitClassworkResponses(f.learner,f.args),/own learning workspace|workspace changed/),true);
+ signInAs(f.learner.personId);const before=storage.get('visionary_entity_Submission');
+ await during('filter',()=>signInAs('demo-professional'),async()=>assert.rejects(submitClassworkResponses(f.learner,f.args),/own learning workspace|workspace changed/),true);
  assert.equal(storage.get('visionary_entity_Submission'),before);
 });
 for(const state of ['pending','expired','revoked'])test(`${state} Work membership at commit denies a learner submission`,async()=>{
- const f=await fixture();storage.set('visionary_session_token',f.learner.personId);
+ const f=await fixture();signInAs(f.learner.personId);
  await during('create',()=>{const rows=JSON.parse(storage.get('visionary_entity_OrganizationInvite'));const member=rows.find(row=>row.email==='adult@visionary.test'&&row.role==='student');assert.ok(member);if(state==='expired')member.expiresAt='2000-01-01T00:00:00Z';else member.status=state;storage.set('visionary_entity_OrganizationInvite',JSON.stringify(rows));},async()=>assert.rejects(submitClassworkResponses(f.learner,{assignmentId:f.assignment.id,text:'Two equal intervals.',selfReview:{parts:'Equal lengths.'}}),/not permitted|not available|no longer active/));
  assert.equal(storage.get('visionary_entity_Submission'),undefined);
 });

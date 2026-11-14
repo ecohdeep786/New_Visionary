@@ -17,7 +17,7 @@ export default function ResetPassword() {
     let active = true;
     if (!code) { setState('invalid'); return; }
     setState('checking'); setError('');
-    const verify = base44.auth.source === 'firebase' ? base44.auth.verifyResetLink(code) : Promise.resolve('');
+    const verify = base44.auth.verifyResetLink(code);
     verify.then(address => { if (active) { setEmail(address); setState('ready'); } }).catch(cause => {
       if (active) { setState(invalidEmailAction(cause) ? 'invalid' : 'unavailable'); setError(authErrorMessage(cause)); }
     });
