@@ -6,9 +6,16 @@
     "outDir": "./dist",
     "incremental": false,
     "declaration": false,
-    "sourceMap": false
+    "sourceMap": false,
+    "resolveJsonModule": true
   },
-  "files": ["src/main-product.ts"],
+  "files": [
+    "src/main-product.ts",
+    "src/privacycore/privacy-preservation-policy.v1.json"
+  ],
   "include": [],
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

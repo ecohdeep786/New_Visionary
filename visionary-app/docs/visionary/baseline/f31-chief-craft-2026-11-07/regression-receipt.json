@@ -1,0 +1,116 @@
+{
+  "task": "F-29 end-to-end release regression",
+  "at": "2026-11-06T21:02:14.345Z",
+  "base": "http://127.0.0.1:4198",
+  "summary": {
+    "harnesses": 13,
+    "passed": 13,
+    "failed": 0
+  },
+  "results": [
+    {
+      "harness": "auth-ui",
+      "script": "auth-ui-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:49:58.888Z",
+      "tail": "Records: 19; checks failed: 0 | PASS auth & onboarding UI review: recovery, guards, drafts, role coverage verified.",
+      "stderr": ""
+    },
+    {
+      "harness": "student",
+      "script": "student-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:50:38.492Z",
+      "tail": "Records: 16; defects: 0 | PASS student experience review: Learn/Ask/Practice/Build/Progress/Classes states verified.",
+      "stderr": ""
+    },
+    {
+      "harness": "teacher",
+      "script": "teacher-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:51:16.548Z",
+      "tail": "Records: 21; defects: 0 | PASS teacher experience review: class creation, tabs, curriculum, assignment, learners, insights verified.",
+      "stderr": ""
+    },
+    {
+      "harness": "parent",
+      "script": "parent-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:51:51.023Z",
+      "tail": "Records: 16; defects: 0 | PASS parent experience review: consent pair, report, notifications, privacy verified.",
+      "stderr": ""
+    },
+    {
+      "harness": "professional",
+      "script": "professional-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:52:49.519Z",
+      "tail": "Records: 12; defects: 0 | PASS professional experience review: career workflow, evidence, portfolio, progress verified.",
+      "stderr": ""
+    },
+    {
+      "harness": "organization",
+      "script": "organization-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:53:17.195Z",
+      "tail": "Records: 39; defects: 0 | PASS organization experience review: owner org journey + member permission matrix verified.",
+      "stderr": ""
+    },
+    {
+      "harness": "cross-role",
+      "script": "cross-role-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:54:53.907Z",
+      "tail": "Records: 37; defects: 0 | PASS cross-role integration review: teacher->class->invite/code->learners->assignment->submission->teacher visibility verified across three accounts.",
+      "stderr": ""
+    },
+    {
+      "harness": "ml-experience",
+      "script": "ml-experience-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:56:44.414Z",
+      "tail": "checks: 27/27 pass, 0 defects | receipt: docs\\visionary\\baseline\\f31-chief-craft-2026-11-07\\ml-experience\\receipt.json | PASS ml experience review",
+      "stderr": ""
+    },
+    {
+      "harness": "payments-consent",
+      "script": "payments-consent-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:57:33.462Z",
+      "tail": "checks: 29/29 pass, 0 defects | receipt: docs\\visionary\\baseline\\f31-chief-craft-2026-11-07\\payments-consent\\receipt.json | PASS payments consent review",
+      "stderr": ""
+    },
+    {
+      "harness": "cwv",
+      "script": "cwv-audit.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:58:39.511Z",
+      "tail": "/student   FCP   2488ms  LCP   3512ms  CLS   0.068  TBT     27ms  wall    9686ms  LCP=<IMG.pointer-events-none 113906B> | /login     FCP   2520ms  LCP   3072ms  CLS       0  TBT     40ms  wall   13004ms  LCP=<P.text-xs 10744B> | CWV receipt: docs\\visionary\\baseline\\f31-chief-craft-2026-11-07\\cwv\\cwv",
+      "stderr": ""
+    },
+    {
+      "harness": "a11y-security",
+      "script": "a11y-security-review.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T20:59:22.991Z",
+      "tail": "checks: 24/24 pass, 0 defects | receipt: docs\\visionary\\baseline\\f31-chief-craft-2026-11-07\\a11y-security\\receipt.json | PASS a11y security review",
+      "stderr": ""
+    },
+    {
+      "harness": "contract-audit",
+      "script": "contract-audit.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T21:00:38.980Z",
+      "tail": "  frontend-only: GET /api/apps/:x/mcp/consent-info <- frontend/src/pages/OAuthConsent.jsx:40 |   frontend-only: POST /api/apps/:x/mcp/authorize-grant <- frontend/src/pages/OAuthConsent.jsx:90 | PASS contract audit: every frontend network call has a product backend route or a recorded dependency. Rec",
+      "stderr": ""
+    },
+    {
+      "harness": "release-gate",
+      "script": "release-gate.mjs",
+      "exitCode": 0,
+      "startedAt": "2026-11-06T21:00:39.236Z",
+      "tail": " PASS accessibility-spot — 0 low-contrast, 0 small controls across 4 changed surfaces |  PASS critical-navigation — reached-dashboard | RELEASE GATE PASS",
+      "stderr": ""
+    }
+  ]
+}
