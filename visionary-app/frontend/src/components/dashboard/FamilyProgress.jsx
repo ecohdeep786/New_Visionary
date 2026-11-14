@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { BookOpen } from "lucide-react";
 import { base44 } from "@/api/base44Client";
+import { dateLocale } from "@/lib/datetime";
 
 /* Shared-progress view for parents — mirrors the RoleWorkspace design system.
    Privacy rule: only FamilyLink rows with status "active" (child-accepted)
@@ -18,10 +19,10 @@ function lastNDays(n) {
   });
 }
 
-function formatDay(key) {
+function formatDay(key, locale = "en") {
   if (!key) return "—";
   const [y, m, d] = key.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  return new Date(y, m - 1, d).toLocaleDateString(dateLocale(locale), { month: "short", day: "numeric" });
 }
 
 function summarize(logs, window) {
