@@ -11,7 +11,7 @@ import QuietLink from "@/components/landing/QuietLink";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
-import { LEGAL_META, RESPONSE_TIMES } from "@/data/legalMeta";
+import { LEGAL_META } from "@/data/legalMeta";
 import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared public dialect (#1d1d1f ink pills, #0066cc quiet
@@ -64,19 +64,19 @@ const PROTECTIONS = [
   {
     eyebrow: "Age-aware experiences", subject: "shield",
     title: <>Safety that fits <span className="text-[#1d1d1f]">the learner.</span></>,
-    copy: "Safety guidance and product boundaries follow the learner's age and context: a twelve-year-old and an adult professional see different guardrails for the same question.",
+    copy: "Account setup uses age range to determine eligibility. Under-18 access requires a verified guardian connection.",
     visualSide: "right",
   },
   {
     eyebrow: "Safe by default", subject: "lock",
     title: <>On from the <span className="text-[#1d1d1f]">first question.</span></>,
-    copy: "Core safeguards are part of the experience from the beginning. Families and organizations can add boundaries, but the default is already safe.",
+    copy: "We’re developing safeguards for interactive learning and tools for families and organizations.",
     visualSide: "left",
   },
   {
     eyebrow: "Private by design", subject: "eye",
     title: <>Your memory is <span className="text-[#1d1d1f]">yours.</span></>,
-    copy: "Parents follow progress through consent-based summaries. Organizations see patterns across cohorts, never an individual learner's answers. Details live in the privacy policy.",
+    copy: "We’re designing guardian summaries around consent and institutional reporting around aggregate patterns. Read the privacy policy for how we handle information today.",
     visualSide: "right",
   },
 ];
@@ -86,17 +86,17 @@ const FAMILY_CARDS = [
   {
     Icon: Eye, eyebrow: "For parents", to: "/parent", linkLabel: "See parent features",
     title: "Consent-scoped progress summaries",
-    copy: "Parents and guardians follow the journey with confidence: summaries shaped by consent, without opening the learner's private space.",
+    copy: "Guardian summaries are in development. They’re designed to share only information the guardian is authorized to see.",
   },
   {
     Icon: UsersRound, eyebrow: "For families", to: "/privacy", linkLabel: "Read the privacy policy",
     title: "Boundaries for younger learners",
-    copy: "Set boundaries that shape what younger learners see and do, without changing the default safety posture for everyone else.",
+    copy: "Under-18 setup remains restricted until the required guardian connection can be verified.",
   },
   {
     Icon: ShieldCheck, eyebrow: "For organizations", to: "/organization", linkLabel: "See organization features",
     title: "Aggregate insights, never individual answers",
-    copy: "Institutions see patterns across cohorts to guide support. An individual learner's answers stay individual, by design.",
+    copy: "Cohort reporting is in development. Its design uses aggregate patterns to guide support.",
   },
 ];
 
@@ -104,14 +104,14 @@ const FAMILY_CARDS = [
 const REPORTING_CARDS = [
   {
     eyebrow: "Flag", subject: "flag",
-    title: "One tap to flag anything",
-    copy: "Every answer can be flagged in one tap, from any persona. Flagging is always available: no special mode, no forms to find.",
-    link: { to: "/community", label: "How moderation works" },
+    title: "Email a safety concern",
+    copy: "Include the page, relevant details, and a way to reach you.",
+    link: { to: "/contact", label: "Find safety contact details" },
   },
   {
     eyebrow: "Review", subject: "safety",
-    title: "A human reads every report",
-    copy: RESPONSE_TIMES.safety + " Automated filters help, but a person decides what stayed wrong and what changes.",
+    title: "Help the team review your concern",
+    copy: "Include what happened and when. Explain any immediate safety risk.",
     link: { to: "/contact", label: "Contact the safety team" },
   },
   {
@@ -251,7 +251,7 @@ export default function SafetyPage() {
                 Seen something wrong? <span className="text-[#1d1d1f]">Flag it.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[600px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
-                Reporting is one tap away everywhere in the product, and a person reads every report, not a queue.
+                Use the safety contact below to tell us what happened.
               </p>
             </div>
             <div className="mt-14 grid gap-3 md:grid-cols-3">

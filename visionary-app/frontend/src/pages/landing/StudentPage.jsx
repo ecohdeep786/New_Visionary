@@ -177,7 +177,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: RefreshCw, t: "Practise the real thing.", c: "Skills build through doing. Guidance never gives the answer away.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Layers3, t: "Build a portfolio.", c: "Turn what you learn into work you can actually show.", l: "Start building free", to: "/register" },
+      { Icon: Layers3, t: "Build a portfolio.", c: "Turn what you learn into work you can actually show.", l: "Create an account", to: "/register" },
       { Icon: BookOpen, t: "Skills that carry forward.", c: "What you practise now connects to the next skill and job.", l: "Keep your place", to: "/how-it-works" },
       { Icon: UsersRound, t: "Learn with others.", c: "Communities and partners help you practise in real contexts.", l: "Find a partner", to: "/partners" },
     ],
@@ -189,7 +189,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Eye, t: "Understand at depth.", c: "Explanations that support serious subject work, not summaries.", l: "See how it works", to: "/how-it-works" },
       { Icon: BookOpen, t: "Research with context.", c: "Keep threads across papers, projects, and semesters.", l: "Keep your place", to: "/how-it-works" },
-      { Icon: Layers3, t: "Build from what you know.", c: "Turn coursework into research, projects, and new ideas.", l: "Start building free", to: "/register" },
+      { Icon: Layers3, t: "Build from what you know.", c: "Turn coursework into research, projects, and new ideas.", l: "Create an account", to: "/register" },
       { Icon: Building2, t: "Work with your institution.", c: "Visionary can support classrooms, labs, and departments.", l: "For organizations", to: "/organization" },
     ],
   },
@@ -199,7 +199,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your question, not a curriculum.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Clock, t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Start learning free", to: "/register" },
+      { Icon: Clock, t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Create an account", to: "/register" },
       { Icon: BookOpen, t: "Keep your place.", c: "Return after weeks away and continue where you stopped.", l: "Keep your place", to: "/how-it-works" },
       { Icon: UsersRound, t: "Find your people.", c: "Communities and updates keep independent learners connected.", l: "Join the community", to: "/community" },
     ],
@@ -212,10 +212,10 @@ const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Learning, to master, to build."
-    sub="Every concept you understand becomes the foundation for the next."
+    sub="Set up your learner account and open your saved learning history. The interactive learning journey below is in development."
     img={studentHero}
     alt="A student smiling while carrying a new laptop"
-    ctaLabel="Start learning free"
+    ctaLabel="Create a free account"
   />
 ));
 
@@ -323,7 +323,7 @@ export default function StudentPage() {
         />
         <PremiumCTASection
           heading="Your learning starts with where you are."
-          sub="Ask your first question. Start building from what you know."
+          sub="Set up your learner profile and choose what you want to study."
         />
         <PremiumExploreSection
           headingRole="section"

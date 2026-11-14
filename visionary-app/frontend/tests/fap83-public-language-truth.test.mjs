@@ -102,5 +102,5 @@ test("FAP-83: /professional eyebrow and /organization claims carry the honest ph
   const org = read(pagePaths[4]);
   assert.match(org, /accent="In your people's languages"/, "organization h2 honest");
   assert.match(org, /In the languages your people think in/, "organization feature card honest");
-  assert.match(org, /English, Hindi, and Bengali today/, "organization card states the served set");
+  assert.match(org, /could support English, Hindi, and Bengali/, "organization card describes the languages under development");
 });

@@ -93,7 +93,6 @@ const REQUIREMENTS = [
   { platform: "Android", req: "Android 9 or later · ARM or x86" },
 ];
 
-const SYNC_WORDS = ["continue", "pick up", "learn"];
 
 /* ═══ 01 · HERO — Web vs App choice ═══ */
 function DownloadHeroSection() {
@@ -311,20 +310,13 @@ function DownloadNotifySection() {
 /* ═══ 03 · SYNC BAND — continuity across devices ═══ */
 function DownloadSyncSection() {
   const { ref, visible } = useRevealOnce();
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % SYNC_WORDS.length), 2500);
-    return () => clearInterval(id);
-  }, []);
   return (
     <section ref={ref} data-section="03-sync" className="relative px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
-        Start on one device.{" "}
-        <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
-        on every other.
+        One account. <span style={{ color: COLORS.blue }}>Open it in your browser.</span>
       </p>
       <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17px] transition-all duration-700 ease-apple delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
-        Conversations, progress, and context sync with your Visionary account, automatically and privately — web today, with apps as they launch.
+        Sign in on another device to access your account and saved learning history. Continuing a lesson or project across devices is still in development.
       </p>
       <div className="mt-9 flex justify-center">
         <QuietLink to="/contact">

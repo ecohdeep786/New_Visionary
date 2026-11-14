@@ -156,7 +156,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Sparkles, t: "Show it visually.", c: "Turn the hardest idea into something the whole class can see.", l: "See how it works", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Hear the questions.", c: "Learners ask naturally, in their own words and language.", l: "Talk to us", to: "/contact" },
-      { Icon: RefreshCw, t: "Teach it another way.", c: "A second explanation, a new example, a simpler start. Instantly.", l: "Start teaching free", to: "/register" },
+      { Icon: RefreshCw, t: "Teach it another way.", c: "A second explanation, a new example, a simpler start. Instantly.", l: "Create an account", to: "/register" },
       { Icon: Clock, t: "Keep the pace.", c: "Stay in flow while the whole class stays with you.", l: "Get support", to: "/help" },
     ],
   },
@@ -166,7 +166,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See how Visionary checks", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "See it as it happens.", c: "Understanding becomes visible: per learner, per concept, per class.", l: "See how it works", to: "/how-it-works" },
-      { Icon: RefreshCw, t: "Practise with purpose.", c: "Practice that shows you exactly where the class stands.", l: "Start teaching free", to: "/register" },
+      { Icon: RefreshCw, t: "Practise with purpose.", c: "Practice that shows you exactly where the class stands.", l: "Create an account", to: "/register" },
       { Icon: Target, t: "Know what to change.", c: "Clear signals for the next period, not just the next report.", l: "Keep the thread", to: "/how-it-works" },
       { Icon: Clock, t: "Act in time.", c: "Intervene before the gap becomes the exam result.", l: "Get support", to: "/help" },
     ],
@@ -177,7 +177,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See how Visionary adapts", to: "/how-it-works" },
     blocks: [
       { Icon: RefreshCw, t: "Adapt in the moment.", c: "A different example or a slower path, without leaving the lesson behind.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Layers3, t: "Group with intent.", c: "Know which learners are ready to move and which need another round.", l: "Start teaching free", to: "/register" },
+      { Icon: Layers3, t: "Group with intent.", c: "Know which learners are ready to move and which need another round.", l: "Create an account", to: "/register" },
       { Icon: BookOpen, t: "Keep the thread.", c: "Adapting never breaks the continuity of the unit.", l: "Keep the thread", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Explain in context.", c: "Adapted explanations that still land in the language of your class.", l: "Talk to us", to: "/contact" },
     ],
@@ -188,7 +188,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See how Visionary supports", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "See the quiet ones.", c: "Every learner's understanding is visible, not only the volunteers.", l: "See how it works", to: "/how-it-works" },
-      { Icon: UsersRound, t: "Support the fast ones.", c: "Ready-for-more learners keep moving while others catch up.", l: "Start teaching free", to: "/register" },
+      { Icon: UsersRound, t: "Support the fast ones.", c: "Ready-for-more learners keep moving while others catch up.", l: "Create an account", to: "/register" },
       { Icon: Globe2, t: "Meet them in their language.", c: "Support lands best in the language each learner thinks in.", l: "Language support", to: "/how-it-works" },
       { Icon: HeartHandshake, t: "Involve the family.", c: "Parents see the progress and know how to help at home.", l: "For parents", to: "/parent" },
     ],
@@ -200,7 +200,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: TrendingUp, t: "See what worked.", c: "Understand which teaching moves moved which learners.", l: "See how it works", to: "/how-it-works" },
       { Icon: BookOpen, t: "Keep what works.", c: "Your best explanations and plans stay with you, ready to reuse.", l: "Keep the thread", to: "/how-it-works" },
-      { Icon: Brain, t: "Learn what's next.", c: "New syllabus, new methods: your own learning keeps pace.", l: "Start teaching free", to: "/register" },
+      { Icon: Brain, t: "Learn what's next.", c: "New syllabus, new methods: your own learning keeps pace.", l: "Create an account", to: "/register" },
       { Icon: Building2, t: "Grow with your school.", c: "Visionary supports departments, coaching centres, and institutions.", l: "For organizations", to: "/organization" },
     ],
   },
@@ -212,10 +212,10 @@ const TeacherHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Teaching, to grow, to reach."
-    sub="One class, many minds. See who is with you before the next bell."
+    sub="Set up your teaching profile. Explore the classroom and assignment tools we’re developing."
     img={teacherHero}
     alt="A teacher presenting at a whiteboard"
-    ctaLabel="Start teaching free"
+    ctaLabel="Create a free account"
   />
 ));
 
@@ -323,7 +323,7 @@ export default function TeacherPage() {
         />
         <PremiumCTASection
           heading="Your teaching starts with where your class is."
-          sub="See who understands. Adapt the next lesson."
+          sub="Set up your teaching profile and choose a learning language."
         />
         <PremiumExploreSection
           headingRole="section"

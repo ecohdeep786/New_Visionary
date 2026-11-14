@@ -38,10 +38,9 @@ export const PLANS = [
     annual: 249,
     annualTotal: 2990,
     priceNote: { paid: "Per person" },
-    cta: "Get Personal",
+    cta: "Preview Personal",
     to: "/register?plan=personal",
     highlight: true,
-    badge: "Most popular",
     features: [
       "Ask & explore with no daily cap — subject to fair use",
       "Full visual & 3D explanations",
@@ -59,7 +58,7 @@ export const PLANS = [
     annual: 415,
     annualTotal: 4990,
     priceNote: { paid: "Per household" },
-    cta: "Get Family",
+    cta: "Preview Family",
     to: "/register?plan=family",
     highlight: false,
     features: [
@@ -115,12 +114,12 @@ export const PERSONA_PLANS = [
 ];
 
 export const PRICING_FAQ = [
-  { q: "Can I start free?", a: "Yes. Start is free forever — 20 questions a day, core visual explanations, and a 7-day memory of your journey. No card required." },
-  { q: "Can I switch plans later?", a: "Any time. Upgrades apply immediately; downgrades at the next cycle. Your continuity travels with you — nothing resets when you change plans." },
-  { q: "What happens to my memory if I downgrade?", a: "Nothing is deleted. Your journey is kept privately and rejoins you the moment you upgrade again." },
-  { q: "Do you offer education discounts?", a: "Yes. Students and teachers with a valid institutional email get Personal at a discount, and Start stays free for everyone." },
-  { q: "How does Family privacy work?", a: "Each member's memory is completely private. Parents see progress and support signals — never private conversations." },
-  { q: "How does Institution billing work?", a: "Per active learner, annual invoicing, with pilot options for a single class, cohort, or campus before you roll out wider." },
+  { q: "Can I start free?", a: "You can create an account for free without a card. Learning features and usage allowances in the table are planned." },
+  { q: "Can I switch plans later?", a: "Sign in and open Plans to review the options available to your account." },
+  { q: "Does the billing preview include learning history?", a: "Saved learning history is tied to your account. Learning continuity and plan usage allowances are still in development." },
+  { q: "Do you offer education discounts?", a: "Contact Visionary to ask about education pricing." },
+  { q: "How does Family privacy work?", a: "Guardian reports are in development. The design requires a verified guardian relationship and the appropriate consent." },
+  { q: "How does Institution billing work?", a: "Contact Visionary to discuss terms for your school, cohort, campus, or workplace." },
 ];
 
 /* Format a plan price for display. Institution has no number — the words

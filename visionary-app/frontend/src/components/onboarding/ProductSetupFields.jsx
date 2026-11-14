@@ -27,7 +27,7 @@ export default function ProductSetupFields({ step, data, updateData }) {
     {step.id === 'about' && <>
       <Text label="What should we call you?" value={data.full_name} onChange={value => updateData('full_name', value)} maximum={80} placeholder="Your name" />
       <Select label="Your age range" value={data.age_band} onChange={value => updateData('age_band', value)} options={[{ id: 'adult', label: '18 or older' }, { id: 'minor', label: 'Under 18' }]} />
-      {data.age_band === 'minor' ? <p role="status" className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6">Under-18 setup needs a verified guardian connection. It is not available yet. Your account and draft are kept; you can return when guardian setup is available.</p> : <p className="text-xs leading-5 text-[#6e6e73]">This is a self-declared age range. It does not verify your identity.</p>}
+      {data.age_band === 'minor' ? <p role="status" className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6">Under-18 setup needs a verified guardian connection. Guardian setup is still in development. Your account remains available. Unsaved details are kept only while this page is open.</p> : <p className="text-xs leading-5 text-[#6e6e73]">This is a self-declared age range. It does not verify your identity.</p>}
     </>}
     {step.id === 'focus' && <>
       <ChoiceGrid options={[{ id: 'school', label: 'School', desc: 'Classes and school subjects' }, { id: 'higher_ed', label: 'Higher education', desc: 'College, university or diploma' }, { id: 'competitive', label: 'Exam preparation', desc: 'A specific entrance or competitive exam' }, { id: 'professional', label: 'Independent learning', desc: 'Skills, interests and personal projects' }]} value={data.education_stage} onChange={value => updateData('education_stage', value)} dense />
@@ -53,7 +53,7 @@ export default function ProductSetupFields({ step, data, updateData }) {
       {language}
       {data.identity === 'professional' && <Text label="A skill or goal (optional)" value={data.career_goal} onChange={value => updateData('career_goal', value)} maximum={2000} placeholder="For example, develop my design skills" />}
       {data.identity === 'teacher' && subjectField('teacher_subjects')}
-      {data.identity === 'parent' && <p className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6 text-[#6e6e73]">You’ll connect a child’s account after setup. You control your account; an approved connection determines which learning summaries you can see.</p>}
+      {data.identity === 'parent' && <p className="rounded-2xl bg-[#f5f5f7] p-4 text-sm leading-6 text-[#6e6e73]">This step saves your own profile. Connecting a learner and viewing their summaries require a verified guardian relationship. These features are still in development.</p>}
       {data.identity === 'organization' && <p className="text-xs leading-6 text-[#6e6e73]">This saves your starting preferences. Verification, people and shared content are set up separately.</p>}
     </>}
   </div>;

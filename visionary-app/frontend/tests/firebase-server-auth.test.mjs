@@ -75,7 +75,7 @@ globalThis.window = { location: { search: '?returnTo=/dashboard/learn', origin: 
 test('first account goes to onboarding; saved account resumes its safe dashboard path', async () => {
   let saved = first;
   const auth = fixture(async () => saved);
-  assert.equal(authDestination(await auth.loginViaEmailPassword('adult@example.test', 'not-a-real-password')), '/onboarding');
+  assert.equal(authDestination(await auth.loginViaEmailPassword('adult@example.test', 'not-a-real-password')), '/onboarding?returnTo=%2Fdashboard%2Flearn');
   saved = complete;
   assert.equal(authDestination(await auth.me()), '/dashboard/learn');
   assert.throws(() => authDestination(null), error => error.code === 'auth/profile-unavailable');

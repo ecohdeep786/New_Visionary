@@ -65,7 +65,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
-const SECURITY_PROMISES = ["Encrypted connections", "Role-based access", "You see every device"];
+const SECURITY_PROMISES = ["Encrypted connections", "Role-based access", "Review browser sessions"];
 
 const AT_A_GLANCE = [
   {
@@ -83,7 +83,7 @@ const AT_A_GLANCE = [
   {
     to: "#sync-devices",
     label: "Carry it across devices",
-    text: "One Sync Encrypted ID brings your learning to every device. Only you can open it.",
+    text: "Sign in with the same account to access account information and saved learning history.",
     Icon: ShieldCheck,
   },
 ];
@@ -97,7 +97,7 @@ const SECTIONS = [
   { id: "security-over-time", number: "06", title: "Security is ongoing", summary: "Security is a continuous process, not a one-time feature." },
   { id: "report-security", number: "07", title: "When something goes wrong", summary: "How to tell Visionary about a security concern." },
   { id: "commitments", number: "08", title: "Our security commitments", summary: "The principles Visionary follows when protecting the service." },
-  { id: "sync-devices", number: "09", title: "Sync devices", summary: "Sign in once with your Sync Encrypted ID and carry Visionary across your devices." },
+  { id: "sync-devices", number: "09", title: "Sync devices", summary: "See what follows your account and how to review browser sessions." },
   { id: "contact", number: "10", title: "Contact", summary: "How to contact Visionary about security." },
 ];
 
@@ -221,7 +221,7 @@ export default function SecurityPage() {
         <FadeReveal visible={heroVisible}>
           <CinematicHero
             title="Secure by design,"
-            accent="protected end to end."
+            accent="with secure connections."
             image={{
               src: stageHeroWebp,
               avifSrcSet: stageHeroAvif,
@@ -486,15 +486,15 @@ export default function SecurityPage() {
                 <section id="sync-devices" data-section="11-sync-devices" className="scroll-mt-24">
                   <SectionHeading number="09" title="Sync devices" />
                   <Paragraph>
-                    Sign in with your Sync Encrypted ID and Visionary carries your learning to every device you use: your questions, progress, and memory arrive as they were, and only you can open them.
+                    Use your usual sign-in method on another device to access account information and saved learning history. Resuming a lesson, conversation, or project across devices is still in development.
                   </Paragraph>
                   <div className="mt-8 max-w-[880px] space-y-4">
                     <div className="rounded-[30px] bg-[#f5f5f7] p-5 sm:p-6">
                       <div className="flex gap-4">
                         <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
-                          <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Sign in with your Sync Encrypted ID</h3>
-                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>One encrypted identity opens Visionary on a new device. The encryption stays with your account, not with the device.</p>
+                          <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Sign in to your Visionary account</h3>
+                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Visionary uses an encrypted HTTPS connection between your browser and the service.</p>
                         </div>
                       </div>
                     </div>
@@ -502,8 +502,8 @@ export default function SecurityPage() {
                       <div className="flex gap-4">
                         <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
-                          <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Your learning follows you</h3>
-                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Progress, notes, and memory sync across phone, tablet, and laptop. Pick up exactly where you stopped.</p>
+                          <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Open your saved learning history</h3>
+                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Saved learning shows session records associated with your account.</p>
                         </div>
                       </div>
                     </div>
@@ -511,15 +511,15 @@ export default function SecurityPage() {
                       <div className="flex gap-4">
                         <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
-                          <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>You see every device</h3>
-                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Review the devices signed in to your account and remove any of them, at any time, from your settings.</p>
+                          <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Review browser sessions</h3>
+                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Review browser sessions in Account security. Use account-wide sign-out when the option is available.</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <LearnMoreRow to="/privacy" label="How privacy works with sync" />
+                  <LearnMoreRow to="/privacy" label="How Visionary handles account information" />
                   <div className="mt-7 flex flex-wrap gap-3">
-                    <Link to="/login" className={inkPill}>Sign in with Sync Encrypted ID</Link>
+                    <Link to="/login" className={inkPill}>Sign in</Link>
                     <Link to="/dashboard/settings" className={greyPill}>Review your devices</Link>
                   </div>
                 </section>
@@ -552,7 +552,7 @@ export default function SecurityPage() {
               {[
                 { term: "Encryption", def: "Scrambling information while it travels or rests, so only authorized people and systems can read it." },
                 { term: "HTTPS", def: "The encrypted connection used between your browser and Visionary whenever information moves." },
-                { term: "Sync Encrypted ID", def: "The single encrypted identity that carries your Visionary learning across your devices." },
+                { term: "Browser session", def: "A sign-in to Visionary from a browser." },
                 { term: "Role-based access", def: "Access limited to what a student, teacher, parent, or organization role legitimately needs." },
                 { term: "Workspace records", def: "The questions, practice, and projects from your sessions, on-device or linked to your account." },
                 { term: "Vulnerability", def: "A weakness that could be exploited. If you find one, report it. We investigate every report." },
