@@ -254,6 +254,30 @@
       "reason": "Production account navigation delegates sign-out to the existing authenticated adapter. Learning routes do not mount the local preview workspace.",
       "followUp": ["SCOPE-06", "PLAT-01"]
     },
+    "frontend/src/components/dashboard/ConnectedLearningHistory.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Reads owner-scoped saved learning from the server; no local data or interactive teaching is enabled.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "GET /api/account/learning/sessions"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedProfile.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Edits the account display name on the server with an expected-name conflict check.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "PATCH /api/auth/profile"
+      ]
+    },
     "frontend/src/components/dashboard/ConnectedBilling.jsx": {
       "profile": "authenticated-test-billing",
       "state": "connected",
