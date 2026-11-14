@@ -7,7 +7,8 @@ const origin = process.env.VISIONARY_REVIEW_ORIGIN || 'http://localhost:5173';
 const browser = await puppeteer.launch({ headless: true });
 try {
   const context = await browser.createBrowserContext();
-  let profile = { id: 'fap93-review', full_name: 'Review Account', identity: 'student', onboarding_complete: true };
+  let profile = { id: 'fap93-review', full_name: 'Review Account', identity: 'student', onboarding_complete: true, auth_features: { global_sign_out: true } };
+  let signOutAllRequests = 0;
   async function open(path, device = context) {
     const page = await device.newPage();
     await page.setViewport({ width: 390, height: 844 });
@@ -40,6 +41,18 @@ try {
           version: 1, uid: profile.id, nextCursor: null,
           items: [{ uid: profile.id, sessionId: '30ec069b-f5c7-41c1-820d-d487a666d838', concept: { conceptId: 'Measurement uncertainty' }, status: 'active', phase: 'check_passed', updatedAt: '2026-11-14T12:00:00Z' }],
         }) });
+      }
+      if (url.pathname === '/api/account/devices') {
+        assert.equal(request.headers()['x-visionary-account'], profile.id);
+        return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({
+          uid: profile.id, nextCursor: null, items: [{ id: 'fixture-session', current: true, status: 'active', lastSeenAt: '2026-11-14T12:00:00Z' }],
+        }) });
+      }
+      if (url.pathname === '/api/auth/logout-all') {
+        signOutAllRequests++;
+        assert.equal(request.headers()['x-visionary-account'], profile.id);
+        assert.equal(request.headers()['x-csrf-token'], 'fixture');
+        return request.respond({ status: 503, contentType: 'application/json', body: '{}' });
       }
       if (url.pathname === '/api/auth/logout') {
         profile = null;
@@ -88,22 +101,30 @@ try {
   await second.page.waitForFunction(() => document.querySelector('#connected-display-name')?.value === 'Updated account');
   await second.page.reload();
   await second.page.waitForFunction(() => document.querySelector('#connected-display-name')?.value === 'Updated account');
+  const security = await open('/dashboard/settings');
+  await security.page.waitForFunction(() => document.body.innerText.includes('This browser'));
+  await security.page.locator('::-p-aria(Sign out on all devices)').click();
+  assert.equal(signOutAllRequests, 0);
+  await security.page.locator('::-p-aria(Confirm sign-out)').click();
+  await security.page.waitForFunction(() => document.body.innerText.includes('Could not confirm sign-out'));
+  assert.equal(signOutAllRequests, 1);
+  await security.page.locator('::-p-aria(Cancel)').click();
   const cookies = await open('/cookies');
   await cookies.page.waitForFunction(() => [...document.querySelectorAll('[role="switch"]')].length === 3);
   assert.equal(await cookies.page.$$eval('[role="switch"]:not(:disabled)', switches => switches.length), 0);
-  for (const { page } of [home, workspace, cookies, edit, learning, second]) {
+  for (const { page } of [home, workspace, cookies, edit, learning, second, security]) {
     assert.deepEqual(await page.evaluate(() => [localStorage.length, sessionStorage.length]), [0, 0]);
   }
   await home.page.bringToFront(); await home.page.click('header button');
   await workspace.page.bringToFront(); await workspace.page.waitForFunction(() => location.pathname === '/login', { polling: 100 }).catch(async error => { throw new Error('Cross-tab logout: ' + workspace.page.url() + ' / ' + await home.page.evaluate(() => document.body.innerText), { cause: error }); });
   await home.page.waitForFunction(() => location.pathname === '/login', { polling: 100 });
-  for (const { errors } of [home, workspace, cookies, edit, learning, second]) assert.deepEqual(errors, []);
+  for (const { errors } of [home, workspace, cookies, edit, learning, second, security]) assert.deepEqual(errors, []);
   profile = { id: 'new-fap93-review', full_name: 'New Account', onboarding_complete: false };
   const setup = await open('/onboarding');
   await setup.page.waitForFunction(() => document.body.innerText.includes('I am a Learner'));
   assert.deepEqual(await setup.page.evaluate(() => [localStorage.length, sessionStorage.length]), [0, 0]);
   assert.deepEqual(setup.errors, []);
-  console.log('Production browser: profile sync and reload, saved learning, five role boundaries, cookies, cross-tab logout and first-run setup passed.');
+  console.log('Production browser: profile sync and reload, saved learning, account sessions and revocation failure, five role boundaries, cookies, cross-tab logout and first-run setup passed.');
 } finally {
   await browser.close();
 }

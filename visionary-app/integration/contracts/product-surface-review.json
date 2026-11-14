@@ -247,6 +247,19 @@
         "SCOPE-06"
       ]
     },
+    "frontend/src/components/dashboard/ConnectedAccountSecurity.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Lists the current account’s browser sessions and delegates account-wide sign-out to the server.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "GET /api/account/devices",
+        "POST /api/auth/logout-all"
+      ]
+    },
     "frontend/src/components/dashboard/ConnectedAccountLayout.jsx": {
       "profile": "client-presentation",
       "state": "connected",

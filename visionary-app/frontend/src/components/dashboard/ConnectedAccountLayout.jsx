@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import ConnectedLearningHistory from './ConnectedLearningHistory';
+import ConnectedAccountSecurity from './ConnectedAccountSecurity';
 import ConnectedProfile from './ConnectedProfile';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -33,6 +34,7 @@ export default function ConnectedAccountLayout() {
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/home" end>Account home</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/profile" end>Profile</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/learn" end>Saved learning</NavLink>
+          <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/settings" end>Security</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/subscription" end>Plans</NavLink>
         </nav>
         <button className="min-h-11 rounded-lg border px-4 text-sm disabled:opacity-60" onClick={signOut} disabled={busy}>{busy ? 'Signing out…' : 'Sign out'}</button>
@@ -41,6 +43,7 @@ export default function ConnectedAccountLayout() {
     <main id="main" tabIndex={-1} className="visionary-workspace mx-auto max-w-5xl px-5 py-8 sm:py-12">
       {error && <p role="alert" className="mb-4 text-[#b3261e]">{error}</p>}
       {page === '/dashboard/subscription' ? <Outlet /> : page === '/dashboard/profile' ? <ConnectedProfile key={account.id} />
+        : page === '/dashboard/settings' ? <ConnectedAccountSecurity key={account.id} accountId={account.id} />
         : page === '/dashboard/learn' ? <ConnectedLearningHistory key={account.id} accountId={account.id} /> : <section className="max-w-xl rounded-2xl border bg-white p-6 sm:p-8">
         <h1 className="text-2xl font-semibold">{home ? 'Your Visionary account' : 'This workspace page is unavailable'}</h1>
         {account?.full_name && <p className="mt-2 break-words">{account.full_name}</p>}
