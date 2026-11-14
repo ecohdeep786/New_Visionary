@@ -3,6 +3,8 @@ import { useState } from 'react';
 import ConnectedLearningHistory from './ConnectedLearningHistory';
 import ConnectedAccountSecurity from './ConnectedAccountSecurity';
 import GettingStarted from '@/components/onboarding/GettingStarted';
+import ApprovedPrivacyPolicy from './ApprovedPrivacyPolicy';
+import ConnectedWorkspaces from './ConnectedWorkspaces';
 import ConnectedProfile from './ConnectedProfile';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -33,8 +35,10 @@ export default function ConnectedAccountLayout() {
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-8 gap-y-2">
         <nav aria-label="Account" className="flex flex-wrap items-center gap-x-6 text-sm">
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/home" end>Account home</NavLink>
+          <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/connections" end>Workspaces</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/profile" end>Profile</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/learn" end>Saved learning</NavLink>
+          <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/privacy" end>Privacy</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/settings" end>Security</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/subscription" end>Plans</NavLink>
         </nav>
@@ -44,6 +48,8 @@ export default function ConnectedAccountLayout() {
     <main id="main" tabIndex={-1} className="visionary-workspace mx-auto max-w-5xl px-5 py-8 sm:py-12">
       {error && <p role="alert" className="mb-4 text-[#b3261e]">{error}</p>}
       {page === '/dashboard/subscription' ? <Outlet /> : page === '/dashboard/profile' ? <ConnectedProfile key={account.id} />
+        : page === '/dashboard/connections' ? <ConnectedWorkspaces key={account.id} accountId={account.id} />
+        : page === '/dashboard/privacy' ? <ApprovedPrivacyPolicy key={account.id} accountId={account.id} />
         : page === '/dashboard/settings' ? <ConnectedAccountSecurity key={account.id} accountId={account.id} />
         : page === '/dashboard/learn' ? <ConnectedLearningHistory key={account.id} accountId={account.id} /> : <section className="max-w-xl rounded-2xl border bg-white p-6 sm:p-8">
         <h1 className="text-2xl font-semibold">{home ? 'Your Visionary account' : 'This workspace page is unavailable'}</h1>

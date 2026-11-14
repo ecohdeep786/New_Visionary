@@ -260,6 +260,25 @@
         "POST /api/auth/logout-all"
       ]
     },
+    "frontend/src/components/dashboard/ConnectedWorkspaces.jsx": {
+      "profile": "authenticated-account",
+      "state": "missing",
+      "execution": "server",
+      "reason": "Workspace list and personal provisioning use dev contracts. Beta requires the deployed overview store and workspace provisioner.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/dashboard/ApprovedPrivacyPolicy.jsx": {
+      "profile": "authenticated-account",
+      "state": "missing",
+      "execution": "server",
+      "reason": "Uses the existing dev policy contract. Approved policy records require the deployed backend.",
+      "followUp": [
+        "SCOPE-06"
+      ]
+    },
     "frontend/src/components/dashboard/ConnectedAccountLayout.jsx": {
       "profile": "client-presentation",
       "state": "connected",

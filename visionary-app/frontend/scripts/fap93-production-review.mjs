@@ -9,6 +9,10 @@ try {
   const context = await browser.createBrowserContext();
   let profile = { id: 'fap93-review', full_name: 'Review Account', identity: 'student', onboarding_complete: true, auth_features: { global_sign_out: true } };
   let signOutAllRequests = 0;
+  let personalWorkspace = null;
+  let provisionCommandId = null;
+  let provisionAttempts = 0;
+  let privacyAvailable = false;
   async function open(path, device = context) {
     const page = await device.newPage();
     await page.setViewport({ width: 390, height: 844 });
@@ -40,6 +44,36 @@ try {
         return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({
           version: 1, uid: profile.id, nextCursor: null,
           items: [{ uid: profile.id, sessionId: '30ec069b-f5c7-41c1-820d-d487a666d838', concept: { conceptId: 'Measurement uncertainty' }, status: 'active', phase: 'check_passed', updatedAt: '2026-11-14T12:00:00Z' }],
+        }) });
+      }
+      if (url.pathname === '/api/overview/workspaces') {
+        assert.equal(request.headers()['x-visionary-account'], profile.id);
+        if (!personalWorkspace) return request.respond({ status: 403, contentType: 'application/json', body: '{}' });
+        return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({
+          items: personalWorkspace ? [personalWorkspace] : [], nextCursor: null, hasMore: false,
+        }) });
+      }
+      if (url.pathname === '/api/account/workspace/provision') {
+        assert.equal(request.headers()['x-visionary-account'], profile.id);
+        assert.equal(request.headers()['x-csrf-token'], 'fixture');
+        const body = JSON.parse(request.postData());
+        assert.equal(body.payload.source, 'manual');
+        provisionCommandId ??= body.commandId;
+        assert.equal(body.commandId, provisionCommandId);
+        if (++provisionAttempts === 1) return request.respond({ status: 503, contentType: 'application/json', body: '{}' });
+        personalWorkspace = { id: 'fixture-personal', name: 'Personal workspace fixture', isPersonal: true, role: 'OWNER' };
+        return request.respond({ status: 201, contentType: 'application/json', body: JSON.stringify({ personalWorkspaceId: personalWorkspace.id }) });
+      }
+      if (url.pathname === '/api/account/privacy/policy') {
+        assert.equal(request.headers()['x-visionary-account'], profile.id);
+        if (!privacyAvailable) return request.respond({ status: 503, contentType: 'application/json', body: '{}' });
+        const classes = ['auth_device', 'learning_text', 'source_files', 'billing_audit', 'model_artifacts', 'admission_proof', 'voice_transcript', 'offline_pack', 'pilot_feedback'];
+        return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({
+          version: 1, uid: profile.id, approvalState: 'approved', policyVersion: 'fixture-policy', policyDigest: 'a'.repeat(64),
+          approvedBy: { name: 'Fixture reviewer', role: 'Test owner' },
+          preservation: { automaticPurge: false, defaultTraining: false, under18Activation: 'blocked' },
+          capabilities: { policyReference: true, cloudErasure: false, guardianVerification: false, automaticTraining: false },
+          dataClasses: classes.map(dataClass => ({ dataClass, purpose: 'Fixture purpose', retention: 'owner_controlled', permittedFields: ['uid'] })),
         }) });
       }
       if (url.pathname === '/api/account/devices') {
@@ -101,6 +135,23 @@ try {
   await second.page.waitForFunction(() => document.querySelector('#connected-display-name')?.value === 'Updated account');
   await second.page.reload();
   await second.page.waitForFunction(() => document.querySelector('#connected-display-name')?.value === 'Updated account');
+  const spaces = await open('/dashboard/connections');
+  const setupButton = spaces.page.locator('::-p-aria(Set up personal workspace)');
+  await setupButton.click();
+  await spaces.page.waitForFunction(() => document.body.innerText.includes('Workspace setup is unavailable'));
+  assert.equal(await spaces.page.evaluate(() => document.body.innerText.includes('Your personal workspace is ready.')), false);
+  await setupButton.click();
+  await spaces.page.waitForFunction(() => document.body.innerText.includes('Your personal workspace is ready.'));
+  assert.equal(provisionAttempts, 2);
+  const spacesOnSecondDevice = await open('/dashboard/connections', secondContext);
+  await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Personal workspace fixture'));
+  await spacesOnSecondDevice.page.reload();
+  await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Personal workspace fixture'));
+  const privacy = await open('/dashboard/privacy');
+  await privacy.page.waitForFunction(() => document.body.innerText.includes('The approved policy is unavailable'));
+  privacyAvailable = true;
+  await privacy.page.locator('::-p-aria(Retry policy)').click();
+  await privacy.page.waitForFunction(() => document.body.innerText.includes('Approved by Fixture reviewer'));
   const security = await open('/dashboard/settings');
   await security.page.waitForFunction(() => document.body.innerText.includes('This browser'));
   await security.page.locator('::-p-aria(Sign out on all devices)').click();
@@ -112,19 +163,19 @@ try {
   const cookies = await open('/cookies');
   await cookies.page.waitForFunction(() => [...document.querySelectorAll('[role="switch"]')].length === 3);
   assert.equal(await cookies.page.$$eval('[role="switch"]:not(:disabled)', switches => switches.length), 0);
-  for (const { page } of [home, workspace, cookies, edit, learning, second, security]) {
+  for (const { page } of [home, workspace, cookies, edit, learning, second, security, spaces, spacesOnSecondDevice, privacy]) {
     assert.deepEqual(await page.evaluate(() => [localStorage.length, sessionStorage.length]), [0, 0]);
   }
   await home.page.bringToFront(); await home.page.click('header button');
   await workspace.page.bringToFront(); await workspace.page.waitForFunction(() => location.pathname === '/login', { polling: 100 }).catch(async error => { throw new Error('Cross-tab logout: ' + workspace.page.url() + ' / ' + await home.page.evaluate(() => document.body.innerText), { cause: error }); });
   await home.page.waitForFunction(() => location.pathname === '/login', { polling: 100 });
-  for (const { errors } of [home, workspace, cookies, edit, learning, second, security]) assert.deepEqual(errors, []);
+  for (const { errors } of [home, workspace, cookies, edit, learning, second, security, spaces, spacesOnSecondDevice, privacy]) assert.deepEqual(errors, []);
   profile = { id: 'new-fap93-review', full_name: 'New Account', onboarding_complete: false };
   const setup = await open('/onboarding');
   await setup.page.waitForFunction(() => document.body.innerText.includes('I am a Learner'));
   assert.deepEqual(await setup.page.evaluate(() => [localStorage.length, sessionStorage.length]), [0, 0]);
   assert.deepEqual(setup.errors, []);
-  console.log('Production browser: profile sync and reload, saved learning, account sessions and revocation failure, five role boundaries, cookies, cross-tab logout and first-run setup passed.');
+  console.log('Production browser: profile sync and reload, saved learning, workspace setup and reload, privacy policy recovery, account sessions and revocation failure, five role boundaries, cookies, cross-tab logout and first-run setup passed.');
 } finally {
   await browser.close();
 }
