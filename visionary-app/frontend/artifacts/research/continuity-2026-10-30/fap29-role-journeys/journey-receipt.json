@@ -1,0 +1,417 @@
+{
+  "at": "2026-10-30T18:11:24.393Z",
+  "base": "http://127.0.0.1:5179",
+  "roles": [
+    {
+      "role": "student",
+      "pageErrors": [],
+      "surfaces": [
+        {
+          "route": "/dashboard/home",
+          "h1": "Welcome back, Alex.",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Audio interaction is off.",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Review learning stage",
+            "html": "<a class=\"v-button mt-3\" href=\"/dashboard/personalization\" data-discover=\"true\">Review learning stage</a>"
+          }
+        },
+        {
+          "route": "/dashboard/learn",
+          "h1": "Your learning outline",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Audio interaction is off.",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Try authored learning sample",
+            "html": "<button class=\"v-button\" type=\"button\">Try authored learning sample</button>"
+          }
+        },
+        {
+          "route": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Audio interaction is off.",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(96, 100, 108)",
+            "bg": "rgb(255,255,255)",
+            "fs": 12,
+            "fw": 400,
+            "large": false,
+            "required": 4.5,
+            "ratio": 5.94,
+            "sample": "Or try an authored example",
+            "html": "<h3 id=\"guide-example-title\" class=\"guide-example-heading\">Or try an authored example</h3>"
+          }
+        },
+        {
+          "route": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find a subject, topic, or page | Ctrl K | Join a class | Guide | Audio interaction is off.",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Show all recorded history",
+            "html": "<button class=\"v-button\">Show all recorded history</button>"
+          }
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "pageErrors": [],
+      "surfaces": [
+        {
+          "route": "/dashboard/home",
+          "h1": "Welcome back, Alex.",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Audio interaction is off",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Your own growth",
+            "html": "<a class=\"v-button\" href=\"/dashboard/growth\" data-discover=\"true\">Your own growth</a>"
+          }
+        },
+        {
+          "route": "/dashboard/classes",
+          "h1": "Your classes",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Audio interaction is off",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(96, 100, 108)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 400,
+            "large": false,
+            "required": 4.5,
+            "ratio": 5.94,
+            "sample": "Create a class, add students, and start ",
+            "html": "<p class=\"v-muted mt-2\">Create a class, add students, and start teaching</p>"
+          }
+        },
+        {
+          "route": "/dashboard/prepare",
+          "h1": "Prepare a lesson",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Audio interaction is off",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "New lesson",
+            "html": "<button type=\"button\" class=\"v-button\">New lesson</button>"
+          }
+        },
+        {
+          "route": "/dashboard/insights",
+          "h1": "Teaching insights",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Audio interaction is off",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(96, 100, 108)",
+            "bg": "rgb(247,248,250)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 5.59,
+            "sample": "Class",
+            "html": "<th scope=\"col\" class=\"px-5 py-4 font-medium\">Class</th>"
+          }
+        }
+      ]
+    },
+    {
+      "role": "parent",
+      "pageErrors": [],
+      "surfaces": [
+        {
+          "route": "/dashboard/home",
+          "h1": "Welcome back, Alex.",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Audio interact",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Manage child connections",
+            "html": "<a class=\"v-button\" href=\"/dashboard/child\" data-discover=\"true\">Manage child connections</a>"
+          }
+        },
+        {
+          "route": "/dashboard/child",
+          "h1": "Your children",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Audio interact",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Request sharing",
+            "html": "<button class=\"v-button\">Request sharing</button>"
+          }
+        },
+        {
+          "route": "/dashboard/reports",
+          "h1": "Their learning, in context",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Audio interact",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(0,113,227)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Ask about this report",
+            "html": "<a class=\"v-button primary mt-5\" href=\"/dashboard/ask?child=qa-child&amp;period=7\" data-discover=\"true\">Ask about this report</a>"
+          }
+        },
+        {
+          "route": "/dashboard/notifications",
+          "h1": "Family updates",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find reports, connections, or tools | Ctrl K | Connect your child | Guide | Audio interact",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "View report",
+            "html": "<a class=\"v-button\" href=\"/dashboard/reports?child=qa-child\" data-discover=\"true\">View report</a>"
+          }
+        }
+      ]
+    },
+    {
+      "role": "professional",
+      "pageErrors": [],
+      "surfaces": [
+        {
+          "route": "/dashboard/home",
+          "h1": "Welcome back, Alex.",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find learning, projects, or tools | Ctrl K | Set a career goal | Guide | Audio interaction",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Review learning stage",
+            "html": "<a class=\"v-button mt-3\" href=\"/dashboard/personalization\" data-discover=\"true\">Review learning stage</a>"
+          }
+        },
+        {
+          "route": "/dashboard/career",
+          "h1": "Your next capability",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find learning, projects, or tools | Ctrl K | Set a career goal | Guide | Audio interaction",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Review connections",
+            "html": "<a class=\"v-button mt-3\" href=\"/dashboard/connections\" data-discover=\"true\">Review connections</a>"
+          }
+        },
+        {
+          "route": "/dashboard/build",
+          "h1": "Build something of your own",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find learning, projects, or tools | Ctrl K | Set a career goal | Guide | Audio interaction",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 400,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Open learning outline",
+            "html": "<a class=\"v-action-link\" href=\"/dashboard/learn\" data-discover=\"true\">Open learning outline</a>"
+          }
+        },
+        {
+          "route": "/dashboard/settings",
+          "h1": "Make Guide work for you",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Personal · Personal | + Add a role | Find learning, projects, or tools | Ctrl K | Set a career goal | Guide | Audio interaction",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 113, 227)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "Review current stage profile",
+            "html": "<button class=\"v-button mt-4\">Review current stage profile</button>"
+          }
+        }
+      ]
+    },
+    {
+      "role": "organization",
+      "pageErrors": [],
+      "surfaces": [
+        {
+          "route": "/dashboard/home",
+          "h1": "Welcome back, Alex.",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Owner · Personal | + Add a role | Find people, cohorts, or tools | Ctrl K | Add people | Guide | Audio interaction is off. The ",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(0, 102, 204)",
+            "bg": "rgb(247,248,250)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 5.24,
+            "sample": "Review cohorts",
+            "html": "<a class=\"v-home-secondary\" href=\"/dashboard/cohorts\" data-discover=\"true\">Review cohorts</a>"
+          }
+        },
+        {
+          "route": "/dashboard/people",
+          "h1": "People & connections",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Owner · Personal | + Add a role | Find people, cohorts, or tools | Ctrl K | Add people | Guide | Audio interaction is off. The ",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(96, 100, 108)",
+            "bg": "rgb(255,255,255)",
+            "fs": 14,
+            "fw": 400,
+            "large": false,
+            "required": 4.5,
+            "ratio": 5.94,
+            "sample": "Manage local invitations and review who ",
+            "html": "<p class=\"mt-2 text-sm leading-6 text-[#5f6368]\">Manage local invitations and review who accepted, declined or lost access.</p>"
+          }
+        },
+        {
+          "route": "/dashboard/curriculum",
+          "h1": "Reviewed curriculum templates",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Owner · Personal | + Add a role | Find people, cohorts, or tools | Ctrl K | Add people | Guide | Audio interaction is off. The ",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(0,113,227)",
+            "fs": 14,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 4.7,
+            "sample": "New curriculum template",
+            "html": "<button class=\"v-button primary\">New curriculum template</button>"
+          }
+        },
+        {
+          "route": "/dashboard/analytics",
+          "h1": "Institution analytics",
+          "unavailable": false,
+          "snippet": "Skip to main content | isionary | Active workspace | Owner · Personal | + Add a role | Find people, cohorts, or tools | Ctrl K | Add people | Guide | Audio interaction is off. The ",
+          "lowContrast": [],
+          "smallControls": [],
+          "worstContrast": {
+            "color": "rgb(96, 100, 108)",
+            "bg": "rgb(255,255,255)",
+            "fs": 13,
+            "fw": 500,
+            "large": false,
+            "required": 4.5,
+            "ratio": 5.94,
+            "sample": "Organization",
+            "html": "<p class=\"v-section-label\">Organization</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "note": "local fixture journeys - the \"real-user\" hosted journeys need a signed-in founder session (honest boundary); the FAP-30 rendered audit is recorded per surface, and lowContrast/smallControls are findings, not gates here"
+}
