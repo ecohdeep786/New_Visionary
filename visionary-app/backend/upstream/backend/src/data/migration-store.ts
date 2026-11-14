@@ -1,8 +1,22 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import { createHash } from 'node:crypto';
+import { performance } from 'node:perf_hooks';
 import { assertSeparateIdentities, quoteIdentifier, IdentityConfig } from './migration-identities';
 import type { MigrationReceipt } from './migration-types';
 export type DataTransaction=Prisma.TransactionClient;
+export interface DataOperationBounds {
+  remainingMs():number;
+  assertActive():void;
+  beforeCommit?():void;
+}
+const statementBudget=(timeout:number)=>Math.max(1,timeout-Math.min(1000,Math.floor(timeout/5)));
+function boundedFailure(error:unknown,commitAdmitted=false):never{
+  const detail=error as {code?:string;meta?:{error?:string}};
+  if(detail?.code==='P2028'&&typeof detail.meta?.error==='string'&&
+    /expired transaction|timeout for this transaction|Unable to start a transaction in the given time/i.test(detail.meta.error))
+    throw Error(commitAdmitted?'BACKFILL_DEADLINE_COMMIT_UNKNOWN':'BACKFILL_DEADLINE_TRANSACTION');
+  throw error;
+}
 /** Real PostgreSQL adapter. No labels or Map can substitute for database identity. */
 export class PostgresMigrationStore {
   readonly migration:PrismaClient; readonly runtime:PrismaClient;
@@ -14,10 +28,46 @@ export class PostgresMigrationStore {
     this.runtime=new PrismaClient({datasources:{db:{url:config.runtimeUrl}}});
   }
   async close(){await Promise.all([this.migration.$disconnect(),this.runtime.$disconnect()]);}
-  private async runtimeIdentity():Promise<void>{
-    const [identity]=await this.runtime.$queryRawUnsafe<{role:string}[]>('SELECT current_user AS role');
+  private async runtimeIdentity(bounds?:DataOperationBounds):Promise<void>{
+    const check=async(query:Pick<DataTransaction,'$queryRawUnsafe'>)=>{
+    const [identity]=await query.$queryRawUnsafe<{role:string}[]>('SELECT current_user AS role');
     if(identity?.role!==this.config.runtimeRole)throw Error('RUNTIME_IDENTITY_DENIED');
-    await this.runtimePrivileges(this.runtime);
+    await this.runtimePrivileges(query);
+    };
+    if(!bounds)return check(this.runtime);
+    const timeout=this.remainingTimeout(15000,bounds);
+    await this.runtime.$transaction(async tx=>{
+      bounds.assertActive();
+      await tx.$queryRawUnsafe("SELECT set_config('statement_timeout',$1,true)",String(statementBudget(timeout)));
+      await check(this.guardTransaction(tx,bounds));
+    },{maxWait:timeout,timeout}).catch(error=>boundedFailure(error));
+  }
+  private remainingTimeout(timeout:number,bounds?:DataOperationBounds):number{
+    bounds?.assertActive();
+    const remaining=bounds?Math.min(timeout,bounds.remainingMs()):timeout;
+    if(remaining<1)throw Error('BACKFILL_DEADLINE');
+    return Math.floor(remaining);
+  }
+  private guardTransaction(tx:DataTransaction,bounds?:DataOperationBounds):DataTransaction{
+    if(!bounds)return tx;
+    return new Proxy(tx,{get(target,key){
+      const value=Reflect.get(target,key);
+      if(typeof value==='function'&&typeof key==='string'&&/^\$(queryRaw|executeRaw)/.test(key))return async(...args:unknown[])=>{
+        bounds.assertActive();
+        let result;
+        try{result=await value.apply(target,args);}catch(error){
+          const detail=error as {code?:string;meta?:{code?:string;message?:string}};
+          // Only PostgreSQL's explicit statement-timeout diagnostic from this
+          // bounded transaction. User cancellation and other SQL errors retain
+          // their original identities, even if they arrive near the deadline.
+          if(detail.code==='P2010'&&detail.meta?.code==='57014'&&detail.meta.message?.includes('canceling statement due to statement timeout'))
+            throw Error('BACKFILL_DEADLINE_SQL');
+          return boundedFailure(error);
+        }
+        bounds.assertActive();return result;
+      };
+      return typeof value==='function'?value.bind(target):value;
+    }});
   }
   private async runtimePrivileges(query:Pick<DataTransaction,'$queryRawUnsafe'>):Promise<void>{
     const rows=await query.$queryRawUnsafe<any[]>(`SELECT r.rolname AS role,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolbypassrls,
@@ -40,9 +90,19 @@ export class PostgresMigrationStore {
       throw Error('RUNTIME_IDENTITY_DENIED');
     if(r.control_writes)throw Error('RUNTIME_CONTROL_WRITE_DENIED');
   }
-  async transaction<T>(work:(tx:DataTransaction)=>Promise<T>,timeout=15000):Promise<T>{
-    await this.runtimeIdentity();
-    return this.migration.$transaction(async tx=>{
+  async transaction<T>(work:(tx:DataTransaction,availableMs?:number)=>Promise<T>,timeout=15000,bounds?:DataOperationBounds):Promise<T>{
+    if(!Number.isSafeInteger(timeout)||timeout<1||timeout>15000)throw Error('DATA_TRANSACTION_BOUNDS');
+    bounds?.assertActive();
+    await this.runtimeIdentity(bounds);
+    const remaining=this.remainingTimeout(timeout,bounds);
+    let commitAdmitted=false;
+    return this.migration.$transaction(async raw=>{
+      const batchUntil=performance.now()+remaining;
+      const batchBounds=bounds?{...bounds,remainingMs:()=>Math.min(bounds.remainingMs(),batchUntil-performance.now()),assertActive:()=>{
+        bounds.assertActive();if(performance.now()>=batchUntil)throw Error('BACKFILL_DEADLINE_BATCH');
+      }}:undefined;
+      batchBounds?.assertActive();
+      const tx=this.guardTransaction(raw,batchBounds);
       const rows=await tx.$queryRawUnsafe<any[]>(`SELECT current_user AS role,r.rolsuper,r.rolcreatedb,r.rolcreaterole,
         owner.rolname AS owner FROM pg_roles r JOIN pg_namespace n ON n.nspname=$1
         JOIN pg_roles owner ON owner.oid=n.nspowner WHERE r.rolname=current_user`,this.config.schema);
@@ -50,18 +110,21 @@ export class PostgresMigrationStore {
       if(!r||r.role!==this.config.migrationRole||r.owner!==r.role||r.rolsuper||r.rolcreatedb||r.rolcreaterole)
         throw Error('MIGRATION_IDENTITY_DENIED');
       await tx.$queryRawUnsafe("SELECT set_config('search_path',$1,true)",quoteIdentifier(this.config.schema));
-      await tx.$queryRawUnsafe("SELECT set_config('statement_timeout',$1,true)",String(Math.max(1,timeout-1000)));
+      await tx.$queryRawUnsafe("SELECT set_config('statement_timeout',$1,true)",String(statementBudget(this.remainingTimeout(remaining,batchBounds))));
       await tx.$queryRawUnsafe("SELECT pg_advisory_xact_lock(hashtextextended($1,0))::text",this.config.schema+':visionary-data');
       await tx.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "_visionary_migrations" (
         sequence BIGSERIAL PRIMARY KEY,version INTEGER NOT NULL,name TEXT NOT NULL,checksum TEXT NOT NULL,"schemaDigest" TEXT NOT NULL,
         status TEXT NOT NULL CHECK(status IN ('applied','rolled_back')),"appliedBy" TEXT NOT NULL DEFAULT current_user,
         "appliedAt" TIMESTAMPTZ NOT NULL DEFAULT clock_timestamp())`);
-      const result=await work(tx);
+      const result=await work(tx,this.remainingTimeout(remaining,batchBounds));
       // Check explicit runtime-role privileges inside this transaction: newly
       // created tables and their default grants are invisible to other sessions.
       await this.runtimePrivileges(tx);
+      batchBounds?.assertActive();
+      commitAdmitted=true;
+      batchBounds?.beforeCommit?.();
       return result;
-    },{maxWait:timeout,timeout});
+    },{maxWait:remaining,timeout:remaining}).catch(error=>{if(bounds)return boundedFailure(error,commitAdmitted);throw error;});
   }
   async appliedReceipts(tx:DataTransaction):Promise<MigrationReceipt[]>{
     const rows=await tx.$queryRawUnsafe<any[]>(`SELECT DISTINCT ON(version) version,name,checksum,"schemaDigest",status,"appliedBy","appliedAt"
