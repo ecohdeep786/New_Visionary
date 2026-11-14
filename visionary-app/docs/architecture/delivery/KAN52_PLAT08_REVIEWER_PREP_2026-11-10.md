@@ -1,5 +1,7 @@
 # KAN-52 / PLAT-08 — reviewer-corrector pass (2026-11-10)
 
+This historical checkpoint records local model results. See the [current runbook](../../../infrastructure/drills/README.md) for hosted workflow and evidence.
+
 Reviewer-prep for `codex/principal-kan-52-backup-drills` before D-095 review; Testing, reviewer pending, NOT merged into dev. Commits on the branch: corrections `c9e323ff`, dev integration `81edd82c` (merge of `2e0b1fbb`), data-04 rolling-clock fixup `0d41272d` (byte-identical to the fix carried on the prepared Testing branches).
 
 ## Corrections (all in `infrastructure/drills/`)

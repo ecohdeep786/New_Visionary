@@ -4,12 +4,12 @@ recovery, retention-locked immutability, and the synthetic-data refusal."""
 import unittest
 from datetime import datetime, timedelta, timezone
 
-from backup_restore_drill import DrillError, BackupDrill
+from backup_restore_drill import DrillError, BackupDrill, _digest
 
 RECORDS = [
-    {"id": "wsp-1", "ownerUid": "uid-a", "kind": "workspace", "payload": "synthetic-alpha"},
-    {"id": "wsp-2", "ownerUid": "uid-b", "kind": "workspace", "payload": "synthetic-beta"},
-    {"id": "att-1", "ownerUid": "uid-a", "kind": "attempt", "payload": "synthetic-attempt"},
+    {"synthetic": True, "id": "wsp-1", "ownerUid": "uid-a", "kind": "workspace", "payload": "synthetic-alpha"},
+    {"synthetic": True, "id": "wsp-2", "ownerUid": "uid-b", "kind": "workspace", "payload": "synthetic-beta"},
+    {"synthetic": True, "id": "att-1", "ownerUid": "uid-a", "kind": "attempt", "payload": "synthetic-attempt"},
 ]
 
 
@@ -18,11 +18,11 @@ class BackupDrillTest(unittest.TestCase):
         drill = BackupDrill()
         drill.seed(RECORDS)
         backup = drill.snapshot("pre-migration")
-        drill.seed([{"id": "wsp-3", "ownerUid": "uid-c", "kind": "workspace", "payload": "post-backup"}])
+        drill.seed([{"synthetic": True, "id": "wsp-3", "ownerUid": "uid-c", "kind": "workspace", "payload": "post-backup"}])
         self.assertEqual(len(drill.state()), 4)
         restored = drill.restore_latest()
         self.assertEqual(restored["digest"], backup["digest"])
-        self.assertEqual(len(drill.state()), 3, "the post-backup mutation is discarded")
+        self.assertEqual(drill.state(), {record["id"]: record for record in RECORDS})
         self.assertEqual(drill.state()["wsp-1"]["ownerUid"], "uid-a")
         self.assertEqual(drill.state()["att-1"]["ownerUid"], "uid-a", "identities survive the restore")
 
@@ -30,7 +30,7 @@ class BackupDrillTest(unittest.TestCase):
         drill = BackupDrill()
         drill.seed(RECORDS)
         drill.snapshot("t1")
-        drill.seed([{"id": "extra", "ownerUid": "uid-d", "kind": "workspace", "payload": "later"}])
+        drill.seed([{"synthetic": True, "id": "extra", "ownerUid": "uid-d", "kind": "workspace", "payload": "later"}])
         drill.snapshot("t2")
         result = drill.restore_point_in_time("t1")
         self.assertNotIn("extra", drill.state())
@@ -46,9 +46,30 @@ class BackupDrillTest(unittest.TestCase):
         drill.snapshot("checked")
         # white-box: corrupt the recorded instant; the PITR rebuild must refuse
         # exactly like restore_latest instead of silently restoring divergence
-        drill._snapshots[0]["state"]["wsp-1"]["ownerUid"] = ""
+        drill._snapshots[0]["state"]["wsp-1"]["ownerUid"] = "uid-reassigned"
         with self.assertRaises(DrillError):
             drill.restore_point_in_time("checked")
+
+    def test_restore_refuses_invalid_owner_even_when_digest_matches(self):
+        drill = BackupDrill()
+        drill.seed(RECORDS)
+        drill.snapshot("owner-check")
+        snapshot = drill._snapshots[0]
+        snapshot["state"]["wsp-1"]["ownerUid"] = ["truthy", "invalid"]
+        snapshot["digest"] = _digest(snapshot["state"])
+        with self.assertRaisesRegex(DrillError, "owner identity"):
+            drill.restore_latest()
+        with self.assertRaisesRegex(DrillError, "owner identity"):
+            drill.restore_point_in_time("owner-check")
+        self.assertEqual(drill.state(), {record["id"]: record for record in RECORDS})
+
+    def test_seed_refuses_unclassified_or_duplicate_fixtures_atomically(self):
+        drill = BackupDrill()
+        with self.assertRaisesRegex(DrillError, "explicitly marked"):
+            drill.seed([RECORDS[0], {"id": "unclassified", "ownerUid": "uid-a"}])
+        with self.assertRaisesRegex(DrillError, "unique"):
+            drill.seed([RECORDS[0], RECORDS[0]])
+        self.assertEqual(drill.state(), {})
 
     def test_duplicate_snapshot_labels_are_refused(self):
         drill = BackupDrill()

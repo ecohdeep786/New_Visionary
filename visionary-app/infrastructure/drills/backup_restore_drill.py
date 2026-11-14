@@ -1,5 +1,5 @@
 """PLAT-08 (KAN-52) — backup / PITR / object-protection / restore-identity
-DRILL: the executable verification the platform must pass BEFORE persistent
+DRILL: the offline recovery model used before persistent
 real-user data is admitted. Synthetic data only — real user records are
 contract-refused from the drill.
 
@@ -12,7 +12,7 @@ contract-refused from the drill.
     rebuilds ANY recorded instant, later mutations discarded.
   - OBJECT PROTECTION: snapshots carry a retention lock — deletion before the
     retention horizon refuses (immutable backup).
-  - NO REAL USER DATA: records flagged real-user refuse admission into the
+  - SYNTHETIC FIXTURES: records require an explicit synthetic marker for the
     drill (synthetic-first discipline).
 """
 from __future__ import annotations
@@ -39,6 +39,10 @@ def _digest(payload: Any) -> str:
     return hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
 
 
+def _nonempty_string(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
 class BackupDrill:
     def __init__(self) -> None:
         self._store: dict[str, Any] = {}
@@ -47,9 +51,14 @@ class BackupDrill:
     def seed(self, records: list[dict[str, Any]]) -> None:
         staged = {}
         for record in records:
-            if record.get("realUser") is True:
-                raise DrillError("Real-user records are refused: the drill is synthetic-first")
-            staged[record["id"]] = deepcopy(record)
+            if record.get("synthetic") is not True or record.get("realUser", False) is not False:
+                raise DrillError("Only explicitly marked synthetic fixtures are admitted")
+            record_id = record.get("id")
+            if not _nonempty_string(record_id) or record_id in staged:
+                raise DrillError("Fixture ID must be nonempty and unique within the batch")
+            if not _nonempty_string(record.get("ownerUid")):
+                raise DrillError("Fixture owner must be a nonempty string")
+            staged[record_id] = deepcopy(record)
         self._store.update(staged)
 
     def snapshot(self, label: str) -> dict[str, Any]:
@@ -67,7 +76,7 @@ class BackupDrill:
         if _digest(restored) != target["digest"]:
             raise DrillError("Restore diverged from the snapshot digest")
         for record in restored.values():
-            if not record.get("ownerUid"):
+            if not _nonempty_string(record.get("ownerUid")):
                 raise DrillError("Restore lost an owner identity")
         self._store = restored
         return {"restoredFrom": target["label"], "digest": target["digest"], "identities": len(restored)}
@@ -83,7 +92,7 @@ class BackupDrill:
         if _digest(restored) != target["digest"]:
             raise DrillError("Point-in-time restore diverged from the snapshot digest")
         for record in restored.values():
-            if not record.get("ownerUid"):
+            if not _nonempty_string(record.get("ownerUid")):
                 raise DrillError("Point-in-time restore lost an owner identity")
         self._store = restored
         return {"restoredTo": label, "digest": _digest(self._store)}
