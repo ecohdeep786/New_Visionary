@@ -1,8 +1,16 @@
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import ConnectedLearningHistory from './ConnectedLearningHistory';
 import ConnectedProfile from './ConnectedProfile';
 import { useAuth } from '@/lib/AuthContext';
+
+const roleFeatures = {
+  student: 'Practice, projects, and classroom assignments',
+  teacher: 'Classrooms, assignments, and grading',
+  parent: 'Guardian connections and shared learner reports',
+  professional: 'Career goals and portfolio projects',
+  organization: 'Cohorts, curriculum, and organization membership',
+};
 
 export default function ConnectedAccountLayout() {
   const { account, logout } = useAuth();
@@ -10,6 +18,8 @@ export default function ConnectedAccountLayout() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const page = pathname.toLowerCase().replace(/\/+$/, '');
+  const home = page === '/dashboard' || page === '/dashboard/home';
+  const features = Object.hasOwn(roleFeatures, account.identity) ? roleFeatures[account.identity] : 'Interactive learning and shared workspaces';
   async function signOut() {
     setBusy(true);
     setError('');
@@ -32,9 +42,10 @@ export default function ConnectedAccountLayout() {
       {error && <p role="alert" className="mb-4 text-[#b3261e]">{error}</p>}
       {page === '/dashboard/subscription' ? <Outlet /> : page === '/dashboard/profile' ? <ConnectedProfile key={account.id} />
         : page === '/dashboard/learn' ? <ConnectedLearningHistory key={account.id} accountId={account.id} /> : <section className="max-w-xl rounded-2xl border bg-white p-6 sm:p-8">
-        <h1 className="text-2xl font-semibold">{page === '/dashboard' || page === '/dashboard/home' ? 'Your Visionary account' : 'This workspace page is unavailable'}</h1>
+        <h1 className="text-2xl font-semibold">{home ? 'Your Visionary account' : 'This workspace page is unavailable'}</h1>
         {account?.full_name && <p className="mt-2 break-words">{account.full_name}</p>}
-        <p className="mt-4 text-slate-700">Use your account to view saved learning, edit your profile, or manage your plan. Interactive learning and shared workspaces are unavailable here.</p>
+        <p className="mt-4 text-slate-700">{features} will be available once their online services are connected.</p>
+        {!home && <Link className="mt-4 inline-flex min-h-11 items-center underline" to="/dashboard/home">Return to account home</Link>}
       </section>}
     </main>
   </div>;

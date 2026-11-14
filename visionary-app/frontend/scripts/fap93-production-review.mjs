@@ -51,6 +51,22 @@ try {
     await page.goto(origin + path);
     return { page, errors };
   }
+  for (const [identity, path, capability] of [
+    ['student', 'practice', 'Practice, projects'],
+    ['teacher', 'classes', 'Classrooms, assignments'],
+    ['parent', 'child', 'Guardian connections'],
+    ['professional', 'career', 'Career goals'],
+    ['organization', 'cohorts', 'Cohorts, curriculum'],
+  ]) {
+    profile = { ...profile, identity };
+    const role = await open('/dashboard/' + path);
+    await role.page.waitForFunction(text => document.body.innerText.includes(text), {}, capability);
+    assert.equal(new URL(role.page.url()).pathname, '/dashboard/' + path);
+    assert.deepEqual(await role.page.evaluate(() => [localStorage.length, sessionStorage.length]), [0, 0]);
+    assert.deepEqual(role.errors, []);
+    await role.page.close();
+  }
+  profile = { ...profile, identity: 'student' };
   const home = await open('/dashboard/home');
   await home.page.waitForFunction(() => document.querySelector('h1')?.textContent === 'Your Visionary account');
   await home.page.reload();
@@ -87,7 +103,7 @@ try {
   await setup.page.waitForFunction(() => document.body.innerText.includes('I am a Learner'));
   assert.deepEqual(await setup.page.evaluate(() => [localStorage.length, sessionStorage.length]), [0, 0]);
   assert.deepEqual(setup.errors, []);
-  console.log('Production browser: profile sync and reload, saved learning, workspace denial, cookies, cross-tab logout and first-run setup passed.');
+  console.log('Production browser: profile sync and reload, saved learning, five role boundaries, cookies, cross-tab logout and first-run setup passed.');
 } finally {
   await browser.close();
 }

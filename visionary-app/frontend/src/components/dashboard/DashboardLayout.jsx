@@ -6,6 +6,7 @@ import {useWorkspaceScroll} from '@/hooks/useWorkspaceScroll';
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Navigate, Outlet, useLocation, NavLink } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import WorkspaceOpening from './WorkspaceOpening';
 import ConnectedAccountLayout from './ConnectedAccountLayout';
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardTopbar from "./DashboardTopbar";
@@ -138,7 +139,7 @@ function PreviewDashboardLayout() {
           <DashboardSidebar id="mobile-dashboard-navigation" expanded onNavigate={() => { navigationSelected.current = true; setMobileOpen(false); }} />
         </SheetContent></Sheet>
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3">
-          <div className="workspace-surface min-h-full overflow-hidden">{!permitted?denial:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:<Suspense key={ctx.personId+":"+activeWorkspace.id+":"+location.pathname} fallback={<div lang={locale} className="v-page" role="status" aria-busy="true">{t("openingWorkspace")}</div>}><Outlet /></Suspense>}</div>
+          <div className="workspace-surface min-h-full overflow-hidden">{!permitted?denial:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:<Suspense key={ctx.personId+":"+activeWorkspace.id+":"+location.pathname} fallback={<WorkspaceOpening locale={locale} title="Visionary" note={t("openingWorkspace")} />}><Outlet /></Suspense>}</div>
           {permitted && <FeedbackPrompt key={ctx.personId+':'+ctx.workspaceId} accountId={ctx.personId} locale={locale} surface={feedbackSurface(location.pathname)}/>}
         </main>
       </div>
