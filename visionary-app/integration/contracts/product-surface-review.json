@@ -279,6 +279,15 @@
         "SCOPE-06"
       ]
     },
+    "frontend/src/components/dashboard/ConnectedConsents.jsx": {
+      "profile": "authenticated-account",
+      "state": "missing",
+      "execution": "server",
+      "reason": "Uses the dev consent list and revocation endpoints. Live use requires the deployed consent service and its SQL configuration.",
+      "followUp": [
+        "SCOPE-06"
+      ]
+    },
     "frontend/src/components/dashboard/ConnectedAccountLayout.jsx": {
       "profile": "client-presentation",
       "state": "connected",

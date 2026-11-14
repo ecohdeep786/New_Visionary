@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ConnectedLearningHistory from './ConnectedLearningHistory';
 import ConnectedAccountSecurity from './ConnectedAccountSecurity';
 import GettingStarted from '@/components/onboarding/GettingStarted';
+import ConnectedConsents from './ConnectedConsents';
 import ApprovedPrivacyPolicy from './ApprovedPrivacyPolicy';
 import ConnectedWorkspaces from './ConnectedWorkspaces';
 import ConnectedProfile from './ConnectedProfile';
@@ -49,7 +50,7 @@ export default function ConnectedAccountLayout() {
       {error && <p role="alert" className="mb-4 text-[#b3261e]">{error}</p>}
       {page === '/dashboard/subscription' ? <Outlet /> : page === '/dashboard/profile' ? <ConnectedProfile key={account.id} />
         : page === '/dashboard/connections' ? <ConnectedWorkspaces key={account.id} accountId={account.id} />
-        : page === '/dashboard/privacy' ? <ApprovedPrivacyPolicy key={account.id} accountId={account.id} />
+        : page === '/dashboard/privacy' ? <div key={account.id}><ApprovedPrivacyPolicy accountId={account.id} /><ConnectedConsents accountId={account.id} /></div>
         : page === '/dashboard/settings' ? <ConnectedAccountSecurity key={account.id} accountId={account.id} />
         : page === '/dashboard/learn' ? <ConnectedLearningHistory key={account.id} accountId={account.id} /> : <section className="max-w-xl rounded-2xl border bg-white p-6 sm:p-8">
         <h1 className="text-2xl font-semibold">{home ? 'Your Visionary account' : 'This workspace page is unavailable'}</h1>
