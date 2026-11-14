@@ -85,7 +85,6 @@
     "reports:check": "node scripts/reports-check.mjs",
     "coaching:check": "node scripts/coaching-check.mjs",
     "reviewschedule:check": "node scripts/reviewschedule-check.mjs",
-    "privacycore:check": "node scripts/privacycore-check.mjs",
-    "data:check": "node scripts/domain-check.mjs"
+    "privacycore:check": "node scripts/privacycore-check.mjs"
   }
 }
