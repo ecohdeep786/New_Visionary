@@ -73,7 +73,7 @@ class BackupDrillTest(unittest.TestCase):
     def test_real_user_data_is_refused_synthetic_only(self):
         drill = BackupDrill()
         with self.assertRaises(DrillError):
-            drill.seed([{"id": "r1", "ownerUid": "uid-real", "realUser": True, "payload": "production record"}])
+            drill.seed([RECORDS[0], {"id": "r1", "ownerUid": "uid-real", "realUser": True, "payload": "production record"}])
         self.assertEqual(len(drill.state()), 0)
         with self.assertRaises(DrillError):
             drill.restore_latest()  # nothing to restore

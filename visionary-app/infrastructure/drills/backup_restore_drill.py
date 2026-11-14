@@ -45,10 +45,12 @@ class BackupDrill:
         self._snapshots: list[dict[str, Any]] = []
 
     def seed(self, records: list[dict[str, Any]]) -> None:
+        staged = {}
         for record in records:
             if record.get("realUser") is True:
                 raise DrillError("Real-user records are refused: the drill is synthetic-first")
-            self._store[record["id"]] = deepcopy(record)
+            staged[record["id"]] = deepcopy(record)
+        self._store.update(staged)
 
     def snapshot(self, label: str) -> dict[str, Any]:
         if any(s["label"] == label for s in self._snapshots):
