@@ -4,9 +4,10 @@ const {Module,Controller,Get,Req}=req('@nestjs/common'),{NestFactory}=req('@nest
 const {configureProductionHttp}=req('./dist/src/platform/production-http.js');
 for(const hops of [1,2])test(`production HTTP preserves cookie/cache/API boundaries with ${hops} verified proxy hops`,async()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'kan162-http-'));fs.mkdirSync(path.join(root,'assets'));fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><html><body>Product fixture</body></html>');fs.writeFileSync(path.join(root,'assets','fixture-hash.js'),'console.log("fixture");');
- class Probe{probe(request){return {ip:request.ip,cookies:request.cookies};}} Controller('probe')(Probe);Get()(Probe.prototype,'probe',Object.getOwnPropertyDescriptor(Probe.prototype,'probe'));Req()(Probe.prototype,'probe',0);
+ class Probe{probe(request){return {ip:request.ip,cookies:request.cookies};}} Controller('probe')(Probe);Get(['',':value'])(Probe.prototype,'probe',Object.getOwnPropertyDescriptor(Probe.prototype,'probe'));Req()(Probe.prototype,'probe',0);
  class Fixture{}Module({controllers:[Probe]})(Fixture);const app=await NestFactory.create(Fixture,{logger:false,bodyParser:false});
- try{assert.throws(()=>configureProductionHttp(app,{publicRoot:root,origin:'http://app.visionary.org.in',trustedProxyHops:hops,firebaseAuthDomain:'visionary-research.firebaseapp.com',releaseCommit:'0123456789abcdef0123456789abcdef01234567'}));configureProductionHttp(app,{publicRoot:root,origin:'https://app.visionary.org.in',trustedProxyHops:hops,firebaseAuthDomain:'visionary-research.firebaseapp.com',releaseCommit:'0123456789abcdef0123456789abcdef01234567'});await app.listen(0,'127.0.0.1');const base=await app.getUrl();
+ const telemetry=[];
+ try{assert.throws(()=>configureProductionHttp(app,{publicRoot:root,origin:'http://app.visionary.org.in',trustedProxyHops:hops,firebaseAuthDomain:'visionary-research.firebaseapp.com',releaseCommit:'0123456789abcdef0123456789abcdef01234567'}));configureProductionHttp(app,{publicRoot:root,origin:'https://app.visionary.org.in',trustedProxyHops:hops,firebaseAuthDomain:'visionary-research.firebaseapp.com',releaseCommit:'0123456789abcdef0123456789abcdef01234567',requestTelemetry(event){telemetry.push(event);if(event.route==='/api/probe/:value')throw Error('synthetic sink outage');}});await app.listen(0,'127.0.0.1');const base=await app.getUrl();
  const page=await fetch(base+'/dashboard/learn');assert.equal(page.status,200);assert.match(await page.text(),/Product fixture/);assert.equal(page.headers.get('cache-control'),'no-cache');assert.match(page.headers.get('content-security-policy'),/frame-ancestors 'none'/);assert.equal(page.headers.get('x-frame-options'),'DENY');
  const csp=page.headers.get('content-security-policy');for(const directive of ['script-src','frame-src','connect-src'])assert.match(csp.split('; ').find(value=>value.startsWith(directive+' ')),/https:\/\/www\.google\.com\/recaptcha\//);assert.doesNotMatch(csp,/script-src[^;]*'unsafe-inline'|script-src[^;]*\*/);
  const asset=await fetch(base+'/assets/fixture-hash.js');assert.equal(asset.status,200);assert.match(asset.headers.get('cache-control'),/immutable/);assert.equal((await fetch(base+'/missing.js')).status,404);
@@ -14,5 +15,17 @@ for(const hops of [1,2])test(`production HTTP preserves cookie/cache/API boundar
  const health=await fetch(base+'/api/health');assert.equal(health.status,200);assert.deepEqual(await health.json(),{status:'ok',authPolicy:{version:1,globalSignOut:false}});assert.equal(health.headers.get('cache-control'),'no-store');assert.equal(health.headers.get('x-visionary-revision'),'0123456789abcdef0123456789abcdef01234567');assert.equal((await fetch(base+'/api/health/nested')).status,404);
  const candidate=await fetch(base+'/__deploy-check',{headers:{'X-Forwarded-For':'198.51.100.99'}});assert.equal(candidate.status,200);assert.deepEqual(await candidate.json(),{status:'ok',authPolicy:{version:1,globalSignOut:false},forwardedForSanitized:false});assert.equal(candidate.headers.get('cache-control'),'no-store');assert.equal((await fetch(base+'/__deploy-check/')).status,200);
  const probe=await(await fetch(base+'/api/probe',{headers:{Cookie:'__Host-visionary-session=fixture; __Host-visionary-device=device; __Host-visionary-csrf=csrf','X-Forwarded-For':hops===1?'198.51.100.99, 203.0.113.7':'198.51.100.99, 203.0.113.7, 203.0.113.8'}})).json();assert.equal(probe.ip,'203.0.113.7');assert.equal(probe.cookies['__Host-visionary-device'],'device');
+ const privateValue='synthetic-unmarked-learner-note';
+ assert.equal((await fetch(base+'/api/probe/'+privateValue+'?note='+privateValue,{headers:{'X-Request-Id':privateValue}})).status,200);
+ assert.equal((await fetch(base+'/api/unknown/'+privateValue)).status,404);
+ assert.equal((await fetch(base+'/api/probe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note:privateValue})})).status,404);
+ assert.ok(telemetry.some(event=>event.route==='/api/probe/:value'&&event.status===200));
+ assert.ok(telemetry.some(event=>event.route==='unclassified'&&event.status===404));
+ for(const event of telemetry){
+   assert.deepEqual(Object.keys(event).sort(),['event','latencyMs','route','status']);
+   assert.equal(event.event,'product.api.request');
+   assert.ok(Number.isInteger(event.latencyMs)&&event.latencyMs>=0&&event.latencyMs<=3600000);
+ }
+ assert.doesNotMatch(JSON.stringify(telemetry),/synthetic-unmarked-learner-note|198\.51\.100\.99|visionary-session|dashboard\/learn/);
  }catch(error){console.error(error);throw error;}finally{await app.close();const resolved=fs.realpathSync(root),parent=fs.realpathSync(os.tmpdir());if(path.dirname(resolved)!==parent||!path.basename(resolved).startsWith('kan162-http-'))throw Error('Refuse cleanup outside the exact temporary fixture boundary.');fs.rmSync(resolved,{recursive:true,force:true});}
 });

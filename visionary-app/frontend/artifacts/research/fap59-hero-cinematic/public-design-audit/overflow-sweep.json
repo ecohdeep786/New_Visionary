@@ -1,0 +1,189 @@
+[
+  {
+    "route": "/",
+    "overflow": []
+  },
+  {
+    "route": "/student",
+    "overflow": [
+      {
+        "w": 320,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 390,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 768,
+        "doc": false,
+        "main": true
+      }
+    ]
+  },
+  {
+    "route": "/teacher",
+    "overflow": [
+      {
+        "w": 320,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 390,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 768,
+        "doc": false,
+        "main": true
+      }
+    ]
+  },
+  {
+    "route": "/parent",
+    "overflow": [
+      {
+        "w": 320,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 390,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 768,
+        "doc": false,
+        "main": true
+      }
+    ]
+  },
+  {
+    "route": "/professional",
+    "overflow": [
+      {
+        "w": 320,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 390,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 768,
+        "doc": false,
+        "main": true
+      }
+    ]
+  },
+  {
+    "route": "/organization",
+    "overflow": [
+      {
+        "w": 320,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 390,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 768,
+        "doc": false,
+        "main": true
+      }
+    ]
+  },
+  {
+    "route": "/how-it-works",
+    "overflow": []
+  },
+  {
+    "route": "/pricing",
+    "overflow": []
+  },
+  {
+    "route": "/download",
+    "overflow": []
+  },
+  {
+    "route": "/about",
+    "overflow": []
+  },
+  {
+    "route": "/careers",
+    "overflow": []
+  },
+  {
+    "route": "/contact",
+    "overflow": []
+  },
+  {
+    "route": "/partners",
+    "overflow": [
+      {
+        "w": 320,
+        "doc": false,
+        "main": true
+      },
+      {
+        "w": 390,
+        "doc": false,
+        "main": true
+      }
+    ]
+  },
+  {
+    "route": "/updates",
+    "overflow": []
+  },
+  {
+    "route": "/referral",
+    "overflow": []
+  },
+  {
+    "route": "/research",
+    "overflow": []
+  },
+  {
+    "route": "/community",
+    "overflow": []
+  },
+  {
+    "route": "/help",
+    "overflow": []
+  },
+  {
+    "route": "/safety",
+    "overflow": []
+  },
+  {
+    "route": "/privacy",
+    "overflow": []
+  },
+  {
+    "route": "/terms",
+    "overflow": []
+  },
+  {
+    "route": "/security",
+    "overflow": []
+  },
+  {
+    "route": "/accessibility",
+    "overflow": []
+  },
+  {
+    "route": "/cookies",
+    "overflow": []
+  }
+]
