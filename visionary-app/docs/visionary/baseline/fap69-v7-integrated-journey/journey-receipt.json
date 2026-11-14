@@ -1,0 +1,78 @@
+{
+  "environment": {
+    "realm": "local real emulators + disposable synthetic PostgreSQL",
+    "frontend": "production build (connected shell)",
+    "stubbedIdentity": false,
+    "backend": "127.0.0.1:3001",
+    "origin": "http://127.0.0.1:5176",
+    "sqlSchema": "data02_c87af720212048ad941610c4750b6461",
+    "startedAt": "2026-11-14T17:15:04.321Z",
+    "finishedAt": "2026-11-14T17:15:23.511Z"
+  },
+  "results": [
+    {
+      "leg": "register-awaits-verification",
+      "passed": true,
+      "at": "2026-11-14T17:15:07.834Z"
+    },
+    {
+      "leg": "verified-signup-opens-onboarding",
+      "passed": true,
+      "at": "2026-11-14T17:15:08.989Z"
+    },
+    {
+      "leg": "onboarding-student-reaches-connected-home",
+      "passed": true,
+      "at": "2026-11-14T17:15:10.331Z"
+    },
+    {
+      "leg": "personal-workspace-provisioned-confirmed-via-server-readback",
+      "passed": true,
+      "at": "2026-11-14T17:15:11.738Z"
+    },
+    {
+      "leg": "second-device-sees-server-persisted-workspace",
+      "passed": true,
+      "at": "2026-11-14T17:15:13.446Z"
+    },
+    {
+      "leg": "display-name-saved-cross-device",
+      "passed": true,
+      "at": "2026-11-14T17:15:14.951Z"
+    },
+    {
+      "leg": "privacy-policy-and-consents-render",
+      "passed": true,
+      "policyAvailable": false,
+      "consentsState": "Consent controls are unavailable",
+      "at": "2026-11-14T17:15:15.777Z"
+    },
+    {
+      "leg": "provisioning-outage-shows-honest-unavailable",
+      "passed": true,
+      "at": "2026-11-14T17:15:20.418Z"
+    },
+    {
+      "leg": "provisioning-retry-succeeds-after-recovery",
+      "passed": true,
+      "at": "2026-11-14T17:15:20.618Z"
+    },
+    {
+      "leg": "session-listed-on-security-screen",
+      "passed": true,
+      "at": "2026-11-14T17:15:21.268Z"
+    },
+    {
+      "leg": "logout-all-revokes-both-devices",
+      "passed": true,
+      "secondDeviceState": "/login",
+      "at": "2026-11-14T17:15:21.955Z"
+    },
+    {
+      "leg": "saved-learning-owner-surface-after-re-login",
+      "passed": true,
+      "state": "Account home\nWorkspaces\nProfile\nSaved learning\nPrivacy\nSecurity\nPlans\nSign out\nSaved learning\n\nThese sessions come from your account. They refresh while this page is open.\n\nRefresh sessions\n\nThere are",
+      "at": "2026-11-14T17:15:23.480Z"
+    }
+  ]
+}

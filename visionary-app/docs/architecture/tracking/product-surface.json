@@ -83627,7 +83627,7 @@
     },
     {
       "file": "frontend/src/api/firebase/config.js",
-      "sourceSha256": "9106beb25933bd411b15a7b9e18f92d7602dd8d5432e8d2136a02b82c46cb35a"
+      "sourceSha256": "51eddab4515a45f2754b53d5178a4b28018d7595f77547f325667de9cb1ff6e5"
     },
     {
       "file": "frontend/src/api/firebase/serverAuth.js",

@@ -27,3 +27,15 @@ test('demo auth tests cannot silently fall back to production or remote emulator
   assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: true, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099' }, { projectId: 'visionary-research' }));
   assert.equal(firebaseEmulatorFromEnvironment({ DEV: true, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099' }, config), 'http://127.0.0.1:9099');
 });
+test('the explicit local test realm is the only production-build emulator path, and only for demo projects', () => {
+  const config = { projectId: 'demo-visionary-auth' };
+  const realm = { DEV: false, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099', VITE_FIREBASE_EMULATOR_TEST_ENABLED: 'true' };
+  assert.equal(firebaseEmulatorFromEnvironment(realm, config), 'http://127.0.0.1:9099');
+  // The published image never sets the test flag; a hosted-config production build stays live.
+  assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: false, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099' }, config));
+  assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: false, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099', VITE_FIREBASE_EMULATOR_TEST_ENABLED: 'true' }, { projectId: 'visionary-research' }));
+  // The realm keeps the same loopback-only URL law.
+  assert.throws(() => firebaseEmulatorFromEnvironment({ ...realm, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://0.0.0.0:9099' }, config));
+  // A demo project without an explicit emulator origin never runs in production.
+  assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: false, VITE_FIREBASE_EMULATOR_TEST_ENABLED: 'true' }, config));
+});
