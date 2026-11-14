@@ -4799,6 +4799,7 @@
         "frontend/src/lib/projectCopy.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/representationEngagementCopy.js",
+        "frontend/src/lib/roleMentorCopy.js",
         "frontend/src/lib/roleNotificationCopy.js",
         "frontend/src/lib/settingsCopy.js",
         "frontend/src/lib/stageCopy.js",
@@ -5121,41 +5122,41 @@
         "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx:168:72",
         "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx:172:82",
         "frontend/src/components/dashboard/ProjectCriteria.jsx:6:852",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:9:650",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:42:131",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:44:82",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:118",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:31",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:301",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:404",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:778",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1017",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1295",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1460",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1687",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:74",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:928",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:56:91",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:145",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:31",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:154",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:261",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:515",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:638",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:76:58",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:124",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:192",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:518",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:240",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:329",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:431",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:57",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:156",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:279",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:376",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:11:692",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:138",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:47:89",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:125",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:31",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:315",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:425",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:827",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1071",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1362",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1534",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1766",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:81",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:983",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:60:91",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:152",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:31",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:160",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:274",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:540",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:663",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:81:58",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:131",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:216",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:573",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:257",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:353",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:462",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:57",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:156",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:295",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:408",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:14:9",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:15:3",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:16:92",
@@ -5813,6 +5814,7 @@
         "frontend/src/lib/projectCopy.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/representationEngagementCopy.js",
+        "frontend/src/lib/roleMentorCopy.js",
         "frontend/src/lib/roleNotificationCopy.js",
         "frontend/src/lib/settingsCopy.js",
         "frontend/src/lib/stageCopy.js",
@@ -6135,41 +6137,41 @@
         "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx:168:72",
         "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx:172:82",
         "frontend/src/components/dashboard/ProjectCriteria.jsx:6:852",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:9:650",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:42:131",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:44:82",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:118",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:31",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:301",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:404",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:778",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1017",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1295",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1460",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1687",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:74",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:928",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:56:91",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:145",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:31",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:154",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:261",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:515",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:638",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:76:58",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:124",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:192",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:518",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:240",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:329",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:431",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:57",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:156",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:279",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:376",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:11:692",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:138",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:47:89",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:125",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:31",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:315",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:425",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:827",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1071",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1362",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1534",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1766",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:81",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:983",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:60:91",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:152",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:31",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:160",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:274",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:540",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:663",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:81:58",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:131",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:216",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:573",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:257",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:353",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:462",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:57",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:156",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:295",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:408",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:14:9",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:15:3",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:16:92",
@@ -7829,6 +7831,7 @@
         "frontend/src/lib/projectCopy.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/representationEngagementCopy.js",
+        "frontend/src/lib/roleMentorCopy.js",
         "frontend/src/lib/roleNotificationCopy.js",
         "frontend/src/lib/settingsCopy.js",
         "frontend/src/lib/stageCopy.js",
@@ -8151,41 +8154,41 @@
         "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx:168:72",
         "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx:172:82",
         "frontend/src/components/dashboard/ProjectCriteria.jsx:6:852",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:9:650",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:42:131",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:44:82",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:118",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:31",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:301",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:404",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:778",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1017",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1295",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1460",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1687",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:74",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:928",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:56:91",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:145",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:31",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:154",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:261",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:515",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:638",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:76:58",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:48",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:124",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:192",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:518",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:240",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:329",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:431",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:57",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:156",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:279",
-        "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:376",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:11:692",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:138",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:47:89",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:125",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:31",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:315",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:425",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:827",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1071",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1362",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1534",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1766",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:81",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:983",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:60:91",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:152",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:31",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:160",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:274",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:540",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:663",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:81:58",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:48",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:131",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:216",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:573",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:257",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:353",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:462",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:57",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:156",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:295",
+        "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:408",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:14:9",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:15:3",
         "frontend/src/components/dashboard/StageChangeDetails.jsx:16:92",
@@ -36186,10 +36189,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:9:650",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:11:692",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 9,
-      "column": 650,
+      "line": 11,
+      "column": 692,
       "tag": "summary",
       "events": [],
       "calls": [],
@@ -36214,10 +36217,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:42:131",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:138",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 42,
-      "column": 131,
+      "line": 45,
+      "column": 138,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -36243,10 +36246,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:44:82",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:47:89",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 44,
-      "column": 82,
+      "line": 47,
+      "column": 89,
       "tag": "select",
       "events": [
         {
@@ -36278,9 +36281,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:48",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:48",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 45,
+      "line": 48,
       "column": 48,
       "tag": "Link",
       "events": [],
@@ -36307,10 +36310,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:45:118",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:48:125",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 45,
-      "column": 118,
+      "line": 48,
+      "column": 125,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -36336,9 +36339,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:31",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:31",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
+      "line": 49,
       "column": 31,
       "tag": "summary",
       "events": [],
@@ -36364,10 +36367,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:301",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:315",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
-      "column": 301,
+      "line": 49,
+      "column": 315,
       "tag": "form",
       "events": [
         {
@@ -36397,10 +36400,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:404",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:425",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
-      "column": 404,
+      "line": 49,
+      "column": 425,
       "tag": "select",
       "events": [
         {
@@ -36433,10 +36436,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:778",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:827",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
-      "column": 778,
+      "line": 49,
+      "column": 827,
       "tag": "textarea",
       "events": [
         {
@@ -36448,7 +36451,7 @@
         "setBrief"
       ],
       "disabled": null,
-      "declarationSha256": "25da924188ed98b22f49201fb85e5cffac836f4c57ef5ae7a3f17c96bd3cfab6",
+      "declarationSha256": "27677ae591bd035673cec67c4c8ec14e864ab5fb3434ade4041568647812ac45",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -36468,10 +36471,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1017",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1071",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
-      "column": 1017,
+      "line": 49,
+      "column": 1071,
       "tag": "button",
       "events": [],
       "calls": [],
@@ -36496,10 +36499,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1295",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1362",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
-      "column": 1295,
+      "line": 49,
+      "column": 1362,
       "tag": "input",
       "events": [
         {
@@ -36531,10 +36534,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1460",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1534",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
-      "column": 1460,
+      "line": 49,
+      "column": 1534,
       "tag": "textarea",
       "events": [
         {
@@ -36546,7 +36549,7 @@
         "setOutline"
       ],
       "disabled": null,
-      "declarationSha256": "2853357455f93d78a8ddea7e8467fcbd6d4f7ce10313b73d597b778c7fa6e417",
+      "declarationSha256": "ee26e9b553e8188b6eed6ad3f3a9566a63cc91af8c549e074ca751ecc2eba184",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -36566,10 +36569,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:46:1687",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:49:1766",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 46,
-      "column": 1687,
+      "line": 49,
+      "column": 1766,
       "tag": "button",
       "events": [
         {
@@ -36599,10 +36602,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:74",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:81",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 55,
-      "column": 74,
+      "line": 59,
+      "column": 81,
       "tag": "select",
       "events": [
         {
@@ -36634,10 +36637,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:55:928",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:59:983",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 55,
-      "column": 928,
+      "line": 59,
+      "column": 983,
       "tag": "summary",
       "events": [],
       "calls": [],
@@ -36662,9 +36665,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:56:91",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:60:91",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 56,
+      "line": 60,
       "column": 91,
       "tag": "summary",
       "events": [],
@@ -36690,9 +36693,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:48",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:48",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 57,
+      "line": 61,
       "column": 48,
       "tag": "Link",
       "events": [],
@@ -36719,10 +36722,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:57:145",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:61:152",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 57,
-      "column": 145,
+      "line": 61,
+      "column": 152,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -36747,9 +36750,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:31",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:31",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 75,
+      "line": 80,
       "column": 31,
       "tag": "summary",
       "events": [],
@@ -36775,10 +36778,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:154",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:160",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 75,
-      "column": 154,
+      "line": 80,
+      "column": 160,
       "tag": "form",
       "events": [
         {
@@ -36808,10 +36811,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:261",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:274",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 75,
-      "column": 261,
+      "line": 80,
+      "column": 274,
       "tag": "input",
       "events": [
         {
@@ -36823,7 +36826,7 @@
         "setTitle"
       ],
       "disabled": null,
-      "declarationSha256": "ac3c161418a65ad7e91326c913a704a7cb5476375b5f98e4db50c36d3f206fdb",
+      "declarationSha256": "e2ec94f7462c69ec3308f70f3c95c55407fe6002f084899bcf5e8a21a383608c",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -36843,10 +36846,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:515",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:540",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 75,
-      "column": 515,
+      "line": 80,
+      "column": 540,
       "tag": "textarea",
       "events": [
         {
@@ -36878,10 +36881,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:75:638",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:80:663",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 75,
-      "column": 638,
+      "line": 80,
+      "column": 663,
       "tag": "button",
       "events": [],
       "calls": [],
@@ -36906,9 +36909,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:76:58",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:81:58",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 76,
+      "line": 81,
       "column": 58,
       "tag": "summary",
       "events": [],
@@ -36934,9 +36937,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:48",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:48",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 77,
+      "line": 82,
       "column": 48,
       "tag": "Link",
       "events": [],
@@ -36963,10 +36966,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:77:124",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:82:131",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 77,
-      "column": 124,
+      "line": 82,
+      "column": 131,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -36992,10 +36995,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:192",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:216",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 88,
-      "column": 192,
+      "line": 94,
+      "column": 216,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -37020,10 +37023,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:88:518",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:94:573",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 88,
-      "column": 518,
+      "line": 94,
+      "column": 573,
       "tag": "summary",
       "events": [],
       "calls": [],
@@ -37048,10 +37051,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:240",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:257",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 104,
-      "column": 240,
+      "line": 111,
+      "column": 257,
       "tag": "button",
       "events": [
         {
@@ -37083,10 +37086,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:329",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:353",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 104,
-      "column": 329,
+      "line": 111,
+      "column": 353,
       "tag": "button",
       "events": [
         {
@@ -37118,10 +37121,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:104:431",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:111:462",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 104,
-      "column": 431,
+      "line": 111,
+      "column": 462,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -37147,9 +37150,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:57",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:57",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 106,
+      "line": 113,
       "column": 57,
       "tag": "summary",
       "events": [],
@@ -37175,9 +37178,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:156",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:156",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 106,
+      "line": 113,
       "column": 156,
       "tag": "TeacherPanel",
       "events": [
@@ -37192,7 +37195,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "f2735ff667d1da50c15ca6370af3a013ab884be6626849b76aee195e7d12075d",
+      "declarationSha256": "ab415e9cfdb9e22cfb6ca0e4dc78b8f80281ea852929ae5bf60846d1f27c51ed",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -37212,10 +37215,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:279",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:295",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 106,
-      "column": 279,
+      "line": 113,
+      "column": 295,
       "tag": "ParentPanel",
       "events": [
         {
@@ -37225,7 +37228,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "72fbd5889ab1c57e8bb8f2961479ebc00567615621f60d4e37f79b91dc0af148",
+      "declarationSha256": "2264b8c3fed58051217ed94996ef14d14a41b430e5e26bdc12cedbc8349d9609",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -37245,10 +37248,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:106:376",
+      "id": "frontend/src/components/dashboard/RoleMentorPanel.jsx:113:408",
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "line": 106,
-      "column": 376,
+      "line": 113,
+      "column": 408,
       "tag": "ProfessionalPanel",
       "events": [
         {
@@ -37258,7 +37261,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "86d01fe2d00650bceab9896f47f0d5e0feab022b3e75ed1513531f4aa73ff107",
+      "declarationSha256": "fb3af52514db6a31a3813009d04288f104e34f7393c194ef3da6872e86c60dc2",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -79539,7 +79542,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
-      "sourceSha256": "3417e0b59c6337695e09da23ebcc14811d6287887e447f9342a8ecdb8a96ec04"
+      "sourceSha256": "2d7627422a347c69f62ce8efc66ca4632992a65708b00bfd786ee8295db6291a"
     },
     {
       "file": "frontend/src/components/dashboard/shellCopy.js",
@@ -80416,6 +80419,10 @@
     {
       "file": "frontend/src/lib/representationEngagementCopy.js",
       "sourceSha256": "1d54f77d0a9110fc2b81e5a7ae4942e699b7fa4e3fa4fa4816a308852605c235"
+    },
+    {
+      "file": "frontend/src/lib/roleMentorCopy.js",
+      "sourceSha256": "4bdc7d01c8ae697c769b1521c76773bf3f6317fe07b1f368f1ca7e2ea2e099f1"
     },
     {
       "file": "frontend/src/lib/roleNotificationCopy.js",
