@@ -60,6 +60,30 @@
     text-wrap: balance;
   }
 
+  /* ── UNIFIED H1 ROLE LAW (founder directive 2026-11-03: one headline size
+     per role on every page). The narrative/trust pages' h1s carry the legacy
+     text-[48px] ladder that public-bridge.css retags to a 40/56/64 page-title
+     tier — under the role law those elements are PAGE HEROES, so they render
+     the same Apple-privacy profile as CinematicHero's h1 (44/64/80, 600,
+     -0.015em, 1.05). main-scoped (0,1,2) so this wins the retag cascade
+     regardless of import order, and auth/product surfaces (no <main> hero
+     h1 on that ladder) are untouched. */
+  main h1.text-\[48px\],
+  main h1.text-\[clamp\(40px\,5vw\,64px\)\] {
+    font-size: 2.75rem !important;
+    font-weight: 600 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.015em !important;
+  }
+  @media (min-width: 640px) {
+    main h1.text-\[48px\],
+    main h1.text-\[clamp\(40px\,5vw\,64px\)\] { font-size: 4rem !important; }
+  }
+  @media (min-width: 1280px) {
+    main h1.text-\[48px\],
+    main h1.text-\[clamp\(40px\,5vw\,64px\)\] { font-size: 5rem !important; }
+  }
+
   .apple-section-h2 {
     font-size: var(--fs-h2);
     font-weight: 600;
@@ -507,8 +531,10 @@
   letter-spacing: var(--track-section) !important;
 }
 
-/* Text controls share the action tier; icon-only controls keep their geometry. */
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(button, input, textarea, select) {
+/* Text controls share the action tier; icon-only controls and law-shaped
+   pills keep their geometry — rounded-full pills are the CTA tier's own
+   anatomy (A2 / FAP-42), the same exemption the link arm carries above. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(button:not([class*="rounded-full"]), input, textarea, select) {
   font-size: var(--fs-body) !important;
   line-height: 1.294118 !important;
   letter-spacing: var(--track-body) !important;
@@ -787,7 +813,7 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
     font-weight: var(--weight-body) !important;
   }
 }
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a[class*="bg-"]:not(:has(img,h2,h3)):not([data-type]) {
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a[class*="bg-"]:not([class*="rounded-full"]):not(:has(img,h2,h3)):not([data-type]) {
   line-height: var(--lh-action) !important;
 }
 

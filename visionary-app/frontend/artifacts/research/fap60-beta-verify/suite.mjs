@@ -1,0 +1,12 @@
+import { chromium } from 'playwright-core';
+const b = await chromium.launch({ channel:'msedge', headless:true, args:['--no-proxy-server'] });
+const c = await b.newContext({ viewport:{width:1440,height:900}, reducedMotion:'reduce' });
+const p = await c.newPage();
+await p.goto('http://127.0.0.1:5173/', { waitUntil:'networkidle', timeout:60000 });
+const h2 = p.locator('h2', { hasText:'Explore further.' }).first();
+await h2.scrollIntoViewIfNeeded();
+await p.waitForTimeout(1200);
+const m = await h2.evaluate(el=>{const cs=getComputedStyle(el);const r=el.getBoundingClientRect();return {fs:cs.fontSize, fw:cs.fontWeight, lh:cs.lineHeight, w:Math.round(r.width)};});
+console.log('LandingSuite h2:', JSON.stringify(m));
+await h2.screenshot({ path:'artifacts/research/fap60-beta-verify/suite-h2.png' });
+await b.close();
