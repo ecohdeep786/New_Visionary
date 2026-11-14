@@ -22,7 +22,7 @@ export class OrchestratorService {
     private diagramAgent: DiagramAgentService,
     private resourceAgent: ResourceAgentService
   ) {
-    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") });
+    this.openai = new OpenAI({ apiKey: this.config.get("OPENAI_API_KEY") ?? "unconfigured" });
   }
 
   async detectIntent(prompt: string): Promise<Intent> {

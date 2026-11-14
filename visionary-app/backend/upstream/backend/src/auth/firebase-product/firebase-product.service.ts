@@ -146,6 +146,18 @@ export class FirebaseProductService implements OnModuleDestroy {
     });
     return { uid: identity.uid, sessionId, authSessionVersion };
   }
+  async currentVerifiedInvitationRecipient(uid: string) {
+    assertAccountUid(uid);
+    // Session email claims are snapshots. Resolve the current address for the
+    // same UID through the identity provider before accepting an invitation.
+    const identity = await this.verified(() => this.admin.getAuth().getUser(uid));
+    if (identity?.uid !== uid || identity.disabled || identity.emailVerified !== true ||
+        typeof identity.email !== 'string' || !identity.email) {
+      throw new UnauthorizedException('Verify your current email before accepting an invitation.');
+    }
+    return { uid, verifiedEmail: identity.email };
+  }
+
   async me(uid: string) {
     return this.database(async () => {
       const account = await this.db().collection('visionary_accounts').doc(uid).get();
