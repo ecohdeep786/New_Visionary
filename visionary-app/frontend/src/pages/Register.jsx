@@ -48,8 +48,10 @@ export default function Register() {
   const checkEmailExists = async (emailToCheck) => {
     if (base44.auth.source === 'firebase') return false;
     try {
-      const users = await base44.entities.User.filter({ email: emailToCheck });
-      return users && users.length > 0;
+      /* Preview repository: check the same store the credential gate verifies
+       * against (F-16 — the entities.User store is empty in preview, which
+       * misreported every registered email as available). */
+      return await base44.auth.emailRegistered(emailToCheck);
     } catch {
       return false;
     }

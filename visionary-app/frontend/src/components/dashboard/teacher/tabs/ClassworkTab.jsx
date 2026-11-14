@@ -8,6 +8,7 @@ import { useAuth } from "@/lib/AuthContext";
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { changeAssignmentState } from '@/services/classroomService';
 import { assignmentAcceptsResponses } from '@/lib/assignmentAvailability';
+import { dateLocale } from '@/lib/datetime';
 export default function ClassworkTab({
   classId,
   classroom,
@@ -291,7 +292,7 @@ export default function ClassworkTab({
             archived: 'Archived · prior submitters retain their work'
           }[a.status || 'published'] || 'State unavailable')}</p>
               {a.status === 'scheduled' && <p className="mt-2 text-xs">{assignmentAcceptsResponses(a) ? copy("Scheduled publication reached \xB7 accepting responses") : copy('Scheduled · {date} · hidden until publication', {
-            date: Number.isFinite(new Date(a.publish_at).getTime()) ? new Date(a.publish_at).toLocaleString(locale) : copy('Unavailable')
+            date: Number.isFinite(new Date(a.publish_at).getTime()) ? new Date(a.publish_at).toLocaleString(dateLocale(locale)) : copy('Unavailable')
           })}</p>}
               <details className="mt-3"><summary className="text-sm font-medium text-[#0b57d2]">{copy("Actions for {title}",{title:a.title})}</summary><div className="mt-3 flex flex-wrap gap-2" aria-label={copy("Actions for {title}", {
           title: a.title
