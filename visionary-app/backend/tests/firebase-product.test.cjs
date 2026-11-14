@@ -468,3 +468,160 @@ test('HTTP boundary requires exact origin and CSRF, and issues HttpOnly bound co
     assert.equal((await f.service.me('fixture-adult')).onboarding_complete, true);
   } finally { await app.close(); }
 });
+
+test('invitation authority resolves current verified provider email for the authenticated UID', async () => {
+  const f = fixture();
+  const { ProductRequestAuthority } = req('./dist/src/auth/firebase-product/request-authority.js');
+  const boundary = new ProductRequestAuthority(f.service, f.service.config);
+  const session = await f.service.signIn('verified-fixture-token', metadata);
+  const csrf = 'a'.repeat(64);
+  const headers = { Origin: 'http://localhost:5173', 'X-CSRF-Token': csrf, 'X-Visionary-Account': f.identity.uid };
+  const request = { cookies: { 'visionary-session': session.cookie, 'visionary-device': session.device, 'visionary-csrf': csrf }, get: name => headers[name] };
+  let provider = { uid: f.identity.uid, email: 'current@example.test', emailVerified: true };
+  let calls = 0;
+  f.auth.getUser = async uid => { assert.equal(uid, f.identity.uid); calls++; return provider; };
+  headers['X-Visionary-Account'] = 'different-account';
+  await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 409);
+  headers['X-Visionary-Account'] = f.identity.uid;
+  headers['X-CSRF-Token'] = 'wrong';
+  await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 403);
+  assert.equal(calls, 0);
+  headers['X-CSRF-Token'] = csrf;
+  assert.deepEqual(await boundary.invitationRecipient(request), { uid: f.identity.uid, verifiedEmail: 'current@example.test' });
+  for (const changes of [{ emailVerified: false }, { disabled: true }, { uid: 'different-account' }]) {
+    const current = provider;
+    provider = { ...current, ...changes };
+    await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 401);
+    provider = current;
+  }
+  f.revoke();
+  await assert.rejects(boundary.invitationRecipient(request), e => e.getStatus() === 401);
+  assert.equal(calls, 4);
+});
+
+test('product invitation HTTP acceptance rejects forged identity and passes only current verified recipient', async () => {
+  const f = fixture();
+  const { Module } = req('@nestjs/common');
+  const { NestFactory } = req('@nestjs/core');
+  const { ProductInvitationController } = req('./dist/src/invitations/product-invitation.controller.js');
+  const { ProductInvitationService } = req('./dist/src/invitations/product-invitation.service.js');
+  const cookieParser = req('cookie-parser');
+  const session = await f.service.signIn('verified-fixture-token', metadata);
+  let providerCalls = 0;
+  f.auth.getUser = async uid => { providerCalls++; return { uid, email: 'verified-now@example.test', emailVerified: true }; };
+  const accepted = [];
+  const recovery = [];
+  let enabled = false, adult = true;
+  let environment = 'development', databaseMode = 'synthetic', firebaseKind = 'emulator';
+  const config = { get: key => ({
+    AUTH_PUBLIC_ORIGIN: 'http://localhost:5173',
+    DATA_INSTITUTION_INVITATIONS_ENABLED: String(enabled),
+    NODE_ENV: environment,
+    FIREBASE_PROJECT_KIND: firebaseKind,
+    DATA_WORKSPACE_DATABASE_MODE: databaseMode,
+  })[key] };
+  const product = new ProductInvitationService(f.service, config);
+  product.runtime = {
+    reviewers: new Set(),
+    store: {
+      acceptedMembership: async (...args) => { recovery.push(args); return { workspaceId: args[1], role: 'MEMBER' }; },
+      pending: async (...args) => { recovery.push(args); return { invitationId: 'fixture-invitation' }; },
+      revoke: async (...args) => {
+        recovery.push(args);
+        return { id: args[1], status: 'revoked', revokedAt: '2026-11-04T00:00:00.000Z', email: 'private@example.test' };
+      },
+      track: async (...args) => {
+        recovery.push(args);
+        return [{ id: 'audit-id', action: 'invitation.revoked', at: '2026-11-04T00:00:00.000Z', actorUid: 'private-actor' }];
+      },
+    },
+    privacy: { admission: async () => ({ allowed: adult, state: adult ? 'adult_current_boundary' : 'review_required' }) },
+    invitations: { accept: async (...args) => { accepted.push(args); return { id: 'fixture-invitation', workspaceId: 'fixture-workspace', membershipRole: 'MEMBER', replay: false }; } },
+  };
+  class TestModule {}
+  Module({ controllers: [ProductInvitationController], providers: [
+    { provide: FirebaseProductService, useValue: f.service },
+    { provide: ConfigService, useValue: config },
+    { provide: ProductInvitationService, useValue: product },
+  ] })(TestModule);
+  const app = await NestFactory.create(TestModule, { logger: false });
+  app.use(cookieParser());
+  await app.listen(0, '127.0.0.1');
+  try {
+    const csrf = 'b'.repeat(64);
+    const url = (await app.getUrl()) + '/account/invitations/';
+    const headers = {
+      Origin: 'http://localhost:5173', 'X-CSRF-Token': csrf, 'X-Visionary-Account': f.identity.uid,
+      Cookie: 'visionary-session=' + session.cookie + '; visionary-device=' + session.device + '; visionary-csrf=' + csrf,
+      'Content-Type': 'application/json',
+    };
+    const call = (body, extra, route = 'accept') => fetch(url + route, { method: 'POST', headers: { ...headers, ...extra }, body: JSON.stringify(body) });
+    const token = 'A'.repeat(43);
+    assert.equal((await call({ token }, { 'X-CSRF-Token': 'wrong' })).status, 403);
+    assert.equal((await call({ token }, { 'X-Visionary-Account': 'other' })).status, 409);
+    assert.equal((await call({ token, verifiedEmail: 'fake@example.test' })).status, 400);
+    assert.equal((await call({ token: 'short' })).status, 400);
+    assert.equal((await call({ token })).status, 503);
+    enabled = true;
+    environment = 'production';
+    assert.equal((await call({ token })).status, 503);
+    environment = 'development';
+    databaseMode = 'cloud-sql';
+    assert.equal((await call({ token })).status, 503);
+    databaseMode = 'synthetic';
+    firebaseKind = 'production';
+    assert.equal((await call({ token })).status, 503);
+    firebaseKind = 'emulator';
+    const rateLimit = f.service.rateLimit.bind(f.service);
+    const { HttpException } = req('@nestjs/common');
+    f.service.rateLimit = async () => { throw new HttpException('Rate limited', 429); };
+    assert.equal((await call({ token })).status, 429);
+    f.service.rateLimit = rateLimit;
+    adult = false;
+    assert.equal((await call({ token })).status, 403);
+    adult = true;
+    assert.equal(providerCalls, 0);
+    assert.deepEqual(accepted, []);
+    const response = await call({ token });
+    assert.equal(response.status, 201);
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await response.json(), { invitationId: 'fixture-invitation', workspaceId: 'fixture-workspace', role: 'MEMBER', replay: false });
+    assert.deepEqual(accepted, [[f.identity.uid, token, 'verified-now@example.test']]);
+    const lookup = { workspaceId: 'fixture-workspace', email: ' Fixture@Example.test ' };
+    assert.equal((await call({ ...lookup, uid: 'other' }, {}, 'pending')).status, 400);
+    assert.equal((await call(lookup, { 'X-CSRF-Token': 'wrong' }, 'pending')).status, 403);
+    const pending = await call(lookup, {}, 'pending');
+    assert.equal(pending.status, 201);
+    assert.equal(pending.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await pending.json(), { invitationId: 'fixture-invitation' });
+    assert.deepEqual(recovery[0], [f.identity.uid, 'fixture-workspace', 'fixture@example.test']);
+    const revoked = await call({ workspaceId: 'fixture-workspace', invitationId: 'fixture-invitation' }, {}, 'revoke');
+    assert.equal(revoked.status, 201);
+    assert.deepEqual(await revoked.json(), { invitationId: 'fixture-invitation', status: 'revoked', revokedAt: '2026-11-04T00:00:00.000Z' });
+    assert.equal(recovery[1][0], f.identity.uid);
+    assert.equal(recovery[1][3], 'fixture-workspace');
+    const scope = { workspaceId: 'fixture-workspace', invitationId: 'fixture-invitation' };
+    assert.equal((await call({ ...scope, actorUid: 'other' }, {}, 'history')).status, 400);
+    adult = false;
+    assert.equal((await call(scope, {}, 'history')).status, 403);
+    assert.equal(recovery.length, 2);
+    adult = true;
+    const history = await call(scope, {}, 'history');
+    assert.equal(history.status, 201);
+    assert.equal(history.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await history.json(), {
+      invitationId: 'fixture-invitation',
+      events: [{ action: 'invitation.revoked', at: '2026-11-04T00:00:00.000Z' }],
+    });
+    assert.deepEqual(recovery[2], [f.identity.uid, 'fixture-workspace', 'fixture-invitation']);
+    assert.equal((await call(scope, { 'X-Visionary-Account': 'other' }, 'membership')).status, 409);
+    const membership = await call(scope, {}, 'membership');
+    assert.equal(membership.status, 201);
+    assert.equal(membership.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await membership.json(), { workspaceId: 'fixture-workspace', role: 'MEMBER' });
+    assert.deepEqual(recovery[3], [f.identity.uid, 'fixture-workspace', 'fixture-invitation']);
+    f.revoke();
+    assert.equal((await call({ token })).status, 401);
+    assert.equal(accepted.length, 1);
+  } finally { await app.close(); }
+});

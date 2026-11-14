@@ -5,6 +5,53 @@ import { createLearningSessionClient } from '../src/services/learningSessionClie
 const sessionId = () => crypto.randomUUID();
 const receipt = (overrides = {}) => ({ version: 1, uid: 'owner', sessionId: sessionId(), workspaceId: 'demo-adult:student', concept: { sourceVersion: 'source-v1', criteriaVersion: 'criteria-v1' }, status: 'active', phase: 'explain', revision: 0, failedChecks: 0, maxFailedChecks: 3, previousStrategy: null, checkPassed: false, reviewSuggested: false, check: null, createdAt: '2026-10-18T00:00:00.000Z', updatedAt: '2026-10-18T00:00:00.000Z', ...overrides });
 
+test('the default client and actual auth transport construct registered learning URLs for every operation', async () => {
+  const originalFetch = globalThis.fetch, calls = [], target = sessionId();
+  const valid = receipt({ sessionId: target });
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, options });
+    if (url === '/api/auth/csrf') return new Response(JSON.stringify({ token: 'fixture-csrf' }));
+    const parsed = new URL(url, 'http://localhost');
+    assert.match(parsed.pathname, /^\/api\/account\/learning\/sessions(?:\/[a-f0-9-]+(?:\/(?:checks|assessments|cancel))?)?$/);
+    if (options.method === 'GET' && parsed.pathname.endsWith('/sessions'))
+      return new Response(JSON.stringify({ version: 1, uid: 'owner', items: [valid], nextCursor: null }));
+    const body = options.body ? JSON.parse(options.body) : null;
+    return new Response(JSON.stringify({
+      ...valid,
+      ...(parsed.pathname.endsWith('/assessments') ? { receipt: { id: body.commandId, checkId: body.checkId, passed: true } } : {}),
+      ...(parsed.pathname.endsWith('/cancel') ? { status: 'cancelled' } : {}),
+    }));
+  };
+  try {
+    // Do not inject request: this must exercise the real default URL join.
+    const client = createLearningSessionClient({ getAccountId: () => 'owner' });
+    const input = { version: 1, commandId: sessionId(), workspaceId: valid.workspaceId,
+      sourceVersion: valid.concept.sourceVersion, criteriaVersion: valid.concept.criteriaVersion };
+    await client.start(input);
+    await client.get(target);
+    await client.present(target, input);
+    await client.assess(target, { ...input, checkId: 'check-1' });
+    await client.cancel(target, input);
+    await client.list({ workspaceId: valid.workspaceId, limit: 2 });
+    const routed = calls.filter(c => c.url !== '/api/auth/csrf');
+    assert.deepEqual(routed.map(c => [c.options.method, c.url]), [
+      ['POST', '/api/account/learning/sessions'],
+      ['GET', `/api/account/learning/sessions/${target}`],
+      ['POST', `/api/account/learning/sessions/${target}/checks`],
+      ['POST', `/api/account/learning/sessions/${target}/assessments`],
+      ['POST', `/api/account/learning/sessions/${target}/cancel`],
+      ['GET', '/api/account/learning/sessions?workspaceId=demo-adult%3Astudent&limit=2'],
+    ]);
+    for (const call of routed) {
+      assert.equal(call.options.headers['X-Visionary-Account'], 'owner');
+      assert.equal(call.options.credentials, 'same-origin');
+      assert.equal(call.options.cache, 'no-store');
+      if (call.options.method === 'POST') assert.equal(call.options.headers['X-CSRF-Token'], 'fixture-csrf');
+    }
+    assert.equal(calls.filter(c => c.url === '/api/auth/csrf').length, 4);
+  } finally { globalThis.fetch = originalFetch; }
+});
+
 test('the connected client sends owner-scoped commands on the durable learning routes', async () => {
   const calls = [];
   const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async (path, options) => { calls.push({ path, options }); const target = path.match(/^sessions\/([^/]+)/)?.[1]; return receipt({ ...(target ? { sessionId: target } : {}), ...(path.endsWith('/assessments') ? { receipt: { id: options.body.commandId, checkId: options.body.checkId, passed: true } } : {}) }); } });
