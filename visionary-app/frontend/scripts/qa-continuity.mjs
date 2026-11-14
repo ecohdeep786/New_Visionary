@@ -21,6 +21,18 @@
  *      recorded static core and receipt-justified exceptions. Unknown hexes
  *      fail, so the palette cannot drift without a recorded decision.
  *   5. Invalid `#rgba(` artifacts (A3 artifact pass) never reappear.
+ *   6. Icon-control render truth (render-check receipt 2026-10-23): the old
+ *      lane proved token scanners are blind to CSS `!important` overrides
+ *      (carousel buttons rendered 36px while source read h-11). The size
+ *      lives at a single definition point — `--icon-control-size` in
+ *      public-icons.css — so the law pins it there: exactly `2.75rem` (44px).
+ *   7. Link-ink single source (E1): within a public page file, the link/
+ *      button blue family is one system — at most ONE distinct base ink
+ *      (#0066cc law link, or #0071e3 commerce), with hover = #0071e3 or the
+ *      reasserting base #0066cc (grey links that snap to link-ink on hover),
+ *      active #006edb (AILearning/Download measured sites), and the
+ *      focus-visible ring = base ink (or the recorded dark-stage #2997ff
+ *      accent). Two different base blues on one page is dual-ink and fails.
  *
  * Reported-only metrics: per-page raw-hex counts and raw #0066cc link sites
  * (the A3 retag keeps law values inline in the shared measured components).
@@ -66,19 +78,46 @@ const LAW_HEXES = new Set([
 
 /* File-scoped exemptions: recorded so the freeze stays honest. Art palettes
  * are not UI tokens; PremiumPersona stage values are design-governed and
- * documented as token-export candidates. */
+ * documented as token-export candidates.
+ * F10 split (2026-10-26): monolith paths moved to per-section modules — the
+ * SAME approved values re-registered under the new paths; no value added
+ * or removed (abbreviated-split verified byte-verbatim). */
 const FILE_HEX_EXCEPTIONS = {
-  'src/components/landing/persona/PremiumPersonaSections.jsx': {
+  'src/components/landing/persona/premium/PremiumIntelligenceSection.jsx': {
     values: new Set(['#0d1017', '#0a0d14', '#6bb6ff']),
-    reason: 'Premium stage near-black grounds + on-dark link:hover tone; token-export candidates (E1 receipt 2026-10-23).',
+    reason: 'Premium stage near-black grounds + on-dark link:hover tone; token-export candidates (E1 receipt 2026-10-23). Path from PremiumPersonaSections.jsx after the F10 split.',
+  },
+  'src/components/landing/persona/premium/PremiumCTASection.jsx': {
+    values: new Set(['#0d1017', '#0a0d14', '#6bb6ff']),
+    reason: 'Premium stage near-black grounds + on-dark link:hover tone; token-export candidates (E1 receipt 2026-10-23). Path from PremiumPersonaSections.jsx after the F10 split.',
   },
   'src/components/landing/AboutUsHero.jsx': {
     values: new Set(['#e9f5ef', '#fef3df', '#f3edff', '#fcebe8']),
     reason: 'Persona door tints — design-governed pastels; tint-token family candidate (E1 receipt 2026-10-23).',
   },
-  'src/components/landing/SpotIllustration.jsx': {
+  'src/components/landing/SpotIllustration/palette.jsx': {
     allowAll: true,
-    reason: 'Editorial illustration palette (art, not UI law).',
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-primary.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-academic.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-portraits.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/scenes-wide.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
+  },
+  'src/components/landing/SpotIllustration/index.jsx': {
+    allowAll: true,
+    reason: 'Editorial illustration palette (art, not UI law). Path from SpotIllustration.jsx after the F10 split.',
   },
 };
 
@@ -119,6 +158,66 @@ export function uppercaseVoiceViolations(text, isCss = false) {
     if (/(^|[\s"{(,:])uppercase(?=[\s"}),;]|$)/m.test(value)) hits.push({ kind: 'uppercase-class', index: m.index });
   }
   return hits;
+}
+
+/* Law 6 — icon-control render truth. The single definition point for every
+ * public icon button (carousel arrows, story "+", dialog close) is
+ * `--icon-control-size` in public-icons.css; a token scanner cannot see the
+ * `!important` cascade there (the 2026-10-23 render-check receipt), so the
+ * value itself is the law: exactly 2.75rem = 44px. */
+export function iconControlSizeViolations(cssText) {
+  const match = /--icon-control-size\s*:\s*([0-9.]+(?:rem|px))/.exec(cssText || '');
+  if (!match) return [{ kind: 'missing-icon-control-size' }];
+  if (match[1] !== '2.75rem') {
+    return [{ kind: 'icon-control-size-law', value: match[1], expected: '2.75rem (44px)' }];
+  }
+  return [];
+}
+
+/* Law 7 — link-ink single source. One blue system per page: base inks
+ * (law link #0066cc, commerce #0071e3), hover = commerce or the reasserting
+ * base (grey links snap to link-ink on hover), active #006edb, focus ring =
+ * base ink (or recorded dark-stage #2997ff accent). */
+const LINK_INK_FAMILY = new Set(['#0066cc', '#0071e3', '#006edb', '#0077ed', '#2997ff']);
+const LINK_INK_TOKEN_RE = /(hover:|active:|focus-visible:)?(?:bg|text|ring|border|from|to|fill|stroke)-\[#([0-9a-fA-F]{3,8})\]/g;
+const LINK_INK_ROLE_ALLOWED = {
+  base: new Set(['#0066cc', '#0071e3']),
+  hover: new Set(['#0066cc', '#0071e3']), // hover steps to commerce, or reasserts the base ink on grey links (measured site pattern)
+  active: new Set(['#006edb']),
+  'focus-visible': new Set(['#0066cc', '#0071e3', '#2997ff']), // dark-stage focus rings carry the recorded line accent
+};
+
+export function linkInkUses(text, isCss = false) {
+  if (isCss) return [];
+  const uses = [];
+  CLASS_ATTR_RE.lastIndex = 0;
+  let m;
+  while ((m = CLASS_ATTR_RE.exec(text))) {
+    const value = m[1] ?? m[2] ?? m[3] ?? '';
+    LINK_INK_TOKEN_RE.lastIndex = 0;
+    let t;
+    while ((t = LINK_INK_TOKEN_RE.exec(value))) {
+      const hex = `#${t[2].toLowerCase()}`;
+      if (!LINK_INK_FAMILY.has(hex)) continue;
+      uses.push({ role: t[1] ? t[1].replace(/:$/, '') : 'base', value: hex, index: m.index });
+    }
+  }
+  return uses;
+}
+
+export function linkInkViolations(uses) {
+  const out = [];
+  const bases = new Set();
+  for (const { role, value } of uses) {
+    const allowed = LINK_INK_ROLE_ALLOWED[role];
+    if (!allowed || !allowed.has(value)) {
+      out.push({ kind: 'illegal-link-ink-role', role, value });
+      continue;
+    }
+    if (role === 'base') bases.add(value);
+  }
+  if (bases.size > 1) out.push({ kind: 'dual-base-link-ink', baseInks: [...bases].sort() });
+  return out;
 }
 
 /* Extract one JSX tag starting at an interactive tag-open index. Walks
@@ -186,7 +285,7 @@ const rel = (file) => path.relative(frontendRoot, file).split(path.sep).join('/'
 
 function run({ out = console, outReceipt = null } = {}) {
   const failures = [];
-  const metrics = { pages: [], controls: [], uppercase: [], hexAudit: [], artifacts: [], links: [], tokensLegacyAliases: [] };
+  const metrics = { pages: [], controls: [], uppercase: [], hexAudit: [], artifacts: [], links: [], tokensLegacyAliases: [], linkInk: [], icons: [] };
   const tokenHexes = readTokenHexes();
   let scanned = 0;
 
@@ -245,6 +344,16 @@ function run({ out = console, outReceipt = null } = {}) {
         }
       }
 
+      /* Law 7 — link-ink single source: one blue system per page file. */
+      const inkUses = linkInkUses(text, isCss);
+      if (inkUses.length) {
+        metrics.linkInk.push({ file: label, uses: inkUses.length });
+        for (const v of linkInkViolations(inkUses)) {
+          metrics.linkInk.push({ file: label, violation: v });
+          pushFailure('link-ink-single-source', `${label} — ${JSON.stringify(v)}`);
+        }
+      }
+
       /* Metric — page hex counts. */
       if (label.includes('/pages/landing/') && !isCss) {
         const hexes = (text.toLowerCase().match(HEX_RE_GLOBAL) || []);
@@ -264,6 +373,15 @@ function run({ out = console, outReceipt = null } = {}) {
     }
   }
 
+  /* Law 6 — public icon-control render truth: the single definition point
+   * for every public icon button must stay at the 44px law (2.75rem). */
+  const iconCssPath = path.join(frontendRoot, 'src', 'styles', 'public-icons.css');
+  const iconViolations = iconControlSizeViolations(fs.existsSync(iconCssPath) ? fs.readFileSync(iconCssPath, 'utf8') : '');
+  for (const v of iconViolations) {
+    metrics.icons.push(v.value ?? v.kind);
+    pushFailure('icon-control-size-44px', `src/styles/public-icons.css --icon-control-size ${v.kind} (${v.value ?? 'not found'}; law = 2.75rem = 44px)`);
+  }
+
   const failuresListed = [];
   const seen = new Set();
   for (const f of failures) {
@@ -273,18 +391,18 @@ function run({ out = console, outReceipt = null } = {}) {
     failuresListed.push(f);
   }
 
-  out.log?.('qa:continuity — public-surface law check');
-  out.log?.(`  files scanned: ${scanned}`);
+  out?.log?.('qa:continuity — public-surface law check');
+  out?.log?.(`  files scanned: ${scanned}`);
   for (const key of Object.keys(metrics)) {
     if (!metrics[key].length) continue;
-    out.log?.(`  ${key}:`);
-    for (const row of metrics[key].slice(0, 200)) out.log?.(`    - ${typeof row === 'string' ? row : JSON.stringify(row)}`);
+    out?.log?.(`  ${key}:`);
+    for (const row of metrics[key].slice(0, 200)) out?.log?.(`    - ${typeof row === 'string' ? row : JSON.stringify(row)}`);
   }
   if (failuresListed.length) {
-    out.log?.('  FAIL:');
-    for (const f of failuresListed) out.log?.(`    [${f.law}] ${f.detail}`);
+    out?.log?.('  FAIL:');
+    for (const f of failuresListed) out?.log?.(`    [${f.law}] ${f.detail}`);
   } else {
-    out.log?.('  all recorded public-surface laws pass');
+    out?.log?.('  all recorded public-surface laws pass');
   }
 
   if (outReceipt) {
@@ -293,7 +411,7 @@ function run({ out = console, outReceipt = null } = {}) {
     fs.writeFileSync(receiptPath, JSON.stringify({
       generatedAt: new Date().toISOString(),
       filesScanned: scanned,
-      laws: ['tap-target-44px', 'no-uppercase-kickers', 'legacy-hex-residue', 'unknown-law-hex', 'invalid-rba-artifact'],
+      laws: ['tap-target-44px', 'no-uppercase-kickers', 'legacy-hex-residue', 'unknown-law-hex', 'invalid-rba-artifact', 'icon-control-size-44px', 'link-ink-single-source'],
       tokensLegacyAliases: Object.keys(metrics).includes('tokensLegacyAliases') ? metrics.tokensLegacyAliases : [],
       failures: failuresListed,
       metrics,

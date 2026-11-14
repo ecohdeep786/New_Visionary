@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-06T19:28:08.735Z",
+  "base": "http://127.0.0.1:4199",
+  "throttling": "CDP: 1638kbps down / 150ms RTT / 4x CPU (Lighthouse mobile profile)",
+  "routes": [
+    {
+      "route": "/",
+      "fcpMs": 2612,
+      "lcpMs": 3780,
+      "cls": 0.068,
+      "tbtMs": 164,
+      "lcpElement": "IMG.absolute 36643B",
+      "wallClockMs": 9723
+    },
+    {
+      "route": "/pricing",
+      "fcpMs": 2472,
+      "lcpMs": 3892,
+      "cls": 0,
+      "tbtMs": 112,
+      "lcpElement": "H1.mx-auto 28968B",
+      "wallClockMs": 8649
+    },
+    {
+      "route": "/student",
+      "fcpMs": 2464,
+      "lcpMs": 3500,
+      "cls": 0.068,
+      "tbtMs": 3,
+      "lcpElement": "IMG.pointer-events-none 113906B",
+      "wallClockMs": 9657
+    },
+    {
+      "route": "/login",
+      "fcpMs": 2516,
+      "lcpMs": 3060,
+      "cls": 0,
+      "tbtMs": 8,
+      "lcpElement": "P.text-xs 10744B",
+      "wallClockMs": 12985
+    }
+  ]
+}
