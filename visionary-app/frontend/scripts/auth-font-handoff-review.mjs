@@ -28,7 +28,7 @@ try {
     await page.waitForSelector(selector); await page.evaluate(()=>document.fonts.ready);
     const family=await page.$eval(selector,element=>getComputedStyle(element).fontFamily);
     assert.equal(family.split(',')[0].replaceAll('"','').trim(),'Google Sans',scene);
-    assert.ok(resources.some(url=>new URL(url).pathname==='/fonts/GoogleSans-Regular.ttf'));
+    assert.ok(resources.some(url=>new URL(url).pathname==='/fonts/GoogleSans-Regular.woff2'));
     assert.equal(resources.some(url=>/fonts\.(googleapis|gstatic)\.com/.test(url)),false);
     const session=await page.createCDPSession(); await session.send('DOM.enable'); await session.send('CSS.enable');
     const {root:documentNode}=await session.send('DOM.getDocument'), {nodeId}=await session.send('DOM.querySelector',{nodeId:documentNode.nodeId,selector});
