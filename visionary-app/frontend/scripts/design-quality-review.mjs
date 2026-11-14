@@ -10,21 +10,99 @@ const evidence = path.resolve(productRoot,process.env.DESIGN_EVIDENCE_DIR || 'do
 await fs.mkdir(evidence, {recursive:true});
 const browser = await chromium.launch({channel:'msedge',headless:true,args:['--no-proxy-server']});
 const context = await browser.newContext({viewport:{width:390,height:900},reducedMotion:'reduce'});
-await context.addInitScript(() => {
- if(localStorage.getItem('visionary_workspace_v2'))return;
- const user={id:'design-quality',email:'quality@example.test',full_name:'Alex',identity:'student',roles:['student'],age_band:'adult',onboarding_complete:true};
- const now=Date.now(),id=user.id+':student';
- const data={conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',voice:false,memory:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:new Date(now).toISOString().slice(0,10)},legacyImported:false};
- localStorage.setItem('visionary_users',JSON.stringify([user]));
- localStorage.setItem('visionary_sessions',JSON.stringify([{token:user.id,userId:user.id,email:user.email,expiresAt:now+86400000}]));
- localStorage.setItem('visionary_session_token',user.id);
- localStorage.setItem('visionary_workspace_v2',JSON.stringify({version:2,people:[{id:user.id,email:user.email,name:user.full_name,ageBand:'adult',roles:['student']}],workspaces:[{id,personId:user.id,role:'student',name:'Personal'}],active:{[user.id]:id},relationships:[],data:{[id]:data}}));
-});
-const page=await context.newPage(),errors=[],samples=[];
+/* FAP-67: no localStorage seeding. The product's auth is Firebase-backed
+ * (VITE_AUTH_MODE=firebase) and the app bootstraps its own workspace after
+ * the UI login; a pre-seeded workspace conflicts with that bootstrap and
+ * stalls the post-login navigation. The session comes from loginViaUi(). */
+const page=await context.newPage(),errors=[],samples=[],audits=[];
 page.setDefaultTimeout(60000);page.setDefaultNavigationTimeout(90000);
 page.on('pageerror',error=>errors.push(String(error)));
 const ctx={personId:'design-quality',workspaceId:'design-quality:student',role:'student',locale:'en'};
+/* FAP-67 session migration: the product's auth is Firebase-backed
+ * (VITE_AUTH_MODE=firebase), so the legacy localStorage seed no longer
+ * authenticates the dashboard. The QA session now signs in through the real
+ * login UI in this script's own browser context; the Firebase session
+ * persists for every later navigation. */
+const QA_EMAIL='qa.designer@example.test', QA_PASSWORD='Visionary#2026';
+const loginViaUi = async () => {
+ for (let attempt = 0; attempt < 2; attempt++) {
+  await page.goto(`${base}/login`,{waitUntil:'domcontentloaded'});
+  await page.getByRole('button',{name:'Continue with Email'}).first().click();
+  await page.locator('input[type="email"]').first().fill(QA_EMAIL);
+  await page.getByRole('button',{name:/continue|next/i}).last().click();
+  await page.locator('input[type="password"]').first().fill(QA_PASSWORD,{timeout:20000});
+  await page.getByRole('button',{name:/sign in/i}).last().click();
+  /* The workspace bootstrap must finish before the fixture services read the
+   * live identity — wait for it explicitly instead of a fixed delay. */
+  try {
+   await page.waitForFunction(() => {
+    try { const ws = JSON.parse(localStorage.getItem('visionary_workspace_v2') || '{}'); return Object.keys(ws.active || {}).length > 0; } catch { return false; }
+   },{timeout:20000});
+   await page.waitForTimeout(1500);
+   if (process.env.DESIGN_DEBUG) {
+    const dbg = await page.evaluate(() => ({ url: location.pathname, h1: document.querySelector('h1')?.textContent.trim().slice(0, 50) ?? null }));
+    console.log('LOGIN STATE:', JSON.stringify(dbg));
+   }
+   return;
+  } catch { /* one clean retry */ }
+ }
+ throw new Error('The QA login could not complete in two attempts.');
+};
+/* Rendered accessibility audit (FAP-30): informative-text contrast with alpha
+ * blending, and 44px hit-area on interactive controls. Backgrounds composite
+ * through the ancestor chain (rgba layers over the first opaque ancestor), so
+ * translucent badges/washes are measured over what is actually painted. */
+const renderedAudit=()=>{
+ const parse=(c)=>{const m=c.match(/rgba?\(([^)]+)\)/);if(!m)return null;const p=m[1].split(',').map((s)=>parseFloat(s));return{r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};};
+  const over=(fg,bg)=>({r:fg.r*fg.a+bg.r*(1-fg.a),g:fg.g*fg.a+bg.g*(1-fg.a),b:fg.b*fg.a+bg.b*(1-fg.a),a:fg.a+bg.a*(1-fg.a)});
+  const lum=(c)=>{const f=(v)=>{v/=255;return v<=0.04045?v/12.92:Math.pow((v+0.055)/1.055,2.4);};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b);};
+  const ratioOf=(a,b)=>{const l1=lum(a),l2=lum(b);const[hi,lo]=l1>l2?[l1,l2]:[l2,l1];return(hi+0.05)/(lo+0.05);};
+  const bgChain=(el)=>{
+   const layers=[];let node=el;
+   while(node&&node!==document.documentElement){
+    const c=parse(getComputedStyle(node).backgroundColor);
+    if(c&&c.a>0)layers.push(c);
+    if(c&&c.a>=1)break;
+    node=node.parentElement;
+   }
+   if(!layers.length||layers[layers.length-1].a<1){const b=parse(getComputedStyle(document.body).backgroundColor);if(b)layers.push(b);}
+   let bg={r:255,g:255,b:255,a:1};
+   for(let i=layers.length-1;i>=0;i--)bg=over(layers[i],bg);
+   return bg;
+  };
+  const texts=[...document.querySelectorAll('#main p,#main li,#main label,#main span,#main a,#main button,#main h1,#main h2,#main h3,#main td,#main th,#main dt,#main dd')]
+   .filter((el)=>el.offsetParent!==null&&!el.closest('[aria-hidden="true"],.sr-only')&&(el.textContent||'').trim().length>1&&![...el.childNodes].some((n)=>n.nodeType===1));
+  const seen=new Map();
+  for(const el of texts){
+   const cs=getComputedStyle(el);
+   let fg=parse(cs.color);const bg=bgChain(el);
+   if(!fg||!bg)continue;
+   if(fg.a<1)fg=over(fg,bg);
+   const fs=parseFloat(cs.fontSize),fw=parseInt(cs.fontWeight,10)||400;
+   const large=fs>=24||(fs>=18.66&&fw>=700);
+   const key=`${cs.color}|${Math.round(bg.r)},${Math.round(bg.g)},${Math.round(bg.b)}|${fs}|${fw}`;
+   if(!seen.has(key))seen.set(key,{color:cs.color,bg:`rgb(${Math.round(bg.r)},${Math.round(bg.g)},${Math.round(bg.b)})`,fs,fw,large,required:large?3:4.5,ratio:Math.round(ratioOf(fg,bg)*100)/100,sample:(el.textContent||'').trim().slice(0,40)});
+  }
+  const controls=[...document.querySelectorAll('#main a[href],#main button')]
+   .filter((el)=>el.offsetParent!==null)
+   .map((el)=>{const r=el.getBoundingClientRect();return{text:(el.textContent||'').trim().slice(0,40),w:Math.round(r.width),h:Math.round(r.height)};})
+   .filter((c)=>c.w>0);
+  return{
+   textSamples:[...seen.values()].sort((a,b)=>a.ratio-b.ratio),
+   controls:controls.filter((c)=>Math.min(c.w,c.h)>=44).length,
+   smallControls:controls.filter((c)=>Math.min(c.w,c.h)<44),
+  };
+};
 try {
+ await loginViaUi();
+ /* The fixture services key on the signed-in identity: read the live session's
+  * person/workspace ids after the UI login instead of the legacy constants. */
+ const liveCtx = await page.evaluate(() => {
+  const ws = JSON.parse(localStorage.getItem('visionary_workspace_v2') || '{}');
+  const uid = Object.keys(ws.active || {})[0] || null;
+  return { personId: uid, workspaceId: uid ? ws.active[uid] : null, role: (ws.people?.find(p => p.id === uid)?.roles || ['student'])[0] };
+ });
+ if (liveCtx.personId) { ctx.personId = liveCtx.personId; ctx.workspaceId = liveCtx.workspaceId; ctx.role = liveCtx.role; }
  await page.goto(`${base}/dashboard/progress`,{waitUntil:'networkidle'});
  await page.getByRole('heading',{name:'Your evidence starts with an activity'}).waitFor();
  assert.equal(await page.locator('.v-progress-overview').count(),0,'empty history must not invent achievement');
@@ -50,6 +128,10 @@ try {
  }
  const fixture=JSON.parse(await fs.readFile(process.env.DESIGN_FIXTURE_PATH||`${evidence}/fictional-fixture.json`,'utf8'));
  await page.goto(`${base}/dashboard/learn?unit=${fixture.unitId}`,{waitUntil:'networkidle'});
+ if (process.env.DESIGN_DEBUG) {
+  const dbg = await page.evaluate(() => ({ url: location.pathname + location.search, h1: document.querySelector('h1')?.textContent.trim().slice(0, 60) ?? null, body: document.body.textContent.trim().slice(0, 200) }));
+  console.log('LEARN PAGE STATE:', JSON.stringify(dbg));
+ }
  await page.getByRole('heading',{name:'Practice step recorded'}).waitFor();
  await page.screenshot({path:`${evidence}/practice-recorded-390.png`});
  assert.equal(await page.getByRole('button',{name:'Apply this in Build',exact:true}).count(),1);
@@ -64,7 +146,12 @@ try {
   const geometry=await page.evaluate(()=>({document:document.documentElement.scrollWidth>innerWidth,main:document.querySelector('#main').scrollWidth>document.querySelector('#main').clientWidth+1,font:getComputedStyle(document.querySelector('.workspace-shell')).fontFamily}));
   assert.equal(geometry.document||geometry.main,false,`${scheme}/${width} overflow`);
   assert.equal(geometry.font.split(',')[0].replaceAll('"','').trim(),'Google Sans');
-  samples.push({scheme,width,...geometry});
+  const audit=await page.evaluate(renderedAudit);
+  const low=audit.textSamples.filter((s)=>s.ratio<s.required);
+  assert.deepEqual(low,[],`${scheme}/${width} informative text below WCAG contrast: ${JSON.stringify(low)}`);
+  assert.deepEqual(audit.smallControls,[],`${scheme}/${width} sub-44px interactive controls: ${JSON.stringify(audit.smallControls)}`);
+  audits.push({scheme,width,worst:audit.textSamples.slice(0,4),textSamples:audit.textSamples.length,controls44:audit.controls,smallControls:audit.smallControls});
+  samples.push({scheme,width,...geometry,contrastSamples:audit.textSamples.length,contrastWorst:audit.textSamples[0]?.ratio??null,controls44:audit.controls});
   await page.screenshot({path:`${evidence}/progress-${scheme}-${width}.png`});
  }
  await page.setViewportSize({width:390,height:900});
@@ -73,11 +160,11 @@ try {
  assert.match(await page.locator('.v-progress-overview').innerText(),/2 correct/,'search cannot rewrite period totals');
  await page.getByLabel('Find an objective',{exact:true}).fill('');
  const backup=await page.evaluate(()=>({workspace:localStorage.getItem('visionary_workspace_v2'),mentor:localStorage.getItem('visionary_mentor_v1')}));
- await page.evaluate(()=>{
+ await page.evaluate((wid)=>{
   const store=JSON.parse(localStorage.getItem('visionary_workspace_v2'));
-  store.data['design-quality:student'].sessions=[{id:'fictional-earlier',journeyId:'cube',stage:'checking',locale:'en',position:0,answers:{},canvas:{size:3,rotation:25},notes:'',updatedAt:new Date().toISOString(),interrupted:false,evidence:[{id:'fictional-check',objectiveId:'cube',kind:'check',correct:1,total:1,at:new Date().toISOString(),delayed:false}]}];
+  store.data[wid].sessions=[{id:'fictional-earlier',journeyId:'cube',stage:'checking',locale:'en',position:0,answers:{},canvas:{size:3,rotation:25},notes:'',updatedAt:new Date().toISOString(),interrupted:false,evidence:[{id:'fictional-check',objectiveId:'cube',kind:'check',correct:1,total:1,at:new Date().toISOString(),delayed:false}]}];
   localStorage.setItem('visionary_workspace_v2',JSON.stringify(store));localStorage.setItem('visionary_mentor_v1','Fictional unreadable evidence');
- });
+ }, ctx.workspaceId);
  await page.reload({waitUntil:'networkidle'});
  await page.getByText('Some sources are unavailable. This summary includes only the records that could be read.').waitFor();
  assert.match(await page.locator('.v-progress-overview').innerText(),/1 correct/);
@@ -107,6 +194,6 @@ try {
  await page.screenshot({path:`${evidence}/hindi-navigation-large-text.png`});
  await page.keyboard.press('Escape');
  assert.deepEqual(errors,[]);
- await fs.writeFile(`${evidence}/review-results.json`,JSON.stringify({samples,type,errors},null,2));
- console.log('PASS empty/populated evidence, real local sample check/practice -> project, eight theme/viewport samples, filtered totals, 200% text, shared brand font and Hindi portal typography.');
+ await fs.writeFile(`${evidence}/review-results.json`,JSON.stringify({samples,audits,type,errors},null,2));
+ console.log('PASS empty/populated evidence, real local sample check/practice -> project, eight theme/viewport samples with alpha-blended WCAG contrast (>=4.5:1 informative / >=3:1 large) and 44px hit-area assertions, filtered totals, 200% text, shared brand font and Hindi portal typography.');
 }catch(error){console.error(error);await page.screenshot({path:`${evidence}/failure.png`}).catch(()=>{});throw error;}finally{await browser.close();}
