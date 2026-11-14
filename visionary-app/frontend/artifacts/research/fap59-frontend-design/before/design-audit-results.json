@@ -1,0 +1,1340 @@
+[
+  {
+    "group": "reference",
+    "route": "/",
+    "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5173/\", waiting until \"networkidle\"\u001b[22m\n"
+  },
+  {
+    "group": "reference",
+    "route": "/student",
+    "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5173/student\", waiting until \"networkidle\"\u001b[22m\n"
+  },
+  {
+    "group": "reference",
+    "route": "/teacher",
+    "h1": {
+      "text": "Teaching.Teaching, to grow, to reach.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "69.12px",
+      "letterSpacing": "-0.576px"
+    },
+    "cta": {
+      "text": "Start teaching free",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Teaching isn't the difficulty. Knowing it landed i",
+      "fontSize": "24px",
+      "lineHeight": "28px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 0,
+          "pb": 0
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "reference",
+    "route": "/parent",
+    "h1": {
+      "text": "Parenting.Parenting, to see, to help.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "69.12px",
+      "letterSpacing": "-0.576px"
+    },
+    "cta": {
+      "text": "Start free",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Caring isn't the difficulty. Seeing it is.",
+      "fontSize": "24px",
+      "lineHeight": "28px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 0,
+          "pb": 0
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "reference",
+    "route": "/professional",
+    "h1": {
+      "text": "Building.Building, to apply, to grow.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "69.12px",
+      "letterSpacing": "-0.576px"
+    },
+    "cta": {
+      "text": "Start building free",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Working isn't the difficulty. Showing it is.",
+      "fontSize": "24px",
+      "lineHeight": "28px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 0,
+          "pb": 0
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "reference",
+    "route": "/organization",
+    "h1": {
+      "text": "Leading.Leading, to scale, to last.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "69.12px",
+      "letterSpacing": "-0.576px"
+    },
+    "cta": {
+      "text": "Talk to us",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Learning isn't the difficulty. Seeing it is.",
+      "fontSize": "24px",
+      "lineHeight": "28px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 0,
+          "pb": 0
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "reference",
+    "route": "/how-it-works",
+    "h1": {
+      "text": "How Visionary works.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "67.84px",
+      "letterSpacing": "-0.576px"
+    },
+    "cta": {
+      "text": "Create account",
+      "h": 47,
+      "fontSize": "16px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "0px"
+    },
+    "sub": {
+      "text": "Sign up free with your email or Google account. No",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "sections": {
+      "count": 5,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 64
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "reference",
+    "route": "/pricing",
+    "h1": {
+      "text": "Plans for every journey.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "67.84px",
+      "letterSpacing": "-0.576px"
+    },
+    "cta": {
+      "text": "Monthly",
+      "h": 44,
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "radius": "9999px",
+      "px": "20px"
+    },
+    "sub": {
+      "text": "Start free. Find the right fit for yourself, your ",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 5,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 80
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "reference",
+    "route": "/download",
+    "h1": {
+      "text": "Get Visionary on every device.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Open Visionary",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "On the phone, tablet or laptop you already own.",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 7,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 90,
+          "pb": 90
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 90,
+          "pb": 90
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/about",
+    "h1": {
+      "text": "Understanding. Built in.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "See how it works",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "A learning product for people who want to understa",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 7,
+      "paddings": [
+        {
+          "pt": 144,
+          "pb": 115.2
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/careers",
+    "h1": {
+      "text": "Build the future of learning.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Introduce yourself",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "We are a small team solving a real learning proble",
+      "fontSize": "24px",
+      "lineHeight": "28px",
+      "color": "rgb(29, 29, 31)"
+    },
+    "sections": {
+      "count": 8,
+      "paddings": [
+        {
+          "pt": 0,
+          "pb": 0
+        },
+        {
+          "pt": 90,
+          "pb": 90
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/contact",
+    "h1": {
+      "text": "We listen. We build.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Students",
+      "h": 44,
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "20px"
+    },
+    "sub": {
+      "text": "Find the answers and support you need to make the ",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 7,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/partners",
+    "h1": {
+      "text": "Better learning, together.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Discuss a partnership",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Education, technology, and local knowledge in one ",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/updates",
+    "h1": {
+      "text": "What’s new at Visionary.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Get updates by email",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Product news, new languages, and launch updates as",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 6,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 90,
+          "pb": 90
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/referral",
+    "h1": {
+      "text": "Share a better way to learn.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Copy your invite link",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Invite someone to explore Visionary. One link, the",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 8,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 90,
+          "pb": 90
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/research",
+    "h1": {
+      "text": "One intelligence,every learner.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Home",
+      "h": 21,
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "radius": "4px",
+      "px": "0px"
+    },
+    "sub": {
+      "text": "We are building a mentor that knows your journey. ",
+      "fontSize": "18px",
+      "lineHeight": "29.7px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 0,
+          "pb": 0
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/community",
+    "h1": {
+      "text": "Communities and programs for everyone learning together.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Find your community",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "Class-scoped spaces where learners, teachers, and ",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 5,
+      "paddings": [
+        {
+          "pt": 144,
+          "pb": 115.2
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/help",
+    "h1": {
+      "text": "Find your answer.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "67.84px",
+      "letterSpacing": "-0.576px"
+    },
+    "cta": {
+      "text": "password",
+      "h": 47,
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "radius": "9999px",
+      "px": "20px"
+    },
+    "sub": {
+      "text": "Search, or browse a topic, then reach us.",
+      "fontSize": "17px",
+      "lineHeight": "27.2px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 3,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/safety",
+    "h1": {
+      "text": "Safe by design,for every learner.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Built-in protections",
+      "h": 44,
+      "fontSize": "16px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "24px"
+    },
+    "sub": {
+      "text": "Protection is on from the start. See how it works ",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 7,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        },
+        {
+          "pt": 158.4,
+          "pb": 158.4
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/privacy",
+    "h1": {
+      "text": "Your learning is personal. Privacy should be clear.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "01What we collect",
+      "h": 44,
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "radius": "9999px",
+      "px": "12px"
+    },
+    "sub": {
+      "text": "This policy explains what information Visionary us",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 12,
+      "paddings": [
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/terms",
+    "h1": {
+      "text": "Clear rules, written to be understood.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "01Who can use Visionary",
+      "h": 44,
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "radius": "9999px",
+      "px": "12px"
+    },
+    "sub": {
+      "text": "What you can expect from Visionary, and what we ex",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 12,
+      "paddings": [
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/security",
+    "h1": {
+      "text": "Secure by design, protected end to end.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "01Your information",
+      "h": 44,
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "radius": "9999px",
+      "px": "12px"
+    },
+    "sub": {
+      "text": "Encryption, access controls, and clear account too",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 12,
+      "paddings": [
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/accessibility",
+    "h1": {
+      "text": "Help every learner learn how they learn best.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "Explore what's built in",
+      "h": 44,
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "radius": "9999px",
+      "px": "21px"
+    },
+    "sub": {
+      "text": "One product, many ways in: vision, hearing, moveme",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 112,
+          "pb": 96
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  },
+  {
+    "group": "rest",
+    "route": "/cookies",
+    "h1": {
+      "text": "How we use cookies. And how you control them.",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "68.48px",
+      "letterSpacing": "-0.32px"
+    },
+    "cta": {
+      "text": "01What cookies are",
+      "h": 44,
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "radius": "9999px",
+      "px": "12px"
+    },
+    "sub": {
+      "text": "The short version, then the full list. Only what's",
+      "fontSize": "17px",
+      "lineHeight": "25px",
+      "color": "rgb(110, 110, 115)"
+    },
+    "sections": {
+      "count": 10,
+      "paddings": [
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        },
+        {
+          "pt": 160,
+          "pb": 160
+        }
+      ]
+    },
+    "overflowDoc": false,
+    "overflowMain": false
+  }
+]
