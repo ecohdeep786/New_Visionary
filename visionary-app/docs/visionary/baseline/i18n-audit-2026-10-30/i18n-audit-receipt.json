@@ -1,0 +1,150 @@
+{
+  "at": "2026-11-04T19:00:58.322Z",
+  "base": "http://127.0.0.1:4197",
+  "v1SurfaceDecision": "workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT",
+  "surfaces": [
+    {
+      "route": "/dashboard/home",
+      "label": "Home",
+      "enNodes": 0,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/learn",
+      "label": "Learn",
+      "enNodes": 6,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/ask",
+      "label": "Ask",
+      "enNodes": 18,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/progress",
+      "label": "Progress",
+      "enNodes": 13,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/settings",
+      "label": "Personalization",
+      "enNodes": 0,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/privacy",
+      "label": "Privacy & consent",
+      "enNodes": 18,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/notifications",
+      "label": "Notifications",
+      "enNodes": 6,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/child",
+      "label": "Family (parent)",
+      "enNodes": 0,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/classes",
+      "label": "Classes (teacher)",
+      "enNodes": 0,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/people",
+      "label": "People (organization)",
+      "enNodes": 0,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    }
+  ],
+  "totals": {
+    "flaggedNodes": 0
+  }
+}
