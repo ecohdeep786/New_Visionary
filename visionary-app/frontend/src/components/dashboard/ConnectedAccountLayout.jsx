@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import ConnectedLearningHistory from './ConnectedLearningHistory';
 import ConnectedAccountSecurity from './ConnectedAccountSecurity';
+import GettingStarted from '@/components/onboarding/GettingStarted';
 import ConnectedProfile from './ConnectedProfile';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -48,6 +49,7 @@ export default function ConnectedAccountLayout() {
         <h1 className="text-2xl font-semibold">{home ? 'Your Visionary account' : 'This workspace page is unavailable'}</h1>
         {account?.full_name && <p className="mt-2 break-words">{account.full_name}</p>}
         <p className="mt-4 text-slate-700">{features} will be available once their online services are connected.</p>
+        {home && <div className="mt-4"><GettingStarted /></div>}
         {!home && <Link className="mt-4 inline-flex min-h-11 items-center underline" to="/dashboard/home">Return to account home</Link>}
       </section>}
     </main>

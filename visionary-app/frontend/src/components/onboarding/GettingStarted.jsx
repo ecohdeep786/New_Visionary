@@ -26,7 +26,11 @@ function ProductIntroduction() {
   const [open, setOpen] = useState(account.getting_started_complete === false);
   const [page, setPage] = useState(0), [busy, setBusy] = useState(false), [error, setError] = useState('');
   const lock = useRef(false), title = useRef(null);
-  const first = firstSteps[user?.identity] || firstSteps.student;  useEffect(() => { if (open) title.current?.focus({ preventScroll: true }); }, [page, open]);
+  const connectedAccount = import.meta.env.PROD;
+  const first = connectedAccount
+    ? { title: 'Review your saved learning', text: 'Check the learning sessions saved to your account.', path: '/dashboard/learn', label: 'Open saved learning' }
+    : firstSteps[user?.identity] || firstSteps.student;
+  useEffect(() => { if (open) title.current?.focus({ preventScroll: true }); }, [page, open]);
   async function finish() {
     if (lock.current) return;
     if (account.getting_started_complete !== false) { setOpen(false); return; }
@@ -71,9 +75,9 @@ function ProductIntroduction() {
           {page === 0 && <div className="mx-auto mt-6 max-w-[420px] rounded-2xl border border-[#d2d2d7]/60 px-4 py-4 text-center"><p className="text-sm font-medium">{account.full_name || 'Your Visionary account'}</p><p className="mt-1 truncate text-xs text-[#6e6e73]" title={account.email}>{account.email}</p><p className="mt-3 text-xs text-[#6e6e73]">Setup is saved to this account.</p></div>}
           {page === 1 && <div className="mt-6 rounded-2xl border border-[#d2d2d7]/60 p-5"><div className="flex items-start gap-4"><Compass size={36} strokeWidth={1.5} className="shrink-0 text-[#0066cc]" aria-hidden="true" /><div><h3 className="text-base font-medium">{first.title}</h3><p className="mt-2 text-sm leading-6 text-[#6e6e73]">{first.text}</p><Link to={first.path} onClick={() => setOpen(false)} className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[#0066cc] hover:underline">{first.label}<ArrowRight size={17} aria-hidden="true" /></Link></div></div></div>}
           {page === 2 && <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {[{ icon: SlidersHorizontal, title: 'Make it yours', text: 'Review learning preferences and languages.', path: '/dashboard/personalization', label: 'Review preferences' }, { icon: ShieldCheck, title: 'Keep sharing intentional', text: 'Private activity is never automatically shared.', path: '/dashboard/privacy', label: 'Review privacy' }].map(({ icon: Icon, title: heading, text, path, label }) => <article key={heading} className="rounded-2xl border border-[#d2d2d7]/60 p-4"><Icon size={36} strokeWidth={1.5} className="text-[#0066cc]" aria-hidden="true" /><h3 className="mt-3 text-sm font-medium">{heading}</h3><p className="mt-2 text-xs leading-5 text-[#6e6e73]">{text}</p><Link to={path} onClick={() => setOpen(false)} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-[#0066cc] hover:underline">{label}</Link></article>)}
+            {[{ icon: SlidersHorizontal, title: 'Make it yours', text: connectedAccount ? 'Review your account details.' : 'Review learning preferences and languages.', path: connectedAccount ? '/dashboard/profile' : '/dashboard/personalization', label: connectedAccount ? 'Review profile' : 'Review preferences' }, { icon: ShieldCheck, title: 'Keep sharing intentional', text: 'Private activity is never automatically shared.', path: connectedAccount ? '/dashboard/settings' : '/dashboard/privacy', label: connectedAccount ? 'Review account security' : 'Review privacy' }].map(({ icon: Icon, title: heading, text, path, label }) => <article key={heading} className="rounded-2xl border border-[#d2d2d7]/60 p-4"><Icon size={36} strokeWidth={1.5} className="text-[#0066cc]" aria-hidden="true" /><h3 className="mt-3 text-sm font-medium">{heading}</h3><p className="mt-2 text-xs leading-5 text-[#6e6e73]">{text}</p><Link to={path} onClick={() => setOpen(false)} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-[#0066cc] hover:underline">{label}</Link></article>)}
           </div>}
-          {page === 2 && <p className="mt-4 text-xs leading-5 text-[#6e6e73]">{live ? 'Your account setup is saved online. Learning activity is currently saved on this device.' : 'This preview saves activity in this browser.'}</p>}
+          {page === 2 && <p className="mt-4 text-xs leading-5 text-[#6e6e73]">{connectedAccount ? 'Your account setup is saved online.' : 'This development workspace saves preview activity in this browser.'}</p>}
           {error && <p role="alert" className="mt-4 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#e30000]">{error}</p>}
         </div>
         <footer className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-[#d2d2d7]/60 px-5 py-4 sm:px-8">
