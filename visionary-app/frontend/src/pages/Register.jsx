@@ -189,7 +189,7 @@ export default function Register() {
               <ActionRow
                 left={
                   duplicate ? (
-                    <div className="flex flex-col gap-2"><Link to={authLink('/login')} state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">Sign in instead</Link><Link to="/forgot-password" state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">Reset password</Link></div>
+                    <div className="flex flex-col gap-2"><Link to={authLink('/login')} state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">Sign in instead</Link><Link to={authLink("/forgot-password")} state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">Reset password</Link></div>
                   ) : null
                 }
               >

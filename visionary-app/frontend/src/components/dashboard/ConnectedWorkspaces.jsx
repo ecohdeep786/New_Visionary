@@ -12,6 +12,7 @@ export default function ConnectedWorkspaces({ accountId }) {
   const [joining, setJoining] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState(null);
+  const [unconfirmed, setUnconfirmed] = useState(null);
   const command = useRef(null);
   const pending = useRef(false);
   const query = useQuery({
@@ -26,10 +27,39 @@ export default function ConnectedWorkspaces({ accountId }) {
   // Only the provisioning endpoint decides whether this account may be set up.
   const mayNeedSetup = query.error?.status === 403;
   const canProvision = after === null && (mayNeedSetup ||
-    (page && page.next === null && !page.items.some(row => row.isPersonal)));
+    (page && !page.items.some(row => row.isPersonal && row.role === 'OWNER')));
+
+  async function confirmWorkspace(receipt) {
+    const workspace = await workspaces.find(accountId, receipt.id, { personal: receipt.personal });
+    if (!workspace) throw new Error('The workspace list has not caught up.');
+    if (after) setAfter(null);
+    else await query.refetch();
+    setUnconfirmed(null);
+    if (receipt.personal) command.current = null;
+    setMessage({ text: receipt.personal ? 'Your personal workspace is ready.' : 'Invitation accepted. Your workspace membership is confirmed.' });
+  }
+
+  async function refreshWorkspaces() {
+    if (pending.current) return;
+    setMessage(null);
+    if (!unconfirmed) {
+      await query.refetch();
+      return;
+    }
+    pending.current = true;
+    setBusy(true);
+    try {
+      await confirmWorkspace(unconfirmed);
+    } catch {
+      setMessage({ error: true, text: 'Could not confirm the workspace in your account yet. Refresh to check again.' });
+    } finally {
+      pending.current = false;
+      setBusy(false);
+    }
+  }
 
   async function provision() {
-    if (!canProvision || pending.current) return;
+    if (!canProvision || unconfirmed || pending.current) return;
     pending.current = true;
     setBusy(true);
     setMessage(null);
@@ -37,12 +67,9 @@ export default function ConnectedWorkspaces({ accountId }) {
       // Keep the same command ID while the user retries an uncertain write.
       command.current ??= crypto.randomUUID();
       const id = await workspaces.provision(accountId, command.current);
-      const result = await query.refetch({ throwOnError: true });
-      if (!result.data?.items.some(row => row.id === id && row.isPersonal)) {
-        throw new Error('The workspace list has not caught up.');
-      }
-      command.current = null;
-      setMessage({ text: 'Your personal workspace is ready.' });
+      const receipt = { id, personal: true };
+      setUnconfirmed(receipt);
+      await confirmWorkspace(receipt);
     } catch (error) {
       const unavailable = [404, 503].includes(error.status);
       setMessage({ error: true, text: unavailable
@@ -56,16 +83,16 @@ export default function ConnectedWorkspaces({ accountId }) {
 
   async function acceptInvitation(event) {
     event.preventDefault();
-    if (pending.current || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())) return;
+    if (pending.current || unconfirmed || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())) return;
     pending.current = true;
     setJoining(true);
     setMessage(null);
     try {
-      await workspaces.acceptInvitation(accountId, invitation.trim());
+      const id = await workspaces.acceptInvitation(accountId, invitation.trim());
+      const receipt = { id, personal: false };
       setInvitation('');
-      if (after) setAfter(null);
-      else await query.refetch();
-      setMessage({ text: 'Invitation accepted. Refresh your workspaces if the new workspace does not appear yet.' });
+      setUnconfirmed(receipt);
+      await confirmWorkspace(receipt);
     } catch (error) {
       const text = {
         401: 'Your session has ended. Sign in and try again.',
@@ -94,12 +121,12 @@ export default function ConnectedWorkspaces({ accountId }) {
       </li>)}
     </ul>}
     <div className="mt-4 flex flex-wrap gap-3">
-      <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting || query.isFetching} onClick={() => { setMessage(null); query.refetch(); }}>Refresh workspaces</button>
+      <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting || query.isFetching} onClick={refreshWorkspaces}>Refresh workspaces</button>
       {after && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting} onClick={() => setAfter(null)}>First page</button>}
       {page?.next && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting} onClick={() => setAfter(page.next)}>Next page</button>}
-      {canProvision && <button type="button" className="min-h-11 rounded-lg bg-blue-700 px-4 text-white disabled:opacity-60" disabled={submitting || query.isFetching} onClick={provision}>{busy ? 'Setting up…' : 'Set up personal workspace'}</button>}
+      {canProvision && !unconfirmed && <button type="button" className="min-h-11 rounded-lg bg-blue-700 px-4 text-white disabled:opacity-60" disabled={submitting || query.isFetching} onClick={provision}>{busy ? 'Setting up…' : 'Set up personal workspace'}</button>}
     </div>
-    {(page || mayNeedSetup) && <form className="mt-6 border-t pt-5" onSubmit={acceptInvitation}>
+    {!unconfirmed && (page || mayNeedSetup) && <form className="mt-6 border-t pt-5" onSubmit={acceptInvitation}>
       <h2 className="text-lg font-semibold">Join a workspace</h2>
       <label htmlFor="workspace-invitation" className="mt-3 block text-sm font-medium">Invitation code</label>
       <input id="workspace-invitation" className="mt-1 block min-h-11 w-full max-w-md rounded-lg border px-3"

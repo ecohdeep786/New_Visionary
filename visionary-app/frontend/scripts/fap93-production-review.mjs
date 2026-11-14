@@ -20,6 +20,9 @@ try {
   let consentState = 'active';
   let withdrawalRequests = 0;
   let sharedWorkspace = null;
+  let showSharedWorkspace = false;
+  let onboardingWrites = 0;
+  let invitationWrites = 0;
   async function open(path, device = context) {
     const page = await device.newPage();
     await page.setViewport({ width: 390, height: 844 });
@@ -39,6 +42,16 @@ try {
         body: JSON.stringify(profile || { message: 'Sign in to continue.' }),
       });
       if (url.pathname === '/api/auth/csrf') return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({ token: 'fixture' }) });
+      if (url.pathname === '/api/auth/onboarding') {
+        assert.equal(request.headers()['x-visionary-account'], profile.id);
+        assert.equal(request.headers()['x-csrf-token'], 'fixture');
+        const input = JSON.parse(request.postData());
+        assert.equal(input.identity, 'professional');
+        assert.equal(input.age_band, 'adult');
+        if (++onboardingWrites === 1) return request.respond({ status: 503, contentType: 'application/json', body: '{}' });
+        profile = { ...profile, full_name: input.full_name, identity: input.identity, onboarding_complete: true };
+        return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(profile) });
+      }
       if (url.pathname === '/api/auth/profile') {
         const input = JSON.parse(request.postData());
         assert.equal(request.headers()['x-visionary-account'], profile.id);
@@ -77,11 +90,15 @@ try {
       if (url.pathname === '/api/overview/workspaces') {
         assert.equal(request.headers()['x-visionary-account'], profile.id);
         if (!personalWorkspace) return request.respond({ status: 403, contentType: 'application/json', body: '{}' });
+        const laterPage = url.searchParams.get('after') === personalWorkspace.id;
+        const items = laterPage ? [sharedWorkspace] : [personalWorkspace];
+        const hasMore = !laterPage && showSharedWorkspace;
         return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({
-          items: [personalWorkspace, sharedWorkspace].filter(Boolean), nextCursor: null, hasMore: false,
+          items, nextCursor: hasMore ? { value: personalWorkspace.id } : null, hasMore,
         }) });
       }
       if (url.pathname === '/api/account/invitations/accept') {
+        invitationWrites += 1;
         assert.equal(request.headers()['x-visionary-account'], profile.id);
         assert.equal(request.headers()['x-csrf-token'], 'fixture');
         if (JSON.parse(request.postData()).token !== 'B'.repeat(43)) {
@@ -215,13 +232,21 @@ try {
   await spaces.page.waitForFunction(() => document.body.innerText.includes('This invitation is no longer active.'));
   await codeInput.fill('B'.repeat(43));
   await spaces.page.locator('::-p-aria(Accept invitation)').click();
-  await spaces.page.waitForFunction(() => document.body.innerText.includes('Shared workspace fixture'));
+  await spaces.page.waitForFunction(() => document.body.innerText.includes('Could not confirm acceptance.'));
+  assert.doesNotMatch(await spaces.page.evaluate(() => document.body.innerText), /Invitation accepted/);
+  showSharedWorkspace = true;
+  await spaces.page.locator('::-p-aria(Refresh workspaces)').click();
+  await spaces.page.waitForFunction(() => document.body.innerText.includes('Your workspace membership is confirmed.'));
+  assert.equal(invitationWrites, 2);
   assert.equal(await spaces.page.$eval('#workspace-invitation', input => input.value), '');
+  await spaces.page.locator('::-p-aria(Next page)').click();
+  await spaces.page.waitForFunction(() => document.body.innerText.includes('Shared workspace fixture'));
   const spacesOnSecondDevice = await open('/dashboard/connections', secondContext);
   await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Personal workspace fixture'));
   await spacesOnSecondDevice.page.reload();
-  await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Shared workspace fixture'));
   await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Personal workspace fixture'));
+  await spacesOnSecondDevice.page.locator('::-p-aria(Next page)').click();
+  await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Shared workspace fixture'));
   const privacy = await open('/dashboard/privacy');
   await privacy.page.waitForFunction(() => document.body.innerText.includes('The approved policy is unavailable'));
   privacyAvailable = true;
@@ -253,8 +278,24 @@ try {
   await home.page.waitForFunction(() => location.pathname === '/login', { polling: 100 });
   for (const { errors } of [home, workspace, cookies, edit, learning, second, security, spaces, spacesOnSecondDevice, privacy]) assert.deepEqual(errors, []);
   profile = { id: 'new-fap93-review', full_name: 'New Account', onboarding_complete: false };
-  const setup = await open('/onboarding');
+  const setup = await open('/dashboard/profile');
   await setup.page.waitForFunction(() => document.body.innerText.includes('I am a Learner'));
+  assert.equal(new URL(setup.page.url()).searchParams.get('returnTo'), '/dashboard/profile');
+  const setupButtonNamed = name => setup.page.locator('::-p-aria(' + name + ')');
+  await setup.page.locator('::-p-text(I am a Professional)').click();
+  await setupButtonNamed('Continue').click();
+  await setup.page.locator('input[type="text"]').fill('New Professional');
+  await setup.page.select('select', 'adult');
+  await setupButtonNamed('Continue').click();
+  await setupButtonNamed('Skip for now').click();
+  await setupButtonNamed('Start using Visionary').click();
+  await setup.page.waitForFunction(() => document.querySelector('[role="alert"]') && location.pathname === '/onboarding');
+  assert.equal(profile.onboarding_complete, false);
+  await setupButtonNamed('Start using Visionary').click();
+  await setup.page.waitForFunction(() => location.pathname === '/dashboard/profile');
+  await setup.page.reload();
+  await setup.page.waitForFunction(() => document.querySelector('#connected-display-name')?.value === 'New Professional');
+  assert.equal(onboardingWrites, 2);
   assert.deepEqual(await setup.page.evaluate(() => [localStorage.length, sessionStorage.length]), [0, 0]);
   assert.deepEqual(setup.errors, []);
   console.log('Production browser: profile sync and reload, saved learning and session closure, workspace setup and reload, privacy policy recovery and consent withdrawal, account sessions and revocation failure, five role boundaries, cookies, cross-tab logout and first-run setup passed.');

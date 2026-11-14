@@ -53,12 +53,12 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 /* ═══ KNOWLEDGE BASE — 8 topics × 3 answers, all links real ═══ */
 const HELP_TOPICS = [
   {
-    id: "start", Icon: Sparkles, label: "Getting started", line: "Create an account, ask your first question, set your language.",
+    id: "start", Icon: Sparkles, label: "Getting started", line: "Create an account and set your learning preferences.",
     keys: "start begin signup register first question onboarding",
     articles: [
-      { q: "How do I create an account?", a: "Choose Get started, enter your email, and pick your role. Free forever — no card required.", to: "/register" },
-      { q: "How do I ask my first question?", a: "Type or speak it on any page. Visionary answers with a visual, a conversation, and a next step.", to: "/how-it-works" },
-      { q: "How do I change my language?", a: "Use the language menu in the top bar. Your journey stays connected across languages." },
+      { q: "How do I create an account?", a: "Choose Get started, verify your sign-in, then pick your role during setup. Creating an account is free.", to: "/register" },
+      { q: "How do I ask my first question?", a: "Interactive teaching is still in development. Explore How it works for the planned learning experience.", to: "/how-it-works" },
+      { q: "How do I change my language?", a: "Choose a preferred learning language during account setup. Availability depends on the feature." },
     ],
   },
   {
@@ -66,60 +66,60 @@ const HELP_TOPICS = [
     keys: "password login sign in email profile delete account data",
     articles: [
       { q: "I forgot my password.", a: "Use the reset link and we'll email you a secure way back in.", to: "/forgot-password" },
-      { q: "How do I delete my data?", a: "One screen: see everything we remember, export it, or delete it. Instant, no email needed.", to: "/privacy" },
-      { q: "How do I sign in on a new device?", a: "Sign in with the same email, and your journey syncs automatically.", to: "/download" },
+      { q: "How do I delete my data?", a: "See the Privacy policy for how to request access, correction, or deletion. Visionary may ask you to verify your account.", to: "/privacy" },
+      { q: "How do I sign in on a new device?", a: "Open Visionary in a browser and use the same account and sign-in method.", to: "/download" },
     ],
   },
   {
     id: "learning", Icon: BookOpen, label: "Learning & practice", line: "Lessons, visual explanations, practise mode, progress.",
     keys: "lesson learn practise practice progress memory continuity understand",
     articles: [
-      { q: "What is Practise mode?", a: "Visionary gives you a problem, sees where you stick, and hints without giving it away.", to: "/how-it-works" },
-      { q: "What does Visionary remember?", a: "What you understood, where you struggled, and what you built. Never private conversations.", to: "/privacy" },
-      { q: "How does continuity work?", a: "Every lesson builds on the last, across devices, classes, and years.", to: "/student" },
+      { q: "What is Practise mode?", a: "Practice is designed to offer problems and hints. Interactive practice is still in development.", to: "/how-it-works" },
+      { q: "What does Visionary remember?", a: "Saved learning shows session records associated with your account. See the Privacy policy for details about stored information.", to: "/privacy" },
+      { q: "How does continuity work?", a: "You can open the saved learning history associated with your account. Continuing active lessons across devices is still in development.", to: "/student" },
     ],
   },
   {
-    id: "teaching", Icon: Users, label: "Teaching & classes", line: "Create classes, follow learners, adapt lessons.",
+    id: "teaching", Icon: Users, label: "Teaching & classes", line: "Explore the classroom features in development.",
     keys: "teacher class classroom learner lesson adapt",
     articles: [
-      { q: "How do I see who understood?", a: "Your class view shows clarity per learner and per concept, updated as they work.", to: "/teacher" },
-      { q: "Can I adapt a lesson mid-class?", a: "Yes. Ask Visionary for another explanation level, example, or visual anytime.", to: "/teacher" },
+      { q: "How do I see who understood?", a: "Classroom progress reporting is in development.", to: "/teacher" },
+      { q: "Can I adapt a lesson mid-class?", a: "Interactive teaching and lesson adaptation are in development.", to: "/teacher" },
     ],
   },
   {
     id: "family", Icon: HeartHandshake, label: "Family & privacy", line: "Parent views, the Family plan, and what stays private.",
     keys: "parent child family plan privacy members",
     articles: [
-      { q: "What can parents see?", a: "Progress and support signals, never private conversations.", to: "/parent" },
-      { q: "How does the Family plan work?", a: "Up to 6 members, each with completely private memory, one weekly digest.", to: "/pricing" },
+      { q: "What can parents see?", a: "Guardian reports are in development. The design limits access to information authorized by consent and a verified guardian relationship.", to: "/parent" },
+      { q: "How does the Family plan work?", a: "See Pricing for the Family plan preview. Guardian reports and digests are in development.", to: "/pricing" },
     ],
   },
   {
     id: "billing", Icon: CreditCard, label: "Billing & plans", line: "Start, Personal, Family: upgrades, downgrades, cancellation.",
     keys: "price plan billing cancel subscription payment discount invoice",
     articles: [
-      { q: "Can I start free?", a: "Yes. Start is free forever: 20 questions a day and core visual explanations.", to: "/pricing" },
-      { q: "How do I cancel or change my plan?", a: "Anytime. Upgrades apply immediately; downgrades at the next cycle. Nothing resets.", to: "/pricing" },
-      { q: "Do you offer education discounts?", a: "Students and teachers with a valid institutional email get Personal at a discount.", to: "/pricing" },
+      { q: "Can I start free?", a: "You can create a Visionary account for free. AI usage allowances are still in development.", to: "/pricing" },
+      { q: "How do I cancel or change my plan?", a: "Check Plans for the options and terms available to your account.", to: "/dashboard/subscription" },
+      { q: "Do you offer education discounts?", a: "Contact Visionary to ask about education pricing.", to: "/contact" },
     ],
   },
   {
-    id: "devices", Icon: Monitor, label: "Apps & devices", line: "Web, desktop, and mobile installs, sync, requirements.",
+    id: "devices", Icon: Monitor, label: "Apps & devices", line: "Browser access and native app availability.",
     keys: "download install app windows mac linux ios android sync device requirements",
     articles: [
-      { q: "Which devices can I use?", a: "Web, Windows, Mac, Linux, iOS, and Android. One account, all of them.", to: "/download" },
-      { q: "Does my journey sync across devices?", a: "Automatically and privately, on every signed-in device.", to: "/download" },
-      { q: "What are the system requirements?", a: "Any modern browser for web; current OS versions for the apps.", to: "/download" },
+      { q: "Which devices can I use?", a: "Use Visionary in a modern browser on computers, tablets, and phones. Native apps are in development.", to: "/download" },
+      { q: "Does my journey sync across devices?", a: "Your profile and saved learning history are associated with your account. Resuming active work across devices is in development.", to: "/download" },
+      { q: "What are the system requirements?", a: "Use a modern browser. See Downloads for native app status.", to: "/download" },
     ],
   },
   {
     id: "safety", Icon: ShieldCheck, label: "Safety & reporting", line: "Report content, family controls, and how we review.",
     keys: "safety report harmful urgent block family controls",
     articles: [
-      { q: "How do I report content?", a: "Tap report on any answer. A human reviews every report.", mailto: "safety@visionary.org.in" },
-      { q: "Are answers age-appropriate?", a: "Yes. Guidance follows the learner's age by default, with family controls available.", to: "/safety" },
-      { q: "How fast are urgent reports handled?", a: "Within 24 hours, every time.", mailto: "safety@visionary.org.in" },
+      { q: "How do I report content?", a: "Email the safety team with details of the concern.", mailto: "safety@visionary.org.in" },
+      { q: "Are answers age-appropriate?", a: "See Safety for how account protections and guardian features are being developed.", to: "/safety" },
+      { q: "How fast are urgent reports handled?", a: "Email the safety team with the details and explain what makes the report urgent.", mailto: "safety@visionary.org.in" },
     ],
   },
 ];
@@ -136,7 +136,7 @@ function AnswerItem({ a }) {
         <span className="font-normal tracking-[0] leading-[1.3] text-[17px]" style={{ color: COLORS.ink }}>{a.q}</span>
         <ArrowRight className={`h-4 w-4 shrink-0 transition-transform duration-300 ${open ? "rotate-90" : ""}`} strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />
       </button>
-      <div className={`grid transition-all duration-500 ease-apple ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+      <div inert={!open ? "" : undefined} aria-hidden={!open} className={`grid transition-all duration-500 ease-apple ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
           <p className="pt-4 font-normal tracking-[0] leading-[1.6] text-[16px]" style={{ color: COLORS.grey }}>{a.a}</p>
           {a.to && (

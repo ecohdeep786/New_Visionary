@@ -211,10 +211,10 @@ const ParentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Parenting, to see, to help."
-    sub="Know what your child is learning before the report card."
+    sub="Set up your parent or guardian profile. The learner summaries shown below are in development."
     img={parentHero}
     alt="A parent helping a child with homework"
-    ctaLabel="Start free"
+    ctaLabel="Create a free account"
   />
 ));
 
@@ -322,7 +322,7 @@ export default function ParentPage() {
         />
         <PremiumCTASection
           heading="Your child's journey is already happening."
-          sub="See what they understand. Know where to help."
+          sub="Set up a parent or guardian profile and review account privacy."
         />
         <PremiumExploreSection
           headingRole="section"

@@ -177,7 +177,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: UsersRound, t: "See your team.", c: "Understand where each person is and what they need next.", l: "For organizations", to: "/organization" },
       { Icon: BookOpen, t: "Keep the threads.", c: "Context carries across projects, quarters, and teams.", l: "Your continuity", to: "/how-it-works" },
-      { Icon: Layers3, t: "Build on what you know.", c: "Turn your experience into strategy, process, and teaching.", l: "Start building free", to: "/register" },
+      { Icon: Layers3, t: "Build on what you know.", c: "Turn your experience into strategy, process, and teaching.", l: "Create an account", to: "/register" },
       { Icon: Building2, t: "Bring it to your organization.", c: "Visionary can support teams, departments, and whole companies.", l: "For organizations", to: "/organization" },
     ],
   },
@@ -198,7 +198,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See how Visionary explains", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your problem, not a curriculum.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Zap, t: "Move fast, understand deeply.", c: "Speed and depth together — decisions you can defend later.", l: "Start building free", to: "/register" },
+      { Icon: Zap, t: "Move fast, understand deeply.", c: "Speed and depth together — decisions you can defend later.", l: "Create an account", to: "/register" },
       { Icon: BookOpen, t: "Every pivot teaches.", c: "What you learned in the last attempt carries into the next.", l: "Your continuity", to: "/how-it-works" },
       { Icon: UsersRound, t: "Find your people.", c: "Communities and partners help you build in real contexts.", l: "Find a partner", to: "/partners" },
     ],
@@ -211,10 +211,10 @@ const ProHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Building, to apply, to grow."
-    sub="Turn what you learn into work that ships — skills, solutions, and projects that compound with your career."
+    sub="Set up your professional learning profile. The project and portfolio tools below are in development."
     img={proHero}
     alt="A professional writing notes beside a laptop"
-    ctaLabel="Start building free"
+    ctaLabel="Create a free account"
   />
 ));
 

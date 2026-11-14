@@ -103,8 +103,8 @@ const CATEGORIES = [
 /* ═══ RESOURCES — "Get started at your own pace" link rows ═══ */
 const RESOURCES = [
   { to: "/help", label: "Help center", desc: "Guides for setup, classrooms, and every persona." },
-  { to: "/download", label: "Download Visionary", desc: "Web, desktop, and mobile: the platforms sync covers." },
-  { to: "/security", label: "Security and sync", desc: "How the Sync Encrypted ID protects what moves between devices." },
+  { to: "/download", label: "Download Visionary", desc: "Use Visionary in a browser and see the status of native apps." },
+  { to: "/security", label: "Security and sync", desc: "How Visionary protects connections and lets you review sessions." },
   { to: "/privacy", label: "Privacy policy", desc: "What information is handled, why, and the choices you have." },
 ];
 
@@ -220,25 +220,25 @@ export default function AccessibilityPage() {
           </section>
         ))}
 
-        {/* SYNC SHOWPIECE — one person, every device, end to end encrypted */}
+        {/* ACCOUNT ACCESS ACROSS DEVICES */}
         <section id="sync" data-section="05-sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="grid items-center gap-10 rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
               <div>
                 <p className="apple-eyebrow text-[#6e6e73]">Sync &amp; devices</p>
                 <h2 id="sync-title" data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
-                  One person. Every device. <span className="text-[#1d1d1f]">Anywhere.</span>
+                  Use the device that works for you.
                 </h2>
                 <p className="mt-5 max-w-[560px] text-[16px] leading-[1.75] text-[#1d1d1f] sm:text-[16px]">
-                  Sign in with your Sync Encrypted ID and your learning follows you, end to end encrypted. Your questions, progress, and memory arrive as they were, and only you can open them. Start on a school laptop, continue on a phone, finish on a home desktop.
+                  Open Visionary in a browser on your computer, tablet, or phone. Sign in with the same account to access your profile and saved learning history.
                 </p>
                 <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-medium text-[#1d1d1f]">
                   <Lock className="h-4 w-4 text-[#188038]" aria-hidden="true" />
-                  End to end encrypted. The key stays with you
+                  Encrypted connection to Visionary
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link to="/security" className={inkPill}>
-                    How sync works
+                    Account security
                   </Link>
                   <Link to="/dashboard/settings" className={greyPill}>
                     Review your devices
@@ -259,13 +259,13 @@ export default function AccessibilityPage() {
                       </span>
                       <span className="text-[13px] font-medium text-[#1d1d1f]">{label}</span>
                       <span className="flex items-center gap-1 text-[12px] font-medium text-[#188038]">
-                        <Lock className="h-3 w-3" aria-hidden="true" /> Encrypted
+                        Web browser
                       </span>
                     </div>
                   ))}
                 </div>
                 <p className="mt-6 text-center text-[13px] leading-[1.6] text-[#6e6e73]">
-                  One Sync Encrypted ID. The encryption stays with your account, not with the device.
+                  Cross-device continuation for lessons and projects is still in development.
                 </p>
               </div>
             </div>

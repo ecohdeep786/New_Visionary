@@ -49,10 +49,13 @@ export function safeReturnTo() {
 export function authDestination(profile) {
   if (!profile?.id) throw Object.assign(new Error('Your saved account could not be loaded. Please retry.'), { code: 'auth/profile-unavailable' });
   const destination = safeReturnTo();
-  return profile.onboarding_complete === true ? destination : destination.split('?')[0] === '/dashboard/subscription' ? `/onboarding?returnTo=${encodeURIComponent(destination)}` : '/onboarding';
+  return profile.onboarding_complete === true ? destination : linkForDestination('/onboarding', destination);
+}
+
+export function linkForDestination(path, destination) {
+  return destination === '/dashboard/home' ? path : `${path}?returnTo=${encodeURIComponent(destination)}`;
 }
 
 export function authLink(path) {
-  const destination = safeReturnTo();
-  return destination === '/dashboard/home' ? path : `${path}?returnTo=${encodeURIComponent(destination)}`;
+  return linkForDestination(path, safeReturnTo());
 }

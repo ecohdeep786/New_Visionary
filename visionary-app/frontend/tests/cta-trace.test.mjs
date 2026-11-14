@@ -28,19 +28,19 @@ test('every public-page CTA resolves to a declared route, alias, external link o
   assert.ok(rows.length > 80, `the trace scanned ${rows.length} controls — the public families must stay covered`);
 });
 
-test('the persona primary journey promise holds: role-correct label and destination on every persona page', () => {
+test('the persona primary journey promise holds: the primary label describes its destination on every persona page', () => {
   /* Persona CTAs flow through PersonaHero props (ctaTo/ctaLabel); the shared
    * default in NewPersona is /register, organization overrides to /contact. */
   const personaContract = [
-    ['StudentPage', 'Start learning free', '/register'],
-    ['TeacherPage', 'Start teaching free', '/register'],
-    ['ParentPage', 'Start free', '/register'],
-    ['CollegePage', 'Start building free', '/register'],
+    ['StudentPage', 'Create a free account', '/register'],
+    ['TeacherPage', 'Create a free account', '/register'],
+    ['ParentPage', 'Create a free account', '/register'],
+    ['CollegePage', 'Create a free account', '/register'],
     ['OrganizationPage', 'Talk to us', '/contact'],
   ];
   for (const [page, label, destination] of personaContract) {
     const source = read(`src/pages/landing/${page}.jsx`);
-    assert.match(source, new RegExp(`ctaLabel="${label}"`), `${page} must keep its role-specific CTA label "${label}"`);
+    assert.match(source, new RegExp(`ctaLabel="${label}"`), `${page} must describe its primary action with "${label}"`);
     const explicit = /ctaTo="([^"]*)"/.exec(source);
     if (explicit) assert.equal(explicit[1], destination, `${page} overrides ctaTo; it must stay ${destination}`);
     else assert.equal(destination, '/register', `${page} without ctaTo relies on the shared /register default`);

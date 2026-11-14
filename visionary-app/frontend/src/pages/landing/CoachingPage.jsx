@@ -352,7 +352,7 @@ function HowHeroSection() {
           How <span className="accent-gradient">Visionary</span> works.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Understand, ask, practise, then build.
+          Explore the learning journey we’re developing, from asking a question to building a project. You can create an account and view saved learning history today.
         </p>
       </FadeReveal>
     </section>

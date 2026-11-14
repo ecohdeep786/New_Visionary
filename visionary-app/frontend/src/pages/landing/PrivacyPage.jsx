@@ -478,8 +478,8 @@ export default function PrivacyPage() {
                     ))}
                   </div>
                   <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-                    <Link to="/dashboard/personalization" className={quietLink}>
-                      Change workspace preferences
+                    <Link to="/dashboard/profile" className={quietLink}>
+                      Review your profile
                       <ChevronIcon className="h-4 w-4" aria-hidden="true" />
                     </Link>
                     <Link to="/cookies" className={quietLink}>

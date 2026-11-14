@@ -81,7 +81,7 @@ const ANCHORS = [
   { id: "faq", label: "FAQ" },
 ];
 
-/* Community areas — each holds real, shipped capability cards. */
+/* Proposed classroom community workflows. */
 const AREAS = [
   {
     id: "learners",
@@ -89,10 +89,10 @@ const AREAS = [
     tint: "rgba(0,102,204,0.10)",
     iconColor: "#0066cc",
     title: "Communities for learners",
-    copy: "Class-scoped spaces to discuss, ask, and share what you build. Only the people in your class are inside, and nothing leaves it.",
+    copy: "The design gives members of a class a shared space for discussion and projects.",
     cards: [
       { title: "Class discussions", copy: "Ask and discuss with the people you learn with every day. The space is scoped to your class and kept separate from private work.", to: "/student", subject: "ask", tint: "rgba(0,102,204,0.10)" },
-      { title: "Share what you build", copy: "Post projects from Build and see classmates' work in the same space. Real work, not noise.", to: "/student", subject: "build", tint: "#f5f5f7" },
+      { title: "Share what you build", copy: "The project-sharing design would let classmates see work you choose to share.", to: "/student", subject: "build", tint: "#f5f5f7" },
     ],
   },
   {
@@ -101,10 +101,10 @@ const AREAS = [
     tint: "#f5f5f7",
     iconColor: "#0066cc",
     title: "Guided by teachers",
-    copy: "Teachers keep the space safe with moderation built in: reports and rate limits are part of the space, not bolted on afterwards.",
+    copy: "We’re designing moderation tools that help teachers review reports in their classes.",
     cards: [
-      { title: "Moderation built in", copy: "Reports reach the teacher with rate limits, so misuse can't flood the space. The teacher reviews and acts.", to: "/teacher", subject: "shield", tint: "#f5f5f7" },
-      { title: "Reviewed, then shared", copy: "Reported content waits for the teacher's review, so nothing spreads through the class unreviewed.", to: "/teacher", subject: "flag", tint: "#f5f5f7" },
+      { title: "Moderation built in", copy: "The design routes class reports to the teacher for review.", to: "/teacher", subject: "shield", tint: "#f5f5f7" },
+      { title: "Reviewed, then shared", copy: "Teachers would be able to review reported posts and decide how to respond.", to: "/teacher", subject: "flag", tint: "#f5f5f7" },
     ],
     flip: true,
   },
@@ -114,7 +114,7 @@ const AREAS = [
     tint: "#f5f5f7",
     iconColor: "#0066cc",
     title: "For families and organizations",
-    copy: "Community visibility follows consent — families and institutions see what their role allows, and never a learner's private work.",
+    copy: "Family and institution views are being designed around role permissions and consent.",
     cards: [
       { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner's consent allows, and nothing more renders anywhere.", to: "/parent", subject: "lock", tint: "#f5f5f7" },
       { title: "Cohort spaces", copy: "Organization cohorts share institution-scoped spaces: insight across the group without exposing any individual.", to: "/organization", subject: "community", tint: "#f5f5f7" },
@@ -132,10 +132,10 @@ const MORE = [
 /* FAQs — real behavior, no invented policies. */
 const FAQS = [
   { q: "Who can see a class community?", a: "Only the people in that class, plus the teacher who keeps it safe. Communities are scoped to the class: they are not public spaces and do not appear in organization-wide views." },
-  { q: "What happens when someone reports a post?", a: "The report goes straight to the teacher, with rate limits so misuse can't flood the space. The teacher reviews the reported content and decides what happens next." },
+  { q: "What happens when someone reports a post?", a: "The class community design gives teachers a way to review reported posts. For a current concern, use the contact on our Safety page." },
   { q: "Can people outside my class join?", a: "No. Communities are scoped to the class on purpose. Wider institution-level spaces are part of the roadmap, but a class community stays a class community." },
-  { q: "Does the community work in my language?", a: "The community follows the product's language journeys, English, Hindi, and Bengali, and a missing language is shown honestly rather than filled with machine-translated content." },
-  { q: "Is community available today?", a: "Yes. Class communities with teacher moderation, reporting, and rate limits are in the product now. Wider spaces and more languages are what we are building next." },
+  { q: "Does the community work in my language?", a: "Community language availability will be confirmed at launch." },
+  { q: "Is community available today?", a: "Class communities are still in development. Visit Updates for launch announcements." },
 ];
 
 /* ═══ Motion — the shared reveal grammar ═══ */
@@ -183,12 +183,12 @@ export default function CommunityPage() {
                 Communities and programs for everyone <span className="accent-gradient">learning together.</span>
               </h1>
               <p className="mx-auto mt-8 max-w-[760px] text-[17px] leading-[25px] text-[#6e6e73]">
-                Class-scoped spaces where learners, teachers, and families grow together, kept safe by teachers.
+                Class communities are in development. Explore how we’re designing spaces for learners and teachers to work together.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
                   className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
-                  Find your community
+                  Explore community plans
                 </a>
                 <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                   Community safety
@@ -224,7 +224,7 @@ export default function CommunityPage() {
               <path d="M20 56 C 52 30, 88 26, 114 38" fill="none" stroke="#ff9500" strokeWidth="5" strokeLinecap="round" />
             </svg>
             <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
-              Find a community that's right for you
+              How class communities could work
             </h2>
           </Reveal>
           <div className="mx-auto mt-16 max-w-[1240px] space-y-20">
