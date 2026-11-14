@@ -1,0 +1,33 @@
+{
+  "task": "F-15 public release gate",
+  "at": "2026-11-05T22:08:49.753Z",
+  "base": "http://127.0.0.1:4198",
+  "gates": [
+    {
+      "gate": "route-sweep",
+      "result": "PASS",
+      "detail": "27 routes swept; 0 without h1; 0 page errors"
+    },
+    {
+      "gate": "keyboard-skip-link",
+      "result": "PASS",
+      "detail": "{\"skip\":{\"text\":\"Skip to content\",\"href\":\"#main\"},\"landed\":{\"insideMain\":true}}"
+    },
+    {
+      "gate": "keyboard-focus-visible",
+      "result": "PASS",
+      "detail": "{\"visible\":true,\"outline\":\"1px auto\"}"
+    },
+    {
+      "gate": "accessibility-spot",
+      "result": "PASS",
+      "detail": "0 low-contrast, 0 small controls across 4 changed surfaces"
+    },
+    {
+      "gate": "critical-navigation",
+      "result": "PASS",
+      "detail": "reached-dashboard"
+    }
+  ],
+  "failures": []
+}
