@@ -38,6 +38,19 @@ export function createConnectedWorkspaces(getAccountId, transport = request) {
       };
     },
 
+    async acceptInvitation(accountId, token) {
+      if (!/^[A-Za-z0-9_-]{43}$/.test(token)) throw new Error('Enter a valid invitation code.');
+      const result = await call(accountId, '/account/invitations/accept', {
+        method: 'POST', body: { token },
+      });
+      if (typeof result?.workspaceId !== 'string' || !workspaceId.test(result.workspaceId) ||
+        typeof result.invitationId !== 'string' || !workspaceId.test(result.invitationId) ||
+        typeof result.replay !== 'boolean' || !roles.includes(result.role)) {
+        throw new Error('The invitation outcome could not be confirmed.');
+      }
+      return result.workspaceId;
+    },
+
     async provision(accountId, commandId) {
       const receipt = await call(accountId, '/account/workspace/provision', {
         method: 'POST',

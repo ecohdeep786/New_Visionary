@@ -13,6 +13,7 @@ try {
   let provisionCommandId = null;
   let provisionAttempts = 0;
   let privacyAvailable = false;
+  let sharedWorkspace = null;
   async function open(path, device = context) {
     const page = await device.newPage();
     await page.setViewport({ width: 390, height: 844 });
@@ -50,7 +51,18 @@ try {
         assert.equal(request.headers()['x-visionary-account'], profile.id);
         if (!personalWorkspace) return request.respond({ status: 403, contentType: 'application/json', body: '{}' });
         return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({
-          items: personalWorkspace ? [personalWorkspace] : [], nextCursor: null, hasMore: false,
+          items: [personalWorkspace, sharedWorkspace].filter(Boolean), nextCursor: null, hasMore: false,
+        }) });
+      }
+      if (url.pathname === '/api/account/invitations/accept') {
+        assert.equal(request.headers()['x-visionary-account'], profile.id);
+        assert.equal(request.headers()['x-csrf-token'], 'fixture');
+        if (JSON.parse(request.postData()).token !== 'B'.repeat(43)) {
+          return request.respond({ status: 410, contentType: 'application/json', body: '{}' });
+        }
+        sharedWorkspace = { id: 'fixture-shared', name: 'Shared workspace fixture', isPersonal: false, role: 'MEMBER' };
+        return request.respond({ status: 201, contentType: 'application/json', body: JSON.stringify({
+          invitationId: 'fixture-invite', workspaceId: sharedWorkspace.id, role: 'MEMBER', replay: false,
         }) });
       }
       if (url.pathname === '/api/account/workspace/provision') {
@@ -143,9 +155,18 @@ try {
   await setupButton.click();
   await spaces.page.waitForFunction(() => document.body.innerText.includes('Your personal workspace is ready.'));
   assert.equal(provisionAttempts, 2);
+  const codeInput = spaces.page.locator('#workspace-invitation');
+  await codeInput.fill('A'.repeat(43));
+  await spaces.page.locator('::-p-aria(Accept invitation)').click();
+  await spaces.page.waitForFunction(() => document.body.innerText.includes('This invitation is no longer active.'));
+  await codeInput.fill('B'.repeat(43));
+  await spaces.page.locator('::-p-aria(Accept invitation)').click();
+  await spaces.page.waitForFunction(() => document.body.innerText.includes('Shared workspace fixture'));
+  assert.equal(await spaces.page.$eval('#workspace-invitation', input => input.value), '');
   const spacesOnSecondDevice = await open('/dashboard/connections', secondContext);
   await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Personal workspace fixture'));
   await spacesOnSecondDevice.page.reload();
+  await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Shared workspace fixture'));
   await spacesOnSecondDevice.page.waitForFunction(() => document.body.innerText.includes('Personal workspace fixture'));
   const privacy = await open('/dashboard/privacy');
   await privacy.page.waitForFunction(() => document.body.innerText.includes('The approved policy is unavailable'));

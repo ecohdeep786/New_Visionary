@@ -264,7 +264,7 @@
       "profile": "authenticated-account",
       "state": "missing",
       "execution": "server",
-      "reason": "Workspace list and personal provisioning use dev contracts. Beta requires the deployed overview store and workspace provisioner.",
+      "reason": "Workspace list, personal provisioning and institution invitation acceptance use dev contracts. Beta requires the deployed overview store, workspace provisioner and institution invitation service.",
       "followUp": [
         "SCOPE-06",
         "PLAT-01"

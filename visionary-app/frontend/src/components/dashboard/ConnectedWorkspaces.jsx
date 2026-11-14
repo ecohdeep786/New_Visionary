@@ -8,6 +8,8 @@ const roleLabels = { OWNER: 'Owner', ADMIN: 'Administrator', MEMBER: 'Member', G
 
 export default function ConnectedWorkspaces({ accountId }) {
   const [after, setAfter] = useState(null);
+  const [invitation, setInvitation] = useState('');
+  const [joining, setJoining] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState(null);
   const command = useRef(null);
@@ -19,6 +21,7 @@ export default function ConnectedWorkspaces({ accountId }) {
     retry: false, gcTime: 0,
   });
   const page = query.isSuccess ? query.data : null;
+  const submitting = busy || joining;
   // The overview may refuse a new account until provisioning creates its SQL person.
   // Only the provisioning endpoint decides whether this account may be set up.
   const mayNeedSetup = query.error?.status === 403;
@@ -51,6 +54,33 @@ export default function ConnectedWorkspaces({ accountId }) {
     }
   }
 
+  async function acceptInvitation(event) {
+    event.preventDefault();
+    if (pending.current || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())) return;
+    pending.current = true;
+    setJoining(true);
+    setMessage(null);
+    try {
+      await workspaces.acceptInvitation(accountId, invitation.trim());
+      setInvitation('');
+      if (after) setAfter(null);
+      else await query.refetch();
+      setMessage({ text: 'Invitation accepted. Refresh your workspaces if the new workspace does not appear yet.' });
+    } catch (error) {
+      const text = {
+        401: 'Your session has ended. Sign in and try again.',
+        403: 'This account could not accept the invitation. Check the account you’re signed in with.',
+        404: 'The invitation could not be found. Check the code or ask for a new one.',
+        409: 'The invitation could not be accepted in its current state. Refresh your workspaces.',
+        410: 'This invitation is no longer active. Ask for a new one.',
+      }[error.status] || 'Could not confirm acceptance. Check your connection and try again.';
+      setMessage({ error: true, text });
+    } finally {
+      pending.current = false;
+      setJoining(false);
+    }
+  }
+
   return <section className="max-w-2xl rounded-2xl border bg-white p-6">
     <h1 className="text-2xl font-semibold">Workspaces</h1>
     <p className="mt-2 text-slate-700">Review the personal and shared workspaces linked to your account.</p>
@@ -64,11 +94,21 @@ export default function ConnectedWorkspaces({ accountId }) {
       </li>)}
     </ul>}
     <div className="mt-4 flex flex-wrap gap-3">
-      <button type="button" className="min-h-11 rounded-lg border px-4" disabled={busy || query.isFetching} onClick={() => { setMessage(null); query.refetch(); }}>Refresh workspaces</button>
-      {after && <button type="button" className="min-h-11 rounded-lg border px-4" onClick={() => setAfter(null)}>First page</button>}
-      {page?.next && <button type="button" className="min-h-11 rounded-lg border px-4" onClick={() => setAfter(page.next)}>Next page</button>}
-      {canProvision && <button type="button" className="min-h-11 rounded-lg bg-blue-700 px-4 text-white disabled:opacity-60" disabled={busy || query.isFetching} onClick={provision}>{busy ? 'Setting up…' : 'Set up personal workspace'}</button>}
+      <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting || query.isFetching} onClick={() => { setMessage(null); query.refetch(); }}>Refresh workspaces</button>
+      {after && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting} onClick={() => setAfter(null)}>First page</button>}
+      {page?.next && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting} onClick={() => setAfter(page.next)}>Next page</button>}
+      {canProvision && <button type="button" className="min-h-11 rounded-lg bg-blue-700 px-4 text-white disabled:opacity-60" disabled={submitting || query.isFetching} onClick={provision}>{busy ? 'Setting up…' : 'Set up personal workspace'}</button>}
     </div>
+    {(page || mayNeedSetup) && <form className="mt-6 border-t pt-5" onSubmit={acceptInvitation}>
+      <h2 className="text-lg font-semibold">Join a workspace</h2>
+      <label htmlFor="workspace-invitation" className="mt-3 block text-sm font-medium">Invitation code</label>
+      <input id="workspace-invitation" className="mt-1 block min-h-11 w-full max-w-md rounded-lg border px-3"
+        autoComplete="off" autoCapitalize="off" spellCheck={false} maxLength={60} required
+        value={invitation} onChange={event => { setInvitation(event.target.value); setMessage(null); }} disabled={submitting} />
+      <button type="submit" className="mt-3 min-h-11 rounded-lg border px-4" disabled={submitting || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())}>
+        {joining ? 'Accepting…' : 'Accept invitation'}
+      </button>
+    </form>}
     {message && <p className="mt-4" role={message.error ? 'alert' : 'status'}>{message.text}</p>}
   </section>;
 }
