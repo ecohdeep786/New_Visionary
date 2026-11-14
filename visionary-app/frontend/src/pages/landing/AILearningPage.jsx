@@ -125,7 +125,7 @@ function PricingStoreSection() {
             Plans for <span className="accent-gradient">every journey</span>.
           </h1>
           <p className="mx-auto max-w-[760px] text-[17px] font-normal leading-[25px] text-[#6e6e73]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-            Start free. Find the right fit for yourself, your family, or your organization.
+            Create an account for free. Personal and Family prices below are for the billing preview. The learning features in the comparison are planned.
           </p>
         </div>
         <div className="mx-auto mt-12 w-full max-w-[1240px]">
@@ -141,7 +141,6 @@ function PricingStoreSection() {
                     <th key={p.id} scope="col" className="sticky top-14 z-10 min-w-[210px] bg-white px-5 align-bottom">
                       <div className="flex flex-col items-stretch pb-6 pt-2 text-center">
                         <div className="flex h-7 items-center justify-center">
-                          {p.badge && <span className="rounded-full bg-[#1d1d1f] px-2.5 py-1 text-[12px] font-medium leading-none text-white">{p.badge}</span>}
                         </div>
                         <h2 className="mt-2 text-[21px] font-semibold leading-[1.19] tracking-[-0.009em]" style={{ color: COLORS.ink }}>{p.name}</h2>
                         <p className="mt-1.5 min-h-[40px] text-[14px] font-normal leading-[1.43]" style={{ color: COLORS.grey }}>{p.tagline}</p>
@@ -191,7 +190,7 @@ function PricingStoreSection() {
             </table>
           </div>
           <p className="mt-6 text-[12px] leading-[1.5]" style={{ color: COLORS.grey }}>
-            Prices in INR · Taxes may apply · Education discounts available
+            Preview prices in INR
           </p>
 
           {/* Institution — contact-shaped, priced-inside-config null: its own
@@ -205,7 +204,7 @@ function PricingStoreSection() {
                   {institution.features.join(" · ")}
                 </p>
                 <p data-b3="fine" className="mt-2 text-[12px] leading-[1.5]" style={{ color: COLORS.grey }}>
-                  Pricing shaped with you · pilots available
+                  Contact us to discuss an institutional rollout
                 </p>
               </div>
               <Link

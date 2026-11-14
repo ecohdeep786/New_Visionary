@@ -30,8 +30,8 @@ import { fontStack } from "@/components/landing/system/tokens";
    cards in grey trays), shared across converted pages. Styling uses
    Tailwind arbitrary values of the same tokens. ═══ */
 
-/* ═══ The research, honestly labelled. "In the product" items are real,
-   shipped capabilities of the internal mentor; "Next" items are the work
+/* ═══ The research, honestly labelled. "In development" items are real,
+   capabilities under development; "Next" items are the work
    ahead. No live-AGI claim — the page describes a direction, like every
    company research page. ═══ */
 const AREAS = [
@@ -45,9 +45,9 @@ const AREAS = [
     tint: "rgba(0,102,204,0.10)",
     copy: "The Learn, Ask, Practice, and Build loop turns one day of learning into evidence the mentor plans from: progress described by what was actually done, never by invented scores.",
     items: [
-      { tag: "In the product", subject: "updates", title: "The daily mentor plan", detail: "Home is a decision, not a grid: one clear next step, chosen from classwork, activity, and due practice." },
-      { tag: "In the product", subject: "learn", title: "Exact session resume", detail: "A lesson interrupted by a refresh or a language change resumes exactly where it stopped." },
-      { tag: "In the product", subject: "build", title: "Build with recovery", detail: "A project that fails to save partway recovers — your work is not lost." },
+      { tag: "In development", subject: "updates", title: "The daily mentor plan", detail: "Home is a decision, not a grid: one clear next step, chosen from classwork, activity, and due practice." },
+      { tag: "In development", subject: "learn", title: "Exact session resume", detail: "A lesson interrupted by a refresh or a language change resumes exactly where it stopped." },
+      { tag: "In development", subject: "build", title: "Build with recovery", detail: "A project that fails to save partway recovers — your work is not lost." },
       { tag: "Next", subject: "growth", title: "Practice that truly adapts", detail: "Deeper adaptation from real outcomes across subjects — not a score dressed up as understanding." },
     ],
   },
@@ -61,9 +61,9 @@ const AREAS = [
     tint: "#f5f5f7",
     copy: "Prepare, publish, and review classwork while the intelligence handles the follow-through, and the learner's private learning stays the learner's own.",
     items: [
-      { tag: "In the product", subject: "document", title: "Publish and review loop", detail: "Teacher preparation flows to publication, student submission, and a reviewed check. One connected loop." },
-      { tag: "In the product", subject: "community", title: "Class communities, moderated", detail: "Class-scoped communities with report and rate-limit controls, kept safe by the teacher." },
-      { tag: "In the product", subject: "handshake", title: "Work in a learner's day", detail: "Classwork joins a student's Daily Mentor plan without taking ownership of their private learning." },
+      { tag: "In development", subject: "document", title: "Publish and review loop", detail: "Teacher preparation flows to publication, student submission, and a reviewed check. One connected loop." },
+      { tag: "In development", subject: "community", title: "Class communities, moderated", detail: "Class-scoped communities with report and rate-limit controls, kept safe by the teacher." },
+      { tag: "In development", subject: "handshake", title: "Work in a learner's day", detail: "Classwork joins a student's Daily Mentor plan without taking ownership of their private learning." },
       { tag: "Next", subject: "student", title: "Stage-aware presentation", detail: "The same concept presented for the learner's stage, derived from evidence rather than age alone." },
     ],
     flip: true,
@@ -78,8 +78,8 @@ const AREAS = [
     tint: "#f5f5f7",
     copy: "Follow a child's learning through summaries scoped by consent, support at home without opening the learner's private world.",
     items: [
-      { tag: "In the product", subject: "shield", title: "Consent-based summaries", detail: "Parent reports show only what the learner's consent allows. Nothing more appears anywhere." },
-      { tag: "In the product", subject: "lock", title: "Boundaries by design", detail: "Private doubts and personal projects stay outside family and organizational views by default." },
+      { tag: "In development", subject: "shield", title: "Consent-based summaries", detail: "Parent reports show only what the learner's consent allows. Nothing more appears anywhere." },
+      { tag: "In development", subject: "lock", title: "Boundaries by design", detail: "Private doubts and personal projects stay outside family and organizational views by default." },
       { tag: "Next", subject: "eye", title: "Clearer progress updates", detail: "Clearer summaries of what changed and why." },
     ],
   },
@@ -93,8 +93,8 @@ const AREAS = [
     tint: "#f5f5f7",
     copy: "A professional declares a goal; the mentor turns study and real work into proof of skill — and the proof into a portfolio employers can read.",
     items: [
-      { tag: "In the product", subject: "briefcase", title: "Goal, evidence, portfolio", detail: "A professional goal becomes real projects, saved as proof of skill, and assembled into a portfolio." },
-      { tag: "In the product", subject: "growth", title: "Understanding, not percentages", detail: "Progress is described by evidence. Invented confidence scores and exam-readiness numbers are never shown." },
+      { tag: "In development", subject: "briefcase", title: "Goal, evidence, portfolio", detail: "A professional goal becomes real projects, saved as proof of skill, and assembled into a portfolio." },
+      { tag: "In development", subject: "growth", title: "Understanding, not percentages", detail: "Progress is described by evidence. Invented confidence scores and exam-readiness numbers are never shown." },
       { tag: "Next", subject: "research", title: "Verified skill claims", detail: "Outcome-level claims that independent evaluation can support." },
     ],
     flip: true,
@@ -109,18 +109,18 @@ const AREAS = [
     tint: "#f5f5f7",
     copy: "Schools, colleges, coaching institutes, and workplaces roll out learning across cohorts — with role isolation enforced at every view.",
     items: [
-      { tag: "In the product", subject: "team", title: "Insights across cohorts", detail: "Organization setup flows to cohorts and grouped views — insight without exposing any individual." },
-      { tag: "In the product", subject: "shield", title: "Isolation enforced", detail: "One account can switch roles without data leakage; organizational views never see private work." },
+      { tag: "In development", subject: "team", title: "Insights across cohorts", detail: "Organization setup flows to cohorts and grouped views — insight without exposing any individual." },
+      { tag: "In development", subject: "shield", title: "Isolation enforced", detail: "One account can switch roles without data leakage; organizational views never see private work." },
       { tag: "Next", subject: "handshake", title: "Production enforcement", detail: "Server-side authorization repeating every client-side role and consent check." },
     ],
   },
 ];
 
-/* Recently shipped — real capabilities, real month. */
+/* Development highlights. */
 const LATEST = [
-  { label: "September 2026", title: "The daily mentor engine", copy: "Home became a decision: one clear next step for every role, chosen from classwork, activity, and due practice.", subject: "updates", tint: "rgba(0,102,204,0.10)" },
-  { label: "September 2026", title: "Two faces of one intelligence", copy: "Vision Boy and Vision Girl ship as two presentations of the same intelligence: one memory, one way of teaching, one safety policy.", subject: "ask", tint: "#f5f5f7" },
-  { label: "September 2026", title: "A teacher-moderated community", copy: "Class-scoped communities where learners grow together and teachers keep the space safe.", subject: "community", tint: "#f5f5f7" },
+  { label: "September 2026", title: "The daily mentor engine", copy: "We’re exploring how the workspace could suggest a next step based on classwork, activity, and due practice.", subject: "updates", tint: "rgba(0,102,204,0.10)" },
+  { label: "September 2026", title: "Two faces of one intelligence", copy: "The design explores two ways to present the same mentor.", subject: "ask", tint: "#f5f5f7" },
+  { label: "September 2026", title: "A teacher-moderated community", copy: "The design gives classes a discussion space with tools for teacher moderation.", subject: "community", tint: "#f5f5f7" },
 ];
 
 /* The work the research feeds — product surfaces shaped by these questions. */
@@ -240,7 +240,7 @@ export default function ResearchNewsPage() {
             </p>
             <div className="mt-4">
               <QuietLink href="#latest">
-                What the intelligence does today <ChevronIcon className="h-4 w-4" aria-hidden="true" />
+                Explore current work <ChevronIcon className="h-4 w-4" aria-hidden="true" />
               </QuietLink>
             </div>
           </div>
@@ -263,7 +263,7 @@ export default function ResearchNewsPage() {
             </div>
           </Reveal>
         </section>
-        {/* READ THE LATEST — real capabilities, really shipped */}
+        {/* DEVELOPMENT HIGHLIGHTS */}
         <section id="latest" data-section="04-latest" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -304,7 +304,7 @@ export default function ResearchNewsPage() {
         </section>
 
         {/* OUR RESEARCH DRIVES REAL UNDERSTANDING — three focus areas, each
-            with its shipped capabilities and what comes next */}
+            with current development and future research */}
         <section id="areas" data-section="05-areas" className="scroll-mt-32 bg-[#f5f5f7] px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
@@ -312,7 +312,7 @@ export default function ResearchNewsPage() {
                 Our research drives real understanding.
               </h2>
               <p className="mx-auto mt-4 max-w-[640px] text-[16px] leading-[1.65] text-[#6e6e73] sm:text-[16px]">
-                One intelligence, researched across every role the product serves — what it does for each person today, and what comes next.
+                Explore the experiences we’re developing for learners, teachers, guardians, professionals, and organizations.
               </p>
             </div>
             <div className="mt-16 space-y-24">
@@ -485,7 +485,7 @@ export default function ResearchNewsPage() {
                   <div className="flex flex-1 flex-col p-7 pb-16">
                     <h3 className="text-[23px] font-normal leading-[1.3] text-[#1d1d1f]">Join the community</h3>
                     <p className="mt-2 text-[16px] leading-[1.65] text-[#6e6e73]">
-                      Learners, teachers, and parents use the product every day, and their experience is a primary source for every question on this page.
+                      These research questions focus on the tasks learners, teachers, and guardians need to complete.
                     </p>
                   </div>
                   <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0066cc] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />

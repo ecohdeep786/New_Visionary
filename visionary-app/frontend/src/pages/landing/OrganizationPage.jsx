@@ -134,7 +134,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Eye, t: "See every learner.", c: "A clear picture of understanding across classes, not just attendance.", l: "How it works", to: "/how-it-works" },
       { Icon: UsersRound, t: "Parents stay close.", c: "Progress shared in ways that help at home, not only at report time.", l: "For parents", to: "/parent" },
-      { Icon: Globe2, t: "In the languages your people think in.", c: "Learning and reporting in English, Hindi, and Bengali today, with more on the roadmap.", l: "Language support", to: "/how-it-works" },
+      { Icon: Globe2, t: "In the languages your people think in.", c: "We’re exploring how institutional learning and reporting could support English, Hindi, and Bengali.", l: "Language support", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Bring it to your school.", c: "Start with one class and grow from there.", l: "Talk to us", to: "/contact" },
     ],
   },
@@ -179,7 +179,7 @@ const OrgHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Leading, to scale, to last."
-    sub="One intelligence across every classroom, team, and program. Understanding stays inside your institution."
+    sub="Talk with Visionary about your institution’s needs. Explore the cohort, curriculum, and reporting tools we’re developing."
     img={orgHero}
     alt="A leader reviewing team progress on a tablet"
     ctaTo="/contact"

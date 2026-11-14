@@ -28,6 +28,7 @@ export default function LandingNav() {
   const openTimer = useRef(null);
   const closeTimer = useRef(null);
   const drawerRef = useRef(null);
+  const focusMega = useRef(null);
   const menuBtnRef = useRef(null);
 
   const { pathname } = useLocation();
@@ -41,10 +42,14 @@ export default function LandingNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Close megamenus when the viewport drops below the desktop breakpoint */
+  /* Close the navigation that belongs to the previous layout. */
   useEffect(() => {
     const onResize = () => {
+      focusMega.current = null;
+      clearTimeout(openTimer.current);
+      clearTimeout(closeTimer.current);
       if (window.innerWidth < 1024) setOpenMega(null);
+      else setMobileOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -63,7 +68,9 @@ export default function LandingNav() {
 
   const requestClose = () => {
     clearTimeout(openTimer.current);
-    closeTimer.current = setTimeout(() => setOpenMega(null), HOVER_CLOSE_MS);
+    closeTimer.current = setTimeout(() => {
+      setOpenMega(current => refs[current]?.current?.contains(document.activeElement) ? current : null);
+    }, HOVER_CLOSE_MS);
   };
 
   /* Escape closes megamenu */
@@ -72,11 +79,20 @@ export default function LandingNav() {
 
     const onDown = (e) => {
       const activeRef = refs[openMega]?.current;
-      if (activeRef && !activeRef.contains(e.target)) setOpenMega(null);
+      if (activeRef && !activeRef.contains(e.target)) {
+        clearTimeout(openTimer.current);
+        clearTimeout(closeTimer.current);
+        setOpenMega(null);
+      }
     };
 
     const onKey = (e) => {
-      if (e.key === "Escape") setOpenMega(null);
+      if (e.key !== "Escape") return;
+      clearTimeout(openTimer.current);
+      clearTimeout(closeTimer.current);
+      const activeRef = refs[openMega]?.current;
+      if (activeRef?.contains(document.activeElement)) activeRef.querySelector("button")?.focus();
+      setOpenMega(null);
     };
 
     document.addEventListener("mousedown", onDown);
@@ -126,11 +142,20 @@ export default function LandingNav() {
     };
   }, [mobileOpen]);
 
-  const toggleMega = (key) => {
+  const toggleMega = (key, event) => {
     clearTimeout(openTimer.current);
     clearTimeout(closeTimer.current);
-    setOpenMega((cur) => (cur === key ? null : key));
+    const next = openMega === key ? null : key;
+    if (next && event.detail === 0) focusMega.current = next;
+    setOpenMega(next);
   };
+
+  useEffect(() => {
+    if (openMega && focusMega.current === openMega) {
+      focusMega.current = null;
+      refs[openMega]?.current?.querySelector("a")?.focus();
+    }
+  }, [openMega]);
 
   const megaTrigger = (key, pageActive = false) =>
     `${navLink(openMega === key || pageActive)} justify-center gap-1.5`;
@@ -188,7 +213,7 @@ export default function LandingNav() {
                 aria-haspopup="true"
                 aria-expanded={openMega === "who"}
                 aria-controls="mega-who"
-                onClick={() => toggleMega("who")}
+                onClick={event => toggleMega("who", event)}
                 className={`${megaTrigger("who", pageActive.who)} min-w-0`}
               >
                 {activeCategory ? activeCategory.label : "Who you are"}
@@ -242,7 +267,7 @@ export default function LandingNav() {
                 aria-haspopup="true"
                 aria-expanded={openMega === "org"}
                 aria-controls="mega-org"
-                onClick={() => toggleMega("org")}
+                onClick={event => toggleMega("org", event)}
                 className={megaTrigger("org", pageActive.org)}
               >
                 For organizations
@@ -295,7 +320,7 @@ export default function LandingNav() {
                 aria-haspopup="true"
                 aria-expanded={openMega === "download"}
                 aria-controls="mega-download"
-                onClick={() => toggleMega("download")}
+                onClick={event => toggleMega("download", event)}
                 className={megaTrigger("download", pageActive.download)}
               >
                 Download
@@ -343,7 +368,7 @@ export default function LandingNav() {
                 aria-haspopup="true"
                 aria-expanded={openMega === "about"}
                 aria-controls="mega-about"
-                onClick={() => toggleMega("about")}
+                onClick={event => toggleMega("about", event)}
                 className={megaTrigger("about", pageActive.about)}
               >
                 About
@@ -434,6 +459,7 @@ export default function LandingNav() {
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
+            aria-controls={mobileOpen ? "public-mobile-navigation" : undefined}
             onClick={() => setMobileOpen((o) => !o)}
             className={iconBtn(false) + " lg:hidden"}
             style={{ color: C.graphite }}
@@ -456,8 +482,13 @@ export default function LandingNav() {
           panel under the bar, compact utility row on top, separated sections,
           safe-area padding, focus moved inside */}
       {mobileOpen && (
-        <div
+        <nav
+          id="public-mobile-navigation"
+          aria-label="Mobile navigation"
           ref={drawerRef}
+          onBlur={event => {
+            if (!event.currentTarget.contains(event.relatedTarget) && event.relatedTarget !== menuBtnRef.current) setMobileOpen(false);
+          }}
           className="safe-b relative mx-3 mt-2 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-[24px] border bg-white px-5 pb-8 pt-4 lg:hidden"
           style={{ borderColor: C.mist }}
         >
@@ -651,7 +682,7 @@ export default function LandingNav() {
               </div>
             ))}
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

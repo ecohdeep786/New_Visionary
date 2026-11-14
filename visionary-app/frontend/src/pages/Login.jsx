@@ -177,7 +177,7 @@ export default function Login() {
               />
               <ActionRow
                 left={
-                  <Link to="/forgot-password" className="text-sm text-[#0066cc] font-medium hover:underline">
+                  <Link to={authLink("/forgot-password")} state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">
                     Forgot password?
                   </Link>
                 }
@@ -200,7 +200,7 @@ export default function Login() {
             </div>
             <ActionRow
               left={
-                <Link to="/forgot-password" className="text-sm text-[#0066cc] font-medium hover:underline">
+                <Link to={authLink("/forgot-password")} state={{ email }} className="text-sm text-[#0066cc] font-medium hover:underline">
                   Forgot password?
                 </Link>
               }
