@@ -17,9 +17,11 @@ import { Check, ChevronDown } from "lucide-react";
  * first-letter typeahead, Enter/Space commit, Escape closing back to the
  * trigger, and Tab closing without committing. Clicking outside closes. The
  * change commits exactly once per explicit selection — the caller keeps the
- * same save-on-change contract the native selects had.
+ * same save-on-change contract the native selects had. `triggerClassName`
+ * replaces the default field styling so other surfaces (the topbar pill)
+ * can host the same keyboard law with their own visual grammar.
  */
-export default function WorkspaceListbox({ label, value, options, onChange, className = "", menuClassName = "" }) {
+export default function WorkspaceListbox({ label, value, options, onChange, className = "", menuClassName = "", triggerClassName = "" }) {
   const [open, setOpen] = useState(false);
   const activeRef = useRef(Math.max(0, options.findIndex(option => option.value === value)));
   const rootRef = useRef(null);
@@ -94,7 +96,7 @@ export default function WorkspaceListbox({ label, value, options, onChange, clas
         aria-label={label}
         onClick={() => (open ? setOpen(false) : openList())}
         onKeyDown={onTriggerKeyDown}
-        className="inline-flex min-h-[46px] w-full items-center justify-between gap-3 rounded-[var(--v-radius-control)] border border-[var(--v-outline)] bg-[var(--v-surface)] px-4 py-2.5 text-sm leading-5 text-[var(--v-text)] transition-[border-color,box-shadow] duration-150 ease-apple hover:border-[var(--v-action)] focus-visible:border-[var(--v-action)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--v-action)_25%,transparent)]"
+        className={triggerClassName || "inline-flex min-h-[46px] w-full items-center justify-between gap-3 rounded-[var(--v-radius-control)] border border-[var(--v-outline)] bg-[var(--v-surface)] px-4 py-2.5 text-sm leading-5 text-[var(--v-text)] transition-[border-color,box-shadow] duration-150 ease-apple hover:border-[var(--v-action)] focus-visible:border-[var(--v-action)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--v-action)_25%,transparent)]"}
       >
         <span className="truncate">{selected?.label}</span>
         <ChevronDown aria-hidden="true" size={16} className={`shrink-0 text-[var(--v-muted)] transition-transform duration-150 ease-apple ${open ? "rotate-180" : ""}`} />

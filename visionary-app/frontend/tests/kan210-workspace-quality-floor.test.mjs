@@ -140,3 +140,18 @@ test("KAN-210 listbox law: the control declares every setter it calls", () => {
     assert.ok(declared.has(name), `${name} must be declared before it is called`);
   }
 });
+
+test("KAN-210 switcher law: the topbar workspace switcher uses the listbox, not native selects", () => {
+  const switcher = read("src/components/dashboard/WorkspaceSwitcher.jsx");
+  assert.equal(switcher.includes("<select"), false, "no native select remains in the workspace switcher or its add-role dialog");
+  assert.match(switcher, /import WorkspaceListbox from '@\/components\/dashboard\/WorkspaceListbox';/, "the switcher imports the listbox");
+  const listboxes = switcher.match(/<WorkspaceListbox /g) || [];
+  assert.equal(listboxes.length, 2, "the topbar pill and the add-role dialog both use the listbox control");
+  assert.match(switcher, /aria-label|label=\{t\("activeWorkspace"\)\}/, "the topbar listbox keeps the accessible workspace name");
+  // The topbar pill keeps its own visual grammar through triggerClassName;
+  // the dialog field keeps the default control styling.
+  assert.match(switcher, /triggerClassName="/, "the topbar trigger opts into the pill grammar explicitly");
+  // The native select only fired change on a different value; the switcher
+  // keeps that contract (re-selecting the active workspace must not navigate).
+  assert.match(switcher, /value===activeWorkspace\?\.id\)return/, "re-selecting the active workspace is a no-op");
+});
