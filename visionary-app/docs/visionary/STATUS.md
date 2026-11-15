@@ -1596,3 +1596,40 @@ clean, typecheck clean, 853/853 tests, production build ok. T13 candidates
 queued from the CWV lab run (production build): LCP 3.6–3.8s vs 2.5s target —
 99KB `/student` hero image, 36KB landing hero, 565KB vendor bundle gating
 FCP ~2.5s; CLS and TBT within targets.
+
+## 2026-11-15 — T13 CWV: the front door loads 30% less JavaScript and paints its LCP element at first commit
+
+The CWV lab baseline (production build, Lighthouse mobile throttle profile:
+1.6Mbps / 150ms RTT / 4x CPU) showed LCP 3.6-3.8s against the 2.5s target on
+every measured route. The timeline probe decomposed the gap: FCP ~2.5s gated
+by the initial JS, then ~1.1s more before the LCP element painted. Three
+structural causes were found and fixed. (1) The manualChunks catch-all
+dragged async-only packages into the initial vendor chunk — the react-markdown
+stack used only by the lazy CourseViewer and Ask surfaces rode in every
+landing visit (~84KB); removing the catch-all lets modules follow their
+importers. (2) The Firebase SDK initialized at import time, so ~174KB of auth
+code sat in the initial payload although the landing never executes a Firebase
+call; `getFirebaseAuthClient` now loads the SDK on the first identity use and
+caches the promise, and every adapter method pulls its functions from the same
+cached dynamic import — the full register → oobCode verification → onboarding
+→ dashboard journey was re-verified in the real browser against the Auth
+Emulator realm after the change. (3) The four measured front-door routes
+rendered through lazy chunks whose LCP element painted ~1.2s after the first
+paint, with the mount-time section-chunk flood starving the /student hero for
+~1s; their chunks (15-24KB each) now join the entry graph so the hero/text
+paints in the first commit — three lazy+modulepreload variants were measured
+and lost LCP on every route, so the ~0.3s FCP cost of eager is the accepted
+trade. (4) Every persona page eagerly fetched 3-6 below-fold carousel slide
+images that raced the LCP hero; `loading="lazy"` defers them until they near
+the viewport. Worktree `nv-worktrees/zcode-v6-cwv-lcp`, branch
+`zcode/v6-cwv-lcp`, implementation commit `8f539344`, pushed and
+fast-forwarded to `origin/dev`. Measured (production build, cwv-audit): LCP
+/ 3644→3212ms, /how-it-works 3800→3360ms, /pricing 3824→3280ms, /student
+3560→2812ms; CLS / and /student 0.068→0; TBT / 172→242-266ms (accepted and
+noted — the eager landing renders synchronously in the first commit); initial
+JS 789KB→717KB raw (223→192KB gzip) despite the eager pages. The 2.5s LCP
+target is met on /student; the remaining floor is evidenced: the hero AVIF
+wire (~63KB at 1600w — recompression candidate) and the text routes'
+second-commit render cost (~780ms under throttle — section-virtualization
+candidate). Surface inventory regenerated (authAdapter SHA changed). Gates:
+lint clean, typecheck clean, 853/853 tests, production build ok.
