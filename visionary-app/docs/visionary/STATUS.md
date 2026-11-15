@@ -1513,3 +1513,24 @@ dialog's role listbox verified through a real Organization typeahead commit).
 The D-066 introduction dialog consumes Escape above the listbox — correct
 layering, observed and not a defect. No dev-server-only behavior changed; no
 hosted acceptance claimed.
+
+## 2026-11-15 — KAN-210 shell law: the restricted-area role gate keeps the full shell chrome
+
+Found during the Phase-4 internal-product browser sweep (teacher workspace,
+registered backend + Auth Emulator realm): the FAP-75/FAP-87 restricted-area
+gate rendered as a bare page — no topbar, no rail, and nothing inside the
+`<main>` landmark — for `/dashboard/people|curriculum|analytics|cohorts` and
+the other owner-gated sections (`child`, `reports`). The KAN-210 shell law
+requires opening/error states to be rooms in the product. DashboardLayout now
+renders the gate through `shellFor` with the viewer's own workspace navigation
+and stage tier; a stage failure falls to the shell's unavailable room. A new
+source-law test pins the gate inside the shell; the FAP-75/FAP-87 guard
+windows were widened for the restructured block with intent unchanged.
+Worktree `nv-worktrees/zcode-v6-role-gate-shell`, branch
+`zcode/v6-role-gate-shell`, implementation commit `56106c4d`, pushed and
+fast-forwarded to `origin/dev`. Gates: lint clean, typecheck clean, 842/842
+tests, production build ok. Real-browser verification: all five gated surfaces
+render the boundary gate inside `<main>` with the localized heading, honest
+sentence and real actions (Prepare/Classes/Return to workspace) at the
+requested URL; `/dashboard/home`, `/dashboard/classes` and `/dashboard/insights`
+are unchanged. No hosted acceptance claimed.
