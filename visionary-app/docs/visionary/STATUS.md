@@ -1633,3 +1633,38 @@ wire (~63KB at 1600w — recompression candidate) and the text routes'
 second-commit render cost (~780ms under throttle — section-virtualization
 candidate). Surface inventory regenerated (authAdapter SHA changed). Gates:
 lint clean, typecheck clean, 853/853 tests, production build ok.
+
+## 2026-11-16 — T07 public-website sweep: the conversion journeys hold; one retained dead page removed
+
+The T07 lane swept every declared public route (24) in the real browser
+against the merged dev build: zero dead ends, zero page errors, every route
+renders its heading and CTAs, and the pricing → register → billing plan
+intent flows end to end — `/pricing` "Preview Personal/Family" links
+`/register?plan=…`, the register page's BillingAuthNotice acknowledges the
+choice in words, the onboarding completion preserves the `returnTo`, and
+`/dashboard/subscription?plan=…` lands on ConnectedBilling with the plan
+preselected (`plan=start` correctly carries no billing intent — the free
+plan has nothing to review). The landing H1's accessible name was verified
+in the browser ("One intelligence, for students, teachers, parents,
+professionals, and organizations." — the visible spans are block-level; the
+sweep's textContent concatenation was an artifact, not a defect). Craft
+review of the four highest-traffic pages at desktop and mobile widths found
+no clipping or broken composition. The sweep's one real finding was
+retained dead code: `src/pages/dashboard/Subscription.jsx` was imported by
+nothing (the `/dashboard/subscription` route renders Plans.jsx /
+ConnectedBilling) and carried a Free/Premium plan vocabulary contradicting
+the live single-source vocabulary (Start/Personal/Family per
+`pricingConfig.js`); the surface review registry had already documented it
+as retained-source-only with no route reachability, and the removal
+completes that intent so the tree carries one billing vocabulary. Worktree
+`nv-worktrees/zcode-v7-t07-subscription-cleanup`, branch
+`zcode/v7-t07-subscription-cleanup`, implementation commit `472c3111`,
+pushed and fast-forwarded to `origin/dev`. The review registry entry went
+with the file and the surface inventory was regenerated (246→245 control
+files, 1686→1682 declarations — exactly the removed file's).
+Browser-verified after the change: `/dashboard/subscription?plan=personal`
+renders the ConnectedBilling surface with its honest realm state. Gates:
+lint clean, typecheck clean, 853/853 tests, production build ok. T07
+remaining scope for a later pass: deeper content-hierarchy and
+page-to-page-transition craft review beyond the structural sweep (no
+defects found at this depth).
