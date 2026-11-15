@@ -1121,6 +1121,16 @@
         "ACCEPT-05"
       ]
     },
+    "frontend/src/components/dashboard/WorkspaceListbox.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Settings listbox primitive delegates its committed value to the reviewed caller's save-on-change contract; a control choice never establishes server authority or multi-device persistence.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
     "frontend/src/components/dashboard/WorkspaceNotifications.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
