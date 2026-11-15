@@ -1534,3 +1534,34 @@ render the boundary gate inside `<main>` with the localized heading, honest
 sentence and real actions (Prepare/Classes/Return to workspace) at the
 requested URL; `/dashboard/home`, `/dashboard/classes` and `/dashboard/insights`
 are unchanged. No hosted acceptance claimed.
+
+## 2026-11-15 — KAN-145 UI binding: the Progress surface reads the owner's server knowledge estimate
+
+The knowledge-projection service (KAN-145/LEARN-09) was registered in the
+selected runtime with no frontend binding; this completes the frontend
+integration contract. `knowledgeProjectionClient` binds GET models, GET
+projections and POST project with strict response validation: every response
+is checked against the signed-in owner and the exact scope echo, verdict-
+adjacent fields in a response are refused rather than normalized, 404 reads
+as the honest empty state, and the command body carries only references —
+no verdict field ever leaves the browser. A confirmed assessment now projects
+its immutable receipt (sessionId + receiptId, own commandId) into the owner
+estimate; both verdicts are evidence and a projection failure never
+invalidates the saved learning evidence. The Progress surface renders the
+Knowledge estimate panel exactly as the server computed it (pKnown, model
+version, assessed count, revision) with honest empty/conflict/unavailable
+states in English, Hindi and Bengali; requests are bounded to guided rows
+carrying the durable scope. Worktree
+`nv-worktrees/zcode-v6-knowledge-projection-ui`, branch
+`zcode/v6-knowledge-projection-ui`, implementation commit `1181f02d`, pushed
+and fast-forwarded to `origin/dev`. Surface review registry gained the panel
+as a server-connected control with the three registered endpoints; the
+inventory was regenerated. Gates: lint clean, typecheck clean, 853/853 tests,
+production build ok. Real-server verification against the registered runtime:
+GET models returns 200 with the calibrated `a2-calib-v1` parameters — which
+caught and corrected a real contract-shape defect in the client (`requires`
+is a scope object, not a string) — and GET projections returns the contract
+404 empty state; the Progress page is unchanged for an evidence-free account.
+The write path requires curriculum content in the runtime (the documented
+content/criteria dependency) and is verified by the durable-session contract
+tests until that dependency lands.
