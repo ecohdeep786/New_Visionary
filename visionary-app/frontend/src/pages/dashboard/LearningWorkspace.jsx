@@ -26,10 +26,11 @@ import ClassworkStudy from './ClassworkStudy';
 import { useAuth } from '@/lib/AuthContext';
 import { appClient } from '@/api/appClient';
 import { createLearningSessionClient } from '@/services/learningSessionClient';
+import { createKnowledgeProjectionClient } from '@/services/knowledgeProjectionClient';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { getContentRepository, getSavedCurriculumGraphs, SAMPLE_SELECTION, SAMPLE_LIBRARY_SELECTION, PROFESSIONAL_SAMPLE_SELECTION } from '@/services/contentRepository';
 import { getStudentState, getStudentClassLearningContext } from '@/services/mentorStateService';
-import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation, configureLearningSessionAdapter } from '@/services/learningPipelineService';
+import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation, configureLearningSessionAdapter, configureKnowledgeProjectionAdapter } from '@/services/learningPipelineService';
 const languageNames = {
   en: 'English',
   hi: 'हिन्दी',
@@ -167,12 +168,15 @@ function CurriculumLearningWorkspace({
   const bookId = params.get('book');
   const fromClassId = params.get('fromClass');
   // Connected learning sessions are owner-scoped server receipts keyed to the
-  // signed-in profile; signed-out visitors get no session adapter.
+  // signed-in profile; signed-out visitors get no session adapter. The
+  // knowledge estimate (KAN-145) rides the same verified identity: confirmed
+  // assessments project into the owner's server-side estimate.
   useEffect(() => {
     const accountId = user?.id;
-    if (!accountId) { configureLearningSessionAdapter(null); return undefined; }
+    if (!accountId) { configureLearningSessionAdapter(null); configureKnowledgeProjectionAdapter(null); return undefined; }
     configureLearningSessionAdapter(createLearningSessionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
-    return () => configureLearningSessionAdapter(null);
+    configureKnowledgeProjectionAdapter(createKnowledgeProjectionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
+    return () => { configureLearningSessionAdapter(null); configureKnowledgeProjectionAdapter(null); };
   }, [user?.id]);
   useEffect(() => {
     let live = true;
