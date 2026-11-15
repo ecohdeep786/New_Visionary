@@ -2255,16 +2255,6 @@
     "SYNC-02"
    ]
   },
-  "frontend/src/pages/dashboard/Subscription.jsx": {
-   "profile": "retained-source-only",
-   "state": "intentionally-unreleased",
-   "execution": "not-route-reachable",
-   "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-   "followUp": [
-    "SCOPE-01",
-    "SCOPE-06"
-   ]
-  },
   "frontend/src/pages/dashboard/Support.jsx": {
    "profile": "local-domain-workflow",
    "state": "preview",

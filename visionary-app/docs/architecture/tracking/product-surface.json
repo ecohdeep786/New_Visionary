@@ -73439,114 +73439,6 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Subscription.jsx:11:436",
-      "file": "frontend/src/pages/dashboard/Subscription.jsx",
-      "line": 11,
-      "column": 436,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "destination": "/dashboard/home",
-      "disabled": null,
-      "declarationSha256": "dca3dc860892853aaa0b506e3c948734ededb9a636557d1ff5c851b7ff627138",
-      "routeIds": [],
-      "reviewProfile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "classificationReason": "No source-import path from a declared route entry was found. Retained source is not an exposed live feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/dashboard/Subscription.jsx:14:1207",
-      "file": "frontend/src/pages/dashboard/Subscription.jsx",
-      "line": 14,
-      "column": 1207,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => setDetails(true)}"
-        }
-      ],
-      "calls": [
-        "setDetails"
-      ],
-      "disabled": null,
-      "declarationSha256": "4292f27a0784c6dd957f8d2cdf6ecf5676fc7d837397434486764c3a64adc5f0",
-      "routeIds": [],
-      "reviewProfile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "classificationReason": "No source-import path from a declared route entry was found. Retained source is not an exposed live feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/dashboard/Subscription.jsx:17:5",
-      "file": "frontend/src/pages/dashboard/Subscription.jsx",
-      "line": 17,
-      "column": 5,
-      "tag": "Dialog",
-      "events": [
-        {
-          "event": "onOpenChange",
-          "expression": "{setDetails}"
-        }
-      ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "0cfd36c75716401a0dc8170253e3ffd0e15002026f715b2db22226278be1406f",
-      "routeIds": [],
-      "reviewProfile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "classificationReason": "No source-import path from a declared route entry was found. Retained source is not an exposed live feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/dashboard/Subscription.jsx:17:384",
-      "file": "frontend/src/pages/dashboard/Subscription.jsx",
-      "line": 17,
-      "column": 384,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => setDetails(false)}"
-        }
-      ],
-      "calls": [
-        "setDetails"
-      ],
-      "disabled": null,
-      "declarationSha256": "7dfc3b4796bed6a4f340f91b7d827b880b76ae972e8fca0a3be3a11f877457ef",
-      "routeIds": [],
-      "reviewProfile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "classificationReason": "No source-import path from a declared route entry was found. Retained source is not an exposed live feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
       "id": "frontend/src/pages/dashboard/Support.jsx:21:168",
       "file": "frontend/src/pages/dashboard/Support.jsx",
       "line": 21,
@@ -85562,10 +85454,6 @@
       "sourceSha256": "1bbf6aec44a9ab8eb14ecd8f9cabb464dc075ca81ce8ef605090253e2da57785"
     },
     {
-      "file": "frontend/src/pages/dashboard/Subscription.jsx",
-      "sourceSha256": "ee03b30302cb2cf443a225468965c9071282cb19341a06f2411f91491b2188b2"
-    },
-    {
       "file": "frontend/src/pages/dashboard/Support.jsx",
       "sourceSha256": "5c0476a821ddc0465e70a6d725ce51998a3d232b50d9a36cf0672fc3ffbb4b3a"
     },
@@ -88229,16 +88117,6 @@
           "SYNC-02"
         ]
       },
-      "frontend/src/pages/dashboard/Subscription.jsx": {
-        "profile": "retained-source-only",
-        "state": "intentionally-unreleased",
-        "execution": "not-route-reachable",
-        "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-        "followUp": [
-          "SCOPE-01",
-          "SCOPE-06"
-        ]
-      },
       "frontend/src/pages/dashboard/Support.jsx": {
         "profile": "local-domain-workflow",
         "state": "preview",
@@ -89509,14 +89387,14 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1686,
+    "controlDeclarations": 1682,
     "routeReachableDeclarations": 1527,
-    "controlFiles": 246,
+    "controlFiles": 245,
     "states": {
       "connected": 529,
       "preview": 924,
       "missing": 74,
-      "intentionally-unreleased": 159
+      "intentionally-unreleased": 155
     }
   }
 }
