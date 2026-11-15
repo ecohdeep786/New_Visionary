@@ -1,0 +1,91 @@
+{
+  "betaSha": "1926948782422166c05268a34207a4274b8e6304",
+  "timestamp": "2026-11-15T07:23:19.541Z",
+  "browser": "157.0.4341.46",
+  "viewport": "1440x900",
+  "route": "/",
+  "role": "anonymous",
+  "locale": "en",
+  "authMode": "firebase (hosted identity provider; hosted acceptance only where a run explicitly verifies it)",
+  "part": "all",
+  "environment": {
+    "productionOrigin": "http://127.0.0.1:5176",
+    "workspaceOrigin": "http://127.0.0.1:5178",
+    "workspaceSurfaceNote": "The personalization Trust panel is the development-preview workspace journey (FAP-93): production stops at the connected account shell, so the listbox law runs on the dev workspace surface with the same real account, Auth Emulator and registered backend.",
+    "authEmulator": "127.0.0.1:59042",
+    "backend": "127.0.0.1:3001 (registered module, disposable synthetic SQL)"
+  },
+  "startedAt": "2026-11-15T07:23:11.411Z",
+  "finishedAt": "2026-11-15T07:23:19.542Z",
+  "results": [
+    {
+      "leg": "landing-firstpaint-visible",
+      "chapters": 4,
+      "passed": true,
+      "at": "2026-11-15T07:23:12.567Z"
+    },
+    {
+      "leg": "landing-print-fully-visible",
+      "chapters": 4,
+      "passed": true,
+      "at": "2026-11-15T07:23:13.464Z"
+    },
+    {
+      "leg": "landing-reduced-motion-instant",
+      "chapters": 4,
+      "fadeRide": "absent",
+      "passed": true,
+      "at": "2026-11-15T07:23:14.863Z"
+    },
+    {
+      "leg": "register-awaits-verification",
+      "passed": true,
+      "at": "2026-11-15T07:23:15.677Z"
+    },
+    {
+      "leg": "verified-signup-opens-onboarding",
+      "passed": true,
+      "at": "2026-11-15T07:23:16.190Z"
+    },
+    {
+      "leg": "onboarding-reaches-account-home",
+      "passed": true,
+      "at": "2026-11-15T07:23:18.147Z"
+    },
+    {
+      "leg": "personalization-uses-workspace-listbox",
+      "triggers": 3,
+      "nativeSelects": 0,
+      "shellNativeSelects": 1,
+      "passed": true,
+      "at": "2026-11-15T07:23:18.680Z"
+    },
+    {
+      "leg": "listbox-keyboard-commit-hindi",
+      "trigger": "हिन्दी",
+      "notice": "प्राथमिकता इस उपकरण पर सहेजी गई।",
+      "passed": true,
+      "at": "2026-11-15T07:23:19.019Z"
+    },
+    {
+      "leg": "listbox-escape-close-refocus",
+      "passed": true,
+      "at": "2026-11-15T07:23:19.136Z"
+    },
+    {
+      "leg": "listbox-outside-click-close",
+      "passed": true,
+      "at": "2026-11-15T07:23:19.228Z"
+    },
+    {
+      "leg": "listbox-second-commit-english",
+      "passed": true,
+      "at": "2026-11-15T07:23:19.277Z"
+    },
+    {
+      "leg": "listbox-typeahead-appearance",
+      "passed": true,
+      "at": "2026-11-15T07:23:19.411Z"
+    }
+  ]
+}
