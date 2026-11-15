@@ -20,7 +20,7 @@ test("the organization-area selector covers exactly the coded organization-only 
 });
 
 test("the layout guard renders the area notice for organization areas instead of a silent redirect", () => {
-  const guard = layout.slice(layout.indexOf("!canAccessDashboardPath"), layout.indexOf("!canAccessDashboardPath") + 420);
+  const guard = layout.slice(layout.indexOf("!canAccessDashboardPath"), layout.indexOf("!canAccessDashboardPath") + 1400);
   assert.match(guard, /isOrganizationArea\(section\)/, "the guard branches on organization areas");
   assert.match(guard, /<RoleAreaUnavailable \/>/, "the notice page renders at the requested URL");
   const afterNotice = guard.slice(guard.indexOf("<RoleAreaUnavailable />"));

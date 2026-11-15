@@ -155,3 +155,19 @@ test("KAN-210 switcher law: the topbar workspace switcher uses the listbox, not 
   // keeps that contract (re-selecting the active workspace must not navigate).
   assert.match(switcher, /value===activeWorkspace\?\.id\)return/, "re-selecting the active workspace is a no-op");
 });
+
+test("KAN-210 shell law: the restricted-area role gate renders inside the full shell chrome", () => {
+  const layout = read("src/components/dashboard/DashboardLayout.jsx");
+  // The bare escape is gone: the gate no longer returns without shellFor.
+  assert.doesNotMatch(layout, /dashboardAreaOwner\(section\)\) return <RoleAreaUnavailable \/>;/, "the gate no longer renders as a bare page outside the shell");
+  const gate = layout.match(/if \(isOrganizationArea\(section\) \|\| dashboardAreaOwner\(section\)\) \{[\s\S]*?return shellFor\(<RoleAreaUnavailable \/>[\s\S]*?\);\r?\n    \}/);
+  assert.ok(gate, "the gate renders through shellFor");
+  assert.match(gate[0], /getStagePresentation\(/, "the gate presents at the viewer's own stage tier");
+  assert.match(gate[0], /presentNavigation\(activeWorkspace\.role/, "the gate keeps the viewer's own workspace navigation");
+  assert.match(gate[0], /catch \(error\) \{ return unavailable\(error\.message\); \}/, "a stage failure falls to the shell's unavailable room, not a crash");
+  // RoleAreaUnavailable itself keeps the honest boundary copy and actions.
+  const gatePage = read("src/pages/dashboard/RoleAreaUnavailable.jsx");
+  assert.match(gatePage, /className="v-page"/, "the gate page keeps its page structure inside main");
+  assert.match(gatePage, /role="status"/, "the boundary sentence stays a live-region status");
+  assert.match(gatePage, /Return to workspace/, "the gate keeps the real return action");
+});

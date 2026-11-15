@@ -144,7 +144,16 @@ function PreviewDashboardLayout() {
   if (!canAccessDashboardPath(user?.identity, location.pathname)) {
     const section = location.pathname.split("/")[2] || "home";
     // FAP-75/FAP-87: never silently rewrite the address bar for a restricted deep link.
-    if (isOrganizationArea(section) || dashboardAreaOwner(section)) return <RoleAreaUnavailable />;
+    if (isOrganizationArea(section) || dashboardAreaOwner(section)) {
+      /* KAN-210 shell law: a restricted area is a room in the product, not a
+       * bare page — the gate keeps the full shell chrome and renders inside
+       * the main landmark, with the viewer's own workspace navigation. */
+      let gateTier;
+      try { gateTier = getStagePresentation({ personId: user.id, workspaceId: activeWorkspace.id, role: activeWorkspace.role, locale: "en" }).tier; }
+      catch (error) { return unavailable(error.message); }
+      const gatePresented = presentNavigation(activeWorkspace.role, gateTier, navigationFor(user.identity, locale), secondaryNavigation(user.identity, locale), location.pathname, mobileLimit);
+      return shellFor(<RoleAreaUnavailable />, gatePresented, gateTier, activeWorkspace.role);
+    }
     return <Navigate to="/dashboard/home" replace />;
   }
   const ctx={personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'};
