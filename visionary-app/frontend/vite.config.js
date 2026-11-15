@@ -124,7 +124,13 @@ export default defineConfig(({ mode }) => {
               if (id.includes('lucide-react')) {
                 return 'vendor-icons';
               }
-              return 'vendor';
+              /* No catch-all: every remaining node_modules module follows its
+               * importers. The catch-all used to drag async-only packages
+               * (the react-markdown/remark stack used only by the lazy
+               * CourseViewer and Ask surfaces) into the initial vendor chunk,
+               * so every landing visit downloaded ~84KB of markdown
+               * machinery it never executes before first paint. With natural
+               * chunking those modules load with the surfaces that use them. */
             }
           },
           // Ensure async chunks get inline dynamic imports

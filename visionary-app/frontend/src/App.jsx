@@ -82,7 +82,22 @@ class AppErrorBoundary extends React.Component {
   }
 }
 
-const Landing = lazy(() => import('@/pages/Landing'))
+/* The four measured front-door routes render eagerly (T13 2026-11-15): behind
+ * a lazy boundary their LCP element painted ~1.2s after the first paint — the
+ * Suspense fallback won FCP, then the route chunk (plus its shared-section
+ * chunks) had to cross the wire before the hero/text could render, and the
+ * mount-time chunk flood starved the /student hero for ~1s (observed LCP
+ * 3.2-3.8s against the 2.5s target under the Lighthouse mobile throttle
+ * profile). Eager imports put the pages in the entry graph: the hero/text
+ * paints in the first commit and the mount window carries the hero image
+ * alone. Measured against three lazy+modulepreload variants — eager won LCP
+ * on every route; the ~0.3s FCP cost is the accepted trade (FCP is a
+ * diagnostic, LCP is the vital). The remaining public pages stay lazy and
+ * keep their idle prefetch warm-up. */
+import Landing from '@/pages/Landing'
+import CoachingPage from '@/pages/landing/CoachingPage'
+import AILearningPage from '@/pages/landing/AILearningPage'
+import StudentPage from '@/pages/landing/StudentPage'
 const Login = lazy(() => import('@/pages/Login'))
 const Register = lazy(() => import('@/pages/Register'))
 const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'))
@@ -109,16 +124,13 @@ const RoleWorkspace = lazy(() => import('@/pages/dashboard/RoleWorkspace'))
 const Connections = lazy(() => import('@/pages/dashboard/Connections'))
 const Explore = lazy(() => import('@/pages/dashboard/Explore'))
 const Support = lazy(() => import('@/pages/dashboard/Support'))
-const StudentPage = lazy(() => import('@/pages/landing/StudentPage'))
 const TeacherPage = lazy(() => import('@/pages/landing/TeacherPage'))
 const ParentPage = lazy(() => import('@/pages/landing/ParentPage'))
 const SchoolPage = lazy(() => import('@/pages/landing/SchoolPage'))
 const CollegePage = lazy(() => import('@/pages/landing/CollegePage'))
-const CoachingPage = lazy(() => import('@/pages/landing/CoachingPage'))
 const OrganizationPage = lazy(() => import('@/pages/landing/OrganizationPage'))
 const CompetitiveExamsPage = lazy(() => import('@/pages/landing/AboutUsPage'))
 const AboutPage = lazy(() => import('@/pages/landing/AboutUsPage'))
-const AILearningPage = lazy(() => import('@/pages/landing/AILearningPage'))
 const DownloadPage = lazy(() => import('@/pages/landing/DownloadPage'))
 
 const CareersPage = lazy(() => import('@/pages/landing/CareersPage'))
