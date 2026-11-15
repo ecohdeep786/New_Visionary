@@ -1565,3 +1565,34 @@ is a scope object, not a string) — and GET projections returns the contract
 The write path requires curriculum content in the runtime (the documented
 content/criteria dependency) and is verified by the durable-session contract
 tests until that dependency lands.
+
+## 2026-11-15 — T06/T12 QA harnesses: the device-visual and accessibility harnesses run the real identity journey
+
+FAP-93 made Firebase the only identity source, which silently broke the F-03
+device-visual and F-10 accessibility harnesses: their preview-mode OTP
+registration could no longer reach the product, so the 15 role journeys failed
+before the verification step ever rendered. Both harnesses now run the real
+identity journey against the Auth Emulator realm — register through the product
+UI, complete the oobCode verification through the product's own `/auth/action`
+page in a second tab of the same context (exactly what a real user does with
+the mail link), and continue into the onboarding wizard. The F-03 mobile-drawer
+interaction selectors were also stale after the a11y refactor (the drawer is
+`nav.safe-b` inside `header`, not `header div.safe-b`), and journey emails are
+now salted per run because the Auth Emulator persists accounts across runs —
+deterministic emails fail with `auth/email-already-in-use` before verification
+renders. Worktree `nv-worktrees/zcode-v6-device-visual-realm`, branch
+`zcode/v6-device-visual-realm`, implementation commit `55aa44b3`, pushed and
+fast-forwarded to `origin/dev`. Realm note: the backend's CSRF authority pins
+`AUTH_PUBLIC_ORIGIN` exactly, so the harness origin must match it — the run
+used the worktree dev server on `http://localhost:5173`. Verified against the
+emulator realm: F-03 recorded 354 captures (198 public + 156 role-journey),
+216 device-matrix cells, 5/5 interaction checks (mobile drawer, 200% zoom,
+reduced motion, landscape ×2) and 15/15 role journeys (five roles × mobile/
+tablet/desktop) with zero failures and zero page errors; F-10 audited six
+routes (landing, login, pricing, dashboard home/learn/settings reached through
+the real signed-in journey) with zero defects. Mobile/tablet captures spot-
+reviewed clean: cards stack, forms fill the width, no clipping. Gates: lint
+clean, typecheck clean, 853/853 tests, production build ok. T13 candidates
+queued from the CWV lab run (production build): LCP 3.6–3.8s vs 2.5s target —
+99KB `/student` hero image, 36KB landing hero, 565KB vendor bundle gating
+FCP ~2.5s; CLS and TBT within targets.
