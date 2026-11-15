@@ -4,75 +4,146 @@
     "frontend": "production build (connected shell)",
     "stubbedIdentity": false,
     "backend": "127.0.0.1:3001",
-    "origin": "http://127.0.0.1:5176",
-    "sqlSchema": "data02_c87af720212048ad941610c4750b6461",
-    "startedAt": "2026-11-14T17:15:04.321Z",
-    "finishedAt": "2026-11-14T17:15:23.511Z"
+    "invitationRealm": "127.0.0.1:3002 (same registered module in a child process, NODE_ENV=development realm, same emulators + SQL)",
+    "origins": [
+      "http://127.0.0.1:5176",
+      "http://127.0.0.1:5177"
+    ],
+    "sqlSchema": "data02_6fd265cc23a849af911ec426b85a4520",
+    "startedAt": "2026-11-15T05:35:33.247Z",
+    "finishedAt": "2026-11-15T05:36:12.552Z"
   },
   "results": [
     {
       "leg": "register-awaits-verification",
       "passed": true,
-      "at": "2026-11-14T17:15:07.834Z"
+      "at": "2026-11-15T05:35:36.354Z"
     },
     {
       "leg": "verified-signup-opens-onboarding",
       "passed": true,
-      "at": "2026-11-14T17:15:08.989Z"
+      "at": "2026-11-15T05:35:37.443Z"
     },
     {
       "leg": "onboarding-student-reaches-connected-home",
       "passed": true,
-      "at": "2026-11-14T17:15:10.331Z"
+      "at": "2026-11-15T05:35:38.757Z"
     },
     {
       "leg": "personal-workspace-provisioned-confirmed-via-server-readback",
       "passed": true,
-      "at": "2026-11-14T17:15:11.738Z"
+      "at": "2026-11-15T05:35:39.805Z"
     },
     {
       "leg": "second-device-sees-server-persisted-workspace",
       "passed": true,
-      "at": "2026-11-14T17:15:13.446Z"
+      "at": "2026-11-15T05:35:41.500Z"
     },
     {
       "leg": "display-name-saved-cross-device",
       "passed": true,
-      "at": "2026-11-14T17:15:14.951Z"
+      "at": "2026-11-15T05:35:42.869Z"
     },
     {
       "leg": "privacy-policy-and-consents-render",
       "passed": true,
-      "policyAvailable": false,
+      "policyAvailable": true,
       "consentsState": "Consent controls are unavailable",
-      "at": "2026-11-14T17:15:15.777Z"
+      "at": "2026-11-15T05:35:43.726Z"
     },
     {
       "leg": "provisioning-outage-shows-honest-unavailable",
       "passed": true,
-      "at": "2026-11-14T17:15:20.418Z"
+      "at": "2026-11-15T05:35:48.221Z"
     },
     {
       "leg": "provisioning-retry-succeeds-after-recovery",
       "passed": true,
-      "at": "2026-11-14T17:15:20.618Z"
+      "at": "2026-11-15T05:35:48.387Z"
     },
     {
       "leg": "session-listed-on-security-screen",
       "passed": true,
-      "at": "2026-11-14T17:15:21.268Z"
+      "at": "2026-11-15T05:35:49.024Z"
     },
     {
       "leg": "logout-all-revokes-both-devices",
       "passed": true,
       "secondDeviceState": "/login",
-      "at": "2026-11-14T17:15:21.955Z"
+      "at": "2026-11-15T05:35:49.693Z"
     },
     {
       "leg": "saved-learning-owner-surface-after-re-login",
       "passed": true,
       "state": "Account home\nWorkspaces\nProfile\nSaved learning\nPrivacy\nSecurity\nPlans\nSign out\nSaved learning\n\nThese sessions come from your account. They refresh while this page is open.\n\nRefresh sessions\n\nThere are",
-      "at": "2026-11-14T17:15:23.480Z"
+      "at": "2026-11-15T05:35:51.202Z"
+    },
+    {
+      "leg": "learning-session-created-via-registered-contract",
+      "passed": true,
+      "sessionId": "abd9f176-5397-464e-b4d1-852b527c9ad9",
+      "at": "2026-11-15T05:35:51.307Z"
+    },
+    {
+      "leg": "saved-learning-history-nonempty-from-server",
+      "passed": true,
+      "at": "2026-11-15T05:35:51.920Z"
+    },
+    {
+      "leg": "learning-session-closed-through-ui",
+      "passed": true,
+      "at": "2026-11-15T05:35:52.639Z"
+    },
+    {
+      "leg": "learning-closure-cross-device",
+      "passed": true,
+      "at": "2026-11-15T05:35:54.139Z"
+    },
+    {
+      "leg": "three-accounts-enrolled-and-onboarded",
+      "passed": true,
+      "at": "2026-11-15T05:36:05.734Z"
+    },
+    {
+      "leg": "policy-governance-fixture-published",
+      "passed": true,
+      "policyVersion": "priv-review-v1",
+      "at": "2026-11-15T05:36:07.363Z"
+    },
+    {
+      "leg": "institution-approval-by-reviewer",
+      "passed": true,
+      "approvalId": "iap_ebb9ce2c2d8e4920ba0a5e532d91071e",
+      "at": "2026-11-15T05:36:07.672Z"
+    },
+    {
+      "leg": "owner-issued-invitation",
+      "passed": true,
+      "invitationId": "inv_ff5ca4e1057442a7ba73672011330fca",
+      "at": "2026-11-15T05:36:07.779Z"
+    },
+    {
+      "leg": "invitation-accept-ui-honest-fence",
+      "passed": true,
+      "at": "2026-11-15T05:36:09.554Z"
+    },
+    {
+      "leg": "invitation-accept-server-committed",
+      "passed": true,
+      "invitationId": "inv_ff5ca4e1057442a7ba73672011330fca",
+      "at": "2026-11-15T05:36:10.720Z"
+    },
+    {
+      "leg": "invitation-accept-sql-membership-readback",
+      "passed": true,
+      "role": "MEMBER",
+      "workspaceId": "cmwheix9o000vjx0wjwi1vc1x",
+      "at": "2026-11-15T05:36:10.813Z"
+    },
+    {
+      "leg": "invitation-membership-cross-contract-ui",
+      "passed": true,
+      "at": "2026-11-15T05:36:12.497Z"
     }
   ]
 }

@@ -77,7 +77,9 @@ export default defineConfig(({ mode }) => {
     },
     preview: {
       headers: cspForRealm(productionSecurityHeaders),
-      proxy: { '/api': { target: 'http://127.0.0.1:3001', changeOrigin: false } },
+      // The invitation-realm journey gate runs a second registered backend on
+      // 3002; previews default to the production test app on 3001.
+      proxy: { '/api': { target: process.env.VITE_PREVIEW_API_TARGET || 'http://127.0.0.1:3001', changeOrigin: false } },
     },
     build: {
       target: 'esnext',
