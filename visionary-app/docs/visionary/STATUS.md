@@ -1482,3 +1482,34 @@ Original 2947c386 rejected after executable credential-leak, wrong-role and inva
 ## 2026-11-07 — KAN-42 final backend validation submitted
 
 Original branch codex/deepseek-kan-42-owner-projections retained; duplicate repair branch removed after fast-forward preservation. Exact implementation 7087b81451fd718dfe3c1b9bf10d615b62f40bae independently approved by /root/kan42_final_review for backend projection engineering. Real SQL adapter registered behind explicit opt-in; current authority/tombstones, runtime allowlists and all five bounded record pages verified. Whole Nest + production graph compile, 37 focused (also37 clean-output),155 data integration and162 backend cases pass. Actual Chromium uses real emulator sessions/Firestore/PostgreSQL: four groups pass, including SQL SELECT privilege-loss503/no-partial-response/recovery200. No frontend source edits or hosted activation. PR46 candidate CI pending; no merge/Done/checkout removal yet. Final handoff docs/architecture/delivery/KAN42_OWNER_OVERVIEW_FINAL.md and independent report docs/architecture/reviews/KAN42_EXACT_SOURCE_REVIEW_7087B814.md supersede earlier unfinished checkpoints.
+
+## 2026-11-15 — KAN-210 follow-up: topbar workspace switcher joins the listbox law
+
+KAN-210's receipt flagged the topbar WorkspaceSwitcher native `<select>` as an
+observation (FAP-73 shell component, outside that task's scope). This task
+completes it: the topbar pill and the add-role dialog role picker now use
+`WorkspaceListbox` (native-grade listbox semantics — Enter/ArrowDown open,
+roving focus, Home/End, first-letter typeahead, Enter commit, Escape closes
+back to the trigger with visible focus, outside-click close). `WorkspaceListbox`
+gained an optional `triggerClassName` so the topbar keeps its pill grammar
+while hosting the same keyboard law; the dialog keeps the default field
+styling. The switcher keeps the native select's change contract: re-selecting
+the active workspace is a no-op, and Add a role still opens the dialog.
+
+Worktree `nv-worktrees/zcode-v6-workspace-switcher-listbox`, branch
+`zcode/v6-workspace-switcher-listbox`, implementation commit `d35cb4b4`,
+pushed and fast-forwarded to `origin/dev`. Source-law test added to
+`tests/kan210-workspace-quality-floor.test.mjs` (no native select remains in
+the switcher or its dialog; both pickers use the listbox; the pill trigger is
+explicit; the no-op guard is asserted). Surface inventory regenerated per the
+KAN-140 law — the switcher's declaration move cascades controlIds through the
+dashboard routes; a pristine-source regen was verified byte-identical to the
+checked-in inventory before the change, so the diff is exactly scoped to this
+task. Gates: lint clean, typecheck clean, 841/841 tests, production build ok.
+Real-browser keyboard law verified on the development workspace surface with
+the registered backend + Auth Emulator realm (open/roving-focus/Home/End/
+typeahead/Escape-refocus/commit/no-op/outside-click all green; the add-role
+dialog's role listbox verified through a real Organization typeahead commit).
+The D-066 introduction dialog consumes Escape above the listbox — correct
+layering, observed and not a defect. No dev-server-only behavior changed; no
+hosted acceptance claimed.
