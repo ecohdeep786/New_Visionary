@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, CircleHelp } from "lucide-react";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import { CATEGORIES } from "@/data/landingCategories";
 import { color as C, fontStack } from "@/components/landing/system/tokens";
+import { useAuth } from "@/lib/AuthContext";
 
 import { metaFor, ORG_CONTEXTS, DOWNLOAD_PLATFORMS, ABOUT_GROUPS } from "./nav-data.js";
 import { FOCUS_RING, navLink, iconBtn, MegaTile, HOVER_OPEN_MS, HOVER_CLOSE_MS } from "./nav-shared.jsx";
@@ -12,6 +13,12 @@ export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMega, setOpenMega] = useState(null); // "who" | "org" | "download" | "about" | null
+  /* Cross-team review (2026-11-16): the nav rendered "Sign in"/"Get started"
+     to a signed-in visitor — misleading affordances that only self-healed
+     after the auth page bounced them. The signed-in state offers the real
+     next action instead: open the workspace. */
+  const { authChecked, isAuthenticated } = useAuth();
+  const signedIn = authChecked && isAuthenticated;
 
   const whoRef = useRef(null);
   const orgRef = useRef(null);
@@ -429,8 +436,8 @@ export default function LandingNav() {
             Help
           </Link>
 
-          <Link to="/login" className={`${navLink(false)} hidden sm:flex`}>
-            Sign in
+          <Link to={signedIn ? "/dashboard/home" : "/login"} className={`${navLink(false)} hidden sm:flex`}>
+            {signedIn ? "Open Visionary" : "Sign in"}
           </Link>
 
           {/* the nav CTA stays quiet while the page hero's own start button
@@ -438,7 +445,7 @@ export default function LandingNav() {
               action in view at a time. Apple-black, the product's action
               color, matching every primary pill on the page. */}
           <Link
-            to="/register"
+            to={signedIn ? "/dashboard/home" : "/register"}
             className={`ml-2 flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] active:bg-[#18181a] focus:outline-none ${FOCUS_RING} ${
               scrolled
                 ? "visible translate-y-0 opacity-100"
@@ -447,7 +454,7 @@ export default function LandingNav() {
             tabIndex={scrolled ? 0 : -1}
             aria-hidden={scrolled ? undefined : "true"}
           >
-            Get started
+            {signedIn ? "Open Visionary" : "Get started"}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-arrow h-3.5 w-3.5" aria-hidden="true">
               <path d="M5 12h14" />
               <path d="M13 6l6 6-6 6" />
@@ -504,18 +511,18 @@ export default function LandingNav() {
               Help
             </Link>
             <Link
-              to="/login"
+              to={signedIn ? "/dashboard/home" : "/login"}
               onClick={() => setMobileOpen(false)}
               className={`flex h-11 items-center justify-center rounded-full border border-[#d2d2d7] text-[16px] font-normal tracking-[0.24px] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] ${FOCUS_RING}`}
             >
-              Sign in
+              {signedIn ? "Open Visionary" : "Sign in"}
             </Link>
             <Link
-              to="/register"
+              to={signedIn ? "/dashboard/home" : "/register"}
               onClick={() => setMobileOpen(false)}
               className={`flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] text-[16px] font-medium tracking-[0.24px] text-white transition-colors duration-200 hover:bg-[#272729] active:bg-[#18181a] ${FOCUS_RING}`}
             >
-              Get started
+              {signedIn ? "Open Visionary" : "Get started"}
             </Link>
           </div>
 

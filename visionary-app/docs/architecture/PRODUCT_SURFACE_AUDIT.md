@@ -70,7 +70,7 @@ Current connected admission is adult-only; minor personas are fictional test sce
 
 | Route | Entry | Roles allowed by navigation | Auth | Operations |
 | --- | --- | --- | --- | --- |
-| / | LandingEntry | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
+| / | LandingEntry | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
 | /signin | Navigate | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
 | /login | Login | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, phone-organization-sso-qualification, school-guardian-admission, offline-and-two-device-learning |
 | /register | Register | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, phone-organization-sso-qualification, school-guardian-admission, offline-and-two-device-learning |
@@ -78,30 +78,30 @@ Current connected admission is adult-only; minor personas are fictional test sce
 | /forgot-user-id | ForgotUserId | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
 | /reset-password | ResetPassword | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
 | /auth/action | AuthAction | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission |
-| /student | StudentPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /teacher | TeacherPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /parent | ParentPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /help | SchoolPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /professional | CollegePage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /how-it-works | CoachingPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /organization | OrganizationPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /download | DownloadPage | student, teacher, parent, professional, organization | public-or-provider-action | download-installation |
-| /about | AboutPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery |
-| /pricing | AILearningPage | student, teacher, parent, professional, organization | public-or-provider-action | subscription-test-checkout, equitable-free-paid-continuity |
+| /student | StudentPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /teacher | TeacherPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /parent | ParentPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /help | SchoolPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /professional | CollegePage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /how-it-works | CoachingPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /organization | OrganizationPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /download | DownloadPage | student, teacher, parent, professional, organization | public-or-provider-action | download-installation, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /about | AboutPage | student, teacher, parent, professional, organization | public-or-provider-action | public-discovery, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /pricing | AILearningPage | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, subscription-test-checkout, equitable-free-paid-continuity, offline-and-two-device-learning |
 | /career | Navigate | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
-| /careers | CareersPage | student, teacher, parent, professional, organization | public-or-provider-action | public-enquiry-careers-partners |
-| /research | ResearchNewsPage | student, teacher, parent, professional, organization | public-or-provider-action | public-updates-distribution |
-| /community | CommunityPage | student, teacher, parent, professional, organization | public-or-provider-action | public-updates-distribution |
-| /contact | ContactPage | student, teacher, parent, professional, organization | public-or-provider-action | public-enquiry-careers-partners |
-| /partners | PartnersPage | student, teacher, parent, professional, organization | public-or-provider-action | public-enquiry-careers-partners |
-| /updates | UpdatesPage | student, teacher, parent, professional, organization | public-or-provider-action | public-updates-distribution |
-| /referral | ReferralPage | student, teacher, parent, professional, organization | public-or-provider-action | referral-sharing |
-| /safety | SafetyPage | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
-| /privacy | PrivacyPage | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
-| /terms | TermsPage | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
-| /security | SecurityPage | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
-| /accessibility | AccessibilityPage | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
-| /cookies | CookiesPage | student, teacher, parent, professional, organization | public-or-provider-action | Navigation/presentation; inspect control records. |
+| /careers | CareersPage | student, teacher, parent, professional, organization | public-or-provider-action | public-enquiry-careers-partners, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /research | ResearchNewsPage | student, teacher, parent, professional, organization | public-or-provider-action | public-updates-distribution, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /community | CommunityPage | student, teacher, parent, professional, organization | public-or-provider-action | public-updates-distribution, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /contact | ContactPage | student, teacher, parent, professional, organization | public-or-provider-action | public-enquiry-careers-partners, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /partners | PartnersPage | student, teacher, parent, professional, organization | public-or-provider-action | public-enquiry-careers-partners, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /updates | UpdatesPage | student, teacher, parent, professional, organization | public-or-provider-action | public-updates-distribution, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /referral | ReferralPage | student, teacher, parent, professional, organization | public-or-provider-action | referral-sharing, auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /safety | SafetyPage | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /privacy | PrivacyPage | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /terms | TermsPage | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /security | SecurityPage | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /accessibility | AccessibilityPage | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
+| /cookies | CookiesPage | student, teacher, parent, professional, organization | public-or-provider-action | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
 | /onboarding | Onboarding | student, teacher, parent, professional, organization | required | auth-session-profile, school-guardian-admission, offline-and-two-device-learning |
 | /dashboard | DashboardLayout | student, teacher, parent, professional, organization | required | auth-session-profile, school-guardian-admission, feedback-receipt, workspace-role-switching, content-catalog-source-choice, ask-guide-model-turn, voice-and-visual-learning, offline-and-two-device-learning |
 | /dashboard#index | DashboardHome | student, teacher, parent, professional, organization | required | auth-session-profile, school-guardian-admission, feedback-receipt, workspace-role-switching, content-catalog-source-choice, learning-check-practice-progress, durable-teaching-loop-sessions, ask-guide-model-turn, voice-and-visual-learning, learn-to-build-private-project, build-execution-public-apps, stage-change-bridge-continuity, teacher-private-growth, parent-support-and-summary, professional-career-and-portfolio, organization-governance, privacy-memory-export, notifications-and-support-delivery, offline-and-two-device-learning |
