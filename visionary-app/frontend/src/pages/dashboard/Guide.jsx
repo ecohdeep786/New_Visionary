@@ -276,7 +276,13 @@ function GuideConversation() {
               setError(e.message);
             }
           }} />}
-   <p role="status" className={busy ? 'v-muted' : 'sr-only'}>{busy ? copy("Checking the teaching connection\u2026") : conversation?.messages.at(-1)?.role === 'guide' ? copy("Response available above. Review its source label.") : ''}</p>{error && <div role="alert" className="v-notice v-error"><span lang="en">{error}</span><p>{copy("Your saved work is kept. You can retry your question or return Home.")}</p><Link className="underline" to="/dashboard/home">{copy("Return Home")}</Link></div>}
+   {/* The live announcement must match what actually rendered above. When the
+       last guide message is the honest not_connected notice there is no answer
+       and no source label to review — announcing "Response available above"
+       would be a false claim to screen-reader users (T11 2026-11-16), so the
+       saved/no-answer state is announced with the same translated string the
+       visible label carries. */}
+   <p role="status" className={busy ? 'v-muted' : 'sr-only'}>{busy ? copy("Checking the teaching connection\u2026") : conversation?.messages.at(-1)?.role === 'guide' ? (conversation.messages.at(-1).status === 'not_connected' ? copy("Your question is saved · no model answer yet") : copy("Response available above. Review its source label.")) : ''}</p>{error && <div role="alert" className="v-notice v-error"><span lang="en">{error}</span><p>{copy("Your saved work is kept. You can retry your question or return Home.")}</p><Link className="underline" to="/dashboard/home">{copy("Return Home")}</Link></div>}
    {!fresh && composer}
    <details className="guide-preview-details"><summary>{copy("Local preview")} · {copy("About this preview")}</summary><p>{copy("Local preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.")} <Link to="/dashboard/support" className="inline-flex min-h-11 items-center underline">{copy("About this preview")}</Link></p></details>
   </section>
