@@ -1776,3 +1776,55 @@ completing their journey:
 4. Governance: the ff-merges to `dev` carry receipts in this ledger, but
    final release signoff belongs to the founder/reviewer process — this
    recommendation is the frontend lane's evidence, not an approval.
+
+---
+
+## 2026-11-16 — T13 follow-up: hero LCP second pass (`b3405f22`)
+
+Branch `zcode/v7-t13-hero-lcp`, ff-merged to `dev` (`4d584132..b3405f22`).
+Closes the two evidenced follow-ups from the §8 receipt's limitation #1.
+
+**What shipped** (all measured under the Lighthouse mobile throttle profile):
+
+1. **Transform-only hero entrances.** `cast.css` `figIn` lost its opacity
+   gate (the landing cutouts now paint from the first frame — an element at
+   opacity 0 cannot paint, so the LCP cutout waited for its animation delay
+   before it could even be considered); `CoachingPage`/`AILearningPage`
+   heroes use a new `HeroRise` (transform-only) instead of `FadeReveal`,
+   so the LCP text paints in the first commit. Below-fold sections keep
+   FadeReveal. The rise motion is unchanged.
+2. **Module-scope LCP preloads** on `/` (student cutout) and `/student`
+   (hero photograph), pathname-gated because the eager front-door modules
+   evaluate with the entry chunk on every route. Two laws recorded:
+   (a) this Chromium build does not reflect `imagesrcset`/`imagesizes`
+   IDL assignments onto DOM attributes — an attribute-less preload is
+   inert (verified: the link existed in the head, fetched nothing); the
+   `setAttribute` form (as PageMeta's `upsertPreload` already does) is
+   required; (b) `type="image/avif"` byte-matches the `<picture>` source
+   so the preload is reused rather than re-fetched.
+3. **Student hero AVIF family recompressed q58 → q50** (21→16KB, 63→47KB,
+   119→91KB), visually verified indistinguishable in the live browser
+   against a q58 screenshot.
+
+**Measured (cwv-audit, before → after):** `/` 3208→**2664**,
+`/how-it-works` 3356→**2532**, `/pricing` 3280→**2532** — all three now
+paint their LCP **at FCP**. `/student` 2764→2740: the wire is no longer
+the gate (probe: preload fetch starts 2322 at module eval vs 2518 at img
+discovery, completes 2559; the img paints 2756 gated by commit+decode) —
+the route is now FCP-bound (~2700), i.e. limited by the initial-JS floor
+already documented in the T13 receipt. TBT `/` 229→288 (the eager cutouts
+now decode inside the TBT window — accepted trade, disclosed).
+
+**Verification:** all four heroes browser-verified in the live product
+(student q50-vs-q58 comparison, landing cutout staging, hiw/pricing hero
+composition). Gates: eslint clean (4 pre-existing warnings), typecheck
+clean, **854/854** tests, `scope:audit:write` regen (pristine-source
+byte-identical check passed first), production build ok. Evidence:
+`docs/visionary/baseline/f27-hero-lcp-followup{,-after,-after2}/`.
+
+**Limitation update:** limitation #1 above is now materially reduced —
+2 of 4 front doors meet the 2.5s LCP bar (`/how-it-works`, `/pricing`),
+`/` is 164ms over, `/student` remains FCP-bound. Remaining evidenced
+levers: the initial-JS floor (section virtualization / further chunking)
+and the text-route second-commit cost. The other §8 limitations (#2–#4)
+are unchanged.
