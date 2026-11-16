@@ -92,6 +92,20 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
+/* The hero's entrance never hides the LCP element: the rise is
+   transform-only, so the headline and lead paint in the first commit.
+   The FadeReveal grammar (opacity-0 until revealed) delayed the hero's
+   LCP text ~800ms past FCP under the lab throttle — invisible content
+   cannot paint — so above-fold content rides the same motion with the
+   opacity gate removed. Below-fold sections keep FadeReveal. */
+const HeroRise = React.memo(function HeroRise({ visible, children, className = "" }) {
+  return (
+    <div className={`transition-transform duration-700 ease-apple ${visible ? "translate-y-0" : "translate-y-6"} ${className}`}>
+      {children}
+    </div>
+  );
+});
+
 /* Eyebrows — the premium quiet label (17px medium, sentence case) */
 const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
   return (
@@ -347,14 +361,14 @@ function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="01-hero" className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible}>
+      <HeroRise visible={visible}>
         <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           How <span className="accent-gradient">Visionary</span> works.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Explore the learning journey we’re developing, from asking a question to building a project. You can create an account and view saved learning history today.
         </p>
-      </FadeReveal>
+      </HeroRise>
     </section>
   );
 }

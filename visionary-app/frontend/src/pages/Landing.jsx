@@ -133,6 +133,30 @@ import orgCut480Avif from "@/assets/hero-cutouts/organization-480w.avif";
 import orgCut800Avif from "@/assets/hero-cutouts/organization-800w.avif";
 import { fontStack } from "@/components/landing/system/tokens";
 
+/* LCP preload — the cast's largest slot (the student cutout) is the
+   landing's LCP element, but its URL lives inside this module, so the
+   browser cannot discover it before module eval + render. Under the lab
+   throttle the request then queued behind its four siblings, the auth
+   probe and the favicon (~600ms of queueing for a 15KB file). Preloading
+   at module scope starts the fetch one commit earlier. The srcset/sizes
+   mirror the cast <img>'s AVIF source exactly, so the preload is reused,
+   not re-fetched. Gated to the landing path: this module evaluates with
+   the entry chunk on every route, and the preload is only true on "/". */
+if (typeof window !== "undefined" && window.location.pathname === "/") {
+  const lcpPreload = document.createElement("link");
+  lcpPreload.setAttribute("rel", "preload");
+  lcpPreload.setAttribute("as", "image");
+  /* setAttribute, not the IDL property: this Chromium build does not reflect
+     imagesrcset/imagesizes assignments onto the DOM attributes, and an
+     attribute-less preload is inert (the same quirk PageMeta's upsertPreload
+     works around). type="image/avif" byte-matches the cast <source>, so the
+     preload is reused by the <picture> instead of fighting the fallback. */
+  lcpPreload.setAttribute("imagesrcset", `${studentCut480Avif} 480w, ${studentCut800Avif} 800w`);
+  lcpPreload.setAttribute("imagesizes", "(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw");
+  lcpPreload.setAttribute("type", "image/avif");
+  document.head.appendChild(lcpPreload);
+}
+
 /* Apple's universal hero grammar: a single declarative statement that
    names the product's universal value and every category it serves — the
    same pattern as /education-initiative/ ("Education moves learners, leaders,

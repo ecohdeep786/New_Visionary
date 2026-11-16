@@ -191,10 +191,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:270:15",
-        "frontend/src/pages/Landing.jsx:311:11",
-        "frontend/src/pages/Landing.jsx:379:17",
-        "frontend/src/pages/Landing.jsx:469:13"
+        "frontend/src/pages/Landing.jsx:294:15",
+        "frontend/src/pages/Landing.jsx:335:11",
+        "frontend/src/pages/Landing.jsx:403:17",
+        "frontend/src/pages/Landing.jsx:493:13"
       ],
       "operations": [
         "public-discovery",
@@ -988,8 +988,8 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/StudentPage.jsx:280:7",
-        "frontend/src/pages/landing/StudentPage.jsx:281:21"
+        "frontend/src/pages/landing/StudentPage.jsx:305:7",
+        "frontend/src/pages/landing/StudentPage.jsx:306:21"
       ],
       "operations": [
         "public-discovery",
@@ -1962,16 +1962,16 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/CoachingPage.jsx:218:5",
-        "frontend/src/pages/landing/CoachingPage.jsx:236:9",
-        "frontend/src/pages/landing/CoachingPage.jsx:253:12",
-        "frontend/src/pages/landing/CoachingPage.jsx:484:9",
-        "frontend/src/pages/landing/CoachingPage.jsx:496:15",
-        "frontend/src/pages/landing/CoachingPage.jsx:532:11",
-        "frontend/src/pages/landing/CoachingPage.jsx:559:13",
-        "frontend/src/pages/landing/CoachingPage.jsx:574:13",
-        "frontend/src/pages/landing/CoachingPage.jsx:606:11",
-        "frontend/src/pages/landing/CoachingPage.jsx:609:11"
+        "frontend/src/pages/landing/CoachingPage.jsx:232:5",
+        "frontend/src/pages/landing/CoachingPage.jsx:250:9",
+        "frontend/src/pages/landing/CoachingPage.jsx:267:12",
+        "frontend/src/pages/landing/CoachingPage.jsx:498:9",
+        "frontend/src/pages/landing/CoachingPage.jsx:510:15",
+        "frontend/src/pages/landing/CoachingPage.jsx:546:11",
+        "frontend/src/pages/landing/CoachingPage.jsx:573:13",
+        "frontend/src/pages/landing/CoachingPage.jsx:588:13",
+        "frontend/src/pages/landing/CoachingPage.jsx:620:11",
+        "frontend/src/pages/landing/CoachingPage.jsx:623:11"
       ],
       "operations": [
         "public-discovery",
@@ -2724,14 +2724,14 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/AILearningPage.jsx:77:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:133:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:166:25",
-        "frontend/src/pages/landing/AILearningPage.jsx:210:15",
-        "frontend/src/pages/landing/AILearningPage.jsx:235:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:289:17",
-        "frontend/src/pages/landing/AILearningPage.jsx:318:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:321:11"
+        "frontend/src/pages/landing/AILearningPage.jsx:91:11",
+        "frontend/src/pages/landing/AILearningPage.jsx:147:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:180:25",
+        "frontend/src/pages/landing/AILearningPage.jsx:224:15",
+        "frontend/src/pages/landing/AILearningPage.jsx:249:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:303:17",
+        "frontend/src/pages/landing/AILearningPage.jsx:332:11",
+        "frontend/src/pages/landing/AILearningPage.jsx:335:11"
       ],
       "operations": [
         "auth-session-profile",
@@ -76962,9 +76962,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:77:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:91:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 77,
+      "line": 91,
       "column": 11,
       "tag": "button",
       "events": [
@@ -76993,9 +76993,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:133:13",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:147:13",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 133,
+      "line": 147,
       "column": 13,
       "tag": "BillingToggle",
       "events": [
@@ -77022,9 +77022,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:166:25",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:180:25",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 166,
+      "line": 180,
       "column": 25,
       "tag": "Link",
       "events": [],
@@ -77046,9 +77046,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:210:15",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:224:15",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 210,
+      "line": 224,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -77070,9 +77070,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:235:13",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:249:13",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 235,
+      "line": 249,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -77094,9 +77094,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:289:17",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:303:17",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 289,
+      "line": 303,
       "column": 17,
       "tag": "button",
       "events": [
@@ -77125,9 +77125,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:318:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:332:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 318,
+      "line": 332,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -77150,9 +77150,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:321:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:335:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 321,
+      "line": 335,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -77632,9 +77632,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:218:5",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:232:5",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 218,
+      "line": 232,
       "column": 5,
       "tag": "div",
       "events": [
@@ -77673,9 +77673,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:236:9",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:250:9",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 236,
+      "line": 250,
       "column": 9,
       "tag": "Link",
       "events": [],
@@ -77697,9 +77697,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:253:12",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:267:12",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 253,
+      "line": 267,
       "column": 12,
       "tag": "AuthMock",
       "events": [
@@ -77730,9 +77730,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:484:9",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:498:9",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 484,
+      "line": 498,
       "column": 9,
       "tag": "div",
       "events": [
@@ -77773,9 +77773,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:496:15",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:510:15",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 496,
+      "line": 510,
       "column": 15,
       "tag": "button",
       "events": [
@@ -77804,9 +77804,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:532:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:546:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 532,
+      "line": 546,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -77829,9 +77829,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:559:13",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:573:13",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 559,
+      "line": 573,
       "column": 13,
       "tag": "button",
       "events": [
@@ -77860,9 +77860,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:574:13",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:588:13",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 574,
+      "line": 588,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -77884,9 +77884,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:606:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:620:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 606,
+      "line": 620,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -77909,9 +77909,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:609:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:623:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 609,
+      "line": 623,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -81658,9 +81658,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/StudentPage.jsx:280:7",
+      "id": "frontend/src/pages/landing/StudentPage.jsx:305:7",
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "line": 280,
+      "line": 305,
       "column": 7,
       "tag": "JourneyGallery",
       "events": [
@@ -81687,9 +81687,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/StudentPage.jsx:281:21",
+      "id": "frontend/src/pages/landing/StudentPage.jsx:306:21",
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "line": 281,
+      "line": 306,
       "column": 21,
       "tag": "JourneyModal",
       "events": [
@@ -82475,9 +82475,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:270:15",
+      "id": "frontend/src/pages/Landing.jsx:294:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 270,
+      "line": 294,
       "column": 15,
       "tag": "ProgressDots",
       "events": [
@@ -82504,9 +82504,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:311:11",
+      "id": "frontend/src/pages/Landing.jsx:335:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 311,
+      "line": 335,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -82529,9 +82529,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:379:17",
+      "id": "frontend/src/pages/Landing.jsx:403:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 379,
+      "line": 403,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -82553,9 +82553,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:469:13",
+      "id": "frontend/src/pages/Landing.jsx:493:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 469,
+      "line": 493,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -86325,7 +86325,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "9ed95589b6ac0e6491d9e6d6a7a55e70f5c5f672d39c279846efacce269857d0"
+      "sourceSha256": "f6146826857385da20783fbb8cc04cf21610d784166e34842d043f2ac20200fa"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
@@ -86333,7 +86333,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "sourceSha256": "9a35af391f1888e84f6ab4ba6eb17a6083246fa00a397deb5169ce59a9f3bd3a"
+      "sourceSha256": "961d4e53071a2d48c82d86a0bdaeeaf28114bf1fc1d00ab822cf6bf65180bf42"
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
@@ -86393,7 +86393,7 @@
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "sourceSha256": "7e91c7d06cc3bc080f4d6f76eee300819599a24ee3b6fe731ef14314764a9712"
+      "sourceSha256": "7d8004fc88b801eb8e1acb69e7818df3d5d051af36955a0b5c6694f6e0671832"
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
@@ -86409,7 +86409,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "6245f95e3f3526faedeeb2b11822de2b63d0bfa04634649bb7e4e00b959792f4"
+      "sourceSha256": "0b1c8f6aa91ca4307b63f832f9b0d283b8fc8ff1cc757bfcc2e9ac7f828d2445"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

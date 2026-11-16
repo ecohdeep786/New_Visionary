@@ -61,6 +61,20 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
+/* The hero's entrance never hides the LCP element: the rise is
+   transform-only, so the headline and lead paint in the first commit.
+   The FadeReveal grammar (opacity-0 until revealed) delayed the hero's
+   LCP text ~800ms past FCP under the lab throttle — invisible content
+   cannot paint — so above-fold content rides the same motion with the
+   opacity gate removed. Below-fold sections keep FadeReveal. */
+const HeroRise = React.memo(function HeroRise({ visible, children, className = "" }) {
+  return (
+    <div className={`transition-transform duration-700 ease-apple ${visible ? "translate-y-0" : "translate-y-6"} ${className}`}>
+      {children}
+    </div>
+  );
+});
+
 /* ═══ MODELS — single plan-config fixture (01-PM, Wave L3): src/data/pricingConfig.js ═══ */
 import { PLANS, COMPARISON, PERSONA_PLANS, PRICING_FAQ, formatPrice } from "@/data/pricingConfig";
 import { billingPath } from '@/lib/billingIntent';
@@ -119,7 +133,7 @@ function PricingStoreSection() {
   const institution = PLANS.find((p) => p.id === "institution");
   return (
     <section ref={ref} data-section="01-hero" className="relative px-4 pb-16 pt-24 sm:px-6 lg:px-[var(--frame-x)] lg:pb-20 lg:pt-28" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible}>
+      <HeroRise visible={visible}>
         <div className="mx-auto max-w-[1440px] text-center">
           <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
             Plans for <span className="accent-gradient">every journey</span>.
@@ -217,7 +231,7 @@ function PricingStoreSection() {
             </div>
           </div>
         </div>
-      </FadeReveal>
+      </HeroRise>
     </section>
   );
 }
