@@ -1901,3 +1901,46 @@ flags fails closed per the config law). Evidence:
 the lab profile — all four front doors under 2.5s. The remaining §8
 limitations (#2–#4) are unchanged; field p75 remains unmeasured until
 RUM exists, and final signoff stays with the founder/reviewer process.
+
+---
+
+## 2026-11-17 — §8 limitation #2 closed: auth-aware body CTAs (`1dc86eff`)
+
+Branch `zcode/v7-cta-auth-aware`, ff-merged to `dev` (`fe6f8153..1dc86eff`).
+The §8 cross-team review fixed the nav (`a4dcafba`) but recorded the
+page-body conversion CTAs as disclosed limitation #2: a signed-in visitor
+still saw "Get started" → `/register` on About, AI Learning (pricing),
+Community, Coaching and Download — self-healing, but a contradicting
+affordance and a redirect hop. The receipt itself prescribed the shape:
+"a content-layer pass should unify them with a shared auth-aware CTA."
+
+**What shipped:** `components/landing/AuthAwareLink.jsx` — the shared
+auth-aware door (`useSignedIn()` hook + component). A signed-in visitor's
+real next action is the workspace. The seven body doors carry it: the five
+"Get started" doors swap to "Open Visionary" → `/dashboard/home`
+(PremiumCTASection shared by `/` and `/student`, AILearningPage,
+AboutUsPage, CoachingPage, CommunityPage); DownloadPage's "Open Visionary"
+card action and "Continue on web" door keep their truthful labels and swap
+destination only; CoachingPage's "Try the loop yourself" QuietLink swaps
+destination via the hook. ReferralPage's "Open registration" is untouched —
+a truthful navigation affordance, not a conversion door. Signed-out
+behavior is byte-identical; every door keeps its explicit `to="/register"`
+so the cta-trace static law still sees the recorded doors (the scanner
+only reads literal `to` attributes on Link-shaped tags — the component is
+named `AuthAwareLink` for exactly this reason, and the new control file is
+registered in `product-surface-review.json` before the regen, per the
+registry law).
+
+**Verification:** 854/854 tests, eslint 0 errors, typecheck clean,
+production build ok, `scope:audit:write` regen (last step; 246 control
+files). Browser-verified on the dev server AND the production build
+through the realm: signed-out `/about` unchanged ("Get started" →
+`/register`, nav + body); signed-in state offers "Open Visionary" →
+`/dashboard/home` on `/about`, `/pricing`, `/community`, `/download`,
+`/how-it-works` (nav + body doors, all DOM-verified); prod-build sign-out
+verified (backend pinned to the preview origin per the CSRF law).
+
+**Limitation status:** §8 limitation #2 CLOSED. Remaining: #1 lab LCP
+(closed earlier today for the lab profile; field p75 awaits RUM), #3
+teaching/billing connected behavior (needs the teaching adapter — backend
+lane paused awaiting the founder's choice), #4 founder/reviewer signoff.
