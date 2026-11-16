@@ -1828,3 +1828,76 @@ byte-identical check passed first), production build ok. Evidence:
 levers: the initial-JS floor (section virtualization / further chunking)
 and the text-route second-commit cost. The other §8 limitations (#2–#4)
 are unchanged.
+
+---
+
+## 2026-11-17 — T13 entry floor: the initial-JS lever closed (`ae4cde7c`)
+
+Branch `zcode/v7-t13-entry-floor`, ff-merged to `dev` (`e7350578..ae4cde7c`).
+Closes the last evidenced lever from the hero-LCP receipt: the initial-JS
+floor that left `/student` FCP-bound and `/` 164ms over the bar.
+
+**What shipped:**
+
+1. **The entry chunk stops carrying the query layer.** `@tanstack/react-query`
+   + query-core rode the entry because `App.jsx` wrapped the tree in
+   `QueryClientProvider` while lazy pages also import it. `query-client.js`
+   is now a lazy owner (`getQueryClient()` resolves a cached import of the
+   new `queryClientSetup.js`; `resetQueryCache()` replaces the synchronous
+   `cancelQueries()/clear()` call sites), and the new `QueryProvider` owns
+   the provider plus the workspace-change invalidation listener (moved out
+   of `DashboardLayout`). Entry: 120KB → 80KB gz.
+2. **The toaster chain leaves the entry** (`LazyToaster` behind Suspense;
+   toast state lives at module scope in `use-toast`, so a toast fired
+   before the chunk loads still renders once it mounts). **Law recorded
+   the hard way:** `lazy()` needs `{ default: ... }` — `toaster.jsx`
+   exports `Toaster` as a NAMED export, and a bare module namespace as the
+   lazy component makes React's dev `lazyInitializer` warning path throw
+   `TypeError: Cannot convert object to primitive value` (it stringifies
+   the null-prototype namespace), which — with no boundary above `App` —
+   unmounts the entire tree to an empty root. Bisected to the single file
+   via variant testing; the fix is the `.then((m) => ({ default: m.Toaster }))`
+   mapping. Entry: 80KB → 73KB gz.
+3. **Below-fold premium persona sections lazy-load directly** — 4 on
+   `Landing.jsx`, 7 on `StudentPage.jsx` (all default-export modules,
+   verified before wiring).
+4. **A11y fixes the FAP-31 gate caught once `/how-it-works` joined the
+   audit set** (both pre-existing on `dev`, not caused by this lane):
+   `#86868b` secondary text on white measured 3.62:1 (AA needs 4.5) — the
+   landing token home (`muted`, `lightGrey`), eight page-local palettes,
+   and the UpdatesPage date text move to `#6e6e73` (5.07:1, Apple's own
+   current secondary label); `CoachingPage` hero step headings were `h3`
+   directly under the `h1` (skip) — now `h2`, class-driven, zero visual
+   change.
+
+**Measured (cwv-audit, CDP Lighthouse-mobile throttle, prod build):**
+`/` 2664→**2424**, `/how-it-works` 2532→**2356**, `/pricing` 2532→**2328**,
+`/student` 2740→**2412** — **all four front doors now meet the 2.5s LCP
+bar**, CLS 0 everywhere, TBT improved on three of four routes (pricing
+70→81, student 176→183, hiw 63→78, root 288→247). Entry chunk 73.06KB gz
+(was 120KB at the start of this branch).
+
+**Verification:** gates eslint 0 errors (7 pre-existing declaration-only
+warnings, verified pre-existing on HEAD), typecheck clean, **854/854**
+tests, `scope:audit:write` regen (last step), production build clean,
+lighthouse-audit **PASS** on `/, /how-it-works, /pricing, /student,
+/download, /safety` (a11y 1.0, SEO 1.0, zero baseline regressions).
+Browser journeys on the live realm, both green end-to-end: the dev server
+(register → email verify via `/auth/action` → 5-step onboarding →
+dashboard as Tia — the lazy `QueryProvider` serving react-query pages with
+0 skeletons, the lazy Toaster firing a real toast from the module store)
+**and** the production build on the preview (the same full journey as
+ProDJ through the realm CSP gate; sign-out verified too). Realm note for
+the next runner: the preview CSP gate regex requires the emulator URL
+WITHOUT a trailing slash (`http://127.0.0.1:9099`), while the runtime
+config check accepts both forms — with the slash the preview silently
+serves the production CSP and every Auth call dies ("Check your internet
+connection"), while the register UI still advances to "check your email"
+(a realm-only misconfiguration state; hosted behavior without the realm
+flags fails closed per the config law). Evidence:
+`docs/visionary/baseline/f27-entry-floor-final/`.
+
+**Limitation status:** §8 limitation #1 (front-door LCP) is now CLOSED for
+the lab profile — all four front doors under 2.5s. The remaining §8
+limitations (#2–#4) are unchanged; field p75 remains unmeasured until
+RUM exists, and final signoff stays with the founder/reviewer process.
