@@ -195,7 +195,7 @@ export default function UpdatesPage() {
                   <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-[20px] bg-white p-6">
                     <div className="flex items-center gap-3">
                       <span className="text-[14px] font-semibold text-[#6e6e73]">{catLabel(item.cat)}</span>
-                      <span className="text-[12px] tracking-[0.01em] text-[#86868b]">{item.date}</span>
+                      <span className="text-[12px] tracking-[0.01em] text-[#6e6e73]">{item.date}</span>
                     </div>
                     <h3 className="relative z-10 mt-4 max-w-[220px] text-[17px] font-medium leading-[1.4] text-[#1d1d1f]">{item.title}</h3>
                     <p className="relative z-10 mt-2 flex-1 text-[14px] leading-[1.65] text-[#6e6e73]">{item.copy}</p>

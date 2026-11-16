@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -6,12 +6,14 @@ import QuietLink from "@/components/landing/QuietLink";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
 import SpotIllustration from "@/components/landing/SpotIllustration";
-import {
-  PremiumIntelligenceSection,
-  PremiumTrustSection,
-  PremiumCTASection,
-  PremiumExploreSection,
-} from "@/components/landing/persona/PremiumPersonaSections";
+/* The premium sections sit below the fold on every route that uses them;
+ * they load on demand (Suspense fallback null) so the entry graph carries
+ * only hero-first-commit content (T13 eager law). Direct module paths, not
+ * the barrel, so a section chunk never pulls its siblings. */
+const PremiumIntelligenceSection = lazy(() => import("@/components/landing/persona/premium/PremiumIntelligenceSection.jsx"));
+const PremiumTrustSection = lazy(() => import("@/components/landing/persona/premium/PremiumTrustSection.jsx"));
+const PremiumCTASection = lazy(() => import("@/components/landing/persona/premium/PremiumCTASection.jsx"));
+const PremiumExploreSection = lazy(() => import("@/components/landing/persona/premium/PremiumExploreSection.jsx"));
 // Hero images (above the fold) — loaded eagerly with high fetch priority
 import studentmeet from "@/assets/student-hero-main-1600w.webp";
 import teachermeet from "@/assets/teacher-hero-main-1600w.webp";
@@ -423,13 +425,13 @@ function LandingReturnSection() {
    accepted premium module in promo mode — no new copy. */
 function LandingIntelligenceSection() {
   return (
-    <PremiumIntelligenceSection
+    <Suspense fallback={null}><PremiumIntelligenceSection
       steps={INTELLIGENCE_STEPS}
       sub="From the first question to using what you know."
       promo
       ctaLabel="See how it works"
       ctaTo="/how-it-works"
-    />
+    /></Suspense>
   );
 }
 
@@ -447,7 +449,7 @@ function LandingIntelligenceSection() {
    accepted gallery header. */
 function LandingRouterSection() {
   return (
-    <PremiumExploreSection
+    <Suspense fallback={null}><PremiumExploreSection
       eyebrow="Who it's for"
       heading={<>One intelligence, <span className="accent-gradient">five journeys.</span></>}
       sub="Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to your stage and carries your progress forward."
@@ -455,7 +457,7 @@ function LandingRouterSection() {
       subRole="editorial-body"
       categories={ROUTER_CATEGORIES}
       images={ROUTER_IMAGES}
-    />
+    /></Suspense>
   );
 }
 
@@ -556,18 +558,18 @@ export default function LandingPage() {
         <LandingReturnSection />
         <LandingRouterSection />
         <LandingSuiteSection />
-        <PremiumTrustSection
+        <Suspense fallback={null}><PremiumTrustSection
           variant="feature"
           heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
           sub="Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way."
           values={LX_TRUST_VALUES}
-        />
-        <PremiumCTASection
+        /></Suspense>
+        <Suspense fallback={null}><PremiumCTASection
           variant="closing"
           heading="Your next step starts here."
           sub="Ask a question. Explore an idea. Start learning. Visionary is ready when you are."
           routeLinks={LX_RETURN_ROUTES}
-        />
+        /></Suspense>
       </main>
       {/* quiet variant: Apple's footer ends the page in air — no giant
           wordmark — the story itself is the signature */}

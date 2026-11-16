@@ -20,7 +20,7 @@ const COLORS = {
   blue: "#0066cc",
   grey: "#6e6e73",
   slate: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };

@@ -13,7 +13,7 @@ import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 /* ═══ TOKENS (one system) ═══ */
 const COLORS = {
   ink: "#1d1d1f", surface: "#f5f5f7", blue: "#0066cc", grey: "#6e6e73",
-  lightGrey: "#86868b", mist: "#d2d2d7", white: "#ffffff",
+  lightGrey: "#6e6e73", mist: "#d2d2d7", white: "#ffffff",
 };
 
 /* The A2 CTA law, imported from the one source; `mailPill` re-tones the

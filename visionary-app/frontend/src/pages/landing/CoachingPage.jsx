@@ -17,7 +17,7 @@ const COLORS = {
   surface: "#f5f5f7",
   blue: "#0066cc",
   grey: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
   soft: "#f5f5f7",
@@ -402,9 +402,9 @@ function HowJourneySection() {
       return (
         <>
           <BlueTag>{a.tag}</BlueTag>
-          <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+          <h2 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
             {a.blue} <span style={{ color: COLORS.ink }}>{a.title}</span>
-          </h3>
+          </h2>
           <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{a.do}</p>
           <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{a.micro}</p>
         </>
@@ -413,7 +413,7 @@ function HowJourneySection() {
     return (
       <>
         <BlueTag>{step.n} · {step.label}</BlueTag>
-        <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
+        <h2 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h2>
         <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{step.do}</p>
         <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{step.micro}</p>
       </>

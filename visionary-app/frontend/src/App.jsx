@@ -1,8 +1,5 @@
 import React, { lazy, Suspense } from 'react'
 import AuthAction from '@/pages/AuthAction'
-import { Toaster } from '@/components/ui/toaster'
-import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
@@ -99,6 +96,8 @@ import CoachingPage from '@/pages/landing/CoachingPage'
 import AILearningPage from '@/pages/landing/AILearningPage'
 import StudentPage from '@/pages/landing/StudentPage'
 const Login = lazy(() => import('@/pages/Login'))
+// toaster exports Toaster as a NAMED export — map it to default for lazy()
+const LazyToaster = lazy(() => import('@/components/ui/toaster').then((m) => ({ default: m.Toaster })))
 const Register = lazy(() => import('@/pages/Register'))
 const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'))
 const ForgotUserId = lazy(() => import('@/pages/ForgotUserId'))
@@ -240,8 +239,7 @@ const PublicApp = () => (
 function App() {
   return (
     <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
+      <Router>
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-6 focus:py-3 focus:text-[14px] focus:text-[#1d1d1f]"
@@ -258,9 +256,14 @@ function App() {
             </Suspense>
           </AppErrorBoundary>
         </Router>
-        <Toaster />
-      </QueryClientProvider>
-    </AuthProvider>
+        {/* Toaster is not needed for first paint: toast state lives at module
+            scope in use-toast, so a toast fired before the chunk loads still
+            renders once the Toaster mounts. Keeps the shadcn ui chain (and
+            tailwind-merge) out of the entry graph. */}
+        <Suspense fallback={null}>
+          <LazyToaster />
+        </Suspense>
+      </AuthProvider>
   )
 }
 

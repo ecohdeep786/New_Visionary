@@ -5,7 +5,7 @@ import {workspaceText} from '@/lib/workspaceStrings';
 import {useWorkspaceScroll} from '@/hooks/useWorkspaceScroll';
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Navigate, Outlet, useLocation, NavLink } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
+import QueryProvider from './QueryProvider';
 import WorkspaceOpening from './WorkspaceOpening';
 import ConnectedAccountLayout from './ConnectedAccountLayout';
 import DashboardSidebar from "./DashboardSidebar";
@@ -41,7 +41,6 @@ function PreviewDashboardLayout() {
   const locale=scopeData?.preferences.interfaceLocale||(lastInterface.current.personId===user?.id&&lastInterface.current.workspaceId===activeWorkspace?.id?lastInterface.current.locale:'en');const t=key=>workspaceText(locale,key);
   const userName = user?.full_name || user?.email?.split("@")[0] || "Learner";
   const location = useLocation();
-  const queryClient = useQueryClient();
   const [sidebarExpanded, setSidebarExpanded] = useState(() => window.matchMedia('(min-width: 1200px)').matches);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileLimit, setMobileLimit] = useState(4);
@@ -82,12 +81,9 @@ function PreviewDashboardLayout() {
     wide.addEventListener('change', adapt);
     return () => wide.removeEventListener('change', adapt);
   }, []);
-  useEffect(() => {
-    const refresh = () => { queryClient.invalidateQueries(); };
-    window.addEventListener("visionary:workspace-change", refresh);
-    window.addEventListener("storage", refresh);
-    return () => { window.removeEventListener("visionary:workspace-change", refresh); window.removeEventListener("storage", refresh); };
-  }, [queryClient]);
+  /* Workspace-change cache invalidation lives in QueryProvider (it owns the
+   * query client), keeping useQueryClient out of this component's body so
+   * the shell renders before the client resolves. */
   useWorkspaceScroll(user?.id, activeWorkspace?.id, location.pathname, location.search, Boolean(activeWorkspace && !workspaceError && !scopeError));
   useEffect(()=>{
     if(!activeWorkspace)return;
@@ -107,7 +103,7 @@ function PreviewDashboardLayout() {
    * reassures and retries. Degraded states present navigation at the default
    * tier with no policy filter — exactly what DashboardSidebar derives for a
    * missing workspace context. */
-  function shellFor(mainNode,presented,tier,role){return <ThemeColorProvider>
+  function shellFor(mainNode,presented,tier,role){return <QueryProvider><ThemeColorProvider>
     <div lang={locale} data-role={role||user?.identity} data-area={location.pathname.split('/')[2] || 'home'} className={`visionary-workspace workspace-shell stage-${tier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
       <a className="workspace-skip-link" href="#main" onClick={event => { event.preventDefault(); document.getElementById('main')?.focus(); }}>{shell.skip}</a>
       <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
@@ -127,7 +123,7 @@ function PreviewDashboardLayout() {
       </div>
       <nav ref={mobileNavigation} lang={locale} aria-label={t("mobileNavigation")} className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[var(--v-border)] bg-white md:hidden">{presented.mobile.map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className="workspace-bottom-link flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 px-2 text-xs"><span className="workspace-bottom-icon"><Icon aria-hidden="true" size={20}/></span><span>{item.label}</span></NavLink>;})}<button ref={mobileTrigger} aria-label={t("moreNavigation")} aria-haspopup="dialog" aria-controls="mobile-workspace-navigation" aria-expanded={mobileOpen} data-active={presented.mobileMoreActive} aria-current={presented.mobileMoreActive ? 'true' : undefined} className="workspace-bottom-more flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 px-2 text-xs" onClick={()=>setMobileOpen(true)}><span className="workspace-bottom-icon"><Ellipsis aria-hidden="true" size={20}/></span><span>{t("more")}</span></button></nav>
     </div>
-  </ThemeColorProvider>;}
+  </ThemeColorProvider></QueryProvider>;}
   const degradedPresented=presentNavigation(user?.identity,'higher',navigationFor(user?.identity,locale),secondaryNavigation(user?.identity,locale),location.pathname,mobileLimit);
   function unavailable(message){return shellFor(
     <div className="workspace-surface min-h-full overflow-hidden flex items-center justify-center p-6 sm:p-10" lang={locale}>

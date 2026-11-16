@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { lazy, Suspense, useCallback, useState } from "react";
 import { Lock, ShieldCheck, HeartHandshake } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -60,15 +60,17 @@ import {
   JourneyModal,
   ScrollReveal,
 } from "@/components/landing/persona/PersonaSections";
-import {
-  PremiumIntelligenceSection,
-  PremiumLanguageSection,
-  PremiumAchievementSection,
-  PremiumJourneyFlowSection,
-  PremiumTrustSection,
-  PremiumCTASection,
-  PremiumExploreSection,
-} from "@/components/landing/persona/PremiumPersonaSections";
+/* The premium sections sit below the fold; they load on demand (one shared
+ * Suspense boundary around the section run) so the entry graph carries only
+ * hero-first-commit content (T13 eager law). Direct module paths, not the
+ * barrel, so a section chunk never pulls its siblings. */
+const PremiumIntelligenceSection = lazy(() => import("@/components/landing/persona/premium/PremiumIntelligenceSection.jsx"));
+const PremiumLanguageSection = lazy(() => import("@/components/landing/persona/premium/PremiumLanguageSection.jsx"));
+const PremiumAchievementSection = lazy(() => import("@/components/landing/persona/premium/PremiumAchievementSection.jsx"));
+const PremiumJourneyFlowSection = lazy(() => import("@/components/landing/persona/premium/PremiumJourneyFlowSection.jsx"));
+const PremiumTrustSection = lazy(() => import("@/components/landing/persona/premium/PremiumTrustSection.jsx"));
+const PremiumCTASection = lazy(() => import("@/components/landing/persona/premium/PremiumCTASection.jsx"));
+const PremiumExploreSection = lazy(() => import("@/components/landing/persona/premium/PremiumExploreSection.jsx"));
 
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain } from "lucide-react";
 import { color, fontStack } from "@/components/landing/system/tokens";
@@ -318,6 +320,7 @@ export default function StudentPage() {
         <StudentHeroSection />
         <StudentStruggleSection />
         <StudentJourneySection />
+        <Suspense fallback={null}>
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="From the first question to using what you know."
@@ -356,6 +359,7 @@ export default function StudentPage() {
           categories={EXPLORE_CATEGORIES}
           images={EXPLORE_CAT_IMG}
         />
+        </Suspense>
       </main>
       <LandingFooter variant="quiet" />
     </div>
