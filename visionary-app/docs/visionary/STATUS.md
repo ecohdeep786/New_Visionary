@@ -1668,3 +1668,41 @@ lint clean, typecheck clean, 853/853 tests, production build ok. T07
 remaining scope for a later pass: deeper content-hierarchy and
 page-to-page-transition craft review beyond the structural sweep (no
 defects found at this depth).
+
+## 2026-11-16 — T11 AI/language/content: the Ask live announcement stops claiming an answer that was not generated
+
+The T11 lane swept the AI surfaces and the served-language journeys in the
+real browser against merged dev. The interface-language switch works end to
+end: the Settings listbox (English / हिन्दी / বাংলা) persists the preference
+("प्राथमिकता इस उपकरण पर सहेजी गई।"), and the dashboard shell, Settings and
+Ask render comprehensively in Devanagari and Bangla with clean glyph
+rendering (system fallback for the Latin-only Google Sans Flex; no tofu,
+coherent line heights). The Ask honest state renders in each language
+("आपका प्रश्न सहेजा गया · मॉडल उत्तर अभी नहीं" / "প্রশ্ন সংরক্ষিত · মডেল
+উত্তর এখনও নেই"), and the English explanation paragraph inside a
+non-English UI is correct behaviour — the session/teaching language is a
+separate, honestly-labelled setting from the interface language, and the
+paragraph carries its lang attribute. The honest
+"interface translation is being completed" note stands.
+
+The lane's one real defect: the Guide conversation's sr-only live region
+announced "Response available above. Review its source label." for every
+guide reply — including the honest not_connected notice, where no answer
+and no source label exist. A screen-reader user was told an answer was
+available while the visible content said none was generated. The
+announcement is now status-aware: a not_connected reply announces the same
+translated string the visible label carries ("Your question is saved · no
+model answer yet", already shipped in en/hi/bn), and an actual response
+keeps the source-label announcement. Worktree
+`nv-worktrees/zcode-v7-t11-guide-status`, branch
+`zcode/v7-t11-guide-status`, implementation commit `05d9dbc6`, pushed and
+fast-forwarded to `origin/dev`. Verified in the real browser after the
+change: submitting a question announces "প্রশ্ন সংরক্ষিত · মডেল উত্তর
+এখনও নেই" — the honest, localized state. Gates: lint clean, typecheck
+clean, 854/854 tests (new FAP-76 law test: the live announcement matches
+the rendered state), production build ok. Surface inventory regenerated
+(Guide.jsx SHA changed). T11 remaining scope for a later pass: connected-
+model response rendering, retries and uncertainty treatment remain
+unverifiable in this realm (no teaching adapter is connected) — the honest
+not_connected path is the only reachable one, and it now announces
+truthfully.
