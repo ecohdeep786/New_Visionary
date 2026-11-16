@@ -1706,3 +1706,73 @@ model response rendering, retries and uncertainty treatment remain
 unverifiable in this realm (no teaching adapter is connected) — the honest
 not_connected path is the only reachable one, and it now announces
 truthfully.
+
+## 2026-11-16 — V6 §8 cross-team integration review: the production shell carries the real identity journey; release recommendation READY WITH DISCLOSED LIMITATIONS
+
+The §8 review ran the merged integration build (dev at `a4dcafba`) as a
+production bundle (`vite preview` on 5173, `/api` proxied to the realm
+backend on 3001) and re-verified the real-user journeys against it, on top
+of the thirteen lane receipts already recorded in this ledger. The
+production shell was exercised through the fenced local test realm —
+`VITE_FIREBASE_EMULATOR_TEST_ENABLED` with a `demo-` project and a loopback
+emulator origin, the gate `firebaseEmulatorFromEnvironment` and the preview
+CSP both enforce and the published image pins neither flag — so the
+verification ran the real Auth protocol and the registered server contracts
+without changing hosted behavior.
+
+Integration journeys verified on the production build: the public front
+doors render (`/student`, `/how-it-works`, `/pricing`; `/` hands signed-in
+visitors to the dashboard); a fresh salted account completed the full
+identity journey — register (`xt-1794805244638@visionary.test`), email
+verification through the product's own `/auth/action` page in a second tab
+("Email verified"), the five-step onboarding wizard (Learner → name/age →
+School/English → CBSE/Class 8 → review) landing on the dashboard, and the
+topbar nav offering "Open Visionary" → `/dashboard/home` to that signed-in
+visitor (both nav elements verified in the DOM). The honest failure path
+was also verified as designed: a production bundle built without Firebase
+configuration fails closed with "Sign-in is temporarily unavailable"
+(`authErrors.js` mapping of `FirebaseConfigurationError`) — correct hosted
+behavior, not a defect. One operational note recorded for future realm
+runs: the preview CSP realm gate is read at preview-server start while the
+Firebase config is baked at build time, and a 304 from the HTTP cache
+preserves the pre-restart CSP header — restart the preview with the realm
+env AND cache-bust the document (or use a fresh tab) or the SDK fetch is
+blocked with the honest "Check your internet connection" state.
+
+Cross-team finding fixed during this review: the landing navigation was
+not auth-aware — it offered "Sign in"/"Get started" to signed-in visitors
+on public pages. `LandingNav` now reads `useAuth()` and offers the real
+next action ("Open Visionary" → `/dashboard/home`) in the desktop utility
+link, the desktop CTA pill and both mobile drawer cells. Merged as
+`a4dcafba` and re-verified on the production build above.
+
+Release recommendation: **READY WITH DISCLOSED LIMITATIONS**. The core
+real-user journeys (identity, onboarding, workspace, session, public
+website, interface languages, honest failure states) are verified working
+on the production shell against the real Auth protocol; the limitations
+are disclosed, evidenced and none of them blocks a real user from
+completing their journey:
+
+1. Core Web Vitals under the Lighthouse mobile throttle profile: LCP is
+   above 2.5s on 3 of 4 front-door routes (T13 receipt `2538b0ca`: 3212ms
+   `/`, 3360ms `/how-it-works`, 3280ms `/pricing`; `/student` met at
+   2812ms; CLS 0 on all measured routes; TBT `/` 242–266ms — the accepted
+   trade for eager front doors). Evidenced follow-ups are recorded: hero
+   AVIF recompression (~63KB at 1600w) and the text routes' second-commit
+   render cost (~780ms under throttle; section virtualization).
+2. Signed-in visitors still see page-body closing "Get started" →
+   `/register` CTAs on some public pages. This is a content-layer class
+   distinct from the fixed nav: clicking through self-heals, because
+   `Register.jsx` redirects already-authenticated users to
+   `authDestination(user)` instead of showing the form. Recorded for a
+   later content pass; no dead end.
+3. The teaching and billing services are not connected in this realm: the
+   Ask truthfully renders "Your question is saved · no model answer yet"
+   (now announced correctly to screen readers, T11), ConnectedBilling
+   renders its honest realm state, and connected-model response
+   rendering, retries and uncertainty treatment remain unverifiable until
+   a teaching adapter exists. The honest states are the verified product
+   behavior; the connected behavior is future work with its own lane.
+4. Governance: the ff-merges to `dev` carry receipts in this ledger, but
+   final release signoff belongs to the founder/reviewer process — this
+   recommendation is the frontend lane's evidence, not an approval.
