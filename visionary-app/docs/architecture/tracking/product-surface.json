@@ -24,6 +24,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
         "frontend/src/components/landing/LandingNav/nav-data.js",
@@ -90,6 +91,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
         "frontend/src/components/landing/LandingNav/index.jsx:182:7",
@@ -126,13 +128,13 @@
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
         "frontend/src/components/landing/NewPersona.jsx:325:17",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:75:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:92:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:94:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:102:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:113:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:122:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:95:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:103:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:114:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:123:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:23:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:105:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:137:9",
@@ -766,6 +768,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
         "frontend/src/components/landing/LandingNav/nav-data.js",
@@ -847,6 +850,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
         "frontend/src/components/landing/LandingNav/index.jsx:182:7",
@@ -886,13 +890,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:75:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:92:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:94:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:102:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:113:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:122:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:95:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:103:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:114:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:123:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:23:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:105:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:137:9",
@@ -993,6 +997,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
         "frontend/src/components/landing/LandingNav/nav-data.js",
@@ -1075,6 +1080,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
         "frontend/src/components/landing/LandingNav/index.jsx:182:7",
@@ -1114,13 +1120,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:75:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:92:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:94:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:102:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:113:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:122:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:95:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:103:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:114:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:123:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:23:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:105:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:137:9",
@@ -1221,6 +1227,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
         "frontend/src/components/landing/LandingNav/nav-data.js",
@@ -1303,6 +1310,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
         "frontend/src/components/landing/LandingNav/index.jsx:182:7",
@@ -1342,13 +1350,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:75:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:92:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:94:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:102:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:113:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:122:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:95:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:103:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:114:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:123:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:23:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:105:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:137:9",
@@ -1574,6 +1582,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
         "frontend/src/components/landing/LandingNav/nav-data.js",
@@ -1656,6 +1665,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
         "frontend/src/components/landing/LandingNav/index.jsx:182:7",
@@ -1695,13 +1705,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:75:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:92:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:94:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:102:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:113:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:122:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:95:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:103:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:114:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:123:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:23:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:105:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:137:9",
@@ -1802,6 +1812,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
@@ -1876,6 +1887,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/Breadcrumb.jsx:35:9",
         "frontend/src/components/landing/Breadcrumb.jsx:41:15",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
@@ -1941,16 +1953,16 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/CoachingPage.jsx:232:5",
-        "frontend/src/pages/landing/CoachingPage.jsx:250:9",
-        "frontend/src/pages/landing/CoachingPage.jsx:267:12",
-        "frontend/src/pages/landing/CoachingPage.jsx:498:9",
-        "frontend/src/pages/landing/CoachingPage.jsx:510:15",
-        "frontend/src/pages/landing/CoachingPage.jsx:546:11",
-        "frontend/src/pages/landing/CoachingPage.jsx:573:13",
-        "frontend/src/pages/landing/CoachingPage.jsx:588:13",
-        "frontend/src/pages/landing/CoachingPage.jsx:620:11",
-        "frontend/src/pages/landing/CoachingPage.jsx:623:11"
+        "frontend/src/pages/landing/CoachingPage.jsx:233:5",
+        "frontend/src/pages/landing/CoachingPage.jsx:251:9",
+        "frontend/src/pages/landing/CoachingPage.jsx:268:12",
+        "frontend/src/pages/landing/CoachingPage.jsx:500:9",
+        "frontend/src/pages/landing/CoachingPage.jsx:512:15",
+        "frontend/src/pages/landing/CoachingPage.jsx:548:11",
+        "frontend/src/pages/landing/CoachingPage.jsx:575:13",
+        "frontend/src/pages/landing/CoachingPage.jsx:590:13",
+        "frontend/src/pages/landing/CoachingPage.jsx:622:11",
+        "frontend/src/pages/landing/CoachingPage.jsx:625:11"
       ],
       "operations": [
         "public-discovery",
@@ -1980,6 +1992,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
         "frontend/src/components/landing/LandingNav/nav-data.js",
@@ -2062,6 +2075,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
         "frontend/src/components/landing/LandingNav/index.jsx:182:7",
@@ -2101,13 +2115,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:75:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:92:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:94:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:102:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:113:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:122:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:95:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:103:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:114:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:123:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:23:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:105:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:137:9",
@@ -2208,6 +2222,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
@@ -2282,6 +2297,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/Breadcrumb.jsx:35:9",
         "frontend/src/components/landing/Breadcrumb.jsx:41:15",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
@@ -2347,7 +2363,7 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/DownloadPage.jsx:127:13",
+        "frontend/src/pages/landing/DownloadPage.jsx:128:13",
         "frontend/src/pages/landing/DownloadPage.jsx:144:13",
         "frontend/src/pages/landing/DownloadPage.jsx:204:19",
         "frontend/src/pages/landing/DownloadPage.jsx:216:21",
@@ -2389,6 +2405,7 @@
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
         "frontend/src/components/landing/AboutUsHero.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/HeroFanCards.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
@@ -2470,6 +2487,7 @@
         "frontend/src/App.jsx:243:11",
         "frontend/src/components/landing/AboutUsHero.jsx:30:5",
         "frontend/src/components/landing/AboutUsHero.jsx:70:13",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/HeroFanCards.jsx:77:15",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
         "frontend/src/components/landing/LandingFooter.jsx:117:15",
@@ -2532,14 +2550,14 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/AboutUsPage.jsx:84:10",
-        "frontend/src/pages/landing/AboutUsPage.jsx:112:9",
-        "frontend/src/pages/landing/AboutUsPage.jsx:139:7",
-        "frontend/src/pages/landing/AboutUsPage.jsx:156:32",
-        "frontend/src/pages/landing/AboutUsPage.jsx:188:297",
-        "frontend/src/pages/landing/AboutUsPage.jsx:199:34",
-        "frontend/src/pages/landing/AboutUsPage.jsx:214:441",
-        "frontend/src/pages/landing/AboutUsPage.jsx:214:898"
+        "frontend/src/pages/landing/AboutUsPage.jsx:85:10",
+        "frontend/src/pages/landing/AboutUsPage.jsx:113:9",
+        "frontend/src/pages/landing/AboutUsPage.jsx:140:7",
+        "frontend/src/pages/landing/AboutUsPage.jsx:157:32",
+        "frontend/src/pages/landing/AboutUsPage.jsx:189:297",
+        "frontend/src/pages/landing/AboutUsPage.jsx:200:34",
+        "frontend/src/pages/landing/AboutUsPage.jsx:215:441",
+        "frontend/src/pages/landing/AboutUsPage.jsx:215:947"
       ],
       "operations": [
         "public-discovery",
@@ -2569,6 +2587,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
         "frontend/src/components/landing/LandingNav/index.jsx",
@@ -2644,6 +2663,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/Breadcrumb.jsx:35:9",
         "frontend/src/components/landing/Breadcrumb.jsx:41:15",
         "frontend/src/components/landing/LandingFooter.jsx:93:21",
@@ -2707,14 +2727,14 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/AILearningPage.jsx:91:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:147:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:180:25",
-        "frontend/src/pages/landing/AILearningPage.jsx:224:15",
-        "frontend/src/pages/landing/AILearningPage.jsx:249:13",
-        "frontend/src/pages/landing/AILearningPage.jsx:303:17",
-        "frontend/src/pages/landing/AILearningPage.jsx:332:11",
-        "frontend/src/pages/landing/AILearningPage.jsx:335:11"
+        "frontend/src/pages/landing/AILearningPage.jsx:92:11",
+        "frontend/src/pages/landing/AILearningPage.jsx:148:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:181:25",
+        "frontend/src/pages/landing/AILearningPage.jsx:225:15",
+        "frontend/src/pages/landing/AILearningPage.jsx:250:13",
+        "frontend/src/pages/landing/AILearningPage.jsx:304:17",
+        "frontend/src/pages/landing/AILearningPage.jsx:333:11",
+        "frontend/src/pages/landing/AILearningPage.jsx:336:11"
       ],
       "operations": [
         "auth-session-profile",
@@ -3147,6 +3167,7 @@
         "frontend/src/api/firebase/signInMethods.js",
         "frontend/src/api/previewPermissions.js",
         "frontend/src/components/VisionaryLogo.jsx",
+        "frontend/src/components/landing/AuthAwareLink.jsx",
         "frontend/src/components/landing/Breadcrumb.jsx",
         "frontend/src/components/landing/LandingFAQ.jsx",
         "frontend/src/components/landing/LandingFooter.jsx",
@@ -3227,6 +3248,7 @@
         "frontend/src/App.jsx:57:15",
         "frontend/src/App.jsx:67:17",
         "frontend/src/App.jsx:243:11",
+        "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
         "frontend/src/components/landing/Breadcrumb.jsx:35:9",
         "frontend/src/components/landing/Breadcrumb.jsx:41:15",
         "frontend/src/components/landing/LandingFAQ.jsx:61:11",
@@ -3294,13 +3316,13 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/landing/CommunityPage.jsx:189:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:193:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:209:15",
-        "frontend/src/pages/landing/CommunityPage.jsx:243:23",
-        "frontend/src/pages/landing/CommunityPage.jsx:274:17",
-        "frontend/src/pages/landing/CommunityPage.jsx:309:15",
-        "frontend/src/pages/landing/CommunityPage.jsx:312:15"
+        "frontend/src/pages/landing/CommunityPage.jsx:190:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:194:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:210:15",
+        "frontend/src/pages/landing/CommunityPage.jsx:244:23",
+        "frontend/src/pages/landing/CommunityPage.jsx:275:17",
+        "frontend/src/pages/landing/CommunityPage.jsx:310:15",
+        "frontend/src/pages/landing/CommunityPage.jsx:313:15"
       ],
       "operations": [
         "public-updates-distribution",
@@ -46542,6 +46564,40 @@
       "hostedVerified": false
     },
     {
+      "id": "frontend/src/components/landing/AuthAwareLink.jsx:26:5",
+      "file": "frontend/src/components/landing/AuthAwareLink.jsx",
+      "line": 26,
+      "column": 5,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "2d5b8c9bc19113f522d165caf85618cb4b84287592a814b2f645d3922cc0e806",
+      "routeIds": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/how-it-works",
+        "/organization",
+        "/download",
+        "/about",
+        "/pricing",
+        "/community"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "The public pages' shared auth-aware conversion door (§8 cross-team review limitation #2): a router Link that offers a signed-in visitor the real next action (the workspace) instead of the registration form, while the signed-out door and label stay unchanged. Client-side presentation and navigation only; no server connection, data authority or educational coverage is claimed.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
       "id": "frontend/src/components/landing/Breadcrumb.jsx:35:9",
       "file": "frontend/src/components/landing/Breadcrumb.jsx",
       "line": 35,
@@ -48784,9 +48840,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 66,
+      "line": 67,
       "column": 11,
       "tag": "RevealItem",
       "events": [],
@@ -48813,9 +48869,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:75:11",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 75,
+      "line": 76,
       "column": 11,
       "tag": "RevealItem",
       "events": [],
@@ -48842,9 +48898,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:92:11",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 92,
+      "line": 93,
       "column": 11,
       "tag": "RevealItem",
       "events": [],
@@ -48871,16 +48927,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:94:13",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:95:13",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 94,
+      "line": 95,
       "column": 13,
-      "tag": "Link",
+      "tag": "AuthAwareLink",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "2a08cf9351e7503506c17ee053d5b048c2cc1c998f5b44679644f164e87ca85b",
+      "declarationSha256": "620d0308cc04a05f0f5a28434208e54b37283d47f673ae7089106e42a57664da",
       "routeIds": [
         "/",
         "/student",
@@ -48901,9 +48957,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:102:13",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:103:13",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 102,
+      "line": 103,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -48931,9 +48987,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:113:11",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:114:11",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 113,
+      "line": 114,
       "column": 11,
       "tag": "RevealItem",
       "events": [],
@@ -48960,9 +49016,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:122:19",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:123:19",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 122,
+      "line": 123,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -76555,9 +76611,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:84:10",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:85:10",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 84,
+      "line": 85,
       "column": 10,
       "tag": "Link",
       "events": [],
@@ -76579,9 +76635,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:112:9",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:113:9",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 112,
+      "line": 113,
       "column": 9,
       "tag": "Link",
       "events": [],
@@ -76604,9 +76660,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:139:7",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:140:7",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 139,
+      "line": 140,
       "column": 7,
       "tag": "ArrowLink",
       "events": [],
@@ -76629,9 +76685,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:156:32",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:157:32",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 156,
+      "line": 157,
       "column": 32,
       "tag": "Link",
       "events": [],
@@ -76653,9 +76709,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:188:297",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:189:297",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 188,
+      "line": 189,
       "column": 297,
       "tag": "ArrowLink",
       "events": [],
@@ -76678,9 +76734,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:199:34",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:200:34",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 199,
+      "line": 200,
       "column": 34,
       "tag": "Link",
       "events": [],
@@ -76702,16 +76758,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:214:441",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:215:441",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 214,
+      "line": 215,
       "column": 441,
-      "tag": "Link",
+      "tag": "AuthAwareLink",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "0331b3760283f27c013efb8d01303a48215dc4c0686862d03547ec88ef62a4ef",
+      "declarationSha256": "9511dc5ea9612d0e46746235a57c0e94a49be69a92147604d471a7abd7e01ca3",
       "routeIds": [
         "/about"
       ],
@@ -76727,10 +76783,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AboutUsPage.jsx:214:898",
+      "id": "frontend/src/pages/landing/AboutUsPage.jsx:215:947",
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "line": 214,
-      "column": 898,
+      "line": 215,
+      "column": 947,
       "tag": "Link",
       "events": [],
       "calls": [],
@@ -76999,9 +77055,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:91:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:92:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 91,
+      "line": 92,
       "column": 11,
       "tag": "button",
       "events": [
@@ -77030,9 +77086,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:147:13",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:148:13",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 147,
+      "line": 148,
       "column": 13,
       "tag": "BillingToggle",
       "events": [
@@ -77059,9 +77115,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:180:25",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:181:25",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 180,
+      "line": 181,
       "column": 25,
       "tag": "Link",
       "events": [],
@@ -77083,9 +77139,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:224:15",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:225:15",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 224,
+      "line": 225,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -77107,9 +77163,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:249:13",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:250:13",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 249,
+      "line": 250,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -77131,9 +77187,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:303:17",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:304:17",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 303,
+      "line": 304,
       "column": 17,
       "tag": "button",
       "events": [
@@ -77162,16 +77218,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:332:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:333:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 332,
+      "line": 333,
       "column": 11,
-      "tag": "Link",
+      "tag": "AuthAwareLink",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "b4da4d1d9eab8f4fffee2d780852367e35e5737522c1d49e2ea00a37b1c1b331",
+      "declarationSha256": "0af3a42ce4b5556f9cecfe32d7a36ec8602225d527ba6b5c95c588fcb838e9d9",
       "routeIds": [
         "/pricing"
       ],
@@ -77187,9 +77243,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/AILearningPage.jsx:335:11",
+      "id": "frontend/src/pages/landing/AILearningPage.jsx:336:11",
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "line": 335,
+      "line": 336,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -77669,9 +77725,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:232:5",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:233:5",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 232,
+      "line": 233,
       "column": 5,
       "tag": "div",
       "events": [
@@ -77710,9 +77766,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:250:9",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:251:9",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 250,
+      "line": 251,
       "column": 9,
       "tag": "Link",
       "events": [],
@@ -77734,9 +77790,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:267:12",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:268:12",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 267,
+      "line": 268,
       "column": 12,
       "tag": "AuthMock",
       "events": [
@@ -77767,9 +77823,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:498:9",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:500:9",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 498,
+      "line": 500,
       "column": 9,
       "tag": "div",
       "events": [
@@ -77810,9 +77866,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:510:15",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:512:15",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 510,
+      "line": 512,
       "column": 15,
       "tag": "button",
       "events": [
@@ -77841,16 +77897,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:546:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:548:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 546,
+      "line": 548,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
       "calls": [],
-      "destination": "/register",
       "disabled": null,
-      "declarationSha256": "47e4b043614a073e0af9848dfbdd6fad09787dce5e3d2b596dc8340787a46c40",
+      "declarationSha256": "10417e81c3a7941fe9311fb8a15e58960daa9d7f3ca9e6e2021b336bbc27cbc9",
       "routeIds": [
         "/how-it-works"
       ],
@@ -77866,9 +77921,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:573:13",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:575:13",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 573,
+      "line": 575,
       "column": 13,
       "tag": "button",
       "events": [
@@ -77897,9 +77952,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:588:13",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:590:13",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 588,
+      "line": 590,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -77921,16 +77976,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:620:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:622:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 620,
+      "line": 622,
       "column": 11,
-      "tag": "Link",
+      "tag": "AuthAwareLink",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "0331b3760283f27c013efb8d01303a48215dc4c0686862d03547ec88ef62a4ef",
+      "declarationSha256": "9511dc5ea9612d0e46746235a57c0e94a49be69a92147604d471a7abd7e01ca3",
       "routeIds": [
         "/how-it-works"
       ],
@@ -77946,9 +78001,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CoachingPage.jsx:623:11",
+      "id": "frontend/src/pages/landing/CoachingPage.jsx:625:11",
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "line": 623,
+      "line": 625,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -78031,9 +78086,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:189:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:190:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 189,
+      "line": 190,
       "column": 17,
       "tag": "a",
       "events": [
@@ -78064,9 +78119,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:193:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:194:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 193,
+      "line": 194,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -78089,9 +78144,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:209:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:210:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 209,
+      "line": 210,
       "column": 15,
       "tag": "a",
       "events": [
@@ -78121,9 +78176,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:243:23",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:244:23",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 243,
+      "line": 244,
       "column": 23,
       "tag": "Link",
       "events": [],
@@ -78145,9 +78200,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:274:17",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:275:17",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 274,
+      "line": 275,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -78169,16 +78224,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:309:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:310:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 309,
+      "line": 310,
       "column": 15,
-      "tag": "Link",
+      "tag": "AuthAwareLink",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "b39eeac9b4f34aaf93a57254297e16c9024296cb91d92d0d41721050fafadba3",
+      "declarationSha256": "5a842ae5da4aee7d60df0c750860532a11c08c69c4b7be5a6a2593c676b85876",
       "routeIds": [
         "/community"
       ],
@@ -78194,9 +78249,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/CommunityPage.jsx:312:15",
+      "id": "frontend/src/pages/landing/CommunityPage.jsx:313:15",
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "line": 312,
+      "line": 313,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -78772,16 +78827,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/landing/DownloadPage.jsx:127:13",
+      "id": "frontend/src/pages/landing/DownloadPage.jsx:128:13",
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "line": 127,
+      "line": 128,
       "column": 13,
-      "tag": "Link",
+      "tag": "AuthAwareLink",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "45cc2bdc2f49bfd0ab2ef72003767dbdb56d98539cd436c698891465f6634002",
+      "declarationSha256": "9e1e1150039b6b537681a05eb8095bc5b4d487dcf28ab49f8c51fdef40316a7f",
       "routeIds": [
         "/download"
       ],
@@ -79038,12 +79093,12 @@
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
       "line": 389,
       "column": 11,
-      "tag": "Link",
+      "tag": "AuthAwareLink",
       "events": [],
       "calls": [],
       "destination": "/register",
       "disabled": null,
-      "declarationSha256": "b4da4d1d9eab8f4fffee2d780852367e35e5737522c1d49e2ea00a37b1c1b331",
+      "declarationSha256": "f0c214fc24638709a0eda23ad3058faf8e3b6b32542256416eb3d597e976b6c2",
       "routeIds": [
         "/download"
       ],
@@ -85361,6 +85416,10 @@
       "sourceSha256": "e908208c18f89d46a4ca551198f0a18de24d84a36cb59f5bcdb70fccceaf520a"
     },
     {
+      "file": "frontend/src/components/landing/AuthAwareLink.jsx",
+      "sourceSha256": "db75d60483f9d6b5768d0337d29eb9ddb4c968d94729abc847b03d80ed10224f"
+    },
+    {
       "file": "frontend/src/components/landing/Breadcrumb.jsx",
       "sourceSha256": "c101830285474aba60475ac612ef7126848476fe45cca4d65d23d159dfa480aa"
     },
@@ -85414,7 +85473,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "sourceSha256": "83e5ebc69e98c8b4d4af8b1543b46721c7b32e5796a37531bf576e5271aab817"
+      "sourceSha256": "da3411d7879d31b270d6632d9d45396e2e8ab21b61307bbee90e9f6cf598fa7d"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx",
@@ -86362,7 +86421,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AboutUsPage.jsx",
-      "sourceSha256": "0a0d637686b9a9d1f03c183c0a01ee2248fb26e70451ad1a0caa8d6f119859fc"
+      "sourceSha256": "eb7d9f3c8233a60749cbc5476d979d4941936d275f7b531d8f4aced02e45453f"
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
@@ -86370,7 +86429,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "58e0cb106d8da3bb4493f9ed8243f298da7d4168533f7d3f6c714b4d41351632"
+      "sourceSha256": "827df6a7147b07aba54a69fac560905dfc05f8e0b976e440d6221be59a33ad94"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
@@ -86378,7 +86437,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CoachingPage.jsx",
-      "sourceSha256": "04493604b9c1d4d887f66483bbc3ff87f550999c15d1499236f6e8371cc68a87"
+      "sourceSha256": "e35606a6ad5ddd956a57cab2d73e9715a1db4ac999ea538bd4e96f441c6b6fc5"
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
@@ -86386,7 +86445,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "56f3778bedad0f40d19b656415159618f9004c6024cf79beac78f40cbec7cdba"
+      "sourceSha256": "713c9e5496d6621633f1c5b0e44f63a9b4bb115fb65456cef0aab67608c3ff53"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
@@ -86398,7 +86457,7 @@
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
-      "sourceSha256": "97d14ce475940c931faba073bf00e21667e19af198c7063016a70f9222effd71"
+      "sourceSha256": "a970f639c4305a3120eeb1750314451f07ca80fe25cb8467491b4abf55282a65"
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
@@ -88169,6 +88228,16 @@
         "state": "connected",
         "execution": "client",
         "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+        "followUp": [
+          "SCOPE-06",
+          "PLAT-01"
+        ]
+      },
+      "frontend/src/components/landing/AuthAwareLink.jsx": {
+        "profile": "client-presentation",
+        "state": "connected",
+        "execution": "client",
+        "reason": "The public pages' shared auth-aware conversion door (§8 cross-team review limitation #2): a router Link that offers a signed-in visitor the real next action (the workspace) instead of the registration form, while the signed-out door and label stay unchanged. Client-side presentation and navigation only; no server connection, data authority or educational coverage is claimed.",
         "followUp": [
           "SCOPE-06",
           "PLAT-01"
@@ -90274,11 +90343,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1682,
-    "routeReachableDeclarations": 1527,
-    "controlFiles": 245,
+    "controlDeclarations": 1683,
+    "routeReachableDeclarations": 1528,
+    "controlFiles": 246,
     "states": {
-      "connected": 529,
+      "connected": 530,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 155

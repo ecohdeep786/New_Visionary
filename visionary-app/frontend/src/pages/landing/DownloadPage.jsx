@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
+import AuthAwareLink from "@/components/landing/AuthAwareLink";
 import {
   Globe, Monitor, Apple, Laptop, Smartphone, TabletSmartphone,
   Download, ShieldCheck,
@@ -124,12 +125,11 @@ function DownloadHeroSection() {
             </p>
             {/* google.com card curve — tint sweeps into the corner and the card's action floats in it with breath */}
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
-            <Link
-              to="/register"
+            <AuthAwareLink to="/register"
               className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               Open Visionary
-            </Link>
+            </AuthAwareLink>
           </div>
 
           <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-white p-8 pb-20">
@@ -386,9 +386,9 @@ function DownloadCTASection() {
           Still deciding? The web is one click away.
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <AuthAwareLink to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Continue on web
-          </Link>
+          </AuthAwareLink>
           <Link to="/how-it-works" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See how it works
             <ChevronIcon className="h-4 w-4" />

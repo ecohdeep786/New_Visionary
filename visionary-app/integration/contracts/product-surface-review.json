@@ -1425,6 +1425,16 @@
     "PLAT-01"
    ]
   },
+  "frontend/src/components/landing/AuthAwareLink.jsx": {
+   "profile": "client-presentation",
+   "state": "connected",
+   "execution": "client",
+   "reason": "The public pages' shared auth-aware conversion door (§8 cross-team review limitation #2): a router Link that offers a signed-in visitor the real next action (the workspace) instead of the registration form, while the signed-out door and label stay unchanged. Client-side presentation and navigation only; no server connection, data authority or educational coverage is claimed.",
+   "followUp": [
+    "SCOPE-06",
+    "PLAT-01"
+   ]
+  },
   "frontend/src/components/landing/QuietLink.jsx": {
    "profile": "client-presentation",
    "state": "connected",
