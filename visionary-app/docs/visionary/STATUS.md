@@ -2171,3 +2171,30 @@ clean, 73.18KB gz entry.
 **Governance:** evidence-first (distribution audits before any diff); explicit
 paths staged (the repo-root `git add -A` trap was avoided); dev ff-pushed at
 `2cb36767`. Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS.
+
+## 2026-11-17 — Radius law completion (`85629480`): the computed histogram closes the scale
+
+The live computed-radius histogram exposed three stragglers the literal-class
+sweep could not reach: the account menu at `rounded-[20px]` (unified to the
+14px menu law the WorkspaceListbox already uses), the KnowledgeEstimatePanel
+list items at `rounded-[14px]` (unified to the 16px card law), and the
+onboarding AGIIntro card at `rounded-3xl` (unified to `rounded-2xl`).
+
+**The resulting radius scale is documented and coherent** — micro elements
+4–7px (StreakCard flames/dots, intentional), controls/inputs/menus 12–14px
+(`--v-radius-control`, menus, bottom-nav links), cards and list items 16px
+(`rounded-2xl`), shell and priority surfaces 24px (the design system's own
+`.workspace-surface`/`.v-home-priority` classes), hero promos 28px
+(`rounded-[28px]`, apple.com's large-promo radius), pills/avatars full. The
+StudentHome aria-hidden decorative blob (30px on a 112px shape) and the
+public pages' own radii are out of the workspace law by scope.
+
+**Motion law verified in the live realm**: the default-ease rule is in the
+served stylesheet, its selector matches plain interactive elements, and the
+tokens resolve (180ms `--v-motion`, `--ease-out-apple`). The verification
+browser reports `prefers-reduced-motion: reduce`, so computed durations are
+0s — the standing T05 guard correctly neutralizes both authored and default
+transitions; the law is wired, and the accessibility behavior is by design.
+
+Gates: 855/855 tests (inventory regen last), eslint clean on touched files,
+production build clean. dev at `85629480`.
