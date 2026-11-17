@@ -3,7 +3,7 @@ import { Sparkles, ArrowRight } from "lucide-react";
 export default function AGIIntro({ data, userName, onComplete, cloudProfile = false }) {
   return (
     <main data-font-surface="product" className="flex min-h-dvh items-center justify-center bg-white p-6">
-      <section className="w-full max-w-lg rounded-3xl border border-[#d2d2d7] bg-white p-8 sm:p-10">
+      <section className="w-full max-w-lg rounded-2xl border border-[#d2d2d7] bg-white p-8 sm:p-10">
         <Sparkles className="mb-6 h-8 w-8 text-[#0071E3]" />
         <p className="text-sm text-[#6e6e73]">Visionary Dashboard</p>
         <h1 className="mt-2 text-3xl font-medium text-[#1d1d1f]">Your workspace is ready, {userName || "there"}.</h1>

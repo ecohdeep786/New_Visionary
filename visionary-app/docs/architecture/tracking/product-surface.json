@@ -85069,7 +85069,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/DashboardTopbar.jsx",
-      "sourceSha256": "509895c7c2a100cb9fbe1e4aed7bfc1b411c6fc4a75682c15fd9b3c787e5bcbf"
+      "sourceSha256": "900464cc845748439059655d8e330b0113a1c09c4285cad723a4bea850c1784d"
     },
     {
       "file": "frontend/src/components/dashboard/DataDiagramRepresentation.jsx",
@@ -85133,7 +85133,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/KnowledgeEstimatePanel.jsx",
-      "sourceSha256": "857e024aa90ec0984d663d3e6692769262d55cddb5708dc8098d6276d2ffdff4"
+      "sourceSha256": "7e4a2f982589becf58f88459ce90a98c27ee941a81b80b6259448bfa992e4672"
     },
     {
       "file": "frontend/src/components/dashboard/LaggingTopicsCard.jsx",
@@ -85661,7 +85661,7 @@
     },
     {
       "file": "frontend/src/components/onboarding/steps/AGIIntro.jsx",
-      "sourceSha256": "c5f5177a2397fadf6efdc3516c16de818e636dff9a099c8da2189a984e037b17"
+      "sourceSha256": "6fc2873c81e21bd55ab6a207c6e5fccf4cc97e2e2fe3665ec1bbf29b3d2aedfb"
     },
     {
       "file": "frontend/src/components/onboarding/steps/IdentitySelection.jsx",

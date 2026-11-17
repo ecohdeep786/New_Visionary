@@ -55,7 +55,7 @@ export default function KnowledgeEstimatePanel({ ctx, rows, locale }) {
     {state.loading && <p className="v-muted mt-4" role="status">{t('estimateLoading')}</p>}
     {!state.loading && state.error && <div className="mt-4"><p className="v-notice v-error" role="alert"><span lang="en">{state.error}</span></p><button className="v-button mt-3" onClick={() => setRetry(retry + 1)}>{t('estimateRetry')}</button></div>}
     {!state.loading && !state.error && <ul className="mt-4 grid gap-3">
-      {state.entries.map(entry => <li className="rounded-[14px] border border-[var(--v-border)] bg-[var(--v-surface)] px-4 py-3" key={`${entry.conceptId}:${entry.sourceVersion}`}>
+      {state.entries.map(entry => <li className="rounded-2xl border border-[var(--v-border)] bg-[var(--v-surface)] px-4 py-3" key={`${entry.conceptId}:${entry.sourceVersion}`}>
         <div className="flex items-baseline justify-between gap-3"><h3 lang={entry.titleLocale || 'en'} className="min-w-0 truncate text-sm font-medium">{entry.title}</h3>
           {entry.conflict ? <span className="v-evidence">{t('estimateConflict')}</span>
             : entry.estimate ? <span className="text-sm font-medium">{Math.round(entry.estimate.pKnown * 100)}%</span>
