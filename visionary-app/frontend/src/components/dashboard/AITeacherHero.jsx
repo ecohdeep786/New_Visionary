@@ -101,11 +101,11 @@ export default function AITeacherHero({ userName, studentData }) {
         >
           <Sparkles className="w-5 h-5" style={{ color: themeColor.accent }} />
         </div>
-        <span className="text-sm font-medium text-[#5f6368]">Your AGI teacher</span>
+        <span className="text-sm font-medium text-[#6e6e73]">Your AGI teacher</span>
       </div>
 
       <div>
-        <h1 className="text-[32px] lg:text-[40px] font-medium text-[#121317] tracking-tight leading-tight">
+        <h1 className="text-[32px] lg:text-[40px] font-medium text-[#1d1d1f] tracking-tight leading-tight">
           {greeting}, {userName}.
         </h1>
 
@@ -117,10 +117,10 @@ export default function AITeacherHero({ userName, studentData }) {
               <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: themeColor.accent, animationDelay: "150ms" }} />
               <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: themeColor.accent, animationDelay: "300ms" }} />
             </div>
-            <span className="text-base text-[#5f6368]">{thinkSteps[thinkStep]}</span>
+            <span className="text-base text-[#6e6e73]">{thinkSteps[thinkStep]}</span>
           </div>
         ) : (
-          <p className="text-base text-[#5f6368] mt-3 leading-relaxed max-w-xl">
+          <p className="text-base text-[#6e6e73] mt-3 leading-relaxed max-w-xl">
             {reasoning}
           </p>
         )}
@@ -140,21 +140,21 @@ export default function AITeacherHero({ userName, studentData }) {
           <div className="relative z-10 flex flex-col gap-5 p-8">
             <div className="flex items-start justify-between gap-4">
               <div className="flex flex-col gap-1">
-                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">Today's lesson</span>
-                <h2 className="text-[22px] font-medium text-[#121317] leading-snug">{primaryTopic.name}</h2>
-                <p className="text-sm text-[#5f6368]">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Today's lesson</span>
+                <h2 className="text-[22px] font-medium text-[#1d1d1f] leading-snug">{primaryTopic.name}</h2>
+                <p className="text-sm text-[#6e6e73]">
                   {primaryTopic.subject}{primaryTopic.chapter ? ` · ${primaryTopic.chapter}` : ""}
                 </p>
               </div>
               <div className="flex flex-col items-end gap-1 shrink-0 text-right">
-                <span className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wide">Est. time</span>
-                <span className="text-[22px] font-medium text-[#121317]">{estimatedMinutes} min</span>
+                <span className="text-[11px] font-medium text-[#6e6e73] uppercase tracking-wide">Est. time</span>
+                <span className="text-[22px] font-medium text-[#1d1d1f]">{estimatedMinutes} min</span>
               </div>
             </div>
 
             {/* Confidence bar */}
             <div className="flex flex-col gap-1.5">
-              <div className="flex items-center justify-between text-xs text-[#5f6368]">
+              <div className="flex items-center justify-between text-xs text-[#6e6e73]">
                 <span>Your confidence</span>
                 <span className="font-medium">{confidence}%</span>
               </div>
@@ -177,7 +177,7 @@ export default function AITeacherHero({ userName, studentData }) {
               </Link>
               <Link
                 to={`/dashboard/practice?subject=${encodeURIComponent(primaryTopic.subject)}&topic=${encodeURIComponent(primaryTopic.name)}`}
-                className="inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium text-[#5f6368] bg-white border border-[#dadce0] hover:bg-[#121317]/5 transition-colors"
+                className="inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium text-[#6e6e73] bg-white border border-[#d2d2d7] hover:bg-[#1d1d1f]/5 transition-colors"
               >
                 Practice instead
               </Link>
@@ -190,8 +190,8 @@ export default function AITeacherHero({ userName, studentData }) {
       {!thinkAloud && memoryItems.length > 0 && (
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2">
-            <Brain className="w-4 h-4 text-[#5f6368]" />
-            <span className="text-xs font-medium text-[#5f6368] uppercase tracking-wide">Things I remember about you</span>
+            <Brain className="w-4 h-4 text-[#6e6e73]" />
+            <span className="text-xs font-medium text-[#6e6e73] uppercase tracking-wide">Things I remember about you</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {memoryItems.map((item, i) => (

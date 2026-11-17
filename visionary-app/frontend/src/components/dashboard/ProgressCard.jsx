@@ -34,17 +34,17 @@ export default function ProgressCard({ studentData }) {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 bg-white rounded-3xl">
       {/* Left — metrics list */}
       <div className="flex flex-col">
-        <h3 className="text-[17px] font-medium text-[#121317] mb-4">This week</h3>
+        <h3 className="text-[17px] font-medium text-[#1d1d1f] mb-4">This week</h3>
         <div className="flex flex-col divide-y divide-gray-100">
           {metrics.map((m) => {
             const Icon = m.icon;
             return (
               <div key={m.label} className="flex items-center gap-4 py-4">
                 <div className="w-10 h-10 rounded-full bg-[#ffffff] flex items-center justify-center shrink-0">
-                  <Icon className="w-[18px] h-[18px] text-[#5f6368]" />
+                  <Icon className="w-[18px] h-[18px] text-[#6e6e73]" />
                 </div>
-                <span className="text-base font-normal text-[#5f6368] flex-1">{m.label}</span>
-                <span className="text-[22px] font-medium text-[#121317]">{m.value}</span>
+                <span className="text-base font-normal text-[#6e6e73] flex-1">{m.label}</span>
+                <span className="text-[22px] font-medium text-[#1d1d1f]">{m.value}</span>
               </div>
             );
           })}
@@ -53,7 +53,7 @@ export default function ProgressCard({ studentData }) {
 
       {/* Right — study activity chart */}
       <div className="flex flex-col">
-        <h3 className="text-[17px] font-medium text-[#121317] mb-4">Study activity</h3>
+        <h3 className="text-[17px] font-medium text-[#1d1d1f] mb-4">Study activity</h3>
         <div className="flex-1 min-h-[200px] flex items-end">
           <ResponsiveContainer width="100%" height={200}>
             <AreaChart data={last7Days} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
@@ -72,7 +72,7 @@ export default function ProgressCard({ studentData }) {
               />
               <XAxis
                 dataKey="day"
-                tick={{ fontSize: 14, fill: "#5f6368", fontWeight: 400 }}
+                tick={{ fontSize: 14, fill: "#6e6e73", fontWeight: 400 }}
                 axisLine={false}
                 tickLine={false}
                 dy={8}

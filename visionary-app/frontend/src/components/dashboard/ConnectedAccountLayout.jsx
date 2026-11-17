@@ -31,7 +31,7 @@ export default function ConnectedAccountLayout() {
     try { await logout(); }
     catch { setError('We couldn’t sign you out. Please try again.'); setBusy(false); }
   }
-  return <div data-font-surface="product" className="min-h-screen bg-slate-50 text-[#202124]">
+  return <div data-font-surface="product" className="min-h-screen bg-slate-50 text-[#1d1d1f]">
     <header className="border-b bg-white px-5 py-3">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-8 gap-y-2">
         <nav aria-label="Account" className="flex flex-wrap items-center gap-x-6 text-sm">

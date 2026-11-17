@@ -16,11 +16,11 @@ export default function CollapsibleSection({ title, subtitle, action, defaultOpe
           aria-expanded={open}
         >
           <ChevronDown
-            className={`w-5 h-5 text-[#5f6368] transition-transform duration-200 ${open ? "" : "-rotate-90"}`}
+            className={`w-5 h-5 text-[#6e6e73] transition-transform duration-200 ${open ? "" : "-rotate-90"}`}
           />
           <div>
-            <h2 className="text-[22px] font-medium text-[#121317]">{title}</h2>
-            {subtitle && <p className="text-sm font-normal text-[#5f6368] mt-1">{subtitle}</p>}
+            <h2 className="text-[22px] font-medium text-[#1d1d1f]">{title}</h2>
+            {subtitle && <p className="text-sm font-normal text-[#6e6e73] mt-1">{subtitle}</p>}
           </div>
         </button>
         {action}

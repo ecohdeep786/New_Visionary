@@ -104,7 +104,7 @@ function PreviewDashboardLayout() {
    * tier with no policy filter — exactly what DashboardSidebar derives for a
    * missing workspace context. */
   function shellFor(mainNode,presented,tier,role){return <QueryProvider><ThemeColorProvider>
-    <div lang={locale} data-role={role||user?.identity} data-area={location.pathname.split('/')[2] || 'home'} className={`visionary-workspace workspace-shell stage-${tier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
+    <div lang={locale} data-role={role||user?.identity} data-area={location.pathname.split('/')[2] || 'home'} className={`visionary-workspace workspace-shell stage-${tier} flex h-dvh flex-col overflow-hidden text-[#1d1d1f]`}>
       <a className="workspace-skip-link" href="#main" onClick={event => { event.preventDefault(); document.getElementById('main')?.focus(); }}>{shell.skip}</a>
       <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
       <div role="status" aria-live="polite" aria-atomic="true" className={offline ? 'workspace-connectivity' : 'sr-only'}>{offline ? shell.offline : connectionChanged ? shell.online : ''}</div>
@@ -130,8 +130,8 @@ function PreviewDashboardLayout() {
       <section className="w-full max-w-md rounded-[var(--v-radius-panel)] border border-[var(--v-border)] bg-[var(--v-surface)] p-8 text-center">
         <div className="mx-auto grid h-14 w-14 place-items-center rounded-full" style={{background:'var(--v-soft)'}}><CloudOff size={24} aria-hidden="true" style={{color:'var(--v-action)'}}/></div>
         <h1 className="mt-5 text-xl font-medium">{recoveryCopy('Workspace unavailable')}</h1>
-        <p className="mt-2 text-sm leading-6 text-[#5f6368]" role="alert" lang="en">{message}</p>
-        <p className="mt-3 text-sm leading-6 text-[#5f6368]">{recoveryCopy('Your saved records remain on this device. Restore readable records, then retry.')}</p>
+        <p className="mt-2 text-sm leading-6 text-[#6e6e73]" role="alert" lang="en">{message}</p>
+        <p className="mt-3 text-sm leading-6 text-[#6e6e73]">{recoveryCopy('Your saved records remain on this device. Restore readable records, then retry.')}</p>
         <div className="mt-6 flex justify-center"><button className="v-button primary" onClick={recover}>{recoveryCopy('Retry workspace')}</button></div>
       </section>
     </div>,degradedPresented,'higher');}

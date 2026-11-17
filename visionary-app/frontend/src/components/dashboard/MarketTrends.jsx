@@ -46,35 +46,35 @@ export default function MarketTrends({ subjects }) {
     <div className="flex flex-col gap-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-[#e8f0fd] flex items-center justify-center">
-            <TrendingUp className="w-5 h-5 text-[#4285F4]" />
+          <div className="w-10 h-10 rounded-full bg-[#eef5ff] flex items-center justify-center">
+            <TrendingUp className="w-5 h-5 text-[#0071E3]" />
           </div>
           <div>
-            <h2 className="text-lg lg:text-xl font-semibold text-[#121317] leading-none">Market Trends</h2>
-            <p className="text-xs text-[#5f6368] mt-1.5">How your subjects connect to the real world</p>
+            <h2 className="text-lg lg:text-xl font-semibold text-[#1d1d1f] leading-none">Market Trends</h2>
+            <p className="text-xs text-[#6e6e73] mt-1.5">How your subjects connect to the real world</p>
           </div>
         </div>
-        <button onClick={fetchTrends} disabled={loading} className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium text-[#5f6368] hover:bg-[#121317]/5 disabled:opacity-40 transition-colors">
+        <button onClick={fetchTrends} disabled={loading} className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium text-[#6e6e73] hover:bg-[#1d1d1f]/5 disabled:opacity-40 transition-colors">
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} /> Refresh
         </button>
       </div>
       {loading ? (
-        <div className="flex items-center gap-3 p-7 bg-white rounded-3xl border border-[#dadce0]">
-          <div className="w-7 h-7 border-2 border-[#dadce0] border-t-[#4285F4] rounded-full animate-spin shrink-0" />
-          <span className="text-sm text-[#5f6368]">Finding trends in your subjects...</span>
+        <div className="flex items-center gap-3 p-7 bg-white rounded-3xl border border-[#d2d2d7]">
+          <div className="w-7 h-7 border-2 border-[#d2d2d7] border-t-[#0071E3] rounded-full animate-spin shrink-0" />
+          <span className="text-sm text-[#6e6e73]">Finding trends in your subjects...</span>
         </div>
       ) : trends.length === 0 ? (
-        <div className="flex items-center gap-3 p-7 bg-white rounded-3xl border border-[#dadce0]">
-          <Globe className="w-5 h-5 text-[#5f6368]" />
-          <span className="text-sm text-[#5f6368]">Trends will appear here once you add subjects.</span>
+        <div className="flex items-center gap-3 p-7 bg-white rounded-3xl border border-[#d2d2d7]">
+          <Globe className="w-5 h-5 text-[#6e6e73]" />
+          <span className="text-sm text-[#6e6e73]">Trends will appear here once you add subjects.</span>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {trends.map((t, i) => (
-            <div key={i} className="flex flex-col gap-3 p-7 bg-white rounded-3xl border border-[#dadce0] hover:shadow-sm transition-all">
-              <span className="px-2.5 py-1 rounded-full bg-[#e8f0fd] text-[#4285F4] text-xs font-medium self-start">{t.subject}</span>
-              <h3 className="text-sm font-bold text-[#121317] leading-snug">{t.title}</h3>
-              <p className="text-xs text-[#5f6368] leading-relaxed">{t.summary}</p>
+            <div key={i} className="flex flex-col gap-3 p-7 bg-white rounded-3xl border border-[#d2d2d7] hover:shadow-sm transition-all">
+              <span className="px-2.5 py-1 rounded-full bg-[#eef5ff] text-[#0071E3] text-xs font-medium self-start">{t.subject}</span>
+              <h3 className="text-sm font-bold text-[#1d1d1f] leading-snug">{t.title}</h3>
+              <p className="text-xs text-[#6e6e73] leading-relaxed">{t.summary}</p>
             </div>
           ))}
         </div>

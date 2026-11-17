@@ -32,18 +32,18 @@ export default function QuestionBar({ subject, topicName }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-sm font-medium text-[#5f6368]">Have a question? Save it and your AGI will help.</p>
+      <p className="text-sm font-medium text-[#6e6e73]">Have a question? Save it and your AGI will help.</p>
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-2 px-4 bg-white rounded-full border border-[#dadce0] focus-within:border-[#4285F4]/40 transition-colors"
+        className="flex items-center gap-2 px-4 bg-white rounded-full border border-[#d2d2d7] focus-within:border-[#0071E3]/40 transition-colors"
       >
-        <HelpCircle className="w-[18px] h-[18px] text-[#5f6368] shrink-0 ml-1" />
+        <HelpCircle className="w-[18px] h-[18px] text-[#6e6e73] shrink-0 ml-1" />
         <input
           type="text"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           placeholder={`Ask a question about ${topicName || "this topic"}…`}
-          className="flex-1 bg-transparent text-sm text-[#121317] placeholder:text-[#5f6368] outline-none h-12"
+          className="flex-1 bg-transparent text-sm text-[#1d1d1f] placeholder:text-[#6e6e73] outline-none h-12"
         />
         <button
           type="submit"

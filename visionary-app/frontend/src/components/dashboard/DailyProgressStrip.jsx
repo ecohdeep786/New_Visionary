@@ -3,9 +3,9 @@ import { BookOpen, Clock, Flame, TrendingUp } from "lucide-react";
 export default function DailyProgressStrip({ stats }) {
   const { topicsToday, minutesToday, streak, avgConfidenceToday } = stats;
   const items = [
-    { icon: BookOpen, label: "Topics Today", value: topicsToday, color: "text-[#4285F4]", bg: "bg-[#e8f0fd]" },
+    { icon: BookOpen, label: "Topics Today", value: topicsToday, color: "text-[#0071E3]", bg: "bg-[#eef5ff]" },
     { icon: Clock, label: "Study Minutes", value: minutesToday, color: "text-teal-600", bg: "bg-teal-50" },
-    { icon: Flame, label: "Day Streak", value: streak, color: "text-[#5f6368]", bg: "bg-[#ffffff]" },
+    { icon: Flame, label: "Day Streak", value: streak, color: "text-[#6e6e73]", bg: "bg-[#ffffff]" },
     { icon: TrendingUp, label: "Confidence", value: avgConfidenceToday > 0 ? `${avgConfidenceToday}%` : "—", color: "text-[#137333]", bg: "bg-[#e6f4ea]" },
   ];
 
@@ -14,13 +14,13 @@ export default function DailyProgressStrip({ stats }) {
       {items.map((item) => {
         const Icon = item.icon;
         return (
-          <div key={item.label} className="flex items-center gap-4 p-6 lg:p-7 bg-white rounded-3xl border border-[#dadce0]">
+          <div key={item.label} className="flex items-center gap-4 p-6 lg:p-7 bg-white rounded-3xl border border-[#d2d2d7]">
             <div className={`w-11 h-11 rounded-full flex items-center justify-center ${item.bg} shrink-0`}>
               <Icon className={`w-5 h-5 ${item.color}`} />
             </div>
             <div className="min-w-0">
-              <p className="text-xl lg:text-2xl font-bold text-[#121317] leading-none">{item.value}</p>
-              <p className="text-xs text-[#5f6368] mt-1.5 truncate">{item.label}</p>
+              <p className="text-xl lg:text-2xl font-bold text-[#1d1d1f] leading-none">{item.value}</p>
+              <p className="text-xs text-[#6e6e73] mt-1.5 truncate">{item.label}</p>
             </div>
           </div>
         );

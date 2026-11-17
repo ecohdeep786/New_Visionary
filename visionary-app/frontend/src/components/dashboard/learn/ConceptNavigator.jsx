@@ -17,21 +17,21 @@ export default function ConceptNavigator({ topic, subConcepts, loadingConcepts, 
   const completedCount = conceptsWithProgress.filter((c) => c.status === "completed").length;
 
   return (
-    <div className="flex flex-col bg-white rounded-3xl border border-[#dadce0]/50 overflow-hidden">
+    <div className="flex flex-col bg-white rounded-3xl border border-[#d2d2d7]/50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-[#dadce0]/40">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-[#d2d2d7]/40">
         <div className="flex items-center gap-2.5 min-w-0">
           <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: themeColor.light }}>
             <BookOpen className="w-4 h-4" style={{ color: themeColor.accent }} />
           </div>
           <div>
-            <span className="text-sm font-medium text-[#121317] block">Concepts</span>
-            <span className="text-xs text-[#5f6368]">{completedCount}/{subConcepts.length} completed</span>
+            <span className="text-sm font-medium text-[#1d1d1f] block">Concepts</span>
+            <span className="text-xs text-[#6e6e73]">{completedCount}/{subConcepts.length} completed</span>
           </div>
         </div>
         <button
           onClick={onToggleCollapse}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-[#5f6368] hover:bg-[#121317]/5 transition-colors shrink-0"
+          className="w-8 h-8 flex items-center justify-center rounded-full text-[#6e6e73] hover:bg-[#1d1d1f]/5 transition-colors shrink-0"
         >
           <PanelRightClose className="w-[18px] h-[18px]" />
         </button>
@@ -42,13 +42,13 @@ export default function ConceptNavigator({ topic, subConcepts, loadingConcepts, 
         {loadingConcepts ? (
           <div className="flex items-center gap-3 px-5 py-8">
             <Loader2 className="w-4 h-4 animate-spin" style={{ color: themeColor.accent }} />
-            <span className="text-sm text-[#5f6368]">Loading concepts...</span>
+            <span className="text-sm text-[#6e6e73]">Loading concepts...</span>
           </div>
         ) : conceptsWithProgress.length === 0 ? (
-          <div className="px-5 py-8 text-sm text-[#5f6368]">No concepts available.</div>
+          <div className="px-5 py-8 text-sm text-[#6e6e73]">No concepts available.</div>
         ) : (
           conceptsWithProgress.map((c, i) => (
-            <div key={i} className="flex items-center gap-3 px-5 py-3.5 border-b border-[#dadce0]/20 last:border-b-0">
+            <div key={i} className="flex items-center gap-3 px-5 py-3.5 border-b border-[#d2d2d7]/20 last:border-b-0">
               {c.status === "completed" ? (
                 <CheckCircle2 className="w-4 h-4 text-[#137333] shrink-0" />
               ) : c.status === "in-progress" ? (
@@ -56,11 +56,11 @@ export default function ConceptNavigator({ topic, subConcepts, loadingConcepts, 
                   <div className="w-1/2 h-full rounded-l-full" style={{ backgroundColor: themeColor.accent }} />
                 </div>
               ) : (
-                <Circle className="w-4 h-4 text-[#dadce0] shrink-0" />
+                <Circle className="w-4 h-4 text-[#d2d2d7] shrink-0" />
               )}
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-[#121317] truncate">{c.title}</p>
-                <p className="text-xs text-[#5f6368] mt-0.5">{c.number} · Progress: {c.progress}%</p>
+                <p className="text-sm text-[#1d1d1f] truncate">{c.title}</p>
+                <p className="text-xs text-[#6e6e73] mt-0.5">{c.number} · Progress: {c.progress}%</p>
               </div>
             </div>
           ))

@@ -52,21 +52,21 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
         <p className="text-sm font-medium" style={{ color: themeColor.accent }}>
           {topic.subject} · {topic.chapter || "Chapter"}
         </p>
-        <h1 className="text-[28px] lg:text-[32px] font-medium text-[#121317] tracking-tight leading-tight">
+        <h1 className="text-[28px] lg:text-[32px] font-medium text-[#1d1d1f] tracking-tight leading-tight">
           {topic.name}
         </h1>
       </div>
 
       {/* What you'll learn */}
-      <div className="bg-white rounded-3xl border border-[#dadce0]/50 p-8">
+      <div className="bg-white rounded-3xl border border-[#d2d2d7]/50 p-8">
         <div className="flex items-center gap-2 mb-6">
           <Target className="w-5 h-5" style={{ color: themeColor.accent }} />
-          <h2 className="text-[18px] font-medium text-[#121317]">What you'll learn</h2>
+          <h2 className="text-[18px] font-medium text-[#1d1d1f]">What you'll learn</h2>
         </div>
         {loading ? (
           <div className="flex items-center gap-3 py-8">
             <Loader2 className="w-5 h-5 animate-spin" style={{ color: themeColor.accent }} />
-            <p className="text-sm text-[#5f6368]">Preparing your learning path...</p>
+            <p className="text-sm text-[#6e6e73]">Preparing your learning path...</p>
           </div>
         ) : (
           <div className="flex flex-col gap-4">
@@ -75,7 +75,7 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
                 <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: themeColor.light }}>
                   <span className="text-xs font-medium" style={{ color: themeColor.accent }}>{i + 1}</span>
                 </div>
-                <p className="text-sm text-[#5f6368] leading-relaxed">{obj}</p>
+                <p className="text-sm text-[#6e6e73] leading-relaxed">{obj}</p>
               </div>
             ))}
           </div>
@@ -84,10 +84,10 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
 
       {/* Meta */}
       <div className="flex items-center gap-6 flex-wrap">
-        <div className="flex items-center gap-2 text-sm text-[#5f6368]">
+        <div className="flex items-center gap-2 text-sm text-[#6e6e73]">
           <Clock className="w-4 h-4" /> ~10 min
         </div>
-        <div className="flex items-center gap-2 text-sm text-[#5f6368]">
+        <div className="flex items-center gap-2 text-sm text-[#6e6e73]">
           <BookOpen className="w-4 h-4" /> {topic.chapter || "Chapter"}
         </div>
         {isBookmarked && (

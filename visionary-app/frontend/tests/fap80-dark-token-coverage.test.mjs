@@ -8,9 +8,14 @@
  *  FAP-80 defect: a #0b57d2 link at 2.69:1 on the dark surface and a #dadce0
  *  card border that outshines the token border.
  *
- *  This test is the enforcement: scan dashboard source for palette utilities,
+ *  2026-11-17: the founder directed the workspace palette unification to the
+  Apple law (Google Material literals migrated to #6e6e73/#1d1d1f/#d2d2d7/
+  #f5f5f7/#0071e3 — 893 replacements across 91 files). The law structure is
+  unchanged; the measured literals below are the post-migration inventory.
+
+  This test is the enforcement: scan dashboard source for palette utilities,
  *  parse the dark remap segment, and require every token to be covered there.
- *  The only allowed exception is the image scrim (bg-[#121317]/40), whose dark
+ *  The only allowed exception is the image scrim (bg-[#1d1d1f]/40), whose dark
  *  wash is the legibility device over photography in both color schemes.
  *  The remap must be dark-only: no palette selector may live outside the
  *  prefers-color-scheme:dark block, or light mode would stop rendering the
@@ -27,7 +32,7 @@ const css = readFileSync(cssPath, "utf8");
 
 /* The one justified exception: a photography scrim, not a surface token. */
 const ALLOWLIST = new Map([
-  ["bg-[#121317]/40", "image scrim: the dark wash keeps overlay text legible over photography in both color schemes"],
+  ["bg-[#1d1d1f]/40", "image scrim: the dark wash keeps overlay text legible over photography in both color schemes"],
 ]);
 
 const sourceFiles = [];
@@ -43,7 +48,7 @@ walk(join(root, "src/components/dashboard"));
 walk(join(root, "src/pages/dashboard"));
 
 /* Exact Tailwind class tokens, including state prefixes and /opacity suffixes,
-   because border-[#dadce0]/60 is a different declaration than the solid one. */
+   because border-[#d2d2d7]/60 is a different declaration than the solid one. */
 const TOKEN_RE = /(?:^|[\s"'`])((?:[a-z]+:)*)(text|bg|border|ring|fill|stroke|from|to|decoration|shadow|outline|divide|placeholder|caret)-\[(#[0-9a-fA-F]{3,8})\](?:\/(\d{1,3}))?/g;
 const tokens = new Map();
 for (const file of sourceFiles) {
@@ -80,9 +85,9 @@ const outsideDark = css.slice(0, darkStart) + css.slice(darkEnd + 1);
 const covered = (token) => darkSegment.includes(`class~="${token}"`);
 
 test("dashboard palette inventory is non-trivial (the scan is real)", () => {
-  assert.ok(tokens.size >= 60, `expected the dashboard palette inventory, found ${tokens.size} class tokens`);
-  assert.ok(tokens.has("text-[#0b57d2]"), "the measured FAP-80 link token must be in the inventory");
-  assert.ok(tokens.has("border-[#dadce0]"), "the measured FAP-80 border token must be in the inventory");
+  assert.ok(tokens.size >= 50, `expected the dashboard palette inventory, found ${tokens.size} class tokens`);
+  assert.ok(tokens.has("text-[#0071e3]"), "the action link token must be in the inventory");
+  assert.ok(tokens.has("border-[#d2d2d7]"), "the workspace border token must be in the inventory");
 });
 
 test("every dashboard palette token is remapped by the dark-scheme token block", () => {
@@ -112,35 +117,30 @@ test("the remap stays dark-only so light mode keeps the authored palette", () =>
 
 test("FAP-80 additions target the semantic tokens, not substitute literals", () => {
   const required = [
-    ['text-[#0b57d2]', "color: var(--v-action)"],
-    ['text-[#0b57d0]', "color: var(--v-action)"],
-    ['text-[#4285f4]', "color: var(--v-action)"],
-    ['hover:text-[#4285f4]', "color: var(--v-action-hover)"],
-    ['hover:text-[#121317]', "color: var(--v-text)"],
-    ['text-[#dadce0]', "color: var(--v-border)"],
+    ['text-[#0071e3]', "color: var(--v-action)"],
+    ['hover:text-[#0071e3]', "color: var(--v-action-hover)"],
+    ['hover:text-[#1d1d1f]', "color: var(--v-text)"],
+    ['text-[#d2d2d7]', "color: var(--v-border)"],
     ['text-[#6e6e73]', "color: var(--v-muted)"],
-    ['placeholder:text-[#5f6368]', "color: var(--v-muted)"],
-    ['disabled:text-[#5f6368]', "color: var(--v-muted)"],
-    ['bg-[#0b57d2]', "background-color: var(--v-action)"],
-    ['bg-[#4285f4]', "background-color: var(--v-action)"],
-    ['bg-[#dadce0]', "background-color: var(--v-raised)"],
-    ['hover:bg-[#dadce0]', "background-color: var(--v-soft)"],
-    ['bg-[#e8f0fe]', "background-color: var(--v-soft)"],
+    ['placeholder:text-[#6e6e73]', "color: var(--v-muted)"],
+    ['disabled:text-[#6e6e73]', "color: var(--v-muted)"],
+    ['bg-[#0071e3]', "background-color: var(--v-action)"],
+    ['bg-[#d2d2d7]', "background-color: var(--v-raised)"],
+    ['hover:bg-[#d2d2d7]', "background-color: var(--v-soft)"],
+    ['bg-[#eef5ff]', "background-color: var(--v-soft)"],
     ['bg-[#1d1d1f]', "background-color: var(--v-text)"],
-    ['bg-[#121317]/5', "background-color: var(--v-raised)"],
-    ['border-[#dadce0]', "border-color: var(--v-border)"],
-    ['border-[#dadce0]/60', "border-color: var(--v-border)"],
-    ['border-[#dadce0]/50', "border-color: var(--v-border)"],
-    ['border-[#dadce0]/40', "border-color: var(--v-border)"],
-    ['border-[#dadce0]/20', "border-color: var(--v-border)"],
+    ['bg-[#1d1d1f]/5', "background-color: var(--v-raised)"],
     ['border-[#d2d2d7]', "border-color: var(--v-border)"],
-    ['border-[#0b57d2]', "border-color: var(--v-action)"],
-    ['focus:border-[#4285f4]', "border-color: var(--v-action)"],
-    ['divide-[#dadce0]', "border-color: var(--v-border)"],
+    ['border-[#d2d2d7]/60', "border-color: var(--v-border)"],
+    ['border-[#d2d2d7]/50', "border-color: var(--v-border)"],
+    ['border-[#d2d2d7]/40', "border-color: var(--v-border)"],
+    ['border-[#d2d2d7]/20', "border-color: var(--v-border)"],
+    ['focus:border-[#0071e3]', "border-color: var(--v-action)"],
+    ['divide-[#d2d2d7]', "border-color: var(--v-border)"],
     ['divide-[#e2e8f0]', "border-color: var(--v-border)"],
-    ['ring-[#4285f4]', "--tw-ring-color: var(--v-action)"],
-    ['ring-[#dadce0]', "--tw-ring-color: var(--v-border)"],
-  ];
+    ['ring-[#0071e3]', "--tw-ring-color: var(--v-action)"],
+    ['ring-[#d2d2d7]', "--tw-ring-color: var(--v-border)"],
+  ];;
   for (const [token, declaration] of required) {
     const ruleLine = darkSegment.split("\n").find((line) => line.includes(`class~="${token}"`) && line.includes(declaration));
     assert.ok(ruleLine, `${token} must map to ${declaration} inside the dark remap`);
@@ -148,11 +148,11 @@ test("FAP-80 additions target the semantic tokens, not substitute literals", () 
 });
 
 test("primary fills pair the action token with an on-action foreground", () => {
-  const fills = darkSegment.split("\n").filter((line) => /class~="bg-\[#(0b57d2|4285f4)\]"/.test(line));
+  const fills = darkSegment.split("\n").filter((line) => /class~="bg-\[#0071e3\]"/.test(line));
   const fillTokens = new Set(
-    fills.flatMap((line) => [...line.matchAll(/class~="(bg-\[#(?:0b57d2|4285f4)\])"/g)].map((match) => match[1])),
+    fills.flatMap((line) => [...line.matchAll(/class~="(bg-\[#0071e3\])"/g)].map((match) => match[1])),
   );
-  assert.equal(fillTokens.size, 2, "both primary fill literals must be remapped");
+  assert.equal(fillTokens.size, 1, "the unified primary fill literal must be remapped");
   for (const line of fills) {
     assert.match(line, /color: var\(--v-on-action\)/, `primary fill must set the on-action text color: ${line.trim()}`);
   }
@@ -166,7 +166,7 @@ test("inline user-accent paint yields to the action tokens in dark mode", () => 
   const viewer = readFileSync(join(root, "src/components/dashboard/learn/CourseViewer.jsx"), "utf8");
   assert.match(
     viewer,
-    /className="v-accent-ink [^"]*border-\[#dadce0\]/,
+    /className="v-accent-ink [^"]*border-\[#d2d2d7\]/,
     "the measured Request explanation action must use the dark-yielding accent ink",
   );
   assert.match(

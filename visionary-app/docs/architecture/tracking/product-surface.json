@@ -23985,7 +23985,7 @@
       "calls": [],
       "destination": "/dashboard/subscription",
       "disabled": null,
-      "declarationSha256": "b438a03afd31165b37212cf7c1b069538738799f31bc8d5b6b5b6669fdca24b1",
+      "declarationSha256": "07beb2254af992136458a0bf3fc1c63f5772688a3398de9e11efa1e5e772d46b",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -24007,7 +24007,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "c997aa05269d8dbfb8757627766d3f378406dfd70d3ee6a64fc7ed14970e9c7a",
+      "declarationSha256": "b994db8a3406dd97927bb62a04e76f807cc831293f5608926e96401aca42bbfa",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -24051,7 +24051,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "2a2b5528d309da7e26397705b53a5cd692a3e6dcf0cb37ae9c6a373694c5acb9",
+      "declarationSha256": "fe440c7aba7d92eb9d845587b7fce6d52bab3e2e69d488363213bd4c7f14f6b9",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -25720,7 +25720,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "699af41dcc2b0bf1fb1b1f2d87b9166269eb49fb6c07e9908c30d9a8a3ec2c4f",
+      "declarationSha256": "f338dc9d9ccda90465a3821abd51287b2e3c635083d739d6a0eb573695a4a4a2",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -25742,7 +25742,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "0fd229ff372bb8600f093f6dc0862c606b4bbe507f4f89d5a1e2efad8d5ffb32",
+      "declarationSha256": "59afa34c0559c0abb58de433eea95d5755b9ae756803380c687c49dc73315236",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -26304,7 +26304,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "b5ceb1e63d7fb2c26ed3b837382e0d02f3f4dea7c48b89d91f5c5d7a248ebc56",
+      "declarationSha256": "08902ea902093862fd414830ea71aa29c633d9f6e3f62a868d7b0b865f18a421",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -26368,7 +26368,7 @@
         "setLevel"
       ],
       "disabled": null,
-      "declarationSha256": "49b3f1c65d63a90cfb0dacb991ee824f502df8e4d62fa6a316fac55c18c56ff4",
+      "declarationSha256": "d587de296e7b85c8f7c30498f1b1011bf1cd1db66ab0767da294ef65815233ec",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -26401,7 +26401,7 @@
         "setReason"
       ],
       "disabled": null,
-      "declarationSha256": "9f184e3b07af1d03dde5f2370a2f3b9df39c28b892f83ee9e3e6ce1435d4bf28",
+      "declarationSha256": "61d83d60e141d6dfd38285443a20ca660679cd10476cae2248ec1a465c765828",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -26843,7 +26843,7 @@
         "setText"
       ],
       "disabled": "disabled={busy || !!loadError || !role}",
-      "declarationSha256": "701ee4d2687b7df499bd1e5d5cc609a324c7d548817c3c25cc3398ff909c7462",
+      "declarationSha256": "c83e4ec0962f1ed56ede02d48055f84ea2fce7efa215f654231f1fdfaa9e94dd",
       "routeIds": [
         "/dashboard/classes",
         "/dashboard/class/:classId"
@@ -26977,7 +26977,7 @@
         "report"
       ],
       "disabled": null,
-      "declarationSha256": "24dbc10640b3b76b7838cc97fce066096d20d3a9e700c57a380ad22ca48e9f26",
+      "declarationSha256": "0ca36d66d9ed70b9b629a9b16ebcb18e574ca083fc3f1d598840385490c65dc9",
       "routeIds": [
         "/dashboard/classes",
         "/dashboard/class/:classId"
@@ -27004,7 +27004,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "821b87c4acaee04cf82d84905674bfe3be46eebaee474228d8b16c117618887f",
+      "declarationSha256": "3277758052df5daceaf0821c75457448dc02fb3caee55a718e42673ea2784640",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -28273,7 +28273,7 @@
         "setInterval"
       ],
       "disabled": "disabled={!!busy}",
-      "declarationSha256": "b3fcae8324d5f6bc930b94f8c22a2fa18b286aa3d6a34fbad256d79989c9b36f",
+      "declarationSha256": "0a4c38167c7f50023f9da03091de2daa2883c9ddcb1e6757087e0ea7cd26729a",
       "routeIds": [
         "/dashboard/subscription"
       ],
@@ -32644,7 +32644,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "14bf816f6af4e223728d2c985a4e9d4fc0629136a7f764c16ecc24afe43fd7c9",
+      "declarationSha256": "ee0da25caf66fad3796d7af3f8d04ca0cbca833efdc282c55a37c2720c5c9e7c",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -33542,7 +33542,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "3c15111a3803542b598e1a4e0819efebcf3394d8d6d25d2bf636540a92cc01c0",
+      "declarationSha256": "606dec7f663e2b8937e3c2122cfd0c8f732d28aecffd4647508ea0ed387b8974",
       "routeIds": [
         "/dashboard",
         "/dashboard#index",
@@ -33664,7 +33664,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "9669f43ffdf4c0e094c0bf7fe697086151df5f8495e16db85944d8ea67f32e96",
+      "declarationSha256": "1b61221d2cc1bd824596fdcd1fffc0ea2f766012dd692f10a0ef8c4ef4e7db82",
       "routeIds": [
         "/dashboard",
         "/dashboard#index",
@@ -33722,7 +33722,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "85d8703dd67ed951e8a516ca0055e592d8ee6b0f139f2aed5ba1abf7b839121d",
+      "declarationSha256": "fbb70a8ac526d70d61e5f1a6b5a7ccc8eb98441df41df4894633205471537045",
       "routeIds": [
         "/dashboard",
         "/dashboard#index",
@@ -34763,7 +34763,7 @@
         "openResult"
       ],
       "disabled": null,
-      "declarationSha256": "e99a7d69e8b9e36c0034193e0fa2e13676576ceb5f9670ff45c0b9a22280233a",
+      "declarationSha256": "47cade72b98a6537876f10b7ecf3ae6dcd5d0f95b328ff3009f7abf6aed791f4",
       "routeIds": [
         "/dashboard",
         "/dashboard#index",
@@ -35589,7 +35589,7 @@
       "calls": [],
       "destination": "/dashboard/ask",
       "disabled": null,
-      "declarationSha256": "40b39edea0e07ff75aad33e35efb5191701a9389e33a9abd4b0a3d47a2fb943e",
+      "declarationSha256": "b30d03784241a9e90acb43b8846f8c764799807cc41e417ca05bfa628b71a865",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -35645,7 +35645,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "94c054d9ed62998ca0bfe0ee84e937aaa5326a80d943db96bea26f2614bdd648",
+      "declarationSha256": "f0047c22c8e5bf6cd0bc44fb7a759b8822e3f93f4f18fec311303cdac707ddd0",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -36809,7 +36809,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "178b134075182cb4da6f687a10b99eb0c9b35ddeb9afb9c41c09ec7d3c696829",
+      "declarationSha256": "444dd52e36d9b38324c38ac3951504590f749e9be7f5a23c66bfd7688491e86f",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -36838,7 +36838,7 @@
         "setOpen"
       ],
       "disabled": null,
-      "declarationSha256": "fdfbb5cea0eba8c3340219003a817b5e08224b0578061da940a43a448de0fc3a",
+      "declarationSha256": "db1c490466231edc11dd0f1a5277d3b799fe7e62ec7a49fd011ac84b4381f59a",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -36921,7 +36921,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "4ec1c798849adb5a1f6638a64768e937b6524a844d28a2c0ec0812b201ab1811",
+      "declarationSha256": "8a34d68bca3f0728bbdf74897420910f15a0ace79a79d20a875e07fd64bcf01e",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -36952,7 +36952,7 @@
       ],
       "calls": [],
       "disabled": "disabled={bookmarkBusy}",
-      "declarationSha256": "f41af18b163d9f3dd40fdfbdd9a6fc2ed1b394af9a084d485c3db5554b691555",
+      "declarationSha256": "a095f7eec01ac5bce9ec574ab564a7f10beb1f33b93a64b93e353bfcd6077dd6",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -36983,7 +36983,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "fb4cec03b60cd1435e68b9af78c45890007c5176376ea925322b4c10e39c38b0",
+      "declarationSha256": "a45b6cff6a8f4489b062782b57697cf8d53edcca2af0a6e679c081c4eddc7290",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -37014,7 +37014,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "25ada2fbe92be4bacc944c70a6b91d990cfba4a591cfddcfd14a2b7951c84aeb",
+      "declarationSha256": "44a371aaf4c6461bd2403cd5efb291b7d7848d2d5bb2f305a4f57b4df87df624",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -37073,7 +37073,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "77035478198a050206e00e07888a3f2d017e2f8b151ce60bcb30b16d5dbd3bb7",
+      "declarationSha256": "8028d1b954d2708c6625976ed5669a9c2681002496027b21de9d7bd050d4d29a",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -37099,7 +37099,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "bad3fa91749cf46b3267e897ce24c7f3754badfda279cb6bcd0780d31d96dfff",
+      "declarationSha256": "561f3c4b65b0bdcb432de9ba3ae34f1e7fa5975d9a6dcb88ab5d857e21e923d1",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -37130,7 +37130,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "392353dfd975f2b5903f25044e10ddf0781522a582c8313d056661deed410dbc",
+      "declarationSha256": "46199d8903236f8e83a3156e01b5a512647158655e21915523a251ace8ec4f5d",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -37247,7 +37247,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "0a92f7c7aa951f34090949d3e20201256b8de9f253c2ab2d296e65158ae45d92",
+      "declarationSha256": "80d2808f38859228e5a1561345f312cf01ee722809a6ebd9d60a03417a7146e1",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -37276,7 +37276,7 @@
         "setQuestion"
       ],
       "disabled": null,
-      "declarationSha256": "494bcae1b8a0fb33dd0bb0ec16241114703bf0e19ce2c37ab535074a9c6187ca",
+      "declarationSha256": "431dc1862b9975065899537fe3910b50bd4727d9c01574c255cacfa3bc8742e9",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -37372,7 +37372,7 @@
         "onSelect"
       ],
       "disabled": null,
-      "declarationSha256": "85f0fedace5193aca2d6d603fc179c18009f9a6b0c42115a1c96563b870fbd4e",
+      "declarationSha256": "7f71d3e5ba7ac7be5084441e52df02455c698beb4a57d7b6bd3c3b5d15da9008",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -37450,7 +37450,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "8fcbb2a874d4f997c4fefc6c73e63eaae3f1328b6d1eb13692b55112c066eb13",
+      "declarationSha256": "96eda16d7faec68aeb81b78fa6c1bf2b55a7c94f7823514c6c0130d5b48332bb",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -37476,7 +37476,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "b1a60fd7e038a4eecd09ebde72a44108887f37d7ed28f53e2ebbba90049a276b",
+      "declarationSha256": "f19409b72a58b9c8bd54357db86c1b204e85dcd25d91ffc7291075a22945798a",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -38775,7 +38775,7 @@
         "save"
       ],
       "disabled": "disabled={disabled}",
-      "declarationSha256": "230bcda4b4b9413aebcfb329317a5dfdf8a388514d1806ee2f9e9205f3be9bb5",
+      "declarationSha256": "98991ca80b470277eff02ec9e44af8276d99a3d2dafbbdcdc94d9bd3ea0b5ead",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -38831,7 +38831,7 @@
         "save"
       ],
       "disabled": "disabled={disabled}",
-      "declarationSha256": "1a0413b5860e102b56c3a1c47f8b97a6977ec04bcc5b1200521f10b4cac50e9e",
+      "declarationSha256": "04d19d6c27965e00334aa58c329d5f2fdc410a29cfd06be88252e224df24adb9",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -39837,7 +39837,7 @@
       ],
       "calls": [],
       "disabled": "disabled={loading}",
-      "declarationSha256": "fc0179a99fe4ed8a2b9cac7e31a3960b0b62473eb297b832cdfda942b5b87b82",
+      "declarationSha256": "ac93d8ac2e5e18b02bcfbc7b5f2e470c4008aae763dc8f2a291c70e0e0b7be49",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -39895,7 +39895,7 @@
         "onChange"
       ],
       "disabled": "disabled={disabled}",
-      "declarationSha256": "5f9dfc70f61e220f19f2dc44cadd5b80df7fb9027bade85dbff81d73f58042fa",
+      "declarationSha256": "cee0102d4eb3d3c898a993587e11f1f75a9fbe40592a9d5a1e35bf910271ab6f",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -40672,7 +40672,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "83aca84a05f5b1bc07163135cbcfb48eb101464e0699dd624d6a4b4ae1354dba",
+      "declarationSha256": "a9d363d5f43337fa46a290b48ca045c51ef0ed535a8e16f2c13a681cf763cdbd",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -40699,7 +40699,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "618eb90c5f3d88344fcddb75cdb7643c06f200108357c5848d36710cefc06fbd",
+      "declarationSha256": "3b1342017cc4540ac883e68f054325b421d8cd867c6ebf94ea35d3c8b8d34803",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -40726,7 +40726,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "33fff94a2802cc1c4cd92609abba1c7b808f53ce3f605c8c28b06c083a58273c",
+      "declarationSha256": "67b2c597dd2c4b8d719d137a3bb7bfdd2f9f8293f613a1f6b8744c0c107f9a1e",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -40778,7 +40778,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "bf7f4b7a4cbc7d3dc0324fa441a71bb4181573a4afe15a13fe6ff9470b1fb456",
+      "declarationSha256": "7f389a5cd5d41585303d22980c9b973065e972315e4c4efc907efdd9d4c1c9bd",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -40800,7 +40800,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "bfeb8dfefe2cef12a9a347116b9fead40c799dd31727eaba46b35d251cd6e424",
+      "declarationSha256": "0685548ac881e30c5803bea314299e51f235c57d36c95e916b859c889a020735",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -40827,7 +40827,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "275a66062ce6d48bbc50d41e49454aa49076c48d6286eb23a5ccc368f6fd4576",
+      "declarationSha256": "9457303391433e45a3b85d8baded1cf94cb0d208a2b3fe3feda2080d95b6b18c",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -40854,7 +40854,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "703dbbbf7ba78bb6d0d3a121cf0587e8066616e83b0f58eb966b1100486f7ce7",
+      "declarationSha256": "f8e4966682c6ccbd24205fb263ad4f3856cde8740ae32bf22ce9b094d3ed4e10",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -40937,7 +40937,7 @@
         "setShowHint"
       ],
       "disabled": null,
-      "declarationSha256": "64c17fd57051b055861bb816cecb29780aab76a12be9734027969bb62d952a7f",
+      "declarationSha256": "418a45551c2c4fe26fb529d259ab67eafa541c113a23b1fc55c92007759c3d6d",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -41013,7 +41013,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "5e4f744361e32b4c240d8c01857d2f7abeffcb468da3e00c76e48621081568a6",
+      "declarationSha256": "8eb18c66b279ab354d718e73155bf37cf40e44e305d7d6384bc89edea4ffb3f4",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -41409,7 +41409,7 @@
       "events": [],
       "calls": [],
       "disabled": "disabled={locked}",
-      "declarationSha256": "08afe6a31b9fcc9a2fa619a41c26972da7208886ef9fb7a7751576556fcf5fa2",
+      "declarationSha256": "740f6029c46733f15a25cae3b5e66751d177f94e1565858ecdf6807d8f7e71cb",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -43351,7 +43351,7 @@
         "setExpanded"
       ],
       "disabled": null,
-      "declarationSha256": "c8e04bab742b3c93e67f25ed721f1df426790a4678e5337fc49c9809b28ccaf0",
+      "declarationSha256": "373ff5e4cb591461c5dcad2e260f7d8bf6c13d7b8834db4a678bc3230e7592ad",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -43604,7 +43604,7 @@
         "updateField"
       ],
       "disabled": "disabled={!!busyId}",
-      "declarationSha256": "74b97daaa48567666f52407516bb8a4b3480a71b27af7fb8f783748687b20d2f",
+      "declarationSha256": "7b5be4e84af94144fcd6ab3c7b841757ba91f46b645a8a22111daa44e0a570c0",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -43703,7 +43703,7 @@
         "returnSub"
       ],
       "disabled": "disabled={!!busyId}",
-      "declarationSha256": "43dd8d93463340d9c21b5ec7c42f1044b7c7170cd8cfdfa3a1cf0924ceb74cb7",
+      "declarationSha256": "4c21e76ddbba99f977657ecb5800b5b6cabd52a596aae9a9c4a234af65435bb6",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -43729,7 +43729,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "37eb77fbba0478a053b5461b479e860cda2fe2bc4b3a0908fe169e5eeffcae0e",
+      "declarationSha256": "2e21dce3bdf37ebf0e25db3bf7ce7782d85b54ed5991b51389a0555ce45a67d1",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -43835,7 +43835,7 @@
         "setForm"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "1d3a2d7aa4fe00eda9d8a3fca42f32238230ad6abc756d48b47f38de68d2656c",
+      "declarationSha256": "c6fc3dfc4d2ae2fefead000004fe6f9aa78f9c4e4b36a1cc2f7b04a2b6493268",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -44136,7 +44136,7 @@
         "setForm"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "f803a80ac51d11dca9bb46e3f74e02b6633b270f71c53916e20b63b40d51ad31",
+      "declarationSha256": "540ea6bf491e5ed6c0842c0e39ad14492e22dc22a2161bd170294683872785a8",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44169,7 +44169,7 @@
         "setForm"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "03bc0fef4945b77da63165b336b41f23b335f59f5995f909822af829e29de318",
+      "declarationSha256": "406ac3d54975176840ffbc3a5a0292dfdc7862fbaa5f929ce663e8ad521ff4f7",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44202,7 +44202,7 @@
         "setForm"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "246d66d684baf64e10a07b27a7e8e9cc789e82dc878d7340c04559d35de48c98",
+      "declarationSha256": "2eab5cc3d8811f35dd2fc64719e1da89db56854923d91eab350d41425eb921d7",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44235,7 +44235,7 @@
         "setForm"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "c1c5da820298f3cd030484cc870d523903c76d2de906e5df7a4a568e9008bfe0",
+      "declarationSha256": "729b7adb66631d49072e23cf47b270a1678baea4ae51dc1276de5080e7c9e9e9",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44274,7 +44274,7 @@
         "setTopicInput"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "f607d5eccb1f06d62ff07a595ff325d31a7e4968f6c3db4c539d0a529236f1e6",
+      "declarationSha256": "db5823117ffda2c616d316fd36bd2e6a02334da0debbc764e6e3267c4729ba96",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44305,7 +44305,7 @@
       ],
       "calls": [],
       "disabled": "disabled={busy || !topicInput.trim()}",
-      "declarationSha256": "b5c79bad13eba2a426b40216d06cbb4e1588f7d1f49c74a34928e408b1228db2",
+      "declarationSha256": "21c266cd6e02d67231f6517131eea591ee736ab4eb46229c50ebd2d117cac56e",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44437,7 +44437,7 @@
         "create"
       ],
       "disabled": "disabled={busy || !form.title.trim()}",
-      "declarationSha256": "b6adbd9e5e254b73d186711435c7230ad0055629f00431d0d07dbb84387824e3",
+      "declarationSha256": "05749931a5f2a58a8a3031e32a55350ee2a48687e8a9a4d077f75c91688614af",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44470,7 +44470,7 @@
         "setShowForm"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "4e77c69df281c179f1fe69f124e8508ed1dd25461975f4e057eb67dac600d1b4",
+      "declarationSha256": "73631612b63a40f1910cf9db223d2d62fd2a549d74eed868f9247dbd9ceaa871",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44529,7 +44529,7 @@
         "setGrading"
       ],
       "disabled": null,
-      "declarationSha256": "88950f47f309452f4d9107f0cce83090caee0df74f8aa68a049b61614411125b",
+      "declarationSha256": "41d19d873307b13171d2734e7696a1f92a4ad4270fd527c953f9fb6ee575fc20",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44555,7 +44555,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "488a7adef447359dc13e4869583987da05fa699f5f454a7bbf0a90368b2177f6",
+      "declarationSha256": "7e1f5d09137ea90c76fb134da7ea04d4b07561247232cb088e852430f5897313",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -44877,7 +44877,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "b7ae7e4ebee79a813ed6918582f9f4ce56a0d6304ace0470e37d3883f0ac7045",
+      "declarationSha256": "6a289ee67d86a5724462c4381185a235b7f58312d7b0098df7df47e4894b7213",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -45093,7 +45093,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "6cd45300f27ecc8d2505c4c76fba3b8c26ba0797a2a4002f4379fe63fe3b3562",
+      "declarationSha256": "36fee4eada482c98ddb6f35629d9b0fb7a029ca586ec02c893b63f6662b8c291",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -45126,7 +45126,7 @@
         "setText"
       ],
       "disabled": "disabled={busy}",
-      "declarationSha256": "7f3723fe4f21f28035dc724c3be2cd55b72e2b7ec5d6a940472162f1839eb8ff",
+      "declarationSha256": "fbad65570bfb9f061169f67e4aaccfdf1a546fa052f9fbdae389f143d450521e",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -45160,7 +45160,7 @@
         "setText"
       ],
       "disabled": "disabled={busy || Boolean(text)}",
-      "declarationSha256": "df7f5bd7b5fe87df242ffdf1df0fbf7558f8715be15222ee283a6a3887138558",
+      "declarationSha256": "8cdf596356ecf9d9f35bde07970d0eda13da5560a23ac65134ccb96b244eb157",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -45279,7 +45279,7 @@
         "setIdx"
       ],
       "disabled": null,
-      "declarationSha256": "9704fff4bbdb0d8c448962857443b47d4f735b0588ec434e00322b166c4d3188",
+      "declarationSha256": "dd4572bfbe3e124f31ccb32d3bc51ed52ab00e473a8d1708a2bb4636a4797c75",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -45516,7 +45516,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "eac33d8c94e35e7aeaf06f58e6fccb2d84d7d15e05b3fad71300f72f66fbd3ac",
+      "declarationSha256": "dcf8c9cca62c420a4fa73c82283802dd6b6f4bdf3cd1a85834d3c4a6208e5f18",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -45538,7 +45538,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "ed9cf89e8cd2413bde1dc6ec8dad6092ea6ea2a6a752fcac8665c934ab9464a3",
+      "declarationSha256": "5b9c72bc1ad9f8519168b85440c942a28d1862d1a00c560fd61cc53652c1408b",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -45607,7 +45607,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "dcceca12823cb3cf6ce4573a7d31fd730aa3e3ea8e5ee03d24490aec57788a95",
+      "declarationSha256": "c47affaaf7d971534b3bc00620bf9454a1e98ac72c32f35e79b2eed5a093e655",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -46205,7 +46205,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "d83905b29c0e135592d77ac8a4908987d1fadbd711c428078ff9d974e18f86d7",
+      "declarationSha256": "e9db78752ce8cd3441d223344c92885fc95a778c2d399b3d78c13b9827e95a6e",
       "routeIds": [
         "/dashboard",
         "/dashboard#index",
@@ -56449,7 +56449,7 @@
         "setMessages"
       ],
       "disabled": "disabled={loading}",
-      "declarationSha256": "ed3639bb1913dfe231245ab3980be3a50a6c9bfecf00d6da55de854642f4bf83",
+      "declarationSha256": "6db2356bb87a48570cbb390b02ad887ff3e8365e03cfbb6875d65f275e6c5e62",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -56501,7 +56501,7 @@
         "setNotice"
       ],
       "disabled": null,
-      "declarationSha256": "d8ff640db305fcb6eddbf22cb5e1b33325d4e4bb28d8947e15d5ad8dfb3b7da9",
+      "declarationSha256": "02e40c434ad52ab57e555d455269eb4183901478d8d105aa59abcc73e8489d16",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -56585,7 +56585,7 @@
       ],
       "calls": [],
       "disabled": "disabled={!input.trim() || saving}",
-      "declarationSha256": "4ad09f331c3c75eb4606ad9ee88e31716800fdcf16b34b0cdcd460d77ae3fc81",
+      "declarationSha256": "3e8948937889c4381c232e5a7c58e86360ec77da32160d965fc466d394931ff3",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -56658,7 +56658,7 @@
         "removeQuestion"
       ],
       "disabled": null,
-      "declarationSha256": "2773e90536cd2253e30392c9a5301e212945e0ad960848f4847611bcac30911f",
+      "declarationSha256": "b5a225bbef51419874196db6a2f7583f739c0635573f929fce5776c8d91ce61f",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -57577,7 +57577,7 @@
       "calls": [],
       "destination": "/dashboard/classes",
       "disabled": null,
-      "declarationSha256": "8c7a026b8731179ee95a52960f30eba117bbed8d1c55137508d295ad47dad564",
+      "declarationSha256": "4da001ab2e9827047a246cddbc7a47d64753c5ac4bcb51b1f8987ba5e33a09dd",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -57608,7 +57608,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "4728b6be1d49a2d1abd145a4780afb6ce139c1c98889af962164c575ad876848",
+      "declarationSha256": "57edd9461e14357fe6270e151a9fbb9596bb041a2669c9e784f9a7e3108aeb4c",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -57641,7 +57641,7 @@
         "selectSection"
       ],
       "disabled": null,
-      "declarationSha256": "439dad417fb0dd981d1fd7db089514deba69a6436fb9988db680d0af700ee6df",
+      "declarationSha256": "5ed57bbff834a8e4c4ab46ff6ed2fdcb417bd1511399cfe89a7f614b8e290450",
       "routeIds": [
         "/dashboard/class/:classId"
       ],
@@ -60013,7 +60013,7 @@
         "change"
       ],
       "disabled": "disabled={!!busy}",
-      "declarationSha256": "cdd304c2c76a44402c82928bdbed6ae29e6f742a664833c51fe109939017ebd1",
+      "declarationSha256": "9951b8a1a2db4dd3f02810e1d783371a1da84e23feb7225e12751d3bc809f9aa",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -60053,7 +60053,7 @@
         "change"
       ],
       "disabled": "disabled={!!busy}",
-      "declarationSha256": "2463af59c2ae26be70f5e41942bbc3848f4b37c714263fc85f86dc57e227bd46",
+      "declarationSha256": "5f53d57c589a5ef7a241965da7e07c1894f85bb8f989340092f7698b85a6db14",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -60275,7 +60275,7 @@
       "events": [],
       "calls": [],
       "disabled": "disabled={!!busy || isPending || !!error || !ctx}",
-      "declarationSha256": "81984acc1dd9d9ab6ac3839208315edaab6f7a11599fefaa73671bc11e118c51",
+      "declarationSha256": "ae72c8ac1233c2433abf06a845ad94088705fd1b2b01b3f21c1fc32bfbec0965",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -60949,7 +60949,7 @@
       "calls": [],
       "destination": "/dashboard/learn?legacy=1&subject=Geometry",
       "disabled": null,
-      "declarationSha256": "a0908854c4095c870a48183c0817b6082fa6bcc2c1d619313c250842fb75fcea",
+      "declarationSha256": "8f9f7a982132ebdde74cad7d022ae8e1f3f0efe087468b92a4b76bd20b390814",
       "routeIds": [
         "/dashboard/explore"
       ],
@@ -60983,7 +60983,7 @@
         "setSide"
       ],
       "disabled": null,
-      "declarationSha256": "a346bd9692e1ba611a277848fa348fa4e66453c63d69064752df24c1ad06cfec",
+      "declarationSha256": "8cdf4189c984fd0750bc99f5186da38ebdd3e8d9d52bfcba1e39bb0ba3a046c1",
       "routeIds": [
         "/dashboard/explore"
       ],
@@ -61017,7 +61017,7 @@
         "setRotation"
       ],
       "disabled": null,
-      "declarationSha256": "7e6b6dd0dac446499c6d1927a7ffdbcfa60f46865aaa0af8945dde221ee9ac00",
+      "declarationSha256": "633f2a5d8dafe86ba1a1b4cd4526589d166e9363ef0e33f59499ebc867a271cb",
       "routeIds": [
         "/dashboard/explore"
       ],
@@ -61051,7 +61051,7 @@
         "setSide"
       ],
       "disabled": null,
-      "declarationSha256": "94314a71d28b33a6e2310a246b7c64c31f69190f9d2be975c2caebbe54aa6879",
+      "declarationSha256": "1d06c63a60a019fa2db00bc60d16acf7a996779e95963b7e49f2f56fb0758287",
       "routeIds": [
         "/dashboard/explore"
       ],
@@ -61082,7 +61082,7 @@
       ],
       "calls": [],
       "disabled": "disabled={busy || saved}",
-      "declarationSha256": "1fc6a24415b3e47f8b9b3fa543df268d39f364267e28a1905e0d2762f82a7d11",
+      "declarationSha256": "72344b2a4cdc3aa16e11bc7f00dfb4b7d03c2e8f3bf714ac87fc66e6189501c1",
       "routeIds": [
         "/dashboard/explore"
       ],
@@ -61109,7 +61109,7 @@
       "calls": [],
       "destination": "/dashboard/ask?subject=Geometry&topic=Understanding%20cube%20volume",
       "disabled": null,
-      "declarationSha256": "cc6bbf302d1e2b5ecf75ecbbb1d5dc256bdf9aa23b1d57e257e075e0a11e0704",
+      "declarationSha256": "62100e0c7cda389e79ec5c4f0a4fe820c3b68f1ab3ceff28373ffc0de499c6eb",
       "routeIds": [
         "/dashboard/explore"
       ],
@@ -61136,7 +61136,7 @@
       "calls": [],
       "destination": "/dashboard/build?subject=Geometry&topic=Understanding%20cube%20volume",
       "disabled": null,
-      "declarationSha256": "b72855f8c76d9ab3b2f8258aa382c502b256c426ebb0728bbba8fedd82ecb40c",
+      "declarationSha256": "7b817c2260d266186b1785d35ae8b4b2b591e90b35a640371242cb4ad9e98d7a",
       "routeIds": [
         "/dashboard/explore"
       ],
@@ -62544,7 +62544,7 @@
         "data.refresh"
       ],
       "disabled": null,
-      "declarationSha256": "56e4a88b275c8c01b1246b7b86bb50ac61f416f5a010b79277dea3e5d526aa95",
+      "declarationSha256": "685b0fe095dc2b25c4ceb860e2e75d97adc951a25d90b72a3c62614e65585b1d",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62606,7 +62606,7 @@
       "calls": [],
       "destination": "/dashboard/profile",
       "disabled": null,
-      "declarationSha256": "7bce8f0f70d03c250683f0b2f8d26a5a78ebd65650ffb427588c86af22ba56a4",
+      "declarationSha256": "6a2757a07e028b0287144b2af87674c6f3bf5a02b45da9f01655e905937b1612",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62633,7 +62633,7 @@
       "calls": [],
       "destination": "/dashboard/explore",
       "disabled": null,
-      "declarationSha256": "5c4a0c690d5c9f124faf25d4368347d13e2aa99acded254c9ac5dbd3ce3265a3",
+      "declarationSha256": "c884fbae48f7c13607dd1a5e3f069d197b18dd417b1f8745e0cb3f6e5cb0427a",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62699,7 +62699,7 @@
         "setFilter"
       ],
       "disabled": null,
-      "declarationSha256": "5a6daca4d7db0c1c67d2e905a1459d07a2ca7c92bc3d49ddd231c017ccebcc83",
+      "declarationSha256": "fef0fe6790bc1d83ef2df8503141848809509cb7f71b31b561ceb4ef8c941f9c",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62732,7 +62732,7 @@
         "setView"
       ],
       "disabled": null,
-      "declarationSha256": "5ede4edbd8d9b995977f5914bd01e2a8607471967a80b2633c96a31ef7e084bb",
+      "declarationSha256": "a5779cbeb0f54ea108a8824aede95f238d6b33f16d320ec8d4a86ecdf64a1ac2",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62766,7 +62766,7 @@
         "setQuery"
       ],
       "disabled": null,
-      "declarationSha256": "c10c4ce21174af7abef71872ef06d56465ee5f4b08e417bb9f39b8e55bd557ea",
+      "declarationSha256": "2435c8abbf53ddf84455468fed510714cbdb72bb7d6069b04617c9986be26358",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62792,7 +62792,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "01ce1f7f437ba08f137e9ace4093d6f1c020ebc72a2677e051c940335e38de55",
+      "declarationSha256": "9afd1c75c59b0debc4f5f38015eee34ef800b5fbe0969aca96e54cbb0331a62e",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62887,7 +62887,7 @@
         "setTitle"
       ],
       "disabled": "disabled={saving}",
-      "declarationSha256": "ddf9542a404eb158d55da5aeb697842a528c39a1873220700a1b58fdd0a9c7c2",
+      "declarationSha256": "d898adf133879c15fd9a5cec1367dea4d7c2ddece2f0b723afef56ac79f019ce",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -62946,7 +62946,7 @@
       "events": [],
       "calls": [],
       "disabled": "disabled={saving || !title.trim()}",
-      "declarationSha256": "df793c4d7df411accc89afe498d11997af46efd4b36555ad4e61bddf4af01935",
+      "declarationSha256": "33ba1a53358b0c57bbb19da143d90c86411dfc6ae332e52f82ad93df440b011b",
       "routeIds": [
         "/dashboard/learn"
       ],
@@ -65837,7 +65837,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "bac5c79fa88804fee0b5f5cfade4b614ad39eac9853282a1084c26f21944d64d",
+      "declarationSha256": "50fe216759823edc5cc338067767913aee4e2ecc3dddc7dd9213e30476ea3025",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -70568,7 +70568,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "b3f1a4a1973725167d31c98e6a21aaca6b6f49edf1a16744b71a1cbdbdd7c5dc",
+      "declarationSha256": "5c5a8e976cf5135ee2fb3ef9213be3a8819ee6904cbb7bd69d5446be390095ae",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70599,7 +70599,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "d5891d8b8745a1bb6dc12112236cdaa8daf822182508a61cd5dddc3f95d407cf",
+      "declarationSha256": "40be4c502243bb453d79ab22d379745763f9e026a32d17755ddf4eb8c2817dee",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70626,7 +70626,7 @@
       "calls": [],
       "destination": "/dashboard/explore?legacy=1",
       "disabled": null,
-      "declarationSha256": "f6615191c4044ba30093881e9547ec96f49bff97b14ee207c881dd08b5e62312",
+      "declarationSha256": "60c10d06986fcda8e201711a728bd0d3d9d0ae206cf4791f812efd5f95a76c14",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70659,7 +70659,7 @@
         "setAnswers"
       ],
       "disabled": null,
-      "declarationSha256": "75b988f15dc5019d682a9b3132e7a2f3647b460c841773e3442ff38380763a25",
+      "declarationSha256": "1602898a9baff417df4fb32a9003a71a3025bcc13fd401776f3779d03d82bd18",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70690,7 +70690,7 @@
       ],
       "calls": [],
       "disabled": "disabled={busy || Object.keys(answers).length < cubeExercises.length}",
-      "declarationSha256": "bc0606fd0aff6ec624af4b6e3a02e754c631b542e939e4197d32418e3429c86b",
+      "declarationSha256": "37c5cb134ebe0810528d62d6d173167e2d019e09464ae6e86dd4d88f50d28f15",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70721,7 +70721,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "3c6f39a282d1e235d3a7733a66bbf10cbe77eed9cea4f0788b07218d1191f41b",
+      "declarationSha256": "f43842688d4cf34941a6ef708609b94ab85c5a5eba439ba009410f55d1bbdffc",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70748,7 +70748,7 @@
       "calls": [],
       "destination": "/dashboard/build?subject=Geometry&topic=Understanding%20cube%20volume",
       "disabled": null,
-      "declarationSha256": "2aa26d3fcb2890e3b9af7d37704031c72d13ee4f855225278b0d1a8ddabe41a7",
+      "declarationSha256": "41eb59221dacdd9fb387d7c775c056b7e15d726a213f461dae9bddfd42c99b29",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70807,7 +70807,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "70bc3db0271fce50111f1fa910b23af80f0f0c836d838db2bb00c674f53e88ac",
+      "declarationSha256": "4066599dd5accf7cb60a05c64124041a575b362fa27fe380acd379bf7da24ee9",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -70834,7 +70834,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "036dfe9a3c4bada0acac43e4929a58d6b5b5cf0e88a42afd71ad84bb75b07bdf",
+      "declarationSha256": "3a9225e224e610447ee72e619d4a61dbe8ca6cf913acc1d67c3d95eb3496de7c",
       "routeIds": [
         "/dashboard/practice"
       ],
@@ -71915,7 +71915,7 @@
       "calls": [],
       "destination": "/dashboard/subscription",
       "disabled": null,
-      "declarationSha256": "9de528a5819fc4c69181ee8d90d0abc3fea54868e1a293dc869bc3bda8303eec",
+      "declarationSha256": "ea958870a4c1c891949df0833d5198826a36e7b7e07df7802625a44f90bcd23a",
       "routeIds": [
         "/dashboard/profile"
       ],
@@ -72297,7 +72297,7 @@
       "calls": [],
       "destination": "/dashboard/people",
       "disabled": null,
-      "declarationSha256": "b3feba0f78831f3a86b12a1bbecfd66e2e092dd4cefaad72c7640ad0f03bf13b",
+      "declarationSha256": "7f8bf7bd028dbc5145783683a34ac4d587cef618dfa17cc23a49e15df3f3d063",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72348,7 +72348,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "f97539df30d56f679e8900c0152b6e8d38e93c824c5c0cd13fef5ca6e6a8ad2b",
+      "declarationSha256": "1a3af57a8ac71403afb4252cefe7787f3bca41f0378f8ac6d97a9e02e07b2738",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72371,7 +72371,7 @@
       "calls": [],
       "destination": "/dashboard/child",
       "disabled": null,
-      "declarationSha256": "e31b9c5f0aca5a0445f95e17fd4764977b027156dcb322f7402dfb6773a6baf3",
+      "declarationSha256": "175f3b596aa5cb2f7afb4977da7d77ae45f7782590cead39a11267c829c2e45d",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72423,7 +72423,7 @@
       "calls": [],
       "destination": "/dashboard/child",
       "disabled": null,
-      "declarationSha256": "4bd12e108c74b30240d260bfe4915f2e655f6bd031389ee9f367eb94bf088f36",
+      "declarationSha256": "c80306da9930ccfa4c0e7ceb1da5824b39a11596d78f5641079c47daebd24e02",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72445,7 +72445,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "00fa0f2d3645d22dac6a362ccad6152b404ca5c8cae38373270114bbc909a6a8",
+      "declarationSha256": "dd20b755ee9826ea4e52cc6c8f73ec9125fff8628bc01e25c00c6ac8ea068e3c",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72468,7 +72468,7 @@
       "calls": [],
       "destination": "/dashboard/settings",
       "disabled": null,
-      "declarationSha256": "57cc3f2ab5e9dff6b7ae85ab41109bb3ce7b2eca5682d91bce54d51e65142702",
+      "declarationSha256": "12f6c8e67c635fef1f3e1ba2b331f2a02ddc1ced1d7569fd610ac6a9b3ac7253",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72499,7 +72499,7 @@
         "question.trim"
       ],
       "disabled": null,
-      "declarationSha256": "c79fcbd4c125cc8b459c66d36a9d30f283a2c6962f2fe293ded5379a3be6c693",
+      "declarationSha256": "144457f280c6d6d80eaf4da5a8ebeb8c9509530bd77f6f0cceb68d06ecb3233a",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72550,7 +72550,7 @@
       "events": [],
       "calls": [],
       "disabled": "disabled={!question.trim()}",
-      "declarationSha256": "cfd2093bf2b9a194484aea113c7d4f3c883342a84679dfb0e10f807dea1ddebe",
+      "declarationSha256": "bdecd109474fb9c3ca052708372e94aa1b78f0561a8d7490119673bcd32c515e",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72579,7 +72579,7 @@
         "setScope"
       ],
       "disabled": null,
-      "declarationSha256": "987546d6f84f7565be415b2e8099f8ec76b7a73598c34f736ea9a94721160011",
+      "declarationSha256": "0403d60cb21d14f1b0603c4295a064e4e4eefda4d1d172cc48e68aec00625f1e",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72602,7 +72602,7 @@
       "calls": [],
       "destination": "/dashboard/connections",
       "disabled": null,
-      "declarationSha256": "71750068f2925329a1a7124c0883ea899f9b093f22e2bbb2715d5bd5dc68483b",
+      "declarationSha256": "1f87b746f0abe0bbb8734afa4fe043b267167372466a1f31e7e0fb191b30991a",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72631,7 +72631,7 @@
         "data.refresh"
       ],
       "disabled": null,
-      "declarationSha256": "f3c59e613ffdff65654a027eb83bd2d945d98dbccd1bc314658153256924f6b6",
+      "declarationSha256": "736d42cd17dc9a600de17e36ecfc6bedbcfc1218772ca0b5fdb815527f5fcf09",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72653,7 +72653,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7e16f431765c9802dc43fc335a08577fb82d808524caed85f0985c9cc9c3e1fd",
+      "declarationSha256": "738e1f86f4ba0e2bc91a6560bc4978c3c2cca6e5d7ebb493afae515f15c33ebc",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72676,7 +72676,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "7dba53ee6754cec4f9db82615bb439763fc6cdfe233a6e4a668f418c4a16f697",
+      "declarationSha256": "f59b9814aa6df30600f1ccc096beec999fb619481a329be3eb9004bd24102b3e",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72698,7 +72698,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "a80a9b596657303ebbd87e9d5d8a456974d1e011949e301b50e13a359ad5b315",
+      "declarationSha256": "9db69671e3f5837f68e08b94af9a29db27ed74541814e948324ad3f9544c6729",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72721,7 +72721,7 @@
       "calls": [],
       "destination": "/dashboard/profile",
       "disabled": null,
-      "declarationSha256": "f8ad4116b92b3351378d4769cdee0c2ec7ade044496f70bb14e7e2c44d2fd587",
+      "declarationSha256": "ad92b7f6632b125cc48bb15cb1a5fca9dbeb362b2df45e69a2230ce896a398ac",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72743,7 +72743,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "8a48ac206c9e2ebdcf60c5cce603bdda0c29fd41e762997d115f213c3d874f92",
+      "declarationSha256": "cd5f1e9fb1c768c38743d4b5486a9f0878e86ac0f601690cf9a404d5bc889dc7",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72766,7 +72766,7 @@
       "calls": [],
       "destination": "/dashboard/classes?join=1",
       "disabled": null,
-      "declarationSha256": "1d54ab3d45fde8e31b2d8c90b279914337e3ac67eacd9145e0e2d0240f4235c0",
+      "declarationSha256": "259d29d768cf0876a8df492de75d35a2ce595f3c7eae44982f5646549eb97dbb",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72789,7 +72789,7 @@
       "calls": [],
       "destination": "/dashboard/connections",
       "disabled": null,
-      "declarationSha256": "3c5e3bc61b4e30a63ac56e3a57c22a5ff885aacc9df721ddfa4f253d56746a70",
+      "declarationSha256": "23803ec411a4a8cc3ad99d0357fe0f61c3b55ea18d800e5dc0063d88f01a34da",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72811,7 +72811,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "4eee59bf10eddfcd4ea78972c77ea1b91d1d3c7e3f9954ad2809a036eabe89e2",
+      "declarationSha256": "0aa2f289dc70d9e844bb6ad6e8ff2fea6cd0485e7c4bfae423c1900e4016ed68",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -72834,7 +72834,7 @@
       "calls": [],
       "destination": "/dashboard/connections",
       "disabled": null,
-      "declarationSha256": "58061300b0af1036a96001cb3b4cfe2cbb2e6c431e17b466eb4533e09a57d11c",
+      "declarationSha256": "03266332f1c74635562c210bc538dca1f3adc3845ffc88d73d79b0fe2b045dcf",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -73339,7 +73339,7 @@
         "removeConnection"
       ],
       "disabled": "disabled={changingId === link.id}",
-      "declarationSha256": "344276d22978b07c713c1111758b1416f8fd5da12520383d822ef3d5d213eb5e",
+      "declarationSha256": "7a84b809b12580153cef9b8baa57cb1999df1a765c2b8a8a68ebb866a3fce572",
       "routeIds": [
         "/dashboard#index",
         "/dashboard/home",
@@ -73835,7 +73835,7 @@
         "setOpenClassId"
       ],
       "disabled": null,
-      "declarationSha256": "408e746b8997a37800ea825a7d0b72232ad5cd5ee89c89a49b8e072350686e42",
+      "declarationSha256": "129e8a30c87cdf74074fcd9152cb91870d83734461d583613e00fb778ccabdfc",
       "routeIds": [
         "/dashboard/classes"
       ],
@@ -73894,7 +73894,7 @@
         "setClassTab"
       ],
       "disabled": null,
-      "declarationSha256": "f3ad292efc117ae1dfb944ed8280fd47f3c0a32dbd336c39ee1eaf52def7d0b4",
+      "declarationSha256": "22e14af27143d496d7b74e63ad6c471b083633eafb1e28db19add5ede8494fc3",
       "routeIds": [
         "/dashboard/classes"
       ],
@@ -74038,7 +74038,7 @@
         "updateDraft"
       ],
       "disabled": null,
-      "declarationSha256": "6f38b9893d55043f3ff224ae47dd3d889db824a5790c9b697994e3387a7bffbf",
+      "declarationSha256": "01dfbea9f4ab0afa9e2623f320e35a83212b2298b22cd3517e6926747523e67e",
       "routeIds": [
         "/dashboard/classes"
       ],
@@ -74299,7 +74299,7 @@
         "setJoinCode"
       ],
       "disabled": "disabled={joining}",
-      "declarationSha256": "af321b3803c4965c268154ed8d5ac6a394cfa53f559ea4664c4cff12e32954c8",
+      "declarationSha256": "313b54bc1bc7a78774dfbcafbb0944f60102f9a9fb8361d8913c107bd6a380d8",
       "routeIds": [
         "/dashboard/classes"
       ],
@@ -74441,7 +74441,7 @@
         "data.refresh"
       ],
       "disabled": null,
-      "declarationSha256": "56e4a88b275c8c01b1246b7b86bb50ac61f416f5a010b79277dea3e5d526aa95",
+      "declarationSha256": "685b0fe095dc2b25c4ceb860e2e75d97adc951a25d90b72a3c62614e65585b1d",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -74468,7 +74468,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "1335ec1677798a77d448ab52669eac497564244428c8c2cb17371e8a3f3aae27",
+      "declarationSha256": "6e4c0293077159e152946355528548e2f379d0a5417b71f921a329d58c1f74d3",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -74494,7 +74494,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "76a51eaf6fd9922528bdd47a2226f6450004eb414bc9bcbe0dd6eb5a842d52bc",
+      "declarationSha256": "c7517b826903f0e10bcf9c1954a502d4682586ce2aa715e99c50cedb392d5456",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -74554,7 +74554,7 @@
       "calls": [],
       "destination": "/dashboard/explore",
       "disabled": null,
-      "declarationSha256": "a8f0c37ca35dd476ed80100f9cf2285ce0e1641e1acdcf380cabc97b6866a4ea",
+      "declarationSha256": "6a9e3d739702010dec5a984a81da3897e79fc7fe4c1c014cb2f02d5354921ef2",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -74617,7 +74617,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "bba52ccef1e5cabd57fbdd4b7bed4e451d0a4cdcf46193ce0e49b4a163b9afec",
+      "declarationSha256": "402fab5e34d126880bb654cc8dfa8a45a9bf6b5dbfab9d279efb759cd4f0da3d",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -74643,7 +74643,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7aee85c073f27620893e3d6a8895dacd40d2f60ba022498bf9643c2c3adcdcc8",
+      "declarationSha256": "7fc6d85a86491590c79ba2480e32603a7ffd84dfce6e301e14715a0165e6fae8",
       "routeIds": [
         "/dashboard/learn/:topicId"
       ],
@@ -84913,19 +84913,19 @@
     },
     {
       "file": "frontend/src/components/dashboard/AchievementsCard.jsx",
-      "sourceSha256": "aed64e86679c1e4da705f85387aad86f53ed2ae5dec9aae1907301eb422ac716"
+      "sourceSha256": "66eb0e65ade2f0c0aaeb8e7b40dcbccfa5d7c7fedaae9bc073b857dae787b86b"
     },
     {
       "file": "frontend/src/components/dashboard/AGIHero.jsx",
-      "sourceSha256": "a85d38b9c127d375bf5c250b1264f2a8ea2a029b9fc395ab3f8f76a1d5b75151"
+      "sourceSha256": "edddcb3ce9cde435d5f5c7a90e72f44b80f9c99f688bb436bec8174598d9e4bb"
     },
     {
       "file": "frontend/src/components/dashboard/AGIInsightCard.jsx",
-      "sourceSha256": "4f88f06a6a3327fe54675aba5b0f7e5b2a5c787d3bb09fa767f51bd293830926"
+      "sourceSha256": "621f49125f4ea76a46569f0680463b2a1a9e969a405f3602a572043034b01cb9"
     },
     {
       "file": "frontend/src/components/dashboard/AITeacherHero.jsx",
-      "sourceSha256": "a11c38e3207f77b66a3dab83b421867a11ab08eb9e3138f397f211446e2ae13b"
+      "sourceSha256": "b5c3b8770cac34769afa90f5ec29d3493d1da01fb84510a5af0499e559210bba"
     },
     {
       "file": "frontend/src/components/dashboard/ApprovedPrivacyPolicy.jsx",
@@ -84949,15 +84949,15 @@
     },
     {
       "file": "frontend/src/components/dashboard/BreathingExercise.jsx",
-      "sourceSha256": "f572fa6f71914bd495d5524058a61a75ce45ce69f5d47b424451fba1d80acf09"
+      "sourceSha256": "ff19ffa67193ec9c83c7e69c0b03dd6c058bc743521642810ae7b659ad4834ad"
     },
     {
       "file": "frontend/src/components/dashboard/BuildHero.jsx",
-      "sourceSha256": "ccb8a76a8672ac033f374ba7a4f2735229d8104b8b8289092167f344f7b93215"
+      "sourceSha256": "dabbb3368443124044d4793b5edf66265ec5dd3f368a8350c680752d98973aaa"
     },
     {
       "file": "frontend/src/components/dashboard/ChallengeCard.jsx",
-      "sourceSha256": "9d24e5e5bd1e1c0411afb280987053ac7a46142f96d338a3c50bacda4bc76fad"
+      "sourceSha256": "817146452644e3106a1adc4ebb55ecc8426e0d9c805d6bad77bcfa6cad82b106"
     },
     {
       "file": "frontend/src/components/dashboard/ClassCurriculum.jsx",
@@ -84965,11 +84965,11 @@
     },
     {
       "file": "frontend/src/components/dashboard/ClassPromotion.jsx",
-      "sourceSha256": "a2c0dc08085396fe69ab0efe820b74d298e8f136a56fa84feec07b64d724e49f"
+      "sourceSha256": "9b472b13a2b1a996a4d5a8152bc22aba6a53198bf3c1ce321c8e90d069b19f9f"
     },
     {
       "file": "frontend/src/components/dashboard/ClassworkProjectSubmission.jsx",
-      "sourceSha256": "dc59d0df1b0275c04b3b8a983790b7f6e2efbe78041e511c8666eaa710cf2f31"
+      "sourceSha256": "b15cde3f174b13835b2b13c9145c15266d150a0b25fae52ed004ec70a81cd5b9"
     },
     {
       "file": "frontend/src/components/dashboard/CloudConsentControls.jsx",
@@ -84977,19 +84977,19 @@
     },
     {
       "file": "frontend/src/components/dashboard/CollapsibleSection.jsx",
-      "sourceSha256": "89983775ac22361d7e0c5d1d502bdad62f1e2a79e144795d39648de8ed8d145a"
+      "sourceSha256": "3970cb4efd2577b31d0a44fb2cd55494ad76fa1a71f34bf25b711c45be7da190"
     },
     {
       "file": "frontend/src/components/dashboard/CommunityTab.jsx",
-      "sourceSha256": "9c95f3a7c556dbbd31154ffa18f956ad15de1722892a080a0b63722f301f6539"
+      "sourceSha256": "3c6fb0c61b1ee922b6c4e31fb3b4906f84497a5a6d1cc5b65edffaba9fe468a3"
     },
     {
       "file": "frontend/src/components/dashboard/ConceptCard.jsx",
-      "sourceSha256": "7c48e31c767afae73e565ca2d129d6221682a25f7cf61d850a3fea95ace5f961"
+      "sourceSha256": "12e163213d2370a108e3df43fc52b8a24f9d7e9de2dca2bc464a153ea6266db2"
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedAccountLayout.jsx",
-      "sourceSha256": "e36faeb0e205a538ec1e2ca2a521874cd0586e75bbd0fb2f3cb64cbb415a6762"
+      "sourceSha256": "9ff07964edec10c99dceffce3b0f38df0ee3e61a20cbb9ca70b2f8318b676efa"
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedAccountSecurity.jsx",
@@ -84997,7 +84997,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedBilling.jsx",
-      "sourceSha256": "fc1c7c2b9e74013035672641b484399ab5aa28eec119a412150a5b0e0a6f754e"
+      "sourceSha256": "28157d2e04bdf36e1fd864dc006d71b355cf269c9c3bcb2cddcad1f7fc1e727d"
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedConsents.jsx",
@@ -85009,7 +85009,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedPlanBadge.jsx",
-      "sourceSha256": "1c91677253ded5753802bbaef1ae6b46e0cc54e81cced922e8cc7df9ecc73786"
+      "sourceSha256": "d975ee5e4069b94eda415f93d0ecba76f3b49d2176328c86a15c8515068ed6e9"
     },
     {
       "file": "frontend/src/components/dashboard/ConnectedProfile.jsx",
@@ -85025,7 +85025,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ContinueCard.jsx",
-      "sourceSha256": "8783a8099d54542953da91b863d43f400cf80b0eb5698f2209566fa81a5981a5"
+      "sourceSha256": "b49886c6f1fe0ede6cd15b7a8736b7ff9305ded0c49a59d897abe829f3b85d39"
     },
     {
       "file": "frontend/src/components/dashboard/CriterionFeedback.jsx",
@@ -85045,15 +85045,15 @@
     },
     {
       "file": "frontend/src/components/dashboard/CurriculumTemplateEditor.jsx",
-      "sourceSha256": "9debefa7a7844b8f56795c8877bf69835c9451364d2c6d1d08cf2b0d01b56af6"
+      "sourceSha256": "b6baaeeb047ec967e7f90601373154acb849f13a86d7d767de7162047239b3d2"
     },
     {
       "file": "frontend/src/components/dashboard/DailyBriefing.jsx",
-      "sourceSha256": "ebcb8594c18cd8c7dad7f42a99a7fd4b68884970efc851dd665ee039f78c09ce"
+      "sourceSha256": "0e99ea80652ccabc5e74d495fdb224d6d7286a8fd3013e2d1b1a7c71349dcfda"
     },
     {
       "file": "frontend/src/components/dashboard/DailyProgressStrip.jsx",
-      "sourceSha256": "2dab5bab8342358092212a0146880d1ba30135aac4000d015488ba686b2a9a96"
+      "sourceSha256": "0433c22e42dfd92db09e710e48d4cd8ec6ce153521b73a44602c1c673c89b9ee"
     },
     {
       "file": "frontend/src/components/dashboard/DashboardCards.jsx",
@@ -85061,7 +85061,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/DashboardLayout.jsx",
-      "sourceSha256": "7b75c1a508920ff5a093feeb41e14b211fd537c91ccc3bcf072c646b5d54157e"
+      "sourceSha256": "d377dab1130ec239f05c97943ec978ada6ecd62e167439646a47e913cab82791"
     },
     {
       "file": "frontend/src/components/dashboard/DashboardSidebar.jsx",
@@ -85069,19 +85069,19 @@
     },
     {
       "file": "frontend/src/components/dashboard/DashboardTopbar.jsx",
-      "sourceSha256": "6367d6e140194bb7feaa500bd035743e3af5e8b40f8f910bed8f02742f371690"
+      "sourceSha256": "509895c7c2a100cb9fbe1e4aed7bfc1b411c6fc4a75682c15fd9b3c787e5bcbf"
     },
     {
       "file": "frontend/src/components/dashboard/DataDiagramRepresentation.jsx",
-      "sourceSha256": "cda8597001bdbaa122f4b6b1857fda7311c21ddda5667aade4ba4eff1900671b"
+      "sourceSha256": "4046a9b82bb61e00ea1a434ca2d7d2080dda761eef0692e28a18b425edf4b7fc"
     },
     {
       "file": "frontend/src/components/dashboard/EmptyState.jsx",
-      "sourceSha256": "c57ff3acfa726b7278f3ce4b4297ddc4dac03e57ae54358d0aafdd6e65457dd0"
+      "sourceSha256": "6c2b53bea7acab08a3fe3d740b84b1283e904231d259f628291199734e1d6ca9"
     },
     {
       "file": "frontend/src/components/dashboard/ExamReadinessCard.jsx",
-      "sourceSha256": "74d8e03fe63764f4b18a77967eb97eab7074d85b19b5d9c26310310d9fe23b94"
+      "sourceSha256": "53ce417c6fa2eaf61d1964701de01f2ac2a516377c6173e18bdcc586c1e12d6e"
     },
     {
       "file": "frontend/src/components/dashboard/FamilyBilling.jsx",
@@ -85089,7 +85089,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/FamilyProgress.jsx",
-      "sourceSha256": "d878d5a8c785901b568f257bebcdf88333bc9aa6ca50a71ff91f5c061ba67984"
+      "sourceSha256": "aeb501102a04b0759cd88179631df56452de3940774b1987a0f468549ac7545e"
     },
     {
       "file": "frontend/src/components/dashboard/FeedbackPrompt.jsx",
@@ -85097,11 +85097,11 @@
     },
     {
       "file": "frontend/src/components/dashboard/FloatingAskButton.jsx",
-      "sourceSha256": "244b0e9dc2e6ce16aa14d5cea8570d9bd603be1e09c1137fed39f862efcde5c3"
+      "sourceSha256": "c943a43575d258ba46870aa2d47398e59d0277ee1282123b3fc731c724b0cdb0"
     },
     {
       "file": "frontend/src/components/dashboard/GamificationSection.jsx",
-      "sourceSha256": "9759017b407c8fdbd027de1680c6366d031da2ca3a5f878e6805fac8cb43854f"
+      "sourceSha256": "eb73aa4fe02f9cc565525ddba160f02e0e5e5769495e5dfd1fab7aa9df7dd0de"
     },
     {
       "file": "frontend/src/components/dashboard/GetStartedCard.jsx",
@@ -85109,7 +85109,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/GuideActivity.jsx",
-      "sourceSha256": "b5c0554220819b06350d1235e90e61e8ac213094d5c9f9bd24abec17d36bb84a"
+      "sourceSha256": "7b47f06fdc0901cb3614c7802145ac083f6d1b4d545056ba4df014474aad2d07"
     },
     {
       "file": "frontend/src/components/dashboard/GuideEntry.jsx",
@@ -85125,7 +85125,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/JourneyCatalogue.jsx",
-      "sourceSha256": "61c1dc392147b8f9ec0b490da904712f99eeb8d3d5a838af70a1b17ece9e6c11"
+      "sourceSha256": "37d7c76ed37c4107a67f5262dd9f9aa90a41e72deb5ef32033e16565d105a21a"
     },
     {
       "file": "frontend/src/components/dashboard/JourneyPreview.jsx",
@@ -85137,39 +85137,39 @@
     },
     {
       "file": "frontend/src/components/dashboard/LaggingTopicsCard.jsx",
-      "sourceSha256": "c93ad27cb02cc26fd545e5225fcbaf4a9aa7157ee379e4bba0e3254a94bba428"
+      "sourceSha256": "d94bd606d5a91de47f3c96ca84e024d5dea211f56c2d0b87930112377b26c3b4"
     },
     {
       "file": "frontend/src/components/dashboard/learn/ConceptNavigator.jsx",
-      "sourceSha256": "f9ab1149180fa5522f96fe6ffb08346e03215de4e325b54017b433b53cad4133"
+      "sourceSha256": "a2289d6422b28f7e9690edce304e424ac6bc74a732a834708005f0278daa4133"
     },
     {
       "file": "frontend/src/components/dashboard/learn/ContentsDropdown.jsx",
-      "sourceSha256": "87c87858dad456dacbd129d9fd1b63408fef453ab756829104486ac8d295c899"
+      "sourceSha256": "3134e8cdc8a67e249689d7290993db52cd000b4874ef3dddc70469558db06da2"
     },
     {
       "file": "frontend/src/components/dashboard/learn/CourseIntro.jsx",
-      "sourceSha256": "cbc4fc928c86179d1c923419fe92b2ba9f4b4875f1859fef4cf352c10c77793f"
+      "sourceSha256": "52474e557f85b3796776185a43561b4e98db69244d5eeaa1c5a25415eaf7cc39"
     },
     {
       "file": "frontend/src/components/dashboard/learn/CourseViewer.jsx",
-      "sourceSha256": "f10e741000cc0df2fc164e4ebd671b59d19a5523e1ba59198b316d36e7602074"
+      "sourceSha256": "d95f884f9b4c95dd19a2336237ada4d4fadacadbe31b25604d54b8c76de7fc8a"
     },
     {
       "file": "frontend/src/components/dashboard/learn/QuestionBar.jsx",
-      "sourceSha256": "e881cbac5c69b697b347e63502977a40d988ba30ea142a34e58b3cd0681048ce"
+      "sourceSha256": "f6dd0b5d29832a374508964115e77bf2c3a6763cca446e7a81a7581b157e6057"
     },
     {
       "file": "frontend/src/components/dashboard/learn/SubjectHeroBanner.jsx",
-      "sourceSha256": "02f7e326dc813bf21b73ec1ddfb3aa86ae87b0a49b494c305fe72fc7b6ef4c72"
+      "sourceSha256": "4b6dead538ee19a36181c2d364bf4b9f9272c8d72148891be398a5a998377613"
     },
     {
       "file": "frontend/src/components/dashboard/learn/SubjectPills.jsx",
-      "sourceSha256": "dfc68979ee9c9e6f8230cc3972eb2ced8841cafd882a1da4458cca67ea2daea7"
+      "sourceSha256": "b4aff89514797d763fbd5ed92d7aa5490b26e4ea6b8a3e8c6c43742ce24f2ace"
     },
     {
       "file": "frontend/src/components/dashboard/learn/TopicCard.jsx",
-      "sourceSha256": "b8e1a22cc2714c0794774dda8284c16257135b43fc0e526b17e413e9b8cbca75"
+      "sourceSha256": "12fa8a1cabf8bb192bb1e7f7815c3b527f913a2f997a3388a6cc1a4f426b3e30"
     },
     {
       "file": "frontend/src/components/dashboard/LearnerGoals.jsx",
@@ -85177,7 +85177,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/LearningAttemptHistory.jsx",
-      "sourceSha256": "15f1373b110d7e3a931e9d50d98e98431182723707d4aa92bd75f8bb7d7fd40b"
+      "sourceSha256": "94dafe0832126173700e56bbeabcf4c95a4583cb28110174e4d1a31f79dadcd3"
     },
     {
       "file": "frontend/src/components/dashboard/LearningMilestone.jsx",
@@ -85189,7 +85189,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/LearningRepresentation.jsx",
-      "sourceSha256": "47dd010172a5041057c134642a02d8abbed3ddc068c3817b4563aba913a2772a"
+      "sourceSha256": "271b5b41c0c85274c407764d352f7ad22f0e649b94ca9866e034ea33ce7f9c9a"
     },
     {
       "file": "frontend/src/components/dashboard/LearningSubjectShelf.jsx",
@@ -85197,7 +85197,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/LessonChecksEditor.jsx",
-      "sourceSha256": "1a46c222ac4885a8876b6f1992e6e7c84bafcc13523e34eadcb6371457b80692"
+      "sourceSha256": "1f395507ef6c48f1e5bd9a567a885c68c78bed62a1c51be6fc93629103fb5d2e"
     },
     {
       "file": "frontend/src/components/dashboard/LessonObjectivePicker.jsx",
@@ -85213,11 +85213,11 @@
     },
     {
       "file": "frontend/src/components/dashboard/MarketTrends.jsx",
-      "sourceSha256": "72c7b831dec2a593f9c9829f0938261050521856580dc884dc98a10e6b33dca8"
+      "sourceSha256": "30257d5192eb143e5d0b3ba4db8a980ea42792d019e7b350e97eb095f4dc8203"
     },
     {
       "file": "frontend/src/components/dashboard/MasteryMap.jsx",
-      "sourceSha256": "cede2a2252d869ccb5e8b30e5d66439edfb4d6ba2d7321e4b791a172c3f95748"
+      "sourceSha256": "94bbca2344dba2fb8dbd1124dda1e5f3dc173f38556c1cc65087b6cdf821d00a"
     },
     {
       "file": "frontend/src/components/dashboard/MentorGreeting.jsx",
@@ -85225,7 +85225,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/NumberLineRepresentation.jsx",
-      "sourceSha256": "a504a9f15a9a43ba28681b4ea2aa1be9a46f3bd3c720e4ddb9defad496320d90"
+      "sourceSha256": "d4efbcd5a49e547bc876cf983aa818679dfd547ba5e79671fa950ce20cabc53c"
     },
     {
       "file": "frontend/src/components/dashboard/OrganizationContentDelivery.jsx",
@@ -85233,7 +85233,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/OrganizationEvidencePanel.jsx",
-      "sourceSha256": "ff952a8ad101b98b08a40001d32665d42321efb0d69239f5323c5e73c2149f0f"
+      "sourceSha256": "bde5eb97822c7d7bafb0219480a4df4c82e91bab333eaf51b127b6075355667c"
     },
     {
       "file": "frontend/src/components/dashboard/OrganizationPermissionSelect.jsx",
@@ -85241,7 +85241,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ParentClassworkDigest.jsx",
-      "sourceSha256": "1519fe854d27bb3506476eb9d703d83a076bf567fe94baaa93e872416356d450"
+      "sourceSha256": "cd6f04bc89bba06f0f5740311b73e0632e5453097ad29eaa555a89ff1f113c90"
     },
     {
       "file": "frontend/src/components/dashboard/ParentProjectSharing.jsx",
@@ -85253,11 +85253,11 @@
     },
     {
       "file": "frontend/src/components/dashboard/practice/QuizView.jsx",
-      "sourceSha256": "ab16cbeaf971aef7f2880dd8c8bcd33279d794a78aa60cff6530904fa5dfadc2"
+      "sourceSha256": "5d81814b81470199572b44eccd3a46d2489ca5938531ec4b94f748f0267bf8b2"
     },
     {
       "file": "frontend/src/components/dashboard/PricingCard.jsx",
-      "sourceSha256": "c21d8b8b99a3e42245bade171cb252d8411ac22db4b58fc47af6f9aabe30fa06"
+      "sourceSha256": "9484a29d0dc81b4e255c875f05526b6b05a77350eda59f06e4b6625be47610dd"
     },
     {
       "file": "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx",
@@ -85265,7 +85265,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ProgressCard.jsx",
-      "sourceSha256": "5fee2161080631a9ec3e39e239a659c27a21352cf962a400e24e6334bc2351e5"
+      "sourceSha256": "140e150abc037b7dcd926aaa83717ab4a8d57e97e005f1a5ad00f15605ad6252"
     },
     {
       "file": "frontend/src/components/dashboard/ProgressListCard.jsx",
@@ -85277,7 +85277,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ProjectCard.jsx",
-      "sourceSha256": "f46bdd9136174d441c9e2a5062c33f318da554e87f8f7f7dbf8cde584376e5e5"
+      "sourceSha256": "738d7885e719a154c7c480ca3a781a26c8e4da9f62e2d47fe107e9fbd854ea78"
     },
     {
       "file": "frontend/src/components/dashboard/ProjectCriteria.jsx",
@@ -85289,11 +85289,11 @@
     },
     {
       "file": "frontend/src/components/dashboard/ReferralCard.jsx",
-      "sourceSha256": "1ceb10a52f9ed626ed302e7a17efb7434a7c890a1e4b6b3566c5ebd178937f24"
+      "sourceSha256": "4c3af42c7272d15da4843b0afa304a469aa1bf3e26e01ef7ae080bd30deddf29"
     },
     {
       "file": "frontend/src/components/dashboard/RoleGreeting.jsx",
-      "sourceSha256": "51f4abdf77968f0427b80a30846a0fcab9e57422338596a58b8a824994e65c6a"
+      "sourceSha256": "88fcb7a8018281b576b0a5dee118e2399cf042ed333017594f39876927b702f5"
     },
     {
       "file": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
@@ -85317,7 +85317,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/StreakCard.jsx",
-      "sourceSha256": "0a8f7e7bebd097324b7b880e8024d6369d566df26c5bb5185327b59747cad142"
+      "sourceSha256": "739674c2b9af07751acd0930450b8245b0d093ee4cbbb7abad061a195aba50b0"
     },
     {
       "file": "frontend/src/components/dashboard/SubjectIllustration.jsx",
@@ -85325,43 +85325,43 @@
     },
     {
       "file": "frontend/src/components/dashboard/teacher/AssignmentGrader.jsx",
-      "sourceSha256": "d6e3c4efcf9126ef7845666812dfdbbd511d607dd516ed3581fed2179ff164ea"
+      "sourceSha256": "894b3594eaa9b9c3ccb9533c0657b4f1fb22cb468654fa02cacd44a8ea75c0e3"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/ClassCard.jsx",
-      "sourceSha256": "26aada9ba321dce120f3cb216f8837b82611e7a762dedc0731c77c0251daa644"
+      "sourceSha256": "d19779d5f62871f719ce41a17f1be5062f0c334b80c887627a11b54d832ff723"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
-      "sourceSha256": "ffb18e70ba7b433047c6923deabc2873579fbb37c1510d37c43e93297981f981"
+      "sourceSha256": "b44ee1061034ca8f85e24948b74bbb0e195ff3a7a15cc2b7803e756db2122678"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/tabs/ClassworkTab.jsx",
-      "sourceSha256": "350b661b6f8a914cb5b5a6f2da16a8fa6e33f9340303773547324ff60713b497"
+      "sourceSha256": "a031e8d78750996ab34d49077074b6d48bc3de56cebb4ce1ed6d957a70092b26"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/tabs/InsightsTab.jsx",
-      "sourceSha256": "8e923c5f576605af7f36e0c582a5e67a3524fe8f753a5acf9ddc83a51ab342fe"
+      "sourceSha256": "0b977ee3b5a64f36396e84c9ff629b130b635af85ecb1b3944818cfe8a60e2b0"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/tabs/KnowledgeHeatmap.jsx",
-      "sourceSha256": "0f2020edbdf1cad962b421e7a4ab528eaaa2b3ffbc895de9355c486469772a36"
+      "sourceSha256": "b5d1394d79b42acd41a07997610ae4c1fc504be31ef38673959170b04420e368"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/tabs/PeopleTab.jsx",
-      "sourceSha256": "23aa7f18656c5cbaf9352f978171277ee55962cd4570a1f5a5506e6d0dc8cdff"
+      "sourceSha256": "da7c8d4e328a5c018c14affa3a773daccc9b99865648e2e83107a694bf9624ec"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/tabs/StreamTab.jsx",
-      "sourceSha256": "02f94d27e1a840b215c932f138afb602cab1c1cdbc0546a2a8d565cf4c2c657e"
+      "sourceSha256": "a2d1318be96f68c24b1ab52d8e3c7672c5cfbe64c36013b628803bd3ec16d7d6"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx",
-      "sourceSha256": "d5f55f9975583430498410b0321bd1e9acc71363fa09b8168f7fddb4637cdc2b"
+      "sourceSha256": "8b328b6fcd3313399955db9883c7cefceb5c67393672e3408ca798928c85c94a"
     },
     {
       "file": "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx",
-      "sourceSha256": "fab2ddfa126a338892d8038ecdd2de97ed11b6828acd685ec0dc5a16550bc380"
+      "sourceSha256": "fefb7d411138af0f458100b6a87526386fdda51cd8c72c3b246fde1082b98eb5"
     },
     {
       "file": "frontend/src/components/dashboard/TeacherContentInbox.jsx",
@@ -85369,15 +85369,15 @@
     },
     {
       "file": "frontend/src/components/dashboard/TodayPlanCard.jsx",
-      "sourceSha256": "e01ea31584dd110e0bf60d8f981817aa21490e3e0a19fe1bb262ea90b00f2d8e"
+      "sourceSha256": "81fb9bdb8aa3b57fd0e2dd1358c15c7e4a1cad61dc3ff80af24ae2dc0b63abfc"
     },
     {
       "file": "frontend/src/components/dashboard/UnderstandingMeter.jsx",
-      "sourceSha256": "01512f78263597877204b9f783f1cfe96d84603b18b98541e9bee0d8ab108ed0"
+      "sourceSha256": "4f99f6e81bbc72b8aead2d2a5fe174b993d04fc3a73218008ff8a065216e1e4e"
     },
     {
       "file": "frontend/src/components/dashboard/UpNextCard.jsx",
-      "sourceSha256": "4605a91eac3114a9f3831756d80eb3ec469d58f409e8f5380fdd531f20485e7a"
+      "sourceSha256": "beffb148a355d22335978f4e94f41cd84b0a79e9ec4da8d8906ec59626c3d736"
     },
     {
       "file": "frontend/src/components/dashboard/WorkspaceDetails.jsx",
@@ -85405,7 +85405,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/WorkspaceSwitcher.jsx",
-      "sourceSha256": "58da3cac759e8c3db306c3c61fe81d4858b67ef5746035a2876ab80e815b978d"
+      "sourceSha256": "6b8519c43c50485f57816d441855183eb4e1c84af2d3474710f0a26fee09945e"
     },
     {
       "file": "frontend/src/components/GoogleIcon.jsx",
@@ -86249,11 +86249,11 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Ask.jsx",
-      "sourceSha256": "4d8c9277045e7222b83c00b8f0faa0b155f62eab32dacca9cb70014d9bd783f0"
+      "sourceSha256": "c4867d48461054a0414b620544e70c9f8162636499ef011d5347e12fafa7ce14"
     },
     {
       "file": "frontend/src/pages/dashboard/Build.jsx",
-      "sourceSha256": "d25d3614b76406ed24b121f5f4721227961ceb4008628bf1cad9b5205e80dc99"
+      "sourceSha256": "aeb96c11ebaf5dc46c050af3ef35871d8256a17ef145b45f36cc9fbe82995b4b"
     },
     {
       "file": "frontend/src/pages/dashboard/Children.jsx",
@@ -86261,7 +86261,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/ClassDetail.jsx",
-      "sourceSha256": "48efadcac0a3ebb7a28a390f912e03ea82c9c0479eb3141367c65d757a4e999f"
+      "sourceSha256": "015da9675de3c0ac2e09208badbd58b291f3dde9705e0f867c8f6a6f356a1e67"
     },
     {
       "file": "frontend/src/pages/dashboard/ClassworkLearningPlayer.jsx",
@@ -86277,11 +86277,11 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Connections.jsx",
-      "sourceSha256": "060cb4698fa8bd7cdb356ab49fc48947992e2a3901754c3fd359effa960b6380"
+      "sourceSha256": "b858ecd7c44fe080e3f5479294687e71bc6ee428e36d46f4a900d5240e95a409"
     },
     {
       "file": "frontend/src/pages/dashboard/DashboardHome.jsx",
-      "sourceSha256": "7244f6f3f534688fef61fe8c9f592d4e4c4d7ba3bd2d36ee79aa503053c25770"
+      "sourceSha256": "4ccf769342bd3ddf96bddbeeff49cd9970f6fc0954aa51282023451dad693834"
     },
     {
       "file": "frontend/src/pages/dashboard/DecisionHome.jsx",
@@ -86289,19 +86289,19 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Explore.jsx",
-      "sourceSha256": "f4f3cd2503b5657af76f03bdb4c6cefd35c278e2302e15a83d9fbccb51c579a3"
+      "sourceSha256": "38c19adc78fc6698abc48ec2a785c9d5c4b98be18532e08a29d91a6673c50fe3"
     },
     {
       "file": "frontend/src/pages/dashboard/Guide.jsx",
-      "sourceSha256": "b96d3c0e09836cb93272e584c9e08cbb324ada9e33a12736353dde9a3307fd0c"
+      "sourceSha256": "a6408825d58e64120def4443d348586e18750963c074a2c07ebf9c917901f048"
     },
     {
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "sourceSha256": "60fe423d102e1c2e4a11372143b0e4810c81242709b616c3e479f22cef872d6f"
+      "sourceSha256": "cccc145121608e3fb5072e012ed4624dc6bf2ccaebebe1b99e4e2cf0affb86e1"
     },
     {
       "file": "frontend/src/pages/dashboard/Learners.jsx",
-      "sourceSha256": "de3348cc354e274cd1ff2a4e4189d15f801a06ec66b0f0a48005da794073f996"
+      "sourceSha256": "d73af049d1cab5f2491ec6189dca44f6cde765c0540b72e83456cbfda1033440"
     },
     {
       "file": "frontend/src/pages/dashboard/LearningProgress.jsx",
@@ -86309,7 +86309,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/LearningWorkspace.jsx",
-      "sourceSha256": "f3500121397ac43352d4771151aadfdbe323fd846f6ab445f9629c4c1770238e"
+      "sourceSha256": "59057fa7b49a20a15daa32dc4915b5709c38b55424f0cc43072a8138dff56aef"
     },
     {
       "file": "frontend/src/pages/dashboard/OrganizationAccessHome.jsx",
@@ -86317,11 +86317,11 @@
     },
     {
       "file": "frontend/src/pages/dashboard/OrganizationAudit.jsx",
-      "sourceSha256": "59ab465f8eaa0d011fefad3b432411624c74760cb8836cd45c6b952dd9c85c20"
+      "sourceSha256": "6b654391dd2db041ce0e92bc7127d66e89018029c5810611fc7196be3380a7cf"
     },
     {
       "file": "frontend/src/pages/dashboard/OrganizationBilling.jsx",
-      "sourceSha256": "bd07980c787c99377e2cbca174766e580837c51575d152f0ddeb385a4b9552c3"
+      "sourceSha256": "45863db0d1b5b2a0806cabb04cf66376830ef485a5cd47919142020215caf68e"
     },
     {
       "file": "frontend/src/pages/dashboard/OrganizationContent.jsx",
@@ -86333,7 +86333,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/OrganizationNotifications.jsx",
-      "sourceSha256": "b6c91d6f0073e0042ee643aae24b1904a3fea1f1e30f8dbbe6611e472648f736"
+      "sourceSha256": "7e8e43b517b71b9828f7b2c8ad5c47988c66371ca7b0784d9383843cd9935b22"
     },
     {
       "file": "frontend/src/pages/dashboard/OrganizationSettings.jsx",
@@ -86357,7 +86357,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Practice.jsx",
-      "sourceSha256": "c9faefbcb53b278e55f1b55e1df11a3ae9c0ad7196eb44c54d81f6eef4c29ba5"
+      "sourceSha256": "f352c78e6cdf4e07ac185a5ef713e87ebecba5425dbc40c19d68822ffde565ff"
     },
     {
       "file": "frontend/src/pages/dashboard/ProfessionalCareer.jsx",
@@ -86365,23 +86365,23 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Profile.jsx",
-      "sourceSha256": "40eef8acb21ce7d9515d51c341b8af4c21be13cf8d4a41b5970ce5f6e55392c2"
+      "sourceSha256": "aabbaa8438ef4d2e05c6e2c4b13143d288139a8f257bb370b39ad03d20abc329"
     },
     {
       "file": "frontend/src/pages/dashboard/role/OrgHome.jsx",
-      "sourceSha256": "be546c4bbfb4f519aeec55e0550bc734e4128fa435a3c8831eb789d3792456df"
+      "sourceSha256": "458e16560e525eb8724dc10b8063f29adb6d932489fce3508b96484f5915e597"
     },
     {
       "file": "frontend/src/pages/dashboard/role/ParentHome.jsx",
-      "sourceSha256": "e5835e549e8cfde4d7aaaf9bb53ebd48baa9f9ec6bb8a00d6eb0e9a77507b94f"
+      "sourceSha256": "087fc15379a9ff3aadead0ba41e84e63bd7f6f2f6ec5d7a81b56504658770bc5"
     },
     {
       "file": "frontend/src/pages/dashboard/role/StudentHome.jsx",
-      "sourceSha256": "8b1f3fb44afa0cd38fc75ec182d0ce9b3a9978649956e9576573d066cbee2d3c"
+      "sourceSha256": "022e558f64807d33da04e855acd3a6e87f677c514e633d27bd2614d3a419d6c8"
     },
     {
       "file": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
-      "sourceSha256": "1b36436a351a8fef0c9e4c6c1d69b1f2288c622429359796e3b529bd5dbfab99"
+      "sourceSha256": "4e561127ede5a5503008601e56e93102952e4c1422e9372806cbe1fc449cef4a"
     },
     {
       "file": "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx",
@@ -86389,7 +86389,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/RoleWorkspace.jsx",
-      "sourceSha256": "7e9358f1e97fd2df89aed0fe38313a4778f7b5d4b13b9fa63918a8c0ab63bcf2"
+      "sourceSha256": "b972bee1cf4760e96327047c719fbf37d8ef6d57007939a742f31329ed07b22e"
     },
     {
       "file": "frontend/src/pages/dashboard/Settings.jsx",
@@ -86397,7 +86397,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/StudentClasses.jsx",
-      "sourceSha256": "1bbf6aec44a9ab8eb14ecd8f9cabb464dc075ca81ce8ef605090253e2da57785"
+      "sourceSha256": "eee3fa6be619cf8c40627eb508b8de076c78eb01673d70d90696f11018b4c8d2"
     },
     {
       "file": "frontend/src/pages/dashboard/Support.jsx",
@@ -86405,7 +86405,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/TopicDetail.jsx",
-      "sourceSha256": "14c01446e67a44934079692c4b0e7524eada7ca8efdd0b81f03f82b8e85d6fbf"
+      "sourceSha256": "0777e8cea34c181eb646e698e34ed8e2f597890c807487b107893e25844ec5f9"
     },
     {
       "file": "frontend/src/pages/dashboard/WorkspaceTools.jsx",

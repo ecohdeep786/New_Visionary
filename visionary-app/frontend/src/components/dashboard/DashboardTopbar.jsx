@@ -60,26 +60,26 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     return () => window.removeEventListener('keydown', onShortcut);
   }, []);
   return <header lang={locale} className="workspace-topbar z-30 flex h-16 shrink-0 items-center gap-2 bg-white px-3 sm:px-5">
-    <button onClick={onToggleSidebar} aria-label={t("toggleNavigation")} aria-expanded={sidebarExpanded} aria-controls="dashboard-navigation" className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd] md:flex"><Menu aria-hidden="true" className="h-5 w-5" /></button>
+    <button onClick={onToggleSidebar} aria-label={t("toggleNavigation")} aria-expanded={sidebarExpanded} aria-controls="dashboard-navigation" className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#6e6e73] hover:bg-[#eef5ff] md:flex"><Menu aria-hidden="true" className="h-5 w-5" /></button>
     <Link to="/dashboard/home" aria-label={t("visionaryHome")} className="workspace-brand shrink-0"><VisionaryLogo /></Link>
     <WorkspaceSwitcher />
     <div className="flex flex-1 justify-center sm:px-6">
-      <button ref={searchTrigger} onClick={openSearch} aria-haspopup="dialog" aria-keyshortcuts="Control+k Meta+k" className="workspace-search-trigger flex h-11 w-11 items-center justify-center gap-3 rounded-full bg-[#f1f5fb] text-[#5f6368] hover:bg-[#e8f0fd] sm:w-full sm:max-w-xl sm:justify-start sm:px-4" aria-label={searchPrompt}>
+      <button ref={searchTrigger} onClick={openSearch} aria-haspopup="dialog" aria-keyshortcuts="Control+k Meta+k" className="workspace-search-trigger flex h-11 w-11 items-center justify-center gap-3 rounded-full bg-[#f1f5fb] text-[#6e6e73] hover:bg-[#eef5ff] sm:w-full sm:max-w-xl sm:justify-start sm:px-4" aria-label={searchPrompt}>
         <Search aria-hidden="true" className="h-5 w-5 shrink-0" /><span className="hidden min-w-0 flex-1 truncate text-left text-sm sm:block">{searchPrompt}</span><kbd className="workspace-search-shortcut hidden text-xs sm:inline">Ctrl K</kbd>
       </button>
     </div>
-    {allowed(connect.to)&&<Link to={connect.to} aria-label={connect.label} title={connect.label} className="workspace-connect-action hidden h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[var(--v-action)] hover:bg-[#e8f0fd] md:flex xl:px-3"><Plus aria-hidden="true" className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>}
+    {allowed(connect.to)&&<Link to={connect.to} aria-label={connect.label} title={connect.label} className="workspace-connect-action hidden h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[var(--v-action)] hover:bg-[#eef5ff] md:flex xl:px-3"><Plus aria-hidden="true" className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>}
     <div className={`workspace-presence-anchor${sidebarExpanded ? ' is-expanded' : ''}`}><AudioPresence /></div>
     <DropdownMenu>
       <DropdownMenuTrigger asChild><button aria-label={t("accountMenu")} className="ml-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-sm font-medium text-white ring-offset-2 focus-visible:ring-2 focus-visible:ring-[var(--v-action)]">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
       <DropdownMenuContent lang={locale} align="end" sideOffset={8} className="workspace-account-menu w-[min(320px,calc(100vw-24px))] rounded-[20px] bg-white p-2">
-        <DropdownMenuLabel className="p-3 font-normal"><div className="flex items-center gap-3"><div aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-lg font-medium text-white">{userName.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-base font-medium text-[#121317]">{userName}</p><p className="mt-0.5 truncate text-xs text-[#5f6368]">{user?.email || user?.phone_number}</p></div></div><div className="mt-4 flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#e8f0fd] px-3 py-1 text-xs font-medium capitalize text-[var(--v-action)]">{t("role_"+role)} {t("workspace")}</span><ConnectedPlanBadge key={user?.id} /></div></DropdownMenuLabel>
+        <DropdownMenuLabel className="p-3 font-normal"><div className="flex items-center gap-3"><div aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--v-action)] text-lg font-medium text-white">{userName.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-base font-medium text-[#1d1d1f]">{userName}</p><p className="mt-0.5 truncate text-xs text-[#6e6e73]">{user?.email || user?.phone_number}</p></div></div><div className="mt-4 flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#eef5ff] px-3 py-1 text-xs font-medium capitalize text-[var(--v-action)]">{t("role_"+role)} {t("workspace")}</span><ConnectedPlanBadge key={user?.id} /></div></DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => navigate("/dashboard/profile")} className="workspace-account-item gap-3"><UserCircle aria-hidden="true" />{t("yourProfile")}</DropdownMenuItem>
         {allowed("/dashboard/subscription")&&<DropdownMenuItem onSelect={() => navigate("/dashboard/subscription")} className="workspace-account-item gap-3"><Crown aria-hidden="true" />{t(role==='organization'?'billing':'plans')}</DropdownMenuItem>}
         <DropdownMenuItem onSelect={() => navigate("/dashboard/settings")} className="workspace-account-item gap-3"><Settings aria-hidden="true" />{t("settings")}</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuLabel className="px-3 pb-1 pt-2 text-xs font-medium text-[#5f6368]">{t("yourWorkspace")}</DropdownMenuLabel>
+        <DropdownMenuLabel className="px-3 pb-1 pt-2 text-xs font-medium text-[#6e6e73]">{t("yourWorkspace")}</DropdownMenuLabel>
         <DropdownMenuItem onSelect={() => navigate("/dashboard/connections")} className="workspace-account-item gap-3"><Users aria-hidden="true" />{t("connectionRequests")}</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/notifications')} className="workspace-account-item gap-3"><Bell aria-hidden="true" />{t("notifications")}</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/personalization')} className="workspace-account-item gap-3"><SlidersHorizontal aria-hidden="true" />{t("personalization")}</DropdownMenuItem>
@@ -113,7 +113,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
           event.preventDefault();
           const next = index + (event.key === 'ArrowDown' ? 1 : -1);
           (buttons[next] || searchInput.current)?.focus();
-        }} className="max-h-[50vh] space-y-1 overflow-y-auto">{results.length ? results.map(item => <button key={item.to} onClick={() => openResult(item.to)} className="flex min-h-12 w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-[#e8f0fd]"><span>{item.label}</span><span className="ml-4 truncate text-xs text-[#5f6368]">{item.detail || t("page")}</span></button>) : <p className="px-4 py-6 text-sm text-[#5f6368]">{t("searchEmpty")}</p>}</div>
+        }} className="max-h-[50vh] space-y-1 overflow-y-auto">{results.length ? results.map(item => <button key={item.to} onClick={() => openResult(item.to)} className="flex min-h-12 w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-[#eef5ff]"><span>{item.label}</span><span className="ml-4 truncate text-xs text-[#6e6e73]">{item.detail || t("page")}</span></button>) : <p className="px-4 py-6 text-sm text-[#6e6e73]">{t("searchEmpty")}</p>}</div>
       </DialogContent>
     </Dialog>
   </header>;

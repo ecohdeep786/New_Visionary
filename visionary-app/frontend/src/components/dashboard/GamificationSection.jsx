@@ -23,7 +23,7 @@ export default function GamificationSection() {
   const teaser = teasers[teaserIdx];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-8 bg-white rounded-3xl border border-[#dadce0]/60">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-8 bg-white rounded-3xl border border-[#d2d2d7]/60">
       {/* Breathing exercise */}
       <div className="flex flex-col gap-5">
         <div className="flex items-center gap-3">
@@ -31,8 +31,8 @@ export default function GamificationSection() {
             <Brain className="w-5 h-5" style={{ color: themeColor.accent }} />
           </div>
           <div>
-            <h3 className="text-[17px] font-medium text-[#121317]">Breathing exercise</h3>
-            <p className="text-sm text-[#5f6368] mt-0.5">Calm your mind in 60 seconds</p>
+            <h3 className="text-[17px] font-medium text-[#1d1d1f]">Breathing exercise</h3>
+            <p className="text-sm text-[#6e6e73] mt-0.5">Calm your mind in 60 seconds</p>
           </div>
         </div>
         <BreathingExercise />
@@ -45,12 +45,12 @@ export default function GamificationSection() {
             <Lightbulb className="w-5 h-5 text-[#fbbc05]" />
           </div>
           <div>
-            <h3 className="text-[17px] font-medium text-[#121317]">Quick riddle</h3>
-            <p className="text-sm text-[#5f6368] mt-0.5">Give your brain a playful break</p>
+            <h3 className="text-[17px] font-medium text-[#1d1d1f]">Quick riddle</h3>
+            <p className="text-sm text-[#6e6e73] mt-0.5">Give your brain a playful break</p>
           </div>
         </div>
         <div className="flex flex-col gap-4 p-6 bg-[#ffffff] rounded-2xl flex-1 justify-center">
-          <p className="text-base text-[#121317] leading-relaxed">{teaser.q}</p>
+          <p className="text-base text-[#1d1d1f] leading-relaxed">{teaser.q}</p>
           {revealed ? (
             <span className="text-base font-medium" style={{ color: themeColor.accent }}>{teaser.a}</span>
           ) : (
@@ -64,7 +64,7 @@ export default function GamificationSection() {
           )}
           <button
             onClick={nextTeaser}
-            className="inline-flex items-center gap-2 self-start text-sm font-medium text-[#5f6368] hover:text-[#121317] transition-colors"
+            className="inline-flex items-center gap-2 self-start text-sm font-medium text-[#6e6e73] hover:text-[#1d1d1f] transition-colors"
           >
             <RotateCw className="w-4 h-4" /> Next riddle
           </button>

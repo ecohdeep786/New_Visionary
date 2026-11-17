@@ -22,21 +22,21 @@ export default function ContentsDropdown({ topics, activeTopicId }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center gap-2 h-10 px-4 rounded-full bg-[#dadce0] hover:bg-[#dadce0] transition-colors"
+        className="inline-flex items-center gap-2 h-10 px-4 rounded-full bg-[#d2d2d7] hover:bg-[#d2d2d7] transition-colors"
       >
-        <span className="text-sm font-medium text-[#5f6368]">Contents</span>
+        <span className="text-sm font-medium text-[#6e6e73]">Contents</span>
         {currentTopic && (
-          <span className="text-sm font-normal text-[#121317] truncate max-w-[200px]">
+          <span className="text-sm font-normal text-[#1d1d1f] truncate max-w-[200px]">
             {currentTopic.name}
           </span>
         )}
         <ChevronDown
-          className={`w-[18px] h-[18px] text-[#5f6368] transition-transform ${open ? "rotate-180" : ""}`}
+          className={`w-[18px] h-[18px] text-[#6e6e73] transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
 
       {open && (
-        <div className="absolute top-12 left-0 w-80 max-w-[90vw] bg-white rounded-2xl shadow-lg border border-[#dadce0]/50 py-2 z-40 max-h-[400px] overflow-y-auto">
+        <div className="absolute top-12 left-0 w-80 max-w-[90vw] bg-white rounded-2xl shadow-lg border border-[#d2d2d7]/50 py-2 z-40 max-h-[400px] overflow-y-auto">
           {topics.map((t) => {
             const isActive = t.id === activeTopicId;
             const isMastered = t.status === "mastered";
@@ -51,7 +51,7 @@ export default function ContentsDropdown({ topics, activeTopicId }) {
                 <div
                   className="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0"
                   style={{
-                    borderColor: isMastered ? themeColor.accent : "#dadce0",
+                    borderColor: isMastered ? themeColor.accent : "#d2d2d7",
                     backgroundColor: isMastered ? themeColor.accent : "transparent",
                   }}
                 >
@@ -59,7 +59,7 @@ export default function ContentsDropdown({ topics, activeTopicId }) {
                 </div>
                 <span
                   className="text-sm font-normal truncate"
-                  style={{ color: isActive ? themeColor.accent : "#121317", fontWeight: isActive ? 500 : 400 }}
+                  style={{ color: isActive ? themeColor.accent : "#1d1d1f", fontWeight: isActive ? 500 : 400 }}
                 >
                   {t.name}
                 </span>

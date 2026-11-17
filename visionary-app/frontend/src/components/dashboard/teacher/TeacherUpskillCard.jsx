@@ -38,7 +38,7 @@ export default function TeacherUpskillCard({
   const copy = primaryWorkspaceCopy(locale);
   const [idx, setIdx] = useState(() => Math.floor(Math.random() * SKILLS.length));
   const skill = SKILLS[idx];
-  return <div className="rounded-3xl p-8 bg-white border border-[#dadce0]/60 flex flex-col gap-5">
+  return <div className="rounded-3xl p-8 bg-white border border-[#d2d2d7]/60 flex flex-col gap-5">
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{
         backgroundColor: `${accent}15`
@@ -48,16 +48,16 @@ export default function TeacherUpskillCard({
         }} />
         </div>
         <div className="flex-1">
-          <p className="text-sm font-medium text-[#121317]"> {copy("Grow as a teacher")} </p>
-          <p className="text-xs text-[#5f6368] mt-0.5"> {copy("One skill to sharpen this week")} </p>
+          <p className="text-sm font-medium text-[#1d1d1f]"> {copy("Grow as a teacher")} </p>
+          <p className="text-xs text-[#6e6e73] mt-0.5"> {copy("One skill to sharpen this week")} </p>
         </div>
-        <button onClick={() => setIdx(i => (i + 1) % SKILLS.length)} className="w-9 h-9 rounded-full hover:bg-[#121317]/5 flex items-center justify-center shrink-0" aria-label={copy("Another skill")}>
-          <RefreshCw className="w-4 h-4 text-[#5f6368]" />
+        <button onClick={() => setIdx(i => (i + 1) % SKILLS.length)} className="w-9 h-9 rounded-full hover:bg-[#1d1d1f]/5 flex items-center justify-center shrink-0" aria-label={copy("Another skill")}>
+          <RefreshCw className="w-4 h-4 text-[#6e6e73]" />
         </button>
       </div>
       <div>
-        <p className="text-base font-medium text-[#121317]"> {copy(skill.skill)} </p>
-        <p className="text-sm text-[#5f6368] mt-1 leading-relaxed"> {copy(skill.action)} </p>
+        <p className="text-base font-medium text-[#1d1d1f]"> {copy(skill.skill)} </p>
+        <p className="text-sm text-[#6e6e73] mt-1 leading-relaxed"> {copy(skill.action)} </p>
       </div>
       <Link to="/dashboard/ask" className="v-action-link self-start font-medium" style={{
       color: accent

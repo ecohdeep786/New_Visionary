@@ -59,35 +59,35 @@ function ProgressCard({ link, logs, window, accent }) {
   const activeToday = stats.lastActive === dayKey(new Date());
 
   return (
-    <article className="rounded-2xl border border-[#dadce0] bg-white p-6">
+    <article className="rounded-2xl border border-[#d2d2d7] bg-white p-6">
       <div className="flex flex-wrap items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e8f0fd] text-sm font-medium text-[#3367d6]">{link.child_name?.charAt(0)?.toUpperCase() || "C"}</div>
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eef5ff] text-sm font-medium text-[#3367d6]">{link.child_name?.charAt(0)?.toUpperCase() || "C"}</div>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-[#121317]">{link.child_name}</p>
-          <p className="truncate text-xs text-[#5f6368]">{link.child_email}</p>
+          <p className="text-sm font-medium text-[#1d1d1f]">{link.child_name}</p>
+          <p className="truncate text-xs text-[#6e6e73]">{link.child_email}</p>
         </div>
-        <span className={"rounded-full px-3 py-1 text-xs font-medium " + (activeToday ? "bg-[#e6f4ea] text-[#137333]" : "bg-[#dadce0] text-[#5f6368]")}>
+        <span className={"rounded-full px-3 py-1 text-xs font-medium " + (activeToday ? "bg-[#e6f4ea] text-[#137333]" : "bg-[#d2d2d7] text-[#6e6e73]")}>
           {activeToday ? "Studied today" : stats.lastActive ? "Last studied " + formatDay(stats.lastActive) : "No activity yet"}
         </span>
       </div>
 
       {attributed.length === 0 ? (
-        <p className="mt-5 rounded-xl border border-dashed border-[#5f6368] bg-[#ffffff] px-4 py-5 text-sm leading-relaxed text-[#5f6368]">
+        <p className="mt-5 rounded-xl border border-dashed border-[#6e6e73] bg-[#ffffff] px-4 py-5 text-sm leading-relaxed text-[#6e6e73]">
           No shared activity yet. When {link.child_name || "your child"} studies with Visionary, their subjects, practice, and confidence appear here.
         </p>
       ) : (
         <>
           <div className="mt-6 grid grid-cols-3 gap-3">
-            <div className="rounded-xl bg-[#ffffff] px-4 py-3"><p className="text-2xl font-medium text-[#121317]">{stats.sessions}</p><p className="mt-1 text-xs text-[#5f6368]">Sessions · 7 days</p></div>
-            <div className="rounded-xl bg-[#ffffff] px-4 py-3"><p className="text-2xl font-medium text-[#121317]">{stats.minutes}</p><p className="mt-1 text-xs text-[#5f6368]">Minutes · 7 days</p></div>
-            <div className="rounded-xl bg-[#ffffff] px-4 py-3"><p className="text-2xl font-medium text-[#121317]">{stats.avgConfidence === null ? "—" : stats.avgConfidence + "%"}</p><p className="mt-1 text-xs text-[#5f6368]">Avg. confidence</p></div>
+            <div className="rounded-xl bg-[#ffffff] px-4 py-3"><p className="text-2xl font-medium text-[#1d1d1f]">{stats.sessions}</p><p className="mt-1 text-xs text-[#6e6e73]">Sessions · 7 days</p></div>
+            <div className="rounded-xl bg-[#ffffff] px-4 py-3"><p className="text-2xl font-medium text-[#1d1d1f]">{stats.minutes}</p><p className="mt-1 text-xs text-[#6e6e73]">Minutes · 7 days</p></div>
+            <div className="rounded-xl bg-[#ffffff] px-4 py-3"><p className="text-2xl font-medium text-[#1d1d1f]">{stats.avgConfidence === null ? "—" : stats.avgConfidence + "%"}</p><p className="mt-1 text-xs text-[#6e6e73]">Avg. confidence</p></div>
           </div>
 
           <div className="mt-6" aria-hidden="true">
             <div className="flex h-16 items-end gap-1.5">
               {stats.perDay.map((day, i) => (
                 <div key={i} className="flex h-full flex-1 flex-col justify-end gap-1.5">
-                  <div className="w-full rounded-t-md transition-all" style={{ height: Math.max(6, Math.round((day.minutes / peak) * 100)) + "%", backgroundColor: day.minutes > 0 ? accent : "#dadce0" }} />
+                  <div className="w-full rounded-t-md transition-all" style={{ height: Math.max(6, Math.round((day.minutes / peak) * 100)) + "%", backgroundColor: day.minutes > 0 ? accent : "#d2d2d7" }} />
                 </div>
               ))}
             </div>
@@ -96,14 +96,14 @@ function ProgressCard({ link, logs, window, accent }) {
             </div>
           </div>
 
-          <div className="mt-5 border-t border-[#dadce0] pt-4">
-            <p className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">Recent topics</p>
+          <div className="mt-5 border-t border-[#d2d2d7] pt-4">
+            <p className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Recent topics</p>
             <ul className="mt-3 space-y-2.5">
               {stats.recent.map((log) => (
                 <li key={log.topic + log.date} className="flex items-center gap-3">
                   <BookOpen className="h-4 w-4 shrink-0" style={{ color: accent }} />
-                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-[#121317]">{log.topic}</span>
-                  <span className="shrink-0 text-xs text-[#5f6368]">{log.subject ? log.subject + " · " : ""}{formatDay(log.date)}</span>
+                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-[#1d1d1f]">{log.topic}</span>
+                  <span className="shrink-0 text-xs text-[#6e6e73]">{log.subject ? log.subject + " · " : ""}{formatDay(log.date)}</span>
                 </li>
               ))}
             </ul>
@@ -114,7 +114,7 @@ function ProgressCard({ link, logs, window, accent }) {
   );
 }
 
-export default function FamilyProgress({ links = [], accent = "#4285F4" }) {
+export default function FamilyProgress({ links = [], accent = "#0071E3" }) {
   const activeLinks = useMemo(() => links.filter((link) => link.status === "active"), [links]);
   const [logs, setLogs] = useState(null);
   const [error, setError] = useState(false);
@@ -144,17 +144,17 @@ export default function FamilyProgress({ links = [], accent = "#4285F4" }) {
   return (
     <section aria-label="Shared learning progress">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-lg font-medium text-[#121317]">Shared progress</h2>
-        <p className="text-xs text-[#5f6368]">Only what your children share through an accepted connection appears here.</p>
+        <h2 className="text-lg font-medium text-[#1d1d1f]">Shared progress</h2>
+        <p className="text-xs text-[#6e6e73]">Only what your children share through an accepted connection appears here.</p>
       </div>
 
       {error && (
-        <div className="rounded-xl border border-[#5f6368] bg-[#fce8e6] p-4 text-sm text-[#b3261e]" role="alert">
+        <div className="rounded-xl border border-[#6e6e73] bg-[#fce8e6] p-4 text-sm text-[#b3261e]" role="alert">
           Shared progress couldn’t be loaded.
           <button type="button" onClick={load} className="ml-3 font-medium underline">Try again</button>
         </div>
       )}
-      {!error && logs === null && <p className="py-6 text-sm text-[#5f6368]" role="status">Loading shared progress…</p>}
+      {!error && logs === null && <p className="py-6 text-sm text-[#6e6e73]" role="status">Loading shared progress…</p>}
 
       {!error && logs !== null && (
         <>

@@ -11,7 +11,7 @@ export default function AchievementsCard({ studentData }) {
   const studyHours = Math.round(studyLogs.reduce((sum, l) => sum + (l.duration_minutes || 0), 0) / 60);
 
   const achievements = [
-    { label: "First step", sublabel: "Complete your first lesson", icon: Target, unlocked: mastered >= 1, progress: Math.min(mastered, 1), total: 1, color: "#4285F4", bg: "#e8f0fd" },
+    { label: "First step", sublabel: "Complete your first lesson", icon: Target, unlocked: mastered >= 1, progress: Math.min(mastered, 1), total: 1, color: "#0071E3", bg: "#eef5ff" },
     { label: "Knowledge seeker", sublabel: "Master 5 topics", icon: Brain, unlocked: mastered >= 5, progress: Math.min(mastered, 5), total: 5, color: "#34a853", bg: "#e6f4ea" },
     { label: "Consistent mind", sublabel: "Study 7 days in a row", icon: Flame, unlocked: streak >= 7, progress: Math.min(streak, 7), total: 7, color: "#fbbc05", bg: "#ffffff" },
     { label: "Scholar", sublabel: "Master 10 topics", icon: Trophy, unlocked: mastered >= 10, progress: Math.min(mastered, 10), total: 10, color: "#a142f4", bg: "#f3e8fd" },
@@ -20,7 +20,7 @@ export default function AchievementsCard({ studentData }) {
   ];
 
   return (
-    <div className="flex flex-col gap-6 p-8 bg-white rounded-3xl border border-[#dadce0]/60">
+    <div className="flex flex-col gap-6 p-8 bg-white rounded-3xl border border-[#d2d2d7]/60">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {achievements.map((a) => {
           const Icon = a.icon;
@@ -31,27 +31,27 @@ export default function AchievementsCard({ studentData }) {
               style={{ backgroundColor: a.unlocked ? a.bg : "#ffffff" }}
             >
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: a.unlocked ? a.color : "#dadce0" }}>
-                  <Icon className="w-5 h-5" style={{ color: a.unlocked ? "#ffffff" : "#5f6368" }} />
+                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: a.unlocked ? a.color : "#d2d2d7" }}>
+                  <Icon className="w-5 h-5" style={{ color: a.unlocked ? "#ffffff" : "#6e6e73" }} />
                 </div>
                 {a.unlocked ? (
                   <span className="inline-flex items-center gap-1 px-3 py-1 bg-white/70 rounded-full text-xs font-medium" style={{ color: a.color }}>
                     <Check className="w-3.5 h-3.5" /> Earned
                   </span>
                 ) : (
-                  <Lock className="w-[18px] h-[18px] text-[#5f6368]" />
+                  <Lock className="w-[18px] h-[18px] text-[#6e6e73]" />
                 )}
               </div>
               <div>
-                <p className="text-[15px] font-medium text-[#121317]">{a.label}</p>
-                <p className="text-sm text-[#5f6368] mt-0.5">{a.sublabel}</p>
+                <p className="text-[15px] font-medium text-[#1d1d1f]">{a.label}</p>
+                <p className="text-sm text-[#6e6e73] mt-0.5">{a.sublabel}</p>
               </div>
               {!a.unlocked && (
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 h-1.5 bg-[#dadce0] rounded-full overflow-hidden">
+                  <div className="flex-1 h-1.5 bg-[#d2d2d7] rounded-full overflow-hidden">
                     <div className="h-full rounded-full" style={{ width: `${(a.progress / a.total) * 100}%`, backgroundColor: a.color }} />
                   </div>
-                  <span className="text-xs font-medium text-[#5f6368]">{a.progress}/{a.total}</span>
+                  <span className="text-xs font-medium text-[#6e6e73]">{a.progress}/{a.total}</span>
                 </div>
               )}
             </div>
@@ -61,7 +61,7 @@ export default function AchievementsCard({ studentData }) {
 
       <Link
         to="/dashboard/subscription"
-        className="inline-flex items-center justify-center gap-2 pt-4 border-t border-[#dadce0]/40 text-sm font-medium hover:underline"
+        className="inline-flex items-center justify-center gap-2 pt-4 border-t border-[#d2d2d7]/40 text-sm font-medium hover:underline"
         style={{ color: themeColor.accent }}
       >
         <Lock className="w-[18px] h-[18px]" />

@@ -78,14 +78,14 @@ export default function GuideActivity({
     remediating: 'Try a smaller step'
   };
   return <div className="flex min-w-0 flex-col gap-5">
-  <div className="flex items-center justify-between gap-3"><span className="text-xs font-medium text-[#5f6368]">{copy("Learning activity \xB7 Demo content")}</span><button className="v-button !px-3" aria-label={copy("Toggle activity focus")} onClick={onFocus}><Maximize2 size={18} /></button></div>
+  <div className="flex items-center justify-between gap-3"><span className="text-xs font-medium text-[#6e6e73]">{copy("Learning activity \xB7 Demo content")}</span><button className="v-button !px-3" aria-label={copy("Toggle activity focus")} onClick={onFocus}><Maximize2 size={18} /></button></div>
   <div><h2 className="v-title" lang={session.locale}>{journey.title}</h2><p className="v-muted mt-2" lang={session.locale}>{journey.objective}</p></div>
-  <div className="flex flex-wrap items-center gap-3"><label className="text-xs text-[#5f6368]">{copy("Teaching language")}<select aria-label={copy("Activity language")} className="v-field mt-1" value={session.locale} onChange={e => update({
+  <div className="flex flex-wrap items-center gap-3"><label className="text-xs text-[#6e6e73]">{copy("Teaching language")}<select aria-label={copy("Activity language")} className="v-field mt-1" value={session.locale} onChange={e => update({
           locale: e.target.value
-        })}><option value="en">English</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option></select></label><label className="text-xs text-[#5f6368]">{copy("Representation")}<select aria-label={copy("Representation")} className="v-field mt-1" value={session.representation} onChange={e => update({
+        })}><option value="en">English</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option></select></label><label className="text-xs text-[#6e6e73]">{copy("Representation")}<select aria-label={copy("Representation")} className="v-field mt-1" value={session.representation} onChange={e => update({
           representation: e.target.value
         })}><option value="interactive">{copy("Interactive")}</option><option value="text">{copy("Text alternative")}</option></select></label></div>
-  <ol aria-label={copy("Learning stages")} className="flex flex-wrap gap-2">{stages.map((s, i) => <li key={s} aria-current={s === stage ? 'step' : undefined} className={`rounded-full px-2.5 py-1 text-xs ${s === stage ? 'bg-[#3367d6] text-white' : 'bg-white text-[#5f6368]'}`}>{i + 1}. {s === 'diagnosing' ? copy("Start") : copy(s[0].toUpperCase() + s.slice(1))}</li>)}</ol>
+  <ol aria-label={copy("Learning stages")} className="flex flex-wrap gap-2">{stages.map((s, i) => <li key={s} aria-current={s === stage ? 'step' : undefined} className={`rounded-full px-2.5 py-1 text-xs ${s === stage ? 'bg-[#3367d6] text-white' : 'bg-white text-[#6e6e73]'}`}>{i + 1}. {s === 'diagnosing' ? copy("Start") : copy(s[0].toUpperCase() + s.slice(1))}</li>)}</ol>
   {session.interrupted && <div className="v-notice"><p>{copy("Your activity is paused while you ask. Your position and controls are saved.")}</p><button className="v-button mt-2" onClick={() => update({
         interrupted: false
       })}>{copy("That makes sense \xB7 Resume")}</button></div>}
@@ -125,13 +125,13 @@ export default function GuideActivity({
             count: session.canvas.size
           })} className="my-8 flex h-16 overflow-hidden rounded-lg border border-[#3367d6]">{Array.from({
               length: 8
-            }, (_, i) => <div key={i} className={`flex-1 border-r border-[#3367d6] ${i < session.canvas.size ? 'bg-[#e8f0fd]' : 'bg-white'}`} />)}</div><label className="text-sm">{session.canvas.size}/8<input aria-label={copy("Selected eighths")} className="mt-4 w-full" type="range" min="0" max="8" value={session.canvas.size} onChange={e => update({
+            }, (_, i) => <div key={i} className={`flex-1 border-r border-[#3367d6] ${i < session.canvas.size ? 'bg-[#eef5ff]' : 'bg-white'}`} />)}</div><label className="text-sm">{session.canvas.size}/8<input aria-label={copy("Selected eighths")} className="mt-4 w-full" type="range" min="0" max="8" value={session.canvas.size} onChange={e => update({
               canvas: {
                 ...session.canvas,
                 size: Number(e.target.value)
               }
             })} /></label><div className="mt-2 flex justify-between text-xs"><span>0</span><span>1/2 = 4/8</span><span>1</span></div></> : <table className="w-full text-left text-sm"><caption className="mb-3 text-left">{copy("Fictional three-week sample")}</caption><thead><tr><th className="py-3">{copy("Week")}</th><th>{copy("Completed tasks")}</th></tr></thead><tbody>{[20, 30, 25].map((n, i) => <tr key={i} className="border-t"><td className="py-3">{i + 1}</td><td>{n}</td></tr>)}</tbody></table>}</>}
-   {isQuestion && question && <><p className="mb-3 text-xs text-[#5f6368]">{session.position + 1} / {journey.questions.length}</p><fieldset><legend className="mb-4 text-base font-medium leading-7" lang={session.locale}>{question.prompt}</legend><div className="space-y-3">{question.options.map((option, i) => <label key={option} className="flex min-h-12 items-center gap-3 rounded-xl border p-3 text-sm"><input type="radio" name="activity-answer" value={i} checked={answer === String(i)} onChange={e => {
+   {isQuestion && question && <><p className="mb-3 text-xs text-[#6e6e73]">{session.position + 1} / {journey.questions.length}</p><fieldset><legend className="mb-4 text-base font-medium leading-7" lang={session.locale}>{question.prompt}</legend><div className="space-y-3">{question.options.map((option, i) => <label key={option} className="flex min-h-12 items-center gap-3 rounded-xl border p-3 text-sm"><input type="radio" name="activity-answer" value={i} checked={answer === String(i)} onChange={e => {
                 setAnswer(e.target.value);
                 setFeedback(null);
               }} /><span lang={session.locale}>{option}</span></label>)}</div></fieldset><button className="v-button primary mt-5" disabled={!answer} onClick={respond}>{copy("Check my answer")}</button>{feedback && <div className="v-notice mt-4" role="status"><p className="font-medium" lang={locale}>{feedback.correct ? copy("That\u2019s right.") : copy("Let\u2019s look at the reasoning.")}</p><p className="mt-2" lang={session.locale}>{feedback.explanation}</p><button className="v-button mt-3" onClick={advance}>{feedback.correct ? copy("Continue") : copy("Continue with this explanation")}</button>{!feedback.correct && <button className="v-button ml-2 mt-3" onClick={() => {
@@ -171,6 +171,6 @@ export default function GuideActivity({
       })} placeholder={copy("Keep a thought, example, or question\u2026")} /></label>
   <div className="flex flex-wrap items-center justify-between gap-3"><button className="v-button" onClick={() => {
         if(update({interrupted:true}))onAsk();
-      }}><MessageCircle size={16} />{copy("Ask Visionary")}</button><span className="text-xs text-[#5f6368]">{copy("Saved on this device")}</span></div>{error && <p role="alert" className="v-notice v-error" lang="en">{error}</p>}
+      }}><MessageCircle size={16} />{copy("Ask Visionary")}</button><span className="text-xs text-[#6e6e73]">{copy("Saved on this device")}</span></div>{error && <p role="alert" className="v-notice v-error" lang="en">{error}</p>}
  </div>;
 }

@@ -33,15 +33,15 @@ export default function DailyBriefing({ studentData, userName }) {
   }, [studentData?.loading]);
 
   return (
-    <div className="flex flex-col gap-6 p-8 lg:p-10 bg-white rounded-3xl border border-[#dadce0] elevation-1">
+    <div className="flex flex-col gap-6 p-8 lg:p-10 bg-white rounded-3xl border border-[#d2d2d7] elevation-1">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-full bg-[#e8f0fd] flex items-center justify-center shrink-0">
-            <Brain className="w-5 h-5 text-[#4285F4]" />
+          <div className="w-11 h-11 rounded-full bg-[#eef5ff] flex items-center justify-center shrink-0">
+            <Brain className="w-5 h-5 text-[#0071E3]" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-[#121317]">AGI Daily Briefing</p>
-            <p className="text-xs text-[#5f6368] mt-0.5">
+            <p className="text-sm font-semibold text-[#1d1d1f]">AGI Daily Briefing</p>
+            <p className="text-xs text-[#6e6e73] mt-0.5">
               {new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long" })}
             </p>
           </div>
@@ -49,24 +49,24 @@ export default function DailyBriefing({ studentData, userName }) {
         <div className="flex items-center gap-2 px-4 py-2 bg-[#ffffff] rounded-full">
           <Flame className="w-4 h-4 text-orange-500" />
           <span className="text-sm font-bold text-[#b06000]">5</span>
-          <span className="text-xs text-[#5f6368]">day streak</span>
+          <span className="text-xs text-[#6e6e73]">day streak</span>
         </div>
       </div>
 
       <div className="min-h-[60px]">
         {loading ? (
-          <div className="flex items-center gap-2.5 text-[#5f6368]">
+          <div className="flex items-center gap-2.5 text-[#6e6e73]">
             <Sparkles className="w-4 h-4 animate-pulse" />
             <span className="text-sm">Your AGI teacher is preparing today's briefing...</span>
           </div>
         ) : (
-          <p className="text-base lg:text-lg text-[#5f6368] leading-relaxed">{briefing}</p>
+          <p className="text-base lg:text-lg text-[#6e6e73] leading-relaxed">{briefing}</p>
         )}
       </div>
 
       <Link
         to="/dashboard/learn"
-        className="flex items-center gap-2 self-start px-6 py-3 bg-[#4285F4] text-white rounded-full text-sm font-semibold hover:bg-[#3367d6] active:scale-95 transition-colors w-fit"
+        className="flex items-center gap-2 self-start px-6 py-3 bg-[#0071E3] text-white rounded-full text-sm font-semibold hover:bg-[#3367d6] active:scale-95 transition-colors w-fit"
       >
         Start today's plan <ArrowRight className="w-4 h-4" />
       </Link>
