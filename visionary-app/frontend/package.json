@@ -11,6 +11,7 @@
     "typecheck": "tsc -p ./jsconfig.json && tsc -p ./tsconfig.domain.json",
     "preview": "vite preview",
     "test": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "verify:graph": "node scripts/production-graph.mjs",
     "qa:navigation": "node scripts/navigation-quality-review.mjs",
     "qa:fonts": "node scripts/font-surface-review.mjs",
     "qa:design": "node scripts/design-quality-review.mjs",

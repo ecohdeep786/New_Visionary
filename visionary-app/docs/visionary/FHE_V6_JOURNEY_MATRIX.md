@@ -44,3 +44,9 @@ data and staging qualification are separate gates (FHE-23).
   FHE-06 personal-workspace journey on the server. No other worktree may be touched.
 - Stale registrations pruned 2026-11-17 (dirs removed previously; branches preserved).
 - Backend/ML lane remains **PAUSED** per founder interrupt #2; this matrix does not resume it.
+- 2026-11-18: the **no-dead-code law** is now binding and mechanically enforced on this
+  lane (`docs/architecture/FRONTEND_NO_DEAD_CODE_LAW.md`, `npm run verify:graph`,
+  `tests/production-graph.test.mjs`). 93 orphaned files removed, the demo fixture moved
+  to `tests/fixtures/`, `backendTransport.ts` registered as the intentional seam; the
+  surface inventory shrank to 1532 live control declarations. Every later work order
+  must pass `verify:graph` + the route law test before acceptance.

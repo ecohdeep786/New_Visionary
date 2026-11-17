@@ -2414,3 +2414,58 @@ realms untouched. QA/Codex review still pending for the branch; nothing merged t
 Next eligible order per the matrix: FHE-07/08 honest-content and teaching-lane
 contract handoffs (backend-dependent, D-class), or FHE-06 follow-up (server-reconciled
 active-workspace preference) if the backend lane resumes.
+
+## 2026-11-18 — No-dead-code law: the frontend product graph is now clean and mechanically enforced
+
+**The directive.** The founder ordered that no dead code, random work or stray code
+may remain in the frontend product, and that the rule be written down. Executed as a
+law + enforcement layer, not a one-off cleanup, on the same FHE-05 lane.
+
+**Survey (evidence before any removal).** New verifier
+`frontend/scripts/production-graph.mjs` (`npm run verify:graph`): (a) bundle
+static-closure audit over `dist/` — the executed set is entry + transitive static
+imports (4 of 147 chunks: entry + router/radix/icons vendors); the dev preview store
+(`workspaceService`) is provably outside it; (b) orphan-source scan — every `src/`
+file must be reachable from the entry or from tests/scripts; (c) hygiene greps —
+zero TODO/FIXME/console.log/debugger in `src/`; (d) basename cross-check of every
+candidate against the whole tree to rule out resolver misses.
+
+**Findings and actions.** 95 orphans of 506 source files, all confirmed genuine:
+93 removed (`git rm`) — the pre-Apple-unification dashboard card library, superseded
+Learn/Practice sub-components, superseded role homes, superseded pages (`Ask.jsx`
+replaced by the intent-flow Home, `Build.jsx` by `ArtifactStudio`, `OAuthConsent.jsx`),
+41 unused shadcn `ui/*` primitives + `use-mobile` (scaffold never imported by any
+reachable surface), `App.css`, `productAccess.js`, `utils/index.ts`, `useSheetStack.js`,
+`AGIIntro.jsx`; 1 misfiled test fixture moved out of `src/` (`src/api/demoFixtures.js`
+→ `tests/fixtures/demoFixtures.js`, five test imports updated — the no-demo law's
+placement rule now holds); 1 file registered as an intentional seam
+(`src/services/backendTransport.ts`, V6 §5, covered by `tests/backend-transport.test.mjs`).
+`*.d.ts` files are classified as the ambient type layer consumed by tsc, reported
+separately, never orphans. The surface audit failed closed during the sweep (obsolete
+review entries, then a missing operation-evidence file) and was updated truthfully:
+registry pruned to existing files (246→192 control files), and
+`test-invoice-and-family` now cites the live `billingClient.js` (the deleted
+`FamilyBilling.jsx` was dead preview UI; the server operation is unchanged). Final
+inventory: 1532 control declarations (was 1684), `intentionally-unreleased` 3 (was 155).
+
+**Laws now pinned by tests.** `tests/production-graph.test.mjs` (5 cases): chunk-edge
+parsing (static executes, dynamic defers, computed specifiers are not edges), executed-
+closure semantics, source-import resolution, fixture-based orphan classification, and
+the route law — the dashboard `<Outlet/>` renders ONLY `/dashboard/subscription`, every
+declared `/dashboard/*` path is mounted-connected or intercepted into the honest room,
+and the six promised connected surfaces stay mounted.
+`tests/fap80-dark-token-coverage.test.mjs` recalibrated to the cleaned inventory
+(floor ≥20 real tokens, allowlist now EMPTY — the old scrim exception belonged to a
+deleted dead file; dark remap coverage is 100%). Final: **870/870** tests (was 865),
+lint 0, typecheck 0, `vite build` OK, `verify:graph` exit 0, `scope:audit` green.
+
+**The written law.** `docs/architecture/FRONTEND_NO_DEAD_CODE_LAW.md` — what is banned
+(orphan files, preview-store execution, preview-route mounting, stray markers, misfiled
+fixtures, style-law drift), the registered-intentional table, the known deferred-fetch
+bundle inventory (preview route chunks remain in dist as never-fetched dev-routing
+parity — bundle-hygiene debt owned by FHE-20), the per-change compliance commands, and
+the provenance of this sweep. Git history retains every removed file.
+
+**Governance.** All work on the same reviewed lane (`zcode/fhe05-connected-shell`);
+nothing merged to dev; QA/Codex review still pending for the branch. Next eligible:
+FHE-07/08 honest-content and teaching-lane handoffs per the journey matrix.

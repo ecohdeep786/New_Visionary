@@ -34,9 +34,12 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const cssPath = join(root, "src/components/dashboard/workspace-design.css");
 const css = readFileSync(cssPath, "utf8");
 
-/* The one justified exception: a photography scrim, not a surface token. */
+/* The one justified exception: a photography scrim, not a surface token.
+ * Currently EMPTY: the only historical entry (bg-[#1d1d1f]/40) belonged to the
+ * dead pre-unification cards removed by the no-dead-code sweep. A new entry
+ * requires the same justification pattern — a device, not a surface token —
+ * plus the justification written in workspace-design.css itself. */
 const ALLOWLIST = new Map([
-  ["bg-[#1d1d1f]/40", "image scrim: the dark wash keeps overlay text legible over photography in both color schemes"],
 ]);
 
 const sourceFiles = [];
@@ -89,7 +92,11 @@ const outsideDark = css.slice(0, darkStart) + css.slice(darkEnd + 1);
 const covered = (token) => darkSegment.includes(`class~="${token}"`);
 
 test("dashboard palette inventory is non-trivial (the scan is real)", () => {
-  assert.ok(tokens.size >= 50, `expected the dashboard palette inventory, found ${tokens.size} class tokens`);
+  /* The floor tracks the live dashboard inventory after the no-dead-code sweep
+   * removed the pre-unification card library (the old scan saw ≥50 because the
+   * dead files consumed most palette classes). It must stay well above the
+   * noise floor so a broken scan cannot pass vacuously. */
+  assert.ok(tokens.size >= 20, `expected the dashboard palette inventory, found ${tokens.size} class tokens`);
   assert.ok(tokens.has("text-[#0071e3]"), "the action link token must be in the inventory");
   assert.ok(tokens.has("border-[#d2d2d7]"), "the workspace border token must be in the inventory");
 });
@@ -111,7 +118,6 @@ test("the only unremapped class is the justified image scrim, and it still exist
   }
   const unmapped = [...tokens.keys()].filter((token) => !covered(token));
   assert.deepEqual(unmapped, allowlisted, "the allowlist must match the unremapped inventory exactly");
-  assert.match(css, /image\s+scrim/i, "the scrim exception must be justified in the stylesheet itself");
 });
 
 test("the remap stays dark-only so light mode keeps the authored palette", () => {
