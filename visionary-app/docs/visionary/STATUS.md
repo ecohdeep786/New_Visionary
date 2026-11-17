@@ -2130,3 +2130,44 @@ Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS (field p75
 awaits RUM; teaching/billing connected behavior awaits the teaching adapter;
 final signoff belongs to the founder/reviewer — who now also owns the Apple
 direction they set).
+
+## 2026-11-17 — Apple design-language polish (`2cb36767`): one radius law, one motion law, zero blue stragglers
+
+**The directive.** The founder directed continuing with whatever remained to match
+"google and apple product production." The palette was unified; the acceptance
+audit against the actual Apple/Google production bar found three further
+inconsistencies, each evidence-backed before any diff.
+
+**1. Radius law.** The dashboard scattered across six corner radii
+(rounded/rounded-md/rounded-lg/rounded-xl/rounded-2xl/rounded-3xl) while the
+public Apple-reference pages run a tight law. Unified to the Apple product law:
+cards and hero surfaces `rounded-2xl` (16px — apple.com's 18px tile radius),
+inner elements and inputs `rounded-xl` (12px — the existing
+`--v-radius-control` value), pills/chips/avatars stay `rounded-full` (Apple's
+signature), and the bare 14px-element radius is intentional and kept. 92
+instances collapsed across 48 files.
+
+**2. Motion law.** Only 37 of 103 dashboard files carried any transition — most
+interactive elements snapped instantly, which reads as unpolished next to
+Apple/Google products. The workspace now eases by default: interactive elements
+(a, button, [role=button], input, select, textarea, summary) WITHOUT an explicit
+Tailwind transition utility get the D1 fast step (180ms `--v-motion`) on the
+Apple ease-out (`--ease-out-apple`, cubic-bezier(0.16,1,0.3,1)) for
+color/border/shadow/opacity/transform. The `:not([class*="transition"])`
+exclusion means authored transitions are never overridden, and the standing
+reduced-motion guard (`transition: none !important` over the whole workspace)
+neutralizes the default — the T05 law is untouched.
+
+**3. Blue stragglers.** `GetStartedCard` and `PersonalizedPathCard` still
+rendered Google blue 700/800 (`#0055d4`/`#0044b0`) as fills, outlines, text and
+hovers. Migrated to the action/hover law; the outline button's
+filled-on-hover pattern is preserved on `#0071e3`, the dark remap covers the
+new literal, and the FAP-80 required list encodes it.
+
+**Gates.** eslint 0 errors (10 pre-existing unused-var warnings, untouched);
+typecheck clean; **855/855 tests** (inventory regen last); production build
+clean, 73.18KB gz entry.
+
+**Governance:** evidence-first (distribution audits before any diff); explicit
+paths staged (the repo-root `git add -A` trap was avoided); dev ff-pushed at
+`2cb36767`. Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS.
