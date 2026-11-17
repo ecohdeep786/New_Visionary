@@ -2355,3 +2355,62 @@ and realm env remain outside the repo. Next eligible order: FHE-05 slice 2 (mobi
 viewport + keyboard walk of the connected shell), then FHE-07/08 honest-content and
 teaching-lane handoffs per `docs/visionary/FHE_V6_JOURNEY_MATRIX.md`. QA/Codex review
 pending for the candidate commit; nothing merged to dev by this lane.
+
+## 2026-11-17 — FHE-05 slice 2: the connected shell survives the real mobile and keyboard walk (two defects found and fixed)
+
+**The directive.** The slice-1 receipt named the next eligible order: a mobile-viewport and
+keyboard walk of the production connected shell. Executed on the same branch
+(`zcode/fhe05-connected-shell`), same fenced realm (PG 5434, emulators 9098/8081, backend
+3002, prod bundle 4200 browsed via the pinned `localhost` origin).
+
+**Journey (production build, real registered services, app browser).** Fresh account
+`fhe05c-…@example.com` at 390×844: register → verify through the app's own
+`/auth/action` (oobCode) → sign in → five-step learner onboarding → the production
+dashboard renders the connected shell → introduction dialog → every mobile nav
+destination (Home, Learn, Ask, Practice) → More sheet (Build, Classes, Connections,
+Progress, Notifications, Personalization, Privacy, Plans & usage) → Connections lists
+the server-provisioned "Personal workspace · Owner" → hard reload re-resolves the
+server list. Desktop 1280×800 keyboard walk: first Tab = skip link, activation lands
+focus on `#main`, coherent tab order through topbar/sidebar/content, sidebar activation
+navigates and route-change focus lands on `main`, account menu opens with focus inside
+and Escape closes with focus returned to the trigger. Sign-out/sign-in round trip at
+desktop also exercised. Session identity cross-checked through the account menu and
+`/api/auth/me` (uid `y24Oo79…`).
+
+**Defects found by the walk and fixed in this slice.**
+1. `ConnectedConsents.jsx` rendered the identical retry-advice error alert for the
+   server-authoritative capability-off state (`available:false`) and for genuine read
+   failures; refresh cannot change a capability flag, so the copy misled. Fixed: errors
+   keep the alert + retry advice; the capability-off state is now a distinct honest
+   status ("not available for this account yet… records are unaffected"). Verified live
+   in the realm (consent store is fenced off there, so the state is the real one).
+2. `VisionaryLogo.jsx` hardcoded the V mark ink `#1d1d1f`, which vanished against the
+   dark workspace topbar (the wordmark read "isionary" — visible in slice 1's own
+   screenshots, so pre-existing, missed by the walkthrough). Fixed: the mark follows
+   `var(--v-text, #1d1d1f)` — light surfaces byte-identical (fallback = original ink,
+   re-verified on the signed-out landing), dark shell renders the visible light ink.
+
+**Process notes, recorded honestly.** (a) The slice-1 candidate carried a stale surface
+inventory hash (`ConnectedWorkspaceLayout.jsx` edited after `scope:audit:write`); test
+749 failed at 864/865 and `4ed04f82` refreshed exactly that one hash line; suite green
+afterwards. (b) The realm's build-time Firebase env was not persisted by the slice-1
+session; this session's first rebuild silently dropped the emulator config and the
+app failed closed ("Sign-in is temporarily unavailable") — the fence worked as
+designed; the bundle was rebuilt with the realm env (demo project, loopback emulator,
+explicit test-realm flag) and registration succeeded. (c) The realm is pinned to the
+`localhost:4200` origin (`AUTH_PUBLIC_ORIGIN`); browsing `127.0.0.1` fails the CSRF
+Origin check with 403 — diagnosed by curl roundtrip (localhost Origin → 401 expected
+invalid-token, proving the guard itself correct). (d) Direct SQL readback was not
+available this session (role password intentionally not persisted); server truth was
+confirmed through the authenticated API and the shell's own server-backed lists
+instead. Slice 1's SQL evidence stands.
+
+**Evidence.** Unit: 865/865 after the inventory refresh (Node 22); lint 0; typecheck 0;
+`vite build` OK; `scope:audit` green with the two new fixes inventoried. L2: the full
+mobile + keyboard journey above on the production bundle with real emulator/backend
+services; screenshots under `C:/Users/Administrator/nv-tools/fhe05-shots/` plus this
+session's browser captures. Governance: realm untouched otherwise; other agents'
+realms untouched. QA/Codex review still pending for the branch; nothing merged to dev.
+Next eligible order per the matrix: FHE-07/08 honest-content and teaching-lane
+contract handoffs (backend-dependent, D-class), or FHE-06 follow-up (server-reconciled
+active-workspace preference) if the backend lane resumes.

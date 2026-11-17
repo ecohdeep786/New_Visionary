@@ -66,7 +66,11 @@ export default function ConnectedConsents({ accountId }) {
     <h2 id="consents-heading" className="text-xl font-semibold">Sharing consents</h2>
     <p className="mt-2 text-slate-700">Review and withdraw permissions linked to your account.</p>
     {query.isPending && <p role="status" className="mt-3">Checking your consents…</p>}
-    {(query.isError || page?.available === false) && <p role="alert" className="mt-3">Consent controls are unavailable. Try refreshing.</p>}
+    {query.isError && <p role="alert" className="mt-3">Consent controls are unavailable. Try refreshing.</p>}
+    {/* The server's available:false is an authoritative capability state, not a
+        failed read: refreshing cannot change it, so it must not borrow the
+        retry-advice error copy. */}
+    {query.isSuccess && page?.available === false && <p role="status" className="mt-3">Consent controls are not available for this account yet. Your saved account records are unaffected.</p>}
     {page?.available && page.grants.length === 0 && <p className="mt-3">No consents on this page.</p>}
     {page?.available && page.grants.length > 0 && <ul className="mt-4 divide-y">
       {page.grants.map(grant => <li key={grant.id} className="py-3">
