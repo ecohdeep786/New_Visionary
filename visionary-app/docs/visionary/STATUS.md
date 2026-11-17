@@ -2020,3 +2020,61 @@ gates to rerun beyond the standing 854/854 from `1dc86eff`. The two
 design-craft lanes (T02/T03/T04) remain open as the next evidenced work;
 they require before/after visual evidence per V6 §7 and are not claimed
 complete here.
+
+---
+
+## 2026-11-17 — V6 craft lanes T02/T03/T04: evidence walk, no diff warranted (zero defects found)
+
+The final three open V6 lanes, explored with fresh-eyes evidence per V6 §7
+("do not manufacture an unnecessary diff"). Baseline screenshots captured
+to `docs/visionary/baseline/f27-craft/` (landing 1440, pricing 1440,
+student 390, dashboard 1440).
+
+**T02 — UX Research & Human Factors: standard met for the implemented
+scope (expert walkthroughs, labeled as such — no fabricated user testing).**
+The five-audience flows were walked in the live realm this session:
+learner (full learn/practice/build/classroom loop) and teacher (full
+class/assignment/feedback loop, 9 steps end-to-end) deeply; parent,
+professional and organization journeys verified in the phase-4 sweep
+(receipt in this ledger). Failed and interrupted paths are honest and
+actionable (T08 receipt above); empty states are contextual with real
+next actions (T09 receipt above); no dead ends across 24 public routes
+(T07 receipt). No confusing steps, ambiguous terminology or unnecessary
+choices found in the walked flows.
+
+**T03 — Principal Visual Design: legible hierarchy, purposeful
+composition, coherent family resemblance on the captured surfaces.** The
+landing, pricing, student and dashboard screenshots show one shared
+visual system (white surfaces, ink #1d1d1f, secondary grey, blue
+primary actions, consistent pill CTAs and card anatomy) with
+page-specific storytelling preserved. The wave's real visual improvement
+with before/after evidence is the WCAG contrast migration (3.62:1 →
+5.07:1 secondary text, a11y 1.0 on six routes, T13 entry-floor receipt).
+Independent design signoff remains with the founder/reviewer per
+governance — this is the frontend lane's evidence, not an approval.
+
+**T04 — Design Systems & Typography: token law holds where it matters;
+no cosmetic diff warranted.** Token audit across `pages/landing/`,
+`components/landing/`, `components/dashboard/`: every real secondary
+text instance sits at the AA-compliant `#6e6e73` law (5.07:1). The ten
+residual `#86868b` instances are placeholders (4), decorative
+aria-hidden separators (2), border/hover states (3) and a carousel dot
+hover (1) — each passes its own WCAG criterion (3:1 non-text; the
+placeholder pattern is Apple's own), exactly as the entry-floor receipt
+disclosed. The 268 `#5f6368` instances are the dashboard's deliberate
+Google-Material palette — a documented design-system boundary (public
+marketing = Apple-style tokens, workspace shell = Google-style tokens,
+both sharing white surfaces/blue primaries/system type). Repainting 268
+workspace tokens would be precisely the "cosmetic token edit with no
+user benefit" T04's own charter forbids, with regression risk across the
+whole workspace. Multiscript legibility (hi/bn) verified in the T11
+receipt; font loading covered by the T13 passes.
+
+**Governance:** no source changes — nothing to regen; the standing
+854/854 from `1dc86eff` covers the audited state. With this entry, all
+thirteen V6 lanes carry receipts: T01 via the §8 cross-team review,
+T06/T07/T08/T09/T10/T11/T12/T13 via dedicated receipts, T02/T03/T04 via
+this evidence walk. The V6 wave is complete from the frontend lane's
+side; the release recommendation stands READY WITH DISCLOSED LIMITATIONS
+(field p75 awaits RUM; teaching/billing connected behavior awaits the
+teaching adapter; final signoff belongs to the founder/reviewer).
