@@ -427,7 +427,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/home",
@@ -442,7 +442,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/classes",
@@ -457,7 +457,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/learn",
@@ -472,7 +472,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/learn/:topicId",
@@ -487,7 +487,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/ask",
@@ -502,7 +502,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/practice",
@@ -517,7 +517,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/build",
@@ -532,7 +532,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/subscription",
@@ -562,7 +562,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/child",
@@ -577,7 +577,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/people",
@@ -592,7 +592,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/curriculum",
@@ -607,7 +607,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/analytics",
@@ -622,7 +622,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/insights",
@@ -637,7 +637,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/profile",
@@ -652,7 +652,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/settings",
@@ -667,7 +667,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/connections",
@@ -682,7 +682,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/explore",
@@ -697,7 +697,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/support",
@@ -712,7 +712,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/prepare",
@@ -727,7 +727,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/library",
@@ -742,7 +742,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/career",
@@ -757,7 +757,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/growth",
@@ -772,7 +772,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/progress",
@@ -787,7 +787,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/reports",
@@ -802,7 +802,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/notifications",
@@ -817,7 +817,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/personalization",
@@ -832,7 +832,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/privacy",
@@ -847,7 +847,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/audit",
@@ -862,7 +862,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/cohorts",
@@ -877,7 +877,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "/dashboard/learners",
@@ -892,7 +892,7 @@
         "ProtectedRoute",
         "OnboardingGate"
       ],
-      "environment": "development-only"
+      "environment": "production-source"
     },
     {
       "id": "*",
