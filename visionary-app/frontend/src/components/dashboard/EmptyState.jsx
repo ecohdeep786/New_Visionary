@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
  */
 export default function EmptyState({ icon: Icon, title, description, actionLabel, actionTo = "/dashboard/subscription", accent = "#0071E3" }) {
   return (
-    <div className="bg-white rounded-3xl border border-[#d2d2d7]/60 p-10 text-center flex flex-col items-center">
+    <div className="bg-white rounded-2xl border border-[#d2d2d7]/60 p-10 text-center flex flex-col items-center">
       <div className="w-14 h-14 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: `${accent}12` }}>
         {Icon ? <Icon className="w-7 h-7" style={{ color: accent }} /> : null}
       </div>

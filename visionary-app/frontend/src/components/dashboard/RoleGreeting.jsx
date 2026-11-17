@@ -22,7 +22,7 @@ export default function RoleGreeting({ userName = "there", role = "student", sub
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-[#d2d2d7]/60 p-8 lg:p-10">
+    <div className="bg-white rounded-2xl border border-[#d2d2d7]/60 p-8 lg:p-10">
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
           <Sparkles className="w-6 h-6" style={{ color: accent }} />

@@ -23,7 +23,7 @@ export default function GamificationSection() {
   const teaser = teasers[teaserIdx];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-8 bg-white rounded-3xl border border-[#d2d2d7]/60">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-8 bg-white rounded-2xl border border-[#d2d2d7]/60">
       {/* Breathing exercise */}
       <div className="flex flex-col gap-5">
         <div className="flex items-center gap-3">

@@ -43,7 +43,7 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
   return (
     <div className="flex flex-col gap-8 max-w-[800px] mx-auto w-full">
       {/* Hero illustration */}
-      <div className="w-full h-40 rounded-3xl overflow-hidden">
+      <div className="w-full h-40 rounded-2xl overflow-hidden">
         <SubjectIllustration subject={topic.subject} className="w-full h-full" />
       </div>
 
@@ -58,7 +58,7 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
       </div>
 
       {/* What you'll learn */}
-      <div className="bg-white rounded-3xl border border-[#d2d2d7]/50 p-8">
+      <div className="bg-white rounded-2xl border border-[#d2d2d7]/50 p-8">
         <div className="flex items-center gap-2 mb-6">
           <Target className="w-5 h-5" style={{ color: themeColor.accent }} />
           <h2 className="text-[18px] font-medium text-[#1d1d1f]">What you'll learn</h2>

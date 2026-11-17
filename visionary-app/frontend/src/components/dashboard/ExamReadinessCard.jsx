@@ -2,7 +2,7 @@ import { Clock } from "lucide-react";
 
 export default function ExamReadinessCard({ exams }) {
   return (
-    <div className="flex flex-col gap-6 p-8 bg-white rounded-3xl">
+    <div className="flex flex-col gap-6 p-8 bg-white rounded-2xl">
       {(!exams || exams.length === 0) ? (
         <div className="flex flex-col items-center gap-4 py-8 text-center">
           <Clock className="w-6 h-6 text-[#6e6e73]" />

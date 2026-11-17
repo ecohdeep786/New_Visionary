@@ -17,7 +17,7 @@ export default function ConceptNavigator({ topic, subConcepts, loadingConcepts, 
   const completedCount = conceptsWithProgress.filter((c) => c.status === "completed").length;
 
   return (
-    <div className="flex flex-col bg-white rounded-3xl border border-[#d2d2d7]/50 overflow-hidden">
+    <div className="flex flex-col bg-white rounded-2xl border border-[#d2d2d7]/50 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-[#d2d2d7]/40">
         <div className="flex items-center gap-2.5 min-w-0">

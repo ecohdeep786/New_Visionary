@@ -43,7 +43,7 @@ export default function ConnectedAccountLayout() {
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/settings" end>Security</NavLink>
           <NavLink className="inline-flex min-h-11 items-center underline-offset-4 aria-[current=page]:underline" to="/dashboard/subscription" end>Plans</NavLink>
         </nav>
-        <button className="min-h-11 rounded-lg border px-4 text-sm disabled:opacity-60" onClick={signOut} disabled={busy}>{busy ? 'Signing out…' : 'Sign out'}</button>
+        <button className="min-h-11 rounded-xl border px-4 text-sm disabled:opacity-60" onClick={signOut} disabled={busy}>{busy ? 'Signing out…' : 'Sign out'}</button>
       </div>
     </header>
     <main id="main" tabIndex={-1} className="visionary-workspace mx-auto max-w-5xl px-5 py-8 sm:py-12">

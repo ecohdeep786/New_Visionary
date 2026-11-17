@@ -31,7 +31,7 @@ export default function UnderstandingMeter({ used = 0, total = 100, accent = "#0
   }
 
   return (
-    <div className="bg-white rounded-3xl border border-[#d2d2d7]/60 p-8">
+    <div className="bg-white rounded-2xl border border-[#d2d2d7]/60 p-8">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-11 h-11 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accent}15` }}>
           <Database className="w-5 h-5" style={{ color: accent }} />

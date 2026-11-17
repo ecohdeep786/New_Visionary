@@ -59,19 +59,19 @@ export default function MarketTrends({ subjects }) {
         </button>
       </div>
       {loading ? (
-        <div className="flex items-center gap-3 p-7 bg-white rounded-3xl border border-[#d2d2d7]">
+        <div className="flex items-center gap-3 p-7 bg-white rounded-2xl border border-[#d2d2d7]">
           <div className="w-7 h-7 border-2 border-[#d2d2d7] border-t-[#0071E3] rounded-full animate-spin shrink-0" />
           <span className="text-sm text-[#6e6e73]">Finding trends in your subjects...</span>
         </div>
       ) : trends.length === 0 ? (
-        <div className="flex items-center gap-3 p-7 bg-white rounded-3xl border border-[#d2d2d7]">
+        <div className="flex items-center gap-3 p-7 bg-white rounded-2xl border border-[#d2d2d7]">
           <Globe className="w-5 h-5 text-[#6e6e73]" />
           <span className="text-sm text-[#6e6e73]">Trends will appear here once you add subjects.</span>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {trends.map((t, i) => (
-            <div key={i} className="flex flex-col gap-3 p-7 bg-white rounded-3xl border border-[#d2d2d7] hover:shadow-sm transition-all">
+            <div key={i} className="flex flex-col gap-3 p-7 bg-white rounded-2xl border border-[#d2d2d7] hover:shadow-sm transition-all">
               <span className="px-2.5 py-1 rounded-full bg-[#eef5ff] text-[#0071E3] text-xs font-medium self-start">{t.subject}</span>
               <h3 className="text-sm font-bold text-[#1d1d1f] leading-snug">{t.title}</h3>
               <p className="text-xs text-[#6e6e73] leading-relaxed">{t.summary}</p>

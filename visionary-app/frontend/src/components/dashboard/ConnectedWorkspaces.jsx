@@ -121,18 +121,18 @@ export default function ConnectedWorkspaces({ accountId }) {
       </li>)}
     </ul>}
     <div className="mt-4 flex flex-wrap gap-3">
-      <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting || query.isFetching} onClick={refreshWorkspaces}>Refresh workspaces</button>
-      {after && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting} onClick={() => setAfter(null)}>First page</button>}
-      {page?.next && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={submitting} onClick={() => setAfter(page.next)}>Next page</button>}
-      {canProvision && !unconfirmed && <button type="button" className="min-h-11 rounded-lg bg-blue-700 px-4 text-white disabled:opacity-60" disabled={submitting || query.isFetching} onClick={provision}>{busy ? 'Setting up…' : 'Set up personal workspace'}</button>}
+      <button type="button" className="min-h-11 rounded-xl border px-4" disabled={submitting || query.isFetching} onClick={refreshWorkspaces}>Refresh workspaces</button>
+      {after && <button type="button" className="min-h-11 rounded-xl border px-4" disabled={submitting} onClick={() => setAfter(null)}>First page</button>}
+      {page?.next && <button type="button" className="min-h-11 rounded-xl border px-4" disabled={submitting} onClick={() => setAfter(page.next)}>Next page</button>}
+      {canProvision && !unconfirmed && <button type="button" className="min-h-11 rounded-xl bg-blue-700 px-4 text-white disabled:opacity-60" disabled={submitting || query.isFetching} onClick={provision}>{busy ? 'Setting up…' : 'Set up personal workspace'}</button>}
     </div>
     {!unconfirmed && (page || mayNeedSetup) && <form className="mt-6 border-t pt-5" onSubmit={acceptInvitation}>
       <h2 className="text-lg font-semibold">Join a workspace</h2>
       <label htmlFor="workspace-invitation" className="mt-3 block text-sm font-medium">Invitation code</label>
-      <input id="workspace-invitation" className="mt-1 block min-h-11 w-full max-w-md rounded-lg border px-3"
+      <input id="workspace-invitation" className="mt-1 block min-h-11 w-full max-w-md rounded-xl border px-3"
         autoComplete="off" autoCapitalize="off" spellCheck={false} maxLength={60} required
         value={invitation} onChange={event => { setInvitation(event.target.value); setMessage(null); }} disabled={submitting} />
-      <button type="submit" className="mt-3 min-h-11 rounded-lg border px-4" disabled={submitting || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())}>
+      <button type="submit" className="mt-3 min-h-11 rounded-xl border px-4" disabled={submitting || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())}>
         {joining ? 'Accepting…' : 'Accept invitation'}
       </button>
     </form>}

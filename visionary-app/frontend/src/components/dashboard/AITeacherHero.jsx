@@ -129,7 +129,7 @@ export default function AITeacherHero({ userName, studentData }) {
       {/* Today's lesson card — one clear primary action */}
       {!thinkAloud && primaryTopic && (
         <div
-          className="relative overflow-hidden rounded-3xl"
+          className="relative overflow-hidden rounded-2xl"
           style={{ backgroundColor: themeColor.light }}
         >
           {/* Subject illustration on the right */}

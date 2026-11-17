@@ -31,7 +31,7 @@ export default function ProgressCard({ studentData }) {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 bg-white rounded-3xl">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 bg-white rounded-2xl">
       {/* Left — metrics list */}
       <div className="flex flex-col">
         <h3 className="text-[17px] font-medium text-[#1d1d1f] mb-4">This week</h3>

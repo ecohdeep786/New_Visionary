@@ -123,7 +123,7 @@ export default function GuideActivity({
           })}><RotateCcw size={16} />{copy("Reset model")}</button>
    </> : session.journeyId === 'fractions' ? <><div aria-label={copy("{count} eighths selected", {
             count: session.canvas.size
-          })} className="my-8 flex h-16 overflow-hidden rounded-lg border border-[#0071e3]">{Array.from({
+          })} className="my-8 flex h-16 overflow-hidden rounded-xl border border-[#0071e3]">{Array.from({
               length: 8
             }, (_, i) => <div key={i} className={`flex-1 border-r border-[#0071e3] ${i < session.canvas.size ? 'bg-[#eef5ff]' : 'bg-white'}`} />)}</div><label className="text-sm">{session.canvas.size}/8<input aria-label={copy("Selected eighths")} className="mt-4 w-full" type="range" min="0" max="8" value={session.canvas.size} onChange={e => update({
               canvas: {

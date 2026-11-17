@@ -38,7 +38,7 @@ export default function TeacherUpskillCard({
   const copy = primaryWorkspaceCopy(locale);
   const [idx, setIdx] = useState(() => Math.floor(Math.random() * SKILLS.length));
   const skill = SKILLS[idx];
-  return <div className="rounded-3xl p-8 bg-white border border-[#d2d2d7]/60 flex flex-col gap-5">
+  return <div className="rounded-2xl p-8 bg-white border border-[#d2d2d7]/60 flex flex-col gap-5">
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{
         backgroundColor: `${accent}15`

@@ -145,6 +145,7 @@ test("FAP-80 additions target the semantic tokens, not substitute literals", () 
     ['ring-[#0071e3]', "--tw-ring-color: var(--v-action)"],
     ['ring-[#d2d2d7]', "--tw-ring-color: var(--v-border)"],
     ['hover:bg-[#0077ed]', "background-color: var(--v-action-hover)"],
+    ['hover:bg-[#0071e3]', "background-color: var(--v-action-hover)"],
     ['border-[#0071e3]', "border-color: var(--v-action)"],
   ];;
   for (const [token, declaration] of required) {

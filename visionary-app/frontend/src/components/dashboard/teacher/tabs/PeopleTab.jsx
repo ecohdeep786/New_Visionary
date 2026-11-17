@@ -85,7 +85,7 @@ export default function PeopleTab({
           <p className="v-muted">{copy('Add an in-app invitation by email, or share class code {code}. Email delivery is not connected yet.', {code:classroom?.join_code || copy('from the class header')})}</p>
           <label className="block text-sm font-medium" htmlFor={inviteId+'-email'}>{copy("Student email address")}</label>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <div className="flex-1 flex items-center gap-2 min-h-11 px-4 rounded-lg border border-[#6e6e73] focus-within:border-[#0071E3]"><Mail className="w-4 h-4 text-[#6e6e73] shrink-0" aria-hidden="true"/><input id={inviteId+'-email'} type="email" required disabled={busy} value={email} onChange={e=>setEmail(e.target.value)} placeholder="student@example.com" className="min-w-0 flex-1 bg-transparent py-3 text-sm outline-none"/></div>
+            <div className="flex-1 flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[#6e6e73] focus-within:border-[#0071E3]"><Mail className="w-4 h-4 text-[#6e6e73] shrink-0" aria-hidden="true"/><input id={inviteId+'-email'} type="email" required disabled={busy} value={email} onChange={e=>setEmail(e.target.value)} placeholder="student@example.com" className="min-w-0 flex-1 bg-transparent py-3 text-sm outline-none"/></div>
             <button type="submit" className="v-button primary" disabled={busy || !email.trim()}>{busy && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true"/>}{copy("Invite")}</button>
           </div>
           {error && <p role="alert" className="v-notice v-error">{copy(error)}</p>}

@@ -17,7 +17,7 @@ export default function ContinueCard({ topic, studyLogs = [] }) {
   return (
     <Link
       to={`/dashboard/learn/${topic.id}`}
-      className="relative overflow-hidden rounded-3xl block group"
+      className="relative overflow-hidden rounded-2xl block group"
       style={{ backgroundColor: themeColor.light }}
     >
       <div className="absolute right-0 top-0 h-full w-2/5 opacity-25 pointer-events-none">

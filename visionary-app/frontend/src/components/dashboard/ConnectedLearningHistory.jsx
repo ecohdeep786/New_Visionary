@@ -62,8 +62,8 @@ export default function ConnectedLearningHistory({ accountId }) {
     <h1 id="saved-learning-heading" className="text-2xl font-semibold">Saved learning</h1>
     <p className="mt-2 text-slate-700">These sessions come from your account. They refresh while this page is open.</p>
     <div className="mt-4 flex flex-wrap gap-3">
-      <button className="min-h-11 rounded-lg border px-4 disabled:opacity-60" type="button" disabled={working || query.isFetching} onClick={() => query.refetch()}>{query.isFetching ? 'Checking…' : 'Refresh sessions'}</button>
-      {after && <button className="min-h-11 rounded-lg border px-4" type="button" disabled={working} onClick={() => { setConfirmation(null); setAfter(null); }}>First page</button>}
+      <button className="min-h-11 rounded-xl border px-4 disabled:opacity-60" type="button" disabled={working || query.isFetching} onClick={() => query.refetch()}>{query.isFetching ? 'Checking…' : 'Refresh sessions'}</button>
+      {after && <button className="min-h-11 rounded-xl border px-4" type="button" disabled={working} onClick={() => { setConfirmation(null); setAfter(null); }}>First page</button>}
     </div>
     {query.isPending && <p role="status" className="mt-4">Checking your saved sessions…</p>}
     {query.isError && <p role="alert" className="mt-4 text-[#b3261e]">{denied ? 'Your session changed. Sign in again to see your learning history.' : items.length ? 'Could not refresh. The sessions below are from the last successful check.' : 'Saved learning could not be loaded. Check your connection and retry.'}</p>}
@@ -73,18 +73,18 @@ export default function ConnectedLearningHistory({ accountId }) {
         <p className="font-medium break-words">{item.concept}</p>
         <p className="mt-1 text-sm text-slate-700">{item.status === 'cancelled' ? 'Closed' : item.phase === 'check_passed' ? 'Check passed' : item.phase === 'review_suggested' ? 'Review suggested' : 'In progress'} · <time dateTime={item.updatedAt}>{formatter.format(new Date(item.updatedAt))}</time></p>
         {item.status === 'active' && confirmation?.id !== item.id &&
-          <button type="button" className="mt-3 min-h-11 rounded-lg border px-4" disabled={working}
+          <button type="button" className="mt-3 min-h-11 rounded-xl border px-4" disabled={working}
             onClick={() => { setConfirmation({ id: item.id, commandId: crypto.randomUUID() }); setNotice(null); }}>Close session</button>}
         {item.status === 'active' && confirmation?.id === item.id && <div className="mt-3">
           <p>Close this session? Its past learning history will stay in your account.</p>
           <div className="mt-2 flex flex-wrap gap-2">
-            <button type="button" className="min-h-11 rounded-lg border px-4" disabled={working} onClick={closeSession}>{working ? 'Closing…' : 'Confirm close'}</button>
-            <button type="button" className="min-h-11 rounded-lg border px-4" disabled={working} onClick={() => setConfirmation(null)}>Keep open</button>
+            <button type="button" className="min-h-11 rounded-xl border px-4" disabled={working} onClick={closeSession}>{working ? 'Closing…' : 'Confirm close'}</button>
+            <button type="button" className="min-h-11 rounded-xl border px-4" disabled={working} onClick={() => setConfirmation(null)}>Keep open</button>
           </div>
         </div>}
       </li>)}
     </ul>}
-    {!denied && query.data?.nextCursor && <button className="mt-4 min-h-11 rounded-lg border px-4" type="button" disabled={working} onClick={() => { setConfirmation(null); setAfter(query.data.nextCursor); }}>Next page</button>}
+    {!denied && query.data?.nextCursor && <button className="mt-4 min-h-11 rounded-xl border px-4" type="button" disabled={working} onClick={() => { setConfirmation(null); setAfter(query.data.nextCursor); }}>Next page</button>}
     {notice && <p className="mt-4" role={notice.error ? 'alert' : 'status'}>{notice.text}</p>}
   </section>;
 }

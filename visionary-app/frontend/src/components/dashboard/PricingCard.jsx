@@ -7,7 +7,7 @@ export default function PricingCard({ plan, billing, isCurrent, accent = "#0071E
 
   return (
     <div
-      className={`flex flex-col gap-6 p-8 rounded-3xl bg-white transition-all duration-200 relative ${
+      className={`flex flex-col gap-6 p-8 rounded-2xl bg-white transition-all duration-200 relative ${
         plan.popular ? "border-2" : "border border-[#d2d2d7]/60"
       }`}
       style={plan.popular ? { borderColor: accent } : undefined}

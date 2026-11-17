@@ -18,7 +18,7 @@ export default function PersonalizedPathCard({ image, heading, description, less
               <Clock className="w-4 h-4" /> {duration}
             </span>
           </div>
-          <button className="w-9 h-9 flex items-center justify-center bg-[#0055d4] text-white rounded-full hover:bg-[#0044b0] transition-colors shrink-0">
+          <button className="w-9 h-9 flex items-center justify-center bg-[#0071e3] text-white rounded-full hover:bg-[#0077ed] transition-colors shrink-0">
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

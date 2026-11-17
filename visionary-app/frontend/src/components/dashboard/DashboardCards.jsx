@@ -64,7 +64,7 @@ export function CurriculumChart({ subjects }) {
           <div key={s.name} className="flex flex-col items-center gap-2 flex-1">
             <span className="text-xs text-muted">{s.progress}%</span>
             <div
-              className="w-8 rounded-lg bg-black/5"
+              className="w-8 rounded-xl bg-black/5"
               style={{ height: `${(s.progress / maxVal) * 100}%` }}
             />
             <span className="text-xs text-muted text-center truncate w-full">

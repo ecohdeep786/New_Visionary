@@ -23,7 +23,7 @@ export default function ReferralCard() {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center gap-6 p-8 bg-white rounded-3xl border border-[#d2d2d7]/60">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-6 p-8 bg-white rounded-2xl border border-[#d2d2d7]/60">
       <div className="w-14 h-14 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${themeColor.accent}15` }}>
         <Gift className="w-7 h-7" style={{ color: themeColor.accent }} />
       </div>

@@ -361,7 +361,7 @@ export default function StudentClasses() {
           const submitted = sub && sub.status === "submitted";
           const revision = sub?.status === 'revision_requested';
           const draft = draftFor(a.id);
-          return <div key={a.id} className="p-6 bg-white rounded-3xl border border-[var(--v-border)]/60 flex flex-col gap-4">
+          return <div key={a.id} className="p-6 bg-white rounded-2xl border border-[var(--v-border)]/60 flex flex-col gap-4">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{
                 backgroundColor: `${accent}15`
@@ -457,7 +457,7 @@ export default function StudentClasses() {
       <Dialog open={showJoin} onOpenChange={open => {
       if (!open) closeJoin();
     }}>
-        <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-3xl bg-white p-7 sm:rounded-3xl" lang={locale}>
+        <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-2xl bg-white p-7 sm:rounded-2xl" lang={locale}>
           <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{
           backgroundColor: `${accent}15`
         }}><KeyRound className="h-5 w-5" style={{
@@ -466,7 +466,7 @@ export default function StudentClasses() {
           <DialogTitle className="text-xl font-medium text-[#1d1d1f]"> {copy("Join a class")} </DialogTitle>
           <DialogDescription> {copy("Ask your teacher for their class code, then enter it below.")} </DialogDescription>
           <form onSubmit={joinClass}>
-            <label className="mt-6 block text-sm font-medium text-[#1d1d1f]"> {copy("Class code")} <input disabled={joining} value={joinCode} onChange={event => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-lg border border-[#6e6e73] px-3 font-mono text-sm tracking-wide outline-none focus:border-[var(--v-action)] focus:ring-1 focus:ring-[var(--v-action)]" /></label>
+            <label className="mt-6 block text-sm font-medium text-[#1d1d1f]"> {copy("Class code")} <input disabled={joining} value={joinCode} onChange={event => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-xl border border-[#6e6e73] px-3 font-mono text-sm tracking-wide outline-none focus:border-[var(--v-action)] focus:ring-1 focus:ring-[var(--v-action)]" /></label>
             {joinStatus && <p className="mt-3 text-sm text-[#b3261e]" role="alert"> {copy(joinStatus)} </p>}
             <div className="mt-7 flex justify-end gap-3"><button type="button" disabled={joining} onClick={closeJoin} className="h-10 rounded-full px-4 text-sm font-medium text-[var(--v-action)] hover:bg-[#ffffff]"> {copy("Cancel")} </button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{
               backgroundColor: accent

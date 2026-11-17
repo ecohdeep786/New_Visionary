@@ -212,7 +212,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
               }}
             >
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-medium shrink-0"
+                className="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-medium shrink-0"
                 style={{ backgroundColor: quizState === "answering" && selectedAnswer === idx ? "rgba(255,255,255,0.5)" : "#d2d2d7", color: "#6e6e73" }}
               >
                 {String.fromCharCode(65 + idx)}

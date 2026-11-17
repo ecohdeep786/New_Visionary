@@ -7,7 +7,7 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 const blankProject = { title: "", subject: "", topic_id: "", notes: "", status: "in-progress" };
-const fieldClass = "mt-2 w-full rounded-lg border border-[var(--v-border)] bg-white p-3 text-sm font-normal";
+const fieldClass = "mt-2 w-full rounded-xl border border-[var(--v-border)] bg-white p-3 text-sm font-normal";
 
 export default function Build() {
   const data = useStudentData();
@@ -60,12 +60,12 @@ export default function Build() {
       <section className="rounded-xl border border-[var(--v-border)] bg-white">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--v-border)] p-4">
           <label className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-xs"><Search className="h-4 w-4 shrink-0 text-[#6e6e73]" /><span className="sr-only">Search projects</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search projects" className="w-full min-w-0 bg-transparent py-1 text-sm outline-none" /></label>
-          <label className="text-sm"><span className="sr-only">Project status</span><select value={filter} onChange={(e) => setFilter(e.target.value)} className="rounded-lg border border-[var(--v-border)] bg-white px-3 py-2"><option value="all">All projects</option><option value="in-progress">In progress</option><option value="completed">Completed</option></select></label>
+          <label className="text-sm"><span className="sr-only">Project status</span><select value={filter} onChange={(e) => setFilter(e.target.value)} className="rounded-xl border border-[var(--v-border)] bg-white px-3 py-2"><option value="all">All projects</option><option value="in-progress">In progress</option><option value="completed">Completed</option></select></label>
         </div>
         {loading ? <div role="status" className="flex items-center justify-center gap-3 py-24 text-sm text-[#6e6e73]"><Loader2 className="h-5 w-5 animate-spin" /> Loading projects</div> : error && !draft ? <div role="alert" className="p-6 text-sm text-[#b3261e]">{error} <button onClick={loadProjects} className="underline">Try again</button></div> : visible.length ? <div className="grid gap-4 p-5 md:grid-cols-2 xl:grid-cols-3">{visible.map((project) => {
           const topic = data.topics.find((t) => t.id === project.topic_id);
           return <article key={project.id} className="flex flex-col rounded-xl border border-[var(--v-border)] p-5">
-            <div className="mb-5 flex items-center justify-between gap-3"><div className="rounded-xl p-3" style={{ backgroundColor: theme.light, color: theme.accent }}><Blocks className="h-5 w-5" /></div><span className={`rounded-md px-2 py-1 text-xs ${project.status === "completed" ? "bg-[#e6f4ea] text-[#137333]" : "bg-[#eef5ff] text-[var(--v-action)]"}`}>{project.status === "completed" ? "Completed" : "In progress"}</span></div>
+            <div className="mb-5 flex items-center justify-between gap-3"><div className="rounded-xl p-3" style={{ backgroundColor: theme.light, color: theme.accent }}><Blocks className="h-5 w-5" /></div><span className={`rounded-xl px-2 py-1 text-xs ${project.status === "completed" ? "bg-[#e6f4ea] text-[#137333]" : "bg-[#eef5ff] text-[var(--v-action)]"}`}>{project.status === "completed" ? "Completed" : "In progress"}</span></div>
             <p className="text-xs text-[#6e6e73]">{project.subject || "Independent project"}</p><h2 className="mt-1 text-base font-medium">{project.title}</h2><p className="mt-3 line-clamp-3 flex-1 whitespace-pre-wrap text-sm leading-6 text-[#6e6e73]">{project.notes || "Add your idea, steps, and what you discover as you build."}</p>
             {topic && <Link className="mt-4 inline-flex items-center gap-1 text-xs text-[var(--v-action)] hover:underline" to={`/dashboard/learn/${topic.id}`}>Lesson: {topic.name}</Link>}
             <button onClick={() => { setDraft({ ...blankProject, ...project }); setError(""); }} className="mt-5 inline-flex items-center gap-2 self-start text-sm font-medium" style={{ color: theme.accent }}>Open project <ArrowRight className="h-4 w-4" /></button>

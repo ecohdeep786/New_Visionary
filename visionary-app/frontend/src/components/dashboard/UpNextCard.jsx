@@ -23,7 +23,7 @@ export default function UpNextCard({ topics, studyLogs = [] }) {
             <Link
               key={t.id}
               to={`/dashboard/learn/${t.id}`}
-              className="flex items-center gap-4 p-6 bg-white rounded-3xl hover:shadow-md transition-all group"
+              className="flex items-center gap-4 p-6 bg-white rounded-2xl hover:shadow-md transition-all group"
             >
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium shrink-0"

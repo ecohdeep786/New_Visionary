@@ -10,14 +10,14 @@ export default function InsightsTab({ classId, accent, locale = 'en' }) {
   const summary = summarizeClassAssessment(records?.[0] || [], records?.[1] || []);
   const maxCoverage = summary.coverageRows[0]?.[1] || 1;
   return <div lang={locale} className="flex max-w-[680px] flex-col gap-6">
-    <div className="flex items-start gap-4 rounded-3xl border border-[#d2d2d7]/60 bg-white p-6">
+    <div className="flex items-start gap-4 rounded-2xl border border-[#d2d2d7]/60 bg-white p-6">
       <Sparkles aria-hidden="true" className="h-5 w-5 shrink-0" style={{ color: accent }} />
       <div className="min-w-0 flex-1"><h3 className="mb-1.5 text-sm font-medium text-[#1d1d1f]">{copy('AI class analysis')}</h3><p className="text-sm leading-relaxed text-[#6e6e73]">{copy('AI analysis is not connected yet. The coverage and assessment summaries below use your recorded classwork.')}</p></div>
       <button onClick={reload} aria-label={copy('Refresh class records')} className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full hover:bg-[#1d1d1f]/5"><RefreshCw className="h-4 w-4 text-[#6e6e73]" /></button>
     </div>
     {loading ? <p role="status" className="py-8 text-center text-sm text-[#6e6e73]">{copy('Loading class records…')}</p> : unavailable ? <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{copy('Class insights could not be loaded. Please try again.')} <button onClick={reload} className="min-h-11 underline">{copy('Retry')}</button></p> : <>
       {summary.excluded > 0 && <p role="status" className="rounded-xl border border-[#d2d2d7] p-4 text-sm text-[#6e6e73]">{copy('{count} graded records have missing or invalid scores, point totals, assignments or learner identifiers and are excluded.', { count: summary.excluded })}</p>}
-      <section className="rounded-3xl border border-[#d2d2d7]/60 bg-white p-6">
+      <section className="rounded-2xl border border-[#d2d2d7]/60 bg-white p-6">
         <h3 className="mb-1 flex items-center gap-2 text-sm font-medium text-[#1d1d1f]"><BarChart3 aria-hidden="true" className="h-5 w-5" style={{ color: accent }} />{copy('Concept assessment')}</h3>
         <p className="mb-6 text-xs text-[#6e6e73]">{copy('Average scores from graded assignments, normalized to a percentage. A useful signal—not a complete measure of understanding.')}</p>
         {!summary.assessmentRows.length ? <p className="py-10 text-center text-sm text-[#6e6e73]">{copy('No valid graded concept evidence yet. Tag concepts and return graded work to see recorded scores here.')}</p> : <div className="flex flex-col gap-4">{summary.assessmentRows.map(row => <div key={row.concept}>
@@ -26,7 +26,7 @@ export default function InsightsTab({ classId, accent, locale = 'en' }) {
         </div>)}</div>}
       </section>
       <KnowledgeHeatmap summary={summary} accent={accent} locale={locale} />
-      <section className="rounded-3xl border border-[#d2d2d7]/60 bg-white p-6">
+      <section className="rounded-2xl border border-[#d2d2d7]/60 bg-white p-6">
         <h3 className="mb-1 flex items-center gap-2 text-sm font-medium text-[#1d1d1f]"><Layers aria-hidden="true" className="h-5 w-5 text-[#6e6e73]" />{copy('Concept coverage')}</h3>
         <p className="mb-6 text-xs text-[#6e6e73]">{copy('Topics tagged on recorded assignments. Each assignment counts once per topic.')}</p>
         {!summary.coverageRows.length ? <p className="py-10 text-center text-sm text-[#6e6e73]">{copy('No concepts tagged yet. Add concept tags when creating assignments to map your coverage.')}</p> : <div className="flex flex-col gap-4">{summary.coverageRows.map(([topic, count]) => <div key={topic}>

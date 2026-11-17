@@ -14,7 +14,7 @@ export default function SubjectPills({
   const theme = useThemeColor();
   if (!subjects.length) return null;
   return <div className="flex gap-2 overflow-x-auto pb-1" aria-label={copy("Filter by subject")} lang={locale}>
-      {subjects.map(subject => <button key={subject.id || subject.name} onClick={() => onSelect(subject.name)} aria-pressed={activeSubject === subject.name} className="shrink-0 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-[#1d1d1f]/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style={activeSubject === subject.name ? {
+      {subjects.map(subject => <button key={subject.id || subject.name} onClick={() => onSelect(subject.name)} aria-pressed={activeSubject === subject.name} className="shrink-0 rounded-xl border px-4 py-2 text-sm font-medium transition-colors hover:bg-[#1d1d1f]/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style={activeSubject === subject.name ? {
       backgroundColor: theme.light,
       color: theme.accent,
       borderColor: theme.accent

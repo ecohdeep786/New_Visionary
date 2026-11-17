@@ -38,13 +38,13 @@ export default function ConnectedProfile() {
     <p className="mt-2 text-slate-700">Your display name follows your account across devices.</p>
     <form onSubmit={save} className="mt-6 grid gap-3">
       <label htmlFor="connected-display-name" className="font-medium">Display name</label>
-      <input id="connected-display-name" className="min-h-11 rounded-lg border px-3" value={value} required maxLength={80} disabled={busy}
+      <input id="connected-display-name" className="min-h-11 rounded-xl border px-3" value={value} required maxLength={80} disabled={busy}
         onChange={event => { setDraft({ base: draft?.base ?? savedName, name: event.target.value }); setMessage(null); }} />
       {changed && <p role="alert">The name on your account is now <strong>{savedName || 'blank'}</strong>.</p>}
       <div className="flex flex-wrap gap-3">
-        <button className="min-h-11 rounded-lg bg-blue-700 px-4 font-medium text-white disabled:opacity-60" disabled={busy || checking || changed || !value.trim() || value.trim() === savedName}>{busy ? 'Saving…' : 'Save name'}</button>
-        <button type="button" className="min-h-11 rounded-lg border px-4" disabled={busy || checking} onClick={refresh}>{checking ? 'Checking…' : 'Refresh profile'}</button>
-        {draft && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={busy} onClick={() => { setDraft(null); setMessage(null); }}>Discard edits</button>}
+        <button className="min-h-11 rounded-xl bg-blue-700 px-4 font-medium text-white disabled:opacity-60" disabled={busy || checking || changed || !value.trim() || value.trim() === savedName}>{busy ? 'Saving…' : 'Save name'}</button>
+        <button type="button" className="min-h-11 rounded-xl border px-4" disabled={busy || checking} onClick={refresh}>{checking ? 'Checking…' : 'Refresh profile'}</button>
+        {draft && <button type="button" className="min-h-11 rounded-xl border px-4" disabled={busy} onClick={() => { setDraft(null); setMessage(null); }}>Discard edits</button>}
       </div>
       {message && <p role={message.error ? 'alert' : 'status'}>{message.text}</p>}
     </form>

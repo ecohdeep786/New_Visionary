@@ -170,13 +170,13 @@ export default function CourseViewer({
           "--v-user-accent": theme.accent
         }}><Sparkles className="h-4 w-4" /> {copy("Request explanation")}</button></div>}
         {backupFailure&&<p className="v-notice v-error" role="alert"><span lang="en">{error}</span> <button type="button" className="v-button" onClick={()=>setBackupRetry(value=>value+1)}>{copy("Retry question recovery")}</button></p>}
-        {error&&!backupFailure && <p lang="en" role="alert" className="mt-4 rounded-lg border border-[#d2d2d7] bg-[#ffffff] p-4 text-sm leading-6 text-[#6e6e73]">{error}</p>}
+        {error&&!backupFailure && <p lang="en" role="alert" className="mt-4 rounded-xl border border-[#d2d2d7] bg-[#ffffff] p-4 text-sm leading-6 text-[#6e6e73]">{error}</p>}
       </div>
       <div className="flex flex-wrap items-center gap-3 border-t border-[#d2d2d7] p-4">
         <Link to={`/dashboard/practice?${context}`} className="rounded-full border border-[#d2d2d7] px-4 py-2 text-sm font-medium text-[#0071e3]">{copy("Practice this topic")}</Link>
         <Link to={nextTopic ? `/dashboard/learn/${nextTopic.id}` : `/dashboard/learn?subject=${encodeURIComponent(topic.subject)}`} className="ml-auto rounded-full px-4 py-2 text-sm font-medium text-[#0071e3] hover:bg-[#eef5ff]">{nextTopic ? copy("Next topic \u2192") : copy("All lessons \u2192")}</Link>
       </div>
-      <form onSubmit={saveQuestion} className="border-t border-[#d2d2d7] p-5"><label htmlFor="lesson-question" className="mb-3 block text-sm font-medium">{copy("Keep a question for later")}</label><div className="flex items-center gap-2 rounded-lg border border-[#d2d2d7] p-2"><input disabled={saving} id="lesson-question" maxLength={6000} value={question} onChange={e => {
+      <form onSubmit={saveQuestion} className="border-t border-[#d2d2d7] p-5"><label htmlFor="lesson-question" className="mb-3 block text-sm font-medium">{copy("Keep a question for later")}</label><div className="flex items-center gap-2 rounded-xl border border-[#d2d2d7] p-2"><input disabled={saving} id="lesson-question" maxLength={6000} value={question} onChange={e => {
           setQuestion(e.target.value);
           setSaved(false);
         }} placeholder={copy("What would you like to understand?")} className="min-w-0 flex-1 bg-transparent px-2 text-sm outline-none" /><button disabled={saving || !question.trim()} title={copy("Save question")} aria-label={copy("Save question")} className="v-accent-fill rounded-full p-2 text-white disabled:opacity-40" style={{

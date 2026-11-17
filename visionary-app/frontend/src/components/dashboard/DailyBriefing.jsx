@@ -33,7 +33,7 @@ export default function DailyBriefing({ studentData, userName }) {
   }, [studentData?.loading]);
 
   return (
-    <div className="flex flex-col gap-6 p-8 lg:p-10 bg-white rounded-3xl border border-[#d2d2d7] elevation-1">
+    <div className="flex flex-col gap-6 p-8 lg:p-10 bg-white rounded-2xl border border-[#d2d2d7] elevation-1">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-full bg-[#eef5ff] flex items-center justify-center shrink-0">

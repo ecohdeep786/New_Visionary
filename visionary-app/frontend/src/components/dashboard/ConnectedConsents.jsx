@@ -71,20 +71,20 @@ export default function ConnectedConsents({ accountId }) {
     {page?.available && page.grants.length > 0 && <ul className="mt-4 divide-y">
       {page.grants.map(grant => <li key={grant.id} className="py-3">
         <p className="break-words">{grant.purpose} · {states[grant.state]}</p>
-        {grant.state === 'active' && selected !== grant.id && <button type="button" className="mt-2 min-h-11 rounded-lg border px-4" disabled={saving} onClick={() => { setSelected(grant.id); setNotice(null); }}>Withdraw consent</button>}
+        {grant.state === 'active' && selected !== grant.id && <button type="button" className="mt-2 min-h-11 rounded-xl border px-4" disabled={saving} onClick={() => { setSelected(grant.id); setNotice(null); }}>Withdraw consent</button>}
         {grant.state === 'active' && selected === grant.id && <div className="mt-2">
           <p>Confirm withdrawal? This ends access granted through this consent.</p>
           <div className="mt-2 flex flex-wrap gap-2">
-            <button type="button" className="min-h-11 rounded-lg border px-4" disabled={saving} onClick={revoke}>{saving ? 'Withdrawing…' : 'Confirm withdrawal'}</button>
-            <button type="button" className="min-h-11 rounded-lg border px-4" disabled={saving} onClick={() => setSelected(null)}>Keep consent</button>
+            <button type="button" className="min-h-11 rounded-xl border px-4" disabled={saving} onClick={revoke}>{saving ? 'Withdrawing…' : 'Confirm withdrawal'}</button>
+            <button type="button" className="min-h-11 rounded-xl border px-4" disabled={saving} onClick={() => setSelected(null)}>Keep consent</button>
           </div>
         </div>}
       </li>)}
     </ul>}
     <div className="mt-4 flex flex-wrap gap-2">
-      <button type="button" className="min-h-11 rounded-lg border px-4" disabled={saving || query.isFetching} onClick={() => { setNotice(null); query.refetch(); }}>Refresh consents</button>
-      {cursor && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={saving} onClick={() => { setSelected(null); setNotice(null); setCursor(null); }}>First page</button>}
-      {page?.nextCursor && <button type="button" className="min-h-11 rounded-lg border px-4" disabled={saving} onClick={() => { setSelected(null); setNotice(null); setCursor(page.nextCursor); }}>Next page</button>}
+      <button type="button" className="min-h-11 rounded-xl border px-4" disabled={saving || query.isFetching} onClick={() => { setNotice(null); query.refetch(); }}>Refresh consents</button>
+      {cursor && <button type="button" className="min-h-11 rounded-xl border px-4" disabled={saving} onClick={() => { setSelected(null); setNotice(null); setCursor(null); }}>First page</button>}
+      {page?.nextCursor && <button type="button" className="min-h-11 rounded-xl border px-4" disabled={saving} onClick={() => { setSelected(null); setNotice(null); setCursor(page.nextCursor); }}>Next page</button>}
     </div>
     {notice && <p className="mt-3" role={notice.error ? 'alert' : 'status'}>{notice.text}</p>}
   </section>;

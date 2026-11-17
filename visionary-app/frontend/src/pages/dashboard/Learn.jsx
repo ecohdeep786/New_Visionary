@@ -120,8 +120,8 @@ function LegacyLearn() {
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#d2d2d7] p-4">
             <label className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-xs"><Search className="h-4 w-4 shrink-0 text-[#6e6e73]" /><span className="sr-only">{copy("Search topics")}</span><input value={query} onChange={e => setQuery(e.target.value)} placeholder={copy("Search topics")} className="w-full min-w-0 bg-transparent py-1 text-sm outline-none" /></label>
             <div className="flex items-center gap-2">
-              <label className="sr-only" htmlFor="lesson-status">{copy("Topic status")}</label><select id="lesson-status" value={filter} onChange={e => setFilter(e.target.value)} className="rounded-lg border border-[#d2d2d7] bg-white px-3 py-2 text-sm">{filters.map(f => <option key={f.value} value={f.value}>{copy(f.label)}</option>)}</select>
-              <div className="flex rounded-lg border border-[#d2d2d7] p-1">{[{
+              <label className="sr-only" htmlFor="lesson-status">{copy("Topic status")}</label><select id="lesson-status" value={filter} onChange={e => setFilter(e.target.value)} className="rounded-xl border border-[#d2d2d7] bg-white px-3 py-2 text-sm">{filters.map(f => <option key={f.value} value={f.value}>{copy(f.label)}</option>)}</select>
+              <div className="flex rounded-xl border border-[#d2d2d7] p-1">{[{
                 id: "grid",
                 icon: LayoutGrid
               }, {
@@ -130,7 +130,7 @@ function LegacyLearn() {
               }].map(({
                 id,
                 icon: Icon
-              }) => <button key={id} onClick={() => setView(id)} aria-label={copy(`${id} view`)} aria-pressed={view === id} className={`rounded-md p-2 ${view === id ? "bg-[#eef5ff] text-[#0071e3]" : "text-[#6e6e73] hover:bg-[#1d1d1f]/5"}`}><Icon className="h-4 w-4" /></button>)}</div>
+              }) => <button key={id} onClick={() => setView(id)} aria-label={copy(`${id} view`)} aria-pressed={view === id} className={`rounded-xl p-2 ${view === id ? "bg-[#eef5ff] text-[#0071e3]" : "text-[#6e6e73] hover:bg-[#1d1d1f]/5"}`}><Icon className="h-4 w-4" /></button>)}</div>
             </div>
           </div>
           <div className="p-4 sm:p-5">
@@ -152,6 +152,6 @@ function LegacyLearn() {
       {error && !dialogOpen && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}><DialogContent lang={locale} className="max-w-[calc(100vw-2rem)] rounded-2xl sm:max-w-md"><DialogTitle>{copy("Add a topic")}</DialogTitle><DialogDescription>{copy('Keep track of a concept you want to learn in {subject}.', {
             subject
-          })}</DialogDescription><form onSubmit={addTopic} className="space-y-4"><label className="block text-sm font-medium">{copy("Topic name")}<input disabled={saving} required maxLength={140} value={title} onChange={e => setTitle(e.target.value)} placeholder={copy("For example, quadratic equations")} className="mt-2 w-full rounded-lg border border-[#d2d2d7] p-3 font-normal" /></label>{error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}<div className="flex justify-end gap-3"><button type="button" onClick={() => setDialogOpen(false)} className="rounded-full px-4 py-2 text-sm">Cancel</button><button disabled={saving || !title.trim()} className="rounded-full bg-[#0071e3] px-5 py-2 text-sm font-medium text-white disabled:opacity-40">{saving ? copy("Saving\u2026") : copy("Add topic")}</button></div></form></DialogContent></Dialog>
+          })}</DialogDescription><form onSubmit={addTopic} className="space-y-4"><label className="block text-sm font-medium">{copy("Topic name")}<input disabled={saving} required maxLength={140} value={title} onChange={e => setTitle(e.target.value)} placeholder={copy("For example, quadratic equations")} className="mt-2 w-full rounded-xl border border-[#d2d2d7] p-3 font-normal" /></label>{error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}<div className="flex justify-end gap-3"><button type="button" onClick={() => setDialogOpen(false)} className="rounded-full px-4 py-2 text-sm">Cancel</button><button disabled={saving || !title.trim()} className="rounded-full bg-[#0071e3] px-5 py-2 text-sm font-medium text-white disabled:opacity-40">{saving ? copy("Saving\u2026") : copy("Add topic")}</button></div></form></DialogContent></Dialog>
     </div>;
 }

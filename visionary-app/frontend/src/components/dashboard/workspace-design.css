@@ -88,6 +88,11 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-workspace-intro-copy {max-width: none;width: 100%}
 .v-workspace-intro-actions {margin-top: 20px}
 .v-button {border-radius: var(--v-radius-control);border-color: var(--v-border);padding: 11px 18px;min-height: 44px;font-size: 0.875rem;line-height: 1.45;transition: background-color var(--v-motion) var(--ease-out-apple),border-color var(--v-motion) var(--ease-out-apple),box-shadow var(--v-motion) var(--ease-out-apple)}
+/* Apple interaction motion: interactive elements ease by default (the D1 fast
+   step on the Apple ease-out). Elements carrying an explicit Tailwind
+   transition utility keep their own timing — :not() excludes them, so this
+   default never competes with an authored transition. */
+.visionary-workspace :where(a,button,[role="button"],input,select,textarea,summary):not([class*="transition"]) {transition: background-color var(--v-motion) var(--ease-out-apple),border-color var(--v-motion) var(--ease-out-apple),color var(--v-motion) var(--ease-out-apple),box-shadow var(--v-motion) var(--ease-out-apple),opacity var(--v-motion) var(--ease-out-apple),transform var(--v-motion) var(--ease-out-apple)}
 .v-button:not(.primary):hover:not(:disabled) {background: var(--v-soft);border-color: var(--v-border)}
 .v-button.primary {box-shadow: 0 1px 2px var(--v-action)1a}
 .v-button.primary:hover:not(:disabled) {box-shadow: 0 2px 6px var(--v-action)26}
@@ -663,7 +668,7 @@ body:has(.visionary-workspace) .workspace-voice-preview-glow {display: none}
     & :is([class~="border-[var(--v-action)]"],[class~="border-[#3367d6]"],[class~="border-[#0071e3]"],[class~="border-[#0055d4]"]) {border-color: var(--v-action)}
     & :is([class~="hover:bg-[#eef5ff]"],[class~="hover:bg-[#ffffff]"],[class~="hover:bg-[#eceef1]"],[class~="hover:bg-[#1d1d1f]/5"],[class~="hover:bg-[var(--v-border)]"]):hover {background-color: var(--v-soft)}
     & :is([class~="bg-[var(--v-action)]"],[class~="bg-[#3367d6]"],[class~="bg-[#0055d4]"],[class~="bg-[#1d1d1f]"]) {background-color: var(--v-action);color: var(--v-on-action)}
-    & :is([class~="hover:bg-[#3367d6]"],[class~="hover:bg-[#0077ed]"],[class~="hover:bg-[#0055d4]"],[class~="hover:bg-[#0044b0]"],[class~="hover:bg-[#1d1d1f]"]):hover:not(:disabled) {background-color: var(--v-action-hover);color: var(--v-on-action)}
+    & :is([class~="hover:bg-[#3367d6]"],[class~="hover:bg-[#0077ed]"],[class~="hover:bg-[#0071e3]"],[class~="hover:bg-[#0055d4]"],[class~="hover:bg-[#0044b0]"],[class~="hover:bg-[#1d1d1f]"]):hover:not(:disabled) {background-color: var(--v-action-hover);color: var(--v-on-action)}
     & [class~="bg-[#e6f4ea]"] {background-color: var(--v-success-soft)}
     & :is([class~="text-[#188038]"],[class~="text-[#146c2e]"],[class~="text-[#137333]"]) {color: var(--v-success)}
     & [class~="bg-[#fce8e6]"] {background-color: var(--v-error-soft)}

@@ -102,7 +102,7 @@ export default function TopicDetail() {
       <div className={focus ? "mx-auto max-w-[1000px]" : ""}>
         {!focus && <><Link to={`/dashboard/learn?subject=${encodeURIComponent(topic.subject)}`} className="mb-5 inline-flex items-center gap-2 text-sm text-[#6e6e73] hover:text-[#0071e3]"><ArrowLeft className="h-4 w-4" />{topic.subject}</Link><header className="mb-6"><p className="mb-2 text-xs font-medium text-[#6e6e73]">{topic.chapter || copy("Your learning workspace")}</p><h1 className="text-2xl font-medium tracking-tight text-[#1d1d1f] sm:text-3xl">{topic.name}</h1></header></>}
         {bookmarkFailure && <p className="v-notice v-error" role="alert">{copy("Saved topics are unavailable. Your topics and bookmarks have not been changed.")} <button type="button" className="v-button" onClick={() => setBookmarkRetry(value => value + 1)}>{copy("Retry saved topics")}</button></p>}
-        {error && <p role="alert" className="mb-4 rounded-lg bg-[#fce8e6] p-3 text-sm text-[#b3261e]">{error}</p>}
+        {error && <p role="alert" className="mb-4 rounded-xl bg-[#fce8e6] p-3 text-sm text-[#b3261e]">{error}</p>}
         <div className={focus ? "" : "grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_260px]"}>
           {topic.lab === "cube-volume" ? <section className="rounded-2xl border border-[#d2d2d7] bg-[#ffffff] p-8"><h2 className="text-xl font-medium">{copy("Explore cube volume in 3D")}</h2><p className="mt-3 text-sm leading-6 text-[#6e6e73]">{copy("Change the side length and see how volume changes in three dimensions.")}</p><Link to="/dashboard/explore" className="mt-5 inline-block rounded-full bg-[#0071e3] px-5 py-2.5 text-sm text-white">{copy("Open interactive lab")}</Link></section> : <CourseViewer key={topic.id} topic={topic} nextTopic={nextTopic} isBookmarked={bookmarks.some(item => item.topic_id === topic.id)} bookmarkBusy={bookmarkBusy || bookmarkFailure} onToggleBookmark={toggleBookmark} isFullscreen={focus} onToggleFullscreen={() => setFocus(value => !value)} />}
           {!focus && <aside className="flex flex-col gap-4">
@@ -122,8 +122,8 @@ export default function TopicDetail() {
                 path,
                 label,
                 icon: Icon
-              }) => <Link key={path} to={`/dashboard/${path}?${context}`} className="flex items-center gap-3 rounded-lg px-2 py-3 text-sm text-[#6e6e73] hover:bg-[#ffffff]"><Icon className="h-4 w-4 text-[#0071e3]" />{copy(label)}</Link>)}</div></section>
-            {topics.length > 1 && <nav aria-label={copy("Subject lessons")} className="rounded-xl border border-[#d2d2d7] p-5"><h2 className="mb-3 text-sm font-medium">{copy("In this subject")}</h2><div className="max-h-80 space-y-1 overflow-y-auto">{topics.map(item => <Link key={item.id} to={`/dashboard/learn/${item.id}`} aria-current={item.id === topic.id ? "page" : undefined} className={`block rounded-lg px-3 py-2 text-sm ${item.id === topic.id ? "bg-[#eef5ff] font-medium text-[#0071e3]" : "text-[#6e6e73] hover:bg-[#1d1d1f]/5"}`}>{item.name}</Link>)}</div></nav>}
+              }) => <Link key={path} to={`/dashboard/${path}?${context}`} className="flex items-center gap-3 rounded-xl px-2 py-3 text-sm text-[#6e6e73] hover:bg-[#ffffff]"><Icon className="h-4 w-4 text-[#0071e3]" />{copy(label)}</Link>)}</div></section>
+            {topics.length > 1 && <nav aria-label={copy("Subject lessons")} className="rounded-xl border border-[#d2d2d7] p-5"><h2 className="mb-3 text-sm font-medium">{copy("In this subject")}</h2><div className="max-h-80 space-y-1 overflow-y-auto">{topics.map(item => <Link key={item.id} to={`/dashboard/learn/${item.id}`} aria-current={item.id === topic.id ? "page" : undefined} className={`block rounded-xl px-3 py-2 text-sm ${item.id === topic.id ? "bg-[#eef5ff] font-medium text-[#0071e3]" : "text-[#6e6e73] hover:bg-[#1d1d1f]/5"}`}>{item.name}</Link>)}</div></nav>}
           </aside>}
         </div>
       </div>

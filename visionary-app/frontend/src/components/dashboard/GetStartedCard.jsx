@@ -13,8 +13,8 @@ export default function GetStartedCard({ icon: Icon, accentClass, heading, descr
       <button
         className={`flex items-center gap-1 self-start text-sm font-medium px-4 py-2 rounded-full transition-colors ${
           buttonVariant === "solid"
-            ? "bg-[#0055d4] text-white hover:bg-[#0044b0]"
-            : "border border-[#0055d4] text-[#0055d4] hover:bg-[#0055d4] hover:text-white"
+            ? "bg-[#0071e3] text-white hover:bg-[#0077ed]"
+            : "border border-[#0071e3] text-[#0071e3] hover:bg-[#0071e3] hover:text-white"
         }`}
       >
         {buttonLabel} <ArrowRight className="w-4 h-4" />

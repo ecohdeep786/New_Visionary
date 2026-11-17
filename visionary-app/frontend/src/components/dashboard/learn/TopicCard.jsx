@@ -30,7 +30,7 @@ export default function TopicCard({
         backgroundColor: theme.light,
         color: theme.accent
       }}><BookOpen className="h-5 w-5" /></div>
-        {variant !== "list" && <span className="rounded-md bg-[#d2d2d7] px-2 py-1 text-xs text-[#6e6e73]">{copy(statuses[topic.status] || "Not started")}</span>}
+        {variant !== "list" && <span className="rounded-xl bg-[#d2d2d7] px-2 py-1 text-xs text-[#6e6e73]">{copy(statuses[topic.status] || "Not started")}</span>}
       </div>
       <div className="min-w-0 flex-1">
         <p className="mb-1 text-xs text-[#6e6e73]">{topic.chapter || topic.subject}</p>
@@ -43,10 +43,10 @@ export default function TopicCard({
         <Link to={`/dashboard/learn/${topic.id}`} className="mr-auto inline-flex items-center gap-1.5 text-sm font-medium" style={{
         color: theme.accent
       }}>{copy("Open lesson")} <ArrowRight className="h-4 w-4" /></Link>
-        <Link to={`/dashboard/ask?${context}`} className="rounded-lg p-2 text-[#6e6e73] hover:bg-[#1d1d1f]/5" aria-label={copy("Ask about {title}", {
+        <Link to={`/dashboard/ask?${context}`} className="rounded-xl p-2 text-[#6e6e73] hover:bg-[#1d1d1f]/5" aria-label={copy("Ask about {title}", {
         title: topic.name
       })} title={copy("Ask")}><MessageCircle className="h-4 w-4" /></Link>
-        <Link to={`/dashboard/practice?${context}`} className="rounded-lg p-2 text-[#6e6e73] hover:bg-[#1d1d1f]/5" aria-label={copy("Practice {title}", {
+        <Link to={`/dashboard/practice?${context}`} className="rounded-xl p-2 text-[#6e6e73] hover:bg-[#1d1d1f]/5" aria-label={copy("Practice {title}", {
         title: topic.name
       })} title={copy("Practice")}><Target className="h-4 w-4" /></Link>
       </div>

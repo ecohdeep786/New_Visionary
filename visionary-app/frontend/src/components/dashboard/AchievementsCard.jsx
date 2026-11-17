@@ -20,7 +20,7 @@ export default function AchievementsCard({ studentData }) {
   ];
 
   return (
-    <div className="flex flex-col gap-6 p-8 bg-white rounded-3xl border border-[#d2d2d7]/60">
+    <div className="flex flex-col gap-6 p-8 bg-white rounded-2xl border border-[#d2d2d7]/60">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {achievements.map((a) => {
           const Icon = a.icon;

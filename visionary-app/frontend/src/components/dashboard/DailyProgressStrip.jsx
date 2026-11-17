@@ -14,7 +14,7 @@ export default function DailyProgressStrip({ stats }) {
       {items.map((item) => {
         const Icon = item.icon;
         return (
-          <div key={item.label} className="flex items-center gap-4 p-6 lg:p-7 bg-white rounded-3xl border border-[#d2d2d7]">
+          <div key={item.label} className="flex items-center gap-4 p-6 lg:p-7 bg-white rounded-2xl border border-[#d2d2d7]">
             <div className={`w-11 h-11 rounded-full flex items-center justify-center ${item.bg} shrink-0`}>
               <Icon className={`w-5 h-5 ${item.color}`} />
             </div>

@@ -32,7 +32,7 @@ export default function StudentHome() {
       <div><p className="text-sm text-[#6e6e73]">Your personal learning space</p><h1 className="mt-1 text-2xl font-medium tracking-tight text-[#1d1d1f]">Hello, {name}</h1></div>
       <Link to="/dashboard/settings" className="inline-flex items-center gap-2 rounded-full border border-[#d2d2d7] px-3 py-2 text-xs text-[#6e6e73]"><Globe2 className="h-4 w-4" />{learningLanguage(user)}</Link>
     </header>
-    <section className="relative overflow-hidden rounded-3xl border border-[#d2d2d7] bg-[#eef5ff] p-6 sm:p-8">
+    <section className="relative overflow-hidden rounded-2xl border border-[#d2d2d7] bg-[#eef5ff] p-6 sm:p-8">
       <div className="relative z-10 max-w-2xl"><div className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-[#0071E3]"><Sparkles className="h-4 w-4" />Visionary PA</div>
         <h2 className="text-[28px] font-normal leading-tight tracking-tight sm:text-[34px] text-[#1d1d1f]">A little curiosity.<br />A whole new possibility.</h2>
         <p className="mt-3 max-w-lg text-sm leading-6 text-[#6e6e73]">Understand an idea, explore it your way, and turn what you learn into something you can build.</p>

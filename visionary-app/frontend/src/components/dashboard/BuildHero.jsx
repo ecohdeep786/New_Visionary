@@ -53,7 +53,7 @@ export default function BuildHero({ userName, masteredCount, unlockedCount, reco
       </div>
 
       {/* Recommended project — single primary action */}
-      <div className="flex flex-col gap-5 p-6 bg-white rounded-3xl border border-[#d2d2d7]/50">
+      <div className="flex flex-col gap-5 p-6 bg-white rounded-2xl border border-[#d2d2d7]/50">
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Recommended for you</span>

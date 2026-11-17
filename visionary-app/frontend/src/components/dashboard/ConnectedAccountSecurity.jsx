@@ -43,7 +43,7 @@ export default function ConnectedAccountSecurity({ accountId }) {
     <h1 className="text-2xl font-semibold">Account security</h1>
     <h2 className="mt-6 text-lg font-semibold">Browser sessions</h2>
     <p className="mt-2 text-slate-700">Review where your account has been signed in.</p>
-    <button className="mt-3 min-h-11 rounded-lg border px-4" type="button" disabled={query.isFetching} onClick={() => query.refetch()}>Refresh sessions</button>
+    <button className="mt-3 min-h-11 rounded-xl border px-4" type="button" disabled={query.isFetching} onClick={() => query.refetch()}>Refresh sessions</button>
     {query.isFetching && <p className="mt-3" role="status">Checking account sessions…</p>}
     {query.isError && <p className="mt-3" role="alert">Could not check your account sessions. Try refreshing.</p>}
     {query.isSuccess && <>
@@ -56,11 +56,11 @@ export default function ConnectedAccountSecurity({ accountId }) {
       </ul>
     </>}
     <div className="flex flex-wrap gap-2">
-      {cursor && <button className="min-h-11 rounded-lg border px-4" type="button" onClick={() => setCursor(null)}>First page</button>}
-      {query.isSuccess && query.data.nextCursor && <button className="min-h-11 rounded-lg border px-4" type="button" onClick={() => setCursor(query.data.nextCursor)}>Next page</button>}
+      {cursor && <button className="min-h-11 rounded-xl border px-4" type="button" onClick={() => setCursor(null)}>First page</button>}
+      {query.isSuccess && query.data.nextCursor && <button className="min-h-11 rounded-xl border px-4" type="button" onClick={() => setCursor(query.data.nextCursor)}>Next page</button>}
     </div>
     {canSignOutAll && <div className="mt-6 border-t pt-4">
-      <button ref={revokeButton} className="min-h-11 rounded-lg border px-4" type="button" aria-expanded={confirming}
+      <button ref={revokeButton} className="min-h-11 rounded-xl border px-4" type="button" aria-expanded={confirming}
         disabled={busy} onClick={() => {
           setConfirming(value => !value);
           setCommandError('');
@@ -69,8 +69,8 @@ export default function ConnectedAccountSecurity({ accountId }) {
       {confirming && <div className="mt-3">
         <p>This ends your other sessions and signs you out of this browser.</p>
         <div className="mt-3 flex flex-wrap gap-2">
-          <button ref={confirmButton} className="min-h-11 rounded-lg bg-blue-700 px-4 text-white" type="button" disabled={busy} onClick={revokeSessions}>{busy ? 'Signing out…' : 'Confirm sign-out'}</button>
-          <button className="min-h-11 rounded-lg border px-4" type="button" disabled={busy} onClick={() => { setConfirming(false); setCommandError(''); revokeButton.current?.focus(); }}>Cancel</button>
+          <button ref={confirmButton} className="min-h-11 rounded-xl bg-blue-700 px-4 text-white" type="button" disabled={busy} onClick={revokeSessions}>{busy ? 'Signing out…' : 'Confirm sign-out'}</button>
+          <button className="min-h-11 rounded-xl border px-4" type="button" disabled={busy} onClick={() => { setConfirming(false); setCommandError(''); revokeButton.current?.focus(); }}>Cancel</button>
         </div>
         {commandError && <p className="mt-3" role="alert">{commandError}</p>}
       </div>}
