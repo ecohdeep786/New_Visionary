@@ -1944,3 +1944,79 @@ verified (backend pinned to the preview origin per the CSRF law).
 (closed earlier today for the lab profile; field p75 awaits RUM), #3
 teaching/billing connected behavior (needs the teaching adapter — backend
 lane paused awaiting the founder's choice), #4 founder/reviewer signoff.
+
+---
+
+## 2026-11-17 — V6 lane-completion sweep: T08/T09/T10/T12/T05 evidence walk (no code changes; zero defects found)
+
+The V6 completion audit found five lanes without dedicated wave receipts
+(T02/T03/T04 design-craft lanes remain open as craft passes). This entry
+records the executed explore→accept loops for the five behavior lanes,
+run in the live realm on dev `1dc86eff` (emulators + registered backend +
+dev server), per V6 §7: where no code change is proposed, persuasive
+current evidence that the standard is already met.
+
+**T09 — the V6-named pattern ("fresh workspace routes redirecting home
+rather than displaying contextual empty states"): NOT PRESENT.** Walked
+all 27 dashboard routes as a fresh learner and 15 as a fresh teacher:
+zero redirects, zero stuck skeletons. Every route renders in place with a
+contextual empty state ("No classes yet — Create your first class…",
+"Insights start with a class…", "Your first project starts here",
+"Nothing here yet. Connections are optional…") or the honest cross-role
+role-gate state with a real next action ("Return to workspace").
+
+**T08 — interrupted & failed identity paths: all honest and actionable.**
+Wrong password ("The email or password is incorrect. Try again or reset
+your password." + Forgot/Try-again/alternate-method); unverified-email
+sign-in routed to the verification screen with resend; duplicate-email
+registration ("An account already uses this email."); weak password
+("Choose a password with at least 6 characters."); onboarding abandoned
+mid-wizard → direct `/dashboard` entry bounced back by the OnboardingGate;
+session restoration across reload persists with the gate still holding;
+forgot-password → oobCode reset → new-password sign-in completes with
+enumeration-safe wording and the promise "Your saved account and learning
+setup will be kept" verified true (no re-onboarding).
+
+**T10 — the top teacher↔learner critical scenario, end to end (9 steps).**
+Teacher: create class (join code `VISION-F8F9AD40` issued) → stream
+welcome post (timestamped, attributed) → create assignment (title,
+instructions, points, concept tags) → "Assign" → "Published · accepting
+responses" with state history. Learner: join by code → open the class
+activity in Learn (Understand → Respond → Review, with the honesty law:
+"No reviewed interactive representation… content has not been invented")
+→ respond → review → "Submit to teacher" → "Submitted for review".
+Teacher: Learners page shows "Nine · Algebra II · Foundational · 1 to
+review"; Classwork shows "Review (1 · 1 new)"; the grader dialog shows the
+full attempt with Grade/20, feedback, Return/Request-revision; graded
+18/20 with feedback and Returned. Learner then sees "18/20 · Teacher
+feedback · … · Returned by your teacher · Your submitted copy". The
+classroom entity store is a preview-realm seam by design; the production
+build shows the honest "Classrooms, assignments, and grading will be
+available once their online services are connected" gate and never
+reaches the dev-only `base44.entities` path (verified on the prod build).
+
+**T12 — accessibility spot-walk (dashboard):** skip link `a[href="#main"]`
+with the target `main` at tabIndex=-1 (fragment focus lands, the F-15-F1
+pattern); :focus-visible rule present; 0 buttons without accessible names;
+0 images without alt; landmarks 1 main / 2 nav / 2 header; single h1.
+Keyboard operability: Enter opens the account menu (aria-expanded=true,
+items rendered), Escape closes it and returns focus to the trigger
+(WAI-ARIA menu pattern); the search dialog opens with focus inside its
+input and Escape closes it. Automated coverage continues via the F-10
+harness (six routes, zero defects, receipt `e05ae756`); this walk adds the
+manual keyboard evidence V6 asks for. Not a WCAG certification.
+
+**T05 — interaction states across the walks:** loading (0 stuck skeletons
+on every visited route), error (honest inline/inline-error states in every
+failed-path test), empty (contextual, actionable — see T09), success
+(toast-free inline confirmations: "Your class is ready", "Submitted for
+review", "Returned", "Password updated"). Reduced motion: the CSS guard
+(`.hero-fade-up { animation: none !important; opacity: 1 !important; }`
+under `prefers-reduced-motion: reduce`) is in the shipped stylesheet and
+the motion battery (439 checks) passes in the 854-test suite.
+
+**Governance:** no source changes in this entry — nothing to regen, no
+gates to rerun beyond the standing 854/854 from `1dc86eff`. The two
+design-craft lanes (T02/T03/T04) remain open as the next evidenced work;
+they require before/after visual evidence per V6 §7 and are not claimed
+complete here.
