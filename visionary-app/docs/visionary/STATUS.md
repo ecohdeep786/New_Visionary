@@ -2241,3 +2241,46 @@ dev unchanged at 3336bebf (no product code changed this pass — verification
 only). Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS;
 the remaining gaps are backend/hosting-gated (teaching adapter, RUM field
 data, hosted deployment) plus the founder's final signoff.
+
+## 2026-11-17 — Full-surface walkthrough post-unification: 25 surfaces exercised, zero defects (no code changes)
+
+**The directive.** The founder directed completing pending work as a Google
+principal frontend engineer, end-to-end in the in-app browser. The one
+remaining verification debt under the V5 A.8 law ("no page is finished on its
+first passing build") was the systematic walk of every dashboard surface not
+yet exercised after the Apple palette/radius/motion passes.
+
+**The walk.** Fresh learner (Nadia) and teacher (Arun) accounts through the
+full registration/verification/onboarding journey on the dev realm:
+
+- **Learner, 13/13 routes clean:** Ask, Practice, Build, Progress, Library,
+  Growth, Notifications, Personalization, Privacy, Settings, Subscription,
+  Connections, Profile — zero error boundaries, every route renders its
+  role-correct content in place (no redirects). The three suspicious-thin
+  surfaces were drilled into and verified CORRECT: /dashboard/subscription
+  shows the truthful "Test billing is not configured" state (realm has no
+  billing keys), /dashboard/library shows the honest workspace-gate
+  ("opens with a teaching workspace; you are in a learning workspace"),
+  and /dashboard/settings renders personalization + account appearance
+  BY DESIGN — the "Security" label exists only in the connected account
+  shell, where it correctly renders ConnectedAccountSecurity.
+- **Teacher, 7/7 standalone routes clean:** Prepare, Learners, Insights,
+  Growth, Library, Notifications, Personalization — all role-specific.
+- **Class tabs, 5/5 clean:** People, Curriculum, Insights, Community, Stream
+  on a fresh class (join code VISION-0BFA4207) — correct active states,
+  honest AI/empty states ("AI analysis is not connected yet…").
+- **Interactive shells:** the Guide voice panel opens with listening/speaking
+  states and the truthful "Microphone idle. Text is always available";
+  the search palette opens with the correct placeholder.
+
+**Evidence.** Route-by-route render states (mainChars, headings, error-boundary
+scan) captured in-conversation; Insights-tab screenshot confirms the dark
+Apple palette, coherent radius scale, and honest states. Zero code changes
+were warranted — this is an evidence-walk receipt per the §7 no-unnecessary-
+diff rule; the standing 855/855 from 85629480 covers the audited state.
+
+**Governance:** realm stopped, ports clear; dev unchanged at 0010d954. The
+frontend lane's post-unification acceptance is now closed across ALL surfaces.
+Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS (teaching/
+billing adapters, RUM/hosting, and the founder's final signoff remain
+founder-gated).
