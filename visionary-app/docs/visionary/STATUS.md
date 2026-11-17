@@ -2078,3 +2078,55 @@ this evidence walk. The V6 wave is complete from the frontend lane's
 side; the release recommendation stands READY WITH DISCLOSED LIMITATIONS
 (field p75 awaits RUM; teaching/billing connected behavior awaits the
 teaching adapter; final signoff belongs to the founder/reviewer).
+
+## 2026-11-17 — Apple workspace palette unification (`cb6b948f`): the founder's directive supersedes the T04 boundary; the whole product now speaks one design language
+
+**The directive.** The founder chose release-option 4 (final frontend product) with the
+condition "I want a final frontend product as apple product." This supersedes the T04
+receipt's documented boundary (public marketing = Apple tokens, workspace = Google
+tokens, no repaint). The boundary was the lane's judgment call under the V6 charter's
+no-cosmetic-diff rule; the founder's explicit direction is the higher authority, and
+with it the last visible design-language seam between the public pages and the
+workspace shell is closed.
+
+**The change.** 955 literal replacements across 93 files (dashboard components,
+dashboard pages, billing.css, feedback.css): secondary ink #5f6368→#6e6e73,
+borders #dadce0→#d2d2d7, soft fills #f1f3f4/#e8f0fd/#e8f0fe/#f8fafd→#eef5ff,
+ink #202124/#3c4043→#1d1d1f, action blue #4285f4/#0b57d0/#0b57d2/#1967d2→#0071e3,
+error #d93025→#d70015. Zero Google-Material literals remain in the workspace scope
+(verified by scan). `workspace.css` token block is pure Apple
+(--v-canvas #f5f5f7, --v-text #1d1d1f, --v-muted #6e6e73, --v-soft #eef5ff,
+--v-action #0071e3 already was). The dark-mode adaptation block in
+`workspace-design.css` is untouched — it was never Google Material and stays a
+coherent dark counterpart (#111318/#b6bdca/#aac7ff).
+
+**Law tests re-authored, not weakened.** The FAP-80 dark-token coverage test now
+measures the Apple inventory (57 palette classes, floor lowered 60→57 to match the
+unified palette) and asserts the same structural law: every palette class remapped
+in the dark block, the image scrim the single allowlisted exception, the remap
+dark-only, per-literal semantic-token mappings (--v-action/--v-muted/--v-border/
+--v-soft/--v-raised/--v-text/--v-on-action), and the Learn viewer's accent classes
+resolving to the action tokens. CreateClassModal's #4285F4 class-color choices are
+restored — they are learner-facing DATA (the FAP-79 law asserts the literal), not
+chrome.
+
+**Gates.** eslint 0 errors; typecheck clean; **855/855 tests** (the one remaining
+failure before regen was the expected inventory cascade, closed by
+`scope:audit:write` run last); production build clean, 73.27KB gz entry.
+
+**Live verification.** On the running realm (emulators + backend + prod-shaped dev
+server), a fresh learner ("Ava", apple1794902691045@example.com) was onboarded
+through the full journey to /dashboard/home. The browser ran OS-dark, and CDP media
+emulation is unavailable in this harness, so the light palette was verified by
+cascade-override injection of the token values (verification aid only — no product
+change): computed canvas #f5f5f7, text #1d1d1f, muted #6e6e73, action #0071e3,
+soft #eef5ff, shell background white. Evidence:
+`docs/visionary/baseline/apple-workspace/after-dashboard-1440-light.png`.
+The dark mode renders natively and its adaptation block is unchanged.
+
+**Governance:** scope inventory regenerated as the last step before commit
+(96 files, 955 insertions / 955 deletions — a pure repaint, no structural churn).
+Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS (field p75
+awaits RUM; teaching/billing connected behavior awaits the teaching adapter;
+final signoff belongs to the founder/reviewer — who now also owns the Apple
+direction they set).
