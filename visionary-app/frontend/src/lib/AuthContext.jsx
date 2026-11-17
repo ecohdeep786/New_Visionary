@@ -7,9 +7,15 @@ import { authErrorMessage, authFlowError } from '@/lib/authErrors';
 /* The workspace service is not needed for first paint: its bootstrap is a
  * DEV-only effect and its remaining call sites are user actions, so it is
  * loaded on first use (cached promise — the same pattern as the lazy
- * Firebase SDK) instead of riding the entry graph. */
+ * Firebase SDK) instead of riding the entry graph. The seam itself is
+ * DEV-conditional (FHE-20 route-table split): the static DEV replacement
+ * makes the preview store's dynamic import unreachable in the production
+ * build, so the browser-local store's chunk never ships at all. */
 let workspaceServicePromise = null;
-const workspaceService = () => (workspaceServicePromise ??= import('@/services/workspaceService'));
+const workspaceService = () => {
+  if (!import.meta.env.DEV) return Promise.reject(new Error('The development workspace store is not available in production.'));
+  return (workspaceServicePromise ??= import('@/services/workspaceService'));
+};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

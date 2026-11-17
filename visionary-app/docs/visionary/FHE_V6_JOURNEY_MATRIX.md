@@ -56,7 +56,9 @@ data and staging qualification are separate gates (FHE-23).
   FAP-69 v7 `nest-cli.json` provenance in the upstream patch ledger (the known CI
   integrity failure is resolved without weakening the guard) and refreshing the KAN-31
   authority inventory; published as `dev` = `c02faddb`.
-- **Current task:** worktree `C:/Users/Administrator/nv-worktrees/zcode-fhe07-content-truth`,
+- 2026-11-18 (integration, continued): the FHE-07/08 and FHE-10/12 handoffs (`4d85a13e`, `5fb4445c`) and the FHE-13/14/15/16 roles+events handoff (`a60334fb`) were merged to `dev`. The handoff series is COMPLETE — every D-class surface now has an exact contract.
+- **Current task:** worktree `C:/Users/Administrator/nv-worktrees/zcode-fhe20-route-split`, branch `zcode/fhe20-route-split`, base `a60334fb`. Scope: FHE-20 route-table split — retire the deferred-fetch bundle debt (preview chunks out of the production artifact). No other worktree may be touched.
+- (previous task) worktree `C:/Users/Administrator/nv-worktrees/zcode-fhe07-content-truth`,
   branch `zcode/fhe07-content-truth`, base `c02faddb`. Scope: FHE-07/08 — verify
   content/teaching truth in the production graph and deliver the exact backend/ML
   contract handoff (`docs/visionary/FHE07_08_CONTENT_TEACHING_HANDOFF.md`). No other

@@ -89,9 +89,16 @@ export function extractRoutes(text) {
       const full = value.startsWith('/') ? value : [...parentSegments, value].filter(Boolean).join('/');
       const route = full === '*' ? '*' : ('/' + full).replace(/\/+/g, '/').replace(/\/$/, '') || '/';
       const index = !!attr(n, 'index');
+      // A route declared behind `import.meta.env.DEV && …` (directly or through
+      // a mapped block) never mounts in the optimized production build: the
+      // static DEV replacement drops the branch before any element renders.
+      let devGated = false;
+      for (let a = n.parent; a && !devGated; a = a.parent) {
+        if (ts.isBinaryExpression(a) && a.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken && a.left.getText(sf) === 'import.meta.env.DEV') devGated = true;
+      }
       routes.push({ id: `${route}${index ? '#index' : ''}`, path: route, index, component,
         componentImport: imports.get(component) ?? null, redirect: component === 'Navigate' ? literal(attr(element, 'to')?.initializer) : null,
-        environment: component === 'DemoPreview' ? 'development-only' : 'production-source', ...position(sf, n) });
+        environment: devGated || component === 'DemoPreview' ? 'development-only' : 'production-source', ...position(sf, n) });
     }
   });
   if (new Set(routes.map(r => r.id)).size !== routes.length) throw new Error('Duplicate route identity');

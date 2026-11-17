@@ -126,7 +126,7 @@ test("KAN-210 shell law: the connected production composition keeps the full she
 test("FHE-05 composition law: the production build never bundles or executes the preview workspace", () => {
   const dispatcher = read("src/components/dashboard/DashboardLayout.jsx");
   assert.match(dispatcher, /import\.meta\.env\.DEV\s*\?\s*<Suspense fallback=\{null\}><PreviewDashboardLayout \/><\/Suspense>\s*:\s*<ConnectedWorkspaceLayout \/>/, "dev gets the preview workspace; production gets the connected composition root");
-  assert.match(dispatcher, /lazy\(\(\) => import\('\.\/PreviewDashboardLayout'\)\)/, "the preview workspace is a lazy boundary the production graph never fetches");
+  assert.match(dispatcher, /const PreviewDashboardLayout = import\.meta\.env\.DEV \? lazy\(\(\) => import\('\.\/PreviewDashboardLayout'\)\) : null/, "the preview boundary is DEV-conditional: the production graph cannot even name the preview module (FHE-20)");
   assert.doesNotMatch(dispatcher, /workspaceService/, "the dispatcher itself touches no preview store");
   const connected = read("src/components/dashboard/ConnectedWorkspaceLayout.jsx");
   assert.doesNotMatch(connected, /workspaceService/, "the connected composition root never imports the preview store");

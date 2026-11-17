@@ -42,18 +42,22 @@ Concretely:
 Registered entries live in `scripts/production-graph.mjs` (`REGISTERED`) with their
 reasons. Adding an entry requires the same review as adding a product surface.
 
-## 3. Known deferred-fetch inventory (not dead, not a violation)
+## 3. Preview route chunks (debt retired 2026-11-18 — the FHE-20 route-table split)
 
-The production bundle still emits chunks for the development-preview dashboard
-routes declared in `App.jsx` (learner/teacher/role preview pages, and the
-`workspaceService` chunk they import). These are **never fetched and never executed
-in production**: the route-interception law (§1.3) proves no production path mounts
-them, and nothing prefetches them (`RoutePrefetcher` warms public landing pages
-only). They exist so the DEV composition root keeps its approved preview routing
-from the same route table. This is registered **bundle-hygiene debt**, owned by the
-FHE-20 craft pass: when the preview route table is split out of the production
-route declarations, these chunks disappear from the artifact. Until then the two
-hard laws (§1.2, §1.3) hold them harmless.
+This section originally registered a known debt: preview route chunks shipped
+in the production artifact as never-fetched inventory. **The FHE-20 split
+retired it.** Every intercepted `/dashboard/*` child now declares its element
+as `import.meta.env.DEV ? <Preview /> : null`, the preview lazy declarations
+use the same DEV-conditional pattern, and the `AuthContext` preview-store seam
+rejects in production before its dynamic import is reachable. With Vite's
+static `import.meta.env.DEV` replacement the preview chunks are no longer
+merely unexecuted — **they are absent from the production artifact**: 147 → 87
+chunks, and the `workspaceService` (browser-local store) chunk does not ship
+at all. Production URL behavior is unchanged (verified live: declared paths
+render connected surfaces or honest rooms; undeclared paths still 404), and
+DEV mode keeps the full approved preview workspace (verified live on
+`vite dev`). The route law test, the surface audit (31 development-only
+routes), `ROUTE_GRAPH.json` and `npm run verify:graph` pin all of it.
 
 ## 4. How to comply (every change)
 

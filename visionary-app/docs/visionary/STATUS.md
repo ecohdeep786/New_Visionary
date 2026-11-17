@@ -2469,3 +2469,51 @@ the provenance of this sweep. Git history retains every removed file.
 **Governance.** All work on the same reviewed lane (`zcode/fhe05-connected-shell`);
 nothing merged to dev; QA/Codex review still pending for the branch. Next eligible:
 FHE-07/08 honest-content and teaching-lane handoffs per the journey matrix.
+
+## 2026-11-18 — FHE-20 route-table split: the production artifact no longer ships any preview-store code
+
+**The directive.** Retire the registered bundle-hygiene debt (law doc §3): the
+production artifact shipped 60 preview route chunks (and the browser-local
+`workspaceService` chunk) that the route law proved were never mounted or
+fetched. Frontend-executable, so it was done now rather than waiting for the
+paused backend lane.
+
+**The change.** In `App.jsx`, every intercepted `/dashboard/*` child keeps its
+route declaration but declares its element as `import.meta.env.DEV ? <Preview />
+: null` (route declarations must stay so direct production links still match —
+the first attempt dropped the declarations and the browser smoke caught
+/dashboard/home falling through to 404 before any commit). The preview lazy
+declarations and the composition root's preview boundary use the same
+DEV-conditional pattern, and `AuthContext`'s preview-store seam now rejects in
+production before its dynamic import is reachable. With Vite's static DEV
+replacement, Rollup drops the dead branches and the imports.
+
+**Artifact result (production build, measured).** 147 → **87 chunks**; the
+`workspaceService` chunk and the `PreviewDashboardLayout` chunk are absent —
+the browser-local development store no longer ships at all. Entry chunk
+279.55 → 272.89 kB.
+
+**Behavior verification, both modes, in the app browser.** Production (fresh
+dist served on 4201 against the fenced realm): /dashboard/home → connected
+account home, /dashboard/learn → server-backed saved learning,
+/dashboard/connections → server workspace list, /dashboard/subscription →
+connected plans, /dashboard/ask → honest unavailable room,
+/dashboard/privacy → approved policy + consents, /dashboard/typo-unknown →
+404 (pre-split behavior preserved). Development (`vite dev` on 5199):
+/dashboard/learn renders the full approved preview workspace (workspace
+switcher, career tools, voice panel) — the DEV path is intact.
+
+**Inventory truth.** `surface-audit-lib.mjs` now classifies routes declared
+behind `import.meta.env.DEV &&` as development-only (previously only the
+DemoPreview const pattern was recognized): 31 dev-only routes; production
+keeps /dashboard (the connected layout) + /dashboard/subscription. The
+surface inventory, `ROUTE_GRAPH.json` and the KAN-31 authority inventory were
+regenerated; the route-law and product-surface tests were extended with the
+same rule. The kan210 composition-law assertion now pins the strengthened
+boundary (the production graph cannot even name the preview module). Law doc
+§3 rewritten from "registered debt" to "retired, with the receipts".
+
+**Checks.** 870/870 tests, lint 0, typecheck 0, `vite build` OK,
+`verify:graph` exit 0 (4 executed chunks, no preview store in the closure, 0
+orphans), scope:audit + route-graph + authority gates green after
+regeneration. Nothing merged to dev by this lane yet.

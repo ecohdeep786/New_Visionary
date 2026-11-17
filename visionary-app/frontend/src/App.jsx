@@ -104,25 +104,25 @@ const ForgotUserId = lazy(() => import('@/pages/ForgotUserId'))
 const ResetPassword = lazy(() => import('@/pages/ResetPassword'))
 const Onboarding = lazy(() => import('@/pages/Onboarding'))
 const DashboardLayout = lazy(() => import('@/components/dashboard/DashboardLayout'))
-const DashboardHome = lazy(() => import('@/pages/dashboard/DashboardHome'))
-const Learn = lazy(() => import('@/pages/dashboard/Learn'))
-const StudentClasses = lazy(() => import('@/pages/dashboard/StudentClasses'))
-const TopicDetail = lazy(() => import('@/pages/dashboard/TopicDetail'))
-const TeacherClasses = lazy(() => import('@/pages/dashboard/role/TeacherHome'))
-const Practice = lazy(() => import('@/pages/dashboard/Practice'))
-const Build = lazy(() => import('@/pages/dashboard/ArtifactStudio'))
+const DashboardHome = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/DashboardHome')) : null
+const Learn = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Learn')) : null
+const StudentClasses = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/StudentClasses')) : null
+const TopicDetail = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/TopicDetail')) : null
+const TeacherClasses = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/role/TeacherHome')) : null
+const Practice = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Practice')) : null
+const Build = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/ArtifactStudio')) : null
 const Subscription = lazy(() => import('@/pages/dashboard/Plans'))
-const Children = lazy(() => import('@/pages/dashboard/Children'))
-const Cohorts = lazy(() => import('@/pages/dashboard/Cohorts'))
-const Learners = lazy(() => import('@/pages/dashboard/Learners'))
-const WorkspaceTools = lazy(() => import('@/pages/dashboard/WorkspaceTools'))
-const Profile = lazy(() => import('@/pages/dashboard/Profile'))
-const Settings = lazy(() => import('@/pages/dashboard/Settings'))
-const ClassDetail = lazy(() => import('@/pages/dashboard/ClassDetail'))
-const RoleWorkspace = lazy(() => import('@/pages/dashboard/RoleWorkspace'))
-const Connections = lazy(() => import('@/pages/dashboard/Connections'))
-const Explore = lazy(() => import('@/pages/dashboard/Explore'))
-const Support = lazy(() => import('@/pages/dashboard/Support'))
+const Children = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Children')) : null
+const Cohorts = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Cohorts')) : null
+const Learners = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Learners')) : null
+const WorkspaceTools = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/WorkspaceTools')) : null
+const Profile = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Profile')) : null
+const Settings = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Settings')) : null
+const ClassDetail = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/ClassDetail')) : null
+const RoleWorkspace = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/RoleWorkspace')) : null
+const Connections = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Connections')) : null
+const Explore = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Explore')) : null
+const Support = import.meta.env.DEV ? lazy(() => import('@/pages/dashboard/Support')) : null
 const TeacherPage = lazy(() => import('@/pages/landing/TeacherPage'))
 const ParentPage = lazy(() => import('@/pages/landing/ParentPage'))
 const SchoolPage = lazy(() => import('@/pages/landing/SchoolPage'))
@@ -206,29 +206,40 @@ const PublicApp = () => (
       <Route path="/onboarding" element={<Onboarding />} />
       <Route element={<OnboardingGate />}>
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<DashboardHome />} />
-          <Route path="home" element={<DashboardHome />} />
-          <Route path="classes" element={<ClassesEntry />} />
-          <Route path="learn" element={<Learn />} />
-          <Route path="learn/:topicId" element={<TopicDetail />} />
-          <Route path="ask" element={<DashboardHome />} />
-          <Route path="practice" element={<Practice />} />
-          <Route path="build" element={<Build />} />
+          {/* FHE-20 route-table split: every intercepted dashboard child keeps
+           * its route declaration (so direct production links match and the
+           * connected shell renders the right surface by pathname) but its
+           * element is DEV-conditional — the static DEV replacement makes the
+           * element null in production and, together with the DEV-conditional
+           * lazy declarations above, drops the preview chunks from the
+           * artifact entirely (147 → 87 chunks; the preview store's chunk no
+           * longer ships). Production URL behavior is byte-identical to the
+           * pre-split build: declared paths render the connected surface or
+           * the honest room through the shell's pathname interception, and
+           * undeclared paths still reach the 404 catch-all. */}
+          <Route index element={import.meta.env.DEV ? <DashboardHome /> : null} />
+          <Route path="home" element={import.meta.env.DEV ? <DashboardHome /> : null} />
+          <Route path="classes" element={import.meta.env.DEV ? <ClassesEntry /> : null} />
+          <Route path="learn" element={import.meta.env.DEV ? <Learn /> : null} />
+          <Route path="learn/:topicId" element={import.meta.env.DEV ? <TopicDetail /> : null} />
+          <Route path="ask" element={import.meta.env.DEV ? <DashboardHome /> : null} />
+          <Route path="practice" element={import.meta.env.DEV ? <Practice /> : null} />
+          <Route path="build" element={import.meta.env.DEV ? <Build /> : null} />
           <Route path="subscription" element={<Subscription />} />
-          <Route path="class/:classId" element={<ClassDetail />} />
-          <Route path="child" element={<Children />} />
-          <Route path="people" element={<RoleWorkspace area="people" />} />
-          <Route path="curriculum" element={<RoleWorkspace area="curriculum" />} />
-          <Route path="analytics" element={<RoleWorkspace area="analytics" />} />
-          <Route path="insights" element={<RoleWorkspace area="insights" />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="connections" element={<Connections />} />
-          <Route path="explore" element={<Explore />} />
-          <Route path="support" element={<Support />} />
-          {['prepare', 'library', 'career', 'growth', 'progress', 'reports', 'notifications', 'personalization', 'privacy', 'audit'].map(area => <Route key={area} path={area} element={<WorkspaceTools area={area} />} />)}
-          <Route path="cohorts" element={<Cohorts />} />
-          <Route path="learners" element={<Learners />} />
+          <Route path="class/:classId" element={import.meta.env.DEV ? <ClassDetail /> : null} />
+          <Route path="child" element={import.meta.env.DEV ? <Children /> : null} />
+          <Route path="people" element={import.meta.env.DEV ? <RoleWorkspace area="people" /> : null} />
+          <Route path="curriculum" element={import.meta.env.DEV ? <RoleWorkspace area="curriculum" /> : null} />
+          <Route path="analytics" element={import.meta.env.DEV ? <RoleWorkspace area="analytics" /> : null} />
+          <Route path="insights" element={import.meta.env.DEV ? <RoleWorkspace area="insights" /> : null} />
+          <Route path="profile" element={import.meta.env.DEV ? <Profile /> : null} />
+          <Route path="settings" element={import.meta.env.DEV ? <Settings /> : null} />
+          <Route path="connections" element={import.meta.env.DEV ? <Connections /> : null} />
+          <Route path="explore" element={import.meta.env.DEV ? <Explore /> : null} />
+          <Route path="support" element={import.meta.env.DEV ? <Support /> : null} />
+          {['prepare', 'library', 'career', 'growth', 'progress', 'reports', 'notifications', 'personalization', 'privacy', 'audit'].map(area => <Route key={area} path={area} element={import.meta.env.DEV ? <WorkspaceTools area={area} /> : null} />)}
+          <Route path="cohorts" element={import.meta.env.DEV ? <Cohorts /> : null} />
+          <Route path="learners" element={import.meta.env.DEV ? <Learners /> : null} />
         </Route>
       </Route>
     </Route>
