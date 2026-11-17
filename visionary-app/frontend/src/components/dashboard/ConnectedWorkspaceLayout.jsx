@@ -17,6 +17,7 @@ import { ConnectedWorkspaceProvider, useConnectedWorkspace } from '@/hooks/Conne
 import { navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
 import { presentNavigation } from '@/lib/navigationPresentation';
 import { workspaceText } from '@/lib/workspaceStrings';
+import { connectedSurfaceCopy } from '@/lib/connectedSurfaceCopy';
 import { shellCopy } from './shellCopy';
 import { privacyCopy } from '@/lib/privacyCopy';
 import FeedbackPrompt from './FeedbackPrompt';
@@ -33,6 +34,7 @@ const roleFeatures = {
   parent: 'Guardian connections and shared learner reports',
   professional: 'Career goals and portfolio projects',
   organization: 'Cohorts, curriculum, and organization membership',
+  default: 'Interactive learning and shared workspaces',
 };
 
 /**
@@ -175,30 +177,32 @@ function ConnectedWorkspaceContent({ accountId, identity, locale }) {
   if (page === '/dashboard/privacy') return <div key={accountId}><ApprovedPrivacyPolicy accountId={accountId} /><ConnectedConsents accountId={accountId} /></div>;
   if (page === '/dashboard/settings') return <ConnectedAccountSecurity key={accountId} accountId={accountId} />;
   if (page === '/dashboard/learn' || page.startsWith('/dashboard/learn/')) return <ConnectedLearningHistory key={accountId} accountId={accountId} />;
-  if (page === '/dashboard' || page === '/dashboard/home') return <ConnectedHome accountId={accountId} identity={identity} />;
+  if (page === '/dashboard' || page === '/dashboard/home') return <ConnectedHome accountId={accountId} identity={identity} locale={locale} />;
   return <UnavailableArea identity={identity} locale={locale} />;
 }
 
-function ConnectedHome({ accountId, identity }) {
+function ConnectedHome({ accountId, identity, locale }) {
   const { account } = useAuth();
-  const features = Object.hasOwn(roleFeatures, identity) ? roleFeatures[identity] : 'Interactive learning and shared workspaces';
-  return <div className="mx-auto max-w-3xl px-1 py-6 sm:py-10">
+  const t = connectedSurfaceCopy(locale);
+  const features = Object.hasOwn(roleFeatures, identity) ? roleFeatures[identity] : roleFeatures.default;
+  return <div className="mx-auto max-w-3xl px-1 py-6 sm:py-10" lang={locale}>
     <section className="max-w-xl rounded-2xl border bg-white p-6 sm:p-8">
-      <h1 className="text-2xl font-semibold">Your Visionary account</h1>
+      <h1 className="text-2xl font-semibold">{t('Your Visionary account')}</h1>
       {account?.full_name && <p className="mt-2 break-words">{account.full_name}</p>}
-      <p className="mt-4 text-slate-700">{features} will be available once their online services are connected.</p>
+      <p className="mt-4 text-slate-700">{t('{features} will be available once their online services are connected.', { features: t(features) })}</p>
       <div className="mt-4"><GettingStarted /></div>
     </section>
   </div>;
 }
 
 function UnavailableArea({ identity, locale }) {
-  const features = Object.hasOwn(roleFeatures, identity) ? roleFeatures[identity] : 'Interactive learning and shared workspaces';
+  const t = connectedSurfaceCopy(locale);
+  const features = Object.hasOwn(roleFeatures, identity) ? roleFeatures[identity] : roleFeatures.default;
   return <div className="mx-auto max-w-3xl px-1 py-6 sm:py-10" lang={locale}>
     <section className="max-w-xl rounded-2xl border bg-white p-6 sm:p-8">
-      <h1 className="text-2xl font-semibold">This workspace area is not available yet</h1>
-      <p className="mt-4 text-slate-700">{features} will be available once their online services are connected. Your saved account records are unaffected.</p>
-      <Link className="mt-4 inline-flex min-h-11 items-center underline" to="/dashboard/home">Return to account home</Link>
+      <h1 className="text-2xl font-semibold">{t('This workspace area is not available yet')}</h1>
+      <p className="mt-4 text-slate-700">{t('{features} will be available once their online services are connected.', { features: t(features) })} {t('Your saved account records are unaffected.')}</p>
+      <Link className="mt-4 inline-flex min-h-11 items-center underline" to="/dashboard/home">{t('Return to account home')}</Link>
     </section>
   </div>;
 }

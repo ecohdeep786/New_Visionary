@@ -2517,3 +2517,62 @@ boundary (the production graph cannot even name the preview module). Law doc
 `verify:graph` exit 0 (4 executed chunks, no preview store in the closure, 0
 orphans), scope:audit + route-graph + authority gates green after
 regeneration. Nothing merged to dev by this lane yet.
+
+## 2026-11-18 — FHE-19: hi/bn interfaces are real, measurable, and audit-enforced (FAP-67 follow-up completed)
+
+**The directive.** The i18n audit carried a recorded follow-up since FAP-67: "the hi/bn
+passes need the app's language switcher." The founder ordered the language work done
+end-to-end in the browser. Executed on branch `zcode/fhe19-language-accessibility`
+(base `3cc67c6e`).
+
+**What the investigation found.** The interface locale chain already exists:
+onboarding's language choice → `preferred_language` on the server profile → the
+connected shell's locale derivation → `workspaceText`/`privacyCopy` hi/bn strings.
+But (a) no way existed to see or change it after onboarding, (b) the connected
+production surfaces (profile, workspaces, saved learning, consents, security, home,
+rooms) were English-only, and (c) the audit skipped hi/bn entirely.
+
+**Changes.**
+1. `ConnectedProfile` now shows the Interface-language control: the saved value,
+   the three shipped interfaces (English/हिन्दी/বাংলা with native labels and `lang`
+   attributes), and an honest state — the registered profile-update contract accepts
+   only the display name and accent today, so the control is disabled with a truthful
+   note ("switching here is coming soon") rather than a failing affordance. The
+   one-field backend extension is the recorded handoff (the backend lane owns it).
+2. All six non-commercial connected surfaces were translated (new
+   `connectedSurfaceCopy`, plus privacyCopy entries for the cloud-consent chrome):
+   home, honest rooms, workspaces, saved learning, sharing consents, account
+   security, profile — ~90 strings in hi/bn, written as faithful translations, with
+   locale-aware date formatting. `ConnectedBilling` remains English by recorded
+   decision (commercial copy requires approved translations; same discipline as the
+   public pages) — recorded in the audit decision.
+3. `guideCopy` gained the eleven role-action labels (the Ask page's career CTAs).
+4. **The audit's hi/bn passes are real**: `i18n-audit.mjs` now logs in, drives the
+   app's own Interface-language listbox (preview Personalization panel) for each
+   locale, and walks all ten surfaces per locale. A decided-English allowlist with
+   recorded decisions (FAP-87 boundary notices; the approved policy section renders
+   in its approved language with server-owned purposes) keeps intentional English
+   out of the flagged count.
+
+**Realm note (recorded honestly).** The fenced realm's emulator binds 127.0.0.1
+while the backend CSRF pins `localhost:4200`; this browser build blocks the
+cross-host loopback fetch, so the emulator was made reachable at `localhost:9098`
+via an IPv6 port-forward and the SDK config rebuilt for `localhost:9098` — realm
+infrastructure only, no product change. The in-realm Hindi journey was executed
+live in the app browser: register → verify → onboard choosing Hindi → the entire
+connected shell and every connected surface renders in Hindi (DOM evidence:
+होम/सीखें/पूछें/अभ्यास/बनाएँ, सहेजी गई सीख, कार्यक्षेत्र, आपकी प्रोफ़ाइल, इंटरफ़ेस भाषा)…
+
+**Checks.** The rewritten audit: PASS — zero untranslated English sentence nodes
+across all ten surfaces in hi and bn (receipt:
+`docs/visionary/baseline/i18n-audit-2026-11-18/i18n-audit-receipt.json`, with the
+decided-English counts per surface). Full suite **870/870**, lint 0, typecheck 0,
+surface audit green (1533 declarations). The Bengali pass is audited by the same
+instrument (the bn dictionary set drives the same components verified live in
+Hindi); a live bn journey was not separately walked in this slice and is covered
+by the audit's bn pass.
+
+**Next eligible:** the one-field backend handoff (enable the profile switcher),
+`ConnectedBilling` translations with approved commercial copy, and the remaining
+FHE-19 items (200% zoom walk, reduced-motion verification) — the audit instrument
+now exists to measure all of them.

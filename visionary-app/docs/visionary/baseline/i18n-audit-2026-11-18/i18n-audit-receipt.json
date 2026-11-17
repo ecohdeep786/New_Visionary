@@ -1,0 +1,190 @@
+{
+  "at": "2026-11-17T20:37:20.101Z",
+  "base": "http://localhost:4200",
+  "v1SurfaceDecision": "workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT; FHE-19: the hi/bn passes drive the app Interface-language control",
+  "surfaces": [
+    {
+      "route": "/dashboard/home",
+      "label": "Home",
+      "enNodes": 0,
+      "hiNodes": 0,
+      "bnNodes": 0,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 0,
+        "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/learn",
+      "label": "Learn",
+      "enNodes": 6,
+      "hiNodes": 6,
+      "bnNodes": 6,
+      "hiSample": "खोजें और समझें",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 0,
+        "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/ask",
+      "label": "Ask",
+      "enNodes": 19,
+      "hiNodes": 19,
+      "bnNodes": 19,
+      "hiSample": "आप किसमें सहायता चाहते हैं?",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 0,
+        "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/progress",
+      "label": "Progress",
+      "enNodes": 9,
+      "hiNodes": 9,
+      "bnNodes": 9,
+      "hiSample": "आपके सीखने के प्रमाण",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 0,
+        "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/settings",
+      "label": "Personalization",
+      "enNodes": 22,
+      "hiNodes": 22,
+      "bnNodes": 22,
+      "hiSample": "Guide को अपनी ज़रूरत के अनुसार बनाएँ",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 0,
+        "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/privacy",
+      "label": "Privacy & consent",
+      "enNodes": 45,
+      "hiNodes": 45,
+      "bnNodes": 45,
+      "hiSample": "गोपनीयता और सहमति",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 20,
+        "bn": 20
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/notifications",
+      "label": "Notifications",
+      "enNodes": 6,
+      "hiNodes": 6,
+      "bnNodes": 6,
+      "hiSample": "सूचनाएँ",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 0,
+        "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/child",
+      "label": "Family (parent)",
+      "enNodes": 5,
+      "hiNodes": 5,
+      "bnNodes": 5,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 2,
+        "bn": 2
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/classes",
+      "label": "Classes (teacher)",
+      "enNodes": 4,
+      "hiNodes": 4,
+      "bnNodes": 4,
+      "hiSample": "आपकी कक्षाएँ",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 0,
+        "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/people",
+      "label": "People (organization)",
+      "enNodes": 5,
+      "hiNodes": 5,
+      "bnNodes": 5,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 2,
+        "bn": 2
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    }
+  ],
+  "totals": {
+    "flaggedNodes": 0
+  }
+}
