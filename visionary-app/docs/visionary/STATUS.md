@@ -2198,3 +2198,46 @@ transitions; the law is wired, and the accessibility behavior is by design.
 
 Gates: 855/855 tests (inventory regen last), eslint clean on touched files,
 production build clean. dev at `85629480`.
+
+## 2026-11-17 — Post-unification acceptance closure (in-app-browser, founder-directed)
+
+The founder directed finishing everything pending. Three items were genuinely
+pending on the frontend lane after the Apple passes; all three are now closed
+with live evidence:
+
+**1. CWV floor re-proven on the production build.** The entry floor was last
+measured before the palette unification; the passes touched 100+ files. The
+qa:lighthouse harness re-measured all four front doors on the prod bundle:
+`/` perf 0.88 · `/how-it-works` 1.0 · `/pricing` 1.0 · `/student` 0.9, a11y
+1.0 on all four, best-practices 0.96, zero regressions on the four
+2026-10-20 baseline audits. Gates PASS — the unification did not regress the
+floor. Evidence: docs/visionary/baseline/apple-polish-cwv/. (First run hit
+the known transient TargetCloseError; the retry passed with the custom
+evidence dir protecting the baselines.)
+
+**2. Production-build identity journey, post-unification.** Full journey on
+the 4199 preview (CSP gate verified: slash-less emulator origin in
+connect-src): register prod1794908495989@example.com → email verification via
+/auth/action → sign in → onboarding (Learner, Rowan) → dashboard → hard
+reload persistence → sign out → back to login. The prod bundle required the
+complete realm env at BUILD time (both config vars and
+VITE_FIREBASE_EMULATOR_TEST_ENABLED=true — omitting the latter sent the SDK
+to production Firebase and the honest fail-closed message appeared, exactly
+as designed). Tokens verified on the prod render: canvas #111318, text
+#eef0f5, action #aac7ff.
+
+**3. Full teacher↔learner loop on the migrated palette.** Mira (Teacher,
+dev-server realm): onboarded → created class Physics Foundations (join code
+VISION-F57FCA08, CreateClassModal verified on the new palette) → posted
+assignment "Forces and motion — first check" (published, accepting
+responses). Theo (Learner): onboarded → joined by code → opened the activity
+→ submitted a written response. Mira: saw "Review (1 · 1 new)" → graded
+92/100 with feedback → Returned. Theo: sees "92/100 · Teacher feedback ·
+Returned by your teacher". The loop is closed end-to-end on the
+Apple-unified surfaces, screenshots captured.
+
+**Governance:** all realm processes stopped, ports clear; evidence committed;
+dev unchanged at 3336bebf (no product code changed this pass — verification
+only). Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS;
+the remaining gaps are backend/hosting-gated (teaching adapter, RUM field
+data, hosted deployment) plus the founder's final signoff.
