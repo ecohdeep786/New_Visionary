@@ -363,18 +363,6 @@
     "SCOPE-06"
    ]
   },
-  "frontend/src/components/dashboard/DashboardLayout.jsx": {
-   "profile": "local-domain-workflow",
-   "state": "preview",
-   "execution": "browser-local",
-   "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
-   "followUp": [
-    "SCOPE-03",
-    "SCOPE-04",
-    "DATA-01",
-    "SYNC-02"
-   ]
-  },
   "frontend/src/components/dashboard/DashboardSidebar.jsx": {
    "profile": "local-domain-workflow",
    "state": "preview",
@@ -2728,16 +2716,6 @@
     "SCOPE-06"
    ]
   },
-  "frontend/src/components/dashboard/ConnectedAccountLayout.jsx": {
-   "profile": "client-presentation",
-   "state": "connected",
-   "execution": "client",
-   "reason": "Production account navigation delegates sign-out to the existing authenticated adapter. Learning routes do not mount the local preview workspace.",
-   "followUp": [
-    "SCOPE-06",
-    "PLAT-01"
-   ]
-  },
   "frontend/src/components/dashboard/ConnectedLearningHistory.jsx": {
    "profile": "authenticated-account",
    "state": "connected",
@@ -2797,6 +2775,28 @@
     "GET /api/account/learning/knowledge/models",
     "GET /api/account/learning/knowledge/projections",
     "POST /api/account/learning/knowledge/project"
+   ]
+  },
+  "frontend/src/components/dashboard/PreviewDashboardLayout.jsx": {
+   "profile": "local-domain-workflow",
+   "state": "preview",
+   "execution": "browser-local",
+   "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+   "followUp": [
+    "SCOPE-03",
+    "SCOPE-04",
+    "DATA-01",
+    "SYNC-02"
+   ]
+  },
+  "frontend/src/components/dashboard/ConnectedWorkspaceLayout.jsx": {
+   "profile": "client-presentation",
+   "state": "connected",
+   "execution": "client",
+   "reason": "The production composition root hosts the approved shell around server-owned account state and routes every area to a service-backed surface or an explicit unavailable room. It performs no server call itself; connected children own their endpoints.",
+   "followUp": [
+    "SCOPE-04",
+    "SYNC-02"
    ]
   }
  },

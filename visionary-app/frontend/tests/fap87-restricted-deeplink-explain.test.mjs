@@ -14,7 +14,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const navigation = readFileSync(new URL("../src/lib/dashboardNavigation.js", import.meta.url), "utf8");
-const layout = readFileSync(new URL("../src/components/dashboard/DashboardLayout.jsx", import.meta.url), "utf8");
+const layout = readFileSync(new URL("../src/components/dashboard/PreviewDashboardLayout.jsx", import.meta.url), "utf8");
 const page = readFileSync(new URL("../src/pages/dashboard/RoleAreaUnavailable.jsx", import.meta.url), "utf8");
 
 test("FAP-87: the section owner map covers exactly the restricted sections outside the organization areas", () => {

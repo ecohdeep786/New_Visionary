@@ -84,7 +84,7 @@ test("KAN-210 reveal law: FadeReveal snaps instantly under reduced motion", () =
 });
 
 test("KAN-210 shell law: opening and error states render inside the full shell chrome", () => {
-  const layout = read("src/components/dashboard/DashboardLayout.jsx");
+  const layout = read("src/components/dashboard/PreviewDashboardLayout.jsx");
   // The bare-window escapes are gone.
   assert.doesNotMatch(layout, /function unavailable\(message\)\{return <main data-font-surface="product" className="p-8"/, "the error no longer renders a bare main");
   assert.doesNotMatch(layout, /return <main data-font-surface="product" lang=\{locale\} className="p-8" role="status"/, "the opening state no longer renders a bare main");
@@ -102,6 +102,35 @@ test("KAN-210 shell law: opening and error states render inside the full shell c
   assert.match(layout, /<DashboardSidebar expanded=\{sidebarExpanded\}/, "the shell keeps the rail");
   assert.match(layout, /workspace-bottom-nav fixed/, "the shell keeps the phone bar");
   assert.match(layout, /const degradedPresented=presentNavigation\(user\?\.identity,'higher'/, "degraded navigation presents at the default tier");
+});
+
+test("KAN-210 shell law: the connected production composition keeps the full shell chrome", () => {
+  const connected = read("src/components/dashboard/ConnectedWorkspaceLayout.jsx");
+  // The production shell renders every state through shellFor — loading,
+  // unavailable and ready alike.
+  assert.match(connected, /function shellFor\(mainNode\)/, "the connected shell renders through one function");
+  assert.match(connected, /status === 'loading'[\s\S]{0,80}shellFor\(<div className="workspace-surface min-h-full overflow-hidden"><WorkspaceOpening/, "the connected opening state renders inside the shell");
+  const unavailableStart = connected.indexOf("function unavailable(message, onRetry)");
+  assert.ok(unavailableStart > -1, "the connected error state renders through shellFor");
+  const unavailable = connected.slice(unavailableStart, unavailableStart + 1200);
+  assert.match(unavailable, /return shellFor\(/, "the connected error state renders through shellFor");
+  assert.match(unavailable, /role="alert"/, "the connected failure message stays a live-region alert");
+  assert.match(unavailable, /recoveryCopy\('Retry workspace'\)/, "the connected panel offers the real retry action");
+  assert.doesNotMatch(unavailable, /remain on this device/, "the connected panel never claims device-local records");
+  assert.match(connected, /<DashboardTopbar userName=\{userName\}/, "the connected shell keeps the topbar");
+  assert.match(connected, /<DashboardSidebar expanded=\{sidebarExpanded\}/, "the connected shell keeps the rail");
+  assert.match(connected, /workspace-bottom-nav fixed/, "the connected shell keeps the phone bar");
+  assert.match(connected, /presentNavigation\(role, 'higher'/, "connected navigation presents at the default tier");
+});
+
+test("FHE-05 composition law: the production build never bundles or executes the preview workspace", () => {
+  const dispatcher = read("src/components/dashboard/DashboardLayout.jsx");
+  assert.match(dispatcher, /import\.meta\.env\.DEV\s*\?\s*<Suspense fallback=\{null\}><PreviewDashboardLayout \/><\/Suspense>\s*:\s*<ConnectedWorkspaceLayout \/>/, "dev gets the preview workspace; production gets the connected composition root");
+  assert.match(dispatcher, /lazy\(\(\) => import\('\.\/PreviewDashboardLayout'\)\)/, "the preview workspace is a lazy boundary the production graph never fetches");
+  assert.doesNotMatch(dispatcher, /workspaceService/, "the dispatcher itself touches no preview store");
+  const connected = read("src/components/dashboard/ConnectedWorkspaceLayout.jsx");
+  assert.doesNotMatch(connected, /workspaceService/, "the connected composition root never imports the preview store");
+  assert.match(connected, /ConnectedWorkspaceProvider/, "the connected shell derives its workspace context from the server-backed provider");
 });
 
 test("KAN-210 controls law: the personalization panel uses the workspace listbox, not native selects", () => {
@@ -157,7 +186,7 @@ test("KAN-210 switcher law: the topbar workspace switcher uses the listbox, not 
 });
 
 test("KAN-210 shell law: the restricted-area role gate renders inside the full shell chrome", () => {
-  const layout = read("src/components/dashboard/DashboardLayout.jsx");
+  const layout = read("src/components/dashboard/PreviewDashboardLayout.jsx");
   // The bare escape is gone: the gate no longer returns without shellFor.
   assert.doesNotMatch(layout, /dashboardAreaOwner\(section\)\) return <RoleAreaUnavailable \/>;/, "the gate no longer renders as a bare page outside the shell");
   const gate = layout.match(/if \(isOrganizationArea\(section\) \|\| dashboardAreaOwner\(section\)\) \{[\s\S]*?return shellFor\(<RoleAreaUnavailable \/>[\s\S]*?\);\r?\n    \}/);

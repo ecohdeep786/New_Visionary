@@ -7,6 +7,14 @@ import { roleNames } from '@/services/workspaceService';
 import WorkspaceListbox from '@/components/dashboard/WorkspaceListbox';
 import { Dialog,DialogContent,DialogTitle,DialogDescription } from '@/components/ui/dialog';
 export default function WorkspaceSwitcher(){
+ // The switcher manages the development preview's browser-local workspaces
+ // and role additions. The production shell derives workspaces from the
+ // server (ConnectedWorkspaceProvider); workspace switching returns with a
+ // server-reconciled selection, never through this preview store.
+ if (!import.meta.env.DEV) return null;
+ return <PreviewWorkspaceSwitcher/>;
+}
+function PreviewWorkspaceSwitcher(){
  const {workspaces,activeWorkspace,switchWorkspace,addRole,person,setAgeBand}=useAuth();const navigate=useNavigate();const [open,setOpen]=useState(false);const [role,setRole]=useState('teacher');const [adult,setAdult]=useState(false);const [error,setError]=useState('');
  const {data}=useWorkspace();const locale=data?.preferences.interfaceLocale||'en';const t=key=>workspaceText(locale,key);
  const availableRoles=person?.ageBand==='minor'?[]:Object.keys(roleNames).filter(key=>!workspaces.some(w=>w.role===key));

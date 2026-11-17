@@ -28,6 +28,14 @@ const STATUS_TEXT = {
 };
 
 export default function AudioPresence() {
+  // The Guide voice panel drafts conversations and appearance preferences in
+  // the development preview store. The production shell renders without it
+  // until its connected surface exists; text learning is unaffected.
+  if (!import.meta.env.DEV) return null;
+  return <PreviewAudioPresence />;
+}
+
+function PreviewAudioPresence() {
   const { ctx, data } = useWorkspace();
   const location = useLocation();
   const [mode, setMode] = useState(getVoiceMode());

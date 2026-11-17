@@ -2284,3 +2284,74 @@ frontend lane's post-unification acceptance is now closed across ALL surfaces.
 Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS (teaching/
 billing adapters, RUM/hosting, and the founder's final signoff remain
 founder-gated).
+
+## 2026-11-17 — FHE-05 slice 1: the production build hosts the connected workspace shell (server-owned authority)
+
+**The directive.** The V6 FHE program (`VISIONARY_FRONTEND_HEAD_PRODUCTION_EXECUTION_V6_2026-11-17.md`)
+ordered the production composition-root migration: the optimized build must host the
+approved workspace shell around server-owned account state, never the development
+preview store. Work order FHE-00 (journey matrix) + FHE-05 slice 1 + the FHE-06
+personal-workspace journey were completed on branch `zcode/fhe05-connected-shell`
+(worktree `nv-worktrees/zcode-fhe05-connected-shell`, base `786c0d1e`).
+
+**What changed (product code).**
+- `DashboardLayout.jsx` is now a two-line composition dispatcher: DEV renders the
+  preview workspace through a **lazy boundary**; the production build renders the new
+  `ConnectedWorkspaceLayout`. The preview module (and its browser-local store) is no
+  longer bundled or executed by the production graph — pinned by a new FHE-05
+  composition-law source test.
+- New `ConnectedWorkspaceLayout.jsx`: the approved shell chrome (skip link, topbar,
+  sidebar, phone nav, offline banner, focus management, KAN-210 degraded rooms) hosted
+  around server state; every routed area renders a service-backed connected surface
+  (home, workspaces, profile, privacy/consents, security, saved learning, plans) or an
+  explicit unavailable room. The flat `ConnectedAccountLayout` is superseded and removed.
+- New `ConnectedWorkspaceProvider` + `connectedWorkspaceContext.js`: the workspace
+  context derives ONLY from server records — `GET /api/overview/workspaces` (validated
+  client), idempotent `POST /api/account/workspace/provision` (command id held across
+  uncertain retries), readback confirmation, selection validated against the server
+  list. No browser-local store participates.
+- `useWorkspace()` is a mode dispatcher: dev keeps the snapshot behavior; production
+  returns the connected projection (same shape). Preview-store derivations in shared
+  chrome (`organizationAccess`, `getStagePresentation`, `WorkspaceSwitcher`,
+  `AudioPresence`, `useStudentData`/base44) are now DEV-gated — the production shell
+  presents the account's own navigation at the default tier with no policy filter
+  (KAN-210 law) and honest rooms until each service lane lands.
+- KAN-210 shell law now enforced on BOTH composition roots; FAP-75/87/89 source reads
+  follow the extracted preview file. Surface audit + review registry regenerated
+  (1684 controls; new files registered, obsolete entries removed).
+
+**Evidence.** Unit: `connected-workspace-context.test.mjs` (8 cases: idempotent
+provision, stable command id across retries, 403-fallback provisioning, account-change
+abort, list-validated selection, honest preparation state). Full suite: **865/865**
+(worktree, Node 22). Lint 0, typecheck 0, `vite build` OK.
+
+**L2 locally-integrated journey (production build, real registered services).**
+Isolated fenced realm — portable PG 16.9 on 127.0.0.1:5434 (db
+`visionary_data_test_kan42`, schema `data02_f74b48d43d0b6cd22d87503edb59eb0b`, least-
+privilege runtime role `realm_fhe05` — the overview store REFUSES privileged roles by
+design; Prisma migrations applied), Auth+Firestore emulators on 9098/8081 (project
+`demo-visionary-kan42`), fenced backend (`NODE_ENV=test`, `DATA_OVERVIEW_*` +
+`DATA_WORKSPACE_PROVISIONING_ENABLED`) on 3002 with `AUTH_PUBLIC_ORIGIN` pinned to the
+preview origin, prod bundle on 4200 with the CSP gate serving the emulator origin.
+Real journey in the app browser: register → verify via the app's own `/auth/action`
+(oobCode) → sign in (origin-pinned session exchange) → 5-step Learner onboarding →
+**the production dashboard renders the connected shell** → the provider's 403-fallback
+provisioned the personal workspace → readback → `Workspaces` lists "Personal
+workspace · Owner" from the server → `Saved learning` shows the server-backed honest
+empty state → `Practice` shows the honest unavailable room inside the shell → hard
+reload re-resolves. **SQL readback:** exactly 1 person, 1 workspace (`isPersonal=t`),
+1 OWNER membership — unchanged across loads and reloads (idempotent). Screenshots:
+connected home, server workspaces, reload persistence (saved under
+`C:/Users/Administrator/nv-tools/fhe05-shots/`).
+
+**Honest states proven on the way:** the store's least-privilege identity guard and
+the provisioning flag both fail closed with typed 503s that the shell renders as the
+retryable KAN-210 room (observed live before the realm env was complete) — no false
+workspace, no local fallback.
+
+**Governance.** The other agent's active realm on 4199/3001/9099/8080 was left
+untouched; this slice's realm is fully isolated (5434/9098/8081/3002/4200). Screenshots
+and realm env remain outside the repo. Next eligible order: FHE-05 slice 2 (mobile
+viewport + keyboard walk of the connected shell), then FHE-07/08 honest-content and
+teaching-lane handoffs per `docs/visionary/FHE_V6_JOURNEY_MATRIX.md`. QA/Codex review
+pending for the candidate commit; nothing merged to dev by this lane.

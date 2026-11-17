@@ -12,7 +12,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const navigation = readFileSync(new URL("../src/lib/dashboardNavigation.js", import.meta.url), "utf8");
-const layout = readFileSync(new URL("../src/components/dashboard/DashboardLayout.jsx", import.meta.url), "utf8");
+const layout = readFileSync(new URL("../src/components/dashboard/PreviewDashboardLayout.jsx", import.meta.url), "utf8");
 const page = readFileSync(new URL("../src/pages/dashboard/RoleAreaUnavailable.jsx", import.meta.url), "utf8");
 
 test("the organization-area selector covers exactly the coded organization-only routes", () => {

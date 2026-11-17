@@ -36,7 +36,10 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const role = ctx?.role || user?.identity;
   const locale=workspaceData?.preferences.interfaceLocale||'en';const t=key=>workspaceText(locale,key);
   const searchPrompt=t('search_'+role);
-  let policy=null;try{if(ctx?.role==='organization')policy=organizationAccess(ctx);}catch{policy={permissions:[]};}
+  /* Organization policy is a development-preview derivation over the
+   * browser-local store; the connected shell presents navigation unfiltered
+   * at the default tier until the organization service lane lands. */
+  let policy=null;try{if(import.meta.env.DEV&&ctx?.role==='organization')policy=organizationAccess(ctx);}catch{policy={permissions:[]};}
   const allowed=to=>!policy||organizationPathAllowed(policy,to);
   const connect = role === "student" ? { label: "Join a class", to: "/dashboard/classes?join=1" }
     : role === "professional" ? { label: "Set a career goal", to: "/dashboard/career" }
@@ -47,7 +50,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const destinations = [...navigationFor(role,locale), ...secondaryNavigation(role,locale), { label: t("profile"), to: "/dashboard/profile" }, { label: t("settings"), to: "/dashboard/settings" },{label:t('support'),to:'/dashboard/support'},
     ...(role === 'student' ? student.topics.map(t => ({ label: t.name, detail: t.subject, to: "/dashboard/learn/" + t.id })) : [])].filter(item=>allowed(item.to));
   const results = destinations.filter((item,index,all) => all.findIndex(destination => destination.to === item.to) === index).filter(item => (item.label + " " + item.to + " " + (item.detail || "")).toLowerCase().includes(query.trim().toLowerCase())).slice(0, 12);
-  const openResult = (to) => { try{if(ctx?.role==='organization'&&!organizationPathAllowed(organizationAccess(ctx),to))throw Error(shellCopy(locale).permissionDenied);searchNavigated.current=true;setSearchError('');setSearchOpen(false);setQuery('');navigate(to);}catch(error){setSearchError(error.message);} };
+  const openResult = (to) => { try{if(policy&&!organizationPathAllowed(policy,to))throw Error(shellCopy(locale).permissionDenied);searchNavigated.current=true;setSearchError('');setSearchOpen(false);setQuery('');navigate(to);}catch(error){setSearchError(error.message);} };
   useEffect(() => {
     const onShortcut = event => {
       if (event.isComposing || event.defaultPrevented) return;
