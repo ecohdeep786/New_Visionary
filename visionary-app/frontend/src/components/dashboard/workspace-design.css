@@ -660,10 +660,10 @@ body:has(.visionary-workspace) .workspace-voice-preview-glow {display: none}
     & :is([class~="bg-[var(--v-border)]"],[class~="bg-[#e4e4e4]"]) {background-color: var(--v-raised)}
     & :is([class~="border-[var(--v-border)]"],[class~="border-[var(--v-border)]/60"],[class~="border-[var(--v-border)]/50"],[class~="border-[#e2e8f0]"],[class~="border-[#e6e6e6]"]) {border-color: var(--v-border)}
     & [class~="border-[#6e6e73]"] {border-color: var(--v-outline)}
-    & :is([class~="border-[var(--v-action)]"],[class~="border-[#3367d6]"],[class~="border-[var(--v-action)]"],[class~="border-[#0055d4]"]) {border-color: var(--v-action)}
+    & :is([class~="border-[var(--v-action)]"],[class~="border-[#3367d6]"],[class~="border-[#0071e3]"],[class~="border-[#0055d4]"]) {border-color: var(--v-action)}
     & :is([class~="hover:bg-[#eef5ff]"],[class~="hover:bg-[#ffffff]"],[class~="hover:bg-[#eceef1]"],[class~="hover:bg-[#1d1d1f]/5"],[class~="hover:bg-[var(--v-border)]"]):hover {background-color: var(--v-soft)}
     & :is([class~="bg-[var(--v-action)]"],[class~="bg-[#3367d6]"],[class~="bg-[#0055d4]"],[class~="bg-[#1d1d1f]"]) {background-color: var(--v-action);color: var(--v-on-action)}
-    & :is([class~="hover:bg-[#3367d6]"],[class~="hover:bg-[#0055d4]"],[class~="hover:bg-[#0044b0]"],[class~="hover:bg-[#1d1d1f]"]):hover:not(:disabled) {background-color: var(--v-action-hover);color: var(--v-on-action)}
+    & :is([class~="hover:bg-[#3367d6]"],[class~="hover:bg-[#0077ed]"],[class~="hover:bg-[#0055d4]"],[class~="hover:bg-[#0044b0]"],[class~="hover:bg-[#1d1d1f]"]):hover:not(:disabled) {background-color: var(--v-action-hover);color: var(--v-on-action)}
     & [class~="bg-[#e6f4ea]"] {background-color: var(--v-success-soft)}
     & :is([class~="text-[#188038]"],[class~="text-[#146c2e]"],[class~="text-[#137333]"]) {color: var(--v-success)}
     & [class~="bg-[#fce8e6]"] {background-color: var(--v-error-soft)}

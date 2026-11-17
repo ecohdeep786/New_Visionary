@@ -66,7 +66,7 @@ export default function DailyBriefing({ studentData, userName }) {
 
       <Link
         to="/dashboard/learn"
-        className="flex items-center gap-2 self-start px-6 py-3 bg-[#0071E3] text-white rounded-full text-sm font-semibold hover:bg-[#3367d6] active:scale-95 transition-colors w-fit"
+        className="flex items-center gap-2 self-start px-6 py-3 bg-[#0071E3] text-white rounded-full text-sm font-semibold hover:bg-[#0077ed] active:scale-95 transition-colors w-fit"
       >
         Start today's plan <ArrowRight className="w-4 h-4" />
       </Link>

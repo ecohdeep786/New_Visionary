@@ -10,7 +10,11 @@
  *
  *  2026-11-17: the founder directed the workspace palette unification to the
   Apple law (Google Material literals migrated to #6e6e73/#1d1d1f/#d2d2d7/
-  #f5f5f7/#0071e3 — 893 replacements across 91 files). The law structure is
+  #f5f5f7/#0071e3 — 893 replacements across 91 files, then a follow-up pass
+  closed the residuals the first sweep's scope missed: the onboarding wizard,
+  the auth-shell footer, the Razorpay checkout theme, the guide fallback, and
+  the #3367d6 hover/active blues → #0077ed hover (the --v-action-hover law) /
+  #0071e3 action). The law structure is
   unchanged; the measured literals below are the post-migration inventory.
 
   This test is the enforcement: scan dashboard source for palette utilities,
@@ -140,6 +144,8 @@ test("FAP-80 additions target the semantic tokens, not substitute literals", () 
     ['divide-[#e2e8f0]', "border-color: var(--v-border)"],
     ['ring-[#0071e3]', "--tw-ring-color: var(--v-action)"],
     ['ring-[#d2d2d7]', "--tw-ring-color: var(--v-border)"],
+    ['hover:bg-[#0077ed]', "background-color: var(--v-action-hover)"],
+    ['border-[#0071e3]', "border-color: var(--v-action)"],
   ];;
   for (const [token, declaration] of required) {
     const ruleLine = darkSegment.split("\n").find((line) => line.includes(`class~="${token}"`) && line.includes(declaration));

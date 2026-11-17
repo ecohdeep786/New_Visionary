@@ -28,7 +28,7 @@ export default function ChallengeCard({ title, subject, mastery, adaptLevel, que
       </div>
 
       <div className="flex items-center gap-2 mt-auto pt-2">
-        <button className="flex-1 flex items-center justify-center gap-2 h-10 bg-[#0071E3] text-white rounded-xl text-sm font-medium hover:bg-[#3367d6] transition-colors">
+        <button className="flex-1 flex items-center justify-center gap-2 h-10 bg-[#0071E3] text-white rounded-xl text-sm font-medium hover:bg-[#0077ed] transition-colors">
           Start Challenge <ArrowRight className="w-4 h-4" />
         </button>
         <button className="flex items-center justify-center gap-1.5 w-10 h-10 border border-[#d2d2d7] text-[#6e6e73] rounded-xl hover:bg-[#ffffff] transition-colors" title="Re-teach me this">

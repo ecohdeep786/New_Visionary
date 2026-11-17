@@ -33,7 +33,7 @@ export function openRazorpay(checkout, { profile, beforeOpen, onReady }) {
   return new Promise((resolve, reject) => {
     let failure = false;
     const popup = new window.Razorpay({ key: checkout.keyId, subscription_id: checkout.subscriptionId, name: 'Visionary', description: `${checkout.offer.name} · ${checkout.offer.interval === 'annual' ? 'Yearly' : 'Monthly'} · Test mode`,
-      prefill: { name: profile.full_name || '', email: profile.email || '' }, theme: { color: '#0b57d0' },
+      prefill: { name: profile.full_name || '', email: profile.email || '' }, theme: { color: '#0071e3' },
       handler: result => resolve(result), modal: { ondismiss: () => resolve({ dismissed: true, failed: failure }) } });
     popup.on('payment.failed', () => { failure = true; });
     try { beforeOpen(); onReady(popup); popup.open(); } catch (error) { reject(error); }

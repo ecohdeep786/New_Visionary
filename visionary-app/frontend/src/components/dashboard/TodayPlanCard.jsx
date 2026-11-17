@@ -29,7 +29,7 @@ export default function TodayPlanCard({ topics }) {
               </div>
               <Link
                 to={`/dashboard/learn/${t.id}`}
-                className="flex items-center gap-1 px-3 py-1.5 bg-[#0071E3] text-white rounded-full text-xs font-semibold hover:bg-[#3367d6] active:scale-95 transition-colors shrink-0"
+                className="flex items-center gap-1 px-3 py-1.5 bg-[#0071E3] text-white rounded-full text-xs font-semibold hover:bg-[#0077ed] active:scale-95 transition-colors shrink-0"
               >
                 {t.status === "needs-review" ? "Review" : "Continue"} <ArrowRight className="w-3 h-3" />
               </Link>

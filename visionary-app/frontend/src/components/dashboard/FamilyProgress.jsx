@@ -61,7 +61,7 @@ function ProgressCard({ link, logs, window, accent }) {
   return (
     <article className="rounded-2xl border border-[#d2d2d7] bg-white p-6">
       <div className="flex flex-wrap items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eef5ff] text-sm font-medium text-[#3367d6]">{link.child_name?.charAt(0)?.toUpperCase() || "C"}</div>
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eef5ff] text-sm font-medium text-[#0071e3]">{link.child_name?.charAt(0)?.toUpperCase() || "C"}</div>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-medium text-[#1d1d1f]">{link.child_name}</p>
           <p className="truncate text-xs text-[#6e6e73]">{link.child_email}</p>

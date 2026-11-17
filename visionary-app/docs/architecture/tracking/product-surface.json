@@ -25720,7 +25720,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "f338dc9d9ccda90465a3821abd51287b2e3c635083d739d6a0eb573695a4a4a2",
+      "declarationSha256": "cbcb88202b6ec5e8858477bd7c261161f3172ef2d0528487ccdf5b5f9c0750d1",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -32644,7 +32644,7 @@
       "calls": [],
       "destination": "/dashboard/learn",
       "disabled": null,
-      "declarationSha256": "ee0da25caf66fad3796d7af3f8d04ca0cbca833efdc282c55a37c2720c5c9e7c",
+      "declarationSha256": "9fe4ccf1650e653e8e98b0b24b5f9499b94f62508a26e98c78eb998d308f002d",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -35589,7 +35589,7 @@
       "calls": [],
       "destination": "/dashboard/ask",
       "disabled": null,
-      "declarationSha256": "b30d03784241a9e90acb43b8846f8c764799807cc41e417ca05bfa628b71a865",
+      "declarationSha256": "137dc504dfab9a37bf81043233a785a50127759e8f9df5bb723f6babaa5f677d",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -45538,7 +45538,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "5b9c72bc1ad9f8519168b85440c942a28d1862d1a00c560fd61cc53652c1408b",
+      "declarationSha256": "0b60cc47a205cd703b76cb8bd24fa19aaa291f0174f763582b86710e649e9d87",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -53366,7 +53366,7 @@
       ],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "f3f1f7d888f783544f073c719f320b152232c9a220dfc4dbaebbe7ddd97d535f",
+      "declarationSha256": "4258ea156842a7d9eccebd349940c9fb3ebb4ddc3d6ccc60fc751122051ecdd6",
       "routeIds": [],
       "reviewProfile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -53766,7 +53766,7 @@
         "value.trim().slice"
       ],
       "disabled": null,
-      "declarationSha256": "4808a2de74548441e9c58b2832311b3788a970c490bf440d546ea0849e353e79",
+      "declarationSha256": "765dbdf007b3830e73d97196f1ea20ec319548aaec32d8211c8a70630597daf9",
       "routeIds": [
         "/onboarding"
       ],
@@ -84909,7 +84909,7 @@
     },
     {
       "file": "frontend/src/components/AuthLayout.jsx",
-      "sourceSha256": "33a55c514df0295dbc40619453d91dbe4e823d1f756cc72e0f298a0a2993c788"
+      "sourceSha256": "6f100f4c87db3177f8a4cc93ad422eed39e98aeb0e633c130b03a82d6f5dac77"
     },
     {
       "file": "frontend/src/components/dashboard/AchievementsCard.jsx",
@@ -84957,7 +84957,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/ChallengeCard.jsx",
-      "sourceSha256": "817146452644e3106a1adc4ebb55ecc8426e0d9c805d6bad77bcfa6cad82b106"
+      "sourceSha256": "0b2453991923521a3246c8e8102bbbd02cf1209320fe164c394c43a4da47317a"
     },
     {
       "file": "frontend/src/components/dashboard/ClassCurriculum.jsx",
@@ -85049,7 +85049,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/DailyBriefing.jsx",
-      "sourceSha256": "0e99ea80652ccabc5e74d495fdb224d6d7286a8fd3013e2d1b1a7c71349dcfda"
+      "sourceSha256": "3e0a33a3c381f94041b74cddfb2b4a69ea12c0c95f71a6ed85eadf025408cbe1"
     },
     {
       "file": "frontend/src/components/dashboard/DailyProgressStrip.jsx",
@@ -85089,7 +85089,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/FamilyProgress.jsx",
-      "sourceSha256": "aeb501102a04b0759cd88179631df56452de3940774b1987a0f468549ac7545e"
+      "sourceSha256": "fe5151b6cc282b3ccbada86a8006ad84b2684b2c519e2316882b3c6516e4932d"
     },
     {
       "file": "frontend/src/components/dashboard/FeedbackPrompt.jsx",
@@ -85097,7 +85097,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/FloatingAskButton.jsx",
-      "sourceSha256": "c943a43575d258ba46870aa2d47398e59d0277ee1282123b3fc731c724b0cdb0"
+      "sourceSha256": "a836a4c17c4f0c4aaf741aaeee854207bac1aa86f9a8643eff96dc299b9855e7"
     },
     {
       "file": "frontend/src/components/dashboard/GamificationSection.jsx",
@@ -85109,7 +85109,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/GuideActivity.jsx",
-      "sourceSha256": "7b47f06fdc0901cb3614c7802145ac083f6d1b4d545056ba4df014474aad2d07"
+      "sourceSha256": "dd01e39a158e3cd926455b0547e3f7358bfe1b1b87900b1251841bfd3f623c21"
     },
     {
       "file": "frontend/src/components/dashboard/GuideEntry.jsx",
@@ -85369,7 +85369,7 @@
     },
     {
       "file": "frontend/src/components/dashboard/TodayPlanCard.jsx",
-      "sourceSha256": "81fb9bdb8aa3b57fd0e2dd1358c15c7e4a1cad61dc3ff80af24ae2dc0b63abfc"
+      "sourceSha256": "d32409889ac5650969936084af2d8b3930ef88cd532c90b578c9c8562f38a4b1"
     },
     {
       "file": "frontend/src/components/dashboard/UnderstandingMeter.jsx",
@@ -85653,7 +85653,7 @@
     },
     {
       "file": "frontend/src/components/onboarding/StarRating.jsx",
-      "sourceSha256": "d997727ce40ac9410380f6b4cba55f5119d609095470fb5d3470ccb842c3e5ac"
+      "sourceSha256": "ea45d2aa52d4fa3dc364d4a154a99e0e85c18c947a43cede8077c5e379374622"
     },
     {
       "file": "frontend/src/components/onboarding/stepConfigs.jsx",
@@ -85661,7 +85661,7 @@
     },
     {
       "file": "frontend/src/components/onboarding/steps/AGIIntro.jsx",
-      "sourceSha256": "516e5c86e59b6f68a25925e130267357ccfd66954d148641ba5bbaf3546692fa"
+      "sourceSha256": "c5f5177a2397fadf6efdc3516c16de818e636dff9a099c8da2189a984e037b17"
     },
     {
       "file": "frontend/src/components/onboarding/steps/IdentitySelection.jsx",
@@ -85669,27 +85669,27 @@
     },
     {
       "file": "frontend/src/components/onboarding/steps/org/OrgInfo.jsx",
-      "sourceSha256": "80b261b14182492e48f021be353b8f1f45151c7e62493dbfb9145db82fc92e59"
+      "sourceSha256": "d35c8026fae88701ce153603383f15b909c5739b43f4f3bc17e4c760bc100035"
     },
     {
       "file": "frontend/src/components/onboarding/steps/student/CurriculumSummary.jsx",
-      "sourceSha256": "430ad936fcf59985ad23fb188457e3bec38ca489362c9289289e7ed3664fc790"
+      "sourceSha256": "40842928c6264336de817d2660c1f0980053f2ab38128c2d1ce972374ec27484"
     },
     {
       "file": "frontend/src/components/onboarding/steps/student/StudentContextForm.jsx",
-      "sourceSha256": "d649766ef289bf961aa1e52f46e8dcae28477b518e75c83cd05ec8d4e950e47a"
+      "sourceSha256": "f7980443fa8609e066a315659d756324d5673ae47efb5e107eca467bf455b857"
     },
     {
       "file": "frontend/src/components/onboarding/steps/student/StudyRoutine.jsx",
-      "sourceSha256": "f4fb23ff906e0286c3071c0c83beabbbfe07422352d4d5fed57e860e51dc27a9"
+      "sourceSha256": "cdf4c5c665b647206974c5165edf77de9fc6f77d697386598459c69e0b572112"
     },
     {
       "file": "frontend/src/components/onboarding/steps/student/SubjectConfidence.jsx",
-      "sourceSha256": "cd7c28c421dd6129ef04e2b547058a1655cbcf1e267c65812f868a50ea4975cd"
+      "sourceSha256": "5a80f623c8e3b2a7f0a9c417e26e0a7bd7bde7dab50d9eb19e9e5bef3b647cd6"
     },
     {
       "file": "frontend/src/components/onboarding/SubjectContextInput.jsx",
-      "sourceSha256": "e64b4d3af2f0c82a4ae7b6054e8703637cf0b3e2200d30110b08c6c251e44d78"
+      "sourceSha256": "b1fcbd619ac0c2ae1aa2198807440f8fddf9351e97e78842832ce4ea7dc0ab91"
     },
     {
       "file": "frontend/src/components/OnboardingGate.jsx",
@@ -86277,7 +86277,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Connections.jsx",
-      "sourceSha256": "b858ecd7c44fe080e3f5479294687e71bc6ee428e36d46f4a900d5240e95a409"
+      "sourceSha256": "7959c8d35c7d7f58476302a4a021b2294b329c6b0ce0eae6a286071b07b1a28b"
     },
     {
       "file": "frontend/src/pages/dashboard/DashboardHome.jsx",
@@ -86289,7 +86289,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Explore.jsx",
-      "sourceSha256": "38c19adc78fc6698abc48ec2a785c9d5c4b98be18532e08a29d91a6673c50fe3"
+      "sourceSha256": "32a4f9ab2803dc135ba14a78e4ac58759b5019915275a9a4c369968242a928ca"
     },
     {
       "file": "frontend/src/pages/dashboard/Guide.jsx",
@@ -86389,7 +86389,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/RoleWorkspace.jsx",
-      "sourceSha256": "b972bee1cf4760e96327047c719fbf37d8ef6d57007939a742f31329ed07b22e"
+      "sourceSha256": "6e6b153e2f16128a25ea34f499252ae3759b5baa566052ba14ff517023b8ad08"
     },
     {
       "file": "frontend/src/pages/dashboard/Settings.jsx",
@@ -86553,7 +86553,7 @@
     },
     {
       "file": "frontend/src/services/billingClient.js",
-      "sourceSha256": "2665f40e48040689b3bec3bc2fa6952a02adf03557cf286c6ac9d94c312e2270"
+      "sourceSha256": "d5599c4e394af00a4ee9c42c3c249dbe3352658e02391daf7392c7bee3211aaa"
     },
     {
       "file": "frontend/src/services/classCurriculumService.js",

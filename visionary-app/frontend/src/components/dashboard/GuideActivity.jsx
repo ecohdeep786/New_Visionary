@@ -85,7 +85,7 @@ export default function GuideActivity({
         })}><option value="en">English</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option></select></label><label className="text-xs text-[#6e6e73]">{copy("Representation")}<select aria-label={copy("Representation")} className="v-field mt-1" value={session.representation} onChange={e => update({
           representation: e.target.value
         })}><option value="interactive">{copy("Interactive")}</option><option value="text">{copy("Text alternative")}</option></select></label></div>
-  <ol aria-label={copy("Learning stages")} className="flex flex-wrap gap-2">{stages.map((s, i) => <li key={s} aria-current={s === stage ? 'step' : undefined} className={`rounded-full px-2.5 py-1 text-xs ${s === stage ? 'bg-[#3367d6] text-white' : 'bg-white text-[#6e6e73]'}`}>{i + 1}. {s === 'diagnosing' ? copy("Start") : copy(s[0].toUpperCase() + s.slice(1))}</li>)}</ol>
+  <ol aria-label={copy("Learning stages")} className="flex flex-wrap gap-2">{stages.map((s, i) => <li key={s} aria-current={s === stage ? 'step' : undefined} className={`rounded-full px-2.5 py-1 text-xs ${s === stage ? 'bg-[#0071e3] text-white' : 'bg-white text-[#6e6e73]'}`}>{i + 1}. {s === 'diagnosing' ? copy("Start") : copy(s[0].toUpperCase() + s.slice(1))}</li>)}</ol>
   {session.interrupted && <div className="v-notice"><p>{copy("Your activity is paused while you ask. Your position and controls are saved.")}</p><button className="v-button mt-2" onClick={() => update({
         interrupted: false
       })}>{copy("That makes sense \xB7 Resume")}</button></div>}
@@ -123,9 +123,9 @@ export default function GuideActivity({
           })}><RotateCcw size={16} />{copy("Reset model")}</button>
    </> : session.journeyId === 'fractions' ? <><div aria-label={copy("{count} eighths selected", {
             count: session.canvas.size
-          })} className="my-8 flex h-16 overflow-hidden rounded-lg border border-[#3367d6]">{Array.from({
+          })} className="my-8 flex h-16 overflow-hidden rounded-lg border border-[#0071e3]">{Array.from({
               length: 8
-            }, (_, i) => <div key={i} className={`flex-1 border-r border-[#3367d6] ${i < session.canvas.size ? 'bg-[#eef5ff]' : 'bg-white'}`} />)}</div><label className="text-sm">{session.canvas.size}/8<input aria-label={copy("Selected eighths")} className="mt-4 w-full" type="range" min="0" max="8" value={session.canvas.size} onChange={e => update({
+            }, (_, i) => <div key={i} className={`flex-1 border-r border-[#0071e3] ${i < session.canvas.size ? 'bg-[#eef5ff]' : 'bg-white'}`} />)}</div><label className="text-sm">{session.canvas.size}/8<input aria-label={copy("Selected eighths")} className="mt-4 w-full" type="range" min="0" max="8" value={session.canvas.size} onChange={e => update({
               canvas: {
                 ...session.canvas,
                 size: Number(e.target.value)

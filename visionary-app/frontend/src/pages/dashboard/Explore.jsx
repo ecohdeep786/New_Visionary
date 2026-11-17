@@ -86,7 +86,7 @@ function LegacyExplore() {
             backfaceVisibility: "hidden",
             display: "grid",
             placeItems: "center",
-            color: "#3367d6",
+            color: "#0071e3",
             fontSize: 24
           }}>{side}</div>)}</div>
     </div><div className="space-y-6 p-6 sm:p-8"><label className="block text-sm font-medium">{copy("Side length")} <span className="float-right text-[#0071e3]">{copy("{side} units",{side})}</span><input type="range" min="1" max="8" step="1" value={side} onChange={e => setSide(Number(e.target.value))} className="mt-4 w-full accent-[#0071e3]" /></label><label className="block text-sm font-medium">{copy("Rotate the cube")} <span className="float-right text-[#6e6e73]">{rotation}°</span><input type="range" min="0" max="360" value={rotation} onChange={e => setRotation(Number(e.target.value))} className="mt-4 w-full accent-[#0071e3]" /></label><div className="rounded-xl bg-[#ffffff] p-5" aria-live="polite"><p className="text-xs text-[#6e6e73]">{copy("Volume = side \xD7 side \xD7 side")}</p><p className="mt-2 text-xl font-medium">{side} × {side} × {side} = {side ** 3}</p><p className="mt-1 text-xs text-[#6e6e73]">{copy("cubic units")}</p></div><p className="text-sm leading-6 text-[#6e6e73]">{copy("A cube grows in three directions. Doubling the side makes the volume 2 \xD7 2 \xD7 2 = 8 times larger.")}</p><button onClick={() => {
