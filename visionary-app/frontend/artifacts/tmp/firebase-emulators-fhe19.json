@@ -1,1 +1,0 @@
-{"emulators":{"auth":{"port":9098,"host":"localhost"},"firestore":{"port":8081,"host":"localhost"}},"single_project_mode":true}
