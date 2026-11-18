@@ -106,7 +106,7 @@ export const COMPARISON = [
 ];
 
 export const PERSONA_PLANS = [
-  { persona: "Student", plan: "Start or Personal", note: "Begin free. Upgrade when you're ready.", to: "/student" },
+  { persona: "Student", plan: "Start or Personal", note: "Begin free. Upgrade when you’re ready.", to: "/student" },
   { persona: "Teacher", plan: "Personal", note: "One classroom, one intelligence.", to: "/teacher" },
   { persona: "Parent", plan: "Family", note: "Every child, one plan.", to: "/parent" },
   { persona: "Professional", plan: "Personal", note: "Skills that compound.", to: "/professional" },
