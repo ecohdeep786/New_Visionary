@@ -1,0 +1,206 @@
+{
+  "at": "2026-11-17T21:15:31.139Z",
+  "base": "http://localhost:4200",
+  "levels": [
+    "200%",
+    "400%"
+  ],
+  "surfaces": [
+    {
+      "level": "200%",
+      "signedIn": false,
+      "route": "/",
+      "overflow": 0,
+      "h1": "One intelligencefor students.One intelligenc",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": false,
+      "route": "/login",
+      "overflow": 0,
+      "h1": "Sign in to Visionary",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": false,
+      "route": "/register",
+      "overflow": 0,
+      "h1": "Create a Visionary account",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": false,
+      "route": "/pricing",
+      "overflow": 0,
+      "h1": "Plans for every journey.",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": false,
+      "route": "/student",
+      "overflow": 0,
+      "h1": "Learning,Learning, to master, to build.",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": true,
+      "route": "/dashboard/home",
+      "overflow": 0,
+      "h1": "आपका Visionary खाता",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": true,
+      "route": "/dashboard/profile",
+      "overflow": 0,
+      "h1": "आपकी प्रोफ़ाइल",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": true,
+      "route": "/dashboard/connections",
+      "overflow": 0,
+      "h1": "कार्यक्षेत्र",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": true,
+      "route": "/dashboard/learn",
+      "overflow": 0,
+      "h1": "सहेजी गई सीख",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": true,
+      "route": "/dashboard/privacy",
+      "overflow": 0,
+      "h1": "Approved data policy",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": true,
+      "route": "/dashboard/settings",
+      "overflow": 0,
+      "h1": "खाता सुरक्षा",
+      "offender": null
+    },
+    {
+      "level": "200%",
+      "signedIn": true,
+      "route": "/dashboard/subscription",
+      "overflow": 0,
+      "h1": "Plans & payments",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": false,
+      "route": "/",
+      "overflow": 0,
+      "h1": "One intelligencefor students.One intelligenc",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": false,
+      "route": "/login",
+      "overflow": 0,
+      "h1": "Sign in to Visionary",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": false,
+      "route": "/register",
+      "overflow": 0,
+      "h1": "Create a Visionary account",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": false,
+      "route": "/pricing",
+      "overflow": 0,
+      "h1": "Plans for every journey.",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": false,
+      "route": "/student",
+      "overflow": 0,
+      "h1": "Learning,Learning, to master, to build.",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": true,
+      "route": "/dashboard/home",
+      "overflow": 0,
+      "h1": "आपका Visionary खाता",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": true,
+      "route": "/dashboard/profile",
+      "overflow": 0,
+      "h1": "आपकी प्रोफ़ाइल",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": true,
+      "route": "/dashboard/connections",
+      "overflow": 0,
+      "h1": "कार्यक्षेत्र",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": true,
+      "route": "/dashboard/learn",
+      "overflow": 0,
+      "h1": "सहेजी गई सीख",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": true,
+      "route": "/dashboard/privacy",
+      "overflow": 0,
+      "h1": "Approved data policy",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": true,
+      "route": "/dashboard/settings",
+      "overflow": 0,
+      "h1": "खाता सुरक्षा",
+      "offender": null
+    },
+    {
+      "level": "400%",
+      "signedIn": true,
+      "route": "/dashboard/subscription",
+      "overflow": 0,
+      "h1": "Plans & payments",
+      "offender": null
+    }
+  ],
+  "totals": {
+    "surfacesAudited": 24,
+    "overflowingSurfaces": 0
+  }
+}

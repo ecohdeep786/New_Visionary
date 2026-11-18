@@ -2576,3 +2576,45 @@ by the audit's bn pass.
 `ConnectedBilling` translations with approved commercial copy, and the remaining
 FHE-19 items (200% zoom walk, reduced-motion verification) — the audit instrument
 now exists to measure all of them.
+
+### FHE-19 backend handoff (recorded with the receipt): one field to enable the switcher
+
+**Owner:** backend lane (FirebaseProductModule — `updateProfile` in
+`firebase-product.service.ts`). **Contract change:** extend `PATCH /api/auth/profile`
+to accept `preferred_language` as a third updatable field, bounded to the onboarding
+language labels (the same value set onboarding writes — e.g. `English`, `Hindi`,
+`Bengali`, …; any string ≤ 40 characters; the existing generic text validation
+applies). The frontend control (`ConnectedProfile`, shipped disabled in this slice)
+is then enabled as-is: `updateUser({ preferred_language: next })` with the standard
+account fence, `expectedUserId`, and the conflict copy already written. Server
+invariants: the value is a preference, never an authorization; the profile response
+is the receipt; concurrent edits keep the existing `expectedProfileName`-style
+conflict law. **Acceptance:** the L2 realm journey switches the interface language
+from the profile surface, the connected shell re-derives the locale from the saved
+profile (no reload), and the audit's hi/bn passes drive the same control.
+
+### FHE-19 verification instruments (recorded with the receipt): zoom and reduced motion
+
+**Reference basis:** Apple Human Interface Guidelines, Inclusivity — Accessibility
+(Intuitive/Perceivable/Adaptable) and the platform motion conventions the product's
+D1 motion law already cites; studied, nothing copied.
+
+1. **Zoom (`qa:zoom`, new `scripts/zoom-audit.mjs`).** Simulates browser zoom by
+   halving the CSS viewport — 640×400 is the 200% equivalent of the 1280×800
+   desktop layout, 320×220 the 400% equivalent. Two contexts per level: a
+   signed-out visitor (/, /login, /register, /pricing, /student) and a signed-in
+   account (home, profile, connections, learn, privacy, settings, subscription).
+   **PASS: all 24 surface checks reflow without horizontal overflow at both
+   levels** (receipt: `docs/visionary/baseline/zoom-audit-2026-11-18/`, with the
+   widest-offender naming for any future failure).
+2. **Reduced motion (`qa:reduced-motion`, new
+   `scripts/reduced-motion-audit.mjs`).** Extends the F-09 motion law to the
+   connected production shell: under `prefers-reduced-motion: reduce` all audited
+   surfaces render fully (real heading, real content, no overflow) and compute
+   **zero animated elements / 0s durations**, against a no-preference baseline of
+   25 animated elements (max 0.2s) — motion present by default, collapsed under
+   the preference, exactly the contract. (receipt:
+   `docs/visionary/baseline/reduced-motion-audit-2026-11-18/`)
+
+Both instruments run against the production build on the pinned realm origin and
+join `qa:i18n` as repeatable FHE-19 gates.
