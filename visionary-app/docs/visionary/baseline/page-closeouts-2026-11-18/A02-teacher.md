@@ -25,3 +25,16 @@
 - Final verdict: PASS.
 - What the next agent should NOT redo: the teacher page arc, trust destinations (Safety→/safety), shared-module apostrophes.
 - NEXT primary page: A03 `/parent` (per the restarted sequence; A00/A01 already closed and main carries them).
+
+## Amendment (same day): the typographic discipline completed across the whole persona family
+
+The rendered-page sweep after the shared-module fix showed further
+straight-apostrophe sources: the premium persona sections
+(PremiumLanguageSection's "the way you're comfortable" etc. — 61
+instances across 7 premium files) and the Parent/College/Organization
+page data (66 instances). All converted; the FAP-83 truth test's
+verbatim expectation updated to the accepted typographic copy. Final
+rendered verification: ZERO straight apostrophes and zero overflow on
+all five persona pages at 390px. Total program: ~205 apostrophes across
+the persona system. The per-page receipts for A03/A04/A05 inherit this
+work and will re-verify on their own walks.

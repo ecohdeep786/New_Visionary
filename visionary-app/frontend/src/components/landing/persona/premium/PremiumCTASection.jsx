@@ -8,10 +8,10 @@ import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
 
 /* ═══════════════════════ 12 · CTA ═══════════════════════
-   The closer bookends the hero on Apple's product-hero anatomy: the statement
+   The closer bookends the hero on Apple’s product-hero anatomy: the statement
    opens the chapter (no eyebrow), one text-only primary pill with one quiet
-   path beside it, and the small print beneath — the way Apple's product
-   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page's forks under the actions — Apple's tail mini-router. */
+   path beside it, and the small print beneath — the way Apple’s product
+   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page’s forks under the actions — Apple’s tail mini-router. */
 function PremiumCTASection({ heading, sub, routeLinks, variant }) {
   const { ref } = useRevealOnce();
   const closing = variant === "closing";
@@ -25,9 +25,9 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           : "relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]"
       }
     >
-      {/* The landing's ceremonial close — Beats'/Apple's black closing band:
-          one line, one pair of actions, the product's own breath of light
-          beneath, and the orbit's two faint rings crossing the lower third.
+      {/* The landing’s ceremonial close — Beats'/Apple’s black closing band:
+          one line, one pair of actions, the product’s own breath of light
+          beneath, and the orbit’s two faint rings crossing the lower third.
           No grid, no columns: the page ends on a moment, not another reading
           task. */}
       {closing ? (

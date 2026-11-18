@@ -68,8 +68,8 @@ const HERO_WORD_MS = 2800;
 const STRUGGLE_LINES = ["Every","parent","wonders","about"];
 
 const SLIDES = [
-  { word: "progress", quote: "The report card says fine. I still don't know how to help.", image: problemrevision, alt: "Parent reviewing a child's progress" },
-  { word: "homework", quote: "We fight over homework every night. I don't know the right way to explain.", image: problemunderstanding, alt: "Parent helping with homework at night" },
+  { word: "progress", quote: "The report card says fine. I still don’t know how to help.", image: problemrevision, alt: "Parent reviewing a child’s progress" },
+  { word: "homework", quote: "We fight over homework every night. I don’t know the right way to explain.", image: problemunderstanding, alt: "Parent helping with homework at night" },
   { word: "understanding", quote: "She says she understood. The test says something else.", image: problempractice, alt: "Parent talking with a child about a test" },
   { word: "confidence", quote: "He used to love learning. Now he hides his books.", image: problemexam, alt: "Parent encouraging a discouraged child" },
   { word: "reports", quote: "I meet the teacher once a year. I want to know every week.", image: parentHeroContent, alt: "Parent at a parent-teacher meeting" },
@@ -87,11 +87,11 @@ const JOURNEY_WORDS = [
 
 const JOURNEY_STAGES = [
   { title: "Early years", statement: "Be part of the first wins.", copy: "First questions, first wins, and you see them all.", image: primaryStudent, alt: "Parent with a young child learning" },
-  { title: "Primary", statement: "Follow the homework. Without the fight.", copy: "Follow what they're learning, and help without taking over.", image: primaryStudent, alt: "Parent following primary school learning" },
+  { title: "Primary", statement: "Follow the homework. Without the fight.", copy: "Follow what they’re learning, and help without taking over.", image: primaryStudent, alt: "Parent following primary school learning" },
   { title: "Secondary", statement: "Stay close as it gets harder.", copy: "Subjects get harder. You stay part of the journey.", image: secondaryStudent, alt: "Parent supporting a secondary student" },
   { title: "Higher secondary", statement: "Big decisions. Clearer choices.", copy: "Streams, boards, big decisions, and how to support them.", image: higherStudent, alt: "Parent discussing higher secondary choices" },
   { title: "Competitive exams", statement: "See the preparation. Not just the score.", copy: "See how preparation is moving, not just the score.", image: competitiveStudent, alt: "Parent supporting exam preparation" },
-  { title: "Beyond school", statement: "Their next step. Your continued support.", copy: "Whatever they choose next, their understanding travels with them.", image: vocationStudent, alt: "Parent celebrating a child's next step" },
+  { title: "Beyond school", statement: "Their next step. Your continued support.", copy: "Whatever they choose next, their understanding travels with them.", image: vocationStudent, alt: "Parent celebrating a child’s next step" },
 ];
 
 const STAGE_META = {
@@ -123,7 +123,7 @@ const LANGUAGE_QUESTIONS = [
 ];
 
 const ACHIEVEMENT_TABS = [
-  { title: "Understand what your child is learning.", copy: "A clear picture of what shaped your child's week, no report card needed." },
+  { title: "Understand what your child is learning.", copy: "A clear picture of what shaped your child’s week, no report card needed." },
   { title: "Support where they need it most.", copy: "Know when to help, how to explain, and when to step back." },
   { title: "Celebrate every step forward.", copy: "See the wins, and turn them into lasting confidence." },
 ];
@@ -132,7 +132,7 @@ const ACHIEVEMENT_IMAGE = [parentHeroContent, parentachivenment, parentbuild];
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that what your child shares stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what's next.", Icon: ShieldCheck, to: "/safety" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what’s next.", Icon: ShieldCheck, to: "/safety" },
   { title: "Responsibility", copy: "We believe intelligence should help people learn, never work against them.", Icon: HeartHandshake, to: "/terms" },
 ];
 
@@ -153,7 +153,7 @@ const JOURNEY_MODALS = {
     intro: "When homework begins, so do the questions. Visionary shows what your child is learning this week and how to help without taking over.",
     primary: { label: "See a learning example", to: "/how-it-works" },
     blocks: [
-      { Icon: Eye, t: "Know what they're learning.", c: "A clear picture of the week's lessons, in minutes, not report-card surprises.", l: "See how it works", to: "/how-it-works" },
+      { Icon: Eye, t: "Know what they’re learning.", c: "A clear picture of the week’s lessons, in minutes, not report-card surprises.", l: "See how it works", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Help the right way.", c: "Suggestions for explaining an idea the way your child will understand it.", l: "Get support", to: "/help" },
       { Icon: RefreshCw, t: "See practice happen.", c: "Follow gentle, encouraging practice that rewards effort, not speed.", l: "Start as a parent", to: "/register" },
       { Icon: Globe2, t: "In your language.", c: "Understand their journey in the language you think in.", l: "Language support", to: "/how-it-works" },
@@ -176,7 +176,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See a learning example", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "Understand the path.", c: "See how subjects, streams, and goals connect into one journey.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Target, t: "Support the goal.", c: "Know what their choices require and how they're progressing toward them.", l: "Start as a parent", to: "/register" },
+      { Icon: Target, t: "Support the goal.", c: "Know what their choices require and how they’re progressing toward them.", l: "Start as a parent", to: "/register" },
       { Icon: BookOpen, t: "Boards and beyond.", c: "The same understanding carries into exams and what comes after.", l: "Keep the picture", to: "/how-it-works" },
       { Icon: Clock, t: "Be there at the right moments.", c: "Know when to step in, and when to let them lead.", l: "Get support", to: "/help" },
     ],
@@ -194,11 +194,11 @@ const JOURNEY_MODALS = {
   },
   "Beyond school": {
     top: "Their next step.", accent: "Your continued support.",
-    intro: "Whatever they choose next, the understanding they've built travels with them, and so does your support.",
+    intro: "Whatever they choose next, the understanding they’ve built travels with them, and so does your support.",
     primary: { label: "See a learning example", to: "/how-it-works" },
     blocks: [
-      { Icon: Brain, t: "Learning that carries forward.", c: "The understanding they've built connects to whatever comes next.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Layers3, t: "Skills and projects.", c: "See what they're building turn into real work and real direction.", l: "Start as a parent", to: "/register" },
+      { Icon: Brain, t: "Learning that carries forward.", c: "The understanding they’ve built connects to whatever comes next.", l: "See how it works", to: "/how-it-works" },
+      { Icon: Layers3, t: "Skills and projects.", c: "See what they’re building turn into real work and real direction.", l: "Start as a parent", to: "/register" },
       { Icon: GraduationCap, t: "Higher education and beyond.", c: "Follow the journey as it deepens through college and career.", l: "Keep the picture", to: "/how-it-works" },
       { Icon: UsersRound, t: "A partner for the family.", c: "Visionary supports learners and the people behind them.", l: "Talk to us", to: "/contact" },
     ],
@@ -227,8 +227,8 @@ function ParentStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      {/* the bridge's compact band (02-struggle) carries the chapter breath;
-          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      {/* the bridge’s compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple’s hero-scroll-linked reveal */}
       <StruggleChapter
         linked
         slides={SLIDES}
@@ -237,7 +237,7 @@ function ParentStruggleSection() {
         lines={STRUGGLE_LINES}
         label="Parent concerns"
         kicker="What report cards miss"
-        copy="Caring isn't the difficulty. Seeing it is."
+        copy="Caring isn’t the difficulty. Seeing it is."
       />
     </section>
   );
@@ -253,10 +253,10 @@ function ParentJourneySection() {
   return (
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <ScrollReveal>
-        {/* header — Apple's card-chapter treatment (education: "From grade
+        {/* header — Apple’s card-chapter treatment (education: "From grade
             school to grad school."): statement LEFT-aligned at the measured
-            gutter, and the gallery's track carries the same gutter so the
-            first card starts exactly at the heading's left edge — one spine. */}
+            gutter, and the gallery’s track carries the same gutter so the
+            first card starts exactly at the heading’s left edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
             data-type="section"
@@ -294,15 +294,15 @@ export default function ParentPage() {
         <ParentJourneySection />
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
-          sub="From the first question to the moment they can use what they've learned."
+          sub="From the first question to the moment they can use what they’ve learned."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}
           questions={LANGUAGE_QUESTIONS}
-          line1="Your child's progress."
+          line1="Your child’s progress."
           accent="In your language"
           tail="."
-          sub="Follow your child's journey in the language you think in."
+          sub="Follow your child’s journey in the language you think in."
         />
         <PremiumAchievementSection
           heading={<>See what your child can <span className="accent-gradient">achieve.</span></>}
@@ -316,12 +316,12 @@ export default function ParentPage() {
           sub="When the stage changes, your understanding comes with you."
         />
         <PremiumTrustSection
-          heading={<>Your child's learning stays <span className="accent-gradient">theirs.</span></>}
-          sub="Your child's questions, conversations, and progress are personal. We keep it that way."
+          heading={<>Your child’s learning stays <span className="accent-gradient">theirs.</span></>}
+          sub="Your child’s questions, conversations, and progress are personal. We keep it that way."
           values={TRUST_VALUES}
         />
         <PremiumCTASection
-          heading="Your child's journey is already happening."
+          heading="Your child’s journey is already happening."
           sub="Set up a parent or guardian profile and review account privacy."
         />
         <PremiumExploreSection

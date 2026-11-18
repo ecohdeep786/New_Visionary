@@ -7,9 +7,9 @@ import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
 
 /* ═══════════════════════ 07 · LANGUAGE — the voice dial ═══════════════════════
-   A centered feature statement with the chapter's one muted link, then the
+   A centered feature statement with the chapter’s one muted link, then the
    dial: the served language set (English, Hindi, Bengali) as wordless dots
-   gliding one step per beat on a hairline ring, the language at 12 o'clock
+   gliding one step per beat on a hairline ring, the language at 12 o’clock
    speaking its own subject question at the center. The reel auto-advances
    while on screen and goes silent off-screen.
    FAP-83 law: the public showcase states the served set honestly. The dial
@@ -21,7 +21,7 @@ import { color } from "@/components/landing/system/tokens";
 const PremiumOrbitDots = React.memo(function PremiumOrbitDots({ chips, activeIndex, onSelect, reduced }) {
   const stepDeg = 360 / chips.length;
   /* dots laid out counterclockwise so each advance spins the ring clockwise
-     and still lands the active language at 12 o'clock */
+     and still lands the active language at 12 o’clock */
   const rotation = activeIndex * stepDeg;
   return (
     <>
@@ -87,7 +87,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Your language", l
   const active = chips[index];
   const question = questions[index % questions.length][active.code];
 
-  /* Apple's highlights anatomy: the reel advances on its own while it is on
+  /* Apple’s highlights anatomy: the reel advances on its own while it is on
      screen and the visitor holds the control. */
   useEffect(() => {
     if (!playing) return undefined;
@@ -135,7 +135,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Your language", l
             {sub}
           </p>
         </RevealItem>
-        {/* the chapter's one quiet link — Apple's feature-chapter affordance */}
+        {/* the chapter’s one quiet link — Apple’s feature-chapter affordance */}
         <RevealItem idx={3}>
           <div className="mt-5 flex justify-center">
             <Link
@@ -149,14 +149,14 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Your language", l
         </RevealItem>
 
         {/* the voice dial — the ring grows with the screen; dots ride the
-            hairline while the speaking language's question holds the center. */}
+            hairline while the speaking language’s question holds the center. */}
         <RevealItem idx={4}>
           <div ref={dialRef} className="mx-auto mt-14 w-full max-w-[min(604px,88vw)] sm:mt-20">
             <div className="relative aspect-square w-full" role="group" aria-label="Language selection">
               <PremiumOrbitDots chips={chips} activeIndex={index} onSelect={goTo} reduced={reduced} />
               {/* whisper of product-wash beneath the dial */}
               <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(0,102,204,0.06) 0%, rgba(0,102,204,0.02) 46%, rgba(0,102,204,0) 72%)" }} />
-              {/* the center — the speaking language's name in Apple's quiet
+              {/* the center — the speaking language’s name in Apple’s quiet
                   label voice, its question at statement scale, the one accent
                   listening beneath */}
               <div className="absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center">
@@ -171,7 +171,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Your language", l
                 </div>
               </div>
             </div>
-            {/* the control row — Apple's bare 36px glyphs at the stage's
+            {/* the control row — Apple’s bare 36px glyphs at the stage’s
                 edges: play/pause left, prev/next right */}
             <div className="mt-6 flex items-center justify-between">
               <PremiumPlayPause playing={playing} onClick={() => setPlaying((v) => !v)} labelPrefix="languages" />
@@ -197,7 +197,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Your language", l
           </div>
         </RevealItem>
 
-        {/* quiet legend — the chapter's small print sits directly under the
+        {/* quiet legend — the chapter’s small print sits directly under the
             stage, after the controls (Apple: media → controls → caption) */}
         <RevealItem idx={5}>
           <div className="mx-auto mt-10 w-full max-w-[860px] sm:mt-12">
@@ -205,7 +205,7 @@ function PremiumLanguageSection({ chips, questions, eyebrow = "Your language", l
               Listening in {active.label} · understood in English, Hindi, and Bengali
             </p>
             <p className="mt-1 text-center font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: color.muted }}>
-              More languages are on the roadmap. Use voice or text in the way you're comfortable.
+              More languages are on the roadmap. Use voice or text in the way you’re comfortable.
             </p>
           </div>
         </RevealItem>
