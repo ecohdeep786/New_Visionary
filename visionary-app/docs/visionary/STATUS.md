@@ -2946,3 +2946,43 @@ role. Receipt:
 
 Evidence: 870/870 unit tests, eslint clean, live verification in the
 in-app browser.
+
+## 2026-11-19 — the page-by-page Apple-level program complete: A00–A23, B01–B07, C01–C20 all closed with receipts
+
+Reference basis: the founder's APPLE_LEVEL_PAGE_BY_PAGE directive (2026-11-18)
++ the 12 official Apple resources held open as standing application-browser
+references throughout; every pass consulted them. Nothing copied.
+
+**A00–A23 (24 public pages):** the deep-match pass walked every chapter of
+every route in the application browser and at 320–1920px. Fixed this
+program: the hero purpose line (the Education hero grammar applied), the
+carousel cascade bug (the override image), ~370 straight apostrophes
+product-wide, the Safety trust-card destinations (5 personas), 6 persona
+hero sub-headings in the product's voice, the help/heading outlines, the
+pricing segmented control, and the honest-availability notes on all four
+persona intelligence chapters. Pages that already matched recorded as
+PASS — NO CHANGE REQUIRED with evidence (help, careers, partners, updates,
+organization).
+
+**B01–B07 (auth/onboarding):** the full flows were exercised end-to-end
+against the real realm this session (realm journeys + 5 role identities);
+the deep passes recorded the interaction and negative-path evidence:
+the honest wrong-password error (no account-existence leak), the native
+email validation, the recovery pages' honest states, the five-role
+wizard with server-confirmed completion.
+
+**C01–C20 (the connected internal product):** every journey classified
+per the directive's boundary law with server evidence (qa:role-e2e 5/5,
+59 route-walks; qa:realm-journeys J1–J4): CONNECTED AND VERIFIED — home
+per role, connections, profile persistence, settings, privacy/consents,
+learn history, role switching; CONNECTED UI / SERVICE BLOCKED —
+subscription (the honest billing state); FRONTEND COMPLETE / SERVICE
+BLOCKED — catalogue, teaching turn, practice, build, classrooms,
+classwork, guardian reports, career, people/cohorts, curriculum/
+analytics, progress/insights, notifications/support (every one rendering
+the truthful honest room in the interface language).
+
+All receipts: docs/visionary/baseline/page-closeouts-2026-11-18/ (A00–A23,
+B01–B07, C01–C20). The integrated full-role story regression stands from
+qa:role-e2e; the remaining platform scope is the backend/ML lanes'
+recorded handoffs and the hosted-staging checklist (FHE-23).
