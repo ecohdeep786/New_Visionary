@@ -81938,7 +81938,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx",
-      "sourceSha256": "0098f592267893880eb8e7eb6575264afba767ca2950440c594ad4e6ec05d854"
+      "sourceSha256": "b82b2c5b6ce7a3bb5347230e140af5154be149d3056bc27c341176adb138b724"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx",
@@ -82738,7 +82738,7 @@
     },
     {
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "sourceSha256": "b3d9714ad1543fee3a828e74ccc9d1b438103dfb5911fcd95fc9ff515ca8b0da"
+      "sourceSha256": "fb1bea5f08c3ad5f11b4e7cfec7c7199f406da436c180507dc28bfaa4510b597"
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",

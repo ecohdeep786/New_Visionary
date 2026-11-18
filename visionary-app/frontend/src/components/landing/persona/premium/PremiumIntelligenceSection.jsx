@@ -223,7 +223,7 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
   );
 });
 
-function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo }) {
+function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo, note }) {
   const { ref: headRef } = useRevealOnce();
   const { active, setStepRef, nodes } = useCentredStep(steps.length);
   const reduced = usePrefersReducedMotion();
@@ -398,6 +398,16 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
           ))}
         </div>
       </div>
+
+      {/* the honest-availability note: when a persona's intelligence chapter
+          describes a capability whose service is still gated, the chapter
+          closes on one quiet line that says what is available today — the
+          vision stays, the truth stays (the language chapter's own
+          roadmap-note pattern). Outside the flow grid so it is never a grid
+          item on desktop. */}
+      {note ? (
+        <p className="mx-auto max-w-[640px] px-6 pb-24 text-center text-[14px] leading-[1.6]" style={{ color: "#6e6e73" }}>{note}</p>
+      ) : null}
     </section>
   );
 }
