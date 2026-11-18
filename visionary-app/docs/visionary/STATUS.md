@@ -2997,3 +2997,28 @@ integration order by value per unit of work. The frontend adapters are
 implemented and idle: each service registration flips its honest room to
 the connected surface with no screen redesign. The frontend program
 holds (51 receipts, 870/870, the final regression clean).
+
+## 2026-11-19 — the §7 gate set completed on the final bundle; three preview-era instruments recorded as superseded
+
+**Green on the final bundle:** typecheck (tsc, both projects), verify:graph
+(the production graph law), qa:motion (374 motion-bearing files, the
+motion law holds), qa:route-sweep (23/23), qa:i18n (11 surfaces), qa:zoom,
+qa:reduced-motion, qa:realm-journeys (4/4), qa:role-e2e (5/5, 59 walks),
+lighthouse (recorded), the 24-route public regression, the 870/870 unit
+suite, eslint, and the final-regression fold to main (05cdb268 → CI
+success).
+
+**Recorded as superseded (not silently skipped):** qa:navigation,
+qa:design, qa:fonts are preview-era instruments — they target the
+dev-preview home's selectors (.v-home-priority) and seed the preview
+workspace fixture into localStorage, both of which the FHE-20 route split
+intentionally drops from the production artifact. Their production
+equivalents are qa:route-sweep (navigation) and the per-page closeouts'
+visual walks (design/fonts at the page level). Rewriting the three for
+the connected shell is recorded follow-up work.
+
+**Operational note:** the gates that need a backend session must run on
+the origin the backend pins (AUTH_PUBLIC_ORIGIN = localhost:4200) — the
+4197/5179 dev-origin attempts fail the CSRF pin by design, and a preview
+started without the realm env serves the production CSP that blocks the
+emulator (both failure modes diagnosed and documented this session).
