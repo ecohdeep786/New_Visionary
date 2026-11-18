@@ -62,9 +62,9 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
-/* The hero's entrance never hides the LCP element: the rise is
+/* The hero’s entrance never hides the LCP element: the rise is
    transform-only, so the headline and lead paint in the first commit.
-   The FadeReveal grammar (opacity-0 until revealed) delayed the hero's
+   The FadeReveal grammar (opacity-0 until revealed) delayed the hero’s
    LCP text ~800ms past FCP under the lab throttle — invisible content
    cannot paint — so above-fold content rides the same motion with the
    opacity gate removed. Below-fold sections keep FadeReveal. */
@@ -82,7 +82,7 @@ import { billingPath } from '@/lib/billingIntent';
 import { fontStack } from "@/components/landing/system/tokens";
 
 
-/* ═══ Billing toggle — the product's segmented control: a quiet gray track
+/* ═══ Billing toggle — the product’s segmented control: a quiet gray track
    (the toggle must read as one control on the white page, not float as
    two loose labels), the active period as the ink pill, the savings badge
    carried inside. Reference basis: Apple HIG — Selection and input >
@@ -115,7 +115,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
 
 /* ═══ Comparison cell — the store-grade row values; strings render the
    entitlement word for word, booleans the quiet ✓/– (truth: pricingConfig).
-   The glyphs ARE the cell's content, so each carries its own accessible name
+   The glyphs ARE the cell’s content, so each carries its own accessible name
    (F-07-D1): role="img" + label keeps the visual quiet mark while screen
    readers hear Included / Not included instead of an unnamed graphic. ═══ */
 const CellValue = React.memo(function CellValue({ value }) {
@@ -148,7 +148,7 @@ function PricingStoreSection() {
           </p>
         </div>
         <div className="mx-auto mt-12 w-full max-w-[1240px]">
-          {/* the toggle sits on its own floor with the store's breathing room
+          {/* the toggle sits on its own floor with the store’s breathing room
               between the control and the table it drives */}
           <div className="flex flex-col items-center pb-12">
             <BillingToggle billing={billing} onChange={setBilling} />
@@ -260,7 +260,7 @@ function PricingPersonaSection() {
               <p className="font-normal tracking-[0] leading-[1.4] text-[16px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
               <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
-              {/* google.com card curve — tint sweeps into the white corner and the card's arrow floats in it with breath */}
+              {/* google.com card curve — tint sweeps into the white corner and the card’s arrow floats in it with breath */}
               <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white"  />
               <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.blue }} aria-hidden="true" /></div>
             </Link>

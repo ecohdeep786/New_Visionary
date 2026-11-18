@@ -82206,7 +82206,7 @@
     },
     {
       "file": "frontend/src/data/pricingConfig.js",
-      "sourceSha256": "823d26717137b5d9b876c4406cee29e1aaf99e40f82879c6e76d973e9c0aafa6"
+      "sourceSha256": "d1ca2f0587a5234184743adc571c1abf0f9b75dc522f94c9bda010b2497c2258"
     },
     {
       "file": "frontend/src/domain/curriculumTemplate.ts",
@@ -82702,7 +82702,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
-      "sourceSha256": "b6a0db62ffe2fee0b4139ab92f3a1369dd80cc8183eb0edcb90e9df5a3dbeab1"
+      "sourceSha256": "c2021b8ecc2c14e3aa8eadc948a1bb6019de5d2fe4749814933cca05d05a6ab4"
     },
     {
       "file": "frontend/src/pages/landing/CareersPage.jsx",
