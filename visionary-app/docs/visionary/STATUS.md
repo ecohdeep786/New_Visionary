@@ -2618,3 +2618,30 @@ D1 motion law already cites; studied, nothing copied.
 
 Both instruments run against the production build on the pinned realm origin and
 join `qa:i18n` as repeatable FHE-19 gates.
+
+### FHE-19 follow-through: the billing surface joins the translated set
+
+The recorded decision ("ConnectedBilling remains English pending approved
+commercial copy") is now refined into the honest split it always implied:
+
+- **Translated (functional UI):** ~80 strings in the new `billingCopy` — every
+  state, error, notice, button, status label, the cancellation and review
+  dialogs, family-billing management, invoices, the entitlement descriptions,
+  and the test-mode disclosures, with `{name}` interpolation and locale-aware
+  dates. The 401 sign-in link detection is structural (compares against the
+  translated message), not string-matching.
+- **Still English (recorded):** the three plan taglines ('BETTER TOGETHER',
+  'THE ESSENTIALS', 'YOUR OWN PACE'), the section tagline, the eyebrow, and
+  the plan names — marketing voice and product vocabulary awaiting approved
+  commercial copy. Server-owned error copy (e.g. the realm's "Test billing is
+  not configured") renders as received, recorded in the audit's
+  decided-English list with that reason.
+
+The review dialog's agree label was restructured for grammar: a complete
+translated sentence plus a separate "Review the service terms" link, instead
+of an inline-phrase split that would break Hindi/Bengali word order.
+
+**Checks:** the i18n audit now covers eleven surfaces including
+`/dashboard/subscription` — **PASS: zero untranslated English sentence nodes
+in hi and bn across all eleven** (receipt refreshed). Full suite **870/870**,
+lint 0, typecheck 0, surface audit green (1533 declarations).

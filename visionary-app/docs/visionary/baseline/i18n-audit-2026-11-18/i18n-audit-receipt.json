@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-17T20:37:20.101Z",
+  "at": "2026-11-18T05:45:43.467Z",
   "base": "http://localhost:4200",
   "v1SurfaceDecision": "workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT; FHE-19: the hi/bn passes drive the app Interface-language control",
   "surfaces": [
@@ -123,6 +123,24 @@
       "decidedEnglish": {
         "hi": 0,
         "bn": 0
+      },
+      "all": {
+        "hi": [],
+        "bn": []
+      }
+    },
+    {
+      "route": "/dashboard/subscription",
+      "label": "Plans & payments (billing)",
+      "enNodes": 3,
+      "hiNodes": 3,
+      "bnNodes": 3,
+      "hiSample": "",
+      "hiUntranslated": 0,
+      "bnUntranslated": 0,
+      "decidedEnglish": {
+        "hi": 1,
+        "bn": 1
       },
       "all": {
         "hi": [],
