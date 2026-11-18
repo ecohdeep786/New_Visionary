@@ -2757,3 +2757,31 @@ founder must choose between. `docs/visionary/FHE23_PROMOTION_PR_DRAFT.md` is
 the prepared dev→main pull request with honest release notes, withheld-scope
 disclosures, and the sign-off block; it becomes a real PR only after the
 release owner, Codex and founder sign-offs are recorded.
+
+## 2026-11-18 — FHE-20 CWV evidence refreshed on the current dev artifact (in-app browser instrument)
+
+Reference basis: V6 FHE-20 test line — first paint, slow mobile, image
+loading/reflows, CWV targets (LCP ≤2.5s, INP ≤200ms, CLS ≤0.1; lab runs do
+not establish field p75); nothing copied.
+
+The designed lab instrument (`qa:lighthouse`) could not run in this
+environment today — its bundled Chrome closed during the gather phase
+("Target closed") on two consecutive runs; recorded honestly rather than
+forced. In its place, the in-app browser's Performance API measured the
+five public routes on the fresh production build (loopback, warm cache,
+1280×800 — lab conditions only, not field p75):
+
+- **CLS 0 on every route** — no layout instability; the image
+  loading/reflow check passes (zero broken images; below-fold spot
+  illustrations lazy-loaded).
+- **First-paint proxy**: DOMContentLoaded 157–246 ms, load 158–248 ms,
+  TTFB 3–4 ms across /, /pricing, /download, /student, /safety; transfer
+  4–55 KB per route.
+- **FCP/LCP** are not exposed by the in-app browser context and are left
+  absent rather than fabricated; the 2026-11-17 lighthouse receipt remains
+  the category baseline and its Fast3G finding (raw LCP >2.5s, fast-LCP
+  lever named) stands as the recorded performance limitation.
+- **Slow mobile** was not re-measured this session (no throttling in the
+  in-app browser); the 390px layout evidence from the craft pass stands.
+
+Receipt: `docs/visionary/baseline/cwv-2026-11-18/cwv-iab-receipt.json`.
