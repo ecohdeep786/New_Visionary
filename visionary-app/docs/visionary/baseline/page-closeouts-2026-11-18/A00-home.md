@@ -53,3 +53,18 @@ typographic apostrophes. Final render check: every chapter
 (hero/intelligence/problem/promise/return/journeys/suite/trust/CTA/
 footer) walked visually in the application browser; zero straight
 apostrophes; 870/870 tests; the deep-match verdict stands.
+
+## FINAL REGRESSION (program close): the full integrated evidence on the exact production bundle
+
+- The five full integrated role stories (register → verify → onboard →
+  walk the role's complete navigation → server state asserted):
+  qa:role-e2e PASS 5/5 on the final bundle — student 12 routes, teacher
+  14, parent 9, professional 13, organization 11; zero blank pages, zero
+  page errors.
+- The consolidated 24-route public regression: unique h1, zero overflow,
+  zero straight apostrophes, zero page errors on every route.
+- NOTE (evidence honesty): the first post-conversion regression sampled a
+  STALE build — the A11–A23 conversion had not been rebuilt into the
+  served artifact, so the rendered apostrophe counts read pre-fix values.
+  The rebuild + re-run above is the true final evidence: every route
+  fully clean. The rendered evidence now stands with the rebuild.
