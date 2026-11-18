@@ -29,7 +29,7 @@ export default function StudentContextForm({ data, updateData }) {
     <>
       {/* Board */}
       <div className="mb-8">
-        <p className="text-sm font-medium text-[#121317] mb-2">
+        <p className="text-sm font-medium text-[#1d1d1f] mb-2">
           Which board are you studying under?
         </p>
         <ChoiceGrid
@@ -44,7 +44,7 @@ export default function StudentContextForm({ data, updateData }) {
       {/* State — conditional */}
       {showState && (
         <div className="mb-8">
-          <p className="text-sm font-medium text-[#121317] mb-2">
+          <p className="text-sm font-medium text-[#1d1d1f] mb-2">
             Which state are you in?
           </p>
           <ChoiceGrid
@@ -60,10 +60,10 @@ export default function StudentContextForm({ data, updateData }) {
 
       {/* Medium */}
       <div className="mb-8">
-        <p className="text-sm font-medium text-[#121317] mb-2">
+        <p className="text-sm font-medium text-[#1d1d1f] mb-2">
           What language does your school use to teach?
         </p>
-        <p className="text-xs text-[#5f6368] mb-2">
+        <p className="text-xs text-[#6e6e73] mb-2">
           This sets your preferred teaching language. Available sample material follows it; connected teaching support comes later.
         </p>
         <ChoiceGrid
@@ -75,15 +75,15 @@ export default function StudentContextForm({ data, updateData }) {
           dense
         />
         {/* FAP-72: the full list is a saved medium preference, never a UI switch. */}
-        <p className="mt-1 text-xs leading-5 text-[#5f6368]">{UI_LANGUAGE_NOTE}</p>
+        <p className="mt-1 text-xs leading-5 text-[#6e6e73]">{UI_LANGUAGE_NOTE}</p>
       </div>
 
       {/* Class */}
       <div className="mb-8">
-        <p className="text-sm font-medium text-[#121317] mb-2">
+        <p className="text-sm font-medium text-[#1d1d1f] mb-2">
           Which class are you studying in?
         </p>
-        <p className="text-xs text-[#5f6368] mb-2">
+        <p className="text-xs text-[#6e6e73] mb-2">
           Board and class help locate a future official syllabus. If it is unavailable, your learning outline stays provisional.
         </p>
         <ChoiceGrid

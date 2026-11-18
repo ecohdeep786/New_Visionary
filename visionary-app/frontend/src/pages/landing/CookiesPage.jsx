@@ -20,7 +20,7 @@ import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 const COLORS = {
   ink: "#1d1d1f",
   grey: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "#d2d2d7",
   border: "#d2d2d7",
   soft: "#f5f5f7",

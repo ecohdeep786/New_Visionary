@@ -66,7 +66,7 @@ export default function AuthLayout({
                 )}
               </div>
               {children}
-              {footer && <div className="mt-6 text-sm text-[#5f6368] md:hidden">{footer}</div>}
+              {footer && <div className="mt-6 text-sm text-[#6e6e73] md:hidden">{footer}</div>}
             </div>
           </div>
         </div>

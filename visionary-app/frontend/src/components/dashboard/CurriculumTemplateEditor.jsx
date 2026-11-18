@@ -110,7 +110,7 @@ export default function CurriculumTemplateEditor({
         })} /></label><label className="mt-3 block text-sm">{copy("Source section or pages")}<input className="v-field mt-2" maxLength={500} value={chapter.sourceSection} onChange={event => chapterChange(chapter.id, {
           sourceSection: event.target.value
         })} /></label>
- {chapter.objectives.map((item, position) => <section className="mt-5 rounded-xl border bg-[#f8fafd] p-3" aria-label={copy("Objective {number} in chapter {chapter}", {
+ {chapter.objectives.map((item, position) => <section className="mt-5 rounded-xl border bg-[#f5f5f7] p-3" aria-label={copy("Objective {number} in chapter {chapter}", {
         number: position + 1,
         chapter: index + 1
       })} key={item.id}><h4 className="font-medium">{copy('Objective {number}', {

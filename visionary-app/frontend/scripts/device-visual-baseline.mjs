@@ -1,13 +1,16 @@
 /* F-03 (Cross-Browser QA + Pixel Engineer): device visual baseline harness.
  * Captures the product's representative public surfaces, the onboarding wizard
  * and the five role dashboards at mobile, tablet and desktop sizes through the
- * REAL preview-mode journey: register -> OTP -> onboarding wizard -> dashboard.
- * No API interception and no fixture seeding — the local preview repository is
- * the product's own development mode. Firebase-mode sessions remain dependent
- * on the recorded QA-login bring-up (F-02-F1); this harness records that
- * boundary instead of pretending to cover it.
- * Env: VISUAL_BASE_URL (default http://127.0.0.1:4198), VISUAL_EVIDENCE_DIR.
- * Run with the worktree dev server in preview mode (no VITE_AUTH_MODE=firebase). */
+ * REAL identity journey: register -> verified email -> onboarding wizard ->
+ * dashboard. FAP-93 made Firebase the only identity source (no local auth
+ * mode exists), so the journey runs against the Auth Emulator realm: the
+ * harness registers through the product UI, completes the real oobCode
+ * verification through the product's own /auth/action page, and continues
+ * into the wizard. No API interception and no fixture seeding.
+ * Env: VISUAL_BASE_URL (default http://127.0.0.1:4198), VISUAL_EVIDENCE_DIR,
+ * VISUAL_AUTH_EMULATOR (default http://127.0.0.1:9099), VISUAL_PROJECT_ID
+ * (default demo-visionary-e2e). Run with the dev server in firebase emulator
+ * mode (VITE_AUTH_MODE=firebase + demo- project + emulator URL). */
 import { chromium } from 'playwright-core';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -16,6 +19,8 @@ import { createHash } from 'node:crypto';
 import { launchReviewedBrowser, openEvidenceDir, receiptMeta } from './qa-env.mjs';
 
 const base = process.env.VISUAL_BASE_URL || 'http://127.0.0.1:4198';
+const authEmulator = process.env.VISUAL_AUTH_EMULATOR || 'http://127.0.0.1:9099';
+const projectId = process.env.VISUAL_PROJECT_ID || 'demo-visionary-e2e';
 const productRoot = fileURLToPath(new URL('../../', import.meta.url));
 const evidence = path.resolve(productRoot, process.env.VISUAL_EVIDENCE_DIR || 'docs/visionary/baseline/f03-device-visual-2026-11-05');
 await openEvidenceDir(evidence);
@@ -221,22 +226,22 @@ const interactions = [];
     await page.getByRole('button', { name: 'Open menu' }).click();
     await page.waitForTimeout(500);
     const openState = await page.evaluate(() => ({
-      drawerOpen: Boolean(document.querySelector('header div.safe-b')),
+      drawerOpen: Boolean(document.querySelector('header .safe-b')),
       bodyOverflow: document.body.style.overflow,
-      focusInDrawer: Boolean(document.activeElement?.closest?.('div.safe-b')),
+      focusInDrawer: Boolean(document.activeElement?.closest?.('.safe-b')),
     }));
     await page.screenshot({ path: path.join(evidence, 'interaction-mobile-drawer-open.png') });
     await page.keyboard.press('Escape');
     await page.waitForTimeout(500);
     const closedState = await page.evaluate(() => ({
-      drawerGone: !document.querySelector('header div.safe-b'),
+      drawerGone: !document.querySelector('header .safe-b'),
       bodyOverflow: document.body.style.overflow,
       focusLabel: document.activeElement?.getAttribute('aria-label') ?? null,
     }));
     await page.screenshot({ path: path.join(evidence, 'interaction-mobile-drawer-closed.png') });
     const touchReopen = await page.evaluate(() => { const b = [...document.querySelectorAll('header button')].find(x => x.getAttribute('aria-label') === 'Open menu'); if (!b) return false; b.click(); return true; });
     await page.waitForTimeout(500);
-    const reopened = await page.evaluate(() => Boolean(document.querySelector('header div.safe-b')) && document.body.style.overflow === 'hidden');
+    const reopened = await page.evaluate(() => Boolean(document.querySelector('header .safe-b')) && document.body.style.overflow === 'hidden');
     await page.evaluate(() => { const b = [...document.querySelectorAll('header button')].find(x => x.getAttribute('aria-label') === 'Close menu'); b?.click(); });
     await page.waitForTimeout(300);
     const drawerPass = openState.drawerOpen && openState.bodyOverflow === 'hidden' && closedState.drawerGone && closedState.bodyOverflow === '' && closedState.focusLabel === 'Open menu' && touchReopen && reopened;
@@ -296,7 +301,7 @@ const interactions = [];
 }
 
 
-/* ── Onboarding + dashboard journeys through the real preview flow ── */
+/* ── Onboarding + dashboard journeys through the real identity flow ── */
 async function registerViaUi(page, email) {
   await page.goto(`${base}/register`, { waitUntil: 'domcontentloaded' });
   await page.getByRole('button', { name: 'Continue with Email' }).first().click({ timeout: 30000 });
@@ -306,13 +311,31 @@ async function registerViaUi(page, email) {
   await passwords.first().fill(PASSWORD, { timeout: 20000 });
   if (await passwords.count() > 1) await passwords.nth(1).fill(PASSWORD);
   await page.locator('button[type="submit"]').last().click();
-  /* The preview repository verifies the registration session, not the code
-   * (any six digits pass); the product OTP view stays part of the journey. */
-  const otpInput = page.locator('input[autocomplete="one-time-code"], input[inputmode="numeric"]').first();
-  await otpInput.waitFor({ state: 'visible', timeout: 30000 });
-  try { await otpInput.fill('000000'); } catch { await otpInput.pressSequentially('000000'); }
-  await page.getByRole('button', { name: 'Verify' }).click();
+  /* The real identity flow: the product asks the registrant to verify the
+   * email address. The Auth Emulator hands the oobCode to this harness, which
+   * completes it through the product's own /auth/action page in a second tab
+   * of the same context — exactly what a real user does with the mail link. */
+  await page.getByRole('heading', { name: 'Confirm your email address' }).waitFor({ state: 'visible', timeout: 30000 });
+  const oobCode = await fetchLatestOobCode(email);
+  const action = await page.context().newPage();
+  try {
+    await action.goto(`${base}/auth/action?mode=verifyEmail&oobCode=${encodeURIComponent(oobCode)}&lang=en`, { waitUntil: 'domcontentloaded' });
+    await action.getByRole('heading', { name: 'Email verified' }).waitFor({ state: 'visible', timeout: 30000 });
+  } finally { await action.close(); }
+  await page.getByRole('button', { name: 'I verified my email' }).click();
   await page.waitForURL(/\/onboarding/, { timeout: 45000 });
+}
+
+/* The newest VERIFY_EMAIL oobCode for this registrant, from the Auth Emulator's
+ * inspection API. A missing code is a harness-environment failure, never a
+ * product one, and is reported as such. */
+async function fetchLatestOobCode(email) {
+  const response = await fetch(`${authEmulator}/emulator/v1/projects/${projectId}/oobCodes`);
+  if (!response.ok) throw new Error(`Auth Emulator oobCodes unavailable (${response.status}); start the emulator realm before this harness.`);
+  const { oobCodes = [] } = await response.json();
+  const mine = oobCodes.filter(row => row.email === email && row.requestType === 'VERIFY_EMAIL');
+  if (!mine.length) throw new Error(`No VERIFY_EMAIL oobCode for ${email}; the emulator realm did not record the registration.`);
+  return mine.at(-1).oobCode;
 }
 
 const visibleButtons = (page) => page.evaluate(() => [...document.querySelectorAll('main button, #main button')]
@@ -449,11 +472,15 @@ async function runWizard(page, role, sizeKey, wantsAllShots) {
 }
 
 const seenAccounts = new Set();
+/* The Auth Emulator persists accounts across runs, so the journey identity must
+ * be unique per run — a deterministic email would fail with
+ * auth/email-already-in-use before the verification step ever renders. */
+const runSalt = Date.now().toString(36);
 for (const size of SIZES) {
   for (const [role, routes] of Object.entries(ROLE_JOURNEYS)) {
     const { context, page, errors } = await newContext(size);
     try {
-      let email = `visual-${role}-${size.key}@visionary.test`;
+      let email = `visual-${role}-${size.key}-${runSalt}@visionary.test`;
       let attempt = 0;
       while (seenAccounts.has(email)) email = `visual-${role}-${size.key}-${++attempt}@visionary.test`;
       seenAccounts.add(email);
@@ -476,10 +503,10 @@ await browser.close();
 /* ── Receipt and gates ── */
 const receipt = {
   task: 'F-03 device visual baseline',
-  ...receiptMeta({ browser: `Microsoft Edge via playwright-core (${browserVersion ?? 'channel msedge'})`, viewport: 'multi', route: 'all public + 5 role journeys', role: 'five preview roles' }),
+  ...receiptMeta({ browser: `Microsoft Edge via playwright-core (${browserVersion ?? 'channel msedge'})`, viewport: 'multi', route: 'all public + 5 role journeys', role: 'five emulator-realm roles' }),
   base,
-  mode: 'local preview repository (VITE_AUTH_MODE unset) — real register/OTP/onboarding/dashboard journey, no API interception, no fixture seeding',
-  boundary: 'Firebase-mode authenticated sessions remain dependent on the QA-login bring-up recorded as F-02-F1; captured here in the product preview mode instead.',
+  mode: 'Auth Emulator realm (VITE_AUTH_MODE=firebase, demo- project) — real register/verified-email/onboarding/dashboard journey, no API interception, no fixture seeding',
+  boundary: 'Hosted Firebase acceptance remains a separate gate; this harness verifies the real identity protocol against the local Auth Emulator realm.',
   sizes: SIZES,
   publicRoutes: PUBLIC_ROUTES.map(([route]) => route),
   matrixWidths: MATRIX_WIDTHS,
@@ -501,7 +528,7 @@ const indexRows = PUBLIC_ROUTES.filter(([r]) => r !== '/login' && r !== '/regist
   });
 const index = [
   '# F-03 visual baseline index', '',
-  `Source SHA: \`${receipt.betaSha}\` · Browser: ${receipt.browser} · Mode: preview (local preview repository — NOT hosted acceptance) · Generated: ${receipt.timestamp}`, '',
+  `Source SHA: \`${receipt.betaSha}\` · Browser: ${receipt.browser} · Mode: Auth Emulator realm (NOT hosted acceptance) · Generated: ${receipt.timestamp}`, '',
   '| Route | widths measured | worst horizontal overflow | state |', '|---|---|---|---|',
   ...indexRows, '',
   `Screenshots: ${captures.length} hashed captures · Interaction checks: ${interactions.length} · Failures: ${failures.length}`, '',

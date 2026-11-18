@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthAwareLink from "@/components/landing/AuthAwareLink";
 import { ArrowRight, HeartHandshake, ShieldCheck, UsersRound } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
@@ -306,9 +307,9 @@ export default function CommunityPage() {
               Communities grow around real learning. Start with the loop, and the space builds itself around it.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link to="/register" className={`w-full sm:w-auto ${inkPill}`}>
+              <AuthAwareLink to="/register" signedInLabel="Open Visionary" className={`w-full sm:w-auto ${inkPill}`}>
                 Get started
-              </Link>
+              </AuthAwareLink>
               <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-4">
                 Read community safety
                 <ChevronIcon className="h-4 w-4" aria-hidden="true" />

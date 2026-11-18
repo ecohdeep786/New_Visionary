@@ -28,6 +28,7 @@ await mkdir(evidenceDir, { recursive: true });
 const receipt = { at: new Date().toISOString(), base, gates: GATES, routes: [], perfNote: 'performance is recorded, not gated - the D3 ledger holds the raw Fast3G LCP receipts and the fast-LCP next-wave lever' };
 
 const runnerResultGroups = [];
+const pendingWrites = [];
 for (const route of routes) {
   const chrome = await launch({ chromeFlags: [] });
   try {
@@ -46,9 +47,12 @@ for (const route of routes) {
       const a = lhr.audits[id];
       return [id, a ? a.numericValue ?? a.score : null];
     }));
-    const file = path.join(evidenceDir, `lighthouse${route === '/' ? '-root' : route.replaceAll('/', '-')}.json`);
-    await writeFile(file, JSON.stringify(lhr, null, 1));
-    receipt.routes.push({ route, categories, baseline, metrics, evidence: path.relative(productRoot, file) });
+    /* Evidence integrity: nothing is written until the whole run passes —
+     * a crashed run must never overwrite the historical receipts with
+     * partial data (this actually happened on 2026-11-18 and had to be
+     * restored from git). */
+    pendingWrites.push([path.join(evidenceDir, `lighthouse${route === '/' ? '-root' : route.replaceAll('/', '-')}.json`), JSON.stringify(lhr, null, 1)]);
+    receipt.routes.push({ route, categories, baseline, metrics, evidence: path.relative(productRoot, path.join(evidenceDir, `lighthouse${route === '/' ? '-root' : route.replaceAll('/', '-')}.json`)) });
     runnerResultGroups.push({ route, categories, baseline });
     console.log(`  ${route} — perf ${categories.performance} · a11y ${categories.accessibility} · bp ${categories['best-practices']} · seo ${categories.seo}`);
   } finally {
@@ -68,4 +72,5 @@ for (const { route, baseline } of runnerResultGroups) {
   }
 }
 await writeFile(path.join(evidenceDir, 'lighthouse-receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
+for (const [file, body] of pendingWrites) await writeFile(file, body);
 console.log('PASS lighthouse gates on the production build (a11y >= 0.95, SEO >= 0.95, zero regressions on the four 2026-10-20 baseline audits; perf + best-practices recorded, not gated).');

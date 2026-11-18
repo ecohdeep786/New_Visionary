@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-18T09:10:00Z",
+  "buildSha": "dev 79c9ea35 (artifact built from the FHE-21 worktree at the merged dev head)",
+  "base": "http://127.0.0.1:4199",
+  "instrument": "in-app browser Performance API (navigation timing, layout-shift, image integrity, resource transfer)",
+  "conditions": {
+    "network": "loopback, warm cache — lab conditions only, NOT field p75",
+    "viewport": "1280x800 desktop in-app browser",
+    "note": "The designed lab instrument (qa:lighthouse) could not run in this environment on 2026-11-18: its bundled Chrome closed during the gather phase ('Target closed', Network.clearBrowserCache) on two consecutive runs. The 2026-10-30 and 2026-11-17 lighthouse receipts remain the category-score baseline (accessibility 0.95+/SEO 0.95+ gates; performance recorded, not gated — raw Fast3G LCP >2.5s with the fast-LCP lever named). FCP/LCP buffered entries are not exposed by the in-app browser context, so they are absent here rather than fabricated."
+  },
+  "routes": [
+    { "route": "/", "ttfbMs": 4, "domContentLoadedMs": 246, "loadMs": 248, "cls": 0, "images": 7, "brokenImages": 0, "lazyImages": 1, "transferKB": 8, "h1": "One intelligence for students." },
+    { "route": "/pricing", "ttfbMs": 3, "domContentLoadedMs": 161, "loadMs": 163, "cls": 0, "images": 0, "brokenImages": 0, "lazyImages": 0, "transferKB": 4, "h1": "Plans for every journey." },
+    { "route": "/download", "ttfbMs": 3, "domContentLoadedMs": 178, "loadMs": 180, "cls": 0, "images": 0, "brokenImages": 0, "lazyImages": 0, "transferKB": 9, "h1": "Get Visionary on every device." },
+    { "route": "/student", "ttfbMs": 3, "domContentLoadedMs": 162, "loadMs": 164, "cls": 0, "images": 5, "brokenImages": 0, "lazyImages": 4, "transferKB": 55, "h1": "Learning, to master, to build." },
+    { "route": "/safety", "ttfbMs": 3, "domContentLoadedMs": 157, "loadMs": 158, "cls": 0, "images": 0, "brokenImages": 0, "lazyImages": 0, "transferKB": 5, "h1": "Safe by design, for every learner." }
+  ],
+  "reading": {
+    "cls": "0 on every public route — no layout instability; the image loading/reflow check passes (zero broken images, below-fold spot illustrations lazy-loaded)",
+    "firstPaintProxy": "DOMContentLoaded 157–246 ms and load 158–248 ms on loopback with warm cache; FCP/LCP left to the lighthouse instrument when its environment is restored",
+    "slowMobile": "not re-measured in this session (no throttling in the in-app browser); the 2026-11-17 lighthouse Fast3G finding (raw LCP >2.5s, fast-LCP lever named) stands as the recorded limitation"
+  }
+}

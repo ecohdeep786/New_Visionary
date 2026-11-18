@@ -12,7 +12,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const navigation = readFileSync(new URL("../src/lib/dashboardNavigation.js", import.meta.url), "utf8");
-const layout = readFileSync(new URL("../src/components/dashboard/DashboardLayout.jsx", import.meta.url), "utf8");
+const layout = readFileSync(new URL("../src/components/dashboard/PreviewDashboardLayout.jsx", import.meta.url), "utf8");
 const page = readFileSync(new URL("../src/pages/dashboard/RoleAreaUnavailable.jsx", import.meta.url), "utf8");
 
 test("the organization-area selector covers exactly the coded organization-only routes", () => {
@@ -20,7 +20,7 @@ test("the organization-area selector covers exactly the coded organization-only 
 });
 
 test("the layout guard renders the area notice for organization areas instead of a silent redirect", () => {
-  const guard = layout.slice(layout.indexOf("!canAccessDashboardPath"), layout.indexOf("!canAccessDashboardPath") + 420);
+  const guard = layout.slice(layout.indexOf("!canAccessDashboardPath"), layout.indexOf("!canAccessDashboardPath") + 1400);
   assert.match(guard, /isOrganizationArea\(section\)/, "the guard branches on organization areas");
   assert.match(guard, /<RoleAreaUnavailable \/>/, "the notice page renders at the requested URL");
   const afterNotice = guard.slice(guard.indexOf("<RoleAreaUnavailable />"));

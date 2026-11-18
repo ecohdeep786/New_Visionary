@@ -10,7 +10,7 @@ const MAX_TEXT = 1000;
 // backed by the service's access checks, and L7 events carry no post text.
 export default function CommunityTab({
   classId,
-  accent = '#4285F4'
+  accent = '#0071E3'
 }) {
   const {
     ctx,
@@ -93,13 +93,13 @@ export default function CommunityTab({
   }
   return <div className="flex flex-col gap-5">
     {loadError && <p role="alert" lang="en" className="rounded-xl bg-[#fce8e6] px-4 py-3 text-sm text-[#b3261e]">{loadError} <button onClick={refresh} lang={locale} className="min-h-11 underline">{copy("Retry")}</button></p>}
-    <section aria-label={copy("Write to the class community")} className="rounded-2xl border border-[#dadce0] bg-white p-5">
-      <label htmlFor={`community-composer-${classId}`} className="text-sm font-medium text-[#121317]">
+    <section aria-label={copy("Write to the class community")} className="rounded-2xl border border-[#d2d2d7] bg-white p-5">
+      <label htmlFor={`community-composer-${classId}`} className="text-sm font-medium text-[#1d1d1f]">
         {role === 'teacher' ? copy("Share with your class") : copy("Share with your class community")}
       </label>
-      <textarea id={`community-composer-${classId}`} disabled={busy || !!loadError || !role} value={text} maxLength={MAX_TEXT} rows={3} onChange={e => setText(e.target.value)} placeholder={copy("Ask a question, share an idea, or help a classmate\u2026")} className="mt-2 w-full rounded-xl border border-[#dadce0] p-3 text-sm leading-relaxed" />
+      <textarea id={`community-composer-${classId}`} disabled={busy || !!loadError || !role} value={text} maxLength={MAX_TEXT} rows={3} onChange={e => setText(e.target.value)} placeholder={copy("Ask a question, share an idea, or help a classmate\u2026")} className="mt-2 w-full rounded-xl border border-[#d2d2d7] p-3 text-sm leading-relaxed" />
       <div className="mt-3 flex items-center justify-between gap-3">
-        <span className="text-xs text-[#5f6368]" aria-hidden="true">{text.length}/{MAX_TEXT}</span>
+        <span className="text-xs text-[#6e6e73]" aria-hidden="true">{text.length}/{MAX_TEXT}</span>
         <button type="button" disabled={!text.trim() || busy || !!loadError || !role} onClick={post} className="h-11 rounded-full px-6 text-sm font-medium text-white disabled:opacity-50" style={{
           backgroundColor: accent
         }}>
@@ -107,25 +107,25 @@ export default function CommunityTab({
         </button>
       </div>
       {error && <p role="alert" lang="en" className="mt-3 text-sm text-[#b3261e]">{error}</p>}
-      <p className="mt-2 text-xs leading-5 text-[#5f6368]">{copy("Visible to everyone in this class, including your teacher. Nothing here is public.")}</p>
+      <p className="mt-2 text-xs leading-5 text-[#6e6e73]">{copy("Visible to everyone in this class, including your teacher. Nothing here is public.")}</p>
     </section>
 
-    {posts === null ? <p role="status" className="text-sm text-[#5f6368]">{copy("Loading the community\u2026")}</p> : loadError ? null : posts.length === 0 ? <div className="py-10 text-center">
-        <p className="text-sm text-[#5f6368]">{copy("No posts yet. Start the conversation \u2014 a question or an idea is enough.")}</p>
+    {posts === null ? <p role="status" className="text-sm text-[#6e6e73]">{copy("Loading the community\u2026")}</p> : loadError ? null : posts.length === 0 ? <div className="py-10 text-center">
+        <p className="text-sm text-[#6e6e73]">{copy("No posts yet. Start the conversation \u2014 a question or an idea is enough.")}</p>
       </div> : <ul className="flex flex-col gap-3" aria-label={copy("Community posts")}>
-        {posts.map(item => <li key={item.id} className="rounded-2xl border border-[#dadce0] bg-white p-5">
+        {posts.map(item => <li key={item.id} className="rounded-2xl border border-[#d2d2d7] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-medium text-[#121317]">{item.authorName}</p>
-                <span className="rounded-full bg-[#e8f0fd] px-2.5 py-0.5 text-[11px] font-medium" style={{
-              color: item.authorRole === 'teacher' ? '#0b57d2' : '#5f6368'
+                <p className="text-sm font-medium text-[#1d1d1f]">{item.authorName}</p>
+                <span className="rounded-full bg-[#eef5ff] px-2.5 py-0.5 text-[11px] font-medium" style={{
+              color: item.authorRole === 'teacher' ? '#0071e3' : '#6e6e73'
             }}>
                   {item.authorRole === 'teacher' ? copy("Teacher") : copy("Learner")}
                 </span>
               </div>
-              <time dateTime={item.at} className="text-xs text-[#5f6368]">{new Date(item.at).toLocaleString(dateLocale(locale))}</time>
+              <time dateTime={item.at} className="text-xs text-[#6e6e73]">{new Date(item.at).toLocaleString(dateLocale(locale))}</time>
             </div>
-            <p className="mt-3 break-words whitespace-pre-wrap text-sm leading-relaxed text-[#121317]">{item.text}</p>
+            <p className="mt-3 break-words whitespace-pre-wrap text-sm leading-relaxed text-[#1d1d1f]">{item.text}</p>
             {item.status === 'flagged' && role === 'teacher' && <p role="status" className="mt-2 text-xs font-medium text-[#b3261e]">{copy("A learner reported this post.")}</p>}
             <div className="mt-3 flex items-center gap-4">
               {role === 'teacher' && <button type="button" onClick={() => remove(item.id)} className="min-h-11 text-xs font-medium text-[#b3261e] underline hover:no-underline" aria-label={copy("Remove post by {name}", {
@@ -136,7 +136,7 @@ export default function CommunityTab({
           }} aria-label={copy("Restore reported post by {name}", {
             name: item.authorName
           })}>{copy("Restore")}</button>}
-              {role === 'student' && item.status === 'visible' && <button type="button" onClick={() => report(item.id)} className="min-h-11 text-xs text-[#5f6368] underline hover:no-underline" aria-label={copy("Report post by {name}", {
+              {role === 'student' && item.status === 'visible' && <button type="button" onClick={() => report(item.id)} className="min-h-11 text-xs text-[#6e6e73] underline hover:no-underline" aria-label={copy("Report post by {name}", {
             name: item.authorName
           })}>{copy("Report")}</button>}
             </div>

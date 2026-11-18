@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AuthAwareLink from "@/components/landing/AuthAwareLink";
 import { useRevealOnce } from "@/components/landing/system/hooks";
 import ScrollReveal from "../sections/ScrollReveal.jsx";
 import RevealItem from "../sections/RevealItem.jsx";
@@ -91,14 +92,14 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           </RevealItem>
           <RevealItem idx={2}>
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/register"
+            <AuthAwareLink to="/register"
+              signedInLabel="Open Visionary"
               className={`inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-[21px] font-medium text-[17px] leading-[1.176] tracking-[-0.011em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px] ${
                 closing ? "bg-white text-[#1d1d1f] hover:bg-[#f5f5f7]" : "bg-[#1d1d1f] text-white hover:bg-[#272729]"
               }`}
             >
               Get started
-            </Link>
+            </AuthAwareLink>
             <Link
               to="/contact"
               className={`inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px] ${

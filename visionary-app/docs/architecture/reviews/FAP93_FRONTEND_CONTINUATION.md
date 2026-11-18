@@ -77,3 +77,76 @@ The public production browser review now covers all 24 content routes at 320, 39
 | T13 · Reliability and synchronization · [KAN-139](https://visionary-team.atlassian.net/browse/KAN-139), [KAN-140](https://visionary-team.atlassian.net/browse/KAN-140), [KAN-141](https://visionary-team.atlassian.net/browse/KAN-141), [KAN-121](https://visionary-team.atlassian.net/browse/KAN-121) | Continued the existing production account fixture and public browser sweep. Cross-device change feeds, coordinator and cache-policy branches are in Testing. | `npm run check`, `node --test backend/tests/learning-loop.test.cjs`, and both `fap-public-production-review.mjs` and `fap93-production-review.mjs` passed. Root checks include 57 script tests and 826 frontend tests, lint, types and build. The authenticated product still needs a hosted test deployment, approved role fixtures and released sync endpoints, followed by two-device failure, recovery and data-isolation acceptance. |
 
 Resume from PR #59 and its exact head. Confirm independent review for this candidate, then integrate into beta and rerun the product checks there. For the next integrated run, first establish a test deployment with the KAN-42/39/40 workspace, invitation and consent contracts on the same runtime, then exercise the role dependencies in journey order. Reuse the KAN-29 source-coverage candidate and KAN-139–141 sync work only as those changes pass their own integration and registration gates.
+
+## V7 production-completion lane - 2026-11-14 (post beta/dev/main consolidation)
+
+**Status: Implementation Complete on `zcode/fap-69-v7-production-completion` - submitted for independent codex review. Not Done: no self-approval; hosted, deployed-persistence and cross-browser acceptance remain open (D-095/D-098).**
+
+Lane setup: worktree `C:\Users\Administrator\nv-worktrees\fap-69-v7-production-completion`, branch `zcode/fap-69-v7-production-completion` cut from verified `origin/dev` `6c209a29` (dev == main == `6c209a29` after the beta/FAP-93/FAP-69-v6 consolidation) and pushed to GitHub. The T09/T12 blockers recorded above ("KAN-42/39/40 controllers registered in dev, absent from beta") are resolved by that integration: dev's `FirebaseProductModule` registers Workspaces, PersonalWorkspace, Invitation, Consent, Learning and PrivacyPolicy controllers, and every frontend adapter route was re-audited against them route-by-route before the run below.
+
+Implemented on this branch - implementation commit `c644d931` (this receipt text is committed in the follow-up revision on the same branch):
+
+1. **Fenced frontend test realm** (`frontend/src/api/firebase/config.js`): a production build may bind a `demo-` project to the Auth Emulator only when `VITE_FIREBASE_EMULATOR_TEST_ENABLED === 'true'` **and** the project is `demo-` prefixed - the frontend mirror of the backend's `DATA_OVERVIEW_TEST_ENABLED` fence. Law tests extended in `frontend/tests/auth-errors.test.mjs` (8/8 pass): the realm keeps the loopback-only URL law, never applies to a hosted-config project, and a demo project without an explicit emulator origin never runs in production. `frontend/.env.firebase.example` documents the flag; the published image pins neither flag, so hosted behavior is unchanged.
+2. **CSP realm extension** (`frontend/vite.config.js` `cspForRealm`): the production preview CSP's `connect-src` gains the emulator origin only under the same three conditions; without the flags the header is byte-identical to the published CSP. Found as a real defect of the realm path: the first realm-enabled production build refused the Auth SDK's emulator connection by CSP (`connect-src` lacked `http://127.0.0.1:59042`), surfacing as the honest "Check your internet connection and try again." message.
+3. **Integrated journey gate** `backend/tests/contracts/fap69-v7/integrated-journey.mjs` - self-contained: disposable synthetic-mode SQL (`stagingDatabase` fixture, MigrationRunner, runtime grant), in-process registered `FirebaseProductModule` on 127.0.0.1:3001, and the REAL production frontend build served by `vite preview` on 127.0.0.1:5176, driven by real Edge via playwright-core across three independent browser contexts (device A, device B, device C). No provider/session/HTTP stubs; identities are real Auth Emulator accounts verified through the real `/auth/action` oobCode route.
+4. `backend/tests/contracts/fap69-v7/start-server.mjs` - persistent local backend harness for resuming probe iteration without re-deriving the environment (explicit local targets only; `AUTH_GLOBAL_LOGOUT_ENABLED` defaulted on for the realm).
+
+**Gate result - GREEN 2026-11-14 17:15Z, 12/12 legs, zero page errors** (receipt + 9 leg screenshots: `docs/visionary/baseline/fap69-v7-integrated-journey/`; runtime copies under gitignored `artifacts/qa/fap69-v7/`):
+
+1. register-awaits-verification - real signup stops at the verify screen; no bypass.
+2. verified-signup-opens-onboarding - real oobCode verify through `/auth/action`, then `I verified my email` opens `/onboarding`.
+3. onboarding-professional-reaches-connected-home - deterministic Professional path ends at the connected account home in the production build.
+4. personal-workspace-provisioned-confirmed-via-server-readback - `Set up personal workspace` renders 'Your personal workspace is ready.' and `Personal workspace · Owner` from server list readback (synthetic SQL).
+5. second-device-sees-server-persisted-workspace - fresh device B sign-in sees the same SQL-backed workspace.
+6. display-name-saved-cross-device - name write on device A; device B input value equals the saved name after a fresh app load.
+7. privacy-policy-and-consents-render - surfaces render truthful states: `policyAvailable:false`, `Consent controls are unavailable` - no fabricated grants.
+8. provisioning-outage-shows-honest-unavailable - `DATA_WORKSPACE_PROVISIONING_ENABLED` toggled off in-process renders 'Workspace setup is unavailable right now. Try again later.'; no success claim during outage.
+9. provisioning-retry-succeeds-after-recovery - same-command retry after re-enable succeeds.
+10. session-listed-on-security-screen - `Account security` lists `This browser · Active` from real session records.
+11. logout-all-revokes-both-devices - `Sign out on all devices` then confirm; device B lands on `/login`. Requires `AUTH_GLOBAL_LOGOUT_ENABLED=true` (realm env).
+12. saved-learning-owner-surface-after-re-login - device B re-login, `/dashboard/learn` owner-scoped surface renders from the account.
+
+Honest findings recorded by leg 7: the approved-policy and consent surfaces render their truthful **unavailable** states in this local realm (consent needs its enabled SQL runtime; policy publication is a hosted concern). Nothing in the run claims fabricated availability. Leg 11 required `AUTH_GLOBAL_LOGOUT_ENABLED=true`, which the realm env sets; hosted enablement is a separate deployment decision.
+
+Exact resumable checkpoint for codex (offline continuation):
+
+- Branch `zcode/fap-69-v7-production-completion` (pushed; base `6c209a29`). Gate: `node ../../tests/contracts/fap69-v7/integrated-journey.mjs` run from `backend/upstream/backend` with env `FIRESTORE_EMULATOR_HOST=127.0.0.1:58042`, `FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:59042`, `DATA_TEST_DATABASE_URL=postgresql://postgres:visionlocal@127.0.0.1:5433/visionary_data_test_kan42?schema=public`, `FRONTEND_ORIGIN=http://127.0.0.1:5176`, `CHROME_PATH=<Edge exe>`. The gate boots its OWN backend on 3001 - stop any `start-server.mjs` first (port 3001 conflict = EADDRINUSE).
+- Stack: PostgreSQL 16 native service `postgresql-x64-16` (port 5433, superpassword `visionlocal`, disposable DBs `visionary_data_test` + `visionary_data_test_kan42`); Firestore emulator jar v1.22.0 on 58042 (project `demo-visionary-kan42`); Auth emulator via `firebase emulators:start --only auth --config C:\Users\Administrator\.cache\visionary-fbem\firebase.json` (port 59042); frontend production build with the realm env, served by `vite preview` on 5176 (its `/api` proxy hardcodes 3001).
+- Frontend build env (realm): `VITE_FIREBASE_API_KEY=demo-fake-local-key`, `VITE_FIREBASE_AUTH_DOMAIN=demo-visionary-kan42.firebaseapp.com`, `VITE_FIREBASE_PROJECT_ID=demo-visionary-kan42`, `VITE_FIREBASE_APP_ID=1:000000000000:web:fap69journey`, `VITE_FIREBASE_AUTH_EMULATOR_URL=http://127.0.0.1:59042`, `VITE_FIREBASE_EMULATOR_TEST_ENABLED=true` (+ the remaining standard VITE_FIREBASE_* identity fields).
+- Remaining in-scope legs to add on this branch: organization-owner invitation issue (API) to learner accept (UI) with SQL membership readback; learning session create then close through the UI if `POST /api/account/learning/sessions` admits it; `ConnectedLearningHistory` non-empty state. All backend contracts are registered on dev; no new backend work is expected for them. **Completed 2026-11-15 - see the continuation section below.**
+- Still externally blocked (unchanged from the V6 table): hosted Firebase acceptance on real `visionary-research`, deployed SQL/Firestore persistence, physical Safari/Firefox/screen-reader acceptance, field performance. This gate does NOT close those; it establishes the local integrated floor beneath them.
+
+## V7 production-completion lane - 2026-11-15 continuation (gate extended to 24 legs, GREEN)
+
+**Status: Implementation Complete on `zcode/fap-69-v7-production-completion` - submitted for independent codex review. The three remaining in-scope legs from the 2026-11-14 checkpoint are implemented and green. Hosted, deployed-persistence and cross-browser acceptance remain open (D-095/D-098).**
+
+Changes on this branch (all verified by the extended gate):
+
+1. **Backend build defect fixed** (`backend/upstream/backend/nest-cli.json`): the approved privacy policy asset (`src/privacycore/privacy-preservation-policy.v1.json`) never reached `dist`, so `GET /api/account/privacy/policy` returned 503 in every realm - a real defect the 2026-11-14 run had recorded as `policyAvailable:false`. Added the `privacycore/*.json` asset copy, rebuilt; the gate now records `policyAvailable: true` with the pinned baseline digest (`2f928ca8…`).
+2. **Invitation realm split into its own process** (`backend/tests/contracts/fap69-v7/invitation-realm.mjs`, forked by the gate): institution invitations require `NODE_ENV=development` while the overview store's emulator test fence requires `NODE_ENV=test`. One process cannot serve both: `ConfigService.set` (established by a root-caused failure during this lane, with per-page forensics) persists realm settings into `process.env` for the whole process - the first in-process attempt mutated app T's origin to the invitation origin and 403'd every session mint. The invitation realm therefore runs the SAME registered `FirebaseProductModule` in a child process (same Auth + Firestore emulators, same disposable synthetic SQL schema), forked after enrollment with the reviewer UID taken from the Auth Emulator's own identity record.
+3. **Vite preview proxy made env-overridable** (`frontend/vite.config.js`): `VITE_PREVIEW_API_TARGET` (default unchanged `http://127.0.0.1:3001`) so a second preview (5177→3002) can serve the invitation realm.
+4. **Gate hardening** (`backend/tests/contracts/fap69-v7/integrated-journey.mjs`): per-page console/pageerror/request-failure/4xx forensics with failure-context dumps; a CSRF-rotating authenticated call helper (the cookie and header must be byte-equal, so every write rotates and rewrites the jar entry); a full real-user enrollment helper; a `JOURNEY_SKIP_INVITATION_REALM` isolation flag.
+
+**Gate result - GREEN 2026-11-15 05:36Z, 24/24 legs** (receipt + 13 leg screenshots refreshed in `docs/visionary/baseline/fap69-v7-integrated-journey/`):
+
+Learning journey (registered `POST /api/account/learning/sessions` contract; the production UI has no local create affordance - the curriculum workspace's interactive loop is the dev-preview surface, recorded as the T11 boundary):
+13. learning-session-created-via-registered-contract - device B's own browser-session cookies + CSRF rotation create a bounded active session (201).
+14. saved-learning-history-nonempty-from-server - `/dashboard/learn` renders the server row (`journey-concept`, `In progress`).
+15. learning-session-closed-through-ui - `Close session` → `Confirm close` → 'Learning session closed.' → `Closed ·` after reload.
+16. learning-closure-cross-device - device A sees the same `Closed ·` server state.
+
+Institution invitation journey (same registered module, development realm in its own process; governance fixture mirrors `backend/tests/privacycore.test.cjs`):
+17. three-accounts-enrolled-and-onboarded - owner, member and reviewer all enrolled through the real production UI (verified email via the real `/auth/action` oobCode route).
+18. policy-governance-fixture-published - approved policy + `personal-policy-review` acknowledgements in the real `visionary_privacy_control/fap69-v7-journey` namespace.
+19. institution-approval-by-reviewer - the reviewer records the approval (`proof_` evidence reference, 7-day validity).
+20. owner-issued-invitation - the owner issues a MEMBER invitation (one-time bearer token).
+21. invitation-accept-ui-honest-fence - the REAL accept affordance on the test realm performs the real POST and reports the realm fence honestly ('Could not confirm acceptance'); no fabricated success.
+22. invitation-accept-server-committed - the same registered accept contract through the invited member's real session on the development realm (CSRF + `X-Visionary-Account` binding; 201 `role: MEMBER`, `replay: false`).
+23. invitation-accept-sql-membership-readback - the acceptance committed a `workspace_memberships` row (`MEMBER`) in the disposable schema.
+24. invitation-membership-cross-contract-ui - a fresh device on the test realm sees `FAP-69 v7 Organization` / `Shared workspace · Member` through the registered overview contract.
+
+Org-workspace seeding boundary (unchanged): `WorkspacesController` (`POST api/workspaces`) is not registered in `FirebaseProductModule` on this dev cut, so organization workspace creation is not HTTP-reachable in the product realm; the gate seeds the org workspace + OWNER membership exactly like the invitation contract's own backend suite (`data-04/invitations.test.mjs`). KAN-110 (admission consistency before hosted activation) remains the backend dependency for the invitation realm's overview and consent surfaces.
+
+Exact resumable checkpoint (supersedes the 2026-11-14 one; same env and boot command):
+- The gate forks `invitation-realm.mjs` itself (port 3002, origin 5177) - nothing to start manually. `JOURNEY_SKIP_INVITATION_REALM=true` runs only the test realm for isolation.
+- Both vite previews must be running: 5176 (test realm → 3001) and 5177 (invitation realm → 3002 via `VITE_PREVIEW_API_TARGET=http://127.0.0.1:3002`).

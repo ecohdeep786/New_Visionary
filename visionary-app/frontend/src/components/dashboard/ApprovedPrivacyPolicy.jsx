@@ -14,7 +14,7 @@ export default function ApprovedPrivacyPolicy({ accountId }) {
   return <section className="max-w-2xl rounded-2xl border bg-white p-6" lang="en" aria-labelledby="approved-policy-title">
     <h1 id="approved-policy-title" className="text-2xl font-semibold">Approved data policy</h1>
     {state.loading && <p role="status" className="v-muted mt-3">Checking the approved policy for your account…</p>}
-    {state.error && <><p role="alert" className="v-notice v-error mt-3">{state.error}</p><button type="button" className="mt-3 min-h-11 rounded-lg border px-4" onClick={() => setAttempt(v => v + 1)}>Retry policy</button></>}
+    {state.error && <><p role="alert" className="v-notice v-error mt-3">{state.error}</p><button type="button" className="mt-3 min-h-11 rounded-xl border px-4" onClick={() => setAttempt(v => v + 1)}>Retry policy</button></>}
     {state.value && <>
       <p className="v-muted mt-3">Approved by {state.value.approvedBy.name}, {state.value.approvedBy.role}.</p>
       <p className="mt-3">Your existing records are preserved. There is no automatic purge or default use for model training.</p>

@@ -7,7 +7,7 @@ const stageProfileOf = request => workspaceIdentity(request).person.learningCont
 import * as pipeline from '../src/services/learningPipelineService.ts';
 import { proposeStageTransition, proposeClassPromotion, confirmStageTransition, postponeStageTransition, undoStageTransition, getActiveTransitionNotice, getParentStageInsight, configureStageTransitionClock, getStageContinuity, getStageProfile, getStageSuggestions, respondStageSuggestion } from '../src/services/stageTransitionService.ts';
 import { getOrganizationAggregate } from '../src/services/mentorStateService.ts';
-import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
+import { seedConnectedFixtures } from './fixtures/demoFixtures.js';
 import { SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
 
 const memory = new Map();

@@ -13,7 +13,7 @@ import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 /* ═══ TOKENS (one system) ═══ */
 const COLORS = {
   ink: "#1d1d1f", surface: "#f5f5f7", blue: "#0066cc", grey: "#6e6e73",
-  lightGrey: "#86868b", mist: "#d2d2d7", white: "#ffffff",
+  lightGrey: "#6e6e73", mist: "#d2d2d7", white: "#ffffff",
 };
 
 /* The A2 CTA law, imported from the one source; `mailPill` re-tones the
@@ -263,7 +263,7 @@ export default function SchoolPage() {
                         <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card" style={{ color: COLORS.blue }}>
                           <t.Icon className="h-6 w-6" strokeWidth={1.8} />
                         </span>
-                        <p className="mt-6 font-semibold tracking-[0.009em] leading-[1.12] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</p>
+                        <h2 className="mt-6 font-semibold tracking-[0.009em] leading-[1.12] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</h2>
                         <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{t.line}</p>
                       </button>
                     ))}

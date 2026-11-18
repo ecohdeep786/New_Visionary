@@ -127,22 +127,22 @@ export default function TeacherHome() {
         {stats.map(s => {
         const Icon = s.icon;
         return <div key={s.label} className="flex flex-wrap items-center gap-2">
-              <Icon className="w-5 h-5 text-[#5f6368]" />
-              <p className="text-[28px] font-medium text-[#121317] leading-none">{loading || error ? "—" : s.value}</p>
-              <p className="text-sm text-[#5f6368]">{copy(s.label)}</p>
+              <Icon className="w-5 h-5 text-[#6e6e73]" />
+              <p className="text-[28px] font-medium text-[#1d1d1f] leading-none">{loading || error ? "—" : s.value}</p>
+              <p className="text-sm text-[#6e6e73]">{copy(s.label)}</p>
             </div>;
       })}
       </div>}
 
       {loading ? <div className="flex items-center justify-center py-16">
-          <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
+          <div className="w-8 h-8 border-4 border-[#d2d2d7] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
         </div> : error ? null : classes.length === 0 ? <div className="flex flex-col items-center gap-5 py-16 text-center">
           <SpotIllustration subject="study" className="v-empty-illustration" />
           <div>
-            <h3 className="text-[18px] font-medium text-[#121317] mb-2"> {copy("No classes yet")} </h3>
-            <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed"> {copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")} </p>
+            <h3 className="text-[18px] font-medium text-[#1d1d1f] mb-2"> {copy("No classes yet")} </h3>
+            <p className="text-sm text-[#6e6e73] max-w-sm leading-relaxed"> {copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")} </p>
           </div>
           <button onClick={() => setShowCreate(true)} className="v-button primary">
             <Plus className="w-4 h-4" /> {copy("Create your first class")} </button>

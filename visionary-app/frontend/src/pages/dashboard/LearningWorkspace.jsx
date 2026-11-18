@@ -26,10 +26,11 @@ import ClassworkStudy from './ClassworkStudy';
 import { useAuth } from '@/lib/AuthContext';
 import { appClient } from '@/api/appClient';
 import { createLearningSessionClient } from '@/services/learningSessionClient';
+import { createKnowledgeProjectionClient } from '@/services/knowledgeProjectionClient';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { getContentRepository, getSavedCurriculumGraphs, SAMPLE_SELECTION, SAMPLE_LIBRARY_SELECTION, PROFESSIONAL_SAMPLE_SELECTION } from '@/services/contentRepository';
 import { getStudentState, getStudentClassLearningContext } from '@/services/mentorStateService';
-import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation, configureLearningSessionAdapter } from '@/services/learningPipelineService';
+import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation, configureLearningSessionAdapter, configureKnowledgeProjectionAdapter } from '@/services/learningPipelineService';
 const languageNames = {
   en: 'English',
   hi: 'हिन्दी',
@@ -167,12 +168,15 @@ function CurriculumLearningWorkspace({
   const bookId = params.get('book');
   const fromClassId = params.get('fromClass');
   // Connected learning sessions are owner-scoped server receipts keyed to the
-  // signed-in profile; signed-out visitors get no session adapter.
+  // signed-in profile; signed-out visitors get no session adapter. The
+  // knowledge estimate (KAN-145) rides the same verified identity: confirmed
+  // assessments project into the owner's server-side estimate.
   useEffect(() => {
     const accountId = user?.id;
-    if (!accountId) { configureLearningSessionAdapter(null); return undefined; }
+    if (!accountId) { configureLearningSessionAdapter(null); configureKnowledgeProjectionAdapter(null); return undefined; }
     configureLearningSessionAdapter(createLearningSessionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
-    return () => configureLearningSessionAdapter(null);
+    configureKnowledgeProjectionAdapter(createKnowledgeProjectionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
+    return () => { configureLearningSessionAdapter(null); configureKnowledgeProjectionAdapter(null); };
   }, [user?.id]);
   useEffect(() => {
     let live = true;
@@ -563,7 +567,7 @@ function CurriculumLearningWorkspace({
       }}><label className="max-w-xl text-sm">{professional ? copy("Skill or capability (optional)") : copy("Subject (optional)")}<input className="v-field mt-2" maxLength={100} placeholder={professional ? copy("For example, data interpretation") : copy("For example, mathematics")} value={selection.subject} onChange={e => setSelection({
             ...selection,
             subject: e.target.value
-          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#1967d2]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
+          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#0071e3]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
                 ...selection,
                 [key]: e.target.value
               })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try a workplace example lesson' : 'Try an example lesson')}</button></div></form></details>}

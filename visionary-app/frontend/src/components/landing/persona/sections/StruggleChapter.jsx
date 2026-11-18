@@ -67,7 +67,14 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
               src={s.image}
               alt={i === index ? s.alt : ""}
               aria-hidden={i !== index}
-              loading="eager"
+              /* The struggle chapter sits below the fold on every persona
+                 page; eager loading here made 3-6 slide images race the LCP
+                 hero through the same pipe (T13 2026-11-15: the /student hero
+                 spent 1.7s starved behind them under the mobile throttle
+                 profile). Lazy defers every slide — including the active
+                 one — until it nears the viewport, which is when it becomes
+                 visible anyway. */
+              loading="lazy"
               decoding="async"
               draggable="false"
               style={STRUGGLE_MASK}

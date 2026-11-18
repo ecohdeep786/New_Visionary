@@ -52,21 +52,21 @@ export default function CreateClassModal({
   return <Dialog open onOpenChange={open => {
     if (!open && !busy) onClose();
   }}>
-      <DialogContent className="max-h-[90dvh] w-[calc(100%-2rem)] max-w-md overflow-y-auto rounded-3xl bg-white p-6 sm:rounded-3xl sm:p-8" lang={locale}>
-        <DialogTitle className="text-[22px] font-medium text-[#121317]"> {copy("Create class")} </DialogTitle>
+      <DialogContent className="max-h-[90dvh] w-[calc(100%-2rem)] max-w-md overflow-y-auto rounded-2xl bg-white p-6 sm:rounded-2xl sm:p-8" lang={locale}>
+        <DialogTitle className="text-[22px] font-medium text-[#1d1d1f]"> {copy("Create class")} </DialogTitle>
         <DialogDescription> {copy("Give your class a name. You\u2019ll get a code to share with your students.")} </DialogDescription>
         <form onSubmit={create} className="flex flex-col gap-4">
           <p className="v-notice">{activeWorkspace?.organizationId ? copy('Organization class · {id}. This class will appear in the organization’s linked classroom view.', {
             id: activeWorkspace.organizationId
           }) : copy("Independent teaching \xB7 This class belongs to your personal workspace.")} {copy("To create in another space, close this dialog and switch workspace first.")} </p>
-          {FIELDS.map(([key, label, placeholder]) => <label key={key} className="block text-sm font-medium text-[#121317]">
+          {FIELDS.map(([key, label, placeholder]) => <label key={key} className="block text-sm font-medium text-[#1d1d1f]">
                {copy(label)}
               <input disabled={busy} required={key === "name"} maxLength={100} value={form[key]} onChange={e => setForm(current => ({
             ...current,
             [key]: e.target.value
-          }))} placeholder={copy(placeholder)} className="mt-2 h-11 w-full rounded-lg border border-[#5f6368] px-3 font-normal outline-none focus:border-[var(--v-action)] focus:ring-1 focus:ring-[var(--v-action)]" />
+          }))} placeholder={copy(placeholder)} className="mt-2 h-11 w-full rounded-xl border border-[#6e6e73] px-3 font-normal outline-none focus:border-[var(--v-action)] focus:ring-1 focus:ring-[var(--v-action)]" />
             </label>)}
-          <fieldset><legend className="mb-3 text-sm font-medium text-[#121317]"> {copy("Class color")} </legend><div className="flex flex-wrap gap-3">
+          <fieldset><legend className="mb-3 text-sm font-medium text-[#1d1d1f]"> {copy("Class color")} </legend><div className="flex flex-wrap gap-3">
             {COLORS.map(([label, color]) => <button key={color} type="button" disabled={busy} onClick={() => setForm(current => ({
               ...current,
               color

@@ -55,3 +55,14 @@ test("safety and blocked paths are untouched by this change", () => {
   assert.match(teachingInterface, /en: 'Your safety matters\./, "crisis response copy unchanged");
   assert.match(teachingInterface, /status: 'blocked', source: 'safety'/, "blocked path unchanged");
 });
+
+/* T11 (2026-11-16): the sr-only live region announced "Response available
+ * above. Review its source label." for every guide reply — including the
+ * honest not_connected notice, where no answer and no source label exist.
+ * The announcement must match what actually rendered. */
+test("the live announcement matches the rendered state — no false answer claim", () => {
+  assert.match(guide, /messages\.at\(-1\)\.status === 'not_connected' \? copy\("Your question is saved \u00b7 no model answer yet"\)/,
+    "a not_connected reply announces the saved/no-answer state, not a response claim");
+  assert.match(guide, /copy\("Response available above\. Review its source label\."\)/,
+    "an actual response still announces the source-label review");
+});

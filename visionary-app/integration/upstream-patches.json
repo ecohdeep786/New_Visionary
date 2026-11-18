@@ -236,6 +236,22 @@
           "afterSha256": "34d9e02de2d778a07a6abc5ba62fcb67bca0d3b83b2ade2418d2ff06df23e5f5"
         }
       ]
+    },
+    {
+      "id": "2026-11-15-nest-cli-privacy-assets",
+      "date": "2026-11-15",
+      "decision": "FAP-69 v7 integrated journey gate (commit af83f470 on dev)",
+      "reason": "The approved privacy policy asset (privacycore/*.json) was never copied into the backend build, so GET /api/account/privacy/policy returned 503 in every realm. The reviewed FAP-69 v7 fix adds the Nest CLI assets copy so the approved policy JSON ships in dist. No dependency, schema or credential change.",
+      "diff": "integration/upstream-patches/2026-11-15-nest-cli-privacy-assets.patch",
+      "diffSha256": "546ec073e92802a3a52dfb8752421fd2bc6a6c0dc5061a7c96728bf1493c301f",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/nest-cli.json",
+          "beforeSha256": "84dc81177a0db2270bd71242b910f07982c56eec68285694c9cbffc3911912ba",
+          "afterSha256": "a0862ff3824fdb9219ab9e399138cb8ec6d9ba1d19c9457f239ec0753135959f"
+        }
+      ]
     }
   ]
 }

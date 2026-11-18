@@ -55,7 +55,7 @@ test("FAP-89: the owner profile holds every organization capability, so the owne
 });
 
 test("FAP-89: DashboardLayout branches the denial by section kind", () => {
-  const layout = readFileSync(new URL("../src/components/dashboard/DashboardLayout.jsx", import.meta.url), "utf8");
+  const layout = readFileSync(new URL("../src/components/dashboard/PreviewDashboardLayout.jsx", import.meta.url), "utf8");
   assert.match(layout, /organizationSectionKind\(location\.pathname\)==='personal'\?<div className="v-page" lang=\{locale\}><h1 className="v-title">\{organizationCopy\(locale,'Not available in this workspace'\)\}/, "personal sections render the honest not-available copy");
   assert.match(layout, /\{organizationCopy\(locale,'This section belongs to personal learning workspaces\. It is not part of an organization workspace\.'\)\}/, "the personal denial names the real reason");
   assert.ok(layout.includes("organizationCopy(locale,'Your {role} permission does not include this section. Ask the organization owner to review access.',{role:organizationCopy(locale,policy.label)})"), "capability denials keep the owner-directed copy");

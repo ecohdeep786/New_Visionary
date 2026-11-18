@@ -14,7 +14,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const navigation = readFileSync(new URL("../src/lib/dashboardNavigation.js", import.meta.url), "utf8");
-const layout = readFileSync(new URL("../src/components/dashboard/DashboardLayout.jsx", import.meta.url), "utf8");
+const layout = readFileSync(new URL("../src/components/dashboard/PreviewDashboardLayout.jsx", import.meta.url), "utf8");
 const page = readFileSync(new URL("../src/pages/dashboard/RoleAreaUnavailable.jsx", import.meta.url), "utf8");
 
 test("FAP-87: the section owner map covers exactly the restricted sections outside the organization areas", () => {
@@ -24,7 +24,7 @@ test("FAP-87: the section owner map covers exactly the restricted sections outsi
 
 test("FAP-87: the layout gate explains every owned section and keeps the fallback only for unmapped ones", () => {
   assert.match(layout, /dashboardAreaOwner/, "the layout consumes the owner map");
-  const guard = layout.slice(layout.indexOf("!canAccessDashboardPath"), layout.indexOf("!canAccessDashboardPath") + 420);
+  const guard = layout.slice(layout.indexOf("!canAccessDashboardPath"), layout.indexOf("!canAccessDashboardPath") + 1400);
   assert.match(guard, /isOrganizationArea\(section\) \|\| dashboardAreaOwner\(section\)/, "organization areas and owned sections both render the notice");
   assert.match(guard, /<RoleAreaUnavailable \/>/, "the notice page renders at the requested URL");
   const afterNotice = guard.slice(guard.indexOf("<RoleAreaUnavailable />"));

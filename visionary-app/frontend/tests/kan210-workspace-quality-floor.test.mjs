@@ -1,0 +1,202 @@
+/** KAN-210 — the workspace product-quality floor.
+ *
+ *  Four findings from the 2026-10-20 review that survived on dev:
+ *
+ *  1. Reveal policy (P0, global): `.scroll-reveal { opacity: 0 }` gated
+ *     section visibility on the IntersectionObserver — content was invisible
+ *     in the first-paint DOM (no-JS, pre-hydration, print, crawlers), and the
+ *     wrapper had NO reduced-motion override, so reduced-motion users could
+ *     face permanently hidden sections (an L8 violation: "reduced-motion …
+ *     never zero"). The law is now: content always visible in the first
+ *     paint; only a JS-armed below-the-fold chapter may hide until it scrolls
+ *     into view, and reduced motion snaps it fully visible instantly.
+ *  2. "Workspace unavailable" escaped the shell: the preview workspace layout
+ *     rendered a bare `<main class="p-8">` with no topbar, rail or brand —
+ *     the error looked broken, not authored. The law now: opening and error
+ *     states are rooms in the product (full shell chrome + centered panel
+ *     with explanation, device-data reassurance and retry).
+ *  3. Native `<select>`s on the personalization panel read as non-premium
+ *     beside the custom controls on the same page. The law: the panel uses
+ *     the workspace listbox control with native-grade listbox semantics.
+ *  4. FadeReveal's 700ms transition ran unchanged under prefers-reduced-motion;
+ *     the reveal law requires the snap to be instant (opacity-only, no ride).
+ */
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = fileURLToPath(new URL("../", import.meta.url));
+const read = (p) => readFileSync(join(root, p), "utf8");
+
+test("KAN-210 reveal law: the scroll-reveal CSS never hides content by default", () => {
+  const css = read("src/index.css");
+  assert.doesNotMatch(css, /^\.scroll-reveal \{\s*opacity: 0;/m, "the old hide-by-default wrapper rule is gone");
+  assert.doesNotMatch(css, /^\.scroll-reveal \.reveal-item > \* \{\s*opacity: 0;/m, "the old hide-by-default child rule is gone");
+  // The armed state exists, is JS-gated, and is the ONLY hiding rule.
+  assert.match(css, /\.scroll-reveal\.reveal-armed:not\(\.in-view\) \{\s*opacity: 0;/, "hiding happens only for armed chapters");
+  assert.match(css, /\.scroll-reveal\.reveal-armed:not\(\.in-view\) \.reveal-item > \* \{/, "armed children hide with the offset");
+  assert.match(css, /\.scroll-reveal\.reveal-armed:not\(\.in-view\) \.stagger-group \.stagger-child \{/, "armed cards hide with the rise");
+});
+
+test("KAN-210 reveal law: reduced motion snaps armed chapters fully visible", () => {
+  const css = read("src/index.css");
+  const block = css.match(/@media \(prefers-reduced-motion: reduce\) \{\s*\.scroll-reveal\.reveal-armed:not\(\.in-view\),[\s\S]*?\n\}/);
+  assert.ok(block, "a reduced-motion block covers every armed hiding rule");
+  for (const selector of [
+    ".scroll-reveal.reveal-armed:not(.in-view),",
+    ".scroll-reveal.reveal-armed:not(.in-view) .reveal-item > *,",
+    ".scroll-reveal.reveal-armed:not(.in-view) .stagger-group .stagger-child,",
+    ".scroll-reveal.reveal-armed:not(.in-view) .stagger-group .stagger-child .media-settle",
+  ]) {
+    assert.ok(block[0].includes(selector), `reduced motion covers ${selector}`);
+  }
+  assert.match(block[0], /opacity: 1;/, "armed content is fully visible under reduce");
+});
+
+test("KAN-210 reveal law: print never hides an armed chapter", () => {
+  const css = read("src/index.css");
+  const print = css.match(/@media print \{[\s\S]*?\r?\n\}\r?\n/);
+  assert.ok(print, "the print block exists");
+  assert.match(print[0], /\.scroll-reveal,/, "print un-hides the reveal wrapper");
+  assert.match(print[0], /opacity: 1 !important;/, "print forces content visible");
+});
+
+test("KAN-210 reveal law: the hooks arm only below-the-fold chapters after paint", () => {
+  const hooks = read("src/components/landing/system/hooks.js");
+  assert.match(hooks, /const \[entered, setEntered\] = useState\(false\);\s*const \[armed, setArmed\] = useState\(false\);/, "useInViewOnce tracks an armed state");
+  assert.match(hooks, /belowFold = el\.getBoundingClientRect\(\)\.top > \(window\.innerHeight/, "arming checks the fold");
+  assert.match(hooks, /return \{ ref, entered, armed \};/, "ScrollReveal receives armed");
+  // useRevealOnce starts visible and only hides a below-fold chapter.
+  assert.match(hooks, /const \[visible, setVisible\] = useState\(true\);/, "useRevealOnce starts visible — content is in the first paint");
+  assert.match(hooks, /if \(!belowFold\) \{\s*hasRevealed\.current = true;\s*setVisible\(true\);/, "an above-fold chapter never hides after paint");
+  const scrollReveal = read("src/components/landing/persona/sections/ScrollReveal.jsx");
+  assert.match(scrollReveal, /armed && !entered \? "reveal-armed" : ""/, "the armed class applies only before the observer fires");
+});
+
+test("KAN-210 reveal law: FadeReveal snaps instantly under reduced motion", () => {
+  const fade = read("src/components/landing/persona/sections/FadeReveal.jsx");
+  assert.match(fade, /fade-reveal/, "FadeReveal carries a stable class for the reduce law");
+  const css = read("src/index.css");
+  const block = css.match(/@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?\.fade-reveal \{\s*transition: none !important;\s*\}/);
+  assert.ok(block, "the reduce law kills FadeReveal's 700ms ride");
+});
+
+test("KAN-210 shell law: opening and error states render inside the full shell chrome", () => {
+  const layout = read("src/components/dashboard/PreviewDashboardLayout.jsx");
+  // The bare-window escapes are gone.
+  assert.doesNotMatch(layout, /function unavailable\(message\)\{return <main data-font-surface="product" className="p-8"/, "the error no longer renders a bare main");
+  assert.doesNotMatch(layout, /return <main data-font-surface="product" lang=\{locale\} className="p-8" role="status"/, "the opening state no longer renders a bare main");
+  // shellFor is the one shell renderer and both degraded states use it.
+  assert.match(layout, /function shellFor\(mainNode,presented,tier,role\)/, "the shell renders through one function");
+  const unavailable = layout.match(/function unavailable\(message\)\{return shellFor\([\s\S]*?degradedPresented,'higher'\);\}/);
+  assert.ok(unavailable, "the error state renders through shellFor");
+  assert.match(unavailable[0], /role="alert"/, "the failure message stays a live-region alert");
+  assert.match(unavailable[0], /recoveryCopy\('Retry workspace'\)/, "the panel offers the real retry action");
+  assert.match(unavailable[0], /Your saved records remain on this device/, "the panel keeps the device-data reassurance");
+  const opening = layout.match(/if\(!activeWorkspace\)return shellFor\(<div className="workspace-surface min-h-full overflow-hidden"><WorkspaceOpening/);
+  assert.ok(opening, "the opening state renders the shared WorkspaceOpening inside the shell");
+  // The degraded shell still has the chrome: topbar, rail and phone bar.
+  assert.match(layout, /<DashboardTopbar userName=\{userName\}/, "the shell keeps the topbar");
+  assert.match(layout, /<DashboardSidebar expanded=\{sidebarExpanded\}/, "the shell keeps the rail");
+  assert.match(layout, /workspace-bottom-nav fixed/, "the shell keeps the phone bar");
+  assert.match(layout, /const degradedPresented=presentNavigation\(user\?\.identity,'higher'/, "degraded navigation presents at the default tier");
+});
+
+test("KAN-210 shell law: the connected production composition keeps the full shell chrome", () => {
+  const connected = read("src/components/dashboard/ConnectedWorkspaceLayout.jsx");
+  // The production shell renders every state through shellFor — loading,
+  // unavailable and ready alike.
+  assert.match(connected, /function shellFor\(mainNode\)/, "the connected shell renders through one function");
+  assert.match(connected, /status === 'loading'[\s\S]{0,80}shellFor\(<div className="workspace-surface min-h-full overflow-hidden"><WorkspaceOpening/, "the connected opening state renders inside the shell");
+  const unavailableStart = connected.indexOf("function unavailable(message, onRetry)");
+  assert.ok(unavailableStart > -1, "the connected error state renders through shellFor");
+  const unavailable = connected.slice(unavailableStart, unavailableStart + 1200);
+  assert.match(unavailable, /return shellFor\(/, "the connected error state renders through shellFor");
+  assert.match(unavailable, /role="alert"/, "the connected failure message stays a live-region alert");
+  assert.match(unavailable, /recoveryCopy\('Retry workspace'\)/, "the connected panel offers the real retry action");
+  assert.doesNotMatch(unavailable, /remain on this device/, "the connected panel never claims device-local records");
+  assert.match(connected, /<DashboardTopbar userName=\{userName\}/, "the connected shell keeps the topbar");
+  assert.match(connected, /<DashboardSidebar expanded=\{sidebarExpanded\}/, "the connected shell keeps the rail");
+  assert.match(connected, /workspace-bottom-nav fixed/, "the connected shell keeps the phone bar");
+  assert.match(connected, /presentNavigation\(role, 'higher'/, "connected navigation presents at the default tier");
+});
+
+test("FHE-05 composition law: the production build never bundles or executes the preview workspace", () => {
+  const dispatcher = read("src/components/dashboard/DashboardLayout.jsx");
+  assert.match(dispatcher, /import\.meta\.env\.DEV\s*\?\s*<Suspense fallback=\{null\}><PreviewDashboardLayout \/><\/Suspense>\s*:\s*<ConnectedWorkspaceLayout \/>/, "dev gets the preview workspace; production gets the connected composition root");
+  assert.match(dispatcher, /const PreviewDashboardLayout = import\.meta\.env\.DEV \? lazy\(\(\) => import\('\.\/PreviewDashboardLayout'\)\) : null/, "the preview boundary is DEV-conditional: the production graph cannot even name the preview module (FHE-20)");
+  assert.doesNotMatch(dispatcher, /workspaceService/, "the dispatcher itself touches no preview store");
+  const connected = read("src/components/dashboard/ConnectedWorkspaceLayout.jsx");
+  assert.doesNotMatch(connected, /workspaceService/, "the connected composition root never imports the preview store");
+  assert.match(connected, /ConnectedWorkspaceProvider/, "the connected shell derives its workspace context from the server-backed provider");
+});
+
+test("KAN-210 controls law: the personalization panel uses the workspace listbox, not native selects", () => {
+  const tools = read("src/pages/dashboard/WorkspaceTools.jsx");
+  assert.equal(tools.includes("<select"), false, "no native select remains in the workspace tools panel");
+  assert.match(tools, /import WorkspaceListbox from '@\/components\/dashboard\/WorkspaceListbox';/, "the panel imports the listbox");
+  const listboxes = tools.match(/<WorkspaceListbox /g) || [];
+  assert.ok(listboxes.length >= 3, `every picker uses the listbox control (found ${listboxes.length})`);
+  assert.match(tools, /value=\{data\.preferences\[key\]\}/, "the language listbox keeps the save-on-change value contract");
+  assert.match(tools, /Previous appearance — shown as Blue/, "the legacy appearance value stays selectable");
+  assert.match(tools, /status: next/, "the resource editor's status listbox keeps the setDraft contract");
+
+  const listbox = read("src/components/dashboard/WorkspaceListbox.jsx");
+  assert.match(listbox, /aria-haspopup="listbox"/, "the trigger announces the listbox");
+  assert.match(listbox, /aria-expanded=\{open\}/, "the trigger announces open state");
+  assert.match(listbox, /role="listbox"/, "the panel is a real listbox");
+  assert.match(listbox, /role="option"/, "rows are real options");
+  assert.match(listbox, /aria-selected=\{isSelected\}/, "options announce selection");
+  assert.match(listbox, /"ArrowDown"/, "arrow keys move between options");
+  assert.match(listbox, /"Escape"/, "Escape closes back to the trigger");
+  assert.match(listbox, /focus-visible:ring-2/, "keyboard focus is visible on the trigger");
+});
+
+test("KAN-210 listbox law: the control declares every setter it calls", () => {
+  const listbox = read("src/components/dashboard/WorkspaceListbox.jsx");
+  // An undeclared state setter (e.g. setActiveIndex without its useState pair)
+  // would crash arrow-key navigation at runtime; node's static realm can't
+  // parse JSX, so the test guards the exact class of defect instead.
+  const declared = new Set([
+    ...[...listbox.matchAll(/const \[\w+, (set\w+)\]/g)].map(match => match[1]),
+    ...[...listbox.matchAll(/function (\w+)\(/g)].map(match => match[1]),
+  ]);
+  const called = [...listbox.matchAll(/\b(set[A-Z]\w*)\(/g)].map(match => match[1]);
+  assert.ok(called.length > 0, "the guard stays meaningful — the control calls at least one setter");
+  for (const name of called) {
+    assert.ok(declared.has(name), `${name} must be declared before it is called`);
+  }
+});
+
+test("KAN-210 switcher law: the topbar workspace switcher uses the listbox, not native selects", () => {
+  const switcher = read("src/components/dashboard/WorkspaceSwitcher.jsx");
+  assert.equal(switcher.includes("<select"), false, "no native select remains in the workspace switcher or its add-role dialog");
+  assert.match(switcher, /import WorkspaceListbox from '@\/components\/dashboard\/WorkspaceListbox';/, "the switcher imports the listbox");
+  const listboxes = switcher.match(/<WorkspaceListbox /g) || [];
+  assert.equal(listboxes.length, 2, "the topbar pill and the add-role dialog both use the listbox control");
+  assert.match(switcher, /aria-label|label=\{t\("activeWorkspace"\)\}/, "the topbar listbox keeps the accessible workspace name");
+  // The topbar pill keeps its own visual grammar through triggerClassName;
+  // the dialog field keeps the default control styling.
+  assert.match(switcher, /triggerClassName="/, "the topbar trigger opts into the pill grammar explicitly");
+  // The native select only fired change on a different value; the switcher
+  // keeps that contract (re-selecting the active workspace must not navigate).
+  assert.match(switcher, /value===activeWorkspace\?\.id\)return/, "re-selecting the active workspace is a no-op");
+});
+
+test("KAN-210 shell law: the restricted-area role gate renders inside the full shell chrome", () => {
+  const layout = read("src/components/dashboard/PreviewDashboardLayout.jsx");
+  // The bare escape is gone: the gate no longer returns without shellFor.
+  assert.doesNotMatch(layout, /dashboardAreaOwner\(section\)\) return <RoleAreaUnavailable \/>;/, "the gate no longer renders as a bare page outside the shell");
+  const gate = layout.match(/if \(isOrganizationArea\(section\) \|\| dashboardAreaOwner\(section\)\) \{[\s\S]*?return shellFor\(<RoleAreaUnavailable \/>[\s\S]*?\);\r?\n    \}/);
+  assert.ok(gate, "the gate renders through shellFor");
+  assert.match(gate[0], /getStagePresentation\(/, "the gate presents at the viewer's own stage tier");
+  assert.match(gate[0], /presentNavigation\(activeWorkspace\.role/, "the gate keeps the viewer's own workspace navigation");
+  assert.match(gate[0], /catch \(error\) \{ return unavailable\(error\.message\); \}/, "a stage failure falls to the shell's unavailable room, not a crash");
+  // RoleAreaUnavailable itself keeps the honest boundary copy and actions.
+  const gatePage = read("src/pages/dashboard/RoleAreaUnavailable.jsx");
+  assert.match(gatePage, /className="v-page"/, "the gate page keeps its page structure inside main");
+  assert.match(gatePage, /role="status"/, "the boundary sentence stays a live-region status");
+  assert.match(gatePage, /Return to workspace/, "the gate keeps the real return action");
+});

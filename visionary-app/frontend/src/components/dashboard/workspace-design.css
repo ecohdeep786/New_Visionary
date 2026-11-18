@@ -88,6 +88,11 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-workspace-intro-copy {max-width: none;width: 100%}
 .v-workspace-intro-actions {margin-top: 20px}
 .v-button {border-radius: var(--v-radius-control);border-color: var(--v-border);padding: 11px 18px;min-height: 44px;font-size: 0.875rem;line-height: 1.45;transition: background-color var(--v-motion) var(--ease-out-apple),border-color var(--v-motion) var(--ease-out-apple),box-shadow var(--v-motion) var(--ease-out-apple)}
+/* Apple interaction motion: interactive elements ease by default (the D1 fast
+   step on the Apple ease-out). Elements carrying an explicit Tailwind
+   transition utility keep their own timing — :not() excludes them, so this
+   default never competes with an authored transition. */
+.visionary-workspace :where(a,button,[role="button"],input,select,textarea,summary):not([class*="transition"]) {transition: background-color var(--v-motion) var(--ease-out-apple),border-color var(--v-motion) var(--ease-out-apple),color var(--v-motion) var(--ease-out-apple),box-shadow var(--v-motion) var(--ease-out-apple),opacity var(--v-motion) var(--ease-out-apple),transform var(--v-motion) var(--ease-out-apple)}
 .v-button:not(.primary):hover:not(:disabled) {background: var(--v-soft);border-color: var(--v-border)}
 .v-button.primary {box-shadow: 0 1px 2px var(--v-action)1a}
 .v-button.primary:hover:not(:disabled) {box-shadow: 0 2px 6px var(--v-action)26}
@@ -652,47 +657,47 @@ body:has(.visionary-workspace) .workspace-voice-preview-glow {display: none}
   }
   :is(.visionary-workspace,body:has(.visionary-workspace) :is([role="dialog"],[role="menu"])) {
     & :is([class~="bg-white"],[class~="bg-[#ffffff]"],[class~="bg-[#fff]"]) {background-color: var(--v-surface)}
-    & :is([class~="text-[#121317]"],[class~="text-[#202124]"],[class~="text-[#1d1d1f]"],[class~="text-[#0f172a]"]) {color: var(--v-text)}
-    & :is([class~="text-[#5f6368]"],[class~="text-[#475467]"],[class~="text-[#667085]"],[class~="text-[#64748b]"],[class~="text-muted-foreground"]) {color: var(--v-muted)}
-    & :is([class~="text-[var(--v-action)]"],[class~="text-[#3367d6]"],[class~="text-[#1967d2]"],[class~="text-[#0055d4]"]) {color: var(--v-action)}
-    & :is([class~="bg-[#e8f0fd]"],[class~="bg-[#f8fafd]"],[class~="bg-[#f1f5fb]"],[class~="bg-[#f1f3f4]"]) {background-color: var(--v-soft)}
-    & :is([class~="bg-[#f6f8fc]"],[class~="bg-[#f4f4f4]"]) {background-color: var(--v-canvas)}
+    & :is([class~="text-[#1d1d1f]"],[class~="text-[#0f172a]"]) {color: var(--v-text)}
+    & :is([class~="text-[#6e6e73]"],[class~="text-[#475467]"],[class~="text-[#667085]"],[class~="text-[#64748b]"],[class~="text-muted-foreground"]) {color: var(--v-muted)}
+    & :is([class~="text-[var(--v-action)]"],[class~="text-[#3367d6]"],[class~="text-[#0071e3]"],[class~="text-[#0055d4]"]) {color: var(--v-action)}
+    & :is([class~="bg-[#eef5ff]"],[class~="bg-[#f5f5f7]"],[class~="bg-[#f1f5fb]"],[class~="bg-[#f5f5f7]"]) {background-color: var(--v-soft)}
+    & :is([class~="bg-[#f5f5f7]"],[class~="bg-[#f4f4f4]"]) {background-color: var(--v-canvas)}
     & :is([class~="bg-[var(--v-border)]"],[class~="bg-[#e4e4e4]"]) {background-color: var(--v-raised)}
     & :is([class~="border-[var(--v-border)]"],[class~="border-[var(--v-border)]/60"],[class~="border-[var(--v-border)]/50"],[class~="border-[#e2e8f0]"],[class~="border-[#e6e6e6]"]) {border-color: var(--v-border)}
-    & [class~="border-[#5f6368]"] {border-color: var(--v-outline)}
-    & :is([class~="border-[var(--v-action)]"],[class~="border-[#3367d6]"],[class~="border-[var(--v-action)]"],[class~="border-[#0055d4]"]) {border-color: var(--v-action)}
-    & :is([class~="hover:bg-[#e8f0fd]"],[class~="hover:bg-[#ffffff]"],[class~="hover:bg-[#eceef1]"],[class~="hover:bg-[#121317]/5"],[class~="hover:bg-[var(--v-border)]"]):hover {background-color: var(--v-soft)}
-    & :is([class~="bg-[var(--v-action)]"],[class~="bg-[var(--v-action)]"],[class~="bg-[#3367d6]"],[class~="bg-[#0055d4]"],[class~="bg-[#121317]"]) {background-color: var(--v-action);color: var(--v-on-action)}
-    & :is([class~="hover:bg-[#3367d6]"],[class~="hover:bg-[#0055d4]"],[class~="hover:bg-[#0044b0]"],[class~="hover:bg-[#121317]"]):hover:not(:disabled) {background-color: var(--v-action-hover);color: var(--v-on-action)}
+    & [class~="border-[#6e6e73]"] {border-color: var(--v-outline)}
+    & :is([class~="border-[var(--v-action)]"],[class~="border-[#3367d6]"],[class~="border-[#0071e3]"],[class~="border-[#0055d4]"]) {border-color: var(--v-action)}
+    & :is([class~="hover:bg-[#eef5ff]"],[class~="hover:bg-[#ffffff]"],[class~="hover:bg-[#eceef1]"],[class~="hover:bg-[#1d1d1f]/5"],[class~="hover:bg-[var(--v-border)]"]):hover {background-color: var(--v-soft)}
+    & :is([class~="bg-[var(--v-action)]"],[class~="bg-[#3367d6]"],[class~="bg-[#0055d4]"],[class~="bg-[#1d1d1f]"]) {background-color: var(--v-action);color: var(--v-on-action)}
+    & :is([class~="hover:bg-[#3367d6]"],[class~="hover:bg-[#0077ed]"],[class~="hover:bg-[#0071e3]"],[class~="hover:bg-[#0055d4]"],[class~="hover:bg-[#0044b0]"],[class~="hover:bg-[#1d1d1f]"]):hover:not(:disabled) {background-color: var(--v-action-hover);color: var(--v-on-action)}
     & [class~="bg-[#e6f4ea]"] {background-color: var(--v-success-soft)}
     & :is([class~="text-[#188038]"],[class~="text-[#146c2e]"],[class~="text-[#137333]"]) {color: var(--v-success)}
     & [class~="bg-[#fce8e6]"] {background-color: var(--v-error-soft)}
-    & :is([class~="text-[#b3261e]"],[class~="text-[#d93025]"],[class~="text-[#dd483c]"]) {color: var(--v-error)}
+    & :is([class~="text-[#b3261e]"],[class~="text-[#d70015]"],[class~="text-[#dd483c]"]) {color: var(--v-error)}
     & [class~="bg-[#fef7e0]"] {background-color: var(--v-warning-soft)}
     & :is([class~="text-[#b06000]"],[class~="text-[#fbbc05]"]) {color: var(--v-warning)}
     /* FAP-80: the remaining legacy palette classes in dashboard source join the
        token contract. Every value below is dark-only; light mode keeps the
-       authored literal. bg-[#121317]/40 is deliberately absent: it is an image
+       authored literal. bg-[#1d1d1f]/40 is deliberately absent: it is an image
        scrim whose dark wash is the legibility device in both color schemes. */
-    & :is([class~="text-[#0b57d2]"],[class~="text-[#0b57d0]"],[class~="text-[#4285f4]"]) {color: var(--v-action)}
-    & :is([class~="hover:text-[#4285f4]"],[class~="hover:text-[#0b57d2]"]):hover {color: var(--v-action-hover)}
-    & [class~="hover:text-[#121317]"]:hover {color: var(--v-text)}
-    & [class~="text-[#dadce0]"] {color: var(--v-border)}
+    & :is([class~="text-[#0071e3]"]) {color: var(--v-action)}
+    & :is([class~="hover:text-[#0071e3]"]):hover {color: var(--v-action-hover)}
+    & [class~="hover:text-[#1d1d1f]"]:hover {color: var(--v-text)}
+    & [class~="text-[#d2d2d7]"] {color: var(--v-border)}
     & [class~="text-[#6e6e73]"] {color: var(--v-muted)}
-    & [class~="placeholder:text-[#5f6368]"]::placeholder {color: var(--v-muted);opacity: 1}
-    & [class~="disabled:text-[#5f6368]"]:disabled {color: var(--v-muted)}
-    & :is([class~="bg-[#0b57d2]"],[class~="bg-[#4285f4]"]) {background-color: var(--v-action);color: var(--v-on-action)}
-    & [class~="bg-[#dadce0]"] {background-color: var(--v-raised)}
-    & [class~="hover:bg-[#dadce0]"]:hover {background-color: var(--v-soft)}
-    & [class~="bg-[#e8f0fe]"] {background-color: var(--v-soft)}
+    & [class~="placeholder:text-[#6e6e73]"]::placeholder {color: var(--v-muted);opacity: 1}
+    & [class~="disabled:text-[#6e6e73]"]:disabled {color: var(--v-muted)}
+    & :is([class~="bg-[#0071e3]"]) {background-color: var(--v-action);color: var(--v-on-action)}
+    & [class~="bg-[#d2d2d7]"] {background-color: var(--v-raised)}
+    & [class~="hover:bg-[#d2d2d7]"]:hover {background-color: var(--v-soft)}
+    & [class~="bg-[#eef5ff]"] {background-color: var(--v-soft)}
     & [class~="bg-[#1d1d1f]"] {background-color: var(--v-text)}
-    & [class~="bg-[#121317]/5"] {background-color: var(--v-raised)}
-    & :is([class~="border-[#dadce0]"],[class~="border-[#dadce0]/60"],[class~="border-[#dadce0]/50"],[class~="border-[#dadce0]/40"],[class~="border-[#dadce0]/20"],[class~="border-[#d2d2d7]"]) {border-color: var(--v-border)}
-    & [class~="border-[#0b57d2]"] {border-color: var(--v-action)}
-    & [class~="focus:border-[#4285f4]"]:focus {border-color: var(--v-action)}
-    & :is([class~="divide-[#dadce0]"],[class~="divide-[#e2e8f0]"]) > :not([hidden]) ~ :not([hidden]) {border-color: var(--v-border)}
-    & [class~="ring-[#4285f4]"] {--tw-ring-color: var(--v-action)}
-    & [class~="ring-[#dadce0]"] {--tw-ring-color: var(--v-border)}
+    & [class~="bg-[#1d1d1f]/5"] {background-color: var(--v-raised)}
+    & :is([class~="border-[#d2d2d7]"],[class~="border-[#d2d2d7]/60"],[class~="border-[#d2d2d7]/50"],[class~="border-[#d2d2d7]/40"],[class~="border-[#d2d2d7]/20"],[class~="border-[#d2d2d7]"]) {border-color: var(--v-border)}
+    & [class~="border-[#0071e3]"] {border-color: var(--v-action)}
+    & [class~="focus:border-[#0071e3]"]:focus {border-color: var(--v-action)}
+    & :is([class~="divide-[#d2d2d7]"],[class~="divide-[#e2e8f0]"]) > :not([hidden]) ~ :not([hidden]) {border-color: var(--v-border)}
+    & [class~="ring-[#0071e3]"] {--tw-ring-color: var(--v-action)}
+    & [class~="ring-[#d2d2d7]"] {--tw-ring-color: var(--v-border)}
   }
   /* FAP-80: accent paint yields to the action tokens in dark, so an inline
      user accent can never paint a light literal on a dark surface. */

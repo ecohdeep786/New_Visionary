@@ -179,7 +179,7 @@ const OrgHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Leading, to scale, to last."
-    sub="Talk with Visionary about your institution’s needs. Explore the cohort, curriculum, and reporting tools we’re developing."
+    sub="Bring Visionary to your institution."
     img={orgHero}
     alt="A leader reviewing team progress on a tablet"
     ctaTo="/contact"

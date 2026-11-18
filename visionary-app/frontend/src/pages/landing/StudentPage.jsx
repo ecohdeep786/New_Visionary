@@ -1,10 +1,35 @@
-import React, { useCallback, useState } from "react";
+import React, { lazy, Suspense, useCallback, useState } from "react";
 import { Lock, ShieldCheck, HeartHandshake } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import studentHero from "@/assets/student-hero-main-2400w.webp";
 import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
 import PersonaHero from "@/components/landing/NewPersona";
+import { HERO_AVIF_SOURCES, HERO_SIZES } from "@/lib/heroVariants";
+
+/* LCP preload — the hero photograph is this page's LCP element, but its
+   URL lives inside this module, so the browser cannot discover it before
+   module eval + render (under the lab throttle the request started ~200ms
+   after the entry chunk landed and queued behind the auth probe).
+   Preloading at module scope starts the fetch one commit earlier. The
+   srcset/sizes mirror the hero <picture>'s AVIF source exactly, so the
+   preload is reused, not re-fetched. Gated to this path: the eager front
+   doors all evaluate with the entry chunk on every route, and the
+   preload is only true on "/student". */
+if (typeof window !== "undefined" && window.location.pathname === "/student") {
+  const lcpPreload = document.createElement("link");
+  lcpPreload.setAttribute("rel", "preload");
+  lcpPreload.setAttribute("as", "image");
+  /* setAttribute, not the IDL property: this Chromium build does not reflect
+     imagesrcset/imagesizes assignments onto the DOM attributes, and an
+     attribute-less preload is inert (the same quirk PageMeta's upsertPreload
+     works around). type="image/avif" byte-matches the hero <source>, so the
+     preload is reused by the <picture> instead of fighting the fallback. */
+  lcpPreload.setAttribute("imagesrcset", HERO_AVIF_SOURCES[studentHero].srcSet);
+  lcpPreload.setAttribute("imagesizes", HERO_SIZES);
+  lcpPreload.setAttribute("type", "image/avif");
+  document.head.appendChild(lcpPreload);
+}
 
 /* Problem Section */
 import problemexam from "@/assets/problem-exam.webp";
@@ -35,15 +60,17 @@ import {
   JourneyModal,
   ScrollReveal,
 } from "@/components/landing/persona/PersonaSections";
-import {
-  PremiumIntelligenceSection,
-  PremiumLanguageSection,
-  PremiumAchievementSection,
-  PremiumJourneyFlowSection,
-  PremiumTrustSection,
-  PremiumCTASection,
-  PremiumExploreSection,
-} from "@/components/landing/persona/PremiumPersonaSections";
+/* The premium sections sit below the fold; they load on demand (one shared
+ * Suspense boundary around the section run) so the entry graph carries only
+ * hero-first-commit content (T13 eager law). Direct module paths, not the
+ * barrel, so a section chunk never pulls its siblings. */
+const PremiumIntelligenceSection = lazy(() => import("@/components/landing/persona/premium/PremiumIntelligenceSection.jsx"));
+const PremiumLanguageSection = lazy(() => import("@/components/landing/persona/premium/PremiumLanguageSection.jsx"));
+const PremiumAchievementSection = lazy(() => import("@/components/landing/persona/premium/PremiumAchievementSection.jsx"));
+const PremiumJourneyFlowSection = lazy(() => import("@/components/landing/persona/premium/PremiumJourneyFlowSection.jsx"));
+const PremiumTrustSection = lazy(() => import("@/components/landing/persona/premium/PremiumTrustSection.jsx"));
+const PremiumCTASection = lazy(() => import("@/components/landing/persona/premium/PremiumCTASection.jsx"));
+const PremiumExploreSection = lazy(() => import("@/components/landing/persona/premium/PremiumExploreSection.jsx"));
 
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain } from "lucide-react";
 import { color, fontStack } from "@/components/landing/system/tokens";
@@ -212,7 +239,7 @@ const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Learning, to master, to build."
-    sub="Set up your learner account and open your saved learning history. The interactive learning journey below is in development."
+    sub="Set up your free learner account."
     img={studentHero}
     alt="A student smiling while carrying a new laptop"
     ctaLabel="Create a free account"
@@ -293,6 +320,7 @@ export default function StudentPage() {
         <StudentHeroSection />
         <StudentStruggleSection />
         <StudentJourneySection />
+        <Suspense fallback={null}>
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="From the first question to using what you know."
@@ -331,6 +359,7 @@ export default function StudentPage() {
           categories={EXPLORE_CATEGORIES}
           images={EXPLORE_CAT_IMG}
         />
+        </Suspense>
       </main>
       <LandingFooter variant="quiet" />
     </div>

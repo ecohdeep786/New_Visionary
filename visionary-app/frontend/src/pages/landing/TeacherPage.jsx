@@ -212,7 +212,7 @@ const TeacherHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Teaching, to grow, to reach."
-    sub="Set up your teaching profile. Explore the classroom and assignment tools we’re developing."
+    sub="Set up your teaching profile."
     img={teacherHero}
     alt="A teacher presenting at a whiteboard"
     ctaLabel="Create a free account"

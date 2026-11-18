@@ -8,6 +8,7 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
+import AuthAwareLink, { useSignedIn } from "@/components/landing/AuthAwareLink";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack } from "@/components/landing/system/tokens";
 
@@ -17,7 +18,7 @@ const COLORS = {
   surface: "#f5f5f7",
   blue: "#0066cc",
   grey: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
   soft: "#f5f5f7",
@@ -87,6 +88,20 @@ function useActiveStep(total) {
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
     <div className={`transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+      {children}
+    </div>
+  );
+});
+
+/* The hero's entrance never hides the LCP element: the rise is
+   transform-only, so the headline and lead paint in the first commit.
+   The FadeReveal grammar (opacity-0 until revealed) delayed the hero's
+   LCP text ~800ms past FCP under the lab throttle — invisible content
+   cannot paint — so above-fold content rides the same motion with the
+   opacity gate removed. Below-fold sections keep FadeReveal. */
+const HeroRise = React.memo(function HeroRise({ visible, children, className = "" }) {
+  return (
+    <div className={`transition-transform duration-700 ease-apple ${visible ? "translate-y-0" : "translate-y-6"} ${className}`}>
       {children}
     </div>
   );
@@ -347,14 +362,14 @@ function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="01-hero" className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible}>
+      <HeroRise visible={visible}>
         <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           How <span className="accent-gradient">Visionary</span> works.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Explore the learning journey we’re developing, from asking a question to building a project. You can create an account and view saved learning history today.
         </p>
-      </FadeReveal>
+      </HeroRise>
     </section>
   );
 }
@@ -388,9 +403,9 @@ function HowJourneySection() {
       return (
         <>
           <BlueTag>{a.tag}</BlueTag>
-          <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+          <h2 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
             {a.blue} <span style={{ color: COLORS.ink }}>{a.title}</span>
-          </h3>
+          </h2>
           <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{a.do}</p>
           <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{a.micro}</p>
         </>
@@ -399,7 +414,7 @@ function HowJourneySection() {
     return (
       <>
         <BlueTag>{step.n} · {step.label}</BlueTag>
-        <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
+        <h2 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h2>
         <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{step.do}</p>
         <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{step.micro}</p>
       </>
@@ -459,6 +474,7 @@ function HowLoopSection() {
   const { ref, visible } = useRevealOnce();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const signedIn = useSignedIn();
   useEffect(() => {
     if (paused) return undefined;
     /* Reduced motion: the loop must not auto-advance — user drives it. */
@@ -529,7 +545,7 @@ function HowLoopSection() {
         </ol>
 
         <div className="mt-12 flex justify-center">
-          <QuietLink to="/register">
+          <QuietLink to={signedIn ? "/dashboard/home" : "/register"}>
             Try the loop yourself <ChevronIcon className="h-4 w-4" aria-hidden="true" />
           </QuietLink>
         </div>
@@ -603,9 +619,9 @@ function HowCTASection() {
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}>See it with your own question.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <AuthAwareLink to="/register" signedInLabel="Open Visionary" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
-          </Link>
+          </AuthAwareLink>
           <Link to="/pricing" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See pricing
             <ChevronIcon className="h-4 w-4" />
