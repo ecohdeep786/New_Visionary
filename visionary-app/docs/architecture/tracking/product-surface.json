@@ -127,7 +127,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:656:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/NewPersona.jsx:325:17",
+        "frontend/src/components/landing/NewPersona.jsx:327:17",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:67:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:93:11",
@@ -164,10 +164,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:294:15",
-        "frontend/src/pages/Landing.jsx:335:11",
-        "frontend/src/pages/Landing.jsx:403:17",
-        "frontend/src/pages/Landing.jsx:493:13"
+        "frontend/src/pages/Landing.jsx:300:15",
+        "frontend/src/pages/Landing.jsx:341:11",
+        "frontend/src/pages/Landing.jsx:409:17",
+        "frontend/src/pages/Landing.jsx:499:13"
       ],
       "operations": [
         "public-discovery",
@@ -886,7 +886,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:656:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/NewPersona.jsx:325:17",
+        "frontend/src/components/landing/NewPersona.jsx:327:17",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1116,7 +1116,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:656:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/NewPersona.jsx:325:17",
+        "frontend/src/components/landing/NewPersona.jsx:327:17",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1346,7 +1346,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:656:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/NewPersona.jsx:325:17",
+        "frontend/src/components/landing/NewPersona.jsx:327:17",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1701,7 +1701,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:656:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/NewPersona.jsx:325:17",
+        "frontend/src/components/landing/NewPersona.jsx:327:17",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -2111,7 +2111,7 @@
         "frontend/src/components/landing/LandingNav/index.jsx:656:19",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:81:5",
-        "frontend/src/components/landing/NewPersona.jsx:325:17",
+        "frontend/src/components/landing/NewPersona.jsx:327:17",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -47540,9 +47540,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:325:17",
+      "id": "frontend/src/components/landing/NewPersona.jsx:327:17",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 325,
+      "line": 327,
       "column": 17,
       "tag": "Link",
       "events": [
@@ -79238,9 +79238,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:294:15",
+      "id": "frontend/src/pages/Landing.jsx:300:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 294,
+      "line": 300,
       "column": 15,
       "tag": "ProgressDots",
       "events": [
@@ -79267,9 +79267,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:335:11",
+      "id": "frontend/src/pages/Landing.jsx:341:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 335,
+      "line": 341,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -79292,9 +79292,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:403:17",
+      "id": "frontend/src/pages/Landing.jsx:409:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 403,
+      "line": 409,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79316,9 +79316,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:493:13",
+      "id": "frontend/src/pages/Landing.jsx:499:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 493,
+      "line": 499,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -81918,7 +81918,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "4e493189597bb25c51fcc9468358ccaac6d76e63bf9a5a5327a814b88a736cba"
+      "sourceSha256": "01cf6c8734f414354922310ca5650eab894934d6d9c3f3646b548cfa6ff2fdc1"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82786,7 +82786,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "365f854c7afeed016bcaadafa87943d1f06561b7a5e1b67f009997e63f91f2d0"
+      "sourceSha256": "3deadc098a65998113eb599694cec9d1f9d4de512b920b74090ac63b3b8ce28e"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
