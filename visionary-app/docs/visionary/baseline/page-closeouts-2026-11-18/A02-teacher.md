@@ -38,3 +38,23 @@ rendered verification: ZERO straight apostrophes and zero overflow on
 all five persona pages at 390px. Total program: ~205 apostrophes across
 the persona system. The per-page receipts for A03/A04/A05 inherit this
 work and will re-verify on their own walks.
+
+## Amendment (deep-match pass): interaction evidence against the live Apple resources
+
+The full interaction walk completed with the 12 Apple resources open as
+standing references (K–12 teaching-tools lens studied live):
+
+- Struggle carousel (chapter 02): 5 slides, crossfade correct, manual
+  "Go to challenge N" dots switch slides (dot 3 → "Teacher stressed
+  abo…" verified) ✓.
+- Journey gallery → JourneyModal: "Lesson planning / Plan the lesson.
+  From where they are." opens with aria-modal=true and focus inside;
+  Escape closes ✓.
+- Achievement accordion (chapter 09): 3 real buttons; clicking item 2
+  flips aria-expanded (false/true/false) ✓.
+- Trust destinations after the shared fix: /privacy, /safety, /terms ✓.
+- Typography: zero straight apostrophes rendered ✓.
+- The page matches the Apple premium reference level for its chapter
+  grammar, interaction behavior, typography and truth. Final verdict for
+  this deep pass: PASS — no code change needed (the fixes this session
+  were the shared-module typography + Safety href, already integrated).
