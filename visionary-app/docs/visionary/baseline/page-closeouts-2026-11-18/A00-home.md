@@ -40,3 +40,16 @@
 - What the next agent should NOT redo unless there is a regression:
   the hero grammar (claim → purpose line → CTAs → audience rail), the carousel cascade order, the founder's nine accepted corrections.
 - NEXT primary page in the queue: A01 `/student`.
+
+## Amendment (deep-match pass): the landing's visible copy joins the typographic discipline
+
+The full side-by-side against the open Apple resources (Education hero
+grammar, Vision Pro staging, Initiative story chapters, Privacy trust
+framing, HIG Writing/Layout/Motion) verified every chapter — and
+surfaced 84 straight apostrophes in the landing's own visible copy
+(headline "Turning it into capability isn't", the story quotes, the
+mechanism beats, the suite cards). All converted to the product's
+typographic apostrophes. Final render check: every chapter
+(hero/intelligence/problem/promise/return/journeys/suite/trust/CTA/
+footer) walked visually in the application browser; zero straight
+apostrophes; 870/870 tests; the deep-match verdict stands.
