@@ -45,7 +45,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   return { ref, visible };
 }
 
-/* Detect the visitor's OS client-side — SSR-safe, graceful fallback */
+/* Detect the visitor’s OS client-side — SSR-safe, graceful fallback */
 function useDetectedPlatform() {
   const [platform, setPlatform] = useState(null);
   useEffect(() => {
@@ -123,7 +123,7 @@ function DownloadHeroSection() {
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
-            {/* google.com card curve — tint sweeps into the corner and the card's action floats in it with breath */}
+            {/* google.com card curve — tint sweeps into the corner and the card’s action floats in it with breath */}
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <AuthAwareLink to="/register"
               className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
@@ -263,7 +263,7 @@ function DownloadNotifySection() {
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[30px] bg-[#f5f5f7] p-8 text-center lg:p-10">
           <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
           <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-            The web product is live today; native apps are still being prepared. We'll email you the moment your platform ships.
+            The web product is live today; native apps are still being prepared. We’ll email you the moment your platform ships.
           </p>
           {status === "success" ? (
             <p role="status" className="mt-6 w-full rounded-[14px] bg-white px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>
@@ -296,7 +296,7 @@ function DownloadNotifySection() {
               </div>
               {status === "error" && (
                 <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#e30000" }}>
-                  Please enter a valid email address. We can't notify you without one.
+                  Please enter a valid email address. We can’t notify you without one.
                 </p>
               )}
             </form>
@@ -383,7 +383,7 @@ function DownloadCTASection() {
     <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         {/* Section-head role — see 02-platforms (typography audit 2026-11-03):
-            the page's closing statement is a section head too, so it carries
+            the page’s closing statement is a section head too, so it carries
             the same section tier as its siblings. */}
         <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Still deciding? The web is one click away.
@@ -398,7 +398,7 @@ function DownloadCTASection() {
           </Link>
         </div>
         <p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]" style={{ color: COLORS.grey }}>
-          No install, no waiting. Pick up the app whenever you're ready.
+          No install, no waiting. Pick up the app whenever you’re ready.
         </p>
       </div>
     </section>
