@@ -2715,3 +2715,34 @@ builds, and audited.
 Evidence: 870/870 unit tests, eslint clean, qa:i18n PASS (receipt
 regenerated), connected-route sweep PASS, live hi verification of both
 dialog branches and the mentor card on the production build.
+
+## 2026-11-18 — FHE-21: the local production-build integration test factory
+
+Reference basis: V6 §7 FHE-21 + §8 matrix row E01 — every released activity
+reproducibly verified on the local production build without fictional
+backend outcomes; nothing copied.
+
+`qa:realm-journeys` (`scripts/realm-integration-factory.mjs`): one repeatable
+evidence run of the core connected journeys on the PRODUCTION bundle against
+the real fenced realm (backend 3002, Firebase Auth emulator), each mutation
+read back through the app's own API (`/api/auth/me`) so server-owned
+persistence is inspected, not assumed:
+
+1. **J1 (E01)** register through the real UI → email verified via the
+   emulator's OOB action → onboarding wizard (learner, chosen learning
+   language) → account home; server state asserted: onboarding_complete,
+   preferred_language, full_name.
+2. **J2** profile display-name rename persists across a full reload
+   (server-owned record, not local state).
+3. **J3** sign-out → sign-in continuity: onboarding state and the J2 rename
+   survive a new session.
+4. **J4** permission denial: unauthenticated `/api/auth/me` → 401.
+
+Evidence discipline per FHE-21: receipt records the exact build SHA, base
+URL, emulator/project ids, per-step timestamps and details, page-error
+count, and the synthetic-account cleanup command; the account password is
+generated per run and never recorded (secret-safe). Accounts are synthetic
+QA identities inside the fenced realm only.
+
+PASS: 4/4 journeys, zero page errors, on build `7289445f`. Receipt:
+`docs/visionary/baseline/realm-integration-2026-11-18/realm-integration-receipt.json`.
