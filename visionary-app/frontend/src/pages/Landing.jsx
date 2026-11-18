@@ -209,6 +209,12 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       animatedHeadlinePrefix="One intelligence"
       animatedHeadlineWords={HERO_CATEGORY_WORDS}
       srSentence="One intelligence, for students, teachers, parents, professionals, and organizations."
+      /* Apple Education's hero grammar: the headline makes the audience
+         claim, one plain line translates it into the person's benefit.
+         This is the platform's actual core idea — continuity — stated
+         without feature overclaims; "Start learning" remains the real
+         first step (register). */
+      sub="Learning that remembers where you were — so you never start over."
       cast={LANDING_HERO_LINEUP}
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaLabel="Start learning"
