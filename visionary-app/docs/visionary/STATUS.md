@@ -2793,3 +2793,58 @@ into the 2026-10-30 baseline directory before crashing, corrupting
 historical evidence (restored from git). The instrument now buffers every
 write and persists the per-route files and the receipt only after the full
 run passes — a crashed run leaves the historical receipts untouched.
+
+## 2026-11-18 — founder walkthrough round: nine product-craft fixes on the public site and the workspace nav
+
+Reference basis: Apple HIG — Navigation and search (predictable activation),
+Layout (adapt across the device continuum), segmented controls (one visible
+container, one obvious selection), expanding content (quiet disclosure on
+hairline rows), Icons (one glyph family, familiar shape at small sizes);
+nothing copied. Every fix verified live on the production build before
+commit.
+
+1. **LandingNav mega triggers were buttons** — hovering opened the submenu
+   but the item itself was dead. Now Apple's global-nav pattern: the item
+   is a real link (Who you are → the active persona or /student,
+   For organizations → /organization, Download → /download, About → /about)
+   that navigates on click; hover or keyboard focus opens the megamenu; the
+   dead button-toggle machinery is removed.
+2. **The One-intelligence bot image jumped at fixed tiers** — now fluid
+   `clamp(220px, 34vw, 500px)`, resizing continuously across devices.
+3. **The "Why Visionary exists" carousel was born frozen** — the real bug:
+   the cycle interval was passed as 0, so the parent story ("The report
+   card says fine…") sat permanently on screen as if stuck. Interval fixed
+   (4200 ms) and the parent slide removed with its image per the founder's
+   call; the section now cycles the student and professional stories, and
+   the sr-only description matches.
+4. **Pricing**: the Monthly/Annual toggle was white-on-white — now the
+   product's segmented control (quiet #f5f5f7 track, ink active pill,
+   breathing room below); both plan CTAs and the institution CTA moved from
+   blue to the product's action color (ink #1d1d1f), matching every primary
+   pill on the site.
+5. **Heading audit, all 24 public routes** (one-off outline sweep): the
+   download page's "One account. Open it in your browser." statement was a
+   bare paragraph — now a real h2; the footer's link columns gained the
+   sr-only directory h2 (the h3 labels no longer skip a level anywhere);
+   the help page's topic cards are real h2s. The three remaining
+   fat-paragraph flags are recorded legitimate patterns (a real blockquote,
+   the mission-card quote, the careers FAP-71 sr-only-h1 hero).
+6. **FAQ design**: contact/community/partners used card boxes with filled
+   blue circles — restyled to the product's canonical accordion (the
+   pricing page's anatomy: hairline rows, ink question, quiet rotating
+   plus, grid-rows resolve curve).
+7. **Persona hero subheads** reduced to the Apple one-line standard
+   (student/teacher/parent/professional/organization — one short truthful
+   sentence each; the development-status caveats stay in the honest rooms
+   below the fold where they belong).
+8. **Help page**: outline repaired (h1 → topic h2s; no level skips); the
+   search/browse/contact-band anatomy otherwise passed review.
+9. **Workspace nav**: the Ask/Guide item now carries the Visionary bot —
+   a monochrome currentColor SVG mark (round head, two eyes, small smile,
+   capsule body) that renders on light and dark surfaces like every other
+   nav glyph; plain createElement module so the Node-side navigation tests
+   import it unchanged.
+
+Evidence: 870/870 unit tests, eslint clean, live verification of each fix
+in the in-app browser and via headless sessions (nav navigation, carousel
+advance, computed colors/spacing, heading outlines, bot mark shapes).

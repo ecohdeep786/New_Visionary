@@ -239,7 +239,7 @@ const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Learning, to master, to build."
-    sub="Set up your learner account and open your saved learning history. The interactive learning journey below is in development."
+    sub="Set up your free learner account."
     img={studentHero}
     alt="A student smiling while carrying a new laptop"
     ctaLabel="Create a free account"

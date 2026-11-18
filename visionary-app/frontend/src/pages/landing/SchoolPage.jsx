@@ -263,7 +263,7 @@ export default function SchoolPage() {
                         <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card" style={{ color: COLORS.blue }}>
                           <t.Icon className="h-6 w-6" strokeWidth={1.8} />
                         </span>
-                        <p className="mt-6 font-semibold tracking-[0.009em] leading-[1.12] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</p>
+                        <h2 className="mt-6 font-semibold tracking-[0.009em] leading-[1.12] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</h2>
                         <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{t.line}</p>
                       </button>
                     ))}

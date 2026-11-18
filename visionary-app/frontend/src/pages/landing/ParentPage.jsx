@@ -211,7 +211,7 @@ const ParentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Parenting, to see, to help."
-    sub="Set up your parent or guardian profile. The learner summaries shown below are in development."
+    sub="Set up your parent or guardian profile."
     img={parentHero}
     alt="A parent helping a child with homework"
     ctaLabel="Create a free account"

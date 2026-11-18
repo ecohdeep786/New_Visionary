@@ -22,7 +22,6 @@ import promeet from "@/assets/pro-face-main-1600w.webp";
 import orgmeet from "@/assets/org-face-main-1600w.webp";
 // Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
-import problemrevision from "@/assets/problem-revision.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
 import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
 
@@ -43,7 +42,6 @@ const EASE_APPLE = "ease-apple";
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
-  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: problemrevision, alt: "Parent reviewing a child's progress" },
   { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
   { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I read every article. I still can't turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
 ];
@@ -231,13 +229,13 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
    education doesn't end here." grammar). The three subjects stay mounted and
    crossfade; the dots let the reader pace it. */
 function LandingProblemSection() {
-  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
+  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-[#f5f5f7]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible}>
-        <p className="sr-only">Stories from a parent, a student, and a professional about the moment understanding breaks down.</p>
+        <p className="sr-only">Stories from a student and a professional about the moment understanding breaks down.</p>
         <div className="public-editorial-frame mx-auto">
           <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>Why Visionary exists</p>
           <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "980px" }}>

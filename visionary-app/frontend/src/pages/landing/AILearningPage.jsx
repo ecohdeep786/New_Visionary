@@ -82,10 +82,14 @@ import { billingPath } from '@/lib/billingIntent';
 import { fontStack } from "@/components/landing/system/tokens";
 
 
-/* ═══ Billing toggle — same ink-pill language as site tabs ═══ */
+/* ═══ Billing toggle — the product's segmented control: a quiet gray track
+   (the toggle must read as one control on the white page, not float as
+   two loose labels), the active period as the ink pill, the savings badge
+   carried inside. Reference basis: Apple HIG — Selection and input >
+   segmented controls; one visible container, one obvious selection. ═══ */
 const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
   return (
-    <div className="flex w-fit max-w-full items-stretch rounded-full bg-white p-1" role="group" aria-label="Billing period">
+    <div className="flex w-fit max-w-full items-stretch rounded-full bg-[#f5f5f7] p-1" role="group" aria-label="Billing period">
       {["monthly", "annual"].map((b) => {
         const active = billing === b;
         return (
@@ -94,11 +98,11 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
             type="button"
             aria-pressed={active}
             onClick={() => onChange(b)}
-            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-[min(1rem,5vw)] text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
+            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-[min(1rem,5vw)] text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#e8e8ed]"}`}
           >
             {b === "monthly" ? "Monthly" : "Annual"}
             {b === "annual" && (
-              <span className={`rounded-full px-2 py-0.5 text-[12px] font-medium tracking-[0] ${active ? "bg-white/15 text-white" : "bg-[#f5f5f7] text-[#6e6e73]"}`}>
+              <span className={`rounded-full px-2 py-0.5 text-[12px] font-medium tracking-[0] ${active ? "bg-white/15 text-white" : "bg-white text-[#6e6e73]"}`}>
                 2 months free
               </span>
             )}
@@ -144,7 +148,9 @@ function PricingStoreSection() {
           </p>
         </div>
         <div className="mx-auto mt-12 w-full max-w-[1240px]">
-          <div className="flex flex-col items-center gap-3 pb-8">
+          {/* the toggle sits on its own floor with the store's breathing room
+              between the control and the table it drives */}
+          <div className="flex flex-col items-center pb-12">
             <BillingToggle billing={billing} onChange={setBilling} />
           </div>
           <div data-overflow className="overflow-x-auto lg:overflow-visible">
@@ -181,7 +187,7 @@ function PricingStoreSection() {
                         <Link
                           data-b3="cta"
                           to={["personal", "family"].includes(p.id) ? billingPath(p.id, billing) : p.to}
-                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                         >
                           {p.cta}
                         </Link>
@@ -225,7 +231,7 @@ function PricingStoreSection() {
               <Link
                 data-b3="cta"
                 to={institution.to}
-                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
               >
                 {institution.cta}
               </Link>

@@ -35,7 +35,7 @@ export default function LandingNav() {
   const openTimer = useRef(null);
   const closeTimer = useRef(null);
   const drawerRef = useRef(null);
-  const focusMega = useRef(null);
+
   const menuBtnRef = useRef(null);
 
   const { pathname } = useLocation();
@@ -52,7 +52,6 @@ export default function LandingNav() {
   /* Close the navigation that belongs to the previous layout. */
   useEffect(() => {
     const onResize = () => {
-      focusMega.current = null;
       clearTimeout(openTimer.current);
       clearTimeout(closeTimer.current);
       if (window.innerWidth < 1024) setOpenMega(null);
@@ -98,7 +97,7 @@ export default function LandingNav() {
       clearTimeout(openTimer.current);
       clearTimeout(closeTimer.current);
       const activeRef = refs[openMega]?.current;
-      if (activeRef?.contains(document.activeElement)) activeRef.querySelector("button")?.focus();
+      if (activeRef?.contains(document.activeElement)) activeRef.querySelector("a")?.focus();
       setOpenMega(null);
     };
 
@@ -149,21 +148,6 @@ export default function LandingNav() {
     };
   }, [mobileOpen]);
 
-  const toggleMega = (key, event) => {
-    clearTimeout(openTimer.current);
-    clearTimeout(closeTimer.current);
-    const next = openMega === key ? null : key;
-    if (next && event.detail === 0) focusMega.current = next;
-    setOpenMega(next);
-  };
-
-  useEffect(() => {
-    if (openMega && focusMega.current === openMega) {
-      focusMega.current = null;
-      refs[openMega]?.current?.querySelector("a")?.focus();
-    }
-  }, [openMega]);
-
   const megaTrigger = (key, pageActive = false) =>
     `${navLink(openMega === key || pageActive)} justify-center gap-1.5`;
 
@@ -208,24 +192,28 @@ export default function LandingNav() {
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
-            {/* WHO YOU ARE */}
+            {/* WHO YOU ARE — Apple global-nav pattern: the item is a link
+               (click navigates to the page), hover or keyboard focus opens
+               the megamenu. Reference basis: Apple HIG — Navigation and
+               search; consistent hit targets and predictable activation. */}
             <div
               ref={whoRef}
               className="relative"
               onMouseEnter={() => requestOpen("who")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to={activeCategory ? activeCategory.path : "/student"}
                 aria-haspopup="true"
                 aria-expanded={openMega === "who"}
                 aria-controls="mega-who"
-                onClick={event => toggleMega("who", event)}
+                onFocus={() => requestOpen("who")}
+                onClick={() => setOpenMega(null)}
                 className={`${megaTrigger("who", pageActive.who)} min-w-0`}
               >
                 {activeCategory ? activeCategory.label : "Who you are"}
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "who" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "who" && (
                 <div id="mega-who" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
@@ -262,24 +250,25 @@ export default function LandingNav() {
               How it works
             </Link>
 
-            {/* FOR ORGANIZATIONS */}
+            {/* FOR ORGANIZATIONS — link trigger, same pattern as above */}
             <div
               ref={orgRef}
               className="relative"
               onMouseEnter={() => requestOpen("org")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to="/organization"
                 aria-haspopup="true"
                 aria-expanded={openMega === "org"}
                 aria-controls="mega-org"
-                onClick={event => toggleMega("org", event)}
+                onFocus={() => requestOpen("org")}
+                onClick={() => setOpenMega(null)}
                 className={megaTrigger("org", pageActive.org)}
               >
                 For organizations
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "org" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "org" && (
                 <div id="mega-org" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
@@ -315,24 +304,25 @@ export default function LandingNav() {
               Pricing
             </Link>
 
-            {/* DOWNLOAD */}
+            {/* DOWNLOAD — link trigger, same pattern as above */}
             <div
               ref={downloadRef}
               className="relative"
               onMouseEnter={() => requestOpen("download")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to="/download"
                 aria-haspopup="true"
                 aria-expanded={openMega === "download"}
                 aria-controls="mega-download"
-                onClick={event => toggleMega("download", event)}
+                onFocus={() => requestOpen("download")}
+                onClick={() => setOpenMega(null)}
                 className={megaTrigger("download", pageActive.download)}
               >
                 Download
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "download" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "download" && (
                 <div id="mega-download" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
@@ -363,24 +353,25 @@ export default function LandingNav() {
               )}
             </div>
 
-            {/* ABOUT */}
+            {/* ABOUT — link trigger, same pattern as above */}
             <div
               ref={aboutRef}
               className="relative"
               onMouseEnter={() => requestOpen("about")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to="/about"
                 aria-haspopup="true"
                 aria-expanded={openMega === "about"}
                 aria-controls="mega-about"
-                onClick={event => toggleMega("about", event)}
+                onFocus={() => requestOpen("about")}
+                onClick={() => setOpenMega(null)}
                 className={megaTrigger("about", pageActive.about)}
               >
                 About
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "about" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "about" && (
                 <div id="mega-about" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
