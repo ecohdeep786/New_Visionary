@@ -1,7 +1,7 @@
 /**
- * PREMIUM PARITY SECTIONS — the student page's FINAL section anatomy, shared
+ * PREMIUM PARITY SECTIONS — the student page’s FINAL section anatomy, shared
  * by every persona page so all five pages share one exact Apple-premium
- * section-for-section match. Each component mirrors the student page's inline
+ * section-for-section match. Each component mirrors the student page’s inline
  * sections exactly; only the data differs.
  *
  * 05 · INTELLIGENCE — the dark technology chapter: one sticky product stage,
@@ -9,7 +9,7 @@
  *
  * F10 split: every section is its own side-effect-free module under
  * premium/ and this file is a pure re-export barrel — import sites are
- * unchanged, and rollup tree-shakes per module. The landing's router uses
+ * unchanged, and rollup tree-shakes per module. The landing’s router uses
  * 4 of the 7 sections; category pages use all 7.
  */
 

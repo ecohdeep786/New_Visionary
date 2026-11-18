@@ -3,7 +3,7 @@ import { color } from "@/components/landing/system/tokens";
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, label, tone = "ink" }) {
   /* tone "pill" — the AirPods highlights dotnav (same treatment as the
-     landing journey): uniform warm-gray dots riding inside the section's
+     landing journey): uniform warm-gray dots riding inside the section’s
      light pill, the active one stretching into a 48×8 rounded bar.
      Target-size law (F-27/F-28): same >=44px button-box geometry as
      ProgressDots — the ±18px ::after expansion created overlapping invisible

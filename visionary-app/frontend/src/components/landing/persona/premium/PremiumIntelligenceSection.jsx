@@ -47,7 +47,7 @@ function useCentredStep(total) {
 
 const INTELLIGENCE_CLIPS = [null, null, null, null];
 
-/* Four scenes of ONE intelligence — the same mark evolving, on Apple's dark
+/* Four scenes of ONE intelligence — the same mark evolving, on Apple’s dark
    technology-chapter stage: near-black field, blue glow breathing behind,
    hairline white rings, frost core, glowing blue satellites. */
 function IntelligenceBeats({ index, label }) {
@@ -142,11 +142,11 @@ function IntelligenceBeats({ index, label }) {
   );
 }
 
-/* One sticky product stage — the chapter's video rectangle. Hairline chrome on a
+/* One sticky product stage — the chapter’s video rectangle. Hairline chrome on a
    raised ink field; every beat is stacked and cross-faded by `active` with a
    settle-scale, a clip plays only while its beat is active, and reduced
    motion snaps everything to instant. The 30px radius matches the journey
-   story cards exactly. NOTE (2026-11-02, founder): on the front door's promo
+   story cards exactly. NOTE (2026-11-02, founder): on the front door’s promo
    band this rectangle frame is replaced by the bare Visionary bot image; the
    frame remains the category pages' mechanism stage. */
 const IntelligenceFrame = React.memo(function IntelligenceFrame({ steps, active, autoplay = true, plain = false }) {
@@ -228,11 +228,11 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
   const { active, setStepRef, nodes } = useCentredStep(steps.length);
   const reduced = usePrefersReducedMotion();
 
-  /* promo mode — the front door's product band: the chapter's statement over
+  /* promo mode — the front door’s product band: the chapter’s statement over
      the one bare mark (the Visionary bot, unframed on the dark stage,
      founder directive 2026-11-02: "remove the rectangle and use the
      image"), one door out to the full mechanism. No beats, no drawers, no
-     dots — the door is the dark-band white pill (Apple's dark chapters never
+     dots — the door is the dark-band white pill (Apple’s dark chapters never
      carry a filled accent button; the accent lives in the statement and the
      light) and the mark floats bare. The default renders the full chapter
      every category page carries. */
@@ -249,7 +249,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
   if (promo) {
     return (
       <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-        {/* the chapter's one breath of light — kept in promo scale */}
+        {/* the chapter’s one breath of light — kept in promo scale */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 h-[480px]"
@@ -312,7 +312,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
 
   return (
     <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      {/* the chapter's one breath of light — blue rising from above the
+      {/* the chapter’s one breath of light — blue rising from above the
           statement, so all color lives in the content */}
       <div
         aria-hidden="true"
@@ -320,7 +320,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
         style={{ background: "radial-gradient(52% 74% at 50% 0%, rgba(0,102,204,0.13) 0%, rgba(0,102,204,0.04) 46%, rgba(10,13,20,0) 74%)" }}
       />
       {/* statement opening — one gradient wordmark, one subhead capped at
-          two lines. Apple's dark technology chapter: centered headline
+          two lines. Apple’s dark technology chapter: centered headline
           constrained to 22ch, supporting line at 40ch with balanced
           measure. */}
       <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
@@ -341,7 +341,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
       </ScrollReveal>
 
       {/* the product flow — four beats scroll past one video-ready stage;
-          inactive beats dim like Apple's non-active cards. */}
+          inactive beats dim like Apple’s non-active cards. */}
       <div className="relative mx-auto grid w-full grid-cols-1 gap-16 px-6 pt-24 min-[1069px]:max-w-[980px] lg:grid-cols-[5fr_6fr] lg:gap-32 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
           {steps.map((s, i) => (

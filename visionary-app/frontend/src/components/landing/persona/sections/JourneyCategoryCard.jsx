@@ -3,7 +3,7 @@ import LazyImage from "@/components/landing/LazyImage";
 
 const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "", images, onOpen, category, imgAlt }) {
   /* When onOpen is supplied the card behaves like an Apple story card: the
-     whole surface is the button that opens the category's story popup. */
+     whole surface is the button that opens the category’s story popup. */
   const isInteractive = typeof onOpen === "function";
   const Wrap = isInteractive ? "button" : "div";
   return (

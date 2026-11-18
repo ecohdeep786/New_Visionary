@@ -8,13 +8,13 @@ import { color } from "@/components/landing/system/tokens";
 import LazyImage from "@/components/landing/LazyImage";
 
 /* ═══════════════════════ 13 · EXPLORE ═══════════════════════
-   The page's closing chapter — Apple's line-up gallery ("Explore the
+   The page’s closing chapter — Apple’s line-up gallery ("Explore the
    line-up."): white line-up cards run in one sliding row on the #f5f5f7
    ground — 372px cards at a 24px pitch, the first card opening on the
-   statement's spine with the rest peeking past the right edge as the scroll
+   statement’s spine with the rest peeking past the right edge as the scroll
    affordance, snap points for the swipe, and centred round chevrons beneath. */
 
-/* Apple's line-up card, measured on the Watch "Explore the line-up." module:
+/* Apple’s line-up card, measured on the Watch "Explore the line-up." module:
    a white card on the #f5f5f7 ground with the photograph full-bleed on top
    and the text band beneath — 24px/600 name, 17px grey line, quiet blue
    "Learn more" link with a trailing chevron. */
@@ -61,17 +61,17 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
 });
 
 /* Props: heading (node), categories, images. Optional eyebrow + sub render
-   the same left-spined chapter header the site's other chapters carry — the
-   landing's router uses them; persona pages pass neither, so their line-up
+   the same left-spined chapter header the site’s other chapters carry — the
+   landing’s router uses them; persona pages pass neither, so their line-up
    header stays exactly the measured "Explore the line-up." anatomy.
    headingRole/subRole let a page bind the header to a measured public type
-   role (the landing's router opens at Education's card-chapter tier and reads
+   role (the landing’s router opens at Education’s card-chapter tier and reads
    its intro at the editorial-body tier); omitted, nothing changes. */
 function PremiumExploreSection({ heading, categories, images, eyebrow, sub, headingRole, subRole }) {
   const { ref } = useRevealOnce();
   const { trackRef, canPrev, canNext, scrollByCard, update } = useScrollTrack();
 
-  /* mouse drag-to-slide — the cursor affordance Apple's galleries assume
+  /* mouse drag-to-slide — the cursor affordance Apple’s galleries assume
      from a trackpad: press and slide, the row follows, links swallow the
      click when a drag actually happened */
   const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false });
@@ -117,7 +117,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
               {heading}
             </h2>
             {sub && (subRole ? (
-              /* a bound role (Education's card-chapter intro) is not the
+              /* a bound role (Education’s card-chapter intro) is not the
                  h2's semibold lead — the wrapper keeps it out of that role */
               <div className="mt-[var(--gap-title-sub-display)]">
                 <p data-type={subRole} className="text-balance max-w-[60ch]" style={{ color: color.slate }}>
