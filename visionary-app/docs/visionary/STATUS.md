@@ -2785,3 +2785,11 @@ five public routes on the fresh production build (loopback, warm cache,
   in-app browser); the 390px layout evidence from the craft pass stands.
 
 Receipt: `docs/visionary/baseline/cwv-2026-11-18/cwv-iab-receipt.json`.
+
+## 2026-11-18 — evidence-integrity fix: the lighthouse instrument no longer overwrites historical receipts on a crashed run
+
+The two failed `qa:lighthouse` runs today wrote partial per-route LHR files
+into the 2026-10-30 baseline directory before crashing, corrupting
+historical evidence (restored from git). The instrument now buffers every
+write and persists the per-route files and the receipt only after the full
+run passes — a crashed run leaves the historical receipts untouched.
