@@ -264,6 +264,7 @@ export default function OrganizationPage() {
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="Every learner, teacher, and professional in one clear picture you can act on."
+          note="The organization workspace is in development. Today, you can create your organization account and review the permission model that keeps your people’s work scoped."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}

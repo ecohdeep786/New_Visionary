@@ -295,6 +295,7 @@ export default function CollegePage() {
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="From the first problem to using what you know."
+          note="The project and portfolio tools are in development. Today, you can set up your professional profile and choose the language you work in."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}
