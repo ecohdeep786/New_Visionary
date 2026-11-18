@@ -2986,3 +2986,14 @@ All receipts: docs/visionary/baseline/page-closeouts-2026-11-18/ (A00–A23,
 B01–B07, C01–C20). The integrated full-role story regression stands from
 qa:role-e2e; the remaining platform scope is the backend/ML lanes'
 recorded handoffs and the hosted-staging checklist (FHE-23).
+
+## 2026-11-19 — the backend-lane readiness package: per-lane tickets from the recorded handoffs
+
+`docs/visionary/BACKEND_LANE_READINESS_2026-11-19.md` turns the three
+accepted handoff contracts into 9 per-lane tickets with acceptance
+criteria and the exact frontend surface each unlocks (data lane T1–T5,
+ML lane T6, events T7, billing T8, hosting T9), plus the recommended
+integration order by value per unit of work. The frontend adapters are
+implemented and idle: each service registration flips its honest room to
+the connected surface with no screen redesign. The frontend program
+holds (51 receipts, 870/870, the final regression clean).
