@@ -2901,3 +2901,20 @@ advertised. Certificates: F satisfied; I and M remain the release-owner
 lane's responsibility for the hosted-qualification remainder (staging
 provisioning, hosted identity/origins, migrations, rollback drills,
 synthetic monitoring) per `docs/visionary/FHE23_STAGING_QUALIFICATION_CHECKLIST.md`.
+
+## 2026-11-18 — category coverage completed: every route in every role's navigation walked
+
+The category count question answered from the product's own data: five
+categories (student, teacher, parent, professional, organization — the
+school/college/coaching slugs in the landing data are commented out, not
+declared categories). The earlier per-role E2E walked each role's primary
+navigation only; the instrument now derives each role's FULL route list
+from the navigation library itself (`navigationFor` + `secondaryNavigation`)
+— no hand-picked subsets — and walks every one on the production build.
+
+PASS 5/5 categories, 59 route-walks total: student 12, teacher 14, parent
+9, professional 13, organization 11. Zero blank pages, zero errors; every
+route renders the role's real surface or the honest room; server state
+(identity, onboarding_complete, getting_started_complete) asserted per
+role. Receipt:
+`docs/visionary/baseline/role-e2e-2026-11-18/role-e2e-receipt.json`.

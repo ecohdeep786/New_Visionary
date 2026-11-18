@@ -1,11 +1,11 @@
 {
-  "at": "2026-11-18T15:35:29.381Z",
+  "at": "2026-11-18T16:09:28.635Z",
   "base": "http://localhost:4200",
-  "buildSha": "0524ad323a2d99276b44eb55e79bc96dc0478eaa",
+  "buildSha": "d751d981d1867ba7127899bb313cba413ef8737f",
   "roles": [
     {
       "role": "student",
-      "email": "e2e-student-1795016129381@example.test",
+      "email": "e2e-student-1795018168635@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -24,7 +24,7 @@
         {
           "step": "routes walked",
           "ok": true,
-          "detail": "/dashboard/home→surface, /dashboard/learn→surface, /dashboard/ask→honest-room, /dashboard/practice→honest-room, /dashboard/build→honest-room, /dashboard/classes→honest-room, /dashboard/connections→surface, /dashboard/progress→honest-room"
+          "detail": "/dashboard/home→surface, /dashboard/learn→surface, /dashboard/ask→honest-room, /dashboard/practice→honest-room, /dashboard/build→honest-room, /dashboard/classes→honest-room, /dashboard/connections→surface, /dashboard/progress→honest-room, /dashboard/notifications→honest-room, /dashboard/personalization→honest-room, /dashboard/privacy→surface, /dashboard/subscription→surface"
         }
       ],
       "verdict": "pass",
@@ -32,7 +32,7 @@
     },
     {
       "role": "teacher",
-      "email": "e2e-teacher-1795016129381@example.test",
+      "email": "e2e-teacher-1795018168635@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -51,7 +51,7 @@
         {
           "step": "routes walked",
           "ok": true,
-          "detail": "/dashboard/home→surface, /dashboard/prepare→honest-room, /dashboard/classes→honest-room, /dashboard/learners→honest-room, /dashboard/insights→honest-room, /dashboard/ask→honest-room"
+          "detail": "/dashboard/home→surface, /dashboard/prepare→honest-room, /dashboard/classes→honest-room, /dashboard/learners→honest-room, /dashboard/insights→honest-room, /dashboard/ask→honest-room, /dashboard/growth→honest-room, /dashboard/library→honest-room, /dashboard/build→honest-room, /dashboard/progress→honest-room, /dashboard/notifications→honest-room, /dashboard/personalization→honest-room, /dashboard/privacy→surface, /dashboard/subscription→surface"
         }
       ],
       "verdict": "pass",
@@ -59,7 +59,7 @@
     },
     {
       "role": "parent",
-      "email": "e2e-parent-1795016129381@example.test",
+      "email": "e2e-parent-1795018168635@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -78,7 +78,7 @@
         {
           "step": "routes walked",
           "ok": true,
-          "detail": "/dashboard/home→surface, /dashboard/child→honest-room, /dashboard/reports→honest-room, /dashboard/connections→surface"
+          "detail": "/dashboard/home→surface, /dashboard/child→honest-room, /dashboard/reports→honest-room, /dashboard/connections→surface, /dashboard/ask→honest-room, /dashboard/notifications→honest-room, /dashboard/personalization→honest-room, /dashboard/privacy→surface, /dashboard/subscription→surface"
         }
       ],
       "verdict": "pass",
@@ -86,7 +86,7 @@
     },
     {
       "role": "professional",
-      "email": "e2e-professional-1795016129381@example.test",
+      "email": "e2e-professional-1795018168635@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -105,7 +105,7 @@
         {
           "step": "routes walked",
           "ok": true,
-          "detail": "/dashboard/home→surface, /dashboard/learn→surface, /dashboard/ask→honest-room, /dashboard/practice→honest-room, /dashboard/build→honest-room, /dashboard/career→honest-room"
+          "detail": "/dashboard/home→surface, /dashboard/learn→surface, /dashboard/ask→honest-room, /dashboard/practice→honest-room, /dashboard/build→honest-room, /dashboard/career→honest-room, /dashboard/classes→honest-room, /dashboard/connections→surface, /dashboard/progress→honest-room, /dashboard/notifications→honest-room, /dashboard/personalization→honest-room, /dashboard/privacy→surface, /dashboard/subscription→surface"
         }
       ],
       "verdict": "pass",
@@ -113,7 +113,7 @@
     },
     {
       "role": "organization",
-      "email": "e2e-organization-1795016129381@example.test",
+      "email": "e2e-organization-1795018168635@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -132,7 +132,7 @@
         {
           "step": "routes walked",
           "ok": true,
-          "detail": "/dashboard/home→surface, /dashboard/people→honest-room, /dashboard/cohorts→honest-room, /dashboard/curriculum→honest-room, /dashboard/library→honest-room"
+          "detail": "/dashboard/home→surface, /dashboard/people→honest-room, /dashboard/cohorts→honest-room, /dashboard/curriculum→honest-room, /dashboard/analytics→honest-room, /dashboard/library→honest-room, /dashboard/audit→honest-room, /dashboard/notifications→honest-room, /dashboard/personalization→honest-room, /dashboard/privacy→surface, /dashboard/subscription→surface"
         }
       ],
       "verdict": "pass",

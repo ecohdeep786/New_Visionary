@@ -14,6 +14,7 @@ import { execSync } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { navigationFor, secondaryNavigation } from '../src/lib/dashboardNavigation.js';
 
 const base = process.env.E2E_URL || 'http://localhost:4200';
 const emulator = process.env.E2E_EMULATOR || 'http://127.0.0.1:9098';
@@ -24,15 +25,17 @@ await mkdir(evidenceDir, { recursive: true });
 if (!process.env.CHROME_PATH) process.env.CHROME_PATH = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
 const buildSha = execSync('git rev-parse HEAD', { cwd: productRoot }).toString().trim();
 
-const ROLES = [
-  { key: 'student', card: 'I am a Learner', nav: ['home', 'learn', 'ask', 'practice', 'build', 'classes', 'connections', 'progress'] },
-  { key: 'teacher', card: 'I am a Teacher', nav: ['home', 'prepare', 'classes', 'learners', 'insights', 'ask'] },
-  { key: 'parent', card: 'I am a Parent', nav: ['home', 'child', 'reports', 'connections'] },
-  { key: 'professional', card: 'I am a Professional', nav: ['home', 'learn', 'ask', 'practice', 'build', 'career'] },
-  { key: 'organization', card: 'We are an Organization', nav: ['home', 'people', 'cohorts', 'curriculum', 'library'] },
-];
 
 const stamp = Date.now();
+/* The product's categories, verbatim from the landing nav data — every
+ * category the product declares gets a full end-to-end journey. */
+const ROLES = [
+  { key: 'student', card: 'I am a Learner' },
+  { key: 'teacher', card: 'I am a Teacher' },
+  { key: 'parent', card: 'I am a Parent' },
+  { key: 'professional', card: 'I am a Professional' },
+  { key: 'organization', card: 'We are an Organization' },
+];
 const receipt = { at: new Date().toISOString(), base, buildSha, roles: [], totals: {} };
 let failures = 0;
 const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
@@ -147,9 +150,12 @@ for (const role of ROLES) {
     assert.equal(me.body.identity, role.key === 'student' ? 'student' : role.key, 'server records the role');
     record.steps.push({ step: 'server state', ok: true, detail: `identity=${me.body.identity}, intro=${skip}, getting_started_complete=${me.body.getting_started_complete}` });
 
-    // walk the role's primary routes: surface or honest room, never blank/crash
+    // walk EVERY route in the role's navigation — primary + secondary,
+    // derived from the navigation library itself so the walk is exactly
+    // what the role's own shell offers, never a hand-picked subset
+    const routeKeys = [...new Set([...navigationFor(role.key, 'en'), ...secondaryNavigation(role.key, 'en')].map(item => item.key))];
     const walked = [];
-    for (const key of role.nav) {
+    for (const key of routeKeys) {
       const route = '/dashboard/' + key;
       const errorsBefore = pageErrors.length;
       await page.goto(base + route, { waitUntil: 'load', timeout: 90000 });
@@ -162,8 +168,7 @@ for (const role of ROLES) {
       const fresh = pageErrors.slice(errorsBefore);
       const verdict = state.blank ? 'BLANK' : fresh.length ? 'ERRORS' : state.honest ? 'honest-room' : 'surface';
       walked.push(route + '→' + verdict);
-      if (verdict !== 'ok' && verdict === 'BLANK' || verdict === 'ERRORS') record.verdict = 'fail';
-      if (verdict === 'BLANK' || verdict === 'ERRORS') { failures += 1; record.steps.push({ step: route, ok: false, detail: verdict + (fresh.length ? ': ' + fresh[0] : '') }); }
+      if (verdict === 'BLANK' || verdict === 'ERRORS') { record.verdict = 'fail'; failures += 1; record.steps.push({ step: route, ok: false, detail: verdict + (fresh.length ? ': ' + fresh[0] : '') }); }
     }
     record.steps.push({ step: 'routes walked', ok: !walked.some(w => /BLANK|ERRORS/.test(w)), detail: walked.join(', ') });
     record.pageErrors = pageErrors.slice(0, 5);
