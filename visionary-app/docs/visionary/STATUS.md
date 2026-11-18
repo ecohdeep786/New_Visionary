@@ -2870,3 +2870,34 @@ organization) on build `0524ad32`. The role's honest rooms are exactly the
 backend-gated areas of the recorded handoffs; each role's real surfaces
 (home, learn/connections/classes where applicable) render and function.
 Receipt: `docs/visionary/baseline/role-e2e-2026-11-18/role-e2e-receipt.json`.
+
+## 2026-11-18 — PROMOTION: dev merged into main — narrow connected-account release (founder-approved)
+
+Controlled merge commit `091db60f` (no force-push, no direct replace):
+`main` advanced `6c209a29` → `091db60f`, bringing 61 dev commits including
+the FHE-05 realm, FHE-20 route split, FHE-19 language/accessibility lane,
+the fresh-eyes craft round, FHE-21 test factory, FHE-23 preparation
+package, and the end-to-end category qualification.
+
+Promoted SHA `d751d981` — gates at the exact SHA: GitHub Actions green
+(run 44338127523); root `npm run check` exit 0 (1045 assertions, 870/870
+tests); role-by-role E2E 5/5 categories (student, teacher, parent,
+professional, organization — register, verify, onboard, walk routes,
+server state asserted); connected-route sweep 23/23; realm integration
+journeys 4/4; i18n audit 11 surfaces zero untranslated hi/bn; zoom and
+reduced-motion PASS; heading-outline audit 24 public routes clean.
+
+Founder approval recorded in-session (2026-11-18): end-to-end
+qualification by category directed, then "if all are perfect then you
+have to merge dev into production."
+
+Disclosed limitations (the launch language must reflect them): learning
+catalogue, teaching/Ask turns, practice, Build, classrooms, guardian,
+professional, organization, notifications render as truthful 'not
+available yet' rooms (backend/ML lanes pending — contracts written); the
+billing backend is unconfigured and the plans surface renders the
+server-owned 'Test billing is not configured' state; no payment is
+advertised. Certificates: F satisfied; I and M remain the release-owner
+lane's responsibility for the hosted-qualification remainder (staging
+provisioning, hosted identity/origins, migrations, rollback drills,
+synthetic monitoring) per `docs/visionary/FHE23_STAGING_QUALIFICATION_CHECKLIST.md`.
