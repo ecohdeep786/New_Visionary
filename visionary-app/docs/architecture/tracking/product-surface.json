@@ -82698,7 +82698,7 @@
     },
     {
       "file": "frontend/src/pages/landing/AccessibilityPage.jsx",
-      "sourceSha256": "15dcec475f0e8b6df665b07e427efcb58df101f5fa0d0d28fbcfa9dc58775749"
+      "sourceSha256": "74d82342adcc4ea8d50d6d43f45806777d0375283a5ab16fe7964dad0d346773"
     },
     {
       "file": "frontend/src/pages/landing/AILearningPage.jsx",
@@ -82718,15 +82718,15 @@
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
-      "sourceSha256": "713c9e5496d6621633f1c5b0e44f63a9b4bb115fb65456cef0aab67608c3ff53"
+      "sourceSha256": "6415cc2814ee760e911eb98c8313227c55e47c83e7c16a2b0b26ba8e80908ddf"
     },
     {
       "file": "frontend/src/pages/landing/ContactPage.jsx",
-      "sourceSha256": "b95c12e2e5925f1b9926a0d1e8c57dfbb391adb8758591a8b886c03ee2af9e8b"
+      "sourceSha256": "7adab5049f672c3fdcc71dad519ea0481b60c520a3865f1108afdbcfda65460d"
     },
     {
       "file": "frontend/src/pages/landing/CookiesPage.jsx",
-      "sourceSha256": "5c8693ad2dca7073b932cee36e22d5d08b6dd4cac664413dfc78f89e877c0be2"
+      "sourceSha256": "59c2c4bab8ea28eea9fd99566af815b1dda818738abe08475714883953d25217"
     },
     {
       "file": "frontend/src/pages/landing/DownloadPage.jsx",
@@ -82746,19 +82746,19 @@
     },
     {
       "file": "frontend/src/pages/landing/PrivacyPage.jsx",
-      "sourceSha256": "43b701b1d97aa48979dc583ad5f4cefc3e1df6fd2599bf077064033c42a8807d"
+      "sourceSha256": "ccdfca6364a6a978fdf15e42d405b158214c260e2e231b2d12e29aa627134f45"
     },
     {
       "file": "frontend/src/pages/landing/ReferralPage.jsx",
-      "sourceSha256": "06b9d786064896a4b50a00172c330a45b4d0daae096ddede9f082fda96dba211"
+      "sourceSha256": "7bdc26c73f90501e65f5ee67827c984e6650b0ef015029ca71eb388cf42f79dc"
     },
     {
       "file": "frontend/src/pages/landing/ResearchNewsPage.jsx",
-      "sourceSha256": "14fb4403835072bb4f447d5968136e455e7efc3b992e4055430a7a9a2ae029f7"
+      "sourceSha256": "ae96276848130c4d5a5016280f9d6e8d18f4da6dbbbfc9ba3b0733d89257a78c"
     },
     {
       "file": "frontend/src/pages/landing/SafetyPage.jsx",
-      "sourceSha256": "e0261a49352a60ae45fb1cdf9f404c47d80b896c9260bd5387c21b974f24fdd3"
+      "sourceSha256": "6d6b14f56c7d810d6e808cb3eabb2f5664e88270c0f8ca14ebf6e5f226ce8a03"
     },
     {
       "file": "frontend/src/pages/landing/SchoolPage.jsx",
@@ -82766,7 +82766,7 @@
     },
     {
       "file": "frontend/src/pages/landing/SecurityPage.jsx",
-      "sourceSha256": "76c3028e3a96edbb3a473a1838e681a4bc02e866d2fa82c91cfe8b54fe418883"
+      "sourceSha256": "68e6fa850c7f5b2bcefe793397f5eb3db1d0bf7a725ccf124e79fad72bcbc765"
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
@@ -82778,7 +82778,7 @@
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",
-      "sourceSha256": "cc257046999d8afbbc5697794d43a1d078c0a73fed9acd4103273b6c65f437d4"
+      "sourceSha256": "0d514abf4f1ef6af497bc104d88062f10a48dbb56803b28db522ff5799b05ac3"
     },
     {
       "file": "frontend/src/pages/landing/UpdatesPage.jsx",

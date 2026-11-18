@@ -59,12 +59,12 @@ const AREAS = [
     photo: imgTeacher,
     alt: "A teacher guiding a classroom",
     tint: "#f5f5f7",
-    copy: "Prepare, publish, and review classwork while the intelligence handles the follow-through, and the learner's private learning stays the learner's own.",
+    copy: "Prepare, publish, and review classwork while the intelligence handles the follow-through, and the learner’s private learning stays the learner’s own.",
     items: [
       { tag: "In development", subject: "document", title: "Publish and review loop", detail: "Teacher preparation flows to publication, student submission, and a reviewed check. One connected loop." },
       { tag: "In development", subject: "community", title: "Class communities, moderated", detail: "Class-scoped communities with report and rate-limit controls, kept safe by the teacher." },
-      { tag: "In development", subject: "handshake", title: "Work in a learner's day", detail: "Classwork joins a student's Daily Mentor plan without taking ownership of their private learning." },
-      { tag: "Next", subject: "student", title: "Stage-aware presentation", detail: "The same concept presented for the learner's stage, derived from evidence rather than age alone." },
+      { tag: "In development", subject: "handshake", title: "Work in a learner’s day", detail: "Classwork joins a student’s Daily Mentor plan without taking ownership of their private learning." },
+      { tag: "Next", subject: "student", title: "Stage-aware presentation", detail: "The same concept presented for the learner’s stage, derived from evidence rather than age alone." },
     ],
     flip: true,
   },
@@ -76,9 +76,9 @@ const AREAS = [
     photo: imgParent,
     alt: "A parent supporting learning at home",
     tint: "#f5f5f7",
-    copy: "Follow a child's learning through summaries scoped by consent, support at home without opening the learner's private world.",
+    copy: "Follow a child’s learning through summaries scoped by consent, support at home without opening the learner’s private world.",
     items: [
-      { tag: "In development", subject: "shield", title: "Consent-based summaries", detail: "Parent reports show only what the learner's consent allows. Nothing more appears anywhere." },
+      { tag: "In development", subject: "shield", title: "Consent-based summaries", detail: "Parent reports show only what the learner’s consent allows. Nothing more appears anywhere." },
       { tag: "In development", subject: "lock", title: "Boundaries by design", detail: "Private doubts and personal projects stay outside family and organizational views by default." },
       { tag: "Next", subject: "eye", title: "Clearer progress updates", detail: "Clearer summaries of what changed and why." },
     ],
@@ -164,13 +164,13 @@ export default function ResearchNewsPage() {
       <main id="main" tabIndex={-1}>
         <Breadcrumb page="Research" />
 
-                        {/* HERO — the FAP-59 stage with Apple's centered voice (phase 4):
+                        {/* HERO — the FAP-59 stage with Apple’s centered voice (phase 4):
             the two-part display rides alone (founder: remove the tag,
             sub-heading and CTA); the VISIONARY BOT rises from the fold —
             this is a research page (founder directive 2026-11-03): the bot
-            is the program's output, so the stage carries the bot, not a
+            is the program’s output, so the stage carries the bot, not a
             persona photo. No local nav bar on this page (founder directive);
-            the breadcrumb stays as the page's top guide. */}
+            the breadcrumb stays as the page’s top guide. */}
         <Reveal>
           <CinematicHero
             title="One intelligence,"
@@ -185,7 +185,7 @@ export default function ResearchNewsPage() {
         </Reveal>
 
         {/* MISSION SPLIT — "Amplifying human curiosity" beside a dark brand
-            panel (Google's video panel position) */}
+            panel (Google’s video panel position) */}
         <section data-section="02-mission" className="px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <div>
@@ -229,7 +229,7 @@ export default function ResearchNewsPage() {
             </div>
           </Reveal>
           <div className="mx-auto max-w-[1240px] px-0 mt-10">
-            {/* the research pipeline — the founder's framing: findings feed the
+            {/* the research pipeline — the founder’s framing: findings feed the
                 bot, the bot is what the learner meets */}
             <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[14px] text-[#6e6e73]">
               <span className="font-medium text-[#1d1d1f]">Research</span>
@@ -247,7 +247,7 @@ export default function ResearchNewsPage() {
         </section>
 
         {/* QUOTE BAND — full-width photo band with dark overlay and the
-            founding idea (Google's attributed quote band) */}
+            founding idea (Google’s attributed quote band) */}
         <section data-section="03-quote" className="px-4 sm:px-6 lg:px-10">
           <Reveal className="relative mx-auto max-w-[1240px] overflow-hidden rounded-[30px] bg-[#1d1d1f] px-8 py-16 sm:px-14 sm:py-24">
             <LazyImage src={imgHeroChip} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-30" />
@@ -353,7 +353,7 @@ export default function ResearchNewsPage() {
           </Reveal>
         </section>
 
-        {/* PROJECTS — see our impact across other products (Google's
+        {/* PROJECTS — see our impact across other products (Google’s
             "other projects" row) */}
         <section id="projects" data-section="06-projects" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
@@ -393,7 +393,7 @@ export default function ResearchNewsPage() {
                 </h2>
                 <div className="mt-5 max-w-[460px]">
                   <p className="text-[16px] leading-[1.7] text-white/70">
-                    The mentor's intelligence is an adapter, not a fixed brain. Retrieval, grounding, safety, memory, and evaluation sit behind one contract, so the mind can improve without the mentor changing, and an unconnected answer is always shown as unconnected.
+                    The mentor’s intelligence is an adapter, not a fixed brain. Retrieval, grounding, safety, memory, and evaluation sit behind one contract, so the mind can improve without the mentor changing, and an unconnected answer is always shown as unconnected.
                   </p>
                 </div>
                 <div className="mt-8">

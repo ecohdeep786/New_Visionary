@@ -117,7 +117,7 @@ const AREAS = [
     title: "For families and organizations",
     copy: "Family and institution views are being designed around role permissions and consent.",
     cards: [
-      { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner's consent allows, and nothing more renders anywhere.", to: "/parent", subject: "lock", tint: "#f5f5f7" },
+      { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner’s consent allows, and nothing more renders anywhere.", to: "/parent", subject: "lock", tint: "#f5f5f7" },
       { title: "Cohort spaces", copy: "Organization cohorts share institution-scoped spaces: insight across the group without exposing any individual.", to: "/organization", subject: "community", tint: "#f5f5f7" },
     ],
   },
@@ -203,7 +203,7 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        {/* ANCHOR CHIPS — the reference's pill nav under the hero */}
+        {/* ANCHOR CHIPS — the reference’s pill nav under the hero */}
         <nav aria-label="Community sections" className="sticky top-14 z-30 border-b border-[rgba(18,19,23,0.12)] bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-[1240px] items-center gap-2 overflow-x-auto px-4 py-3 sm:px-8 lg:justify-center lg:px-10">
             {ANCHORS.map((anchor) => (
@@ -216,7 +216,7 @@ export default function CommunityPage() {
           </div>
         </nav>
 
-        {/* FIND A COMMUNITY — the reference's alternating label + program-card
+        {/* FIND A COMMUNITY — the reference’s alternating label + program-card
             areas, with playful accent strokes beside the heading */}
         <section data-section="02-find" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="relative mx-auto max-w-[720px] text-center">
@@ -287,11 +287,11 @@ export default function CommunityPage() {
           </Reveal>
         </section>
 
-        {/* FAQ — the reference's accordion with circular controls */}
+        {/* FAQ — the reference’s accordion with circular controls */}
         <section id="faq" data-section="04-faq" className="scroll-mt-36 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[840px]">
             <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-[48px]">
-              Have questions? We've got answers.
+              Have questions? We’ve got answers.
             </h2>
             <LandingFAQ faqs={FAQS} defaultOpen={0} />
           </Reveal>

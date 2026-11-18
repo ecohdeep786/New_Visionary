@@ -120,7 +120,7 @@ const FAQ = [
   },
   {
     q: "Who can see my learning information?",
-    a: "Your account's role decides it. Students see their own work; teachers see the classes they teach; parents see what their role allows; institutions see aggregated, role-appropriate views. It is never public.",
+    a: "Your account’s role decides it. Students see their own work; teachers see the classes they teach; parents see what their role allows; institutions see aggregated, role-appropriate views. It is never public.",
   },
   {
     q: "How long is information retained?",
@@ -231,15 +231,15 @@ export default function PrivacyPage() {
       <LocalNav title="Privacy" />
 
       <main id="main" tabIndex={-1}>
-        {/* HERO — the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy’s centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar: the photograph sits behind the centered
             type, labelled context, values-first statement, promises and the
             utility opening stay in the body below. */}
-        {/* HERO — the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy’s centered voice
             (FAP-59 phase 4): the photograph sits behind the centered copy,
             landing on the fold under the LandingNav + LocalNav chrome. The
-            founder's stage photography swaps in via this same image prop. */}
+            founder’s stage photography swaps in via this same image prop. */}
         <FadeReveal visible={heroVisible}>
           <CinematicHero
             title="Your learning is personal."
@@ -617,10 +617,10 @@ export default function PrivacyPage() {
               {[
                 { term: "Workspace", def: "The learning environment you use in a browser. It holds the questions, practice, and projects from your sessions." },
                 { term: "Learning records", def: "The activity and progress tied to your account or device: what you asked, practised, and built." },
-                { term: "Browser-local storage", def: "Records saved in your browser on this device. They stay until you remove them or clear the browser's storage." },
+                { term: "Browser-local storage", def: "Records saved in your browser on this device. They stay until you remove them or clear the browser’s storage." },
                 { term: "Account services", def: "The connected features that need an identity to work — sign-in, shared progress, and role-based access." },
                 { term: "Grievance officer", def: "The named person responsible for reviewing your privacy requests and grievances under Indian law." },
-                { term: "DPDP Act", def: "India's Digital Personal Data Protection Act, the law whose consent and safeguard rules this policy follows." },
+                { term: "DPDP Act", def: "India’s Digital Personal Data Protection Act, the law whose consent and safeguard rules this policy follows." },
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
@@ -654,7 +654,7 @@ export default function PrivacyPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page’s one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

@@ -214,7 +214,7 @@ export default function SecurityPage() {
       <LocalNav title="Security" />
 
       <main id="main" tabIndex={-1}>
-        {/* HERO — the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy’s centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
             stay as the body opening below. */}
@@ -420,7 +420,7 @@ export default function SecurityPage() {
                 <section id="security-over-time" data-section="08-security-over-time" className="scroll-mt-24">
                   <SectionHeading number="06" title="Security is ongoing" />
                   <Paragraph>A secure product is never finished.</Paragraph>
-                  <div className="mt-5"><Paragraph>Software changes. New vulnerabilities are discovered. New threats appear. Security therefore requires continuous attention as Visionary's product and infrastructure evolve.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>Software changes. New vulnerabilities are discovered. New threats appear. Security therefore requires continuous attention as Visionary’s product and infrastructure evolve.</Paragraph></div>
                   <div className="mt-5"><Paragraph>Our engineering and operations practices should include maintaining dependencies, reviewing configurations, responding to vulnerabilities, and improving protections as the system changes.</Paragraph></div>
                   <Note>This page describes our security approach. It does not claim that any system can prevent every possible security incident.</Note>
                 </section>
@@ -475,7 +475,7 @@ export default function SecurityPage() {
                         <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Be clear about what we know</h3>
-                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Avoid making security promises that are not supported by Visionary's actual systems and practices.</p>
+                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Avoid making security promises that are not supported by Visionary’s actual systems and practices.</p>
                         </div>
                       </div>
                     </div>
@@ -589,7 +589,7 @@ export default function SecurityPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page’s one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="15-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
