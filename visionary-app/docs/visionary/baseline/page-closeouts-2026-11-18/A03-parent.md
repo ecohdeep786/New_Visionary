@@ -32,3 +32,25 @@
 - Final verdict: PASS.
 - What the next agent should NOT redo: the honest-note pattern (prop-gated), the parent voice, trust destinations.
 - NEXT primary page: A04 `/professional`.
+
+## Amendment (deep-match pass): interaction evidence against the live Apple resources
+
+The full interaction walk completed with the 12 Apple resources open as
+standing references (Privacy lens studied live: trust in ordinary
+language, control-first framing; Education Initiative: story grammar):
+
+- Struggle carousel (chapter 02): 5 story slides, crossfade correct, the
+  last dot switches to "Parent at a parent…" ✓.
+- Intelligence step dots (chapter 05): four labelled steps with
+  aria-pressed state ("What your child understood this week", "Know where
+  your child is stuck", "See which way learning is moving", "You see more
+  when everyone shares one view") ✓.
+- The honest-availability note renders at the chapter close (verified
+  visible, not in the flow grid) ✓.
+- Trust destinations: /privacy, /safety, /terms ✓.
+- Typography: zero straight apostrophes rendered ✓.
+- No horizontal overflow at 390/1280 ✓.
+- The page matches the Apple premium reference level for its trust
+  framing, story pacing, interaction behavior, typography and truth.
+  Final verdict for this deep pass: PASS — no code change needed (the
+  honest-note fix was this page's change, already integrated).
