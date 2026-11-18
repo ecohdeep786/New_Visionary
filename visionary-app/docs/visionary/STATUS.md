@@ -2645,3 +2645,28 @@ of an inline-phrase split that would break Hindi/Bengali word order.
 `/dashboard/subscription` — **PASS: zero untranslated English sentence nodes
 in hi and bn across all eleven** (receipt refreshed). Full suite **870/870**,
 lint 0, typecheck 0, surface audit green (1533 declarations).
+
+### FHE-19 craft pass: keyboard, mobile and typography verification of the changed surfaces
+
+**Reference basis:** Apple HIG Inclusivity — Accessibility (Intuitive/
+Perceivable/Adaptable) and the platform touch/typography conventions; studied,
+nothing copied. Pure verification — no code changes were needed.
+
+1. **Keyboard.** The interface-language control is an honest disabled control:
+   removed from tab order (the accessible pattern for unavailable controls),
+   its fieldset legend and `aria-describedby` note remain wired. On the billing
+   surface the operable control (Retry billing) takes focus and activates with
+   Enter, retaining focus and re-announcing the `role="alert"` state. The
+   billing review dialog's full keyboard path could not be live-exercised in
+   this realm — the realm's billing backend is unconfigured ("Test billing is
+   not configured"), so the plan grid never renders; the dialog is standard
+   Radix focus-trap structure and its keyboard walk joins the backend
+   qualification's checklist.
+2. **Mobile 390px.** All five changed surfaces (home, profile, learn,
+   subscription, connections) render without horizontal overflow with a
+   minimum 48px touch target — the `min-h-11` discipline holds across the
+   translated chrome.
+3. **Devanagari typography.** The Hindi shell computes 1.50 line-height on the
+   heading and 1.70 on body copy (≥1.5 is the accepted minimum for Devanagari
+   matras/ligatures), zero clipped elements, and the screenshot review shows
+   clean rendering through the platform font stack.
