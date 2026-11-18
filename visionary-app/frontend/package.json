@@ -24,7 +24,8 @@
     "qa:reduced-motion": "node scripts/reduced-motion-audit.mjs",
     "qa:zoom": "node scripts/zoom-audit.mjs",
     "qa:route-sweep": "node scripts/connected-route-sweep.mjs",
-    "qa:realm-journeys": "node scripts/realm-integration-factory.mjs"
+    "qa:realm-journeys": "node scripts/realm-integration-factory.mjs",
+    "qa:role-e2e": "node scripts/role-journey-e2e.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",

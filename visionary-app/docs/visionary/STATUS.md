@@ -2848,3 +2848,25 @@ commit.
 Evidence: 870/870 unit tests, eslint clean, live verification of each fix
 in the in-app browser and via headless sessions (nav navigation, carousel
 advance, computed colors/spacing, heading outlines, bot mark shapes).
+
+## 2026-11-18 — end-to-end qualification by category: student → organization, on the production build
+
+Reference basis: V6 §8 matrix (one verified case per selected journey and
+its high-risk negative counterpart); Apple HIG — Inclusivity (flows tested
+in the roles real people hold); nothing copied.
+
+`qa:role-e2e` (`scripts/role-journey-e2e.mjs`): for each category —
+student, teacher, parent, professional, organization — a fresh synthetic
+identity registers through the real UI, verifies email via the emulator's
+OOB action, onboards choosing that role through an adaptive wizard walker,
+and then walks the role's primary workspace routes on the PRODUCTION build.
+Every journey asserts the server-owned state (`/api/auth/me`: identity,
+onboarding_complete, getting_started_complete after skipping the
+introduction dialog) and every route renders a connected surface or the
+honest room — never blank, never a crash, zero page errors.
+
+PASS: 5/5 category journeys (student, teacher, parent, professional,
+organization) on build `0524ad32`. The role's honest rooms are exactly the
+backend-gated areas of the recorded handoffs; each role's real surfaces
+(home, learn/connections/classes where applicable) render and function.
+Receipt: `docs/visionary/baseline/role-e2e-2026-11-18/role-e2e-receipt.json`.
