@@ -2746,3 +2746,14 @@ QA identities inside the fenced realm only.
 
 PASS: 4/4 journeys, zero page errors, on build `7289445f`. Receipt:
 `docs/visionary/baseline/realm-integration-2026-11-18/realm-integration-receipt.json`.
+
+## 2026-11-18 — FHE-23 preparation: staging qualification checklist + promotion PR draft (release-owner lane entry package)
+
+Preparation only — nothing promotes. `docs/visionary/FHE23_STAGING_QUALIFICATION_CHECKLIST.md`
+maps every Stage D gate and red gate to either existing exact-SHA evidence
+(Certificate F satisfied) or the hosted-staging work that remains
+(Certificates I and M open), and states the two release-scope options the
+founder must choose between. `docs/visionary/FHE23_PROMOTION_PR_DRAFT.md` is
+the prepared dev→main pull request with honest release notes, withheld-scope
+disclosures, and the sign-off block; it becomes a real PR only after the
+release owner, Codex and founder sign-offs are recorded.
