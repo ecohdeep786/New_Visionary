@@ -7,7 +7,7 @@ import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* conte
 import PersonaHero from "@/components/landing/NewPersona";
 import { HERO_AVIF_SOURCES, HERO_SIZES } from "@/lib/heroVariants";
 
-/* LCP preload — the hero photograph is this page's LCP element, but its
+/* LCP preload — the hero photograph is this page’s LCP element, but its
    URL lives inside this module, so the browser cannot discover it before
    module eval + render (under the lab throttle the request started ~200ms
    after the entry chunk landed and queued behind the auth probe).
@@ -22,7 +22,7 @@ if (typeof window !== "undefined" && window.location.pathname === "/student") {
   lcpPreload.setAttribute("as", "image");
   /* setAttribute, not the IDL property: this Chromium build does not reflect
      imagesrcset/imagesizes assignments onto the DOM attributes, and an
-     attribute-less preload is inert (the same quirk PageMeta's upsertPreload
+     attribute-less preload is inert (the same quirk PageMeta’s upsertPreload
      works around). type="image/avif" byte-matches the hero <source>, so the
      preload is reused by the <picture> instead of fighting the fallback. */
   lcpPreload.setAttribute("imagesrcset", HERO_AVIF_SOURCES[studentHero].srcSet);
@@ -95,9 +95,9 @@ const HERO_WORD_MS = 2800;
 const STRUGGLE_LINES = ["Every","student","struggles","with"];
 
 const SLIDES = [
-  { word: "understanding", quote: "I studied for hours. I still couldn't explain it.", image: problemunderstanding, alt: "Student studying on a tablet" },
+  { word: "understanding", quote: "I studied for hours. I still couldn’t explain it.", image: problemunderstanding, alt: "Student studying on a tablet" },
   { word: "remembering", quote: "I understood it in class. I forgot it by evening.", image: problemrevision, alt: "Student reviewing notes on a laptop" },
-  { word: "practice", quote: "I knew the formula. I didn't know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
+  { word: "practice", quote: "I knew the formula. I didn’t know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
   { word: "exams", quote: "I just needed someone to explain it differently.", image: problemexam, alt: "Student preparing before an exam" },
 ];
 
@@ -112,7 +112,7 @@ const JOURNEY_WORDS = [
 ];
 
 const JOURNEY_STAGES = [
-  { title: "Primary", statement: "Build the basics. Build them right.", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
+  { title: "Primary", statement: "Build the basics. Build them right.", copy: "From your first questions to the ideas you’re ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
   { title: "Secondary and higher secondary", statement: "One place for every subject.", copy: "When lessons get difficult, understanding keeps up through every chapter and every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
   { title: "Competitive exams", statement: "Prepare for the exam. Not just the syllabus.", copy: "Strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
   { title: "Vocational and skills", statement: "Learn by doing. Skills that work.", copy: "Practice, projects, and skills you can take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
@@ -130,9 +130,9 @@ const STAGE_META = {
 };
 
 const INTELLIGENCE_STEPS = [
-  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
-  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
-  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
+  { title: "Understand what you’re learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
+  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today’s lesson. Visionary already understands where you are and where you’re going next." },
+  { title: "Practice what you’re learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
   { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
 ];
 
@@ -144,7 +144,7 @@ const LANGUAGE_CHIPS = [
 
 const LANGUAGE_QUESTIONS = [
   { hi: "Why do objects fall?", en: "Why do objects fall?", bn: "বস্তু কেন পড়ে?" },
-  { hi: "What is Python's list comprehension?", en: "What is Python's list comprehension?", bn: "Python-এ list comprehension কী?" },
+  { hi: "What is Python’s list comprehension?", en: "What is Python’s list comprehension?", bn: "Python-এ list comprehension কী?" },
   { hi: "Transformer mein primary winding ka kaam kya hai?", en: "What does the primary winding do in a transformer?", bn: "Transformer-এ primary winding-এর কাজ কী?" },
   { hi: "DCF valuation ke steps kya hain?", en: "What are the steps of DCF valuation?", bn: "DCF valuation-এর ধাপগুলো কী?" },
   { hi: "Integration by parts kab use karte hain?", en: "When do you use integration by parts?", bn: "Integration by parts কখন ব্যবহার করা হয়?" },
@@ -152,7 +152,7 @@ const LANGUAGE_QUESTIONS = [
 
 const ACHIEVEMENT_TABS = [
   { title: "Understand what matters.", copy: "Get a clear picture of the subjects and skills that matter today." },
-  { title: "Achieve what you're working toward.", copy: "Set your goal and keep moving, with support that adapts to you." },
+  { title: "Achieve what you’re working toward.", copy: "Set your goal and keep moving, with support that adapts to you." },
   { title: "Build something from what you know.", copy: "Turn what you know into real projects, real skills, and real work." },
 ];
 
@@ -160,7 +160,7 @@ const ACHIEVEMENT_IMAGE = [studentHeroContent, studentachivenment, studentbuild]
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that what you share stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what's next.", Icon: ShieldCheck, to: "/security" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what’s next.", Icon: ShieldCheck, to: "/security" },
   { title: "Responsibility", copy: "We believe intelligence should help people learn, never work against them.", Icon: HeartHandshake, to: "/terms" },
 ];
 
@@ -183,7 +183,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Sparkles, t: "When it gets difficult.", c: "Explanations adapt until the idea finally makes sense.", l: "See how it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise what matters.", c: "Practice tied to your syllabus and the way your exams ask.", l: "Start practising free", to: "/register" },
-      { Icon: BookOpen, t: "Remember it later.", c: "Yesterday's understanding stays available for today's lesson.", l: "Keep your place", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Remember it later.", c: "Yesterday’s understanding stays available for today’s lesson.", l: "Keep your place", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Boards and beyond.", c: "The same understanding carries into competitive preparation.", l: "Talk to us", to: "/contact" },
     ],
   },
@@ -255,8 +255,8 @@ function StudentStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      {/* the bridge's compact band (02-struggle) carries the chapter breath;
-          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      {/* the bridge’s compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple’s hero-scroll-linked reveal */}
       <StruggleChapter
         linked
         slides={SLIDES}
@@ -265,7 +265,7 @@ function StudentStruggleSection() {
         lines={STRUGGLE_LINES}
         label="Student learning challenges"
         kicker="Where understanding slips"
-        copy="Studying isn't the difficulty. Knowing it landed is."
+        copy="Studying isn’t the difficulty. Knowing it landed is."
       />
     </section>
   );
@@ -281,10 +281,10 @@ function StudentJourneySection() {
   return (
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <ScrollReveal>
-        {/* header — Apple's card-chapter treatment (education: "From grade
+        {/* header — Apple’s card-chapter treatment (education: "From grade
             school to grad school."): statement LEFT-aligned at the measured
-            gutter, and the gallery's track carries the same gutter so the
-            first card starts exactly at the heading's left edge — one spine. */}
+            gutter, and the gallery’s track carries the same gutter so the
+            first card starts exactly at the heading’s left edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
             data-type="section"
@@ -330,7 +330,7 @@ export default function StudentPage() {
           questions={LANGUAGE_QUESTIONS}
           line1="The words change."
           accent="Understanding"
-          tail=" doesn't."
+          tail=" doesn’t."
           sub="Ask in the language you think in. The understanding that comes back is the same."
         />
         <PremiumAchievementSection
