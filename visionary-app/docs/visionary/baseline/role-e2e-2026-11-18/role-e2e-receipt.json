@@ -1,11 +1,11 @@
 {
-  "at": "2026-11-18T16:09:28.635Z",
+  "at": "2026-11-18T20:19:41.143Z",
   "base": "http://localhost:4200",
-  "buildSha": "d751d981d1867ba7127899bb313cba413ef8737f",
+  "buildSha": "78028d603d8ccd1310429c6db44007142eb1565e",
   "roles": [
     {
       "role": "student",
-      "email": "e2e-student-1795018168635@example.test",
+      "email": "e2e-student-1795033181143@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -32,7 +32,7 @@
     },
     {
       "role": "teacher",
-      "email": "e2e-teacher-1795018168635@example.test",
+      "email": "e2e-teacher-1795033181143@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -59,7 +59,7 @@
     },
     {
       "role": "parent",
-      "email": "e2e-parent-1795018168635@example.test",
+      "email": "e2e-parent-1795033181143@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -86,7 +86,7 @@
     },
     {
       "role": "professional",
-      "email": "e2e-professional-1795018168635@example.test",
+      "email": "e2e-professional-1795033181143@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
@@ -113,7 +113,7 @@
     },
     {
       "role": "organization",
-      "email": "e2e-organization-1795018168635@example.test",
+      "email": "e2e-organization-1795033181143@example.test",
       "steps": [
         {
           "step": "registered + verified + signed in",
