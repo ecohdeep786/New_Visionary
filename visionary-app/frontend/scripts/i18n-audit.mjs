@@ -56,15 +56,29 @@ const isEnglishSentence = (t) => {
   return english / words.length >= 0.8;
 };
 
-const collectLeafText = () => {
-  const out = [];
+/* Collected leaf text splits by the product's own lang declarations: chrome
+ * nodes (no lang mark, or the active interface locale) are audited; nodes
+ * inside a lang mark that differs from the interface locale are content
+ * rendered in its recorded language (journey titles, session content — the
+ * established DecisionHome/LearningProgress/Guide pattern) and are counted
+ * per language in the receipt instead of flagged. The document-root lang is
+ * ignored so a missing product wrapper can never silently pass everything. */
+const collectLeafText = (expected) => {
+  const chrome = [];
+  const content = {};
   for (const el of document.querySelectorAll('#main p,#main li,#main label,#main span,#main a,#main button,#main h1,#main h2,#main h3,#main td,#main th,#main dt,#main dd')) {
     if (el.offsetParent === null || el.closest('[aria-hidden="true"],.sr-only')) continue;
     if ([...el.childNodes].some((n) => n.nodeType === 1)) continue;
     const t = (el.textContent || '').replace(/\s+/g, ' ').trim();
-    if (t.length > 2) out.push(t);
+    if (t.length < 3) continue;
+    let declared = null;
+    for (let node = el; node && node !== document.body; node = node.parentElement) {
+      if (node.hasAttribute && node.hasAttribute('lang')) { declared = node.getAttribute('lang'); break; }
+    }
+    if (declared && declared !== expected) { content[declared] = (content[declared] || 0) + 1; continue; }
+    chrome.push(t);
   }
-  return out;
+  return { chrome, content };
 };
 
 /* Drive the app's own Interface-language listbox on the Personalization
@@ -132,7 +146,7 @@ const DECIDED_ENGLISH_PREFIXES = [
 ];
 const decidedReason = t => (DECIDED_ENGLISH_PREFIXES.find(([p]) => t.startsWith(p)) || [null, null])[1];
 
-const receipt = { at: new Date().toISOString(), base, v1SurfaceDecision: 'workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT; FHE-19: the hi/bn passes drive the app Interface-language control', surfaces: [], totals: {} };
+const receipt = { at: new Date().toISOString(), base, v1SurfaceDecision: 'workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT; FHE-19: the hi/bn passes drive the app Interface-language control; nodes inside a product lang mark that differs from the interface locale are content in its recorded language (journey/session titles) and are counted per language, not flagged', surfaces: [], totals: {} };
 let flaggedTotal = 0;
 
 const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
@@ -145,13 +159,13 @@ for (const [route, label] of SURFACES) {
     await setInterfaceLocale(page, locale);
     await page.goto(base + route, { waitUntil: 'load', timeout: 90000 });
     await page.waitForTimeout(1200);
-    perLocale[locale] = await page.evaluate(collectLeafText);
+    perLocale[locale] = await page.evaluate(collectLeafText, locale);
   }
   const findings = { hi: [], bn: [] };
   const decided = { hi: 0, bn: 0 };
   for (const locale of ['hi', 'bn']) {
-    const enSet = new Set(perLocale.en);
-    for (const t of perLocale[locale]) {
+    const enSet = new Set(perLocale.en.chrome);
+    for (const t of perLocale[locale].chrome) {
       if (enSet.has(t) && isEnglishSentence(t)) {
         const reason = decidedReason(t);
         if (reason) { decided[locale] += 1; continue; }
@@ -161,7 +175,7 @@ for (const [route, label] of SURFACES) {
   }
   const flagged = findings.hi.length + findings.bn.length;
   flaggedTotal += flagged;
-  receipt.surfaces.push({ route, label, enNodes: perLocale.en.length, hiNodes: (perLocale.hi || []).length, bnNodes: (perLocale.bn || []).length, hiSample: ((perLocale.hi || []).find(t=>/['ऀ-ॿ]/.test(t))||'').slice(0,50), hiUntranslated: findings.hi.length, bnUntranslated: findings.bn.length, decidedEnglish: decided, all: { hi: findings.hi, bn: findings.bn } });
+  receipt.surfaces.push({ route, label, enNodes: perLocale.en.chrome.length, hiNodes: perLocale.hi.chrome.length, bnNodes: perLocale.bn.chrome.length, hiSample: (perLocale.hi.chrome.find(t=>/['ऀ-ॿ]/.test(t))||'').slice(0,50), hiUntranslated: findings.hi.length, bnUntranslated: findings.bn.length, decidedEnglish: decided, contentLangNodes: { hi: perLocale.hi.content, bn: perLocale.bn.content }, all: { hi: findings.hi, bn: findings.bn } });
   console.log(`${route} — hi untranslated: ${findings.hi.length}, bn untranslated: ${findings.bn.length}${flagged ? '  e.g. "' + (findings.hi[0] || findings.bn[0] || '').slice(0, 60) + '"' : ''}`);
 }
 await context.close();

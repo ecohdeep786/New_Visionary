@@ -22,7 +22,8 @@
     "qa:journeys": "node scripts/role-journey-sweep.mjs",
     "qa:i18n": "node scripts/i18n-audit.mjs",
     "qa:reduced-motion": "node scripts/reduced-motion-audit.mjs",
-    "qa:zoom": "node scripts/zoom-audit.mjs"
+    "qa:zoom": "node scripts/zoom-audit.mjs",
+    "qa:route-sweep": "node scripts/connected-route-sweep.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",

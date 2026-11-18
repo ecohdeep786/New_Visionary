@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-18T05:45:43.467Z",
+  "at": "2026-11-18T08:34:00.173Z",
   "base": "http://localhost:4200",
-  "v1SurfaceDecision": "workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT; FHE-19: the hi/bn passes drive the app Interface-language control",
+  "v1SurfaceDecision": "workspace shell surfaces translated (en/hi/bn); public landing pages are English by design per PRODUCT_SURFACE_AUDIT; FHE-19: the hi/bn passes drive the app Interface-language control; nodes inside a product lang mark that differs from the interface locale are content in its recorded language (journey/session titles) and are counted per language, not flagged",
   "surfaces": [
     {
       "route": "/dashboard/home",
@@ -15,6 +15,10 @@
       "decidedEnglish": {
         "hi": 0,
         "bn": 0
+      },
+      "contentLangNodes": {
+        "hi": {},
+        "bn": {}
       },
       "all": {
         "hi": [],
@@ -34,6 +38,10 @@
         "hi": 0,
         "bn": 0
       },
+      "contentLangNodes": {
+        "hi": {},
+        "bn": {}
+      },
       "all": {
         "hi": [],
         "bn": []
@@ -43,14 +51,22 @@
       "route": "/dashboard/ask",
       "label": "Ask",
       "enNodes": 19,
-      "hiNodes": 19,
-      "bnNodes": 19,
+      "hiNodes": 17,
+      "bnNodes": 17,
       "hiSample": "आप किसमें सहायता चाहते हैं?",
       "hiUntranslated": 0,
       "bnUntranslated": 0,
       "decidedEnglish": {
         "hi": 0,
         "bn": 0
+      },
+      "contentLangNodes": {
+        "hi": {
+          "en": 2
+        },
+        "bn": {
+          "en": 2
+        }
       },
       "all": {
         "hi": [],
@@ -70,6 +86,10 @@
         "hi": 0,
         "bn": 0
       },
+      "contentLangNodes": {
+        "hi": {},
+        "bn": {}
+      },
       "all": {
         "hi": [],
         "bn": []
@@ -88,6 +108,10 @@
         "hi": 0,
         "bn": 0
       },
+      "contentLangNodes": {
+        "hi": {},
+        "bn": {}
+      },
       "all": {
         "hi": [],
         "bn": []
@@ -97,14 +121,22 @@
       "route": "/dashboard/privacy",
       "label": "Privacy & consent",
       "enNodes": 45,
-      "hiNodes": 45,
-      "bnNodes": 45,
+      "hiNodes": 21,
+      "bnNodes": 21,
       "hiSample": "गोपनीयता और सहमति",
       "hiUntranslated": 0,
       "bnUntranslated": 0,
       "decidedEnglish": {
-        "hi": 20,
-        "bn": 20
+        "hi": 0,
+        "bn": 0
+      },
+      "contentLangNodes": {
+        "hi": {
+          "en": 24
+        },
+        "bn": {
+          "en": 24
+        }
       },
       "all": {
         "hi": [],
@@ -124,6 +156,10 @@
         "hi": 0,
         "bn": 0
       },
+      "contentLangNodes": {
+        "hi": {},
+        "bn": {}
+      },
       "all": {
         "hi": [],
         "bn": []
@@ -133,14 +169,22 @@
       "route": "/dashboard/subscription",
       "label": "Plans & payments (billing)",
       "enNodes": 3,
-      "hiNodes": 3,
-      "bnNodes": 3,
+      "hiNodes": 0,
+      "bnNodes": 0,
       "hiSample": "",
       "hiUntranslated": 0,
       "bnUntranslated": 0,
       "decidedEnglish": {
-        "hi": 1,
-        "bn": 1
+        "hi": 0,
+        "bn": 0
+      },
+      "contentLangNodes": {
+        "hi": {
+          "en": 3
+        },
+        "bn": {
+          "en": 3
+        }
       },
       "all": {
         "hi": [],
@@ -151,14 +195,22 @@
       "route": "/dashboard/child",
       "label": "Family (parent)",
       "enNodes": 5,
-      "hiNodes": 5,
-      "bnNodes": 5,
+      "hiNodes": 0,
+      "bnNodes": 0,
       "hiSample": "",
       "hiUntranslated": 0,
       "bnUntranslated": 0,
       "decidedEnglish": {
-        "hi": 2,
-        "bn": 2
+        "hi": 0,
+        "bn": 0
+      },
+      "contentLangNodes": {
+        "hi": {
+          "en": 5
+        },
+        "bn": {
+          "en": 5
+        }
       },
       "all": {
         "hi": [],
@@ -178,6 +230,10 @@
         "hi": 0,
         "bn": 0
       },
+      "contentLangNodes": {
+        "hi": {},
+        "bn": {}
+      },
       "all": {
         "hi": [],
         "bn": []
@@ -187,14 +243,22 @@
       "route": "/dashboard/people",
       "label": "People (organization)",
       "enNodes": 5,
-      "hiNodes": 5,
-      "bnNodes": 5,
+      "hiNodes": 0,
+      "bnNodes": 0,
       "hiSample": "",
       "hiUntranslated": 0,
       "bnUntranslated": 0,
       "decidedEnglish": {
-        "hi": 2,
-        "bn": 2
+        "hi": 0,
+        "bn": 0
+      },
+      "contentLangNodes": {
+        "hi": {
+          "en": 5
+        },
+        "bn": {
+          "en": 5
+        }
       },
       "all": {
         "hi": [],

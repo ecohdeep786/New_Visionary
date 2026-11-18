@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowRight, Compass, ShieldCheck, SlidersHorizontal, X } fro
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import { Spinner, primaryBtnAutoClass } from '@/components/auth/AuthUI';
 import { useAuth } from '@/lib/AuthContext';
+import { useWorkspace } from '@/hooks/useWorkspace';
+import { gettingStartedCopy } from '@/lib/gettingStartedCopy';
 import { authErrorMessage } from '@/lib/authErrors';
 import heroBotWebp from '@/assets/brand/visionary-bot.webp';
 import heroBotAvif from '@/assets/brand/visionary-bot.avif';
@@ -23,6 +25,9 @@ export default function GettingStarted() {
 }
 function ProductIntroduction() {
   const { account, user, completeIntroduction } = useAuth();
+  const { data: workspace } = useWorkspace();
+  const locale = workspace?.preferences?.interfaceLocale || 'en';
+  const t = gettingStartedCopy(locale);
   const [open, setOpen] = useState(account.getting_started_complete === false);
   const [page, setPage] = useState(0), [busy, setBusy] = useState(false), [error, setError] = useState('');
   const lock = useRef(false), title = useRef(null);
@@ -39,7 +44,7 @@ function ProductIntroduction() {
       const profile = await completeIntroduction();
       if (!profile?.getting_started_complete) throw new Error('Introduction could not be confirmed');
       setOpen(false);
-    } catch (failure) { setError(authErrorMessage(failure, 'We couldn’t save your introduction. Try again; your Visionary setup is safe.')); }
+    } catch (failure) { setError(authErrorMessage(failure, t('We couldn’t save your introduction. Try again; your Visionary setup is safe.'))); }
     finally { lock.current = false; setBusy(false); }
   }
   const screens = [
@@ -49,12 +54,12 @@ function ProductIntroduction() {
   ];
   const screen = screens[page];
   return <Dialog.Root open={open} onOpenChange={value => { if (!lock.current) { setOpen(value); if (value) { setPage(0); setError(''); } } }}>
-    <Dialog.Trigger asChild><button type="button" className="mb-5 inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium text-[#0066cc] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066cc]"><Compass size={17} aria-hidden="true" />Show getting started</button></Dialog.Trigger>
+    <Dialog.Trigger asChild><button type="button" className="mb-5 inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium text-[#0066cc] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066cc]"><Compass size={17} aria-hidden="true" />{t('Show getting started')}</button></Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 z-50 bg-[#1d1d1f]/45 backdrop-blur-[2px]" />
       <Dialog.Content data-font-surface="product" onOpenAutoFocus={event => { event.preventDefault(); title.current?.focus(); }}
         className="fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100dvh-32px)] w-[calc(100vw-32px)] max-w-[760px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-[28px] border border-[#d2d2d7]/30 bg-white shadow-[0_1px_2px_rgba(60,64,67,0.08),0_2px_6px_2px_rgba(60,64,67,0.06)] outline-none">
-        <div className="flex shrink-0 items-center justify-between px-5 py-4 sm:px-8"><p className="text-xs text-[#6e6e73]">Getting started · {page + 1} of 3</p><Dialog.Close asChild><button type="button" disabled={busy} aria-label="Close introduction" className="flex h-11 w-11 items-center justify-center rounded-full text-[#6e6e73] hover:bg-[#f5f5f7] focus-visible:outline focus-visible:outline-2"><X size={20} /></button></Dialog.Close></div>
+        <div className="flex shrink-0 items-center justify-between px-5 py-4 sm:px-8"><p className="text-xs text-[#6e6e73]">{t('Getting started · {page} of 3', { page: page + 1 })}</p><Dialog.Close asChild><button type="button" disabled={busy} aria-label={t('Close introduction')} className="flex h-11 w-11 items-center justify-center rounded-full text-[#6e6e73] hover:bg-[#f5f5f7] focus-visible:outline focus-visible:outline-2"><X size={20} /></button></Dialog.Close></div>
         <div className="min-h-0 overflow-y-auto px-5 pb-6 sm:px-10 sm:pb-8">
           <div className="rounded-2xl bg-[#f5f5f7] px-4 py-7 text-center sm:py-9">
             {screen.art === 'bot' ? (
@@ -69,20 +74,20 @@ function ProductIntroduction() {
             ) : (
               <SpotIllustration subject={screen.art} className="mx-auto h-24 w-24 sm:h-32 sm:w-32" />
             )}
-            <Dialog.Title ref={title} tabIndex={-1} id="getting-started-title" className="mt-5 text-[26px] font-medium leading-tight text-[#1d1d1f] outline-none sm:text-[34px]">{screen.title}</Dialog.Title>
-            <Dialog.Description className="mx-auto mt-4 max-w-[520px] text-sm leading-6 text-[#6e6e73] sm:text-base sm:leading-7">{screen.text}</Dialog.Description>
+            <Dialog.Title ref={title} tabIndex={-1} id="getting-started-title" className="mt-5 text-[26px] font-medium leading-tight text-[#1d1d1f] outline-none sm:text-[34px]">{t(screen.title)}</Dialog.Title>
+            <Dialog.Description className="mx-auto mt-4 max-w-[520px] text-sm leading-6 text-[#6e6e73] sm:text-base sm:leading-7">{t(screen.text)}</Dialog.Description>
           </div>
-          {page === 0 && <div className="mx-auto mt-6 max-w-[420px] rounded-2xl border border-[#d2d2d7]/60 px-4 py-4 text-center"><p className="text-sm font-medium">{account.full_name || 'Your Visionary account'}</p><p className="mt-1 truncate text-xs text-[#6e6e73]" title={account.email}>{account.email}</p><p className="mt-3 text-xs text-[#6e6e73]">Setup is saved to this account.</p></div>}
-          {page === 1 && <div className="mt-6 rounded-2xl border border-[#d2d2d7]/60 p-5"><div className="flex items-start gap-4"><Compass size={36} strokeWidth={1.5} className="shrink-0 text-[#0066cc]" aria-hidden="true" /><div><h3 className="text-base font-medium">{first.title}</h3><p className="mt-2 text-sm leading-6 text-[#6e6e73]">{first.text}</p><Link to={first.path} onClick={() => setOpen(false)} className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[#0066cc] hover:underline">{first.label}<ArrowRight size={17} aria-hidden="true" /></Link></div></div></div>}
+          {page === 0 && <div className="mx-auto mt-6 max-w-[420px] rounded-2xl border border-[#d2d2d7]/60 px-4 py-4 text-center"><p className="text-sm font-medium">{account.full_name || t('Your Visionary account')}</p><p className="mt-1 truncate text-xs text-[#6e6e73]" title={account.email}>{account.email}</p><p className="mt-3 text-xs text-[#6e6e73]">{t('Setup is saved to this account.')}</p></div>}
+          {page === 1 && <div className="mt-6 rounded-2xl border border-[#d2d2d7]/60 p-5"><div className="flex items-start gap-4"><Compass size={36} strokeWidth={1.5} className="shrink-0 text-[#0066cc]" aria-hidden="true" /><div><h3 className="text-base font-medium">{t(first.title)}</h3><p className="mt-2 text-sm leading-6 text-[#6e6e73]">{t(first.text)}</p><Link to={first.path} onClick={() => setOpen(false)} className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[#0066cc] hover:underline">{t(first.label)}<ArrowRight size={17} aria-hidden="true" /></Link></div></div></div>}
           {page === 2 && <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {[{ icon: SlidersHorizontal, title: 'Make it yours', text: connectedAccount ? 'Review your account details.' : 'Review learning preferences and languages.', path: connectedAccount ? '/dashboard/profile' : '/dashboard/personalization', label: connectedAccount ? 'Review profile' : 'Review preferences' }, { icon: ShieldCheck, title: 'Keep sharing intentional', text: 'Private activity is never automatically shared.', path: connectedAccount ? '/dashboard/settings' : '/dashboard/privacy', label: connectedAccount ? 'Review account security' : 'Review privacy' }].map(({ icon: Icon, title: heading, text, path, label }) => <article key={heading} className="rounded-2xl border border-[#d2d2d7]/60 p-4"><Icon size={36} strokeWidth={1.5} className="text-[#0066cc]" aria-hidden="true" /><h3 className="mt-3 text-sm font-medium">{heading}</h3><p className="mt-2 text-xs leading-5 text-[#6e6e73]">{text}</p><Link to={path} onClick={() => setOpen(false)} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-[#0066cc] hover:underline">{label}</Link></article>)}
+            {[{ icon: SlidersHorizontal, title: 'Make it yours', text: connectedAccount ? 'Review your account details.' : 'Review learning preferences and languages.', path: connectedAccount ? '/dashboard/profile' : '/dashboard/personalization', label: connectedAccount ? 'Review profile' : 'Review preferences' }, { icon: ShieldCheck, title: 'Keep sharing intentional', text: 'Private activity is never automatically shared.', path: connectedAccount ? '/dashboard/settings' : '/dashboard/privacy', label: connectedAccount ? 'Review account security' : 'Review privacy' }].map(({ icon: Icon, title: heading, text, path, label }) => <article key={heading} className="rounded-2xl border border-[#d2d2d7]/60 p-4"><Icon size={36} strokeWidth={1.5} className="text-[#0066cc]" aria-hidden="true" /><h3 className="mt-3 text-sm font-medium">{t(heading)}</h3><p className="mt-2 text-xs leading-5 text-[#6e6e73]">{t(text)}</p><Link to={path} onClick={() => setOpen(false)} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-[#0066cc] hover:underline">{t(label)}</Link></article>)}
           </div>}
-          {page === 2 && <p className="mt-4 text-xs leading-5 text-[#6e6e73]">{connectedAccount ? 'Your account setup is saved online.' : 'This development workspace saves preview activity in this browser.'}</p>}
+          {page === 2 && <p className="mt-4 text-xs leading-5 text-[#6e6e73]">{connectedAccount ? t('Your account setup is saved online.') : t('This development workspace saves preview activity in this browser.')}</p>}
           {error && <p role="alert" className="mt-4 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#e30000]">{error}</p>}
         </div>
         <footer className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-[#d2d2d7]/60 px-5 py-4 sm:px-8">
-          {page === 0 ? <button type="button" disabled={busy} onClick={finish} className="min-h-11 rounded-full px-3 text-sm font-medium text-[#0066cc] hover:underline">Skip introduction</button> : <button type="button" disabled={busy} onClick={() => setPage(previous => previous - 1)} className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium text-[#0066cc] hover:underline"><ArrowLeft size={17} aria-hidden="true" />Back</button>}
-          <button type="button" disabled={busy} onClick={page === 2 ? finish : () => setPage(previous => previous + 1)} className={`${primaryBtnAutoClass} disabled:cursor-not-allowed`}>{busy ? <><Spinner />Saving…</> : page === 2 ? 'Start exploring' : 'Continue'}{!busy && <ArrowRight size={17} aria-hidden="true" />}</button>
+          {page === 0 ? <button type="button" disabled={busy} onClick={finish} className="min-h-11 rounded-full px-3 text-sm font-medium text-[#0066cc] hover:underline">{t('Skip introduction')}</button> : <button type="button" disabled={busy} onClick={() => setPage(previous => previous - 1)} className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium text-[#0066cc] hover:underline"><ArrowLeft size={17} aria-hidden="true" />{t('Back')}</button>}
+          <button type="button" disabled={busy} onClick={page === 2 ? finish : () => setPage(previous => previous + 1)} className={`${primaryBtnAutoClass} disabled:cursor-not-allowed`}>{busy ? <><Spinner />{t('Saving…')}</> : page === 2 ? t('Start exploring') : t('Continue')}{!busy && <ArrowRight size={17} aria-hidden="true" />}</button>
         </footer>
       </Dialog.Content>
     </Dialog.Portal>

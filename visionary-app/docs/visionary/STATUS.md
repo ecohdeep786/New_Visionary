@@ -2670,3 +2670,48 @@ nothing copied. Pure verification — no code changes were needed.
    heading and 1.70 on body copy (≥1.5 is the accepted minimum for Devanagari
    matras/ligatures), zero clipped elements, and the screenshot review shows
    clean rendering through the platform font stack.
+
+## 2026-11-18 — FHE-19 fresh-eyes continuation: the introduction dialog joins the translated set; ask-surface mentor chrome follows the interface language; route sweep instrument
+
+Reference basis: Apple HIG Inclusivity/Accessibility — user language for every
+interface string, nothing copied. Fresh-eyes walkthrough under the final-head
+directive found two E-class defects; both fixed, verified on production
+builds, and audited.
+
+1. **GettingStarted introduction dialog was English-only inside the hi/bn
+   shells** (E-class: untranslated interface chrome). New copy module
+   `src/lib/gettingStartedCopy.js` (~40 entries, en/hi/bn, `{page}`
+   interpolation, English fallback) wired through `GettingStarted.jsx` with
+   the one-hook contract (`useWorkspace`: preview store in dev, connected
+   projection in production). Verified live on the production build: the
+   fhe05h Hindi account's shell renders the trigger (परिचय देखें), the
+   auto-opened dialog (शुरुआत · 1 / 3 … Visionary में आपका स्वागत है), all
+   three screens, per-screen footers, and close/reopen in Hindi; the preview
+   branch verified through the Interface-language listbox on the dev server.
+   During verification the first wiring crashed the connected shell
+   (`t is not defined` — the translator was derived in the outer component
+   but used in `ProductIntroduction`); caught by the walkthrough, fixed by
+   moving the derivation into the rendering component, and re-verified.
+2. **MentorGreeting chrome followed the teaching language instead of the
+   interface language** (E-class: locale-authority defect on the ask
+   surface). The check-in card now speaks the interface locale — same
+   authority as the plan builder's chrome — while the teaching turn stays
+   teaching-language content when the backend handoff lands. Verified live:
+   the hi interface renders आपका मार्गदर्शक आया है / सीखें खोलें.
+3. **i18n audit contract extended for content-language marks.** Nodes inside
+   a product `lang` attribute that differs from the interface locale are
+   content in its recorded language (journey/session titles — the established
+   DecisionHome/LearningProgress/Guide pattern); the audit counts them per
+   language in the receipt (`contentLangNodes`) instead of flagging them, and
+   ignores the document-root lang so a missing wrapper can never silently
+   pass. `qa:i18n` PASS: 11 surfaces, zero untranslated chrome in hi and bn.
+4. **`qa:route-sweep` registered** (`scripts/connected-route-sweep.mjs`):
+   every declared /dashboard/* route on the production build with a real
+   session must render a connected surface or the honest room — never blank,
+   never a crash, never a preview surface. PASS: 23/23 routes, zero page
+   errors. Receipt:
+   `docs/visionary/baseline/connected-route-sweep-2026-11-18/connected-route-sweep-receipt.json`.
+
+Evidence: 870/870 unit tests, eslint clean, qa:i18n PASS (receipt
+regenerated), connected-route sweep PASS, live hi verification of both
+dialog branches and the mentor card on the production build.
