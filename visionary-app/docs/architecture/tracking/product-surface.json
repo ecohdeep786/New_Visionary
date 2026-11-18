@@ -82714,7 +82714,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "067bc48e6d2a54477b22ec127de4dae4f6a95c48000b69d47e61088761d96192"
+      "sourceSha256": "0f382ee12e77b808ea9dff6abb0ccbde54f39ca95d5b59c70baf7b09eda48ef6"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
@@ -82734,7 +82734,7 @@
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "sourceSha256": "08be5c2b3bc764da52b5a18f26ee68551841c0b8b13e62cdf8384369213677d3"
+      "sourceSha256": "dfb7574e5fa9cd3c076057149462fe56c82e204ba18c6c79a12ea0354a6aca75"
     },
     {
       "file": "frontend/src/pages/landing/ParentPage.jsx",
@@ -82770,7 +82770,7 @@
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "sourceSha256": "111aefb66bd809e3e231ac90a49e721b1f8d1d625f49b4bf65883711a4b12ab1"
+      "sourceSha256": "6f1018ddf7a43b3dea09269bdcb8f9f66d9b24c2970d9b89c2df9f639a31974f"
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",

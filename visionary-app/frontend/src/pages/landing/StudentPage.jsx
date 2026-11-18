@@ -324,6 +324,7 @@ export default function StudentPage() {
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="From the first question to using what you know."
+          note="The interactive learning journey is in development. Today, you can set up your free account — your saved learning history and privacy controls are yours from day one."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}
