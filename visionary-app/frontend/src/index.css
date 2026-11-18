@@ -12,9 +12,12 @@
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
-/* ── Lazy image fade-in — no jarring pop when deferred images finish loading ── */
+/* ── Lazy image fade-in — no jarring pop when deferred images finish loading ──
+   These sit BEFORE the utilities layer: a component carrying an explicit
+   opacity utility (the story carousel's inactive slides) must have that
+   utility win over .lazy-loaded's base opacity — otherwise a stacked,
+   "hidden" image paints at full strength over the active one. */
 .lazy-loading {
   opacity: 0;
   transition: opacity var(--motion-duration-base) var(--ease-out-apple);
@@ -22,6 +25,8 @@
 .lazy-loaded {
   opacity: 1;
 }
+
+@tailwind utilities;
 
 @keyframes oi-spin {
   to {

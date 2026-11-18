@@ -82714,7 +82714,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "289960d34710dbf84957f691df91957e5107f6ef4e65e0c215140dbf70abdc29"
+      "sourceSha256": "8118cf93d587a771bae3b3f1a6c4ee2158007effc4d77811f2a0bb648df61477"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
@@ -82734,11 +82734,11 @@
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "sourceSha256": "c51ab6ec3b7b52833ddfe4e72f8ccd015d7421ac5d768230c8c32f95ea69a3d5"
+      "sourceSha256": "bd9ace4d0f2ea828389eaca5437533454c4955d6a3fe7ad64de2087c7a344fd4"
     },
     {
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "sourceSha256": "0c76f768a3dcc3128754a9bf48d2972da60aee63995fbedfb5146e7ceec32c3b"
+      "sourceSha256": "6fe12c9e9bb1b140ab3887dfc8fe3494868a401868166ee908aca9b283541c81"
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
@@ -82770,11 +82770,11 @@
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "sourceSha256": "87e214833e8b3d7d37c29adcbf0be5338568ad6bac6fa212556900a2dc000542"
+      "sourceSha256": "a5e7ed8d76dcc200da30d6af2db8de75100d23b0b04634cd56108bdf76afc68f"
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "sourceSha256": "8b5d731c9a1a62318cb1e4df5fd4afecfb3b852b4d02d89d8769a415eb13387b"
+      "sourceSha256": "c3f217e9de65897069d7ce6876e1137563d5ca22c53117d18710ba948d6e548d"
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",

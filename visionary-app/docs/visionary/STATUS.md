@@ -2918,3 +2918,31 @@ route renders the role's real surface or the honest room; server state
 (identity, onboarding_complete, getting_started_complete) asserted per
 role. Receipt:
 `docs/visionary/baseline/role-e2e-2026-11-18/role-e2e-receipt.json`.
+
+## 2026-11-18 — two founder-reported fixes: the carousel's override image and the persona hero voice
+
+1. **"Why Visionary exists" override image (real bug, root-caused).** The
+   story carousel stacks all slides absolutely and hides the inactive one
+   with the `opacity-0` utility — but `.lazy-loaded { opacity: 1 }` in
+   index.css was defined AFTER `@tailwind utilities`: same specificity,
+   later in the cascade, so it always won and BOTH photos painted at full
+   strength, the second overriding the first. The rule now sits before the
+   utilities layer (base → components → lazy rules → utilities), so an
+   explicit opacity utility governs a lazy-loaded image's final opacity —
+   the inactive slide is truly hidden and the crossfade shows exactly one
+   photo at a time. Verified live: inactive image opacity 0.00, active 1.00
+   across the full cycle. (The bug predates the parent-slide removal; the
+   frozen carousel simply never exposed it.)
+2. **Persona hero sub-headings spoke setup-speak, not product voice.** The
+   five heroes now carry the product's own accepted persona lines from the
+   landing router — student "See the idea, practise it, and use it in the
+   next thing you build.", teacher "Plan, explain, and check understanding
+   while the lesson is still in front of you.", parent "See the progress
+   behind the report and find a useful next step at home.", professional
+   "Turn a question, project, or new skill into work you can use.",
+   organization "Give teams a shared view of learning across people,
+   projects, and time." Benefit-led, human, and exactly two rendered lines
+   each (verified computed line counts).
+
+Evidence: 870/870 unit tests, eslint clean, live verification in the
+in-app browser.

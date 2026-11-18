@@ -211,7 +211,7 @@ const ProHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Building, to apply, to grow."
-    sub="Set up your professional learning profile."
+    sub="Turn a question, project, or new skill into work you can use."
     img={proHero}
     alt="A professional writing notes beside a laptop"
     ctaLabel="Create a free account"
