@@ -195,7 +195,7 @@ export default function CookiesPage() {
       <LocalNav title="Cookies" />
 
       <main id="main" tabIndex={-1}>
-        {/* HERO — the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy’s centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
             stay as the body opening below. */}
@@ -362,7 +362,7 @@ export default function CookiesPage() {
                   <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {[
                       { Icon: Cookie, title: "Essential cookies.", text: "These support sign-in, security, and core service behavior. Without them, Visionary cannot work as expected, so they cannot be turned off." },
-                      { Icon: Lock, title: "No advertising cookies.", text: "We don't use cookies to show you ads. Ever. There are no ad networks watching what you do here. Your attention is not for sale." },
+                      { Icon: Lock, title: "No advertising cookies.", text: "We don’t use cookies to show you ads. Ever. There are no ad networks watching what you do here. Your attention is not for sale." },
                       { Icon: Globe, title: "Analytics with consent.", text: "If we use analytics cookies, we ask first. You can say no, and Visionary still works perfectly. We only measure what you explicitly allow." },
                     ].map(({ Icon, title, text }) => (
                       <div key={title} className="rounded-[20px] bg-white p-6">
@@ -383,8 +383,8 @@ export default function CookiesPage() {
                   <div className="mt-10 max-w-[880px] border-t border-[rgba(18,19,23,0.12)]">
                     {[
                       ["Session cookies", "Keep you signed in while you use Visionary. Deleted when you close your browser."],
-                      ["Preference cookies", "Remember things like your language and theme so you don't have to set them every time."],
-                      ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent, and you can opt out anytime."],
+                      ["Preference cookies", "Remember things like your language and theme so you don’t have to set them every time."],
+                      ["Analytics (optional)", "Help us understand what’s working so we can improve. Only with your consent, and you can opt out anytime."],
                     ].map(([who, what], i, arr) => (
                       <div key={who} className={`py-5 ${i < arr.length - 1 ? "border-b border-[rgba(18,19,23,0.12)]" : ""}`}>
                         <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
@@ -435,9 +435,9 @@ export default function CookiesPage() {
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your cookie options.</p>
                     <ul className="mt-4 space-y-2.5">
                       {[
-                        "Essential cookies cannot be turned off. They're what make Visionary work.",
+                        "Essential cookies cannot be turned off. They’re what make Visionary work.",
                         "Preference and analytics cookies are currently off.",
-                        "Clear or block cookies anytime from your browser's site settings.",
+                        "Clear or block cookies anytime from your browser’s site settings.",
                       ].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
@@ -452,7 +452,7 @@ export default function CookiesPage() {
                 <section id="contact" data-section="08-contact" className="scroll-mt-24">
                   <SectionHeading number="06" title="Questions and contact" />
                   <Paragraph>
-                    We're transparent about every cookie we use and why. If something isn't clear, reach out.
+                    We’re transparent about every cookie we use and why. If something isn’t clear, reach out.
                   </Paragraph>
                   <div className="mt-8 max-w-[640px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Write to the team</p>
@@ -483,7 +483,7 @@ export default function CookiesPage() {
                 { term: "Essential cookies", def: "The cookies required for sign-in, security, and core service behavior. They cannot be turned off." },
                 { term: "Preference cookies", def: "Cookies that remember choices such as language and appearance on the device you use." },
                 { term: "Analytics cookies", def: "Optional cookies that measure what works so we can improve. Used only with your consent." },
-                { term: "Browser storage", def: "Where cookies and on-device records live. Clearing your browser's site data removes them." },
+                { term: "Browser storage", def: "Where cookies and on-device records live. Clearing your browser’s site data removes them." },
                 { term: "Consent", def: "Your explicit yes before we use optional cookies, and your ability to say no without losing the product." },
               ].map(({ term, def }) => (
                 <div key={term}>
@@ -518,7 +518,7 @@ export default function CookiesPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page’s one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="11-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

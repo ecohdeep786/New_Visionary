@@ -81,7 +81,7 @@ const CATEGORIES = [
       { title: "Keyboard navigation", copy: "The experience supports keyboard interaction with a logical navigation order." },
       { title: "Visible focus", copy: "Clear focus states show where you are, what changed, and what you can do next." },
       { title: "Usable touch targets", copy: "Controls are sized and spaced for real hands on real screens." },
-      { title: "Your device's controls", copy: "Works with the input methods and assistive features built into a person's device." },
+      { title: "Your device’s controls", copy: "Works with the input methods and assistive features built into a person’s device." },
     ],
   },
   {
@@ -108,7 +108,7 @@ const RESOURCES = [
   { to: "/privacy", label: "Privacy policy", desc: "What information is handled, why, and the choices you have." },
 ];
 
-/* ═══ COMMITMENT — the reference's three-column promise ═══ */
+/* ═══ COMMITMENT — the reference’s three-column promise ═══ */
 const COMMITMENT = [
   {
     Icon: AccessibilityIcon,
@@ -134,7 +134,7 @@ export default function AccessibilityPage() {
       <main id="main" tabIndex={-1}>
         <LocalNav title="Accessibility" />
 
-        {/* HERO — the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy’s centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar: the photograph sits behind the centered
             type; the solo ink CTA and the on-page anchor chips (trailing
@@ -184,7 +184,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* FEATURE CATEGORIES — the reference's section + card-grid rhythm */}
+        {/* FEATURE CATEGORIES — the reference’s section + card-grid rhythm */}
         {CATEGORIES.map((category) => (
           <section
             key={category.id}
@@ -272,7 +272,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* GET STARTED — the reference's own-pace resource split */}
+        {/* GET STARTED — the reference’s own-pace resource split */}
         <section id="resources" data-section="06-resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
@@ -312,7 +312,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* COMMITMENT — the reference's three-column promise */}
+        {/* COMMITMENT — the reference’s three-column promise */}
         <section data-section="07-commitment" aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
@@ -342,7 +342,7 @@ export default function AccessibilityPage() {
           </Reveal>
         </section>
 
-        {/* CLOSING — the reference's blue DNA band */}
+        {/* CLOSING — the reference’s blue DNA band */}
         <section data-section="08-closing" aria-labelledby="closing-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-16 text-center sm:px-12 lg:py-20">
