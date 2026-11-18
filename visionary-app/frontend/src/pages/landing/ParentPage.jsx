@@ -295,6 +295,7 @@ export default function ParentPage() {
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="From the first question to the moment they can use what they’ve learned."
+          note="The family view is in development. Today, you can set up your parent or guardian profile and review the privacy controls that keep your child’s learning personal."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}
