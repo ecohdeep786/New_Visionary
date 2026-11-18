@@ -24,3 +24,29 @@
 - Final verdict: PASS (typography fix integrated).
 - What the next agent should NOT redo: the hero grammar, section arc, trust links, accordion anatomy.
 - NEXT primary page: A02 `/teacher`.
+
+## Amendment (deep-match pass): interaction evidence against the live Apple resources
+
+The full interaction walk completed with the 12 Apple resources open as
+standing references (K–12 lens studied live: benefit chapters, impact
+stories, honest availability):
+
+- Struggle carousel (chapter 02): 4 slides, crossfade correct (inactive
+  0.00 / active 1.00), manual "Go to challenge N" dots switch slides ✓.
+- Journey gallery → JourneyModal (chapter 10): stage card click opens the
+  modal (aria-modal=true, focus moves inside, "Build the basics. Build
+  them right." renders), Escape closes, Close buttons present ✓.
+- Achievement accordion (chapter 09): real buttons, aria-expanded ✓.
+- Typographic apostrophes: zero straight apostrophes rendered (the 22-fix
+  conversion verified in the DOM).
+- Trust destinations: About Safety → /safety (inherited from the A02
+  shared fix) ✓.
+- No horizontal overflow at 320–1920; hero sub 1 line at 390px.
+- Truth: no mastery/score claims; no minor-access promises; the language
+  chapter carries its roadmap note.
+
+The page matches the Apple premium reference level for its chapter
+grammar, story pacing, interaction behavior, typography and truth. Final
+verdict for this deep pass: PASS — the interaction layer needed no code
+change (the fixes this session were the typography + hero grammar, already
+integrated).
