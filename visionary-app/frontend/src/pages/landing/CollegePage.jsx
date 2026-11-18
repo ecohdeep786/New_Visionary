@@ -132,7 +132,7 @@ const ACHIEVEMENT_IMAGE = [proHeroContent, achieveImg, buildImg];
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that your work — and what you share with it — stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first project to what's next.", Icon: ShieldCheck, to: "/security" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first project to what's next.", Icon: ShieldCheck, to: "/safety" },
   { title: "Responsibility", copy: "We believe intelligence should help professionals work, never work against them.", Icon: HeartHandshake, to: "/terms" },
 ];
 

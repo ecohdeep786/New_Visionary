@@ -81954,7 +81954,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "sourceSha256": "74ccef6fc466e7fc76001c1db8bbb5552b0d1c43d7ad274910a6660e3b648ff1"
+      "sourceSha256": "20bc4befa0bb98006fc9993a067d7897eab5c778da9a08e1ff6de29c3fdf6cdf"
     },
     {
       "file": "frontend/src/components/landing/persona/sections/AchievementAccordion.jsx",
@@ -81966,7 +81966,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/sections/CarouselDots.jsx",
-      "sourceSha256": "2594a5bde94977579788ec4352f9234402928aa1617b680e103e4cab6636488e"
+      "sourceSha256": "0ca7c665ea71d850c13b1eecfb25330ad2727c245dc76512567ec21375c0959a"
     },
     {
       "file": "frontend/src/components/landing/persona/sections/ChevronIcon.jsx",
@@ -81978,7 +81978,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/sections/ExploreCard.jsx",
-      "sourceSha256": "346bc3f550ed15c0f9946e31e36f718a81d2d5106d0f0799432f0b0baaa60a9e"
+      "sourceSha256": "59ce3dfc27521b4af7ad4f30d994719380eedff4288d5f9a666844fc45878df9"
     },
     {
       "file": "frontend/src/components/landing/persona/sections/FadeReveal.jsx",
@@ -81998,15 +81998,15 @@
     },
     {
       "file": "frontend/src/components/landing/persona/sections/JourneyCategoryCard.jsx",
-      "sourceSha256": "6b2461d441c44f77c7440562a8b9ae12f777ceddea17ac564770f7ba2fd6fbc4"
+      "sourceSha256": "24a360f268ec1d3e59810ea95d73fadd79380bc8000b3a2d63dcfbbcf3b2a3fc"
     },
     {
       "file": "frontend/src/components/landing/persona/sections/JourneyGallery.jsx",
-      "sourceSha256": "e611eeeaa0a646de3ca1d82cb6726ed393ccc7048fb8cc549edf8be73d20db87"
+      "sourceSha256": "3f2c56cb90627573adf99e1987cc02ff07fc3ce64703db324055a928b6106995"
     },
     {
       "file": "frontend/src/components/landing/persona/sections/JourneyModal.jsx",
-      "sourceSha256": "8c4168c9f3635723b49e7aba7946744a3d2ff800b7c0af88d28b9867b4999ff6"
+      "sourceSha256": "4b5e13eff0727d40ef13469fde14258a13ba85d7b9fcd494309e8c94117642d3"
     },
     {
       "file": "frontend/src/components/landing/persona/sections/LanguageChips.jsx",
@@ -82714,7 +82714,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "8118cf93d587a771bae3b3f1a6c4ee2158007effc4d77811f2a0bb648df61477"
+      "sourceSha256": "591bc56bae18cc8ff8d63ad62b6487848ea54ad46d96d8a1857ad02d65e8cec1"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
@@ -82734,11 +82734,11 @@
     },
     {
       "file": "frontend/src/pages/landing/OrganizationPage.jsx",
-      "sourceSha256": "bd9ace4d0f2ea828389eaca5437533454c4955d6a3fe7ad64de2087c7a344fd4"
+      "sourceSha256": "200c942b3f271c1f8bdfa2870041365e1b1aea9a404e8630f02e2f20ea1c7353"
     },
     {
       "file": "frontend/src/pages/landing/ParentPage.jsx",
-      "sourceSha256": "6fe12c9e9bb1b140ab3887dfc8fe3494868a401868166ee908aca9b283541c81"
+      "sourceSha256": "f64778079e1cbf4f4599c1f52bd910f55f3698e8903298a43998180e8c80d58c"
     },
     {
       "file": "frontend/src/pages/landing/PartnersPage.jsx",
@@ -82770,11 +82770,11 @@
     },
     {
       "file": "frontend/src/pages/landing/StudentPage.jsx",
-      "sourceSha256": "902aa3ec780f337235ef3154c18e609c08a5841db6d25dd81628f94f02cc2a8b"
+      "sourceSha256": "111aefb66bd809e3e231ac90a49e721b1f8d1d625f49b4bf65883711a4b12ab1"
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "sourceSha256": "c3f217e9de65897069d7ce6876e1137563d5ca22c53117d18710ba948d6e548d"
+      "sourceSha256": "0f7ab1422efdddeca39a343458d10e92cf62bc217898fde55fa4b714bf493131"
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",

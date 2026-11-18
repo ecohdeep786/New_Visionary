@@ -132,7 +132,7 @@ const ACHIEVEMENT_IMAGE = [parentHeroContent, parentachivenment, parentbuild];
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that what your child shares stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what's next.", Icon: ShieldCheck, to: "/security" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what's next.", Icon: ShieldCheck, to: "/safety" },
   { title: "Responsibility", copy: "We believe intelligence should help people learn, never work against them.", Icon: HeartHandshake, to: "/terms" },
 ];
 

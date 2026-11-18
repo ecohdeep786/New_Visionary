@@ -122,7 +122,7 @@ const ACHIEVEMENT_IMAGE = [orgHeroContent, orgachivenment, orgbuild];
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that what your people share stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — across every classroom, team, and program.", Icon: ShieldCheck, to: "/security" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — across every classroom, team, and program.", Icon: ShieldCheck, to: "/safety" },
   { title: "Responsibility", copy: "We believe intelligence should help institutions act, never work against the people in them.", Icon: HeartHandshake, to: "/terms" },
 ];
 
