@@ -168,3 +168,35 @@ consent grant, Cloud Tasks API responses, and substitute caller verification.
 Hosted migration requires an exact staging receipt. Verify the private
 Cloud Run invocation policy, deployed authentication, queue trigger, and
 recovery before applying this path to production traffic.
+
+### Production deployment
+
+The deployment can be rendered without provider writes with
+`outboxProductionSqlPlan` and `outboxProductionPlan` in
+`infrastructure/gcp/outbox/plan.mjs`. The proposed persistent instance is
+`visionary-product-db` in Mumbai, with one dedicated vCPU, 3.75 GiB of memory,
+10 GiB SSD with a 20 GiB growth ceiling, regional failover, seven daily backups
+and seven days of point-in-time recovery. Its connector is mandatory. The
+staging and production databases have separate names and credentials on that
+instance. Bind the workload plan to the
+reviewed source, the trusted main product image digest, and the verification
+receipt from the separate synthetic staging database on the intended persistent
+instance. Keep the receipt with the production migration record. Use the
+existing data migration job to apply and verify the production database before
+starting the receiver or dispatcher. Configuration from the temporary hosted
+rehearsal cannot supply the persistent instance's receipt.
+
+The plan specifies a scale-to-zero internal receiver, a single-task dispatcher,
+and the same queue retry settings used in the hosted rehearsal. Bind Cloud Run
+invocation on the receiver to the dedicated Cloud Tasks identity. Bind task
+creation on the queue and actAs on that identity to the dispatcher. Give the
+Cloud Tasks service agent actAs on the invoker. Scope the separate runtime
+identities to the intended SQL instance and their respective pinned secrets.
+Verify one manual dispatcher execution and receipt readback before creating the
+five-minute Scheduler trigger. Its identity needs invocation on the dispatcher
+job only. Pause the trigger first if the rollout must be stopped.
+
+The production readiness check also needs the real authenticated list and
+revocation flow and the affected workload's readback. Exercise those with an
+approved test account and approved consent policy. The HTTP contract test uses
+the production controller and SQL write path with a substitute account verifier.
