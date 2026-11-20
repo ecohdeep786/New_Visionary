@@ -15,6 +15,7 @@
     "src/consent/**/*.ts",
     "src/file/download*.ts",
     "src/commands/**/*.ts",
-    "src/overview/**/*.ts"
+    "src/overview/**/*.ts",
+    "src/outbox/**/*.ts"
   ]
 }

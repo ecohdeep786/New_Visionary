@@ -1,0 +1,28 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index 99a677df..08a979f0 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -491,0 +492 @@ model ConsentGrant {
++  jobs            ConsentJob[]
+@@ -601,0 +603 @@ model OutboxDelivery {
++  effectAppliedAt DateTime?
+@@ -614,0 +617,19 @@ enum OutboxDeliveryStatus {
++model ConsentJob {
++  id          String          @id @db.Uuid
++  grantId     String
++  workload    String
++  state       ConsentJobState @default(PENDING)
++  createdAt   DateTime        @default(now())
++  cancelledAt DateTime?
++  grant       ConsentGrant    @relation(fields: [grantId], references: [id], onDelete: Cascade)
++
++  @@index([grantId, state])
++  @@index([workload, state, createdAt])
++  @@map("consent_jobs")
++}
++
++enum ConsentJobState {
++  PENDING
++  CANCELLED
++}
++

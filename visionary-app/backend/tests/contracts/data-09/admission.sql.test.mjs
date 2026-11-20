@@ -197,7 +197,7 @@ test('superseded assurance retains historical minimal review metadata without di
 test('admission migration extends empty accepted chain and never rewrites historical receipts', async () => {
   const isolated = await stagingDatabase();
   try {
-    const registry = canonicalMigrations(backend), store = isolated.store();
+    const registry = canonicalMigrations(backend).slice(0, 6), store = isolated.store();
     assert.deepEqual(registry.map(x => x.version), [1, 2, 3, 4, 5, 6]);
     await new MigrationRunner(store, registry.slice(0, 5)).applyAll();
     const original = await isolated.db.$queryRawUnsafe('SELECT * FROM "_visionary_migrations" ORDER BY version');

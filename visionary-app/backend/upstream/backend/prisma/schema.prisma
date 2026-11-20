@@ -489,6 +489,7 @@ model ConsentGrant {
   consentVersion  String
 
   person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  jobs            ConsentJob[]
 
   @@unique([uid, purpose, resourceId, consentVersion])
   @@index([uid])
@@ -576,7 +577,10 @@ model OutboxEvent {
   person        Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
   workspace     Workspace?  @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
 
+  delivery      OutboxDelivery?
+
   @@index([uid, cursor])
+  @@index([topic, cursor])
   @@index([status])
   @@index([createdAt])
   @@index([workspaceId])
@@ -587,6 +591,46 @@ enum OutboxStatus {
   PENDING
   DISPATCHED
   FAILED
+}
+
+model OutboxDelivery {
+  cursor      BigInt               @id
+  status      OutboxDeliveryStatus @default(PENDING)
+  attempts    Int                  @default(0)
+  availableAt DateTime             @default(now())
+  claimedAt   DateTime?
+  lastError   String?
+  effectAppliedAt DateTime?
+  event       OutboxEvent          @relation(fields: [cursor], references: [cursor], onDelete: Cascade)
+
+  @@index([status, availableAt, cursor])
+  @@map("outbox_deliveries")
+}
+
+enum OutboxDeliveryStatus {
+  PENDING
+  LEASED
+  DONE
+  FAILED
+}
+
+model ConsentJob {
+  id          String          @id @db.Uuid
+  grantId     String
+  workload    String
+  state       ConsentJobState @default(PENDING)
+  createdAt   DateTime        @default(now())
+  cancelledAt DateTime?
+  grant       ConsentGrant    @relation(fields: [grantId], references: [id], onDelete: Cascade)
+
+  @@index([grantId, state])
+  @@index([workload, state, createdAt])
+  @@map("consent_jobs")
+}
+
+enum ConsentJobState {
+  PENDING
+  CANCELLED
 }
 
 // ─── Audit (PRIV-01/PRIV-03) ────────────────────────────────────────────────────

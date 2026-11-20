@@ -1,6 +1,6 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { createHash, createHmac } from 'node:crypto';
+import { createHash, createHmac, randomUUID } from 'node:crypto';
 import fixture from './postgres-fixture.cjs';
 const { WorkspaceRepository } = fixture.req('./dist/src/workspaces/workspace.repository.js');
 let env, db, repo, ws;
@@ -401,6 +401,12 @@ test('actual consent HTTP service pages by signed account scope and commits owne
   const { FirebaseProductService } = fixture.req('./dist/src/auth/firebase-product/firebase-product.service.js');
   const { ProductConsentService } = fixture.req('./dist/src/consent/product-consent.service.js');
   const { ProductConsentController } = fixture.req('./dist/src/consent/product-consent.controller.js');
+  const { canonicalMigrations } = fixture.req('./dist/src/data/migration-registry.js');
+  const { enqueueConsentJob, applyConsentRevocation } = fixture.req('./dist/src/outbox/consent-jobs.js');
+  const { PostgresOutboxDeliveryStore } = fixture.req('./dist/src/outbox/postgres-outbox.store.js');
+  for (const migration of canonicalMigrations(fixture.backend).slice(5)) {
+    for (const statement of migration.statements) await db.$executeRawUnsafe(statement);
+  }
   const uid = 'http-consent-subject', foreign = 'http-consent-foreign';
   await repo.ensurePerson(uid); await repo.ensurePerson(foreign);
   await db.consentGrant.createMany({ data: Array.from({ length: 21 }, (_, i) => ({ id: 'http-grant-' + String(i).padStart(2, '0'),
@@ -456,6 +462,13 @@ test('actual consent HTTP service pages by signed account scope and commits owne
     assert.equal((await revoke({ grantId: page.grants[0].id, uid: foreign })).status, 400);
     assert.equal((await revoke({ grantId: page.grants[0].id }, { Origin: 'https://attacker.invalid' })).status, 403);
     assert.equal((await revoke({ grantId: page.grants[0].id }, { 'X-CSRF-Token': 'wrong' })).status, 403);
+    const beforeRevoke = (await db.outboxEvent.findFirst({ orderBy: { cursor: 'desc' }, select: { cursor: true } }))?.cursor ?? 0n;
+    const enqueue = (owner, resourceId) => enqueueConsentJob(repo, {
+      id: randomUUID(), uid: owner, workload: 'downloads', consentVersion: 'http-v1', resourceId,
+    });
+    const selected = await enqueue(uid, page.grants[0].resourceId);
+    const unaffected = await enqueue(uid, page.grants[1].resourceId);
+    const otherAccount = await enqueue(foreign);
     const response = await revoke({ grantId: page.grants[0].id }); assert.equal(response.status, 201); assert.equal(response.headers.get('cache-control'), 'no-store');
     const receipt = await response.json(); assert.equal(receipt.uid, uid); assert.equal(receipt.id, page.grants[0].id);
     assert.deepEqual(await (await revoke({ grantId: receipt.id })).json(), receipt);
@@ -463,6 +476,14 @@ test('actual consent HTTP service pages by signed account scope and commits owne
     assert.equal((await db.consentGrant.findUnique({ where: { id: other.id } })).revokedAt, null);
     assert.equal(await db.auditEvent.count({ where: { uid, operation: 'consent.revoked' } }), 1);
     assert.equal(await db.outboxEvent.count({ where: { uid, topic: 'consent.revoked' } }), 1);
+    const store = new PostgresOutboxDeliveryStore(db, beforeRevoke);
+    const [delivery] = await store.claimDueOutbox(1, new Date(), 5, 90_000);
+    assert.equal(delivery.payload.id, receipt.id);
+    assert.equal(await applyConsentRevocation(db, delivery.cursor, delivery.attempts), true);
+    assert.ok((await db.outboxDelivery.findUniqueOrThrow({ where: { cursor: delivery.cursor } })).effectAppliedAt);
+    for (const [job, state] of [[selected, 'CANCELLED'], [unaffected, 'PENDING'], [otherAccount, 'PENDING']]) {
+      assert.equal((await db.consentJob.findUniqueOrThrow({ where: { id: job.id } })).state, state);
+    }
     const refreshed = await (await fetch(endpoint, { headers })).json(); assert.equal(refreshed.grants[0].state, 'revoked');
     const original = service.repository;
     service.repository = { listAccountConsents: async () => { throw Error('private synthetic connection failure'); } };
