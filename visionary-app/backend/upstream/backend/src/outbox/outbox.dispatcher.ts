@@ -125,44 +125,26 @@ export class OutboxDispatcher {
     return job;
   }
 
-  /**
-   * Run one job through its owning handler. A job is never marked DONE
-   * without invoking a handler; a cancelled job is fenced against stale
-   * callers; a handler failure is recorded and bounded by maxAttempts.
-   */
+  /** Run a claimed job. Cancellation prevents the running attempt from settling it. */
   async runJob(id: string, handler?: (job: Job) => Promise<void>, cancelToken?: string): Promise<void> {
-    const job = await this.store.jobById(id);
-    if (!job) return;
-    if (job.state === 'CANCELLED' || (job.cancellationToken && job.cancellationToken !== cancelToken)) {
-      return; // fencing: a stale/disconnected caller cannot run a cancelled job
-    }
-    if (job.state === 'DONE' || job.state === 'FAILED') return;
-    if (!handler) {
-      await this.store.updateJob(id, { lastError: 'NO_JOB_HANDLER' });
-      return;
-    }
-    if (job.attempt >= job.maxAttempts) {
-      await this.store.updateJob(id, { state: 'FAILED', lastError: 'MAX_ATTEMPTS_REACHED' });
-      return;
-    }
-    await this.store.updateJob(id, { state: 'RUNNING', attempt: job.attempt + 1 });
+    const job = await this.store.claimJob(id, { hasHandler: Boolean(handler), cancelToken });
+    if (!job || !handler) return;
     try {
       await handler(job);
-      await this.store.updateJob(id, { state: 'DONE', completedAt: new Date().toISOString(), lastError: null });
     } catch {
-      const attempt = job.attempt + 1;
-      await this.store.updateJob(id, {
-        state: attempt >= job.maxAttempts ? 'FAILED' : 'PENDING',
+      await this.store.settleJob(id, job.attempt, {
+        state: job.attempt >= job.maxAttempts ? 'FAILED' : 'PENDING',
+        completedAt: null,
         lastError: 'JOB_FAILED',
       });
+      return;
     }
+    await this.store.settleJob(id, job.attempt, { state: 'DONE', completedAt: new Date().toISOString(), lastError: null });
   }
 
-  /** Cancel a pending job; running jobs are fenced on their next run attempt. */
+  /** Cancel a pending or running job. Handlers must enforce authorization at delivery. */
   async cancel(id: string): Promise<void> {
-    const job = await this.store.jobById(id);
-    if (!job || job.state === 'CANCELLED' || job.state === 'DONE' || job.state === 'FAILED') return;
-    await this.store.updateJob(id, { state: 'CANCELLED', cancellationToken: `cancel_${randomUUID()}` });
+    await this.store.cancelJob(id, `cancel_${randomUUID()}`);
   }
 
   /** Queues currently holding jobs — the per-workload queue inventory. */

@@ -111,9 +111,10 @@ store write returns an error, the dispatcher reads the current state before
 reporting the outcome. Each poll bounds the sum of quarantines and deliveries.
 
 The original and rework branches passed 10 and 12 focused tests respectively.
-The combined implementation passed 14, including tests for stale settlement
-and an acknowledgement response lost after commit. The standard backend data
-check now runs this suite.
+The combined implementation passed 16. The new tests cover stale settlement,
+an acknowledgement response lost after commit, concurrent job claims, and
+completion after cancellation. Job claims, settlement, and cancellation are
+atomic in the store. The standard backend data check now runs this suite.
 
 The in-memory store exercises the dispatch contract. Hosted acceptance still
 requires a durable adapter for the owning store, a private authenticated

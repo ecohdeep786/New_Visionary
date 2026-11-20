@@ -15,6 +15,10 @@ type OutboxSettlement = Pick<OutboxEvent, 'nextAttemptAt' | 'lastError'> & {
   status: Exclude<OutboxStatus, 'DISPATCHED'>;
 };
 
+type JobSettlement = Pick<Job, 'completedAt' | 'lastError'> & {
+  state: 'PENDING' | 'DONE' | 'FAILED';
+};
+
 export interface OutboxStore {
   // ---- outbox_events ----
   appendOutbox(event: OutboxEvent): Promise<void>;
@@ -41,7 +45,9 @@ export interface OutboxStore {
   createJob(job: Job): Promise<void>;
   jobById(id: string): Promise<Job | null>;
   jobsInQueue(queue: string): Promise<Job[]>;
-  updateJob(id: string, patch: Partial<Pick<Job, 'state' | 'attempt' | 'claimedUntil' | 'completedAt' | 'cancellationToken' | 'lastError'>> & { lastError?: string }): Promise<Job | null>;
+  claimJob(id: string, options: { hasHandler: boolean; cancelToken?: string }): Promise<Job | null>;
+  settleJob(id: string, attempt: number, settlement: JobSettlement): Promise<void>;
+  cancelJob(id: string, cancelToken: string): Promise<void>;
   /** Per-workload queues that hold runnable jobs. */
   queues(): Promise<string[]>;
   /** Client-supplied uid and queue must align with the owning store (server-side). */
@@ -114,12 +120,31 @@ export class InMemoryOutboxStore implements OutboxStore {
   async createJob(job: Job): Promise<void> { this.jobs.set(job.id, job); }
   async jobById(id: string): Promise<Job | null> { return this.jobs.get(id) ?? null; }
   async jobsInQueue(queue: string): Promise<Job[]> { return [...this.jobs.values()].filter((j) => j.queue === queue); }
-  async updateJob(id: string, patch): Promise<Job | null> {
-    const cur = this.jobs.get(id);
-    if (!cur) return null;
-    const next = { ...cur, ...patch } as Job;
-    this.jobs.set(id, next);
-    return next;
+  async claimJob(id: string, { hasHandler, cancelToken }: { hasHandler: boolean; cancelToken?: string }): Promise<Job | null> {
+    const current = this.jobs.get(id);
+    if (!current || current.state !== 'PENDING' ||
+        (current.cancellationToken && current.cancellationToken !== cancelToken)) return null;
+    if (!hasHandler) {
+      this.jobs.set(id, { ...current, lastError: 'NO_JOB_HANDLER' });
+      return null;
+    }
+    if (current.attempt >= current.maxAttempts) {
+      this.jobs.set(id, { ...current, state: 'FAILED', lastError: 'MAX_ATTEMPTS_REACHED' });
+      return null;
+    }
+    const claimed: Job = { ...current, state: 'RUNNING', attempt: current.attempt + 1, lastError: null };
+    this.jobs.set(id, claimed);
+    return claimed;
+  }
+  async settleJob(id: string, attempt: number, settlement: JobSettlement): Promise<void> {
+    const current = this.jobs.get(id);
+    if (!current || current.state !== 'RUNNING' || current.attempt !== attempt) return;
+    this.jobs.set(id, { ...current, ...settlement });
+  }
+  async cancelJob(id: string, cancelToken: string): Promise<void> {
+    const current = this.jobs.get(id);
+    if (!current || current.state === 'DONE' || current.state === 'FAILED' || current.state === 'CANCELLED') return;
+    this.jobs.set(id, { ...current, state: 'CANCELLED', cancellationToken: cancelToken });
   }
   async queues(): Promise<string[]> {
     return [...new Set([...this.jobs.values()].map((j) => j.queue))];

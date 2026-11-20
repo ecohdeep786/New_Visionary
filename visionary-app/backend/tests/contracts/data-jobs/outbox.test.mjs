@@ -267,3 +267,33 @@ test('JOB-01 backoffDelay: bounded exponential growth', () => {
   assert.deepEqual([1, 2, 3, 4, 5].map(a => backoffDelay(policy, a)), [200, 400, 800, 1600, 3200]);
   assert.equal(backoffDelay({ ...policy, maxDelayMs: 900 }, 6), 900, 'the ceiling caps any single delay');
 });
+
+test('JOB-01 concurrent runners claim a job only once', async () => {
+  const { s, d } = setup();
+  const job = await d.enqueue('uid-1', 'uid-1:exports', 'export');
+  let calls = 0;
+  const handler = async () => { calls += 1; };
+  await Promise.all([d.runJob(job.id, handler), d.runJob(job.id, handler)]);
+  assert.equal(calls, 1);
+  assert.equal((await s.jobById(job.id)).attempt, 1);
+});
+
+test('JOB-01 cancellation stays terminal when a running handler completes later', async () => {
+  const { s, d } = setup();
+  const job = await d.enqueue('uid-1', 'uid-1:exports', 'export');
+  let release;
+  const finished = new Promise((resolve) => { release = resolve; });
+  let start;
+  const started = new Promise((resolve) => { start = resolve; });
+  const running = d.runJob(job.id, async () => {
+    start();
+    await finished;
+  });
+  await started;
+  await d.cancel(job.id);
+  release();
+  await running;
+  const cancelled = await s.jobById(job.id);
+  assert.equal(cancelled.state, 'CANCELLED');
+  assert.equal(cancelled.completedAt, null);
+});
