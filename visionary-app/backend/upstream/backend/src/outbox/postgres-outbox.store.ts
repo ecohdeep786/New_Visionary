@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client';
 import type { OutboxDeliveryStatus, PrismaClient } from '@prisma/client';
 import type { OutboxDeliveryStore, OutboxSettlement } from './outbox-store';
 import type { OutboxCursor, OutboxEvent } from './outbox-types';
+import { outboxCursorKey } from './outbox-types';
 
 export const CONSENT_REVOCATION_TOPIC = 'consent.revoked';
 
@@ -36,7 +37,7 @@ export class PostgresOutboxDeliveryStore implements OutboxDeliveryStore {
   async outboxByCursor(cursor: OutboxCursor): Promise<OutboxEvent | null> {
     const [row] = await this.db.$queryRaw<DeliveryRow[]>`
       SELECT ${eventFields}, d.* FROM outbox_deliveries d JOIN outbox_events e USING (cursor)
-      WHERE d.cursor = ${BigInt(cursor)} AND d.cursor > ${this.afterCursor} AND e.topic = ${CONSENT_REVOCATION_TOPIC}
+      WHERE d.cursor = ${outboxCursorKey(cursor)} AND d.cursor > ${this.afterCursor} AND e.topic = ${CONSENT_REVOCATION_TOPIC}
     `;
     return row ? toEvent(row) : null;
   }
@@ -47,14 +48,15 @@ export class PostgresOutboxDeliveryStore implements OutboxDeliveryStore {
     return this.db.$transaction(async tx => {
       await tx.$executeRaw`
         INSERT INTO outbox_deliveries (cursor, "availableAt")
-        SELECT e.cursor, ${now} FROM outbox_events e
+        SELECT e.cursor, timezone('UTC', ${now}::timestamptz) FROM outbox_events e
         WHERE e.topic = ${CONSENT_REVOCATION_TOPIC} AND e.status = 'PENDING' AND e.cursor > ${this.afterCursor}
           AND NOT EXISTS (SELECT 1 FROM outbox_deliveries d WHERE d.cursor = e.cursor)
         ORDER BY e.cursor LIMIT ${limit}
         ON CONFLICT (cursor) DO NOTHING
       `;
       return this.transitionDue(tx, limit, now, Prisma.sql`d.attempts < ${maxAttempts}`,
-        Prisma.sql`status = 'LEASED', "availableAt" = ${leaseUntil}, "claimedAt" = ${now}, attempts = d.attempts + 1`);
+        Prisma.sql`status = 'LEASED', "availableAt" = timezone('UTC', ${leaseUntil}::timestamptz),
+          "claimedAt" = timezone('UTC', ${now}::timestamptz), attempts = d.attempts + 1`);
     });
   }
 
@@ -68,7 +70,7 @@ export class PostgresOutboxDeliveryStore implements OutboxDeliveryStore {
       WITH due AS (
         SELECT d.cursor FROM outbox_deliveries d JOIN outbox_events e USING (cursor)
         WHERE e.topic = ${CONSENT_REVOCATION_TOPIC} AND d.cursor > ${this.afterCursor}
-          AND d.status IN ('PENDING', 'LEASED') AND d."availableAt" <= ${now} AND ${attempts}
+          AND d.status IN ('PENDING', 'LEASED') AND d."availableAt" <= timezone('UTC', ${now}::timestamptz) AND ${attempts}
         ORDER BY d.cursor LIMIT ${limit} FOR UPDATE OF d SKIP LOCKED
       ), changed AS (
         UPDATE outbox_deliveries d SET ${change} FROM due WHERE d.cursor = due.cursor RETURNING d.*
@@ -82,8 +84,8 @@ export class PostgresOutboxDeliveryStore implements OutboxDeliveryStore {
     const retryAt = settlement.nextAttemptAt ? new Date(settlement.nextAttemptAt) : null;
     const [row] = await this.db.$queryRaw<DeliveryRow[]>`
       UPDATE outbox_deliveries d SET status = ${settlement.status}::"OutboxDeliveryStatus",
-        "availableAt" = COALESCE(${retryAt}::timestamp, d."availableAt"), "lastError" = ${settlement.lastError}
-      FROM outbox_events e WHERE e.cursor = d.cursor AND d.cursor = ${BigInt(cursor)}
+        "availableAt" = COALESCE(timezone('UTC', ${retryAt}::timestamptz), d."availableAt"), "lastError" = ${settlement.lastError}
+      FROM outbox_events e WHERE e.cursor = d.cursor AND d.cursor = ${outboxCursorKey(cursor)}
         AND d.cursor > ${this.afterCursor} AND e.topic = ${CONSENT_REVOCATION_TOPIC}
         AND d.status = 'LEASED' AND d.attempts = ${attempt}
       RETURNING ${eventFields}, d.*

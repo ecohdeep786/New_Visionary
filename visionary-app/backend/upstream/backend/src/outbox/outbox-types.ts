@@ -13,6 +13,13 @@ export type OutboxStatus = 'PENDING' | 'DISPATCHED' | 'FAILED' | 'DONE';
 export type JobState = 'PENDING' | 'CLAIMED' | 'RUNNING' | 'DONE' | 'FAILED' | 'CANCELLED';
 export type OutboxCursor = number | bigint;
 
+export function outboxCursorKey(cursor: OutboxCursor): bigint {
+  if (typeof cursor !== 'bigint' && !Number.isSafeInteger(cursor)) throw Error('Invalid outbox cursor.');
+  const value = BigInt(cursor);
+  if (value <= 0n || value > 9223372036854775807n) throw Error('Invalid outbox cursor.');
+  return value;
+}
+
 export interface OutboxEvent {
   id: string;
   uid: string;

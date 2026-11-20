@@ -12,9 +12,9 @@ export function createConsentRevocationDispatcher(
   fetcher: typeof fetch = fetch,
 ): OutboxDeliveryDispatcher {
   const worker = new URL(workerOrigin);
-  if (worker.protocol !== 'https:' || !/^(?:[a-z0-9-]+\.)+run\.app$/.test(worker.hostname) ||
+  if (worker.protocol !== 'https:' || !/^(?:[a-z0-9-]+\.)+run\.app$/.test(worker.hostname) || worker.hostname.includes('---') ||
       worker.username || worker.password || worker.port || worker.pathname !== '/' || worker.search || worker.hash) {
-    throw Error('A Cloud Run worker origin is required.');
+    throw Error('A canonical Cloud Run worker origin is required.');
   }
   const tokenUrl = new URL(identityEndpoint);
   tokenUrl.searchParams.set('audience', worker.origin);

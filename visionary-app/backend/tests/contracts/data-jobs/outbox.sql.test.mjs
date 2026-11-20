@@ -21,7 +21,7 @@ async function isolatedDatabase(t) {
 }
 
 test('owning SQL store preserves replay scope, 64-bit cursors and exclusive claims across clients', async t => {
-  const { db, client } = await isolatedDatabase(t);
+  const { db, url } = await isolatedDatabase(t);
   const owner = 'synthetic-owner';
   await new WorkspaceRepository(db).ensurePerson(owner);
   const write = (topic, cursor) => db.outboxEvent.create({ data: { uid: owner, topic, cursor, payload: {} } });
@@ -29,16 +29,24 @@ test('owning SQL store preserves replay scope, 64-bit cursors and exclusive clai
   await write('consent.revoked', checkpoint);
   await write('unrelated.event', checkpoint + 1n);
   const event = await write('consent.revoked', checkpoint + 2n);
-  const peer = client();
-  t.after(() => peer.$disconnect());
-  const first = new PostgresOutboxDeliveryStore(db, checkpoint);
+  const singleConnection = new URL(url);
+  singleConnection.searchParams.set('connection_limit', '1');
+  const firstClient = fixture.client(singleConnection);
+  const peer = fixture.client(singleConnection);
+  t.after(() => Promise.all([firstClient.$disconnect(), peer.$disconnect()]));
+  await firstClient.$queryRaw`SELECT set_config('TimeZone', 'Asia/Kolkata', false)`;
+  await peer.$queryRaw`SELECT set_config('TimeZone', 'UTC', false)`;
+  const first = new PostgresOutboxDeliveryStore(firstClient, checkpoint);
   const second = new PostgresOutboxDeliveryStore(peer, checkpoint);
 
   const claims = (await Promise.all([
     first.claimDueOutbox(1, at(0), 2, 500), second.claimDueOutbox(1, at(0), 2, 500),
   ])).flat();
   assert.deepEqual(claims.map(row => row.cursor), [event.cursor]);
+  assert.equal(claims[0].dispatchedAt, at(0).toISOString());
+  assert.equal(claims[0].nextAttemptAt, at(500).toISOString());
   assert.equal(await first.outboxByCursor(checkpoint), null);
+  await assert.rejects(first.outboxByCursor(Number(checkpoint)), /Invalid outbox cursor/);
   assert.equal(await db.outboxDelivery.count(), 1);
   assert.deepEqual(await second.claimDueOutbox(1, at(499), 2, 500), []);
   const [recovered] = await second.claimDueOutbox(1, at(500), 2, 500);
@@ -76,6 +84,8 @@ test('a committed consent revocation is retried and acknowledged over authentica
   await once(server, 'listening');
   t.after(() => new Promise(resolve => server.close(resolve)));
   const worker = 'https://synthetic-worker.run.app';
+  assert.throws(() => createConsentRevocationDispatcher(db, 'https://canary---synthetic-worker.run.app', 0n),
+    /canonical Cloud Run worker origin/);
   const fetcher = (url, options) => {
     assert.equal(options.redirect, 'error');
     if (url.hostname === 'metadata.google.internal') {

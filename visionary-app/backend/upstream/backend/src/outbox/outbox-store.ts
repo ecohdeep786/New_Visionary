@@ -9,7 +9,7 @@
 // polls can never claim the same event, and a poll before nextAttemptAt can
 // never touch the row. Only the current claim can settle the event.
 import type { BackoffPolicy, Job, JobState, OutboxCursor, OutboxEvent, OutboxStatus } from './outbox-types';
-import { DEFAULT_BACKOFF } from './outbox-types';
+import { DEFAULT_BACKOFF, outboxCursorKey } from './outbox-types';
 
 export type OutboxSettlement = Pick<OutboxEvent, 'nextAttemptAt' | 'lastError'> & {
   status: Exclude<OutboxStatus, 'DISPATCHED'>;
@@ -64,11 +64,11 @@ export class InMemoryOutboxStore implements OutboxStore {
 
   async appendOutbox(event: OutboxEvent): Promise<void> {
     if (this.crashOnAppend) throw new Error('SIMULATED_CRASH: append lost in commit');
-    const cursor = BigInt(event.cursor);
+    const cursor = outboxCursorKey(event.cursor);
     if (this.outbox.has(cursor)) throw new Error('OUTBOX_CURSOR_ALREADY_EXISTS');
     this.outbox.set(cursor, event);
   }
-  async outboxByCursor(cursor: OutboxCursor): Promise<OutboxEvent | null> { return this.outbox.get(BigInt(cursor)) ?? null; }
+  async outboxByCursor(cursor: OutboxCursor): Promise<OutboxEvent | null> { return this.outbox.get(outboxCursorKey(cursor)) ?? null; }
 
   private orderedOutbox(): OutboxEvent[] {
     return [...this.outbox.values()].sort((left, right) => left.cursor < right.cursor ? -1 : left.cursor > right.cursor ? 1 : 0);
@@ -94,7 +94,7 @@ export class InMemoryOutboxStore implements OutboxStore {
         nextAttemptAt: new Date(now.getTime() + leaseMs).toISOString(),
         dispatchedAt: now.toISOString(),
       };
-      this.outbox.set(BigInt(next.cursor), next);
+      this.outbox.set(outboxCursorKey(next.cursor), next);
       claimed.push(next);
     }
     return claimed;
@@ -106,13 +106,13 @@ export class InMemoryOutboxStore implements OutboxStore {
       .slice(0, limit);
     return due.map((event) => {
       const next: OutboxEvent = { ...event, status: 'FAILED', nextAttemptAt: null, lastError: 'MAX_ATTEMPTS_REACHED' };
-      this.outbox.set(BigInt(next.cursor), next);
+      this.outbox.set(outboxCursorKey(next.cursor), next);
       return next;
     });
   }
 
   async settleOutbox(cursor: OutboxCursor, attempt: number, settlement: OutboxSettlement): Promise<OutboxEvent | null> {
-    const key = BigInt(cursor);
+    const key = outboxCursorKey(cursor);
     const cur = this.outbox.get(key);
     if (!cur || cur.status !== 'DISPATCHED' || cur.attempts !== attempt) return null;
     if (settlement.status === 'DONE' && this.failDispatchAfterWrite) {
