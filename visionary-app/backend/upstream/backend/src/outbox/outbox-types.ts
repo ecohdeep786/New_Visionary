@@ -11,6 +11,7 @@
 export type OutboxStatus = 'PENDING' | 'DISPATCHED' | 'FAILED' | 'DONE';
 
 export type JobState = 'PENDING' | 'CLAIMED' | 'RUNNING' | 'DONE' | 'FAILED' | 'CANCELLED';
+export type OutboxCursor = number | bigint;
 
 export interface OutboxEvent {
   id: string;
@@ -18,7 +19,7 @@ export interface OutboxEvent {
   workspaceId: string | null;
   topic: string;
   payload: unknown;
-  cursor: number;
+  cursor: OutboxCursor;
   status: OutboxStatus;
   createdAt: string;
   dispatchedAt: string | null;

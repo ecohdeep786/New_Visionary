@@ -576,7 +576,10 @@ model OutboxEvent {
   person        Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
   workspace     Workspace?  @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
 
+  delivery      OutboxDelivery?
+
   @@index([uid, cursor])
+  @@index([topic, cursor])
   @@index([status])
   @@index([createdAt])
   @@index([workspaceId])
@@ -586,6 +589,26 @@ model OutboxEvent {
 enum OutboxStatus {
   PENDING
   DISPATCHED
+  FAILED
+}
+
+model OutboxDelivery {
+  cursor      BigInt               @id
+  status      OutboxDeliveryStatus @default(PENDING)
+  attempts    Int                  @default(0)
+  availableAt DateTime             @default(now())
+  claimedAt   DateTime?
+  lastError   String?
+  event       OutboxEvent          @relation(fields: [cursor], references: [cursor], onDelete: Cascade)
+
+  @@index([status, availableAt, cursor])
+  @@map("outbox_deliveries")
+}
+
+enum OutboxDeliveryStatus {
+  PENDING
+  LEASED
+  DONE
   FAILED
 }
 

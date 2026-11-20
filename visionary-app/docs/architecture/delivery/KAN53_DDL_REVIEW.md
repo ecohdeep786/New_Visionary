@@ -116,6 +116,22 @@ an acknowledgement response lost after commit, concurrent job claims, and
 completion after cancellation. Job claims, settlement, and cancellation are
 atomic in the store. The standard backend data check now runs this suite.
 
-The in-memory store exercises the dispatch contract. Hosted acceptance still
-requires a durable adapter for the owning store, a private authenticated
-delivery endpoint, and verification against deployed queues.
+### Durable consent delivery
+
+Migration 7 adds a delivery ledger keyed by the existing PostgreSQL outbox
+cursor. The revocation write and source event still commit together in the
+workspace repository. The dispatcher reads committed `consent.revoked` events
+above an explicit replay checkpoint and leaves other topics and the source
+event untouched. Use zero to replay all eligible events. Establish a nonzero
+checkpoint only after writers are quiescent and earlier events are reconciled.
+The ledger keeps the lease, retry time and attempt through process restarts.
+
+The Cloud Run sender requests an ID token for the configured worker origin
+and sends only the decimal cursor to `/internal/outbox/consent-revocations`.
+The worker must authenticate the caller, load and validate the event from the
+owning database, and return HTTP 204 after durable, idempotent completion.
+Accepting a request into a queue does not establish that completion.
+
+The PostgreSQL and authenticated loopback HTTP tests exercise this sender
+boundary with synthetic data. The Cloud Run consumer, its invocation policy,
+and deployed queue recovery still require hosted verification.

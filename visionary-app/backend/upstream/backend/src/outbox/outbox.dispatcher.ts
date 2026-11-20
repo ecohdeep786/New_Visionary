@@ -15,9 +15,9 @@
 //     cursor (the consumer dedupes on the durable cursor), so a redelivery
 //     never double-commits.
 import { randomUUID } from 'node:crypto';
-import type { BackoffPolicy, Job, OutboxEvent, OutboxStatus } from './outbox-types';
+import type { BackoffPolicy, Job, OutboxCursor, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
-import type { OutboxStore } from './outbox-store';
+import type { OutboxDeliveryStore, OutboxStore } from './outbox-store';
 import { backoffDelay } from './outbox-store';
 
 export class JobPolicyError extends Error {
@@ -31,7 +31,7 @@ export class JobPolicyError extends Error {
 export type DeliveryHandler = (event: OutboxEvent) => Promise<void>;
 
 export interface DispatchOutcome {
-  cursor: number;
+  cursor: OutboxCursor;
   /** Durable row status after this dispatch poll. */
   status: OutboxStatus;
   /** Whether the delivery handler confirmed the delivery. */
@@ -45,11 +45,11 @@ export interface DispatcherHandlers {
   default?: DeliveryHandler;
 }
 
-export class OutboxDispatcher {
+export class OutboxDeliveryDispatcher {
   constructor(
-    private readonly store: OutboxStore,
+    private readonly store: OutboxDeliveryStore,
     private readonly handlers: DispatcherHandlers = {},
-    private readonly policy: BackoffPolicy = DEFAULT_BACKOFF,
+    protected readonly policy: BackoffPolicy = DEFAULT_BACKOFF,
   ) {}
 
   /**
@@ -101,10 +101,20 @@ export class OutboxDispatcher {
     if (!current) throw new JobPolicyError('unknown_event');
     return { cursor: event.cursor, status: current.status, delivered };
   }
+}
+
+export class OutboxDispatcher extends OutboxDeliveryDispatcher {
+  constructor(
+    private readonly jobs: OutboxStore,
+    handlers: DispatcherHandlers = {},
+    policy: BackoffPolicy = DEFAULT_BACKOFF,
+  ) {
+    super(jobs, handlers, policy);
+  }
 
   /** Enqueue a job into a per-workload queue, validating the client uid owns it. */
   async enqueue(uid: string, queue: string, kind: string): Promise<Job> {
-    const authorized = await this.store.assertAuthorized(uid, queue);
+    const authorized = await this.jobs.assertAuthorized(uid, queue);
     if (!authorized) throw new JobPolicyError('unauthorized_queue');
     const job: Job = {
       id: `job_${randomUUID()}`,
@@ -121,34 +131,34 @@ export class OutboxDispatcher {
       cancellationToken: null,
       lastError: null,
     };
-    await this.store.createJob(job);
+    await this.jobs.createJob(job);
     return job;
   }
 
   /** Run a claimed job. Cancellation prevents the running attempt from settling it. */
   async runJob(id: string, handler?: (job: Job) => Promise<void>, cancelToken?: string): Promise<void> {
-    const job = await this.store.claimJob(id, { hasHandler: Boolean(handler), cancelToken });
+    const job = await this.jobs.claimJob(id, { hasHandler: Boolean(handler), cancelToken });
     if (!job || !handler) return;
     try {
       await handler(job);
     } catch {
-      await this.store.settleJob(id, job.attempt, {
+      await this.jobs.settleJob(id, job.attempt, {
         state: job.attempt >= job.maxAttempts ? 'FAILED' : 'PENDING',
         completedAt: null,
         lastError: 'JOB_FAILED',
       });
       return;
     }
-    await this.store.settleJob(id, job.attempt, { state: 'DONE', completedAt: new Date().toISOString(), lastError: null });
+    await this.jobs.settleJob(id, job.attempt, { state: 'DONE', completedAt: new Date().toISOString(), lastError: null });
   }
 
   /** Cancel a pending or running job. Handlers must enforce authorization at delivery. */
   async cancel(id: string): Promise<void> {
-    await this.store.cancelJob(id, `cancel_${randomUUID()}`);
+    await this.jobs.cancelJob(id, `cancel_${randomUUID()}`);
   }
 
   /** Queues currently holding jobs — the per-workload queue inventory. */
   async queues(): Promise<string[]> {
-    return this.store.queues();
+    return this.jobs.queues();
   }
 }

@@ -2,3 +2,5 @@
 export * from './outbox-types';
 export * from './outbox-store';
 export * from './outbox.dispatcher';
+export * from './postgres-outbox.store';
+export * from './cloud-run-outbox.delivery';
