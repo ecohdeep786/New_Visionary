@@ -1,0 +1,654 @@
+{
+  "before": [
+    {
+      "route": "/",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/student",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/teacher",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/parent",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/professional",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/organization",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/how-it-works",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/about",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": null,
+        "loading": "lazy"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/careers",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/research",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 1,
+      "unrecognizedCount": 1,
+      "unrecognized": [
+        {
+          "type": "error",
+          "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at img\n    at picture\n    at div\n    at section\n    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)\n    at div\n    at Reveal (http://127.0.0.1:5174/src/pages/landing/ResearchNewsPage.jsx:164:19)\n    at main\n    at div\n    at ResearchNewsPage\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794378238767:33:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)\n    at App"
+        }
+      ],
+      "other": []
+    },
+    {
+      "route": "/community",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/contact",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/partners",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/updates",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/download",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/pricing",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/privacy",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 1,
+      "unrecognizedCount": 1,
+      "unrecognized": [
+        {
+          "type": "error",
+          "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at img\n    at picture\n    at div\n    at section\n    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)\n    at div\n    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/PrivacyPage.jsx:94:59)\n    at main\n    at div\n    at PrivacyPage (http://127.0.0.1:5174/src/pages/landing/PrivacyPage.jsx:221:33)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794378238767:33:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)\n    at App"
+        }
+      ],
+      "other": []
+    },
+    {
+      "route": "/terms",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 1,
+      "unrecognizedCount": 1,
+      "unrecognized": [
+        {
+          "type": "error",
+          "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at img\n    at picture\n    at div\n    at section\n    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)\n    at div\n    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/TermsPage.jsx:90:59)\n    at main\n    at div\n    at TermsPage (http://127.0.0.1:5174/src/pages/landing/TermsPage.jsx:218:35)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794378238767:33:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)\n    at App"
+        }
+      ],
+      "other": []
+    },
+    {
+      "route": "/security",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 1,
+      "unrecognizedCount": 1,
+      "unrecognized": [
+        {
+          "type": "error",
+          "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at img\n    at picture\n    at div\n    at section\n    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)\n    at div\n    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/SecurityPage.jsx:94:59)\n    at main\n    at div\n    at SecurityPage (http://127.0.0.1:5174/src/pages/landing/SecurityPage.jsx:236:35)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794378238767:33:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)\n    at App"
+        }
+      ],
+      "other": []
+    },
+    {
+      "route": "/cookies",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 1,
+      "unrecognizedCount": 1,
+      "unrecognized": [
+        {
+          "type": "error",
+          "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at img\n    at picture\n    at div\n    at section\n    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)\n    at div\n    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/CookiesPage.jsx:90:59)\n    at main\n    at div\n    at CookiesPage (http://127.0.0.1:5174/src/pages/landing/CookiesPage.jsx:187:35)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794378238767:33:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)\n    at App"
+        }
+      ],
+      "other": []
+    },
+    {
+      "route": "/accessibility",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 1,
+      "unrecognizedCount": 1,
+      "unrecognized": [
+        {
+          "type": "error",
+          "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority \n    at img\n    at picture\n    at div\n    at section\n    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)\n    at div\n    at Reveal (http://127.0.0.1:5174/src/pages/landing/AccessibilityPage.jsx:39:19)\n    at main\n    at div\n    at AccessibilityPage\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1794378238767:33:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=81b9a12a:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=81b9a12a:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx:24:32)\n    at App"
+        }
+      ],
+      "other": []
+    }
+  ],
+  "after": [
+    {
+      "route": "/",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/student",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/teacher",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/parent",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/professional",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/organization",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 2,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": [
+        "<link rel=preload> has an invalid `href` value",
+        "<link rel=preload> has an invalid `href` value"
+      ]
+    },
+    {
+      "route": "/how-it-works",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/about",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": null,
+        "loading": "lazy"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/careers",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/research",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/community",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/contact",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/partners",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/updates",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/download",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/pricing",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": false,
+        "fetchpriority": null,
+        "loading": null
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/privacy",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/terms",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/security",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/cookies",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    },
+    {
+      "route": "/accessibility",
+      "ok": true,
+      "errored": false,
+      "heroImg": {
+        "present": true,
+        "fetchpriority": "high",
+        "loading": "eager"
+      },
+      "consoleCount": 0,
+      "unrecognizedCount": 0,
+      "unrecognized": [],
+      "other": []
+    }
+  ]
+}

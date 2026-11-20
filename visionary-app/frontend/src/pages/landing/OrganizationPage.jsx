@@ -72,7 +72,7 @@ const SLIDES = [
   { word: "progress", quote: "Every department reports green. The outcomes still surprise us.", image: orgProblem2, alt: "Leaders reviewing conflicting progress reports" },
   { word: "gaps", quote: "We find the learning gaps at the exit interview, not in week two.", image: orgProblem3, alt: "Team discovering skill gaps too late" },
   { word: "support", quote: "Our best mentors can only be in one classroom at a time.", image: orgProblem4, alt: "Mentor stretched across many learners" },
-  { word: "outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: orgProblem5, alt: "Leader measuring outcomes without insight" },
+  { word: "outcomes", quote: "We measure attendance and completion. We still can’t see understanding.", image: orgProblem5, alt: "Leader measuring outcomes without insight" },
 ];
 
 const JOURNEY_WORD_MS = 3000;
@@ -104,15 +104,12 @@ const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
   { code: "bn", label: "Bengali" },
-  { code: "ta", label: "Tamil" },
-  { code: "kn", label: "Kannada" },
-  { code: "pa", label: "Punjabi" },
 ];
 
 const LANGUAGE_QUESTIONS = [
-  { hi: "Hamare learners kahan atak rahe hain?", en: "Where are our learners getting stuck?", bn: "আমাদের শিক্ষার্থীরা কোথায় আটকে আছে?", ta: "எங்கள் கற்பவர்கள் எங்கே சிக்கிக்கொண்டிருக்கிறார்கள்?", kn: "ನಮ್ಮ ಕಲಿಯುವವರು ಎಲ್ಲಿ ಸಿಕ್ಕಿಹಾಕಿಕೊಂಡಿದ್ದಾರೆ?", pa: "ਸਾਡੇ ਸਿੱਖਿਆਰਥੀ ਕਿੱਥੇ ਅੜਕੇ ਹੋਏ ਹਨ?" },
-  { hi: "Kaun si class ko zyada support chahiye?", en: "Which class needs more support?", bn: "কোন শ্রেণির বেশি সাহায্য দরকার?", ta: "எந்த வகுப்புக்கு அதிக உதவி தேவை?", kn: "ಯಾವ ತರಗತಿಗೆ ಹೆಚ್ಚಿನ ಸಹಾಯ ಬೇಕು?", pa: "ਕਿਹੜੀ ਜਮਾਤ ਨੂੰ ਵੱਧ ਮਦਦ ਚਾਹੀਦੀ ਹੈ?" },
-  { hi: "Training ka impact kahan dikh raha hai?", en: "Where is the training impact showing?", bn: "প্রশিক্ষণের প্রভাব কোথায় দেখা যাচ্ছে?", ta: "பயிற்சியின் தாக்கம் எங்கே தெரிகிறது?", kn: "ತರಬೇತಿಯ ಪ್ರಭಾವ ಎಲ್ಲಿ ಕಾಣುತ್ತಿದೆ?", pa: "ਸਿਖਲਾਈ ਦਾ ਅਸਰ ਕਿੱਥੇ ਦਿਖ ਰਿਹਾ ਹੈ?" },
+  { hi: "Hamare learners kahan atak rahe hain?", en: "Where are our learners getting stuck?", bn: "আমাদের শিক্ষার্থীরা কোথায় আটকে আছে?" },
+  { hi: "Kaun si class ko zyada support chahiye?", en: "Which class needs more support?", bn: "কোন শ্রেণির বেশি সাহায্য দরকার?" },
+  { hi: "Training ka impact kahan dikh raha hai?", en: "Where is the training impact showing?", bn: "প্রশিক্ষণের প্রভাব কোথায় দেখা যাচ্ছে?" },
 ];
 
 const ACHIEVEMENT_TABS = [
@@ -125,7 +122,7 @@ const ACHIEVEMENT_IMAGE = [orgHeroContent, orgachivenment, orgbuild];
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that what your people share stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — across every classroom, team, and program.", Icon: ShieldCheck, to: "/security" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — across every classroom, team, and program.", Icon: ShieldCheck, to: "/safety" },
   { title: "Responsibility", copy: "We believe intelligence should help institutions act, never work against the people in them.", Icon: HeartHandshake, to: "/terms" },
 ];
 
@@ -137,7 +134,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Eye, t: "See every learner.", c: "A clear picture of understanding across classes, not just attendance.", l: "How it works", to: "/how-it-works" },
       { Icon: UsersRound, t: "Parents stay close.", c: "Progress shared in ways that help at home, not only at report time.", l: "For parents", to: "/parent" },
-      { Icon: Globe2, t: "In every language.", c: "Learning and reporting in the language each family thinks in.", l: "Language support", to: "/how-it-works" },
+      { Icon: Globe2, t: "In the languages your people think in.", c: "We’re exploring how institutional learning and reporting could support English, Hindi, and Bengali.", l: "Language support", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Bring it to your school.", c: "Start with one class and grow from there.", l: "Talk to us", to: "/contact" },
     ],
   },
@@ -182,7 +179,7 @@ const OrgHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Leading, to scale, to last."
-    sub="One intelligence across every classroom, team, and program. Understanding stays inside your institution."
+    sub="Give teams a shared view of learning across people, projects, and time."
     img={orgHero}
     alt="A leader reviewing team progress on a tablet"
     ctaTo="/contact"
@@ -199,8 +196,8 @@ function OrgStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      {/* the bridge's compact band (02-struggle) carries the chapter breath;
-          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      {/* the bridge’s compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple’s hero-scroll-linked reveal */}
       <StruggleChapter
         linked
         slides={SLIDES}
@@ -208,8 +205,8 @@ function OrgStruggleSection() {
         goTo={goTo}
         lines={STRUGGLE_LINES}
         label="Organization learning challenges"
-        kicker="What you can't see"
-        copy="Learning isn't the difficulty. Seeing it is."
+        kicker="What you can’t see"
+        copy="Learning isn’t the difficulty. Seeing it is."
       />
     </section>
   );
@@ -225,9 +222,9 @@ function OrgJourneySection() {
   return (
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <ScrollReveal>
-        {/* header — Apple's card-chapter treatment: statement LEFT-aligned at
-            the measured gutter, and the gallery's track carries the same
-            gutter so the first card starts exactly at the heading's left
+        {/* header — Apple’s card-chapter treatment: statement LEFT-aligned at
+            the measured gutter, and the gallery’s track carries the same
+            gutter so the first card starts exactly at the heading’s left
             edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
@@ -267,12 +264,13 @@ export default function OrganizationPage() {
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="Every learner, teacher, and professional in one clear picture you can act on."
+          note="The organization workspace is in development. Today, you can create your organization account and review the permission model that keeps your people’s work scoped."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}
           questions={LANGUAGE_QUESTIONS}
           line1="Your organization."
-          accent="In every language"
+          accent="In your people’s languages"
           tail="."
           sub="People ask, learn, teach, and report in different languages. Visionary keeps the meaning connected across them."
         />
@@ -288,8 +286,8 @@ export default function OrganizationPage() {
           sub="When the context changes, the same intelligence carries understanding forward."
         />
         <PremiumTrustSection
-          heading={<>Your people's learning stays <span className="accent-gradient">yours.</span></>}
-          sub="Your people's questions, conversations, and progress are personal. We keep it that way."
+          heading={<>Your people’s learning stays <span className="accent-gradient">yours.</span></>}
+          sub="Your people’s questions, conversations, and progress are personal. We keep it that way."
           values={TRUST_VALUES}
         />
         <PremiumCTASection

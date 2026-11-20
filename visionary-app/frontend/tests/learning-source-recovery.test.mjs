@@ -5,7 +5,7 @@ import * as pipeline from '../src/services/learningPipelineService.ts';
 import * as mentor from '../src/services/mentorStateService.ts';
 import {configureContentRepository, getContentRepository} from '../src/services/contentRepository.ts';
 import { configureTeachingInterface } from '../src/services/teachingInterface.ts';
-import {seedConnectedFixtures} from '../src/api/demoFixtures.js';
+import {seedConnectedFixtures} from './fixtures/demoFixtures.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };

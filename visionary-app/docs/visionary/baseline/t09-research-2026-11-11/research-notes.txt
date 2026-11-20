@@ -1,0 +1,24 @@
+# T09 research (2026-11-11) — per-role fresh-account dashboard sweep, preview beta @ 9e1fed11 (server 5174)
+# Raw capture: t09-dashboard-research.json (Edge/Playwright, fresh context per role, viewport 1440).
+# Method: for each of the five identities — preview register (labeled fixture t09-<role>-<ts>@visionary.test,
+# OTP '000000' as disclosed in the FAP-70 law) -> onboarding wizard with minimal valid data ->
+# /dashboard/home -> sweep every route the role's navigation offers (SWEEPS map) -> restricted
+# deep-links from other roles' navigations (CROSS map). Screenshots: t09-<role>-home-1440.png,
+# t09-<role>-swept-1440.png.
+#
+# Findings
+# 1. Own-role routes: every route in all five roles renders at its own URL (redirected=false
+#    everywhere), honest fresh-account empty states ("No classes yet", "0 accepted members",
+#    "Join with a class code", "Your children" connection-first copy) and 0 console errors.
+# 2. Organization-area deep links (FAP-75, already fixed): URL kept + self-explanation rendered
+#    for student/teacher/parent/professional visitors.
+# 3. Org identity visiting /dashboard/learn, /practice: "Permission required" explanation
+#    (organizationPathAllowed), no rewrite. Copy nit observed: it tells the Owner to "Ask the
+#    organization owner to review access" — self-referential for a fresh org account (noted in
+#    FAP-87's description as out of scope).
+# 4. DEFECT (filed as FAP-87): every OTHER restricted section silently rewrites the address bar
+#    to /dashboard/home with no explanation — student -> prepare/learners/insights/child/reports/
+#    career; teacher -> child; parent -> prepare; organization -> child; professional ->
+#    prepare/child. DashboardLayout's gate (line 104) still returns <Navigate to="/dashboard/home"
+#    replace /> for sections outside isOrganizationArea. This is the "routes redirecting home"
+#    pattern the V6 plan's T09 lane flags, and it contradicts the FAP-75 law inside the same gate.

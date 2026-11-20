@@ -94,7 +94,8 @@ export function updateStageProfilesBatch(changes: Array<{ ctx: RequestContext; p
  write(db);
 }
 
-export function saveLastPath(ctx:RequestContext,path:string){if(!path.startsWith('/dashboard/'))return;const db=read();access(db,ctx);const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId)!;if(workspace.lastPath===path)return;workspace.lastPath=path;write(db);}
+export function saveLastPath(ctx:RequestContext,path:string){if(!path.startsWith('/dashboard/'))return;const db=read();const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId&&w.personId===ctx.personId&&w.role===ctx.role);if(!workspace)return;// Store torn down (sign-out / storage clear): nothing honest to save; the access() law stays strict for every ctx the store still recognizes.
+access(db,ctx);if(workspace.lastPath===path)return;workspace.lastPath=path;write(db);}
 export function snapshot(ctx:RequestContext):WorkspaceData {const db=read();const data=structuredClone(access(db,ctx));data.subscription=effectiveSubscription(db,ctx);// Workspaces saved before the voice seam default to the founder setting: voice on.
 if(ctx.role==='organization'){const policy=organizationAccess(ctx);data.resources=policy.permissions.includes('academic')?structuredClone(resourceData(db,ctx).resources):[];}
 data.preferences.voice??=true;data.preferences.agiAnimation = data.preferences.agiAnimation==='boy'?'boy':'girl';return data;}

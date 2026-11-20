@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import VisionaryLogo from "@/components/VisionaryLogo";
-import LanguageSelector from "@/components/auth/LanguageSelector";
 
 export default function AuthLayout({
   title = "",
@@ -67,14 +66,13 @@ export default function AuthLayout({
                 )}
               </div>
               {children}
-              {footer && <div className="mt-6 text-sm text-[#5f6368] md:hidden">{footer}</div>}
+              {footer && <div className="mt-6 text-sm text-[#6e6e73] md:hidden">{footer}</div>}
             </div>
           </div>
         </div>
       </main>
       {/* Footer bar */}
       <div className="shrink-0 w-full max-w-[960px] mx-auto flex items-center justify-between px-4 py-2">
-        <LanguageSelector />
         <div className="flex items-center gap-6 text-sm text-[#6e6e73]">
           <Link to="/contact" className="hover:text-[#1d1d1f] transition-colors">Help</Link>
           <Link to="/privacy" className="hover:text-[#1d1d1f] transition-colors">Privacy</Link>

@@ -3,7 +3,7 @@
 .guide-tabs-idle { display: none !important; }
 .guide-premium .guide-conversation { gap: 24px; }
 .guide-premium:not(.has-activity) .guide-conversation { max-width: 920px; padding: 24px 40px 32px; }
-.guide-premium header .v-button { border-color: transparent; background: transparent; color: var(--v-muted, #5f6368); }
+.guide-premium header .v-button { border-color: transparent; background: transparent; color: var(--v-muted, #6e6e73); }
 .guide-premium header .v-button:hover { background: var(--v-canvas, #f3f5f7); }
 .guide-premium .guide-entry-title { text-align: center; font-size: clamp(26px, 3vw, 36px); line-height: 1.22; font-weight: 500; letter-spacing: -.035em; margin: 0 0 8px; }
 .guide-welcome-mark { display: flex; justify-content: center; margin-top: clamp(16px, 5vh, 60px); }

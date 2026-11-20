@@ -16,9 +16,14 @@ export default function DashboardSidebar({ expanded, onNavigate, onExpand, id = 
   const { pathname } = useLocation();
   const {ctx,data}=useWorkspace();
   const locale=data?.preferences.interfaceLocale||'en';const t=key=>workspaceText(locale,key);
-  const policy=ctx?.role==='organization'?organizationAccess(ctx):null;
+  /* Organization policy and stage tier are development-preview derivations
+   * over the browser-local store. The connected production shell presents the
+   * account's own navigation at the default tier with no policy filter
+   * (KAN-210 degraded-state law); server-backed policy arrives with the
+   * organization service lane. */
+  const policy=import.meta.env.DEV&&ctx?.role==='organization'?organizationAccess(ctx):null;
   const allowed=item=>!policy||organizationPathAllowed(policy,item.to);
-  const tier = ctx ? getStagePresentation(ctx).tier : 'higher';
+  const tier = ctx && import.meta.env.DEV ? getStagePresentation(ctx).tier : 'higher';
   const navigation = presentNavigation(user?.identity,tier,navigationFor(user?.identity,locale),secondaryNavigation(user?.identity,locale),pathname);
   const items = navigation.primary.filter(allowed);
   const accountKeys = ['notifications','personalization','privacy','subscription'];

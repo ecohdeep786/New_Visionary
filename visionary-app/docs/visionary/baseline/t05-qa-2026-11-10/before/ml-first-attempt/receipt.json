@@ -1,0 +1,26 @@
+{
+  "task": "F-25 ML experience integration review",
+  "at": "2026-11-10T13:43:17.168Z",
+  "base": "http://127.0.0.1:5174",
+  "mode": "preview repository (VITE_AUTH_MODE=preview; no model adapter registered; zero network calls by design)",
+  "summary": {
+    "checks": 1,
+    "passed": 1,
+    "defects": 1
+  },
+  "pageErrors": [],
+  "records": [
+    {
+      "file": "ml-harness-failure.png",
+      "state": "harness failure at http://127.0.0.1:5174/register"
+    },
+    {
+      "check": "zero-page-errors",
+      "ok": true,
+      "detail": "no uncaught page errors in the whole journey"
+    }
+  ],
+  "defects": [
+    "harness: TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Continue with Email' }).first()\u001b[22m\n"
+  ]
+}

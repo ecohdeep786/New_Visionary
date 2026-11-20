@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { appClient } from '@/api/appClient';
 import { firebaseConfigFromEnvironment, firebaseEmulatorFromEnvironment } from '@/api/firebase/config';
 
 export default function useSignInMethods() {
   const [phone, setPhone] = useState(false);
   useEffect(() => {
-    if (appClient.auth.source !== 'firebase') return;
     const controller = new AbortController();
     let supported = window.location.protocol === 'https:' && !['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
     if (!supported) {

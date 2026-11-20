@@ -45,21 +45,21 @@ function Reveal({ children, className = "", delay = 0 }) {
   );
 }
 
-/* ═══ HOW IT WORKS — the reference's blue-circle steps ═══ */
+/* ═══ HOW IT WORKS — the reference’s blue-circle steps ═══ */
 const STEPS = [
   { Icon: Link2, title: "Share the link", copy: "Copy the standard sign-up link and send it to someone who may want to explore Visionary. Only share it where it is welcome." },
   { Icon: Compass, title: "Your friend explores", copy: "The link opens the same clear sign-up experience everyone gets: the product tour, the learning loop, and the plans." },
   { Icon: GraduationCap, title: "Learning begins", copy: "If it fits, they create an account and start with Learn, Ask, Practice, Build. You had a part in it, quietly." },
 ];
 
-/* ═══ WHERE TO POINT PEOPLE — the reference's second step block ═══ */
+/* ═══ WHERE TO POINT PEOPLE — the reference’s second step block ═══ */
 const DESTINATIONS = [
   { subject: "student", label: "Students and families", to: "/student", alt: "/parent", toLabel: "Open the student page", altLabel: "or the parent page", copy: "The learning companion that keeps your place, with parent summaries shared with consent." },
   { subject: "teacher", label: "Teachers", to: "/teacher", alt: "/how-it-works", toLabel: "Open the teacher page", altLabel: "or how it works", copy: "Prepare, publish, and review classwork in the language the classroom speaks." },
   { subject: "team", label: "Organizations", to: "/organization", alt: "/partners", toLabel: "Open the organization page", altLabel: "or the partner programme", copy: "Progress across the whole institution, never individual answers." },
 ];
 
-/* ═══ COLLAGE — the reference's image trio, in our illustration voice ═══ */
+/* ═══ COLLAGE — the reference’s image trio, in our illustration voice ═══ */
 const COLLAGE = [
   { subject: "study", title: "A student learning with Visionary" },
   { subject: "teach", title: "A teacher preparing classwork" },
@@ -98,7 +98,7 @@ export default function ReferralPage() {
       <main id="main" tabIndex={-1}>
         <Breadcrumb page="Referral" />
 
-        {/* HERO — the reference's centered statement with the illustration trio */}
+        {/* HERO — the reference’s centered statement with the illustration trio */}
         <section data-section="01-hero" className="px-6 pb-16 pt-10 text-center sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
           <Reveal className="mx-auto max-w-[880px]">
             <p data-type="label" className="text-[#6e6e73]">Referral programme</p>
@@ -135,7 +135,7 @@ export default function ReferralPage() {
           </Reveal>
         </section>
 
-        {/* HOW IT WORKS — the reference's steps, told in grey tiles */}
+        {/* HOW IT WORKS — the reference’s steps, told in grey tiles */}
         <section id="how" data-section="02-how" aria-labelledby="how-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
@@ -169,7 +169,7 @@ export default function ReferralPage() {
           </Reveal>
         </section>
 
-        {/* POINT THEM WELL — the reference's "redeeming" block, mapped to
+        {/* POINT THEM WELL — the reference’s "redeeming" block, mapped to
             honest destinations */}
         <section aria-labelledby="point-title" data-section="03-point" className="bg-[#f5f5f7] px-6 py-24 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
@@ -254,7 +254,7 @@ export default function ReferralPage() {
           </Reveal>
         </section>
 
-        {/* HONESTY BAND — the reference's rates block, told straight */}
+        {/* HONESTY BAND — the reference’s rates block, told straight */}
         <section aria-labelledby="honest-title" data-section="05-honesty" className="bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto flex max-w-[900px] flex-col items-center text-center">
             <h2 id="honest-title" className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#1d1d1f]">
@@ -280,7 +280,7 @@ export default function ReferralPage() {
           </Reveal>
         </section>
 
-        {/* FAQ — the reference's split layout with expand-all */}
+        {/* FAQ — the reference’s split layout with expand-all */}
         <section id="faq" data-section="06-faq" aria-labelledby="faq-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             <div>
@@ -297,7 +297,7 @@ export default function ReferralPage() {
                 faqs={[
                   { q: "Do I or my friend receive a reward?", a: "No referral reward or discount is currently offered through this page. We do not promise free months, credits, or other benefits for sharing or signing up." },
                   { q: "Can Visionary track who I invite?", a: "No. The shareable link opens ordinary registration and carries no working referral code or attribution. No referral status or history is shown here." },
-                  { q: "Who can use the sign-up link?", a: "Anyone. The link leads to Visionary's standard registration page; account access follows the sign-up experience and terms shown there. Sharing it grants no special eligibility." },
+                  { q: "Who can use the sign-up link?", a: "Anyone. The link leads to Visionary’s standard registration page; account access follows the sign-up experience and terms shown there. Sharing it grants no special eligibility." },
                   { q: "What should I tell my friend?", a: "Start with what they need. The how-it-works page explains the loop (Learn, Ask, Practice, Build), and each persona page shows how Visionary fits students, teachers, parents, professionals, and organizations." },
                   { q: "Can I ask about future referral features?", a: "Yes. Write to hello@visionary.org.in with the subject \u201cReferral question\u201d. Contacting Visionary does not enroll you in a referral program." },
                 ]}
@@ -329,7 +329,7 @@ export default function ReferralPage() {
           </div>
         </section>
 
-        {/* CLOSING — the reference's rounded card, pointed at honest next steps */}
+        {/* CLOSING — the reference’s rounded card, pointed at honest next steps */}
         <section aria-labelledby="closing-title" data-section="08-closing" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-14 text-center sm:px-12 lg:py-16">

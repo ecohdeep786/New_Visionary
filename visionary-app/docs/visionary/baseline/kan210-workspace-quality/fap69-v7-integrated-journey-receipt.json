@@ -1,0 +1,149 @@
+{
+  "environment": {
+    "realm": "local real emulators + disposable synthetic PostgreSQL",
+    "frontend": "production build (connected shell)",
+    "stubbedIdentity": false,
+    "backend": "127.0.0.1:3001",
+    "invitationRealm": "127.0.0.1:3002 (same registered module in a child process, NODE_ENV=development realm, same emulators + SQL)",
+    "origins": [
+      "http://127.0.0.1:5176",
+      "http://127.0.0.1:5177"
+    ],
+    "sqlSchema": "data02_ed429933d68d48bf98782cd11a1cb3c6",
+    "startedAt": "2026-11-15T06:57:22.802Z",
+    "finishedAt": "2026-11-15T06:58:03.472Z"
+  },
+  "results": [
+    {
+      "leg": "register-awaits-verification",
+      "passed": true,
+      "at": "2026-11-15T06:57:26.155Z"
+    },
+    {
+      "leg": "verified-signup-opens-onboarding",
+      "passed": true,
+      "at": "2026-11-15T06:57:27.288Z"
+    },
+    {
+      "leg": "onboarding-student-reaches-connected-home",
+      "passed": true,
+      "at": "2026-11-15T06:57:28.615Z"
+    },
+    {
+      "leg": "personal-workspace-provisioned-confirmed-via-server-readback",
+      "passed": true,
+      "at": "2026-11-15T06:57:29.592Z"
+    },
+    {
+      "leg": "second-device-sees-server-persisted-workspace",
+      "passed": true,
+      "at": "2026-11-15T06:57:31.309Z"
+    },
+    {
+      "leg": "display-name-saved-cross-device",
+      "passed": true,
+      "at": "2026-11-15T06:57:32.689Z"
+    },
+    {
+      "leg": "privacy-policy-and-consents-render",
+      "passed": true,
+      "policyAvailable": true,
+      "consentsState": "Consent controls are unavailable",
+      "at": "2026-11-15T06:57:33.518Z"
+    },
+    {
+      "leg": "provisioning-outage-shows-honest-unavailable",
+      "passed": true,
+      "at": "2026-11-15T06:57:38.306Z"
+    },
+    {
+      "leg": "provisioning-retry-succeeds-after-recovery",
+      "passed": true,
+      "at": "2026-11-15T06:57:38.471Z"
+    },
+    {
+      "leg": "session-listed-on-security-screen",
+      "passed": true,
+      "at": "2026-11-15T06:57:39.107Z"
+    },
+    {
+      "leg": "logout-all-revokes-both-devices",
+      "passed": true,
+      "secondDeviceState": "/login",
+      "at": "2026-11-15T06:57:39.799Z"
+    },
+    {
+      "leg": "saved-learning-owner-surface-after-re-login",
+      "passed": true,
+      "state": "Account home\nWorkspaces\nProfile\nSaved learning\nPrivacy\nSecurity\nPlans\nSign out\nSaved learning\n\nThese sessions come from your account. They refresh while this page is open.\n\nRefresh sessions\n\nThere are",
+      "at": "2026-11-15T06:57:41.356Z"
+    },
+    {
+      "leg": "learning-session-created-via-registered-contract",
+      "passed": true,
+      "sessionId": "3ade6088-bf0f-43f0-b32a-3fcb2cc90c10",
+      "at": "2026-11-15T06:57:41.465Z"
+    },
+    {
+      "leg": "saved-learning-history-nonempty-from-server",
+      "passed": true,
+      "at": "2026-11-15T06:57:42.097Z"
+    },
+    {
+      "leg": "learning-session-closed-through-ui",
+      "passed": true,
+      "at": "2026-11-15T06:57:42.888Z"
+    },
+    {
+      "leg": "learning-closure-cross-device",
+      "passed": true,
+      "at": "2026-11-15T06:57:44.401Z"
+    },
+    {
+      "leg": "three-accounts-enrolled-and-onboarded",
+      "passed": true,
+      "at": "2026-11-15T06:57:56.281Z"
+    },
+    {
+      "leg": "policy-governance-fixture-published",
+      "passed": true,
+      "policyVersion": "priv-review-v1",
+      "at": "2026-11-15T06:57:58.010Z"
+    },
+    {
+      "leg": "institution-approval-by-reviewer",
+      "passed": true,
+      "approvalId": "iap_4830b8bb4af84e72b7d244108e721186",
+      "at": "2026-11-15T06:57:58.196Z"
+    },
+    {
+      "leg": "owner-issued-invitation",
+      "passed": true,
+      "invitationId": "inv_f2207da186d54b62b023fec42a9d8faf",
+      "at": "2026-11-15T06:57:58.294Z"
+    },
+    {
+      "leg": "invitation-accept-ui-honest-fence",
+      "passed": true,
+      "at": "2026-11-15T06:58:00.256Z"
+    },
+    {
+      "leg": "invitation-accept-server-committed",
+      "passed": true,
+      "invitationId": "inv_f2207da186d54b62b023fec42a9d8faf",
+      "at": "2026-11-15T06:58:01.583Z"
+    },
+    {
+      "leg": "invitation-accept-sql-membership-readback",
+      "passed": true,
+      "role": "MEMBER",
+      "workspaceId": "cmwhhg6cg000vx6tq1qahpssu",
+      "at": "2026-11-15T06:58:01.708Z"
+    },
+    {
+      "leg": "invitation-membership-cross-contract-ui",
+      "passed": true,
+      "at": "2026-11-15T06:58:03.418Z"
+    }
+  ]
+}

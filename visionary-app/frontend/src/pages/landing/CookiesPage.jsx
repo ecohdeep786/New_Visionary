@@ -20,7 +20,7 @@ import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 const COLORS = {
   ink: "#1d1d1f",
   grey: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "#d2d2d7",
   border: "#d2d2d7",
   soft: "#f5f5f7",
@@ -141,23 +141,6 @@ export default function CookiesPage() {
   const heroReveal = useRevealOnce();
   const heroVisible = heroReveal.visible;
 
-  const readChoice = (key, fallback) => {
-    try {
-      const choice = localStorage.getItem(key);
-      return choice === null ? fallback : choice === "on";
-    } catch { return fallback; }
-  };
-  const [preferences, setPreferences] = useState(() => readChoice("visionary_cookie_preferences", true));
-  const [analytics, setAnalytics] = useState(() => readChoice("visionary_cookie_analytics", false));
-  const [saved, setSaved] = useState(false);
-  function savePreferences() {
-    try {
-      localStorage.setItem("visionary_cookie_preferences", preferences ? "on" : "off");
-      localStorage.setItem("visionary_cookie_analytics", analytics ? "on" : "off");
-    } catch { /* Preferences remain active for this session when storage is unavailable. */ }
-    setSaved(true);
-  }
-
   const activeSection = useMemo(
     () => SECTIONS.find((section) => section.id === activeId),
     [activeId]
@@ -202,8 +185,8 @@ export default function CookiesPage() {
 
   const preferenceRows = [
     { label: "Essential", description: "Required for sign-in, security, and core service behavior.", value: true, disabled: true, onChange: () => {} },
-    { label: "Preferences", description: "Remember choices such as language and appearance on this device.", value: preferences, onChange: () => { setPreferences((value) => !value); setSaved(false); } },
-    { label: "Analytics", description: "Allow product measurement that helps us understand and improve the experience.", value: analytics, onChange: () => { setAnalytics((value) => !value); setSaved(false); } },
+    { label: "Preferences", description: "Remember choices such as language and appearance on this device.", value: false, disabled: true },
+    { label: "Analytics", description: "Allow product measurement that helps us understand and improve the experience.", value: false, disabled: true },
   ];
 
   return (
@@ -212,7 +195,7 @@ export default function CookiesPage() {
       <LocalNav title="Cookies" />
 
       <main id="main" tabIndex={-1}>
-        {/* HERO — the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy’s centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
             stay as the body opening below. */}
@@ -287,7 +270,7 @@ export default function CookiesPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Manage cookies on this device</p>
-                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>Optional choices are saved in this browser only.</p>
+                      <p className="mt-0.5 text-[16px]" style={{ color: COLORS.grey }}>Optional cookies are off.</p>
                       <button type="button" onClick={() => scrollToSection("preferences")} className={`mt-1.5 ${quietLink}`}>
                         Set your cookie choices
                         <ChevronIcon className="h-4 w-4" aria-hidden="true" />
@@ -365,7 +348,7 @@ export default function CookiesPage() {
                   </Paragraph>
                   <div className="mt-8 max-w-[760px] rounded-[30px] bg-[#f5f5f7] px-6 py-5">
                     <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      Visionary uses them to keep you signed in and remember your preferences, never to follow you around the internet or sell what it learns.
+                      Visionary uses an essential cookie to keep you signed in.
                     </p>
                   </div>
                 </section>
@@ -379,7 +362,7 @@ export default function CookiesPage() {
                   <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {[
                       { Icon: Cookie, title: "Essential cookies.", text: "These support sign-in, security, and core service behavior. Without them, Visionary cannot work as expected, so they cannot be turned off." },
-                      { Icon: Lock, title: "No advertising cookies.", text: "We don't use cookies to show you ads. Ever. There are no ad networks watching what you do here. Your attention is not for sale." },
+                      { Icon: Lock, title: "No advertising cookies.", text: "We don’t use cookies to show you ads. Ever. There are no ad networks watching what you do here. Your attention is not for sale." },
                       { Icon: Globe, title: "Analytics with consent.", text: "If we use analytics cookies, we ask first. You can say no, and Visionary still works perfectly. We only measure what you explicitly allow." },
                     ].map(({ Icon, title, text }) => (
                       <div key={title} className="rounded-[20px] bg-white p-6">
@@ -400,8 +383,8 @@ export default function CookiesPage() {
                   <div className="mt-10 max-w-[880px] border-t border-[rgba(18,19,23,0.12)]">
                     {[
                       ["Session cookies", "Keep you signed in while you use Visionary. Deleted when you close your browser."],
-                      ["Preference cookies", "Remember things like your language and theme so you don't have to set them every time."],
-                      ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent, and you can opt out anytime."],
+                      ["Preference cookies", "Remember things like your language and theme so you don’t have to set them every time."],
+                      ["Analytics (optional)", "Help us understand what’s working so we can improve. Only with your consent, and you can opt out anytime."],
                     ].map(([who, what], i, arr) => (
                       <div key={who} className={`py-5 ${i < arr.length - 1 ? "border-b border-[rgba(18,19,23,0.12)]" : ""}`}>
                         <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
@@ -415,7 +398,7 @@ export default function CookiesPage() {
                 <section id="preferences" data-section="06-preferences" className="scroll-mt-24">
                   <SectionHeading number="04" title="Your choices and controls" />
                   <Paragraph>
-                    Optional choices are saved in this browser. They do not change settings on your other devices.
+                    Visionary uses an essential session cookie. Optional preferences and analytics cookies are off.
                   </Paragraph>
                   <div className="mt-8 max-w-[720px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-8">
                     <div className="divide-y divide-[rgba(18,19,23,0.12)]">
@@ -439,15 +422,6 @@ export default function CookiesPage() {
                         </div>
                       ))}
                     </div>
-                    <div className="mt-6 flex items-center gap-4">
-                      <button
-                        type="button" onClick={savePreferences}
-                        className={inkPill}
-                      >
-                        Save choices
-                      </button>
-                      <p role="status" aria-live="polite" className="text-[13px]" style={{ color: "#188038" }}>{saved ? "Choices saved on this device." : ""}</p>
-                    </div>
                   </div>
                 </section>
 
@@ -455,16 +429,15 @@ export default function CookiesPage() {
                 <section id="managing" data-section="07-managing" className="scroll-mt-24">
                   <SectionHeading number="05" title="Managing cookies" />
                   <Paragraph>
-                    You control them, always. Clear them anytime from your browser or your Visionary settings. No emails, no waiting.
+                    You control them, always. Clear site cookies anytime from your browser.
                   </Paragraph>
                   <div className="mt-10 max-w-[880px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your cookie options.</p>
                     <ul className="mt-4 space-y-2.5">
                       {[
-                        "Essential cookies cannot be turned off. They're what make Visionary work.",
-                        "Preference and analytics cookies are optional, and you can change your choices at any time using the controls in the “Your choices and controls” section above.",
-                        "Clear or block cookies anytime from your browser's site settings.",
-                        "Optional choices apply to this device only. Set them again on devices you use.",
+                        "Essential cookies cannot be turned off. They’re what make Visionary work.",
+                        "Preference and analytics cookies are currently off.",
+                        "Clear or block cookies anytime from your browser’s site settings.",
                       ].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
@@ -479,7 +452,7 @@ export default function CookiesPage() {
                 <section id="contact" data-section="08-contact" className="scroll-mt-24">
                   <SectionHeading number="06" title="Questions and contact" />
                   <Paragraph>
-                    We're transparent about every cookie we use and why. If something isn't clear, reach out.
+                    We’re transparent about every cookie we use and why. If something isn’t clear, reach out.
                   </Paragraph>
                   <div className="mt-8 max-w-[640px] rounded-[30px] bg-[#f5f5f7] p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Write to the team</p>
@@ -510,7 +483,7 @@ export default function CookiesPage() {
                 { term: "Essential cookies", def: "The cookies required for sign-in, security, and core service behavior. They cannot be turned off." },
                 { term: "Preference cookies", def: "Cookies that remember choices such as language and appearance on the device you use." },
                 { term: "Analytics cookies", def: "Optional cookies that measure what works so we can improve. Used only with your consent." },
-                { term: "Browser storage", def: "Where cookies and on-device records live. Clearing your browser's site data removes them." },
+                { term: "Browser storage", def: "Where cookies and on-device records live. Clearing your browser’s site data removes them." },
                 { term: "Consent", def: "Your explicit yes before we use optional cookies, and your ability to say no without losing the product." },
               ].map(({ term, def }) => (
                 <div key={term}>
@@ -545,7 +518,7 @@ export default function CookiesPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page’s one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="11-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

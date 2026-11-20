@@ -12,9 +12,12 @@
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
-/* ── Lazy image fade-in — no jarring pop when deferred images finish loading ── */
+/* ── Lazy image fade-in — no jarring pop when deferred images finish loading ──
+   These sit BEFORE the utilities layer: a component carrying an explicit
+   opacity utility (the story carousel's inactive slides) must have that
+   utility win over .lazy-loaded's base opacity — otherwise a stacked,
+   "hidden" image paints at full strength over the active one. */
 .lazy-loading {
   opacity: 0;
   transition: opacity var(--motion-duration-base) var(--ease-out-apple);
@@ -22,6 +25,8 @@
 .lazy-loaded {
   opacity: 1;
 }
+
+@tailwind utilities;
 
 @keyframes oi-spin {
   to {
@@ -336,7 +341,7 @@
   }
 
   ::selection {
-    background: #rgba(0,102,204,0.10);
+    background: rgba(0,102,204,0.10);
     color: #1d1d1f;
   }
 
@@ -494,12 +499,20 @@
    one element at a time, on the resolve-out curve. Staggers each direct child
    of a .reveal-item by 60ms so a heading + sub + image each wait their beat.
    Reduced-motion snaps to fully visible instantly. */
-.scroll-reveal {
+/* Reveal law (KAN-210): content is always in the visible first paint; the
+   scroll reveal only animates. A chapter hides solely while JS has ARMED it
+   after paint (`.reveal-armed`, set only when the chapter's top is still
+   below the viewport) and the observer hasn't fired yet — so no-JS,
+   pre-hydration, print and above-fold chapters never hide content, and the
+   reduced-motion law below snaps armed chapters to fully visible instantly. */
+.scroll-reveal.reveal-armed:not(.in-view) {
   opacity: 0;
 }
 
-.scroll-reveal.in-view {
-  opacity: 1;
+.scroll-reveal.reveal-armed:not(.in-view) .reveal-item > * {
+  opacity: 0;
+  transform: translateY(26px);
+  will-change: opacity, transform;
 }
 
 .scroll-reveal.in-view .reveal-item > * {
@@ -512,18 +525,12 @@
   );
 }
 
-.scroll-reveal .reveal-item > * {
-  opacity: 0;
-  transform: translateY(26px);
-  will-change: opacity, transform;
-}
-
 /* ── Card-group stagger — a chapter's cards rise as a rhythm group while
    their photographs settle from 1.03 to 1. One class on the chapter's
    RevealItem (.stagger-group) plus .stagger-child per card; the beat is
    60ms per card, on the resolve-out curve. Reduced-motion snaps the whole
    group visible instantly. */
-.scroll-reveal .stagger-group .stagger-child {
+.scroll-reveal.reveal-armed:not(.in-view) .stagger-group .stagger-child {
   opacity: 0;
   transform: translateY(16px);
   will-change: opacity, transform;
@@ -544,7 +551,7 @@
 .scroll-reveal.in-view .stagger-group .stagger-child:nth-child(6) { transition-delay: 300ms; }
 
 /* the photographs settle — media resolves from 1.03 while its card rises */
-.scroll-reveal .stagger-group .stagger-child .media-settle {
+.scroll-reveal.reveal-armed:not(.in-view) .stagger-group .stagger-child .media-settle {
   transform: scale(1.03);
   will-change: transform;
 }
@@ -555,19 +562,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-reveal .stagger-group .stagger-child,
-  .scroll-reveal .stagger-group .stagger-child .media-settle {
+  .scroll-reveal.reveal-armed:not(.in-view),
+  .scroll-reveal.reveal-armed:not(.in-view) .reveal-item > *,
+  .scroll-reveal.reveal-armed:not(.in-view) .stagger-group .stagger-child,
+  .scroll-reveal.reveal-armed:not(.in-view) .stagger-group .stagger-child .media-settle {
     opacity: 1;
     transform: none;
     transition: none;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal .reveal-item > * {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  /* FadeReveal (useRevealOnce) reveals on scroll — under reduce the snap is
+     instant, not a 700ms ride. Content still appears; only the motion leaves. */
+  .fade-reveal {
+    transition: none !important;
   }
 }
 
@@ -582,6 +589,19 @@ h3[id] {
 
 /* Print: strip chrome, keep content legible — legal pages print cleanly */
 @media print {
+
+  /* the reveal law: an armed-but-unrevealed chapter must never print hidden */
+  .scroll-reveal,
+  .scroll-reveal .reveal-item > *,
+  .scroll-reveal .stagger-group .stagger-child,
+  .scroll-reveal .stagger-group .stagger-child .media-settle {
+    opacity: 1 !important;
+    transform: none !important;
+    /* print has no animation timeline; the FAP-81 motion law forbids a
+       !important transition outside a reduce block, so plain `none` — the
+       opacity/transform overrides above already force the final state. */
+    transition: none;
+  }
 
   header,
   nav,

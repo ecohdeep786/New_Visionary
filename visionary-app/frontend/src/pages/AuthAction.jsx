@@ -10,7 +10,7 @@ export default function AuthAction() {
   const [state, setState] = useState('checking'), [message, setMessage] = useState('');
   const pending = useRef(null);
   useEffect(() => {
-    if (mode !== 'verifyEmail' || !code || base44.auth.source !== 'firebase') { setState('invalid'); return; }
+    if (mode !== 'verifyEmail' || !code) { setState('invalid'); return; }
     let active = true;
     // Reuse the one action promise during StrictMode's effect replay.
     if (pending.current?.code !== code) pending.current = { code, promise: base44.auth.applyEmailVerification(code) };

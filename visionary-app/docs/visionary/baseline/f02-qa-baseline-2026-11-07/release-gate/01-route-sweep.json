@@ -1,0 +1,137 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "h1": "One intelligencefor students.One intelligence, for"
+  },
+  {
+    "route": "/login",
+    "status": 200,
+    "h1": "Sign in to Visionary"
+  },
+  {
+    "route": "/register",
+    "status": 200,
+    "h1": "Create a Visionary account"
+  },
+  {
+    "route": "/forgot-password",
+    "status": 200,
+    "h1": "Reset your Visionary password"
+  },
+  {
+    "route": "/student",
+    "status": 200,
+    "h1": "Learning,Learning, to master, to build."
+  },
+  {
+    "route": "/teacher",
+    "status": 200,
+    "h1": "Teaching.Teaching, to grow, to reach."
+  },
+  {
+    "route": "/parent",
+    "status": 200,
+    "h1": "Parenting.Parenting, to see, to help."
+  },
+  {
+    "route": "/help",
+    "status": 200,
+    "h1": "Find your answer."
+  },
+  {
+    "route": "/professional",
+    "status": 200,
+    "h1": "Building.Building, to apply, to grow."
+  },
+  {
+    "route": "/how-it-works",
+    "status": 200,
+    "h1": "How Visionary works."
+  },
+  {
+    "route": "/organization",
+    "status": 200,
+    "h1": "Leading.Leading, to scale, to last."
+  },
+  {
+    "route": "/download",
+    "status": 200,
+    "h1": "Get Visionary on every device."
+  },
+  {
+    "route": "/about",
+    "status": 200,
+    "h1": "Understanding. Built in."
+  },
+  {
+    "route": "/pricing",
+    "status": 200,
+    "h1": "Plans for every journey."
+  },
+  {
+    "route": "/careers",
+    "status": 200,
+    "h1": "Build the future of learning."
+  },
+  {
+    "route": "/research",
+    "status": 200,
+    "h1": "One intelligence, every learner."
+  },
+  {
+    "route": "/community",
+    "status": 200,
+    "h1": "Communities and programs for everyone learning tog"
+  },
+  {
+    "route": "/contact",
+    "status": 200,
+    "h1": "We listen. We build."
+  },
+  {
+    "route": "/partners",
+    "status": 200,
+    "h1": "Better learning, together."
+  },
+  {
+    "route": "/updates",
+    "status": 200,
+    "h1": "What’s new at Visionary."
+  },
+  {
+    "route": "/referral",
+    "status": 200,
+    "h1": "Share a better way to learn."
+  },
+  {
+    "route": "/safety",
+    "status": 200,
+    "h1": "Safe by design,for every learner."
+  },
+  {
+    "route": "/privacy",
+    "status": 200,
+    "h1": "Your learning is personal. Privacy should be clear"
+  },
+  {
+    "route": "/terms",
+    "status": 200,
+    "h1": "Clear rules, written to be understood."
+  },
+  {
+    "route": "/security",
+    "status": 200,
+    "h1": "Secure by design, protected end to end."
+  },
+  {
+    "route": "/accessibility",
+    "status": 200,
+    "h1": "Help every learner learn how they learn best."
+  },
+  {
+    "route": "/cookies",
+    "status": 200,
+    "h1": "How we use cookies. And how you control them."
+  }
+]

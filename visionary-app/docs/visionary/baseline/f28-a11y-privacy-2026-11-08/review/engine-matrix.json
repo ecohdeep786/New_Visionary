@@ -1,0 +1,150 @@
+{
+  "at": "2026-11-08T07:25:26.902Z",
+  "base": "http://127.0.0.1:4198",
+  "rows": [
+    {
+      "engine": "chromium-edge",
+      "viewport": "mobile-390",
+      "route": "/",
+      "ok": true,
+      "detail": "h1=\"One intelligencefor students.One intelli\" chars=3290 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "chromium-edge",
+      "viewport": "mobile-390",
+      "route": "/pricing",
+      "ok": true,
+      "detail": "h1=\"Plans for every journey.\" chars=2520 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "chromium-edge",
+      "viewport": "mobile-390",
+      "route": "/login",
+      "ok": true,
+      "detail": "h1=\"Sign in to Visionary\" chars=284 overflow=0/0 navAfterScroll=false (auth surface: no header by design) firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "chromium-edge",
+      "viewport": "desktop-1440",
+      "route": "/",
+      "ok": true,
+      "detail": "h1=\"One intelligencefor students.One intelli\" chars=3369 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "chromium-edge",
+      "viewport": "desktop-1440",
+      "route": "/pricing",
+      "ok": true,
+      "detail": "h1=\"Plans for every journey.\" chars=2614 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "chromium-edge",
+      "viewport": "desktop-1440",
+      "route": "/login",
+      "ok": true,
+      "detail": "h1=\"Sign in to Visionary\" chars=284 overflow=0/0 navAfterScroll=false (auth surface: no header by design) firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "viewport": "mobile-390",
+      "route": "/",
+      "ok": true,
+      "detail": "h1=\"One intelligencefor students.One intelli\" chars=3290 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "viewport": "mobile-390",
+      "route": "/pricing",
+      "ok": true,
+      "detail": "h1=\"Plans for every journey.\" chars=2520 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "viewport": "mobile-390",
+      "route": "/login",
+      "ok": true,
+      "detail": "h1=\"Sign in to Visionary\" chars=284 overflow=0/0 navAfterScroll=false (auth surface: no header by design) firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "viewport": "desktop-1440",
+      "route": "/",
+      "ok": true,
+      "detail": "h1=\"One intelligencefor students.One intelli\" chars=3369 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "viewport": "desktop-1440",
+      "route": "/pricing",
+      "ok": true,
+      "detail": "h1=\"Plans for every journey.\" chars=2614 overflow=0/0 navAfterScroll=true firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "viewport": "desktop-1440",
+      "route": "/login",
+      "ok": true,
+      "detail": "h1=\"Sign in to Visionary\" chars=284 overflow=0/0 navAfterScroll=false (auth surface: no header by design) firstTab=A(Skip to content) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "viewport": "mobile-390",
+      "route": "/",
+      "ok": true,
+      "detail": "h1=\"One intelligencefor students.One intelli\" chars=3290 overflow=0/0 navAfterScroll=true firstTab=BUTTON(Open menu) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "viewport": "mobile-390",
+      "route": "/pricing",
+      "ok": true,
+      "detail": "h1=\"Plans for every journey.\" chars=2502 overflow=0/0 navAfterScroll=true firstTab=BUTTON(Open menu) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "viewport": "mobile-390",
+      "route": "/login",
+      "ok": true,
+      "detail": "h1=\"Sign in to Visionary\" chars=284 overflow=0/0 navAfterScroll=false (auth surface: no header by design) firstTab=BUTTON(Continue with Email) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "viewport": "desktop-1440",
+      "route": "/",
+      "ok": true,
+      "detail": "h1=\"One intelligencefor students.One intelli\" chars=3369 overflow=-6/-6 navAfterScroll=true firstTab=BUTTON(Who you are) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "viewport": "desktop-1440",
+      "route": "/pricing",
+      "ok": true,
+      "detail": "h1=\"Plans for every journey.\" chars=2596 overflow=-6/-6 navAfterScroll=true firstTab=BUTTON(Who you are) errors=0",
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "viewport": "desktop-1440",
+      "route": "/login",
+      "ok": true,
+      "detail": "h1=\"Sign in to Visionary\" chars=284 overflow=0/0 navAfterScroll=false (auth surface: no header by design) firstTab=BUTTON(Continue with Email) errors=0",
+      "errors": []
+    }
+  ]
+}

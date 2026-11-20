@@ -1,0 +1,109 @@
+{
+  "at": "2026-11-18T08:56:38.883Z",
+  "base": "http://localhost:4200",
+  "emulator": "http://127.0.0.1:9098",
+  "projectId": "demo-visionary-kan42",
+  "buildSha": "7289445f03b9661f024ffc8f8d78c43e6596a365",
+  "lang": "English",
+  "journeys": [
+    {
+      "id": "J1",
+      "title": "E01 register → verify → onboard → account home (server state)",
+      "steps": [
+        {
+          "name": "registered through the real UI",
+          "at": "2026-11-18T08:56:42.248Z",
+          "ok": true,
+          "detail": "verification screen shown"
+        },
+        {
+          "name": "email verified via the emulator OOB action",
+          "at": "2026-11-18T08:56:42.276Z",
+          "ok": true,
+          "detail": "action responded 200"
+        },
+        {
+          "name": "signed in and gated to onboarding",
+          "at": "2026-11-18T08:56:42.570Z",
+          "ok": true,
+          "detail": "onboarding wizard opened"
+        },
+        {
+          "name": "onboarded through the wizard",
+          "at": "2026-11-18T08:56:44.915Z",
+          "ok": true,
+          "detail": "landed on /dashboard/home"
+        },
+        {
+          "name": "server-owned state read back",
+          "at": "2026-11-18T08:56:44.940Z",
+          "ok": true,
+          "detail": "onboarding_complete=true, preferred_language=English, full_name=\"FHE21 Factory Account\""
+        }
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "J2",
+      "title": "profile display-name persists across a full reload",
+      "steps": [
+        {
+          "name": "renamed through the profile form",
+          "at": "2026-11-18T08:56:48.333Z",
+          "ok": true,
+          "detail": "submitted \"FHE21 Renamed 08:56:38\""
+        },
+        {
+          "name": "server state after reload",
+          "at": "2026-11-18T08:56:50.401Z",
+          "ok": true,
+          "detail": "full_name=\"FHE21 Renamed 08:56:38\""
+        }
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "J3",
+      "title": "sign-out → sign-in continuity",
+      "steps": [
+        {
+          "name": "signed out through the account menu",
+          "at": "2026-11-18T08:56:50.554Z",
+          "ok": true,
+          "detail": "returned to /login"
+        },
+        {
+          "name": "signed back in; server state preserved",
+          "at": "2026-11-18T08:56:52.795Z",
+          "ok": true,
+          "detail": "full_name=\"FHE21 Renamed 08:56:38\", onboarding_complete=true"
+        }
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "J4",
+      "title": "permission denial: unauthenticated /api/auth/me",
+      "steps": [
+        {
+          "name": "unauthenticated probe rejected",
+          "at": "2026-11-18T08:56:53.057Z",
+          "ok": true,
+          "detail": "/api/auth/me → 401"
+        }
+      ],
+      "verdict": "pass"
+    }
+  ],
+  "account": {
+    "email": "fhe21-2026-11-18t08-56-38-883z@example.test",
+    "password": "(generated per run; not recorded)"
+  },
+  "cleanup": "Synthetic realm identities accumulate by design. Auth emulator: DELETE http://127.0.0.1:9098/emulator/v1/projects/demo-visionary-kan42/accounts (wipes all emulator identities). Backend rows for synthetic accounts live in the disposable realm datastore only.",
+  "totals": {
+    "journeys": 4,
+    "failures": 0,
+    "pageErrors": 0
+  },
+  "pageErrors": []
+}

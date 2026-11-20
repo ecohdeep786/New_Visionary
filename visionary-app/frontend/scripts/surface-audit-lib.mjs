@@ -78,8 +78,13 @@ export function extractRoutes(text) {
   walk(sf, n => {
     if (!ts.isJsxOpeningElement(n) && !ts.isJsxSelfClosingElement(n) || n.tagName.getText(sf) !== 'Route') return;
     if (!attr(n, 'path') && !attr(n, 'index')) return;
-    const expression = attr(n, 'element')?.initializer?.expression;
-    const element = expression && opening(expression), component = element?.tagName.getText(sf);
+    // The element attribute may be a DEV-conditional ternary (FHE-20 route-table
+    // split): the production build renders null and the shell intercepts by
+    // pathname, so the reviewed component is the whenTrue branch.
+    const initializer = attr(n, 'element')?.initializer;
+    const inner = initializer && ts.isJsxExpression(initializer) ? initializer.expression : initializer;
+    const elementNode = inner && ts.isConditionalExpression(inner) ? inner.whenTrue : inner;
+    const element = elementNode && opening(elementNode), component = element?.tagName.getText(sf);
     if (!component) throw new Error('Route element requires explicit review');
     const parentSegments = [];
     for (let a = n.parent; a; a = a.parent) if (ts.isJsxElement(a) && a.openingElement !== n && a.openingElement.tagName.getText(sf) === 'Route') {
@@ -89,9 +94,16 @@ export function extractRoutes(text) {
       const full = value.startsWith('/') ? value : [...parentSegments, value].filter(Boolean).join('/');
       const route = full === '*' ? '*' : ('/' + full).replace(/\/+/g, '/').replace(/\/$/, '') || '/';
       const index = !!attr(n, 'index');
+      // A route declared behind `import.meta.env.DEV && …` (directly or through
+      // a mapped block) never mounts in the optimized production build: the
+      // static DEV replacement drops the branch before any element renders.
+      let devGated = false;
+      for (let a = n.parent; a && !devGated; a = a.parent) {
+        if (ts.isBinaryExpression(a) && a.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken && a.left.getText(sf) === 'import.meta.env.DEV') devGated = true;
+      }
       routes.push({ id: `${route}${index ? '#index' : ''}`, path: route, index, component,
         componentImport: imports.get(component) ?? null, redirect: component === 'Navigate' ? literal(attr(element, 'to')?.initializer) : null,
-        environment: component === 'DemoPreview' ? 'development-only' : 'production-source', ...position(sf, n) });
+        environment: devGated || component === 'DemoPreview' ? 'development-only' : 'production-source', ...position(sf, n) });
     }
   });
   if (new Set(routes.map(r => r.id)).size !== routes.length) throw new Error('Duplicate route identity');

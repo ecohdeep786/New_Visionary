@@ -1,0 +1,338 @@
+{
+  "base": "http://127.0.0.1:5173",
+  "side": "after",
+  "started": "2026-11-10T12:31:24.819Z",
+  "modes": {
+    "reduce": {
+      "t0": {
+        "url": "http://127.0.0.1:5173/community",
+        "reduce": true,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "none",
+            "animationDuration": "1e-05s",
+            "animationIterationCount": "1",
+            "animationTimingFunction": "ease",
+            "transform": "none",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "none",
+            "animationDuration": "1e-05s",
+            "animationIterationCount": "1",
+            "animationTimingFunction": "ease",
+            "transform": "none",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          }
+        ],
+        "running": [],
+        "runningCount": 0,
+        "infiniteRunningCount": 0
+      },
+      "t1": {
+        "url": "http://127.0.0.1:5173/community",
+        "reduce": true,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "none",
+            "animationDuration": "1e-05s",
+            "animationIterationCount": "1",
+            "animationTimingFunction": "ease",
+            "transform": "none",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "none",
+            "animationDuration": "1e-05s",
+            "animationIterationCount": "1",
+            "animationTimingFunction": "ease",
+            "transform": "none",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          }
+        ],
+        "running": [],
+        "runningCount": 0,
+        "infiniteRunningCount": 0
+      },
+      "staticBetweenSamples": [
+        true,
+        true
+      ]
+    },
+    "no-preference": {
+      "t0": {
+        "url": "http://127.0.0.1:5173/community",
+        "reduce": false,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "community-marquee-left",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -79.915, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "community-marquee-right",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -1864.08, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 6,
+            "loadedImages": 6
+          }
+        ],
+        "running": [
+          {
+            "name": "community-marquee-left",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-left mb-5"
+          },
+          {
+            "name": "community-marquee-right",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-right"
+          }
+        ],
+        "runningCount": 2,
+        "infiniteRunningCount": 2
+      },
+      "t1": {
+        "url": "http://127.0.0.1:5173/community",
+        "reduce": false,
+        "rows": [
+          {
+            "sel": ".cm-left",
+            "animationName": "community-marquee-left",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -125.274, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 5,
+            "loadedImages": 5
+          },
+          {
+            "sel": ".cm-right",
+            "animationName": "community-marquee-right",
+            "animationDuration": "60s",
+            "animationIterationCount": "infinite",
+            "animationTimingFunction": "linear",
+            "transform": "matrix(1, 0, 0, 1, -1818.73, 0)",
+            "display": "flex",
+            "visibility": "visible",
+            "opacity": "1",
+            "height": 190,
+            "width": 3888,
+            "images": 6,
+            "loadedImages": 6
+          }
+        ],
+        "running": [
+          {
+            "name": "community-marquee-left",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-left mb-5"
+          },
+          {
+            "name": "community-marquee-right",
+            "duration": 60000,
+            "iterations": "Infinity",
+            "target": "flex w-max cm-right"
+          }
+        ],
+        "runningCount": 2,
+        "infiniteRunningCount": 2
+      },
+      "staticBetweenSamples": [
+        false,
+        false
+      ]
+    }
+  },
+  "sweep": [
+    {
+      "route": "/",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/community",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/about",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/research",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/careers",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/pricing",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/download",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/help",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/student",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/teacher",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/parent",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/professional",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/organization",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/how-it-works",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/safety",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    },
+    {
+      "route": "/accessibility",
+      "reduce": true,
+      "running": 0,
+      "infinite": 0,
+      "names": []
+    }
+  ],
+  "errors": [
+    {
+      "mode": "sweep",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passe"
+    },
+    {
+      "mode": "sweep",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passe"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\opencode\\t05-qa-2026-11-10\\after\\after-community-reduce.png",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\opencode\\t05-qa-2026-11-10\\after\\after-community-no-preference.png"
+  ],
+  "finished": "2026-11-10T12:32:09.679Z",
+  "verdict": {
+    "afterReduceStatic": true,
+    "beforeReduceRuns": null,
+    "noPreferenceRuns": true,
+    "noPreferenceMoves": true,
+    "rowsVisible": true,
+    "sweepOnlyCommunity": []
+  }
+}

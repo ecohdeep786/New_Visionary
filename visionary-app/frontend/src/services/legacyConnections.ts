@@ -3,8 +3,7 @@ import type {Database,Relationship} from '../domain/workspace.ts';
 const sources={FamilyLink:{from:'parent_email',to:'child_email',type:'guardian',scope:['progress-summary']},Connection:{from:'requester_email',to:'recipient_email',type:'teacher',scope:['shared-resources']},OrganizationInvite:{from:'organization_email',to:'email',type:'organization',scope:['shared-resources']}} as const;
 type Row=Record<string,unknown>;
 export function legacyRelationships(db:Database):Relationship[]{
- const users:Row[]=JSON.parse(localStorage.getItem('visionary_users')||'[]');
- const personId=(email:unknown)=>db.people.find(p=>p.email===email)?.id||String(users.find(p=>p.email===email)?.id||`email:${email}`);
+ const personId=(email:unknown)=>db.people.find(p=>p.email===email)?.id||`email:${email}`;
  return Object.entries(sources).flatMap(([name,schema])=>{
   const rows:Row[]=JSON.parse(localStorage.getItem(`visionary_entity_${name}`)||'[]');
   return rows.filter(r=>r[schema.from]&&r[schema.to]).map(r=>({id:`legacy:${name}:${r.id}`,from:personId(r[schema.from]),to:personId(r[schema.to]),type:schema.type,scope:[...schema.scope],status:(['pending','active','declined','expired','revoked'].includes(String(r.status))?r.status:'revoked') as Relationship['status'],expiresAt:r.expiresAt as string|undefined}));

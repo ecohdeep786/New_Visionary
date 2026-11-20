@@ -42,6 +42,17 @@ let durableSessions:LearningSessionAdapter|null=null;
 /** Unconfigured or unverified adapters keep every check local and unverified. */
 export function configureLearningSessionAdapter(adapter:LearningSessionAdapter|null){durableSessions=adapter;}
 export function learningSessionAdapterConfigured(){return durableSessions!==null;}
+/** Server-held knowledge estimate for one exact scope (KAN-145). pKnown is an
+ * estimate with inspectable evidence — never a mastery label. */
+export interface KnowledgeProjectionReceipt {
+ version:1; uid:string; replay:boolean; workspaceId:string; conceptId:string; sourceVersion:string; criteriaVersion:string;
+ modelVersion:string; pKnown:number; revision:number; lastSequence:number; lastReceiptId:string|null; lastReceiptDigest:string|null; assessedCount:number;
+}
+export interface KnowledgeProjectionAdapter {
+ project(command:{version:1;commandId:string;sessionId:string;receiptId:string;workspaceId:string;conceptId:string;sourceVersion:string;criteriaVersion:string}):Promise<KnowledgeProjectionReceipt>;
+}
+let knowledgeProjections:KnowledgeProjectionAdapter|null=null;
+export function configureKnowledgeProjectionAdapter(adapter:KnowledgeProjectionAdapter|null){knowledgeProjections=adapter;}
 function guard(ctx:RequestContext){const identity=workspaceIdentity(ctx);if(ctx.role==='professional'&&identity.person.ageBand!=='adult')throw Error('Professional journeys are available only to adult profiles. Use a general learning workspace.');if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');}
 function read():Store{const raw=localStorage.getItem(KEY);if(!raw)return{version:1,spaces:{}};try{const value=JSON.parse(raw);if(value.version!==1||!value.spaces||typeof value.spaces!=='object'||Array.isArray(value.spaces))throw Error();return value;}catch{throw Error('Your saved learning could not be read. No records were removed.');}}
 function validSourceContext(value:LearningUnit['sourceContext']){
@@ -178,7 +189,19 @@ async function assessDurableAnswer(ctx:RequestContext,unit:LearningUnit,index:nu
  guard(ctx);assertCurrentLearningUnit(ctx,unit);
  if(receipt.sessionId!==unit.durableSessionId||receipt.workspaceId!==scope.workspaceId||receipt.concept?.sourceVersion!==scope.sourceVersion||receipt.concept?.criteriaVersion!==scope.criteriaVersion||!receipt.receipt||receipt.receipt.id!==commandId||receipt.receipt.checkId!==checkId)throw Error('The connected assessment did not confirm this answer. Your saved work is kept; retry when connected.');
  delete unit.durableAssess;unit.durableRevision=receipt.revision;unit.durableFailedChecks=receipt.failedChecks;unit.durableReviewSuggested=receipt.reviewSuggested;delete unit.durableCheckId;
+ projectKnowledgeEstimate(ctx,unit,scope,receipt.receipt.id);
  return {unit:save(ctx,unit),passed:receipt.receipt.passed,receiptId:receipt.receipt.id};
+}
+/** The estimate is a separate server command over the immutable receipt
+ * (KAN-145): a failure never invalidates the saved learning evidence, and the
+ * same receipt replays by identity when the estimate is read again. The
+ * Progress surface reads the server state, so a projection that has not
+ * landed yet simply shows the honest empty state. */
+function projectKnowledgeEstimate(ctx:RequestContext,unit:LearningUnit,scope:{workspaceId:string;sourceVersion:string;criteriaVersion:string},receiptId:string){
+ const adapter=knowledgeProjections;
+ if(!adapter||!unit.durableSessionId)return;
+ void adapter.project({version:1,commandId:crypto.randomUUID(),sessionId:unit.durableSessionId,receiptId,
+  workspaceId:scope.workspaceId,conceptId:unit.conceptId,sourceVersion:scope.sourceVersion,criteriaVersion:scope.criteriaVersion}).catch(()=>{});
 }
 export async function updateLearningLanguage(ctx:RequestContext,id:string,locale:Locale){
  const unit=getLearningUnit(ctx,id);if(unit.locale===locale)return unit;

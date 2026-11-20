@@ -11,6 +11,7 @@
     "typecheck": "tsc -p ./jsconfig.json && tsc -p ./tsconfig.domain.json",
     "preview": "vite preview",
     "test": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "verify:graph": "node scripts/production-graph.mjs",
     "qa:navigation": "node scripts/navigation-quality-review.mjs",
     "qa:fonts": "node scripts/font-surface-review.mjs",
     "qa:design": "node scripts/design-quality-review.mjs",
@@ -19,7 +20,12 @@
     "qa:taps": "node scripts/qa-taps.mjs",
     "qa:lighthouse": "node scripts/lighthouse-audit.mjs",
     "qa:journeys": "node scripts/role-journey-sweep.mjs",
-    "qa:i18n": "node scripts/i18n-audit.mjs"
+    "qa:i18n": "node scripts/i18n-audit.mjs",
+    "qa:reduced-motion": "node scripts/reduced-motion-audit.mjs",
+    "qa:zoom": "node scripts/zoom-audit.mjs",
+    "qa:route-sweep": "node scripts/connected-route-sweep.mjs",
+    "qa:realm-journeys": "node scripts/realm-integration-factory.mjs",
+    "qa:role-e2e": "node scripts/role-journey-e2e.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",

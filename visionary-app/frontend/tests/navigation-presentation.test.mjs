@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {presentNavigation,navigationPathMatches} from '../src/lib/navigationPresentation.js';
-import {needsAssetReload} from '../src/lib/assetRecovery.js';
+import {needsAssetReload, recoverRouteAssets} from '../src/lib/assetRecovery.js';
 
 const primary=['home','learn','ask','practice','build'].map(key=>({key,to:`/dashboard/${key}`}));
 const secondary=['classes','progress','privacy'].map(key=>({key,to:`/dashboard/${key}`}));
@@ -48,4 +48,23 @@ test('nested destinations keep the active parent or More without matching simila
   assert.equal(presentNavigation('student','higher',primary,secondary,'/dashboard/build/project').railMoreActive,false);
   assert.equal(presentNavigation('student','foundational',primary,secondary,'/dashboard/build/project').railMoreActive,true);
   assert.equal(presentNavigation('student','higher',primary,secondary,'/dashboard/unknown').railMoreActive,false);
+});
+
+test('route recovery retries the exact URL once and preserves router state', () => {
+  const failure = Error('Failed to fetch dynamically imported module: /assets/app.js');
+  const href = 'https://visionary.example/dashboard/classes?class=demo#work';
+  let reloads = 0;
+  const browser = {
+    navigator: { onLine: true },
+    history: { state: { idx: 2 }, replaceState(state) { this.state = state; } },
+    location: { href, reload() { reloads += 1; } },
+  };
+  assert.equal(recoverRouteAssets(Error('Permission required'), browser), false);
+  browser.navigator.onLine = false;
+  assert.equal(recoverRouteAssets(failure, browser), false);
+  browser.navigator.onLine = true;
+  assert.equal(recoverRouteAssets(failure, browser), true);
+  assert.deepEqual(browser.history.state, { idx: 2, visionaryAssetRetry: href });
+  assert.equal(recoverRouteAssets(failure, browser), false);
+  assert.equal(reloads, 1);
 });

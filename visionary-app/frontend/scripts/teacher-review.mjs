@@ -131,7 +131,8 @@ try {
   /* ── 2. Create a class through the modal ── */
   await page.goto(`${base}/dashboard/classes`, { waitUntil: 'load', timeout: 90000 });
   await settle(page, 1800);
-  await page.getByRole('button', { name: /Create class/i }).first().click();
+  // exactly one create control per state: header "Create class" when classes exist, empty-state "Create your first class" otherwise (FAP-78)
+  await page.getByRole('button', { name: /Create (your first )?class/i }).first().click();
   await page.waitForSelector('[role="dialog"]', { timeout: 15000 });
   await page.evaluate(() => {
     const iSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;

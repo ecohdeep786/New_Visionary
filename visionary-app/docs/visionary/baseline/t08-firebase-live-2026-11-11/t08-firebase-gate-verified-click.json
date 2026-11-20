@@ -1,0 +1,35 @@
+{
+  "email": "t08-firebase-1794386344873@visionary.test",
+  "base": "http://localhost:5173",
+  "steps": [
+    {
+      "step": "gate-view",
+      "url": "/login",
+      "heading": "Confirm your email address"
+    },
+    {
+      "step": "after-verified-click",
+      "url": "/login",
+      "status": "Open your email verification link, then return here to continue.",
+      "stillGated": true,
+      "body": "Skip to content | isionary | Sign in to Visionary | Use email or Google to continue. | Don't have an account? Create account | Confirm your email address | Check t08-firebase-1794386344873@visionary.test for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification. | Open your email verification link, then return her"
+    },
+    {
+      "step": "api-after-verified-click",
+      "calls": [
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:lookup?key=<redacted>",
+          "status": 200,
+          "res": "{\n  \"kind\": \"identitytoolkit#GetAccountInfoResponse\",\n  \"users\": [\n    {\n      \"localId\": \"LaDxOhsiI7QfYXTldUp43H41g3u2\",\n      \"email\": \"t08-firebase-179438634"
+        }
+      ]
+    },
+    {
+      "step": "console",
+      "count": 1,
+      "msgs": [
+        "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+      ]
+    }
+  ]
+}

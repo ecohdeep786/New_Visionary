@@ -3,7 +3,7 @@ import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import * as mentor from '../src/services/mentorStateService.ts';
-import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
+import { seedConnectedFixtures } from './fixtures/demoFixtures.js';
 
 const storage = new Map();
 globalThis.localStorage = { getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, String(value)), removeItem: key => storage.delete(key) };

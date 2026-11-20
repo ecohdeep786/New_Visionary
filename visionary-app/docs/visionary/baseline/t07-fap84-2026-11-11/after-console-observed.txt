@@ -1,0 +1,8 @@
+FAP-84 console evidence — AFTER side (candidate zcode/fap-84-hero-fetchpriority, localhost:5173, same contexts, 2026-11-11).
+Zero "React does not recognize" warnings across all 21 swept routes; zero error boundaries. Hero img still carries fetchpriority="high" (lowercase content attribute) + loading="eager".
+Other console messages observed on the AFTER side (all pre-existing, none React unrecognized-prop):
+  /student: ["<link rel=preload> has an invalid `href` value","<link rel=preload> has an invalid `href` value"]
+  /teacher: ["<link rel=preload> has an invalid `href` value","<link rel=preload> has an invalid `href` value"]
+  /parent: ["<link rel=preload> has an invalid `href` value","<link rel=preload> has an invalid `href` value"]
+  /professional: ["<link rel=preload> has an invalid `href` value","<link rel=preload> has an invalid `href` value"]
+  /organization: ["<link rel=preload> has an invalid `href` value","<link rel=preload> has an invalid `href` value"]

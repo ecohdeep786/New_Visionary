@@ -1,0 +1,20 @@
+{
+  "base": "http://127.0.0.1:5173",
+  "tag": "after",
+  "steps": [
+    {
+      "step": "toast-rendered",
+      "rendered": true,
+      "text": "FAP-86 probetoast shim A/B probe toast"
+    },
+    {
+      "step": "after-x-click",
+      "stillRendered": false
+    },
+    {
+      "step": "console",
+      "count": 0,
+      "msgs": []
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "results": {
+    "email": "t09-r2-spot-1794461855869@visionary.test",
+    "phases": [
+      {
+        "phase": "after-switch",
+        "url": "/dashboard/classes?class=f97b5327-2ed2-4d66-ae4c-0fb9dbd73c84",
+        "h1": "Your classes"
+      },
+      {
+        "phase": "student-classes-param",
+        "h1": "Your classes",
+        "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code",
+        "url": "/dashboard/classes?class=nonexistent-id-123"
+      },
+      {
+        "phase": "after-reload",
+        "url": "/dashboard/class/f97b5327-2ed2-4d66-ae4c-0fb9dbd73c84",
+        "h1": "T09 Spot Class 1794461855869",
+        "activeSelectValue": "ae4096ce-2954-4573-9a91-64e2799dc0fc:teacher",
+        "dbActive": {
+          "ae4096ce-2954-4573-9a91-64e2799dc0fc": "ae4096ce-2954-4573-9a91-64e2799dc0fc:teacher"
+        }
+      }
+    ],
+    "studentDb": [
+      {
+        "role": "student",
+        "lastPath": "/dashboard/classes"
+      },
+      {
+        "role": "teacher",
+        "lastPath": "/dashboard/class/f97b5327-2ed2-4d66-ae4c-0fb9dbd73c84"
+      }
+    ],
+    "afterTeacherSwitch": {
+      "url": "/dashboard/class/f97b5327-2ed2-4d66-ae4c-0fb9dbd73c84",
+      "h1": "T09 Spot Class 1794461855869"
+    },
+    "afterReload": {
+      "url": "/dashboard/class/f97b5327-2ed2-4d66-ae4c-0fb9dbd73c84",
+      "h1": "T09 Spot Class 1794461855869",
+      "activeSelectValue": "ae4096ce-2954-4573-9a91-64e2799dc0fc:teacher",
+      "dbActive": {
+        "ae4096ce-2954-4573-9a91-64e2799dc0fc": "ae4096ce-2954-4573-9a91-64e2799dc0fc:teacher"
+      }
+    }
+  },
+  "errs": [
+    {
+      "phase": "create-class",
+      "type": "error",
+      "text": "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavio"
+    }
+  ]
+}

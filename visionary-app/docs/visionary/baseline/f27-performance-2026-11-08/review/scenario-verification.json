@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-08T06:34:33.431Z",
+  "base": "http://127.0.0.1:4173",
+  "results": [
+    {
+      "name": "S02-no-route-chunks-before-idle-window",
+      "ok": true,
+      "detail": "route-chunk requests before the 2.5s idle-settle window: [none]"
+    },
+    {
+      "name": "S02-idle-prefetch-by-design",
+      "ok": true,
+      "detail": "idle prefetch warmed 7 priority chunks: AboutUsPage@3131ms, PrivacyPage@3132ms, SafetyPage@3132ms, StudentPage@3132ms, TeacherPage@3133ms, ParentPage@3133ms, OrganizationPage@3133ms"
+    },
+    {
+      "name": "S04-canonical-root",
+      "ok": true,
+      "detail": "canonical=https://visionary.org.in/ og:url=https://visionary.org.in/ title=\"Visionary — Learn, ask, practice, and build\""
+    },
+    {
+      "name": "S04-canonical-/pricing",
+      "ok": true,
+      "detail": "canonical=https://visionary.org.in/pricing og:url=https://visionary.org.in/pricing title=\"Pricing | Visionary\""
+    },
+    {
+      "name": "S04-canonical-/student",
+      "ok": true,
+      "detail": "canonical=https://visionary.org.in/student og:url=https://visionary.org.in/student title=\"Visionary for students | Learn at your pace\""
+    },
+    {
+      "name": "S04-canonical-/safety",
+      "ok": true,
+      "detail": "canonical=https://visionary.org.in/safety og:url=https://visionary.org.in/safety title=\"Safety | Visionary\""
+    },
+    {
+      "name": "S05-font-failure-renders",
+      "ok": true,
+      "detail": "h1=\"One intelligencefor students.One intelligence, for students,\" visible=true bodyChars=3290 noOverflow=true"
+    },
+    {
+      "name": "S01-hero-eager-srcset",
+      "ok": true,
+      "detail": "hero complete=true natural=171x171 rendered=192x192 loading=eager fetchpriority=high srcset/picture=true file=professional-480w-43WjFhUH.avif"
+    },
+    {
+      "name": "S03-dot-tap-responds",
+      "ok": true,
+      "detail": "carousel dot tap advanced the slide in 362ms (aria-pressed moved); throttled TBT recorded <= 338ms in cwv-receipt.json"
+    }
+  ]
+}

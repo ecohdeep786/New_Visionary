@@ -1,0 +1,3364 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "started": "2026-11-11T04:53:54.645Z",
+  "cells": [
+    {
+      "route": "/",
+      "viewport": "320x720",
+      "path": "/",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[980px]",
+          "beyond": 63,
+          "text": "One intelligence for students. One intelligence, for students, teachers, parents, professi"
+        },
+        {
+          "sel": "h1.m-0",
+          "beyond": 63,
+          "text": "One intelligence for students. One intelligence, for students, teachers, parents, professi"
+        },
+        {
+          "sel": "span.font-semibold.tracking-[-0.0021em].leading-[1]",
+          "beyond": 63,
+          "text": "One intelligence for students."
+        },
+        {
+          "sel": "span.block.text-balance.tracking-[-0.00028em]",
+          "beyond": 63,
+          "text": "One intelligence"
+        },
+        {
+          "sel": "span.block.overflow-hidden",
+          "beyond": 63,
+          "text": "for students."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.block",
+          "beyond": 63,
+          "text": "for students."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "div.flex.flex-col.justify-between",
+          "beyond": 20,
+          "text": "Download Get Visionary on every device."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 85,
+          "text": "Your learning stays yours."
+        },
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 2,
+          "text": "yours."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 85,
+          "text": "Your questions, conversations, ideas, and progress are personal. Visionary keeps it that w"
+        },
+        {
+          "sel": "p.text-balance.mt-[var(--gap-title-sub-display)].max-w-[34ch]",
+          "beyond": 85,
+          "text": "Your questions, conversations, ideas, and progress are personal. Visionary keeps it that w"
+        },
+        {
+          "sel": "a.mt-3.relative.after:absolute",
+          "beyond": 38,
+          "text": "About Privacy"
+        },
+        {
+          "sel": "a.mt-3.relative.after:absolute",
+          "beyond": 25,
+          "text": "About Safety"
+        },
+        {
+          "sel": "a.mt-3.relative.after:absolute",
+          "beyond": 52,
+          "text": "About Security"
+        },
+        {
+          "sel": "a.mt-3.relative.after:absolute",
+          "beyond": 113,
+          "text": "About Accessibility"
+        }
+      ]
+    },
+    {
+      "route": "/student",
+      "viewport": "320x720",
+      "path": "/student",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 38,
+          "text": "Learning, Learning, to master, to build. Every concept you understand becomes the foundati"
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 38,
+          "text": "Learning, Learning, to master, to build."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 38,
+          "text": "Learning,"
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 38,
+          "text": "Every concept you understand becomes the foundation for the next."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.",
+          "beyond": 16,
+          "text": "Understand what matters."
+        }
+      ]
+    },
+    {
+      "route": "/teacher",
+      "viewport": "320x720",
+      "path": "/teacher",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 41,
+          "text": "Teaching. Teaching, to grow, to reach. One class, many minds. See who is with you before t"
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 41,
+          "text": "Teaching. Teaching, to grow, to reach."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 41,
+          "text": "Teaching."
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 41,
+          "text": "One class, many minds. See who is with you before the next bell."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.",
+          "beyond": 16,
+          "text": "Understand your classroom."
+        }
+      ]
+    },
+    {
+      "route": "/parent",
+      "viewport": "320x720",
+      "path": "/parent",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 57,
+          "text": "Parenting. Parenting, to see, to help. Know what your child is learning before the report "
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 57,
+          "text": "Parenting. Parenting, to see, to help."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 57,
+          "text": "Parenting."
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 57,
+          "text": "Know what your child is learning before the report card."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.",
+          "beyond": 16,
+          "text": "Understand what your child is learning."
+        }
+      ]
+    },
+    {
+      "route": "/professional",
+      "viewport": "320x720",
+      "path": "/professional",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 24,
+          "text": "Building. Building, to apply, to grow. Turn what you learn into work that ships — skills, "
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 24,
+          "text": "Building. Building, to apply, to grow."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 24,
+          "text": "Building."
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 24,
+          "text": "Turn what you learn into work that ships — skills, solutions, and projects that compound w"
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.",
+          "beyond": 16,
+          "text": "Understand the problems you're working on."
+        },
+        {
+          "sel": "span.",
+          "beyond": 15,
+          "text": "Solve with intelligence behind you."
+        }
+      ]
+    },
+    {
+      "route": "/organization",
+      "viewport": "320x720",
+      "path": "/organization",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 20,
+          "text": "Leading. Leading, to scale, to last. One intelligence across every classroom, team, and pr"
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 20,
+          "text": "Leading. Leading, to scale, to last."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 20,
+          "text": "Leading."
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 20,
+          "text": "One intelligence across every classroom, team, and program. Understanding stays inside you"
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 76,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.",
+          "beyond": 16,
+          "text": "Understand what people actually know."
+        }
+      ]
+    },
+    {
+      "route": "/how-it-works",
+      "viewport": "320x720",
+      "path": "/how-it-works",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 108,
+          "text": "Visionary"
+        },
+        {
+          "sel": "div.",
+          "beyond": 119,
+          "text": "Student Learn with a companion that keeps your place."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 119,
+          "text": "Student"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 119,
+          "text": "Learn with a companion that keeps your place."
+        },
+        {
+          "sel": "div.",
+          "beyond": 96,
+          "text": "Teacher See every learner and teach in your language."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 96,
+          "text": "Teacher"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 96,
+          "text": "See every learner and teach in your language."
+        },
+        {
+          "sel": "div.",
+          "beyond": 128,
+          "text": "Parent Follow your child's journey with confidence."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 128,
+          "text": "Parent"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 128,
+          "text": "Follow your child's journey with confidence."
+        },
+        {
+          "sel": "div.",
+          "beyond": 137,
+          "text": "Professional Grow the skills your work demands next."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 137,
+          "text": "Professional"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 137,
+          "text": "Grow the skills your work demands next."
+        },
+        {
+          "sel": "div.",
+          "beyond": 149,
+          "text": "Organization Roll out learning across your institution."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 149,
+          "text": "Organization"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 149,
+          "text": "Roll out learning across your institution."
+        },
+        {
+          "sel": "div.",
+          "beyond": 17,
+          "text": "Welcome back Student"
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[16px]",
+          "beyond": 17,
+          "text": "Welcome back"
+        },
+        {
+          "sel": "p.text-[12px].tracking-[0]",
+          "beyond": 17,
+          "text": "Student"
+        },
+        {
+          "sel": "span.rounded-full.border.px-4",
+          "beyond": 99,
+          "text": "Practise"
+        }
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "320x720",
+      "path": "/help",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "h1.mx-auto.mt-8.max-w-[24ch]",
+          "beyond": 39,
+          "text": "Find your answer."
+        },
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 39,
+          "text": "your answer."
+        }
+      ]
+    },
+    {
+      "route": "/pricing",
+      "viewport": "320x720",
+      "path": "/pricing",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 15,
+          "text": "every journey"
+        },
+        {
+          "sel": "button.flex.min-h-11.items-center",
+          "beyond": 35,
+          "text": "Annual 2 months free"
+        },
+        {
+          "sel": "span.rounded-full.px-2.py-0.5",
+          "beyond": 3,
+          "text": "2 months free"
+        },
+        {
+          "sel": "div.",
+          "beyond": 124,
+          "text": "FAQ Questions about pricing, answered."
+        },
+        {
+          "sel": "p.text-[18px].font-medium",
+          "beyond": 124,
+          "text": "FAQ"
+        },
+        {
+          "sel": "h2.mt-[var(--gap-eyebrow-title-display)].max-w-[24ch].text-balance",
+          "beyond": 124,
+          "text": "Questions about pricing, answered."
+        },
+        {
+          "sel": "div.border-t",
+          "beyond": 124,
+          "text": "Can I start free? Can I switch plans later? What happens to my memory if I downgrade? Do y"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 124,
+          "text": "Can I start free?"
+        },
+        {
+          "sel": "#pricing-faq-question-0",
+          "beyond": 124,
+          "text": "Can I start free?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 124,
+          "text": "Can I switch plans later?"
+        },
+        {
+          "sel": "#pricing-faq-question-1",
+          "beyond": 124,
+          "text": "Can I switch plans later?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 124,
+          "text": "What happens to my memory if I downgrade?"
+        },
+        {
+          "sel": "#pricing-faq-question-2",
+          "beyond": 124,
+          "text": "What happens to my memory if I downgrade?"
+        },
+        {
+          "sel": "span.text-[19px].font-normal.leading-[1.35]",
+          "beyond": 42,
+          "text": "What happens to my memory if I downgrade?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 124,
+          "text": "Do you offer education discounts?"
+        },
+        {
+          "sel": "#pricing-faq-question-3",
+          "beyond": 124,
+          "text": "Do you offer education discounts?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 124,
+          "text": "How does Family privacy work?"
+        },
+        {
+          "sel": "#pricing-faq-question-4",
+          "beyond": 124,
+          "text": "How does Family privacy work?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 124,
+          "text": "How does Institution billing work?"
+        },
+        {
+          "sel": "#pricing-faq-question-5",
+          "beyond": 124,
+          "text": "How does Institution billing work?"
+        }
+      ]
+    },
+    {
+      "route": "/download",
+      "viewport": "320x720",
+      "path": "/download",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 108,
+          "text": "Visionary"
+        },
+        {
+          "sel": "span.absolute.right-5.top-5",
+          "beyond": 33,
+          "text": "Recommended"
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "viewport": "320x720",
+      "path": "/about",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.flex.w-max.shrink-0",
+          "beyond": 932,
+          "text": "Parents Professionals Organizations Students Teachers Parents Professionals"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 988,
+          "text": "Parents"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 924,
+          "text": "Parents"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 660,
+          "text": "Professionals"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 601,
+          "text": "Professionals"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 330,
+          "text": "Organizations"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 276,
+          "text": "Organizations"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 290,
+          "text": "Teachers"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 236,
+          "text": "Teachers"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 620,
+          "text": "Parents"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 561,
+          "text": "Parents"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 948,
+          "text": "Professionals"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 884,
+          "text": "Professionals"
+        },
+        {
+          "sel": "h2.max-w-[760px].text-[40px].font-normal",
+          "beyond": 296,
+          "text": "Understanding should open the next door."
+        },
+        {
+          "sel": "p.max-w-[480px].pb-1.text-[17px]",
+          "beyond": 296,
+          "text": "People move between classrooms, homes, work, and new ambitions. Too often, what they have "
+        },
+        {
+          "sel": "div.flex.min-h-[320px].flex-col",
+          "beyond": 245,
+          "text": "Our mission \" Build AI intelligence for anyone, anywhere, from student to organization, in"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 181,
+          "text": "Our mission"
+        },
+        {
+          "sel": "span.mt-8.select-none.text-[88px]",
+          "beyond": 181,
+          "text": "\""
+        },
+        {
+          "sel": "p.max-w-[760px].text-[clamp(28px,2.78vw,40px)].font-normal",
+          "beyond": 181,
+          "text": "Build AI intelligence for anyone, anywhere, from student to organization, in India's nativ"
+        },
+        {
+          "sel": "p.mt-10.text-[14px].text-[#1d1d1f]",
+          "beyond": 181,
+          "text": "Visionary · the mission we build toward"
+        }
+      ]
+    },
+    {
+      "route": "/research",
+      "viewport": "320x720",
+      "path": "/research",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 183,
+          "text": "Building the mentor intelligence. The product contract is simple to say and hard to do: on"
+        },
+        {
+          "sel": "h2.font-semibold.tracking-[-0.009em].leading-[1.06]",
+          "beyond": 183,
+          "text": "Building the mentor intelligence."
+        },
+        {
+          "sel": "div.mt-4.max-w-[520px]",
+          "beyond": 183,
+          "text": "The product contract is simple to say and hard to do: one identity across five roles, one "
+        },
+        {
+          "sel": "p.text-[16px].leading-[1.75].text-[#6e6e73]",
+          "beyond": 183,
+          "text": "The product contract is simple to say and hard to do: one identity across five roles, one "
+        },
+        {
+          "sel": "div.relative.overflow-hidden.rounded-[30px]",
+          "beyond": 183,
+          "text": "Visionary Intelligence I am your Intelligence. Every finding on this page ends up here — t"
+        },
+        {
+          "sel": "div.flex.items-center.gap-8",
+          "beyond": 103,
+          "text": "Visionary Intelligence I am your Intelligence. Every finding on this page ends up here — t"
+        },
+        {
+          "sel": "div.min-w-0.flex-1",
+          "beyond": 103,
+          "text": "Visionary Intelligence I am your Intelligence. Every finding on this page ends up here — t"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-white/60",
+          "beyond": 103,
+          "text": "Visionary Intelligence"
+        },
+        {
+          "sel": "h3.mt-6.max-w-[420px].text-[28px]",
+          "beyond": 103,
+          "text": "I am your Intelligence."
+        },
+        {
+          "sel": "p.mt-4.max-w-[440px].text-[15px]",
+          "beyond": 103,
+          "text": "Every finding on this page ends up here — the bot is where the research meets the learner."
+        },
+        {
+          "sel": "div.mt-8.flex.flex-wrap",
+          "beyond": 103,
+          "text": "Knows your journey Speaks your language Works across roles Built on evidence"
+        },
+        {
+          "sel": "span.rounded-full.border.border-white/15",
+          "beyond": 98,
+          "text": "Knows your journey"
+        },
+        {
+          "sel": "span.rounded-full.border.border-white/15",
+          "beyond": 103,
+          "text": "Speaks your language"
+        },
+        {
+          "sel": "span.rounded-full.border.border-white/15",
+          "beyond": 87,
+          "text": "Works across roles"
+        },
+        {
+          "sel": "span.rounded-full.border.border-white/15",
+          "beyond": 66,
+          "text": "Built on evidence"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 41,
+          "text": "Learn more"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 41,
+          "text": "Learn more"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 41,
+          "text": "Learn more"
+        },
+        {
+          "sel": "article.flex.gap-4",
+          "beyond": 77,
+          "text": "In the product The daily mentor plan Home is a decision, not a grid: one clear next step, "
+        },
+        {
+          "sel": "div.",
+          "beyond": 77,
+          "text": "In the product The daily mentor plan Home is a decision, not a grid: one clear next step, "
+        }
+      ]
+    },
+    {
+      "route": "/community",
+      "viewport": "320x720",
+      "path": "/community",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 102,
+          "text": "learning together."
+        },
+        {
+          "sel": "div.lg:sticky.lg:top-40.lg:self-start",
+          "beyond": 8,
+          "text": "For families and organizations Community visibility follows consent — families and institu"
+        },
+        {
+          "sel": "h3.mt-5.text-[28px].font-normal",
+          "beyond": 8,
+          "text": "For families and organizations"
+        },
+        {
+          "sel": "p.mt-4.max-w-[380px].text-[16px]",
+          "beyond": 8,
+          "text": "Community visibility follows consent — families and institutions see what their role allow"
+        },
+        {
+          "sel": "div.rounded-[30px].bg-[#f5f5f7].p-4",
+          "beyond": 8,
+          "text": "Consent-scoped visibility Parent and organization views render only what the learner's con"
+        }
+      ]
+    },
+    {
+      "route": "/updates",
+      "viewport": "320x720",
+      "path": "/updates",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 43,
+          "text": "Featured Languages & access One intelligence, every learner, in their language. Visionary’"
+        },
+        {
+          "sel": "div.flex.flex-wrap.items-center",
+          "beyond": 43,
+          "text": "Featured Languages & access"
+        },
+        {
+          "sel": "span.text-[14px].font-semibold.text-[#6e6e73]",
+          "beyond": 43,
+          "text": "Languages & access"
+        },
+        {
+          "sel": "#featured-title",
+          "beyond": 43,
+          "text": "One intelligence, every learner, in their language."
+        },
+        {
+          "sel": "div.mt-4.max-w-[560px]",
+          "beyond": 43,
+          "text": "Visionary’s language journeys run in English, Hindi, and Bengali today, and the team can r"
+        },
+        {
+          "sel": "p.text-[17px].leading-[1.6].text-[#6e6e73]",
+          "beyond": 43,
+          "text": "Visionary’s language journeys run in English, Hindi, and Bengali today, and the team can r"
+        },
+        {
+          "sel": "p.mt-6.text-[13px].tracking-[0.01em]",
+          "beyond": 43,
+          "text": "September 2026"
+        },
+        {
+          "sel": "a.mt-6.inline-flex.min-h-11",
+          "beyond": 43,
+          "text": "See how the loop works"
+        },
+        {
+          "sel": "div.flex.justify-center.lg:justify-end",
+          "beyond": 43,
+          "text": "The learning loop: Learn, Ask, Practice, Build"
+        },
+        {
+          "sel": "div.flex.h-[220px].w-full",
+          "beyond": 43,
+          "text": "The learning loop: Learn, Ask, Practice, Build"
+        },
+        {
+          "sel": "svg.[object.SVGAnimatedString]",
+          "beyond": 18,
+          "text": "The learning loop: Learn, Ask, Practice, Build"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 76,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 112,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 76,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 76,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 72,
+          "text": "August 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 39,
+          "text": "August 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 36,
+          "text": "July 2026"
+        },
+        {
+          "sel": "div.self-start.rounded-[20px].bg-white",
+          "beyond": 207,
+          "text": "Product updates New features, improvements, and important changes. Languages and access Ne"
+        },
+        {
+          "sel": "button.flex.w-full.items-center",
+          "beyond": 191,
+          "text": "Product updates New features, improvements, and important changes."
+        }
+      ]
+    },
+    {
+      "route": "/partners",
+      "viewport": "320x720",
+      "path": "/partners",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[640px]",
+          "beyond": 102,
+          "text": "Visionary partnerships Better learning, together. Education, technology, and local knowled"
+        },
+        {
+          "sel": "p.text-[#6e6e73]",
+          "beyond": 102,
+          "text": "Visionary partnerships"
+        },
+        {
+          "sel": "h1.mt-4.text-[48px].font-normal",
+          "beyond": 102,
+          "text": "Better learning, together."
+        },
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 102,
+          "text": "together."
+        },
+        {
+          "sel": "p.mt-6.max-w-[560px].text-[17px]",
+          "beyond": 102,
+          "text": "Education, technology, and local knowledge in one effort, measured by outcomes."
+        },
+        {
+          "sel": "div.mt-8.flex.flex-wrap",
+          "beyond": 102,
+          "text": "Discuss a partnership See how it works"
+        },
+        {
+          "sel": "p.mt-5.flex.items-center",
+          "beyond": 102,
+          "text": "Partnership enquiries receive a reply within 5 business days."
+        },
+        {
+          "sel": "div.relative.mx-auto.w-full",
+          "beyond": 102,
+          "text": "Reply within 5 business days"
+        },
+        {
+          "sel": "svg.[object.SVGAnimatedString]",
+          "beyond": 102,
+          "text": "Two partners meeting over a laptop"
+        },
+        {
+          "sel": "p.absolute.-bottom-5.left-6",
+          "beyond": 65,
+          "text": "Reply within 5 business days"
+        },
+        {
+          "sel": "div.w-full.shrink-0",
+          "beyond": 176,
+          "text": "Local context, real languages Language journeys run in English, Hindi, and Bengali today. "
+        },
+        {
+          "sel": "div.grid.items-center.gap-10",
+          "beyond": 176,
+          "text": "Local context, real languages Language journeys run in English, Hindi, and Bengali today. "
+        },
+        {
+          "sel": "div.flex.justify-center",
+          "beyond": 176,
+          "text": "Local context, real languages"
+        },
+        {
+          "sel": "svg.[object.SVGAnimatedString]",
+          "beyond": 176,
+          "text": "Local context, real languages"
+        },
+        {
+          "sel": "div.max-w-[520px]",
+          "beyond": 176,
+          "text": "Local context, real languages Language journeys run in English, Hindi, and Bengali today. "
+        },
+        {
+          "sel": "h3.text-[28px].font-normal.leading-[1.25]",
+          "beyond": 176,
+          "text": "Local context, real languages"
+        },
+        {
+          "sel": "p.mt-4.text-[16px].leading-[1.7]",
+          "beyond": 176,
+          "text": "Language journeys run in English, Hindi, and Bengali today. Regional partners help us see "
+        },
+        {
+          "sel": "div.w-full.shrink-0",
+          "beyond": 400,
+          "text": "Evidence over claims We study how people learn with Visionary and publish what we find. Pa"
+        },
+        {
+          "sel": "div.grid.items-center.gap-10",
+          "beyond": 400,
+          "text": "Evidence over claims We study how people learn with Visionary and publish what we find. Pa"
+        },
+        {
+          "sel": "div.flex.justify-center",
+          "beyond": 400,
+          "text": "Evidence over claims"
+        }
+      ]
+    },
+    {
+      "route": "/referral",
+      "viewport": "320x720",
+      "path": "/referral",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "article.flex.min-h-[300px].flex-col",
+          "beyond": 50,
+          "text": "Students and families The learning companion that keeps your place, with parent summaries "
+        },
+        {
+          "sel": "h3.mt-5.text-[17px].font-medium",
+          "beyond": 2,
+          "text": "Students and families"
+        },
+        {
+          "sel": "p.mt-2.flex-1.text-[14px]",
+          "beyond": 2,
+          "text": "The learning companion that keeps your place, with parent summaries shared with consent."
+        },
+        {
+          "sel": "div.mt-4.flex.flex-wrap",
+          "beyond": 2,
+          "text": "Open the student page or the parent page"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "Open the student page"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "or the parent page"
+        },
+        {
+          "sel": "article.flex.min-h-[300px].flex-col",
+          "beyond": 50,
+          "text": "Teachers Prepare, publish, and review classwork in the language the classroom speaks. Open"
+        },
+        {
+          "sel": "h3.mt-5.text-[17px].font-medium",
+          "beyond": 2,
+          "text": "Teachers"
+        },
+        {
+          "sel": "p.mt-2.flex-1.text-[14px]",
+          "beyond": 2,
+          "text": "Prepare, publish, and review classwork in the language the classroom speaks."
+        },
+        {
+          "sel": "div.mt-4.flex.flex-wrap",
+          "beyond": 2,
+          "text": "Open the teacher page or how it works"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "Open the teacher page"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "or how it works"
+        },
+        {
+          "sel": "article.flex.min-h-[300px].flex-col",
+          "beyond": 50,
+          "text": "Organizations Progress across the whole institution, never individual answers. Open the or"
+        },
+        {
+          "sel": "h3.mt-5.text-[17px].font-medium",
+          "beyond": 2,
+          "text": "Organizations"
+        },
+        {
+          "sel": "p.mt-2.flex-1.text-[14px]",
+          "beyond": 2,
+          "text": "Progress across the whole institution, never individual answers."
+        },
+        {
+          "sel": "div.mt-4.flex.flex-wrap",
+          "beyond": 2,
+          "text": "Open the organization page or the partner programme"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "Open the organization page"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "or the partner programme"
+        },
+        {
+          "sel": "div.",
+          "beyond": 75,
+          "text": "Ready to share? Copy the standard sign-up link. It opens Visionary registration. It contai"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 75,
+          "text": "Ready to share?"
+        }
+      ]
+    },
+    {
+      "route": "/privacy",
+      "viewport": "320x720",
+      "path": "/privacy",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 53,
+          "text": "01 Know what is involved Account, learning activity, device, and preference information, e"
+        },
+        {
+          "sel": "span.mt-5.flex.items-center",
+          "beyond": 5,
+          "text": "01 Know what is involved"
+        },
+        {
+          "sel": "span.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 5,
+          "text": "Account, learning activity, device, and preference information, explained by category."
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 53,
+          "text": "02 Understand who can see it Access depends on account role and the learning relationship "
+        },
+        {
+          "sel": "span.mt-5.flex.items-center",
+          "beyond": 5,
+          "text": "02 Understand who can see it"
+        },
+        {
+          "sel": "span.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 5,
+          "text": "Access depends on account role and the learning relationship — not a public profile."
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 53,
+          "text": "03 Choose what happens next Find the available settings and a clear route for privacy requ"
+        },
+        {
+          "sel": "span.mt-5.flex.items-center",
+          "beyond": 5,
+          "text": "03 Choose what happens next"
+        },
+        {
+          "sel": "span.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 5,
+          "text": "Find the available settings and a clear route for privacy requests."
+        },
+        {
+          "sel": "div.rounded-[20px].bg-white.p-6",
+          "beyond": 12,
+          "text": "Workspace and account context The email or identity details used to create or open a works"
+        },
+        {
+          "sel": "div.rounded-[20px].bg-white.p-6",
+          "beyond": 12,
+          "text": "Learning and content you provide Questions, materials, practice activity, progress records"
+        },
+        {
+          "sel": "div.rounded-[20px].bg-white.p-6",
+          "beyond": 12,
+          "text": "Device and technical details Basic browser, device, and Visionary may use basic browser, d"
+        },
+        {
+          "sel": "div.rounded-[20px].bg-white.p-6",
+          "beyond": 12,
+          "text": "Your preferences Choices such as language, accessibility, audio interaction, and whether o"
+        },
+        {
+          "sel": "div.",
+          "beyond": 9,
+          "text": "Maintain and improve Diagnose issues, understand service performance, and improve the expe"
+        },
+        {
+          "sel": "h3.text-[17px].font-medium",
+          "beyond": 9,
+          "text": "Maintain and improve"
+        },
+        {
+          "sel": "p.mt-1.5.max-w-[620px].text-[16px]",
+          "beyond": 9,
+          "text": "Diagnose issues, understand service performance, and improve the experience."
+        },
+        {
+          "sel": "div.",
+          "beyond": 29,
+          "text": "Communicate with you Service updates, and the email updates you choose to receive."
+        },
+        {
+          "sel": "h3.text-[17px].font-medium",
+          "beyond": 29,
+          "text": "Communicate with you"
+        },
+        {
+          "sel": "p.mt-1.5.max-w-[620px].text-[16px]",
+          "beyond": 29,
+          "text": "Service updates, and the email updates you choose to receive."
+        },
+        {
+          "sel": "div.rounded-[20px].bg-white.p-6",
+          "beyond": 46,
+          "text": "Review Inspect the personal workspace records saved in this browser."
+        }
+      ]
+    },
+    {
+      "route": "/terms",
+      "viewport": "320x720",
+      "path": "/terms",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 34,
+          "text": "Questions about these Terms? The team reads every message about how these rules apply. leg"
+        },
+        {
+          "sel": "p.text-[16px].font-medium",
+          "beyond": 34,
+          "text": "Questions about these Terms?"
+        },
+        {
+          "sel": "p.mt-0.5.text-[16px]",
+          "beyond": 34,
+          "text": "The team reads every message about how these rules apply."
+        },
+        {
+          "sel": "a.mt-1.5.inline-flex.min-h-11",
+          "beyond": 34,
+          "text": "legal@visionary.org.in"
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 53,
+          "text": "01 Know the rules The do's and don'ts that keep Visionary safe and useful for everyone."
+        },
+        {
+          "sel": "span.mt-5.flex.items-center",
+          "beyond": 5,
+          "text": "01 Know the rules"
+        },
+        {
+          "sel": "span.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 5,
+          "text": "The do's and don'ts that keep Visionary safe and useful for everyone."
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 53,
+          "text": "02 Understand your content You stay responsible for what you create, and for the rights to"
+        },
+        {
+          "sel": "span.mt-5.flex.items-center",
+          "beyond": 5,
+          "text": "02 Understand your content"
+        },
+        {
+          "sel": "span.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 5,
+          "text": "You stay responsible for what you create, and for the rights to it."
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 53,
+          "text": "03 See how plans work Billing, renewal, and cancellation follow what the Pricing page desc"
+        },
+        {
+          "sel": "span.mt-5.flex.items-center",
+          "beyond": 5,
+          "text": "03 See how plans work"
+        },
+        {
+          "sel": "span.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 5,
+          "text": "Billing, renewal, and cancellation follow what the Pricing page describes."
+        },
+        {
+          "sel": "span.",
+          "beyond": 6,
+          "text": "Attempt to gain unauthorized access to Visionary or another user's account or information."
+        },
+        {
+          "sel": "span.",
+          "beyond": 5,
+          "text": "Take responsibility for activity that occurs through your account."
+        },
+        {
+          "sel": "span.",
+          "beyond": 25,
+          "text": "Tell us when you believe your account has been compromised."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 76,
+          "text": "Privacy policy Your learning is personal."
+        },
+        {
+          "sel": "div.flex.items-center.gap-3",
+          "beyond": 28,
+          "text": "Privacy policy"
+        },
+        {
+          "sel": "span.text-[16px].font-medium",
+          "beyond": 28,
+          "text": "Privacy policy"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.6]",
+          "beyond": 28,
+          "text": "Your learning is personal."
+        }
+      ]
+    },
+    {
+      "route": "/cookies",
+      "viewport": "320x720",
+      "path": "/cookies",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 136,
+          "text": "hello@visionary.org.in"
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 76,
+          "text": "Privacy policy Your learning is personal."
+        },
+        {
+          "sel": "div.flex.items-center.gap-3",
+          "beyond": 28,
+          "text": "Privacy policy"
+        },
+        {
+          "sel": "span.text-[16px].font-medium",
+          "beyond": 28,
+          "text": "Privacy policy"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.6]",
+          "beyond": 28,
+          "text": "Your learning is personal."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 76,
+          "text": "Terms of service Clear rules, written to be understood."
+        },
+        {
+          "sel": "div.flex.items-center.gap-3",
+          "beyond": 28,
+          "text": "Terms of service"
+        },
+        {
+          "sel": "span.text-[16px].font-medium",
+          "beyond": 28,
+          "text": "Terms of service"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.6]",
+          "beyond": 28,
+          "text": "Clear rules, written to be understood."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 76,
+          "text": "Security How your information is protected."
+        },
+        {
+          "sel": "div.flex.items-center.gap-3",
+          "beyond": 28,
+          "text": "Security"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.6]",
+          "beyond": 28,
+          "text": "How your information is protected."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 76,
+          "text": "Accessibility Built for every kind of learner."
+        },
+        {
+          "sel": "div.flex.items-center.gap-3",
+          "beyond": 28,
+          "text": "Accessibility"
+        },
+        {
+          "sel": "span.text-[16px].font-medium",
+          "beyond": 28,
+          "text": "Accessibility"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.6]",
+          "beyond": 28,
+          "text": "Built for every kind of learner."
+        }
+      ]
+    },
+    {
+      "route": "/safety",
+      "viewport": "320x720",
+      "path": "/safety",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 35,
+          "text": "for every learner."
+        },
+        {
+          "sel": "div.flex.min-h-[280px].flex-col",
+          "beyond": 50,
+          "text": "For parents Consent-scoped progress summaries Parents and guardians follow the journey wit"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 2,
+          "text": "For parents"
+        },
+        {
+          "sel": "h3.mt-1.5.text-[17px].font-medium",
+          "beyond": 2,
+          "text": "Consent-scoped progress summaries"
+        },
+        {
+          "sel": "p.mt-2.flex-1.text-[14px]",
+          "beyond": 2,
+          "text": "Parents and guardians follow the journey with confidence: summaries shaped by consent, wit"
+        },
+        {
+          "sel": "div.mt-4",
+          "beyond": 2,
+          "text": "See parent features"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "See parent features"
+        },
+        {
+          "sel": "div.flex.min-h-[280px].flex-col",
+          "beyond": 50,
+          "text": "For families Boundaries for younger learners Set boundaries that shape what younger learne"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 2,
+          "text": "For families"
+        },
+        {
+          "sel": "h3.mt-1.5.text-[17px].font-medium",
+          "beyond": 2,
+          "text": "Boundaries for younger learners"
+        },
+        {
+          "sel": "p.mt-2.flex-1.text-[14px]",
+          "beyond": 2,
+          "text": "Set boundaries that shape what younger learners see and do, without changing the default s"
+        },
+        {
+          "sel": "div.mt-4",
+          "beyond": 2,
+          "text": "Read the privacy policy"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "Read the privacy policy"
+        },
+        {
+          "sel": "div.flex.min-h-[280px].flex-col",
+          "beyond": 50,
+          "text": "For organizations Aggregate insights, never individual answers Institutions see patterns a"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 2,
+          "text": "For organizations"
+        },
+        {
+          "sel": "h3.mt-1.5.text-[17px].font-medium",
+          "beyond": 2,
+          "text": "Aggregate insights, never individual answers"
+        },
+        {
+          "sel": "p.mt-2.flex-1.text-[14px]",
+          "beyond": 2,
+          "text": "Institutions see patterns across cohorts to guide support. An individual learner's answers"
+        },
+        {
+          "sel": "div.mt-4",
+          "beyond": 2,
+          "text": "See organization features"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 2,
+          "text": "See organization features"
+        },
+        {
+          "sel": "div.flex.min-h-[340px].flex-col",
+          "beyond": 39,
+          "text": "Flag One tap to flag anything Every answer can be flagged in one tap, from any persona. Fl"
+        }
+      ]
+    },
+    {
+      "route": "/security",
+      "viewport": "320x720",
+      "path": "/security",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 59,
+          "text": "Found a security issue? A clear description and the affected page is all we need. security"
+        },
+        {
+          "sel": "p.text-[16px].font-medium",
+          "beyond": 59,
+          "text": "Found a security issue?"
+        },
+        {
+          "sel": "p.mt-0.5.text-[16px]",
+          "beyond": 59,
+          "text": "A clear description and the affected page is all we need."
+        },
+        {
+          "sel": "a.mt-1.5.inline-flex.min-h-11",
+          "beyond": 59,
+          "text": "security@visionary.org.in"
+        },
+        {
+          "sel": "div.flex.h-full.flex-col",
+          "beyond": 7,
+          "text": "Privacy Understand your data See what information Visionary collects and how Visionary use"
+        },
+        {
+          "sel": "div.flex.h-full.flex-col",
+          "beyond": 7,
+          "text": "Account Protect your account Keep your account credentials secure and use the account cont"
+        },
+        {
+          "sel": "div.",
+          "beyond": 46,
+          "text": "Protect information Use appropriate technical and organizational measures to protect infor"
+        },
+        {
+          "sel": "h3.text-[17px].font-normal",
+          "beyond": 46,
+          "text": "Protect information"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.7]",
+          "beyond": 46,
+          "text": "Use appropriate technical and organizational measures to protect information handled by th"
+        },
+        {
+          "sel": "div.",
+          "beyond": 10,
+          "text": "Limit access Restrict access to systems and information according to legitimate operationa"
+        },
+        {
+          "sel": "h3.text-[17px].font-normal",
+          "beyond": 10,
+          "text": "Limit access"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.7]",
+          "beyond": 10,
+          "text": "Restrict access to systems and information according to legitimate operational needs."
+        },
+        {
+          "sel": "div.",
+          "beyond": 18,
+          "text": "Respond to problems Investigate reported security concerns and improve the service when we"
+        },
+        {
+          "sel": "h3.text-[17px].font-normal",
+          "beyond": 18,
+          "text": "Respond to problems"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.7]",
+          "beyond": 18,
+          "text": "Investigate reported security concerns and improve the service when weaknesses are found."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 3,
+          "text": "Privacy policy Your learning is personal."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 3,
+          "text": "Terms of service Clear rules, written to be understood."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 3,
+          "text": "Cookie policy Essential cookies only."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 3,
+          "text": "Safety Guardrails for every learner."
+        }
+      ]
+    },
+    {
+      "route": "/accessibility",
+      "viewport": "320x720",
+      "path": "/accessibility",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 2,
+          "text": "Clear structure Information stays structured when people enlarge text, zoom the page, or c"
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 2,
+          "text": "Readable contrast Clear hierarchy, readable typography, sufficient contrast, and meaningfu"
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 2,
+          "text": "Zoom & text scaling Works with browser and operating-system features: zoom, text scaling, "
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 2,
+          "text": "Reduced motion Movement respects the reduced-motion setting you already chose on your devi"
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 37,
+          "text": "Ask with your voice Voice interaction provides another path into a question, explanation, "
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 37,
+          "text": "Hear information Spoken output makes explanations easier to follow when reading is difficu"
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 37,
+          "text": "Keep the conversation going A conversational interface reduces the need to translate a tho"
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 37,
+          "text": "Availability, honestly Voice, audio, and caption availability can vary by device, browser,"
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 55,
+          "text": "Three languages today Language journeys run in English, Hindi, and Bengali, with more on t"
+        },
+        {
+          "sel": "h3.text-[16px].font-medium.leading-[1.4]",
+          "beyond": 7,
+          "text": "Three languages today"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 7,
+          "text": "Language journeys run in English, Hindi, and Bengali, with more on the roadmap."
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 55,
+          "text": "Plain language The interface favors clear, understandable wording over jargon."
+        },
+        {
+          "sel": "h3.text-[16px].font-medium.leading-[1.4]",
+          "beyond": 7,
+          "text": "Plain language"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 7,
+          "text": "The interface favors clear, understandable wording over jargon."
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 55,
+          "text": "Human-reviewed answers One tap on any answer flags it for human review, usually within 24 "
+        },
+        {
+          "sel": "h3.text-[16px].font-medium.leading-[1.4]",
+          "beyond": 7,
+          "text": "Human-reviewed answers"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 7,
+          "text": "One tap on any answer flags it for human review, usually within 24 hours."
+        },
+        {
+          "sel": "article.flex.min-h-[190px].flex-col",
+          "beyond": 55,
+          "text": "Choice of mode Read, hear, speak, or navigate: accessibility increases choice instead of f"
+        },
+        {
+          "sel": "h3.text-[16px].font-medium.leading-[1.4]",
+          "beyond": 7,
+          "text": "Choice of mode"
+        },
+        {
+          "sel": "p.mt-2.text-[14px].leading-[1.65]",
+          "beyond": 7,
+          "text": "Read, hear, speak, or navigate: accessibility increases choice instead of forcing one styl"
+        }
+      ]
+    },
+    {
+      "route": "/careers",
+      "viewport": "320x720",
+      "path": "/careers",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 117,
+          "text": "future of learning."
+        },
+        {
+          "sel": "article.rounded-[20px].bg-white.p-6",
+          "beyond": 72,
+          "text": "Meaningful problems Work tied to helping learners get through difficult ideas and apply wh"
+        },
+        {
+          "sel": "h3.mt-5.text-[19px].font-medium",
+          "beyond": 24,
+          "text": "Meaningful problems"
+        },
+        {
+          "sel": "p.mt-2.text-[16px].leading-[1.65]",
+          "beyond": 24,
+          "text": "Work tied to helping learners get through difficult ideas and apply what they learn."
+        },
+        {
+          "sel": "article.rounded-[20px].bg-white.p-6",
+          "beyond": 72,
+          "text": "Early-stage impact Your decisions ship to real learners quickly, with visible effect."
+        },
+        {
+          "sel": "h3.mt-5.text-[19px].font-medium",
+          "beyond": 24,
+          "text": "Early-stage impact"
+        },
+        {
+          "sel": "p.mt-2.text-[16px].leading-[1.65]",
+          "beyond": 24,
+          "text": "Your decisions ship to real learners quickly, with visible effect."
+        },
+        {
+          "sel": "article.rounded-[20px].bg-white.p-6",
+          "beyond": 72,
+          "text": "Learning-centered Product, design, and engineering work shaped by teaching and curriculum "
+        },
+        {
+          "sel": "h3.mt-5.text-[19px].font-medium",
+          "beyond": 24,
+          "text": "Learning-centered"
+        },
+        {
+          "sel": "p.mt-2.text-[16px].leading-[1.65]",
+          "beyond": 24,
+          "text": "Product, design, and engineering work shaped by teaching and curriculum expertise."
+        },
+        {
+          "sel": "div.",
+          "beyond": 69,
+          "text": "A fair process starts with clarity."
+        },
+        {
+          "sel": "h2.font-semibold.tracking-[-0.009em].leading-[1.06]",
+          "beyond": 69,
+          "text": "A fair process starts with clarity."
+        },
+        {
+          "sel": "div.space-y-4.text-[16px].leading-[1.65]",
+          "beyond": 69,
+          "text": "We want career information and conversations with our team to be clear and respectful. Thi"
+        },
+        {
+          "sel": "p.",
+          "beyond": 69,
+          "text": "We want career information and conversations with our team to be clear and respectful. Thi"
+        },
+        {
+          "sel": "p.",
+          "beyond": 69,
+          "text": "If you need an accessible format or an adjustment to a hiring conversation, email careers@"
+        },
+        {
+          "sel": "a.relative.after:absolute.after:-inset-y-3",
+          "beyond": 69,
+          "text": "careers@visionary.org.in"
+        },
+        {
+          "sel": "p.",
+          "beyond": 69,
+          "text": "For accessibility information about the product, visit Visionary accessibility."
+        },
+        {
+          "sel": "a.relative.after:absolute.after:-inset-y-3",
+          "beyond": 42,
+          "text": "Visionary accessibility"
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "viewport": "320x720",
+      "path": "/contact",
+      "vw": 320,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 60,
+          "text": "Help center Your guide to Visionary"
+        },
+        {
+          "sel": "span.mt-5.block.apple-eyebrow",
+          "beyond": 12,
+          "text": "Help center"
+        },
+        {
+          "sel": "h3.mt-1.5.max-w-[220px].text-[17px]",
+          "beyond": 12,
+          "text": "Your guide to Visionary"
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 60,
+          "text": "Product The learning loop: Learn, Ask, Practice, Build"
+        },
+        {
+          "sel": "span.mt-5.block.apple-eyebrow",
+          "beyond": 12,
+          "text": "Product"
+        },
+        {
+          "sel": "h3.mt-1.5.max-w-[220px].text-[17px]",
+          "beyond": 12,
+          "text": "The learning loop: Learn, Ask, Practice, Build"
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 60,
+          "text": "Community Class communities and discussions"
+        },
+        {
+          "sel": "span.mt-5.block.apple-eyebrow",
+          "beyond": 12,
+          "text": "Community"
+        },
+        {
+          "sel": "h3.mt-1.5.max-w-[220px].text-[17px]",
+          "beyond": 12,
+          "text": "Class communities and discussions"
+        },
+        {
+          "sel": "a.group.relative.flex",
+          "beyond": 60,
+          "text": "Safety Safety for younger learners"
+        },
+        {
+          "sel": "span.mt-5.block.apple-eyebrow",
+          "beyond": 12,
+          "text": "Safety"
+        },
+        {
+          "sel": "h3.mt-1.5.max-w-[220px].text-[17px]",
+          "beyond": 12,
+          "text": "Safety for younger learners"
+        },
+        {
+          "sel": "article.flex.min-h-[262px].flex-col",
+          "beyond": 53,
+          "text": "Product and account questions A question about Visionary? For general questions about the "
+        },
+        {
+          "sel": "span.mt-5.block.apple-eyebrow",
+          "beyond": 5,
+          "text": "Product and account questions"
+        },
+        {
+          "sel": "h3.mt-1.5.text-[17px].font-medium",
+          "beyond": 5,
+          "text": "A question about Visionary?"
+        },
+        {
+          "sel": "p.mt-2.flex-1.text-[14px]",
+          "beyond": 5,
+          "text": "For general questions about the product, your account, or getting started."
+        },
+        {
+          "sel": "a.group.inline-flex.min-h-11",
+          "beyond": 5,
+          "text": "hello@visionary.org.in"
+        },
+        {
+          "sel": "article.flex.min-h-[262px].flex-col",
+          "beyond": 53,
+          "text": "Schools and organizations Discuss an organization For schools, colleges, coaching teams, a"
+        },
+        {
+          "sel": "span.mt-5.block.apple-eyebrow",
+          "beyond": 5,
+          "text": "Schools and organizations"
+        },
+        {
+          "sel": "h3.mt-1.5.text-[17px].font-medium",
+          "beyond": 5,
+          "text": "Discuss an organization"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "viewport": "390x844",
+      "path": "/",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[980px]",
+          "beyond": 28,
+          "text": "One intelligence for students. One intelligence, for students, teachers, parents, professi"
+        },
+        {
+          "sel": "h1.m-0",
+          "beyond": 28,
+          "text": "One intelligence for students. One intelligence, for students, teachers, parents, professi"
+        },
+        {
+          "sel": "span.font-semibold.tracking-[-0.0021em].leading-[1]",
+          "beyond": 28,
+          "text": "One intelligence for students."
+        },
+        {
+          "sel": "span.block.text-balance.tracking-[-0.00028em]",
+          "beyond": 28,
+          "text": "One intelligence"
+        },
+        {
+          "sel": "span.block.overflow-hidden",
+          "beyond": 28,
+          "text": "for students."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.block",
+          "beyond": 28,
+          "text": "for students."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 41,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 41,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 15,
+          "text": "Your learning stays yours."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 15,
+          "text": "Your questions, conversations, ideas, and progress are personal. Visionary keeps it that w"
+        },
+        {
+          "sel": "p.text-balance.mt-[var(--gap-title-sub-display)].max-w-[34ch]",
+          "beyond": 15,
+          "text": "Your questions, conversations, ideas, and progress are personal. Visionary keeps it that w"
+        },
+        {
+          "sel": "a.mt-3.relative.after:absolute",
+          "beyond": 43,
+          "text": "About Accessibility"
+        }
+      ]
+    },
+    {
+      "route": "/student",
+      "viewport": "390x844",
+      "path": "/student",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 3,
+          "text": "Learning, Learning, to master, to build. Every concept you understand becomes the foundati"
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 3,
+          "text": "Learning, Learning, to master, to build."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 3,
+          "text": "Learning,"
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 3,
+          "text": "Every concept you understand becomes the foundation for the next."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 41,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 41,
+          "text": "One intelligence."
+        }
+      ]
+    },
+    {
+      "route": "/teacher",
+      "viewport": "390x844",
+      "path": "/teacher",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 6,
+          "text": "Teaching. Teaching, to grow, to reach. One class, many minds. See who is with you before t"
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 6,
+          "text": "Teaching. Teaching, to grow, to reach."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 6,
+          "text": "Teaching."
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 6,
+          "text": "One class, many minds. See who is with you before the next bell."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 41,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 41,
+          "text": "One intelligence."
+        }
+      ]
+    },
+    {
+      "route": "/parent",
+      "viewport": "390x844",
+      "path": "/parent",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[860px]",
+          "beyond": 22,
+          "text": "Parenting. Parenting, to see, to help. Know what your child is learning before the report "
+        },
+        {
+          "sel": "h1.category-hero-statement.m-0",
+          "beyond": 22,
+          "text": "Parenting. Parenting, to see, to help."
+        },
+        {
+          "sel": "span.apple-anim.accent-gradient.inline-block",
+          "beyond": 22,
+          "text": "Parenting."
+        },
+        {
+          "sel": "p.category-hero-tagline.text-balance.mt-4",
+          "beyond": 22,
+          "text": "Know what your child is learning before the report card."
+        },
+        {
+          "sel": "div.reveal-item",
+          "beyond": 41,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 41,
+          "text": "One intelligence."
+        }
+      ]
+    },
+    {
+      "route": "/professional",
+      "viewport": "390x844",
+      "path": "/professional",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.reveal-item",
+          "beyond": 41,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 41,
+          "text": "One intelligence."
+        }
+      ]
+    },
+    {
+      "route": "/organization",
+      "viewport": "390x844",
+      "path": "/organization",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.reveal-item",
+          "beyond": 41,
+          "text": "One intelligence."
+        },
+        {
+          "sel": "span.accent-gradient-on-dark",
+          "beyond": 41,
+          "text": "One intelligence."
+        }
+      ]
+    },
+    {
+      "route": "/how-it-works",
+      "viewport": "390x844",
+      "path": "/how-it-works",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 38,
+          "text": "Visionary"
+        },
+        {
+          "sel": "div.",
+          "beyond": 49,
+          "text": "Student Learn with a companion that keeps your place."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 49,
+          "text": "Student"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 49,
+          "text": "Learn with a companion that keeps your place."
+        },
+        {
+          "sel": "div.",
+          "beyond": 26,
+          "text": "Teacher See every learner and teach in your language."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 26,
+          "text": "Teacher"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 26,
+          "text": "See every learner and teach in your language."
+        },
+        {
+          "sel": "div.",
+          "beyond": 58,
+          "text": "Parent Follow your child's journey with confidence."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 58,
+          "text": "Parent"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 58,
+          "text": "Follow your child's journey with confidence."
+        },
+        {
+          "sel": "div.",
+          "beyond": 67,
+          "text": "Professional Grow the skills your work demands next."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 67,
+          "text": "Professional"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 67,
+          "text": "Grow the skills your work demands next."
+        },
+        {
+          "sel": "div.",
+          "beyond": 79,
+          "text": "Organization Roll out learning across your institution."
+        },
+        {
+          "sel": "p.font-medium.tracking-[0].text-[14px]",
+          "beyond": 79,
+          "text": "Organization"
+        },
+        {
+          "sel": "p.mt-1.text-[12px].tracking-[0]",
+          "beyond": 79,
+          "text": "Roll out learning across your institution."
+        },
+        {
+          "sel": "span.rounded-full.border.px-4",
+          "beyond": 29,
+          "text": "Practise"
+        },
+        {
+          "sel": "span.rounded-full.border.px-4",
+          "beyond": 223,
+          "text": "Continue"
+        },
+        {
+          "sel": "span.rounded-full.border.px-3",
+          "beyond": 42,
+          "text": "Ask"
+        },
+        {
+          "sel": "span.rounded-full.border.px-3",
+          "beyond": 144,
+          "text": "Try"
+        }
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "390x844",
+      "path": "/help",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": []
+    },
+    {
+      "route": "/pricing",
+      "viewport": "390x844",
+      "path": "/pricing",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 54,
+          "text": "FAQ Questions about pricing, answered."
+        },
+        {
+          "sel": "p.text-[18px].font-medium",
+          "beyond": 54,
+          "text": "FAQ"
+        },
+        {
+          "sel": "h2.mt-[var(--gap-eyebrow-title-display)].max-w-[24ch].text-balance",
+          "beyond": 54,
+          "text": "Questions about pricing, answered."
+        },
+        {
+          "sel": "div.border-t",
+          "beyond": 54,
+          "text": "Can I start free? Can I switch plans later? What happens to my memory if I downgrade? Do y"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 54,
+          "text": "Can I start free?"
+        },
+        {
+          "sel": "#pricing-faq-question-0",
+          "beyond": 54,
+          "text": "Can I start free?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 54,
+          "text": "Can I switch plans later?"
+        },
+        {
+          "sel": "#pricing-faq-question-1",
+          "beyond": 54,
+          "text": "Can I switch plans later?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 54,
+          "text": "What happens to my memory if I downgrade?"
+        },
+        {
+          "sel": "#pricing-faq-question-2",
+          "beyond": 54,
+          "text": "What happens to my memory if I downgrade?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 54,
+          "text": "Do you offer education discounts?"
+        },
+        {
+          "sel": "#pricing-faq-question-3",
+          "beyond": 54,
+          "text": "Do you offer education discounts?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 54,
+          "text": "How does Family privacy work?"
+        },
+        {
+          "sel": "#pricing-faq-question-4",
+          "beyond": 54,
+          "text": "How does Family privacy work?"
+        },
+        {
+          "sel": "div.border-b",
+          "beyond": 54,
+          "text": "How does Institution billing work?"
+        },
+        {
+          "sel": "#pricing-faq-question-5",
+          "beyond": 54,
+          "text": "How does Institution billing work?"
+        }
+      ]
+    },
+    {
+      "route": "/download",
+      "viewport": "390x844",
+      "path": "/download",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 38,
+          "text": "Visionary"
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "viewport": "390x844",
+      "path": "/about",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.flex.w-max.shrink-0",
+          "beyond": 897,
+          "text": "Parents Professionals Organizations Students Teachers Parents Professionals"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 953,
+          "text": "Parents"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 889,
+          "text": "Parents"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 625,
+          "text": "Professionals"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 566,
+          "text": "Professionals"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 295,
+          "text": "Organizations"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 241,
+          "text": "Organizations"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 255,
+          "text": "Teachers"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 201,
+          "text": "Teachers"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 585,
+          "text": "Parents"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 526,
+          "text": "Parents"
+        },
+        {
+          "sel": "a.group.relative.mr-5",
+          "beyond": 913,
+          "text": "Professionals"
+        },
+        {
+          "sel": "span.text-[24px].font-medium.leading-[1.25]",
+          "beyond": 849,
+          "text": "Professionals"
+        },
+        {
+          "sel": "h2.max-w-[760px].text-[40px].font-normal",
+          "beyond": 226,
+          "text": "Understanding should open the next door."
+        },
+        {
+          "sel": "p.max-w-[480px].pb-1.text-[17px]",
+          "beyond": 226,
+          "text": "People move between classrooms, homes, work, and new ambitions. Too often, what they have "
+        },
+        {
+          "sel": "div.flex.min-h-[320px].flex-col",
+          "beyond": 175,
+          "text": "Our mission \" Build AI intelligence for anyone, anywhere, from student to organization, in"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 111,
+          "text": "Our mission"
+        },
+        {
+          "sel": "span.mt-8.select-none.text-[88px]",
+          "beyond": 111,
+          "text": "\""
+        },
+        {
+          "sel": "p.max-w-[760px].text-[clamp(28px,2.78vw,40px)].font-normal",
+          "beyond": 111,
+          "text": "Build AI intelligence for anyone, anywhere, from student to organization, in India's nativ"
+        },
+        {
+          "sel": "p.mt-10.text-[14px].text-[#1d1d1f]",
+          "beyond": 111,
+          "text": "Visionary · the mission we build toward"
+        }
+      ]
+    },
+    {
+      "route": "/research",
+      "viewport": "390x844",
+      "path": "/research",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 113,
+          "text": "Building the mentor intelligence. The product contract is simple to say and hard to do: on"
+        },
+        {
+          "sel": "h2.font-semibold.tracking-[-0.009em].leading-[1.06]",
+          "beyond": 113,
+          "text": "Building the mentor intelligence."
+        },
+        {
+          "sel": "div.mt-4.max-w-[520px]",
+          "beyond": 113,
+          "text": "The product contract is simple to say and hard to do: one identity across five roles, one "
+        },
+        {
+          "sel": "p.text-[16px].leading-[1.75].text-[#6e6e73]",
+          "beyond": 113,
+          "text": "The product contract is simple to say and hard to do: one identity across five roles, one "
+        },
+        {
+          "sel": "div.relative.overflow-hidden.rounded-[30px]",
+          "beyond": 113,
+          "text": "Visionary Intelligence I am your Intelligence. Every finding on this page ends up here — t"
+        },
+        {
+          "sel": "div.flex.items-center.gap-8",
+          "beyond": 33,
+          "text": "Visionary Intelligence I am your Intelligence. Every finding on this page ends up here — t"
+        },
+        {
+          "sel": "div.min-w-0.flex-1",
+          "beyond": 33,
+          "text": "Visionary Intelligence I am your Intelligence. Every finding on this page ends up here — t"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-white/60",
+          "beyond": 33,
+          "text": "Visionary Intelligence"
+        },
+        {
+          "sel": "h3.mt-6.max-w-[420px].text-[28px]",
+          "beyond": 33,
+          "text": "I am your Intelligence."
+        },
+        {
+          "sel": "p.mt-4.max-w-[440px].text-[15px]",
+          "beyond": 33,
+          "text": "Every finding on this page ends up here — the bot is where the research meets the learner."
+        },
+        {
+          "sel": "div.mt-8.flex.flex-wrap",
+          "beyond": 33,
+          "text": "Knows your journey Speaks your language Works across roles Built on evidence"
+        },
+        {
+          "sel": "span.rounded-full.border.border-white/15",
+          "beyond": 28,
+          "text": "Knows your journey"
+        },
+        {
+          "sel": "span.rounded-full.border.border-white/15",
+          "beyond": 33,
+          "text": "Speaks your language"
+        },
+        {
+          "sel": "span.rounded-full.border.border-white/15",
+          "beyond": 17,
+          "text": "Works across roles"
+        },
+        {
+          "sel": "article.flex.gap-4",
+          "beyond": 7,
+          "text": "In the product The daily mentor plan Home is a decision, not a grid: one clear next step, "
+        },
+        {
+          "sel": "div.",
+          "beyond": 7,
+          "text": "In the product The daily mentor plan Home is a decision, not a grid: one clear next step, "
+        },
+        {
+          "sel": "h4.mt-1.5.text-[17px].font-semibold",
+          "beyond": 7,
+          "text": "The daily mentor plan"
+        },
+        {
+          "sel": "p.mt-1.text-[14px].leading-[1.6]",
+          "beyond": 7,
+          "text": "Home is a decision, not a grid: one clear next step, chosen from classwork, activity, and "
+        },
+        {
+          "sel": "article.flex.gap-4",
+          "beyond": 7,
+          "text": "In the product Exact session resume A lesson interrupted by a refresh or a language change"
+        },
+        {
+          "sel": "div.",
+          "beyond": 7,
+          "text": "In the product Exact session resume A lesson interrupted by a refresh or a language change"
+        }
+      ]
+    },
+    {
+      "route": "/community",
+      "viewport": "390x844",
+      "path": "/community",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 32,
+          "text": "learning together."
+        }
+      ]
+    },
+    {
+      "route": "/updates",
+      "viewport": "390x844",
+      "path": "/updates",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 6,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 42,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 6,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 6,
+          "text": "September 2026"
+        },
+        {
+          "sel": "span.text-[12px].tracking-[0.01em].text-[#86868b]",
+          "beyond": 2,
+          "text": "August 2026"
+        },
+        {
+          "sel": "div.self-start.rounded-[20px].bg-white",
+          "beyond": 137,
+          "text": "Product updates New features, improvements, and important changes. Languages and access Ne"
+        },
+        {
+          "sel": "button.flex.w-full.items-center",
+          "beyond": 121,
+          "text": "Product updates New features, improvements, and important changes."
+        },
+        {
+          "sel": "span.min-w-0.flex-1",
+          "beyond": 9,
+          "text": "Product updates New features, improvements, and important changes."
+        },
+        {
+          "sel": "span.block.text-[17px].font-semibold",
+          "beyond": 9,
+          "text": "Product updates"
+        },
+        {
+          "sel": "span.mt-1.block.text-[13px]",
+          "beyond": 9,
+          "text": "New features, improvements, and important changes."
+        },
+        {
+          "sel": "button.flex.w-full.items-center",
+          "beyond": 121,
+          "text": "Languages and access New language experiences and accessibility improvements."
+        },
+        {
+          "sel": "span.min-w-0.flex-1",
+          "beyond": 9,
+          "text": "Languages and access New language experiences and accessibility improvements."
+        },
+        {
+          "sel": "span.block.text-[17px].font-semibold",
+          "beyond": 9,
+          "text": "Languages and access"
+        },
+        {
+          "sel": "span.mt-1.block.text-[13px]",
+          "beyond": 9,
+          "text": "New language experiences and accessibility improvements."
+        },
+        {
+          "sel": "button.flex.w-full.items-center",
+          "beyond": 121,
+          "text": "Research and learning Findings and thinking behind the product."
+        },
+        {
+          "sel": "span.min-w-0.flex-1",
+          "beyond": 9,
+          "text": "Research and learning Findings and thinking behind the product."
+        },
+        {
+          "sel": "span.block.text-[17px].font-semibold",
+          "beyond": 9,
+          "text": "Research and learning"
+        },
+        {
+          "sel": "span.mt-1.block.text-[13px]",
+          "beyond": 9,
+          "text": "Findings and thinking behind the product."
+        },
+        {
+          "sel": "button.flex.w-full.items-center",
+          "beyond": 121,
+          "text": "Community and events Community stories, practical guidance, and ways to participate."
+        },
+        {
+          "sel": "span.min-w-0.flex-1",
+          "beyond": 9,
+          "text": "Community and events Community stories, practical guidance, and ways to participate."
+        }
+      ]
+    },
+    {
+      "route": "/partners",
+      "viewport": "390x844",
+      "path": "/partners",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.max-w-[640px]",
+          "beyond": 32,
+          "text": "Visionary partnerships Better learning, together. Education, technology, and local knowled"
+        },
+        {
+          "sel": "p.text-[#6e6e73]",
+          "beyond": 32,
+          "text": "Visionary partnerships"
+        },
+        {
+          "sel": "h1.mt-4.text-[48px].font-normal",
+          "beyond": 32,
+          "text": "Better learning, together."
+        },
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 32,
+          "text": "together."
+        },
+        {
+          "sel": "p.mt-6.max-w-[560px].text-[17px]",
+          "beyond": 32,
+          "text": "Education, technology, and local knowledge in one effort, measured by outcomes."
+        },
+        {
+          "sel": "div.mt-8.flex.flex-wrap",
+          "beyond": 32,
+          "text": "Discuss a partnership See how it works"
+        },
+        {
+          "sel": "p.mt-5.flex.items-center",
+          "beyond": 32,
+          "text": "Partnership enquiries receive a reply within 5 business days."
+        },
+        {
+          "sel": "div.relative.mx-auto.w-full",
+          "beyond": 32,
+          "text": "Reply within 5 business days"
+        },
+        {
+          "sel": "svg.[object.SVGAnimatedString]",
+          "beyond": 32,
+          "text": "Two partners meeting over a laptop"
+        },
+        {
+          "sel": "div.w-full.shrink-0",
+          "beyond": 246,
+          "text": "Local context, real languages Language journeys run in English, Hindi, and Bengali today. "
+        },
+        {
+          "sel": "div.grid.items-center.gap-10",
+          "beyond": 246,
+          "text": "Local context, real languages Language journeys run in English, Hindi, and Bengali today. "
+        },
+        {
+          "sel": "div.flex.justify-center",
+          "beyond": 246,
+          "text": "Local context, real languages"
+        },
+        {
+          "sel": "svg.[object.SVGAnimatedString]",
+          "beyond": 219,
+          "text": "Local context, real languages"
+        },
+        {
+          "sel": "div.max-w-[520px]",
+          "beyond": 246,
+          "text": "Local context, real languages Language journeys run in English, Hindi, and Bengali today. "
+        },
+        {
+          "sel": "h3.text-[28px].font-normal.leading-[1.25]",
+          "beyond": 246,
+          "text": "Local context, real languages"
+        },
+        {
+          "sel": "p.mt-4.text-[16px].leading-[1.7]",
+          "beyond": 246,
+          "text": "Language journeys run in English, Hindi, and Bengali today. Regional partners help us see "
+        },
+        {
+          "sel": "div.w-full.shrink-0",
+          "beyond": 540,
+          "text": "Evidence over claims We study how people learn with Visionary and publish what we find. Pa"
+        },
+        {
+          "sel": "div.grid.items-center.gap-10",
+          "beyond": 540,
+          "text": "Evidence over claims We study how people learn with Visionary and publish what we find. Pa"
+        },
+        {
+          "sel": "div.flex.justify-center",
+          "beyond": 540,
+          "text": "Evidence over claims"
+        },
+        {
+          "sel": "svg.[object.SVGAnimatedString]",
+          "beyond": 513,
+          "text": "Evidence over claims"
+        }
+      ]
+    },
+    {
+      "route": "/referral",
+      "viewport": "390x844",
+      "path": "/referral",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 5,
+          "text": "Ready to share? Copy the standard sign-up link. It opens Visionary registration. It contai"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 5,
+          "text": "Ready to share?"
+        },
+        {
+          "sel": "#share-title",
+          "beyond": 5,
+          "text": "Copy the standard sign-up link."
+        },
+        {
+          "sel": "p.mt-4.max-w-[480px].text-[16px]",
+          "beyond": 5,
+          "text": "It opens Visionary registration. It contains no personal referral code and does not tell V"
+        },
+        {
+          "sel": "p.mt-6.flex.items-center",
+          "beyond": 5,
+          "text": "Works for every persona, no account needed to copy it."
+        },
+        {
+          "sel": "div.rounded-[20px].bg-white.p-6",
+          "beyond": 5,
+          "text": "Visionary sign-up page Copy sign-up link Share Open registration Copying this link does no"
+        },
+        {
+          "sel": "div.",
+          "beyond": 72,
+          "text": "Good to know Frequently asked questions. Straight answers about sharing Visionary, includi"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 72,
+          "text": "Good to know"
+        },
+        {
+          "sel": "#faq-title",
+          "beyond": 72,
+          "text": "Frequently asked questions."
+        },
+        {
+          "sel": "p.mt-4.max-w-[360px].text-[16px]",
+          "beyond": 72,
+          "text": "Straight answers about sharing Visionary, including what this page does not promise."
+        },
+        {
+          "sel": "div.",
+          "beyond": 72,
+          "text": "Expand all Do I or my friend receive a reward? No referral reward or discount is currently"
+        },
+        {
+          "sel": "div.landing-faq.landing-faq--card",
+          "beyond": 72,
+          "text": "Expand all Do I or my friend receive a reward? No referral reward or discount is currently"
+        },
+        {
+          "sel": "div.mb-4.flex.justify-end",
+          "beyond": 72,
+          "text": "Expand all"
+        },
+        {
+          "sel": "button.inline-flex.min-h-11.items-center",
+          "beyond": 72,
+          "text": "Expand all"
+        },
+        {
+          "sel": "div.space-y-3",
+          "beyond": 72,
+          "text": "Do I or my friend receive a reward? No referral reward or discount is currently offered th"
+        },
+        {
+          "sel": "div.overflow-hidden.rounded-2xl.border",
+          "beyond": 72,
+          "text": "Do I or my friend receive a reward? No referral reward or discount is currently offered th"
+        },
+        {
+          "sel": "#r0-faq-trigger-0",
+          "beyond": 71,
+          "text": "Do I or my friend receive a reward?"
+        },
+        {
+          "sel": "#r0-faq-answer-0",
+          "beyond": 71,
+          "text": "No referral reward or discount is currently offered through this page. We do not promise f"
+        },
+        {
+          "sel": "p.text-[16px].leading-[1.65].text-[#6e6e73]",
+          "beyond": 23,
+          "text": "No referral reward or discount is currently offered through this page. We do not promise f"
+        },
+        {
+          "sel": "div.overflow-hidden.rounded-2xl.border",
+          "beyond": 72,
+          "text": "Can Visionary track who I invite?"
+        }
+      ]
+    },
+    {
+      "route": "/privacy",
+      "viewport": "390x844",
+      "path": "/privacy",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Cookie policy Essential cookies only."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Security How your information is protected."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Safety Guardrails for every learner."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Accessibility Built for every kind of learner."
+        }
+      ]
+    },
+    {
+      "route": "/terms",
+      "viewport": "390x844",
+      "path": "/terms",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Privacy policy Your learning is personal."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Cookie policy Essential cookies only."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Safety Guardrails for every learner."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Accessibility Built for every kind of learner."
+        }
+      ]
+    },
+    {
+      "route": "/cookies",
+      "viewport": "390x844",
+      "path": "/cookies",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 66,
+          "text": "hello@visionary.org.in"
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Privacy policy Your learning is personal."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Terms of service Clear rules, written to be understood."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Security How your information is protected."
+        },
+        {
+          "sel": "a.group.relative.rounded-[20px]",
+          "beyond": 6,
+          "text": "Accessibility Built for every kind of learner."
+        }
+      ]
+    },
+    {
+      "route": "/safety",
+      "viewport": "390x844",
+      "path": "/safety",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 22,
+          "text": "Three checks before you share anything. Most safety problems start with a message that fel"
+        },
+        {
+          "sel": "h2.text-[26px].font-normal.leading-[1.2]",
+          "beyond": 22,
+          "text": "Three checks before you share anything."
+        },
+        {
+          "sel": "div.mt-4.max-w-[420px]",
+          "beyond": 22,
+          "text": "Most safety problems start with a message that felt urgent. Slow down, run the checks, and"
+        },
+        {
+          "sel": "p.text-[16px].leading-[1.7].text-[#6e6e73]",
+          "beyond": 22,
+          "text": "Most safety problems start with a message that felt urgent. Slow down, run the checks, and"
+        },
+        {
+          "sel": "div.mt-7.flex.flex-wrap",
+          "beyond": 22,
+          "text": "Report something suspicious Read the privacy policy"
+        },
+        {
+          "sel": "a.inline-flex.min-h-11.items-center",
+          "beyond": 22,
+          "text": "Read the privacy policy"
+        },
+        {
+          "sel": "ul.space-y-3",
+          "beyond": 22,
+          "text": "Never share passwords, payment details, or sensitive learner information. Not with us, not"
+        },
+        {
+          "sel": "li.flex.items-start.gap-3",
+          "beyond": 22,
+          "text": "Never share passwords, payment details, or sensitive learner information. Not with us, not"
+        },
+        {
+          "sel": "li.flex.items-start.gap-3",
+          "beyond": 22,
+          "text": "No one from Visionary will ever ask for your password or verification codes."
+        },
+        {
+          "sel": "li.flex.items-start.gap-3",
+          "beyond": 22,
+          "text": "If a message claims to be from Visionary and asks for those things, flag it and tell us."
+        }
+      ]
+    },
+    {
+      "route": "/security",
+      "viewport": "390x844",
+      "path": "/security",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": []
+    },
+    {
+      "route": "/accessibility",
+      "viewport": "390x844",
+      "path": "/accessibility",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 129,
+          "text": "Sync & devices One person. Every device. Anywhere. Sign in with your Sync Encrypted ID and"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 129,
+          "text": "Sync & devices"
+        },
+        {
+          "sel": "#sync-title",
+          "beyond": 129,
+          "text": "One person. Every device. Anywhere."
+        },
+        {
+          "sel": "span.text-[#1d1d1f]",
+          "beyond": 129,
+          "text": "Anywhere."
+        },
+        {
+          "sel": "p.mt-5.max-w-[560px].text-[16px]",
+          "beyond": 129,
+          "text": "Sign in with your Sync Encrypted ID and your learning follows you, end to end encrypted. Y"
+        },
+        {
+          "sel": "p.mt-5.inline-flex.items-center",
+          "beyond": 129,
+          "text": "End to end encrypted. The key stays with you"
+        },
+        {
+          "sel": "div.mt-7.flex.flex-wrap",
+          "beyond": 129,
+          "text": "How sync works Review your devices"
+        },
+        {
+          "sel": "a.inline-flex.h-11.items-center",
+          "beyond": 110,
+          "text": "Review your devices"
+        },
+        {
+          "sel": "div.",
+          "beyond": 129,
+          "text": "Computer Encrypted Tablet Encrypted Phone Encrypted One Sync Encrypted ID. The encryption "
+        },
+        {
+          "sel": "div.relative.flex.flex-wrap",
+          "beyond": 129,
+          "text": "Computer Encrypted Tablet Encrypted Phone Encrypted"
+        },
+        {
+          "sel": "div.relative.z-10.flex",
+          "beyond": 37,
+          "text": "Computer Encrypted"
+        },
+        {
+          "sel": "span.flex.items-center.gap-1",
+          "beyond": 9,
+          "text": "Encrypted"
+        },
+        {
+          "sel": "div.relative.z-10.flex",
+          "beyond": 37,
+          "text": "Tablet Encrypted"
+        },
+        {
+          "sel": "span.flex.items-center.gap-1",
+          "beyond": 9,
+          "text": "Encrypted"
+        },
+        {
+          "sel": "div.relative.z-10.flex",
+          "beyond": 37,
+          "text": "Phone Encrypted"
+        },
+        {
+          "sel": "span.flex.items-center.gap-1",
+          "beyond": 9,
+          "text": "Encrypted"
+        },
+        {
+          "sel": "p.mt-6.text-center.text-[13px]",
+          "beyond": 129,
+          "text": "One Sync Encrypted ID. The encryption stays with your account, not with the device."
+        },
+        {
+          "sel": "div.",
+          "beyond": 56,
+          "text": "Resources Start at your own pace. Move at your own speed. Every resource below is free to "
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 56,
+          "text": "Resources"
+        },
+        {
+          "sel": "#resources-title",
+          "beyond": 56,
+          "text": "Start at your own pace."
+        }
+      ]
+    },
+    {
+      "route": "/careers",
+      "viewport": "390x844",
+      "path": "/careers",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "span.accent-gradient",
+          "beyond": 47,
+          "text": "future of learning."
+        },
+        {
+          "sel": "article.rounded-[20px].bg-white.p-6",
+          "beyond": 2,
+          "text": "Meaningful problems Work tied to helping learners get through difficult ideas and apply wh"
+        },
+        {
+          "sel": "article.rounded-[20px].bg-white.p-6",
+          "beyond": 2,
+          "text": "Early-stage impact Your decisions ship to real learners quickly, with visible effect."
+        },
+        {
+          "sel": "article.rounded-[20px].bg-white.p-6",
+          "beyond": 2,
+          "text": "Learning-centered Product, design, and engineering work shaped by teaching and curriculum "
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "viewport": "390x844",
+      "path": "/contact",
+      "vw": 390,
+      "docOverflow": 0,
+      "offscreen": [
+        {
+          "sel": "div.",
+          "beyond": 37,
+          "text": "Privacy grievance A formal route for privacy concerns. For a privacy grievance under India"
+        },
+        {
+          "sel": "p.apple-eyebrow.text-[#6e6e73]",
+          "beyond": 37,
+          "text": "Privacy grievance"
+        },
+        {
+          "sel": "h2.mt-3.font-semibold.tracking-[-0.009em]",
+          "beyond": 37,
+          "text": "A formal route for privacy concerns."
+        },
+        {
+          "sel": "p.mt-4.max-w-[420px].text-[16px]",
+          "beyond": 37,
+          "text": "For a privacy grievance under India's DPDP Act, contact the named Grievance Officer direct"
+        },
+        {
+          "sel": "div.rounded-[20px].bg-white.p-6",
+          "beyond": 37,
+          "text": "Grievance Officer (DPDP Act, 2023) Md Shahid Ali We acknowledge grievances within 72 hours"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "finished": "2026-11-11T04:54:43.503Z",
+  "summary": {
+    "cells": 48,
+    "offscreenCells": 46,
+    "routesAffected": [
+      "/",
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization",
+      "/how-it-works",
+      "/help",
+      "/pricing",
+      "/download",
+      "/about",
+      "/research",
+      "/community",
+      "/updates",
+      "/partners",
+      "/referral",
+      "/privacy",
+      "/terms",
+      "/cookies",
+      "/safety",
+      "/security",
+      "/accessibility",
+      "/careers",
+      "/contact"
+    ],
+    "errors": 0
+  }
+}

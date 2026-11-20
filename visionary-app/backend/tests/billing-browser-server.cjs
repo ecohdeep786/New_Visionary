@@ -16,7 +16,10 @@ const settings = { AUTH_PUBLIC_ORIGIN: origin, BILLING_MODE: 'test', RAZORPAY_KE
 if (real) for (const key of Object.keys(settings).filter(key => key.startsWith('RAZORPAY_'))) settings[key] = testSettings[key];
 if (!settings.RAZORPAY_KEY_ID?.startsWith('rzp_test_')) throw Error('Live credentials are prohibited in this harness.');
 const config = new ConfigService(settings);
-const profile = uid => ({ id: uid, email: 'billing-review@example.test', full_name: 'Billing Review', age_band: 'adult', identity: 'professional', education_stage: 'professional', preferred_language: 'English', onboarding_complete: true, getting_started_complete: true, auth_source: 'firebase' });
+// The family-member account needs its own address: family invitation acceptance
+// requires the addressed email to match the signed-in account, and a shared
+// email would make every invitation a rejected self-invite (V5 F-26 S05).
+const profile = uid => ({ id: uid, email: uid === 'billing-review-family-member' ? 'billing-review-family-member@visionary.test' : 'billing-review@example.test', full_name: 'Billing Review', age_band: 'adult', identity: 'professional', education_stage: 'professional', preferred_language: 'English', onboarding_complete: true, getting_started_complete: true, auth_source: 'firebase' });
 const auth = { getDatabase: () => memory.db, me: async uid => profile(uid), rateLimit: async () => {}, authenticate: async (cookie, device) => { if (!/^billing-review-[a-z0-9-]+$/.test(cookie || '') || device !== 'fixture-device') throw new UnauthorizedException(); return { uid: cookie }; } };
 const provider = new RazorpayProvider(config), subscriptions = new Map(), invoices = new Map(), payments = new Map(); let sequence = 0;
 if (!real) provider.request = async (method, resource, body) => {

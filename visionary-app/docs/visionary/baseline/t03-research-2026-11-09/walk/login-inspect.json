@@ -1,0 +1,68 @@
+{
+  "started": "2026-11-09T06:31:44.126Z",
+  "steps": [
+    {
+      "step": "open",
+      "url": "http://localhost:5174/login",
+      "inputs": [],
+      "buttons": [
+        "Continue with Email",
+        "Continue with Google",
+        "English"
+      ]
+    },
+    {
+      "step": "email-filled",
+      "buttons": [
+        {
+          "text": "Back",
+          "disabled": false,
+          "tag": "BUTTON"
+        },
+        {
+          "text": "Continue",
+          "disabled": false,
+          "tag": "BUTTON"
+        },
+        {
+          "text": "English",
+          "disabled": false,
+          "tag": "BUTTON"
+        }
+      ]
+    },
+    {
+      "step": "continue-buttons",
+      "count": 1
+    },
+    {
+      "step": "after-submit",
+      "url": "http://localhost:5174/login",
+      "inputs": [
+        {
+          "type": "email",
+          "name": null,
+          "placeholder": null,
+          "visible": true
+        }
+      ],
+      "buttons": [
+        "Back",
+        "Continue",
+        "English"
+      ],
+      "text": "Skip to content\nisionary\nSign in to Visionary\n\nUse email or Google to continue.\n\nDon't have an account? Create account\nBack\n\nAccount not found\n\nCouldn't find your Visionary Account. Try a different email or create a new account.\n\nCreate a new account →\nEmail\nForgot email?\nContinue\nEnglish\nHelp\nPrivacy\nTerms"
+    },
+    {
+      "step": "after-enter",
+      "url": "http://localhost:5174/login",
+      "inputs": [
+        {
+          "type": "email",
+          "visible": true
+        }
+      ],
+      "text": "Skip to content\nisionary\nSign in to Visionary\n\nUse email or Google to continue.\n\nDon't have an account? Create account\nBack\n\nAccount not found\n\nCouldn't find your Visionary Account. Try a different email or create a new account.\n\nCreate a new account →\nEmail\nForgot email?\nContinue\nEnglish\nHelp\nPrivacy\nTerms"
+    }
+  ]
+}

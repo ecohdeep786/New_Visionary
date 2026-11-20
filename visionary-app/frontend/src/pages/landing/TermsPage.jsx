@@ -20,7 +20,7 @@ import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 const COLORS = {
   ink: "#1d1d1f",
   grey: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "#d2d2d7",
   border: "#d2d2d7",
   soft: "#f5f5f7",
@@ -69,7 +69,7 @@ const AT_A_GLANCE = [
   {
     to: "#what-you-cannot-do",
     label: "Know the rules",
-    text: "The do's and don'ts that keep Visionary safe and useful for everyone.",
+    text: "The do’s and don’ts that keep Visionary safe and useful for everyone.",
     Icon: ShieldCheck,
   },
   {
@@ -208,7 +208,7 @@ export default function TermsPage() {
       <LocalNav title="Terms" />
 
       <main id="main" tabIndex={-1}>
-        {/* HERO — the student stage carrying Apple-privacy's centered voice
+        {/* HERO — the student stage carrying Apple-privacy’s centered voice
             (FAP-59 phase 4), rendered from the single-source CinematicHero
             under the LocalNav bar. Promises, action row and effective date
             stay as the body opening below. */}
@@ -357,9 +357,9 @@ export default function TermsPage() {
                 <section id="who-can-use" data-section="03-who-can-use" className="scroll-mt-24">
                   <SectionHeading number="01" title="Who can use Visionary" />
                   <Paragraph>You may use Visionary only if you are legally permitted to enter into these Terms.</Paragraph>
-                  <div className="mt-5"><Paragraph>For younger learners, use of Visionary may require involvement or permission from a parent or legal guardian, depending on the learner's age and the applicable law.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>For younger learners, use of Visionary may require involvement or permission from a parent or legal guardian, depending on the learner’s age and the applicable law.</Paragraph></div>
                   <div className="mt-5"><Paragraph>If you are using Visionary on behalf of a school, company, institution, or another organization, you confirm that you have authority to accept these Terms on its behalf.</Paragraph></div>
-                  <Note>The final minimum-age and parental-consent language should match Visionary's actual account model and applicable law before publication.</Note>
+                  <Note>The final minimum-age and parental-consent language should match Visionary’s actual account model and applicable law before publication.</Note>
                 </section>
 
                 {/* 02 */}
@@ -382,8 +382,8 @@ export default function TermsPage() {
                   <BulletList items={[
                     "Break applicable laws or regulations.",
                     "Harm, threaten, harass, exploit, or deceive another person.",
-                    "Infringe another person's intellectual-property, privacy, or other legal rights.",
-                    "Attempt to gain unauthorized access to Visionary or another user's account or information.",
+                    "Infringe another person’s intellectual-property, privacy, or other legal rights.",
+                    "Attempt to gain unauthorized access to Visionary or another user’s account or information.",
                     "Interfere with, disrupt, reverse engineer, or bypass the security or operation of the service, except where applicable law expressly permits it.",
                     "Upload or distribute malicious software or harmful code.",
                     "Use Visionary to create or distribute content that violates applicable safety policies.",
@@ -421,7 +421,7 @@ export default function TermsPage() {
                     "Take responsibility for activity that occurs through your account.",
                     "Tell us when you believe your account has been compromised.",
                   ]} />
-                  <div className="mt-5"><Paragraph>You must not use another person's account without permission or create accounts in deceptive ways.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>You must not use another person’s account without permission or create accounts in deceptive ways.</Paragraph></div>
                   <div className="mt-5"><Paragraph>For organizational accounts, an authorized administrator may have additional responsibilities and controls.</Paragraph></div>
                 </section>
 
@@ -471,7 +471,7 @@ export default function TermsPage() {
                   <SectionHeading number="11" title="Governing law and disputes" />
                   <Paragraph>If there is a disagreement, contact Visionary first and give us an opportunity to understand and resolve the issue.</Paragraph>
                   <div className="mt-5"><Paragraph>If a dispute cannot be resolved informally, the applicable governing law, jurisdiction, dispute-resolution procedure, arbitration provisions, and courts will be specified here.</Paragraph></div>
-                  <Note>Final jurisdiction, arbitration, governing-law, and dispute provisions should be reviewed and approved by Visionary's legal counsel before publication.</Note>
+                  <Note>Final jurisdiction, arbitration, governing-law, and dispute provisions should be reviewed and approved by Visionary’s legal counsel before publication.</Note>
                 </section>
 
                 {/* 12 */}
@@ -538,7 +538,7 @@ export default function TermsPage() {
             </div>
           </div>
         </section>
-        {/* B2/FAP-47 — the page's one closing contact door (legal door law:
+        {/* B2/FAP-47 — the page’s one closing contact door (legal door law:
             clauses carry no per-module CTAs; the page ends with a way to
             reach a person). */}
         <section data-section="17-questions" aria-label="Questions about this policy" className="border-t border-[rgba(18,19,23,0.12)] px-6 sm:px-8 lg:px-10">

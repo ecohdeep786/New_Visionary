@@ -1,0 +1,171 @@
+{
+  "at": "2026-11-17T10:10:31.546Z",
+  "base": "http://127.0.0.1:4199",
+  "gates": {
+    "accessibility": 0.95,
+    "seo": 0.95
+  },
+  "routes": [
+    {
+      "route": "/",
+      "categories": {
+        "performance": 0.88,
+        "accessibility": 1,
+        "best-practices": 0.96,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": 1429.334,
+        "largest-contentful-paint": 3787.0019999999995,
+        "total-blocking-time": 40,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1571.6545581470764
+      },
+      "evidence": "docs\\visionary\\baseline\\apple-polish-cwv\\lighthouse-root.json"
+    },
+    {
+      "route": "/how-it-works",
+      "categories": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 0.96,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": 909.4901,
+        "largest-contentful-paint": 909.4901,
+        "total-blocking-time": 28.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 949.9213337126773
+      },
+      "evidence": "docs\\visionary\\baseline\\apple-polish-cwv\\lighthouse-how-it-works.json"
+    },
+    {
+      "route": "/pricing",
+      "categories": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 0.96,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": 910.8903,
+        "largest-contentful-paint": 910.8903,
+        "total-blocking-time": 36,
+        "cumulative-layout-shift": 0,
+        "speed-index": 943.0740937337199
+      },
+      "evidence": "docs\\visionary\\baseline\\apple-polish-cwv\\lighthouse-pricing.json"
+    },
+    {
+      "route": "/student",
+      "categories": {
+        "performance": 0.9,
+        "accessibility": 1,
+        "best-practices": 0.96,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "baseline": {
+        "color-contrast": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "heading-order": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "target-size": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        },
+        "link-name": {
+          "score": 1,
+          "displayValue": null,
+          "titles": []
+        }
+      },
+      "metrics": {
+        "first-contentful-paint": 913.0617,
+        "largest-contentful-paint": 3599.3888250000005,
+        "total-blocking-time": 24,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1344.7148363436818
+      },
+      "evidence": "docs\\visionary\\baseline\\apple-polish-cwv\\lighthouse-student.json"
+    }
+  ],
+  "perfNote": "performance is recorded, not gated - the D3 ledger holds the raw Fast3G LCP receipts and the fast-LCP next-wave lever"
+}

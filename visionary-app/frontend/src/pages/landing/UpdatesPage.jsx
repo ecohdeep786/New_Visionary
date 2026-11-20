@@ -54,15 +54,15 @@ const CATEGORIES = [
   { id: "community", label: "Community and events", Icon: UsersRound, subject: "community", helper: "Community stories, practical guidance, and ways to participate." },
 ];
 
-/* ═══ LATEST — every entry grounded in shipped product behavior ═══ */
+/* ═══ LATEST — product development updates ═══ */
 const UPDATES = [
-  { date: "September 2026", cat: "product", subject: "build", title: "The learning loop, end to end", copy: "Learn, Ask, Practice, Build: one workspace now carries every step of the loop." },
-  { date: "September 2026", cat: "language", subject: "languages", title: "Three languages, one loop", copy: "Language journeys run in English, Hindi, and Bengali, with more on the roadmap." },
-  { date: "September 2026", cat: "product", subject: "lock", title: "Consent-scoped progress summaries", copy: "Parents follow the journey with confidence, without opening the learner's private space." },
-  { date: "September 2026", cat: "product", subject: "growth", title: "Insights across cohorts", copy: "Organizations see patterns across learners. Individual answers stay individual." },
-  { date: "August 2026", cat: "community", subject: "community", title: "Class communities, moderated", copy: "Discussions stay safe with one-tap reporting and human review, usually within 24 hours." },
+  { date: "September 2026", cat: "product", subject: "build", title: "Designing the learning loop", copy: "Learn, Ask, Practice, and Build are being developed as parts of one learning workspace." },
+  { date: "September 2026", cat: "language", subject: "languages", title: "Three languages, one loop", copy: "Development covers English, Hindi, and Bengali. Availability will vary by feature." },
+  { date: "September 2026", cat: "product", subject: "lock", title: "Consent-scoped progress summaries", copy: "Guardian progress summaries are designed around learner consent and are still in development." },
+  { date: "September 2026", cat: "product", subject: "growth", title: "Insights across cohorts", copy: "Cohort reporting is in development, with a focus on aggregate patterns and learner privacy." },
+  { date: "August 2026", cat: "community", subject: "community", title: "Class communities, moderated", copy: "Class discussions and teacher moderation are in development." },
   { date: "August 2026", cat: "research", subject: "research", title: "What we learn, we publish", copy: "Findings from real use shape the loop. The work so far lives in Research & News." },
-  { date: "July 2026", cat: "language", subject: "teacher", title: "Teach in your language", copy: "Teachers can prepare and publish classwork in the language their classroom speaks." },
+  { date: "July 2026", cat: "language", subject: "teacher", title: "Teach in your language", copy: "Multilingual classwork authoring is part of the teacher workspace in development." },
   { date: "July 2026", cat: "product", subject: "shield", title: "Safety guidance, reviewed openly", copy: "We update safety policies as we learn from real use, just like the product itself." },
 ];
 
@@ -195,7 +195,7 @@ export default function UpdatesPage() {
                   <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-[20px] bg-white p-6">
                     <div className="flex items-center gap-3">
                       <span className="text-[14px] font-semibold text-[#6e6e73]">{catLabel(item.cat)}</span>
-                      <span className="text-[12px] tracking-[0.01em] text-[#86868b]">{item.date}</span>
+                      <span className="text-[12px] tracking-[0.01em] text-[#6e6e73]">{item.date}</span>
                     </div>
                     <h3 className="relative z-10 mt-4 max-w-[220px] text-[17px] font-medium leading-[1.4] text-[#1d1d1f]">{item.title}</h3>
                     <p className="relative z-10 mt-2 flex-1 text-[14px] leading-[1.65] text-[#6e6e73]">{item.copy}</p>

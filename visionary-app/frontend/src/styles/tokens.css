@@ -124,6 +124,10 @@ body:has(.visionary-workspace, [data-font-surface="product"]),
    • prefers-reduced-motion: reduce collapses motion to static-and-visible.
      The global contract lives in index.css; per-sheet contracts in
      premium.css, workspace.css, workspace-design.css and cast.css.
+   • No animation declaration may carry `!important` outside a
+     prefers-reduced-motion:reduce block — that out-specifies the universal
+     reduced-motion kill and keeps the loop running for users who asked for
+     less motion (FAP-81 escape hatch).
    qa-motion.mjs (npm run qa:motion; in check) enforces these laws. */
 :root {
   --ease-out-apple: cubic-bezier(0.16, 1, 0.3, 1);

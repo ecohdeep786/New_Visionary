@@ -5,7 +5,15 @@ import { CheckCircle2, ArrowLeft } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
 import { primaryBtnAutoClass, Spinner, InputField, BackButton, ActionRow } from "@/components/auth/AuthUI";
 import { authErrorMessage } from '@/lib/authErrors';
+import { authLink } from '@/lib/authReturnTo';
 
+/**
+ * ForgotPassword — Firebase is the only identity source (FAP-93). There is no
+ * local reset token to fabricate: the request goes to the connected transport
+ * and the success step keeps its anti-enumeration "Check your email" view —
+ * no "reset link created" claim, no token continuation link. /reset-password
+ * still accepts the historical ?token param (FAP-85 regression guard).
+ */
 export default function ForgotPassword() {
   const location = useLocation(), pending = useRef(false);
   const [email, setEmail] = useState(typeof location.state?.email === 'string' ? location.state.email.slice(0, 320) : "");
@@ -36,7 +44,7 @@ export default function ForgotPassword() {
       title="Reset your Visionary password"
       supportingText="Enter your account email to request a password reset link."
       footer={
-        <Link to="/login" className="flex items-center gap-1 text-[#0066cc] font-medium hover:underline">
+        <Link to={authLink("/login")} state={{ email }} className="flex items-center gap-1 text-[#0066cc] font-medium hover:underline">
           <ArrowLeft className="w-3 h-3" /> Back to sign in
         </Link>
       }
@@ -53,16 +61,16 @@ export default function ForgotPassword() {
               If an account exists for <span className="font-medium text-[#1d1d1f]">{email}</span>, you'll receive a password reset link shortly.
             </p>
           </div>
-          <Link to="/login" className={primaryBtnAutoClass}>Back to sign in</Link>
+          <Link to={authLink("/login")} state={{ email }} className={primaryBtnAutoClass}>Back to sign in</Link>
           <button className="text-sm text-[#0066cc]" onClick={() => { setSent(false); setError(''); }}>Use a different email</button>
           <p className="text-sm text-[#6e6e73]">
             Don't have an account?{" "}
-            <Link to="/register" className="text-[#0066cc] font-medium hover:underline">Sign up</Link>
+            <Link to={authLink("/register")} className="text-[#0066cc] font-medium hover:underline">Sign up</Link>
           </p>
         </div>
       ) : (
         <div key="form" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
-          <BackButton to="/login" />
+          <BackButton to={authLink("/login")} />
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <InputField
               label="Email address"
@@ -77,7 +85,7 @@ export default function ForgotPassword() {
             />
             <ActionRow
               left={
-                <Link to="/register" className="text-sm text-[#0066cc] font-medium hover:underline">
+                <Link to={authLink("/register")} className="text-sm text-[#0066cc] font-medium hover:underline">
                   Don't have an account?
                 </Link>
               }

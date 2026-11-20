@@ -1,0 +1,90 @@
+{
+  "task": "F-07 iconography verification",
+  "at": "2026-11-07T15:54:57.033Z",
+  "base": "http://127.0.0.1:4198",
+  "law": "public-icons.css --icon-stroke 1.75 (landing spec: 24px/stroke 1.75/tokenized sizes); workspace-design.css 1.75 for governed svgs",
+  "records": [
+    {
+      "file": "iconography-landing-desktop.png",
+      "surface": "public",
+      "route": "/",
+      "viewport": "1440x900",
+      "scan": {
+        "lucideCount": 23,
+        "allSvgCount": 45,
+        "strokes": {
+          "2px": 5,
+          "1.8px": 1,
+          "1.75px": 17
+        },
+        "unlabeled": [],
+        "logos": [
+          {
+            "height": "28px",
+            "width": "109.188px"
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "file": "iconography-landing-mobile.png",
+      "surface": "public",
+      "route": "/",
+      "viewport": "390x844",
+      "scan": {
+        "lucideCount": 23,
+        "allSvgCount": 45,
+        "strokes": {
+          "2px": 5,
+          "1.8px": 1,
+          "1.75px": 17
+        },
+        "unlabeled": [],
+        "logos": [
+          {
+            "height": "28px",
+            "width": "109.188px"
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "file": "iconography-dashboard-desktop.png",
+      "surface": "workspace",
+      "route": "/dashboard/home",
+      "scan": {
+        "lucideCount": 23,
+        "allSvgCount": 27,
+        "strokes": {
+          "1.75px": 7,
+          "1.8px": 12,
+          "2px": 4
+        },
+        "unlabeled": [],
+        "logos": [
+          {
+            "height": "28px",
+            "width": "109.188px"
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "finding": "workspace-stroke-distribution",
+      "note": "computed stroke widths of workspace lucide icons; workspace-design.css law = 1.75 for .v-button/.v-page/.workspace-topbar svgs",
+      "strokes": {
+        "1.75px": 7,
+        "1.8px": 12,
+        "2px": 4
+      },
+      "offLaw": [
+        "1.8px x12",
+        "2px x4"
+      ]
+    }
+  ],
+  "findings": []
+}

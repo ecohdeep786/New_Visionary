@@ -1,0 +1,8 @@
+# AFTER (candidate zcode/fap-86-toast-shim-props @ toaster.jsx fix, dev server 127.0.0.1:5173) — real-store toast render + x close, console warning/error inventory
+# Raw capture: t08-fap86-after.json .steps[console] (probe 2026-11-11, Edge headless, fresh context)
+0 warnings, 0 errors. Same real-store probe technique as the before side: the toast renders
+through the production Toaster with no React unknown-prop warning, and the x control now
+dismisses it (toast absent from the DOM after the click: stillRendered=false).
+# Scope note: auto-removal timing (TOAST_REMOVE_DELAY) is intentionally unchanged — the
+# store (use-toast.jsx) and the primitives (toast.jsx) are byte-identical; only the
+# Toaster consumer changed.
