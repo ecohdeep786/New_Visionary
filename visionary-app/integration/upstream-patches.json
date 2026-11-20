@@ -252,6 +252,22 @@
           "afterSha256": "a0862ff3824fdb9219ab9e399138cb8ec6d9ba1d19c9457f239ec0753135959f"
         }
       ]
+    },
+    {
+      "id": "2026-11-20-job-01-outbox-delivery",
+      "date": "2026-11-20",
+      "decision": "KAN-53, D-056 backend delivery and D-095 independent review.",
+      "reason": "Track delivery leases, retries and settlement in a new PostgreSQL ledger without changing the source outbox event.",
+      "diff": "integration/upstream-patches/2026-11-20-job-01-outbox-delivery.patch",
+      "diffSha256": "ce31371db87ca8acbe624e8c085941e9993a1511ec614fe38b89c3f1e4f4c627",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "34d9e02de2d778a07a6abc5ba62fcb67bca0d3b83b2ade2418d2ff06df23e5f5",
+          "afterSha256": "8426f305e23875f408d7dc0978f3016db4fb1f0dcdc3afd9ea416350bb1b48bd"
+        }
+      ]
     }
   ]
 }
