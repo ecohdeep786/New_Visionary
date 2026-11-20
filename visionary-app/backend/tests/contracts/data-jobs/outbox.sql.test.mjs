@@ -76,6 +76,36 @@ test('owning SQL store preserves replay scope, 64-bit cursors and exclusive clai
   assert.deepEqual(await db.outboxEvent.findUnique({ where: { id: event.id } }), event);
 });
 
+test('a dispatcher SQL role can lease and retry an event but cannot forge completion', async t => {
+  const env = await roles.stagingDatabase();
+  t.after(() => env.close());
+  const { db, runtime, runtimeRole, schema } = env;
+  for (const migration of canonicalMigrations(fixture.backend)) {
+    for (const statement of migration.statements) await db.$executeRawUnsafe(statement);
+  }
+  const repo = new WorkspaceRepository(db);
+  const uid = 'synthetic-dispatcher-owner';
+  await repo.ensurePerson(uid);
+  const grant = await db.consentGrant.create({
+    data: { uid, purpose: 'model_context', version: 'v1', consentVersion: 'v1' },
+  });
+  await repo.revokeConsent(uid, grant.id);
+  const event = await db.outboxEvent.findFirstOrThrow({ where: { topic: 'consent.revoked' } });
+  await db.$executeRawUnsafe(`GRANT SELECT ON "${schema}".outbox_events, "${schema}".outbox_deliveries TO "${runtimeRole}"`);
+  await db.$executeRawUnsafe(`GRANT INSERT (cursor, "availableAt"), UPDATE (status, attempts, "availableAt", "claimedAt", "lastError")
+    ON "${schema}".outbox_deliveries TO "${runtimeRole}"`);
+  await WorkspaceRepository.assertRuntimeIdentity(runtime, { role: runtimeRole, schema, database: new URL(env.config.runtimeUrl).pathname.slice(1) });
+
+  const store = new PostgresOutboxDeliveryStore(runtime, 0n);
+  const [claim] = await store.claimDueOutbox(1, new Date(), 2, 90_000);
+  assert.equal(claim.cursor, event.cursor);
+  await assert.rejects(runtime.$executeRaw`UPDATE outbox_deliveries SET status = 'DONE' WHERE cursor = ${event.cursor}`,
+    /outbox_deliveries_completion_receipt_check/);
+  await assert.rejects(runtime.$executeRaw`UPDATE outbox_deliveries SET status = 'DONE', "effectAppliedAt" = now() WHERE cursor = ${event.cursor}`,
+    /permission denied/);
+  assert.equal((await store.settleOutbox(event.cursor, claim.attempts, failed)).status, 'FAILED');
+});
+
 test('the receiver authenticates a committed revocation, cancels only its jobs and durably acknowledges once', async t => {
   const { db } = await isolatedDatabase(t);
   const repo = new WorkspaceRepository(db);

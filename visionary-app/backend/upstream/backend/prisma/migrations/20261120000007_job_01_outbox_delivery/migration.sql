@@ -9,6 +9,8 @@ CREATE TABLE "outbox_deliveries" (
     "lastError" TEXT,
     "effectAppliedAt" TIMESTAMP(3),
     CONSTRAINT "outbox_deliveries_pkey" PRIMARY KEY ("cursor"),
+    CONSTRAINT "outbox_deliveries_completion_receipt_check"
+        CHECK (("status" = 'DONE') = ("effectAppliedAt" IS NOT NULL)),
     CONSTRAINT "outbox_deliveries_cursor_fkey" FOREIGN KEY ("cursor")
         REFERENCES "outbox_events" ("cursor") ON DELETE CASCADE ON UPDATE CASCADE
 );

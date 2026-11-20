@@ -158,6 +158,9 @@ Keep the queue and receiver retry window bounded by the 90-second database
 lease. Each dispatch job claims at most five events. Rotate SQL credentials
 through the existing pinned Secret Manager path. Give the receiver and
 dispatcher only the SQL privileges required by their respective statements.
+Give the dispatcher column grants for the lease and retry fields. The receiver
+alone needs to write `effectAppliedAt`. PostgreSQL requires that receipt field
+when the delivery status becomes DONE.
 The migration identity and credentials belong only to the migration job.
 
 The PostgreSQL and loopback HTTP tests exercise the receiver using a synthetic
