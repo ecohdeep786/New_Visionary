@@ -68,3 +68,17 @@ Add leases, attempt fencing, idempotent completion, deadlines, cancellation, qua
 - Dev integration commit and checks: (after review)
 - Jira transition/comment receipt: KAN-54 → Testing (transition 41)
 - Next dependent tasks: JOB-03 (KAN-55) admission limits, FILE-01 (KAN-56), SYNC-01 (KAN-139).
+
+## Integration with the accepted outbox
+
+The merge preserves the KAN-53 Cloud Tasks delivery and SQL receipt path. The
+job lifecycle is shared by explicit claim-and-settle callers and the existing
+in-process runner. A claim increments the attempt count and creates a bounded
+lease. A lease that has expired cannot start, extend, fail, or complete work.
+The same completed attempt can replay its receipt.
+
+The sweeper checks deadlines before lease recovery and writes only the revision
+it read. A heartbeat or competing transition after the scan therefore wins.
+The local data gate exercises these cases in the in-memory store. A durable job
+store and hosted workload verification remain open. The KAN-53 hosted outbox
+test verifies the separate consent delivery and receipt path.

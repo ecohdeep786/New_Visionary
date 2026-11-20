@@ -1,0 +1,17 @@
+--- /tmp/nest-before.json	2026-11-18 00:11:48.260379500 +0530
++++ /tmp/nest-after.json	2026-11-18 00:11:48.310852500 +0530
+@@ -3,6 +3,13 @@
+   "collection": "@nestjs/schematics",
+   "sourceRoot": "src",
+   "compilerOptions": {
+-    "deleteOutDir": true
++    "deleteOutDir": true,
++    "assets": [
++      {
++        "include": "privacycore/*.json",
++        "outDir": "dist/src",
++        "watchAssets": true
++      }
++    ]
+   }
+ }

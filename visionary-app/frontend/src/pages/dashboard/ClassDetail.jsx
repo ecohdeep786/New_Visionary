@@ -124,26 +124,26 @@ function ClassDetailContent({
   if (ctx?.role === 'student' || ctx?.role === 'professional') return <Navigate to={"/dashboard/classes?class=" + classId} replace />;
   if (loading) {
     return <div className="flex items-center justify-center min-h-[400px]" lang={locale} role="status" aria-label={copy('Loading classes…')}>
-        <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
+        <div className="w-8 h-8 border-4 border-[#d2d2d7] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
       </div>;
   }
   if (!classroom) {
     return <div className="flex flex-col items-center gap-4 py-20 text-center" lang={locale}>
-        <h1 className="v-title">{copy('Class unavailable')}</h1><p className="text-sm text-[#5f6368]" role="alert">{copy(error || "This class isn’t available in your teaching workspace.")}</p><button className="v-button" onClick={() => setRetry(value => value + 1)}>{copy('Retry')}</button>
+        <h1 className="v-title">{copy('Class unavailable')}</h1><p className="text-sm text-[#6e6e73]" role="alert">{copy(error || "This class isn’t available in your teaching workspace.")}</p><button className="v-button" onClick={() => setRetry(value => value + 1)}>{copy('Retry')}</button>
         <Link to="/dashboard/classes" className="text-sm font-medium hover:underline" style={{
         color: accent
       }}>{copy("Back to classes")}</Link>
       </div>;
   }
   return <div className="v-page v-class-detail" lang={locale}>
-      <nav className="flex items-center gap-1.5 text-sm text-[#5f6368]">
-        <Link to="/dashboard/classes" aria-label={copy("Back to your classes")} className="flex items-center hover:text-[#121317] transition-colors">
+      <nav className="flex items-center gap-1.5 text-sm text-[#6e6e73]">
+        <Link to="/dashboard/classes" aria-label={copy("Back to your classes")} className="flex items-center hover:text-[#1d1d1f] transition-colors">
           <Home className="w-4 h-4" />
         </Link>
-        <ChevronRight className="w-3.5 h-3.5 text-[#5f6368]" />
-        <span className="font-medium text-[#121317]">{classroom.name}</span>
+        <ChevronRight className="w-3.5 h-3.5 text-[#6e6e73]" />
+        <span className="font-medium text-[#1d1d1f]">{classroom.name}</span>
       </nav>
 
       <header className="v-class-heading">
@@ -156,7 +156,7 @@ function ClassDetailContent({
               room: classroom.room
             })}</p>}
           </div>
-          {classroom.join_code && <div className="v-class-code"><p>{copy("Share this class code")}</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide">{classroom.join_code}</p><button onClick={copyCode} aria-label={copy(copied ? "Class code copied" : "Copy class code")} className="min-h-11 min-w-11 rounded-full p-2 text-[#0b57d2] hover:bg-[#e8f0fd]">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs">{copy("Copied")}</p>}</div>}
+          {classroom.join_code && <div className="v-class-code"><p>{copy("Share this class code")}</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide">{classroom.join_code}</p><button onClick={copyCode} aria-label={copy(copied ? "Class code copied" : "Copy class code")} className="min-h-11 min-w-11 rounded-full p-2 text-[#0071e3] hover:bg-[#eef5ff]">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs">{copy("Copied")}</p>}</div>}
       </header>
       {error && <p role="alert" className="text-sm text-[#b3261e]">{copy(error)}</p>}
 
@@ -165,7 +165,7 @@ function ClassDetailContent({
         {TABS.map(t => {
         const active = tab === t.id;
         return <button key={t.id} onClick={() => selectSection(t.id)} aria-pressed={active} aria-controls="class-section-content" className="relative h-11 px-5 text-sm font-medium transition-colors whitespace-nowrap" style={{
-          color: active ? accent : "#5f6368"
+          color: active ? accent : "#6e6e73"
         }}>
               {copy(t.label)}
               {active && <span className="absolute left-3 right-3 bottom-0 h-[3px] rounded-full" style={{

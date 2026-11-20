@@ -10,8 +10,8 @@ test('entry stays short for every role and school needs its source context', () 
   assert.equal(setupStepReady({id:'context'}, {education_stage:'competitive'}), false);
 });
 test('guardian admission is checked before preferences and optional goals never block entry', () => {
-  assert.equal(setupStepReady({id:'about'}, {full_name:'Learner',age_band:'minor',identity:'student'}, true), false);
-  assert.equal(setupStepReady({id:'about'}, {full_name:'Adult',age_band:'adult',identity:'student'}, true), true);
+  assert.equal(setupStepReady({id:'about'}, {full_name:'Learner',age_band:'minor',identity:'student'}), false);
+  assert.equal(setupStepReady({id:'about'}, {full_name:'Adult',age_band:'adult',identity:'student'}), true);
   for (const identity of ['professional','parent']) assert.equal(setupStepReady({id:'preferences'}, {identity}), true);
   assert.equal(setupStepReady({id:'context'}, {education_stage:'higher_ed'}), true);
 });

@@ -1,0 +1,191 @@
+{
+  "before": [
+    {
+      "route": "/student",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali",
+        "Show Tamil",
+        "Show Kannada",
+        "Show Punjabi"
+      ],
+      "chipCount": 6,
+      "eyebrow": "Every language",
+      "h2": "The words change.Understanding doesn't.",
+      "legend": [
+        "Listening in Hindi · understood in every language",
+        "Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 2
+    },
+    {
+      "route": "/teacher",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali",
+        "Show Tamil",
+        "Show Kannada",
+        "Show Punjabi"
+      ],
+      "chipCount": 6,
+      "eyebrow": "Every language",
+      "h2": "Teach your way.Explain your way.",
+      "legend": [
+        "Listening in Hindi · understood in every language",
+        "Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 4
+    },
+    {
+      "route": "/parent",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali",
+        "Show Tamil",
+        "Show Kannada",
+        "Show Punjabi"
+      ],
+      "chipCount": 6,
+      "eyebrow": "Every language",
+      "h2": "Your child's progress.In your language.",
+      "legend": [
+        "Listening in Hindi · understood in every language",
+        "Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 6
+    },
+    {
+      "route": "/professional",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali",
+        "Show Tamil",
+        "Show Kannada",
+        "Show Punjabi"
+      ],
+      "chipCount": 6,
+      "eyebrow": "Every language",
+      "h2": "Your work.In your language.",
+      "legend": [
+        "Listening in Hindi · understood in every language",
+        "Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 8
+    },
+    {
+      "route": "/organization",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali",
+        "Show Tamil",
+        "Show Kannada",
+        "Show Punjabi"
+      ],
+      "chipCount": 6,
+      "eyebrow": "Every language",
+      "h2": "Your organization.In every language.",
+      "legend": [
+        "Listening in Hindi · understood in every language",
+        "Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 10
+    }
+  ],
+  "after": [
+    {
+      "route": "/student",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali"
+      ],
+      "chipCount": 3,
+      "eyebrow": "Your language",
+      "h2": "The words change.Understanding doesn't.",
+      "legend": [
+        "Listening in Hindi · understood in English, Hindi, and Bengali",
+        "More languages are on the roadmap. Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 2
+    },
+    {
+      "route": "/teacher",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali"
+      ],
+      "chipCount": 3,
+      "eyebrow": "Your language",
+      "h2": "Teach your way.Explain your way.",
+      "legend": [
+        "Listening in Hindi · understood in English, Hindi, and Bengali",
+        "More languages are on the roadmap. Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 4
+    },
+    {
+      "route": "/parent",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali"
+      ],
+      "chipCount": 3,
+      "eyebrow": "Your language",
+      "h2": "Your child's progress.In your language.",
+      "legend": [
+        "Listening in Hindi · understood in English, Hindi, and Bengali",
+        "More languages are on the roadmap. Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 6
+    },
+    {
+      "route": "/professional",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali"
+      ],
+      "chipCount": 3,
+      "eyebrow": "Your language",
+      "h2": "Your work.In your language.",
+      "legend": [
+        "Listening in Hindi · understood in English, Hindi, and Bengali",
+        "More languages are on the roadmap. Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 8
+    },
+    {
+      "route": "/organization",
+      "found": true,
+      "chips": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali"
+      ],
+      "chipCount": 3,
+      "eyebrow": "Your language",
+      "h2": "Your organization.In your people's languages.",
+      "legend": [
+        "Listening in Hindi · understood in English, Hindi, and Bengali",
+        "More languages are on the roadmap. Use voice or text in the way you're comfortable."
+      ],
+      "warnings": 10
+    }
+  ]
+}

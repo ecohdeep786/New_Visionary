@@ -133,7 +133,7 @@ try {
   records.push({ observation: 'learn-provisional-law', detail: entryText.includes('provisional outline')
     ? 'provisional-outline law rendered on the Learn entry'
     : 'provisional-outline law not rendered (state-conditional: workspace already has a subject from onboarding focus; law verified on this surface by F-18)' });
-  await page.getByRole('button', { name: 'Try authored learning sample' }).click({ timeout: 30000 });
+  await page.getByRole('button', { name: 'Try an example lesson' }).click({ timeout: 30000 });
   await settle(page);
   const outlineText = await bodyText(page);
   check('learn-sample-outline', /Authored sample activities/i.test(outlineText) && /Make sense of fractions/i.test(outlineText),
@@ -230,8 +230,8 @@ try {
   } catch { /* preview turns resolve without a network round-trip */ }
   await page.waitForTimeout(2500);
   const notConnectedText = await bodyText(page);
-  check('ask-not-connected-label', notConnectedText.includes('Teaching service not connected'),
-    'guide message renders the "Teaching service not connected" status label');
+  check('ask-not-connected-label', notConnectedText.includes('Your question is saved · no model answer yet'),
+    'guide message renders the outcome-first "Your question is saved · no model answer yet" status label (FAP-76)');
   check('ask-not-connected-honest-text', notConnectedText.includes('no model answer has been generated'),
     'honest text states no model answer has been generated; question saved locally');
   check('ask-busy-stop-control', busySeen || /Checking the teaching connection/i.test(notConnectedText) || true,
@@ -298,7 +298,7 @@ try {
         return false;
       });
       if (!doorUsed) {
-        await page.getByRole('button', { name: 'Try authored learning sample' }).click({ timeout: 20000 });
+        await page.getByRole('button', { name: 'Try an example lesson' }).click({ timeout: 20000 });
         await settle(page);
         await page.locator('button').filter({ hasText: 'Make sense of fractions' }).first().click();
       }

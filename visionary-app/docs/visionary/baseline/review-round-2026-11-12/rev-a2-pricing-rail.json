@@ -1,0 +1,48 @@
+{
+  "320": {
+    "rail": true,
+    "scrollable": true,
+    "scrollWidth": 860,
+    "clientWidth": 256,
+    "headings": [
+      {
+        "text": "Start",
+        "visible": true,
+        "right": 231
+      },
+      {
+        "text": "Personal",
+        "visible": true,
+        "right": 231
+      },
+      {
+        "text": "Family",
+        "visible": true,
+        "right": 248
+      }
+    ]
+  },
+  "390": {
+    "rail": true,
+    "scrollable": true,
+    "scrollWidth": 860,
+    "clientWidth": 326,
+    "headings": [
+      {
+        "text": "Start",
+        "visible": true,
+        "right": 266
+      },
+      {
+        "text": "Personal",
+        "visible": true,
+        "right": 266
+      },
+      {
+        "text": "Family",
+        "visible": true,
+        "right": 318
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "task": "FAP-82 / V6 T06 responsive (text-scale defect)",
+  "candidate": "zcode/fap-82-textscale-phone-ladder @ base 35b77791 (origin/beta)",
+  "servers": {
+    "candidate": "http://127.0.0.1:5173 (worktree dev server)",
+    "before": "http://127.0.0.1:5174 (primary checkout, beta 35b77791)"
+  },
+  "executed": "2026-11-11",
+  "harnesses": {
+    "design-quality-review": {
+      "exit": 0,
+      "verdict": "PASS — empty/populated evidence, real sample journey, eight theme/viewport samples, alpha-blended WCAG contrast, 44px hit areas, filtered totals, 200% text, shared brand font, Hindi portal typography",
+      "note": "first attempt without DESIGN_REGISTER_FIXTURE=1 failed at login (a fresh context has no account in local auth mode); re-run with the fixture flag passed"
+    },
+    "route-direct-url-review": { "exit": 0, "verdict": "ROUTE REVIEW PASSED", "evidence": "after/route/DIRECT_URL_RESULTS.json" },
+    "teacher-review": { "exit": 0, "records": 21, "defects": 0 },
+    "cross-role-review": { "exit": 0, "records": 37, "defects": 0 },
+    "ml-experience-review": { "exit": 0, "records": 38, "captures": 10, "checks": "27/27", "defects": 0 },
+    "student-review": { "exit": 0, "records": 16, "defects": 0 }
+  },
+  "gates": {
+    "lint": 0,
+    "typecheck": 0,
+    "npm test": "751/751 (744 baseline + 7 new)",
+    "build": 0,
+    "root npm run check": 0,
+    "scope:audit": "routes 67, endpoints 37, controlDeclarations 1656, routeReachableDeclarations 1504, controlFiles 237, states 509/936/59/152, hostedVerified false",
+    "product-surface.json delta": "two hashes only: the /pricing billing-toggle button declarationSha256 and the AILearningPage.jsx sourceSha256 (the className edits); no route, endpoint, control or state membership change"
+  }
+}

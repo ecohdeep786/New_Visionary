@@ -53,7 +53,7 @@ const EXPLORE_CAT_IMG = [studentmeet, teachermeet, parentmeet, orgmeet];
 const EXPLORE_CATEGORIES = [
   { slug: "student", chip: "Student", copy: "Know how Visionary fits into your learning.", alt: "Student learning with a laptop" },
   { slug: "teacher", chip: "Teacher", copy: "Know how Visionary fits into your classroom.", alt: "Teacher working on a laptop in a classroom" },
-  { slug: "parent", chip: "Parent", copy: "Know how Visionary fits into your child's journey.", alt: "Parent helping a child at a desk" },
+  { slug: "parent", chip: "Parent", copy: "Know how Visionary fits into your child’s journey.", alt: "Parent helping a child at a desk" },
   { slug: "organization", chip: "Organization", copy: "Know how Visionary fits across your organization.", alt: "Leader talking at an organization table" },
 ];
 
@@ -68,11 +68,11 @@ const HERO_WORD_MS = 2800;
 const STRUGGLE_LINES = ["Every", "professional", "wonders", "about"];
 
 const SLIDES = [
-  { word: "Application", quote: "I took three courses. I still don't know how to use them at work.", image: proProblem1, alt: "Professional struggling to apply coursework at work" },
+  { word: "Application", quote: "I took three courses. I still don’t know how to use them at work.", image: proProblem1, alt: "Professional struggling to apply coursework at work" },
   { word: "Relevance", quote: "I read every article. The next project still feels like the first.", image: proProblem2, alt: "Professional overwhelmed by learning resources" },
-  { word: "Growth", quote: "Five years in, and I can't show what I've actually learned.", image: proProblem3, alt: "Professional reflecting on career growth" },
+  { word: "Growth", quote: "Five years in, and I can’t show what I’ve actually learned.", image: proProblem3, alt: "Professional reflecting on career growth" },
   { word: "Focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: proProblem4, alt: "Professional juggling work deadlines and learning" },
-  { word: "Results", quote: "My team ships. I still don't know if we're building it right.", image: proProblem2, alt: "Professional uncertain about team output" },
+  { word: "Results", quote: "My team ships. I still don’t know if we’re building it right.", image: proProblem2, alt: "Professional uncertain about team output" },
 ];
 
 const JOURNEY_WORD_MS = 3000;
@@ -88,8 +88,8 @@ const JOURNEY_WORDS = [
 const JOURNEY_STAGES = [
   { title: "Early Career", statement: "Turn every first role into real skill.", copy: "Turn every first project into real skill — not just another line on your resume.", image: secondaryStudent, alt: "Early career professional at work" },
   { title: "Mid-Level", statement: "Reason through the harder decisions.", copy: "When the questions get harder and the decisions matter more, Visionary helps you reason through them.", image: higherStudent, alt: "Mid-level professional solving problems" },
-  { title: "Senior", statement: "Your judgment, sharpened.", copy: "Your judgment is your product. Visionary sharpens it by connecting what you've done to what comes next.", image: vocationStudent, alt: "Senior professional mentoring and leading" },
-  { title: "Leadership", statement: "Lead with clear sight.", copy: "See what your team understands, where they're stuck, and what they're ready for.", image: competitiveStudent, alt: "Leader reviewing team progress" },
+  { title: "Senior", statement: "Your judgment, sharpened.", copy: "Your judgment is your product. Visionary sharpens it by connecting what you’ve done to what comes next.", image: vocationStudent, alt: "Senior professional mentoring and leading" },
+  { title: "Leadership", statement: "Lead with clear sight.", copy: "See what your team understands, where they’re stuck, and what they’re ready for.", image: competitiveStudent, alt: "Leader reviewing team progress" },
   { title: "Specialist", statement: "Go deep without losing context.", copy: "Go deep without losing context. Every paper, project, and problem builds on the last.", image: higherStudent, alt: "Specialist deep in their domain" },
   { title: "Entrepreneur", statement: "Ship ideas. Keep the lessons.", copy: "Turn ideas into shipped work — with intelligence that remembers every decision and every lesson.", image: primaryStudent, alt: "Entrepreneur building something real" },
 ];
@@ -104,9 +104,9 @@ const STAGE_META = {
 };
 
 const INTELLIGENCE_STEPS = [
-  { title: "Understand the work before you do it.", copy: "Visionary reads the context, remembers what you've done before, and helps you reason through the problem — not just execute it." },
+  { title: "Understand the work before you do it.", copy: "Visionary reads the context, remembers what you’ve done before, and helps you reason through the problem — not just execute it." },
   { title: "Turn every project into a lesson.", copy: "Every decision, every failure, every shipped feature becomes part of what you understand next." },
-  { title: "Carry your expertise across teams and tools.", copy: "Your knowledge shouldn't reset every time you switch projects, companies, or tech stacks. Visionary keeps the continuity." },
+  { title: "Carry your expertise across teams and tools.", copy: "Your knowledge shouldn’t reset every time you switch projects, companies, or tech stacks. Visionary keeps the continuity." },
   { title: "Know what your work is actually building.", copy: "See whether your skills are compounding or stalling — and what the next meaningful step looks like." },
 ];
 
@@ -114,19 +114,16 @@ const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
   { code: "bn", label: "Bengali" },
-  { code: "ta", label: "Tamil" },
-  { code: "kn", label: "Kannada" },
-  { code: "pa", label: "Punjabi" },
 ];
 
 const LANGUAGE_QUESTIONS = [
-  { hi: "Iss project ka architecture kaise behtar karun?", en: "How do I improve the architecture of this project?", bn: "এই প্রজেক্টের আর্কিটেকচার কীভাবে উন্নত করব?", ta: "இந்த திட்டத்தின் கட்டமைப்பை எப்படி மேம்படுத்துவது?", kn: "ಈ ಯೋಜನೆಯ ವಾಸ್ತುಶಿಲ್ಪವನ್ನು ಹೇಗೆ ಸುಧಾರಿಸುವುದು?", pa: "ਇਸ ਪ੍ਰੋਜੈਕਟ ਦਾ ਆਰਕੀਟੈਕਚਰ ਕਿਵੇਂ ਬਿਹਤਰ ਬਣਾਵਾਂ?" },
-  { hi: "Mera team is problem ko kaise solve kare?", en: "How should my team solve this problem?", bn: "আমার দল এই সমস্যা কীভাবে সমাধান করবে?", ta: "என் குழு இந்த பிரச்சினையை எப்படி தீர்க்க வேண்டும்?", kn: "ನನ್ನ ತಂಡ ಈ ಸಮಸ್ಯೆಯನ್ನು ಹೇಗೆ ಪರಿಹರಿಸಬೇಕು?", pa: "ਮੇਰੀ ਟੀਮ ਇਸ ਸਮੱਸਿਆ ਨੂੰ ਕਿਵੇਂ ਹੱਲ ਕਰੇ?" },
-  { hi: "Next quarter ke liye main kaunsi skill seekhun?", en: "Which skill should I learn for next quarter?", bn: "পরবর্তী কোয়ার্টারের জন্য আমি কোন দক্ষতা শিখব?", ta: "அடுத்த காலாண்டிற்கு நான் எந்த திறனை கற்க வேண்டும்?", kn: "ಮುಂದಿನ ತ್ರೈಮಾಸಿಕಕ್ಕೆ ನಾನು ಯಾವ ಕೌಶಲ್ಯ ಕಲಿಯಬೇಕು?", pa: "ਅਗਲੀ ਤਿਮਾਹੀ ਲਈ ਮੈਂ ਕਿਹੜਾ ਹੁਨਰ ਸਿੱਖਾਂ?" },
+  { hi: "Iss project ka architecture kaise behtar karun?", en: "How do I improve the architecture of this project?", bn: "এই প্রজেক্টের আর্কিটেকচার কীভাবে উন্নত করব?" },
+  { hi: "Mera team is problem ko kaise solve kare?", en: "How should my team solve this problem?", bn: "আমার দল এই সমস্যা কীভাবে সমাধান করবে?" },
+  { hi: "Next quarter ke liye main kaunsi skill seekhun?", en: "Which skill should I learn for next quarter?", bn: "পরবর্তী কোয়ার্টারের জন্য আমি কোন দক্ষতা শিখব?" },
 ];
 
 const ACHIEVEMENT_TABS = [
-  { title: "Understand the problems you're working on.", copy: "See every problem through the lens of what you've solved before — and what you still need to learn." },
+  { title: "Understand the problems you’re working on.", copy: "See every problem through the lens of what you’ve solved before — and what you still need to learn." },
   { title: "Solve with intelligence behind you.", copy: "Get past the stuck moment faster. Visionary surfaces the exact concept, example, or previous decision that unlocks the next step." },
   { title: "Build what you actually came to build.", copy: "Turn learning into shipped work — real projects, real products, real skills that compound over your career." },
 ];
@@ -135,7 +132,7 @@ const ACHIEVEMENT_IMAGE = [proHeroContent, achieveImg, buildImg];
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that your work — and what you share with it — stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first project to what's next.", Icon: ShieldCheck, to: "/security" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first project to what’s next.", Icon: ShieldCheck, to: "/safety" },
   { title: "Responsibility", copy: "We believe intelligence should help professionals work, never work against them.", Icon: HeartHandshake, to: "/terms" },
 ];
 
@@ -153,34 +150,34 @@ const JOURNEY_MODALS = {
   },
   "Mid-Level": {
     top: "Reason through", accent: "the harder decisions.",
-    intro: "The questions get harder and the decisions matter more. Visionary helps you reason through them with the full context of what you've done.",
+    intro: "The questions get harder and the decisions matter more. Visionary helps you reason through them with the full context of what you’ve done.",
     primary: { label: "See how Visionary explains", to: "/how-it-works" },
     blocks: [
-      { Icon: Brain, t: "Decisions with context.", c: "Every choice builds on what you've already solved.", l: "See how it works", to: "/how-it-works" },
+      { Icon: Brain, t: "Decisions with context.", c: "Every choice builds on what you’ve already solved.", l: "See how it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise what matters.", c: "Deepen the skills your next role will ask for.", l: "Start practising free", to: "/register" },
-      { Icon: BookOpen, t: "Remember every project.", c: "Yesterday's work stays available for today's decision.", l: "Your continuity", to: "/how-it-works" },
-      { Icon: MessageCircle, t: "When you're stuck.", c: "Clear explanations when the problem is unfamiliar.", l: "Get support", to: "/help" },
+      { Icon: BookOpen, t: "Remember every project.", c: "Yesterday’s work stays available for today’s decision.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: MessageCircle, t: "When you’re stuck.", c: "Clear explanations when the problem is unfamiliar.", l: "Get support", to: "/help" },
     ],
   },
   "Senior": {
     top: "Your judgment,", accent: "sharpened.",
-    intro: "Your judgment is your product. Visionary sharpens it by connecting what you've done to what comes next.",
+    intro: "Your judgment is your product. Visionary sharpens it by connecting what you’ve done to what comes next.",
     primary: { label: "See how Visionary explains", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "See the pattern.", c: "Understand why past decisions worked, so new ones feel familiar.", l: "See how it works", to: "/how-it-works" },
       { Icon: BookOpen, t: "Learn from every call.", c: "Each decision becomes context for the next one.", l: "Your continuity", to: "/how-it-works" },
-      { Icon: Layers3, t: "Mentor with clarity.", c: "Explain what you know to the people you're helping grow.", l: "Talk to us", to: "/contact" },
+      { Icon: Layers3, t: "Mentor with clarity.", c: "Explain what you know to the people you’re helping grow.", l: "Talk to us", to: "/contact" },
       { Icon: Clock, t: "Stay steady.", c: "Clear thinking when pressure is high and time is short.", l: "Get support", to: "/help" },
     ],
   },
   "Leadership": {
     top: "Lead with", accent: "clear sight.",
-    intro: "Lead with clarity — see what your team understands, where they're stuck, and what they're ready for.",
+    intro: "Lead with clarity — see what your team understands, where they’re stuck, and what they’re ready for.",
     primary: { label: "See how Visionary explains", to: "/how-it-works" },
     blocks: [
       { Icon: UsersRound, t: "See your team.", c: "Understand where each person is and what they need next.", l: "For organizations", to: "/organization" },
       { Icon: BookOpen, t: "Keep the threads.", c: "Context carries across projects, quarters, and teams.", l: "Your continuity", to: "/how-it-works" },
-      { Icon: Layers3, t: "Build on what you know.", c: "Turn your experience into strategy, process, and teaching.", l: "Start building free", to: "/register" },
+      { Icon: Layers3, t: "Build on what you know.", c: "Turn your experience into strategy, process, and teaching.", l: "Create an account", to: "/register" },
       { Icon: Building2, t: "Bring it to your organization.", c: "Visionary can support teams, departments, and whole companies.", l: "For organizations", to: "/organization" },
     ],
   },
@@ -201,7 +198,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See how Visionary explains", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your problem, not a curriculum.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Zap, t: "Move fast, understand deeply.", c: "Speed and depth together — decisions you can defend later.", l: "Start building free", to: "/register" },
+      { Icon: Zap, t: "Move fast, understand deeply.", c: "Speed and depth together — decisions you can defend later.", l: "Create an account", to: "/register" },
       { Icon: BookOpen, t: "Every pivot teaches.", c: "What you learned in the last attempt carries into the next.", l: "Your continuity", to: "/how-it-works" },
       { Icon: UsersRound, t: "Find your people.", c: "Communities and partners help you build in real contexts.", l: "Find a partner", to: "/partners" },
     ],
@@ -214,10 +211,10 @@ const ProHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Building, to apply, to grow."
-    sub="Turn what you learn into work that ships — skills, solutions, and projects that compound with your career."
+    sub="Turn a question, project, or new skill into work you can use."
     img={proHero}
     alt="A professional writing notes beside a laptop"
-    ctaLabel="Start building free"
+    ctaLabel="Create a free account"
   />
 ));
 
@@ -230,8 +227,8 @@ function ProStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      {/* the bridge's compact band (02-struggle) carries the chapter breath;
-          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      {/* the bridge’s compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple’s hero-scroll-linked reveal */}
       <StruggleChapter
         linked
         slides={SLIDES}
@@ -239,8 +236,8 @@ function ProStruggleSection() {
         goTo={goTo}
         lines={STRUGGLE_LINES}
         label="Career learning challenges"
-        kicker="What work doesn't show"
-        copy="Working isn't the difficulty. Showing it is."
+        kicker="What work doesn’t show"
+        copy="Working isn’t the difficulty. Showing it is."
       />
     </section>
   );
@@ -256,9 +253,9 @@ function ProJourneySection() {
   return (
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <ScrollReveal>
-        {/* header — Apple's card-chapter treatment: statement LEFT-aligned at
-            the measured gutter, and the gallery's track carries the same
-            gutter so the first card starts exactly at the heading's left
+        {/* header — Apple’s card-chapter treatment: statement LEFT-aligned at
+            the measured gutter, and the gallery’s track carries the same
+            gutter so the first card starts exactly at the heading’s left
             edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
@@ -298,11 +295,12 @@ export default function CollegePage() {
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="From the first problem to using what you know."
+          note="The project and portfolio tools are in development. Today, you can set up your professional profile and choose the language you work in."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}
           questions={LANGUAGE_QUESTIONS}
-          eyebrow="Every language"
+          eyebrow="Your language"
           line1="Your work."
           accent="In your language"
           tail="."

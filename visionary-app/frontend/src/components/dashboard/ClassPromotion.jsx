@@ -45,17 +45,17 @@ export default function ClassPromotion({
       setBusy(false);
     }
   }
-  return <details className="border-t border-[#dadce0] pt-5">
-      <summary className="flex cursor-pointer items-center gap-2 text-sm font-medium text-[#121317]">
+  return <details className="border-t border-[#d2d2d7] pt-5">
+      <summary className="flex cursor-pointer items-center gap-2 text-sm font-medium text-[#1d1d1f]">
         <GraduationCap className="h-4 w-4" style={{
         color: accent
       }} />{copy("Record class promotion")}</summary>
-      <p className="mt-3 text-sm text-[#5f6368]">{copy("Adjacent class changes apply to actively enrolled learners. Anyone already in that class or needing a larger change keeps their current stage.")}</p>
+      <p className="mt-3 text-sm text-[#6e6e73]">{copy("Adjacent class changes apply to actively enrolled learners. Anyone already in that class or needing a larger change keeps their current stage.")}</p>
       <form onSubmit={submit} className="mt-4 flex flex-col gap-3">
         <div className="flex flex-wrap items-end gap-3">
-          <label className="text-sm">{copy("Moving to class")}<input value={level} onChange={e => setLevel(e.target.value)} maxLength={2} placeholder="8" aria-label={copy("Next class level")} className="mt-1 block w-24 rounded-xl border border-[#dadce0] p-2.5 text-sm" />
+          <label className="text-sm">{copy("Moving to class")}<input value={level} onChange={e => setLevel(e.target.value)} maxLength={2} placeholder="8" aria-label={copy("Next class level")} className="mt-1 block w-24 rounded-xl border border-[#d2d2d7] p-2.5 text-sm" />
           </label>
-          <label className="min-w-0 flex-1 text-sm">{copy("Reason (shared with learners)")}<input value={reason} onChange={e => setReason(e.target.value)} maxLength={120} placeholder={copy("End of year promotion")} aria-label={copy("Promotion reason")} className="mt-1 block w-full rounded-xl border border-[#dadce0] p-2.5 text-sm" />
+          <label className="min-w-0 flex-1 text-sm">{copy("Reason (shared with learners)")}<input value={reason} onChange={e => setReason(e.target.value)} maxLength={120} placeholder={copy("End of year promotion")} aria-label={copy("Promotion reason")} className="mt-1 block w-full rounded-xl border border-[#d2d2d7] p-2.5 text-sm" />
           </label>
           <button type="submit" disabled={busy || !level.trim()} className="h-11 rounded-full px-5 text-sm font-medium text-white disabled:opacity-50" style={{
           backgroundColor: accent
@@ -63,19 +63,19 @@ export default function ClassPromotion({
             {busy ? copy("Recording\u2026") : copy("Record promotion")}
           </button>
         </div>
-        {result && <div role="status" className="rounded-xl bg-[#e8f0fd] p-4 text-sm">
-            <p className="font-medium text-[#121317]">{copy('{count} learners moved to class {level}.', {
+        {result && <div role="status" className="rounded-xl bg-[#eef5ff] p-4 text-sm">
+            <p className="font-medium text-[#1d1d1f]">{copy('{count} learners moved to class {level}.', {
             count: result.promoted.length,
             level: result.nextClassLevel
           })}</p>
-            {alreadyCount > 0 && <p className="mt-1 text-[#5f6368]">{copy('{count} already in class {level}.', {
+            {alreadyCount > 0 && <p className="mt-1 text-[#6e6e73]">{copy('{count} already in class {level}.', {
             count: alreadyCount,
             level: result.nextClassLevel
           })}</p>}
-            {reviewCount > 0 && <p className="mt-1 text-[#5f6368]">{copy('{count} need individual review or learner confirmation; their stage was not changed.', {
+            {reviewCount > 0 && <p className="mt-1 text-[#6e6e73]">{copy('{count} need individual review or learner confirmation; their stage was not changed.', {
             count: reviewCount
           })}</p>}
-            {result.promoted.length > 0 && <p className="mt-1 text-xs text-[#5f6368]">{copy("Promoted learners can postpone or undo this on their own Home.")}</p>}
+            {result.promoted.length > 0 && <p className="mt-1 text-xs text-[#6e6e73]">{copy("Promoted learners can postpone or undo this on their own Home.")}</p>}
           </div>}
         {error && <p role="alert" lang="en" className="text-sm text-[#b3261e]">{error}</p>}
       </form>

@@ -1,0 +1,147 @@
+import { useRef, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { appClient } from '@/api/appClient';
+import { createConnectedWorkspaces } from '@/services/connectedWorkspaces';
+import { useConnectedWorkspace } from '@/hooks/ConnectedWorkspaceProvider';
+import { connectedSurfaceCopy } from '@/lib/connectedSurfaceCopy';
+
+const workspaces = createConnectedWorkspaces(() => appClient.auth.currentProfile()?.id);
+const roleLabels = { OWNER: 'Owner', ADMIN: 'Administrator', MEMBER: 'Member', GUEST: 'Guest' };
+
+export default function ConnectedWorkspaces({ accountId }) {
+  const { data } = useConnectedWorkspace();
+  const locale = data?.preferences?.interfaceLocale || 'en';
+  const t = connectedSurfaceCopy(locale);
+  const role = key => t(roleLabels[key]);
+  const [after, setAfter] = useState(null);
+  const [invitation, setInvitation] = useState('');
+  const [joining, setJoining] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState(null);
+  const [unconfirmed, setUnconfirmed] = useState(null);
+  const command = useRef(null);
+  const pending = useRef(false);
+  const query = useQuery({
+    queryKey: ['account', accountId, 'workspaces', after],
+    queryFn: () => workspaces.list(accountId, after),
+    refetchOnMount: 'always', refetchOnWindowFocus: 'always', refetchOnReconnect: 'always',
+    retry: false, gcTime: 0,
+  });
+  const page = query.isSuccess ? query.data : null;
+  const submitting = busy || joining;
+  // The overview may refuse a new account until provisioning creates its SQL person.
+  // Only the provisioning endpoint decides whether this account may be set up.
+  const mayNeedSetup = query.error?.status === 403;
+  const canProvision = after === null && (mayNeedSetup ||
+    (page && !page.items.some(row => row.isPersonal && row.role === 'OWNER')));
+
+  async function confirmWorkspace(receipt) {
+    const workspace = await workspaces.find(accountId, receipt.id, { personal: receipt.personal });
+    if (!workspace) throw new Error(t('The workspace list has not caught up.'));
+    if (after) setAfter(null);
+    else await query.refetch();
+    setUnconfirmed(null);
+    if (receipt.personal) command.current = null;
+    setMessage({ text: receipt.personal ? t('Your personal workspace is ready.') : t('Invitation accepted. Your workspace membership is confirmed.') });
+  }
+
+  async function refreshWorkspaces() {
+    if (pending.current) return;
+    setMessage(null);
+    if (!unconfirmed) {
+      await query.refetch();
+      return;
+    }
+    pending.current = true;
+    setBusy(true);
+    try {
+      await confirmWorkspace(unconfirmed);
+    } catch {
+      setMessage({ error: true, text: t('Could not confirm the workspace in your account yet. Refresh to check again.') });
+    } finally {
+      pending.current = false;
+      setBusy(false);
+    }
+  }
+
+  async function provision() {
+    if (!canProvision || unconfirmed || pending.current) return;
+    pending.current = true;
+    setBusy(true);
+    setMessage(null);
+    try {
+      // Keep the same command ID while the user retries an uncertain write.
+      command.current ??= crypto.randomUUID();
+      const id = await workspaces.provision(accountId, command.current);
+      const receipt = { id, personal: true };
+      setUnconfirmed(receipt);
+      await confirmWorkspace(receipt);
+    } catch (error) {
+      const unavailable = [404, 503].includes(error.status);
+      setMessage({ error: true, text: unavailable
+        ? t('Workspace setup is unavailable right now. Try again later.')
+        : t('Could not confirm your workspace. Refresh the list before trying again.') });
+    } finally {
+      pending.current = false;
+      setBusy(false);
+    }
+  }
+
+  async function acceptInvitation(event) {
+    event.preventDefault();
+    if (pending.current || unconfirmed || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())) return;
+    pending.current = true;
+    setJoining(true);
+    setMessage(null);
+    try {
+      const id = await workspaces.acceptInvitation(accountId, invitation.trim());
+      const receipt = { id, personal: false };
+      setInvitation('');
+      setUnconfirmed(receipt);
+      await confirmWorkspace(receipt);
+    } catch (error) {
+      const text = {
+        401: 'Your session has ended. Sign in and try again.',
+        403: 'This account could not accept the invitation. Check the account you’re signed in with.',
+        404: 'The invitation could not be found. Check the code or ask for a new one.',
+        409: 'The invitation could not be accepted in its current state. Refresh your workspaces.',
+        410: 'This invitation is no longer active. Ask for a new one.',
+      }[error.status] || 'Could not confirm acceptance. Check your connection and try again.';
+      setMessage({ error: true, text: t(text) });
+    } finally {
+      pending.current = false;
+      setJoining(false);
+    }
+  }
+
+  return <section className="max-w-2xl rounded-2xl border bg-white p-6" lang={locale}>
+    <h1 className="text-2xl font-semibold">{t('Workspaces')}</h1>
+    <p className="mt-2 text-slate-700">{t('Review the personal and shared workspaces linked to your account.')}</p>
+    {query.isPending && <p role="status" className="mt-4">{t('Checking your workspaces…')}</p>}
+    {query.isError && <p role="alert" className="mt-4">{mayNeedSetup ? t('Workspaces could not be opened. If this is your first time here, set up your personal workspace.') : t('Workspaces could not be checked. Try refreshing.')}</p>}
+    {page?.items.length === 0 && <p className="mt-4">{after ? t('No workspaces on this page.') : t('Your account has no workspaces yet.')}</p>}
+    {page?.items.length > 0 && <ul className="mt-4 divide-y">
+      {page.items.map(row => <li key={row.id} className="py-3">
+        <p className="font-medium break-words">{row.name}</p>
+        <p className="mt-1 text-sm text-slate-700">{row.isPersonal ? t('Personal workspace') : t('Shared workspace')} · {role(row.role)}</p>
+      </li>)}
+    </ul>}
+    <div className="mt-4 flex flex-wrap gap-3">
+      <button type="button" className="min-h-11 rounded-xl border px-4" disabled={submitting || query.isFetching} onClick={refreshWorkspaces}>{t('Refresh workspaces')}</button>
+      {after && <button type="button" className="min-h-11 rounded-xl border px-4" disabled={submitting} onClick={() => setAfter(null)}>{t('First page')}</button>}
+      {page?.next && <button type="button" className="min-h-11 rounded-xl border px-4" disabled={submitting} onClick={() => setAfter(page.next)}>{t('Next page')}</button>}
+      {canProvision && !unconfirmed && <button type="button" className="min-h-11 rounded-xl bg-blue-700 px-4 text-white disabled:opacity-60" disabled={submitting || query.isFetching} onClick={provision}>{busy ? t('Setting up…') : t('Set up personal workspace')}</button>}
+    </div>
+    {!unconfirmed && (page || mayNeedSetup) && <form className="mt-6 border-t pt-5" onSubmit={acceptInvitation}>
+      <h2 className="text-lg font-semibold">{t('Join a workspace')}</h2>
+      <label htmlFor="workspace-invitation" className="mt-3 block text-sm font-medium">{t('Invitation code')}</label>
+      <input id="workspace-invitation" className="mt-1 block min-h-11 w-full max-w-md rounded-xl border px-3"
+        autoComplete="off" autoCapitalize="off" spellCheck={false} maxLength={60} required
+        value={invitation} onChange={event => { setInvitation(event.target.value); setMessage(null); }} disabled={submitting} />
+      <button type="submit" className="mt-3 min-h-11 rounded-xl border px-4" disabled={submitting || !/^[A-Za-z0-9_-]{43}$/.test(invitation.trim())}>
+        {joining ? t('Accepting…') : t('Accept invitation')}
+      </button>
+    </form>}
+    {message && <p className="mt-4" role={message.error ? 'alert' : 'status'}>{message.text}</p>}
+  </section>;
+}

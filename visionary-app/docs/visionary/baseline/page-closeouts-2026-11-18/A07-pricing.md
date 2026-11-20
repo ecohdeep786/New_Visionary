@@ -1,0 +1,22 @@
+# FHE-PAGE CLOSEOUT — A07 — `/pricing`
+
+- Branch / owned worktree / base SHA / change SHA: `zcode-fhe-landing-craft` · base `0b1522af` (dev) · change: 7 typographic apostrophes (AILearningPage 6 + pricingConfig 1).
+- Primary files changed: `frontend/src/pages/landing/AILearningPage.jsx`; `frontend/src/data/pricingConfig.js`.
+- Prior accepted receipts reused: the founder-approved segmented-control fix (Monthly/Annual track, spacing, ink CTAs — this session's earlier pass), A00 typographic discipline.
+- User audience / primary purpose / next real step: anyone comparing plans; next step "Get started"/"Start" → /register (real; the billing backend is unconfigured, so no checkout is advertised).
+- Release capability classification: public marketing page; the billing preview framing is explicit in the hero ("Personal and Family prices below are for the billing preview. The learning features in the comparison are planned.").
+- Apple sources consulted (live tabs): https://www.apple.com/in/iphone/ — product-comparison hierarchy (plan headers, glyph cells, fine print). HIG Writing — fine-print honesty. Nothing copied.
+- Initial defects with evidence: 7 straight apostrophes (AILearningPage 6 incl. the persona-row copy from pricingConfig, whose "Upgrade when you're ready." lives in `src/data/pricingConfig.js` — a data module, not the page — which is why the page-file conversion missed it).
+- Copy/grammar changes: 7 contractions → typographic apostrophes; no wording changes.
+- Truth review: the hero and FAQ carry the billing-preview honesty ("billing preview", "Guardian reports are in development. The design requires a verified guardian relationship…"); "Free forever · no card required" matches the zero-price config; TEST-vs-live payment distinction held (no checkout advertised); the trust strip ("Cancel anytime · Your memory stays yours · Education discounts for students & teachers") matches the FAQ answers. PASS.
+- Interaction evidence: the Monthly/Annual segmented toggle present and wired (aria-label "Billing period"); the FAQ accordion verified in the A00-era walk; the persona-row links route to the persona pages.
+- Browser: Chromium (Edge) production build at 1280; the rendered straight-apostrophe count went 1 → 0 after the pricingConfig fix.
+- Before/after: "Upgrade when you're ready." → typographic; 6 further instances in the page file.
+- Motion/reduced-motion: unchanged. Accessibility: toggle aria-label + FAQ accordion unchanged.
+- Production build/lint/unit/graph: eslint clean; 870/870 after scope regeneration; build ✓.
+- Shared component regression: pricingConfig.js serves the pricing page's persona rows only; the suite covers it.
+- Open dependencies: the billing backend (Razorpay) remains unconfigured — the honest server-owned state stands.
+- Reviewer verdict: self-reviewed as principal engineer under the founder's Apple-level directive.
+- Final verdict: PASS.
+- What the next agent should NOT redo: the segmented-control design, the billing-preview honesty framing, the FAQ answers.
+- NEXT primary page: A08 `/help`.

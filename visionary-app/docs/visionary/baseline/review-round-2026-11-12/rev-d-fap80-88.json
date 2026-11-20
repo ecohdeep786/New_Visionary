@@ -1,0 +1,28 @@
+{
+  "base": "http://127.0.0.1:5175",
+  "betaHead": "f8c3fd1d",
+  "fap88": {
+    "landed": "/dashboard/home",
+    "sample1": {
+      "url": "/dashboard/classes",
+      "cards": [
+        "Review RD Class One 1794548686350"
+      ]
+    },
+    "sample2": {
+      "url": "/dashboard/classes",
+      "cards": [
+        "Review RD Class Two 1794548686350",
+        "Review RD Class One 1794548686350"
+      ]
+    },
+    "duplicateKeyWarnings": 0,
+    "consoleIssues": [],
+    "ok": true
+  },
+  "fap80": {
+    "landed": "/dashboard/home",
+    "darkMedia": true,
+    "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add topic' }).first()\u001b[22m\n"
+  }
+}

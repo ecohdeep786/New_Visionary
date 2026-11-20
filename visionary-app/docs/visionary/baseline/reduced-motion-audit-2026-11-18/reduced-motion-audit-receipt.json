@@ -1,0 +1,67 @@
+{
+  "at": "2026-11-18T05:14:52.232Z",
+  "base": "http://localhost:4200",
+  "surfaces": [
+    {
+      "mode": "reduce",
+      "route": "/dashboard/home",
+      "h1": "आपका Visionary खाता",
+      "mainTextLength": 129,
+      "overflow": false,
+      "animatedElements": 0,
+      "maxDuration": 0
+    },
+    {
+      "mode": "reduce",
+      "route": "/dashboard/profile",
+      "h1": "आपकी प्रोफ़ाइल",
+      "mainTextLength": 382,
+      "overflow": false,
+      "animatedElements": 0,
+      "maxDuration": 0
+    },
+    {
+      "mode": "reduce",
+      "route": "/dashboard/learn",
+      "h1": "सहेजी गई सीख",
+      "mainTextLength": 150,
+      "overflow": false,
+      "animatedElements": 0,
+      "maxDuration": 0
+    },
+    {
+      "mode": "no-preference",
+      "route": "/dashboard/home",
+      "h1": "आपका Visionary खाता",
+      "mainTextLength": 129,
+      "overflow": false,
+      "animatedElements": 8,
+      "maxDuration": 0.2
+    },
+    {
+      "mode": "no-preference",
+      "route": "/dashboard/profile",
+      "h1": "आपकी प्रोफ़ाइल",
+      "mainTextLength": 382,
+      "overflow": false,
+      "animatedElements": 10,
+      "maxDuration": 0.18
+    },
+    {
+      "mode": "no-preference",
+      "route": "/dashboard/learn",
+      "h1": "सहेजी गई सीख",
+      "mainTextLength": 150,
+      "overflow": false,
+      "animatedElements": 7,
+      "maxDuration": 0.18
+    }
+  ],
+  "totals": {
+    "reducedMaxDuration": 0,
+    "normalMaxDuration": 0.2,
+    "normalAnimatedElements": 25,
+    "reducedAnimatedElements": 0,
+    "failures": 0
+  }
+}

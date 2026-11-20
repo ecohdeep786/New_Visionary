@@ -1,0 +1,83 @@
+{
+  "ticket": "FAP-77",
+  "title": "Learn entry vocabulary — authored-sample task family speaks the product's words",
+  "date": "2026-11-09",
+  "reference": "Apple HIG Writing → inclusivity principle: 'Write for everyone. … simple, plain language … avoiding jargon.'",
+  "law": "The entry task buttons, the empty state and the authored-mathematics view use the product vocabulary 'example lesson(s)' in en/hi/bn; the honest boundary sentence survives ('These example lessons are not official curriculum coverage.'); no visible entry word contains 'sample' or 'legacy'; internal ?legacy=1 URLs and SAMPLE_SELECTION / PROFESSIONAL_SAMPLE_SELECTION / SAMPLE_LIBRARY_SELECTION behaviors stay untouched.",
+  "matrix": [
+    {
+      "probe": "entry",
+      "side": "before",
+      "server": "base beta 8fd60c83 @ http://localhost:5174",
+      "persona": "fresh learner (Personal · Learner), real register→onboarding journey",
+      "expected": "old fixture vocabulary visible: 'Try authored learning sample', 'Try a multi-book sample'",
+      "verdict": "PASS",
+      "evidence": "entry-before.json + entry-before-entry-final.png"
+    },
+    {
+      "probe": "entry",
+      "side": "after",
+      "server": "candidate zcode/fap-77-learn-vocab @ http://localhost:5173",
+      "persona": "fresh learner (Personal · Learner), real register→onboarding journey",
+      "expected": "'Try an example lesson' + 'Try examples from more books' visible; no visible 'sample'/'legacy' words anywhere on the entry page; old labels absent; 'Open my outline' and 'Open previous saved topics and examples' intact",
+      "verdict": "PASS",
+      "evidence": "entry-after.json + entry-after-entry-final.png"
+    },
+    {
+      "probe": "example-lesson",
+      "side": "after",
+      "server": "candidate @ http://localhost:5173",
+      "persona": "fresh learner per probe",
+      "expected": "clicking 'Try an example lesson' opens the authored sample outline",
+      "verdict": "PASS",
+      "result": "Mathematics authored outline opened (catalogueSubject=Mathematics&catalogueBoard=Sample&catalogueLevel=6)",
+      "evidence": "example-lesson-after.json + example-lesson-after-example-lesson.png"
+    },
+    {
+      "probe": "example-library",
+      "side": "after",
+      "server": "candidate @ http://localhost:5173",
+      "persona": "fresh learner per probe",
+      "expected": "clicking 'Try examples from more books' opens the sample library selection",
+      "verdict": "PASS",
+      "result": "Sample library · 6 with Books · 2 (Fractions workbook + Geometry workbook) opened (catalogueBoard=Sample library)",
+      "evidence": "example-library-after.json + example-library-after-example-library.png"
+    },
+    {
+      "probe": "legacy-link",
+      "side": "after",
+      "server": "candidate @ http://localhost:5173",
+      "persona": "fresh learner per probe",
+      "expected": "the honest label 'Open previous saved topics and examples' still reaches the internal legacy view (?legacy=1) with behaviors intact",
+      "verdict": "PASS",
+      "result": "navigated to /dashboard/learn?legacy=1; legacy Learn view renders (Guided journeys · curated interactive examples)",
+      "evidence": "legacy-link-after.json + legacy-link-after-legacy-link-final.png"
+    }
+  ],
+  "harnesses": [
+    { "harness": "route-direct-url-review.mjs (67 routes + auth/redirect/recovery surfaces)", "verdict": "ROUTE REVIEW PASSED", "evidence": "route-review/DIRECT_URL_RESULTS.json" },
+    { "harness": "ml-experience-review.mjs", "verdict": "27/27 pass, 0 defects", "evidence": "ml-experience/receipt.json" },
+    { "harness": "student-review.mjs", "verdict": "16 records, 0 defects", "evidence": "student/" }
+  ],
+  "surface_delta": {
+    "artifact": "docs/architecture/tracking/product-surface.json (refreshed via npm run scope:audit:write)",
+    "routes": "67 = 67 (equal)",
+    "endpoints": "37 = 37 (equal)",
+    "review_section": "equal",
+    "controls": "1656 rows, index-wise DIFF 0 (declarative behavior surface unchanged)",
+    "source_sha_changed": [
+      "frontend/src/lib/learningCopy.js",
+      "frontend/src/lib/learningCatalogueCopy.js",
+      "frontend/src/lib/legacyLearningCopy.js",
+      "frontend/src/pages/dashboard/LearningWorkspace.jsx"
+    ]
+  },
+  "gates": {
+    "lint": "0 issues",
+    "typecheck": "0 issues",
+    "tests": "716/716 (incl. new frontend/tests/fap77-learn-entry-vocabulary.test.mjs 7 tests)",
+    "build": "0 errors",
+    "check": "EXIT=0"
+  },
+  "notes": "Earlier same-day probe runs are superseded: they used a teacher persona (probe self-leak — a fallback clicked 'I am a Teacher' after 'I am a Learner') and were re-run with the learner persona; the committed set is the learner set. The wizard has two real variants (4-step, 5-step); the probe handles both via level-escalating card clicks."
+}

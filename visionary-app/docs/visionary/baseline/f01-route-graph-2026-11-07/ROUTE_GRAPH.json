@@ -1,0 +1,1035 @@
+{
+  "generatedFrom": "visionary-app/frontend/src/App.jsx",
+  "routes": [
+    {
+      "id": "/",
+      "path": "/",
+      "index": false,
+      "component": "LandingEntry",
+      "componentImport": null,
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/signin",
+      "path": "/signin",
+      "index": false,
+      "component": "Navigate",
+      "componentImport": null,
+      "redirect": "/login",
+      "segment": "redirect",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/login",
+      "path": "/login",
+      "index": false,
+      "component": "Login",
+      "componentImport": "@/pages/Login",
+      "redirect": null,
+      "segment": "auth",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/register",
+      "path": "/register",
+      "index": false,
+      "component": "Register",
+      "componentImport": "@/pages/Register",
+      "redirect": null,
+      "segment": "auth",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/forgot-password",
+      "path": "/forgot-password",
+      "index": false,
+      "component": "ForgotPassword",
+      "componentImport": "@/pages/ForgotPassword",
+      "redirect": null,
+      "segment": "auth",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/forgot-user-id",
+      "path": "/forgot-user-id",
+      "index": false,
+      "component": "ForgotUserId",
+      "componentImport": "@/pages/ForgotUserId",
+      "redirect": null,
+      "segment": "auth",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/reset-password",
+      "path": "/reset-password",
+      "index": false,
+      "component": "ResetPassword",
+      "componentImport": "@/pages/ResetPassword",
+      "redirect": null,
+      "segment": "auth",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/auth/action",
+      "path": "/auth/action",
+      "index": false,
+      "component": "AuthAction",
+      "componentImport": "@/pages/AuthAction",
+      "redirect": null,
+      "segment": "auth",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/student",
+      "path": "/student",
+      "index": false,
+      "component": "StudentPage",
+      "componentImport": "@/pages/landing/StudentPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/teacher",
+      "path": "/teacher",
+      "index": false,
+      "component": "TeacherPage",
+      "componentImport": "@/pages/landing/TeacherPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/parent",
+      "path": "/parent",
+      "index": false,
+      "component": "ParentPage",
+      "componentImport": "@/pages/landing/ParentPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/help",
+      "path": "/help",
+      "index": false,
+      "component": "SchoolPage",
+      "componentImport": "@/pages/landing/SchoolPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/professional",
+      "path": "/professional",
+      "index": false,
+      "component": "CollegePage",
+      "componentImport": "@/pages/landing/CollegePage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/how-it-works",
+      "path": "/how-it-works",
+      "index": false,
+      "component": "CoachingPage",
+      "componentImport": "@/pages/landing/CoachingPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/organization",
+      "path": "/organization",
+      "index": false,
+      "component": "OrganizationPage",
+      "componentImport": "@/pages/landing/OrganizationPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/download",
+      "path": "/download",
+      "index": false,
+      "component": "DownloadPage",
+      "componentImport": "@/pages/landing/DownloadPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/about",
+      "path": "/about",
+      "index": false,
+      "component": "AboutPage",
+      "componentImport": "@/pages/landing/AboutUsPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/pricing",
+      "path": "/pricing",
+      "index": false,
+      "component": "AILearningPage",
+      "componentImport": "@/pages/landing/AILearningPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/career",
+      "path": "/career",
+      "index": false,
+      "component": "Navigate",
+      "componentImport": null,
+      "redirect": "/careers",
+      "segment": "redirect",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/careers",
+      "path": "/careers",
+      "index": false,
+      "component": "CareersPage",
+      "componentImport": "@/pages/landing/CareersPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/research",
+      "path": "/research",
+      "index": false,
+      "component": "ResearchNewsPage",
+      "componentImport": "@/pages/landing/ResearchNewsPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/community",
+      "path": "/community",
+      "index": false,
+      "component": "CommunityPage",
+      "componentImport": "@/pages/landing/CommunityPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/contact",
+      "path": "/contact",
+      "index": false,
+      "component": "ContactPage",
+      "componentImport": "@/pages/landing/ContactPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/partners",
+      "path": "/partners",
+      "index": false,
+      "component": "PartnersPage",
+      "componentImport": "@/pages/landing/PartnersPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/updates",
+      "path": "/updates",
+      "index": false,
+      "component": "UpdatesPage",
+      "componentImport": "@/pages/landing/UpdatesPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/referral",
+      "path": "/referral",
+      "index": false,
+      "component": "ReferralPage",
+      "componentImport": "@/pages/landing/ReferralPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/safety",
+      "path": "/safety",
+      "index": false,
+      "component": "SafetyPage",
+      "componentImport": "@/pages/landing/SafetyPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/privacy",
+      "path": "/privacy",
+      "index": false,
+      "component": "PrivacyPage",
+      "componentImport": "@/pages/landing/PrivacyPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/terms",
+      "path": "/terms",
+      "index": false,
+      "component": "TermsPage",
+      "componentImport": "@/pages/landing/TermsPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/security",
+      "path": "/security",
+      "index": false,
+      "component": "SecurityPage",
+      "componentImport": "@/pages/landing/SecurityPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/accessibility",
+      "path": "/accessibility",
+      "index": false,
+      "component": "AccessibilityPage",
+      "componentImport": "@/pages/landing/AccessibilityPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/cookies",
+      "path": "/cookies",
+      "index": false,
+      "component": "CookiesPage",
+      "componentImport": "@/pages/landing/CookiesPage",
+      "redirect": null,
+      "segment": "public",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    },
+    {
+      "id": "/onboarding",
+      "path": "/onboarding",
+      "index": false,
+      "component": "Onboarding",
+      "componentImport": "@/pages/Onboarding",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard",
+      "path": "/dashboard",
+      "index": false,
+      "component": "DashboardLayout",
+      "componentImport": "@/components/dashboard/DashboardLayout",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard#index",
+      "path": "/dashboard",
+      "index": true,
+      "component": "DashboardHome",
+      "componentImport": "@/pages/dashboard/DashboardHome",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/home",
+      "path": "/dashboard/home",
+      "index": false,
+      "component": "DashboardHome",
+      "componentImport": "@/pages/dashboard/DashboardHome",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/classes",
+      "path": "/dashboard/classes",
+      "index": false,
+      "component": "ClassesEntry",
+      "componentImport": null,
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/learn",
+      "path": "/dashboard/learn",
+      "index": false,
+      "component": "Learn",
+      "componentImport": "@/pages/dashboard/Learn",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/learn/:topicId",
+      "path": "/dashboard/learn/:topicId",
+      "index": false,
+      "component": "TopicDetail",
+      "componentImport": "@/pages/dashboard/TopicDetail",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/ask",
+      "path": "/dashboard/ask",
+      "index": false,
+      "component": "DashboardHome",
+      "componentImport": "@/pages/dashboard/DashboardHome",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/practice",
+      "path": "/dashboard/practice",
+      "index": false,
+      "component": "Practice",
+      "componentImport": "@/pages/dashboard/Practice",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/build",
+      "path": "/dashboard/build",
+      "index": false,
+      "component": "Build",
+      "componentImport": "@/pages/dashboard/ArtifactStudio",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/subscription",
+      "path": "/dashboard/subscription",
+      "index": false,
+      "component": "Subscription",
+      "componentImport": "@/pages/dashboard/Plans",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/class/:classId",
+      "path": "/dashboard/class/:classId",
+      "index": false,
+      "component": "ClassDetail",
+      "componentImport": "@/pages/dashboard/ClassDetail",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/child",
+      "path": "/dashboard/child",
+      "index": false,
+      "component": "Children",
+      "componentImport": "@/pages/dashboard/Children",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/people",
+      "path": "/dashboard/people",
+      "index": false,
+      "component": "RoleWorkspace",
+      "componentImport": "@/pages/dashboard/RoleWorkspace",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/curriculum",
+      "path": "/dashboard/curriculum",
+      "index": false,
+      "component": "RoleWorkspace",
+      "componentImport": "@/pages/dashboard/RoleWorkspace",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/analytics",
+      "path": "/dashboard/analytics",
+      "index": false,
+      "component": "RoleWorkspace",
+      "componentImport": "@/pages/dashboard/RoleWorkspace",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/insights",
+      "path": "/dashboard/insights",
+      "index": false,
+      "component": "RoleWorkspace",
+      "componentImport": "@/pages/dashboard/RoleWorkspace",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/profile",
+      "path": "/dashboard/profile",
+      "index": false,
+      "component": "Profile",
+      "componentImport": "@/pages/dashboard/Profile",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/settings",
+      "path": "/dashboard/settings",
+      "index": false,
+      "component": "Settings",
+      "componentImport": "@/pages/dashboard/Settings",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/connections",
+      "path": "/dashboard/connections",
+      "index": false,
+      "component": "Connections",
+      "componentImport": "@/pages/dashboard/Connections",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/explore",
+      "path": "/dashboard/explore",
+      "index": false,
+      "component": "Explore",
+      "componentImport": "@/pages/dashboard/Explore",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/support",
+      "path": "/dashboard/support",
+      "index": false,
+      "component": "Support",
+      "componentImport": "@/pages/dashboard/Support",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/prepare",
+      "path": "/dashboard/prepare",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/library",
+      "path": "/dashboard/library",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/career",
+      "path": "/dashboard/career",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/growth",
+      "path": "/dashboard/growth",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/progress",
+      "path": "/dashboard/progress",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/reports",
+      "path": "/dashboard/reports",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/notifications",
+      "path": "/dashboard/notifications",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/personalization",
+      "path": "/dashboard/personalization",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/privacy",
+      "path": "/dashboard/privacy",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/audit",
+      "path": "/dashboard/audit",
+      "index": false,
+      "component": "WorkspaceTools",
+      "componentImport": "@/pages/dashboard/WorkspaceTools",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/cohorts",
+      "path": "/dashboard/cohorts",
+      "index": false,
+      "component": "Cohorts",
+      "componentImport": "@/pages/dashboard/Cohorts",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "/dashboard/learners",
+      "path": "/dashboard/learners",
+      "index": false,
+      "component": "Learners",
+      "componentImport": "@/pages/dashboard/Learners",
+      "redirect": null,
+      "segment": "protected",
+      "auth": "required",
+      "guards": [
+        "ProtectedRoute",
+        "OnboardingGate"
+      ],
+      "environment": "production-source"
+    },
+    {
+      "id": "*",
+      "path": "*",
+      "index": false,
+      "component": "PageNotFound",
+      "componentImport": "@/lib/PageNotFound",
+      "redirect": null,
+      "segment": "catch-all",
+      "auth": "public-or-provider-action",
+      "guards": [],
+      "environment": "production-source"
+    }
+  ],
+  "redirects": [
+    {
+      "from": "/signin",
+      "to": "/login"
+    },
+    {
+      "from": "/career",
+      "to": "/careers"
+    }
+  ],
+  "summary": {
+    "total": 67,
+    "public": 24,
+    "auth": 6,
+    "protected": 33,
+    "redirects": 2,
+    "catchAll": "*",
+    "siteOrigin": "https://visionary.org.in"
+  },
+  "contracts": {
+    "routeMetaKeys": [
+      "/",
+      "/about",
+      "/accessibility",
+      "/careers",
+      "/community",
+      "/contact",
+      "/cookies",
+      "/download",
+      "/help",
+      "/how-it-works",
+      "/organization",
+      "/parent",
+      "/partners",
+      "/pricing",
+      "/privacy",
+      "/professional",
+      "/referral",
+      "/research",
+      "/safety",
+      "/security",
+      "/student",
+      "/teacher",
+      "/terms",
+      "/updates"
+    ],
+    "sitemapRoutes": [
+      "/",
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization",
+      "/how-it-works",
+      "/help",
+      "/pricing",
+      "/download",
+      "/about",
+      "/research",
+      "/community",
+      "/updates",
+      "/partners",
+      "/referral",
+      "/privacy",
+      "/terms",
+      "/cookies",
+      "/safety",
+      "/security",
+      "/accessibility",
+      "/careers",
+      "/contact"
+    ],
+    "publicPages": [
+      "/",
+      "/about",
+      "/accessibility",
+      "/careers",
+      "/community",
+      "/contact",
+      "/cookies",
+      "/download",
+      "/help",
+      "/how-it-works",
+      "/organization",
+      "/parent",
+      "/partners",
+      "/pricing",
+      "/privacy",
+      "/professional",
+      "/referral",
+      "/research",
+      "/safety",
+      "/security",
+      "/student",
+      "/teacher",
+      "/terms",
+      "/updates"
+    ],
+    "sitemapLocs": [
+      "https://visionary.org.in/",
+      "https://visionary.org.in/student",
+      "https://visionary.org.in/teacher",
+      "https://visionary.org.in/parent",
+      "https://visionary.org.in/professional",
+      "https://visionary.org.in/organization",
+      "https://visionary.org.in/how-it-works",
+      "https://visionary.org.in/help",
+      "https://visionary.org.in/pricing",
+      "https://visionary.org.in/download",
+      "https://visionary.org.in/about",
+      "https://visionary.org.in/research",
+      "https://visionary.org.in/community",
+      "https://visionary.org.in/updates",
+      "https://visionary.org.in/partners",
+      "https://visionary.org.in/referral",
+      "https://visionary.org.in/privacy",
+      "https://visionary.org.in/terms",
+      "https://visionary.org.in/cookies",
+      "https://visionary.org.in/safety",
+      "https://visionary.org.in/security",
+      "https://visionary.org.in/accessibility",
+      "https://visionary.org.in/careers",
+      "https://visionary.org.in/contact"
+    ]
+  }
+}

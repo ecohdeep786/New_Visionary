@@ -15,13 +15,17 @@ const COPY = {
 // next step from the user's own records, in the user's language. It offers, never acts
 // on its own: every suggestion is an explicit link the user chooses to follow.
 export default function MentorGreeting() {
-  const { ctx } = useWorkspace();
+  const { ctx, data } = useWorkspace();
+  /* The check-in card is interface guidance, so it speaks the interface
+   * language (same authority as the plan builder's chrome); the teaching turn
+   * itself stays teaching-language content when the backend handoff lands. */
+  const locale = data?.preferences?.interfaceLocale || 'en';
   const greeting = useMemo(() => {
     if (!ctx) return null;
-    try { return mentorGreeting(ctx); } catch { return null; }
-  }, [ctx?.personId, ctx?.workspaceId, ctx?.locale]);
+    try { return mentorGreeting({ ...ctx, locale }); } catch { return null; }
+  }, [ctx?.personId, ctx?.workspaceId, locale]);
   if (!ctx || !greeting) return null;
-  const copy = COPY[ctx.locale] || COPY.en;
+  const copy = COPY[locale] || COPY.en;
   return <section className="v-mentor-continuation" aria-labelledby="mentor-greeting-title">
     <span className="v-mentor-mark"><GuideMark size={22} /></span>
     <div className="v-mentor-copy">

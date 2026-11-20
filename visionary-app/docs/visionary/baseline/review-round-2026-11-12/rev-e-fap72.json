@@ -1,0 +1,146 @@
+{
+  "sides": {
+    "before": {
+      "base": "http://127.0.0.1:5175",
+      "sha": "f8c3fd1d (beta)",
+      "registerSelector": {
+        "present": true,
+        "labelBefore": "English",
+        "menuItems": [
+          "English",
+          "हिन्दी",
+          "Español",
+          "Français",
+          "Deutsch",
+          "العربية",
+          "中文",
+          "日本語",
+          "Português",
+          "Русский"
+        ],
+        "driveProof": {
+          "selectorLabel": "Español",
+          "pageH1": "Create a Visionary account"
+        }
+      },
+      "studentSteps": [
+        {
+          "path": "/onboarding",
+          "listboxButtons": 1,
+          "honestNote": false,
+          "fullListPresent": true,
+          "preferredLearningLabel": true,
+          "preferredOptions": 15,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | What are you learning? | Choose the starting point that fits you. Learning language and content availability are separate. | Using rev-fap72-student"
+        },
+        {
+          "path": "/onboarding",
+          "listboxButtons": 1,
+          "honestNote": false,
+          "fullListPresent": false,
+          "preferredLearningLabel": false,
+          "preferredOptions": null,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Which exam are you preparing for? | These details help you find relevant material. They do not connect you to an institution. | Using rev-fap72-stud"
+        },
+        {
+          "path": "/onboarding",
+          "listboxButtons": 1,
+          "honestNote": false,
+          "fullListPresent": false,
+          "preferredLearningLabel": false,
+          "preferredOptions": null,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Ready to start with Visionary? | A quick check before we save your preferences to this account. | Using rev-fap72-student-1794549533708@visionary.te"
+        }
+      ],
+      "parentSteps": [
+        {
+          "path": "/onboarding",
+          "listboxButtons": 1,
+          "honestNote": false,
+          "fullListPresent": true,
+          "preferredLearningLabel": true,
+          "preferredOptions": 15,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Make Visionary work for you | Start with the essentials. You can add more details as you use Visionary. | Using rev-fap72-parent-1794549533708@visio"
+        },
+        {
+          "path": "/onboarding",
+          "listboxButtons": 1,
+          "honestNote": false,
+          "fullListPresent": false,
+          "preferredLearningLabel": false,
+          "preferredOptions": null,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Ready to start with Visionary? | A quick check before we save your preferences to this account. | Using rev-fap72-parent-1794549533708@visionary.tes"
+        }
+      ]
+    },
+    "after": {
+      "base": "http://127.0.0.1:5176",
+      "sha": "224a5048 (zcode/fap-72, serve worktree)",
+      "registerSelector": {
+        "present": false
+      },
+      "studentSteps": [
+        {
+          "path": "/onboarding",
+          "listboxButtons": 0,
+          "honestNote": true,
+          "fullListPresent": true,
+          "preferredLearningLabel": true,
+          "preferredOptions": 15,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | What are you learning? | Choose the starting point that fits you. Learning language and content availability are separate. | Using rev-fap72-student"
+        },
+        {
+          "path": "/onboarding",
+          "listboxButtons": 0,
+          "honestNote": false,
+          "fullListPresent": false,
+          "preferredLearningLabel": false,
+          "preferredOptions": null,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Which exam are you preparing for? | These details help you find relevant material. They do not connect you to an institution. | Using rev-fap72-stud"
+        },
+        {
+          "path": "/onboarding",
+          "listboxButtons": 0,
+          "honestNote": false,
+          "fullListPresent": false,
+          "preferredLearningLabel": false,
+          "preferredOptions": null,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Ready to start with Visionary? | A quick check before we save your preferences to this account. | Using rev-fap72-student-1794549533708@visionary.te"
+        }
+      ],
+      "parentSteps": [
+        {
+          "path": "/onboarding",
+          "listboxButtons": 0,
+          "honestNote": true,
+          "fullListPresent": true,
+          "preferredLearningLabel": true,
+          "preferredOptions": 15,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Make Visionary work for you | Start with the essentials. You can add more details as you use Visionary. | Using rev-fap72-parent-1794549533708@visio"
+        },
+        {
+          "path": "/onboarding",
+          "listboxButtons": 0,
+          "honestNote": false,
+          "fullListPresent": false,
+          "preferredLearningLabel": false,
+          "preferredOptions": null,
+          "snippet": "Made for your next step. | Learn. Explore. Build. | Ready to start with Visionary? | A quick check before we save your preferences to this account. | Using rev-fap72-parent-1794549533708@visionary.tes"
+        }
+      ]
+    }
+  },
+  "beforeSummary": {
+    "stepsWithListbox": 5,
+    "maxListboxButtons": 1,
+    "noteSteps": 0,
+    "fullListSteps": 2
+  },
+  "afterSummary": {
+    "stepsWithListbox": 0,
+    "maxListboxButtons": 0,
+    "noteSteps": 2,
+    "fullListSteps": 2
+  },
+  "ok": true
+}

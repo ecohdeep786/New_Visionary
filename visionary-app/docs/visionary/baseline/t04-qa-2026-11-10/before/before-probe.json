@@ -1,0 +1,681 @@
+{
+ "url": "http://localhost:5174",
+ "side": "before",
+ "started": "2026-11-10T06:56:53.818Z",
+ "checks": [
+  {
+   "stage": "B-topic-light",
+   "practice": {
+    "text": "Practice this topic",
+    "cls": "rounded-full border border-[#dadce0] px-4 py-2 text-sm font-medium text-[#0b57d2]",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 6.35
+   },
+   "card": {
+    "text": "LessonYour topic is ready to explorePubl",
+    "cls": "min-w-0 overflow-hidden rounded-xl border border-[#dadce0] bg-white",
+    "color": "rgb(29,29,31)",
+    "bg": "rgb(255,255,255)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   }
+  },
+  {
+   "stage": "C-topic-dark",
+   "sites": 10,
+   "practice": {
+    "text": "Practice this topic",
+    "cls": "rounded-full border border-[#dadce0] px-4 py-2 text-sm font-medium text-[#0b57d2]",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 2.69
+   },
+   "card": {
+    "text": "LessonYour topic is ready to explorePubl",
+    "cls": "min-w-0 overflow-hidden rounded-xl border border-[#dadce0] bg-white",
+    "color": "rgb(238,240,245)",
+    "bg": "rgb(25,28,34)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   }
+  },
+  {
+   "stage": "D-learn-dark",
+   "sites": 15
+  }
+ ],
+ "learnLight": {
+  "dark": false,
+  "tokenAction": "#0071e3",
+  "tokenBorder": "#e2e5eb",
+  "tokenOnAction": "#fff",
+  "tokenSoft": "#edf3ff",
+  "tokenRaised": "#eef0f4",
+  "tokenActionRgb": "rgb(0,113,227)",
+  "tokenBorderRgb": "rgb(226,229,235)",
+  "tokenOnActionRgb": "rgb(255,255,255)",
+  "sites": [
+   {
+    "cls": "rounded-2xl border border-[#dadce0] p-5",
+    "tag": "SECTION",
+    "text": "Guided journeysCurated interactive e",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "inline-flex shrink-0 items-center gap-1 rounded-full border border-dashed border-[#5f6368] px-4 py-2 text-sm text-[#0b57",
+    "tag": "A",
+    "text": "Learning area",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(95,99,104)",
+    "fgRatio": 6.35
+   },
+   {
+    "cls": "flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5",
+    "tag": "A",
+    "text": "Explore in 3D · Interactive exampleS",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgb(255,255,255)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "text-xs font-medium text-[#0b57d2]",
+    "tag": "P",
+    "text": "Explore in 3D · Interactive example",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 6.35
+   },
+   {
+    "cls": "rounded-full bg-white px-4 py-2 text-sm text-[#0b57d2]",
+    "tag": "SPAN",
+    "text": "Open lab →",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgb(255,255,255)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 6.35
+   },
+   {
+    "cls": "rounded-xl border border-[#dadce0] bg-white",
+    "tag": "SECTION",
+    "text": "Search topicsTopic statusAll topicsN",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgb(255,255,255)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "flex flex-wrap items-center justify-between gap-4 border-b border-[#dadce0] p-4",
+    "tag": "DIV",
+    "text": "Search topicsTopic statusAll topicsN",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm",
+    "tag": "SELECT",
+    "text": "All topicsNot startedIn progressMast",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgb(255,255,255)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "flex rounded-lg border border-[#dadce0] p-1",
+    "tag": "DIV",
+    "text": "",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "rounded-md p-2 bg-[#e8f0fd] text-[#0b57d2]",
+    "tag": "BUTTON",
+    "text": "",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgb(232,240,253)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 5.54
+   },
+   {
+    "cls": "rounded-2xl bg-[#dadce0] p-4",
+    "tag": "DIV",
+    "text": "",
+    "fam": "bg-raised",
+    "color": "rgb(29,29,31)",
+    "bg": "rgb(218,220,224)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 12.26
+   },
+   {
+    "cls": "text-sm font-medium text-[#0b57d2]",
+    "tag": "A",
+    "text": "Go to classes",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 6.35
+   },
+   {
+    "cls": "mt-2 w-full rounded-lg border border-[#dadce0] p-3 font-normal",
+    "tag": "INPUT",
+    "text": "",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgb(255,255,255)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "rounded-full bg-[#0b57d2] px-5 py-2 text-sm font-medium text-white disabled:opacity-40",
+    "tag": "BUTTON",
+    "text": "Add topic",
+    "fam": "bg-action",
+    "color": "rgb(255,255,255)",
+    "bg": "rgb(11,87,210)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 6.35
+   }
+  ],
+  "practice": {
+   "missing": true
+  },
+  "card": {
+   "text": "Search topicsTopic statusAll topicsNot s",
+   "cls": "rounded-xl border border-[#dadce0] bg-white",
+   "color": "rgb(29,29,31)",
+   "bg": "rgb(255,255,255)",
+   "border": "rgb(218,220,224)",
+   "fgRatio": 16.83
+  },
+  "siteCount": 14
+ },
+ "learnLightDialogOpen": true,
+ "screenshots": [
+  "A-learn-light-dialog.png",
+  "B-topic-light.png",
+  "C-topic-dark.png",
+  "D-learn-dark-dialog.png"
+ ],
+ "dialogSubmitLight": {
+  "bg": "rgb(11,87,210)",
+  "color": "rgb(255,255,255)",
+  "cls": "rounded-full bg-[#0b57d2] px-5 py-2 text-sm font-medium text-white disabled:opacity-40"
+ },
+ "topicHref": "/dashboard/learn/26a84fc0-c956-4dfd-9a07-3f8d50f4aa45",
+ "topicLight": {
+  "dark": false,
+  "tokenAction": "#0071e3",
+  "tokenBorder": "#e2e5eb",
+  "tokenOnAction": "#fff",
+  "tokenSoft": "#edf3ff",
+  "tokenRaised": "#eef0f4",
+  "tokenActionRgb": "rgb(0,113,227)",
+  "tokenBorderRgb": "rgb(226,229,235)",
+  "tokenOnActionRgb": "rgb(255,255,255)",
+  "sites": [
+   {
+    "cls": "mb-5 inline-flex items-center gap-2 text-sm text-[#5f6368] hover:text-[#0b57d2]",
+    "tag": "A",
+    "text": "Meera",
+    "fam": "text-action",
+    "color": "rgb(95,99,104)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 6.05
+   },
+   {
+    "cls": "min-w-0 overflow-hidden rounded-xl border border-[#dadce0] bg-white",
+    "tag": "SECTION",
+    "text": "LessonYour topic is ready to explore",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgb(255,255,255)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "flex flex-wrap items-center justify-between gap-3 border-b border-[#dadce0] px-4 py-3",
+    "tag": "HEADER",
+    "text": "Lesson",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "mt-2 inline-flex items-center gap-2 rounded-full border border-[#dadce0] px-5 py-2 text-sm font-medium",
+    "tag": "BUTTON",
+    "text": "Request explanation",
+    "fam": "border",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 6.35
+   },
+   {
+    "cls": "flex flex-wrap items-center gap-3 border-t border-[#dadce0] p-4",
+    "tag": "DIV",
+    "text": "Practice this topicAll lessons →",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "rounded-full border border-[#dadce0] px-4 py-2 text-sm font-medium text-[#0b57d2]",
+    "tag": "A",
+    "text": "Practice this topic",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 6.35
+   },
+   {
+    "cls": "ml-auto rounded-full px-4 py-2 text-sm font-medium text-[#0b57d2] hover:bg-[#e8f0fd]",
+    "tag": "A",
+    "text": "All lessons →",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 6.35
+   },
+   {
+    "cls": "border-t border-[#dadce0] p-5",
+    "tag": "FORM",
+    "text": "Keep a question for later",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "flex items-center gap-2 rounded-lg border border-[#dadce0] p-2",
+    "tag": "DIV",
+    "text": "",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   },
+   {
+    "cls": "rounded-xl border border-[#dadce0] p-5",
+    "tag": "SECTION",
+    "text": "Keep learningAsk a questionPractice ",
+    "fam": "border",
+    "color": "rgb(29,29,31)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 16.83
+   }
+  ],
+  "practice": {
+   "text": "Practice this topic",
+   "cls": "rounded-full border border-[#dadce0] px-4 py-2 text-sm font-medium text-[#0b57d2]",
+   "color": "rgb(11,87,210)",
+   "bg": "rgba(0,0,0,0)",
+   "border": "rgb(218,220,224)",
+   "fgRatio": 6.35
+  },
+  "card": {
+   "text": "LessonYour topic is ready to explorePubl",
+   "cls": "min-w-0 overflow-hidden rounded-xl border border-[#dadce0] bg-white",
+   "color": "rgb(29,29,31)",
+   "bg": "rgb(255,255,255)",
+   "border": "rgb(218,220,224)",
+   "fgRatio": 16.83
+  },
+  "siteCount": 10
+ },
+ "topicDark": {
+  "dark": true,
+  "tokenAction": "#aac7ff",
+  "tokenBorder": "#3c4350",
+  "tokenOnAction": "#092b61",
+  "tokenSoft": "#25354f",
+  "tokenRaised": "#252a34",
+  "tokenActionRgb": "rgb(170,199,255)",
+  "tokenBorderRgb": "rgb(60,67,80)",
+  "tokenOnActionRgb": "rgb(9,43,97)",
+  "sites": [
+   {
+    "cls": "mb-5 inline-flex items-center gap-2 text-sm text-[#5f6368] hover:text-[#0b57d2]",
+    "tag": "A",
+    "text": "Meera",
+    "fam": "text-action",
+    "color": "rgb(182,189,202)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 9.04
+   },
+   {
+    "cls": "min-w-0 overflow-hidden rounded-xl border border-[#dadce0] bg-white",
+    "tag": "SECTION",
+    "text": "LessonYour topic is ready to explore",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgb(25,28,34)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "flex flex-wrap items-center justify-between gap-3 border-b border-[#dadce0] px-4 py-3",
+    "tag": "HEADER",
+    "text": "Lesson",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "mt-2 inline-flex items-center gap-2 rounded-full border border-[#dadce0] px-5 py-2 text-sm font-medium",
+    "tag": "BUTTON",
+    "text": "Request explanation",
+    "fam": "border",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 2.69
+   },
+   {
+    "cls": "flex flex-wrap items-center gap-3 border-t border-[#dadce0] p-4",
+    "tag": "DIV",
+    "text": "Practice this topicAll lessons →",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "rounded-full border border-[#dadce0] px-4 py-2 text-sm font-medium text-[#0b57d2]",
+    "tag": "A",
+    "text": "Practice this topic",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 2.69
+   },
+   {
+    "cls": "ml-auto rounded-full px-4 py-2 text-sm font-medium text-[#0b57d2] hover:bg-[#e8f0fd]",
+    "tag": "A",
+    "text": "All lessons →",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 2.69
+   },
+   {
+    "cls": "border-t border-[#dadce0] p-5",
+    "tag": "FORM",
+    "text": "Keep a question for later",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "flex items-center gap-2 rounded-lg border border-[#dadce0] p-2",
+    "tag": "DIV",
+    "text": "",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "rounded-xl border border-[#dadce0] p-5",
+    "tag": "SECTION",
+    "text": "Keep learningAsk a questionPractice ",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   }
+  ],
+  "practice": {
+   "text": "Practice this topic",
+   "cls": "rounded-full border border-[#dadce0] px-4 py-2 text-sm font-medium text-[#0b57d2]",
+   "color": "rgb(11,87,210)",
+   "bg": "rgba(0,0,0,0)",
+   "border": "rgb(218,220,224)",
+   "fgRatio": 2.69
+  },
+  "card": {
+   "text": "LessonYour topic is ready to explorePubl",
+   "cls": "min-w-0 overflow-hidden rounded-xl border border-[#dadce0] bg-white",
+   "color": "rgb(238,240,245)",
+   "bg": "rgb(25,28,34)",
+   "border": "rgb(218,220,224)",
+   "fgRatio": 14.97
+  },
+  "siteCount": 10
+ },
+ "learnDark": {
+  "dark": true,
+  "tokenAction": "#aac7ff",
+  "tokenBorder": "#3c4350",
+  "tokenOnAction": "#092b61",
+  "tokenSoft": "#25354f",
+  "tokenRaised": "#252a34",
+  "tokenActionRgb": "rgb(170,199,255)",
+  "tokenBorderRgb": "rgb(60,67,80)",
+  "tokenOnActionRgb": "rgb(9,43,97)",
+  "sites": [
+   {
+    "cls": "rounded-2xl border border-[#dadce0] p-5",
+    "tag": "SECTION",
+    "text": "Guided journeysCurated interactive e",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "inline-flex shrink-0 items-center gap-1 rounded-full border border-dashed border-[#5f6368] px-4 py-2 text-sm text-[#0b57",
+    "tag": "A",
+    "text": "Learning area",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(133,143,159)",
+    "fgRatio": 2.69
+   },
+   {
+    "cls": "flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5",
+    "tag": "A",
+    "text": "Explore in 3D · Interactive exampleS",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgb(25,28,34)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "text-xs font-medium text-[#0b57d2]",
+    "tag": "P",
+    "text": "Explore in 3D · Interactive example",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 2.69
+   },
+   {
+    "cls": "rounded-full bg-white px-4 py-2 text-sm text-[#0b57d2]",
+    "tag": "SPAN",
+    "text": "Open lab →",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgb(25,28,34)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 2.69
+   },
+   {
+    "cls": "rounded-xl border border-[#dadce0] bg-white",
+    "tag": "SECTION",
+    "text": "Search topicsTopic statusAll topicsN",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgb(25,28,34)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "flex flex-wrap items-center justify-between gap-4 border-b border-[#dadce0] p-4",
+    "tag": "DIV",
+    "text": "Search topicsTopic statusAll topicsN",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm",
+    "tag": "SELECT",
+    "text": "All topicsNot startedIn progressMast",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgb(25,28,34)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "flex rounded-lg border border-[#dadce0] p-1",
+    "tag": "DIV",
+    "text": "",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "rounded-md p-2 bg-[#e8f0fd] text-[#0b57d2]",
+    "tag": "BUTTON",
+    "text": "",
+    "fam": "text-action",
+    "color": "rgb(11,87,210)",
+    "bg": "rgb(37,53,79)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 1.95
+   },
+   {
+    "cls": "rounded-xl border border-[#dadce0] bg-white p-5 flex flex-col",
+    "tag": "ARTICLE",
+    "text": "Not startedMeeraQuadratic equations0",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgb(25,28,34)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "rounded-md bg-[#dadce0] px-2 py-1 text-xs text-[#5f6368]",
+    "tag": "SPAN",
+    "text": "Not started",
+    "fam": "bg-raised",
+    "color": "rgb(182,189,202)",
+    "bg": "rgb(218,220,224)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 1.38
+   },
+   {
+    "cls": "mt-5 flex flex-wrap items-center gap-3 border-t border-[#dadce0] pt-4 sm:shrink-0",
+    "tag": "DIV",
+    "text": "Open lesson",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgba(0,0,0,0)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 14.97
+   },
+   {
+    "cls": "mt-2 w-full rounded-lg border border-[#dadce0] p-3 font-normal",
+    "tag": "INPUT",
+    "text": "",
+    "fam": "border",
+    "color": "rgb(238,240,245)",
+    "bg": "rgb(59,59,59)",
+    "border": "rgb(218,220,224)",
+    "fgRatio": 9.82
+   },
+   {
+    "cls": "rounded-full bg-[#0b57d2] px-5 py-2 text-sm font-medium text-white disabled:opacity-40",
+    "tag": "BUTTON",
+    "text": "Add topic",
+    "fam": "bg-action",
+    "color": "rgb(255,255,255)",
+    "bg": "rgb(11,87,210)",
+    "border": "rgb(218,220,226)",
+    "fgRatio": 6.35
+   }
+  ],
+  "practice": {
+   "missing": true
+  },
+  "card": {
+   "text": "Search topicsTopic statusAll topicsNot s",
+   "cls": "rounded-xl border border-[#dadce0] bg-white",
+   "color": "rgb(238,240,245)",
+   "bg": "rgb(25,28,34)",
+   "border": "rgb(218,220,224)",
+   "fgRatio": 14.97
+  },
+  "siteCount": 15
+ },
+ "dialogSubmitDark": {
+  "bg": "rgb(11,87,210)",
+  "color": "rgb(255,255,255)",
+  "cls": "rounded-full bg-[#0b57d2] px-5 py-2 text-sm font-medium text-white disabled:opacity-40"
+ },
+ "paintVerdicts": {
+  "createdTopic": true,
+  "light_learn_text_action": true,
+  "light_topic_authored": true,
+  "light_dialog_submit": true,
+  "dark_practice": true,
+  "dark_card_border": true,
+  "dark_learn_text_sites": true,
+  "dark_learn_bg_sites": true,
+  "dark_learn_border_sites": true,
+  "dark_dialog_submit": true
+ },
+ "verdict": "PASS"
+}

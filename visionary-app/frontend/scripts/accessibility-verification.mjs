@@ -2,7 +2,7 @@
  * Runs the FAP-30 rendered audit (informative-text contrast with alpha
  * compositing + 44px hit areas), semantic checks (img alt, form labels,
  * heading order, landmarks), and the keyboard skip-link path on the real
- * product: public surfaces + preview-mode workspace journey. No API
+ * product: public surfaces + the emulator-realm workspace journey. No API
  * interception, no fixture seeding.
  * Env: A11Y_BASE_URL (default http://127.0.0.1:4198), A11Y_EVIDENCE_DIR. */
 import { chromium } from 'playwright-core';
@@ -11,6 +11,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const base = process.env.A11Y_BASE_URL || 'http://127.0.0.1:4198';
+const authEmulator = process.env.A11Y_AUTH_EMULATOR || 'http://127.0.0.1:9099';
+const projectId = process.env.A11Y_PROJECT_ID || 'demo-visionary-e2e';
 const productRoot = fileURLToPath(new URL('../../', import.meta.url));
 const evidence = path.resolve(productRoot, process.env.A11Y_EVIDENCE_DIR || 'docs/visionary/baseline/f10-accessibility-2026-11-06');
 await fs.mkdir(evidence, { recursive: true });
@@ -20,6 +22,17 @@ const PASSWORD = 'Visionary#Baseline2026';
 const records = [];
 const defects = [];
 const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
+
+/* The newest VERIFY_EMAIL oobCode for this registrant, from the Auth
+ * Emulator's inspection API (FAP-93: Firebase is the only identity source). */
+async function fetchLatestOobCode(email) {
+  const response = await fetch(`${authEmulator}/emulator/v1/projects/${projectId}/oobCodes`);
+  if (!response.ok) throw new Error(`Auth Emulator oobCodes unavailable (${response.status}); start the emulator realm before this harness.`);
+  const { oobCodes = [] } = await response.json();
+  const mine = oobCodes.filter(row => row.email === email && row.requestType === 'VERIFY_EMAIL');
+  if (!mine.length) throw new Error(`No VERIFY_EMAIL oobCode for ${email}; the emulator realm did not record the registration.`);
+  return mine.at(-1).oobCode;
+}
 
 const settle = async (page, ms = 1400) => {
   await page.waitForLoadState('load').catch(() => {});
@@ -210,16 +223,23 @@ const fillAndSelect = (page) => page.evaluate((answers) => {
   try {
     await page.goto(`${base}/register`, { waitUntil: 'domcontentloaded' });
     await page.getByRole('button', { name: 'Continue with Email' }).first().click({ timeout: 30000 });
-    await page.locator('input[type="email"]').first().fill(`a11y-${Date.now()}@visionary.test`);
+    const email = `a11y-${Date.now()}@visionary.test`;
+    await page.locator('input[type="email"]').first().fill(email);
     await page.locator('button[type="submit"]').first().click();
     const passwords = page.locator('input[type="password"]');
     await passwords.first().fill(PASSWORD, { timeout: 20000 });
     if (await passwords.count() > 1) await passwords.nth(1).fill(PASSWORD);
     await page.locator('button[type="submit"]').last().click();
-    const otp = page.locator('input[autocomplete="one-time-code"], input[inputmode="numeric"]').first();
-    await otp.waitFor({ state: 'visible', timeout: 30000 });
-    try { await otp.fill('000000'); } catch { await otp.pressSequentially('000000'); }
-    await page.getByRole('button', { name: 'Verify' }).click();
+    /* The real identity flow (FAP-93): complete the oobCode verification
+     * through the product's own /auth/action page in a second tab. */
+    await page.getByRole('heading', { name: 'Confirm your email address' }).waitFor({ state: 'visible', timeout: 30000 });
+    const oobCode = await fetchLatestOobCode(email);
+    const action = await context.newPage();
+    try {
+      await action.goto(`${base}/auth/action?mode=verifyEmail&oobCode=${encodeURIComponent(oobCode)}&lang=en`, { waitUntil: 'domcontentloaded' });
+      await action.getByRole('heading', { name: 'Email verified' }).waitFor({ state: 'visible', timeout: 30000 });
+    } finally { await action.close(); }
+    await page.getByRole('button', { name: 'I verified my email' }).click();
     await page.waitForURL(/\/onboarding/, { timeout: 45000 });
     await page.waitForSelector('text=Make Visionary your own', { timeout: 45000 });
     await page.evaluate(() => [...document.querySelectorAll('main button, #main button')].find((b) => (b.textContent || '').includes('I am a Learner'))?.click());

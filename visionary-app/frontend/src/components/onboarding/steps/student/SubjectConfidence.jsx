@@ -13,9 +13,9 @@ export default function SubjectConfidence({ data, updateData }) {
       {subjects.map((subject) => (
         <div
           key={subject}
-          className="flex items-center justify-between py-3 border-b border-[#dadce0] last:border-0"
+          className="flex items-center justify-between py-3 border-b border-[#d2d2d7] last:border-0"
         >
-          <span className="text-sm font-medium text-[#121317]">{subject}</span>
+          <span className="text-sm font-medium text-[#1d1d1f]">{subject}</span>
           <StarRating
             value={confidence[subject] || 0}
             onChange={(r) => setRating(subject, r)}

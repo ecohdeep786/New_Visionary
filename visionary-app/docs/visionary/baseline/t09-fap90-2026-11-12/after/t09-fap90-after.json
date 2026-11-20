@@ -1,0 +1,39 @@
+{
+  "base": "http://127.0.0.1:5173",
+  "accounts": [
+    {
+      "identity": "organization",
+      "email": "t09-fap90-organization-1794465163134@visionary.test",
+      "onboarded": "/dashboard/home",
+      "classesView": {
+        "url": "/dashboard/classes",
+        "h1": "Classes",
+        "main": "Skip to content | Classes | This workspace area opens with a teaching workspace. You are currently working in a organization workspace. | People | Cohorts | Return to workspace"
+      },
+      "newConsoleErrors": []
+    },
+    {
+      "identity": "parent",
+      "email": "t09-fap90-parent-1794465163134@visionary.test",
+      "onboarded": "/dashboard/home",
+      "classesView": {
+        "url": "/dashboard/classes",
+        "h1": "Classes",
+        "main": "Skip to content | Classes | This workspace area opens with a teaching workspace. You are currently working in a family workspace. | Children | Reports | Return to workspace"
+      },
+      "newConsoleErrors": []
+    },
+    {
+      "identity": "teacher",
+      "email": "t09-fap90-teacher-1794465163134@visionary.test",
+      "onboarded": "/dashboard/home",
+      "classesView": {
+        "url": "/dashboard/classes",
+        "h1": "Your classes",
+        "main": "Your classes | Create a class, add students, and start teaching | No classes yet | Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback. | Create your first class | Grow as a teacher"
+      },
+      "newConsoleErrors": []
+    }
+  ],
+  "consoleErrorsSweep": []
+}

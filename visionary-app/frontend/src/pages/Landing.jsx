@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -6,12 +6,14 @@ import QuietLink from "@/components/landing/QuietLink";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
 import SpotIllustration from "@/components/landing/SpotIllustration";
-import {
-  PremiumIntelligenceSection,
-  PremiumTrustSection,
-  PremiumCTASection,
-  PremiumExploreSection,
-} from "@/components/landing/persona/PremiumPersonaSections";
+/* The premium sections sit below the fold on every route that uses them;
+ * they load on demand (Suspense fallback null) so the entry graph carries
+ * only hero-first-commit content (T13 eager law). Direct module paths, not
+ * the barrel, so a section chunk never pulls its siblings. */
+const PremiumIntelligenceSection = lazy(() => import("@/components/landing/persona/premium/PremiumIntelligenceSection.jsx"));
+const PremiumTrustSection = lazy(() => import("@/components/landing/persona/premium/PremiumTrustSection.jsx"));
+const PremiumCTASection = lazy(() => import("@/components/landing/persona/premium/PremiumCTASection.jsx"));
+const PremiumExploreSection = lazy(() => import("@/components/landing/persona/premium/PremiumExploreSection.jsx"));
 // Hero images (above the fold) — loaded eagerly with high fetch priority
 import studentmeet from "@/assets/student-hero-main-1600w.webp";
 import teachermeet from "@/assets/teacher-hero-main-1600w.webp";
@@ -20,7 +22,6 @@ import promeet from "@/assets/pro-face-main-1600w.webp";
 import orgmeet from "@/assets/org-face-main-1600w.webp";
 // Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
-import problemrevision from "@/assets/problem-revision.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
 import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
 
@@ -34,20 +35,19 @@ import { Reveal, ProgressDots } from "@/components/landing/system/ui";
 import { useCycleIndex, useRevealContinuous } from "@/components/landing/system/hooks";
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
-/* Every landing reveal rides Apple's resolve-out curve
-   cubic-bezier(0.16,1,0.3,1) — the deceleration you feel on apple.com's
+/* Every landing reveal rides Apple’s resolve-out curve
+   cubic-bezier(0.16,1,0.3,1) — the deceleration you feel on apple.com’s
    own scroll reveals (the --ease-out-apple token in premium.css). */
 const EASE_APPLE = "ease-apple";
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
-  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: problemrevision, alt: "Parent reviewing a child's progress" },
-  { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
-  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I read every article. I still can't turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
+  { black: "Accessing knowledge is easy.", blue: "Applying it isn’t", persona: "A student", quote: "I watched eight hours of videos and still couldn’t solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
+  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn’t", persona: "A professional", quote: "I read every article. I still can’t turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
 ];
 const PROBLEM_MS = 4200;
 
-/* The five journeys — the landing's category router. Rendered with the
+/* The five journeys — the landing’s category router. Rendered with the
    accepted line-up module (white cards on the grey ground): the studio
    portrait shows WHOLE on its square field, the same anatomy every persona
    page closes with — one card system across the entire product. */
@@ -61,30 +61,30 @@ const ROUTER_CATEGORIES = [
   { slug: "organization", chip: "Organization", copy: "Give teams a shared view of learning across people, projects, and time.", alt: "Leader reviewing team progress on a tablet" },
 ];
 
-/* The suite — the four doors around the product (Apple's services row):
-   every line is the destination page's own hero statement, the card
-   anatomy is the About page's explore module (white cards on the grey
+/* The suite — the four doors around the product (Apple’s services row):
+   every line is the destination page’s own hero statement, the card
+   anatomy is the About page’s explore module (white cards on the grey
    ground, spot-illustration field, cutout arrow). */
 const SUITE_TILES = [
   { to: "/download", label: "Download", copy: "Get Visionary on every device.", subject: "download" },
   { to: "/pricing", label: "Pricing", copy: "Plans for every journey.", subject: "tag" },
   { to: "/help", label: "Help", copy: "Find your answer.", subject: "help" },
-  { to: "/updates", label: "Updates", copy: "What's new at Visionary.", subject: "updates" },
+  { to: "/updates", label: "Updates", copy: "What’s new at Visionary.", subject: "updates" },
 ];
 
-/* The mechanism chapter's four beats — the umbrella voice of the loop every
-   category page is built around. Verbatim from the student page's
+/* The mechanism chapter’s four beats — the umbrella voice of the loop every
+   category page is built around. Verbatim from the student page’s
    INTELLIGENCE_STEPS: the front door shows the mark once, for everyone. */
 const INTELLIGENCE_STEPS = [
-  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
-  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
-  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
+  { title: "Understand what you’re learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
+  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today’s lesson. Visionary already understands where you are and where you’re going next." },
+  { title: "Practice what you’re learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
   { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
 ];
 
-/* Apple's values anatomy (education-initiative: "Our values lead the way"):
+/* Apple’s values anatomy (education-initiative: "Our values lead the way"):
    typographic columns on the shared persona pages — the type carries the
-   trust. The landing's closing chapter takes Apple's feature-card variant
+   trust. The landing’s closing chapter takes Apple’s feature-card variant
    instead (the Why-grid), so each value carries a distinct mark from the
    public icon family: Lock (your choice), HeartHandshake (human review),
    ShieldCheck (protection), Accessibility (every learner). The four values
@@ -101,10 +101,10 @@ const LX_TRUST_VALUES = [
 /* 01 · HERO — the universal front door, on the one hero law: the static
    "One Intelligence." headline, the promise, the CTA pair, and the five
    personas as alpha cutouts rising from the fold. The section pins to the
-   viewport (sticky, in NewPersona's cast branch) so the story can glide
+   viewport (sticky, in NewPersona’s cast branch) so the story can glide
    over it on frosted glass — the Vision Pro page anatomy. */
 
-/* The family, as alpha cutouts on the page's own white (the persona hero
+/* The family, as alpha cutouts on the page’s own white (the persona hero
    photography with the studio background removed) — so the landing stages
    them as one unbroken lineup, the way Apple stages a product family.
    D3 image law: each tier ships an AVIF sibling at identical pixels
@@ -133,13 +133,37 @@ import orgCut480Avif from "@/assets/hero-cutouts/organization-480w.avif";
 import orgCut800Avif from "@/assets/hero-cutouts/organization-800w.avif";
 import { fontStack } from "@/components/landing/system/tokens";
 
-/* Apple's universal hero grammar: a single declarative statement that
-   names the product's universal value and every category it serves — the
+/* LCP preload — the cast’s largest slot (the student cutout) is the
+   landing’s LCP element, but its URL lives inside this module, so the
+   browser cannot discover it before module eval + render. Under the lab
+   throttle the request then queued behind its four siblings, the auth
+   probe and the favicon (~600ms of queueing for a 15KB file). Preloading
+   at module scope starts the fetch one commit earlier. The srcset/sizes
+   mirror the cast <img>'s AVIF source exactly, so the preload is reused,
+   not re-fetched. Gated to the landing path: this module evaluates with
+   the entry chunk on every route, and the preload is only true on "/". */
+if (typeof window !== "undefined" && window.location.pathname === "/") {
+  const lcpPreload = document.createElement("link");
+  lcpPreload.setAttribute("rel", "preload");
+  lcpPreload.setAttribute("as", "image");
+  /* setAttribute, not the IDL property: this Chromium build does not reflect
+     imagesrcset/imagesizes assignments onto the DOM attributes, and an
+     attribute-less preload is inert (the same quirk PageMeta’s upsertPreload
+     works around). type="image/avif" byte-matches the cast <source>, so the
+     preload is reused by the <picture> instead of fighting the fallback. */
+  lcpPreload.setAttribute("imagesrcset", `${studentCut480Avif} 480w, ${studentCut800Avif} 800w`);
+  lcpPreload.setAttribute("imagesizes", "(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw");
+  lcpPreload.setAttribute("type", "image/avif");
+  document.head.appendChild(lcpPreload);
+}
+
+/* Apple’s universal hero grammar: a single declarative statement that
+   names the product’s universal value and every category it serves — the
    same pattern as /education-initiative/ ("Education moves learners, leaders,
    innovators, communities and everyone forward.") and /education ("Designed
    for every kind of learner."). No cycling, no fragmentation — one line,
    one truth. */
-/* Apple's universal hero grammar: the product statement stays put on its line
+/* Apple’s universal hero grammar: the product statement stays put on its line
    ("One intelligence"), and the audience line cycles beneath it — for
    students., for teachers., for parents., for professionals., for organizations.
    — the Apple product-hero rhythm (static lead + moving sub-line). */
@@ -151,7 +175,7 @@ const HERO_CATEGORY_WORDS = ["for students", "for teachers", "for parents", "for
 
 /* The audience rail under the hero actions — one door per persona on the
    first screen. Order matches HERO_CATEGORY_WORDS one-to-one, so hovering
-   a label previews exactly the line it names. Labels are the footer's
+   a label previews exactly the line it names. Labels are the footer’s
    existing audience names. */
 const LANDING_AUDIENCE_LINKS = [
   { label: "Students", to: "/student" },
@@ -174,7 +198,7 @@ const LANDING_HERO_LINEUP = [
 ];
 
 /* ── HERO ──
-   Apple's universal front door: "One intelligence" holds the stage, the
+   Apple’s universal front door: "One intelligence" holds the stage, the
    audience line cycles beneath it, and the five alpha cutouts rise from
    the fold. The CTA pair are the only actions — the story lives below the
    line-up, exactly like an Apple education product hero. */
@@ -185,6 +209,12 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       animatedHeadlinePrefix="One intelligence"
       animatedHeadlineWords={HERO_CATEGORY_WORDS}
       srSentence="One intelligence, for students, teachers, parents, professionals, and organizations."
+      /* Apple Education’s hero grammar: the headline makes the audience
+         claim, one plain line translates it into the person’s benefit.
+         This is the platform’s actual core idea — continuity — stated
+         without feature overclaims; "Start learning" remains the real
+         first step (register). */
+      sub="Learning that remembers where you were — so you never start over."
       cast={LANDING_HERO_LINEUP}
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaLabel="Start learning"
@@ -194,38 +224,38 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   );
 });
 
-/* 02 · PROBLEM — Apple's education-initiative story anatomy as measured
+/* 02 · PROBLEM — Apple’s education-initiative story anatomy as measured
    (Oct 2026): the chapter opens on the shared spine with the eyebrow, one
    left-aligned statement at the 64px story tier, and its 24px lead — then a
    single story object: the white 28px card carries the subject and the voice
-   together (photo left, quote right), with the pager in Apple's control row
+   together (photo left, quote right), with the pager in Apple’s control row
    beneath the card. The photography is studio-white, so inside the white card
-   the subject stands on the card's own floor — no frame, no crop. The grey
-   ground gives the white card its edge (the initiative's "Our work in
-   education doesn't end here." grammar). The three subjects stay mounted and
+   the subject stands on the card’s own floor — no frame, no crop. The grey
+   ground gives the white card its edge (the initiative’s "Our work in
+   education doesn’t end here." grammar). The three subjects stay mounted and
    crossfade; the dots let the reader pace it. */
 function LandingProblemSection() {
-  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
+  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-[#f5f5f7]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible}>
-        <p className="sr-only">Stories from a parent, a student, and a professional about the moment understanding breaks down.</p>
+        <p className="sr-only">Stories from a student and a professional about the moment understanding breaks down.</p>
         <div className="public-editorial-frame mx-auto">
           <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>Why Visionary exists</p>
           <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "980px" }}>
             {slide.black} <span className="accent-gradient">{slide.blue}</span>.
           </h2>
           <p className="mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal tracking-[0]" style={{ color: BRAND.graphite }}>
-            Effort isn't the gap. Knowing whether understanding landed is.
+            Effort isn’t the gap. Knowing whether understanding landed is.
           </p>
         </div>
         <figure className="m-0">
           <div className="public-editorial-frame mx-auto">
             {/* the story card — one white object on the grey ground: the
-                subject bleeds on the card's left field, the voice sits on the
-                right panel. The card is the chapter's one story unit, so the
+                subject bleeds on the card’s left field, the voice sits on the
+                right panel. The card is the chapter’s one story unit, so the
                 statement / image / text never stack as separate blocks. */}
             <div className="mt-[clamp(28px,4vw,56px)] overflow-hidden rounded-[1.75rem] bg-white">
               <div className="grid grid-cols-1 items-stretch min-[1069px]:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
@@ -243,7 +273,7 @@ function LandingProblemSection() {
                       style={{
                         /* the studio photos' subjects touch their canvas edges;
                            unframed, those cuts would read as hard lines — dissolve
-                           them into the card's own white (the hero's floor recipe).
+                           them into the card’s own white (the hero’s floor recipe).
                            The img element is sized to the painted square (h-full
                            w-auto, centered) so the mask tracks the photo, not the
                            column. */
@@ -264,8 +294,8 @@ function LandingProblemSection() {
                 </figcaption>
               </div>
             </div>
-            {/* Apple's carousel control row — the pager sits under the card,
-                on the section floor, where the initiative's own controls sit */}
+            {/* Apple’s carousel control row — the pager sits under the card,
+                on the section floor, where the initiative’s own controls sit */}
             <div className="mt-6 flex justify-start">
               <ProgressDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} />
             </div>
@@ -276,10 +306,10 @@ function LandingProblemSection() {
   );
 }
 
-/* 03 · PROMISE — the turn of the story, staged as the page's one black
+/* 03 · PROMISE — the turn of the story, staged as the page’s one black
    statement screen: a single line, monumental on the dark ground, with the
-   product's own glow kept behind it. It fades up as the reader arrives,
-   holds the beat, and lets go as the answer (04) arrives below — Apple's
+   product’s own glow kept behind it. It fades up as the reader arrives,
+   holds the beat, and lets go as the answer (04) arrives below — Apple’s
    black statement beat, not a thin strip between chapters. */
 function LandingPromiseSection() {
   const { ref, visible } = useRevealContinuous();
@@ -290,7 +320,7 @@ function LandingPromiseSection() {
       className="scene-dark relative z-10 isolate flex min-h-[clamp(460px,78svh,780px)] items-center overflow-hidden px-6 [overflow-x:clip]"
       style={{ fontFamily: fontStack }}
     >
-      {/* the product's own breath of light, kept behind the line — the same
+      {/* the product’s own breath of light, kept behind the line — the same
           glow recipe as the intelligence stage, so the turn belongs to the
           same world instead of being a new surface invention */}
       <div
@@ -317,24 +347,24 @@ function LandingPromiseSection() {
   );
 }
 
-/* 04 · THE RETURN — the answer to the promise's "what if": what the reader
-   gets back. The founder's conviction, verbatim from /research, opens the
-   chapter as Apple's values statement (Education's "Our values lead the way."
-   tier: 48/40/32), then the four returns stand as Apple's feature cards — two
+/* 04 · THE RETURN — the answer to the promise’s "what if": what the reader
+   gets back. The founder’s conviction, verbatim from /research, opens the
+   chapter as Apple’s values statement (Education’s "Our values lead the way."
+   tier: 48/40/32), then the four returns stand as Apple’s feature cards — two
    broad #f5f5f7 cards per row on the wide card frame, so each return reads as
-   a calm object instead of a column of text. Each return carries the site's
-   own block anatomy: the 24px mark, the line, and the achievement return's
-   quiet blue door. The chapter's five-journey route line now closes the page
+   a calm object instead of a column of text. Each return carries the site’s
+   own block anatomy: the 24px mark, the line, and the achievement return’s
+   quiet blue door. The chapter’s five-journey route line now closes the page
    at the CTA (the tail mini-router), so the returns stay the only text here. */
 const LX_RETURNS = [
-  { Icon: Layers3, title: "Your hours stack.", copy: "Every lesson builds on the last. This year's work becomes next year's strength.", l: "For students", to: "/student" },
+  { Icon: Layers3, title: "Your hours stack.", copy: "Every lesson builds on the last. This year’s work becomes next year’s strength.", l: "For students", to: "/student" },
   { Icon: BookOpen, title: "Your place is kept.", copy: "Visionary remembers where you stopped, so every session continues.", l: "Your continuity", to: "/how-it-works" },
   { Icon: Globe2, title: "Your language works.", copy: "Ask, reason, and learn in the language you think in — English, Hindi, and Bengali today.", l: "Language support", to: "/how-it-works" },
   { Icon: Eye, title: "Your progress shows.", copy: "Teachers and parents see progress while it still matters.", l: "For parents", to: "/parent" },
 ];
 
-/* The return chapter's closing line — the five journeys, labelled exactly as
-   the footer labels them. It now rides the page's closer (the CTA's tail
+/* The return chapter’s closing line — the five journeys, labelled exactly as
+   the footer labels them. It now rides the page’s closer (the CTA’s tail
    mini-router) instead of trailing the values cards, so the return chapter
    ends on its cards. */
 const LX_RETURN_ROUTES = [
@@ -360,10 +390,10 @@ function LandingReturnSection() {
               Md Shahid Ali · Founder and CEO
             </figcaption>
           </figure>
-          {/* The four returns, as Apple's feature cards: two broad #f5f5f7
+          {/* The four returns, as Apple’s feature cards: two broad #f5f5f7
               cards per row on the wide card frame — a 28px mark, the feature
               title, the explanation, and the editorial door pinned to the
-              card's baseline. Two-up on the desktop window, two-up from 640,
+              card’s baseline. Two-up on the desktop window, two-up from 640,
               stacked on the phone. */}
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1069px]:mt-16">
             {LX_RETURNS.map((item) => (
@@ -374,7 +404,7 @@ function LandingReturnSection() {
                 <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.8} style={{ color: BRAND.ink }} />
                 <h3 data-type="feature" className="mt-6" style={{ color: BRAND.ink }}>{item.title}</h3>
                 <p data-type="value-body" className="max-w-[46ch]" style={{ color: BRAND.slate }}>{item.copy}</p>
-                {/* the editorial link law owns the door's colour and hover
+                {/* the editorial link law owns the door’s colour and hover
                     underline (#0066cc / underlined) */}
                 <Link
                   to={item.to}
@@ -392,54 +422,54 @@ function LandingReturnSection() {
   );
 }
 
-/* 05 · THE PRODUCT PROMO — the front door's dark pivot: the product's
+/* 05 · THE PRODUCT PROMO — the front door’s dark pivot: the product’s
    statement ("One intelligence.") over one slowly morphing stage, with one
    door out to the full mechanism. The four-beat loop lives where it is told
    in depth — /how-it-works and every category page. Rendered with the
    accepted premium module in promo mode — no new copy. */
 function LandingIntelligenceSection() {
   return (
-    <PremiumIntelligenceSection
+    <Suspense fallback={null}><PremiumIntelligenceSection
       steps={INTELLIGENCE_STEPS}
       sub="From the first question to using what you know."
       promo
       ctaLabel="See how it works"
       ctaTo="/how-it-works"
-    />
+    /></Suspense>
   );
 }
 
-/* 13 · THE ROUTER — the five journeys, as one line-up. The landing's
+/* 13 · THE ROUTER — the five journeys, as one line-up. The landing’s
    category chapter renders with the accepted explore module verbatim (white
    cards on the #f5f5f7 ground, the studio portrait whole on its square
    field, the quiet blue link) — the same card system every persona page
    closes with, so the product reads as one family. On the landing the
-   module is the front door's fork: after the product promo, opening the
+   module is the front door’s fork: after the product promo, opening the
    grey catalogue expanse that the suite below continues. The surface
-   carries the join — Apple's no-seam law.
+   carries the join — Apple’s no-seam law.
    The landing opts the header into the measured card-chapter tiers: the
-   statement at Education's "Real stories. Real impact." size (48/40/32) and
+   statement at Education’s "Real stories. Real impact." size (48/40/32) and
    the intro at the editorial-body tier — the persona line-ups keep their
    accepted gallery header. */
 function LandingRouterSection() {
   return (
-    <PremiumExploreSection
-      eyebrow="Who it's for"
+    <Suspense fallback={null}><PremiumExploreSection
+      eyebrow="Who it’s for"
       heading={<>One intelligence, <span className="accent-gradient">five journeys.</span></>}
       sub="Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to your stage and carries your progress forward."
       headingRole="section"
       subRole="editorial-body"
       categories={ROUTER_CATEGORIES}
       images={ROUTER_IMAGES}
-    />
+    /></Suspense>
   );
 }
 
-/* 14 · THE SUITE — the four doors around the product (Apple's services row):
-   Download, Pricing, Help, Updates. Every line is the destination page's own
+/* 14 · THE SUITE — the four doors around the product (Apple’s services row):
+   Download, Pricing, Help, Updates. Every line is the destination page’s own
    hero statement, so the front door invents nothing; the card anatomy is the
-   About page's explore module (white cards on the grey ground, cutout arrow)
-   so the whole site speaks one card system. The line-up's grey ground
+   About page’s explore module (white cards on the grey ground, cutout arrow)
+   so the whole site speaks one card system. The line-up’s grey ground
    continues straight through — one catalogue expanse carries the five
    journeys and then the four doors around the product. */
 function LandingSuiteSection() {
@@ -448,8 +478,8 @@ function LandingSuiteSection() {
   return (
     <section ref={ref} data-section="14-suite" className="relative isolate bg-[#f5f5f7] [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible} className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
-        {/* Apple's accessory/line-up chapters open with a statement over the
-            grid ("Explore Apple Vision Pro accessories."). The suite's own
+        {/* Apple’s accessory/line-up chapters open with a statement over the
+            grid ("Explore Apple Vision Pro accessories."). The suite’s own
             eyebrow promotes to the measured card-chapter statement tier —
             same words, one statement period — so it reads as the sibling of
             the journeys line-up above, not a second hero. */}
@@ -462,7 +492,7 @@ function LandingSuiteSection() {
         </h2>
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-12">
           {SUITE_TILES.map((item) => (
-            /* Apple's explore tile: one white card, the spot-illustration
+            /* Apple’s explore tile: one white card, the spot-illustration
                field inset like a media well, the label/copy on the spine and
                the arrow inside the card — no detached strip, no floating
                notch. The whole card stays the door. */
@@ -498,7 +528,7 @@ function LandingSuiteSection() {
    (intelligence — one dark world, one door to /how-it-works); the story
    explains why it exists (problem — the human voices), the promise turns the
    page on one black statement screen, and the return answers what the reader
-   gets back (the founder's conviction and the four returns); the five-journey
+   gets back (the founder’s conviction and the four returns); the five-journey
    line-up forks, the grey catalogue expanse continues through the suite
    (Download / Pricing / Help / Updates), the four trust values close the
    story (Privacy / Safety / Security / Accessibility), and the closer hands
@@ -510,10 +540,10 @@ export default function LandingPage() {
       <LandingNav />
       <main id="main" tabIndex={-1}>
         <LandingHeroSection />
-        {/* the glass sheet — the hero's cover. The frost fades in from its
+        {/* the glass sheet — the hero’s cover. The frost fades in from its
             leading edge (mask), so the sheet never slices the pinned headline
             mid-glyph: the family and copy dissolve into white the way the
-            hero's own floor dissolves them. */}
+            hero’s own floor dissolves them. */}
         <div
           aria-hidden="true"
           className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#1d1d1f]/10"
@@ -523,7 +553,7 @@ export default function LandingPage() {
           }}
         />
         {/* the product answers first — the front door shows what the
-            intelligence is on the first scroll after the hero (Apple's
+            intelligence is on the first scroll after the hero (Apple’s
             show-before-explain order), then the story explains why it exists
             and what the reader gets back. */}
         <LandingIntelligenceSection />
@@ -532,20 +562,20 @@ export default function LandingPage() {
         <LandingReturnSection />
         <LandingRouterSection />
         <LandingSuiteSection />
-        <PremiumTrustSection
+        <Suspense fallback={null}><PremiumTrustSection
           variant="feature"
           heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
           sub="Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way."
           values={LX_TRUST_VALUES}
-        />
-        <PremiumCTASection
+        /></Suspense>
+        <Suspense fallback={null}><PremiumCTASection
           variant="closing"
           heading="Your next step starts here."
           sub="Ask a question. Explore an idea. Start learning. Visionary is ready when you are."
           routeLinks={LX_RETURN_ROUTES}
-        />
+        /></Suspense>
       </main>
-      {/* quiet variant: Apple's footer ends the page in air — no giant
+      {/* quiet variant: Apple’s footer ends the page in air — no giant
           wordmark — the story itself is the signature */}
       <LandingFooter variant="quiet" />
     </div>

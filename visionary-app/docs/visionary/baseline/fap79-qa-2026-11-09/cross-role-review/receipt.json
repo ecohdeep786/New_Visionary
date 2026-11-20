@@ -1,0 +1,280 @@
+{
+  "task": "F-23 cross-role integration and continuity review",
+  "at": "2026-11-09T07:20:29.954Z",
+  "base": "http://localhost:5173",
+  "teacherEmail": "teacher-1794208728038@visionary.test",
+  "learnerAEmail": "learnera-1794208728038@visionary.test",
+  "learnerBEmail": "learnerb-1794208728038@visionary.test",
+  "joinCodeIssued": "VISION-••••••••",
+  "records": [
+    {
+      "file": "cross-teacher-classes.png",
+      "surface": "teacher-classes",
+      "teacherShell": {
+        "h1": "Your classes",
+        "createBtn": true
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-classes-shell",
+      "ok": true,
+      "detail": "{\"h1\":\"Your classes\",\"createBtn\":true}"
+    },
+    {
+      "file": "cross-teacher-create-modal.png",
+      "surface": "create-class-modal",
+      "scopeNotice": {
+        "independent": true,
+        "switchHint": true
+      }
+    },
+    {
+      "check": "teacher-class-scope-notice",
+      "ok": true,
+      "detail": "{\"independent\":true,\"switchHint\":true}"
+    },
+    {
+      "check": "teacher-class-created",
+      "ok": true,
+      "detail": "{\"classVisible\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | C"
+    },
+    {
+      "file": "cross-teacher-class-detail.png",
+      "surface": "class-detail",
+      "detail": {
+        "shareBlock": true,
+        "joinCode": "VISION-••••••••",
+        "tabs": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-class-code-issued",
+      "ok": true,
+      "detail": "{\"shareBlock\":true,\"joinCode\":\"VISION-••••••••\",\"tabs\":[true,true,true,true,true,true]}"
+    },
+    {
+      "file": "cross-teacher-invite.png",
+      "surface": "people-tab",
+      "invited": {
+        "notice": true,
+        "rowVisible": true,
+        "invitedChip": true
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-invite-saved",
+      "ok": true,
+      "detail": "{\"notice\":true,\"rowVisible\":true,\"invitedChip\":true}"
+    },
+    {
+      "file": "cross-teacher-assignment.png",
+      "surface": "classwork-tab",
+      "assignment": {
+        "visible": true,
+        "points": true,
+        "body": "Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microphone idle. Text is always available. | A | Home | Prepare | Classes | Learners | Insights | Workspace tools | A"
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-assignment-published",
+      "ok": true,
+      "detail": "{\"visible\":true,\"points\":true,\"body\":\"Skip to main content | isionary | Active workspace | Personal · Teacher | + Add a role | Find teaching pages and tools | Ctrl K | Create a class | Guide | Microph"
+    },
+    {
+      "file": "cross-teacher-update.png",
+      "surface": "stream-tab",
+      "posted": {
+        "visible": true,
+        "emptyGone": true
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-update-posted",
+      "ok": true,
+      "detail": "{\"visible\":true,\"emptyGone\":true}"
+    },
+    {
+      "file": "cross-learnerA-invitation.png",
+      "surface": "learner-classes",
+      "inviteRow": {
+        "sectionPresent": true,
+        "className": true,
+        "invitedCopy": true,
+        "acceptBtn": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerA-invitation-visible",
+      "ok": true,
+      "detail": "{\"sectionPresent\":true,\"className\":true,\"invitedCopy\":true,\"acceptBtn\":true}"
+    },
+    {
+      "file": "cross-learnerA-accepted.png",
+      "surface": "learner-classes",
+      "accepted": {
+        "cardText": "Physics 12BPhysics 1 assignment",
+        "assignmentCount": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerA-accept-class",
+      "ok": true,
+      "detail": "{\"cardText\":\"Physics 12BPhysics 1 assignment\",\"assignmentCount\":true}"
+    },
+    {
+      "check": "learnerA-class-opens",
+      "ok": true,
+      "detail": "{\"backLabel\":true,\"tabs\":[true,true,true,true]}"
+    },
+    {
+      "file": "cross-learnerA-classwork.png",
+      "surface": "learner-classwork",
+      "classwork": {
+        "assignmentVisible": true,
+        "points": true,
+        "openLearn": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerA-assignment-visible",
+      "ok": true,
+      "detail": "{\"assignmentVisible\":true,\"points\":true,\"openLearn\":true}"
+    },
+    {
+      "check": "learnerA-learn-continuity",
+      "ok": true,
+      "detail": "{\"assignmentVisible\":true,\"points\":true,\"openLearn\":true}"
+    },
+    {
+      "file": "cross-learnerA-submitted.png",
+      "surface": "learner-classwork",
+      "submitted": {
+        "chip": true,
+        "waiting": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerA-submits-answer",
+      "ok": true,
+      "detail": "{\"chip\":true,\"waiting\":true}"
+    },
+    {
+      "file": "cross-learnerA-updates.png",
+      "surface": "learner-updates",
+      "updates": {
+        "visible": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerA-sees-teacher-update",
+      "ok": true,
+      "detail": "{\"visible\":true}"
+    },
+    {
+      "file": "cross-learnerB-joined.png",
+      "surface": "learner-classes",
+      "joined": {
+        "cardText": "Physics 12BPhysics 1 assignment",
+        "dialogClosed": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerB-joins-with-real-code",
+      "ok": true,
+      "detail": "{\"cardText\":\"Physics 12BPhysics 1 assignment\",\"dialogClosed\":true}"
+    },
+    {
+      "file": "cross-learnerB-submitted.png",
+      "surface": "learner-classwork",
+      "submittedB": {
+        "chip": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerB-submits-answer",
+      "ok": true,
+      "detail": "{\"chip\":true}"
+    },
+    {
+      "file": "cross-learnerB-wrong-code.png",
+      "surface": "join-dialog",
+      "wrongCode": {
+        "honest": true,
+        "alertRole": true
+      },
+      "errors": []
+    },
+    {
+      "check": "learnerB-wrong-code-honest",
+      "ok": true,
+      "detail": "{\"honest\":true,\"alertRole\":true}"
+    },
+    {
+      "file": "cross-teacher-return.png",
+      "surface": "teacher-classes",
+      "continuity": {
+        "classPersisted": true,
+        "studentCount": true,
+        "switcherOptions": 2,
+        "personalTeacher": true
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-session-continuity",
+      "ok": true,
+      "detail": "{\"classPersisted\":true,\"studentCount\":true,\"switcherOptions\":2,\"personalTeacher\":true}"
+    },
+    {
+      "file": "cross-teacher-roster.png",
+      "surface": "people-tab",
+      "roster": {
+        "connectedLine": "2/0",
+        "learnerA": true,
+        "learnerB": true,
+        "connectedChips": 2
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-roster-live",
+      "ok": true,
+      "detail": "{\"connectedLine\":\"2/0\",\"learnerA\":true,\"learnerB\":true,\"connectedChips\":2}"
+    },
+    {
+      "file": "cross-teacher-review.png",
+      "surface": "classwork-tab",
+      "review": {
+        "assignmentVisible": true,
+        "reviewBadge": "Review (2 · 2 new)",
+        "cardFound": true
+      },
+      "errors": []
+    },
+    {
+      "check": "teacher-sees-submissions",
+      "ok": true,
+      "detail": "{\"assignmentVisible\":true,\"reviewBadge\":\"Review (2 · 2 new)\",\"cardFound\":true}"
+    }
+  ],
+  "defects": []
+}

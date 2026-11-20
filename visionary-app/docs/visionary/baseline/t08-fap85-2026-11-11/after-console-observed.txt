@@ -1,0 +1,8 @@
+# AFTER (candidate zcode/fap-85-forgot-preview-truth @ ForgotPassword.jsx fix, dev server 127.0.0.1:5173) — forgot-password recovery journey, console warning/error inventory
+# Raw capture: t08-fap85-after.json .steps[console] (probe 2026-11-11, Edge headless, fresh contexts)
+0 warnings, 0 errors across the full recovery journey: forgot -> truthful disclosure -> Continue
+-> /reset-password?token=... -> reset -> Password updated -> old password rejected -> new password signs in.
+# (Probe technique note: the "signed-out browser" state was simulated by clearing only the
+# preview session keys — visionary_session_token / visionary_sessions / visionary_session —
+# in the same context, keeping the registered local account; a truly fresh context has an
+# empty localStorage and no accounts at all.)

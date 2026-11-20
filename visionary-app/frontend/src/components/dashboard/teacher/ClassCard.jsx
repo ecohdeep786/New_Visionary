@@ -18,7 +18,7 @@ export default function ClassCard({
   const locale = copyWorkspace?.preferences.interfaceLocale || 'en';
   const copy = primaryWorkspaceCopy(locale);
   const color = classroom.color;
-  return <Link to={`/dashboard/class/${classroom.id}`} className="v-class-card flex flex-col rounded-2xl overflow-hidden bg-white border border-[#dadce0]/60 hover:shadow-md transition-all">
+  return <Link to={`/dashboard/class/${classroom.id}`} className="v-class-card flex flex-col rounded-2xl overflow-hidden bg-white border border-[#d2d2d7]/60 hover:shadow-md transition-all">
       <div className="v-class-card-cover h-28 p-5 flex flex-col justify-end" style={{
       ...classColors(color)
     }}>
@@ -26,7 +26,7 @@ export default function ClassCard({
         {classroom.section && <p className="text-sm mt-0.5">{classroom.section}</p>}
         {classroom.room && <p className="text-sm">{classroom.room}</p>}
       </div>
-      <div className="px-5 py-4 flex items-center gap-2 text-sm text-[#5f6368]">
+      <div className="px-5 py-4 flex items-center gap-2 text-sm text-[#6e6e73]">
         <User className="w-4 h-4" />
         <span>{Number.isFinite(classroom.student_count)?copy('{count} students',{count:classroom.student_count}):copy('Unavailable')} </span>
       </div>

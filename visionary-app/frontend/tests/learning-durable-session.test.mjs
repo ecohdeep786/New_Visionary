@@ -241,3 +241,56 @@ for (const [field, mutate] of [
   assert.equal(saved.durableSessionId, checked.durableSessionId); assert.ok(saved.durableAssess);
   assert.equal(saved.stage, checked.stage); assert.equal(JSON.stringify(mentor.getStudentState(request)), knowledge);
 });
+
+/* KAN-145 — the knowledge estimate rides the confirmed assessment. The
+ * projection is a separate server command over the immutable receipt: exact
+ * references, both verdicts are evidence, and a projection failure never
+ * invalidates the saved learning evidence. */
+const recordingKnowledge = () => {
+  const calls = [];
+  return { calls, async project(command) { calls.push(command); return { version: 1, uid: 'demo-adult', replay: false, workspaceId: command.workspaceId, conceptId: command.conceptId, sourceVersion: command.sourceVersion, criteriaVersion: command.criteriaVersion, modelVersion: 'a2-calib-v1', pKnown: 0.5, revision: 1, lastSequence: 1, lastReceiptId: command.receiptId, lastReceiptDigest: 'digest', assessedCount: 1 }; } };
+};
+
+test('a confirmed assessment projects its immutable receipt into the owner estimate', async () => {
+  const server = fakeServer(); const knowledge = recordingKnowledge();
+  pipeline.configureLearningSessionAdapter(server); pipeline.configureKnowledgeProjectionAdapter(knowledge);
+  const { request, unit } = await sourcedActivity();
+  await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+  await pipeline.beginComprehension(request, unit.id);
+  await pipeline.answerLearningQuestion(request, unit.id, 0); // the authored correct answer
+  assert.equal(knowledge.calls.length, 1, 'one projection command per confirmed assessment');
+  const assessCommand = server.calls.assess[0].command;
+  const command = knowledge.calls[0];
+  assert.equal(command.version, 1);
+  assert.equal(command.sessionId, server.session().id, 'the command references the durable session');
+  assert.equal(command.receiptId, assessCommand.commandId, 'the command references the immutable assessment receipt');
+  assert.notEqual(command.commandId, assessCommand.commandId, 'the projection carries its own command identity');
+  assert.equal(command.workspaceId, 'demo-adult:student'); assert.equal(command.conceptId, 'durable:concept');
+  assert.equal(command.sourceVersion, '2026.1'); assert.equal(command.criteriaVersion, '2026.1');
+  assert.equal(Object.keys(command).sort().join(','), 'commandId,conceptId,criteriaVersion,receiptId,sessionId,sourceVersion,version,workspaceId', 'no verdict field ever leaves the browser');
+});
+
+test('a failed check is also evidence; a projection failure never breaks the learning flow', async () => {
+  const server = fakeServer({ grader: () => false }); const knowledge = recordingKnowledge();
+  knowledge.project = async command => { knowledge.calls.push(command); throw Object.assign(new Error('unavailable'), { status: 503 }); };
+  pipeline.configureLearningSessionAdapter(server); pipeline.configureKnowledgeProjectionAdapter(knowledge);
+  const { request, unit } = await sourcedActivity();
+  await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+  await pipeline.beginComprehension(request, unit.id);
+  const answered = await pipeline.answerLearningQuestion(request, unit.id, 0);
+  assert.equal(answered.answer.correct, false, 'the server verdict stays authoritative');
+  assert.ok(answered.answer.id, 'the assessment receipt is kept');
+  assert.equal(knowledge.calls.length, 1, 'the projection was attempted for the failed check too');
+  const saved = pipeline.getLearningUnit(request, unit.id);
+  assert.equal(saved.durableRevision, 2, 'the learning flow is unaffected by the projection failure (present + assess revisions)');
+});
+
+test('without a knowledge adapter the assessment flow is unchanged', async () => {
+  const server = fakeServer(); pipeline.configureLearningSessionAdapter(server); pipeline.configureKnowledgeProjectionAdapter(null);
+  const { request, unit } = await sourcedActivity();
+  await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+  await pipeline.beginComprehension(request, unit.id);
+  const answered = await pipeline.answerLearningQuestion(request, unit.id, 0);
+  assert.equal(answered.answer.correct, true);
+  assert.ok(answered.answer.id);
+});

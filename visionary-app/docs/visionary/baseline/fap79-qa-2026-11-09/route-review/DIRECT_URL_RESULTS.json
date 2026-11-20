@@ -1,0 +1,718 @@
+{
+  "task": "F-01 direct-URL route review",
+  "betaSha": "5a9190e3740d637ece528996d1d9d2cfbe8894c6",
+  "timestamp": "2026-11-09T07:18:47.980Z",
+  "browser": "Microsoft Edge via playwright-core (157.0.4341.42)",
+  "viewport": null,
+  "route": null,
+  "role": "anonymous",
+  "locale": "en",
+  "authMode": "preview (local preview repository — NOT hosted acceptance)",
+  "base": "http://localhost:5173",
+  "mode": "local preview repository (VITE_AUTH_MODE unset) — real register/OTP/onboarding journey, no fixture seeding; S05 is the only request interception and is an isolated failure simulation",
+  "scenarios": {
+    "S01": {
+      "direct": {
+        "pathname": "/research",
+        "title": "Research | Visionary",
+        "h1": "One intelligence, every learner.",
+        "notFound": false,
+        "overflowPx": 0,
+        "dashboardNavPresent": false
+      },
+      "refreshed": {
+        "pathname": "/research",
+        "title": "Research | Visionary",
+        "h1": "One intelligence, every learner.",
+        "notFound": false,
+        "overflowPx": 0,
+        "dashboardNavPresent": false
+      },
+      "privacy": "/privacy",
+      "back": "/research",
+      "backH1": "One intelligence, every learner."
+    },
+    "S02": {
+      "requested": "/dashboard/learn",
+      "landed": "/login?returnTo=%2Fdashboard%2Flearn",
+      "returnTo": "/dashboard/learn",
+      "dashboardNavPresent": false,
+      "onboarding": {
+        "requested": "/onboarding",
+        "landed": "/login?returnTo=%2Fonboarding",
+        "returnTo": "/onboarding"
+      }
+    },
+    "S03": {
+      "email": "route-s03-1794208792578@visionary.test",
+      "gateBounce": "/onboarding",
+      "workspaceAfterOnboarding": "/dashboard/home",
+      "recovered": {
+        "landed": "/dashboard/learn",
+        "h1": "Let’s learn"
+      }
+    },
+    "S04": {
+      "requested": "/definitely-not-a-real-route-xyz",
+      "h1": "404",
+      "home": "/"
+    },
+    "S05": {
+      "route": "/careers",
+      "errorH1": "Something went wrong",
+      "publicMessage": true,
+      "noFalseSavingClaim": true,
+      "recovered": "/login?returnTo=%2Fdashboard%2Fhome"
+    }
+  },
+  "sweep": [
+    {
+      "route": "/",
+      "viewport": "mobile-390",
+      "pathname": "/",
+      "title": "Visionary — Learn, ask, practice, and build",
+      "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/student",
+      "viewport": "mobile-390",
+      "pathname": "/student",
+      "title": "Visionary for students | Learn at your pace",
+      "h1": "Learning,Learning, to master, to build.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/teacher",
+      "viewport": "mobile-390",
+      "pathname": "/teacher",
+      "title": "Visionary for teachers | Prepare and teach",
+      "h1": "Teaching.Teaching, to grow, to reach.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/parent",
+      "viewport": "mobile-390",
+      "pathname": "/parent",
+      "title": "Visionary for parents | Follow their progress",
+      "h1": "Parenting.Parenting, to see, to help.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/professional",
+      "viewport": "mobile-390",
+      "pathname": "/professional",
+      "title": "Visionary for professionals | Grow your skills",
+      "h1": "Building.Building, to apply, to grow.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/organization",
+      "viewport": "mobile-390",
+      "pathname": "/organization",
+      "title": "Visionary for organizations | Teach at scale",
+      "h1": "Leading.Leading, to scale, to last.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/how-it-works",
+      "viewport": "mobile-390",
+      "pathname": "/how-it-works",
+      "title": "How Visionary works",
+      "h1": "How Visionary works.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/help",
+      "viewport": "mobile-390",
+      "pathname": "/help",
+      "title": "Help Center | Visionary",
+      "h1": "Find your answer.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/pricing",
+      "viewport": "mobile-390",
+      "pathname": "/pricing",
+      "title": "Pricing | Visionary",
+      "h1": "Plans for every journey.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/download",
+      "viewport": "mobile-390",
+      "pathname": "/download",
+      "title": "Download Visionary",
+      "h1": "Get Visionary on every device.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/about",
+      "viewport": "mobile-390",
+      "pathname": "/about",
+      "title": "About Visionary",
+      "h1": "Understanding. Built in.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/research",
+      "viewport": "mobile-390",
+      "pathname": "/research",
+      "title": "Research | Visionary",
+      "h1": "One intelligence, every learner.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/community",
+      "viewport": "mobile-390",
+      "pathname": "/community",
+      "title": "Community | Visionary",
+      "h1": "Communities and programs for everyone learning together.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/updates",
+      "viewport": "mobile-390",
+      "pathname": "/updates",
+      "title": "Updates | Visionary",
+      "h1": "What’s new at Visionary.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/partners",
+      "viewport": "mobile-390",
+      "pathname": "/partners",
+      "title": "Partners | Visionary",
+      "h1": "Better learning, together.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/referral",
+      "viewport": "mobile-390",
+      "pathname": "/referral",
+      "title": "Refer a friend | Visionary",
+      "h1": "Share a better way to learn.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/privacy",
+      "viewport": "mobile-390",
+      "pathname": "/privacy",
+      "title": "Privacy policy | Visionary",
+      "h1": "Your learning is personal. Privacy should be clear.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/terms",
+      "viewport": "mobile-390",
+      "pathname": "/terms",
+      "title": "Terms of service | Visionary",
+      "h1": "Clear rules, written to be understood.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/cookies",
+      "viewport": "mobile-390",
+      "pathname": "/cookies",
+      "title": "Cookie policy | Visionary",
+      "h1": "How we use cookies. And how you control them.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/safety",
+      "viewport": "mobile-390",
+      "pathname": "/safety",
+      "title": "Safety | Visionary",
+      "h1": "Safe by design,for every learner.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/security",
+      "viewport": "mobile-390",
+      "pathname": "/security",
+      "title": "Security | Visionary",
+      "h1": "Secure by design, protected end to end.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/accessibility",
+      "viewport": "mobile-390",
+      "pathname": "/accessibility",
+      "title": "Accessibility | Visionary",
+      "h1": "Help every learner learn how they learn best.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/careers",
+      "viewport": "mobile-390",
+      "pathname": "/careers",
+      "title": "Careers | Visionary",
+      "h1": "Build the future of learning.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/contact",
+      "viewport": "mobile-390",
+      "pathname": "/contact",
+      "title": "Contact | Visionary",
+      "h1": "We listen. We build.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/",
+      "viewport": "desktop-1440",
+      "pathname": "/",
+      "title": "Visionary — Learn, ask, practice, and build",
+      "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/student",
+      "viewport": "desktop-1440",
+      "pathname": "/student",
+      "title": "Visionary for students | Learn at your pace",
+      "h1": "Learning,Learning, to master, to build.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/teacher",
+      "viewport": "desktop-1440",
+      "pathname": "/teacher",
+      "title": "Visionary for teachers | Prepare and teach",
+      "h1": "Teaching.Teaching, to grow, to reach.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/parent",
+      "viewport": "desktop-1440",
+      "pathname": "/parent",
+      "title": "Visionary for parents | Follow their progress",
+      "h1": "Parenting.Parenting, to see, to help.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/professional",
+      "viewport": "desktop-1440",
+      "pathname": "/professional",
+      "title": "Visionary for professionals | Grow your skills",
+      "h1": "Building.Building, to apply, to grow.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/organization",
+      "viewport": "desktop-1440",
+      "pathname": "/organization",
+      "title": "Visionary for organizations | Teach at scale",
+      "h1": "Leading.Leading, to scale, to last.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/how-it-works",
+      "viewport": "desktop-1440",
+      "pathname": "/how-it-works",
+      "title": "How Visionary works",
+      "h1": "How Visionary works.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/help",
+      "viewport": "desktop-1440",
+      "pathname": "/help",
+      "title": "Help Center | Visionary",
+      "h1": "Find your answer.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/pricing",
+      "viewport": "desktop-1440",
+      "pathname": "/pricing",
+      "title": "Pricing | Visionary",
+      "h1": "Plans for every journey.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/download",
+      "viewport": "desktop-1440",
+      "pathname": "/download",
+      "title": "Download Visionary",
+      "h1": "Get Visionary on every device.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/about",
+      "viewport": "desktop-1440",
+      "pathname": "/about",
+      "title": "About Visionary",
+      "h1": "Understanding. Built in.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/research",
+      "viewport": "desktop-1440",
+      "pathname": "/research",
+      "title": "Research | Visionary",
+      "h1": "One intelligence, every learner.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/community",
+      "viewport": "desktop-1440",
+      "pathname": "/community",
+      "title": "Community | Visionary",
+      "h1": "Communities and programs for everyone learning together.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/updates",
+      "viewport": "desktop-1440",
+      "pathname": "/updates",
+      "title": "Updates | Visionary",
+      "h1": "What’s new at Visionary.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/partners",
+      "viewport": "desktop-1440",
+      "pathname": "/partners",
+      "title": "Partners | Visionary",
+      "h1": "Better learning, together.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/referral",
+      "viewport": "desktop-1440",
+      "pathname": "/referral",
+      "title": "Refer a friend | Visionary",
+      "h1": "Share a better way to learn.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/privacy",
+      "viewport": "desktop-1440",
+      "pathname": "/privacy",
+      "title": "Privacy policy | Visionary",
+      "h1": "Your learning is personal. Privacy should be clear.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/terms",
+      "viewport": "desktop-1440",
+      "pathname": "/terms",
+      "title": "Terms of service | Visionary",
+      "h1": "Clear rules, written to be understood.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/cookies",
+      "viewport": "desktop-1440",
+      "pathname": "/cookies",
+      "title": "Cookie policy | Visionary",
+      "h1": "How we use cookies. And how you control them.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/safety",
+      "viewport": "desktop-1440",
+      "pathname": "/safety",
+      "title": "Safety | Visionary",
+      "h1": "Safe by design,for every learner.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/security",
+      "viewport": "desktop-1440",
+      "pathname": "/security",
+      "title": "Security | Visionary",
+      "h1": "Secure by design, protected end to end.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/accessibility",
+      "viewport": "desktop-1440",
+      "pathname": "/accessibility",
+      "title": "Accessibility | Visionary",
+      "h1": "Help every learner learn how they learn best.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/careers",
+      "viewport": "desktop-1440",
+      "pathname": "/careers",
+      "title": "Careers | Visionary",
+      "h1": "Build the future of learning.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/contact",
+      "viewport": "desktop-1440",
+      "pathname": "/contact",
+      "title": "Contact | Visionary",
+      "h1": "We listen. We build.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/",
+      "viewport": "mobile-320",
+      "pathname": "/",
+      "title": "Visionary — Learn, ask, practice, and build",
+      "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/research",
+      "viewport": "mobile-320",
+      "pathname": "/research",
+      "title": "Research | Visionary",
+      "h1": "One intelligence, every learner.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/definitely-not-a-real-route-xyz",
+      "viewport": "mobile-320",
+      "pathname": "/definitely-not-a-real-route-xyz",
+      "title": "Page not found | Visionary",
+      "h1": "404",
+      "notFound": true,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    },
+    {
+      "route": "/",
+      "viewport": "desktop-1920",
+      "pathname": "/",
+      "title": "Visionary — Learn, ask, practice, and build",
+      "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false,
+      "pageErrors": []
+    }
+  ],
+  "redirects": [
+    {
+      "from": "/signin",
+      "to": "/login",
+      "landed": "/login",
+      "h1": "Sign in to Visionary"
+    },
+    {
+      "from": "/career",
+      "to": "/careers",
+      "landed": "/careers",
+      "h1": "Build the future of learning."
+    }
+  ],
+  "authSurfaces": [
+    {
+      "route": "/login",
+      "pathname": "/login",
+      "title": "Visionary — Learn, Ask, Build",
+      "h1": "Sign in to Visionary",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false
+    },
+    {
+      "route": "/register",
+      "pathname": "/register",
+      "title": "Visionary — Learn, Ask, Build",
+      "h1": "Create a Visionary account",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false
+    },
+    {
+      "route": "/forgot-password",
+      "pathname": "/forgot-password",
+      "title": "Visionary — Learn, Ask, Build",
+      "h1": "Reset your Visionary password",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false
+    },
+    {
+      "route": "/forgot-user-id",
+      "pathname": "/forgot-user-id",
+      "title": "Visionary — Learn, Ask, Build",
+      "h1": "Find your sign-in email",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false
+    },
+    {
+      "route": "/reset-password",
+      "pathname": "/reset-password",
+      "title": "Visionary — Learn, Ask, Build",
+      "h1": "Request a new reset link",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false
+    },
+    {
+      "route": "/auth/action",
+      "pathname": "/auth/action",
+      "title": "Page not found | Visionary",
+      "h1": "Verify your email",
+      "notFound": false,
+      "overflowPx": 0,
+      "dashboardNavPresent": false
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "scenarios": 5,
+    "sweepStates": 52,
+    "failures": 0
+  }
+}

@@ -303,10 +303,12 @@ export default function NewPersona({
               </span>
               <span className="sr-only">{srSentence}</span>
             </h1>
-            {/* Apple's education hero carries no body paragraph — only the
-                large statement and the actions. The story moves below the
-                line-up, so the old sub (a restatement of the headline) is
-                dropped from the universal stage. */}
+            {/* Apple's education hero carries the large statement, ONE plain
+                line that translates it into the person's benefit, then the
+                actions (measured: headline claim → sub-line → CTA). The old
+                sub was dropped because it restated the headline; a purpose
+                line that adds information earns its place. */}
+            {sub ? <p className="category-hero-tagline text-balance mx-auto mt-5 max-w-[560px]" style={{ color: "#6e6e73" }}>{sub}</p> : null}
           </div>
           {/* the hero pair — full buttons. This is the product's front door;
               the same shared pills the persona heroes wear, so one button

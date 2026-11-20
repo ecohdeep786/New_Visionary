@@ -8,7 +8,7 @@ import * as editorDraft from '../src/services/artifactEditorDraft.ts';
 import { getContentRepository, SAMPLE_SELECTION, configureContentRepository } from '../src/services/contentRepository.ts';
 import { configureTeachingInterface } from '../src/services/teachingInterface.ts';
 import { getHome } from '../src/services/homeService.ts';
-import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
+import { seedConnectedFixtures } from './fixtures/demoFixtures.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };

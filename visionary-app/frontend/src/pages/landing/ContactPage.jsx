@@ -27,7 +27,7 @@ const CONTACT_ROUTES = [
   { Icon: UserRound, category: "Careers", title: "Introduce yourself", description: "There are no public vacancies listed right now. For a general introduction, write to the team; this is not a job application portal.", email: "hello@visionary.org.in", subject: "Careers introduction" },
 ];
 
-/* Audience tabs — the reference's product-tab bar, mapped to our roles.
+/* Audience tabs — the reference’s product-tab bar, mapped to our roles.
    Each tab switches the four resource cards below it. */
 const TABS = [
   {
@@ -87,10 +87,10 @@ const FAQS = [
   { q: "How quickly will I get a reply?", a: RESPONSE_TIMES.general + " " + RESPONSE_TIMES.partners },
   { q: "What should I include in my message?", a: "Tell us what you were doing, what you expected, and what happened instead, with links or screenshots if they help. Please never include passwords, payment details, or sensitive learner information." },
   { q: "Who do I contact about a safety concern?", a: "Write to safety@visionary.org.in. " + RESPONSE_TIMES.safety },
-  { q: "How do privacy grievances work?", a: "Under India's DPDP Act, 2023, write to the named Grievance Officer at grievance@visionary.org.in. " + RESPONSE_TIMES.grievance },
+  { q: "How do privacy grievances work?", a: "Under India’s DPDP Act, 2023, write to the named Grievance Officer at grievance@visionary.org.in. " + RESPONSE_TIMES.grievance },
   { q: "Can we bring Visionary to our school or organization?", a: "Yes. Write to partnerships@visionary.org.in about rollouts for schools, colleges, coaching institutes, and workplaces." },
   { q: "Where do I find product answers on my own?", a: "The Help center covers setup and features, and the how-it-works page explains the learning loop end to end." },
-  { q: "In which languages can I write to you?", a: "The product's language journeys are English, Hindi, and Bengali today, and the team can reply in all three. More languages are on the roadmap." },
+  { q: "In which languages can I write to you?", a: "The product’s language journeys are English, Hindi, and Bengali today, and the team can reply in all three. More languages are on the roadmap." },
   { q: "How do I introduce myself for a role?", a: "Write to hello@visionary.org.in with the work you are interested in. There are no public vacancies right now, and an introduction is not an application to a listed role." },
 ];
 
@@ -151,7 +151,7 @@ export default function ContactPage() {
           </Reveal>
         </section>
 
-        {/* AUDIENCE TABS + RESOURCE CARDS — the reference's product-tab bar */}
+        {/* AUDIENCE TABS + RESOURCE CARDS — the reference’s product-tab bar */}
         <section id="resources" data-section="02-resources" className="scroll-mt-32 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="flex justify-center">
@@ -274,7 +274,7 @@ export default function ContactPage() {
             <div>
               <p className="apple-eyebrow text-[#6e6e73]">Privacy grievance</p>
               <h2 data-type="section" className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">A formal route for privacy concerns.</h2>
-              <p className="mt-4 max-w-[420px] text-[16px] leading-[1.75] text-[#6e6e73]">For a privacy grievance under India's DPDP Act, contact the named Grievance Officer directly.</p>
+              <p className="mt-4 max-w-[420px] text-[16px] leading-[1.75] text-[#6e6e73]">For a privacy grievance under India’s DPDP Act, contact the named Grievance Officer directly.</p>
             </div>
             <div className="rounded-[20px] bg-white p-6 sm:p-8">
               <span className="block apple-eyebrow text-[#6e6e73]">{GRIEVANCE_OFFICER.role}</span>

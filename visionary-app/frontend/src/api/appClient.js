@@ -1,24 +1,17 @@
 /**
- * Local preview repository, not a production authentication boundary.
- * Replace with server-verified identity, database rules, and services before
- * deploying to real learners. Browser storage is local to this device.
+ * Preview repository for workspace records. Authentication has exactly one
+ * source: the connected Firebase adapter. Profiles arrive from the server
+ * session (firebaseAuth) and credentials never exist in this module or in
+ * browser storage. Browser storage keeps only the per-device preview data
+ * below until the server owns learning records.
  */
 
 import { previewPolicy } from './previewPermissions.js';
-import { firebaseAuth, firebaseAuthEnabled } from './firebase/authAdapter.js';
+import { firebaseAuth } from './firebase/authAdapter.js';
 import {connectionStatus} from '../lib/connectionAvailability.js';
 import {curriculumPublicationRevision,deliveredCurriculumRevision} from '../lib/curriculumPublication.js';
 import {classworkReviewRevision} from '../lib/classworkRubric.js';
 import {classworkActivityRevision} from '../lib/classworkSource.js';
-const USERS_KEY = 'visionary_users';
-const SESSION_TOKEN_KEY = 'visionary_session_token';
-const SESSIONS_KEY = 'visionary_sessions';
-const PENDING_REGISTRATION_KEY = 'visionary_pending_registration';
-const RESET_TOKENS_KEY = 'visionary_reset_tokens';
-const LEGACY_SESSION_KEY = 'visionary_session';
-
-const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const RESET_TOKEN_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
 const readJson = (key, fallback) => {
   try {
@@ -37,322 +30,37 @@ const writeJson = (key, value) => {
   }
 };
 
-/* ── Web Crypto API Security Primitives ── */
+/* ── Identity: the server session is the only profile authority ── */
 
-const generateSecureHex = (byteLength = 16) => {
-  const bytes = new Uint8Array(byteLength);
-  crypto.getRandomValues(bytes);
-  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+let previewProfile = null;
+
+/** Preview/test seam: stands in for the connected server session so node tests
+ * and preview fixtures can sign in without a transport. A real server profile
+ * always wins while one exists, and production code never imports this. */
+export const previewSignIn = (profile) => {
+  if (import.meta.env && !import.meta.env.DEV) throw new Error('Preview identity is unavailable.');
+  previewProfile = profile;
 };
 
-const computeSaltedHash = async (password, salt) => {
-  const enc = new TextEncoder();
-  const data = enc.encode(`${salt}:${password}`);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+const currentProfile = () => firebaseAuth.currentProfile() ?? previewProfile;
+
+const previewMe = async () => {
+  const profile = currentProfile();
+  if (!profile) throw new Error('Not signed in');
+  return profile;
 };
 
-/** Redacts sensitive security fields before returning user object to application */
-const sanitizeUser = (user) => {
-  if (!user) return null;
-  const { password, passwordHash, salt, ...safeUser } = user;
-  return safeUser;
-};
-
-const getUsers = () => readJson(USERS_KEY, []);
-
-/* ── Session Protection & Authorization ── */
-
-const getSessions = () => {
-  const sessions = readJson(SESSIONS_KEY, []);
-  const now = Date.now();
-  // Filter out expired sessions
-  return sessions.filter((s) => s.expiresAt > now);
-};
-
-const createSession = (user) => {
-  const token = crypto.randomUUID();
-  const session = {
-    token,
-    userId: user.id,
-    email: user.email,
-    expiresAt: Date.now() + SESSION_TTL_MS,
-    createdAt: Date.now(),
-  };
-  const sessions = getSessions();
-  sessions.push(session);
-  writeJson(SESSIONS_KEY, sessions);
-  localStorage.setItem(SESSION_TOKEN_KEY, token);
-  // Clear legacy plain session key if present
-  localStorage.removeItem(LEGACY_SESSION_KEY);
-  return token;
-};
-
-const getCurrentSession = () => {
-  const token = localStorage.getItem(SESSION_TOKEN_KEY);
-  if (token) {
-    const session = getSessions().find((s) => s.token === token);
-    if (session) return session;
-  }
-
-  // Graceful migration from legacy plain email session
-  const legacyEmail = localStorage.getItem(LEGACY_SESSION_KEY);
-  if (legacyEmail) {
-    const user = getUsers().find((u) => u.email === legacyEmail);
-    if (user) {
-      createSession(user);
-      return { email: legacyEmail, userId: user.id };
-    }
-  }
-
-  return null;
-};
-
-const getCurrentUser = () => {
-  if (firebaseAuthEnabled) return firebaseAuth.currentProfile();
-  const session = getCurrentSession();
-  if (!session) return null;
-  const user = getUsers().find((u) => u.id === session.userId || u.email === session.email);
-  return user ? sanitizeUser(user) : null;
-};
-
-/* ── Password Verification & Auto-Migration ── */
-
-const verifyPassword = async (user, candidatePassword) => {
-  // If user has modern salted hash
-  if (user.passwordHash && user.salt) {
-    const candidateHash = await computeSaltedHash(candidatePassword, user.salt);
-    return candidateHash === user.passwordHash;
-  }
-
-  // Legacy plaintext fallback: verify and automatically upgrade to salted hash
-  if (user.password && user.password === candidatePassword) {
-    const users = getUsers();
-    const idx = users.findIndex((u) => u.id === user.id);
-    if (idx >= 0) {
-      const salt = generateSecureHex(16);
-      const passwordHash = await computeSaltedHash(candidatePassword, salt);
-      users[idx] = {
-        ...users[idx],
-        salt,
-        passwordHash,
-      };
-      delete users[idx].password;
-      writeJson(USERS_KEY, users);
-    }
-    return true;
-  }
-
-  return false;
-};
-
-/* ── Auth API ── */
-
-const auth = {
-  async me() {
-    const user = getCurrentUser();
-    if (!user) throw new Error('Not signed in');
-    return user;
-  },
-
-  /* Read-only existence check against the same store the credential gate
-   * verifies. The password step remains the only credential decision; this
-   * only routes the sign-in UI to the right local view (F-16). */
-  async emailRegistered(email) {
-    const normalizedEmail = email.trim().toLowerCase();
-    return getUsers().some((candidate) => candidate.email?.toLowerCase() === normalizedEmail);
-  },
-
-  async loginViaEmailPassword(email, password) {
-    const normalizedEmail = email.trim().toLowerCase();
-    const users = getUsers();
-    const user = users.find((candidate) => candidate.email?.toLowerCase() === normalizedEmail);
-
-    /* Same anti-enumeration message and credential-error code the firebase
-     * path maps (D-064), so the sign-in UI shows the same recovery view. */
-    const credentialError = () => {
-      const error = new Error('Incorrect email or password');
-      error.code = 'auth/invalid-credential';
-      return error;
-    };
-
-    if (!user) {
-      throw credentialError();
-    }
-
-    const isValid = await verifyPassword(user, password);
-    if (!isValid) {
-      throw credentialError();
-    }
-
-    createSession(user);
-    return sanitizeUser(user);
-  },
-
-  async register({ email, password }) {
-    const normalizedEmail = email.trim().toLowerCase();
-    if (getUsers().some((user) => user.email?.toLowerCase() === normalizedEmail)) {
-      throw new Error('An account already exists for this email');
-    }
-
-    const salt = generateSecureHex(16);
-    const passwordHash = await computeSaltedHash(password, salt);
-
-    writeJson(PENDING_REGISTRATION_KEY, {
-      email: normalizedEmail,
-      passwordHash,
-      salt,
-      createdAt: Date.now(),
-    });
-
-    return { email: normalizedEmail };
-  },
-
-  async verifyOtp({ email }) {
-    const normalizedEmail = email.trim().toLowerCase();
-    const pending = readJson(PENDING_REGISTRATION_KEY, null);
-
-    if (!pending || pending.email !== normalizedEmail) {
-      throw new Error('Registration session expired or invalid');
-    }
-
-    const user = {
-      id: crypto.randomUUID(),
-      email: normalizedEmail,
-      salt: pending.salt,
-      passwordHash: pending.passwordHash,
-      onboarding_complete: false,
-      createdAt: Date.now(),
-    };
-
-    writeJson(USERS_KEY, [...getUsers(), user]);
-    localStorage.removeItem(PENDING_REGISTRATION_KEY);
-    createSession(user);
-    return sanitizeUser(user);
-  },
-
-  async resendOtp() {
-    return { ok: true };
-  },
-
-  setToken() {},
-
-  async resetPasswordRequest(email) {
-    const normalizedEmail = email.trim().toLowerCase();
-    const user = getUsers().find((u) => u.email?.toLowerCase() === normalizedEmail);
-    if (!user) return { ok: true };
-
-    const resetToken = crypto.randomUUID();
-    const tokens = readJson(RESET_TOKENS_KEY, []);
-    tokens.push({
-      token: resetToken,
-      email: normalizedEmail,
-      expiresAt: Date.now() + RESET_TOKEN_TTL_MS,
-      used: false,
-    });
-    writeJson(RESET_TOKENS_KEY, tokens);
-
-    return { ok: true, resetToken };
-  },
-
-  async resetPassword({ resetToken, newPassword }) {
-    if (!resetToken) throw new Error('Invalid reset link');
-
-    const tokens = readJson(RESET_TOKENS_KEY, []);
-    const now = Date.now();
-    const tokenRecord = tokens.find((t) => t.token === resetToken && !t.used && t.expiresAt > now);
-
-    const targetEmail = tokenRecord ? tokenRecord.email : null;
-
-    if (!targetEmail) {
-      const error = new Error('Reset link is invalid or has expired. Please request a new one.');
-      error.code = 'auth/invalid-action-code';
-      throw error;
-    }
-
-    const users = getUsers();
-    const userIndex = users.findIndex((u) => u.email?.toLowerCase() === targetEmail);
-    if (userIndex < 0) throw new Error('Account not found');
-
-    const salt = generateSecureHex(16);
-    const passwordHash = await computeSaltedHash(newPassword, salt);
-
-    users[userIndex] = {
-      ...users[userIndex],
-      salt,
-      passwordHash,
-    };
-    delete users[userIndex].password;
-    writeJson(USERS_KEY, users);
-
-    // Invalidate the reset token
-    if (tokenRecord) {
-      tokenRecord.used = true;
-      writeJson(RESET_TOKENS_KEY, tokens);
-    }
-
-    return sanitizeUser(users[userIndex]);
-  },
-
-  async updateMe(updates, options = {}) {
-    const session = getCurrentSession();
-    if (!session) throw new Error('Not signed in');
-
-    const users = getUsers();
-    const userIndex = users.findIndex((u) => u.id === session.userId || u.email === session.email);
-    if (userIndex < 0) throw new Error('User not found');
-    if(options.expectedUserId!==undefined&&users[userIndex].id!==options.expectedUserId)throw new Error('The signed-in account changed. Your profile edits were not saved.');
-    if(options.expectedThemeColor!==undefined&&(users[userIndex].preferences?.theme_color||'blue')!==options.expectedThemeColor){const error=new Error('The account accent changed in another tab. Review the saved color before retrying.');error.name='AppearanceConflictError';throw error;}
-    if(options.expectedProfileName!==undefined&&(users[userIndex].full_name||'')!==options.expectedProfileName){const error=new Error('Your display name changed since you opened it. Export your edits or load the latest saved name before retrying.');error.name='ProfileConflictError';throw error;}
-    if(options.expectedProfileName!==undefined&&(typeof updates.full_name!=='string'||!updates.full_name.trim()||updates.full_name.trim().length>80))throw new Error('Enter a display name of 1 to 80 characters.');
-
-    // Prevent overwriting sensitive credential fields via updateMe
-    const { password, passwordHash, salt, id, email, createdAt, ...safeUpdates } = updates;
-    if(options.expectedProfileName!==undefined)safeUpdates.full_name=safeUpdates.full_name.trim();
-    if(options.expectedThemeColor!==undefined){
-      const theme=safeUpdates.preferences?.theme_color;
-      if(!['blue','green','amber','red','purple','teal'].includes(theme))throw new Error('Choose a supported account accent.');
-      safeUpdates.preferences={...users[userIndex].preferences,theme_color:theme};
-    }
-
-    users[userIndex] = { ...users[userIndex], ...safeUpdates };
-    writeJson(USERS_KEY, users);
-    return sanitizeUser(users[userIndex]);
-  },
-
-  loginWithProvider() {
-    throw new Error('Social sign-in is not configured yet');
-  },
-
-  requestPhoneSignIn() {
-    throw new Error('Mobile sign-in requires the connected identity provider');
-  },
-
-  confirmPhoneSignIn() {
-    throw new Error('Mobile sign-in requires the connected identity provider');
-  },
-
-  logout() {
-    const token = localStorage.getItem(SESSION_TOKEN_KEY);
-    if (token) {
-      const activeSessions = getSessions().filter((s) => s.token !== token);
-      writeJson(SESSIONS_KEY, activeSessions);
-      localStorage.removeItem(SESSION_TOKEN_KEY);
-    }
-    localStorage.removeItem(LEGACY_SESSION_KEY);
-  },
-};
+/* ── Preview entity store ── */
 
 /* Personal account separation in the preview; production needs database rules. */
 const personalEntities = new Set(['Subject', 'Topic', 'Exam', 'StudyLog', 'Question', 'Bookmark', 'Project', 'PracticeSession']);
+const entityKey = (name) => `visionary_entity_${name}`;
 const readEntities = (name) => {
   try {const raw=localStorage.getItem(entityKey(name));if(!raw)return [];const rows=JSON.parse(raw);if(!Array.isArray(rows)||rows.some(row=>!row||typeof row!=='object'||Array.isArray(row)))throw Error();return rows;}
   catch {throw new Error(`${name} records could not be read. Saved records have not been replaced. Retry after reviewing the local data.`);}
 };
-const entityKey = (name) => firebaseAuthEnabled ? `visionary_firebase_preview_${firebaseAuth.currentProfile()?.id || 'anonymous'}_${name}` : `visionary_entity_${name}`;
 const entityUser = () => {
-  const user=getCurrentUser();if(!user)return null;
+  const user=currentProfile();if(!user)return null;
   const db=readJson('visionary_workspace_v2',null);
   const workspace=db?.workspaces?.find(w=>w.id===db.active?.[user.id]&&w.personId===user.id);
   return {...user,identity:workspace?.role||user.identity,workspace_id:workspace?.id,organization_id:workspace?.organizationId};
@@ -404,7 +112,7 @@ const visibleRecords = (name, ownerEmail) => {
     if (!shared) return [];
   }
   return readEntities(name).filter((record) => (record.owner_email || record.student_email) === owner&&
-    (owner!==currentUser.email||!currentUser.workspace_id||record.workspace_id===currentUser.workspace_id||!record.workspace_id&&!currentUser.organization_id&&currentUser.identity===(getCurrentUser().education_stage==='professional'?'professional':getCurrentUser().identity)));
+    (owner!==currentUser.email||!currentUser.workspace_id||record.workspace_id===currentUser.workspace_id||!record.workspace_id&&!currentUser.organization_id&&currentUser.identity===(currentProfile().education_stage==='professional'?'professional':currentProfile().identity)));
 };
 const sortedRecords = (records, sort, limit) => {
   const result = [...records];
@@ -468,7 +176,7 @@ const entityStore = new Proxy({}, {
     },
     async update(id, updates, options = {}) {
       if(['Submission','Assignment','Classroom'].includes(name))assertCommandContext(options);
-      if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      if (name === 'User' || !currentProfile() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
       if(name==='Assignment'&&options.expectedAssignmentStateRevision!==undefined){const current=readEntities(name).find(row=>row.id===id);if(JSON.stringify([current.status||'published',current.state_history||[]])!==options.expectedAssignmentStateRevision)throw new Error('The assignment state changed. Reload classwork before trying again.');}
       if(name==='Submission')assertSubmissionSource(readEntities(name).find(record=>record.id===id),options);
       if(name==='Submission'&&options.expectedReviewRevision!==undefined&&options.expectedReviewRevision!==classworkReviewRevision(readEntities(name).find(record=>record.id===id)))throw new Error('This review changed while saving. Export your edits, then load the latest review.');
@@ -482,7 +190,7 @@ const entityStore = new Proxy({}, {
       return updated.find((record) => record.id === id);
     },
     async delete(id) {
-      if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      if (name === 'User' || !currentProfile() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
       if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'delete');
       writeJson(entityKey(name), readEntities(name).filter((record) => record.id !== id));
       notifyChange();
@@ -491,8 +199,15 @@ const entityStore = new Proxy({}, {
 });
 
 export const appClient = {
-  auth: firebaseAuthEnabled ? firebaseAuth : auth,
-  entities: entityStore,
+  auth: import.meta.env?.PROD ? firebaseAuth : {
+    ...firebaseAuth,
+    /* Preview seam: while a test/preview profile stands in for the server
+     * session, me() answers from it; the connected adapter stays authoritative
+     * for every production call. */
+    currentProfile,
+    me: (options) => (previewProfile && !firebaseAuth.currentProfile() ? previewMe() : firebaseAuth.me(options)),
+  },
+  ...(import.meta.env?.PROD ? {} : { entities: entityStore }),
   integrations: {
     Core: {
       async InvokeLLM() {

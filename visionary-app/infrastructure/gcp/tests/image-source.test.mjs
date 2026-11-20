@@ -37,6 +37,7 @@ test('image snapshot uses exact reviewed bytes and excludes mutable, ignored and
     assert.equal(readFileSync(join(source.context, 'frontend/src/main.jsx'), 'utf8'), 'reviewed source\n');
     assert.equal(existsSync(join(source.context, 'frontend/src/untracked-settings.json')), false);
     assert.equal(existsSync(join(source.context, 'backend/upstream/backend/not-approved.txt')), false);
+    assert.equal(readFileSync(join(source.context, 'backend/upstream/backend/tsconfig.outbox.json'), 'utf8'), '{}');
     assert.equal(existsSync(join(source.context, 'research')), false);
     assert.equal(source.manifest.commit, f.head);
     assert.equal(source.digest, createHash('sha256').update(JSON.stringify(source.manifest)).digest('hex'));

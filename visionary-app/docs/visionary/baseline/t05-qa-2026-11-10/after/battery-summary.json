@@ -1,0 +1,32 @@
+﻿[
+    {
+        "Harness":  "teacher",
+        "Exit":  0,
+        "Tail":  "Records: 21; defects: 0 | PASS teacher experience review: class creation, tabs, curriculum, assignment, learners, insights verified."
+    },
+    {
+        "Harness":  "cross-role",
+        "Exit":  0,
+        "Tail":  "Records: 37; defects: 0 | PASS cross-role integration review: teacher-\u003eclass-\u003einvite/code-\u003elearners-\u003eassignment-\u003esubmission-\u003eteacher visibility verified across three accounts."
+    },
+    {
+        "Harness":  "ml-experience",
+        "Exit":  0,
+        "Tail":  "checks: 27/27 pass, 0 defects | receipt: ..\\..\\..\\AppData\\Local\\Temp\\2\\opencode\\t05-qa-2026-11-10\\after\\ml\\receipt.json | PASS ml experience review"
+    },
+    {
+        "Harness":  "student",
+        "Exit":  0,
+        "Tail":  "Records: 16; defects: 0 | PASS student experience review: Learn/Ask/Practice/Build/Progress/Classes states verified."
+    },
+    {
+        "Harness":  "design-quality",
+        "Exit":  0,
+        "Tail":  "PASS empty/populated evidence, real local sample check/practice -\u003e project, eight theme/viewport samples with alpha-blended WCAG contrast (\u003e=4.5:1 informative / \u003e=3:1 large) and 44px hit-area assertions, filtered totals, 200% text, shared brand font and Hindi portal typography."
+    },
+    {
+        "Harness":  "route",
+        "Exit":  1,
+        "Tail":  "    at async file:///C:/Users/Administrator/nv-worktrees/fap-81-reduced-motion/visionary-app/frontend/scripts/route-direct-url-review.mjs:36:1 | System.Management.Automation.RemoteException | Node.js v22.23.3"
+    }
+]

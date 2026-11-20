@@ -64,3 +64,139 @@ Implement owning-store outbox dispatch, private authenticated task delivery, per
 - Dev integration commit and checks: (after review)
 - Jira transition/comment receipt: KAN-53 → Testing (transition 41)
 - Next dependent tasks: JOB-02 (KAN-54) leases/fencing, JOB-03 (KAN-55) admission limits, then SYNC-01 (KAN-139).
+
+## Rework 2 (2026-11-05) — review findings 10582 addressed
+
+Reviewer blockers on 9e8dc2e5e13b356d4f5049736e7c812a8d0982d9 were reproduced
+and fixed in the dispatcher/store contract:
+
+1. Dishonest reporting: the old `ack()` swallowed a lost DONE ack and still
+   returned DISPATCHED while the row stayed PENDING. Now the owning store's
+   `ackOutbox` is the only DONE writer; a lost ack leaves the row durably
+   DISPATCHED under a recovery lease and the poll reports DISPATCHED only
+   because the row IS DISPATCHED (delivery confirmed, ack pending).
+2. Attempts burned before `nextAttemptAt`: `pendingOutbox` ignored the retry
+   slot. Now `claimDueOutbox(limit, now, maxAttempts, leaseMs)` performs the
+   ATOMIC DUE CLAIM on the owning store (one mutation per row: due check +
+   status DISPATCHED + attempts+1 + lease). A poll before `nextAttemptAt`
+   returns nothing and burns no attempt; concurrent polls cannot double-claim.
+3. DONE without delivery: there was no delivery handler at all. The dispatcher
+   now requires a registered topic handler (or default); DONE commits only
+   after the handler resolves. An event with no handler stays PENDING with
+   `NO_DELIVERY_HANDLER` and a bounded retry slot. Jobs likewise never reach
+   DONE without their handler (`NO_JOB_HANDLER`).
+
+New surface: `OutboxStore.claimDueOutbox/exhaustedOutbox/ackOutbox`,
+`BackoffPolicy.leaseMs`, `DispatchOutcome {cursor, status, delivered}`,
+`DeliveryHandler` (idempotent per cursor — recovery re-delivers after a lost
+ack and the consumer dedupes on the durable cursor).
+
+Verification: tsc --project tsconfig.data.json exit 0; nest build exit 0;
+node --test tests/contracts/data-jobs/outbox.test.mjs → 12 pass / 0 fail
+(includes restart recovery after ack crash, deadline-respecting backoff,
+concurrent double-dispatcher claims, batch bound, quarantine at the ceiling
+and the ack-crash quarantine sweep). Reviewer probe replay (kan53-probe):
+PROBE1 honest DISPATCHED=row status; PROBE2 early poll burns nothing;
+PROBE3 no-handler never DONE; PROBE4 concurrent claims atomic (4/4 unique).
+
+The Cloud SQL adapter swap and worker/controller wiring remain the declared
+later, separately reviewed integration (unchanged scope boundary).
+
+## Integration candidate — 2026-11-20
+
+The original branch incorporates the delivery and atomic claim changes from
+`2c934257`. The store compares the current attempt on every settlement.
+A delayed failure cannot reopen an event completed by a newer worker. If the
+store write returns an error, the dispatcher reads the current state before
+reporting the outcome. Each poll bounds the sum of quarantines and deliveries.
+
+The original and rework branches passed 10 and 12 focused tests respectively.
+The combined implementation passed 16. The new tests cover stale settlement,
+an acknowledgement response lost after commit, concurrent job claims, and
+completion after cancellation. Job claims, settlement, and cancellation are
+atomic in the store. The standard backend data check now runs this suite.
+
+### Durable consent delivery
+
+Migration 7 adds a delivery ledger keyed by the existing PostgreSQL outbox
+cursor. The revocation write and source event still commit together in the
+workspace repository. The dispatcher reads committed `consent.revoked` events
+above an explicit replay checkpoint and leaves other topics and the source
+event untouched. Use zero to replay all eligible events. Establish a nonzero
+checkpoint only after writers are quiescent and earlier events are reconciled.
+The ledger keeps the lease, retry time and attempt through process restarts.
+
+The Cloud Run dispatcher uses its runtime access token to admit tasks to
+`visionary-consent-staging` or `visionary-consent-production` in Mumbai.
+Each task sends a decimal cursor and attempt to
+`/internal/outbox/consent-revocations` using the queue environment's dedicated
+OIDC invoker. Task names are deterministic per event and attempt. Successful
+admission or an existing task leaves the delivery leased until the receiver
+commits a receipt or the lease expires. The receiver checks the Google
+signature, Cloud Run audience and configured service account subject. It locks
+the delivery row, checks the lease against the database clock, reads the
+committed event and validates it against the revoked grant. It cancels only
+pending jobs bound to that grant and writes the completion receipt in the
+same transaction. An authenticated replay returns HTTP 204 from that receipt.
+
+The job repository admits downloads and model-context requests against
+separate workload queues. It binds each job to the exact authorized grant
+under the same account lock used by revocation. Hosted workload execution,
+and cache invalidation require their own evidence.
+
+The product image compiles a separate process. Deploy the private receiver
+with command `node` and arguments `dist/src/outbox/main-consent-outbox.js,receive`.
+Run the dispatcher as a separate, bounded job using the same command with
+`dispatch`. Configure explicit staging or production SQL socket, database,
+schema, and non-privileged workload-specific role under `OUTBOX_*`. The
+dispatcher uses `OUTBOX_INVOKER_SERVICE_ACCOUNT` for the environment's
+`visionary-outbox-invoke-stg` or `visionary-outbox-invoke-prod` account.
+Grant the dispatcher task creation on its queue and actAs on that account.
+Grant the invoker Cloud Run invocation only on its environment's receiver,
+and configure the account's numeric subject as `OUTBOX_CALLER_SUBJECT` there.
+Keep the queue and receiver retry window bounded by the 90-second database
+lease. Each dispatch job claims at most five events. Rotate SQL credentials
+through the existing pinned Secret Manager path. Give the receiver and
+dispatcher only the SQL privileges required by their respective statements.
+Give the dispatcher column grants for the lease and retry fields. The receiver
+alone needs to write `effectAppliedAt`. PostgreSQL requires that receipt field
+when the delivery status becomes DONE.
+The migration identity and credentials belong only to the migration job.
+
+The PostgreSQL and loopback HTTP tests exercise the receiver using a synthetic
+consent grant, Cloud Tasks API responses, and substitute caller verification.
+Hosted migration requires an exact staging receipt. Verify the private
+Cloud Run invocation policy, deployed authentication, queue trigger, and
+recovery before applying this path to production traffic.
+
+### Production deployment
+
+The deployment can be rendered without provider writes with
+`outboxProductionSqlPlan` and `outboxProductionPlan` in
+`infrastructure/gcp/outbox/plan.mjs`. The proposed persistent instance is
+`visionary-product-db` in Mumbai, with one dedicated vCPU, 3.75 GiB of memory,
+10 GiB SSD with a 20 GiB growth ceiling, regional failover, seven daily backups
+and seven days of point-in-time recovery. Its connector is mandatory. The
+staging and production databases have separate names and credentials on that
+instance. Bind the workload plan to the
+reviewed source, the trusted main product image digest, and the verification
+receipt from the separate synthetic staging database on the intended persistent
+instance. Keep the receipt with the production migration record. Use the
+existing data migration job to apply and verify the production database before
+starting the receiver or dispatcher. Configuration from the temporary hosted
+rehearsal cannot supply the persistent instance's receipt.
+
+The plan specifies a scale-to-zero internal receiver, a single-task dispatcher,
+and the same queue retry settings used in the hosted rehearsal. Bind Cloud Run
+invocation on the receiver to the dedicated Cloud Tasks identity. Bind task
+creation on the queue and actAs on that identity to the dispatcher. Give the
+Cloud Tasks service agent actAs on the invoker. Scope the separate runtime
+identities to the intended SQL instance and their respective pinned secrets.
+Verify one manual dispatcher execution and receipt readback before creating the
+five-minute Scheduler trigger. Its identity needs invocation on the dispatcher
+job only. Pause the trigger first if the rollout must be stopped.
+
+The production readiness check also needs the real authenticated list and
+revocation flow and the affected workload's readback. Exercise those with an
+approved test account and approved consent policy. The HTTP contract test uses
+the production controller and SQL write path with a substitute account verifier.

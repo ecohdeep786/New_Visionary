@@ -45,10 +45,17 @@ export function useCycleIndex(total, intervalMs) {
 /**
  * Reveals content once when it enters the viewport. Pairs with the
  * `.hero-fade-up` classes on the children for the rise transition.
+ * Reveal law (KAN-210): starts visible — only a below-the-fold chapter is
+ * hidden (after paint) until it scrolls into view.
  */
 export function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  // Reveal law (KAN-210): content is in the visible first paint; the reveal
+  // only animates. We start visible and, after mount, hide a chapter ONLY if
+  // its top is still below the viewport (so nothing visible ever blinks) and
+  // reveal it when the observer fires. No-JS, pre-hydration, print and
+  // above-fold chapters stay visible throughout.
+  const [visible, setVisible] = useState(true);
   const hasRevealed = useRef(false);
   useEffect(() => {
     const node = ref.current;
@@ -65,6 +72,18 @@ export function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
       hasRevealed.current = true;
       return undefined;
     }
+    let belowFold = false;
+    try {
+      belowFold = node.getBoundingClientRect().top > (window.innerHeight || document.documentElement.clientHeight || 0);
+    } catch {
+      belowFold = false;
+    }
+    if (!belowFold) {
+      hasRevealed.current = true;
+      setVisible(true);
+      return undefined;
+    }
+    setVisible(false);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasRevealed.current) {
@@ -191,16 +210,30 @@ export function useStageIndex(total) {
  * Reveals content once when it enters the viewport. Pairs with the
  * `.hero-fade-up` classes on the children for the rise transition.
  * Returns { ref, entered } for ScrollReveal/RevealItem API compatibility.
+ *
+ * Reveal law (KAN-210): content is always in the visible first paint and the
+ * reveal only animates. `armed` is set after paint, ONLY when the chapter's
+ * top is still below the viewport — so no-JS, pre-hydration, print and
+ * above-fold chapters never hide content, and CSS never needs an opacity-0
+ * default. The scroll-reveal CSS hides solely `.reveal-armed:not(.in-view)`.
  */
 export function useInViewOnce(threshold = 0.2) {
   const ref = useRef(null);
   const [entered, setEntered] = useState(false);
+  const [armed, setArmed] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") {
       setEntered(true);
       return undefined;
     }
+    let belowFold = false;
+    try {
+      belowFold = el.getBoundingClientRect().top > (window.innerHeight || document.documentElement.clientHeight || 0);
+    } catch {
+      belowFold = false;
+    }
+    if (belowFold) setArmed(true);
     const io = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setEntered(true);
@@ -210,5 +243,5 @@ export function useInViewOnce(threshold = 0.2) {
     io.observe(el);
     return () => io.disconnect();
   }, [threshold]);
-  return { ref, entered };
+  return { ref, entered, armed };
 }

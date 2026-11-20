@@ -4,9 +4,9 @@ import OnboardingLayout from '../OnboardingLayout';
 import ChoiceGrid from '../ChoiceGrid';
 const roles = [
   { id: 'student', label: 'I am a Learner', desc: 'Explore subjects, prepare for exams or learn independently.', icon: GraduationCap },
-  { id: 'professional', label: 'I am a Professional', desc: 'Develop skills, plan career goals and build a portfolio.', icon: Briefcase },
-  { id: 'teacher', label: 'I am a Teacher', desc: 'Prepare lessons and manage your teaching context.', icon: BookOpen },
-  { id: 'parent', label: 'I am a Parent', desc: 'Set up a family space. Child access requires a verified connection.', icon: Users },
+  { id: 'professional', label: 'I am a Professional', desc: 'Set your interests and professional learning goals.', icon: Briefcase },
+  { id: 'teacher', label: 'I am a Teacher', desc: 'Set your teaching context and subjects.', icon: BookOpen },
+  { id: 'parent', label: 'I am a Parent', desc: 'Set up a parent or guardian profile. Learner access requires a verified connection.', icon: Users },
   { id: 'organization', label: 'We are an Organization', desc: 'Start an organization profile. Membership is verified separately.', icon: Building2 },
 ];
 export default function IdentitySelection({ onContinue, initialRole, accountEmail, onChangeAccount, isSubmitting, isSwitchingAccount, error }) {

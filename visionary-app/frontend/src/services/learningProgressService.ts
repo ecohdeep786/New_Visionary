@@ -6,7 +6,7 @@ import {getJourney} from './journeys.ts';
 
 export type EvidencePeriod=7|30|'all';
 export interface ProgressEvent {id:string;kind:string;at:string;correct:number;total:number;measured:boolean;resumePath?:string;activityTitle?:string;sourceVersion?:string}
-export interface ProgressObjective {id:string;title:string;titleLocale?:string;source:'guided'|'journey';stage:MasteryStage;dueAt?:string;events:ProgressEvent[];correct:number;total:number;applications:number}
+export interface ProgressObjective {id:string;title:string;titleLocale?:string;source:'guided'|'journey';stage:MasteryStage;dueAt?:string;events:ProgressEvent[];correct:number;total:number;applications:number;knowledge?:{conceptId:string;sourceVersion:string;criteriaVersion:string}|null}
 /** Read-only owner report. The two evidence systems remain separately identified. */
 export function getLearningProgress(ctx:RequestContext,period:EvidencePeriod=7){
  if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');
@@ -26,7 +26,7 @@ export function getLearningProgress(ctx:RequestContext,period:EvidencePeriod=7){
    const records=history.filter(row=>row.conceptId===conceptId&&inPeriod(row.at));if(!records.length)continue;
    const state=states.find(row=>row.conceptId===conceptId);const matching=units.filter(row=>row.conceptId===conceptId);
    const events:ProgressEvent[]=records.map(row=>{const unit=matching.find(unit=>unit.id===row.sessionId);return{id:'guided:'+row.id,kind:row.kind,at:row.at,correct:row.correct,total:row.total,measured:row.verified&&row.total>0&&row.kind!=='application',resumePath:unit?'/dashboard/learn?unit='+encodeURIComponent(unit.id):undefined,activityTitle:unit?.title,sourceVersion:unit?.sourceContext?.provenance?unit.sourceContext.provenance.sourceId+' · version '+unit.sourceContext.provenance.version:undefined};});
-   objectives.push({id:'guided:'+conceptId,title:matching.at(-1)?.title||'Recorded learning objective',titleLocale:matching.at(-1)?.locale||'en',source:'guided',stage:state?.stage||'Exploring',dueAt:state?.dueAt,events,correct:events.filter(row=>row.measured).reduce((n,row)=>n+row.correct,0),total:events.filter(row=>row.measured).reduce((n,row)=>n+row.total,0),applications:events.filter(row=>row.kind==='application').length});
+   const scopeProvenance=matching.find(unit=>unit.sourceContext?.provenance)?.sourceContext?.provenance;objectives.push({id:'guided:'+conceptId,title:matching.at(-1)?.title||'Recorded learning objective',titleLocale:matching.at(-1)?.locale||'en',source:'guided',stage:state?.stage||'Exploring',dueAt:state?.dueAt,events,correct:events.filter(row=>row.measured).reduce((n,row)=>n+row.correct,0),total:events.filter(row=>row.measured).reduce((n,row)=>n+row.total,0),applications:events.filter(row=>row.kind==='application').length,knowledge:scopeProvenance?{conceptId,sourceVersion:scopeProvenance.version,criteriaVersion:scopeProvenance.version}:null});
   }
  }catch{unavailable.push({source:'Guided learning evidence',message:'Guided evidence could not be read completely. Original records were kept; these counts are unavailable.'});}
  // Build this source separately so malformed records never leave partially counted rows.

@@ -17,7 +17,7 @@ export const color = {
   /* ── the ink family (Apple-measured) ── */
   ink: "#1d1d1f",          // headings + primary text + neutral button fill (was #121317)
   slate: "#6e6e73",        // secondary text (was Google #5f6368)
-  muted: "#86868b",        // quiet fine print / captions on light ground
+  muted: "#6e6e73",        // quiet fine print / captions on light ground (AA: 5.07:1 on white; #86868b measured 3.62:1 and failed the FAP-31 contrast gate)
   line: "#d2d2d7",         // hairlines (was Google mist #dadce0)
 
   /* ── grounds ── */
@@ -44,7 +44,7 @@ export const color = {
 
   /* ── named surfaces (law-valued; names consumed across the landing) ── */
   graphite: "#6e6e73",     // secondary ink (same family as slate)
-  lightGrey: "#86868b",    // muted ink
+  lightGrey: "#6e6e73",    // muted ink (AA: 5.07:1 on white; was #86868b at 3.62:1)
   mist: "#d2d2d7",         // hairline
   track: "#f5f5f7",        // grey track/ground
   trackStrong: "rgba(29,29,31,0.15)",

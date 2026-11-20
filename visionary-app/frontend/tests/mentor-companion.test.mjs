@@ -5,7 +5,7 @@ import * as workspace from '../src/services/workspaceService.ts';
 import * as mentor from '../src/services/mentorStateService.ts';
 import { sendMentorTurn, mentorGreeting, buildMentorPacket } from '../src/services/mentorCompanionService.ts';
 import { configureDailyPlanClock } from '../src/services/dailyPlanService.ts';
-import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
+import { seedConnectedFixtures } from './fixtures/demoFixtures.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };
