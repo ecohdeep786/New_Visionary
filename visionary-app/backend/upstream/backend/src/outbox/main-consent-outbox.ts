@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { OAuth2Client } from 'google-auth-library';
+import { GoogleAuth, OAuth2Client } from 'google-auth-library';
 import { assertCloudSqlUrl } from '../data/migration-identities';
 import { WorkspaceRepository } from '../workspaces/workspace.repository';
-import { cloudRunWorkerOrigin, createConsentRevocationDispatcher } from './cloud-run-outbox.delivery';
+import { cloudRunWorkerOrigin, createConsentRevocationDispatcher } from './cloud-tasks-outbox.delivery';
 import { createConsentRevocationServer } from './consent-revocation.http';
 import { outboxCursorKey } from './outbox-types';
 
@@ -35,8 +35,21 @@ async function main(mode: string) {
       const raw = required('OUTBOX_AFTER_CURSOR');
       if (!/^(0|[1-9][0-9]{0,18})$/.test(raw)) throw Error('Invalid outbox replay checkpoint.');
       const checkpoint = raw === '0' ? 0n : outboxCursorKey(BigInt(raw));
-      const outcomes = await createConsentRevocationDispatcher(db, origin, checkpoint).dispatch(1);
-      console.info(JSON.stringify({ processed: outcomes.length, completed: outcomes.filter(row => row.status === 'DONE').length }));
+      const auth = new GoogleAuth({ scopes: ['https://www.googleapis.com/auth/cloud-tasks'] });
+      const dispatcher = createConsentRevocationDispatcher(db, {
+        environment,
+        workerOrigin: origin,
+        invokerServiceAccount: required('OUTBOX_INVOKER_SERVICE_ACCOUNT'),
+        afterCursor: checkpoint,
+        accessToken: () => auth.getAccessToken(),
+      });
+      const outcomes = await dispatcher.dispatch(5);
+      console.info(JSON.stringify({
+        processed: outcomes.length,
+        awaitingReceipt: outcomes.filter(row => row.status === 'DISPATCHED').length,
+        completed: outcomes.filter(row => row.status === 'DONE').length,
+        failed: outcomes.filter(row => row.status === 'FAILED').length,
+      }));
       return;
     }
 

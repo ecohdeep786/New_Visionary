@@ -8,7 +8,7 @@ import roles from '../data-02/postgres-fixture.cjs';
 const { WorkspaceRepository } = fixture.req('./dist/src/workspaces/workspace.repository.js');
 const { canonicalMigrations } = fixture.req('./dist/src/data/migration-registry.js');
 const { PostgresOutboxDeliveryStore } = fixture.req('./dist/src/outbox/postgres-outbox.store.js');
-const { createConsentRevocationDispatcher } = fixture.req('./dist/src/outbox/cloud-run-outbox.delivery.js');
+const { createConsentRevocationDispatcher } = fixture.req('./dist/src/outbox/cloud-tasks-outbox.delivery.js');
 const { createConsentRevocationServer } = fixture.req('./dist/src/outbox/consent-revocation.http.js');
 const { enqueueConsentJob } = fixture.req('./dist/src/outbox/consent-jobs.js');
 const at = ms => new Date(Date.UTC(2026, 10, 20) + ms);
@@ -102,39 +102,63 @@ test('the receiver authenticates a committed revocation, cancels only its jobs a
   t.after(() => new Promise(resolve => server.close(resolve)));
   const worker = 'https://synthetic-worker.run.app';
   const local = `http://127.0.0.1:${server.address().port}/internal/outbox/consent-revocations`;
-  let sent;
-  assert.throws(() => createConsentRevocationDispatcher(db, 'https://canary---synthetic-worker.run.app', 0n),
+  const invoker = 'visionary-outbox-invoke-stg@visionary-research.iam.gserviceaccount.com';
+  const config = { environment: 'staging', workerOrigin: worker, afterCursor: 0n,
+    invokerServiceAccount: invoker, accessToken: async () => 'synthetic-access-token' };
+  assert.throws(() => createConsentRevocationDispatcher(db, { ...config, workerOrigin: 'https://canary---synthetic-worker.run.app' }),
     /canonical Cloud Run worker origin/);
+  assert.throws(() => createConsentRevocationDispatcher(db, { ...config, environment: 'production' }),
+    /scoped to the delivery environment/);
+  const admitted = [];
+  const queue = 'projects/visionary-research/locations/asia-south1/queues/visionary-consent-staging';
+  const statuses = [503, 409, 200];
   const fetcher = (url, options) => {
+    assert.equal(url.href, `https://cloudtasks.googleapis.com/v2/${queue}/tasks`);
     assert.equal(options.redirect, 'error');
-    if (url.hostname === 'metadata.google.internal') {
-      assert.equal(url.searchParams.get('audience'), worker);
-      assert.equal(options.headers['Metadata-Flavor'], 'Google');
-      return Promise.resolve(new Response('synthetic.claim.signature', { headers: { 'Metadata-Flavor': 'Google' } }));
-    }
-    assert.equal(url.origin, worker);
-    sent = JSON.parse(options.body);
-    return fetch(`http://127.0.0.1:${server.address().port}${url.pathname}`, options);
+    assert.equal(options.method, 'POST');
+    assert.equal(options.headers.Authorization, 'Bearer synthetic-access-token');
+    const { task } = JSON.parse(options.body);
+    const { body, ...request } = task.httpRequest;
+    assert.deepEqual(request, {
+      httpMethod: 'POST', url: `${worker}/internal/outbox/consent-revocations`,
+      headers: { 'Content-Type': 'application/json' },
+      oidcToken: { serviceAccountEmail: invoker, audience: worker },
+    });
+    assert.equal(task.name.slice(0, task.name.lastIndexOf('/')), `${queue}/tasks`);
+    assert.match(task.name.split('/').at(-1), /^[a-f0-9]{64}$/);
+    assert.equal(task.dispatchDeadline, '20s');
+    admitted.push({ name: task.name, payload: JSON.parse(Buffer.from(body, 'base64').toString()) });
+    return Promise.resolve(new Response(null, { status: statuses.shift() }));
   };
-  const dispatcher = createConsentRevocationDispatcher(db, worker, 0n, fetcher);
+  const dispatcher = createConsentRevocationDispatcher(db, config, fetcher);
   const started = Date.now();
   const tick = delay => new Date(started + delay);
   assert.deepEqual(await dispatcher.dispatch(1, tick(0)), [{ cursor: event.cursor, status: 'PENDING', delivered: false }]);
   assert.equal((await db.consentJob.findUniqueOrThrow({ where: { id: job.id } })).state, 'PENDING');
-  authorized = true;
   const send = data => fetch(local, { method: 'POST',
     headers: { Authorization: 'Bearer synthetic.claim.signature', 'Content-Type': 'application/json' },
     body: JSON.stringify(data) });
-  assert.equal((await send({ ...sent, uid })).status, 400);
-  assert.equal((await send(sent)).status, 409);
+  assert.equal((await send(admitted[0].payload)).status, 401);
+  authorized = true;
+  assert.equal((await send({ ...admitted[0].payload, uid })).status, 400);
+  assert.equal((await send(admitted[0].payload)).status, 409);
   assert.deepEqual(await dispatcher.dispatch(1, tick(199)), []);
-  assert.deepEqual(await dispatcher.dispatch(1, tick(200)), [{ cursor: event.cursor, status: 'DONE', delivered: true }]);
-  assert.deepEqual(sent, { cursor: String(event.cursor), attempt: 2 });
+  const awaiting = [{ cursor: event.cursor, status: 'DISPATCHED', delivered: false }];
+  assert.deepEqual(await dispatcher.dispatch(1, tick(200)), awaiting);
+  assert.equal((await db.outboxDelivery.findUniqueOrThrow({ where: { cursor: event.cursor } })).effectAppliedAt, null);
+  assert.deepEqual(await dispatcher.dispatch(1, tick(90_199)), []);
+  assert.deepEqual(await dispatcher.dispatch(1, tick(90_200)), awaiting);
+  assert.equal((await db.consentJob.findUniqueOrThrow({ where: { id: job.id } })).state, 'PENDING');
+  assert.equal(new Set(admitted.map(task => task.name)).size, 3);
+  assert.equal((await send(admitted[1].payload)).status, 409);
+  const sent = admitted[2].payload;
+  assert.deepEqual(sent, { cursor: String(event.cursor), attempt: 3 });
+  assert.equal((await send(sent)).status, 204);
   const saved = await db.outboxDelivery.findUniqueOrThrow({ where: { cursor: event.cursor } });
   assert.ok(saved.effectAppliedAt);
   assert.equal((await db.consentJob.findUniqueOrThrow({ where: { id: job.id } })).state, 'CANCELLED');
   assert.equal((await db.consentJob.findUniqueOrThrow({ where: { id: other.id } })).state, 'PENDING');
   assert.equal((await send(sent)).status, 204);
   assert.deepEqual(await db.outboxDelivery.findUniqueOrThrow({ where: { cursor: event.cursor } }), saved);
-  assert.deepEqual(await dispatcher.dispatch(1, tick(60_000)), []);
+  assert.deepEqual(await dispatcher.dispatch(1, tick(180_201)), []);
 });

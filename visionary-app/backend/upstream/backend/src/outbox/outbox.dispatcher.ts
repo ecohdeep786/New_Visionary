@@ -6,8 +6,8 @@
 //     event exactly once (concurrent polls cannot double-claim; a poll before
 //     nextAttemptAt never touches the row and never burns an attempt).
 //   - confirmed delivery: the registered topic handler (or the default
-//     handler) must resolve before the DONE ack is attempted. An event with
-//     no handler is never marked DONE.
+//     handler) must confirm before the DONE ack is attempted. An asynchronous
+//     handler can leave the lease with the worker instead.
 //   - attempt fencing: only the current claim can settle the row. A delayed
 //     delivery reports the owning store's status after a new claim takes over.
 //   - recovery: a lost ack leaves the row DISPATCHED; once its lease expires
@@ -26,9 +26,8 @@ export class JobPolicyError extends Error {
   }
 }
 
-/** A private authenticated delivery endpoint for one topic. Handlers MUST be
- * idempotent per event cursor: recovery re-delivers after a lost ack. */
-export type DeliveryHandler = (event: OutboxEvent) => Promise<void>;
+/** Handlers are idempotent per cursor. Return 'queued' when the worker owns acknowledgement. */
+export type DeliveryHandler = (event: OutboxEvent) => Promise<void | 'queued'>;
 
 export interface DispatchOutcome {
   cursor: OutboxCursor;
@@ -78,12 +77,18 @@ export class OutboxDeliveryDispatcher {
   private async deliver(event: OutboxEvent, now: Date): Promise<DispatchOutcome> {
     const handler = this.handlerFor(event.topic);
     let lastError = handler ? null : 'NO_DELIVERY_HANDLER';
+    let admission: void | 'queued' = undefined;
     if (handler) {
       try {
-        await handler(event);
+        admission = await handler(event);
       } catch {
         lastError = 'DELIVERY_FAILED';
       }
+    }
+    if (admission === 'queued') {
+      const current = await this.store.outboxByCursor(event.cursor);
+      if (!current) throw new JobPolicyError('unknown_event');
+      return { cursor: event.cursor, status: current.status, delivered: current.status === 'DONE' };
     }
     const delivered = lastError === null;
     const retry = !delivered && event.attempts < this.policy.maxAttempts;
