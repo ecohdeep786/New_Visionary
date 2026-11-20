@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { OAuth2Client } from 'google-auth-library';
 import { assertCloudSqlUrl } from '../data/migration-identities';
+import { WorkspaceRepository } from '../workspaces/workspace.repository';
 import { cloudRunWorkerOrigin, createConsentRevocationDispatcher } from './cloud-run-outbox.delivery';
 import { createConsentRevocationServer } from './consent-revocation.http';
 import { outboxCursorKey } from './outbox-types';
@@ -27,15 +28,7 @@ async function main(mode: string) {
   const db = new PrismaClient({ datasources: { db: { url: String(url) } } });
   let serving = false;
   try {
-    const [identity] = await db.$queryRaw<Array<{ role: string; schema: string; database: string; privileged: boolean }>>`
-      SELECT current_user AS role, current_schema() AS schema, current_database() AS database,
-        rolsuper OR rolcreatedb OR rolcreaterole OR rolbypassrls
-        OR has_schema_privilege(current_user, current_schema(), 'CREATE')
-        OR has_database_privilege(current_user, current_database(), 'CREATE') AS privileged
-      FROM pg_roles WHERE rolname = current_user
-    `;
-    if (!identity || identity.privileged || identity.role !== role || identity.schema !== schema ||
-        identity.database !== database) throw Error('Outbox SQL identity rejected.');
+    await WorkspaceRepository.assertRuntimeIdentity(db, { role, schema, database });
     await db.$queryRaw`SELECT "effectAppliedAt" FROM outbox_deliveries LIMIT 0`;
 
     if (mode === 'dispatch') {

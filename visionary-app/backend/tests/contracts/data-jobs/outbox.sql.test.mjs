@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { once } from 'node:events';
 import fixture from '../data-01/postgres-fixture.cjs';
+import roles from '../data-02/postgres-fixture.cjs';
 
 const { WorkspaceRepository } = fixture.req('./dist/src/workspaces/workspace.repository.js');
 const { canonicalMigrations } = fixture.req('./dist/src/data/migration-registry.js');
@@ -21,6 +22,21 @@ async function isolatedDatabase(t) {
   }
   return env;
 }
+
+test('the worker SQL identity refuses delegated schema ownership and migration-ledger writes', async t => {
+  const env = await roles.stagingDatabase();
+  t.after(() => env.close());
+  const { admin, db, runtime, runtimeRole, migrationRole, schema } = env;
+  const expected = { role: runtimeRole, schema, database: new URL(env.config.runtimeUrl).pathname.slice(1) };
+  await db.$executeRaw`CREATE TABLE "_visionary_migrations" (version integer)`;
+  await WorkspaceRepository.assertRuntimeIdentity(runtime, expected);
+  await assert.rejects(WorkspaceRepository.assertRuntimeIdentity(runtime, { ...expected, role: migrationRole }), /identity/);
+  await admin.$executeRawUnsafe(`GRANT "${migrationRole}" TO "${runtimeRole}"`);
+  await assert.rejects(WorkspaceRepository.assertRuntimeIdentity(runtime, expected), /identity/);
+  await admin.$executeRawUnsafe(`REVOKE "${migrationRole}" FROM "${runtimeRole}"`);
+  await admin.$executeRawUnsafe(`GRANT UPDATE ON "${schema}"."_visionary_migrations" TO "${runtimeRole}"`);
+  await assert.rejects(WorkspaceRepository.assertRuntimeIdentity(runtime, expected), /identity/);
+});
 
 test('owning SQL store preserves replay scope, 64-bit cursors and exclusive claims across clients', async t => {
   const { db, url } = await isolatedDatabase(t);

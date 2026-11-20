@@ -1607,7 +1607,7 @@
     },
     {
       "file": "backend/upstream/backend/src/workspaces/workspace.repository.ts",
-      "sha256Lf": "8fd013d041f62db0bc9468650a2911841f724f29eb4bb425eba2e5c6d987ab8b"
+      "sha256Lf": "8f6cd0d5a9afefde8946fce9cf2507dfe059d2b0b03097cc268b0eef7f8c8919"
     },
     {
       "file": "backend/upstream/backend/src/overview/overview.service.ts",
