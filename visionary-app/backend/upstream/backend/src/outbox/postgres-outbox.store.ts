@@ -81,6 +81,8 @@ export class PostgresOutboxDeliveryStore implements OutboxDeliveryStore {
   }
 
   async settleOutbox(cursor: OutboxCursor, attempt: number, settlement: OutboxSettlement): Promise<OutboxEvent | null> {
+    // Only the receiver can commit DONE, in the same transaction as its effect.
+    if (settlement.status === 'DONE') return null;
     const retryAt = settlement.nextAttemptAt ? new Date(settlement.nextAttemptAt) : null;
     const [row] = await this.db.$queryRaw<DeliveryRow[]>`
       UPDATE outbox_deliveries d SET status = ${settlement.status}::"OutboxDeliveryStatus",

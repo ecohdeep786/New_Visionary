@@ -92,7 +92,7 @@ export class WorkspaceRepository {
    * account lock as revokeConsent prevents a checked delivery from committing
    * after a concurrent revocation. Never perform provider/network I/O here. */
   async withConsentDelivery<T>(uid: string, purpose: string, resourceId: string | undefined,
-    consentVersion: string | undefined, commit: (tx: Store) => Promise<T>): Promise<T> {
+    consentVersion: string | undefined, commit: (tx: Store, grantId: string) => Promise<T>): Promise<T> {
     if (typeof uid !== 'string' || !uid.trim()) throw new ForbiddenException('A consent subject is required.');
     if (!purpose || !consentVersion) throw new ForbiddenException('An explicit purpose and policy version are required.');
     return this.prisma.$transaction(async tx => {
@@ -119,12 +119,13 @@ export class WorkspaceRepository {
       LIMIT 1
     `;
         if (!grants.length) throw new ForbiddenException('Required consent is unavailable or revoked.');
+        return grants[0].id;
       };
-      await authorized();
-      const result = await commit(tx);
+      const grantId = await authorized();
+      const result = await commit(tx, grantId);
       // Database writes can wait too. Expiry during the callback must roll
       // back its writes rather than commit a delivery using an earlier lease.
-      await authorized();
+      if (await authorized() !== grantId) throw new ForbiddenException('Required consent has changed.');
       return result;
     });
   }

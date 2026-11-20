@@ -268,6 +268,22 @@
           "afterSha256": "8426f305e23875f408d7dc0978f3016db4fb1f0dcdc3afd9ea416350bb1b48bd"
         }
       ]
+    },
+    {
+      "id": "2026-11-20-job-01-consent-worker",
+      "date": "2026-11-20",
+      "decision": "KAN-53 backend delivery and D-095 independent review.",
+      "reason": "Bind pending jobs to their consent grant and retain the receiver completion receipt atomically in PostgreSQL.",
+      "diff": "integration/upstream-patches/2026-11-20-job-01-consent-worker.patch",
+      "diffSha256": "c22c3d6c98f3d0fd5687f816ee9bdc8451944158fe9f68c78b684f7f485f246d",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "8426f305e23875f408d7dc0978f3016db4fb1f0dcdc3afd9ea416350bb1b48bd",
+          "afterSha256": "f73b3c0bce0e9ba051d25a8aa3ae5e421cc3276555a010f59235153a4cd01315"
+        }
+      ]
     }
   ]
 }

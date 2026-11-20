@@ -127,11 +127,32 @@ checkpoint only after writers are quiescent and earlier events are reconciled.
 The ledger keeps the lease, retry time and attempt through process restarts.
 
 The Cloud Run sender requests an ID token for the configured worker origin
-and sends only the decimal cursor to `/internal/outbox/consent-revocations`.
-The worker must authenticate the caller, load and validate the event from the
-owning database, and return HTTP 204 after durable, idempotent completion.
-Accepting a request into a queue does not establish that completion.
+and sends the decimal cursor and current attempt to
+`/internal/outbox/consent-revocations`. The receiver checks the Google
+signature, origin audience and configured service account subject. It locks
+the delivery row, checks the lease against the database clock, reads the
+committed event and validates it against the revoked grant. It cancels only
+pending jobs bound to that grant and writes the completion receipt in the
+same transaction. An authenticated replay returns HTTP 204 from that receipt.
 
-The PostgreSQL and authenticated loopback HTTP tests exercise this sender
-boundary with synthetic data. The Cloud Run consumer, its invocation policy,
-and deployed queue recovery still require hosted verification.
+The job repository admits downloads and model-context requests against
+separate workload queues. It binds each job to the exact authorized grant
+under the same account lock used by revocation. Hosted workload execution,
+cache invalidation, and queue trigger integration require their own evidence.
+
+The product image compiles a separate process. Deploy the private receiver
+with command `node` and arguments `dist/src/outbox/main-consent-outbox.js,receive`.
+Run the dispatcher as a separate, bounded job using the same command with
+`dispatch`. Configure explicit staging or production SQL socket, database,
+schema, and non-privileged workload-specific role under `OUTBOX_*`. The
+receiver uses the canonical service origin as audience and the dispatcher
+service account's numeric subject as the only caller. Rotate credentials
+through the existing pinned Secret Manager path. Give the receiver and
+dispatcher only the SQL privileges required by their respective statements.
+The migration identity and credentials belong only to the migration job.
+
+The PostgreSQL and authenticated loopback HTTP tests exercise the actual
+receiver with a synthetic consent grant and substitute caller verification.
+Hosted migration requires an exact staging receipt. Verify the private
+Cloud Run invocation policy, deployed authentication, queue trigger, and
+recovery before applying this path to production traffic.

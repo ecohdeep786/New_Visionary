@@ -39,6 +39,11 @@ try {
   cpSync(join(root, 'backend/tests/fixtures'), join(testRoot, 'fixtures'), { recursive: true });
   for (const name of tests) cpSync(join(root, 'backend/tests', `${name}.test.cjs`), join(testRoot, `${name}.test.cjs`));
   run([join(runtime, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.product.json'], backend);
+  const outboxConfig = join(root, 'backend/upstream/backend/tsconfig.outbox.json');
+  if (existsSync(outboxConfig)) {
+    cpSync(outboxConfig, join(backend, 'tsconfig.outbox.json'));
+    run([join(runtime, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.outbox.json'], backend);
+  }
   // Historical account repair/verifier regressions use the same dependency lock,
   // but these offline tools are deliberately absent from the deployed graph.
   const config = JSON.parse(readFileSync(join(backend, 'tsconfig.product.json'), 'utf8'));

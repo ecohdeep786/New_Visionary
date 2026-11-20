@@ -1,4 +1,5 @@
 import type { PrismaClient } from '@prisma/client';
+import { consentRevocationPath } from './consent-revocation.http';
 import { OutboxDeliveryDispatcher } from './outbox.dispatcher';
 import { CONSENT_REVOCATION_TOPIC, PostgresOutboxDeliveryStore } from './postgres-outbox.store';
 
@@ -11,14 +12,10 @@ export function createConsentRevocationDispatcher(
   afterCursor: bigint,
   fetcher: typeof fetch = fetch,
 ): OutboxDeliveryDispatcher {
-  const worker = new URL(workerOrigin);
-  if (worker.protocol !== 'https:' || !/^(?:[a-z0-9-]+\.)+run\.app$/.test(worker.hostname) || worker.hostname.includes('---') ||
-      worker.username || worker.password || worker.port || worker.pathname !== '/' || worker.search || worker.hash) {
-    throw Error('A canonical Cloud Run worker origin is required.');
-  }
+  const worker = new URL(cloudRunWorkerOrigin(workerOrigin));
   const tokenUrl = new URL(identityEndpoint);
   tokenUrl.searchParams.set('audience', worker.origin);
-  const deliveryUrl = new URL('/internal/outbox/consent-revocations', worker);
+  const deliveryUrl = new URL(consentRevocationPath, worker);
 
   return new OutboxDeliveryDispatcher(new PostgresOutboxDeliveryStore(db, afterCursor), {
     topics: new Map([[CONSENT_REVOCATION_TOPIC, async event => {
@@ -36,10 +33,19 @@ export function createConsentRevocationDispatcher(
         ...request,
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cursor: String(event.cursor) }),
+        body: JSON.stringify({ cursor: String(event.cursor), attempt: event.attempts }),
       });
       await response.body?.cancel();
       if (response.status !== 204) throw Error('OUTBOX_DELIVERY_NOT_CONFIRMED');
     }]]),
   });
+}
+
+export function cloudRunWorkerOrigin(value: string): string {
+  const url = new URL(value);
+  if (url.protocol !== 'https:' || !/^(?:[a-z0-9-]+\.)+run\.app$/.test(url.hostname) || url.hostname.includes('---') ||
+      url.username || url.password || url.port || url.pathname !== '/' || url.search || url.hash) {
+    throw Error('A canonical Cloud Run worker origin is required.');
+  }
+  return url.origin;
 }

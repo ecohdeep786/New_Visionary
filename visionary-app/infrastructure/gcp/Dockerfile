@@ -22,7 +22,8 @@ COPY backend/upstream/backend/src/ ./src/
 COPY backend/upstream/backend/prisma/schema.prisma ./prisma/schema.prisma
 # Compile the selected product graph and its runtime-only SQL client. This does
 # not run migrations or connect SQL; provisioning remains an explicit opt-in.
-RUN ./node_modules/.bin/prisma generate && ./node_modules/.bin/tsc -p tsconfig.product.json && npm prune --omit=dev --ignore-scripts --no-audit --no-fund
+RUN ./node_modules/.bin/prisma generate && ./node_modules/.bin/tsc -p tsconfig.product.json \
+ && ./node_modules/.bin/tsc -p tsconfig.outbox.json && npm prune --omit=dev --ignore-scripts --no-audit --no-fund
 
 FROM node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5 AS product
 RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/*
