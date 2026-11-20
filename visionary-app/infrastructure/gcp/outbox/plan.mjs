@@ -25,7 +25,7 @@ export function outboxProductionSqlPlan() {
     schema: 'product',
     create: ['sql', 'instances', 'create', instanceName, project, region, '--edition=ENTERPRISE',
       '--database-version=POSTGRES_16', '--tier=db-custom-1-3840', '--availability-type=regional',
-      '--storage-type=SSD', '--storage-size=10GB', '--storage-auto-increase', '--storage-auto-increase-limit=20GB',
+      '--storage-type=SSD', '--storage-size=10GB', '--storage-auto-increase', '--storage-auto-increase-limit=20',
       '--assign-ip', '--connector-enforcement=REQUIRED', '--backup-start-time=21:00', '--retained-backups-count=7',
       '--enable-point-in-time-recovery', '--retained-transaction-log-days=7', '--deletion-protection'],
   };

@@ -17,7 +17,7 @@ test('the production SQL plan fixes the regional connector, recovery settings an
   assert.equal(plan.stagingDatabase, 'visionary_data_staging_outbox');
   for (const option of ['--project=visionary-research', '--region=asia-south1', '--availability-type=regional',
     '--database-version=POSTGRES_16', '--tier=db-custom-1-3840', '--connector-enforcement=REQUIRED',
-    '--enable-point-in-time-recovery', '--deletion-protection', '--storage-auto-increase-limit=20GB']) {
+    '--enable-point-in-time-recovery', '--deletion-protection', '--storage-auto-increase-limit=20']) {
     assert.ok(plan.create.includes(option), option);
   }
 });
