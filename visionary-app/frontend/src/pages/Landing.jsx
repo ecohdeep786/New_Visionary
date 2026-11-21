@@ -528,7 +528,6 @@ export default function LandingPage() {
         <LandingRouterSection />
         <LandingReturnSection />
         <Suspense fallback={null}><PremiumTrustSection
-          variant="feature"
           heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
           sub="Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way."
           values={LX_TRUST_VALUES}
