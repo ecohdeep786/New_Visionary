@@ -53,11 +53,11 @@ const PROBLEM_SLIDES = [
 const ROUTER_IMAGES = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
 
 const ROUTER_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "See the idea, practise it, and use it in the next thing you build.", alt: "Student studying with books" },
-  { slug: "teacher", chip: "Teacher", copy: "Plan, explain, and check understanding while the lesson is still in front of you.", alt: "Teacher presenting at a whiteboard" },
-  { slug: "parent", chip: "Parent", copy: "See the progress behind the report and find a useful next step at home.", alt: "Parent helping child with homework" },
-  { slug: "professional", chip: "Professional", copy: "Turn a question, project, or new skill into work you can use.", alt: "Professional writing notes beside a laptop" },
-  { slug: "organization", chip: "Organization", copy: "Give teams a shared view of learning across people, projects, and time.", alt: "Leader reviewing team progress on a tablet" },
+  { slug: "student", chip: "Student", copy: "Start where you are.", alt: "Student studying with books" },
+  { slug: "teacher", chip: "Teacher", copy: "Teach in the moment.", alt: "Teacher presenting at a whiteboard" },
+  { slug: "parent", chip: "Parent", copy: "See the progress.", alt: "Parent helping child with homework" },
+  { slug: "professional", chip: "Professional", copy: "Build what’s next.", alt: "Professional writing notes beside a laptop" },
+  { slug: "organization", chip: "Organization", copy: "Lead the learning.", alt: "Leader reviewing team progress on a tablet" },
 ];
 
 

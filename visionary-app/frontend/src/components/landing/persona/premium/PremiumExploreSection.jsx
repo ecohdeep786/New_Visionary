@@ -15,14 +15,13 @@ import LazyImage from "@/components/landing/LazyImage";
    affordance, snap points for the swipe, and centred round chevrons beneath. */
 
 /* The line-up card in the iPhone Duo chapter's grammar (founder's capture
-   of the live tile): a WIDE landscape tile — the photograph fills it with
-   the subject cropped at the bottom edge, the name and its one quiet line
-   sit TOP-LEFT inside the tile, and the door (Learn more) sits TOP-RIGHT
-   opposite them, exactly the Duo's composition. Our portraits are
-   white-ground and top-anchored (object-position keeps the head below the
-   text, the body crops at the floor like Apple's product), and a soft
-   white scrim — invisible on the studio ground — guarantees the text's
-   legibility where a subject reaches up (the parent pair). */
+   of the live tile): a WIDE landscape tile where the product is LARGE —
+   centred, rising from the lower half, cropped by the tile's floor — and
+   the text is minimal: the name and a Duo-length fragment ("Hello,
+   hello.") top-left, the quiet door top-right. Our portraits render at
+   135% of the tile height with their top set at 18%, so the face is the
+   tile's hero and the chest crops at the floor the way Apple's phone
+   crops — the long sentences are retired from the tile: fragments only. */
 const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, image }) {
   return (
     <Link
@@ -32,21 +31,15 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
       className="stagger-child group relative block w-[82vw] max-w-[660px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[660px]"
     >
       <div className="media-settle relative aspect-[9/5] overflow-hidden bg-white">
-        {/* the photograph anchors to the tile's lower four-fifths — the top
-            strip stays the empty studio ground the Duo's text lives in, and
-            the body crops at the floor like Apple's product at its tile */}
-        <div className="absolute inset-x-0 bottom-0 h-[72%]">
-          <LazyImage
-            src={image}
-            alt={category.alt}
-            decoding="async"
-            draggable="false"
-            className="h-full w-full select-none object-cover object-top transition-transform duration-500 ease-apple group-hover:scale-[1.04]"
-            style={{ objectPosition: "50% 0%" }}
-          />
-        </div>
+        <LazyImage
+          src={image}
+          alt={category.alt}
+          decoding="async"
+          draggable="false"
+          className="absolute left-1/2 top-[18%] h-[135%] w-auto max-w-none -translate-x-1/2 select-none transition-transform duration-500 ease-apple group-hover:scale-[1.03]"
+        />
       </div>
-      {/* the Duo text row: name and its line top-left, the door top-right */}
+      {/* the Duo text row: name and its fragment top-left, the door top-right */}
       <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-7 lg:p-8">
         <div>
           <h3
@@ -57,8 +50,8 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
             {category.chip}
           </h3>
           <p
-            className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
-            style={{ color: color.slate, maxWidth: "30ch" }}
+            className="mt-1.5 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
+            style={{ color: color.slate, maxWidth: "22ch" }}
           >
             {category.copy}
           </p>
