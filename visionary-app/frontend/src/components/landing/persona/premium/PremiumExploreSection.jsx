@@ -59,7 +59,7 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
           </p>
         </div>
         <span
-          className="mt-1 inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#0071e3] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-colors duration-200 hover:bg-[#0077ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:h-9 lg:h-11 lg:text-[18px]"
+          className="mt-1 inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-colors duration-200 hover:bg-[#272729] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:h-9 lg:h-11 lg:text-[18px]"
         >
           Learn more
         </span>
@@ -111,7 +111,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
     <section ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
         <RevealItem idx={0}>
-          <div className="mx-auto w-full px-6 lg:px-6">
+          <div className="mx-auto w-full max-w-[1264px] px-6">
             {eyebrow && (
               <p className="text-[17px] font-medium" style={{ color: color.slate }}>
                 {eyebrow}
@@ -153,7 +153,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
               onPointerCancel={onTrackPointerEnd}
               onClickCapture={onTrackClickCapture}
               onDragStart={(e) => e.preventDefault()}
-              className="flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pl-6 pr-6 select-none [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden lg:gap-6 lg:scroll-pl-6 lg:pl-6"
+              className="flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pl-6 pr-6 select-none [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden lg:gap-6 lg:scroll-pl-[max(24px,calc((100vw-1264px)/2+24px))] lg:pl-[max(24px,calc((100vw-1264px)/2+24px))]"
             >
               {categories.map((c, index) => (
                 <PremiumExploreCard key={c.slug} category={c} image={images[index]} />

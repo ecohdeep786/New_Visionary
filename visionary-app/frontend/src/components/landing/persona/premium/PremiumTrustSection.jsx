@@ -21,7 +21,7 @@ function PremiumTrustSection({ heading, sub, values }) {
   return (
     <section ref={ref} data-section="11-trust" className="public-values relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <div className="public-editorial-frame mx-auto">
+        <div className="mx-auto w-full max-w-[1264px] px-6">
           <RevealItem idx={0}>
             <h2
               data-type="section"
