@@ -2241,6 +2241,16 @@
         "SCOPE-04",
         "SYNC-02"
       ]
+    },
+    "frontend/src/components/landing/LandingNav/MobileNavigation.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
     }
   },
   "operations": [

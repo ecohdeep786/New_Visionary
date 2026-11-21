@@ -1,0 +1,81 @@
+{
+  "base": "http://127.0.0.1:4310",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 568,
+      "horizontalOverflow": false,
+      "heroHeight": 631.15625,
+      "audienceBottom": 579.15625,
+      "familyTop": 598.28125,
+      "heroPadding": "0px"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false,
+      "heroHeight": 659.078125,
+      "audienceBottom": 518.515625,
+      "familyTop": 606.75,
+      "heroPadding": "64px 0px",
+      "sections": [
+        "01-hero",
+        "05-intelligence",
+        "02-problem",
+        "03-promise",
+        "04-return",
+        "13-explore",
+        "14-suite",
+        "11-trust",
+        "12-cta"
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "horizontalOverflow": false,
+      "heroHeight": 575.015625,
+      "audienceBottom": 414.859375,
+      "familyTop": 443.703125,
+      "heroPadding": "0px"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "horizontalOverflow": false,
+      "heroHeight": 712,
+      "audienceBottom": 491.484375,
+      "familyTop": 593.703125,
+      "heroPadding": "0px"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "horizontalOverflow": false,
+      "heroHeight": 944,
+      "audienceBottom": 594.484375,
+      "familyTop": 754.90625,
+      "heroPadding": "0px",
+      "sections": [
+        "01-hero",
+        "05-intelligence",
+        "02-problem",
+        "03-promise",
+        "04-return",
+        "13-explore",
+        "14-suite",
+        "11-trust",
+        "12-cta"
+      ]
+    }
+  ],
+  "interactions": [
+    "Mobile menu opens with a labelled modal, locks background, and Escape restores focus and scroll",
+    "Mobile-to-desktop resize closes the dialog and restores the page",
+    "Desktop audience navigation opens from keyboard focus and Escape restores its trigger",
+    "Problem carousel selects the professional story",
+    "Audience gallery next/previous controls move and restore the card track"
+  ],
+  "errors": [],
+  "failedRequests": []
+}

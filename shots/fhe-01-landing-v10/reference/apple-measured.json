@@ -1,0 +1,897 @@
+{
+  "edu-1440": {
+    "navBarHeight": 44,
+    "sections": [
+      {
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "0px/44px",
+        "h": 1448,
+        "headline": {
+          "tag": "H1",
+          "h": 1,
+          "pad": "0px/0px",
+          "fz": "34px",
+          "fw": "600",
+          "lh": "50px",
+          "ls": "-0.374px",
+          "color": "rgb(245, 245, 247)",
+          "ta": "center",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": {
+          "text": "Shop",
+          "h": 16,
+          "pad": "0px/0px",
+          "fz": "14px",
+          "fw": "400",
+          "lh": "20.0003px",
+          "ls": "-0.224px",
+          "color": "rgb(41, 151, 255)",
+          "ta": "center",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 56,
+          "w": 45
+        },
+        "text": "Get education savings for students and educators exclusively",
+        "flowGaps": [
+          {
+            "tag": "FIGURE",
+            "gap": 5
+          },
+          {
+            "tag": "H2",
+            "gap": 10
+          },
+          {
+            "tag": "DIV",
+            "gap": 21
+          }
+        ]
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "padBlock": "144px/144px",
+        "h": 608,
+        "headline": {
+          "tag": "H2",
+          "h": 72,
+          "pad": "0px/0px",
+          "fz": "25.5px",
+          "fw": "600",
+          "lh": "31.5018px",
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "left",
+          "maxw": "100%"
+        },
+        "sub": {
+          "h": 21,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "21.0012px",
+          "ls": "-0.374px",
+          "color": "rgba(0, 0, 0, 0.88)",
+          "ta": "left",
+          "maxw": "none"
+        },
+        "cta": {
+          "text": "Watch the film",
+          "h": 21,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "21.0012px",
+          "ls": "-0.374px",
+          "color": "rgb(0, 102, 204)",
+          "ta": "left",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 234,
+          "w": 414
+        },
+        "text": "Discover Apple Education in action. Watch the film",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 18
+          }
+        ]
+      },
+      {
+        "bg": "rgb(250, 248, 246)",
+        "padBlock": "100px/144px",
+        "h": 1985,
+        "headline": {
+          "tag": "H2",
+          "h": 172,
+          "pad": "0px/0px",
+          "fz": "80px",
+          "fw": "600",
+          "lh": "84px",
+          "ls": "-1.2px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "center",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": null,
+        "firstImg": {
+          "h": 386,
+          "w": 620
+        },
+        "text": "Education that’s a grade ahead. Apple brings learning to lif",
+        "flowGaps": []
+      },
+      {
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "144px/144px",
+        "h": 771,
+        "headline": {
+          "tag": "H2",
+          "h": 52,
+          "pad": "0px/0px",
+          "fz": "48px",
+          "fw": "600",
+          "lh": "52.0077px",
+          "ls": "-0.144px",
+          "color": "rgb(245, 245, 247)",
+          "ta": "start",
+          "maxw": "100%"
+        },
+        "sub": null,
+        "cta": null,
+        "firstImg": {
+          "h": 600,
+          "w": 406
+        },
+        "text": "From grade school to grad school. K–12 Learning without limi",
+        "flowGaps": []
+      },
+      {
+        "bg": "rgb(250, 248, 246)",
+        "padBlock": "144px/144px",
+        "h": 771,
+        "headline": {
+          "tag": "H2",
+          "h": 52,
+          "pad": "0px/0px",
+          "fz": "48px",
+          "fw": "600",
+          "lh": "52.0077px",
+          "ls": "-0.144px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "75%"
+        },
+        "sub": {
+          "h": 21,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "25px",
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "cta": null,
+        "firstImg": {
+          "h": 403,
+          "w": 696
+        },
+        "text": "Real stories. Real impact. Explore Success Stories Higher Ed",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": -25
+          }
+        ]
+      },
+      {
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "0px/0px",
+        "h": 660,
+        "headline": {
+          "tag": "H2",
+          "h": 52,
+          "pad": "0px/0px",
+          "fz": "48px",
+          "fw": "600",
+          "lh": "52.0077px",
+          "ls": "-0.144px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "sub": {
+          "h": 58,
+          "pad": "0px/0px",
+          "fz": "21px",
+          "fw": "400",
+          "lh": "29.001px",
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "cta": null,
+        "firstImg": {
+          "h": 660,
+          "w": 1440
+        },
+        "text": "How to Buy. Invest in success by bringing Apple to your inst",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 17
+          },
+          {
+            "tag": "BUTTON",
+            "gap": 22
+          }
+        ]
+      },
+      {
+        "bg": "rgb(250, 250, 252)",
+        "padBlock": "144px/144px",
+        "h": 735,
+        "headline": {
+          "tag": "H2",
+          "h": 52,
+          "pad": "0px/0px",
+          "fz": "48px",
+          "fw": "600",
+          "lh": "52.0077px",
+          "ls": "-0.144px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "75%"
+        },
+        "sub": null,
+        "cta": {
+          "text": "Learn more",
+          "h": 20,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "21.0012px",
+          "ls": "-0.374px",
+          "color": "rgb(0, 102, 204)",
+          "ta": "start",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 38,
+          "w": 28
+        },
+        "text": "Our values lead the way. Private and secure. On campus and o",
+        "flowGaps": []
+      }
+    ]
+  },
+  "edu-390": {
+    "navBarHeight": 48,
+    "sections": [
+      {
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "0px/0px",
+        "h": 748,
+        "headline": {
+          "tag": "H1",
+          "h": 1,
+          "pad": "0px/0px",
+          "fz": "34px",
+          "fw": "600",
+          "lh": "50px",
+          "ls": "-0.374px",
+          "color": "rgb(245, 245, 247)",
+          "ta": "center",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": {
+          "text": "Shop",
+          "h": 16,
+          "pad": "0px/0px",
+          "fz": "14px",
+          "fw": "400",
+          "lh": "20.0003px",
+          "ls": "-0.224px",
+          "color": "rgb(41, 151, 255)",
+          "ta": "center",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 40,
+          "w": 33
+        },
+        "text": "Get education savings for students and educators exclusively",
+        "flowGaps": [
+          {
+            "tag": "FIGURE",
+            "gap": 29
+          },
+          {
+            "tag": "H2",
+            "gap": 7
+          },
+          {
+            "tag": "DIV",
+            "gap": 15
+          }
+        ]
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "padBlock": "112px/112px",
+        "h": 554,
+        "headline": {
+          "tag": "H2",
+          "h": 50,
+          "pad": "0px/0px",
+          "fz": "21px",
+          "fw": "600",
+          "lh": "27.0013px",
+          "ls": "-0.224px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "center",
+          "maxw": "100%"
+        },
+        "sub": {
+          "h": 18,
+          "pad": "0px/0px",
+          "fz": "14px",
+          "fw": "400",
+          "lh": "18.0008px",
+          "ls": "-0.224px",
+          "color": "rgba(0, 0, 0, 0.88)",
+          "ta": "center",
+          "maxw": "none"
+        },
+        "cta": {
+          "text": "Watch the film",
+          "h": 18,
+          "pad": "0px/0px",
+          "fz": "14px",
+          "fw": "400",
+          "lh": "18.0008px",
+          "ls": "-0.224px",
+          "color": "rgb(0, 102, 204)",
+          "ta": "center",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 158,
+          "w": 280
+        },
+        "text": "Discover Apple Education in action. Watch the film",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 14
+          }
+        ]
+      },
+      {
+        "bg": "rgb(250, 248, 246)",
+        "padBlock": "100px/112px",
+        "h": 2660,
+        "headline": {
+          "tag": "H2",
+          "h": 104,
+          "pad": "0px/0px",
+          "fz": "48px",
+          "fw": "600",
+          "lh": "52.0077px",
+          "ls": "-0.144px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "center",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": null,
+        "firstImg": {
+          "h": 200,
+          "w": 341
+        },
+        "text": "Education that’s a grade ahead. Apple brings learning to lif",
+        "flowGaps": []
+      },
+      {
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "112px/112px",
+        "h": 581,
+        "headline": {
+          "tag": "H2",
+          "h": 72,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": "36px",
+          "ls": "0.128px",
+          "color": "rgb(245, 245, 247)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": null,
+        "firstImg": {
+          "h": 432,
+          "w": 260
+        },
+        "text": "From grade school to grad school. K–12 Learning without limi",
+        "flowGaps": []
+      },
+      {
+        "bg": "rgb(250, 248, 246)",
+        "padBlock": "112px/112px",
+        "h": 615,
+        "headline": {
+          "tag": "H2",
+          "h": 72,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": "36px",
+          "ls": "0.128px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "sub": {
+          "h": 18,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "25px",
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "cta": null,
+        "firstImg": {
+          "h": 287,
+          "w": 260
+        },
+        "text": "Real stories. Real impact. Explore Success Stories Higher Ed",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 14
+          }
+        ]
+      },
+      {
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "112px/0px",
+        "h": 661,
+        "headline": {
+          "tag": "H2",
+          "h": 36,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": "36px",
+          "ls": "0.128px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "sub": {
+          "h": 54,
+          "pad": "0px/0px",
+          "fz": "19px",
+          "fw": "400",
+          "lh": "27.0009px",
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "cta": null,
+        "firstImg": {
+          "h": 378,
+          "w": 734
+        },
+        "text": "How to Buy. Invest in success by bringing Apple to your inst",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 15
+          },
+          {
+            "tag": "BUTTON",
+            "gap": 22
+          }
+        ]
+      },
+      {
+        "bg": "rgb(250, 250, 252)",
+        "padBlock": "112px/112px",
+        "h": 632,
+        "headline": {
+          "tag": "H2",
+          "h": 72,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": "36px",
+          "ls": "0.128px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": {
+          "text": "Learn more",
+          "h": 16,
+          "pad": "0px/0px",
+          "fz": "14px",
+          "fw": "400",
+          "lh": "18.0008px",
+          "ls": "-0.224px",
+          "color": "rgb(0, 102, 204)",
+          "ta": "start",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 37,
+          "w": 27
+        },
+        "text": "Our values lead the way. Private and secure. On campus and o",
+        "flowGaps": []
+      }
+    ]
+  },
+  "iphone-1440": {
+    "navBarHeight": 44,
+    "sections": [
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "padBlock": "60px/0px",
+        "h": 367,
+        "headline": {
+          "tag": "H1",
+          "h": 84,
+          "pad": "0px/0px",
+          "fz": "80px",
+          "fw": "600",
+          "lh": "84px",
+          "ls": "-1.2px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": {
+          "text": "Shop iPhone",
+          "h": 111,
+          "pad": "0px/15px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "25px",
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none",
+          "radius": "20px"
+        },
+        "firstImg": {
+          "h": 66,
+          "w": 76
+        },
+        "text": "iPhone iPhone Duo New iPhone 18 Pro New iPhone Air iPhone 17",
+        "flowGaps": []
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "padBlock": "24px/216px",
+        "h": 950,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": "60px",
+          "ls": "-0.28px",
+          "color": "rgba(0, 0, 0, 0.88)",
+          "ta": "left",
+          "maxw": "none"
+        },
+        "sub": {
+          "h": 32,
+          "pad": "0px/0px",
+          "fz": "28px",
+          "fw": "400",
+          "lh": "32px",
+          "ls": "0.196px",
+          "color": "rgba(0, 0, 0, 0.88)",
+          "ta": "left",
+          "maxw": "none"
+        },
+        "cta": {
+          "text": "Learn more",
+          "h": 44,
+          "pad": "11px/11px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "20px",
+          "ls": "-0.374px",
+          "color": "rgb(255, 255, 255)",
+          "ta": "center",
+          "maxw": "none",
+          "radius": "980px"
+        },
+        "firstImg": {
+          "h": 680,
+          "w": 1260
+        },
+        "text": "iPhone Duo iPhone 18 Pro iPhone Duo Hello, hello. Learn more",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 0
+          }
+        ]
+      },
+      {
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "112px/0px",
+        "h": 982,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": "60px",
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "75%"
+        },
+        "sub": {
+          "h": 29,
+          "pad": "0px/4px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "25px",
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "cta": {
+          "text": "Learn more",
+          "h": 44,
+          "pad": "11px/11px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "20.0002px",
+          "ls": "-0.374px",
+          "color": "rgb(255, 255, 255)",
+          "ta": "center",
+          "maxw": "none",
+          "radius": "980px"
+        },
+        "firstImg": {
+          "h": 395,
+          "w": 372
+        },
+        "text": "Explore the line-up. Compare all models New iPhone Duo iPhon",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": -29
+          }
+        ]
+      },
+      {
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "112px/112px",
+        "h": 914,
+        "headline": {
+          "tag": "H2",
+          "h": 120,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": "60px",
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "75%"
+        },
+        "sub": {
+          "h": 29,
+          "pad": "0px/4px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "25px",
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "cta": {
+          "text": "Shop iPhone",
+          "h": 20,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "25px",
+          "ls": "-0.374px",
+          "color": "rgb(0, 102, 204)",
+          "ta": "start",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 284,
+          "w": 372
+        },
+        "text": "Why Apple is the best place to shop iPhone. Shop iPhone Appl",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": -29
+          }
+        ]
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "padBlock": "112px/0px",
+        "h": 930,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": "60px",
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "75%"
+        },
+        "sub": null,
+        "cta": null,
+        "firstImg": {
+          "h": 744,
+          "w": 372
+        },
+        "text": "Get to know iPhone. Design Beautiful. Durable. Different by ",
+        "flowGaps": []
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "padBlock": "112px/0px",
+        "h": 929,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": "60px",
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "75%"
+        },
+        "sub": {
+          "h": 29,
+          "pad": "0px/4px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "25px",
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "cta": {
+          "text": "Shop iPhone accessories",
+          "h": 21,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": "21.0012px",
+          "ls": "-0.374px",
+          "color": "rgb(0, 102, 204)",
+          "ta": "center",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": {
+          "h": 452,
+          "w": 620
+        },
+        "text": "iPhone essentials. All iPhone accessories iPhone accessories",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": -29
+          }
+        ]
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "padBlock": "112px/112px",
+        "h": 1116,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": "60px",
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "75%"
+        },
+        "sub": null,
+        "cta": null,
+        "firstImg": {
+          "h": 632,
+          "w": 1052
+        },
+        "text": "Significant others. iPhone and Mac With iPhone Mirroring, yo",
+        "flowGaps": []
+      },
+      {
+        "bg": "rgb(250, 250, 252)",
+        "padBlock": "112px/112px",
+        "h": 762,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": "60px",
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)",
+          "ta": "start",
+          "maxw": "none"
+        },
+        "sub": null,
+        "cta": {
+          "text": "Shop iPhone",
+          "h": 20,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "600",
+          "lh": "21.0012px",
+          "ls": "-0.374px",
+          "color": "rgb(51, 51, 54)",
+          "ta": "start",
+          "maxw": "none",
+          "radius": "0px"
+        },
+        "firstImg": null,
+        "text": "iPhone Explore iPhone Explore All iPhone iPhone Duo iPhone 1",
+        "flowGaps": [
+          {
+            "tag": "NAV",
+            "gap": 53
+          }
+        ]
+      }
+    ]
+  }
+}

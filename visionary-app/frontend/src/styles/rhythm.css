@@ -6,7 +6,7 @@
   /* type scale (DIRECTOR canonical values; --fs-display matches the page h1/h2 scale 36→72px) */
   --fs-hero: clamp(3.5rem, 5.55vw, 5.5rem); /* Apple hero eyebrow: 56px/40px/40px */
   --fs-display: clamp(3.5rem, 5.55vw, 8.75rem); /* Apple hero headline: 140px/96px/64px */
-  --fs-h2: clamp(2.5rem, 4.45vw, 4rem); /* Apple section H2: 64px/56px/40px */
+  --fs-h2: clamp(2rem, 3.9vw, 3.5rem); /* Apple section H2: 56px/48px/32px — measured 2026-11-21 on /education (48px chapters, 32px phone) and /iphone (56px/60px, ls -0.005em) */
   --fs-h3: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
   --fs-body: 1.0625rem; /* Apple body: 17px-21px */
   --fs-lead: clamp(1.1875rem, 1rem + 0.65vw, 1.5rem); /* Apple chapter intro: 24px/21px/19px */
@@ -192,7 +192,7 @@ main p + h2.mt-4 {
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
   --fs-display: 4rem; /* FAP-34: chapter statements cap at 64 like section heads — the 4.5rem (72px) value predates the accepted Apple ladder */
   --fs-product-section: 3.5rem;
-  --fs-h2: 4rem;
+  --fs-h2: 3.5rem; /* Apple chapter statement: 56px — measured 2026-11-21 on /iphone (56/60, ls -0.005em) and /education (48/52); 64 predates the 2026-11-21 measurement */
   --fs-h3: 1.75rem;
   --fs-body: 1.0625rem;
   --fs-lead: 1.5rem;
@@ -223,18 +223,18 @@ main p + h2.mt-4 {
   --container-editorial: 61.25rem;
   --lh-display: 1;
   --lh-product-section: 1.071429;
-  --lh-section: 1.0625; /* Apple: 68px/64px */
+  --lh-section: 1.071429; /* Apple measured: 60px/56px (iphone chapters), 52px/48px (education) */
   --lh-body: 1.470588; /* F-06-D1: body 17/25 law — see the :root note */
   --lh-feature: 1.142857;
   --lh-editorial-lead: 1.166667;
-  --lh-emphasis: 1.05;
+  --lh-emphasis: 1.071429;
   --lh-card-name: 1.166667;
   --lh-large-card: 1.1;
   --lh-story-card: 1.083333;
   --track-display: -0.009em;
   --track-product-section: -0.005em;
   --track-statement: -0.015em;
-  --track-section: -0.009em;
+  --track-section: -0.005em; /* Apple measured: 56px -> -0.28px (iphone), 48px -> -0.144px (education) */
   --track-feature: 0.007em;
   --track-card-name: 0.009em;
   --track-large-card: 0;
@@ -243,7 +243,7 @@ main p + h2.mt-4 {
   --track-meta: -0.016em;
   --weight-heading: 600;
   --weight-body: 400;
-  --weight-emphasis: 700;
+  --weight-emphasis: 600; /* Apple headings are uniformly 600 — measured on /education + /iphone (no 700 anywhere) */
   --lh-lead: 1.166667;
   --lh-label: 1.235294;
   --lh-meta: 1.285714;
@@ -290,7 +290,7 @@ main p + h2.mt-4 {
     --fs-display: min(3.5rem, 13vw); /* FAP-82 vw cap: scaled text stays inside the viewport */
     --fs-product-section: min(3rem, 13vw); /* FAP-82 vw cap */
     --container-editorial: 43.25rem;
-    --fs-h2: min(3.5rem, 13vw); /* FAP-82 vw cap */
+    --fs-h2: min(3rem, 12vw); /* FAP-82 vw cap — Apple tablet chapter 48px */
     --fs-h3: 1.5rem;
     --fs-editorial-lead: 1.3125rem;
     --fs-emphasis: var(--fs-h2); /* FAP-34: statement tier = section tier (56px) */
@@ -304,17 +304,17 @@ main p + h2.mt-4 {
     --lh-display: 1;
     --lh-product-section: 1.083333;
     --lh-card-name: 1.190476;
-    --lh-section: 1.085714;
+    --lh-section: 1.083334;
     --lh-feature: 1.166667;
     --lh-editorial-lead: 1.190476;
-    --lh-emphasis: 1.0625;
+    --lh-emphasis: 1.083334;
     --lh-large-card: 1.125;
     --lh-story-card: 1.1;
     --track-display: -0.005em;
     --track-product-section: -0.003em;
     --track-statement: -0.009em;
     --track-card-name: 0.011em;
-    --track-section: 0;
+    --track-section: -0.003em;
     --track-feature: 0.009em;
     --track-large-card: 0.004em;
     --track-editorial-lead: 0.011em;
@@ -341,7 +341,7 @@ main p + h2.mt-4 {
   #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
     --fs-display: min(2.5rem, 13vw); /* FAP-82 vw cap: scaled text stays inside the viewport */
     --fs-product-section: min(2.5rem, 13vw); /* FAP-82 vw cap */
-    --fs-h2: min(2.5rem, 13vw); /* FAP-82 vw cap */
+    --fs-h2: min(2rem, 12vw); /* FAP-82 vw cap — Apple phone chapter 32px/36px measured on /education */
     --fs-h3: 1.3125rem;
     --fs-emphasis: var(--fs-h2); /* FAP-34: statement tier = section tier (40px) */
     --fs-card-name: 1.0625rem;
@@ -356,16 +356,16 @@ main p + h2.mt-4 {
     --track-editorial-body: 0.012em;
     --lh-display: 1;
     --lh-product-section: 1.125;
-    --lh-section: 1.1;
+    --lh-section: 1.125;
     --lh-feature: 1.190476;
-    --lh-emphasis: 1.1;
+    --lh-emphasis: 1.125;
     --lh-card-name: 1.190476;
     --lh-large-card: 1.142857;
     --lh-story-card: 1.142857;
     --track-display: 0;
     --track-product-section: 0.004em;
     --track-statement: -0.02em;
-    --track-section: 0.004em;
+    --track-section: 0;
     --track-feature: 0.011em;
     --track-card-name: 0.011em;
     --track-large-card: 0.007em;

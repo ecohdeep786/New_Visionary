@@ -15,7 +15,7 @@
      Google floor; min(11vw, 18svh) lands desktop chapters at Apple's
      140–160px band while keeping wide-but-short laptops (1366×768) from
      overshooting the viewport. */
-  --public-section-py: clamp(6rem, min(11vw, 18svh), 10rem);
+  --public-section-py: clamp(7rem, min(11vw, 18svh), 9rem); /* Apple measured 2026-11-21: chapters breathe 100-144px desktop, 112px phone */
 }
 
 /* Canonical section rhythm — heroes manage their own full-height layout */
@@ -234,7 +234,7 @@ aside[aria-label="Our commitments"] + footer {
 
 main > section[data-section="05-intelligence"]:not([data-surface="light"]),
 main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) {
-  background: var(--scene-ink, #0a0d14) !important;
+  background: var(--scene-ink, #000000) !important;
   color: #f5f7fa;
 }
 
@@ -384,7 +384,7 @@ h2.text-\[52px\], h2.text-\[56px\] {
    calibrated composition that must not drift. */
 @media (max-width: 480px) {
   section[data-section]:not([data-section="01-hero"]) {
-    padding-block: clamp(5rem, 24vw, 6.5rem);
+    padding-block: clamp(7rem, 24vw, 8rem); /* Apple measured 2026-11-21: 112px chapter padding at 390 on /education + /iphone */
     border-radius: 0 !important;
   }
 

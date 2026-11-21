@@ -219,13 +219,11 @@ export default function NewPersona({
     return (
       <section
         data-section="01-hero"
-        /* Pinned stage — the landing-only cast hero sticks to the viewport
-           and the story glides over it on frosted glass (the Vision Pro page
-           anatomy). Default persona heroes scroll away naturally. */
-        className="cast-stage sticky top-0 z-0 isolate flex flex-col overflow-hidden"
+        /* Apple Education principle: the opening story scrolls naturally;
+           the promise and people remain readable without a pinned stage. */
+        className="cast-stage relative z-0 isolate flex flex-col overflow-hidden"
         style={{
           backgroundColor: heroBg,
-          height: "calc(100svh - 56px)",
           marginTop: 56,
         }}
       >
@@ -275,22 +273,18 @@ export default function NewPersona({
                     </span>
                   </>
                 ) : staticHeadline ? (
-                  /* Apple's universal grammar: the product statement on one
-                     line, the audience on the next — both in the accent
-                     gradient, balanced as one composed headline. */
+                  /* A stable two-line promise: no live region, rotating copy,
+                     fixed-height mask or layout shift. */
                   <>
-                    <span className="block text-balance accent-gradient tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{words[0]}</span>
-                    <span
-                      className="block overflow-hidden"
-                      style={{ height: "calc(var(--fs-hero-headline) * 1.05)" }}
-                    >
+                    <span className="block text-balance tracking-[-0.00028em]" style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{words[0]}</span>
+                    <span className="block">
                       <span
                         ref={wordRef}
-                        className="apple-anim accent-gradient block whitespace-nowrap"
+                        className="apple-anim accent-gradient block text-balance"
                         style={{
                           animation: "heroLineUp var(--motion-duration-cinematic) var(--ease-out-apple) both",
                           paddingBottom: "0.05em",
-                          lineHeight: "var(--fs-hero-headline)"
+                          lineHeight: "1.02"
                         }}
                       >
                         {staticHeadline}
@@ -308,7 +302,14 @@ export default function NewPersona({
                 actions (measured: headline claim → sub-line → CTA). The old
                 sub was dropped because it restated the headline; a purpose
                 line that adds information earns its place. */}
-            {sub ? <p className="category-hero-tagline text-balance mx-auto mt-5 max-w-[560px]" style={{ color: "#6e6e73" }}>{sub}</p> : null}
+            {sub ? (
+              <p
+                className="text-balance mx-auto mt-6 max-w-[680px]"
+                style={{ color: "#6e6e73", fontSize: "clamp(17px, 1.5vw, 20px)", lineHeight: 1.45, fontWeight: 400 }}
+              >
+                {sub}
+              </p>
+            ) : null}
           </div>
           {/* the hero pair — full buttons. This is the product's front door;
               the same shared pills the persona heroes wear, so one button
@@ -361,12 +362,9 @@ export default function NewPersona({
             centroids on one even pitch, closing into a gentle huddle on
             small screens with the center figure in front. */}
         <div className="absolute inset-x-0 bottom-0 z-0" aria-hidden="true">
-          {/* the One Intelligence breath — a hint of brand blue rising
-              behind the family, nothing more */}
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%]"
-            style={{ background: "radial-gradient(46% 88% at 50% 100%, rgba(66,133,244,0.08) 0%, rgba(66,133,244,0.03) 45%, rgba(66,133,244,0) 72%)" }}
-          />
+          {/* the family stands on the page's own clean white — no color wash
+              behind it (Apple's light stages are pure white; measured
+              2026-11-21 on /education + /iphone) */}
           <div className="relative flex items-end justify-center">
             {cast.map((p, i) => {
               const m = CAST_METRICS[p.label] || CAST_FALLBACK;

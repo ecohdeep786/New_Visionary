@@ -701,7 +701,7 @@ body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="emphasis"] {
   font-size: var(--fs-emphasis) !important;
   line-height: var(--lh-emphasis) !important;
-  letter-spacing: -0.015em !important;
+  letter-spacing: var(--track-section) !important; /* Apple 56px measured -0.005em */
   font-weight: var(--weight-emphasis) !important;
 }
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="body"] {
