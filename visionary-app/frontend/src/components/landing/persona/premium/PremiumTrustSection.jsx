@@ -21,7 +21,7 @@ function PremiumTrustSection({ heading, sub, values }) {
   return (
     <section ref={ref} data-section="11-trust" className="public-values relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <div className="mx-auto w-full max-w-[1264px] px-6">
+        <div className="public-editorial-frame mx-auto">
           <RevealItem idx={0}>
             <h2
               data-type="section"
@@ -44,7 +44,7 @@ function PremiumTrustSection({ heading, sub, values }) {
               Four values (the landing's trust doors) open a fourth column;
               the three-value pages keep their accepted three-up rhythm. */}
           <RevealItem idx={2} className="stagger-group">
-            <div className={`mt-14 grid grid-cols-1 lg:mt-20 ${values.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+            <div className={`mt-14 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:mt-20 lg:gap-x-14 ${values.length > 3 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
               {values.map((value, i) => (
                 <article
                   key={value.title}

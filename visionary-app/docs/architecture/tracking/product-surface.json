@@ -47797,7 +47797,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7300835b9508eec8821a2d5c22112972d8057538fd7ca43debe9e9d39612a0fa",
+      "declarationSha256": "f7347f79478037f738a7fd062abc6be68f4947656586ba5917886b07fb6dee31",
       "routeIds": [
         "/",
         "/student",
@@ -47915,7 +47915,7 @@
         "e.preventDefault"
       ],
       "disabled": null,
-      "declarationSha256": "e7e6c3b02cfd8ff23ff4dc90dd20d956d6d486b771e7896cbad7bd4487d6f0c9",
+      "declarationSha256": "ccb2846d34d3922897c8eac12349a2ab5c9abaeacd2c2c70880441a0ab535cf8",
       "routeIds": [
         "/",
         "/student",
@@ -81764,7 +81764,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx",
-      "sourceSha256": "031ea55e339c97d6ad0a445d136d8541f789cdd51d8b70cdf692f827d853b7c4"
+      "sourceSha256": "2604360405640287a93cd3e5ea2e9af99b010cb1d4c651e87fdef401a37fbbab"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx",
@@ -81780,7 +81780,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx",
-      "sourceSha256": "ef021b769dd2c5a729be6b6c37d507ec69803fe74e02ba640f150cd8c07fd02d"
+      "sourceSha256": "5d5ec231bf96db33f60797942ef184e25b3754006152c53be72165a42b3ed5c9"
     },
     {
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
@@ -82616,7 +82616,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "94d65fc17f76ef352abf2ec85a6b28eab0db6dc6557382501bbe2384f75e5946"
+      "sourceSha256": "9eb35fe8b3f5c994eee3649a485e78c18f17744dbec37a45f8bb19925ba4afcd"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

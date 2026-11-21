@@ -232,7 +232,7 @@ function LandingProblemSection() {
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-[#f5f5f7]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible}>
         <p className="sr-only">Stories from a student and a professional about the moment understanding breaks down.</p>
-        <div className="mx-auto w-full max-w-[1264px] px-6">
+        <div className="public-editorial-frame mx-auto">
           <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>Why Visionary exists</p>
           <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "980px" }}>
             {slide.black} <span className="accent-gradient">{slide.blue}</span>.
@@ -244,7 +244,7 @@ function LandingProblemSection() {
           </p>
         </div>
         <figure className="m-0">
-          <div className="mx-auto w-full max-w-[1264px] px-6">
+          <div className="public-editorial-frame mx-auto">
             {/* the story card — one white object on the grey ground: the
                 subject bleeds on the card’s left field, the voice sits on the
                 right panel. The card is the chapter’s one story unit, so the
@@ -395,7 +395,7 @@ function LandingReturnSection() {
   return (
     <section ref={ref} data-section="04-return" className="relative isolate bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible}>
-        <div className="mx-auto w-full max-w-[1264px] px-6">
+        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
           <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>What you get</p>
           <figure className="m-0">
             <blockquote className="mt-[clamp(20px,2.6vw,32px)]">
