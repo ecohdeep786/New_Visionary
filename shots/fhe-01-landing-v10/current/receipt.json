@@ -5,18 +5,18 @@
       "width": 320,
       "height": 568,
       "horizontalOverflow": false,
-      "heroHeight": 631.15625,
+      "heroHeight": 687.15625,
       "audienceBottom": 579.15625,
-      "familyTop": 598.28125,
+      "familyTop": 597.703125,
       "heroPadding": "0px"
     },
     {
       "width": 390,
       "height": 844,
       "horizontalOverflow": false,
-      "heroHeight": 659.078125,
-      "audienceBottom": 518.515625,
-      "familyTop": 606.75,
+      "heroHeight": 788,
+      "audienceBottom": 548.859375,
+      "familyTop": 666.734375,
       "heroPadding": "64px 0px",
       "sections": [
         "01-hero",
@@ -34,9 +34,9 @@
       "width": 768,
       "height": 1024,
       "horizontalOverflow": false,
-      "heroHeight": 575.015625,
-      "audienceBottom": 414.859375,
-      "familyTop": 443.703125,
+      "heroHeight": 968,
+      "audienceBottom": 611.359375,
+      "familyTop": 836.6875,
       "heroPadding": "0px"
     },
     {

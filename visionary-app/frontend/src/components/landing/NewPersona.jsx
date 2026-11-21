@@ -219,9 +219,13 @@ export default function NewPersona({
     return (
       <section
         data-section="01-hero"
-        /* Apple Education principle: the opening story scrolls naturally;
-           the promise and people remain readable without a pinned stage. */
-        className="cast-stage relative z-0 isolate flex flex-col overflow-hidden"
+        /* Pinned stage — the landing-only cast hero sticks to the viewport
+           and the story glides over it on frosted glass (the Vision Pro page
+           anatomy; founder directive 2026-11-21: the hero stays fixed, the
+           sections scroll). The stage height lives in cast.css so short
+           windows can trade the pin for a readable story. Default persona
+           heroes scroll away naturally. */
+        className="cast-stage sticky top-0 z-0 isolate flex flex-col overflow-hidden"
         style={{
           backgroundColor: heroBg,
           marginTop: 56,

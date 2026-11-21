@@ -526,8 +526,22 @@ export default function LandingPage() {
       <LandingNav />
       <main id="main" tabIndex={-1}>
         <LandingHeroSection />
+        {/* the glass sheet — the hero's cover. The stage is pinned (founder
+            directive 2026-11-21: the hero stays fixed, the story scrolls);
+            this frosted sheet rides over it, and its frost fades in from
+            the leading edge (mask) so the sheet never slices the pinned
+            headline mid-glyph: the family and copy dissolve into white the
+            way the hero's own floor dissolves them. */}
+        <div
+          aria-hidden="true"
+          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#1d1d1f]/10"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+          }}
+        />
         {/* the product answers first — the front door shows what the
-            intelligence is on the first scroll after the hero (Apple’s
+            intelligence is on the first scroll after the hero (Apple's
             show-before-explain order), then the story explains why it exists
             and what the reader gets back. */}
         <LandingIntelligenceSection />
