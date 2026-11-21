@@ -1,0 +1,82 @@
+FAP-84 console evidence — BEFORE side (beta 07bfb77a, localhost:5174, Playwright Edge headless, fresh context per route, 2026-11-11).
+The "React does not recognize the fetchPriority prop" warning reproduced on all 6 CinematicHero routes:
+
+== /research ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at Reveal (http://127.0.0.1:5174/src/pages/landing/ResearchNewsPage.jsx:164:19)
+    at main
+    at div
+    at ResearchNewsPage
+    at RenderedRoute (
+
+== /privacy ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/PrivacyPage.jsx:94:59)
+    at main
+    at div
+    at PrivacyPage (http://127.0.0.1:5174/src/p
+
+== /terms ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/TermsPage.jsx:90:59)
+    at main
+    at div
+    at TermsPage (http://127.0.0.1:5174/src/pages
+
+== /security ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/SecurityPage.jsx:94:59)
+    at main
+    at div
+    at SecurityPage (http://127.0.0.1:5174/src
+
+== /cookies ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at FadeReveal2 (http://127.0.0.1:5174/src/pages/landing/CookiesPage.jsx:90:59)
+    at main
+    at div
+    at CookiesPage (http://127.0.0.1:5174/src/p
+
+== /accessibility ==
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s fetchPriority fetchpriority 
+    at img
+    at picture
+    at div
+    at section
+    at CinematicHero (http://127.0.0.1:5174/src/components/landing/CinematicHero.jsx:20:3)
+    at div
+    at Reveal (http://127.0.0.1:5174/src/pages/landing/AccessibilityPage.jsx:39:19)
+    at main
+    at div
+    at AccessibilityPage
+    at RenderedRoute 

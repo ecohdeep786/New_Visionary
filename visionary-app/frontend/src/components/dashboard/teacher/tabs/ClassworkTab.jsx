@@ -163,7 +163,7 @@ export default function ClassworkTab({
   };
   return <div className="v-class-section">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-[#5f6368]">{copy("Create assignments and return feedback to your students.")}</p>
+        <p className="text-sm text-[#6e6e73]">{copy("Create assignments and return feedback to your students.")}</p>
         <button disabled={busy} onClick={() => setShowForm(s => !s)} className="inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium text-white" style={{
         backgroundColor: accent
       }}>
@@ -173,43 +173,43 @@ export default function ClassworkTab({
       {loadError && <p role="alert" className="text-sm text-[#b3261e]">{copy(loadError)} <button onClick={load} className="ml-2 font-medium underline">{copy("Retry classwork loading")}</button></p>}
 
       {showForm && <form onSubmit={create} className="v-class-form flex flex-col gap-4">
-          <h3 className="text-base font-medium text-[#121317]">{copy("New assignment")}</h3>
-          <label htmlFor="assignment-title" className="text-sm font-medium text-[#121317]">{copy("Title")}</label>
+          <h3 className="text-base font-medium text-[#1d1d1f]">{copy("New assignment")}</h3>
+          <label htmlFor="assignment-title" className="text-sm font-medium text-[#1d1d1f]">{copy("Title")}</label>
           <input disabled={busy} id="assignment-title" required maxLength={160} value={form.title} onChange={e => setForm({
         ...form,
         title: e.target.value
-      })} placeholder={copy("Assignment title")} className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]" />
+      })} placeholder={copy("Assignment title")} className="w-full h-11 px-4 rounded-xl border border-[#d2d2d7] text-sm text-[#1d1d1f] outline-none focus:border-[#0071E3]" />
           <textarea disabled={busy} aria-label={copy("Assignment instructions")} value={form.description} onChange={e => setForm({
         ...form,
         description: e.target.value
-      })} placeholder={copy("Instructions (optional)")} rows={3} className="w-full p-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4] resize-none" />
+      })} placeholder={copy("Instructions (optional)")} rows={3} className="w-full p-4 rounded-xl border border-[#d2d2d7] text-sm text-[#1d1d1f] outline-none focus:border-[#0071E3] resize-none" />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="assignment-due" className="block text-xs text-[#5f6368] mb-1.5">{copy("Due date (optional)")}</label>
+              <label htmlFor="assignment-due" className="block text-xs text-[#6e6e73] mb-1.5">{copy("Due date (optional)")}</label>
               <input disabled={busy} id="assignment-due" type="date" value={form.due_date} onChange={e => setForm({
             ...form,
             due_date: e.target.value
-          })} className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]" />
+          })} className="w-full h-11 px-4 rounded-xl border border-[#d2d2d7] text-sm text-[#1d1d1f] outline-none focus:border-[#0071E3]" />
             </div>
             <div>
-              <label htmlFor="assignment-points" className="block text-xs text-[#5f6368] mb-1.5">{copy("Points")}</label>
+              <label htmlFor="assignment-points" className="block text-xs text-[#6e6e73] mb-1.5">{copy("Points")}</label>
               <input disabled={busy} id="assignment-points" type="number" min="1" max="10000" required value={form.points} onChange={e => setForm({
             ...form,
             points: e.target.value
-          })} className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]" />
+          })} className="w-full h-11 px-4 rounded-xl border border-[#d2d2d7] text-sm text-[#1d1d1f] outline-none focus:border-[#0071E3]" />
             </div>
           </div>
 
           <div>
-            <label htmlFor="assignment-concept" className="block text-xs text-[#5f6368] mb-1.5">{copy("Concepts (optional)")}</label>
+            <label htmlFor="assignment-concept" className="block text-xs text-[#6e6e73] mb-1.5">{copy("Concepts (optional)")}</label>
             <div className="flex gap-2">
               <input disabled={busy} id="assignment-concept" value={topicInput} onChange={e => setTopicInput(e.target.value)} onKeyDown={e => {
             if (e.key === "Enter") {
               e.preventDefault();
               addTopic();
             }
-          }} placeholder={copy("e.g. Quadratic equations")} className="min-w-0 flex-1 h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]" />
-              <button type="button" onClick={addTopic} disabled={busy || !topicInput.trim()} className="h-11 px-4 rounded-xl border border-[#dadce0] text-sm font-medium text-[#5f6368] hover:bg-[#121317]/5 disabled:opacity-40">{copy("Add")}</button>
+          }} placeholder={copy("e.g. Quadratic equations")} className="min-w-0 flex-1 h-11 px-4 rounded-xl border border-[#d2d2d7] text-sm text-[#1d1d1f] outline-none focus:border-[#0071E3]" />
+              <button type="button" onClick={addTopic} disabled={busy || !topicInput.trim()} className="h-11 px-4 rounded-xl border border-[#d2d2d7] text-sm font-medium text-[#6e6e73] hover:bg-[#1d1d1f]/5 disabled:opacity-40">{copy("Add")}</button>
             </div>
             {topics.length > 0 && <div className="flex flex-wrap gap-2 mt-3">
                 {topics.map(t => <span key={t} className="inline-flex items-center gap-1.5 min-h-11 pl-3 pr-2 rounded-full text-xs font-medium" style={{
@@ -226,11 +226,11 @@ export default function ClassworkTab({
               </div>}
           </div>
 
-          <label className="text-sm font-medium">{copy("Publication time (optional)")}<input disabled={busy} aria-label={copy("Publication time")} type="datetime-local" className="v-field mt-2" value={publishAt} onChange={event => setPublishAt(event.target.value)} /><span className="mt-2 block text-xs font-normal text-[#5f6368]">{copy("Shown in your device timezone. Scheduled preview access uses the browser clock; no external notification is sent.")}</span></label>
+          <label className="text-sm font-medium">{copy("Publication time (optional)")}<input disabled={busy} aria-label={copy("Publication time")} type="datetime-local" className="v-field mt-2" value={publishAt} onChange={event => setPublishAt(event.target.value)} /><span className="mt-2 block text-xs font-normal text-[#6e6e73]">{copy("Shown in your device timezone. Scheduled preview access uses the browser clock; no external notification is sent.")}</span></label>
           <div className="flex flex-wrap justify-end gap-3">
             <button type="button" disabled={busy || !form.title.trim() || !publishAt} onClick={event => create(event, 'scheduled')} className="v-button">{copy("Schedule assignment")}</button>
-            <button type="button" disabled={busy || !form.title.trim()} onClick={event => create(event, 'draft')} className="h-11 rounded-full border border-[#dadce0] px-4 text-sm font-medium disabled:opacity-50">{copy("Save draft")}</button>
-            <button type="button" disabled={busy} onClick={() => setShowForm(false)} className="h-11 px-5 rounded-full text-sm font-medium text-[#5f6368] hover:bg-[#121317]/5">
+            <button type="button" disabled={busy || !form.title.trim()} onClick={event => create(event, 'draft')} className="h-11 rounded-full border border-[#d2d2d7] px-4 text-sm font-medium disabled:opacity-50">{copy("Save draft")}</button>
+            <button type="button" disabled={busy} onClick={() => setShowForm(false)} className="h-11 px-5 rounded-full text-sm font-medium text-[#6e6e73] hover:bg-[#1d1d1f]/5">
               Cancel
             </button>
             <button type="submit" disabled={busy || !form.title.trim()} className="h-11 px-5 rounded-full text-sm font-medium text-white disabled:opacity-50" style={{
@@ -242,12 +242,12 @@ export default function ClassworkTab({
         </form>}
 
       {loading ? <div className="flex justify-center py-8">
-          <div className="w-7 h-7 border-4 border-[#dadce0] rounded-full animate-spin" style={{
+          <div className="w-7 h-7 border-4 border-[#d2d2d7] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
         </div> : loadError ? null : assignments.length === 0 ? <div className="flex flex-col items-center gap-3 py-12 text-center">
           <SpotIllustration subject="teach" className="v-empty-illustration" />
-          <p className="text-sm text-[#5f6368] max-w-sm">{copy("No assignments yet. Create your first one and tag the concepts it covers.")}</p>
+          <p className="text-sm text-[#6e6e73] max-w-sm">{copy("No assignments yet. Create your first one and tag the concepts it covers.")}</p>
         </div> : assignments.map(a => {
       const subs = subsFor(a.id);
       const ungraded = ungradedFor(a.id);
@@ -261,8 +261,8 @@ export default function ClassworkTab({
             }} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[#121317]">{a.title}</p>
-                  <p className="text-xs text-[#5f6368] mt-0.5">
+                  <p className="text-sm font-medium text-[#1d1d1f]">{a.title}</p>
+                  <p className="text-xs text-[#6e6e73] mt-0.5">
                     {copy('{points} points{due}', {
                 points: a.points ?? copy('Unavailable'),
                 due: a.due_date ? copy(' · Due {date}', {
@@ -271,9 +271,9 @@ export default function ClassworkTab({
               })}
                   </p>
                 </div>
-                <button onClick={() => setGrading(a)} className="inline-flex items-center gap-1.5 h-11 px-4 rounded-full text-sm font-medium border border-[#dadce0] text-[#5f6368] hover:bg-[#121317]/5 shrink-0">
+                <button onClick={() => setGrading(a)} className="inline-flex items-center gap-1.5 h-11 px-4 rounded-full text-sm font-medium border border-[#d2d2d7] text-[#6e6e73] hover:bg-[#1d1d1f]/5 shrink-0">
                   <Inbox className="w-4 h-4" style={{
-              color: ungraded ? "#ea4335" : "#5f6368"
+              color: ungraded ? "#ea4335" : "#6e6e73"
             }} />
                   {subs.length > 0 ? copy('Review ({count}{newCount})', {
               count: subs.length,
@@ -283,7 +283,7 @@ export default function ClassworkTab({
             }) : copy('Review')}
                 </button>
               </div>
-              {a.description && <p className="mt-3 break-words whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.description}</p>}
+              {a.description && <p className="mt-3 break-words whitespace-pre-wrap text-sm leading-relaxed text-[#6e6e73]">{a.description}</p>}
               <p className="mt-3 text-xs font-medium">{copy({
             draft: 'Draft · visible only to your teacher workspace',
             scheduled: 'Scheduled publication · browser-local preview',
@@ -294,7 +294,7 @@ export default function ClassworkTab({
               {a.status === 'scheduled' && <p className="mt-2 text-xs">{assignmentAcceptsResponses(a) ? copy("Scheduled publication reached \xB7 accepting responses") : copy('Scheduled · {date} · hidden until publication', {
             date: Number.isFinite(new Date(a.publish_at).getTime()) ? new Date(a.publish_at).toLocaleString(dateLocale(locale)) : copy('Unavailable')
           })}</p>}
-              <details className="mt-3"><summary className="text-sm font-medium text-[#0b57d2]">{copy("Actions for {title}",{title:a.title})}</summary><div className="mt-3 flex flex-wrap gap-2" aria-label={copy("Actions for {title}", {
+              <details className="mt-3"><summary className="text-sm font-medium text-[#0071e3]">{copy("Actions for {title}",{title:a.title})}</summary><div className="mt-3 flex flex-wrap gap-2" aria-label={copy("Actions for {title}", {
           title: a.title
         })}>
                {(a.status === 'draft' || a.status === 'closed') && <button disabled={busy} className="v-button" onClick={() => changeState(a, 'published')}>{a.status === 'draft' ? copy("Publish assignment") : copy("Reopen submissions")}</button>}
@@ -304,7 +304,7 @@ export default function ClassworkTab({
               </div></details>
               {!!a.state_history?.length && <details className="mt-3 text-xs"><summary className="cursor-pointer">{copy("Assignment state history")}</summary>{a.state_history.map((entry, index) => <p className="mt-2 break-words" key={index}>{entry.from} → {entry.to} · {entry.actor} · {entry.at}</p>)}</details>}
               {Array.isArray(a.topics) && a.topics.length > 0 && <div className="flex flex-wrap gap-2 mt-4 pl-14">
-                  {a.topics.filter(topic => typeof topic === 'string').map(t => <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#dadce0] text-[#5f6368]">
+                  {a.topics.filter(topic => typeof topic === 'string').map(t => <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#d2d2d7] text-[#6e6e73]">
                       {t}
                     </span>)}
                 </div>}

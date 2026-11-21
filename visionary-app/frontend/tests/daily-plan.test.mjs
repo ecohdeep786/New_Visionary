@@ -7,7 +7,7 @@ import { getDailyPlan, configureDailyPlanClock, deferPlanStep } from '../src/ser
 import { getHome } from '../src/services/homeService.ts';
 import { configureMentorClock } from '../src/services/mentorStateService.ts';
 import { SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
-import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
+import { seedConnectedFixtures } from './fixtures/demoFixtures.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };

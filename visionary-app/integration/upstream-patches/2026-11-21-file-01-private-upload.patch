@@ -1,0 +1,59 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index 3d310b12..f94ecf5c 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -354,0 +355 @@ model Person {
++  fileUploads    FileUpload[]
+@@ -728,0 +730,52 @@ enum WorkloadJobState {
++// ─── Private upload quarantine (FILE-01) ───────────────────────────────────────
++enum FileUploadState {
++  INTENT
++  UPLOADING
++  SCANNING
++  READY
++  REJECTED
++  CANCELLED
++}
++
++model FileUpload {
++  id                   String          @id
++  uid                  String
++  workspaceId          String?
++  name                 String
++  declaredType         String
++  declaredSize         Int
++  expectedDigest       String
++  state                FileUploadState @default(INTENT)
++  revision             Int             @default(0)
++  createdAt            DateTime        @default(now()) @db.Timestamptz(3)
++  expiresAt            DateTime        @db.Timestamptz(3)
++  bytesReceived        Int             @default(0)
++  chunkBytes           Int
++  digest               String?
++  sniffedType          String?
++  scanResult           String?
++  rejectionReason      String?
++  parserOutputBytes    Int             @default(0)
++  archiveEntries       Int             @default(0)
++  maxParserOutputBytes Int
++  maxArchiveEntries    Int
++  person               Person          @relation(fields: [uid], references: [uid], onDelete: Cascade)
++  chunks               FileUploadChunk[]
++
++  @@index([uid, state], map: "file_uploads_uid_state_idx")
++  @@map("file_uploads")
++}
++
++model FileUploadChunk {
++  uploadId   String
++  offset     Int
++  size       Int
++  digest     String
++  objectName String     @unique
++  generation String?
++  upload     FileUpload @relation(fields: [uploadId], references: [id], onDelete: Cascade)
++
++  @@id([uploadId, offset])
++  @@map("file_upload_chunks")
++}
++

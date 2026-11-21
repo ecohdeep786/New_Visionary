@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, CalendarClock, CheckCheck, Hammer, History, Layers } from 'lucide-react';
 import { getLearningProgress } from '@/services/learningProgressService';
 import LearnerGoals from '@/components/dashboard/LearnerGoals';
+import KnowledgeEstimatePanel from '@/components/dashboard/KnowledgeEstimatePanel';
 import WorkspaceIntro from '@/components/dashboard/WorkspaceIntro';
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import ProgressOverview from '@/components/dashboard/ProgressOverview';
@@ -47,6 +48,7 @@ export default function LearningProgress({ ctx, data }) {
       </section>;
     }) : <section className="v-card v-workspace-empty"><SpotIllustration subject={query ? 'compass' : 'growth'} className="v-empty-illustration v-empty-illustration-square" /><h2 className="text-lg font-medium">{query ? t('noMatch') : report.unavailable.length ? t('emptyAvailable') : report.hasSavedEvidence ? t('emptyPeriod') : t('start')}</h2><p className="v-muted mt-3">{query ? t('tryTitle') : report.hasSavedEvidence ? t('retained') : t('noKnowledge')}</p><div className="v-empty-actions">{(query || period !== 'all') && <button className="v-button" onClick={() => { setQuery(''); setPeriod('all'); }}>{t('showAll')}</button>}<Link className="v-button primary" to="/dashboard/learn">{t('choose')}<ArrowUpRight size={16} aria-hidden="true" /></Link></div></section>}
     <LearnerGoals ctx={ctx} locale={locale} />
+    <KnowledgeEstimatePanel ctx={ctx} rows={report.objectives} locale={locale} />
   </div>;
 }
 

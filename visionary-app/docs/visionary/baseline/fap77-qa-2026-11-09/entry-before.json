@@ -1,0 +1,99 @@
+{
+  "side": "before",
+  "behavior": "entry",
+  "url": "http://localhost:5174",
+  "started": "2026-11-09T05:29:51.087Z",
+  "stages": [
+    {
+      "stage": "wizard-step-0",
+      "title": "Make Visionary your own",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-0",
+      "didClick": [
+        {
+          "target": "I am a Learner",
+          "level": 0,
+          "tag": "BUTTON",
+          "cls": "relative flex min-w-0 items-start gap-4 p-5 rounded-2xl bord"
+        }
+      ],
+      "anyEnabled": true
+    },
+    {
+      "stage": "wizard-step-1",
+      "title": "A little about you",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-1",
+      "didClick": [],
+      "anyEnabled": false
+    },
+    {
+      "stage": "wizard-step-2",
+      "title": "What are you learning?",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-2",
+      "didClick": [
+        {
+          "target": "School",
+          "level": 0,
+          "tag": "BUTTON",
+          "cls": "relative flex min-w-0 items-start gap-2 p-3 rounded-2xl bord"
+        }
+      ],
+      "anyEnabled": true
+    },
+    {
+      "stage": "wizard-step-3",
+      "title": "Choose your school context",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-3",
+      "didClick": [
+        {
+          "target": "School",
+          "level": 0,
+          "tag": "DIV",
+          "cls": ""
+        }
+      ],
+      "anyEnabled": false
+    },
+    {
+      "stage": "wizard-step-4",
+      "title": "Ready to start with Visionary?",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "onboard",
+      "sawDashboardish": true,
+      "finalUrl": "http://localhost:5174/dashboard/home"
+    },
+    {
+      "stage": "learn-entry",
+      "url": "http://localhost:5174/dashboard/learn"
+    }
+  ],
+  "entry": {
+    "labels": {
+      "exampleLesson": false,
+      "workplaceExampleLesson": false,
+      "examplesFromMoreBooks": false,
+      "openMyOutline": true,
+      "legacyEntry": true,
+      "legacyWorkplace": false,
+      "legacyMultiBook": true,
+      "legacyPrevTopics": true
+    },
+    "emptyStateSentence": "",
+    "noSampleLegacyWordsOnEntry": false
+  },
+  "verdict": "PASS",
+  "finished": "2026-11-09T05:30:15.304Z"
+}

@@ -5,7 +5,7 @@ import ChevronIcon from "./ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
 
 const ExploreCard = React.memo(function ExploreCard({ index, category, images }) {
-  /* Apple's line-up card — the student page's explore anatomy: white card,
+  /* Apple’s line-up card — the student page’s explore anatomy: white card,
      photograph full-bleed on top, 24px/600 name, 18px grey line, quiet
      blue link, left-aligned, no elevation chrome. */
   return (

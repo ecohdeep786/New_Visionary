@@ -8,16 +8,16 @@ import { color } from "@/components/landing/system/tokens";
 const JOURNEY_GALLERY_MS = 5000;
 
 /* The journey gallery on persona pages — one anatomy site-wide, rebuilt to
-   Apple's education-initiative story-card grammar (the "Equipping today's
+   Apple’s education-initiative story-card grammar (the "Equipping today’s
    learners…" chapter, measured live): cards at 68% of the viewport (980px
    @1440), 30px radius, the story headline INSIDE the card bottom-left at
-   48px/600 white over Apple's exact bottom smoke (transparent to
+   48px/600 white over Apple’s exact bottom smoke (transparent to
    rgba(0,0,0,0.7) across the lower ~43%), a bare 36px white plus glyph
-   bottom-right, and the whole card as the button that opens the stage's
-   story modal. The controls are Apple's bare 36px glyph row 25px under
+   bottom-right, and the whole card as the button that opens the stage’s
+   story modal. The controls are Apple’s bare 36px glyph row 25px under
    the card: play/pause left, prev/next right, no dots. Auto-advances
    every 5s (opening a card pauses the tour; reduced motion steps
-   instantly). The track shares the header's gutter so the statement and
+   instantly). The track shares the header’s gutter so the statement and
    the first card sit on one spine, with the next card peeking at the
    viewport edge. */
 const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, label, iconMap }) {
@@ -26,7 +26,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
   const lockRef = useRef(0);
   const rafRef = useRef(0);
   const [active, setActive] = useState(0);
-  /* cards rise in place as the chapter enters — Apple's story-card entrance */
+  /* cards rise in place as the chapter enters — Apple’s story-card entrance */
   const reveal = useInViewOnce(0.12);
   /* No autoplay on mount — the tour starts paused with the first card
      shown. It plays only after the user presses play; every time the
@@ -109,7 +109,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 transitionDelay: `${140 + i * 80}ms`,
               }}
             >
-              {/* Apple's exact story-card metrics (measured on the education-
+              {/* Apple’s exact story-card metrics (measured on the education-
                   initiative gallery): 980×516 @≥1069px (1.9), 692×430 @735–1068px
                   (1.61), 275×400 @<735px (portrait). The fixed widths are what
                   give the gallery its premium peek — each instance shows the
@@ -132,22 +132,22 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 draggable="false"
                 className="aspect-[11/16] w-full select-none object-cover transition-transform duration-500 ease-apple group-hover:scale-[1.02] min-[735px]:aspect-[692/430] min-[1069px]:aspect-[1.9]"
               />
-              {/* Apple's exact bottom smoke: transparent → rgba(0,0,0,0.7)
+              {/* Apple’s exact bottom smoke: transparent → rgba(0,0,0,0.7)
                   across the lower ~53% of the card (66% on the portrait mobile
                   card), so the bottom-left statement reads on any stock photo
                   without a full-card veil */}
               <span className="absolute inset-x-0 bottom-0 h-[66%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent min-[735px]:h-[53%]" aria-hidden="true" />
               {/* the sub-category label + story headline — inside the card,
-                  bottom-left inset to Apple's 36px text column. The stage title
-                  (Primary, Secondary…) acts as the card's category heading, with
+                  bottom-left inset to Apple’s 36px text column. The stage title
+                  (Primary, Secondary…) acts as the card’s category heading, with
                   the story statement as the large typographic tier above the
                   smoke. */}
               <span className="absolute bottom-0 left-0 block max-w-[72%] p-6 text-left sm:p-9">
                 <span data-type="caption" className="mb-3 block text-white/75">{stage.title}</span>
                 <span key={stage.statement} className="block max-w-[15ch] font-semibold tracking-[-0.01em] leading-[1.08] text-white text-[28px] min-[735px]:text-[40px] min-[1069px]:text-[48px]">{stage.statement || stage.title}</span>
               </span>
-              {/* Apple's story-card affordance — a white 36px circular button
-                  carrying the plus cutout, pinned to the card's bottom-right
+              {/* Apple’s story-card affordance — a white 36px circular button
+                  carrying the plus cutout, pinned to the card’s bottom-right
                   over the smoke and matched to our ink color */}
               <span className="public-card-control absolute bottom-6 right-6 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white sm:bottom-6 sm:right-6">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="public-icon public-icon-plus" aria-hidden="true" style={{ color: color.ink }}>
@@ -160,8 +160,8 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
           );
         })}
       </div>
-      {/* the controls — Apple's bare 36px glyph row 25px under the cards:
-          play/pause at the track's left edge, prev/next chevrons at the
+      {/* the controls — Apple’s bare 36px glyph row 25px under the cards:
+          play/pause at the track’s left edge, prev/next chevrons at the
           right edge; no dots on this gallery. The row shares the centered
           card column so the glyphs sit under the card, not the viewport edge
           — matching the per-breakpoint card width. */}

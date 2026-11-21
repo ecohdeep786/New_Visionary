@@ -2,9 +2,9 @@ import { BookOpen } from "lucide-react";
 
 function SummaryChip({ label, value }) {
   return (
-    <div className="flex flex-col gap-0.5 px-4 py-2 rounded-xl bg-[#ffffff] border border-[#dadce0]">
-      <span className="text-xs text-[#5f6368]">{label}</span>
-      <span className="text-sm font-medium text-[#121317]">{value}</span>
+    <div className="flex flex-col gap-0.5 px-4 py-2 rounded-xl bg-[#ffffff] border border-[#d2d2d7]">
+      <span className="text-xs text-[#6e6e73]">{label}</span>
+      <span className="text-sm font-medium text-[#1d1d1f]">{value}</span>
     </div>
   );
 }
@@ -22,24 +22,24 @@ export default function CurriculumSummary({ data }) {
       </div>
 
       <div>
-        <p className="text-sm font-medium text-[#121317] mb-3">Your starting subjects</p>
+        <p className="text-sm font-medium text-[#1d1d1f] mb-3">Your starting subjects</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {subjects.map((s) => (
             <div
               key={s}
-              className="flex items-center gap-3 p-3 rounded-xl bg-[#ffffff] border border-[#dadce0]"
+              className="flex items-center gap-3 p-3 rounded-xl bg-[#ffffff] border border-[#d2d2d7]"
             >
-              <div className="w-8 h-8 rounded-lg bg-[#e8f0fd] flex items-center justify-center shrink-0">
-                <BookOpen className="w-4 h-4 text-[#4285F4]" />
+              <div className="w-8 h-8 rounded-lg bg-[#eef5ff] flex items-center justify-center shrink-0">
+                <BookOpen className="w-4 h-4 text-[#0071E3]" />
               </div>
-              <span className="text-sm text-[#121317]">{s}</span>
+              <span className="text-sm text-[#1d1d1f]">{s}</span>
             </div>
           ))}
         </div>
-        {!subjects.length&&<p className="text-sm text-[#5f6368]">No subject selected yet. You can choose one when you open Learn.</p>}
+        {!subjects.length&&<p className="text-sm text-[#6e6e73]">No subject selected yet. You can choose one when you open Learn.</p>}
       </div>
 
-      <p className="text-xs text-[#5f6368]">
+      <p className="text-xs text-[#6e6e73]">
         Your board, class, language, and any subject you entered are saved as preferences. Official chapters and textbooks are not connected yet; Learn will show a provisional outline when needed.
       </p>
     </div>

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { appClient } from '../src/api/appClient.js';
 import { bootstrapPerson, saveResource, snapshot, resourceRevision, archiveResource } from '../src/services/workspaceService.ts';
 import { organizationRoster, saveCohort } from '../src/services/classroomService.js';
+import { previewAccount } from './helpers/previewAuth.mjs';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };
@@ -12,9 +13,7 @@ globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
 test('organization cohorts accept only current own roster and classes, never private learner state', async () => {
  memory.clear();
  const email = 'cohort-admin@visionary.test';
- await appClient.auth.register({ email, password: 'Preview-test-123!' });
- await appClient.auth.verifyOtp({ email });
- const admin = await appClient.auth.updateMe({ identity: 'organization', onboarding_complete: true });
+ const admin = previewAccount({ id: 'cohort-org-admin', email, identity: 'organization', onboarding_complete: true });
  const person = bootstrapPerson(admin);
  const ctx = { personId: admin.id, workspaceId: person.active, role: 'organization', locale: 'en' };
  const member = { id: 'accepted-teacher', organization_email: email, email: 'cohort-teacher@visionary.test', role: 'teacher', status: 'active' };
@@ -40,8 +39,7 @@ test('organization cohorts accept only current own roster and classes, never pri
 
 test('cohort save rechecks membership after an asynchronous roster read', async () => {
  memory.clear();const email='cohort-pending@visionary.test';
- await appClient.auth.register({email,password:'Preview-test-123!'});await appClient.auth.verifyOtp({email});
- const admin=await appClient.auth.updateMe({identity:'organization',onboarding_complete:true});const person=bootstrapPerson(admin);
+ const admin=previewAccount({id:'cohort-pending-admin',email,identity:'organization',onboarding_complete:true});const person=bootstrapPerson(admin);
  const ctx={personId:admin.id,workspaceId:person.active,role:'organization',locale:'en'};
  const member={id:'pending-member',organization_email:email,email:'teacher@pending.test',role:'teacher',status:'active'};
  localStorage.setItem('visionary_entity_OrganizationInvite',JSON.stringify([member]));
@@ -57,9 +55,7 @@ test('cohort save rechecks membership after an asynchronous roster read', async 
 test('cohort concurrent changes and archive reject a stale editor without overwriting either record', async () => {
  memory.clear();
  const email='cohort-conflict@visionary.test';
- await appClient.auth.register({email,password:'Preview-test-123!'});
- await appClient.auth.verifyOtp({email});
- const admin=await appClient.auth.updateMe({identity:'organization',onboarding_complete:true});
+ const admin=previewAccount({id:'cohort-conflict-admin',email,identity:'organization',onboarding_complete:true});
  const person=bootstrapPerson(admin);
  const ctx={personId:admin.id,workspaceId:person.active,role:'organization',locale:'en'};
  const original=await saveCohort(ctx,{title:'Initial team',body:'Initial purpose',members:[],classIds:[]});

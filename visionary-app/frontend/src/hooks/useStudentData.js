@@ -6,7 +6,9 @@ import { deriveLearningData } from "@/lib/learningMetrics";
 const empty = deriveLearningData({});
 export function useStudentData() {
   const { user,activeWorkspace } = useAuth();
-  const enabled = Boolean(user?.email);
+  // Legacy base44 fixture reads are development-preview inputs only; the
+  // production build must not contact them from the shared shell.
+  const enabled = Boolean(user?.email) && import.meta.env.DEV;
   const query = useQuery({
     queryKey: ["workspace", "learning", user?.id,activeWorkspace?.id],
     enabled,

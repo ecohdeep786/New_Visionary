@@ -83,6 +83,9 @@ export default function LandingFooter({ variant = "brand" }) {
        page ends in air, not a logo. */
     <footer className="border-t" style={{ fontFamily: fontStack, backgroundColor: "#F5F5F7", borderColor: "#d2d2d7" }}>
       <div className="public-frame public-frame-wide pt-16">
+        {/* the columns sit under one directory heading so the h3 labels never
+            skip a level in the document outline (typography-audit law) */}
+        <h2 className="sr-only">Explore Visionary</h2>
         <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: "#d2d2d7" }}>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="pt-10">

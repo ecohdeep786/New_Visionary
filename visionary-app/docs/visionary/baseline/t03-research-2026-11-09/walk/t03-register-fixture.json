@@ -1,0 +1,64 @@
+{
+  "url": "http://localhost:5174",
+  "email": "qa.designer@example.test",
+  "started": "2026-11-09T06:30:30.345Z",
+  "stages": [
+    {
+      "stage": "wizard-step-0",
+      "title": "Make Visionary your own",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-0",
+      "lvl": {
+        "I am a Learner": 3,
+        "School": 3
+      }
+    },
+    {
+      "stage": "wizard-step-1",
+      "title": "A little about you",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "card-clicks-1",
+      "lvl": {
+        "I am a Learner": 3,
+        "School": 3
+      }
+    },
+    {
+      "stage": "wizard-step-2",
+      "title": "What are you learning?",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "wizard-step-3",
+      "title": "Choose your school context",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "wizard-step-4",
+      "title": "Ready to start with Visionary?",
+      "url": "http://localhost:5174/onboarding"
+    },
+    {
+      "stage": "onboard-final",
+      "sawDashboardish": true,
+      "finalUrl": "http://localhost:5174/dashboard/home",
+      "registerErr": null
+    }
+  ],
+  "register": {
+    "sawDashboardish": true,
+    "finalUrl": "http://localhost:5174/dashboard/home",
+    "registerErr": null,
+    "topbarSnippet": "Skip to main content\nisionary\nActive workspace\nPersonal · Learner\n+ Add a role\nFind a subject, topic, or page\nCtrl K\nJoin a class\nGuide\nMicrophone idle. Text is always available.\nM\nHome\nLearn\nAsk\n\nWor"
+  },
+  "loginVerify": {
+    "loginOk": false,
+    "loginDetail": "login pre-verify failed: TimeoutError: locator.fill: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"password\"]').first()\u001b[22m\n"
+  },
+  "verdict": "FAIL",
+  "finished": "2026-11-09T06:31:14.557Z"
+}

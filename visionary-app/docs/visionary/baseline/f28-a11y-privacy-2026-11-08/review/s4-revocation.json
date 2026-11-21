@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-08T07:03:01.730Z",
+  "results": [
+    {
+      "name": "S04-revoke-control-found",
+      "ok": true,
+      "detail": "learner-side revoke control: \"Disconnect\""
+    },
+    {
+      "name": "S04-revoked-link-denies",
+      "ok": true,
+      "detail": "after revocation the parent surface no longer presents the connected state"
+    },
+    {
+      "name": "S04-no-stale-child-data",
+      "ok": true,
+      "detail": "no stale connected child view is rendered after revocation (server-owned consent re-evaluated on refresh)"
+    }
+  ]
+}

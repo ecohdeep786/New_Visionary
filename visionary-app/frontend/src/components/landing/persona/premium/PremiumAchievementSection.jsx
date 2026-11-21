@@ -7,13 +7,13 @@ import { color } from "@/components/landing/system/tokens";
 import LazyImage from "@/components/landing/LazyImage";
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════
-   Apple's Watch-page closing module ("Made for each other."), measured live
+   Apple’s Watch-page closing module ("Made for each other."), measured live
    Oct 2026: the statement IS the chapter opener (no eyebrow, no subhead — type
    is the hero), set on the same left spine as the one module below it. One
    rounded container on the flat white ground holds the whole chapter: an
    accordion column left (statement-size titles, hairline separators, compact
    dark chevrons, 18px body) beside the visual where all color lives. No links
-   — the page's CTAs live in their own chapters. */
+   — the page’s CTAs live in their own chapters. */
 function PremiumAchievementSection({ heading, tabs, images }) {
   const { ref } = useRevealOnce();
   const [active, setActive] = useState(0);
@@ -75,7 +75,7 @@ function PremiumAchievementSection({ heading, tabs, images }) {
 
               <div className="relative min-h-[420px] lg:min-h-0">
                 {/* the visual — a white media card inset on the grey ground
-                    (Apple's card-in-module treatment): the full photo shows,
+                    (Apple’s card-in-module treatment): the full photo shows,
                     nothing cropped, its own white studio field merging into
                     the card so no frame edge ever reads */}
                 <div key={active} className="hero-fade-up absolute inset-4 overflow-hidden rounded-[20px] bg-white sm:inset-6 lg:inset-10">

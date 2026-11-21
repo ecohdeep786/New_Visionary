@@ -3,3 +3,5 @@
 export * from './file-types';
 export * from './file-store';
 export * from './upload.service';
+export * from './quarantine-storage.gcs';
+export * from './file-store.sql';

@@ -1,0 +1,288 @@
+{
+  "task": "F-22 organization experience review",
+  "at": "2026-11-08T09:28:58.266Z",
+  "base": "http://127.0.0.1:4198",
+  "ownerEmail": "org-1794130054064@visionary.test",
+  "partnerEmail": "partner-1794130054064@visionary.test",
+  "records": [
+    {
+      "file": "org-home.png",
+      "surface": "org-home",
+      "home": {
+        "top": true,
+        "search": true,
+        "primary": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "secondary": [
+          true,
+          true,
+          true
+        ],
+        "connectAdd": true,
+        "h1": "Welcome back, Alex."
+      },
+      "errors": []
+    },
+    {
+      "check": "org-home-shell",
+      "ok": true,
+      "detail": "{\"top\":true,\"search\":true,\"primary\":[true,true,true,true,true],\"secondary\":[true,true,true],\"connectAdd\":true,\"h1\":\"Welcome back, Alex.\"}"
+    },
+    {
+      "file": "org-people-invite.png",
+      "surface": "people-invite",
+      "people": {
+        "savedNotice": true,
+        "inviteRow": true,
+        "pending": true,
+        "membershipScope": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-people-invite",
+      "ok": true,
+      "detail": "{\"savedNotice\":true,\"inviteRow\":true,\"pending\":true,\"membershipScope\":true}"
+    },
+    {
+      "file": "org-cohorts-entry.png",
+      "surface": "cohorts",
+      "cohortsEntry": {
+        "h1": "Cohorts",
+        "honest": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-cohorts-entry",
+      "ok": true,
+      "detail": "{\"h1\":\"Cohorts\",\"honest\":true}"
+    },
+    {
+      "check": "org-cohort-dialog",
+      "ok": true,
+      "detail": "{\"boundary\":true}"
+    },
+    {
+      "check": "org-cohort-saved",
+      "ok": true,
+      "detail": "{\"notice\":true,\"row\":true}"
+    },
+    {
+      "check": "org-content-entry",
+      "ok": true,
+      "detail": "{\"h1\":\"Organization content\",\"guidance\":true}"
+    },
+    {
+      "file": "org-content-submitted.png",
+      "surface": "content",
+      "contentSubmitted": {
+        "waiting": true,
+        "noApprove": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-content-dialog",
+      "ok": true,
+      "detail": "{\"honest\":true}"
+    },
+    {
+      "check": "org-content-saved",
+      "ok": true,
+      "detail": "{\"notice\":true}"
+    },
+    {
+      "check": "org-content-anti-self-approval",
+      "ok": true,
+      "detail": "{\"waiting\":true,\"noApprove\":true}"
+    },
+    {
+      "file": "org-curriculum.png",
+      "surface": "curriculum",
+      "curriculum": {
+        "h1": "Reviewed curriculum templates",
+        "earlierDrafts": true,
+        "honest": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-curriculum",
+      "ok": true,
+      "detail": "{\"h1\":\"Reviewed curriculum templates\",\"earlierDrafts\":true,\"honest\":true}"
+    },
+    {
+      "file": "org-analytics.png",
+      "surface": "analytics",
+      "analytics": {
+        "header": true,
+        "noClassrooms": true,
+        "honest": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-analytics",
+      "ok": true,
+      "detail": "{\"header\":true,\"noClassrooms\":true,\"honest\":true}"
+    },
+    {
+      "file": "org-audit.png",
+      "surface": "audit",
+      "audit": {
+        "h1": "Organization audit",
+        "deviceLocal": true,
+        "editableNote": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-audit",
+      "ok": true,
+      "detail": "{\"h1\":\"Organization audit\",\"deviceLocal\":true,\"editableNote\":true}"
+    },
+    {
+      "file": "org-settings-saved.png",
+      "surface": "settings",
+      "settingsSaved": {
+        "notice": true,
+        "coaching": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-settings-entry",
+      "ok": true,
+      "detail": "{\"h1\":\"Organization settings\",\"deviceOnly\":true,\"editable\":true}"
+    },
+    {
+      "check": "org-settings-review-dialog",
+      "ok": true,
+      "detail": "{\"applyTitle\":true,\"previewOnly\":true}"
+    },
+    {
+      "check": "org-settings-saved",
+      "ok": true,
+      "detail": "{\"notice\":true,\"coaching\":true}"
+    },
+    {
+      "file": "org-billing-saved.png",
+      "surface": "billing",
+      "billingSaved": {
+        "notice": true,
+        "history": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-billing",
+      "ok": true,
+      "detail": "{\"h1\":\"Organization seats and billing\",\"notConnected\":true,\"noCharge\":true}"
+    },
+    {
+      "check": "org-billing-saved",
+      "ok": true,
+      "detail": "{\"notice\":true,\"history\":true}"
+    },
+    {
+      "file": "org-notifications.png",
+      "surface": "notifications",
+      "notifications": {
+        "h1": "Organization updates",
+        "honest": true,
+        "preference": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-notifications",
+      "ok": true,
+      "detail": "{\"h1\":\"Organization updates\",\"honest\":true,\"preference\":true}"
+    },
+    {
+      "file": "org-member-invite-pending.png",
+      "surface": "member-invite",
+      "invitesBefore": {
+        "pendingInvite": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-member-invite-visible",
+      "ok": true,
+      "detail": "{\"pendingInvite\":true}"
+    },
+    {
+      "file": "org-member-home.png",
+      "surface": "member-home-permissions",
+      "memberHome": {
+        "h1": "Your organization workspace",
+        "orgEmail": true,
+        "doors": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "aggregateOnly": true,
+        "privacy": true
+      },
+      "errors": []
+    },
+    {
+      "check": "org-member-access-home",
+      "ok": true,
+      "detail": "{\"h1\":\"Your organization workspace\",\"orgEmail\":true,\"doors\":[false,false,true,false,false],\"aggregateOnly\":true,\"privacy\":true}"
+    },
+    {
+      "check": "org-member-analytics-scoped",
+      "ok": true,
+      "detail": "{\"reduced\":true,\"noInstitutionMetrics\":true}"
+    },
+    {
+      "check": "org-member-blocked-audit",
+      "ok": true,
+      "detail": "audit: {\"permission\":true,\"body\":\"Skip to main content | isionary | Active workspace | Owner · My organization | Work · Brightpath Academy · Organization admin | + \"}"
+    },
+    {
+      "check": "org-member-blocked-cohorts",
+      "ok": true,
+      "detail": "cohorts: {\"permission\":true,\"body\":\"Skip to main content | isionary | Active workspace | Owner · My organization | Work · Brightpath Academy · Organization admin | + \"}"
+    },
+    {
+      "check": "org-member-blocked-curriculum",
+      "ok": true,
+      "detail": "curriculum: {\"permission\":true,\"body\":\"Skip to main content | isionary | Active workspace | Owner · My organization | Work · Brightpath Academy · Organization admin | + \"}"
+    },
+    {
+      "check": "org-member-blocked-library",
+      "ok": true,
+      "detail": "library: {\"permission\":true,\"body\":\"Skip to main content | isionary | Active workspace | Owner · My organization | Work · Brightpath Academy · Organization admin | + \"}"
+    },
+    {
+      "check": "org-member-blocked-subscription",
+      "ok": true,
+      "detail": "subscription: {\"permission\":true,\"body\":\"Skip to main content | isionary | Active workspace | Owner · My organization | Work · Brightpath Academy · Organization admin | + \"}"
+    },
+    {
+      "file": "org-member-blocked.png",
+      "surface": "member-blocked",
+      "blockedAreas": [
+        "audit",
+        "cohorts",
+        "curriculum",
+        "library",
+        "subscription"
+      ],
+      "errors": []
+    }
+  ],
+  "defects": []
+}

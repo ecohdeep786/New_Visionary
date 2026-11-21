@@ -127,8 +127,7 @@ test('JOB-02 sweeper: expired lease reclaim requeues for a fresh claim; bogus to
   await assert.rejects(d.complete(job.id, c1, t(11_000)), (e) => e.code === 'fenced');
   const c2 = await d.claim(job.id, ONE_MIN, t(11_000));
   assert.ok(c2.leaseToken !== c1.leaseToken);
-  // attemptToken must match the claim we hold for complete to honor idempotency
-  // cross-claim: attempt id check happens in complete, using fresh's token below.
+  await d.startRun(job.id, c2, t(11_100));
   const done = await d.complete(job.id, { leaseToken: c2.leaseToken, attemptToken: c2.attemptToken }, t(12_000));
   assert.equal(done.state, 'DONE');
 });
@@ -166,25 +165,74 @@ test('JOB-02 quarantine of failed cleanup: bounded retries then QUARANTINED, nev
 
 test('JOB-02 sweeper: stale work past the attempt ceiling is QUARANTINED, never lost', async () => {
   const s = new InMemoryOutboxStore();
-  const smallPolicy = { maxAttempts: 3, baseDelayMs: 10, multiplier: 2, maxDelayMs: 1000 };
-  const d = new OutboxDispatcher(s, smallPolicy);
+  const smallPolicy = { maxAttempts: 3, baseDelayMs: 10, multiplier: 2, maxDelayMs: 1000, leaseMs: 500 };
+  const d = new OutboxDispatcher(s, {}, smallPolicy);
   const w = new OutboxSweeper(s, smallPolicy);
   const job = await d.enqueue('uid-1', 'uid-1:learning', 'learning.embed', { runBy: null });
-  // Drive the job to attempt 2 (the ceiling at 3) across retry claims, then let
+  // Drive the job to attempt 3 across retry claims, then let
   // its lease expire so the sweeper must decide: retry or quarantine.
   let c1 = await d.claim(job.id, 500, t(0));
   await d.startRun(job.id, c1, t(0));
   for (let i = 0; i < 2; i++) {
-    await d.fail(job.id, c1, `boom_${i}`, t(1000 + i * 10));
-    c1 = await d.claim(job.id, 500, t(2000 + i * 10));
-    await d.startRun(job.id, c1, t(3000 + i * 10));
+    await d.fail(job.id, c1, `boom_${i}`, t(i * 200 + 50));
+    c1 = await d.claim(job.id, 500, t(i * 200 + 200));
+    await d.startRun(job.id, c1, t(i * 200 + 210));
   }
   const live = await s.jobById(job.id);
-  assert.equal(live.attempt, 2);
+  assert.equal(live.attempt, 3);
   // Lease expires with the job at the ceiling → sweeper quarantines.
   const sweep = await w.sweep(t(60_000));
   const after = await s.jobById(job.id);
   assert.equal(sweep.quarantinedStale.length, 1);
   assert.equal(after.state, 'QUARANTINED');
   assert.ok(after.lastError.includes('lease'));
+});
+
+test('JOB-02 expired holders cannot revive, run or settle a job before a sweep', async () => {
+  const { s, d } = setup();
+  const job = await d.enqueue('uid-1', 'uid-1:learning', 'learning.embed');
+  const now = Date.now();
+  const time = ms => new Date(now + ms).toISOString();
+  const claim = await d.claim(job.id, 500, time(0));
+  await d.startRun(job.id, claim, time(1));
+  for (const operation of [
+    () => d.heartbeat(job.id, claim, 1000, time(500)),
+    () => d.complete(job.id, claim, time(500)),
+    () => d.fail(job.id, claim, 'late', time(500)),
+  ]) await assert.rejects(operation, error => error.code === 'fenced');
+  assert.equal((await s.jobById(job.id)).state, 'RUNNING');
+});
+
+test('JOB-02 a deadline gates initial claim and an unrelated holder cannot replay completion', async () => {
+  const { d } = setup();
+  const job = await d.enqueue('uid-1', 'uid-1:learning', 'learning.embed', { runBy: t(2_000) });
+  await assert.rejects(d.claim(job.id, ONE_MIN, job.runBy), error => error.code === 'deadline_exceeded');
+  const now = new Date(Date.parse(job.runBy) - 1_000).toISOString();
+  const claim = await d.claim(job.id, ONE_MIN, now);
+  assert.equal(claim.job.claimedUntil, job.runBy);
+  await d.startRun(job.id, claim, now);
+  await d.complete(job.id, claim, now);
+  await assert.rejects(d.complete(job.id, { ...claim, attemptToken: 'attempt_unrelated' }, now), error => error.code === 'fenced');
+});
+
+test('JOB-02 the sweeper cannot overwrite a heartbeat committed after its scan', async () => {
+  const start = Date.now();
+  const time = ms => new Date(start + ms).toISOString();
+  class DelayedScanStore extends InMemoryOutboxStore {
+    async dueJobs(now, limit) {
+      const snapshot = await super.dueJobs(now, limit);
+      await dispatcher.heartbeat(job.id, lease, 1000, time(400));
+      return snapshot;
+    }
+  }
+  const store = new DelayedScanStore();
+  const dispatcher = new OutboxDispatcher(store);
+  const job = await dispatcher.enqueue('uid-1', 'uid-1:learning', 'learning.embed');
+  const lease = await dispatcher.claim(job.id, 500, time(0));
+  await dispatcher.startRun(job.id, lease, time(10));
+  const swept = await new OutboxSweeper(store).sweep(time(500));
+  assert.deepEqual(swept.reclaimed, []);
+  const live = await store.jobById(job.id);
+  assert.equal(live.state, 'RUNNING');
+  assert.equal(live.claimedUntil, time(1400));
 });

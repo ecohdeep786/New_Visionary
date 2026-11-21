@@ -141,7 +141,15 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       if (!accountId || options.expectedUserId !== undefined && accountId !== options.expectedUserId) throw authFlowError('auth/account-changed');
       const body = { ...updates };
       for (const key of ['expectedProfileName', 'expectedThemeColor']) if (options[key] !== undefined) body[key] = options[key];
-      return save(await request('/profile', { method: 'PATCH', body, accountId, beforeSend: () => check(expected) }), expected);
+      try {
+        return save(await request('/profile', { method: 'PATCH', body, accountId, beforeSend: () => check(expected) }), expected);
+      } catch (error) {
+        // Server-owned conflicts keep the established stale-tab states: the
+        // accent edit re-reviews the saved color, the name edit reports the
+        // saved value. The server decides every conflict (FAP-93).
+        if (error?.status === 409) error.name = options.expectedThemeColor !== undefined ? 'AppearanceConflictError' : 'ProfileConflictError';
+        throw error;
+      }
     },
     async completeIntroduction() {
       const expected = generation, accountId = profile?.id;
@@ -158,7 +166,7 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       try { await request('/logout', { method: 'POST', accountId: profile?.id }); }
       catch (error) { error.resetCompleted = true; throw error; }
       ++generation; profile = null; pendingEmailUser = null;
-      await identity.logout?.(); notify();
+      await Promise.resolve().then(() => identity.logout?.()).catch(() => {}); notify();
     },
     logout({ allDevices = false } = {}) {
       if (pendingLogout) return pendingLogoutAll === allDevices ? pendingLogout : Promise.reject(authFlowError('auth/operation-in-progress'));
@@ -169,7 +177,7 @@ export function createServerAuth({ request, identity, notify = () => {} }) {
       catch (error) { if (generation === expected) profile = previous; throw error; }
       ++generation; profile = null; pendingEmailUser = null; notify();
       // Server revocation has succeeded. SDK cleanup cannot restore that session.
-      await Promise.resolve(identity.logout()).catch(() => {});
+      await Promise.resolve().then(() => identity.logout?.()).catch(() => {});
       })();
       pendingLogout = promise; pendingLogoutAll = allDevices;
       const clear = () => { if (pendingLogout === promise) pendingLogout = null; };

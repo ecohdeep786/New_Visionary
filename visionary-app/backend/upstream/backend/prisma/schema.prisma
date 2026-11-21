@@ -351,6 +351,8 @@ model Person {
   deletionTombstones DeletionTombstone[]
   shareGrants    ShareGrant[]
   consentGrants  ConsentGrant[]
+  workloadJobs   WorkloadJob[]
+  fileUploads    FileUpload[]
   downloadGrants DownloadGrant[]
   downloadExports DownloadExport[]
   commandResults CommandResult[]
@@ -489,6 +491,7 @@ model ConsentGrant {
   consentVersion  String
 
   person          Person   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  jobs            ConsentJob[]
 
   @@unique([uid, purpose, resourceId, consentVersion])
   @@index([uid])
@@ -576,7 +579,10 @@ model OutboxEvent {
   person        Person      @relation(fields: [uid], references: [uid], onDelete: Cascade)
   workspace     Workspace?  @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
 
+  delivery      OutboxDelivery?
+
   @@index([uid, cursor])
+  @@index([topic, cursor])
   @@index([status])
   @@index([createdAt])
   @@index([workspaceId])
@@ -587,6 +593,190 @@ enum OutboxStatus {
   PENDING
   DISPATCHED
   FAILED
+}
+
+model OutboxDelivery {
+  cursor      BigInt               @id
+  status      OutboxDeliveryStatus @default(PENDING)
+  attempts    Int                  @default(0)
+  availableAt DateTime             @default(now())
+  claimedAt   DateTime?
+  lastError   String?
+  effectAppliedAt DateTime?
+  event       OutboxEvent          @relation(fields: [cursor], references: [cursor], onDelete: Cascade)
+
+  @@index([status, availableAt, cursor])
+  @@map("outbox_deliveries")
+}
+
+enum OutboxDeliveryStatus {
+  PENDING
+  LEASED
+  DONE
+  FAILED
+}
+
+model ConsentJob {
+  id          String          @id @db.Uuid
+  grantId     String
+  workload    String
+  state       ConsentJobState @default(PENDING)
+  createdAt   DateTime        @default(now())
+  cancelledAt DateTime?
+  grant       ConsentGrant    @relation(fields: [grantId], references: [id], onDelete: Cascade)
+
+  @@index([grantId, state])
+  @@index([workload, state, createdAt])
+  @@map("consent_jobs")
+}
+
+enum ConsentJobState {
+  PENDING
+  CANCELLED
+}
+
+model WorkloadJob {
+  id                String           @id
+  uid               String
+  workspaceId       String?
+  queue             String
+  provider          String?
+  kind              String
+  state             WorkloadJobState @default(PENDING)
+  attempt           Int              @default(0)
+  maxAttempts       Int
+  revision          Int              @default(0)
+  createdAt         DateTime         @default(now()) @db.Timestamptz(3)
+  claimedUntil      DateTime?        @db.Timestamptz(3)
+  leaseToken        String?
+  attemptToken      String?
+  runBy             DateTime?        @db.Timestamptz(3)
+  nextAttemptAt     DateTime?        @db.Timestamptz(3)
+  completedAt       DateTime?        @db.Timestamptz(3)
+  cancellationToken String?
+  lastError         String?
+  cleanupAttempts   Int              @default(0)
+  cleanupError      String?
+  person            Person           @relation(fields: [uid], references: [uid], onDelete: Restrict)
+  events            WorkloadJobEvent[]
+
+  @@index([queue, createdAt, id], map: "workload_jobs_queue_idx")
+  @@index([state, claimedUntil, id], map: "workload_jobs_lease_idx")
+  @@index([state, runBy, id], map: "workload_jobs_deadline_idx")
+  @@index([uid, state], map: "workload_jobs_owner_state_idx")
+  @@index([workspaceId, state], map: "workload_jobs_workspace_state_idx")
+  @@index([queue, state], map: "workload_jobs_queue_state_idx")
+  @@map("workload_jobs")
+}
+
+model WorkloadJobEvent {
+  jobId     String
+  cursor    Int
+  state     WorkloadJobState
+  attempt   Int
+  createdAt DateTime         @default(now()) @db.Timestamptz(3)
+  job       WorkloadJob      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@id([jobId, cursor])
+  @@map("workload_job_events")
+}
+
+model WorkloadAdmissionPolicy {
+  id           Int @id
+  perUser      Int
+  perWorkspace Int
+  perQueue     Int
+  fleet        Int
+
+  @@map("workload_admission_policy")
+}
+
+model WorkloadProviderLimit {
+  provider      String @id
+  dailyAttempts Int
+  usage         WorkloadProviderUsage[]
+
+  @@map("workload_provider_limits")
+}
+
+model WorkloadProviderUsage {
+  provider String
+  day      DateTime              @db.Date
+  used     Int
+  policy   WorkloadProviderLimit @relation(fields: [provider], references: [provider], onDelete: Restrict)
+
+  @@id([provider, day])
+  @@map("workload_provider_usage")
+}
+
+model WorkloadQueueTurn {
+  queue String @id
+  turn  BigInt
+
+  @@index([turn], map: "workload_queue_turn_idx")
+  @@map("workload_queue_turns")
+}
+
+enum WorkloadJobState {
+  PENDING
+  CLAIMED
+  RUNNING
+  DONE
+  FAILED
+  CANCELLED
+  QUARANTINED
+}
+
+// ─── Private upload quarantine (FILE-01) ───────────────────────────────────────
+enum FileUploadState {
+  INTENT
+  UPLOADING
+  SCANNING
+  READY
+  REJECTED
+  CANCELLED
+}
+
+model FileUpload {
+  id                   String          @id
+  uid                  String
+  workspaceId          String?
+  name                 String
+  declaredType         String
+  declaredSize         Int
+  expectedDigest       String
+  state                FileUploadState @default(INTENT)
+  revision             Int             @default(0)
+  createdAt            DateTime        @default(now()) @db.Timestamptz(3)
+  expiresAt            DateTime        @db.Timestamptz(3)
+  bytesReceived        Int             @default(0)
+  chunkBytes           Int
+  digest               String?
+  sniffedType          String?
+  scanResult           String?
+  rejectionReason      String?
+  parserOutputBytes    Int             @default(0)
+  archiveEntries       Int             @default(0)
+  maxParserOutputBytes Int
+  maxArchiveEntries    Int
+  person               Person          @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  chunks               FileUploadChunk[]
+
+  @@index([uid, state], map: "file_uploads_uid_state_idx")
+  @@map("file_uploads")
+}
+
+model FileUploadChunk {
+  uploadId   String
+  offset     Int
+  size       Int
+  digest     String
+  objectName String     @unique
+  generation String?
+  upload     FileUpload @relation(fields: [uploadId], references: [id], onDelete: Cascade)
+
+  @@id([uploadId, offset])
+  @@map("file_upload_chunks")
 }
 
 // ─── Audit (PRIV-01/PRIV-03) ────────────────────────────────────────────────────

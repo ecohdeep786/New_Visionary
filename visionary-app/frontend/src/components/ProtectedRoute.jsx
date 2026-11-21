@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
@@ -10,8 +10,9 @@ const DefaultFallback = () => (
   </div>
 );
 
-export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthenticatedElement }) {
+export default function ProtectedRoute({ fallback = <DefaultFallback /> }) {
   const { isAuthenticated, isLoadingAuth, authChecked, authError, checkUserAuth } = useAuth();
+  const location = useLocation();
 
   useEffect(() => {
     if (!authChecked && !isLoadingAuth) {
@@ -31,7 +32,13 @@ export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthe
   }
 
   if (!isAuthenticated) {
-    return unauthenticatedElement;
+    /* Deep-link recovery (F-01): the requested destination must survive the
+     * auth gate. Redirecting to /login?returnTo=… routes the post-sign-in
+     * navigation through authReturnTo's hardened safeReturnTo() validation
+     * (same-origin, dashboard-only, app-param stripping) instead of losing
+     * the intended workspace path to the /dashboard/home fallback. */
+    const intended = location.pathname + location.search;
+    return <Navigate to={`/login?returnTo=${encodeURIComponent(intended)}`} replace />;
   }
 
   return <Outlet />;

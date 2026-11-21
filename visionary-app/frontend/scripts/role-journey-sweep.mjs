@@ -106,7 +106,8 @@ const receipt = { at: new Date().toISOString(), base, roles: [], note: 'local fi
 
 /* FAP-67: one Firebase QA account (student); the multi-role journeys need the app's role-add flow — a recorded follow-up. */
 for (const [role, fix] of Object.entries({ student: FIXTURES.student })) {
-  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+  /* F-29: the preview auth store is localStorage-per-context, so the QA session travels via a saved storageState (QA_STORAGE_STATE env). */
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce', ...(process.env.QA_STORAGE_STATE ? { storageState: process.env.QA_STORAGE_STATE } : {}) });
   /* FAP-67: no localStorage seeding — the session comes from loginViaUi();
    * the fixture entities (family links etc.) belong to the multi-role pass. */
   const page = await context.newPage();

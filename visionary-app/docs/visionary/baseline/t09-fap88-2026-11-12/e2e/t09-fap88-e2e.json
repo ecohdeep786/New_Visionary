@@ -1,0 +1,144 @@
+{
+  "results": {
+    "email": "t09-e2e-1794463232713@visionary.test",
+    "base": "http://127.0.0.1:5174",
+    "mergedBeta": "a67722be",
+    "steps": [
+      {
+        "step": "onboarded",
+        "url": "/dashboard/home",
+        "h1": "Welcome back, T09.",
+        "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a learning journey | Explore a project | Why this? | Things I remember a",
+        "fullText": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a learning journey | Explore a project | Why this? | Things I remember about you | Need help along the way? | Ask a question or continue a saved conversation. | Ask Visionary Guide | This view uses your saved learning stage and activity. Suggested session lengths are optional; they do not assess your ability. | Local learning preview"
+      },
+      {
+        "step": "guide-landing",
+        "h1": "Visionary Guide",
+        "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or try an authored example | 3³ | = 27 | Understand cube volume | Start exploring | 4"
+      },
+      {
+        "step": "guide-send-timeout-OBSERVATION",
+        "main": "Visionary Guide | What is a good first project for exam preparation? | Visionary Guide · From your saved records | No project is open. Complete a comprehension check and practice step, then Build guides your application. | Open Build | From"
+      },
+      {
+        "step": "build-project-created",
+        "hasProject": true,
+        "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all |"
+      },
+      {
+        "step": "teacher-role-added",
+        "url": "/dashboard/home",
+        "h1": "Welcome back, T09.",
+        "main": "Teacher | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Prepare your next lesson | Review the objective, explanation and checks before sharing with a class. | Open preparation | View classwork | Why this? | Classroom overview | Need help along the way? | ",
+        "fullText": "Teacher | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Prepare your next lesson | Review the objective, explanation and checks before sharing with a class. | Open preparation | View classwork | Why this? | Classroom overview | Need help along the way? | Ask a question or continue a saved conversation. | Ask Visionary Guide | Local learning preview"
+      },
+      {
+        "step": "class-opened",
+        "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989",
+        "h1": "E2E Physics 1794463232713"
+      },
+      {
+        "step": "stream-update-posted",
+        "composerFound": 1,
+        "postVisible": true,
+        "main": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | T09 E2E u"
+      },
+      {
+        "step": "learner-isolation",
+        "leakClass": false,
+        "hasProject": true
+      },
+      {
+        "step": "teacher-restore-and-persist",
+        "onClassPage": true,
+        "updatePersisted": true,
+        "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989"
+      },
+      {
+        "step": "reload-restore",
+        "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989",
+        "signedIn": true,
+        "activeSelectValue": "6e6716b2-750a-42a9-9ca5-a31be26973b4:teacher"
+      },
+      {
+        "step": "done",
+        "consoleErrors": []
+      }
+    ],
+    "askLanding": {
+      "url": "/dashboard/ask",
+      "h1": "Visionary Guide",
+      "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or try an authored example | 3³ | = 27 | Understand cube volume | Start exploring | 4/8 = 1/2 | Make sense of fractions | Start exploring | 20 | 30 | 25 | Turn data into a decision | Start exploring | From your saved re",
+      "fullText": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or try an authored example | 3³ | = 27 | Understand cube volume | Start exploring | 4/8 = 1/2 | Make sense of fractions | Start exploring | 20 | 30 | 25 | Turn data into a decision | Start exploring | From your saved records | Intent and context | Local preview · About this preview"
+    },
+    "guideReplyTimeout": {
+      "url": "/dashboard/ask",
+      "h1": "Visionary Guide",
+      "main": "Visionary Guide | What is a good first project for exam preparation? | Visionary Guide · From your saved records | No project is open. Complete a comprehension check and practice step, then Build guides your application. | Open Build | From your saved records — not an AI assessment. | Intent and context | ",
+      "fullText": "Visionary Guide | What is a good first project for exam preparation? | Visionary Guide · From your saved records | No project is open. Complete a comprehension check and practice step, then Build guides your application. | Open Build | From your saved records — not an AI assessment. | Intent and context | Response available above. Review its source label. | Message Visionary Guide | English · Private to this workspace | Local preview · About this preview"
+    },
+    "buildList": {
+      "url": "/dashboard/build",
+      "h1": "Build something of your own",
+      "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | E2E Revision Plan 1794463232713 | draft | · | private | Open",
+      "fullText": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | E2E Revision Plan 1794463232713 | draft | · | private | Open",
+      "hasProject": true
+    },
+    "classDetail": {
+      "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989",
+      "h1": "E2E Physics 1794463232713",
+      "main": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | Keep your class in the loop | Post a welcome message to get started. | Record class promotion",
+      "fullText": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | Keep your class in the loop | Post a welcome message to get started. | Record class promotion"
+    },
+    "afterPost": {
+      "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989",
+      "h1": "E2E Physics 1794463232713",
+      "main": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | T09 E2E user | Nov 11, 2026, 6:01 PM | Welcome to our first class — revision plan starts Monda",
+      "fullText": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | T09 E2E user | Nov 11, 2026, 6:01 PM | Welcome to our first class — revision plan starts Monday! | Record class promotion",
+      "composerFound": 1,
+      "postVisible": true
+    },
+    "learnerAfterSwitch": {
+      "url": "/dashboard/classes?class=1e44930e-6992-4419-8cc2-266276da2989",
+      "h1": "Your classes",
+      "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code",
+      "fullText": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code"
+    },
+    "learnerClasses": {
+      "url": "/dashboard/classes",
+      "h1": "Your classes",
+      "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code",
+      "fullText": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code",
+      "leakClass": false
+    },
+    "learnerBuild": {
+      "url": "/dashboard/build",
+      "h1": "Build something of your own",
+      "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | E2E Revision Plan 1794463232713 | draft | · | private | Open",
+      "fullText": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | E2E Revision Plan 1794463232713 | draft | · | private | Open",
+      "hasProject": true
+    },
+    "teacherRestore": {
+      "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989",
+      "h1": "E2E Physics 1794463232713",
+      "main": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | T09 E2E user | Nov 11, 2026, 6:01 PM | Welcome to our first class — revision plan starts Monda",
+      "fullText": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | T09 E2E user | Nov 11, 2026, 6:01 PM | Welcome to our first class — revision plan starts Monday! | Record class promotion",
+      "onClassPage": true
+    },
+    "teacherClassAgain": {
+      "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989",
+      "h1": "E2E Physics 1794463232713",
+      "main": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | T09 E2E user | Nov 11, 2026, 6:01 PM | Welcome to our first class — revision plan starts Monda",
+      "fullText": "E2E Physics 1794463232713 | E2E Physics 1794463232713 | Share this class code | VISION-C36DA0D0 | Stream | Classwork | Curriculum | People | Insights | Community | Share an update with your class | Welcome template | Post update | T09 E2E user | Nov 11, 2026, 6:01 PM | Welcome to our first class — revision plan starts Monday! | Record class promotion",
+      "updatePersisted": true
+    },
+    "afterReload": {
+      "url": "/dashboard/class/1e44930e-6992-4419-8cc2-266276da2989",
+      "signedIn": true,
+      "activeSelectValue": "6e6716b2-750a-42a9-9ca5-a31be26973b4:teacher"
+    },
+    "dupKeyWarnings": 0,
+    "consoleErrors": []
+  },
+  "errs": []
+}

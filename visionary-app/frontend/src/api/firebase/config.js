@@ -28,7 +28,14 @@ export function firebaseConfigFromEnvironment(environment = {}) {
 export function firebaseEmulatorFromEnvironment(environment, config) {
   const value = environment.VITE_FIREBASE_AUTH_EMULATOR_URL;
   if (!value && !config.projectId.startsWith('demo-')) return null;
-  if (!value || environment.DEV !== true || !config.projectId.startsWith('demo-')) throw new Error('Firebase Auth emulator requires an explicit development demo project.');
+  // A production build never binds a demo project to the Auth Emulator, except
+  // through the explicit local test realm below (VITE_FIREBASE_EMULATOR_TEST_ENABLED),
+  // the frontend mirror of the backend's fenced DATA_OVERVIEW_TEST_ENABLED realm:
+  // a controlled verification run of the production shell against the real Auth
+  // protocol and the registered server contracts. The published image pins neither
+  // flag, so hosted behavior is unchanged.
+  const testRealm = environment.VITE_FIREBASE_EMULATOR_TEST_ENABLED === 'true';
+  if (!value || (environment.DEV !== true && !testRealm) || !config.projectId.startsWith('demo-')) throw new Error('Firebase Auth emulator requires an explicit development demo project.');
   const url = new URL(value);
   if (url.protocol !== 'http:' || !['localhost', '127.0.0.1', '[::1]'].includes(url.hostname) || !url.port || url.username || url.password || url.search || url.hash || url.pathname !== '/') throw new Error('Firebase Auth emulator requires an explicit loopback HTTP origin.');
   return url.origin;

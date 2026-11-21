@@ -19,5 +19,5 @@ export default function ConnectedPlanBadge() {
     }).catch(() => { if (current) setLabel('Billing status unavailable'); });
     return () => { current = false; };
   }, [account?.id, client]);
-  return <span lang="en" data-account-billing className="rounded-full border border-[#dadce0] px-3 py-1 text-xs text-[#5f6368]">{label}</span>;
+  return <span lang="en" data-account-billing className="rounded-full border border-[#d2d2d7] px-3 py-1 text-xs text-[#6e6e73]">{label}</span>;
 }

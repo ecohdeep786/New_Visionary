@@ -2,7 +2,7 @@ import {connectedContext} from './fixtures/connectedContext.mjs';
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
-import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
+import { seedConnectedFixtures } from './fixtures/demoFixtures.js';
 import { getAssignedClasses, getStudentClasswork, getStudentClassLearningContext, recordLearningOutcome, getRecentContext, deleteMemory } from '../src/services/mentorStateService.ts';
 import { getRoleMentorView, getCareerPath, requestTeacherSupport, saveCareerTarget } from '../src/services/roleMentorService.ts';
 import { configureContentRepository, getContentRepository, PROFESSIONAL_SAMPLE_SELECTION } from '../src/services/contentRepository.ts';

@@ -1,0 +1,35 @@
+{
+  "email": "t08-after-1794381462650@visionary.test",
+  "steps": [
+    {
+      "step": "after-otp-copy",
+      "h2": [
+        "Create a Visionary account",
+        "Create a Visionary account",
+        "Finish creating your account"
+      ],
+      "paragraphs": [
+        "Local preview — verification is simulated; no email is sent. Any 6-digit code completes signup for t08-after-1794381462650@visionary.test."
+      ],
+      "buttons": [
+        "Verify"
+      ],
+      "hasResend": false,
+      "errored": false
+    },
+    {
+      "step": "after-verify",
+      "url": "/onboarding",
+      "h1": "Make Visionary your own"
+    },
+    {
+      "step": "console",
+      "count": 0,
+      "msgs": []
+    },
+    {
+      "step": "after-mobile-otp",
+      "body": "Skip to content | isionary | Create a Visionary account | Start a learning journey shaped around you. | Finish creating your account | Local preview — verification is simulated; no email is sent. Any 6-digit code completes signup for t08-after-m-1794381473648@visionary.test. | Verify | I already have an account. Sign in | English | Help | Privacy | Terms"
+    }
+  ]
+}

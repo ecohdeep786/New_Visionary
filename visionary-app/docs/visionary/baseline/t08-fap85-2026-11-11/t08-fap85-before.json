@@ -1,0 +1,63 @@
+{
+  "email": "t08-fp85-1794382643600@visionary.test",
+  "steps": [
+    {
+      "step": "registered",
+      "url": "http://127.0.0.1:5174/onboarding"
+    },
+    {
+      "step": "forgot-success-copy",
+      "headings": [
+        "Reset your Visionary password",
+        "Reset your Visionary password",
+        "Check your email"
+      ],
+      "paragraphs": [
+        "Enter your account email to request a password reset link.",
+        "Enter your account email to request a password reset link.",
+        "If an account exists for t08-fp85-1794382643600@visionary.test, you'll receive a password reset link shortly.",
+        "Don't have an account? Sign up"
+      ],
+      "links": [
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        },
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        },
+        {
+          "text": "Sign up",
+          "href": "/register"
+        },
+        {
+          "text": "Back to sign in",
+          "href": "/login"
+        }
+      ],
+      "body": "Skip to content | isionary | Reset your Visionary password | Enter your account email to request a password reset link. | Back to sign in | Check your email | If an account exists for t08-fp85-1794382643600@visionary.test, you'll receive a password reset link shortly. | Back to sign in | Use a different email | Don't have an account? Sign up | English | Help | Privacy | Terms"
+    },
+    {
+      "step": "reset-token-state",
+      "count": 0,
+      "latest": null,
+      "urlNow": "/forgot-password"
+    },
+    {
+      "step": "reset-without-token",
+      "url": "/reset-password",
+      "heading": "Request a new reset link",
+      "body": "Skip to content | isionary | Request a new reset link | Your saved account and learning setup will be kept. | This link is missing, expired or already used. Request a new email to continue. | Request new link | Back to sign in | English | Help | Privacy | Terms"
+    },
+    {
+      "step": "console",
+      "count": 0,
+      "msgs": []
+    },
+    {
+      "step": "forgot-unknown-copy",
+      "body": "Skip to content | isionary | Reset your Visionary password | Enter your account email to request a password reset link. | Back to sign in | Check your email | If an account exists for t08-fp85-unknown-1794382657007@visionary.test, you'll receive a password reset link shortly. | Back to sign in | Use a different email | Don't have an account? Sign up | English | Help | Privacy | Terms"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "email": "t08-probe-1794380280519@visionary.test",
+  "steps": [
+    {
+      "step": "methods-view",
+      "h1": "Create a Visionary account",
+      "buttons": [
+        "Continue with Email",
+        "Continue with Google",
+        "English"
+      ]
+    },
+    {
+      "step": "otp-view-copy",
+      "h2": [
+        "Create a Visionary account",
+        "Create a Visionary account",
+        "Verify your email"
+      ],
+      "paragraphs": [
+        "We sent a 6-digit code to t08-probe-1794380280519@visionary.test",
+        "Didn't receive the code? Resend"
+      ],
+      "buttons": [
+        "Verify",
+        "Resend",
+        "English"
+      ],
+      "hasResend": true,
+      "disclosureBanner": false
+    },
+    {
+      "step": "resend-toast",
+      "toastText": "Code sent\nCheck your email for the new code."
+    },
+    {
+      "step": "verify-000000",
+      "verifyDisabled": false,
+      "after": {
+        "url": "/onboarding",
+        "h1": "Make Visionary your own"
+      }
+    },
+    {
+      "step": "console",
+      "count": 1,
+      "msgs": [
+        "Warning: Unknown event handler property `%s`. It will be ignored.%s onOpenChange \n    at div\n    at _c5 (http://127.0.0.1:5174/src/components/ui/toast"
+      ]
+    },
+    {
+      "step": "mobile-otp-shot",
+      "email": "t08-probe-m-1794380292291@visionary.test"
+    }
+  ]
+}

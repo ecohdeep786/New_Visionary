@@ -1,4 +1,5 @@
 import WorkspaceDetails from '@/components/dashboard/WorkspaceDetails';
+import WorkspaceOpening from '@/components/dashboard/WorkspaceOpening';
 import {workspacePresentationCopy} from '@/lib/workspacePresentationCopy';
 import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
 import SpotIllustration from '@/components/landing/SpotIllustration';
@@ -25,10 +26,11 @@ import ClassworkStudy from './ClassworkStudy';
 import { useAuth } from '@/lib/AuthContext';
 import { appClient } from '@/api/appClient';
 import { createLearningSessionClient } from '@/services/learningSessionClient';
+import { createKnowledgeProjectionClient } from '@/services/knowledgeProjectionClient';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { getContentRepository, getSavedCurriculumGraphs, SAMPLE_SELECTION, SAMPLE_LIBRARY_SELECTION, PROFESSIONAL_SAMPLE_SELECTION } from '@/services/contentRepository';
 import { getStudentState, getStudentClassLearningContext } from '@/services/mentorStateService';
-import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation, configureLearningSessionAdapter } from '@/services/learningPipelineService';
+import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation, configureLearningSessionAdapter, configureKnowledgeProjectionAdapter } from '@/services/learningPipelineService';
 const languageNames = {
   en: 'English',
   hi: 'हिन्दी',
@@ -165,13 +167,16 @@ function CurriculumLearningWorkspace({
   const chapterId = params.get('chapter');
   const bookId = params.get('book');
   const fromClassId = params.get('fromClass');
-  // Connected learning sessions are owner-scoped server receipts; unconfigured or
-  // signed-out visitors keep the verified local-only behaviour.
+  // Connected learning sessions are owner-scoped server receipts keyed to the
+  // signed-in profile; signed-out visitors get no session adapter. The
+  // knowledge estimate (KAN-145) rides the same verified identity: confirmed
+  // assessments project into the owner's server-side estimate.
   useEffect(() => {
-    const accountId = appClient.auth.source === 'firebase' ? user?.id : null;
-    if (!accountId) { configureLearningSessionAdapter(null); return undefined; }
+    const accountId = user?.id;
+    if (!accountId) { configureLearningSessionAdapter(null); configureKnowledgeProjectionAdapter(null); return undefined; }
     configureLearningSessionAdapter(createLearningSessionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
-    return () => configureLearningSessionAdapter(null);
+    configureKnowledgeProjectionAdapter(createKnowledgeProjectionClient({ getAccountId: () => appClient.auth.currentProfile?.()?.id === accountId ? accountId : null }));
+    return () => { configureLearningSessionAdapter(null); configureKnowledgeProjectionAdapter(null); };
   }, [user?.id]);
   useEffect(() => {
     let live = true;
@@ -336,10 +341,10 @@ function CurriculumLearningWorkspace({
   function exportSavedActivity() {
     const savedActivity=getLearningUnit(ctx,unitId);downloadText('saved-activity-view.json',JSON.stringify({title:savedActivity.title,stage:savedActivity.stage,source:savedActivity.sourceContext,locale:savedActivity.locale,explanation:savedActivity.explanation,representation:savedActivity.representation,question:savedActivity.question?{id:savedActivity.question.id,prompt:savedActivity.question.prompt,options:savedActivity.question.options}:undefined,selectedIndex:learningAnswerSelection(savedActivity),attempts:savedActivity.attempts?.map(attempt=>({id:attempt.id,kind:attempt.kind,prompt:attempt.question.prompt,selectedIndex:attempt.selectedIndex,correct:attempt.correct,at:attempt.at}))},null,2),'application/json');
   }
-  if (workspaceError || !ctx) return <div className="v-page" role={workspaceError ? 'alert' : 'status'} lang={locale}>{workspaceError || copy('Opening your learning workspace…')}</div>;
-  if (renderedWorkspaceId !== ctx.workspaceId) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening this workspace\u2026")}</div>;
-  if (unitId && unit?.id !== unitId && busy) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Restoring your saved learning activity\u2026")}</div>;
-  if (!unitId && unit) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening your learning outline\u2026")}</div>;
+  if (workspaceError || !ctx) return workspaceError ? <div className="v-page" role="alert" lang={locale}>{workspaceError}</div> : <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy('Opening your learning workspace…')} />;
+  if (renderedWorkspaceId !== ctx.workspaceId) return <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy("Opening this workspace\u2026")} />;
+  if (unitId && unit?.id !== unitId && busy) return <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy("Restoring your saved learning activity\u2026")} />;
+  if (!unitId && unit) return <WorkspaceOpening locale={locale} title={copy(practice ? 'Practice' : 'Learning workspace')} note={copy("Opening your learning outline\u2026")} />;
   if (activityConflict) return <div className="v-page" lang={locale}><h1 className="v-title">{copy('Saved activity changed')}</h1><p className="v-notice" role="alert">{copy('A newer version of this activity is saved. Reload it to continue with the latest language, view and recorded answers.')}</p><button className="v-button primary mt-4" onClick={() => setContentRetry(value => value + 1)}>{copy('Retry saved learning')}</button></div>;
   const professional = ctx.role === 'professional';
   const foundational = ctx.role === 'student' && getStagePresentation(ctx).tier === 'foundational';
@@ -562,14 +567,14 @@ function CurriculumLearningWorkspace({
       }}><label className="max-w-xl text-sm">{professional ? copy("Skill or capability (optional)") : copy("Subject (optional)")}<input className="v-field mt-2" maxLength={100} placeholder={professional ? copy("For example, data interpretation") : copy("For example, mathematics")} value={selection.subject} onChange={e => setSelection({
             ...selection,
             subject: e.target.value
-          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#1967d2]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
+          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#0071e3]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
                 ...selection,
                 [key]: e.target.value
-              })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try authored workplace sample' : 'Try authored learning sample')}</button></div></form></details>}
+              })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try a workplace example lesson' : 'Try an example lesson')}</button></div></form></details>}
   </div>
   <WorkspaceDetails title={ui("learn")} className="v-learning-options">
   {!practice && <p className="v-muted">{copy(professional ? 'No capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.' : 'No subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.')}</p>}
-  {!practice && !professional && !fromClassId && <button type="button" className="v-button self-start" disabled={busy} onClick={()=>openOutline(SAMPLE_LIBRARY_SELECTION)}>{catalogueCopy('Try a multi-book sample')}<ArrowRight size={16} aria-hidden="true"/></button>}
+  {!practice && !professional && !fromClassId && <button type="button" className="v-button self-start" disabled={busy} onClick={()=>openOutline(SAMPLE_LIBRARY_SELECTION)}>{catalogueCopy('Try examples from more books')}<ArrowRight size={16} aria-hidden="true"/></button>}
   <Link className="v-button self-start" to={practice ? '/dashboard/practice?legacy=1' : '/dashboard/learn?legacy=1'}>{copy("Open previous saved topics and examples")}</Link>
   </WorkspaceDetails>
  </div>;

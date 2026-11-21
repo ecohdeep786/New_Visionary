@@ -4,7 +4,7 @@ import * as w from '../src/services/workspaceService.ts';
 import {connectionStatus} from '../src/lib/connectionAvailability.js';
 import {previewPolicy} from '../src/api/previewPermissions.js';
 import {organizationPolicy} from '../src/services/organizationPolicy.js';
-import {appClient} from '../src/api/appClient.js';
+import {appClient, previewSignIn} from '../src/api/appClient.js';
 const memory=new Map();globalThis.localStorage={getItem:key=>memory.get(key)??null,setItem:(key,value)=>memory.set(key,String(value))};globalThis.window={dispatchEvent(){}};globalThis.CustomEvent??=class{constructor(type){this.type=type;}};
 const org={personId:'demo-school-admin',workspaceId:'demo-school-admin:organization',role:'organization',locale:'en'};
 const teacher={personId:'demo-teacher',workspaceId:'demo-teacher:teacher',role:'teacher',locale:'en'};
@@ -35,7 +35,7 @@ test('malformed billing request deadlines cannot activate a plan; explicit remov
  const db=JSON.parse(memory.get('visionary_workspace_v2'));db.data[owner.workspaceId].subscription.plan='Family';db.familyInvitations=[{id:'bad-billing',owner:owner.personId,member:member.personId,status:'pending',expiresAt:'bad'}];memory.set('visionary_workspace_v2',JSON.stringify(db));const before=memory.get('visionary_workspace_v2');assert.equal(w.familyInvitations(member)[0].unavailable,true);assert.throws(()=>w.changeFamilyInvitation(member,'bad-billing','active'),/expiry/);assert.equal(memory.get('visionary_workspace_v2'),before);w.changeFamilyInvitation(member,'bad-billing','revoked');assert.equal(JSON.parse(memory.get('visionary_workspace_v2')).familyInvitations[0].expiresAt,'bad');
 });
 test('legacy personal summary reads honor expiry even when the stored relationship says active',async()=>{
- const user={id:'demo-parent',email:'parent@visionary.test',identity:'parent'};memory.set('visionary_users',JSON.stringify([user]));memory.set('visionary_sessions',JSON.stringify([{token:'integrity',userId:user.id,email:user.email,expiresAt:Date.now()+86400000}]));memory.set('visionary_session_token','integrity');memory.set('visionary_entity_StudyLog',JSON.stringify([{id:'private-log',owner_email:'adult@visionary.test'}]));
+ const user={id:'demo-parent',email:'parent@visionary.test',identity:'parent'};previewSignIn(user);memory.set('visionary_entity_StudyLog',JSON.stringify([{id:'private-log',owner_email:'adult@visionary.test'}]));
  for(const expiresAt of ['',false,0,{},'bad','2020-01-01']){const raw=JSON.stringify([{id:'summary',parent_email:user.email,child_email:'adult@visionary.test',status:'active',expiresAt}]);memory.set('visionary_entity_FamilyLink',raw);assert.deepEqual(await appClient.entities.StudyLog.filter({owner_email:'adult@visionary.test'}),[]);assert.equal(memory.get('visionary_entity_FamilyLink'),raw);}
  memory.set('visionary_entity_FamilyLink',JSON.stringify([{id:'summary',parent_email:user.email,child_email:'adult@visionary.test',status:'active',expiresAt:new Date(Date.now()+86400000).toISOString()}]));assert.equal((await appClient.entities.StudyLog.filter({owner_email:'adult@visionary.test'})).length,1);
 });

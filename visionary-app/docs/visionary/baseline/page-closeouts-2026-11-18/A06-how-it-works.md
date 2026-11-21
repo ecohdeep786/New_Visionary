@@ -1,0 +1,22 @@
+# FHE-PAGE CLOSEOUT — A06 — `/how-it-works`
+
+- Branch / owned worktree / base SHA / change SHA: `zcode-fhe-landing-craft` · base `59bd515e` (dev) · change: 17 typographic apostrophes.
+- Primary file changed: `frontend/src/pages/landing/CoachingPage.jsx`.
+- Prior accepted receipts reused: A00 hero grammar, founder-round fixes.
+- User audience / primary purpose / next real step: a visitor evaluating the product; explain the loop we're developing step by step; next step "Create account"/"Sign in" — the step-01 illustration's button is a REAL link to /register and /login.
+- Release capability classification: public marketing page; the loop chapters describe the developing product with the hero's own honest framing ("Explore the learning journey we're developing").
+- Apple sources consulted (live tabs): https://www.apple.com/apple-vision-pro/ — "Take a closer look" grammar (one component + its benefit per paragraph); HIG Layout (chapter rhythm). Principle applied, nothing copied.
+- Initial defects with evidence: 17 straight apostrophes in visible copy (converted).
+- Truth review of the AuthMock illustration (the no-demo law's risk zone): the mock's "fields" are styled `<p>` elements — no fake inputs, no focusable dead controls; the "Sign up"/"Sign in" button is a REAL Link to /register or /login; "Or continue with Google" is a non-interactive part of the illustration. The mock is a picture of the flow with a genuine door — passes the truth law. Recorded as evidence, no change required.
+- The "One loop, [stage]." heading is a cycling stage label (correct by design; the text-dump caught one cycle frame).
+- INCIDENT RECORDED (same pass): the apostrophe conversion script accidentally wrote CoachingPage's content into Landing.jsx (590/519-line overwrite). The type-roles and CTA-trace gates caught it immediately (Landing "authors raw fluid sizes"; "the landing page must keep its traced how-it-works door"). Landing.jsx was restored from HEAD (the real landing's 84-apostrophe conversion was already committed at 2309e82d; main and dev were never affected), the suite returned to 870/870, and the landing was re-verified rendered (h1, purpose line, 9 sections, how-it-works door present). Lesson recorded: bulk file-rewrite scripts must write exactly the file they read.
+- Browser: Chromium (Edge) production build; IAB walk; the restored landing re-verified (h1, purpose line, sections, door).
+- Before/after: 17 apostrophes converted; the incident recovery verified by the full gate set.
+- Motion/reduced-motion: unchanged. Accessibility: unchanged. Responsive: unchanged (page verified at 390px in the persona-era sweep; this pass at 1280).
+- Production build/lint/unit/graph: eslint clean; 870/870 after scope regeneration; build ✓.
+- Route/CTA actions: the AuthMock button → /register//login (real); the loop chapter's cycling heading verified.
+- Open dependencies: the loop's teaching/practice/build services remain honest rooms per the recorded handoffs (the page frames them honestly as developing).
+- Reviewer verdict: self-reviewed as principal engineer; the incident and recovery documented.
+- Final verdict: PASS (with the incident recorded for the evidence ledger).
+- What the next agent should NOT redo: the AuthMock truth treatment, the cycling loop heading, the apostrophe discipline.
+- NEXT primary page: A07 `/pricing`.

@@ -1,5 +1,7 @@
 # KAN-56 / FILE-01 — reviewer-corrector pass (2026-11-10)
 
+This records the original in-memory candidate. The current upload implementation and acceptance criteria are in [KAN-56 upload review](KAN56_UPLOAD_REVIEW.md).
+
 Reviewer-prep for `codex/deepseek-kan-56-upload-lifecycle` before D-095 review; Testing, reviewer pending, NOT merged into dev. Commits on the branch: corrections `6906cb42`, stacked integration `384e2ba6` (merge of the corrected `codex/deepseek-kan-53-outbox-jobs` `dd520a57`, carrying accepted dev `2e0b1fbb` + the blob-verified data-04 fix; tsconfig include union; lease/attempt tokens also moved to `randomUUID` — this branch's JOB-02-era code still carried the `Date.now()+Math.random` token shape from before the KAN-54 correction), test-adaptation commit (runJob-based idempotency test → fenced-completion replay).
 
 ## Corrections (all in `src/file/` unless noted)

@@ -144,11 +144,11 @@ export default function AssignmentGrader({
     if (!open && !busyId) onClose();
   }}>
       <DialogContent lang={locale} className="v-review-dialog max-h-[85dvh] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl bg-white p-0 sm:max-w-[640px]">
-        <div className="flex items-center justify-between p-6 border-b border-[#dadce0]/60">
+        <div className="flex items-center justify-between p-6 border-b border-[#d2d2d7]/60">
           <div className="min-w-0">
-            <DialogTitle className="pr-8 text-sm font-medium text-[#121317]">{assignment.title}</DialogTitle>
-            <DialogDescription className="text-xs text-[#5f6368] mt-0.5">{copy("Review and return submissions. Grades must be within the assignment\u2019s point range. Edits are kept on this device until returned.")}</DialogDescription>
-            {assignment.source_version && <p className="mt-2 break-all text-xs text-[#5f6368]">{copy("Saved lesson version:")}{assignment.source_version}</p>}
+            <DialogTitle className="pr-8 text-sm font-medium text-[#1d1d1f]">{assignment.title}</DialogTitle>
+            <DialogDescription className="text-xs text-[#6e6e73] mt-0.5">{copy("Review and return submissions. Grades must be within the assignment\u2019s point range. Edits are kept on this device until returned.")}</DialogDescription>
+            {assignment.source_version && <p className="mt-2 break-all text-xs text-[#6e6e73]">{copy("Saved lesson version:")}{assignment.source_version}</p>}
           </div>
         </div>
 
@@ -162,35 +162,35 @@ export default function AssignmentGrader({
             }
           }}>{copy("Discard edits and load latest reviews")}</button></div>}
           {loading ? <div className="flex justify-center py-10">
-              <div className="w-7 h-7 border-4 border-[#dadce0] rounded-full animate-spin" style={{
+              <div className="w-7 h-7 border-4 border-[#d2d2d7] rounded-full animate-spin" style={{
             borderTopColor: accent
           }} />
             </div> : loadFailed ? <p role="alert" className="text-sm text-[#b3261e]">{copy('Submissions unavailable. Saved work has not been replaced.')} <button className="min-h-11 underline" onClick={() => setReload(value => value + 1)}>{copy('Retry')}</button></p> : submissions.length === 0 ? <div className="flex flex-col items-center gap-3 py-12 text-center">
-              <p className="text-sm text-[#5f6368] max-w-sm">{copy("No submissions yet. They'll appear here as students turn in their work.")}</p>
-            </div> : submissions.map(s => <div key={s.id} className="p-5 rounded-2xl border border-[#dadce0]/60 flex flex-col gap-3">
+              <p className="text-sm text-[#6e6e73] max-w-sm">{copy("No submissions yet. They'll appear here as students turn in their work.")}</p>
+            </div> : submissions.map(s => <div key={s.id} className="p-5 rounded-2xl border border-[#d2d2d7]/60 flex flex-col gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium bg-[#dadce0] text-[#5f6368] shrink-0">
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium bg-[#d2d2d7] text-[#6e6e73] shrink-0">
                     {(s.student_name || "?").charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#121317] truncate">{s.student_name || s.student_email}</p>
-                    <p className="text-xs text-[#5f6368] truncate">{s.student_email}</p>
+                    <p className="text-sm font-medium text-[#1d1d1f] truncate">{s.student_name || s.student_email}</p>
+                    <p className="text-xs text-[#6e6e73] truncate">{s.student_email}</p>
                   </div>
                   {s.status === "graded" && <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-[#e6f4ea] text-[#137333]">{copy("Returned")}</span>}
                 </div>
-                <p className="text-xs text-[#5f6368]">{copy('Attempt {number}', {
+                <p className="text-xs text-[#6e6e73]">{copy('Attempt {number}', {
               number: s.attempt || 1
             })}{s.status === 'revision_requested' ? copy(" \xB7 Revision requested") : ''}</p>
-                <div className="p-3 rounded-xl bg-[#ffffff] text-sm text-[#5f6368] break-words whitespace-pre-wrap leading-relaxed">
+                <div className="p-3 rounded-xl bg-[#ffffff] text-sm text-[#6e6e73] break-words whitespace-pre-wrap leading-relaxed">
                   {s.text || copy("No submission text")}
                 </div>
-                {!!s.revision_history?.length && <details className="text-sm text-[#5f6368]"><summary className="cursor-pointer">{copy('Previous attempts and feedback ({count})', {
+                {!!s.revision_history?.length && <details className="text-sm text-[#6e6e73]"><summary className="cursor-pointer">{copy('Previous attempts and feedback ({count})', {
                 count: s.revision_history.length
-              })}</summary>{s.revision_history.map((entry, index) => <div key={index} className="mt-3 border-l-2 border-[#dadce0] pl-3"><p className="font-medium">{copy('Attempt {number}', {
+              })}</summary>{s.revision_history.map((entry, index) => <div key={index} className="mt-3 border-l-2 border-[#d2d2d7] pl-3"><p className="font-medium">{copy('Attempt {number}', {
                   number: entry.attempt
                 })}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap">{copy("Feedback:")}{entry.feedback}</p><CriterionFeedback criteria={assignment.objective_snapshot?.criteria} feedback={entry.criterion_feedback} /></div>)}</details>}
                 <div className="v-review-controls flex flex-wrap items-center gap-3">
-                  {!!assignment.objective_snapshot?.criteria?.length && <section className="w-full"><h3 className="text-sm font-medium">{copy("Review the assigned criteria")}</h3><p className="mt-2 text-xs text-[#5f6368]">{copy("Returning a grade requires a rating and note for each criterion. Revision requests may address selected criteria.")}</p>{assignment.objective_snapshot.criteria.map(item => <div className="mt-4" key={item.id}><p className="text-sm font-medium">{item.label}</p><p className="mt-1 text-xs text-[#5f6368]">{item.prompt}</p><select className="v-field mt-2" aria-label={copy("Criterion rating: {criterion} for {name}", {
+                  {!!assignment.objective_snapshot?.criteria?.length && <section className="w-full"><h3 className="text-sm font-medium">{copy("Review the assigned criteria")}</h3><p className="mt-2 text-xs text-[#6e6e73]">{copy("Returning a grade requires a rating and note for each criterion. Revision requests may address selected criteria.")}</p>{assignment.objective_snapshot.criteria.map(item => <div className="mt-4" key={item.id}><p className="text-sm font-medium">{item.label}</p><p className="mt-1 text-xs text-[#6e6e73]">{item.prompt}</p><select className="v-field mt-2" aria-label={copy("Criterion rating: {criterion} for {name}", {
                   criterion: item.label,
                   name: s.student_name || s.student_email
                 })} value={s.criterion_feedback?.[item.id]?.rating || ''} disabled={!!busyId} onChange={event => updateField(s, 'criterion_feedback', {
@@ -210,13 +210,13 @@ export default function AssignmentGrader({
                   }
                 })} /></div>)}</section>}
                   <div className="v-review-grade flex items-center gap-2">
-                    <span className="text-sm text-[#5f6368]">{copy("Grade")}</span>
+                    <span className="text-sm text-[#6e6e73]">{copy("Grade")}</span>
                     <input type="number" disabled={!!busyId} aria-label={copy("Grade for {name}", {
                 name: s.student_name || s.student_email
-              })} min="0" max={assignment.points || 100} value={s.grade ?? ""} onChange={e => updateField(s, "grade", e.target.value)} placeholder={copy("Grade")} className="w-20 h-11 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#4285F4]" />
-                    <span className="text-xs text-[#5f6368]">/ {assignment.points || 100}</span>
+              })} min="0" max={assignment.points || 100} value={s.grade ?? ""} onChange={e => updateField(s, "grade", e.target.value)} placeholder={copy("Grade")} className="w-20 h-11 px-3 rounded-xl border border-[#d2d2d7] text-sm outline-none focus:border-[#0071E3]" />
+                    <span className="text-xs text-[#6e6e73]">/ {assignment.points || 100}</span>
                   </div>
-                  <label className="v-review-feedback text-sm text-[#5f6368]">{copy("Feedback (required for revision)")}
+                  <label className="v-review-feedback text-sm text-[#6e6e73]">{copy("Feedback (required for revision)")}
                   <textarea rows={3} aria-label={copy("Feedback for {name}", {
               name: s.student_name || s.student_email
             })} maxLength={5000} disabled={!!busyId} value={s.feedback || ""} onChange={e => updateField(s, "feedback", e.target.value)} className="v-field mt-2 w-full" />
@@ -225,7 +225,7 @@ export default function AssignmentGrader({
               backgroundColor: accent
             }}>
                     <Check className="w-4 h-4" />{copy("Return")}</button>
-                  <button onClick={() => returnSub(s, 'revision_requested')} disabled={!!busyId} className="h-11 rounded-full border border-[#dadce0] px-4 text-sm font-medium disabled:opacity-50">{copy("Request revision")}</button>
+                  <button onClick={() => returnSub(s, 'revision_requested')} disabled={!!busyId} className="h-11 rounded-full border border-[#d2d2d7] px-4 text-sm font-medium disabled:opacity-50">{copy("Request revision")}</button>
                 </div>
               </div>)}
         </div>

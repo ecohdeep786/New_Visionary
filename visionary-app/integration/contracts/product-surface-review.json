@@ -63,16 +63,6 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/auth/LanguageSelector.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
     "frontend/src/components/AuthLayout.jsx": {
       "profile": "client-presentation",
       "state": "connected",
@@ -81,36 +71,6 @@
       "followUp": [
         "SCOPE-06",
         "PLAT-01"
-      ]
-    },
-    "frontend/src/components/dashboard/AchievementsCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/AGIInsightCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/AITeacherHero.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/AssignedCurriculumOutline.jsx": {
@@ -159,36 +119,6 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/dashboard/BreathingExercise.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/BuildHero.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/ChallengeCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/dashboard/ClassCurriculum.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -225,16 +155,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/components/dashboard/CollapsibleSection.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/dashboard/CommunityTab.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -245,16 +165,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/components/dashboard/ConceptCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/ConnectedBilling.jsx": {
@@ -294,16 +204,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/components/dashboard/ContinueCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/CubeLearningEntry.jsx": {
@@ -353,38 +253,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/components/dashboard/DailyBriefing.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/DashboardCards.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/DashboardLayout.jsx": {
-      "profile": "local-domain-workflow",
-      "state": "preview",
-      "execution": "browser-local",
-      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
-      "followUp": [
-        "SCOPE-03",
-        "SCOPE-04",
-        "DATA-01",
-        "SYNC-02"
-      ]
-    },
     "frontend/src/components/dashboard/DashboardSidebar.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -407,43 +275,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/components/dashboard/EmptyState.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/FamilyBilling.jsx": {
-      "profile": "authenticated-test-billing",
-      "state": "connected",
-      "execution": "server",
-      "reason": "Authenticated Razorpay TEST subscription/Family/invoice path exists. Live merchant money, legal invoicing, hosted webhook and real entitlements for learning are separate gates.",
-      "followUp": [
-        "BILL-01",
-        "BILL-04",
-        "BILL-08"
-      ],
-      "endpoints": [
-        "GET /api/billing/account",
-        "POST /api/billing/cancel",
-        "GET /api/billing/catalog",
-        "POST /api/billing/checkouts",
-        "POST /api/billing/family/accept",
-        "POST /api/billing/family/invitations",
-        "GET /api/billing/family/invitations/:id",
-        "POST /api/billing/family/leave",
-        "POST /api/billing/family/remove",
-        "GET /api/billing/invoices/:id",
-        "POST /api/billing/jobs/reconcile",
-        "POST /api/billing/sync",
-        "POST /api/billing/verify",
-        "POST /api/billing/webhooks/razorpay"
       ]
     },
     "frontend/src/components/dashboard/FamilyProgress.jsx": {
@@ -469,36 +300,6 @@
       ],
       "endpoints": [
         "POST /api/account/feedback"
-      ]
-    },
-    "frontend/src/components/dashboard/FloatingAskButton.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/GamificationSection.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/GetStartedCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/GuideActivity.jsx": {
@@ -537,46 +338,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/components/dashboard/LaggingTopicsCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/learn/ConceptNavigator.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/learn/ContentsDropdown.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/learn/CourseIntro.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/dashboard/learn/CourseViewer.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -587,26 +348,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/components/dashboard/learn/QuestionBar.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/learn/SubjectHeroBanner.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/learn/SubjectPills.jsx": {
@@ -740,16 +481,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/components/dashboard/MarketTrends.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/dashboard/MentorGreeting.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -834,36 +565,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/components/dashboard/PersonalizedPathCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/practice/QuizView.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/PricingCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -876,16 +577,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/components/dashboard/ProjectCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/dashboard/ProjectCriteria.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -896,16 +587,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/components/dashboard/ReferralCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/RoleMentorPanel.jsx": {
@@ -944,16 +625,12 @@
       ]
     },
     "frontend/src/components/dashboard/ApprovedPrivacyPolicy.jsx": {
-      "profile": "approved-privacy-reference",
-      "state": "connected",
+      "profile": "authenticated-account",
+      "state": "missing",
       "execution": "server",
-      "reason": "Authenticated read of the Founder-approved preservation reference. Lifecycle and guardian verification remain separate.",
+      "reason": "Uses the existing dev policy contract. Approved policy records require the deployed backend.",
       "followUp": [
-        "PRIV-01",
-        "PRIV-02"
-      ],
-      "endpoints": [
-        "GET /api/account/privacy/policy"
+        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/StageProfileEditor.jsx": {
@@ -965,16 +642,6 @@
         "LEARN-14",
         "DATA-06",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/components/dashboard/StreakCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/components/dashboard/teacher/AssignmentGrader.jsx": {
@@ -1095,41 +762,21 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/components/dashboard/TodayPlanCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/UnderstandingMeter.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/dashboard/UpNextCard.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/dashboard/WorkspaceDetails.jsx": {
       "profile": "client-widget-primitive",
       "state": "connected",
       "execution": "client",
       "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/dashboard/WorkspaceListbox.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Settings listbox primitive delegates its committed value to the reviewed caller's save-on-change contract; a control choice never establishes server authority or multi-device persistence.",
       "followUp": [
         "SCOPE-06",
         "ACCEPT-05"
@@ -1429,6 +1076,16 @@
         "PLAT-01"
       ]
     },
+    "frontend/src/components/landing/AuthAwareLink.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "The public pages' shared auth-aware conversion door (§8 cross-team review limitation #2): a router Link that offers a signed-in visitor the real next action (the workspace) instead of the registration form, while the signed-out door and label stay unchanged. Client-side presentation and navigation only; no server connection, data authority or educational coverage is claimed.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
     "frontend/src/components/landing/QuietLink.jsx": {
       "profile": "client-presentation",
       "state": "connected",
@@ -1529,16 +1186,6 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/onboarding/steps/AGIIntro.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/onboarding/steps/IdentitySelection.jsx": {
       "profile": "client-presentation",
       "state": "connected",
@@ -1628,56 +1275,6 @@
         "POST /api/auth/session"
       ]
     },
-    "frontend/src/components/ui/accordion.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/breadcrumb.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/carousel.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/ui/command.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/context-menu.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
     "frontend/src/components/ui/dropdown-menu.jsx": {
       "profile": "client-widget-primitive",
       "state": "connected",
@@ -1698,96 +1295,6 @@
         "ACCEPT-05"
       ]
     },
-    "frontend/src/components/ui/input.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/ui/menubar.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/navigation-menu.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/pagionation.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/ui/radio-group.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/select.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/sidebar.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/ui/tabs.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
-      ]
-    },
-    "frontend/src/components/ui/textarea.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/components/ui/toast.jsx": {
       "profile": "retained-source-only",
       "state": "intentionally-unreleased",
@@ -1796,16 +1303,6 @@
       "followUp": [
         "SCOPE-01",
         "SCOPE-06"
-      ]
-    },
-    "frontend/src/components/ui/toggle-group.jsx": {
-      "profile": "client-widget-primitive",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
-      "followUp": [
-        "SCOPE-06",
-        "ACCEPT-05"
       ]
     },
     "frontend/src/lib/PageNotFound.jsx": {
@@ -1847,26 +1344,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/pages/dashboard/Ask.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/pages/dashboard/Build.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/pages/dashboard/Children.jsx": {
@@ -2145,18 +1622,6 @@
         "SYNC-02"
       ]
     },
-    "frontend/src/pages/dashboard/Plans.jsx": {
-      "profile": "local-domain-workflow",
-      "state": "preview",
-      "execution": "browser-local",
-      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
-      "followUp": [
-        "SCOPE-03",
-        "SCOPE-04",
-        "DATA-01",
-        "SYNC-02"
-      ]
-    },
     "frontend/src/pages/dashboard/Practice.jsx": {
       "profile": "local-domain-workflow",
       "state": "preview",
@@ -2191,36 +1656,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/pages/dashboard/role/OrgHome.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/pages/dashboard/role/ParentHome.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
-    "frontend/src/pages/dashboard/role/StudentHome.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/pages/dashboard/role/TeacherHome.jsx": {
@@ -2269,16 +1704,6 @@
         "SCOPE-04",
         "DATA-01",
         "SYNC-02"
-      ]
-    },
-    "frontend/src/pages/dashboard/Subscription.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
       ]
     },
     "frontend/src/pages/dashboard/Support.jsx": {
@@ -2614,16 +2039,6 @@
         "POST /api/auth/session"
       ]
     },
-    "frontend/src/pages/OAuthConsent.jsx": {
-      "profile": "retained-source-only",
-      "state": "intentionally-unreleased",
-      "execution": "not-route-reachable",
-      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
-      "followUp": [
-        "SCOPE-01",
-        "SCOPE-06"
-      ]
-    },
     "frontend/src/pages/Onboarding.jsx": {
       "profile": "configured-account-flow",
       "state": "connected",
@@ -2710,6 +2125,121 @@
       "endpoints": [
         "GET /api/account/privacy/consents",
         "POST /api/account/privacy/consents/revoke"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedAccountSecurity.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Lists the current account’s browser sessions and delegates account-wide sign-out to the server.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "GET /api/account/devices",
+        "POST /api/auth/logout-all"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedWorkspaces.jsx": {
+      "profile": "authenticated-account",
+      "state": "missing",
+      "execution": "server",
+      "reason": "Workspace list, personal provisioning and institution invitation acceptance use dev contracts. Beta requires the deployed overview store, workspace provisioner and institution invitation service.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedConsents.jsx": {
+      "profile": "authenticated-account",
+      "state": "missing",
+      "execution": "server",
+      "reason": "Uses the dev consent list and revocation endpoints. Live use requires the deployed consent service and its SQL configuration.",
+      "followUp": [
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedLearningHistory.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Reads owner-scoped saved learning from the server; no local data or interactive teaching is enabled.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "GET /api/account/learning/sessions"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedProfile.jsx": {
+      "profile": "authenticated-account",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Edits the account display name on the server with an expected-name conflict check.",
+      "followUp": [
+        "SCOPE-06"
+      ],
+      "endpoints": [
+        "PATCH /api/auth/profile"
+      ]
+    },
+    "frontend/src/components/ui/toaster.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/pages/dashboard/RoleAreaUnavailable.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Workspace access-boundary notice (FAP-75): renders where an organization-only area is deep-linked by another identity; browser-local surfaces only, no server authority claimed.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/KnowledgeEstimatePanel.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "The Progress surface reads the owner's server-computed knowledge estimate (KAN-145/LEARN-09) through the registered knowledge endpoints. Estimates render exactly as the server computed them with honest empty, conflict and unavailable states; no mastery or taught label is rendered.",
+      "followUp": [
+        "LEARN-09",
+        "SYNC-02"
+      ],
+      "endpoints": [
+        "GET /api/account/learning/knowledge/models",
+        "GET /api/account/learning/knowledge/projections",
+        "POST /api/account/learning/knowledge/project"
+      ]
+    },
+    "frontend/src/components/dashboard/PreviewDashboardLayout.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedWorkspaceLayout.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "The production composition root hosts the approved shell around server-owned account state and routes every area to a service-backed surface or an explicit unavailable room. It performs no server call itself; connected children own their endpoints.",
+      "followUp": [
+        "SCOPE-04",
+        "SYNC-02"
       ]
     }
   },
@@ -2932,7 +2462,7 @@
       ],
       "files": [
         "frontend/src/components/dashboard/BillingInvoice.jsx",
-        "frontend/src/components/dashboard/FamilyBilling.jsx"
+        "frontend/src/services/billingClient.js"
       ],
       "reason": "Payer test invoices and Family billing benefits are separate from educational guardian/membership permissions.",
       "followUp": [

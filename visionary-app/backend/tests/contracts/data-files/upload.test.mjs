@@ -1,162 +1,209 @@
-/**
- * FILE-01 (KAN-56) — authorized upload intent → private quarantine →
- * complete/digest/type/size verification → scan → ready lifecycle; resumable
- * failures and bounded parser/archive output.
- *
- * Proven here:
- *   1. an intent is created by an authorized owner and is private quarantine
- *      (INTENT) — no byte is admitted until READY,
- *   2. chunks append resumably; a retried chunk is idempotent (no double byte)
- *      and progress resumes from the durable bytesReceived,
- *   3. a gap (offset ≠ bytesReceived) is rejected and stays UPLOADING,
- *   4. completion verifies size match, computes the sha256 digest and sniffs
- *      type; a size mismatch rejects the file,
- *   5. verification + scan must both pass before READY; an infected scan result
- *      rejects with scan_infected,
- *   6. only READY files are readable — INTENT/UPLOADING are quarantine and a
- *      read attempt is refused,
- *   7. bounded parser/archive output: exceeding the cap rejects with
- *      parser_output_bound; within-cap stays READY.
- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRequire } from 'node:module';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fixture from '../data-01/postgres-fixture.cjs';
+import roles from '../data-02/postgres-fixture.cjs';
 
-const backendRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../../upstream/backend');
-const req = createRequire(resolve(backendRoot, 'package.json'));
+const { canonicalMigrations } = fixture.req('./dist/src/data/migration-registry.js');
+const { MigrationRunner } = fixture.req('./dist/src/data/migration-runner.js');
+const { UploadService } = fixture.req('./dist/src/file/upload.service.js');
+const { DEFAULT_FILE_POLICY, sha256Hex } = fixture.req('./dist/src/file/file-types.js');
+const { PostgresFileStore } = fixture.req('./dist/src/file/file-store.sql.js');
+const { GcsQuarantineStorage } = fixture.req('./dist/src/file/quarantine-storage.gcs.js');
 
-const { UploadService, FilePolicyError } = req('./dist/src/file/upload.service.js');
-const { InMemoryFileStore } = req('./dist/src/file/file-store.js');
-const { DEFAULT_FILE_POLICY } = req('./dist/src/file/file-types.js');
+const matches = code => error => error.code === code;
+const clean = { scan: async () => 'clean' };
 
-function sniff(bytes) {
-  // Minimal sniff: assume PDF if it starts with %PDF, else text/plain.
-  return bytes.length >= 4 && bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46 ? 'application/pdf' : 'text/plain';
+function quarantine() {
+  const bucket = 'visionary-kan56-quarantine-fixture';
+  const objects = new Map();
+  const requests = [];
+  let dropOnce = false;
+  let corrupt = false;
+  const store = new GcsQuarantineStorage(bucket, async () => 'synthetic-local-only', async (url, request) => {
+    requests.push({ url: new URL(url), method: request.method || 'GET' });
+    assert.equal(url.origin, 'https://storage.googleapis.com');
+    assert.equal(request.headers.Authorization, 'Bearer synthetic-local-only');
+    if (request.method === 'POST') {
+      const name = url.searchParams.get('name');
+      assert.equal(url.searchParams.get('ifGenerationMatch'), '0');
+      const old = objects.get(name);
+      if (old) return new Response(null, { status: 412 });
+      const bytes = Uint8Array.from(request.body);
+      const meta = { name, bucket, size: String(bytes.length), generation: String(101 + objects.size) };
+      objects.set(name, { bytes, meta });
+      if (dropOnce) {
+        dropOnce = false;
+        throw Error('synthetic response loss after durable write');
+      }
+      return Response.json(meta);
+    }
+    const key = decodeURIComponent(url.pathname.slice(url.pathname.lastIndexOf('/') + 1));
+    const object = objects.get(key);
+    assert.ok(object, 'expected immutable object reference');
+    if (url.searchParams.get('alt') === 'media') {
+      assert.equal(url.searchParams.get('generation'), object.meta.generation);
+      assert.equal(url.searchParams.get('ifGenerationMatch'), object.meta.generation);
+      return new Response(corrupt ? Uint8Array.of(...object.bytes, 0) : object.bytes);
+    }
+    return Response.json(object.meta);
+  });
+  return { store, requests, objects, dropResponse: () => { dropOnce = true; }, corruptRead: () => { corrupt = true; } };
 }
 
-function setup(policyOverrides = {}) {
-  const s = new InMemoryFileStore();
-  const policy = { ...DEFAULT_FILE_POLICY, ...policyOverrides };
-  const u = new UploadService(s, policy);
-  return { s, u, policy };
+async function setup(t, overrides = {}) {
+  const env = await roles.stagingDatabase();
+  t.after(() => env.close());
+  await new MigrationRunner(env.store(), canonicalMigrations(fixture.backend)).applyAll();
+  const { db, runtime, runtimeRole, schema } = env;
+  for (const [permissions, table] of [
+    ['SELECT, INSERT, UPDATE (state, revision, "bytesReceived", digest, "sniffedType", "scanResult", "rejectionReason", "parserOutputBytes", "archiveEntries")', 'file_uploads'],
+    ['SELECT, INSERT, UPDATE (generation)', 'file_upload_chunks'],
+    ['SELECT (uid), UPDATE ("updatedAt")', 'persons'],
+    ['SELECT (uid, "resourceType", "resourceId")', 'deletion_tombstones'],
+    ['SELECT (id, uid), UPDATE ("updatedAt")', 'workspaces'],
+    ['SELECT (id, uid, "workspaceId", role), UPDATE ("updatedAt")', 'workspace_memberships'],
+  ]) {
+    await db.$executeRawUnsafe('GRANT ' + permissions + ' ON "' + schema + '".' + table + ' TO "' + runtimeRole + '"');
+  }
+  await db.person.createMany({ data: ['owner', 'peer', 'member', 'guest'].map(uid => ({ uid })) });
+  const workspace = await db.workspace.create({ data: { uid: 'owner', name: 'Upload QA', slug: 'upload-qa' } });
+  await db.workspaceMembership.createMany({ data: [
+    { uid: 'member', workspaceId: workspace.id, role: 'MEMBER', source: 'direct' },
+    { uid: 'guest', workspaceId: workspace.id, role: 'GUEST', source: 'direct' },
+  ] });
+  const peer = fixture.client(env.config.runtimeUrl);
+  t.after(() => peer.$disconnect());
+  const storage = quarantine();
+  const policy = { ...DEFAULT_FILE_POLICY, chunkBytes: 3, ...overrides };
+  const worker = (inspection = clean, connection = runtime) =>
+    new UploadService(new PostgresFileStore(connection), storage.store, inspection, policy);
+  return { ...storage, db, worker, upload: worker(), restart: worker(clean, peer), workspaceId: workspace.id };
 }
 
-function bytes(str) {
-  return new TextEncoder().encode(str);
+function intent(bytes, overrides = {}) {
+  return { uid: 'owner', name: 'notes.txt', declaredType: 'text/plain',
+    declaredSize: bytes.length, expectedDigest: sha256Hex(bytes), ...overrides };
 }
 
-test('FILE-01 intent: an authorized user creates a private-quarantine intent with durable metadata', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', workspaceId: 'ws-1', name: 'notes.md', declaredType: 'text/markdown', declaredSize: 8 });
-  assert.equal(record.state, 'INTENT');
-  assert.equal(record.bytesReceived, 0);
-  assert.equal(record.uid, 'uid-1');
-  assert.equal(record.workspaceId, 'ws-1');
-  assert.equal(record.digest, null);
+async function send(service, record, bytes) {
+  for (let offset = 0; offset < bytes.length; offset += record.chunkBytes) {
+    await service.appendChunk(record.id, record.uid, offset, bytes.subarray(offset, offset + record.chunkBytes));
+  }
+}
+
+test('FILE-01 resumes from PostgreSQL and recovers a response lost after the GCS write', async t => {
+  const { upload, restart, requests, objects, dropResponse, workspaceId } = await setup(t);
+  const bytes = Buffer.from('hello!');
+  const record = await upload.createIntent(intent(bytes, { workspaceId }));
+  await assert.rejects(upload.requireReady(record.id, 'owner'), matches('not_ready'));
+  await assert.rejects(upload.appendChunk(record.id, 'peer', 0, bytes.subarray(0, 3)), matches('not_found'));
+  await assert.rejects(upload.appendChunk(record.id, 'owner', 3, bytes.subarray(3)), matches('state_conflict'));
+  assert.equal(requests.length, 0);
+  dropResponse();
+  await assert.rejects(upload.appendChunk(record.id, 'owner', 0, bytes.subarray(0, 3)), /response loss/);
+  assert.equal(await restart.progress(record.id, 'owner'), 0);
+  assert.equal(objects.size, 1);
+  await restart.appendChunk(record.id, 'owner', 0, bytes.subarray(0, 3));
+  assert.equal(await restart.progress(record.id, 'owner'), 3);
+  const sent = requests.length;
+  await restart.appendChunk(record.id, 'owner', 0, bytes.subarray(0, 3));
+  await assert.rejects(upload.appendChunk(record.id, 'owner', 0, Buffer.from('XXX')), matches('part_mismatch'));
+  assert.equal(requests.length, sent);
+  await assert.rejects(restart.verify(record.id, 'owner'), matches('size_mismatch'));
+  await restart.appendChunk(record.id, 'owner', 3, bytes.subarray(3));
+  assert.equal((await upload.verify(record.id, 'owner')).state, 'SCANNING');
+  await assert.rejects(restart.requireReady(record.id, 'owner'), matches('not_ready'));
+  assert.equal((await restart.scan(record.id, 'owner')).state, 'READY');
+  assert.equal((await upload.requireReady(record.id, 'owner')).digest, sha256Hex(bytes));
+  await assert.rejects(upload.requireReady(record.id, 'peer'), matches('not_found'));
 });
 
-test('FILE-01 resumable chunks: idempotent resume, no double-count, progress returned for a failed upload', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', workspaceId: 'ws-1', name: 'big.bin', declaredType: 'application/octet-stream', declaredSize: 6 });
-  const chunk = bytes('hello');
-  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: chunk });
-  // Duplicate of an already-received segment is ignored (idempotent resume).
-  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: chunk });
-  const progress = await u.progress(record.id, 'uid-1');
-  assert.equal(progress, 5);
-  await u.appendChunk(record.id, 'uid-1', { offset: 5, bytes: bytes('!') });
-  assert.equal((await s.byId(record.id)).bytesReceived, 6);
-  assert.equal((await s.byId(record.id)).state, 'UPLOADING');
+test('FILE-01 concurrent conflicting parts reserve one blob write, offset and manifest entry', async t => {
+  const { upload, restart, db, requests } = await setup(t);
+  const record = await upload.createIntent(intent(Buffer.from('abcdef')));
+  const values = await Promise.allSettled([upload.appendChunk(record.id, 'owner', 0, Buffer.from('abc')),
+    restart.appendChunk(record.id, 'owner', 0, Buffer.from('ABC'))]);
+  assert.equal(values.filter(r => r.status === 'fulfilled').length, 1);
+  assert.ok(matches('part_mismatch')(values.find(r => r.status === 'rejected').reason));
+  assert.equal(await restart.progress(record.id, 'owner'), 3);
+  assert.equal(await db.fileUploadChunk.count(), 1);
+  assert.equal(requests.filter(request => request.method === 'POST').length, 1);
 });
 
-test('FILE-01 offset gap: a chunk after a gap is rejected and stays UPLOADING', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', name: 'x.bin', declaredType: 'application/octet-stream', declaredSize: 4 });
-  // A gap (expected offset was 0) is refused; no byte is admitted.
-  await assert.rejects(u.appendChunk(record.id, 'uid-1', { offset: 9, bytes: bytes('abcd') }), (e) => e.code === 'state_conflict');
-  assert.equal((await s.byId(record.id)).bytesReceived, 0);
+test('FILE-01 rejects wrong declared digest and type before the scan and refuses corrupted generations', async t => {
+  const { upload, corruptRead } = await setup(t);
+  const bytes = Buffer.from('hello');
+  for (const [override, reason] of [
+    [{ expectedDigest: 'a'.repeat(64) }, 'digest_mismatch'],
+    [{ declaredType: 'application/pdf' }, 'type_mismatch'],
+  ]) {
+    const record = await upload.createIntent(intent(bytes, override));
+    await send(upload, record, bytes);
+    assert.equal((await upload.verify(record.id, 'owner')).rejectionReason, reason);
+    await assert.rejects(upload.requireReady(record.id, 'owner'), matches('not_ready'));
+  }
+  const record = await upload.createIntent(intent(bytes));
+  await send(upload, record, bytes);
+  corruptRead();
+  await assert.rejects(upload.verify(record.id, 'owner'), /size mismatch/);
+  await assert.rejects(upload.requireReady(record.id, 'owner'), matches('not_ready'));
 });
 
-test('FILE-01 verify: completion checks size, digest and sniffed type; a size mismatch rejects', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', name: 'doc.pdf', declaredType: 'application/pdf', declaredSize: 4 });
-  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: bytes('ABCD') });
-  await u.verify(record.id, 'uid-1', { sniff });
-  const done = await u.scan(record.id, 'uid-1', 'clean');
-  assert.equal(done.state, 'READY');
-  const ready = await u.requireReady(record.id, 'uid-1');
-  assert.equal(ready.digest.length, 64, 'sha256 hex digest computed');
-  assert.equal(ready.sniffedType, 'text/plain');
-  // A declared-size mismatch fails verification.
-  const bad = await u.createIntent({ uid: 'uid-1', name: 'bad.bin', declaredType: 'application/pdf', declaredSize: 100 });
-  await u.appendChunk(bad.id, 'uid-1', { offset: 0, bytes: bytes('tiny') });
-  await assert.rejects(u.verify(bad.id, 'uid-1', { sniff }), (e) => e.code === 'size_mismatch');
-  assert.equal((await s.byId(bad.id)).state, 'UPLOADING');
+test('FILE-01 enforces workspace authority on intent, durable progress and completion', async t => {
+  const { db, upload, restart, workspaceId } = await setup(t);
+  const bytes = Buffer.from('abc');
+  for (const uid of ['peer', 'guest', 'no-account']) {
+    await assert.rejects(upload.createIntent(intent(bytes, { uid, workspaceId })), matches('scope_denied'));
+  }
+  const scoped = await upload.createIntent(intent(bytes, { uid: 'member', workspaceId }));
+  await send(upload, scoped, bytes);
+  await db.workspaceMembership.delete({ where: { uid_workspaceId: { uid: 'member', workspaceId } } });
+  await assert.rejects(restart.progress(scoped.id, 'member'), matches('not_found'));
+  await assert.rejects(restart.verify(scoped.id, 'member'), matches('not_found'));
 });
 
-test('FILE-01 quarantine: only READY is readable; INTENT/UPLOADING/SCANNING refuse a read', async () => {
-  const { s, u } = setup();
-  const intent = await u.createIntent({ uid: 'uid-1', name: 'doc.pdf', declaredType: 'application/pdf', declaredSize: 4 });
-  await assert.rejects(u.requireReady(intent.id, 'uid-1'), (e) => e.code === 'not_ready');
-  await u.appendChunk(intent.id, 'uid-1', { offset: 0, bytes: bytes('ABCD') });
-  await assert.rejects(u.requireReady(intent.id, 'uid-1'), (e) => e.code === 'not_ready');
-  await u.verify(intent.id, 'uid-1', { sniff });
-  await assert.rejects(u.requireReady(intent.id, 'uid-1'), (e) => e.code === 'not_ready'); // SCANNING
-  await u.scan(intent.id, 'uid-1', 'clean');
-  assert.equal((await u.requireReady(intent.id, 'uid-1')).state, 'READY');
+test('FILE-01 a stale scan cannot publish after cancellation and a temporary scan failure can be retried', async t => {
+  const { upload, worker, restart } = await setup(t);
+  const bytes = Buffer.from('harmless document');
+  const record = await upload.createIntent(intent(bytes));
+  await send(upload, record, bytes);
+  await upload.verify(record.id, 'owner');
+  const temporary = worker({ scan: async () => { throw Error('scanner offline'); } });
+  await assert.rejects(temporary.scan(record.id, 'owner'), /scanner offline/);
+  let started, finish;
+  const ready = new Promise(resolve => { started = resolve; });
+  const blocked = new Promise(resolve => { finish = resolve; });
+  const delayed = worker({ scan: async () => { started(); return blocked; } });
+  const scanning = delayed.scan(record.id, 'owner');
+  await ready;
+  try {
+    assert.equal((await restart.cancel(record.id, 'owner')).state, 'CANCELLED');
+  } finally {
+    finish('clean');
+  }
+  await assert.rejects(scanning, matches('state_conflict'));
+  await assert.rejects(restart.requireReady(record.id, 'owner'), matches('not_ready'));
 });
 
-test('FILE-01 scan: an infected object is REJECTED, never admitted', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', name: 'doc.pdf', declaredType: 'application/pdf', declaredSize: 4 });
-  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: bytes('ABCD') });
-  await u.verify(record.id, 'uid-1', { sniff });
-  const rej = await u.scan(record.id, 'uid-1', 'infected');
-  assert.equal(rej.state, 'REJECTED');
-  assert.equal(rej.rejectionReason, 'scan_infected');
-});
-
-test('FILE-01 bounded archive/parser output: exceeding the parser cap rejects instead of unbounded expansion', async () => {
-  const { s, u } = setup({ maxParserOutputBytes: 100 });
-  const record = await u.createIntent({ uid: 'uid-1', name: 'pack.zip', declaredType: 'application/pdf', declaredSize: 4 });
-  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: bytes('ABCD') });
-  await u.verify(record.id, 'uid-1', { sniff });
-  await u.scan(record.id, 'uid-1', 'clean');
-  const within = await u.expandArchive(record.id, 'uid-1', 50);
-  assert.equal(within.state, 'READY');
-  assert.equal(within.parserOutputBytes, 50);
-  const over = await u.expandArchive(record.id, 'uid-1', 60); // 50+60 > 100
-  assert.equal(over.state, 'REJECTED');
-  assert.equal(over.rejectionReason, 'parser_output_bound');
-});
-
-test('FILE-01 cancel: an intent cancelled before READY admits no bytes', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', name: 'doc.pdf', declaredType: 'application/pdf', declaredSize: 4 });
-  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: bytes('ABCD') });
-  const cancelled = await u.cancel(record.id, 'uid-1');
-  assert.equal(cancelled.state, 'CANCELLED');
-  await assert.rejects(u.verify(record.id, 'uid-1', { sniff }), (e) => e.code === 'state_conflict');
-});
-
-test('FILE-01 authorization: an upload cannot be read or mutated by a non-owner uid', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', name: 'doc.pdf', declaredType: 'application/pdf', declaredSize: 4 });
-  await assert.rejects(u.appendChunk(record.id, 'uid-9', { offset: 0, bytes: bytes('ABCD') }), (e) => e.code === 'unauthorized');
-  await assert.rejects(u.requireReady(record.id, 'uid-9'), (e) => e.code === 'unauthorized');
-  await assert.rejects(u.cancel(record.id, 'uid-9'), (e) => e.code === 'unauthorized');
-});
-
-test('FILE-01 expansion policy: a non-expandable type is an opaque blob and refuses parser output', async () => {
-  const { s, u } = setup();
-  const record = await u.createIntent({ uid: 'uid-1', name: 'photo.bin', declaredType: 'image/png', declaredSize: 8 });
-  await u.appendChunk(record.id, 'uid-1', { offset: 0, bytes: bytes('PNGDATA!') });
-  const scanning = await u.verify(record.id, 'uid-1', { sniff });
-  assert.equal(scanning.state, 'SCANNING');
-  await assert.rejects(u.expandArchive(record.id, 'uid-1', 100), (e) => e.code === 'not_expandable');
-  const ready = await u.scan(record.id, 'uid-1', 'clean');
-  assert.equal(ready.state, 'READY');
-  await assert.rejects(u.expandArchive(ready.id, 'uid-1', 100), (e) => e.code === 'not_expandable');
+test('FILE-01 rejects infected uploads and bounds streamed parser bytes and archive entries before READY', async t => {
+  const { upload, worker } = await setup(t, { maxArchiveEntries: 1, maxParserOutputBytes: 4 });
+  const text = Buffer.from('suspicious');
+  const bad = await upload.createIntent(intent(text));
+  await send(upload, bad, text);
+  await upload.verify(bad.id, 'owner');
+  assert.equal((await worker({ scan: async () => 'infected' }).scan(bad.id, 'owner')).rejectionReason, 'scan_infected');
+  const archive = Buffer.concat([Buffer.from([0x50, 0x4b, 0x03, 0x04]), Buffer.from('fixture')]);
+  for (const [parts, expected] of [
+    [[Buffer.from('x'), Buffer.from('y')], 'archive_entry_bound'],
+    [[Buffer.from('oversize')], 'parser_output_bound'],
+  ]) {
+    const record = await upload.createIntent(intent(archive, { declaredType: 'application/zip' }));
+    await send(upload, record, archive);
+    await upload.verify(record.id, 'owner');
+    await assert.rejects(upload.scan(record.id, 'owner'), matches('inspection_unavailable'));
+    const bounded = worker({ ...clean, expand: async function* () {
+      for (const part of parts) yield (async function* () { yield part; })();
+    } });
+    assert.equal((await bounded.scan(record.id, 'owner')).rejectionReason, expected);
+  }
 });

@@ -1,0 +1,20 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "tag": "postmerge",
+  "steps": [
+    {
+      "step": "toast-rendered",
+      "rendered": true,
+      "text": "FAP-86 probetoast shim A/B probe toast"
+    },
+    {
+      "step": "after-x-click",
+      "stillRendered": false
+    },
+    {
+      "step": "console",
+      "count": 0,
+      "msgs": []
+    }
+  ]
+}

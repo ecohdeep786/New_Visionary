@@ -1,0 +1,6 @@
+# BEFORE (beta 67edaa93, dev server 127.0.0.1:5174) — register OTP step, console warning/error inventory
+# Raw capture: t08-fap70-before-register.json .steps[console] (probe 2026-11-11, Edge headless, fresh context)
+1 warning:
+  Warning: Unknown event handler property `onOpenChange`. It will be ignored. at div at _c5 (http://127.0.0.1:5174/src/components/ui/toast ...)
+# This is the FAP-86 toast-shim defect (use-toast.jsx -> ui/toast.jsx spreads open/onOpenChange onto a raw div);
+# it appears here because the preview Resend toast fired. FAP-86 remains open and is NOT fixed by FAP-70.

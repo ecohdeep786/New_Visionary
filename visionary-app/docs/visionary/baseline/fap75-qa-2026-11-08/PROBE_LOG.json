@@ -1,0 +1,230 @@
+{
+  "before": [
+    {
+      "requested": "/dashboard/cohorts",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera.",
+      "status": "",
+      "buttons": [
+        {
+          "t": "Open preparation",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "View classwork",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Your own growth",
+          "k": "a[/dashboard/growth]"
+        },
+        {
+          "t": "Open classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Open lesson drafts",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "k": "a[/dashboard/ask]"
+        }
+      ]
+    },
+    {
+      "requested": "/dashboard/curriculum",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera.",
+      "status": "",
+      "buttons": [
+        {
+          "t": "Open preparation",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "View classwork",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Your own growth",
+          "k": "a[/dashboard/growth]"
+        },
+        {
+          "t": "Open classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Open lesson drafts",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "k": "a[/dashboard/ask]"
+        }
+      ]
+    },
+    {
+      "requested": "/dashboard/people",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera.",
+      "status": "",
+      "buttons": [
+        {
+          "t": "Open preparation",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "View classwork",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Your own growth",
+          "k": "a[/dashboard/growth]"
+        },
+        {
+          "t": "Open classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Open lesson drafts",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "k": "a[/dashboard/ask]"
+        }
+      ]
+    },
+    {
+      "requested": "/dashboard/analytics",
+      "finalUrl": "/dashboard/home",
+      "h1": "Welcome back, Meera.",
+      "status": "",
+      "buttons": [
+        {
+          "t": "Open preparation",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "View classwork",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Your own growth",
+          "k": "a[/dashboard/growth]"
+        },
+        {
+          "t": "Open classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Open lesson drafts",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "k": "a[/dashboard/ask]"
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "requested": "/dashboard/cohorts",
+      "finalUrl": "/dashboard/cohorts",
+      "h1": "Cohorts",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    },
+    {
+      "requested": "/dashboard/curriculum",
+      "finalUrl": "/dashboard/curriculum",
+      "h1": "Curriculum",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    },
+    {
+      "requested": "/dashboard/people",
+      "finalUrl": "/dashboard/people",
+      "h1": "People",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    },
+    {
+      "requested": "/dashboard/analytics",
+      "finalUrl": "/dashboard/analytics",
+      "h1": "Insights",
+      "status": "This workspace area opens with an organization workspace. You are currently working in a teaching workspace.",
+      "buttons": [
+        {
+          "t": "Skip to content",
+          "k": "a[#main]"
+        },
+        {
+          "t": "Prepare",
+          "k": "a[/dashboard/prepare]"
+        },
+        {
+          "t": "Classes",
+          "k": "a[/dashboard/classes]"
+        },
+        {
+          "t": "Return to workspace",
+          "k": "a[/dashboard/home]"
+        }
+      ]
+    }
+  ]
+}

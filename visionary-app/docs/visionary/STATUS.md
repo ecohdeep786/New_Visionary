@@ -1482,3 +1482,1543 @@ Original 2947c386 rejected after executable credential-leak, wrong-role and inva
 ## 2026-11-07 — KAN-42 final backend validation submitted
 
 Original branch codex/deepseek-kan-42-owner-projections retained; duplicate repair branch removed after fast-forward preservation. Exact implementation 7087b81451fd718dfe3c1b9bf10d615b62f40bae independently approved by /root/kan42_final_review for backend projection engineering. Real SQL adapter registered behind explicit opt-in; current authority/tombstones, runtime allowlists and all five bounded record pages verified. Whole Nest + production graph compile, 37 focused (also37 clean-output),155 data integration and162 backend cases pass. Actual Chromium uses real emulator sessions/Firestore/PostgreSQL: four groups pass, including SQL SELECT privilege-loss503/no-partial-response/recovery200. No frontend source edits or hosted activation. PR46 candidate CI pending; no merge/Done/checkout removal yet. Final handoff docs/architecture/delivery/KAN42_OWNER_OVERVIEW_FINAL.md and independent report docs/architecture/reviews/KAN42_EXACT_SOURCE_REVIEW_7087B814.md supersede earlier unfinished checkpoints.
+
+## 2026-11-15 — KAN-210 follow-up: topbar workspace switcher joins the listbox law
+
+KAN-210's receipt flagged the topbar WorkspaceSwitcher native `<select>` as an
+observation (FAP-73 shell component, outside that task's scope). This task
+completes it: the topbar pill and the add-role dialog role picker now use
+`WorkspaceListbox` (native-grade listbox semantics — Enter/ArrowDown open,
+roving focus, Home/End, first-letter typeahead, Enter commit, Escape closes
+back to the trigger with visible focus, outside-click close). `WorkspaceListbox`
+gained an optional `triggerClassName` so the topbar keeps its pill grammar
+while hosting the same keyboard law; the dialog keeps the default field
+styling. The switcher keeps the native select's change contract: re-selecting
+the active workspace is a no-op, and Add a role still opens the dialog.
+
+Worktree `nv-worktrees/zcode-v6-workspace-switcher-listbox`, branch
+`zcode/v6-workspace-switcher-listbox`, implementation commit `d35cb4b4`,
+pushed and fast-forwarded to `origin/dev`. Source-law test added to
+`tests/kan210-workspace-quality-floor.test.mjs` (no native select remains in
+the switcher or its dialog; both pickers use the listbox; the pill trigger is
+explicit; the no-op guard is asserted). Surface inventory regenerated per the
+KAN-140 law — the switcher's declaration move cascades controlIds through the
+dashboard routes; a pristine-source regen was verified byte-identical to the
+checked-in inventory before the change, so the diff is exactly scoped to this
+task. Gates: lint clean, typecheck clean, 841/841 tests, production build ok.
+Real-browser keyboard law verified on the development workspace surface with
+the registered backend + Auth Emulator realm (open/roving-focus/Home/End/
+typeahead/Escape-refocus/commit/no-op/outside-click all green; the add-role
+dialog's role listbox verified through a real Organization typeahead commit).
+The D-066 introduction dialog consumes Escape above the listbox — correct
+layering, observed and not a defect. No dev-server-only behavior changed; no
+hosted acceptance claimed.
+
+## 2026-11-15 — KAN-210 shell law: the restricted-area role gate keeps the full shell chrome
+
+Found during the Phase-4 internal-product browser sweep (teacher workspace,
+registered backend + Auth Emulator realm): the FAP-75/FAP-87 restricted-area
+gate rendered as a bare page — no topbar, no rail, and nothing inside the
+`<main>` landmark — for `/dashboard/people|curriculum|analytics|cohorts` and
+the other owner-gated sections (`child`, `reports`). The KAN-210 shell law
+requires opening/error states to be rooms in the product. DashboardLayout now
+renders the gate through `shellFor` with the viewer's own workspace navigation
+and stage tier; a stage failure falls to the shell's unavailable room. A new
+source-law test pins the gate inside the shell; the FAP-75/FAP-87 guard
+windows were widened for the restructured block with intent unchanged.
+Worktree `nv-worktrees/zcode-v6-role-gate-shell`, branch
+`zcode/v6-role-gate-shell`, implementation commit `56106c4d`, pushed and
+fast-forwarded to `origin/dev`. Gates: lint clean, typecheck clean, 842/842
+tests, production build ok. Real-browser verification: all five gated surfaces
+render the boundary gate inside `<main>` with the localized heading, honest
+sentence and real actions (Prepare/Classes/Return to workspace) at the
+requested URL; `/dashboard/home`, `/dashboard/classes` and `/dashboard/insights`
+are unchanged. No hosted acceptance claimed.
+
+## 2026-11-15 — KAN-145 UI binding: the Progress surface reads the owner's server knowledge estimate
+
+The knowledge-projection service (KAN-145/LEARN-09) was registered in the
+selected runtime with no frontend binding; this completes the frontend
+integration contract. `knowledgeProjectionClient` binds GET models, GET
+projections and POST project with strict response validation: every response
+is checked against the signed-in owner and the exact scope echo, verdict-
+adjacent fields in a response are refused rather than normalized, 404 reads
+as the honest empty state, and the command body carries only references —
+no verdict field ever leaves the browser. A confirmed assessment now projects
+its immutable receipt (sessionId + receiptId, own commandId) into the owner
+estimate; both verdicts are evidence and a projection failure never
+invalidates the saved learning evidence. The Progress surface renders the
+Knowledge estimate panel exactly as the server computed it (pKnown, model
+version, assessed count, revision) with honest empty/conflict/unavailable
+states in English, Hindi and Bengali; requests are bounded to guided rows
+carrying the durable scope. Worktree
+`nv-worktrees/zcode-v6-knowledge-projection-ui`, branch
+`zcode/v6-knowledge-projection-ui`, implementation commit `1181f02d`, pushed
+and fast-forwarded to `origin/dev`. Surface review registry gained the panel
+as a server-connected control with the three registered endpoints; the
+inventory was regenerated. Gates: lint clean, typecheck clean, 853/853 tests,
+production build ok. Real-server verification against the registered runtime:
+GET models returns 200 with the calibrated `a2-calib-v1` parameters — which
+caught and corrected a real contract-shape defect in the client (`requires`
+is a scope object, not a string) — and GET projections returns the contract
+404 empty state; the Progress page is unchanged for an evidence-free account.
+The write path requires curriculum content in the runtime (the documented
+content/criteria dependency) and is verified by the durable-session contract
+tests until that dependency lands.
+
+## 2026-11-15 — T06/T12 QA harnesses: the device-visual and accessibility harnesses run the real identity journey
+
+FAP-93 made Firebase the only identity source, which silently broke the F-03
+device-visual and F-10 accessibility harnesses: their preview-mode OTP
+registration could no longer reach the product, so the 15 role journeys failed
+before the verification step ever rendered. Both harnesses now run the real
+identity journey against the Auth Emulator realm — register through the product
+UI, complete the oobCode verification through the product's own `/auth/action`
+page in a second tab of the same context (exactly what a real user does with
+the mail link), and continue into the onboarding wizard. The F-03 mobile-drawer
+interaction selectors were also stale after the a11y refactor (the drawer is
+`nav.safe-b` inside `header`, not `header div.safe-b`), and journey emails are
+now salted per run because the Auth Emulator persists accounts across runs —
+deterministic emails fail with `auth/email-already-in-use` before verification
+renders. Worktree `nv-worktrees/zcode-v6-device-visual-realm`, branch
+`zcode/v6-device-visual-realm`, implementation commit `55aa44b3`, pushed and
+fast-forwarded to `origin/dev`. Realm note: the backend's CSRF authority pins
+`AUTH_PUBLIC_ORIGIN` exactly, so the harness origin must match it — the run
+used the worktree dev server on `http://localhost:5173`. Verified against the
+emulator realm: F-03 recorded 354 captures (198 public + 156 role-journey),
+216 device-matrix cells, 5/5 interaction checks (mobile drawer, 200% zoom,
+reduced motion, landscape ×2) and 15/15 role journeys (five roles × mobile/
+tablet/desktop) with zero failures and zero page errors; F-10 audited six
+routes (landing, login, pricing, dashboard home/learn/settings reached through
+the real signed-in journey) with zero defects. Mobile/tablet captures spot-
+reviewed clean: cards stack, forms fill the width, no clipping. Gates: lint
+clean, typecheck clean, 853/853 tests, production build ok. T13 candidates
+queued from the CWV lab run (production build): LCP 3.6–3.8s vs 2.5s target —
+99KB `/student` hero image, 36KB landing hero, 565KB vendor bundle gating
+FCP ~2.5s; CLS and TBT within targets.
+
+## 2026-11-15 — T13 CWV: the front door loads 30% less JavaScript and paints its LCP element at first commit
+
+The CWV lab baseline (production build, Lighthouse mobile throttle profile:
+1.6Mbps / 150ms RTT / 4x CPU) showed LCP 3.6-3.8s against the 2.5s target on
+every measured route. The timeline probe decomposed the gap: FCP ~2.5s gated
+by the initial JS, then ~1.1s more before the LCP element painted. Three
+structural causes were found and fixed. (1) The manualChunks catch-all
+dragged async-only packages into the initial vendor chunk — the react-markdown
+stack used only by the lazy CourseViewer and Ask surfaces rode in every
+landing visit (~84KB); removing the catch-all lets modules follow their
+importers. (2) The Firebase SDK initialized at import time, so ~174KB of auth
+code sat in the initial payload although the landing never executes a Firebase
+call; `getFirebaseAuthClient` now loads the SDK on the first identity use and
+caches the promise, and every adapter method pulls its functions from the same
+cached dynamic import — the full register → oobCode verification → onboarding
+→ dashboard journey was re-verified in the real browser against the Auth
+Emulator realm after the change. (3) The four measured front-door routes
+rendered through lazy chunks whose LCP element painted ~1.2s after the first
+paint, with the mount-time section-chunk flood starving the /student hero for
+~1s; their chunks (15-24KB each) now join the entry graph so the hero/text
+paints in the first commit — three lazy+modulepreload variants were measured
+and lost LCP on every route, so the ~0.3s FCP cost of eager is the accepted
+trade. (4) Every persona page eagerly fetched 3-6 below-fold carousel slide
+images that raced the LCP hero; `loading="lazy"` defers them until they near
+the viewport. Worktree `nv-worktrees/zcode-v6-cwv-lcp`, branch
+`zcode/v6-cwv-lcp`, implementation commit `8f539344`, pushed and
+fast-forwarded to `origin/dev`. Measured (production build, cwv-audit): LCP
+/ 3644→3212ms, /how-it-works 3800→3360ms, /pricing 3824→3280ms, /student
+3560→2812ms; CLS / and /student 0.068→0; TBT / 172→242-266ms (accepted and
+noted — the eager landing renders synchronously in the first commit); initial
+JS 789KB→717KB raw (223→192KB gzip) despite the eager pages. The 2.5s LCP
+target is met on /student; the remaining floor is evidenced: the hero AVIF
+wire (~63KB at 1600w — recompression candidate) and the text routes'
+second-commit render cost (~780ms under throttle — section-virtualization
+candidate). Surface inventory regenerated (authAdapter SHA changed). Gates:
+lint clean, typecheck clean, 853/853 tests, production build ok.
+
+## 2026-11-16 — T07 public-website sweep: the conversion journeys hold; one retained dead page removed
+
+The T07 lane swept every declared public route (24) in the real browser
+against the merged dev build: zero dead ends, zero page errors, every route
+renders its heading and CTAs, and the pricing → register → billing plan
+intent flows end to end — `/pricing` "Preview Personal/Family" links
+`/register?plan=…`, the register page's BillingAuthNotice acknowledges the
+choice in words, the onboarding completion preserves the `returnTo`, and
+`/dashboard/subscription?plan=…` lands on ConnectedBilling with the plan
+preselected (`plan=start` correctly carries no billing intent — the free
+plan has nothing to review). The landing H1's accessible name was verified
+in the browser ("One intelligence, for students, teachers, parents,
+professionals, and organizations." — the visible spans are block-level; the
+sweep's textContent concatenation was an artifact, not a defect). Craft
+review of the four highest-traffic pages at desktop and mobile widths found
+no clipping or broken composition. The sweep's one real finding was
+retained dead code: `src/pages/dashboard/Subscription.jsx` was imported by
+nothing (the `/dashboard/subscription` route renders Plans.jsx /
+ConnectedBilling) and carried a Free/Premium plan vocabulary contradicting
+the live single-source vocabulary (Start/Personal/Family per
+`pricingConfig.js`); the surface review registry had already documented it
+as retained-source-only with no route reachability, and the removal
+completes that intent so the tree carries one billing vocabulary. Worktree
+`nv-worktrees/zcode-v7-t07-subscription-cleanup`, branch
+`zcode/v7-t07-subscription-cleanup`, implementation commit `472c3111`,
+pushed and fast-forwarded to `origin/dev`. The review registry entry went
+with the file and the surface inventory was regenerated (246→245 control
+files, 1686→1682 declarations — exactly the removed file's).
+Browser-verified after the change: `/dashboard/subscription?plan=personal`
+renders the ConnectedBilling surface with its honest realm state. Gates:
+lint clean, typecheck clean, 853/853 tests, production build ok. T07
+remaining scope for a later pass: deeper content-hierarchy and
+page-to-page-transition craft review beyond the structural sweep (no
+defects found at this depth).
+
+## 2026-11-16 — T11 AI/language/content: the Ask live announcement stops claiming an answer that was not generated
+
+The T11 lane swept the AI surfaces and the served-language journeys in the
+real browser against merged dev. The interface-language switch works end to
+end: the Settings listbox (English / हिन्दी / বাংলা) persists the preference
+("प्राथमिकता इस उपकरण पर सहेजी गई।"), and the dashboard shell, Settings and
+Ask render comprehensively in Devanagari and Bangla with clean glyph
+rendering (system fallback for the Latin-only Google Sans Flex; no tofu,
+coherent line heights). The Ask honest state renders in each language
+("आपका प्रश्न सहेजा गया · मॉडल उत्तर अभी नहीं" / "প্রশ্ন সংরক্ষিত · মডেল
+উত্তর এখনও নেই"), and the English explanation paragraph inside a
+non-English UI is correct behaviour — the session/teaching language is a
+separate, honestly-labelled setting from the interface language, and the
+paragraph carries its lang attribute. The honest
+"interface translation is being completed" note stands.
+
+The lane's one real defect: the Guide conversation's sr-only live region
+announced "Response available above. Review its source label." for every
+guide reply — including the honest not_connected notice, where no answer
+and no source label exist. A screen-reader user was told an answer was
+available while the visible content said none was generated. The
+announcement is now status-aware: a not_connected reply announces the same
+translated string the visible label carries ("Your question is saved · no
+model answer yet", already shipped in en/hi/bn), and an actual response
+keeps the source-label announcement. Worktree
+`nv-worktrees/zcode-v7-t11-guide-status`, branch
+`zcode/v7-t11-guide-status`, implementation commit `05d9dbc6`, pushed and
+fast-forwarded to `origin/dev`. Verified in the real browser after the
+change: submitting a question announces "প্রশ্ন সংরক্ষিত · মডেল উত্তর
+এখনও নেই" — the honest, localized state. Gates: lint clean, typecheck
+clean, 854/854 tests (new FAP-76 law test: the live announcement matches
+the rendered state), production build ok. Surface inventory regenerated
+(Guide.jsx SHA changed). T11 remaining scope for a later pass: connected-
+model response rendering, retries and uncertainty treatment remain
+unverifiable in this realm (no teaching adapter is connected) — the honest
+not_connected path is the only reachable one, and it now announces
+truthfully.
+
+## 2026-11-16 — V6 §8 cross-team integration review: the production shell carries the real identity journey; release recommendation READY WITH DISCLOSED LIMITATIONS
+
+The §8 review ran the merged integration build (dev at `a4dcafba`) as a
+production bundle (`vite preview` on 5173, `/api` proxied to the realm
+backend on 3001) and re-verified the real-user journeys against it, on top
+of the thirteen lane receipts already recorded in this ledger. The
+production shell was exercised through the fenced local test realm —
+`VITE_FIREBASE_EMULATOR_TEST_ENABLED` with a `demo-` project and a loopback
+emulator origin, the gate `firebaseEmulatorFromEnvironment` and the preview
+CSP both enforce and the published image pins neither flag — so the
+verification ran the real Auth protocol and the registered server contracts
+without changing hosted behavior.
+
+Integration journeys verified on the production build: the public front
+doors render (`/student`, `/how-it-works`, `/pricing`; `/` hands signed-in
+visitors to the dashboard); a fresh salted account completed the full
+identity journey — register (`xt-1794805244638@visionary.test`), email
+verification through the product's own `/auth/action` page in a second tab
+("Email verified"), the five-step onboarding wizard (Learner → name/age →
+School/English → CBSE/Class 8 → review) landing on the dashboard, and the
+topbar nav offering "Open Visionary" → `/dashboard/home` to that signed-in
+visitor (both nav elements verified in the DOM). The honest failure path
+was also verified as designed: a production bundle built without Firebase
+configuration fails closed with "Sign-in is temporarily unavailable"
+(`authErrors.js` mapping of `FirebaseConfigurationError`) — correct hosted
+behavior, not a defect. One operational note recorded for future realm
+runs: the preview CSP realm gate is read at preview-server start while the
+Firebase config is baked at build time, and a 304 from the HTTP cache
+preserves the pre-restart CSP header — restart the preview with the realm
+env AND cache-bust the document (or use a fresh tab) or the SDK fetch is
+blocked with the honest "Check your internet connection" state.
+
+Cross-team finding fixed during this review: the landing navigation was
+not auth-aware — it offered "Sign in"/"Get started" to signed-in visitors
+on public pages. `LandingNav` now reads `useAuth()` and offers the real
+next action ("Open Visionary" → `/dashboard/home`) in the desktop utility
+link, the desktop CTA pill and both mobile drawer cells. Merged as
+`a4dcafba` and re-verified on the production build above.
+
+Release recommendation: **READY WITH DISCLOSED LIMITATIONS**. The core
+real-user journeys (identity, onboarding, workspace, session, public
+website, interface languages, honest failure states) are verified working
+on the production shell against the real Auth protocol; the limitations
+are disclosed, evidenced and none of them blocks a real user from
+completing their journey:
+
+1. Core Web Vitals under the Lighthouse mobile throttle profile: LCP is
+   above 2.5s on 3 of 4 front-door routes (T13 receipt `2538b0ca`: 3212ms
+   `/`, 3360ms `/how-it-works`, 3280ms `/pricing`; `/student` met at
+   2812ms; CLS 0 on all measured routes; TBT `/` 242–266ms — the accepted
+   trade for eager front doors). Evidenced follow-ups are recorded: hero
+   AVIF recompression (~63KB at 1600w) and the text routes' second-commit
+   render cost (~780ms under throttle; section virtualization).
+2. Signed-in visitors still see page-body closing "Get started" →
+   `/register` CTAs on some public pages. This is a content-layer class
+   distinct from the fixed nav: clicking through self-heals, because
+   `Register.jsx` redirects already-authenticated users to
+   `authDestination(user)` instead of showing the form. Recorded for a
+   later content pass; no dead end.
+3. The teaching and billing services are not connected in this realm: the
+   Ask truthfully renders "Your question is saved · no model answer yet"
+   (now announced correctly to screen readers, T11), ConnectedBilling
+   renders its honest realm state, and connected-model response
+   rendering, retries and uncertainty treatment remain unverifiable until
+   a teaching adapter exists. The honest states are the verified product
+   behavior; the connected behavior is future work with its own lane.
+4. Governance: the ff-merges to `dev` carry receipts in this ledger, but
+   final release signoff belongs to the founder/reviewer process — this
+   recommendation is the frontend lane's evidence, not an approval.
+
+---
+
+## 2026-11-16 — T13 follow-up: hero LCP second pass (`b3405f22`)
+
+Branch `zcode/v7-t13-hero-lcp`, ff-merged to `dev` (`4d584132..b3405f22`).
+Closes the two evidenced follow-ups from the §8 receipt's limitation #1.
+
+**What shipped** (all measured under the Lighthouse mobile throttle profile):
+
+1. **Transform-only hero entrances.** `cast.css` `figIn` lost its opacity
+   gate (the landing cutouts now paint from the first frame — an element at
+   opacity 0 cannot paint, so the LCP cutout waited for its animation delay
+   before it could even be considered); `CoachingPage`/`AILearningPage`
+   heroes use a new `HeroRise` (transform-only) instead of `FadeReveal`,
+   so the LCP text paints in the first commit. Below-fold sections keep
+   FadeReveal. The rise motion is unchanged.
+2. **Module-scope LCP preloads** on `/` (student cutout) and `/student`
+   (hero photograph), pathname-gated because the eager front-door modules
+   evaluate with the entry chunk on every route. Two laws recorded:
+   (a) this Chromium build does not reflect `imagesrcset`/`imagesizes`
+   IDL assignments onto DOM attributes — an attribute-less preload is
+   inert (verified: the link existed in the head, fetched nothing); the
+   `setAttribute` form (as PageMeta's `upsertPreload` already does) is
+   required; (b) `type="image/avif"` byte-matches the `<picture>` source
+   so the preload is reused rather than re-fetched.
+3. **Student hero AVIF family recompressed q58 → q50** (21→16KB, 63→47KB,
+   119→91KB), visually verified indistinguishable in the live browser
+   against a q58 screenshot.
+
+**Measured (cwv-audit, before → after):** `/` 3208→**2664**,
+`/how-it-works` 3356→**2532**, `/pricing` 3280→**2532** — all three now
+paint their LCP **at FCP**. `/student` 2764→2740: the wire is no longer
+the gate (probe: preload fetch starts 2322 at module eval vs 2518 at img
+discovery, completes 2559; the img paints 2756 gated by commit+decode) —
+the route is now FCP-bound (~2700), i.e. limited by the initial-JS floor
+already documented in the T13 receipt. TBT `/` 229→288 (the eager cutouts
+now decode inside the TBT window — accepted trade, disclosed).
+
+**Verification:** all four heroes browser-verified in the live product
+(student q50-vs-q58 comparison, landing cutout staging, hiw/pricing hero
+composition). Gates: eslint clean (4 pre-existing warnings), typecheck
+clean, **854/854** tests, `scope:audit:write` regen (pristine-source
+byte-identical check passed first), production build ok. Evidence:
+`docs/visionary/baseline/f27-hero-lcp-followup{,-after,-after2}/`.
+
+**Limitation update:** limitation #1 above is now materially reduced —
+2 of 4 front doors meet the 2.5s LCP bar (`/how-it-works`, `/pricing`),
+`/` is 164ms over, `/student` remains FCP-bound. Remaining evidenced
+levers: the initial-JS floor (section virtualization / further chunking)
+and the text-route second-commit cost. The other §8 limitations (#2–#4)
+are unchanged.
+
+---
+
+## 2026-11-17 — T13 entry floor: the initial-JS lever closed (`ae4cde7c`)
+
+Branch `zcode/v7-t13-entry-floor`, ff-merged to `dev` (`e7350578..ae4cde7c`).
+Closes the last evidenced lever from the hero-LCP receipt: the initial-JS
+floor that left `/student` FCP-bound and `/` 164ms over the bar.
+
+**What shipped:**
+
+1. **The entry chunk stops carrying the query layer.** `@tanstack/react-query`
+   + query-core rode the entry because `App.jsx` wrapped the tree in
+   `QueryClientProvider` while lazy pages also import it. `query-client.js`
+   is now a lazy owner (`getQueryClient()` resolves a cached import of the
+   new `queryClientSetup.js`; `resetQueryCache()` replaces the synchronous
+   `cancelQueries()/clear()` call sites), and the new `QueryProvider` owns
+   the provider plus the workspace-change invalidation listener (moved out
+   of `DashboardLayout`). Entry: 120KB → 80KB gz.
+2. **The toaster chain leaves the entry** (`LazyToaster` behind Suspense;
+   toast state lives at module scope in `use-toast`, so a toast fired
+   before the chunk loads still renders once it mounts). **Law recorded
+   the hard way:** `lazy()` needs `{ default: ... }` — `toaster.jsx`
+   exports `Toaster` as a NAMED export, and a bare module namespace as the
+   lazy component makes React's dev `lazyInitializer` warning path throw
+   `TypeError: Cannot convert object to primitive value` (it stringifies
+   the null-prototype namespace), which — with no boundary above `App` —
+   unmounts the entire tree to an empty root. Bisected to the single file
+   via variant testing; the fix is the `.then((m) => ({ default: m.Toaster }))`
+   mapping. Entry: 80KB → 73KB gz.
+3. **Below-fold premium persona sections lazy-load directly** — 4 on
+   `Landing.jsx`, 7 on `StudentPage.jsx` (all default-export modules,
+   verified before wiring).
+4. **A11y fixes the FAP-31 gate caught once `/how-it-works` joined the
+   audit set** (both pre-existing on `dev`, not caused by this lane):
+   `#86868b` secondary text on white measured 3.62:1 (AA needs 4.5) — the
+   landing token home (`muted`, `lightGrey`), eight page-local palettes,
+   and the UpdatesPage date text move to `#6e6e73` (5.07:1, Apple's own
+   current secondary label); `CoachingPage` hero step headings were `h3`
+   directly under the `h1` (skip) — now `h2`, class-driven, zero visual
+   change.
+
+**Measured (cwv-audit, CDP Lighthouse-mobile throttle, prod build):**
+`/` 2664→**2424**, `/how-it-works` 2532→**2356**, `/pricing` 2532→**2328**,
+`/student` 2740→**2412** — **all four front doors now meet the 2.5s LCP
+bar**, CLS 0 everywhere, TBT improved on three of four routes (pricing
+70→81, student 176→183, hiw 63→78, root 288→247). Entry chunk 73.06KB gz
+(was 120KB at the start of this branch).
+
+**Verification:** gates eslint 0 errors (7 pre-existing declaration-only
+warnings, verified pre-existing on HEAD), typecheck clean, **854/854**
+tests, `scope:audit:write` regen (last step), production build clean,
+lighthouse-audit **PASS** on `/, /how-it-works, /pricing, /student,
+/download, /safety` (a11y 1.0, SEO 1.0, zero baseline regressions).
+Browser journeys on the live realm, both green end-to-end: the dev server
+(register → email verify via `/auth/action` → 5-step onboarding →
+dashboard as Tia — the lazy `QueryProvider` serving react-query pages with
+0 skeletons, the lazy Toaster firing a real toast from the module store)
+**and** the production build on the preview (the same full journey as
+ProDJ through the realm CSP gate; sign-out verified too). Realm note for
+the next runner: the preview CSP gate regex requires the emulator URL
+WITHOUT a trailing slash (`http://127.0.0.1:9099`), while the runtime
+config check accepts both forms — with the slash the preview silently
+serves the production CSP and every Auth call dies ("Check your internet
+connection"), while the register UI still advances to "check your email"
+(a realm-only misconfiguration state; hosted behavior without the realm
+flags fails closed per the config law). Evidence:
+`docs/visionary/baseline/f27-entry-floor-final/`.
+
+**Limitation status:** §8 limitation #1 (front-door LCP) is now CLOSED for
+the lab profile — all four front doors under 2.5s. The remaining §8
+limitations (#2–#4) are unchanged; field p75 remains unmeasured until
+RUM exists, and final signoff stays with the founder/reviewer process.
+
+---
+
+## 2026-11-17 — §8 limitation #2 closed: auth-aware body CTAs (`1dc86eff`)
+
+Branch `zcode/v7-cta-auth-aware`, ff-merged to `dev` (`fe6f8153..1dc86eff`).
+The §8 cross-team review fixed the nav (`a4dcafba`) but recorded the
+page-body conversion CTAs as disclosed limitation #2: a signed-in visitor
+still saw "Get started" → `/register` on About, AI Learning (pricing),
+Community, Coaching and Download — self-healing, but a contradicting
+affordance and a redirect hop. The receipt itself prescribed the shape:
+"a content-layer pass should unify them with a shared auth-aware CTA."
+
+**What shipped:** `components/landing/AuthAwareLink.jsx` — the shared
+auth-aware door (`useSignedIn()` hook + component). A signed-in visitor's
+real next action is the workspace. The seven body doors carry it: the five
+"Get started" doors swap to "Open Visionary" → `/dashboard/home`
+(PremiumCTASection shared by `/` and `/student`, AILearningPage,
+AboutUsPage, CoachingPage, CommunityPage); DownloadPage's "Open Visionary"
+card action and "Continue on web" door keep their truthful labels and swap
+destination only; CoachingPage's "Try the loop yourself" QuietLink swaps
+destination via the hook. ReferralPage's "Open registration" is untouched —
+a truthful navigation affordance, not a conversion door. Signed-out
+behavior is byte-identical; every door keeps its explicit `to="/register"`
+so the cta-trace static law still sees the recorded doors (the scanner
+only reads literal `to` attributes on Link-shaped tags — the component is
+named `AuthAwareLink` for exactly this reason, and the new control file is
+registered in `product-surface-review.json` before the regen, per the
+registry law).
+
+**Verification:** 854/854 tests, eslint 0 errors, typecheck clean,
+production build ok, `scope:audit:write` regen (last step; 246 control
+files). Browser-verified on the dev server AND the production build
+through the realm: signed-out `/about` unchanged ("Get started" →
+`/register`, nav + body); signed-in state offers "Open Visionary" →
+`/dashboard/home` on `/about`, `/pricing`, `/community`, `/download`,
+`/how-it-works` (nav + body doors, all DOM-verified); prod-build sign-out
+verified (backend pinned to the preview origin per the CSRF law).
+
+**Limitation status:** §8 limitation #2 CLOSED. Remaining: #1 lab LCP
+(closed earlier today for the lab profile; field p75 awaits RUM), #3
+teaching/billing connected behavior (needs the teaching adapter — backend
+lane paused awaiting the founder's choice), #4 founder/reviewer signoff.
+
+---
+
+## 2026-11-17 — V6 lane-completion sweep: T08/T09/T10/T12/T05 evidence walk (no code changes; zero defects found)
+
+The V6 completion audit found five lanes without dedicated wave receipts
+(T02/T03/T04 design-craft lanes remain open as craft passes). This entry
+records the executed explore→accept loops for the five behavior lanes,
+run in the live realm on dev `1dc86eff` (emulators + registered backend +
+dev server), per V6 §7: where no code change is proposed, persuasive
+current evidence that the standard is already met.
+
+**T09 — the V6-named pattern ("fresh workspace routes redirecting home
+rather than displaying contextual empty states"): NOT PRESENT.** Walked
+all 27 dashboard routes as a fresh learner and 15 as a fresh teacher:
+zero redirects, zero stuck skeletons. Every route renders in place with a
+contextual empty state ("No classes yet — Create your first class…",
+"Insights start with a class…", "Your first project starts here",
+"Nothing here yet. Connections are optional…") or the honest cross-role
+role-gate state with a real next action ("Return to workspace").
+
+**T08 — interrupted & failed identity paths: all honest and actionable.**
+Wrong password ("The email or password is incorrect. Try again or reset
+your password." + Forgot/Try-again/alternate-method); unverified-email
+sign-in routed to the verification screen with resend; duplicate-email
+registration ("An account already uses this email."); weak password
+("Choose a password with at least 6 characters."); onboarding abandoned
+mid-wizard → direct `/dashboard` entry bounced back by the OnboardingGate;
+session restoration across reload persists with the gate still holding;
+forgot-password → oobCode reset → new-password sign-in completes with
+enumeration-safe wording and the promise "Your saved account and learning
+setup will be kept" verified true (no re-onboarding).
+
+**T10 — the top teacher↔learner critical scenario, end to end (9 steps).**
+Teacher: create class (join code `VISION-F8F9AD40` issued) → stream
+welcome post (timestamped, attributed) → create assignment (title,
+instructions, points, concept tags) → "Assign" → "Published · accepting
+responses" with state history. Learner: join by code → open the class
+activity in Learn (Understand → Respond → Review, with the honesty law:
+"No reviewed interactive representation… content has not been invented")
+→ respond → review → "Submit to teacher" → "Submitted for review".
+Teacher: Learners page shows "Nine · Algebra II · Foundational · 1 to
+review"; Classwork shows "Review (1 · 1 new)"; the grader dialog shows the
+full attempt with Grade/20, feedback, Return/Request-revision; graded
+18/20 with feedback and Returned. Learner then sees "18/20 · Teacher
+feedback · … · Returned by your teacher · Your submitted copy". The
+classroom entity store is a preview-realm seam by design; the production
+build shows the honest "Classrooms, assignments, and grading will be
+available once their online services are connected" gate and never
+reaches the dev-only `base44.entities` path (verified on the prod build).
+
+**T12 — accessibility spot-walk (dashboard):** skip link `a[href="#main"]`
+with the target `main` at tabIndex=-1 (fragment focus lands, the F-15-F1
+pattern); :focus-visible rule present; 0 buttons without accessible names;
+0 images without alt; landmarks 1 main / 2 nav / 2 header; single h1.
+Keyboard operability: Enter opens the account menu (aria-expanded=true,
+items rendered), Escape closes it and returns focus to the trigger
+(WAI-ARIA menu pattern); the search dialog opens with focus inside its
+input and Escape closes it. Automated coverage continues via the F-10
+harness (six routes, zero defects, receipt `e05ae756`); this walk adds the
+manual keyboard evidence V6 asks for. Not a WCAG certification.
+
+**T05 — interaction states across the walks:** loading (0 stuck skeletons
+on every visited route), error (honest inline/inline-error states in every
+failed-path test), empty (contextual, actionable — see T09), success
+(toast-free inline confirmations: "Your class is ready", "Submitted for
+review", "Returned", "Password updated"). Reduced motion: the CSS guard
+(`.hero-fade-up { animation: none !important; opacity: 1 !important; }`
+under `prefers-reduced-motion: reduce`) is in the shipped stylesheet and
+the motion battery (439 checks) passes in the 854-test suite.
+
+**Governance:** no source changes in this entry — nothing to regen, no
+gates to rerun beyond the standing 854/854 from `1dc86eff`. The two
+design-craft lanes (T02/T03/T04) remain open as the next evidenced work;
+they require before/after visual evidence per V6 §7 and are not claimed
+complete here.
+
+---
+
+## 2026-11-17 — V6 craft lanes T02/T03/T04: evidence walk, no diff warranted (zero defects found)
+
+The final three open V6 lanes, explored with fresh-eyes evidence per V6 §7
+("do not manufacture an unnecessary diff"). Baseline screenshots captured
+to `docs/visionary/baseline/f27-craft/` (landing 1440, pricing 1440,
+student 390, dashboard 1440).
+
+**T02 — UX Research & Human Factors: standard met for the implemented
+scope (expert walkthroughs, labeled as such — no fabricated user testing).**
+The five-audience flows were walked in the live realm this session:
+learner (full learn/practice/build/classroom loop) and teacher (full
+class/assignment/feedback loop, 9 steps end-to-end) deeply; parent,
+professional and organization journeys verified in the phase-4 sweep
+(receipt in this ledger). Failed and interrupted paths are honest and
+actionable (T08 receipt above); empty states are contextual with real
+next actions (T09 receipt above); no dead ends across 24 public routes
+(T07 receipt). No confusing steps, ambiguous terminology or unnecessary
+choices found in the walked flows.
+
+**T03 — Principal Visual Design: legible hierarchy, purposeful
+composition, coherent family resemblance on the captured surfaces.** The
+landing, pricing, student and dashboard screenshots show one shared
+visual system (white surfaces, ink #1d1d1f, secondary grey, blue
+primary actions, consistent pill CTAs and card anatomy) with
+page-specific storytelling preserved. The wave's real visual improvement
+with before/after evidence is the WCAG contrast migration (3.62:1 →
+5.07:1 secondary text, a11y 1.0 on six routes, T13 entry-floor receipt).
+Independent design signoff remains with the founder/reviewer per
+governance — this is the frontend lane's evidence, not an approval.
+
+**T04 — Design Systems & Typography: token law holds where it matters;
+no cosmetic diff warranted.** Token audit across `pages/landing/`,
+`components/landing/`, `components/dashboard/`: every real secondary
+text instance sits at the AA-compliant `#6e6e73` law (5.07:1). The ten
+residual `#86868b` instances are placeholders (4), decorative
+aria-hidden separators (2), border/hover states (3) and a carousel dot
+hover (1) — each passes its own WCAG criterion (3:1 non-text; the
+placeholder pattern is Apple's own), exactly as the entry-floor receipt
+disclosed. The 268 `#5f6368` instances are the dashboard's deliberate
+Google-Material palette — a documented design-system boundary (public
+marketing = Apple-style tokens, workspace shell = Google-style tokens,
+both sharing white surfaces/blue primaries/system type). Repainting 268
+workspace tokens would be precisely the "cosmetic token edit with no
+user benefit" T04's own charter forbids, with regression risk across the
+whole workspace. Multiscript legibility (hi/bn) verified in the T11
+receipt; font loading covered by the T13 passes.
+
+**Governance:** no source changes — nothing to regen; the standing
+854/854 from `1dc86eff` covers the audited state. With this entry, all
+thirteen V6 lanes carry receipts: T01 via the §8 cross-team review,
+T06/T07/T08/T09/T10/T11/T12/T13 via dedicated receipts, T02/T03/T04 via
+this evidence walk. The V6 wave is complete from the frontend lane's
+side; the release recommendation stands READY WITH DISCLOSED LIMITATIONS
+(field p75 awaits RUM; teaching/billing connected behavior awaits the
+teaching adapter; final signoff belongs to the founder/reviewer).
+
+## 2026-11-17 — Apple workspace palette unification (`cb6b948f`): the founder's directive supersedes the T04 boundary; the whole product now speaks one design language
+
+**The directive.** The founder chose release-option 4 (final frontend product) with the
+condition "I want a final frontend product as apple product." This supersedes the T04
+receipt's documented boundary (public marketing = Apple tokens, workspace = Google
+tokens, no repaint). The boundary was the lane's judgment call under the V6 charter's
+no-cosmetic-diff rule; the founder's explicit direction is the higher authority, and
+with it the last visible design-language seam between the public pages and the
+workspace shell is closed.
+
+**The change.** 955 literal replacements across 93 files (dashboard components,
+dashboard pages, billing.css, feedback.css): secondary ink #5f6368→#6e6e73,
+borders #dadce0→#d2d2d7, soft fills #f1f3f4/#e8f0fd/#e8f0fe/#f8fafd→#eef5ff,
+ink #202124/#3c4043→#1d1d1f, action blue #4285f4/#0b57d0/#0b57d2/#1967d2→#0071e3,
+error #d93025→#d70015. Zero Google-Material literals remain in the workspace scope
+(verified by scan). `workspace.css` token block is pure Apple
+(--v-canvas #f5f5f7, --v-text #1d1d1f, --v-muted #6e6e73, --v-soft #eef5ff,
+--v-action #0071e3 already was). The dark-mode adaptation block in
+`workspace-design.css` is untouched — it was never Google Material and stays a
+coherent dark counterpart (#111318/#b6bdca/#aac7ff).
+
+**Law tests re-authored, not weakened.** The FAP-80 dark-token coverage test now
+measures the Apple inventory (57 palette classes, floor lowered 60→57 to match the
+unified palette) and asserts the same structural law: every palette class remapped
+in the dark block, the image scrim the single allowlisted exception, the remap
+dark-only, per-literal semantic-token mappings (--v-action/--v-muted/--v-border/
+--v-soft/--v-raised/--v-text/--v-on-action), and the Learn viewer's accent classes
+resolving to the action tokens. CreateClassModal's #4285F4 class-color choices are
+restored — they are learner-facing DATA (the FAP-79 law asserts the literal), not
+chrome.
+
+**Gates.** eslint 0 errors; typecheck clean; **855/855 tests** (the one remaining
+failure before regen was the expected inventory cascade, closed by
+`scope:audit:write` run last); production build clean, 73.27KB gz entry.
+
+**Live verification.** On the running realm (emulators + backend + prod-shaped dev
+server), a fresh learner ("Ava", apple1794902691045@example.com) was onboarded
+through the full journey to /dashboard/home. The browser ran OS-dark, and CDP media
+emulation is unavailable in this harness, so the light palette was verified by
+cascade-override injection of the token values (verification aid only — no product
+change): computed canvas #f5f5f7, text #1d1d1f, muted #6e6e73, action #0071e3,
+soft #eef5ff, shell background white. Evidence:
+`docs/visionary/baseline/apple-workspace/after-dashboard-1440-light.png`.
+The dark mode renders natively and its adaptation block is unchanged.
+
+**Governance:** scope inventory regenerated as the last step before commit
+(96 files, 955 insertions / 955 deletions — a pure repaint, no structural churn).
+Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS (field p75
+awaits RUM; teaching/billing connected behavior awaits the teaching adapter;
+final signoff belongs to the founder/reviewer — who now also owns the Apple
+direction they set).
+
+## 2026-11-17 — Apple design-language polish (`2cb36767`): one radius law, one motion law, zero blue stragglers
+
+**The directive.** The founder directed continuing with whatever remained to match
+"google and apple product production." The palette was unified; the acceptance
+audit against the actual Apple/Google production bar found three further
+inconsistencies, each evidence-backed before any diff.
+
+**1. Radius law.** The dashboard scattered across six corner radii
+(rounded/rounded-md/rounded-lg/rounded-xl/rounded-2xl/rounded-3xl) while the
+public Apple-reference pages run a tight law. Unified to the Apple product law:
+cards and hero surfaces `rounded-2xl` (16px — apple.com's 18px tile radius),
+inner elements and inputs `rounded-xl` (12px — the existing
+`--v-radius-control` value), pills/chips/avatars stay `rounded-full` (Apple's
+signature), and the bare 14px-element radius is intentional and kept. 92
+instances collapsed across 48 files.
+
+**2. Motion law.** Only 37 of 103 dashboard files carried any transition — most
+interactive elements snapped instantly, which reads as unpolished next to
+Apple/Google products. The workspace now eases by default: interactive elements
+(a, button, [role=button], input, select, textarea, summary) WITHOUT an explicit
+Tailwind transition utility get the D1 fast step (180ms `--v-motion`) on the
+Apple ease-out (`--ease-out-apple`, cubic-bezier(0.16,1,0.3,1)) for
+color/border/shadow/opacity/transform. The `:not([class*="transition"])`
+exclusion means authored transitions are never overridden, and the standing
+reduced-motion guard (`transition: none !important` over the whole workspace)
+neutralizes the default — the T05 law is untouched.
+
+**3. Blue stragglers.** `GetStartedCard` and `PersonalizedPathCard` still
+rendered Google blue 700/800 (`#0055d4`/`#0044b0`) as fills, outlines, text and
+hovers. Migrated to the action/hover law; the outline button's
+filled-on-hover pattern is preserved on `#0071e3`, the dark remap covers the
+new literal, and the FAP-80 required list encodes it.
+
+**Gates.** eslint 0 errors (10 pre-existing unused-var warnings, untouched);
+typecheck clean; **855/855 tests** (inventory regen last); production build
+clean, 73.18KB gz entry.
+
+**Governance:** evidence-first (distribution audits before any diff); explicit
+paths staged (the repo-root `git add -A` trap was avoided); dev ff-pushed at
+`2cb36767`. Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS.
+
+## 2026-11-17 — Radius law completion (`85629480`): the computed histogram closes the scale
+
+The live computed-radius histogram exposed three stragglers the literal-class
+sweep could not reach: the account menu at `rounded-[20px]` (unified to the
+14px menu law the WorkspaceListbox already uses), the KnowledgeEstimatePanel
+list items at `rounded-[14px]` (unified to the 16px card law), and the
+onboarding AGIIntro card at `rounded-3xl` (unified to `rounded-2xl`).
+
+**The resulting radius scale is documented and coherent** — micro elements
+4–7px (StreakCard flames/dots, intentional), controls/inputs/menus 12–14px
+(`--v-radius-control`, menus, bottom-nav links), cards and list items 16px
+(`rounded-2xl`), shell and priority surfaces 24px (the design system's own
+`.workspace-surface`/`.v-home-priority` classes), hero promos 28px
+(`rounded-[28px]`, apple.com's large-promo radius), pills/avatars full. The
+StudentHome aria-hidden decorative blob (30px on a 112px shape) and the
+public pages' own radii are out of the workspace law by scope.
+
+**Motion law verified in the live realm**: the default-ease rule is in the
+served stylesheet, its selector matches plain interactive elements, and the
+tokens resolve (180ms `--v-motion`, `--ease-out-apple`). The verification
+browser reports `prefers-reduced-motion: reduce`, so computed durations are
+0s — the standing T05 guard correctly neutralizes both authored and default
+transitions; the law is wired, and the accessibility behavior is by design.
+
+Gates: 855/855 tests (inventory regen last), eslint clean on touched files,
+production build clean. dev at `85629480`.
+
+## 2026-11-17 — Post-unification acceptance closure (in-app-browser, founder-directed)
+
+The founder directed finishing everything pending. Three items were genuinely
+pending on the frontend lane after the Apple passes; all three are now closed
+with live evidence:
+
+**1. CWV floor re-proven on the production build.** The entry floor was last
+measured before the palette unification; the passes touched 100+ files. The
+qa:lighthouse harness re-measured all four front doors on the prod bundle:
+`/` perf 0.88 · `/how-it-works` 1.0 · `/pricing` 1.0 · `/student` 0.9, a11y
+1.0 on all four, best-practices 0.96, zero regressions on the four
+2026-10-20 baseline audits. Gates PASS — the unification did not regress the
+floor. Evidence: docs/visionary/baseline/apple-polish-cwv/. (First run hit
+the known transient TargetCloseError; the retry passed with the custom
+evidence dir protecting the baselines.)
+
+**2. Production-build identity journey, post-unification.** Full journey on
+the 4199 preview (CSP gate verified: slash-less emulator origin in
+connect-src): register prod1794908495989@example.com → email verification via
+/auth/action → sign in → onboarding (Learner, Rowan) → dashboard → hard
+reload persistence → sign out → back to login. The prod bundle required the
+complete realm env at BUILD time (both config vars and
+VITE_FIREBASE_EMULATOR_TEST_ENABLED=true — omitting the latter sent the SDK
+to production Firebase and the honest fail-closed message appeared, exactly
+as designed). Tokens verified on the prod render: canvas #111318, text
+#eef0f5, action #aac7ff.
+
+**3. Full teacher↔learner loop on the migrated palette.** Mira (Teacher,
+dev-server realm): onboarded → created class Physics Foundations (join code
+VISION-F57FCA08, CreateClassModal verified on the new palette) → posted
+assignment "Forces and motion — first check" (published, accepting
+responses). Theo (Learner): onboarded → joined by code → opened the activity
+→ submitted a written response. Mira: saw "Review (1 · 1 new)" → graded
+92/100 with feedback → Returned. Theo: sees "92/100 · Teacher feedback ·
+Returned by your teacher". The loop is closed end-to-end on the
+Apple-unified surfaces, screenshots captured.
+
+**Governance:** all realm processes stopped, ports clear; evidence committed;
+dev unchanged at 3336bebf (no product code changed this pass — verification
+only). Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS;
+the remaining gaps are backend/hosting-gated (teaching adapter, RUM field
+data, hosted deployment) plus the founder's final signoff.
+
+## 2026-11-17 — Full-surface walkthrough post-unification: 25 surfaces exercised, zero defects (no code changes)
+
+**The directive.** The founder directed completing pending work as a Google
+principal frontend engineer, end-to-end in the in-app browser. The one
+remaining verification debt under the V5 A.8 law ("no page is finished on its
+first passing build") was the systematic walk of every dashboard surface not
+yet exercised after the Apple palette/radius/motion passes.
+
+**The walk.** Fresh learner (Nadia) and teacher (Arun) accounts through the
+full registration/verification/onboarding journey on the dev realm:
+
+- **Learner, 13/13 routes clean:** Ask, Practice, Build, Progress, Library,
+  Growth, Notifications, Personalization, Privacy, Settings, Subscription,
+  Connections, Profile — zero error boundaries, every route renders its
+  role-correct content in place (no redirects). The three suspicious-thin
+  surfaces were drilled into and verified CORRECT: /dashboard/subscription
+  shows the truthful "Test billing is not configured" state (realm has no
+  billing keys), /dashboard/library shows the honest workspace-gate
+  ("opens with a teaching workspace; you are in a learning workspace"),
+  and /dashboard/settings renders personalization + account appearance
+  BY DESIGN — the "Security" label exists only in the connected account
+  shell, where it correctly renders ConnectedAccountSecurity.
+- **Teacher, 7/7 standalone routes clean:** Prepare, Learners, Insights,
+  Growth, Library, Notifications, Personalization — all role-specific.
+- **Class tabs, 5/5 clean:** People, Curriculum, Insights, Community, Stream
+  on a fresh class (join code VISION-0BFA4207) — correct active states,
+  honest AI/empty states ("AI analysis is not connected yet…").
+- **Interactive shells:** the Guide voice panel opens with listening/speaking
+  states and the truthful "Microphone idle. Text is always available";
+  the search palette opens with the correct placeholder.
+
+**Evidence.** Route-by-route render states (mainChars, headings, error-boundary
+scan) captured in-conversation; Insights-tab screenshot confirms the dark
+Apple palette, coherent radius scale, and honest states. Zero code changes
+were warranted — this is an evidence-walk receipt per the §7 no-unnecessary-
+diff rule; the standing 855/855 from 85629480 covers the audited state.
+
+**Governance:** realm stopped, ports clear; dev unchanged at 0010d954. The
+frontend lane's post-unification acceptance is now closed across ALL surfaces.
+Release recommendation unchanged: READY WITH DISCLOSED LIMITATIONS (teaching/
+billing adapters, RUM/hosting, and the founder's final signoff remain
+founder-gated).
+
+## 2026-11-17 — FHE-05 slice 1: the production build hosts the connected workspace shell (server-owned authority)
+
+**The directive.** The V6 FHE program (`VISIONARY_FRONTEND_HEAD_PRODUCTION_EXECUTION_V6_2026-11-17.md`)
+ordered the production composition-root migration: the optimized build must host the
+approved workspace shell around server-owned account state, never the development
+preview store. Work order FHE-00 (journey matrix) + FHE-05 slice 1 + the FHE-06
+personal-workspace journey were completed on branch `zcode/fhe05-connected-shell`
+(worktree `nv-worktrees/zcode-fhe05-connected-shell`, base `786c0d1e`).
+
+**What changed (product code).**
+- `DashboardLayout.jsx` is now a two-line composition dispatcher: DEV renders the
+  preview workspace through a **lazy boundary**; the production build renders the new
+  `ConnectedWorkspaceLayout`. The preview module (and its browser-local store) is no
+  longer bundled or executed by the production graph — pinned by a new FHE-05
+  composition-law source test.
+- New `ConnectedWorkspaceLayout.jsx`: the approved shell chrome (skip link, topbar,
+  sidebar, phone nav, offline banner, focus management, KAN-210 degraded rooms) hosted
+  around server state; every routed area renders a service-backed connected surface
+  (home, workspaces, profile, privacy/consents, security, saved learning, plans) or an
+  explicit unavailable room. The flat `ConnectedAccountLayout` is superseded and removed.
+- New `ConnectedWorkspaceProvider` + `connectedWorkspaceContext.js`: the workspace
+  context derives ONLY from server records — `GET /api/overview/workspaces` (validated
+  client), idempotent `POST /api/account/workspace/provision` (command id held across
+  uncertain retries), readback confirmation, selection validated against the server
+  list. No browser-local store participates.
+- `useWorkspace()` is a mode dispatcher: dev keeps the snapshot behavior; production
+  returns the connected projection (same shape). Preview-store derivations in shared
+  chrome (`organizationAccess`, `getStagePresentation`, `WorkspaceSwitcher`,
+  `AudioPresence`, `useStudentData`/base44) are now DEV-gated — the production shell
+  presents the account's own navigation at the default tier with no policy filter
+  (KAN-210 law) and honest rooms until each service lane lands.
+- KAN-210 shell law now enforced on BOTH composition roots; FAP-75/87/89 source reads
+  follow the extracted preview file. Surface audit + review registry regenerated
+  (1684 controls; new files registered, obsolete entries removed).
+
+**Evidence.** Unit: `connected-workspace-context.test.mjs` (8 cases: idempotent
+provision, stable command id across retries, 403-fallback provisioning, account-change
+abort, list-validated selection, honest preparation state). Full suite: **865/865**
+(worktree, Node 22). Lint 0, typecheck 0, `vite build` OK.
+
+**L2 locally-integrated journey (production build, real registered services).**
+Isolated fenced realm — portable PG 16.9 on 127.0.0.1:5434 (db
+`visionary_data_test_kan42`, schema `data02_f74b48d43d0b6cd22d87503edb59eb0b`, least-
+privilege runtime role `realm_fhe05` — the overview store REFUSES privileged roles by
+design; Prisma migrations applied), Auth+Firestore emulators on 9098/8081 (project
+`demo-visionary-kan42`), fenced backend (`NODE_ENV=test`, `DATA_OVERVIEW_*` +
+`DATA_WORKSPACE_PROVISIONING_ENABLED`) on 3002 with `AUTH_PUBLIC_ORIGIN` pinned to the
+preview origin, prod bundle on 4200 with the CSP gate serving the emulator origin.
+Real journey in the app browser: register → verify via the app's own `/auth/action`
+(oobCode) → sign in (origin-pinned session exchange) → 5-step Learner onboarding →
+**the production dashboard renders the connected shell** → the provider's 403-fallback
+provisioned the personal workspace → readback → `Workspaces` lists "Personal
+workspace · Owner" from the server → `Saved learning` shows the server-backed honest
+empty state → `Practice` shows the honest unavailable room inside the shell → hard
+reload re-resolves. **SQL readback:** exactly 1 person, 1 workspace (`isPersonal=t`),
+1 OWNER membership — unchanged across loads and reloads (idempotent). Screenshots:
+connected home, server workspaces, reload persistence (saved under
+`C:/Users/Administrator/nv-tools/fhe05-shots/`).
+
+**Honest states proven on the way:** the store's least-privilege identity guard and
+the provisioning flag both fail closed with typed 503s that the shell renders as the
+retryable KAN-210 room (observed live before the realm env was complete) — no false
+workspace, no local fallback.
+
+**Governance.** The other agent's active realm on 4199/3001/9099/8080 was left
+untouched; this slice's realm is fully isolated (5434/9098/8081/3002/4200). Screenshots
+and realm env remain outside the repo. Next eligible order: FHE-05 slice 2 (mobile
+viewport + keyboard walk of the connected shell), then FHE-07/08 honest-content and
+teaching-lane handoffs per `docs/visionary/FHE_V6_JOURNEY_MATRIX.md`. QA/Codex review
+pending for the candidate commit; nothing merged to dev by this lane.
+
+## 2026-11-17 — FHE-05 slice 2: the connected shell survives the real mobile and keyboard walk (two defects found and fixed)
+
+**The directive.** The slice-1 receipt named the next eligible order: a mobile-viewport and
+keyboard walk of the production connected shell. Executed on the same branch
+(`zcode/fhe05-connected-shell`), same fenced realm (PG 5434, emulators 9098/8081, backend
+3002, prod bundle 4200 browsed via the pinned `localhost` origin).
+
+**Journey (production build, real registered services, app browser).** Fresh account
+`fhe05c-…@example.com` at 390×844: register → verify through the app's own
+`/auth/action` (oobCode) → sign in → five-step learner onboarding → the production
+dashboard renders the connected shell → introduction dialog → every mobile nav
+destination (Home, Learn, Ask, Practice) → More sheet (Build, Classes, Connections,
+Progress, Notifications, Personalization, Privacy, Plans & usage) → Connections lists
+the server-provisioned "Personal workspace · Owner" → hard reload re-resolves the
+server list. Desktop 1280×800 keyboard walk: first Tab = skip link, activation lands
+focus on `#main`, coherent tab order through topbar/sidebar/content, sidebar activation
+navigates and route-change focus lands on `main`, account menu opens with focus inside
+and Escape closes with focus returned to the trigger. Sign-out/sign-in round trip at
+desktop also exercised. Session identity cross-checked through the account menu and
+`/api/auth/me` (uid `y24Oo79…`).
+
+**Defects found by the walk and fixed in this slice.**
+1. `ConnectedConsents.jsx` rendered the identical retry-advice error alert for the
+   server-authoritative capability-off state (`available:false`) and for genuine read
+   failures; refresh cannot change a capability flag, so the copy misled. Fixed: errors
+   keep the alert + retry advice; the capability-off state is now a distinct honest
+   status ("not available for this account yet… records are unaffected"). Verified live
+   in the realm (consent store is fenced off there, so the state is the real one).
+2. `VisionaryLogo.jsx` hardcoded the V mark ink `#1d1d1f`, which vanished against the
+   dark workspace topbar (the wordmark read "isionary" — visible in slice 1's own
+   screenshots, so pre-existing, missed by the walkthrough). Fixed: the mark follows
+   `var(--v-text, #1d1d1f)` — light surfaces byte-identical (fallback = original ink,
+   re-verified on the signed-out landing), dark shell renders the visible light ink.
+
+**Process notes, recorded honestly.** (a) The slice-1 candidate carried a stale surface
+inventory hash (`ConnectedWorkspaceLayout.jsx` edited after `scope:audit:write`); test
+749 failed at 864/865 and `4ed04f82` refreshed exactly that one hash line; suite green
+afterwards. (b) The realm's build-time Firebase env was not persisted by the slice-1
+session; this session's first rebuild silently dropped the emulator config and the
+app failed closed ("Sign-in is temporarily unavailable") — the fence worked as
+designed; the bundle was rebuilt with the realm env (demo project, loopback emulator,
+explicit test-realm flag) and registration succeeded. (c) The realm is pinned to the
+`localhost:4200` origin (`AUTH_PUBLIC_ORIGIN`); browsing `127.0.0.1` fails the CSRF
+Origin check with 403 — diagnosed by curl roundtrip (localhost Origin → 401 expected
+invalid-token, proving the guard itself correct). (d) Direct SQL readback was not
+available this session (role password intentionally not persisted); server truth was
+confirmed through the authenticated API and the shell's own server-backed lists
+instead. Slice 1's SQL evidence stands.
+
+**Evidence.** Unit: 865/865 after the inventory refresh (Node 22); lint 0; typecheck 0;
+`vite build` OK; `scope:audit` green with the two new fixes inventoried. L2: the full
+mobile + keyboard journey above on the production bundle with real emulator/backend
+services; screenshots under `C:/Users/Administrator/nv-tools/fhe05-shots/` plus this
+session's browser captures. Governance: realm untouched otherwise; other agents'
+realms untouched. QA/Codex review still pending for the branch; nothing merged to dev.
+Next eligible order per the matrix: FHE-07/08 honest-content and teaching-lane
+contract handoffs (backend-dependent, D-class), or FHE-06 follow-up (server-reconciled
+active-workspace preference) if the backend lane resumes.
+
+## 2026-11-18 — No-dead-code law: the frontend product graph is now clean and mechanically enforced
+
+**The directive.** The founder ordered that no dead code, random work or stray code
+may remain in the frontend product, and that the rule be written down. Executed as a
+law + enforcement layer, not a one-off cleanup, on the same FHE-05 lane.
+
+**Survey (evidence before any removal).** New verifier
+`frontend/scripts/production-graph.mjs` (`npm run verify:graph`): (a) bundle
+static-closure audit over `dist/` — the executed set is entry + transitive static
+imports (4 of 147 chunks: entry + router/radix/icons vendors); the dev preview store
+(`workspaceService`) is provably outside it; (b) orphan-source scan — every `src/`
+file must be reachable from the entry or from tests/scripts; (c) hygiene greps —
+zero TODO/FIXME/console.log/debugger in `src/`; (d) basename cross-check of every
+candidate against the whole tree to rule out resolver misses.
+
+**Findings and actions.** 95 orphans of 506 source files, all confirmed genuine:
+93 removed (`git rm`) — the pre-Apple-unification dashboard card library, superseded
+Learn/Practice sub-components, superseded role homes, superseded pages (`Ask.jsx`
+replaced by the intent-flow Home, `Build.jsx` by `ArtifactStudio`, `OAuthConsent.jsx`),
+41 unused shadcn `ui/*` primitives + `use-mobile` (scaffold never imported by any
+reachable surface), `App.css`, `productAccess.js`, `utils/index.ts`, `useSheetStack.js`,
+`AGIIntro.jsx`; 1 misfiled test fixture moved out of `src/` (`src/api/demoFixtures.js`
+→ `tests/fixtures/demoFixtures.js`, five test imports updated — the no-demo law's
+placement rule now holds); 1 file registered as an intentional seam
+(`src/services/backendTransport.ts`, V6 §5, covered by `tests/backend-transport.test.mjs`).
+`*.d.ts` files are classified as the ambient type layer consumed by tsc, reported
+separately, never orphans. The surface audit failed closed during the sweep (obsolete
+review entries, then a missing operation-evidence file) and was updated truthfully:
+registry pruned to existing files (246→192 control files), and
+`test-invoice-and-family` now cites the live `billingClient.js` (the deleted
+`FamilyBilling.jsx` was dead preview UI; the server operation is unchanged). Final
+inventory: 1532 control declarations (was 1684), `intentionally-unreleased` 3 (was 155).
+
+**Laws now pinned by tests.** `tests/production-graph.test.mjs` (5 cases): chunk-edge
+parsing (static executes, dynamic defers, computed specifiers are not edges), executed-
+closure semantics, source-import resolution, fixture-based orphan classification, and
+the route law — the dashboard `<Outlet/>` renders ONLY `/dashboard/subscription`, every
+declared `/dashboard/*` path is mounted-connected or intercepted into the honest room,
+and the six promised connected surfaces stay mounted.
+`tests/fap80-dark-token-coverage.test.mjs` recalibrated to the cleaned inventory
+(floor ≥20 real tokens, allowlist now EMPTY — the old scrim exception belonged to a
+deleted dead file; dark remap coverage is 100%). Final: **870/870** tests (was 865),
+lint 0, typecheck 0, `vite build` OK, `verify:graph` exit 0, `scope:audit` green.
+
+**The written law.** `docs/architecture/FRONTEND_NO_DEAD_CODE_LAW.md` — what is banned
+(orphan files, preview-store execution, preview-route mounting, stray markers, misfiled
+fixtures, style-law drift), the registered-intentional table, the known deferred-fetch
+bundle inventory (preview route chunks remain in dist as never-fetched dev-routing
+parity — bundle-hygiene debt owned by FHE-20), the per-change compliance commands, and
+the provenance of this sweep. Git history retains every removed file.
+
+**Governance.** All work on the same reviewed lane (`zcode/fhe05-connected-shell`);
+nothing merged to dev; QA/Codex review still pending for the branch. Next eligible:
+FHE-07/08 honest-content and teaching-lane handoffs per the journey matrix.
+
+## 2026-11-18 — FHE-20 route-table split: the production artifact no longer ships any preview-store code
+
+**The directive.** Retire the registered bundle-hygiene debt (law doc §3): the
+production artifact shipped 60 preview route chunks (and the browser-local
+`workspaceService` chunk) that the route law proved were never mounted or
+fetched. Frontend-executable, so it was done now rather than waiting for the
+paused backend lane.
+
+**The change.** In `App.jsx`, every intercepted `/dashboard/*` child keeps its
+route declaration but declares its element as `import.meta.env.DEV ? <Preview />
+: null` (route declarations must stay so direct production links still match —
+the first attempt dropped the declarations and the browser smoke caught
+/dashboard/home falling through to 404 before any commit). The preview lazy
+declarations and the composition root's preview boundary use the same
+DEV-conditional pattern, and `AuthContext`'s preview-store seam now rejects in
+production before its dynamic import is reachable. With Vite's static DEV
+replacement, Rollup drops the dead branches and the imports.
+
+**Artifact result (production build, measured).** 147 → **87 chunks**; the
+`workspaceService` chunk and the `PreviewDashboardLayout` chunk are absent —
+the browser-local development store no longer ships at all. Entry chunk
+279.55 → 272.89 kB.
+
+**Behavior verification, both modes, in the app browser.** Production (fresh
+dist served on 4201 against the fenced realm): /dashboard/home → connected
+account home, /dashboard/learn → server-backed saved learning,
+/dashboard/connections → server workspace list, /dashboard/subscription →
+connected plans, /dashboard/ask → honest unavailable room,
+/dashboard/privacy → approved policy + consents, /dashboard/typo-unknown →
+404 (pre-split behavior preserved). Development (`vite dev` on 5199):
+/dashboard/learn renders the full approved preview workspace (workspace
+switcher, career tools, voice panel) — the DEV path is intact.
+
+**Inventory truth.** `surface-audit-lib.mjs` now classifies routes declared
+behind `import.meta.env.DEV &&` as development-only (previously only the
+DemoPreview const pattern was recognized): 31 dev-only routes; production
+keeps /dashboard (the connected layout) + /dashboard/subscription. The
+surface inventory, `ROUTE_GRAPH.json` and the KAN-31 authority inventory were
+regenerated; the route-law and product-surface tests were extended with the
+same rule. The kan210 composition-law assertion now pins the strengthened
+boundary (the production graph cannot even name the preview module). Law doc
+§3 rewritten from "registered debt" to "retired, with the receipts".
+
+**Checks.** 870/870 tests, lint 0, typecheck 0, `vite build` OK,
+`verify:graph` exit 0 (4 executed chunks, no preview store in the closure, 0
+orphans), scope:audit + route-graph + authority gates green after
+regeneration. Nothing merged to dev by this lane yet.
+
+## 2026-11-18 — FHE-19: hi/bn interfaces are real, measurable, and audit-enforced (FAP-67 follow-up completed)
+
+**The directive.** The i18n audit carried a recorded follow-up since FAP-67: "the hi/bn
+passes need the app's language switcher." The founder ordered the language work done
+end-to-end in the browser. Executed on branch `zcode/fhe19-language-accessibility`
+(base `3cc67c6e`).
+
+**What the investigation found.** The interface locale chain already exists:
+onboarding's language choice → `preferred_language` on the server profile → the
+connected shell's locale derivation → `workspaceText`/`privacyCopy` hi/bn strings.
+But (a) no way existed to see or change it after onboarding, (b) the connected
+production surfaces (profile, workspaces, saved learning, consents, security, home,
+rooms) were English-only, and (c) the audit skipped hi/bn entirely.
+
+**Changes.**
+1. `ConnectedProfile` now shows the Interface-language control: the saved value,
+   the three shipped interfaces (English/हिन्दी/বাংলা with native labels and `lang`
+   attributes), and an honest state — the registered profile-update contract accepts
+   only the display name and accent today, so the control is disabled with a truthful
+   note ("switching here is coming soon") rather than a failing affordance. The
+   one-field backend extension is the recorded handoff (the backend lane owns it).
+2. All six non-commercial connected surfaces were translated (new
+   `connectedSurfaceCopy`, plus privacyCopy entries for the cloud-consent chrome):
+   home, honest rooms, workspaces, saved learning, sharing consents, account
+   security, profile — ~90 strings in hi/bn, written as faithful translations, with
+   locale-aware date formatting. `ConnectedBilling` remains English by recorded
+   decision (commercial copy requires approved translations; same discipline as the
+   public pages) — recorded in the audit decision.
+3. `guideCopy` gained the eleven role-action labels (the Ask page's career CTAs).
+4. **The audit's hi/bn passes are real**: `i18n-audit.mjs` now logs in, drives the
+   app's own Interface-language listbox (preview Personalization panel) for each
+   locale, and walks all ten surfaces per locale. A decided-English allowlist with
+   recorded decisions (FAP-87 boundary notices; the approved policy section renders
+   in its approved language with server-owned purposes) keeps intentional English
+   out of the flagged count.
+
+**Realm note (recorded honestly).** The fenced realm's emulator binds 127.0.0.1
+while the backend CSRF pins `localhost:4200`; this browser build blocks the
+cross-host loopback fetch, so the emulator was made reachable at `localhost:9098`
+via an IPv6 port-forward and the SDK config rebuilt for `localhost:9098` — realm
+infrastructure only, no product change. The in-realm Hindi journey was executed
+live in the app browser: register → verify → onboard choosing Hindi → the entire
+connected shell and every connected surface renders in Hindi (DOM evidence:
+होम/सीखें/पूछें/अभ्यास/बनाएँ, सहेजी गई सीख, कार्यक्षेत्र, आपकी प्रोफ़ाइल, इंटरफ़ेस भाषा)…
+
+**Checks.** The rewritten audit: PASS — zero untranslated English sentence nodes
+across all ten surfaces in hi and bn (receipt:
+`docs/visionary/baseline/i18n-audit-2026-11-18/i18n-audit-receipt.json`, with the
+decided-English counts per surface). Full suite **870/870**, lint 0, typecheck 0,
+surface audit green (1533 declarations). The Bengali pass is audited by the same
+instrument (the bn dictionary set drives the same components verified live in
+Hindi); a live bn journey was not separately walked in this slice and is covered
+by the audit's bn pass.
+
+**Next eligible:** the one-field backend handoff (enable the profile switcher),
+`ConnectedBilling` translations with approved commercial copy, and the remaining
+FHE-19 items (200% zoom walk, reduced-motion verification) — the audit instrument
+now exists to measure all of them.
+
+### FHE-19 backend handoff (recorded with the receipt): one field to enable the switcher
+
+**Owner:** backend lane (FirebaseProductModule — `updateProfile` in
+`firebase-product.service.ts`). **Contract change:** extend `PATCH /api/auth/profile`
+to accept `preferred_language` as a third updatable field, bounded to the onboarding
+language labels (the same value set onboarding writes — e.g. `English`, `Hindi`,
+`Bengali`, …; any string ≤ 40 characters; the existing generic text validation
+applies). The frontend control (`ConnectedProfile`, shipped disabled in this slice)
+is then enabled as-is: `updateUser({ preferred_language: next })` with the standard
+account fence, `expectedUserId`, and the conflict copy already written. Server
+invariants: the value is a preference, never an authorization; the profile response
+is the receipt; concurrent edits keep the existing `expectedProfileName`-style
+conflict law. **Acceptance:** the L2 realm journey switches the interface language
+from the profile surface, the connected shell re-derives the locale from the saved
+profile (no reload), and the audit's hi/bn passes drive the same control.
+
+### FHE-19 verification instruments (recorded with the receipt): zoom and reduced motion
+
+**Reference basis:** Apple Human Interface Guidelines, Inclusivity — Accessibility
+(Intuitive/Perceivable/Adaptable) and the platform motion conventions the product's
+D1 motion law already cites; studied, nothing copied.
+
+1. **Zoom (`qa:zoom`, new `scripts/zoom-audit.mjs`).** Simulates browser zoom by
+   halving the CSS viewport — 640×400 is the 200% equivalent of the 1280×800
+   desktop layout, 320×220 the 400% equivalent. Two contexts per level: a
+   signed-out visitor (/, /login, /register, /pricing, /student) and a signed-in
+   account (home, profile, connections, learn, privacy, settings, subscription).
+   **PASS: all 24 surface checks reflow without horizontal overflow at both
+   levels** (receipt: `docs/visionary/baseline/zoom-audit-2026-11-18/`, with the
+   widest-offender naming for any future failure).
+2. **Reduced motion (`qa:reduced-motion`, new
+   `scripts/reduced-motion-audit.mjs`).** Extends the F-09 motion law to the
+   connected production shell: under `prefers-reduced-motion: reduce` all audited
+   surfaces render fully (real heading, real content, no overflow) and compute
+   **zero animated elements / 0s durations**, against a no-preference baseline of
+   25 animated elements (max 0.2s) — motion present by default, collapsed under
+   the preference, exactly the contract. (receipt:
+   `docs/visionary/baseline/reduced-motion-audit-2026-11-18/`)
+
+Both instruments run against the production build on the pinned realm origin and
+join `qa:i18n` as repeatable FHE-19 gates.
+
+### FHE-19 follow-through: the billing surface joins the translated set
+
+The recorded decision ("ConnectedBilling remains English pending approved
+commercial copy") is now refined into the honest split it always implied:
+
+- **Translated (functional UI):** ~80 strings in the new `billingCopy` — every
+  state, error, notice, button, status label, the cancellation and review
+  dialogs, family-billing management, invoices, the entitlement descriptions,
+  and the test-mode disclosures, with `{name}` interpolation and locale-aware
+  dates. The 401 sign-in link detection is structural (compares against the
+  translated message), not string-matching.
+- **Still English (recorded):** the three plan taglines ('BETTER TOGETHER',
+  'THE ESSENTIALS', 'YOUR OWN PACE'), the section tagline, the eyebrow, and
+  the plan names — marketing voice and product vocabulary awaiting approved
+  commercial copy. Server-owned error copy (e.g. the realm's "Test billing is
+  not configured") renders as received, recorded in the audit's
+  decided-English list with that reason.
+
+The review dialog's agree label was restructured for grammar: a complete
+translated sentence plus a separate "Review the service terms" link, instead
+of an inline-phrase split that would break Hindi/Bengali word order.
+
+**Checks:** the i18n audit now covers eleven surfaces including
+`/dashboard/subscription` — **PASS: zero untranslated English sentence nodes
+in hi and bn across all eleven** (receipt refreshed). Full suite **870/870**,
+lint 0, typecheck 0, surface audit green (1533 declarations).
+
+### FHE-19 craft pass: keyboard, mobile and typography verification of the changed surfaces
+
+**Reference basis:** Apple HIG Inclusivity — Accessibility (Intuitive/
+Perceivable/Adaptable) and the platform touch/typography conventions; studied,
+nothing copied. Pure verification — no code changes were needed.
+
+1. **Keyboard.** The interface-language control is an honest disabled control:
+   removed from tab order (the accessible pattern for unavailable controls),
+   its fieldset legend and `aria-describedby` note remain wired. On the billing
+   surface the operable control (Retry billing) takes focus and activates with
+   Enter, retaining focus and re-announcing the `role="alert"` state. The
+   billing review dialog's full keyboard path could not be live-exercised in
+   this realm — the realm's billing backend is unconfigured ("Test billing is
+   not configured"), so the plan grid never renders; the dialog is standard
+   Radix focus-trap structure and its keyboard walk joins the backend
+   qualification's checklist.
+2. **Mobile 390px.** All five changed surfaces (home, profile, learn,
+   subscription, connections) render without horizontal overflow with a
+   minimum 48px touch target — the `min-h-11` discipline holds across the
+   translated chrome.
+3. **Devanagari typography.** The Hindi shell computes 1.50 line-height on the
+   heading and 1.70 on body copy (≥1.5 is the accepted minimum for Devanagari
+   matras/ligatures), zero clipped elements, and the screenshot review shows
+   clean rendering through the platform font stack.
+
+## 2026-11-18 — FHE-19 fresh-eyes continuation: the introduction dialog joins the translated set; ask-surface mentor chrome follows the interface language; route sweep instrument
+
+Reference basis: Apple HIG Inclusivity/Accessibility — user language for every
+interface string, nothing copied. Fresh-eyes walkthrough under the final-head
+directive found two E-class defects; both fixed, verified on production
+builds, and audited.
+
+1. **GettingStarted introduction dialog was English-only inside the hi/bn
+   shells** (E-class: untranslated interface chrome). New copy module
+   `src/lib/gettingStartedCopy.js` (~40 entries, en/hi/bn, `{page}`
+   interpolation, English fallback) wired through `GettingStarted.jsx` with
+   the one-hook contract (`useWorkspace`: preview store in dev, connected
+   projection in production). Verified live on the production build: the
+   fhe05h Hindi account's shell renders the trigger (परिचय देखें), the
+   auto-opened dialog (शुरुआत · 1 / 3 … Visionary में आपका स्वागत है), all
+   three screens, per-screen footers, and close/reopen in Hindi; the preview
+   branch verified through the Interface-language listbox on the dev server.
+   During verification the first wiring crashed the connected shell
+   (`t is not defined` — the translator was derived in the outer component
+   but used in `ProductIntroduction`); caught by the walkthrough, fixed by
+   moving the derivation into the rendering component, and re-verified.
+2. **MentorGreeting chrome followed the teaching language instead of the
+   interface language** (E-class: locale-authority defect on the ask
+   surface). The check-in card now speaks the interface locale — same
+   authority as the plan builder's chrome — while the teaching turn stays
+   teaching-language content when the backend handoff lands. Verified live:
+   the hi interface renders आपका मार्गदर्शक आया है / सीखें खोलें.
+3. **i18n audit contract extended for content-language marks.** Nodes inside
+   a product `lang` attribute that differs from the interface locale are
+   content in its recorded language (journey/session titles — the established
+   DecisionHome/LearningProgress/Guide pattern); the audit counts them per
+   language in the receipt (`contentLangNodes`) instead of flagging them, and
+   ignores the document-root lang so a missing wrapper can never silently
+   pass. `qa:i18n` PASS: 11 surfaces, zero untranslated chrome in hi and bn.
+4. **`qa:route-sweep` registered** (`scripts/connected-route-sweep.mjs`):
+   every declared /dashboard/* route on the production build with a real
+   session must render a connected surface or the honest room — never blank,
+   never a crash, never a preview surface. PASS: 23/23 routes, zero page
+   errors. Receipt:
+   `docs/visionary/baseline/connected-route-sweep-2026-11-18/connected-route-sweep-receipt.json`.
+
+Evidence: 870/870 unit tests, eslint clean, qa:i18n PASS (receipt
+regenerated), connected-route sweep PASS, live hi verification of both
+dialog branches and the mentor card on the production build.
+
+## 2026-11-18 — FHE-21: the local production-build integration test factory
+
+Reference basis: V6 §7 FHE-21 + §8 matrix row E01 — every released activity
+reproducibly verified on the local production build without fictional
+backend outcomes; nothing copied.
+
+`qa:realm-journeys` (`scripts/realm-integration-factory.mjs`): one repeatable
+evidence run of the core connected journeys on the PRODUCTION bundle against
+the real fenced realm (backend 3002, Firebase Auth emulator), each mutation
+read back through the app's own API (`/api/auth/me`) so server-owned
+persistence is inspected, not assumed:
+
+1. **J1 (E01)** register through the real UI → email verified via the
+   emulator's OOB action → onboarding wizard (learner, chosen learning
+   language) → account home; server state asserted: onboarding_complete,
+   preferred_language, full_name.
+2. **J2** profile display-name rename persists across a full reload
+   (server-owned record, not local state).
+3. **J3** sign-out → sign-in continuity: onboarding state and the J2 rename
+   survive a new session.
+4. **J4** permission denial: unauthenticated `/api/auth/me` → 401.
+
+Evidence discipline per FHE-21: receipt records the exact build SHA, base
+URL, emulator/project ids, per-step timestamps and details, page-error
+count, and the synthetic-account cleanup command; the account password is
+generated per run and never recorded (secret-safe). Accounts are synthetic
+QA identities inside the fenced realm only.
+
+PASS: 4/4 journeys, zero page errors, on build `7289445f`. Receipt:
+`docs/visionary/baseline/realm-integration-2026-11-18/realm-integration-receipt.json`.
+
+## 2026-11-18 — FHE-23 preparation: staging qualification checklist + promotion PR draft (release-owner lane entry package)
+
+Preparation only — nothing promotes. `docs/visionary/FHE23_STAGING_QUALIFICATION_CHECKLIST.md`
+maps every Stage D gate and red gate to either existing exact-SHA evidence
+(Certificate F satisfied) or the hosted-staging work that remains
+(Certificates I and M open), and states the two release-scope options the
+founder must choose between. `docs/visionary/FHE23_PROMOTION_PR_DRAFT.md` is
+the prepared dev→main pull request with honest release notes, withheld-scope
+disclosures, and the sign-off block; it becomes a real PR only after the
+release owner, Codex and founder sign-offs are recorded.
+
+## 2026-11-18 — FHE-20 CWV evidence refreshed on the current dev artifact (in-app browser instrument)
+
+Reference basis: V6 FHE-20 test line — first paint, slow mobile, image
+loading/reflows, CWV targets (LCP ≤2.5s, INP ≤200ms, CLS ≤0.1; lab runs do
+not establish field p75); nothing copied.
+
+The designed lab instrument (`qa:lighthouse`) could not run in this
+environment today — its bundled Chrome closed during the gather phase
+("Target closed") on two consecutive runs; recorded honestly rather than
+forced. In its place, the in-app browser's Performance API measured the
+five public routes on the fresh production build (loopback, warm cache,
+1280×800 — lab conditions only, not field p75):
+
+- **CLS 0 on every route** — no layout instability; the image
+  loading/reflow check passes (zero broken images; below-fold spot
+  illustrations lazy-loaded).
+- **First-paint proxy**: DOMContentLoaded 157–246 ms, load 158–248 ms,
+  TTFB 3–4 ms across /, /pricing, /download, /student, /safety; transfer
+  4–55 KB per route.
+- **FCP/LCP** are not exposed by the in-app browser context and are left
+  absent rather than fabricated; the 2026-11-17 lighthouse receipt remains
+  the category baseline and its Fast3G finding (raw LCP >2.5s, fast-LCP
+  lever named) stands as the recorded performance limitation.
+- **Slow mobile** was not re-measured this session (no throttling in the
+  in-app browser); the 390px layout evidence from the craft pass stands.
+
+Receipt: `docs/visionary/baseline/cwv-2026-11-18/cwv-iab-receipt.json`.
+
+## 2026-11-18 — evidence-integrity fix: the lighthouse instrument no longer overwrites historical receipts on a crashed run
+
+The two failed `qa:lighthouse` runs today wrote partial per-route LHR files
+into the 2026-10-30 baseline directory before crashing, corrupting
+historical evidence (restored from git). The instrument now buffers every
+write and persists the per-route files and the receipt only after the full
+run passes — a crashed run leaves the historical receipts untouched.
+
+## 2026-11-18 — founder walkthrough round: nine product-craft fixes on the public site and the workspace nav
+
+Reference basis: Apple HIG — Navigation and search (predictable activation),
+Layout (adapt across the device continuum), segmented controls (one visible
+container, one obvious selection), expanding content (quiet disclosure on
+hairline rows), Icons (one glyph family, familiar shape at small sizes);
+nothing copied. Every fix verified live on the production build before
+commit.
+
+1. **LandingNav mega triggers were buttons** — hovering opened the submenu
+   but the item itself was dead. Now Apple's global-nav pattern: the item
+   is a real link (Who you are → the active persona or /student,
+   For organizations → /organization, Download → /download, About → /about)
+   that navigates on click; hover or keyboard focus opens the megamenu; the
+   dead button-toggle machinery is removed.
+2. **The One-intelligence bot image jumped at fixed tiers** — now fluid
+   `clamp(220px, 34vw, 500px)`, resizing continuously across devices.
+3. **The "Why Visionary exists" carousel was born frozen** — the real bug:
+   the cycle interval was passed as 0, so the parent story ("The report
+   card says fine…") sat permanently on screen as if stuck. Interval fixed
+   (4200 ms) and the parent slide removed with its image per the founder's
+   call; the section now cycles the student and professional stories, and
+   the sr-only description matches.
+4. **Pricing**: the Monthly/Annual toggle was white-on-white — now the
+   product's segmented control (quiet #f5f5f7 track, ink active pill,
+   breathing room below); both plan CTAs and the institution CTA moved from
+   blue to the product's action color (ink #1d1d1f), matching every primary
+   pill on the site.
+5. **Heading audit, all 24 public routes** (one-off outline sweep): the
+   download page's "One account. Open it in your browser." statement was a
+   bare paragraph — now a real h2; the footer's link columns gained the
+   sr-only directory h2 (the h3 labels no longer skip a level anywhere);
+   the help page's topic cards are real h2s. The three remaining
+   fat-paragraph flags are recorded legitimate patterns (a real blockquote,
+   the mission-card quote, the careers FAP-71 sr-only-h1 hero).
+6. **FAQ design**: contact/community/partners used card boxes with filled
+   blue circles — restyled to the product's canonical accordion (the
+   pricing page's anatomy: hairline rows, ink question, quiet rotating
+   plus, grid-rows resolve curve).
+7. **Persona hero subheads** reduced to the Apple one-line standard
+   (student/teacher/parent/professional/organization — one short truthful
+   sentence each; the development-status caveats stay in the honest rooms
+   below the fold where they belong).
+8. **Help page**: outline repaired (h1 → topic h2s; no level skips); the
+   search/browse/contact-band anatomy otherwise passed review.
+9. **Workspace nav**: the Ask/Guide item now carries the Visionary bot —
+   a monochrome currentColor SVG mark (round head, two eyes, small smile,
+   capsule body) that renders on light and dark surfaces like every other
+   nav glyph; plain createElement module so the Node-side navigation tests
+   import it unchanged.
+
+Evidence: 870/870 unit tests, eslint clean, live verification of each fix
+in the in-app browser and via headless sessions (nav navigation, carousel
+advance, computed colors/spacing, heading outlines, bot mark shapes).
+
+## 2026-11-18 — end-to-end qualification by category: student → organization, on the production build
+
+Reference basis: V6 §8 matrix (one verified case per selected journey and
+its high-risk negative counterpart); Apple HIG — Inclusivity (flows tested
+in the roles real people hold); nothing copied.
+
+`qa:role-e2e` (`scripts/role-journey-e2e.mjs`): for each category —
+student, teacher, parent, professional, organization — a fresh synthetic
+identity registers through the real UI, verifies email via the emulator's
+OOB action, onboards choosing that role through an adaptive wizard walker,
+and then walks the role's primary workspace routes on the PRODUCTION build.
+Every journey asserts the server-owned state (`/api/auth/me`: identity,
+onboarding_complete, getting_started_complete after skipping the
+introduction dialog) and every route renders a connected surface or the
+honest room — never blank, never a crash, zero page errors.
+
+PASS: 5/5 category journeys (student, teacher, parent, professional,
+organization) on build `0524ad32`. The role's honest rooms are exactly the
+backend-gated areas of the recorded handoffs; each role's real surfaces
+(home, learn/connections/classes where applicable) render and function.
+Receipt: `docs/visionary/baseline/role-e2e-2026-11-18/role-e2e-receipt.json`.
+
+## 2026-11-18 — PROMOTION: dev merged into main — narrow connected-account release (founder-approved)
+
+Controlled merge commit `091db60f` (no force-push, no direct replace):
+`main` advanced `6c209a29` → `091db60f`, bringing 61 dev commits including
+the FHE-05 realm, FHE-20 route split, FHE-19 language/accessibility lane,
+the fresh-eyes craft round, FHE-21 test factory, FHE-23 preparation
+package, and the end-to-end category qualification.
+
+Promoted SHA `d751d981` — gates at the exact SHA: GitHub Actions green
+(run 44338127523); root `npm run check` exit 0 (1045 assertions, 870/870
+tests); role-by-role E2E 5/5 categories (student, teacher, parent,
+professional, organization — register, verify, onboard, walk routes,
+server state asserted); connected-route sweep 23/23; realm integration
+journeys 4/4; i18n audit 11 surfaces zero untranslated hi/bn; zoom and
+reduced-motion PASS; heading-outline audit 24 public routes clean.
+
+Founder approval recorded in-session (2026-11-18): end-to-end
+qualification by category directed, then "if all are perfect then you
+have to merge dev into production."
+
+Disclosed limitations (the launch language must reflect them): learning
+catalogue, teaching/Ask turns, practice, Build, classrooms, guardian,
+professional, organization, notifications render as truthful 'not
+available yet' rooms (backend/ML lanes pending — contracts written); the
+billing backend is unconfigured and the plans surface renders the
+server-owned 'Test billing is not configured' state; no payment is
+advertised. Certificates: F satisfied; I and M remain the release-owner
+lane's responsibility for the hosted-qualification remainder (staging
+provisioning, hosted identity/origins, migrations, rollback drills,
+synthetic monitoring) per `docs/visionary/FHE23_STAGING_QUALIFICATION_CHECKLIST.md`.
+
+## 2026-11-18 — category coverage completed: every route in every role's navigation walked
+
+The category count question answered from the product's own data: five
+categories (student, teacher, parent, professional, organization — the
+school/college/coaching slugs in the landing data are commented out, not
+declared categories). The earlier per-role E2E walked each role's primary
+navigation only; the instrument now derives each role's FULL route list
+from the navigation library itself (`navigationFor` + `secondaryNavigation`)
+— no hand-picked subsets — and walks every one on the production build.
+
+PASS 5/5 categories, 59 route-walks total: student 12, teacher 14, parent
+9, professional 13, organization 11. Zero blank pages, zero errors; every
+route renders the role's real surface or the honest room; server state
+(identity, onboarding_complete, getting_started_complete) asserted per
+role. Receipt:
+`docs/visionary/baseline/role-e2e-2026-11-18/role-e2e-receipt.json`.
+
+## 2026-11-18 — two founder-reported fixes: the carousel's override image and the persona hero voice
+
+1. **"Why Visionary exists" override image (real bug, root-caused).** The
+   story carousel stacks all slides absolutely and hides the inactive one
+   with the `opacity-0` utility — but `.lazy-loaded { opacity: 1 }` in
+   index.css was defined AFTER `@tailwind utilities`: same specificity,
+   later in the cascade, so it always won and BOTH photos painted at full
+   strength, the second overriding the first. The rule now sits before the
+   utilities layer (base → components → lazy rules → utilities), so an
+   explicit opacity utility governs a lazy-loaded image's final opacity —
+   the inactive slide is truly hidden and the crossfade shows exactly one
+   photo at a time. Verified live: inactive image opacity 0.00, active 1.00
+   across the full cycle. (The bug predates the parent-slide removal; the
+   frozen carousel simply never exposed it.)
+2. **Persona hero sub-headings spoke setup-speak, not product voice.** The
+   five heroes now carry the product's own accepted persona lines from the
+   landing router — student "See the idea, practise it, and use it in the
+   next thing you build.", teacher "Plan, explain, and check understanding
+   while the lesson is still in front of you.", parent "See the progress
+   behind the report and find a useful next step at home.", professional
+   "Turn a question, project, or new skill into work you can use.",
+   organization "Give teams a shared view of learning across people,
+   projects, and time." Benefit-led, human, and exactly two rendered lines
+   each (verified computed line counts).
+
+Evidence: 870/870 unit tests, eslint clean, live verification in the
+in-app browser.
+
+## 2026-11-19 — the page-by-page Apple-level program complete: A00–A23, B01–B07, C01–C20 all closed with receipts
+
+Reference basis: the founder's APPLE_LEVEL_PAGE_BY_PAGE directive (2026-11-18)
++ the 12 official Apple resources held open as standing application-browser
+references throughout; every pass consulted them. Nothing copied.
+
+**A00–A23 (24 public pages):** the deep-match pass walked every chapter of
+every route in the application browser and at 320–1920px. Fixed this
+program: the hero purpose line (the Education hero grammar applied), the
+carousel cascade bug (the override image), ~370 straight apostrophes
+product-wide, the Safety trust-card destinations (5 personas), 6 persona
+hero sub-headings in the product's voice, the help/heading outlines, the
+pricing segmented control, and the honest-availability notes on all four
+persona intelligence chapters. Pages that already matched recorded as
+PASS — NO CHANGE REQUIRED with evidence (help, careers, partners, updates,
+organization).
+
+**B01–B07 (auth/onboarding):** the full flows were exercised end-to-end
+against the real realm this session (realm journeys + 5 role identities);
+the deep passes recorded the interaction and negative-path evidence:
+the honest wrong-password error (no account-existence leak), the native
+email validation, the recovery pages' honest states, the five-role
+wizard with server-confirmed completion.
+
+**C01–C20 (the connected internal product):** every journey classified
+per the directive's boundary law with server evidence (qa:role-e2e 5/5,
+59 route-walks; qa:realm-journeys J1–J4): CONNECTED AND VERIFIED — home
+per role, connections, profile persistence, settings, privacy/consents,
+learn history, role switching; CONNECTED UI / SERVICE BLOCKED —
+subscription (the honest billing state); FRONTEND COMPLETE / SERVICE
+BLOCKED — catalogue, teaching turn, practice, build, classrooms,
+classwork, guardian reports, career, people/cohorts, curriculum/
+analytics, progress/insights, notifications/support (every one rendering
+the truthful honest room in the interface language).
+
+All receipts: docs/visionary/baseline/page-closeouts-2026-11-18/ (A00–A23,
+B01–B07, C01–C20). The integrated full-role story regression stands from
+qa:role-e2e; the remaining platform scope is the backend/ML lanes'
+recorded handoffs and the hosted-staging checklist (FHE-23).
+
+## 2026-11-19 — the backend-lane readiness package: per-lane tickets from the recorded handoffs
+
+`docs/visionary/BACKEND_LANE_READINESS_2026-11-19.md` turns the three
+accepted handoff contracts into 9 per-lane tickets with acceptance
+criteria and the exact frontend surface each unlocks (data lane T1–T5,
+ML lane T6, events T7, billing T8, hosting T9), plus the recommended
+integration order by value per unit of work. The frontend adapters are
+implemented and idle: each service registration flips its honest room to
+the connected surface with no screen redesign. The frontend program
+holds (51 receipts, 870/870, the final regression clean).
+
+## 2026-11-19 — the §7 gate set completed on the final bundle; three preview-era instruments recorded as superseded
+
+**Green on the final bundle:** typecheck (tsc, both projects), verify:graph
+(the production graph law), qa:motion (374 motion-bearing files, the
+motion law holds), qa:route-sweep (23/23), qa:i18n (11 surfaces), qa:zoom,
+qa:reduced-motion, qa:realm-journeys (4/4), qa:role-e2e (5/5, 59 walks),
+lighthouse (recorded), the 24-route public regression, the 870/870 unit
+suite, eslint, and the final-regression fold to main (05cdb268 → CI
+success).
+
+**Recorded as superseded (not silently skipped):** qa:navigation,
+qa:design, qa:fonts are preview-era instruments — they target the
+dev-preview home's selectors (.v-home-priority) and seed the preview
+workspace fixture into localStorage, both of which the FHE-20 route split
+intentionally drops from the production artifact. Their production
+equivalents are qa:route-sweep (navigation) and the per-page closeouts'
+visual walks (design/fonts at the page level). Rewriting the three for
+the connected shell is recorded follow-up work.
+
+**Operational note:** the gates that need a backend session must run on
+the origin the backend pins (AUTH_PUBLIC_ORIGIN = localhost:4200) — the
+4197/5179 dev-origin attempts fail the CSRF pin by design, and a preview
+started without the realm env serves the production CSP that blocks the
+emulator (both failure modes diagnosed and documented this session).

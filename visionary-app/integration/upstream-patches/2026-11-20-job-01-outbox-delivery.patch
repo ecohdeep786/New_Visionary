@@ -1,0 +1,30 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index ce770b3d..99a677df 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -578,0 +579,2 @@ model OutboxEvent {
++  delivery      OutboxDelivery?
++
+@@ -579,0 +582 @@ model OutboxEvent {
++  @@index([topic, cursor])
+@@ -591,0 +595,20 @@ enum OutboxStatus {
++model OutboxDelivery {
++  cursor      BigInt               @id
++  status      OutboxDeliveryStatus @default(PENDING)
++  attempts    Int                  @default(0)
++  availableAt DateTime             @default(now())
++  claimedAt   DateTime?
++  lastError   String?
++  event       OutboxEvent          @relation(fields: [cursor], references: [cursor], onDelete: Cascade)
++
++  @@index([status, availableAt, cursor])
++  @@map("outbox_deliveries")
++}
++
++enum OutboxDeliveryStatus {
++  PENDING
++  LEASED
++  DONE
++  FAILED
++}
++

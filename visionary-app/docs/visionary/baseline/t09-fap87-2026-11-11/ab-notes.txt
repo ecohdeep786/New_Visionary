@@ -1,0 +1,15 @@
+# FAP-87 A/B evidence (2026-11-11)
+# BEFORE side: t09-research-2026-11-11/t09-dashboard-research.json (beta 9e1fed11, server 5174) —
+#   .roles.<role>.cross[] records redirected=true, final=/dashboard/home, h1="Welcome back, T09."
+#   for every restricted deep link (no explanation, address bar rewritten).
+# AFTER side: t09-fap87-after.json + t09-fap87-secondary-spot.json (candidate zcode/
+#   fap-87-restricted-deeplink-explain, server 5173) — same cross-role matrix (fresh labeled
+#   fixture accounts t09fap87-<role>-<ts>@visionary.test, preview OTP '000000' as disclosed in
+#   the FAP-70 law): 11/11 deep links kept their URL (redirected=false) and rendered the
+#   self-explanation (h1 = the owning role's localized area label; boundary sentence names the
+#   owning workspace: teaching/family/professional; organization-owned areas keep the FAP-75
+#   sentence verbatim; alternatives = the visitor's own primary paths + Return to workspace).
+#   Spot re-check after the secondary-navigation label fix: audit -> "Audit" (organization
+#   sentence), growth -> "Teacher Growth", library -> "Library" (teaching sentence).
+# Screenshots: t09-fap87-<role>-<section>-after-1440.png (first restricted deep link per role).
+# Console: 0 errors in every after-side role context (also verified in the research pass).

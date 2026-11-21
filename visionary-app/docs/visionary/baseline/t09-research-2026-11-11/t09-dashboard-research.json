@@ -1,0 +1,1978 @@
+{
+  "base": "http://127.0.0.1:5174",
+  "roles": {
+    "student": {
+      "email": "t09-student-1794387349992@visionary.test",
+      "steps": [
+        {
+          "step": "registered",
+          "url": "http://127.0.0.1:5174/onboarding"
+        },
+        {
+          "step": "onboarded",
+          "url": "http://127.0.0.1:5174/dashboard/home"
+        },
+        {
+          "step": "sidebar",
+          "count": 23
+        },
+        {
+          "step": "route:home",
+          "redirected": false,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on"
+        },
+        {
+          "step": "route:learn",
+          "redirected": false,
+          "final": "/dashboard/learn",
+          "h1": "Your learning outline",
+          "main": "Explore and understand | Your learning outline | Subjects become chapters, concepts, checks and projects—with your place"
+        },
+        {
+          "step": "route:ask",
+          "redirected": false,
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or tr"
+        },
+        {
+          "step": "route:practice",
+          "redirected": false,
+          "final": "/dashboard/practice",
+          "h1": "Your next practice",
+          "main": "Review and strengthen | Your next practice | Revisit what you have already checked. Your results and next step stay conn"
+        },
+        {
+          "step": "route:build",
+          "redirected": false,
+          "final": "/dashboard/build",
+          "h1": "Build something of your own",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project |"
+        },
+        {
+          "step": "route:classes",
+          "redirected": false,
+          "final": "/dashboard/classes",
+          "h1": "Your classes",
+          "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class c"
+        },
+        {
+          "step": "route:connections",
+          "redirected": false,
+          "final": "/dashboard/connections",
+          "h1": "Connections",
+          "main": "Connections | Your personal and work relationships, each with its own permission. | Connect with a teacher or collaborat"
+        },
+        {
+          "step": "route:progress",
+          "redirected": false,
+          "final": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "main": "Your learning evidence | Review what you checked, practised and applied, then choose your next activity. | Evidence over"
+        },
+        {
+          "step": "route:notifications",
+          "redirected": false,
+          "final": "/dashboard/notifications",
+          "h1": "Notifications",
+          "main": "Notifications | Updates saved in this workspace. No email, push or scheduled delivery is connected. | Summary preference"
+        },
+        {
+          "step": "route:personalization",
+          "redirected": false,
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified clo"
+        },
+        {
+          "step": "route:privacy",
+          "redirected": false,
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud sec"
+        },
+        {
+          "step": "route:subscription",
+          "redirected": false,
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active lo"
+        },
+        {
+          "step": "cross:prepare",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        },
+        {
+          "step": "cross:learners",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        },
+        {
+          "step": "cross:insights",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        },
+        {
+          "step": "cross:child",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        },
+        {
+          "step": "cross:reports",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        },
+        {
+          "step": "cross:people",
+          "redirected": false,
+          "final": "/dashboard/people",
+          "h1": "People"
+        },
+        {
+          "step": "cross:cohorts",
+          "redirected": false,
+          "final": "/dashboard/cohorts",
+          "h1": "Cohorts"
+        },
+        {
+          "step": "cross:curriculum",
+          "redirected": false,
+          "final": "/dashboard/curriculum",
+          "h1": "Curriculum"
+        },
+        {
+          "step": "cross:analytics",
+          "redirected": false,
+          "final": "/dashboard/analytics",
+          "h1": "Insights"
+        },
+        {
+          "step": "cross:career",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        }
+      ],
+      "sidebar": [
+        {
+          "t": "isionary",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Join a class",
+          "href": "/dashboard/classes?join=1"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Learn",
+          "href": "/dashboard/learn"
+        },
+        {
+          "t": "Ask",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Practice",
+          "href": "/dashboard/practice"
+        },
+        {
+          "t": "Build",
+          "href": "/dashboard/build"
+        },
+        {
+          "t": "Classes",
+          "href": "/dashboard/classes"
+        },
+        {
+          "t": "Connections",
+          "href": "/dashboard/connections"
+        },
+        {
+          "t": "Progress",
+          "href": "/dashboard/progress"
+        },
+        {
+          "t": "Notifications",
+          "href": "/dashboard/notifications"
+        },
+        {
+          "t": "Personalization",
+          "href": "/dashboard/personalization"
+        },
+        {
+          "t": "Privacy",
+          "href": "/dashboard/privacy"
+        },
+        {
+          "t": "Plans & usage",
+          "href": "/dashboard/subscription"
+        },
+        {
+          "t": "Review learning stage",
+          "href": "/dashboard/personalization"
+        },
+        {
+          "t": "Choose a learning journey",
+          "href": "/dashboard/learn"
+        },
+        {
+          "t": "Explore a project",
+          "href": "/dashboard/build"
+        },
+        {
+          "t": "View or clear memory",
+          "href": "/dashboard/privacy"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Learn",
+          "href": "/dashboard/learn"
+        },
+        {
+          "t": "Ask",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Practice",
+          "href": "/dashboard/practice"
+        }
+      ],
+      "routes": [
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a learning journey | Explore",
+          "buttons": [
+            "Show getting started"
+          ],
+          "requested": "/dashboard/home",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/learn",
+          "h1": "Your learning outline",
+          "main": "Explore and understand | Your learning outline | Subjects become chapters, concepts, checks and projects—with your place kept at every step. | Choose a subject | Subject (optional) | Add board and class | Open my outline | Try an example lesson | Learning options",
+          "buttons": [
+            "Open my outline",
+            "Try an example lesson",
+            "Try examples from more books"
+          ],
+          "requested": "/dashboard/learn",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or try an authored example | 3³ | = 27 | Understand cube volume | Start exploring | 4/8 = 1/2 | Make sense of fractions | Start exploring | 20 | 30 | 25 | Turn data into a dec",
+          "buttons": [
+            "Conversation",
+            "Activity",
+            "3³= 27Understand cube volumeStart exploring",
+            "4/8 = 1/2Make sense of fractionsStart exploring",
+            "203025Turn data into a decisionStart exploring",
+            "Understand"
+          ],
+          "requested": "/dashboard/ask",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/practice",
+          "h1": "Your next practice",
+          "main": "Review and strengthen | Your next practice | Revisit what you have already checked. Your results and next step stay connected to Learn. | Ready to revisit | Start in Learn | Finish a comprehension check in Learn first. No weakness is inferred from an empty history. | ",
+          "buttons": [],
+          "requested": "/dashboard/practice",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/build",
+          "h1": "Build something of your own",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | Your first project starts here | Create a blank project or continue a ",
+          "buttons": [
+            "New project"
+          ],
+          "requested": "/dashboard/build",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/classes",
+          "h1": "Your classes",
+          "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code",
+          "buttons": [
+            "Join class",
+            "Join with a code"
+          ],
+          "requested": "/dashboard/classes",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/connections",
+          "h1": "Connections",
+          "main": "Connections | Your personal and work relationships, each with its own permission. | Connect with a teacher or collaborator | Requests | Nothing here yet. Connections are optional—your own learning continues independently. | Connected | Nothing here yet. Connections a",
+          "buttons": [
+            "Request connection"
+          ],
+          "requested": "/dashboard/connections",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "main": "Your learning evidence | Review what you checked, practised and applied, then choose your next activity. | Evidence over time | Evidence period | Last 7 days | Last 30 days | All recorded history | Find an objective | As of 10/11/2026, 8:56:17 pm · This workspace only · Sa",
+          "buttons": [
+            "Show all recorded history",
+            "Add a goal"
+          ],
+          "requested": "/dashboard/progress",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/notifications",
+          "h1": "Notifications",
+          "main": "Notifications | Updates saved in this workspace. No email, push or scheduled delivery is connected. | Summary preference | Saved updates | Show updates | All updates | Unread only | You’re up to date | Relevant updates will appear here. | Open Home",
+          "buttons": [],
+          "requested": "/dashboard/notifications",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Your learning stage | Update your personal learning profile. Board, institution and education-stage changes require confirmation",
+          "buttons": [
+            "Review current stage profile",
+            "Reset personalization"
+          ],
+          "requested": "/dashboard/personalization",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Sharing boundaries | Personal doubts, notes and project drafts stay private. Family billing does not grant guardian access. Organizati",
+          "buttons": [
+            "Export this workspace",
+            "Clear learning memory",
+            "Review local data"
+          ],
+          "requested": "/dashboard/privacy",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active local preview | Guided conversation usage | Free | ₹0 | Start with guided learning and saved activities. | Personal learning and projects | Saved activiti",
+          "buttons": [
+            "Current plan",
+            "Review demo plan",
+            "Review demo plan",
+            "Invite member"
+          ],
+          "requested": "/dashboard/subscription",
+          "redirected": false,
+          "newConsoleErrors": []
+        }
+      ],
+      "cross": [
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a lear",
+          "requested": "/dashboard/prepare",
+          "redirected": true
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a lear",
+          "requested": "/dashboard/learners",
+          "redirected": true
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a lear",
+          "requested": "/dashboard/insights",
+          "redirected": true
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a lear",
+          "requested": "/dashboard/child",
+          "redirected": true
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a lear",
+          "requested": "/dashboard/reports",
+          "redirected": true
+        },
+        {
+          "final": "/dashboard/people",
+          "h1": "People",
+          "main": "Skip to content | People | This workspace area opens with an organization workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/people",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/cohorts",
+          "h1": "Cohorts",
+          "main": "Skip to content | Cohorts | This workspace area opens with an organization workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/cohorts",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/curriculum",
+          "h1": "Curriculum",
+          "main": "Skip to content | Curriculum | This workspace area opens with an organization workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/curriculum",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/analytics",
+          "h1": "Insights",
+          "main": "Skip to content | Insights | This workspace area opens with an organization workspace. You are currently working in a learning workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/analytics",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Learner | Welcome back, T09. | Sharing is always scoped | Competitive exam preparation | Show getting started | Saved on this device | Next for you | Choose something to understand | Begin with one idea, explore it, then put it to use. | Choose a lear",
+          "requested": "/dashboard/career",
+          "redirected": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "teacher": {
+      "email": "t09-teacher-1794387349992@visionary.test",
+      "steps": [
+        {
+          "step": "registered",
+          "url": "http://127.0.0.1:5174/onboarding"
+        },
+        {
+          "step": "onboarded",
+          "url": "http://127.0.0.1:5174/dashboard/home"
+        },
+        {
+          "step": "sidebar",
+          "count": 26
+        },
+        {
+          "step": "route:home",
+          "redirected": false,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Teacher | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | P"
+        },
+        {
+          "step": "route:prepare",
+          "redirected": false,
+          "final": "/dashboard/prepare",
+          "h1": "Prepare a lesson",
+          "main": "Prepare a lesson | Start with an objective. Shape the explanation, then review it before sharing. | New lesson | Organiz"
+        },
+        {
+          "step": "route:classes",
+          "redirected": false,
+          "final": "/dashboard/classes",
+          "h1": "Your classes",
+          "main": "Your classes | Create a class, add students, and start teaching | No classes yet | Create your first class to post annou"
+        },
+        {
+          "step": "route:learners",
+          "redirected": false,
+          "final": "/dashboard/learners",
+          "h1": "Learners",
+          "main": "Learners | Classwork evidence you can act on. Personal conversations and independent learning are not included. | Find a"
+        },
+        {
+          "step": "route:insights",
+          "redirected": false,
+          "final": "/dashboard/insights",
+          "h1": "Teaching insights",
+          "main": "Teaching | Teaching insights | An overview of your classes, connected learners, and teaching workload. | Your classes | "
+        },
+        {
+          "step": "route:ask",
+          "redirected": false,
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or op"
+        },
+        {
+          "step": "route:growth",
+          "redirected": false,
+          "final": "/dashboard/growth",
+          "h1": "Teacher Growth",
+          "main": "Teacher Growth | Your own learning, separate from class administration. | Add growth goal | Start from a curated journey"
+        },
+        {
+          "step": "route:library",
+          "redirected": false,
+          "final": "/dashboard/library",
+          "h1": "Your library",
+          "main": "Your library | Keep reviewed lessons and resources together. | New resource | Search saved items | Build your resource l"
+        },
+        {
+          "step": "route:build",
+          "redirected": false,
+          "final": "/dashboard/build",
+          "h1": "Build something of your own",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project |"
+        },
+        {
+          "step": "route:progress",
+          "redirected": false,
+          "final": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "main": "Your learning evidence | Review what you checked, practised and applied, then choose your next activity. | Evidence over"
+        },
+        {
+          "step": "route:notifications",
+          "redirected": false,
+          "final": "/dashboard/notifications",
+          "h1": "Notifications",
+          "main": "Notifications | Updates saved in this workspace. No email, push or scheduled delivery is connected. | Summary preference"
+        },
+        {
+          "step": "route:personalization",
+          "redirected": false,
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified clo"
+        },
+        {
+          "step": "route:privacy",
+          "redirected": false,
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud sec"
+        },
+        {
+          "step": "route:subscription",
+          "redirected": false,
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active lo"
+        },
+        {
+          "step": "cross:people",
+          "redirected": false,
+          "final": "/dashboard/people",
+          "h1": "People"
+        },
+        {
+          "step": "cross:cohorts",
+          "redirected": false,
+          "final": "/dashboard/cohorts",
+          "h1": "Cohorts"
+        },
+        {
+          "step": "cross:child",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        }
+      ],
+      "sidebar": [
+        {
+          "t": "isionary",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Create a class",
+          "href": "/dashboard/classes?create=1"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Prepare",
+          "href": "/dashboard/prepare"
+        },
+        {
+          "t": "Classes",
+          "href": "/dashboard/classes"
+        },
+        {
+          "t": "Learners",
+          "href": "/dashboard/learners"
+        },
+        {
+          "t": "Insights",
+          "href": "/dashboard/insights"
+        },
+        {
+          "t": "Ask",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Teacher Growth",
+          "href": "/dashboard/growth"
+        },
+        {
+          "t": "Library",
+          "href": "/dashboard/library"
+        },
+        {
+          "t": "Build",
+          "href": "/dashboard/build"
+        },
+        {
+          "t": "Progress",
+          "href": "/dashboard/progress"
+        },
+        {
+          "t": "Notifications",
+          "href": "/dashboard/notifications"
+        },
+        {
+          "t": "Personalization",
+          "href": "/dashboard/personalization"
+        },
+        {
+          "t": "Privacy",
+          "href": "/dashboard/privacy"
+        },
+        {
+          "t": "Plans & usage",
+          "href": "/dashboard/subscription"
+        },
+        {
+          "t": "Open preparation",
+          "href": "/dashboard/prepare"
+        },
+        {
+          "t": "View classwork",
+          "href": "/dashboard/classes"
+        },
+        {
+          "t": "Your own growth",
+          "href": "/dashboard/growth"
+        },
+        {
+          "t": "Open classes",
+          "href": "/dashboard/classes"
+        },
+        {
+          "t": "Open lesson drafts",
+          "href": "/dashboard/prepare"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Prepare",
+          "href": "/dashboard/prepare"
+        },
+        {
+          "t": "Classes",
+          "href": "/dashboard/classes"
+        },
+        {
+          "t": "Learners",
+          "href": "/dashboard/learners"
+        }
+      ],
+      "routes": [
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Teacher | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Prepare your next lesson | Review the objective, explanation and checks before sharing with a class. | Open preparation | View classwork | Why this? | Class",
+          "buttons": [
+            "Show getting started",
+            "Request teaching support",
+            "Save preparation draft"
+          ],
+          "requested": "/dashboard/home",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/prepare",
+          "h1": "Prepare a lesson",
+          "main": "Prepare a lesson | Start with an objective. Shape the explanation, then review it before sharing. | New lesson | Organization preparation inbox | Explicit approved copies for your active Work membership. Personal preparation stays separate. A copy creates no learne",
+          "buttons": [
+            "New lesson",
+            "Understand cube volumeEditable demo outline",
+            "Make sense of fractionsEditable demo outline",
+            "Turn data into a decisionEditable demo outline",
+            "New lesson"
+          ],
+          "requested": "/dashboard/prepare",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/classes",
+          "h1": "Your classes",
+          "main": "Your classes | Create a class, add students, and start teaching | No classes yet | Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback. | Create your first class | Grow as a teacher",
+          "buttons": [
+            "Create your first class"
+          ],
+          "requested": "/dashboard/classes",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/learners",
+          "h1": "Learners",
+          "main": "Learners | Classwork evidence you can act on. Personal conversations and independent learning are not included. | Find a learner | Your class connections start here | Invite learners to a class. Their submitted work appears here once they connect. | Open classes",
+          "buttons": [],
+          "requested": "/dashboard/learners",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/insights",
+          "h1": "Teaching insights",
+          "main": "Teaching | Teaching insights | An overview of your classes, connected learners, and teaching workload. | Your classes | 0 | Connected students | 0 | Class assignments | 0 | Insights start with a class | Create a class and share its join code. Learner and assignment totals app",
+          "buttons": [],
+          "requested": "/dashboard/insights",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or open a relevant task | Prepare a lesson | Review classwork | Explore learner evidence | From your saved records | Intent and context | Local preview · About this",
+          "buttons": [
+            "Conversation",
+            "Activity",
+            "Explain an idea",
+            "Guide a learner",
+            "Review teaching work",
+            "Plan a lesson"
+          ],
+          "requested": "/dashboard/ask",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/growth",
+          "h1": "Teacher Growth",
+          "main": "Teacher Growth | Your own learning, separate from class administration. | Add growth goal | Start from a curated journey | Understand cube volume | Editable demo outline | Make sense of fractions | Editable demo outline | Turn data into a decision | Editable demo outline | Sear",
+          "buttons": [
+            "Add growth goal",
+            "Understand cube volumeEditable demo outline",
+            "Make sense of fractionsEditable demo outline",
+            "Turn data into a decisionEditable demo outline",
+            "Add growth goal"
+          ],
+          "requested": "/dashboard/growth",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/library",
+          "h1": "Your library",
+          "main": "Your library | Keep reviewed lessons and resources together. | New resource | Search saved items | Build your resource library | Use a clear goal and save a first draft. You can refine it at any time. | New resource",
+          "buttons": [
+            "New resource",
+            "New resource"
+          ],
+          "requested": "/dashboard/library",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/build",
+          "h1": "Build something of your own",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | Your first project starts here | Create a blank project or continue a ",
+          "buttons": [
+            "New project"
+          ],
+          "requested": "/dashboard/build",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "main": "Your learning evidence | Review what you checked, practised and applied, then choose your next activity. | Evidence over time | Evidence period | Last 7 days | Last 30 days | All recorded history | Find an objective | As of 10/11/2026, 8:57:16 pm · This workspace only · Sa",
+          "buttons": [
+            "Show all recorded history"
+          ],
+          "requested": "/dashboard/progress",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/notifications",
+          "h1": "Notifications",
+          "main": "Notifications | Updates saved in this workspace. No email, push or scheduled delivery is connected. | Summary preference | Saved updates | Show updates | All updates | Unread only | You’re up to date | Relevant updates will appear here. | Open Home",
+          "buttons": [],
+          "requested": "/dashboard/notifications",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Language and accessibility | Teaching language | English | हिन्दी | বাংলা | Interface language | English | हिन्दी | বাংলা | Guide appearance | Blue",
+          "buttons": [
+            "Reset personalization"
+          ],
+          "requested": "/dashboard/personalization",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Sharing boundaries | Personal doubts, notes and project drafts stay private. Family billing does not grant guardian access. Organizati",
+          "buttons": [
+            "Export this workspace",
+            "Clear learning memory",
+            "Review local data"
+          ],
+          "requested": "/dashboard/privacy",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active local preview | Guided conversation usage | Free | ₹0 | Start with guided learning and saved activities. | Personal learning and projects | Saved activiti",
+          "buttons": [
+            "Current plan",
+            "Review demo plan",
+            "Review demo plan",
+            "Invite member"
+          ],
+          "requested": "/dashboard/subscription",
+          "redirected": false,
+          "newConsoleErrors": []
+        }
+      ],
+      "cross": [
+        {
+          "final": "/dashboard/people",
+          "h1": "People",
+          "main": "Skip to content | People | This workspace area opens with an organization workspace. You are currently working in a teaching workspace. | Prepare | Classes | Return to workspace",
+          "requested": "/dashboard/people",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/cohorts",
+          "h1": "Cohorts",
+          "main": "Skip to content | Cohorts | This workspace area opens with an organization workspace. You are currently working in a teaching workspace. | Prepare | Classes | Return to workspace",
+          "requested": "/dashboard/cohorts",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Teacher | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Prepare your next lesson | Review the objective, explanation and checks before sharing with a class. | Open preparation | View class",
+          "requested": "/dashboard/child",
+          "redirected": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "parent": {
+      "email": "t09-parent-1794387349992@visionary.test",
+      "steps": [
+        {
+          "step": "registered",
+          "url": "http://127.0.0.1:5174/onboarding"
+        },
+        {
+          "step": "onboarded",
+          "url": "http://127.0.0.1:5174/dashboard/home"
+        },
+        {
+          "step": "sidebar",
+          "count": 19
+        },
+        {
+          "step": "route:home",
+          "redirected": false,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Parent | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Co"
+        },
+        {
+          "step": "route:child",
+          "redirected": false,
+          "final": "/dashboard/child",
+          "h1": "Your children",
+          "main": "Your children | A separate, permission-based connection for each learner. | Request progress sharing | The learner’s loc"
+        },
+        {
+          "step": "route:reports",
+          "redirected": false,
+          "final": "/dashboard/reports",
+          "h1": "Their learning, in context",
+          "main": "Return to children | Their learning, in context | Shared learning summaries, not private conversations. This local repor"
+        },
+        {
+          "step": "route:connections",
+          "redirected": false,
+          "final": "/dashboard/connections",
+          "h1": "Connections",
+          "main": "Connections | Your personal and work relationships, each with its own permission. | Connect with a teacher or collaborat"
+        },
+        {
+          "step": "route:ask",
+          "redirected": false,
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or op"
+        },
+        {
+          "step": "route:notifications",
+          "redirected": false,
+          "final": "/dashboard/notifications",
+          "h1": "Family updates",
+          "main": "Family updates | Current connection status and a manual summary preview from this device. No email, push message or sche"
+        },
+        {
+          "step": "route:personalization",
+          "redirected": false,
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified clo"
+        },
+        {
+          "step": "route:privacy",
+          "redirected": false,
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud sec"
+        },
+        {
+          "step": "route:subscription",
+          "redirected": false,
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active lo"
+        },
+        {
+          "step": "cross:learn",
+          "redirected": false,
+          "final": "/dashboard/learn",
+          "h1": "Your learning outline"
+        },
+        {
+          "step": "cross:people",
+          "redirected": false,
+          "final": "/dashboard/people",
+          "h1": "People"
+        },
+        {
+          "step": "cross:prepare",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        }
+      ],
+      "sidebar": [
+        {
+          "t": "isionary",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Connect your child",
+          "href": "/dashboard/child"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Children",
+          "href": "/dashboard/child"
+        },
+        {
+          "t": "Reports",
+          "href": "/dashboard/reports"
+        },
+        {
+          "t": "Connections",
+          "href": "/dashboard/connections"
+        },
+        {
+          "t": "Ask",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Notifications",
+          "href": "/dashboard/notifications"
+        },
+        {
+          "t": "Personalization",
+          "href": "/dashboard/personalization"
+        },
+        {
+          "t": "Privacy",
+          "href": "/dashboard/privacy"
+        },
+        {
+          "t": "Plans & usage",
+          "href": "/dashboard/subscription"
+        },
+        {
+          "t": "Connect with a child",
+          "href": "/dashboard/child"
+        },
+        {
+          "t": "Review sharing boundaries",
+          "href": "/dashboard/privacy"
+        },
+        {
+          "t": "Manage child connections",
+          "href": "/dashboard/child"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Children",
+          "href": "/dashboard/child"
+        },
+        {
+          "t": "Reports",
+          "href": "/dashboard/reports"
+        },
+        {
+          "t": "Connections",
+          "href": "/dashboard/connections"
+        }
+      ],
+      "routes": [
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Parent | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Connect before viewing progress | Request permission to see a child’s learning summary. Family billing does not grant access. | Connect with a child | Re",
+          "buttons": [
+            "Show getting started"
+          ],
+          "requested": "/dashboard/home",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/child",
+          "h1": "Your children",
+          "main": "Your children | A separate, permission-based connection for each learner. | Request progress sharing | The learner’s local account must accept before summaries appear. This preview does not verify guardianship. Do not enter real child information. | Learner demo e",
+          "buttons": [
+            "Request sharing"
+          ],
+          "requested": "/dashboard/child",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/reports",
+          "h1": "Their learning, in context",
+          "main": "Return to children | Their learning, in context | Shared learning summaries, not private conversations. This local report is updated when you open it. | Connect before viewing progress | Reports appear only after the appropriate sharing permission is active. | Revie",
+          "buttons": [],
+          "requested": "/dashboard/reports",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/connections",
+          "h1": "Connections",
+          "main": "Connections | Your personal and work relationships, each with its own permission. | Connect with a teacher or collaborator | Requests | Nothing here yet. Connections are optional—your own learning continues independently. | Connected | Nothing here yet. Connections a",
+          "buttons": [
+            "Request connection"
+          ],
+          "requested": "/dashboard/connections",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or open a relevant task | Understand my child’s week | Manage family connections | From your saved records | Intent and context | Local preview · About this previ",
+          "buttons": [
+            "Conversation",
+            "Activity",
+            "Understand a report",
+            "Support this week",
+            "Review a question",
+            "Plan support"
+          ],
+          "requested": "/dashboard/ask",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/notifications",
+          "h1": "Family updates",
+          "main": "Family updates | Current connection status and a manual summary preview from this device. No email, push message or scheduled digest is sent. | Digest preferences | Summary frequency | Off | Daily | Weekly | Urgent only | Preview language | English | हिन्दी | বাংলা | These setting",
+          "buttons": [],
+          "requested": "/dashboard/notifications",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Language and accessibility | Teaching language | English | हिन्दी | বাংলা | Interface language | English | हिन्दी | বাংলা | Guide appearance | Blue",
+          "buttons": [
+            "Reset personalization"
+          ],
+          "requested": "/dashboard/personalization",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Sharing boundaries | Personal doubts, notes and project drafts stay private. Family billing does not grant guardian access. Organizati",
+          "buttons": [
+            "Export this workspace",
+            "Clear learning memory",
+            "Review local data"
+          ],
+          "requested": "/dashboard/privacy",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active local preview | Guided conversation usage | Free | ₹0 | Start with guided learning and saved activities. | Personal learning and projects | Saved activiti",
+          "buttons": [
+            "Current plan",
+            "Review demo plan",
+            "Review demo plan",
+            "Invite member"
+          ],
+          "requested": "/dashboard/subscription",
+          "redirected": false,
+          "newConsoleErrors": []
+        }
+      ],
+      "cross": [
+        {
+          "final": "/dashboard/learn",
+          "h1": "Your learning outline",
+          "main": "Explore and understand | Your learning outline | Subjects become chapters, concepts, checks and projects—with your place kept at every step. | Choose a subject | Subject (optional) | Add board and class | Open my outline | Try an example lesson | Learni",
+          "requested": "/dashboard/learn",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/people",
+          "h1": "People",
+          "main": "Skip to content | People | This workspace area opens with an organization workspace. You are currently working in a family workspace. | Children | Reports | Return to workspace",
+          "requested": "/dashboard/people",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Parent | Welcome back, T09. | Sharing is always scoped | Show getting started | Saved on this device | Next for you | Connect before viewing progress | Request permission to see a child’s learning summary. Family billing does not grant access. | Con",
+          "requested": "/dashboard/prepare",
+          "redirected": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "organization": {
+      "email": "t09-organization-1794387349992@visionary.test",
+      "steps": [
+        {
+          "step": "registered",
+          "url": "http://127.0.0.1:5174/onboarding"
+        },
+        {
+          "step": "onboarded",
+          "url": "http://127.0.0.1:5174/dashboard/home"
+        },
+        {
+          "step": "sidebar",
+          "count": 23
+        },
+        {
+          "step": "route:home",
+          "redirected": false,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "My organization | Welcome back, T09. | Only connected work belongs here | Show getting started | Saved on this device | "
+        },
+        {
+          "step": "route:people",
+          "redirected": false,
+          "final": "/dashboard/people",
+          "h1": "People & connections",
+          "main": "People & connections | Manage local invitations and review who accepted, declined or lost access. | Invite someone to yo"
+        },
+        {
+          "step": "route:cohorts",
+          "redirected": false,
+          "final": "/dashboard/cohorts",
+          "h1": "Cohorts",
+          "main": "Cohorts | Give a connected group a shared purpose, without merging their personal work. | Create cohort | 0 accepted mem"
+        },
+        {
+          "step": "route:curriculum",
+          "redirected": false,
+          "final": "/dashboard/curriculum",
+          "h1": "Reviewed curriculum templates",
+          "main": "Reviewed curriculum templates | Author, review and retain source versions before use. | New curriculum template | How it"
+        },
+        {
+          "step": "route:analytics",
+          "redirected": false,
+          "final": "/dashboard/analytics",
+          "h1": "Institution analytics",
+          "main": "Organization | Institution analytics | A focused view of your institution’s roster and explicitly linked classrooms. | L"
+        },
+        {
+          "step": "route:library",
+          "redirected": false,
+          "final": "/dashboard/library",
+          "h1": "Organization content",
+          "main": "Organization content | Author, review and retain source versions before use. | New content draft | How it works | Search"
+        },
+        {
+          "step": "route:audit",
+          "redirected": false,
+          "final": "/dashboard/audit",
+          "h1": "Organization audit",
+          "main": "Organization audit | Saved membership actions and changes in this organization workspace. This history is stored on this"
+        },
+        {
+          "step": "route:notifications",
+          "redirected": false,
+          "final": "/dashboard/notifications",
+          "h1": "Organization updates",
+          "main": "Organization updates | Membership actions saved on this device. Current access always follows the latest permission, eve"
+        },
+        {
+          "step": "route:personalization",
+          "redirected": false,
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified clo"
+        },
+        {
+          "step": "route:privacy",
+          "redirected": false,
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud sec"
+        },
+        {
+          "step": "route:subscription",
+          "redirected": false,
+          "final": "/dashboard/subscription",
+          "h1": "Organization seats and billing",
+          "main": "Organization seats and billing | Plan an access request with your owner. Organization pricing and invoices are not conne"
+        },
+        {
+          "step": "cross:learn",
+          "redirected": false,
+          "final": "/dashboard/learn",
+          "h1": "Permission required"
+        },
+        {
+          "step": "cross:practice",
+          "redirected": false,
+          "final": "/dashboard/practice",
+          "h1": "Permission required"
+        },
+        {
+          "step": "cross:child",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        }
+      ],
+      "sidebar": [
+        {
+          "t": "isionary",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Add people",
+          "href": "/dashboard/people"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "People",
+          "href": "/dashboard/people"
+        },
+        {
+          "t": "Cohorts",
+          "href": "/dashboard/cohorts"
+        },
+        {
+          "t": "Curriculum",
+          "href": "/dashboard/curriculum"
+        },
+        {
+          "t": "Insights",
+          "href": "/dashboard/analytics"
+        },
+        {
+          "t": "Content",
+          "href": "/dashboard/library"
+        },
+        {
+          "t": "Audit",
+          "href": "/dashboard/audit"
+        },
+        {
+          "t": "Notifications",
+          "href": "/dashboard/notifications"
+        },
+        {
+          "t": "Personalization",
+          "href": "/dashboard/personalization"
+        },
+        {
+          "t": "Privacy",
+          "href": "/dashboard/privacy"
+        },
+        {
+          "t": "Seats & billing",
+          "href": "/dashboard/subscription"
+        },
+        {
+          "t": "Manage people",
+          "href": "/dashboard/people"
+        },
+        {
+          "t": "Review cohorts",
+          "href": "/dashboard/cohorts"
+        },
+        {
+          "t": "Open People and permissions",
+          "href": "/dashboard/people"
+        },
+        {
+          "t": "Open Cohorts",
+          "href": "/dashboard/cohorts"
+        },
+        {
+          "t": "Open Curriculum",
+          "href": "/dashboard/curriculum"
+        },
+        {
+          "t": "Open Teaching library",
+          "href": "/dashboard/library"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "People",
+          "href": "/dashboard/people"
+        },
+        {
+          "t": "Cohorts",
+          "href": "/dashboard/cohorts"
+        },
+        {
+          "t": "Curriculum",
+          "href": "/dashboard/curriculum"
+        }
+      ],
+      "routes": [
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "My organization | Welcome back, T09. | Only connected work belongs here | Show getting started | Saved on this device | Next for you | Bring your people together | Start with invitations, then organize connected people into cohorts. | Manage people | Review cohorts | Why t",
+          "buttons": [
+            "Show getting started"
+          ],
+          "requested": "/dashboard/home",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/people",
+          "h1": "People & connections",
+          "main": "People & connections | Manage local invitations and review who accepted, declined or lost access. | Invite someone to your organization | Requests | No organization connections in this section yet. | Connected | No organization connections in this section yet. | Close",
+          "buttons": [
+            "Request connection"
+          ],
+          "requested": "/dashboard/people",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/cohorts",
+          "h1": "Cohorts",
+          "main": "Cohorts | Give a connected group a shared purpose, without merging their personal work. | Create cohort | 0 accepted members · 0 explicitly linked classes. Manage peopleRefresh roster | Search cohorts | Start with one learning group | Connect people, choose a clear p",
+          "buttons": [
+            "Create cohort",
+            "Refresh roster"
+          ],
+          "requested": "/dashboard/cohorts",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/curriculum",
+          "h1": "Reviewed curriculum templates",
+          "main": "Reviewed curriculum templates | Author, review and retain source versions before use. | New curriculum template | How it works | Search content | Content state | all | draft | submitted | changes | approved | archived | Content versions | Start with one sourced content draft. | Earlier",
+          "buttons": [
+            "New curriculum template"
+          ],
+          "requested": "/dashboard/curriculum",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/analytics",
+          "h1": "Institution analytics",
+          "main": "Organization | Institution analytics | A focused view of your institution’s roster and explicitly linked classrooms. | Linked classes | 0 | Connected people | 0 | Class assignments | 0 | Scoped learning evidence | Only recorded work from active learners in explicitly linked c",
+          "buttons": [],
+          "requested": "/dashboard/analytics",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/library",
+          "h1": "Organization content",
+          "main": "Organization content | Author, review and retain source versions before use. | New content draft | How it works | Search content | Content state | all | draft | submitted | changes | approved | archived | Content versions | Start with one sourced content draft.",
+          "buttons": [
+            "New content draft"
+          ],
+          "requested": "/dashboard/library",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/audit",
+          "h1": "Organization audit",
+          "main": "Organization audit | Saved membership actions and changes in this organization workspace. This history is stored on this device. | Period | Last 7 days | Last 30 days | Action source | All sources | Membership | Workspace changes | Classwork states | Teacher promotions | 0 recor",
+          "buttons": [],
+          "requested": "/dashboard/audit",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/notifications",
+          "h1": "Organization updates",
+          "main": "Organization updates | Membership actions saved on this device. Current access always follows the latest permission, even when an older update remains unread. | Summary preference | Summary frequency | Off | Daily | Weekly | Urgent only | This preference does not remove sa",
+          "buttons": [],
+          "requested": "/dashboard/notifications",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Language and accessibility | Teaching language | English | हिन्दी | বাংলা | Interface language | English | हिन्दी | বাংলা | Guide appearance | Blue",
+          "buttons": [
+            "Reset personalization"
+          ],
+          "requested": "/dashboard/personalization",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Sharing boundaries | Personal doubts, notes and project drafts stay private. Family billing does not grant guardian access. Organizati",
+          "buttons": [
+            "Export this workspace",
+            "Clear learning memory",
+            "Review local data"
+          ],
+          "requested": "/dashboard/privacy",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/subscription",
+          "h1": "Organization seats and billing",
+          "main": "Organization seats and billing | Plan an access request with your owner. Organization pricing and invoices are not connected. | Request seats | This saves a planning request on this device. Acknowledgement does not activate seats, grant access or create a charge.",
+          "buttons": [
+            "Save seat request"
+          ],
+          "requested": "/dashboard/subscription",
+          "redirected": false,
+          "newConsoleErrors": []
+        }
+      ],
+      "cross": [
+        {
+          "final": "/dashboard/learn",
+          "h1": "Permission required",
+          "main": "Permission required | Your Owner permission does not include this section. Ask the organization owner to review access. | Return to workspace",
+          "requested": "/dashboard/learn",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/practice",
+          "h1": "Permission required",
+          "main": "Permission required | Your Owner permission does not include this section. Ask the organization owner to review access. | Return to workspace",
+          "requested": "/dashboard/practice",
+          "redirected": false
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "My organization | Welcome back, T09. | Only connected work belongs here | Show getting started | Saved on this device | Next for you | Bring your people together | Start with invitations, then organize connected people into cohorts. | Manage people | ",
+          "requested": "/dashboard/child",
+          "redirected": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    "professional": {
+      "email": "t09-professional-1794387349992@visionary.test",
+      "steps": [
+        {
+          "step": "registered",
+          "url": "http://127.0.0.1:5174/onboarding"
+        },
+        {
+          "step": "onboarded",
+          "url": "http://127.0.0.1:5174/dashboard/home"
+        },
+        {
+          "step": "sidebar",
+          "count": 25
+        },
+        {
+          "step": "route:home",
+          "redirected": false,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Professional | Welcome back, T09. | Sharing is always scoped | Professional learning | Show getting started | Saved on t"
+        },
+        {
+          "step": "route:learn",
+          "redirected": false,
+          "final": "/dashboard/learn",
+          "h1": "Your learning outline",
+          "main": "Explore and understand | Your learning outline | Connect a skill goal to concepts, practice and portfolio work. | Choose"
+        },
+        {
+          "step": "route:ask",
+          "redirected": false,
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or op"
+        },
+        {
+          "step": "route:practice",
+          "redirected": false,
+          "final": "/dashboard/practice",
+          "h1": "Your next practice",
+          "main": "Review and strengthen | Your next practice | Revisit what you have already checked. Your results and next step stay conn"
+        },
+        {
+          "step": "route:build",
+          "redirected": false,
+          "final": "/dashboard/build",
+          "h1": "Build something of your own",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project |"
+        },
+        {
+          "step": "route:career",
+          "redirected": false,
+          "final": "/dashboard/career",
+          "h1": "Your next capability",
+          "main": "Personal professional workspace | Your next capability | Set a purpose, practise one skill, then keep work you can expla"
+        },
+        {
+          "step": "route:classes",
+          "redirected": false,
+          "final": "/dashboard/classes",
+          "h1": "Your classes",
+          "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class c"
+        },
+        {
+          "step": "route:connections",
+          "redirected": false,
+          "final": "/dashboard/connections",
+          "h1": "Connections",
+          "main": "Connections | Your personal and work relationships, each with its own permission. | Connect with a teacher or collaborat"
+        },
+        {
+          "step": "route:progress",
+          "redirected": false,
+          "final": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "main": "Your learning evidence | Review what you checked, practised and applied, then choose your next activity. | Evidence over"
+        },
+        {
+          "step": "route:notifications",
+          "redirected": false,
+          "final": "/dashboard/notifications",
+          "h1": "Notifications",
+          "main": "Notifications | Updates saved in this workspace. No email, push or scheduled delivery is connected. | Summary preference"
+        },
+        {
+          "step": "route:personalization",
+          "redirected": false,
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified clo"
+        },
+        {
+          "step": "route:privacy",
+          "redirected": false,
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud sec"
+        },
+        {
+          "step": "route:subscription",
+          "redirected": false,
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active lo"
+        },
+        {
+          "step": "cross:prepare",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        },
+        {
+          "step": "cross:child",
+          "redirected": true,
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09."
+        },
+        {
+          "step": "cross:people",
+          "redirected": false,
+          "final": "/dashboard/people",
+          "h1": "People"
+        }
+      ],
+      "sidebar": [
+        {
+          "t": "isionary",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Set a career goal",
+          "href": "/dashboard/career"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Learn",
+          "href": "/dashboard/learn"
+        },
+        {
+          "t": "Ask",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Practice",
+          "href": "/dashboard/practice"
+        },
+        {
+          "t": "Build",
+          "href": "/dashboard/build"
+        },
+        {
+          "t": "Career",
+          "href": "/dashboard/career"
+        },
+        {
+          "t": "Classes",
+          "href": "/dashboard/classes"
+        },
+        {
+          "t": "Connections",
+          "href": "/dashboard/connections"
+        },
+        {
+          "t": "Progress",
+          "href": "/dashboard/progress"
+        },
+        {
+          "t": "Notifications",
+          "href": "/dashboard/notifications"
+        },
+        {
+          "t": "Personalization",
+          "href": "/dashboard/personalization"
+        },
+        {
+          "t": "Privacy",
+          "href": "/dashboard/privacy"
+        },
+        {
+          "t": "Plans & usage",
+          "href": "/dashboard/subscription"
+        },
+        {
+          "t": "Review learning stage",
+          "href": "/dashboard/personalization"
+        },
+        {
+          "t": "Set a skill goal",
+          "href": "/dashboard/career"
+        },
+        {
+          "t": "Explore learning",
+          "href": "/dashboard/learn"
+        },
+        {
+          "t": "Build your portfolio",
+          "href": "/dashboard/build"
+        },
+        {
+          "t": "Career workspace",
+          "href": "/dashboard/career"
+        },
+        {
+          "t": "Ask Visionary Guide",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Home",
+          "href": "/dashboard/home"
+        },
+        {
+          "t": "Learn",
+          "href": "/dashboard/learn"
+        },
+        {
+          "t": "Ask",
+          "href": "/dashboard/ask"
+        },
+        {
+          "t": "Practice",
+          "href": "/dashboard/practice"
+        }
+      ],
+      "routes": [
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Professional | Welcome back, T09. | Sharing is always scoped | Professional learning | Show getting started | Saved on this device | Next for you | Give your next skill a clear purpose | Choose a work problem or career goal to guide your learning. | Set a skill goal | Expl",
+          "buttons": [
+            "Show getting started",
+            "Save target"
+          ],
+          "requested": "/dashboard/home",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/learn",
+          "h1": "Your learning outline",
+          "main": "Explore and understand | Your learning outline | Connect a skill goal to concepts, practice and portfolio work. | Choose a capability | Skill or capability (optional) | Add goal and level | Open my outline | Try a workplace example lesson | Learning options",
+          "buttons": [
+            "Open my outline",
+            "Try a workplace example lesson"
+          ],
+          "requested": "/dashboard/learn",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/ask",
+          "h1": "Visionary Guide",
+          "main": "Visionary Guide | What would you like help with? | Message Visionary Guide | English · Private to this workspace | Or open a relevant task | 20 | 30 | 25 | Learning activity · Demo content | Turn data into a decision | Start exploring | Plan my next career step | Open my portfolio | Fr",
+          "buttons": [
+            "Conversation",
+            "Activity",
+            "203025Learning activity · Demo contentTurn data into a decisionStart exploring",
+            "Understand",
+            "Work through a problem",
+            "Review my attempt"
+          ],
+          "requested": "/dashboard/ask",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/practice",
+          "h1": "Your next practice",
+          "main": "Review and strengthen | Your next practice | Revisit what you have already checked. Your results and next step stay connected to Learn. | Ready to revisit | Start in Learn | Finish a comprehension check in Learn first. No weakness is inferred from an empty history. | ",
+          "buttons": [],
+          "requested": "/dashboard/practice",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/build",
+          "h1": "Build something of your own",
+          "main": "Create and reflect | Build something of your own | Bring your ideas, evidence, and experiments together. | New project | Ways to start | Search projects | all | draft | in-progress | completed | My projects | Your first project starts here | Create a blank project or continue a ",
+          "buttons": [
+            "New project"
+          ],
+          "requested": "/dashboard/build",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/career",
+          "h1": "Your next capability",
+          "main": "Personal professional workspace | Your next capability | Set a purpose, practise one skill, then keep work you can explain. Saved work stays in this workspace until you explicitly share an artifact. | 1. Set your direction | 2. Build skill evidence | 3. Show your wor",
+          "buttons": [
+            "Save direction",
+            "Export current edits",
+            "Load saved direction and discard edits"
+          ],
+          "requested": "/dashboard/career",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/classes",
+          "h1": "Your classes",
+          "main": "Your classes | Assignments, feedback, and class updates in one place | Join class | No classes yet | Join with a class code from your teacher. When you connect, assignments and feedback will appear here. | Join with a code",
+          "buttons": [
+            "Join class",
+            "Join with a code"
+          ],
+          "requested": "/dashboard/classes",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/connections",
+          "h1": "Connections",
+          "main": "Connections | Your personal and work relationships, each with its own permission. | Connect with a teacher or collaborator | Requests | Nothing here yet. Connections are optional—your own learning continues independently. | Connected | Nothing here yet. Connections a",
+          "buttons": [
+            "Request connection"
+          ],
+          "requested": "/dashboard/connections",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/progress",
+          "h1": "Your learning evidence",
+          "main": "Your learning evidence | Review what you checked, practised and applied, then choose your next activity. | Evidence over time | Evidence period | Last 7 days | Last 30 days | All recorded history | Find an objective | As of 10/11/2026, 8:59:13 pm · This workspace only · Sa",
+          "buttons": [
+            "Show all recorded history"
+          ],
+          "requested": "/dashboard/progress",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/notifications",
+          "h1": "Notifications",
+          "main": "Notifications | Updates saved in this workspace. No email, push or scheduled delivery is connected. | Summary preference | Saved updates | Show updates | All updates | Unread only | You’re up to date | Relevant updates will appear here. | Open Home",
+          "buttons": [],
+          "requested": "/dashboard/notifications",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/personalization",
+          "h1": "Make Guide work for you",
+          "main": "Make Guide work for you | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Your learning stage | Update your personal learning profile. Board, institution and education-stage changes require confirmation",
+          "buttons": [
+            "Review current stage profile",
+            "Reset personalization"
+          ],
+          "requested": "/dashboard/personalization",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/privacy",
+          "h1": "Privacy & consent",
+          "main": "Privacy & consent | Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security. | Sharing boundaries | Personal doubts, notes and project drafts stay private. Family billing does not grant guardian access. Organizati",
+          "buttons": [
+            "Export this workspace",
+            "Clear learning memory",
+            "Review local data"
+          ],
+          "requested": "/dashboard/privacy",
+          "redirected": false,
+          "newConsoleErrors": []
+        },
+        {
+          "final": "/dashboard/subscription",
+          "h1": "Plans & usage",
+          "main": "Plans & usage | Choose how you learn and build. All billing here is simulated. | Current account plan | Free | Active local preview | Guided conversation usage | Free | ₹0 | Start with guided learning and saved activities. | Personal learning and projects | Saved activiti",
+          "buttons": [
+            "Current plan",
+            "Review demo plan",
+            "Review demo plan",
+            "Invite member"
+          ],
+          "requested": "/dashboard/subscription",
+          "redirected": false,
+          "newConsoleErrors": []
+        }
+      ],
+      "cross": [
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Professional | Welcome back, T09. | Sharing is always scoped | Professional learning | Show getting started | Saved on this device | Next for you | Give your next skill a clear purpose | Choose a work problem or career goal to guide your learning. | S",
+          "requested": "/dashboard/prepare",
+          "redirected": true
+        },
+        {
+          "final": "/dashboard/home",
+          "h1": "Welcome back, T09.",
+          "main": "Professional | Welcome back, T09. | Sharing is always scoped | Professional learning | Show getting started | Saved on this device | Next for you | Give your next skill a clear purpose | Choose a work problem or career goal to guide your learning. | S",
+          "requested": "/dashboard/child",
+          "redirected": true
+        },
+        {
+          "final": "/dashboard/people",
+          "h1": "People",
+          "main": "Skip to content | People | This workspace area opens with an organization workspace. You are currently working in a professional workspace. | Learn | Ask | Return to workspace",
+          "requested": "/dashboard/people",
+          "redirected": false
+        }
+      ],
+      "consoleErrors": []
+    }
+  }
+}

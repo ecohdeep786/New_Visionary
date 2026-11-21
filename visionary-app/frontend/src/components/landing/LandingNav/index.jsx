@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, CircleHelp } from "lucide-react";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import { CATEGORIES } from "@/data/landingCategories";
 import { color as C, fontStack } from "@/components/landing/system/tokens";
+import { useAuth } from "@/lib/AuthContext";
 
 import { metaFor, ORG_CONTEXTS, DOWNLOAD_PLATFORMS, ABOUT_GROUPS } from "./nav-data.js";
 import { FOCUS_RING, navLink, iconBtn, MegaTile, HOVER_OPEN_MS, HOVER_CLOSE_MS } from "./nav-shared.jsx";
@@ -12,6 +13,12 @@ export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMega, setOpenMega] = useState(null); // "who" | "org" | "download" | "about" | null
+  /* Cross-team review (2026-11-16): the nav rendered "Sign in"/"Get started"
+     to a signed-in visitor — misleading affordances that only self-healed
+     after the auth page bounced them. The signed-in state offers the real
+     next action instead: open the workspace. */
+  const { authChecked, isAuthenticated } = useAuth();
+  const signedIn = authChecked && isAuthenticated;
 
   const whoRef = useRef(null);
   const orgRef = useRef(null);
@@ -28,6 +35,7 @@ export default function LandingNav() {
   const openTimer = useRef(null);
   const closeTimer = useRef(null);
   const drawerRef = useRef(null);
+
   const menuBtnRef = useRef(null);
 
   const { pathname } = useLocation();
@@ -41,10 +49,13 @@ export default function LandingNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Close megamenus when the viewport drops below the desktop breakpoint */
+  /* Close the navigation that belongs to the previous layout. */
   useEffect(() => {
     const onResize = () => {
+      clearTimeout(openTimer.current);
+      clearTimeout(closeTimer.current);
       if (window.innerWidth < 1024) setOpenMega(null);
+      else setMobileOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -63,7 +74,9 @@ export default function LandingNav() {
 
   const requestClose = () => {
     clearTimeout(openTimer.current);
-    closeTimer.current = setTimeout(() => setOpenMega(null), HOVER_CLOSE_MS);
+    closeTimer.current = setTimeout(() => {
+      setOpenMega(current => refs[current]?.current?.contains(document.activeElement) ? current : null);
+    }, HOVER_CLOSE_MS);
   };
 
   /* Escape closes megamenu */
@@ -72,11 +85,20 @@ export default function LandingNav() {
 
     const onDown = (e) => {
       const activeRef = refs[openMega]?.current;
-      if (activeRef && !activeRef.contains(e.target)) setOpenMega(null);
+      if (activeRef && !activeRef.contains(e.target)) {
+        clearTimeout(openTimer.current);
+        clearTimeout(closeTimer.current);
+        setOpenMega(null);
+      }
     };
 
     const onKey = (e) => {
-      if (e.key === "Escape") setOpenMega(null);
+      if (e.key !== "Escape") return;
+      clearTimeout(openTimer.current);
+      clearTimeout(closeTimer.current);
+      const activeRef = refs[openMega]?.current;
+      if (activeRef?.contains(document.activeElement)) activeRef.querySelector("a")?.focus();
+      setOpenMega(null);
     };
 
     document.addEventListener("mousedown", onDown);
@@ -126,12 +148,6 @@ export default function LandingNav() {
     };
   }, [mobileOpen]);
 
-  const toggleMega = (key) => {
-    clearTimeout(openTimer.current);
-    clearTimeout(closeTimer.current);
-    setOpenMega((cur) => (cur === key ? null : key));
-  };
-
   const megaTrigger = (key, pageActive = false) =>
     `${navLink(openMega === key || pageActive)} justify-center gap-1.5`;
 
@@ -176,24 +192,28 @@ export default function LandingNav() {
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
-            {/* WHO YOU ARE */}
+            {/* WHO YOU ARE — Apple global-nav pattern: the item is a link
+               (click navigates to the page), hover or keyboard focus opens
+               the megamenu. Reference basis: Apple HIG — Navigation and
+               search; consistent hit targets and predictable activation. */}
             <div
               ref={whoRef}
               className="relative"
               onMouseEnter={() => requestOpen("who")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to={activeCategory ? activeCategory.path : "/student"}
                 aria-haspopup="true"
                 aria-expanded={openMega === "who"}
                 aria-controls="mega-who"
-                onClick={() => toggleMega("who")}
+                onFocus={() => requestOpen("who")}
+                onClick={() => setOpenMega(null)}
                 className={`${megaTrigger("who", pageActive.who)} min-w-0`}
               >
                 {activeCategory ? activeCategory.label : "Who you are"}
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "who" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "who" && (
                 <div id="mega-who" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
@@ -230,24 +250,25 @@ export default function LandingNav() {
               How it works
             </Link>
 
-            {/* FOR ORGANIZATIONS */}
+            {/* FOR ORGANIZATIONS — link trigger, same pattern as above */}
             <div
               ref={orgRef}
               className="relative"
               onMouseEnter={() => requestOpen("org")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to="/organization"
                 aria-haspopup="true"
                 aria-expanded={openMega === "org"}
                 aria-controls="mega-org"
-                onClick={() => toggleMega("org")}
+                onFocus={() => requestOpen("org")}
+                onClick={() => setOpenMega(null)}
                 className={megaTrigger("org", pageActive.org)}
               >
                 For organizations
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "org" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "org" && (
                 <div id="mega-org" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
@@ -283,24 +304,25 @@ export default function LandingNav() {
               Pricing
             </Link>
 
-            {/* DOWNLOAD */}
+            {/* DOWNLOAD — link trigger, same pattern as above */}
             <div
               ref={downloadRef}
               className="relative"
               onMouseEnter={() => requestOpen("download")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to="/download"
                 aria-haspopup="true"
                 aria-expanded={openMega === "download"}
                 aria-controls="mega-download"
-                onClick={() => toggleMega("download")}
+                onFocus={() => requestOpen("download")}
+                onClick={() => setOpenMega(null)}
                 className={megaTrigger("download", pageActive.download)}
               >
                 Download
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "download" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "download" && (
                 <div id="mega-download" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
@@ -331,24 +353,25 @@ export default function LandingNav() {
               )}
             </div>
 
-            {/* ABOUT */}
+            {/* ABOUT — link trigger, same pattern as above */}
             <div
               ref={aboutRef}
               className="relative"
               onMouseEnter={() => requestOpen("about")}
               onMouseLeave={requestClose}
             >
-              <button
-                type="button"
+              <Link
+                to="/about"
                 aria-haspopup="true"
                 aria-expanded={openMega === "about"}
                 aria-controls="mega-about"
-                onClick={() => toggleMega("about")}
+                onFocus={() => requestOpen("about")}
+                onClick={() => setOpenMega(null)}
                 className={megaTrigger("about", pageActive.about)}
               >
                 About
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "about" ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {openMega === "about" && (
                 <div id="mega-about" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
@@ -404,8 +427,8 @@ export default function LandingNav() {
             Help
           </Link>
 
-          <Link to="/login" className={`${navLink(false)} hidden sm:flex`}>
-            Sign in
+          <Link to={signedIn ? "/dashboard/home" : "/login"} className={`${navLink(false)} hidden sm:flex`}>
+            {signedIn ? "Open Visionary" : "Sign in"}
           </Link>
 
           {/* the nav CTA stays quiet while the page hero's own start button
@@ -413,7 +436,7 @@ export default function LandingNav() {
               action in view at a time. Apple-black, the product's action
               color, matching every primary pill on the page. */}
           <Link
-            to="/register"
+            to={signedIn ? "/dashboard/home" : "/register"}
             className={`ml-2 flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] hover:bg-[#272729] hover:scale-[1.01] active:scale-[0.98] active:bg-[#18181a] focus:outline-none ${FOCUS_RING} ${
               scrolled
                 ? "visible translate-y-0 opacity-100"
@@ -422,7 +445,7 @@ export default function LandingNav() {
             tabIndex={scrolled ? 0 : -1}
             aria-hidden={scrolled ? undefined : "true"}
           >
-            Get started
+            {signedIn ? "Open Visionary" : "Get started"}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-arrow h-3.5 w-3.5" aria-hidden="true">
               <path d="M5 12h14" />
               <path d="M13 6l6 6-6 6" />
@@ -434,11 +457,12 @@ export default function LandingNav() {
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
+            aria-controls={mobileOpen ? "public-mobile-navigation" : undefined}
             onClick={() => setMobileOpen((o) => !o)}
             className={iconBtn(false) + " lg:hidden"}
             style={{ color: C.graphite }}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -456,8 +480,13 @@ export default function LandingNav() {
           panel under the bar, compact utility row on top, separated sections,
           safe-area padding, focus moved inside */}
       {mobileOpen && (
-        <div
+        <nav
+          id="public-mobile-navigation"
+          aria-label="Mobile navigation"
           ref={drawerRef}
+          onBlur={event => {
+            if (!event.currentTarget.contains(event.relatedTarget) && event.relatedTarget !== menuBtnRef.current) setMobileOpen(false);
+          }}
           className="safe-b relative mx-3 mt-2 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-[24px] border bg-white px-5 pb-8 pt-4 lg:hidden"
           style={{ borderColor: C.mist }}
         >
@@ -473,18 +502,18 @@ export default function LandingNav() {
               Help
             </Link>
             <Link
-              to="/login"
+              to={signedIn ? "/dashboard/home" : "/login"}
               onClick={() => setMobileOpen(false)}
               className={`flex h-11 items-center justify-center rounded-full border border-[#d2d2d7] text-[16px] font-normal tracking-[0.24px] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] ${FOCUS_RING}`}
             >
-              Sign in
+              {signedIn ? "Open Visionary" : "Sign in"}
             </Link>
             <Link
-              to="/register"
+              to={signedIn ? "/dashboard/home" : "/register"}
               onClick={() => setMobileOpen(false)}
               className={`flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] text-[16px] font-medium tracking-[0.24px] text-white transition-colors duration-200 hover:bg-[#272729] active:bg-[#18181a] ${FOCUS_RING}`}
             >
-              Get started
+              {signedIn ? "Open Visionary" : "Get started"}
             </Link>
           </div>
 
@@ -651,7 +680,7 @@ export default function LandingNav() {
               </div>
             ))}
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

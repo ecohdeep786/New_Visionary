@@ -29,6 +29,29 @@ const productionSecurityHeaders = {
   ].join('; '),
 }
 
+// The fenced local test realm (frontend mirror of the backend's
+// DATA_OVERVIEW_TEST_ENABLED fence) may bind a demo- project to the Auth
+// Emulator inside a production build. The Auth SDK then connects to the
+// emulator origin, so the preview CSP must allow it — under exactly the same
+// three conditions firebaseEmulatorFromEnvironment enforces (flag + demo
+// project + loopback emulator origin). Without the flags the header is
+// byte-identical to the published production CSP.
+function cspForRealm(headers) {
+  const emulatorUrl = process.env.VITE_FIREBASE_AUTH_EMULATOR_URL
+  const realmActive = process.env.VITE_FIREBASE_EMULATOR_TEST_ENABLED === 'true'
+    && process.env.VITE_FIREBASE_PROJECT_ID?.startsWith('demo-')
+    && /^http:\/\/(?:localhost|127\.0\.0\.1|\[::1\]):\d{1,5}$/.test(emulatorUrl || '')
+  if (!realmActive) return headers
+  const origin = new URL(emulatorUrl).origin
+  return {
+    ...headers,
+    'Content-Security-Policy': headers['Content-Security-Policy']
+      .split('; ')
+      .map(directive => directive.startsWith('connect-src') ? `${directive} ${origin}` : directive)
+      .join('; '),
+  }
+}
+
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
   const authApiTarget = process.env.VISIONARY_AUTH_TEST_PROXY || 'http://127.0.0.1:3001';
@@ -53,8 +76,10 @@ export default defineConfig(({ mode }) => {
       },
     },
     preview: {
-      headers: productionSecurityHeaders,
-      proxy: { '/api': { target: 'http://127.0.0.1:3001', changeOrigin: false } },
+      headers: cspForRealm(productionSecurityHeaders),
+      // The invitation-realm journey gate runs a second registered backend on
+      // 3002; previews default to the production test app on 3001.
+      proxy: { '/api': { target: process.env.VITE_PREVIEW_API_TARGET || 'http://127.0.0.1:3001', changeOrigin: false } },
     },
     build: {
       target: 'esnext',
@@ -99,7 +124,13 @@ export default defineConfig(({ mode }) => {
               if (id.includes('lucide-react')) {
                 return 'vendor-icons';
               }
-              return 'vendor';
+              /* No catch-all: every remaining node_modules module follows its
+               * importers. The catch-all used to drag async-only packages
+               * (the react-markdown/remark stack used only by the lazy
+               * CourseViewer and Ask surfaces) into the initial vendor chunk,
+               * so every landing visit downloaded ~84KB of markdown
+               * machinery it never executes before first paint. With natural
+               * chunking those modules load with the surfaces that use them. */
             }
           },
           // Ensure async chunks get inline dynamic imports
