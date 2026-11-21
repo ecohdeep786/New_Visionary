@@ -24,9 +24,9 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
       to={`/${category.slug}`}
       data-card
       aria-label={`Learn more about ${category.chip}`}
-      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[372px]"
+      className="stagger-child group block w-[82vw] max-w-[440px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[440px]"
     >
-      <div className="media-settle relative aspect-square overflow-hidden">
+      <div className="media-settle relative aspect-[4/5] overflow-hidden">
         <LazyImage
           src={image}
           alt={category.alt}

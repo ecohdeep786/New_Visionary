@@ -47815,7 +47815,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "8df35202da20ae0870ad9f2f1d1e9bfdabddd2815e0611eae53e70539b27f8e7",
+      "declarationSha256": "758d25f9a1054907921aea04207c557f4f56fc73706061f158d7c4212b880a3c",
       "routeIds": [
         "/",
         "/student",
@@ -81869,7 +81869,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx",
-      "sourceSha256": "b067d547a6383c60a280fe666e2127542fa722041172019ba165c5e70e4c913a"
+      "sourceSha256": "4be6af75ba8614f98b33b167ccc187a59f9eb14cf67adb84148b69d7712acbc2"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx",
@@ -82721,7 +82721,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "a03aee0628809c19ecf2600b2a9168e1aee96bd272fc20a67f302c0ea41e75e3"
+      "sourceSha256": "63788493b03f4ff619215314191336390de5de9350ddf6a4933adc31d6d20374"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

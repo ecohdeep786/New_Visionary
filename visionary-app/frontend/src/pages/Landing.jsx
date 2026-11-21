@@ -525,8 +525,8 @@ export default function LandingPage() {
         <LandingIntelligenceSection />
         <LandingProblemSection />
         <LandingPromiseSection />
+        <LandingRouterSection />
         <LandingReturnSection />
-        <LandingRouterSection />
         <Suspense fallback={null}><PremiumTrustSection
           variant="feature"
           heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
