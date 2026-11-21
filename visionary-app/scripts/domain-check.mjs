@@ -45,4 +45,6 @@ run(['--test', '--test-reporter=tap', ...admissionTests.map(f => join(root, 'bac
 run(['--test', '--test-reporter=tap',
   join(root, 'backend/tests/contracts/data-jobs/outbox.test.mjs'),
   join(root, 'backend/tests/contracts/data-jobs/outbox.sql.test.mjs'),
+  join(root, 'backend/tests/contracts/data-jobs/jobs.test.mjs'),
+  join(root, 'backend/tests/contracts/data-jobs/jobs.sql.test.mjs'),
 ]);

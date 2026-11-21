@@ -284,6 +284,22 @@
           "afterSha256": "f73b3c0bce0e9ba051d25a8aa3ae5e421cc3276555a010f59235153a4cd01315"
         }
       ]
+    },
+    {
+      "id": "2026-11-21-job-02-workload-jobs",
+      "date": "2026-11-21",
+      "decision": "KAN-54 backend delivery and D-095 independent review.",
+      "reason": "Add the PostgreSQL-owned workload job lifecycle and store revisions for fenced recovery.",
+      "diff": "integration/upstream-patches/2026-11-21-job-02-workload-jobs.patch",
+      "diffSha256": "e53ca602cb6a434f51301d49ace5ec175baae8561b15d4189061dc444a66a38c",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "f73b3c0bce0e9ba051d25a8aa3ae5e421cc3276555a010f59235153a4cd01315",
+          "afterSha256": "b27f4617060e84411dc190f14b13903dfe7dff80a654b6ed34e17d0905f5c5f0"
+        }
+      ]
     }
   ]
 }

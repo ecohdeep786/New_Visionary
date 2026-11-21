@@ -15,9 +15,8 @@ export type OutboxSettlement = Pick<OutboxEvent, 'nextAttemptAt' | 'lastError'> 
   status: Exclude<OutboxStatus, 'DISPATCHED'>;
 };
 
-type JobSettlement = Pick<Job, 'completedAt' | 'lastError'> & {
-  state: 'PENDING' | 'DONE' | 'FAILED';
-};
+export type JobPatch = Partial<Pick<Job, 'state' | 'attempt' | 'claimedUntil' | 'leaseToken' | 'attemptToken' |
+  'nextAttemptAt' | 'completedAt' | 'cancellationToken' | 'lastError' | 'cleanupAttempts' | 'cleanupError'>>;
 
 export interface OutboxDeliveryStore {
   outboxByCursor(cursor: OutboxCursor): Promise<OutboxEvent | null>;
@@ -41,23 +40,33 @@ export interface OutboxDeliveryStore {
   settleOutbox(cursor: OutboxCursor, attempt: number, settlement: OutboxSettlement): Promise<OutboxEvent | null>;
 }
 
-export interface OutboxStore extends OutboxDeliveryStore {
-  appendOutbox(event: OutboxEvent): Promise<void>;
+export interface JobStore {
+  clock(): Promise<Date>;
   createJob(job: Job): Promise<void>;
   jobById(id: string): Promise<Job | null>;
   jobsInQueue(queue: string): Promise<Job[]>;
-  claimJob(id: string, options: { hasHandler: boolean; cancelToken?: string }): Promise<Job | null>;
-  settleJob(id: string, attempt: number, settlement: JobSettlement): Promise<void>;
-  cancelJob(id: string, cancelToken: string): Promise<void>;
+  /** Replace only the exact revision used to authorize a state change. */
+  compareJob(id: string, revision: number, patch: JobPatch, validUntil?: string | null): Promise<Job | null>;
+  dueJobs(now: Date, limit: number): Promise<Job[]>;
   /** Per-workload queues that hold runnable jobs. */
   queues(): Promise<string[]>;
   /** Client-supplied uid and queue must align with the owning store (server-side). */
   assertAuthorized(uid: string, queue: string): Promise<boolean>;
 }
 
+export interface OutboxStore extends OutboxDeliveryStore, JobStore {
+  appendOutbox(event: OutboxEvent): Promise<void>;
+}
+
+export function ownsJobQueue(uid: string, queue: string): boolean {
+  if (!/^[a-zA-Z0-9_-]{1,128}$/.test(uid)) return false;
+  if (queue.startsWith('global:')) return queue === `global:${uid}`;
+  return queue.startsWith(`${uid}:`) && /^[a-zA-Z0-9_-]{1,80}$/.test(queue.slice(uid.length + 1));
+}
+
 export class InMemoryOutboxStore implements OutboxStore {
   readonly outbox = new Map<bigint, OutboxEvent>();
-  readonly jobs = new Map<string, Job>();
+  private readonly jobs = new Map<string, Job>();
   /** Simulate an ack crash: the delivery ran, but the DONE ack is lost. */
   failDispatchAfterWrite = false;
   crashOnAppend = false;
@@ -123,34 +132,31 @@ export class InMemoryOutboxStore implements OutboxStore {
     return next;
   }
 
-  async createJob(job: Job): Promise<void> { this.jobs.set(job.id, job); }
-  async jobById(id: string): Promise<Job | null> { return this.jobs.get(id) ?? null; }
-  async jobsInQueue(queue: string): Promise<Job[]> { return [...this.jobs.values()].filter((j) => j.queue === queue); }
-  async claimJob(id: string, { hasHandler, cancelToken }: { hasHandler: boolean; cancelToken?: string }): Promise<Job | null> {
-    const current = this.jobs.get(id);
-    if (!current || current.state !== 'PENDING' ||
-        (current.cancellationToken && current.cancellationToken !== cancelToken)) return null;
-    if (!hasHandler) {
-      this.jobs.set(id, { ...current, lastError: 'NO_JOB_HANDLER' });
-      return null;
-    }
-    if (current.attempt >= current.maxAttempts) {
-      this.jobs.set(id, { ...current, state: 'FAILED', lastError: 'MAX_ATTEMPTS_REACHED' });
-      return null;
-    }
-    const claimed: Job = { ...current, state: 'RUNNING', attempt: current.attempt + 1, lastError: null };
-    this.jobs.set(id, claimed);
-    return claimed;
+  async createJob(job: Job): Promise<void> {
+    if (this.jobs.has(job.id)) throw Error('JOB_ID_ALREADY_EXISTS');
+    this.jobs.set(job.id, { ...job });
   }
-  async settleJob(id: string, attempt: number, settlement: JobSettlement): Promise<void> {
-    const current = this.jobs.get(id);
-    if (!current || current.state !== 'RUNNING' || current.attempt !== attempt) return;
-    this.jobs.set(id, { ...current, ...settlement });
+  async clock(): Promise<Date> { return new Date(); }
+  async jobById(id: string): Promise<Job | null> {
+    const job = this.jobs.get(id);
+    return job ? { ...job } : null;
   }
-  async cancelJob(id: string, cancelToken: string): Promise<void> {
+  async jobsInQueue(queue: string): Promise<Job[]> {
+    return [...this.jobs.values()].filter(job => job.queue === queue).map(job => ({ ...job }));
+  }
+  async compareJob(id: string, revision: number, patch: JobPatch): Promise<Job | null> {
     const current = this.jobs.get(id);
-    if (!current || current.state === 'DONE' || current.state === 'FAILED' || current.state === 'CANCELLED') return;
-    this.jobs.set(id, { ...current, state: 'CANCELLED', cancellationToken: cancelToken });
+    if (!current || current.revision !== revision) return null;
+    const updated = { ...current, ...patch, revision: revision + 1 };
+    this.jobs.set(id, updated);
+    return { ...updated };
+  }
+  async dueJobs(now: Date, limit: number): Promise<Job[]> {
+    return [...this.jobs.values()].filter(job => {
+      if (!['PENDING', 'CLAIMED', 'RUNNING'].includes(job.state)) return false;
+      return Boolean(job.runBy && Date.parse(job.runBy) <= now.getTime()) ||
+        (job.state !== 'PENDING' && Boolean(job.claimedUntil && Date.parse(job.claimedUntil) <= now.getTime()));
+    }).slice(0, limit).map(job => ({ ...job }));
   }
   async queues(): Promise<string[]> {
     return [...new Set([...this.jobs.values()].map((j) => j.queue))];
@@ -158,7 +164,7 @@ export class InMemoryOutboxStore implements OutboxStore {
   async assertAuthorized(uid: string, queue: string): Promise<boolean> {
     // Server-side rule: a queue name is only valid when it carries the owning
     // editorial uid namespace. This is the enabler's authority shim.
-    return queue.startsWith(`${uid}:`) || queue === `global:${uid}`;
+    return ownsJobQueue(uid, queue);
   }
 }
 

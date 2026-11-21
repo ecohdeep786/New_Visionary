@@ -71,6 +71,7 @@ try {
     cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261106000005_data_06_command_revision'), join(backend, 'prisma/migrations/20261106000005_data_06_command_revision'), { recursive: true });
     cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261108000006_data_09_admission'), join(backend, 'prisma/migrations/20261108000006_data_09_admission'), { recursive: true });
     cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261120000007_job_01_outbox_delivery'), join(backend, 'prisma/migrations/20261120000007_job_01_outbox_delivery'), { recursive: true });
+    cpSync(join(root, 'backend/upstream/backend/prisma/migrations/20261121000008_job_02_workload_jobs'), join(backend, 'prisma/migrations/20261121000008_job_02_workload_jobs'), { recursive: true });
     for (const file of ['data-01/postgres-fixture.cjs', 'data-02/postgres-fixture.cjs', 'data-03/provisioning.test.mjs']) {
       const destination = join(testRoot, 'contracts', file); mkdirSync(dirname(destination), { recursive: true });
       cpSync(join(root, 'backend/tests/contracts', file), destination);

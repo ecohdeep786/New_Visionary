@@ -10,7 +10,7 @@
 /** Mirrors the DATA-01 OutboxStatus enum. */
 export type OutboxStatus = 'PENDING' | 'DISPATCHED' | 'FAILED' | 'DONE';
 
-export type JobState = 'PENDING' | 'CLAIMED' | 'RUNNING' | 'DONE' | 'FAILED' | 'CANCELLED';
+export type JobState = 'PENDING' | 'CLAIMED' | 'RUNNING' | 'DONE' | 'FAILED' | 'CANCELLED' | 'QUARANTINED';
 export type OutboxCursor = number | bigint;
 
 export function outboxCursorKey(cursor: OutboxCursor): bigint {
@@ -45,11 +45,18 @@ export interface Job {
   state: JobState;
   attempt: number;
   maxAttempts: number;
+  revision: number;
   createdAt: string;
   claimedUntil: string | null;
+  leaseToken: string | null;
+  attemptToken: string | null;
+  runBy: string | null;
+  nextAttemptAt: string | null;
   completedAt: string | null;
   cancellationToken: string | null;
   lastError: string | null;
+  cleanupAttempts: number;
+  cleanupError: string | null;
 }
 
 /** Bounded retry/backoff policy (per-workload). */

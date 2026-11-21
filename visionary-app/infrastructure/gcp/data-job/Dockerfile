@@ -11,6 +11,7 @@ COPY backend/upstream/backend/prisma/migrations/20261106000004_file_03_downloads
 COPY backend/upstream/backend/prisma/migrations/20261106000005_data_06_command_revision/ ./prisma/migrations/20261106000005_data_06_command_revision/
 COPY backend/upstream/backend/prisma/migrations/20261108000006_data_09_admission/ ./prisma/migrations/20261108000006_data_09_admission/
 COPY backend/upstream/backend/prisma/migrations/20261120000007_job_01_outbox_delivery/ ./prisma/migrations/20261120000007_job_01_outbox_delivery/
+COPY backend/upstream/backend/prisma/migrations/20261121000008_job_02_workload_jobs/ ./prisma/migrations/20261121000008_job_02_workload_jobs/
 COPY backend/upstream/backend/src/data/ ./src/data/
 COPY infrastructure/gcp/data-job/tsconfig.json ./tsconfig.json
 RUN ./node_modules/.bin/prisma generate && ./node_modules/.bin/tsc -p tsconfig.json && npm prune --omit=dev --ignore-scripts --no-audit --no-fund
@@ -30,6 +31,7 @@ COPY --from=build --chown=node:node /build/prisma/migrations/20261106000004_file
 COPY --from=build --chown=node:node /build/prisma/migrations/20261106000005_data_06_command_revision/ ./prisma/migrations/20261106000005_data_06_command_revision/
 COPY --from=build --chown=node:node /build/prisma/migrations/20261108000006_data_09_admission/ ./prisma/migrations/20261108000006_data_09_admission/
 COPY --from=build --chown=node:node /build/prisma/migrations/20261120000007_job_01_outbox_delivery/ ./prisma/migrations/20261120000007_job_01_outbox_delivery/
+COPY --from=build --chown=node:node /build/prisma/migrations/20261121000008_job_02_workload_jobs/ ./prisma/migrations/20261121000008_job_02_workload_jobs/
 USER node
 ENTRYPOINT ["node", "dist/src/data/migration-command.js"]
 CMD ["plan"]
