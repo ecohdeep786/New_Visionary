@@ -5,7 +5,6 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
-import SpotIllustration from "@/components/landing/SpotIllustration";
 /* The premium sections sit below the fold on every route that uses them;
  * they load on demand (Suspense fallback null) so the entry graph carries
  * only hero-first-commit content (T13 eager law). Direct module paths, not
@@ -23,7 +22,7 @@ import orgmeet from "@/assets/org-face-main-1600w.webp";
 // Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
-import { Accessibility, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
+import { Accessibility, BookOpen, ChevronLeft, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
 
 /* One source of truth: every color resolves from system/tokens.js (the
    measured Apple-neutral system, see APPLE_MEASURED_REFERENCE_2026-10-21.md).
@@ -61,16 +60,7 @@ const ROUTER_CATEGORIES = [
   { slug: "organization", chip: "Organization", copy: "Give teams a shared view of learning across people, projects, and time.", alt: "Leader reviewing team progress on a tablet" },
 ];
 
-/* The suite — the four doors around the product (Apple’s services row):
-   every line is the destination page’s own hero statement, the card
-   anatomy is the About page’s explore module (white cards on the grey
-   ground, spot-illustration field, cutout arrow). */
-const SUITE_TILES = [
-  { to: "/download", label: "Download", copy: "Get Visionary on every device.", subject: "download" },
-  { to: "/pricing", label: "Pricing", copy: "Plans for every journey.", subject: "tag" },
-  { to: "/help", label: "Help", copy: "Find your answer.", subject: "help" },
-  { to: "/updates", label: "Updates", copy: "What’s new at Visionary.", subject: "updates" },
-];
+
 
 /* The mechanism chapter’s four beats — the umbrella voice of the loop every
    category page is built around. Verbatim from the student page’s
@@ -495,62 +485,6 @@ function LandingRouterSection() {
   );
 }
 
-/* 14 · THE SUITE — the four doors around the product (Apple’s services row):
-   Download, Pricing, Help, Updates. Every line is the destination page’s own
-   hero statement, so the front door invents nothing; the card anatomy is the
-   About page’s explore module (white cards on the grey ground, cutout arrow)
-   so the whole site speaks one card system. The line-up’s grey ground
-   continues straight through — one catalogue expanse carries the five
-   journeys and then the four doors around the product. */
-function LandingSuiteSection() {
-  const { ref, visible } = useRevealContinuous();
-
-  return (
-    <section ref={ref} data-section="14-suite" className="relative isolate bg-[#f5f5f7] [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <Reveal visible={visible} className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
-        {/* Apple’s accessory/line-up chapters open with a statement over the
-            grid ("Explore Apple Vision Pro accessories."). The suite’s own
-            eyebrow promotes to the measured card-chapter statement tier —
-            same words, one statement period — so it reads as the sibling of
-            the journeys line-up above, not a second hero. */}
-        <h2
-          data-type="section"
-          className="text-balance font-semibold tracking-[-0.009em] leading-[1.06]"
-          style={{ color: BRAND.ink, maxWidth: "20ch" }}
-        >
-          Explore further.
-        </h2>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-8">
-          {SUITE_TILES.map((item) => (
-            /* Apple’s explore tile: one white card, the spot-illustration
-               field inset like a media well, the label/copy on the spine and
-               the arrow inside the card — no detached strip, no floating
-               notch. The whole card stays the door. */
-            <Link
-              key={item.to}
-              to={item.to}
-              className="group relative grid min-h-[220px] grid-cols-[1fr_118px] gap-3 overflow-hidden rounded-[20px] bg-white p-3 transition-shadow duration-200 hover:shadow-[0_12px_32px_rgba(29,29,31,0.07)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] sm:grid-cols-[1fr_180px]"
-            >
-              <div className="flex flex-col justify-between px-4 py-4 sm:px-6 sm:py-6">
-                <div>
-                  <h3 data-type="feature" style={{ color: BRAND.ink }}>{item.label}</h3>
-                  <p className="mt-2 max-w-[300px] text-[16px] leading-[1.6]" style={{ color: BRAND.graphite }}>{item.copy}</p>
-                </div>
-                <span aria-hidden="true" className="mt-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#f5f5f7] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none">
-                  <ArrowRight className="h-4 w-4" style={{ color: BRAND.link }} />
-                </span>
-              </div>
-              <div className="flex items-center justify-center rounded-[14px] bg-[#f5f5f7] sm:rounded-[16px]">
-                <SpotIllustration subject={item.subject} className="h-20 w-20 sm:h-36 sm:w-36" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </Reveal>
-    </section>
-  );
-}
-
 /* ═══════════════════════ PAGE ═══════════════════════
    The front-door anatomy (the company front door), ordered the way Apple
    tells a product story — show, then explain: the family stage pins to the
@@ -592,8 +526,7 @@ export default function LandingPage() {
         <LandingProblemSection />
         <LandingPromiseSection />
         <LandingReturnSection />
-        <LandingRouterSection />
-        <LandingSuiteSection />
+        <LandingRouterSection />
         <Suspense fallback={null}><PremiumTrustSection
           variant="feature"
           heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}

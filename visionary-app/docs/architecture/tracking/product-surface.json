@@ -33,12 +33,6 @@
         "frontend/src/components/landing/LazyImage.jsx",
         "frontend/src/components/landing/NewPersona.jsx",
         "frontend/src/components/landing/QuietLink.jsx",
-        "frontend/src/components/landing/SpotIllustration/index.jsx",
-        "frontend/src/components/landing/SpotIllustration/palette.jsx",
-        "frontend/src/components/landing/SpotIllustration/scenes-academic.jsx",
-        "frontend/src/components/landing/SpotIllustration/scenes-portraits.jsx",
-        "frontend/src/components/landing/SpotIllustration/scenes-primary.jsx",
-        "frontend/src/components/landing/SpotIllustration/scenes-wide.jsx",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx",
         "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx",
@@ -164,11 +158,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
+        "frontend/src/pages/Landing.jsx:298:15",
         "frontend/src/pages/Landing.jsx:308:15",
-        "frontend/src/pages/Landing.jsx:318:15",
-        "frontend/src/pages/Landing.jsx:366:11",
-        "frontend/src/pages/Landing.jsx:435:17",
-        "frontend/src/pages/Landing.jsx:529:13"
+        "frontend/src/pages/Landing.jsx:356:11",
+        "frontend/src/pages/Landing.jsx:425:17"
       ],
       "operations": [
         "public-discovery",
@@ -79167,9 +79160,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:308:15",
+      "id": "frontend/src/pages/Landing.jsx:298:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 308,
+      "line": 298,
       "column": 15,
       "tag": "button",
       "events": [
@@ -79198,9 +79191,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:318:15",
+      "id": "frontend/src/pages/Landing.jsx:308:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 318,
+      "line": 308,
       "column": 15,
       "tag": "button",
       "events": [
@@ -79229,9 +79222,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:366:11",
+      "id": "frontend/src/pages/Landing.jsx:356:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 366,
+      "line": 356,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -79254,39 +79247,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:435:17",
+      "id": "frontend/src/pages/Landing.jsx:425:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 435,
+      "line": 425,
       "column": 17,
       "tag": "Link",
       "events": [],
       "calls": [],
       "disabled": null,
       "declarationSha256": "891de48975fac82dc19b1fbbf1e4cacca4e080b932d9fd827c58d90e7b8c652e",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Landing.jsx:529:13",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 529,
-      "column": 13,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "03ebd05fc61c4b8fa42aed8e5c54d5ac2c10f53db25598bb564b372a2c27dc86",
       "routeIds": [
         "/"
       ],
@@ -82752,7 +82721,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "286cf3d46709ae6964789a3625625c168a47b8876c0a38b82d0f45f1f79dd29c"
+      "sourceSha256": "a03aee0628809c19ecf2600b2a9168e1aee96bd272fc20a67f302c0ea41e75e3"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -86031,11 +86000,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1533,
-    "routeReachableDeclarations": 1530,
+    "controlDeclarations": 1532,
+    "routeReachableDeclarations": 1529,
     "controlFiles": 193,
     "states": {
-      "connected": 532,
+      "connected": 531,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3
