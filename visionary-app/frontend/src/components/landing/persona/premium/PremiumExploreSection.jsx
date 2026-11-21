@@ -14,17 +14,21 @@ import LazyImage from "@/components/landing/LazyImage";
    statement’s spine with the rest peeking past the right edge as the scroll
    affordance, snap points for the swipe, and centred round chevrons beneath. */
 
-/* Apple’s line-up card, measured on the Watch "Explore the line-up." module:
-   a white card on the #f5f5f7 ground with the photograph full-bleed on top
-   and the text band beneath — 24px/600 name, 17px grey line, quiet blue
-   "Learn more" link with a trailing chevron. */
+/* The line-up card in the iPhone Duo chapter's grammar (measured on
+   /iphone): the photograph IS the tile — the image fills the card and the
+   text lives inside it, never in a band beneath. Our studio portraits are
+   white-ground with the subject centred, so the text sits on a white
+   studio floor that dissolves the subject from below (the page's own
+   floor recipe, shared with the story card and the hero family): the
+   name as the tile's statement, the one quiet line, the blue link — all
+   inside the tile, the person rising above them. */
 const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, image }) {
   return (
     <Link
       to={`/${category.slug}`}
       data-card
       aria-label={`Learn more about ${category.chip}`}
-      className="stagger-child group block w-[82vw] max-w-[440px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[440px]"
+      className="stagger-child group relative block w-[82vw] max-w-[440px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[440px]"
     >
       <div className="media-settle relative aspect-[4/5] overflow-hidden">
         <LazyImage
@@ -34,8 +38,15 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
           draggable="false"
           className="h-full w-full select-none object-cover transition-transform duration-500 ease-apple group-hover:scale-[1.04]"
         />
+        {/* the studio floor — the subject dissolves into it; the text sits
+            on it inside the tile (the Duo card's inside-the-image grammar) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%]"
+          style={{ background: "linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.94) 52%, rgba(255,255,255,0) 100%)" }}
+        />
       </div>
-      <div className="p-7 lg:p-8">
+      <div className="absolute inset-x-0 bottom-0 p-7 lg:p-8">
         <h3
           data-type="feature"
           className="text-balance"
