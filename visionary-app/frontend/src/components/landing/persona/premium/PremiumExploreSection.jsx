@@ -14,54 +14,57 @@ import LazyImage from "@/components/landing/LazyImage";
    statement’s spine with the rest peeking past the right edge as the scroll
    affordance, snap points for the swipe, and centred round chevrons beneath. */
 
-/* The line-up card in the iPhone Duo chapter's grammar (measured on
-   /iphone): a LONG tile — the photograph fills it completely, the subject
-   is large and cropped by the tile's edges the way Apple's product crops
-   at its tile, and the text lives inside it, never in a band beneath.
-   Our portraits are white-ground, so the 12% zoom crops only invisible
-   margin — the person reads Duo-large; the studio floor keeps the text's
-   legibility where the body runs under it (the page's own floor recipe,
-   shared with the story card and the hero family). */
+/* The line-up card in the iPhone Duo chapter's grammar (founder's capture
+   of the live tile): a WIDE landscape tile — the photograph fills it with
+   the subject cropped at the bottom edge, the name and its one quiet line
+   sit TOP-LEFT inside the tile, and the door (Learn more) sits TOP-RIGHT
+   opposite them, exactly the Duo's composition. Our portraits are
+   white-ground and top-anchored (object-position keeps the head below the
+   text, the body crops at the floor like Apple's product), and a soft
+   white scrim — invisible on the studio ground — guarantees the text's
+   legibility where a subject reaches up (the parent pair). */
 const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, image }) {
   return (
     <Link
       to={`/${category.slug}`}
       data-card
       aria-label={`Learn more about ${category.chip}`}
-      className="stagger-child group relative block w-[82vw] max-w-[440px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[440px]"
+      className="stagger-child group relative block w-[82vw] max-w-[660px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[660px]"
     >
-      <div className="media-settle relative aspect-[4/5.6] overflow-hidden">
-        <LazyImage
-          src={image}
-          alt={category.alt}
-          decoding="async"
-          draggable="false"
-          className="h-full w-full select-none object-cover transition-transform duration-500 ease-apple scale-[1.14] group-hover:scale-[1.18]"
-        />
-        {/* the studio floor — legibility under the text where the body
-            runs beneath it (the Duo card's inside-the-image grammar) */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[46%]"
-          style={{ background: "linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.92) 55%, rgba(255,255,255,0) 100%)" }}
-        />
+      <div className="media-settle relative aspect-[9/5] overflow-hidden bg-white">
+        {/* the photograph anchors to the tile's lower four-fifths — the top
+            strip stays the empty studio ground the Duo's text lives in, and
+            the body crops at the floor like Apple's product at its tile */}
+        <div className="absolute inset-x-0 bottom-0 h-[72%]">
+          <LazyImage
+            src={image}
+            alt={category.alt}
+            decoding="async"
+            draggable="false"
+            className="h-full w-full select-none object-cover object-top transition-transform duration-500 ease-apple group-hover:scale-[1.04]"
+            style={{ objectPosition: "50% 0%" }}
+          />
+        </div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 p-7 lg:p-8">
-        <h3
-          data-type="feature"
-          className="text-balance"
-          style={{ color: color.ink, maxWidth: "18ch" }}
-        >
-          {category.chip}
-        </h3>
-        <p
-          className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
-          style={{ color: color.slate, maxWidth: "38ch" }}
-        >
-          {category.copy}
-        </p>
+      {/* the Duo text row: name and its line top-left, the door top-right */}
+      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-7 lg:p-8">
+        <div>
+          <h3
+            data-type="feature"
+            className="text-balance"
+            style={{ color: color.ink, maxWidth: "18ch" }}
+          >
+            {category.chip}
+          </h3>
+          <p
+            className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
+            style={{ color: color.slate, maxWidth: "30ch" }}
+          >
+            {category.copy}
+          </p>
+        </div>
         <span
-          className="public-text-link mt-4 inline-flex items-center transition-colors duration-200 group-hover:underline"
+          className="public-text-link mt-2 inline-flex shrink-0 items-center transition-colors duration-200 group-hover:underline"
         >
           Learn more
           <ChevronIcon className="h-4 w-4" />
