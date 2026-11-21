@@ -45,15 +45,16 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
       <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-6 sm:p-8 lg:p-12">
         <div>
           <h3
-            data-type="section"
+            data-type="feature"
             className="text-balance"
-            style={{ color: color.ink, maxWidth: "14ch" }}
+            style={{ color: color.ink, maxWidth: "18ch" }}
           >
             {category.chip}
           </h3>
           <p
-            className="mt-1.5 text-balance font-normal tracking-[0] leading-[1.4] text-[15px] sm:text-[17px] lg:text-[21px]"
-            style={{ color: color.slate, maxWidth: "22ch" }}
+            data-type="value-body"
+            className="mt-1.5 text-balance"
+            style={{ maxWidth: "22ch" }}
           >
             {category.copy}
           </p>

@@ -52,7 +52,7 @@ function PremiumTrustSection({ heading, sub, values }) {
                   style={{ borderColor: `${color.ink}1A` }}
                 >
                   {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} style={{ color: color.ink }} />}
-                  <h3 data-type="value-title" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: color.ink }}>
+                  <h3 data-type="feature" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: color.ink }}>
                     {value.title}
                   </h3>
                   <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: color.slate }}>
