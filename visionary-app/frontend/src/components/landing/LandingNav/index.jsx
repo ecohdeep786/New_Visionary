@@ -192,7 +192,7 @@ export default function LandingNav() {
               onMouseLeave={requestClose}
             >
               <Link
-                to={activeCategory ? activeCategory.path : "/student"}
+                to={activeCategory ? activeCategory.path : "/#who-its-for"}
                 aria-haspopup="true"
                 aria-expanded={openMega === "who"}
                 aria-controls="mega-who"
