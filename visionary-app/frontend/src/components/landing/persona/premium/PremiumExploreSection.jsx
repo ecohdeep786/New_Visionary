@@ -140,10 +140,10 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
    shared chapter header. Only the five real audience destinations on the
    landing switch to the all-at-once directory; persona pages retain the
    existing swipe gallery. */
-function PremiumExploreSection({ heading, categories, images, eyebrow, sub, headingRole, subRole }) {
+function PremiumExploreSection({ heading, categories, images, eyebrow, sub, headingRole, subRole, presentation = "gallery", sectionId }) {
   const { ref } = useRevealOnce();
   const { trackRef, canPrev, canNext, scrollByCard, update } = useScrollTrack();
-  const isLandingAudienceDirectory = eyebrow === "Who it’s for"
+  const isLandingAudienceDirectory = presentation === "directory"
     && categories.length === LANDING_AUDIENCE_SLUGS.length
     && categories.every((category, index) => category.slug === LANDING_AUDIENCE_SLUGS[index]);
 
@@ -174,7 +174,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
   const onDragStart = useCallback((event) => event.preventDefault(), []);
 
   return (
-    <section ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
+    <section ref={ref} id={sectionId} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
         <RevealItem idx={0}>
           <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
