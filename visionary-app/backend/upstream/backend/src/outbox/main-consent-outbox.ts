@@ -5,6 +5,8 @@ import { WorkspaceRepository } from '../workspaces/workspace.repository';
 import { cloudRunWorkerOrigin, createConsentRevocationDispatcher } from './cloud-tasks-outbox.delivery';
 import { createConsentRevocationServer } from './consent-revocation.http';
 import { outboxCursorKey } from './outbox-types';
+import { OutboxSweeper } from './outbox.sweeper';
+import { PostgresJobStore } from './postgres-job.store';
 
 function required(key: string): string {
   const value = process.env[key];
@@ -24,11 +26,20 @@ async function main(mode: string) {
   if (url.searchParams.get('schema') !== schema || decodeURIComponent(url.username) !== role) {
     throw Error('Outbox SQL role and schema must match.');
   }
-  const origin = cloudRunWorkerOrigin(required('OUTBOX_WORKER_ORIGIN'));
   const db = new PrismaClient({ datasources: { db: { url: String(url) } } });
   let serving = false;
   try {
     await WorkspaceRepository.assertRuntimeIdentity(db, { role, schema, database });
+    if (mode === 'sweep-jobs') {
+      const result = await new OutboxSweeper(new PostgresJobStore(db)).sweep();
+      console.info(JSON.stringify({
+        reclaimed: result.reclaimed.length,
+        deadlineExpired: result.deadlineExpired.length,
+        quarantined: result.quarantinedStale.length,
+      }));
+      return;
+    }
+    const origin = cloudRunWorkerOrigin(required('OUTBOX_WORKER_ORIGIN'));
     await db.$queryRaw`SELECT "effectAppliedAt" FROM outbox_deliveries LIMIT 0`;
 
     if (mode === 'dispatch') {
@@ -81,7 +92,7 @@ async function main(mode: string) {
 
 if (require.main === module) {
   void main(process.argv[2]).catch(() => {
-    console.error('Consent outbox startup or dispatch failed.');
+    console.error('Outbox worker startup or execution failed.');
     process.exitCode = 1;
   });
 }

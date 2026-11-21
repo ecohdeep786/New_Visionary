@@ -13,7 +13,7 @@ const code = expected => e => e.code === expected;
 let env, service, target;
 before(async () => {
   env = await stagingDatabase();
-  assert.deepEqual(registry().map(m => m.version), [1, 2, 3, 4, 5, 6, 7]);
+  assert.deepEqual(registry().map(m => m.version), [1, 2, 3, 4, 5, 6, 7, 8]);
   assert.equal((await new MigrationRunner(env.store(), registry()).applyAll()).applied, 7);
   await env.grantRuntime();
   target = { role: env.runtimeRole, schema: env.schema, database: new URL(env.config.runtimeUrl).pathname.slice(1) };

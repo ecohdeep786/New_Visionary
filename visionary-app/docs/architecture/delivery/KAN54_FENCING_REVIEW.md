@@ -79,6 +79,17 @@ The same completed attempt can replay its receipt.
 
 The sweeper checks deadlines before lease recovery and writes only the revision
 it read. A heartbeat or competing transition after the scan therefore wins.
-The local data gate exercises these cases in the in-memory store. A durable job
-store and hosted workload verification remain open. The KAN-53 hosted outbox
-test verifies the separate consent delivery and receipt path.
+Migration 8 records workload jobs separately from consent delivery. The local
+data gate exercises both the in-memory and PostgreSQL stores. The SQL store
+uses the database clock to fence live mutations and rechecks account authority
+inside the transaction. The KAN-53 consent delivery and receipt path stays
+separately verified.
+
+Run one bounded sweep with the reviewed worker image by passing
+`dist/src/outbox/main-consent-outbox.js,sweep-jobs` to `node`. Apply and verify
+migration 8 on the intended SQL database first. Use the existing `OUTBOX_DATABASE_*`
+and `OUTBOX_SQL_INSTANCE` settings with a distinct sweeper SQL role. Its grant
+needs SELECT on `workload_jobs` and UPDATE on the revision, state, lease, retry
+and error fields used by the sweep. A sweep has no Cloud Tasks or product
+account dependency and logs only counts. Hosted verification should check a
+second invocation and read back the persisted result before widening use.

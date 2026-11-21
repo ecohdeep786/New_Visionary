@@ -17,7 +17,7 @@
 import { randomUUID } from 'node:crypto';
 import type { BackoffPolicy, Job, OutboxCursor, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
-import type { JobPatch, OutboxDeliveryStore, OutboxStore } from './outbox-store';
+import type { JobPatch, JobStore, OutboxDeliveryStore, OutboxStore } from './outbox-store';
 import { backoffDelay } from './outbox-store';
 
 export class JobPolicyError extends Error {
@@ -138,13 +138,11 @@ export class OutboxDeliveryDispatcher {
   }
 }
 
-export class OutboxDispatcher extends OutboxDeliveryDispatcher {
-  constructor(
-    private readonly jobs: OutboxStore,
-    handlers: DispatcherHandlers = {},
-    policy: BackoffPolicy = DEFAULT_BACKOFF,
-  ) {
-    super(jobs, handlers, policy);
+export class JobDispatcher {
+  constructor(private readonly jobs: JobStore, private readonly policy: BackoffPolicy = DEFAULT_BACKOFF) {}
+
+  private async timestamp(now?: string): Promise<number> {
+    return now === undefined ? (await this.jobs.clock()).getTime() : jobTime(now);
   }
 
   /** Enqueue a job into a per-workload queue, validating the client uid owns it. */
@@ -162,7 +160,7 @@ export class OutboxDispatcher extends OutboxDeliveryDispatcher {
       attempt: 0,
       maxAttempts: this.policy.maxAttempts,
       revision: 0,
-      createdAt: new Date().toISOString(),
+      createdAt: (await this.jobs.clock()).toISOString(),
       ...releasedLease,
       nextAttemptAt: null,
       runBy,
@@ -176,20 +174,21 @@ export class OutboxDispatcher extends OutboxDeliveryDispatcher {
     return job;
   }
 
-  private async changeJob(id: string, change: (job: Job) => JobPatch | null): Promise<Job> {
+  private async changeJob(id: string, change: (job: Job) => JobPatch | null, requireLiveLease = false): Promise<Job> {
     for (let i = 0; i < 5; i++) {
       const job = await this.jobs.jobById(id);
       if (!job) throw new JobPolicyError('unknown_job');
       const patch = change(job);
       if (!patch) return job;
-      const next = await this.jobs.compareJob(id, job.revision, patch);
+      const validUntil = requireLiveLease ? job.claimedUntil : patch.state === 'CLAIMED' ? job.runBy : null;
+      const next = await this.jobs.compareJob(id, job.revision, patch, validUntil);
       if (next) return next;
     }
     throw new JobPolicyError('conflict');
   }
 
-  async claim(id: string, leaseMs: number, now = new Date().toISOString()): Promise<JobClaim> {
-    const at = jobTime(now);
+  async claim(id: string, leaseMs: number, now?: string): Promise<JobClaim> {
+    const at = await this.timestamp(now);
     const requestedExpiry = at + leaseDuration(leaseMs);
     const leaseToken = `lease_${randomUUID()}`;
     const attemptToken = `attempt_${randomUUID()}`;
@@ -204,27 +203,27 @@ export class OutboxDispatcher extends OutboxDeliveryDispatcher {
     return { job, leaseToken, attemptToken };
   }
 
-  async heartbeat(id: string, holder: Pick<JobClaim, 'leaseToken'>, extraMs: number, now = new Date().toISOString()): Promise<Job> {
-    const at = jobTime(now);
+  async heartbeat(id: string, holder: Pick<JobClaim, 'leaseToken'>, extraMs: number, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
     const requestedExpiry = at + leaseDuration(extraMs);
     return this.changeJob(id, job => {
       assertLease(job, holder.leaseToken, at);
       const capped = job.runBy ? Math.min(requestedExpiry, jobTime(job.runBy)) : requestedExpiry;
       return { claimedUntil: new Date(Math.max(capped, jobTime(job.claimedUntil!))).toISOString() };
-    });
+    }, true);
   }
 
-  async startRun(id: string, holder: Pick<JobClaim, 'leaseToken'>, now = new Date().toISOString()): Promise<Job> {
-    const at = jobTime(now);
+  async startRun(id: string, holder: Pick<JobClaim, 'leaseToken'>, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
     return this.changeJob(id, job => {
       assertLease(job, holder.leaseToken, at);
       if (job.state !== 'CLAIMED') throw new JobPolicyError('conflict');
       return { state: 'RUNNING' };
-    });
+    }, true);
   }
 
-  async complete(id: string, holder: Pick<JobClaim, 'leaseToken' | 'attemptToken'>, now = new Date().toISOString()): Promise<Job> {
-    const at = jobTime(now);
+  async complete(id: string, holder: Pick<JobClaim, 'leaseToken' | 'attemptToken'>, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
     return this.changeJob(id, job => {
       if (!job.attemptToken || job.attemptToken !== holder.attemptToken || job.leaseToken !== holder.leaseToken) {
         throw new JobPolicyError('fenced');
@@ -233,17 +232,17 @@ export class OutboxDispatcher extends OutboxDeliveryDispatcher {
       assertLease(job, holder.leaseToken, at);
       if (job.state !== 'RUNNING') throw new JobPolicyError('conflict');
       return { state: 'DONE', completedAt: new Date(at).toISOString(), claimedUntil: null, lastError: null };
-    });
+    }, true);
   }
 
-  async fail(id: string, holder: Pick<JobClaim, 'leaseToken'>, error: string, now = new Date().toISOString()): Promise<Job> {
-    const at = jobTime(now);
+  async fail(id: string, holder: Pick<JobClaim, 'leaseToken'>, error: string, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
     return this.changeJob(id, job => {
       assertLease(job, holder.leaseToken, at);
       if (job.attempt >= job.maxAttempts) return { ...releasedLease, state: 'QUARANTINED', lastError: error };
       return { ...releasedLease, state: 'PENDING', lastError: error,
         nextAttemptAt: new Date(at + backoffDelay(this.policy, job.attempt)).toISOString() };
-    });
+    }, true);
   }
 
   async cancel(id: string, _now?: string): Promise<Job> {
@@ -289,4 +288,17 @@ export class OutboxDispatcher extends OutboxDeliveryDispatcher {
   }
 
   async queues(): Promise<string[]> { return this.jobs.queues(); }
+}
+
+export class OutboxDispatcher extends JobDispatcher {
+  private readonly delivery: OutboxDeliveryDispatcher;
+
+  constructor(store: OutboxStore, handlers: DispatcherHandlers = {}, policy: BackoffPolicy = DEFAULT_BACKOFF) {
+    super(store, policy);
+    this.delivery = new OutboxDeliveryDispatcher(store, handlers, policy);
+  }
+
+  dispatch(batchSize: number, now?: Date): Promise<DispatchOutcome[]> {
+    return this.delivery.dispatch(batchSize, now);
+  }
 }

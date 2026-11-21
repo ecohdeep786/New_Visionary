@@ -1,6 +1,6 @@
 import type { BackoffPolicy, Job } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
-import type { JobPatch, OutboxStore } from './outbox-store';
+import type { JobPatch, JobStore } from './outbox-store';
 import { backoffDelay } from './outbox-store';
 
 export interface SweepResult {
@@ -12,10 +12,10 @@ export interface SweepResult {
 const closedLease = { claimedUntil: null, leaseToken: null, attemptToken: null };
 
 export class OutboxSweeper {
-  constructor(private readonly store: OutboxStore, private readonly policy: BackoffPolicy = DEFAULT_BACKOFF) {}
+  constructor(private readonly store: JobStore, private readonly policy: BackoffPolicy = DEFAULT_BACKOFF) {}
 
-  async sweep(now = new Date().toISOString(), limit = 100): Promise<SweepResult> {
-    const at = new Date(now);
+  async sweep(now?: string, limit = 100): Promise<SweepResult> {
+    const at = now === undefined ? await this.store.clock() : new Date(now);
     if (!Number.isFinite(at.getTime()) || !Number.isSafeInteger(limit) || limit < 1 || limit > 100) {
       throw Error('Invalid job sweep time or limit.');
     }

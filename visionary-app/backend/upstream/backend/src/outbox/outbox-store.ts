@@ -40,18 +40,28 @@ export interface OutboxDeliveryStore {
   settleOutbox(cursor: OutboxCursor, attempt: number, settlement: OutboxSettlement): Promise<OutboxEvent | null>;
 }
 
-export interface OutboxStore extends OutboxDeliveryStore {
-  appendOutbox(event: OutboxEvent): Promise<void>;
+export interface JobStore {
+  clock(): Promise<Date>;
   createJob(job: Job): Promise<void>;
   jobById(id: string): Promise<Job | null>;
   jobsInQueue(queue: string): Promise<Job[]>;
   /** Replace only the exact revision used to authorize a state change. */
-  compareJob(id: string, revision: number, patch: JobPatch): Promise<Job | null>;
+  compareJob(id: string, revision: number, patch: JobPatch, validUntil?: string | null): Promise<Job | null>;
   dueJobs(now: Date, limit: number): Promise<Job[]>;
   /** Per-workload queues that hold runnable jobs. */
   queues(): Promise<string[]>;
   /** Client-supplied uid and queue must align with the owning store (server-side). */
   assertAuthorized(uid: string, queue: string): Promise<boolean>;
+}
+
+export interface OutboxStore extends OutboxDeliveryStore, JobStore {
+  appendOutbox(event: OutboxEvent): Promise<void>;
+}
+
+export function ownsJobQueue(uid: string, queue: string): boolean {
+  if (!/^[a-zA-Z0-9_-]{1,128}$/.test(uid)) return false;
+  if (queue.startsWith('global:')) return queue === `global:${uid}`;
+  return queue.startsWith(`${uid}:`) && /^[a-zA-Z0-9_-]{1,80}$/.test(queue.slice(uid.length + 1));
 }
 
 export class InMemoryOutboxStore implements OutboxStore {
@@ -126,6 +136,7 @@ export class InMemoryOutboxStore implements OutboxStore {
     if (this.jobs.has(job.id)) throw Error('JOB_ID_ALREADY_EXISTS');
     this.jobs.set(job.id, { ...job });
   }
+  async clock(): Promise<Date> { return new Date(); }
   async jobById(id: string): Promise<Job | null> {
     const job = this.jobs.get(id);
     return job ? { ...job } : null;
@@ -153,7 +164,7 @@ export class InMemoryOutboxStore implements OutboxStore {
   async assertAuthorized(uid: string, queue: string): Promise<boolean> {
     // Server-side rule: a queue name is only valid when it carries the owning
     // editorial uid namespace. This is the enabler's authority shim.
-    return queue.startsWith(`${uid}:`) || queue === `global:${uid}`;
+    return ownsJobQueue(uid, queue);
   }
 }
 
