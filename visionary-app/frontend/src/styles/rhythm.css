@@ -112,7 +112,7 @@ main h2 + p.mt-6 {
 @media (max-width: 734px) {
   :root {
     --fs-hero-eyebrow: min(2.5rem, 13vw); /* phone 40px; FAP-82 vw cap */
-    --fs-hero-headline: min(3rem, 15vw); /* phone 48px — unified h1 law step; FAP-82 vw cap; Apple phone statement 48 measured 2026-11-21 */
+    --fs-hero-headline: min(3rem, 15vw); /* phone 48px — unified h1 law step; FAP-82 vw cap */
   }
 }
 
