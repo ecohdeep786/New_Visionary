@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import QuietLink from "@/components/landing/QuietLink";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
 /* The premium sections sit below the fold on every route that uses them;
@@ -41,8 +40,24 @@ const EASE_APPLE = "ease-apple";
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
-  { black: "Accessing knowledge is easy.", blue: "Applying it isn’t", persona: "A student", quote: "I watched eight hours of videos and still couldn’t solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
-  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn’t", persona: "A professional", quote: "I read every article. I still can’t turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
+  {
+    black: "Knowing an idea is a start.",
+    blue: "Using it takes practice",
+    persona: "Illustrative student moment",
+    title: "A new problem can still feel unfamiliar.",
+    copy: "An explanation can clarify an idea. Trying it yourself can show where more practice may help.",
+    image: problemunderstanding,
+    alt: "Student reviewing a study problem",
+  },
+  {
+    black: "Finishing a course is one step.",
+    blue: "Applying it is another",
+    persona: "Illustrative professional moment",
+    title: "The next challenge is putting knowledge to work.",
+    copy: "A work task or small project can make a new skill concrete.",
+    image: proProblem,
+    alt: "Professional writing beside a laptop",
+  },
 ];
 
 /* The five journeys — the landing’s category router. Rendered with the
@@ -52,37 +67,28 @@ const PROBLEM_SLIDES = [
 const ROUTER_IMAGES = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
 
 const ROUTER_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "Start where you are.", alt: "Student studying with books" },
-  { slug: "teacher", chip: "Teacher", copy: "Teach in the moment.", alt: "Teacher presenting at a whiteboard" },
-  { slug: "parent", chip: "Parent", copy: "See the progress.", alt: "Parent helping child with homework" },
-  { slug: "professional", chip: "Professional", copy: "Build what’s next.", alt: "Professional writing notes beside a laptop" },
-  { slug: "organization", chip: "Organization", copy: "Lead the learning.", alt: "Leader reviewing team progress on a tablet" },
+  { slug: "student", chip: "Student", copy: "Learn, practice, and build from what you understand.", alt: "Student studying with books" },
+  { slug: "teacher", chip: "Teacher", copy: "Explore learning for teaching and classwork.", alt: "Teacher presenting at a whiteboard" },
+  { slug: "parent", chip: "Parent / Guardian", copy: "Understand the learner journey and its boundaries.", alt: "Parent helping a child with homework" },
+  { slug: "professional", chip: "Professional", copy: "Connect learning to work and projects.", alt: "Professional writing notes beside a laptop" },
+  { slug: "organization", chip: "Organization", copy: "Explore learning paths for teams and institutions.", alt: "Leader reviewing team progress on a tablet" },
 ];
 
 
 
-/* The mechanism chapter’s four beats — the umbrella voice of the loop every
-   category page is built around. Verbatim from the student page’s
-   INTELLIGENCE_STEPS: the front door shows the mark once, for everyone. */
+/* The shared landing story: understand an idea, practise it, then use it. */
 const INTELLIGENCE_STEPS = [
-  { title: "Understand what you’re learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
-  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today’s lesson. Visionary already understands where you are and where you’re going next." },
-  { title: "Practice what you’re learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
-  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
+  { title: "Understand", copy: "Start with an explanation in a language that feels familiar." },
+  { title: "Practice", copy: "Try an idea for yourself, step by step." },
+  { title: "Build", copy: "Use what you understand in a project or practical task." },
 ];
 
-/* Apple’s values anatomy (education-initiative: "Our values lead the way"):
-   typographic columns on the shared persona pages — the type carries the
-   trust. The landing’s closing chapter takes Apple’s feature-card variant
-   instead (the Why-grid), so each value carries a distinct mark from the
-   public icon family: Lock (your choice), HeartHandshake (human review),
-   ShieldCheck (protection), Accessibility (every learner). The four values
-   are the four trust pages themselves. */
+/* Four links to published trust information, not product capability claims. */
 const LX_TRUST_VALUES = [
-  { title: "Privacy", copy: "You choose what Visionary remembers and how you use it.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "Age-aware guidance and human review help keep learning on track.", Icon: HeartHandshake, to: "/safety" },
-  { title: "Security", copy: "Secure by design, protected end to end.", Icon: ShieldCheck, to: "/security" },
-  { title: "Accessibility", copy: "Help every learner learn how they learn best.", Icon: Accessibility, to: "/accessibility" },
+  { title: "Privacy", copy: "Read Visionary’s current privacy information and the choices it describes.", Icon: Lock, to: "/privacy" },
+  { title: "Safety", copy: "Explore the safety information published for Visionary.", Icon: HeartHandshake, to: "/safety" },
+  { title: "Security", copy: "Read the security information published for Visionary.", Icon: ShieldCheck, to: "/security" },
+  { title: "Accessibility", copy: "Explore Visionary’s current accessibility information.", Icon: Accessibility, to: "/accessibility" },
 ];
 
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
@@ -146,16 +152,9 @@ if (typeof window !== "undefined" && window.location.pathname === "/") {
   document.head.appendChild(lcpPreload);
 }
 
-/* Apple Education principle: one inclusive promise, understood at a glance.
-   The promise's first word IS the cycle — the five verbs of the journeys
-   below fade up in place (Learning → Teaching → Guiding → Building →
-   Leading) while "that grows with you." stays put. */
+/* The shared hero states the learning promise without cycling through roles;
+   the five audience links remain directly available. */
 const LANDING_HERO_WORDS = ["Learning that"];
-
-/* The cycling verbs — the same five doors the rail below renders, in the
-   same order, so the word and the rail move as one tab set. Hover/focus
-   holds a door; the cycle never auto-advances under reduced motion. */
-const HERO_AUDIENCE_WORDS = ["Learning", "Teaching", "Guiding", "Building", "Leading"];
 
 /* The audience rail under the hero actions — one door per persona on the
    first screen. Order matches HERO_CATEGORY_WORDS one-to-one, so hovering
@@ -164,7 +163,7 @@ const HERO_AUDIENCE_WORDS = ["Learning", "Teaching", "Guiding", "Building", "Lea
 const LANDING_AUDIENCE_LINKS = [
   { label: "Students", to: "/student" },
   { label: "Teachers", to: "/teacher" },
-  { label: "Parents", to: "/parent" },
+  { label: "Parents and guardians", to: "/parent" },
   { label: "Professionals", to: "/professional" },
   { label: "Organizations", to: "/organization" },
 ];
@@ -181,11 +180,8 @@ const LANDING_HERO_LINEUP = [
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800), avifSrcSet: cutSet(orgCut480Avif, orgCut800Avif) },
 ];
 
-/* ── HERO ──
-   Apple’s universal front door: "One intelligence" holds the stage, the
-   audience line cycles beneath it, and the five alpha cutouts rise from
-   the fold. The CTA pair are the only actions — the story lives below the
-   line-up, exactly like an Apple education product hero. */
+/* HERO — one clear promise, a plain-language explanation, five audience
+   links, and auth-aware next actions. */
 const LandingHeroSection = React.memo(function LandingHeroSection() {
   const { authChecked, isAuthenticated } = useAuth();
   const signedIn = authChecked && isAuthenticated;
@@ -194,14 +190,11 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
     <PersonaHero
       words={LANDING_HERO_WORDS}
       staticHeadline="grows with you."
-      srSentence="Learning that grows with you, for students, teachers, parents, professionals, and organizations."
-      audienceWords={HERO_AUDIENCE_WORDS}
+      srSentence="Learning that grows with you. Learn in a language that feels familiar, practice ideas, and build from what you understand."
+      sub="Visionary brings learning, practice, and project-building together in one connected journey."
       wordMs={2600}
-      /* No hero sub — Apple's product heroes are name + fragment ("iPhone
-         Duo / Hello, hello.", measured 2026-11-21): the headline, the CTA
-         pair, and the audience rail are the whole first screen. The one
-         plain explanation lives in the One-intelligence chapter below,
-         where the reader arrives already primed to learn what this is. */
+      /* A single sentence underneath the headline explains the learning
+         journey before the visitor chooses an audience path. */
       cast={LANDING_HERO_LINEUP}
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaTo={signedIn ? "/dashboard/home" : "/register"}
@@ -211,18 +204,8 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   );
 });
 
-/* 02 · PROBLEM — Apple’s education-initiative story anatomy as measured
-   (Oct 2026): the chapter opens on the shared spine with the eyebrow, one
-   left-aligned statement at the 64px story tier, and its 24px lead — then a
-   single story object: the white 28px card carries the subject and the voice
-   together (photo left, quote right), with the pager in Apple’s control row
-   beneath the card. The photography is studio-white, so inside the white card
-   the subject stands on the card’s own floor — no frame, no crop. The grey
-   ground gives the white card its edge (the initiative’s "Our work in
-   education doesn’t end here." grammar). The two subjects stay mounted and
-   crossfade; the reader paces the story through Apple's own gallery
-   controls (measured on /education "Real stories. Real impact.": MANUAL
-   prev/next chevrons at the card row's bottom-right — never auto-advance). */
+/* THE LEARNING GAP — concrete, illustrative moments instead of
+   unattributed testimonial copy. Visitors can move between examples manually. */
 function LandingProblemSection() {
   const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
   const { ref, visible } = useRevealContinuous();
@@ -276,15 +259,12 @@ function LandingProblemSection() {
                     />
                   ))}
                 </div>
-                {/* Apple's story-card anatomy (measured on /education
-                    "Real stories. Real impact."): the card eyebrow — who is
-                    speaking — sits ABOVE the statement, never below it. The
-                    quote is the card's statement; the persona is its label. */}
-                <figcaption key={`q-${index}`} className="hero-fade-up flex flex-col justify-center px-6 py-8 [animation-delay:80ms] [animation-fill-mode:both] sm:px-10 sm:py-10 min-[1069px]:px-12 min-[1069px]:py-12">
+                {/* The label identifies an illustrative scenario; the title
+                    states the situation without presenting invented testimony. */}
+                <figcaption key={`q-${index}`} aria-live="polite" className="hero-fade-up flex flex-col justify-center px-6 py-8 [animation-delay:80ms] [animation-fill-mode:both] sm:px-10 sm:py-10 min-[1069px]:px-12 min-[1069px]:py-12">
                   <p className="text-[14px] font-semibold" style={{ color: BRAND.graphite }}>{slide.persona}</p>
-                  <blockquote className="mt-4">
-                    <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "24ch" }}>{slide.quote}</p>
-                  </blockquote>
+                  <h3 data-type="editorial-lead" className="mt-4 text-balance" style={{ color: BRAND.ink, maxWidth: "24ch" }}>{slide.title}</h3>
+                  <p className="mt-4 max-w-[38ch] text-[16px] leading-[1.5]" style={{ color: BRAND.slate }}>{slide.copy}</p>
                 </figcaption>
               </div>
             </div>
@@ -295,7 +275,7 @@ function LandingProblemSection() {
             <div className="mt-6 flex items-center justify-end gap-5">
               <button
                 type="button"
-                aria-label="Previous story"
+                aria-label="Previous example"
                 onClick={() => goTo(index - 1)}
                 disabled={index === 0}
                 className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
@@ -305,7 +285,7 @@ function LandingProblemSection() {
               </button>
               <button
                 type="button"
-                aria-label="Next story"
+                aria-label="Next example"
                 onClick={() => goTo(index + 1)}
                 disabled={index === PROBLEM_SLIDES.length - 1}
                 className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
@@ -321,68 +301,14 @@ function LandingProblemSection() {
   );
 }
 
-/* 03 · PROMISE — the turn of the story, staged as the page’s one black
-   statement screen: a single line, monumental on the flat black ground
-   (Apple's dark-chapter law — no glow washes). It fades up as the reader
-   arrives, holds the beat, and lets go as the answer (04) arrives below —
-   Apple's black statement beat, not a thin strip between chapters. */
-function LandingPromiseSection() {
-  const { ref, visible } = useRevealContinuous();
-  return (
-    <section
-      ref={ref}
-      data-section="03-promise"
-      className="scene-dark relative z-10 isolate flex min-h-[clamp(460px,78svh,780px)] items-center overflow-hidden px-6 [overflow-x:clip]"
-      style={{ fontFamily: fontStack }}
-    >
-      {/* Apple's black statement beat is FLAT — no glow behind the line
-          (measured 2026-11-21 on /education: the dark chapter is pure black;
-          the color lives in the accent words). The line and its gradient
-          phrase carry the whole scene. */}
-      <Reveal visible={visible} className="relative mx-auto w-full max-w-[1100px]">
-          <h2
-            data-type="emphasis"
-            className="mx-auto text-balance text-center font-semibold"
-            style={{ maxWidth: "20ch", color: BRAND.ink }}
-          >
-          What if your intelligence never forgot{" "}
-          <span className="accent-gradient-on-dark">where you were?</span>
-        </h2>
-        {/* Apple's statement beats keep the next action tight to the line
-            (measured flow gaps 10–22px) — 24px here, not a floating row */}
-        <div className="mt-6 flex justify-center">
-          <QuietLink to="/how-it-works" dark>
-            See how the loop remembers your place <ChevronRight className="h-4 w-4" aria-hidden="true" />
-          </QuietLink>
-        </div>
-      </Reveal>
-    </section>
-  );
-}
-
-/* 04 · THE RETURN — the answer to the promise’s "what if": what the reader
-   gets back. The founder’s conviction, verbatim from /research, opens the
-   chapter as Apple’s values statement (Education’s "Our values lead the way."
-   tier: 48/40/32), then the four returns stand as Apple’s feature cards — two
-   broad #f5f5f7 cards per row on the wide card frame, so each return reads as
-   a calm object instead of a column of text. Each return carries the site’s
-   own block anatomy: the 24px mark, the line, and the achievement return’s
-   quiet blue door. The chapter’s five-journey route line now closes the page
-   at the CTA (the tail mini-router), so the returns stay the only text here. */
-/* 05 · THE PRODUCT PROMO — the front door’s dark pivot: the product’s
-   statement ("One intelligence.") over one slowly morphing stage, with one
-   door out to the full mechanism. The four-beat loop lives where it is told
-   in depth — /how-it-works and every category page. Rendered with the
-   accepted premium module in promo mode — no new copy. */
+/* 03 · THE LEARNING JOURNEY — a visible bridge from familiar-language
+   understanding to practice and project work. */
 function LandingIntelligenceSection() {
   return (
     <Suspense fallback={null}><PremiumIntelligenceSection
       steps={INTELLIGENCE_STEPS}
-      /* The front door's one plain explanation — the reader arrives from the
-         hero promise already primed, and this line says what the product is
-         in Apple's plain voice: concrete verbs, two short sentences, no
-         dashes. Every claim is the platform's own released promise. */
-      sub="It remembers where you stopped, answers your questions, and turns practice into progress. In your language."
+      promoHeading="From understanding to building."
+      sub="Visionary connects learning in a familiar language with practice and project work."
       promo
       ctaLabel="See how it works"
       ctaTo="/how-it-works"
@@ -406,10 +332,12 @@ function LandingRouterSection() {
   return (
     <Suspense fallback={null}><PremiumExploreSection
       eyebrow="Who it’s for"
-      heading={<>One intelligence, <span className="accent-gradient">five journeys.</span></>}
-      sub="Visionary adapts to your stage and carries your progress forward."
+      heading={<>One learning journey. <span className="accent-gradient">Five paths to begin.</span></>}
+      sub="Choose the path that fits your role. Each link opens its own Visionary page."
       headingRole="section"
       subRole="editorial-body"
+      sectionId="who-its-for"
+      presentation="directory"
       categories={ROUTER_CATEGORIES}
       images={ROUTER_IMAGES}
     /></Suspense>
@@ -419,19 +347,11 @@ function LandingRouterSection() {
 
 
 
-/* ═══════════════════════ PAGE ═══════════════════════
-   The front-door anatomy (the company front door), ordered the way Apple
-   tells a product story — show, then explain: the family stage pins to the
-   viewport and dissolves under frosted glass; the product answers first
-   (intelligence — one dark world, one door to /how-it-works); the story
-   explains why it exists (problem — the human voices), the promise turns the
-   page on one black statement screen, and the return answers what the reader
-   gets back (the founder’s conviction and the four returns); the five-journey
-   line-up forks, the grey catalogue expanse continues through the suite
-   (Download / Pricing / Help / Updates), the four trust values close the
-   story (Privacy / Safety / Security / Accessibility), and the closer hands
-   the reader their next step. Every module is a door — the feature depth
-   lives on the category pages and /how-it-works. */
+/* LANDING PAGE — one shared front door for five audiences. The hero names
+   the learning journey; the example shows the gap between understanding and
+   use; the dark chapter connects familiar-language learning with practice
+   and project work; five role paths follow, then current trust information,
+   an authenticated next action, and the public-site footer. */
 export default function LandingPage() {
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
@@ -452,22 +372,20 @@ export default function LandingPage() {
             maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
           }}
         />
-        {/* the product answers first — the front door shows what the
-            intelligence is on the first scroll after the hero (Apple's
-            show-before-explain order), then the story explains why it exists
-            and what the reader gets back. */}
-        <LandingIntelligenceSection />
+        {/* Move from the illustrative learning gap to the connected journey,
+            then open the five role-specific paths. */}
         <LandingProblemSection />
-        <LandingPromiseSection />
+        <LandingIntelligenceSection />
         <LandingRouterSection />
         <Suspense fallback={null}><PremiumTrustSection
-          heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
+          heading={<>Clarity matters, <span className="accent-gradient">from the start.</span></>}
+          sub="Read Visionary’s current information on privacy, safety, security, and accessibility."
           values={LX_TRUST_VALUES}
         /></Suspense>
         <Suspense fallback={null}><PremiumCTASection
           variant="closing"
-          heading="Your next step starts here."
-          sub="Free to start. Private by design."
+          heading="Choose your next step."
+          sub="Explore the path that fits your role, or see how learning connects to practice and building."
         /></Suspense>
       </main>
       {/* quiet variant: Apple’s footer ends the page in air — no giant
