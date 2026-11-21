@@ -1683,7 +1683,7 @@
     },
     {
       "file": "integration/contracts/product-surface-review.json",
-      "sha256Lf": "d5ba148718d37ac9f512855434f7c7ebbec00a8a01afa7d308b8e7dd7edabd72"
+      "sha256Lf": "5efa53a4336c8e255878955640a7f468e2d8ec99b81caf1862b2fada07fffad5"
     },
     {
       "file": "integration/contracts/request-limits.v1.json",
