@@ -417,15 +417,8 @@ function LandingRouterSection() {
   );
 }
 
-/* The closer's tail mini-router — the five journeys, labelled exactly as
-   the footer labels them. */
-const LX_RETURN_ROUTES = [
-  { label: "Students", to: "/student" },
-  { label: "Teachers", to: "/teacher" },
-  { label: "Parents", to: "/parent" },
-  { label: "Professionals", to: "/professional" },
-  { label: "Organizations", to: "/organization" },
-];
+
+
 
 /* ═══════════════════════ PAGE ═══════════════════════
    The front-door anatomy (the company front door), ordered the way Apple
@@ -475,8 +468,7 @@ export default function LandingPage() {
         <Suspense fallback={null}><PremiumCTASection
           variant="closing"
           heading="Your next step starts here."
-          sub="Ask a question. Explore an idea. Start learning. Visionary is ready when you are."
-          routeLinks={LX_RETURN_ROUTES}
+          sub="Free to start. Private by design."
         /></Suspense>
       </main>
       {/* quiet variant: Apple’s footer ends the page in air — no giant

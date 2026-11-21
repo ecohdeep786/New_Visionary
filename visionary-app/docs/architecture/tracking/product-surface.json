@@ -127,8 +127,6 @@
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -885,8 +883,6 @@
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -1112,8 +1108,6 @@
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -1339,8 +1333,6 @@
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -1691,8 +1683,6 @@
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -2098,8 +2088,6 @@
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -47707,67 +47695,9 @@
       "tag": "Link",
       "events": [],
       "calls": [],
-      "destination": "/contact",
+      "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "1909d5765f5d737e0f67455395d4fb593015948f7fb7200f39f138bc0f259da7",
-      "routeIds": [
-        "/",
-        "/student",
-        "/teacher",
-        "/parent",
-        "/professional",
-        "/organization"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
-      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 108,
-      "column": 11,
-      "tag": "RevealItem",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "afc9bba240eca70e0e4ae3ab7159804e7068fc17b2d822bc12e32038d4957f42",
-      "routeIds": [
-        "/",
-        "/student",
-        "/teacher",
-        "/parent",
-        "/professional",
-        "/organization"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
-      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 117,
-      "column": 19,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "f543eb46e1ca00e6f527ce506beb845d17ebf8822bf5d5593b20df41dafe4798",
+      "declarationSha256": "817ed8239c67a1bde52848955c125efef61e5e6ba27e9e3b315297e243604261",
       "routeIds": [
         "/",
         "/student",
@@ -81735,7 +81665,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "sourceSha256": "e522384aafb47146381195f3b9d855ec786d95b2f8e9d8606039e4a6da8a44da"
+      "sourceSha256": "2d68bd36296672e08cfc5be9a1205f66b3a66a2081a2825492fb06109fc24b11"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx",
@@ -82591,7 +82521,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "547c3c46553352e545bf7204dbcee7414516098d3b60031239bfbea8e2565c92"
+      "sourceSha256": "6b22d37d8e5116fa5c56d2fc721831a8d1af774c3640cefe4269ec6c06848f99"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85870,11 +85800,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1528,
-    "routeReachableDeclarations": 1525,
+    "controlDeclarations": 1526,
+    "routeReachableDeclarations": 1523,
     "controlFiles": 193,
     "states": {
-      "connected": 527,
+      "connected": 525,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3
