@@ -33,6 +33,7 @@ import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHa
 import { color as BRAND } from "@/components/landing/system/tokens";
 import { Reveal, ProgressDots } from "@/components/landing/system/ui";
 import { useCycleIndex, useRevealContinuous } from "@/components/landing/system/hooks";
+import { useAuth } from "@/lib/AuthContext";
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
 /* Every landing reveal rides Apple’s resolve-out curve
@@ -157,21 +158,9 @@ if (typeof window !== "undefined" && window.location.pathname === "/") {
   document.head.appendChild(lcpPreload);
 }
 
-/* Apple’s universal hero grammar: a single declarative statement that
-   names the product’s universal value and every category it serves — the
-   same pattern as /education-initiative/ ("Education moves learners, leaders,
-   innovators, communities and everyone forward.") and /education ("Designed
-   for every kind of learner."). No cycling, no fragmentation — one line,
-   one truth. */
-/* Apple’s universal hero grammar: the product statement stays put on its line
-   ("One intelligence"), and the audience line cycles beneath it — for
-   students., for teachers., for parents., for professionals., for organizations.
-   — the Apple product-hero rhythm (static lead + moving sub-line). */
-const LANDING_HERO_WORDS = ["One intelligence"];
-
-/* The cycling audience line below the static statement — the hero names
-   every category in turn. NewPersona appends the trailing period itself. */
-const HERO_CATEGORY_WORDS = ["for students", "for teachers", "for parents", "for professionals", "for organizations"];
+/* Apple Education principle: one inclusive promise, understood at a glance.
+   The static Visionary headline keeps that promise stable for every visitor. */
+const LANDING_HERO_WORDS = ["Learning that"];
 
 /* The audience rail under the hero actions — one door per persona on the
    first screen. Order matches HERO_CATEGORY_WORDS one-to-one, so hovering
@@ -203,23 +192,20 @@ const LANDING_HERO_LINEUP = [
    the fold. The CTA pair are the only actions — the story lives below the
    line-up, exactly like an Apple education product hero. */
 const LandingHeroSection = React.memo(function LandingHeroSection() {
+  const { authChecked, isAuthenticated } = useAuth();
+  const signedIn = authChecked && isAuthenticated;
+
   return (
     <PersonaHero
       words={LANDING_HERO_WORDS}
-      animatedHeadlinePrefix="One intelligence"
-      animatedHeadlineWords={HERO_CATEGORY_WORDS}
-      srSentence="One intelligence, for students, teachers, parents, professionals, and organizations."
-      /* Apple Education’s hero grammar: the headline makes the audience
-         claim, one plain line translates it into the person’s benefit.
-         This is the platform’s actual core idea — continuity — stated
-         without feature overclaims; "Start learning" remains the real
-         first step (register). */
-      sub="Learning that remembers where you were — so you never start over."
+      staticHeadline="grows with you."
+      srSentence="Learning that grows with you."
+      sub="Lessons, questions, practice and projects stay connected—so every step builds on the last, in the language you think in."
       cast={LANDING_HERO_LINEUP}
       audienceLinks={LANDING_AUDIENCE_LINKS}
-      ctaLabel="Start learning"
+      ctaTo={signedIn ? "/dashboard/home" : "/register"}
+      ctaLabel={signedIn ? "Open Visionary" : "Start learning"}
       secondaryLabel="See how it works"
-      wordMs={2600}
     />
   );
 });
@@ -247,7 +233,9 @@ function LandingProblemSection() {
           <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "980px" }}>
             {slide.black} <span className="accent-gradient">{slide.blue}</span>.
           </h2>
-          <p className="mt-[var(--gap-title-sub-display)] max-w-[54ch] font-normal tracking-[0]" style={{ color: BRAND.graphite }}>
+          {/* Apple's chapter sub grammar (measured 2026-11-21): the statement
+              translates in 17px/400 — the body role, never a semibold lead */}
+          <p data-type="body" className="mt-[var(--gap-title-sub-display)] max-w-[54ch] tracking-[0]" style={{ color: BRAND.graphite }}>
             Effort isn’t the gap. Knowing whether understanding landed is.
           </p>
         </div>
@@ -307,10 +295,10 @@ function LandingProblemSection() {
 }
 
 /* 03 · PROMISE — the turn of the story, staged as the page’s one black
-   statement screen: a single line, monumental on the dark ground, with the
-   product’s own glow kept behind it. It fades up as the reader arrives,
-   holds the beat, and lets go as the answer (04) arrives below — Apple’s
-   black statement beat, not a thin strip between chapters. */
+   statement screen: a single line, monumental on the flat black ground
+   (Apple's dark-chapter law — no glow washes). It fades up as the reader
+   arrives, holds the beat, and lets go as the answer (04) arrives below —
+   Apple's black statement beat, not a thin strip between chapters. */
 function LandingPromiseSection() {
   const { ref, visible } = useRevealContinuous();
   return (
@@ -320,14 +308,10 @@ function LandingPromiseSection() {
       className="scene-dark relative z-10 isolate flex min-h-[clamp(460px,78svh,780px)] items-center overflow-hidden px-6 [overflow-x:clip]"
       style={{ fontFamily: fontStack }}
     >
-      {/* the product’s own breath of light, kept behind the line — the same
-          glow recipe as the intelligence stage, so the turn belongs to the
-          same world instead of being a new surface invention */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(58% 70% at 50% 44%, rgba(66,133,244,0.14) 0%, rgba(66,133,244,0.04) 48%, rgba(10,13,20,0) 82%)" }}
-      />
+      {/* Apple's black statement beat is FLAT — no glow behind the line
+          (measured 2026-11-21 on /education: the dark chapter is pure black;
+          the color lives in the accent words). The line and its gradient
+          phrase carry the whole scene. */}
       <Reveal visible={visible} className="relative mx-auto w-full max-w-[1100px]">
           <h2
             data-type="emphasis"
@@ -337,7 +321,9 @@ function LandingPromiseSection() {
           What if your intelligence never forgot{" "}
           <span className="accent-gradient-on-dark">where you were?</span>
         </h2>
-        <div className="mt-12 flex justify-center">
+        {/* Apple's statement beats keep the next action tight to the line
+            (measured flow gaps 10–22px) — 24px here, not a floating row */}
+        <div className="mt-6 flex justify-center">
           <QuietLink to="/how-it-works" dark>
             See how the loop remembers your place <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </QuietLink>
@@ -490,7 +476,7 @@ function LandingSuiteSection() {
         >
           Explore further.
         </h2>
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-12">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-8">
           {SUITE_TILES.map((item) => (
             /* Apple’s explore tile: one white card, the spot-illustration
                field inset like a media well, the label/copy on the spine and
@@ -540,18 +526,6 @@ export default function LandingPage() {
       <LandingNav />
       <main id="main" tabIndex={-1}>
         <LandingHeroSection />
-        {/* the glass sheet — the hero’s cover. The frost fades in from its
-            leading edge (mask), so the sheet never slices the pinned headline
-            mid-glyph: the family and copy dissolve into white the way the
-            hero’s own floor dissolves them. */}
-        <div
-          aria-hidden="true"
-          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#1d1d1f]/10"
-          style={{
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
-            maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
-          }}
-        />
         {/* the product answers first — the front door shows what the
             intelligence is on the first scroll after the hero (Apple’s
             show-before-explain order), then the story explains why it exists

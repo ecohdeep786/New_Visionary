@@ -31,8 +31,14 @@ test('auth submissions guard against duplicate activation (S05)', () => {
   assert.ok(guard, 'register must guard double-submit (ref flag or disabled state)');
 });
 
-test('the mobile drawer lock restore is unconditional (no invisible overlay left behind)', () => {
+test('the mobile dialog restores its trigger, background and prior scroll lock on close', () => {
   const nav = read('src/components/landing/LandingNav/index.jsx');
-  assert.match(nav, /document\.body\.style\.overflow = mobileOpen \? "hidden" : ""/, 'body overflow restores on close');
-  assert.match(nav, /return \(\) => \{\s*document\.body\.style\.overflow = "";\s*\};/, 'cleanup restores body overflow');
+  const mobile = read('src/components/landing/LandingNav/MobileNavigation.jsx');
+  assert.match(nav, /<MobileNavigation/, 'the landing nav mounts the owned mobile dialog');
+  assert.match(nav, /menuBtnRef\.current\?\.focus/, 'closing returns focus to the menu trigger');
+  assert.match(mobile, /const previousOverflow = document\.body\.style\.overflow/, 'the dialog preserves any existing scroll lock');
+  assert.match(mobile, /document\.body\.style\.overflow = "hidden"/, 'the open dialog locks background scrolling');
+  assert.match(mobile, /document\.body\.style\.overflow = previousOverflow/, 'cleanup restores the prior overflow value');
+  assert.match(mobile, /element\.inert = true/, 'the open dialog makes the background inert');
+  assert.match(mobile, /element\.inert = false/, 'cleanup makes the background interactive again');
 });

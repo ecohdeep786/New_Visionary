@@ -46,6 +46,16 @@ function useCentredStep(total) {
 }
 
 const INTELLIGENCE_CLIPS = [null, null, null, null];
+const PROMO_STEP_LABELS = ["Understand", "Ask", "Practise", "Build"];
+/* The front door's loop strip: each beat keeps its one-line product meaning —
+   Apple Education pairs the promise with concrete meaning instead of leaving
+   four bare labels (the full mechanism stays on /how-it-works). */
+const PROMO_STEP_MEANINGS = [
+  "Every lesson starts from where you left off.",
+  "Question it in the language you think in.",
+  "Feedback that listens and adapts at your pace.",
+  "Turn what you know into real work.",
+];
 
 /* Four scenes of ONE intelligence — the same mark evolving, on Apple’s dark
    technology-chapter stage: near-black field, blue glow breathing behind,
@@ -249,12 +259,9 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
   if (promo) {
     return (
       <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-        {/* the chapter’s one breath of light — kept in promo scale */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[480px]"
-          style={{ background: "radial-gradient(52% 74% at 50% 0%, rgba(0,102,204,0.13) 0%, rgba(0,102,204,0.04) 46%, rgba(10,13,20,0) 74%)" }}
-        />
+        {/* Apple's dark chapters are flat black — the blue glow wash is
+            retired (2026-11-21, /education + /iphone reference study); the
+            gradient statement and the bot carry the scene's color. */}
         <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
           <RevealItem idx={0}>
             <h2
@@ -276,7 +283,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
                 to={ctaTo}
                 className={`mt-9 inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full px-[21px] text-[17px] leading-[1.176] tracking-[-0.011em] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
                   promo
-                    ? "bg-white text-[#1d1d1f] hover:bg-[#f5f5f7] focus-visible:ring-offset-[#0a0d14]"
+                    ? "bg-white text-[#1d1d1f] hover:bg-[#f5f5f7] focus-visible:ring-offset-[#000000]"
                     : "bg-[#1d1d1f] text-white hover:bg-[#272729]"
                 }`}
               >
@@ -306,6 +313,20 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
             />
           </picture>
         </div>
+        {/* Apple Education pairs the promise with concrete product meaning.
+            The front door names the shared loop without turning it into a
+            second card gallery; the full mechanism stays on /how-it-works. */}
+        <ol aria-label="The Visionary learning loop" className="relative mx-auto mt-14 grid w-full max-w-[980px] grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 px-6 pt-8 text-left sm:grid-cols-4">
+          {steps.slice(0, PROMO_STEP_LABELS.length).map((step, index) => (
+            <li key={step.title}>
+              <span className="flex items-baseline gap-3">
+                <span aria-hidden="true" className="text-[12px] font-medium tracking-[0.08em] text-[#2997ff]">{String(index + 1).padStart(2, "0")}</span>
+                <span className="text-[17px] font-medium text-[#f5f5f7]">{PROMO_STEP_LABELS[index]}</span>
+              </span>
+              <p className="mt-1.5 pl-[30px] text-[13px] leading-[1.45] text-[rgba(245,247,250,0.6)]">{PROMO_STEP_MEANINGS[index]}</p>
+            </li>
+          ))}
+        </ol>
       </section>
     );
   }

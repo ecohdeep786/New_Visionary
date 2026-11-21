@@ -60,7 +60,7 @@ export default function LazyImage({
     ...style,
   };
 
-  /* FAP-9 (A4): the priority request must reach the DOM without React 18.2's</think><tool_call>edit<arg_key>newString</arg_key><arg_value>  /* FAP-9 (A4): the priority request must reach the DOM without React 18.2's
+  /* FAP-9 (A4): the priority request must reach the DOM without React 18.2's
      camelCase warning, so it goes out as the standard lowercase custom
      attribute (same treatment as PageMeta's imperative preload hint). */
   const priorityAttrs = fetchPriority ? { fetchpriority: fetchPriority } : {};
@@ -71,8 +71,7 @@ export default function LazyImage({
         ref={imgRef}
         className={`lazy-placeholder ${className}`}
         style={placeholderStyle}
-        role={alt ? "img" : undefined}
-        aria-label={alt ? `Loading ${alt}` : undefined}
+        aria-hidden="true"
       />
     );
   }

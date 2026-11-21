@@ -17,8 +17,24 @@
   to { opacity: 1; }
 }
 
+/* Phones and tablets: the stage is content-height — copy, the family
+   reserve's breath, then the family flush to the fold, with the next
+   section's surface peeking above the fold as the scroll invitation. A
+   viewport-filled stage would strand a dead white pocket between the
+   audience rail and a phone-sized family (gap > family height). Desktop
+   keeps the full first-screen stage with the copy optically centered. */
 .cast-stage {
-  --cast-h: min(34svh, calc(100vw / 2.2));
+  --cast-h: min(30svh, calc(100vw / 3.6));
+  height: auto;
+}
+
+/* Short and landscape windows still fill the first screen when there is
+   room — the reserve establishes the floor, the viewport the ceiling. */
+@media (max-height: 720px) {
+  .cast-stage[data-section] {
+    min-height: calc(100svh - 56px);
+    padding-block: 0;
+  }
 }
 
 @media (min-width: 640px) {
@@ -28,6 +44,7 @@
 @media (min-width: 1024px) {
   .cast-stage {
     --cast-h: min(40svh, clamp(170px, calc((100vw - clamp(96px, 12vw, 240px)) / 5.17), 460px));
+    height: calc(100svh - 56px);
   }
   .cast-slot-1 { margin-left: calc(var(--cast-h) * 0.1200); }
   .cast-slot-2 { margin-left: calc(var(--cast-h) * 0.3459); }
@@ -40,11 +57,15 @@
   }
 }
 
-/* The copy block centres in the free stage above the family reserve. A small
-   clamped top pad gives it Apple's optical weight — the education-init stack
-   sits just below the stage's mid-line (measured 2026-10-20), not above it —
-   while the reserve still guarantees the family-collision breath. */
-.cast-copy { margin-top: auto; margin-bottom: auto; padding-top: clamp(0px, 5svh, 48px); }
+/* The copy block centres in the free stage above the family reserve — the
+   education hero's optical grammar: the promise sits mid-way between the
+   nav and the family, so the scroll stage breathes evenly above and below
+   it instead of collecting a dead pocket under the audience rail. Auto
+   margins split the free stage evenly; the clamped padding keeps a real
+   floor on compact stages where the free space collapses to zero (320×568
+   measures a 19px rail-to-family gap — the padding, not the margin, is
+   what holds there). */
+.cast-copy { margin-top: auto; margin-bottom: auto; padding-top: clamp(16px, 2svh, 32px); }
 
 .cast-slot-0 { z-index: 10; }
 .cast-slot-2 { z-index: 30; }

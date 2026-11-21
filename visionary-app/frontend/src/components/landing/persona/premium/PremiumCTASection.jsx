@@ -25,39 +25,12 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           : "relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]"
       }
     >
-      {/* The landing’s ceremonial close — Beats'/Apple’s black closing band:
-          one line, one pair of actions, the product’s own breath of light
-          beneath, and the orbit’s two faint rings crossing the lower third.
-          No grid, no columns: the page ends on a moment, not another reading
-          task. */}
-      {closing ? (
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div
-            className="absolute left-1/2 top-[-16%] -translate-x-1/2 rounded-full"
-            style={{
-              width: "min(115vw, 820px)",
-              height: "min(115vw, 820px)",
-              background: "radial-gradient(circle at 50% 48%, rgba(0,102,204,0.20) 0%, rgba(0,102,204,0.06) 44%, rgba(10,13,20,0) 72%)",
-            }}
-          />
-          <div
-            className="absolute left-1/2 top-[64%] -translate-x-1/2 rounded-full border"
-            style={{
-              width: "min(140vw, 1240px)",
-              height: "min(140vw, 1240px)",
-              borderColor: "rgba(138,180,248,0.12)",
-            }}
-          />
-          <div
-            className="absolute left-1/2 top-[64%] -translate-x-1/2 rounded-full border"
-            style={{
-              width: "min(104vw, 900px)",
-              height: "min(104vw, 900px)",
-              borderColor: "rgba(138,180,248,0.07)",
-            }}
-          />
-        </div>
-      ) : null}
+      {/* The landing's ceremonial close — Apple's flat black closing band:
+          one line, one pair of actions, the small print beneath. No glow
+          wash, no orbit rings (the /education + /iphone study: Apple's dark
+          bands are pure black; blue lives only in the links). No grid, no
+          columns: the page ends on a moment, not another reading task. */}
+      {closing ? null : null}
       <ScrollReveal>
         <div
           className={`mx-auto max-w-[1500px] text-center ${

@@ -1,0 +1,470 @@
+{
+  "landing-1440": {
+    "navHeight": 56,
+    "sections": [
+      {
+        "id": "01-hero",
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "0px/0px",
+        "h": 944,
+        "headline": {
+          "tag": "H1",
+          "h": 144,
+          "pad": "0px/0px",
+          "fz": "16px",
+          "fw": "400",
+          "lh": 24,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)"
+        },
+        "sub": {
+          "h": 58,
+          "pad": "0px/0px",
+          "fz": "20px",
+          "fw": "400",
+          "lh": 29,
+          "ls": "normal",
+          "color": "rgb(110, 110, 115)"
+        },
+        "text": "Learning that grows with you. Learning t",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 15
+          }
+        ]
+      },
+      {
+        "id": "05-intelligence",
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "144px/144px",
+        "h": 1328,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": null,
+        "text": "One intelligence. From the first questio",
+        "flowGaps": []
+      },
+      {
+        "id": "02-problem",
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "144px/144px",
+        "h": 1058,
+        "headline": {
+          "tag": "H2",
+          "h": 120,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "h": 25,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": 25,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "text": "Stories from a student and a professiona",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 19
+          }
+        ]
+      },
+      {
+        "id": "03-promise",
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "0px/0px",
+        "h": 780,
+        "headline": {
+          "tag": "H2",
+          "h": 180,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": null,
+        "text": "What if your intelligence never forgot w",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 24
+          }
+        ]
+      },
+      {
+        "id": "04-return",
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "144px/144px",
+        "h": 1214,
+        "headline": {
+          "tag": "H3",
+          "h": 32,
+          "pad": "0px/0px",
+          "fz": "28px",
+          "fw": "600",
+          "lh": 32,
+          "ls": "0.196px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "h": 46,
+          "pad": "0px/0px",
+          "fz": "19px",
+          "fw": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "text": "What you get “A person should not have t",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 15
+          },
+          {
+            "tag": "A",
+            "gap": 0
+          }
+        ]
+      },
+      {
+        "id": "13-explore",
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "144px/144px",
+        "h": 1238,
+        "headline": {
+          "tag": "H2",
+          "h": 120,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": null,
+        "text": "Who it’s for One intelligence, five jour",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 19
+          }
+        ]
+      },
+      {
+        "id": "14-suite",
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "144px/144px",
+        "h": 833,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": null,
+        "text": "Explore further. Download Get Visionary ",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 32
+          }
+        ]
+      },
+      {
+        "id": "11-trust",
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "144px/144px",
+        "h": 1025,
+        "headline": {
+          "tag": "H2",
+          "h": 120,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": null,
+        "text": "Your learning stays yours. Your question",
+        "flowGaps": []
+      },
+      {
+        "id": "12-cta",
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "144px/144px",
+        "h": 649,
+        "headline": {
+          "tag": "H2",
+          "h": 60,
+          "pad": "0px/0px",
+          "fz": "56px",
+          "fw": "600",
+          "lh": 60,
+          "ls": "-0.28px",
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": null,
+        "text": "Your next step starts here. Ask a questi",
+        "flowGaps": []
+      }
+    ]
+  },
+  "landing-390": {
+    "navHeight": 56,
+    "sections": [
+      {
+        "id": "01-hero",
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "64px/64px",
+        "h": 659,
+        "headline": {
+          "tag": "H1",
+          "h": 89,
+          "pad": "0px/0px",
+          "fz": "16px",
+          "fw": "400",
+          "lh": 24,
+          "ls": "normal",
+          "color": "rgb(31, 31, 31)"
+        },
+        "sub": {
+          "h": 74,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": 25,
+          "ls": "normal",
+          "color": "rgb(110, 110, 115)"
+        },
+        "text": "Learning that grows with you. Learning t",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 11
+          }
+        ]
+      },
+      {
+        "id": "05-intelligence",
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "112px/112px",
+        "h": 1133,
+        "headline": {
+          "tag": "H2",
+          "h": 36,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": 36,
+          "ls": "normal",
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": null,
+        "text": "One intelligence. From the first questio",
+        "flowGaps": []
+      },
+      {
+        "id": "02-problem",
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "112px/112px",
+        "h": 1026,
+        "headline": {
+          "tag": "H2",
+          "h": 108,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": 36,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "h": 50,
+          "pad": "0px/0px",
+          "fz": "17px",
+          "fw": "400",
+          "lh": 25,
+          "ls": "-0.374px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "text": "Stories from a student and a professiona",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 17
+          }
+        ]
+      },
+      {
+        "id": "03-promise",
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "0px/0px",
+        "h": 658,
+        "headline": {
+          "tag": "H2",
+          "h": 144,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": 36,
+          "ls": "normal",
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": null,
+        "text": "What if your intelligence never forgot w",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 24
+          }
+        ]
+      },
+      {
+        "id": "04-return",
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "112px/112px",
+        "h": 1766,
+        "headline": {
+          "tag": "H3",
+          "h": 25,
+          "pad": "0px/0px",
+          "fz": "21px",
+          "fw": "600",
+          "lh": 25,
+          "ls": "0.231px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "h": 69,
+          "pad": "0px/0px",
+          "fz": "19px",
+          "fw": "400",
+          "lh": 23,
+          "ls": "0.228px",
+          "color": "rgb(29, 29, 31)"
+        },
+        "text": "What you get “A person should not have t",
+        "flowGaps": [
+          {
+            "tag": "P",
+            "gap": 15
+          },
+          {
+            "tag": "A",
+            "gap": 0
+          }
+        ]
+      },
+      {
+        "id": "13-explore",
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "112px/112px",
+        "h": 1107,
+        "headline": {
+          "tag": "H2",
+          "h": 72,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": 36,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": null,
+        "text": "Who it’s for One intelligence, five jour",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 17
+          }
+        ]
+      },
+      {
+        "id": "14-suite",
+        "bg": "rgb(245, 245, 247)",
+        "padBlock": "112px/112px",
+        "h": 1201,
+        "headline": {
+          "tag": "H2",
+          "h": 36,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": 36,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": null,
+        "text": "Explore further. Download Get Visionary ",
+        "flowGaps": [
+          {
+            "tag": "DIV",
+            "gap": 24
+          }
+        ]
+      },
+      {
+        "id": "11-trust",
+        "bg": "rgb(255, 255, 255)",
+        "padBlock": "112px/112px",
+        "h": 1164,
+        "headline": {
+          "tag": "H2",
+          "h": 72,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": 36,
+          "ls": "normal",
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": null,
+        "text": "Your learning stays yours. Your question",
+        "flowGaps": []
+      },
+      {
+        "id": "12-cta",
+        "bg": "rgb(0, 0, 0)",
+        "padBlock": "112px/112px",
+        "h": 655,
+        "headline": {
+          "tag": "H2",
+          "h": 72,
+          "pad": "0px/0px",
+          "fz": "32px",
+          "fw": "600",
+          "lh": 36,
+          "ls": "normal",
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": null,
+        "text": "Your next step starts here. Ask a questi",
+        "flowGaps": []
+      }
+    ]
+  }
+}

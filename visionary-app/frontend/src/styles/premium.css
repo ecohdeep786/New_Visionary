@@ -19,8 +19,11 @@
      them; the earlier --ease-spring (bounce) and --ease-google (duplicate)
      curves are retired and must not reappear. */
 
-  /* Dark cinematic scene tokens */
-  --scene-ink: #0a0d14;
+  /* Dark cinematic scene tokens — Apple's dark chapters are PURE BLACK
+     (measured 2026-11-21 on apple.com/in/education: rgb(0,0,0)). No navy,
+     no blue-tinted surfaces, no glow washes; color lives in the content —
+     accent words, links, and the product itself. */
+  --scene-ink: #000000;
   --scene-ink-soft: rgba(245, 247, 250, 0.72);
   --scene-hairline: rgba(255, 255, 255, 0.1);
 }

@@ -8,6 +8,7 @@ import { useAuth } from "@/lib/AuthContext";
 
 import { metaFor, ORG_CONTEXTS, DOWNLOAD_PLATFORMS, ABOUT_GROUPS } from "./nav-data.js";
 import { FOCUS_RING, navLink, iconBtn, MegaTile, HOVER_OPEN_MS, HOVER_CLOSE_MS } from "./nav-shared.jsx";
+import MobileNavigation from "./MobileNavigation.jsx";
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,8 +35,6 @@ export default function LandingNav() {
 
   const openTimer = useRef(null);
   const closeTimer = useRef(null);
-  const drawerRef = useRef(null);
-
   const menuBtnRef = useRef(null);
 
   const { pathname } = useLocation();
@@ -110,43 +109,16 @@ export default function LandingNav() {
     };
   }, [openMega]);
 
-  /* Escape closes the drawer and returns focus to its trigger */
-  useEffect(() => {
-    if (!mobileOpen) return undefined;
-
-    const onKey = (e) => {
-      if (e.key === "Escape") {
-        setMobileOpen(false);
-        menuBtnRef.current?.focus();
-      }
-    };
-
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [mobileOpen]);
-
   /* Close everything on route change */
   useEffect(() => {
     setOpenMega(null);
     setMobileOpen(false);
   }, [pathname]);
 
-  /* Lock body scroll and move focus into the drawer while it is open */
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    if (mobileOpen) {
-      const raf = requestAnimationFrame(() => {
-        drawerRef.current?.querySelector("a")?.focus({ preventScroll: true });
-      });
-      return () => {
-        cancelAnimationFrame(raf);
-        document.body.style.overflow = "";
-      };
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+  const closeMobile = () => {
+    setMobileOpen(false);
+    window.setTimeout(() => menuBtnRef.current?.focus({ preventScroll: true }), 0);
+  };
 
   const megaTrigger = (key, pageActive = false) =>
     `${navLink(openMega === key || pageActive)} justify-center gap-1.5`;
@@ -180,7 +152,7 @@ export default function LandingNav() {
           scrolled ? "border-[#1d1d1f]/10 bg-white/90" : "border-[#1d1d1f]/[0.06] bg-[rgba(251,251,253,0.8)]"
         }`}
       />
-        <div className="public-frame relative flex h-full items-center justify-between">
+        <div data-public-nav-bar className="public-frame relative flex h-full items-center justify-between">
         {/* LEFT: logo + primary nav */}
         <div className="flex min-w-0 items-center gap-4 lg:gap-6">
           <Link
@@ -211,7 +183,7 @@ export default function LandingNav() {
                 onClick={() => setOpenMega(null)}
                 className={`${megaTrigger("who", pageActive.who)} min-w-0`}
               >
-                {activeCategory ? activeCategory.label : "Who you are"}
+                {activeCategory ? activeCategory.label : "For you"}
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "who" ? "rotate-180" : ""}`} />
               </Link>
 
@@ -220,7 +192,7 @@ export default function LandingNav() {
                   <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#d2d2d7]">
                     <div className="px-6 py-9 sm:px-8">
                     <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
-                      One intelligence, every learner.
+                      One connected journey. Five ways to begin.
                     </p>
 
                     <div className="mt-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
@@ -418,7 +390,7 @@ export default function LandingNav() {
 
         {/* RIGHT: utilities — roomy gap so the cluster breathes like
             Apple's icon cluster instead of hugging the edge */}
-        <div className="flex items-center gap-2">
+        <div className={`flex items-center gap-2 ${mobileOpen ? "invisible" : ""}`}>
           <Link
             to="/help"
             className={`${navLink(pathname === "/help")} hidden gap-1.5 xl:flex`}
@@ -459,8 +431,9 @@ export default function LandingNav() {
             aria-expanded={mobileOpen}
             aria-controls={mobileOpen ? "public-mobile-navigation" : undefined}
             onClick={() => setMobileOpen((o) => !o)}
-            className={iconBtn(false) + " lg:hidden"}
+            className={iconBtn(false) + ` lg:hidden ${mobileOpen ? "invisible" : ""}`}
             style={{ color: C.graphite }}
+            tabIndex={mobileOpen ? -1 : undefined}
           >
             {mobileOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
@@ -476,212 +449,12 @@ export default function LandingNav() {
         />
       )}
 
-      {/* MOBILE DRAWER — a first-class responsive state: a floating rounded
-          panel under the bar, compact utility row on top, separated sections,
-          safe-area padding, focus moved inside */}
-      {mobileOpen && (
-        <nav
-          id="public-mobile-navigation"
-          aria-label="Mobile navigation"
-          ref={drawerRef}
-          onBlur={event => {
-            if (!event.currentTarget.contains(event.relatedTarget) && event.relatedTarget !== menuBtnRef.current) setMobileOpen(false);
-          }}
-          className="safe-b relative mx-3 mt-2 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-[24px] border bg-white px-5 pb-8 pt-4 lg:hidden"
-          style={{ borderColor: C.mist }}
-        >
-          {/* Compact top utility row */}
-          <div className="grid grid-cols-3 gap-2 border-b pb-4" style={{ borderColor: C.mist }}>
-            <Link
-              to="/help"
-              onClick={() => setMobileOpen(false)}
-              className={`flex h-11 items-center justify-center gap-1.5 rounded-full border text-[16px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
-              style={{ borderColor: C.mist, color: C.ink }}
-            >
-              <CircleHelp className="h-4 w-4" strokeWidth={1.8} />
-              Help
-            </Link>
-            <Link
-              to={signedIn ? "/dashboard/home" : "/login"}
-              onClick={() => setMobileOpen(false)}
-              className={`flex h-11 items-center justify-center rounded-full border border-[#d2d2d7] text-[16px] font-normal tracking-[0.24px] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] ${FOCUS_RING}`}
-            >
-              {signedIn ? "Open Visionary" : "Sign in"}
-            </Link>
-            <Link
-              to={signedIn ? "/dashboard/home" : "/register"}
-              onClick={() => setMobileOpen(false)}
-              className={`flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] text-[16px] font-medium tracking-[0.24px] text-white transition-colors duration-200 hover:bg-[#272729] active:bg-[#18181a] ${FOCUS_RING}`}
-            >
-              {signedIn ? "Open Visionary" : "Get started"}
-            </Link>
-          </div>
-
-          {/* WHO YOU ARE */}
-          <div className="py-2">
-            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
-              Who you are
-            </p>
-
-            {CATEGORIES.map((cat) => {
-              const { Icon, desc } = metaFor(cat);
-
-              return (
-                <Link
-                  key={cat.path}
-                  to={cat.path}
-                  onClick={() => setMobileOpen(false)}
-                  aria-current={cat.path === pathname ? "page" : undefined}
-                  className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING} ${cat.path === pathname ? "bg-[#f5f5f7]" : ""}`}
-                >
-                  <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                    style={{ borderColor: C.mist, color: C.link }}
-                  >
-                    <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                  </span>
-
-                  <span>
-                    <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
-                      {cat.label}
-                    </span>
-                    <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
-                      {desc}
-                    </span>
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* HOW IT WORKS */}
-          <Link
-            to="/how-it-works"
-            onClick={() => setMobileOpen(false)}
-            aria-current={pathname === "/how-it-works" ? "page" : undefined}
-            className={`block border-t py-3.5 text-[16px] tracking-[0.24px] ${FOCUS_RING}`}
-            style={{ borderColor: C.mist, color: C.ink }}
-          >
-            How it works
-          </Link>
-
-          {/* FOR ORGANIZATIONS */}
-          <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
-              For organizations
-            </p>
-
-            {ORG_CONTEXTS.map((ctx) => (
-              <Link
-                key={ctx.id}
-                to={`/organization#${ctx.id}`}
-                onClick={() => setMobileOpen(false)}
-                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING}`}
-              >
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: C.mist, color: C.link }}
-                >
-                  <ctx.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </span>
-
-                <span>
-                  <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
-                    {ctx.title}
-                  </span>
-                  <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
-                    {ctx.desc}
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          {/* PRICING */}
-          <Link
-            to="/pricing"
-            onClick={() => setMobileOpen(false)}
-            aria-current={pathname === "/pricing" ? "page" : undefined}
-            className={`block border-t py-3.5 text-[16px] tracking-[0.24px] ${FOCUS_RING}`}
-            style={{ borderColor: C.mist, color: C.ink }}
-          >
-            Pricing
-          </Link>
-
-          {/* DOWNLOAD */}
-          <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
-              Download
-            </p>
-
-            {DOWNLOAD_PLATFORMS.map((p) => (
-              <Link
-                key={p.id}
-                to={`/download#${p.id}`}
-                onClick={() => setMobileOpen(false)}
-                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING}`}
-              >
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: C.mist, color: C.link }}
-                >
-                  <p.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </span>
-
-                <span>
-                  <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
-                    {p.title}
-                  </span>
-                  <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
-                    {p.desc}
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          {/* ABOUT */}
-          <div className="border-t pt-2" style={{ borderColor: C.mist }}>
-            <p className="mb-2 apple-eyebrow" style={{ color: C.slate }}>
-              About
-            </p>
-
-            {ABOUT_GROUPS.map((group) => (
-              <div key={group.title} className="pb-3">
-                <p className="px-3 py-2 apple-eyebrow" style={{ color: C.slate }}>
-                  {group.title}
-                </p>
-
-                {group.items.map((item) => (
-                  <Link
-                    key={item.id}
-                    to={item.to}
-                    onClick={() => setMobileOpen(false)}
-                    aria-current={pathname === item.to ? "page" : undefined}
-                    className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f5f5f7] ${FOCUS_RING}`}
-                  >
-                    <span
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                      style={{ borderColor: C.mist, color: C.link }}
-                    >
-                      <item.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                    </span>
-
-                    <span>
-                      <span className="block text-[16px] font-medium" style={{ color: C.ink }}>
-                        {item.title}
-                      </span>
-                      <span className="mt-0.5 block text-[14px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
-                        {item.desc}
-                      </span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            ))}
-          </div>
-        </nav>
-      )}
+      <MobileNavigation
+        open={mobileOpen}
+        onClose={closeMobile}
+        pathname={pathname}
+        signedIn={signedIn}
+      />
     </header>
   );
 }
