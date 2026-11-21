@@ -1,31 +1,29 @@
 {
-  "base": "http://127.0.0.1:4311",
+  "base": "http://127.0.0.1:4312",
   "viewports": [
     {
       "width": 320,
       "height": 568,
       "horizontalOverflow": false,
-      "heroHeight": 631.15625,
-      "audienceBottom": 579.15625,
-      "familyTop": 598.28125,
+      "heroHeight": 586.296875,
+      "audienceBottom": 478.296875,
+      "familyTop": 496.84375,
       "heroPadding": "0px"
     },
     {
       "width": 390,
       "height": 844,
       "horizontalOverflow": false,
-      "heroHeight": 659.078125,
-      "audienceBottom": 518.515625,
-      "familyTop": 606.75,
+      "heroHeight": 788,
+      "audienceBottom": 533.1875,
+      "familyTop": 666.734375,
       "heroPadding": "64px 0px",
       "sections": [
         "01-hero",
         "05-intelligence",
         "02-problem",
         "03-promise",
-        "04-return",
         "13-explore",
-        "14-suite",
         "11-trust",
         "12-cta"
       ]
@@ -34,9 +32,9 @@
       "width": 768,
       "height": 1024,
       "horizontalOverflow": false,
-      "heroHeight": 575.015625,
-      "audienceBottom": 414.859375,
-      "familyTop": 443.703125,
+      "heroHeight": 968,
+      "audienceBottom": 581.390625,
+      "familyTop": 836.6875,
       "heroPadding": "0px"
     },
     {
@@ -44,7 +42,7 @@
       "height": 768,
       "horizontalOverflow": false,
       "heroHeight": 712,
-      "audienceBottom": 491.484375,
+      "audienceBottom": 461.4375,
       "familyTop": 593.703125,
       "heroPadding": "0px"
     },
@@ -53,7 +51,7 @@
       "height": 1000,
       "horizontalOverflow": false,
       "heroHeight": 944,
-      "audienceBottom": 594.484375,
+      "audienceBottom": 557.875,
       "familyTop": 754.90625,
       "heroPadding": "0px",
       "sections": [
@@ -61,9 +59,7 @@
         "05-intelligence",
         "02-problem",
         "03-promise",
-        "04-return",
         "13-explore",
-        "14-suite",
         "11-trust",
         "12-cta"
       ]
@@ -73,7 +69,7 @@
     "Mobile menu opens with a labelled modal, locks background, and Escape restores focus and scroll",
     "Mobile-to-desktop resize closes the dialog and restores the page",
     "Desktop audience navigation opens from keyboard focus and Escape restores its trigger",
-    "Problem carousel selects the professional story",
+    "Problem story switches only through the manual prev/next controls (bounds disable)",
     "Audience gallery next/previous controls move and restore the card track"
   ],
   "errors": [],
