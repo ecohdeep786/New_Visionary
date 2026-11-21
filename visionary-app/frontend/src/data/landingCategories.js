@@ -4,11 +4,11 @@ import {
 } from "lucide-react";
 
 export const CATEGORIES = [
-  { slug: "student", label: "Student", tagline: "Understand more. Build what comes next.", icon: GraduationCap, color: "#0066cc", path: "/student" },
-  { slug: "teacher", label: "Teacher", tagline: "See who is ready for the next lesson.", icon: BookOpen, color: "#34c759", path: "/teacher" },
-  { slug: "parent", label: "Parent", tagline: "See where your child needs support.", icon: Baby, color: "#e30000", path: "/parent" },
-  { slug: "professional", label: "Professional", tagline: "Turn what you know into useful work.", icon: Building2, color: "#9334E9", path: "/professional" },
-  { slug: "organization", label: "Organization", tagline: "Help teams carry knowledge forward.", icon: Network, color: "#0066cc", path: "/organization" },
+  { slug: "student", label: "Student", tagline: "Learn, practice, and build from what you understand.", icon: GraduationCap, color: "#0066cc", path: "/student" },
+  { slug: "teacher", label: "Teacher", tagline: "Explore learning for teaching and classwork.", icon: BookOpen, color: "#34c759", path: "/teacher" },
+  { slug: "parent", label: "Parent / Guardian", tagline: "Understand the learner journey and its boundaries.", icon: Baby, color: "#e30000", path: "/parent" },
+  { slug: "professional", label: "Professional", tagline: "Connect learning to work and projects.", icon: Building2, color: "#9334E9", path: "/professional" },
+  { slug: "organization", label: "Organization", tagline: "Explore learning paths for teams and institutions.", icon: Network, color: "#0066cc", path: "/organization" },
 
 ];
 
