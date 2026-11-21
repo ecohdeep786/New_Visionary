@@ -47915,7 +47915,7 @@
         "e.preventDefault"
       ],
       "disabled": null,
-      "declarationSha256": "ccb2846d34d3922897c8eac12349a2ab5c9abaeacd2c2c70880441a0ab535cf8",
+      "declarationSha256": "82da6083e594cec8621809f8112d7bb5dae9d2085f73e3835c0ad09a83ea1d46",
       "routeIds": [
         "/",
         "/student",
@@ -81764,7 +81764,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx",
-      "sourceSha256": "7be86ed50555775770a54bd084107207e9e6a897fc35ae3f8b024918fd01f986"
+      "sourceSha256": "d4c81088ce57fdf621461dca6c4e5ff00cc5dfe594983267aa3b66c85f27d75f"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx",
