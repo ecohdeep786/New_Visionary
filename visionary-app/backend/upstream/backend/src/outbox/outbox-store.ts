@@ -46,7 +46,8 @@ export interface JobStore {
   jobById(id: string): Promise<Job | null>;
   jobsInQueue(queue: string): Promise<Job[]>;
   /** Replace only the exact revision used to authorize a state change. */
-  compareJob(id: string, revision: number, patch: JobPatch, validUntil?: string | null): Promise<Job | null>;
+  compareJob(id: string, revision: number, patch: JobPatch, validUntil?: string | null, fair?: boolean): Promise<Job | null>;
+  nextReadyJob?(): Promise<string | null>;
   dueJobs(now: Date, limit: number): Promise<Job[]>;
   /** Per-workload queues that hold runnable jobs. */
   queues(): Promise<string[]>;

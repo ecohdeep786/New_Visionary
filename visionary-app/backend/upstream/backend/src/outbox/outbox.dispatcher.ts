@@ -19,6 +19,7 @@ import type { BackoffPolicy, Job, OutboxCursor, OutboxEvent, OutboxStatus } from
 import { DEFAULT_BACKOFF } from './outbox-types';
 import type { JobPatch, JobStore, OutboxDeliveryStore, OutboxStore } from './outbox-store';
 import { backoffDelay } from './outbox-store';
+import { AdmissionError } from './outbox.limits';
 
 export class JobPolicyError extends Error {
   constructor(public readonly code: 'unauthorized_queue' | 'unknown_event' | 'unknown_job' | 'recovered' |
@@ -146,21 +147,27 @@ export class JobDispatcher {
   }
 
   /** Enqueue a job into a per-workload queue, validating the client uid owns it. */
-  async enqueue(uid: string, queue: string, kind: string, options: { runBy?: string | null } = {}): Promise<Job> {
+  async enqueue(uid: string, queue: string, kind: string, options: {
+    runBy?: string | null; workspaceId?: string | null; provider?: string | null;
+  } = {}): Promise<Job> {
     const authorized = await this.jobs.assertAuthorized(uid, queue);
     if (!authorized) throw new JobPolicyError('unauthorized_queue');
-    const runBy = options.runBy == null ? null : new Date(jobTime(options.runBy)).toISOString();
+    const createdAt = await this.jobs.clock();
+    const runBy = options.runBy === null ? null : new Date(options.runBy === undefined
+      ? createdAt.getTime() + 24 * 60 * 60 * 1000
+      : jobTime(options.runBy)).toISOString();
     const job: Job = {
       id: `job_${randomUUID()}`,
       uid,
-      workspaceId: null,
+      workspaceId: options.workspaceId ?? null,
       queue,
+      provider: options.provider ?? null,
       kind,
       state: 'PENDING',
       attempt: 0,
       maxAttempts: this.policy.maxAttempts,
       revision: 0,
-      createdAt: (await this.jobs.clock()).toISOString(),
+      createdAt: createdAt.toISOString(),
       ...releasedLease,
       nextAttemptAt: null,
       runBy,
@@ -174,20 +181,41 @@ export class JobDispatcher {
     return job;
   }
 
-  private async changeJob(id: string, change: (job: Job) => JobPatch | null, requireLiveLease = false): Promise<Job> {
+  private async changeJob(id: string, change: (job: Job) => JobPatch | null, requireLiveLease = false, fair = false): Promise<Job> {
     for (let i = 0; i < 5; i++) {
       const job = await this.jobs.jobById(id);
       if (!job) throw new JobPolicyError('unknown_job');
       const patch = change(job);
       if (!patch) return job;
       const validUntil = requireLiveLease ? job.claimedUntil : patch.state === 'CLAIMED' ? job.runBy : null;
-      const next = await this.jobs.compareJob(id, job.revision, patch, validUntil);
+      const next = await this.jobs.compareJob(id, job.revision, patch, validUntil, fair);
       if (next) return next;
     }
     throw new JobPolicyError('conflict');
   }
 
   async claim(id: string, leaseMs: number, now?: string): Promise<JobClaim> {
+    return this.lease(id, leaseMs, now, false);
+  }
+
+  /** Schedule ready work through a store that can validate the fair order atomically. */
+  async claimNext(leaseMs: number): Promise<JobClaim | null> {
+    leaseDuration(leaseMs);
+    if (!this.jobs.nextReadyJob) throw new AdmissionError('policy_unavailable');
+    for (let i = 0; i < 5; i++) {
+      const id = await this.jobs.nextReadyJob();
+      if (!id) return null;
+      try {
+        return await this.lease(id, leaseMs, undefined, true);
+      } catch (error) {
+        if (!(error instanceof JobPolicyError && ['conflict', 'deadline_exceeded', 'fenced'].includes(error.code)) &&
+            !(error instanceof AdmissionError && error.code === 'provider_budget')) throw error;
+      }
+    }
+    return null;
+  }
+
+  private async lease(id: string, leaseMs: number, now: string | undefined, fair: boolean): Promise<JobClaim> {
     const at = await this.timestamp(now);
     const requestedExpiry = at + leaseDuration(leaseMs);
     const leaseToken = `lease_${randomUUID()}`;
@@ -199,7 +227,7 @@ export class JobDispatcher {
       const expiry = current.runBy ? Math.min(requestedExpiry, jobTime(current.runBy)) : requestedExpiry;
       return { state: 'CLAIMED', attempt: current.attempt + 1, claimedUntil: new Date(expiry).toISOString(),
         leaseToken, attemptToken, nextAttemptAt: null, lastError: null };
-    });
+    }, false, fair);
     return { job, leaseToken, attemptToken };
   }
 

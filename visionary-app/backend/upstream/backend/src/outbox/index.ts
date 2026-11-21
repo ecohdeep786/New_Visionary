@@ -6,3 +6,4 @@ export * from './postgres-outbox.store';
 export * from './cloud-tasks-outbox.delivery';
 export * from './outbox.sweeper';
 export * from './postgres-job.store';
+export * from './outbox.limits';

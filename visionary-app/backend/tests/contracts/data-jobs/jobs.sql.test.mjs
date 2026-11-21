@@ -18,8 +18,12 @@ async function setup(t) {
   const { db, runtime, runtimeRole, schema } = env;
   for (const statement of [
     `GRANT SELECT, INSERT, UPDATE ON "${schema}".workload_jobs TO "${runtimeRole}"`,
+    `GRANT INSERT ON "${schema}".workload_job_events TO "${runtimeRole}"`,
+    `GRANT SELECT ON "${schema}".workload_admission_policy, "${schema}".workspaces, "${schema}".workspace_memberships,
+      "${schema}".workload_provider_limits TO "${runtimeRole}"`,
+    `GRANT SELECT, INSERT, UPDATE ON "${schema}".workload_queue_turns, "${schema}".workload_provider_usage TO "${runtimeRole}"`,
     `GRANT SELECT (uid), UPDATE ("updatedAt") ON "${schema}".persons TO "${runtimeRole}"`,
-    `GRANT SELECT (uid, "resourceType") ON "${schema}".deletion_tombstones TO "${runtimeRole}"`,
+    `GRANT SELECT (uid, "resourceType", "resourceId") ON "${schema}".deletion_tombstones TO "${runtimeRole}"`,
   ]) await db.$executeRawUnsafe(statement);
   const peer = fixture.client(env.config.runtimeUrl);
   t.after(() => peer.$disconnect());
@@ -109,6 +113,7 @@ test('JOB-02 a least-privilege sweeper can expire due deadlines without account 
   await new MigrationRunner(env.store(), canonicalMigrations(fixture.backend)).applyAll();
   const { db, runtime, runtimeRole, schema } = env;
   await db.$executeRawUnsafe(`GRANT SELECT, UPDATE ON "${schema}".workload_jobs TO "${runtimeRole}"`);
+  await db.$executeRawUnsafe(`GRANT INSERT ON "${schema}".workload_job_events TO "${runtimeRole}"`);
   await new WorkspaceRepository(db).ensurePerson('qa-sweep-owner');
   const actor = new JobDispatcher(new PostgresJobStore(db));
   const job = await actor.enqueue('qa-sweep-owner', 'qa-sweep-owner:learning', 'learning.prepare',

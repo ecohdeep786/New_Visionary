@@ -41,6 +41,7 @@ export interface Job {
   uid: string;
   workspaceId: string | null;
   queue: string; // per-workload queue name
+  provider: string | null;
   kind: string;
   state: JobState;
   attempt: number;

@@ -300,6 +300,22 @@
           "afterSha256": "b27f4617060e84411dc190f14b13903dfe7dff80a654b6ed34e17d0905f5c5f0"
         }
       ]
+    },
+    {
+      "id": "2026-11-21-job-03-admission-events",
+      "date": "2026-11-21",
+      "decision": "KAN-55 backend delivery and D-095 independent review.",
+      "reason": "Model durable admission policy, provider usage, fair queue turns and the redacted workload job journal.",
+      "diff": "integration/upstream-patches/2026-11-21-job-03-admission-events.patch",
+      "diffSha256": "2d916ab8dc792de2a16f79e113a6eff46a13bfe5794daa867b89c982d401a3f0",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/prisma/schema.prisma",
+          "beforeSha256": "b27f4617060e84411dc190f14b13903dfe7dff80a654b6ed34e17d0905f5c5f0",
+          "afterSha256": "908066b9229de81bb3667539dde30beef4a75096eb443bd2b187171248b98b31"
+        }
+      ]
     }
   ]
 }
