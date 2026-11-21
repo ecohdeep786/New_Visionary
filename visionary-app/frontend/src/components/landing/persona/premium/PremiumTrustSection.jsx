@@ -44,15 +44,15 @@ function PremiumTrustSection({ heading, sub, values }) {
               Four values (the landing's trust doors) open a fourth column;
               the three-value pages keep their accepted three-up rhythm. */}
           <RevealItem idx={2} className="stagger-group">
-            <div className={`mt-14 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:mt-20 lg:gap-x-14 ${values.length > 3 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
-              {values.map((value, i) => (
+            <div className={`mt-14 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:mt-20 ${values.length > 3 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
+              {values.map((value) => (
                 <article
                   key={value.title}
-                  className={`stagger-child py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
+                  className="stagger-child flex flex-col border-t pt-7"
                   style={{ borderColor: `${color.ink}1A` }}
                 >
-                  {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} style={{ color: color.ink }} />}
-                  <h3 data-type="feature" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: color.ink }}>
+                  {value.Icon && <value.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.8} style={{ color: color.ink }} />}
+                  <h3 data-type="feature" className="mt-5" style={{ color: color.ink }}>
                     {value.title}
                   </h3>
                   <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: color.slate }}>
@@ -61,7 +61,7 @@ function PremiumTrustSection({ heading, sub, values }) {
                   <Link
                     to={value.to}
                     aria-label={`About ${value.title.toLowerCase()}`}
-                    className="mt-4 relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                    className="mt-auto relative after:absolute after:-inset-y-3 after:-inset-x-2 inline-flex items-center gap-1.5 pt-7 text-[18px] font-medium tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                   >
                     About {value.title}
                     <ChevronIcon className="h-4 w-4" />

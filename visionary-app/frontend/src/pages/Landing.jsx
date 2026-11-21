@@ -396,21 +396,14 @@ function LandingReturnSection() {
     <section ref={ref} data-section="04-return" className="relative isolate bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible}>
         <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
-          <figure className="m-0">
-            <blockquote className="mt-[clamp(20px,2.6vw,32px)]">
-              <p data-type="card-chapter" className="text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "30ch" }}>“A person should not have to start over every time life asks them to learn something new.”</p>
-            </blockquote>
-            <figcaption className="mt-5 text-[16px] font-normal" style={{ color: BRAND.slate }}>
-              Md Shahid Ali · Founder and CEO
-            </figcaption>
-          </figure>
           {/* The four returns, in Apple's values-column grammar (measured on
               /education "Our values lead the way."): open typographic columns
               under a thin top hairline — a 28px mark, the feature title, the
               explanation, and the editorial door at the column's baseline.
               Four-up on the desktop window, two-up from 640, stacked on the
-              phone. No tiles: the values chapter is type on the band. */}
-          <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 min-[1069px]:mt-16 min-[1069px]:grid-cols-4">
+              phone. No tiles: the values chapter is type on the band. The
+              founder's personal quote is retired (founder directive). */}
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 min-[1069px]:grid-cols-4">
             {LX_RETURNS.map((item) => (
               <article
                 key={item.title}

@@ -158,7 +158,7 @@
         "frontend/src/pages/Landing.jsx:298:15",
         "frontend/src/pages/Landing.jsx:308:15",
         "frontend/src/pages/Landing.jsx:356:11",
-        "frontend/src/pages/Landing.jsx:424:17"
+        "frontend/src/pages/Landing.jsx:417:17"
       ],
       "operations": [
         "public-discovery",
@@ -49022,7 +49022,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "86a11d90bc46913ed2245af4c30b858c89954c5621f4ba07058739b2fd45d929",
+      "declarationSha256": "a239950b679e360d51a4e682e047226d4e32421b1fd6c4ea53137199b7aac8f6",
       "routeIds": [
         "/",
         "/student",
@@ -79142,9 +79142,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:424:17",
+      "id": "frontend/src/pages/Landing.jsx:417:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 424,
+      "line": 417,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -81780,7 +81780,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx",
-      "sourceSha256": "a33f3668a50afe6ae1a39def021e093e0ee7e1f5279761c7f3e24489fc17bbe9"
+      "sourceSha256": "a000e35b7e552ec9dcf6b7584f4dc29df1b30c5290dada1c8de85ecfde6dddc3"
     },
     {
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
@@ -82616,7 +82616,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "b3de7fe8048a99b9e9fb6b12f78d266c0f354434c4a587acdb576794cad7ef6e"
+      "sourceSha256": "3576b057ec3a118d8bd72822396feee04f624ba1477285099583277460b6978f"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
