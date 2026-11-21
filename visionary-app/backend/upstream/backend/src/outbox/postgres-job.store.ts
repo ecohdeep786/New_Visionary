@@ -95,6 +95,9 @@ export class PostgresJobStore implements JobStore {
       await tx.$queryRaw`
         SELECT p.uid FROM persons p JOIN workload_jobs j ON j.uid = p.uid WHERE j.id = ${id} FOR UPDATE OF p
       `;
+      // An UPDATE can evaluate its clock predicate before waiting on a row
+      // lock. Lock the row first, then evaluate the clock in a fresh statement.
+      await tx.$queryRaw`SELECT id FROM workload_jobs WHERE id = ${id} FOR UPDATE`;
       return change(tx);
     }) : await change(this.db);
     return row ? toJob(row) : null;

@@ -71,6 +71,38 @@ test('JOB-02 PostgreSQL fences expired holders and another client recovers the p
   assert.equal((await store.jobById(job.id)).state, 'CANCELLED');
 });
 
+test('JOB-02 the SQL clock fences updates whose wait for a row lock outlasts the lease', async t => {
+  const { db, store, second, owner } = await setup(t);
+  const dispatcher = new JobDispatcher(store);
+  for (const action of ['complete', 'heartbeat']) {
+    const job = await dispatcher.enqueue(owner, owner + ':learning', 'learning.prepare');
+    const holder = await dispatcher.claim(job.id, 1_500);
+    const started = await dispatcher.startRun(job.id, holder);
+    let locked, release;
+    const ready = new Promise(resolve => { locked = resolve; });
+    const gate = new Promise(resolve => { release = resolve; });
+    const blocker = db.$transaction(async tx => {
+      await tx.$queryRaw`SELECT id FROM workload_jobs WHERE id = ${job.id} FOR UPDATE`;
+      locked();
+      await gate;
+    }, { timeout: 5_000 });
+    await Promise.race([ready, blocker]);
+    const mutation = action === 'complete' ? dispatcher.complete(job.id, holder) : dispatcher.heartbeat(job.id, holder, 30_000);
+    const rejected = assert.rejects(mutation, /conflict|fenced/);
+    try {
+      await sleep(1_700);
+    } finally {
+      release();
+    }
+    await blocker;
+    await rejected;
+    const saved = await second.jobById(job.id);
+    assert.equal(saved.revision, started.revision);
+    assert.equal(saved.state, 'RUNNING');
+    assert.equal(saved.claimedUntil, started.claimedUntil);
+  }
+});
+
 test('JOB-02 a least-privilege sweeper can expire due deadlines without account or migration access', async t => {
   const env = await roles.stagingDatabase();
   t.after(() => env.close());
