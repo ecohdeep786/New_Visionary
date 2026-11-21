@@ -8,11 +8,11 @@ import {
 
 /* Persona metadata */
 const CATEGORY_META = {
-  student: { Icon: GraduationCap, desc: "Understand more and keep your place." },
-  teacher: { Icon: Users, desc: "See who needs another explanation." },
-  parent: { Icon: HeartHandshake, desc: "See where your child needs support." },
-  professional: { Icon: Briefcase, desc: "Turn what you know into useful work." },
-  organization: { Icon: Building2, desc: "Help teams carry knowledge forward." },
+  student: { Icon: GraduationCap, desc: "Explore learning, practice, and building." },
+  teacher: { Icon: Users, desc: "Explore learning for teaching and classwork." },
+  parent: { Icon: HeartHandshake, desc: "Understand the learner journey and its boundaries." },
+  professional: { Icon: Briefcase, desc: "Connect learning to work and projects." },
+  organization: { Icon: Building2, desc: "Explore learning paths for teams and institutions." },
 };
 
 const FALLBACK_META = {
@@ -24,20 +24,20 @@ const metaFor = (cat) => CATEGORY_META[cat.slug] || FALLBACK_META;
 
 /* For organizations — 4 contexts inside /organization */
 const ORG_CONTEXTS = [
-  { id: "schools", Icon: GraduationCap, title: "Schools", desc: "Roll out learning across K-12." },
-  { id: "colleges", Icon: BookOpen, title: "Colleges and universities", desc: "Bring Visionary to higher education." },
-  { id: "coaching", Icon: UsersRound, title: "Coaching", desc: "Scale personalized coaching." },
-  { id: "workplace", Icon: Briefcase, title: "Workplace learning", desc: "Grow skills across your workforce." },
+  { id: "schools", Icon: GraduationCap, title: "Schools", desc: "Explore learning for K–12 schools." },
+  { id: "colleges", Icon: BookOpen, title: "Colleges and universities", desc: "Explore higher-education learning." },
+  { id: "coaching", Icon: UsersRound, title: "Coaching", desc: "Explore coaching and guided learning." },
+  { id: "workplace", Icon: Briefcase, title: "Workplace learning", desc: "Explore learning for teams at work." },
 ];
 
 /* Download — 6 platforms */
 const DOWNLOAD_PLATFORMS = [
-  { id: "web", Icon: Chrome, title: "Web", desc: "Use Visionary in any browser, no install needed." },
-  { id: "ios", Icon: Smartphone, title: "iOS", desc: "iPhone and iPad." },
-  { id: "android", Icon: TabletSmartphone, title: "Android", desc: "Phones and tablets." },
-  { id: "windows", Icon: Monitor, title: "Windows", desc: "Desktop app for PC." },
-  { id: "mac", Icon: Apple, title: "Mac", desc: "Native app for Apple Silicon and Intel." },
-  { id: "linux", Icon: Laptop, title: "Linux", desc: "For developers and power users." },
+  { id: "web", Icon: Chrome, title: "Web", desc: "See current browser access information." },
+  { id: "ios", Icon: Smartphone, title: "iOS", desc: "Check current iPhone and iPad availability." },
+  { id: "android", Icon: TabletSmartphone, title: "Android", desc: "Check current phone and tablet availability." },
+  { id: "windows", Icon: Monitor, title: "Windows", desc: "Check current Windows availability." },
+  { id: "mac", Icon: Apple, title: "Mac", desc: "Check current Mac availability." },
+  { id: "linux", Icon: Laptop, title: "Linux", desc: "Check current Linux availability." },
 ];
 
 /* About — company, support, trust/legal */
@@ -63,10 +63,10 @@ const ABOUT_GROUPS = [
   {
     title: "Trust and legal",
     items: [
-      { id: "safety", Icon: ShieldCheck, title: "Safety", desc: "Age-appropriate answers and human review.", to: "/safety" },
-      { id: "privacy", Icon: Lock, title: "Privacy policy", desc: "Your memory is yours.", to: "/privacy" },
-      { id: "security", Icon: ShieldCheck, title: "Security", desc: "Protected end to end.", to: "/security" },
-      { id: "accessibility", Icon: Accessibility, title: "Accessibility", desc: "Built for every learner, every device.", to: "/accessibility" },
+      { id: "safety", Icon: ShieldCheck, title: "Safety", desc: "Read Visionary’s current safety information.", to: "/safety" },
+      { id: "privacy", Icon: Lock, title: "Privacy policy", desc: "Read the privacy policy and its stated choices.", to: "/privacy" },
+      { id: "security", Icon: ShieldCheck, title: "Security", desc: "Read the security information published for Visionary.", to: "/security" },
+      { id: "accessibility", Icon: Accessibility, title: "Accessibility", desc: "Read Visionary’s current accessibility information.", to: "/accessibility" },
     ],
   },
 ];
