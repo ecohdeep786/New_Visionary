@@ -1,5 +1,7 @@
 # KAN-55 / JOB-03 — reviewer-corrector pass (2026-11-10)
 
+This records the original in-memory candidate. The current PostgreSQL implementation and acceptance criteria are in [KAN-55 admission review](KAN55_ADMISSION_REVIEW.md).
+
 Reviewer-prep for `codex/deepseek-kan-55-admission-limits` before D-095 review; Testing, reviewer pending, NOT merged into dev. Commits on the branch: corrections `82e54190`, stacked integration `3dc9a412` (merge of the corrected `codex/deepseek-kan-53-outbox-jobs` `dd520a57`, carrying accepted dev `2e0b1fbb` + the blob-verified data-04 fix), test adaptation commit (runJob-based idempotency test → fenced-completion replay).
 
 ## Corrections

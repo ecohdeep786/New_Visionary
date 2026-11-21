@@ -16,7 +16,13 @@ import { createTeacherClass } from "@/services/classroomService";
 /**
  * Teacher home — Google Classroom vibe with Visionary's AI layer on top.
  * Greeting → AI teaching insight (the moat) → real stats → classes grid.
- * One clear primary action: Create class. No plan redirects here.
+ * One clear primary action per state: the header "Create class" control shows
+ * when the class list exists (classes.length > 0); on an empty list the
+ * friendly "Create your first class" empty-state CTA is the page's only create
+ * affordance — never two equal create controls on one screen. No plan redirects here.
+ * The empty-state CTA paints from the workspace action tokens (v-button primary),
+ * like the header control — one color language for the create-a-class journey
+ * (FAP-79); the account accent stays on supported non-chrome accents only.
  */
 export default function TeacherHome() {
   const {
@@ -64,10 +70,13 @@ export default function TeacherHome() {
       const ownClasses = (classList || []).filter(c => c.teacher_email === user?.email || c.teacher_id === user?.id || c.created_by_id === user?.id || c.created_by === user?.email);
       const ids = new Set(ownClasses.map(c => c.id));
       setStudentCount(new Set(enrollments.filter(e=>ids.has(e.class_id)&&e.status==='active'&&typeof e.student_email==='string'&&e.student_email.trim()).map(e=>e.student_email)).size);
+      // FAP-88: guard every list render against duplicate class rows (one commit must
+      // never render two children with the same classroom id).
+      const seenClassIds=new Set();
       setClasses(ownClasses.map(c => ({
         ...c,
         student_count: new Set(enrollments.filter(e => e.class_id === c.id && e.status === "active" && typeof e.student_email==='string' && e.student_email.trim()).map(e => e.student_email)).size
-      })).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
+      })).filter(c => { if(seenClassIds.has(c.id))return false; seenClassIds.add(c.id); return true; }).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
       setAssignmentCount((allAssignments || []).filter(a => ids.has(a.class_id)).length);
       setPendingReviews(submissions.filter(s => ids.has(s.class_id) && s.status === "submitted").length);
     } catch {
@@ -88,7 +97,9 @@ export default function TeacherHome() {
     const currentScope=scope;
     const created = await createTeacherClass(ctx, data);
     if(currentScope!==scopeRef.current)return;
-    setClasses(prev => [created, ...prev]);
+    // FAP-88: the create write already dispatched workspace-change (appClient notifyChange),
+    // so a refetch carrying the new class may land before this append. Never blind-prepend.
+    setClasses(prev => prev.some(c => c.id === created.id) ? prev.map(c => c.id === created.id ? { ...created, student_count: c.student_count } : c) : [created, ...prev]);
     setShowCreate(false);
     window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
   };
@@ -106,7 +117,7 @@ export default function TeacherHome() {
     icon: ClipboardList
   }];
   return <div className="v-page" lang={locale}>
-      <header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{copy("Your classes")}</h1><p className="v-muted mt-2">{copy("Create a class, add students, and start teaching")}</p></div><button onClick={()=>setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true"/>{copy("Create class")}</button></header>
+      <header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{copy("Your classes")}</h1><p className="v-muted mt-2">{copy("Create a class, add students, and start teaching")}</p></div>{classes.length > 0 && <button onClick={()=>setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true"/>{copy("Create class")}</button>}</header>
 
       {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"> {copy(error)}  <button onClick={load} className="ml-2 font-medium underline"> {copy("Retry")} </button></div>}
       {!loading && !error && classes.length > 0 && <TeacherInsightCard accent={accent} classes={classes} assignmentCount={assignmentCount} pendingReviews={pendingReviews} />}
@@ -116,32 +127,30 @@ export default function TeacherHome() {
         {stats.map(s => {
         const Icon = s.icon;
         return <div key={s.label} className="flex flex-wrap items-center gap-2">
-              <Icon className="w-5 h-5 text-[#5f6368]" />
-              <p className="text-[28px] font-medium text-[#121317] leading-none">{loading || error ? "—" : s.value}</p>
-              <p className="text-sm text-[#5f6368]">{copy(s.label)}</p>
+              <Icon className="w-5 h-5 text-[#6e6e73]" />
+              <p className="text-[28px] font-medium text-[#1d1d1f] leading-none">{loading || error ? "—" : s.value}</p>
+              <p className="text-sm text-[#6e6e73]">{copy(s.label)}</p>
             </div>;
       })}
       </div>}
 
       {loading ? <div className="flex items-center justify-center py-16">
-          <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
+          <div className="w-8 h-8 border-4 border-[#d2d2d7] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
         </div> : error ? null : classes.length === 0 ? <div className="flex flex-col items-center gap-5 py-16 text-center">
           <SpotIllustration subject="study" className="v-empty-illustration" />
           <div>
-            <h3 className="text-[18px] font-medium text-[#121317] mb-2"> {copy("No classes yet")} </h3>
-            <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed"> {copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")} </p>
+            <h3 className="text-[18px] font-medium text-[#1d1d1f] mb-2"> {copy("No classes yet")} </h3>
+            <p className="text-sm text-[#6e6e73] max-w-sm leading-relaxed"> {copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")} </p>
           </div>
-          <button onClick={() => setShowCreate(true)} className="inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-medium text-white transition-colors" style={{
-        backgroundColor: accent
-      }}>
+          <button onClick={() => setShowCreate(true)} className="v-button primary">
             <Plus className="w-4 h-4" /> {copy("Create your first class")} </button>
         </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {classes.map(c => <ClassCard key={c.id} classroom={c} />)}
         </div>}
 
-      {showCreate && <CreateClassModal key={ctx?.personId + ':' + ctx?.workspaceId} onClose={() => setShowCreate(false)} onCreate={handleCreate} accent={accent} />}
+      {showCreate && <CreateClassModal key={ctx?.personId + ':' + ctx?.workspaceId} onClose={() => setShowCreate(false)} onCreate={handleCreate} />}
       <details className="v-home-module"><summary className="font-medium">{copy("Grow as a teacher")}</summary><TeacherUpskillCard accent={accent}/></details>
     </div>;
 }

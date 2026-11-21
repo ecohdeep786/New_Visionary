@@ -8,6 +8,7 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
+import AuthAwareLink, { useSignedIn } from "@/components/landing/AuthAwareLink";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack } from "@/components/landing/system/tokens";
 
@@ -17,7 +18,7 @@ const COLORS = {
   surface: "#f5f5f7",
   blue: "#0066cc",
   grey: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
   soft: "#f5f5f7",
@@ -92,6 +93,20 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
+/* The hero’s entrance never hides the LCP element: the rise is
+   transform-only, so the headline and lead paint in the first commit.
+   The FadeReveal grammar (opacity-0 until revealed) delayed the hero’s
+   LCP text ~800ms past FCP under the lab throttle — invisible content
+   cannot paint — so above-fold content rides the same motion with the
+   opacity gate removed. Below-fold sections keep FadeReveal. */
+const HeroRise = React.memo(function HeroRise({ visible, children, className = "" }) {
+  return (
+    <div className={`transition-transform duration-700 ease-apple ${visible ? "translate-y-0" : "translate-y-6"} ${className}`}>
+      {children}
+    </div>
+  );
+});
+
 /* Eyebrows — the premium quiet label (17px medium, sentence case) */
 const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
   return (
@@ -101,7 +116,7 @@ const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
   );
 });
 const BlueTag = React.memo(function BlueTag({ children, className = "" }) {
-  /* the label's accent voice — quiet link blue, matching the site's one accent
+  /* the label’s accent voice — quiet link blue, matching the site’s one accent
      (measure: apple.com inline/tertiary actions #0066cc); GreyTag stays grey. */
   return (
     <p className={`font-medium tracking-[0] leading-[1.45] text-[17px] ${className}`} style={{ color: COLORS.blue }}>
@@ -113,8 +128,8 @@ const BlueTag = React.memo(function BlueTag({ children, className = "" }) {
 /* ═══ MODELS ═══ */
 const HERO_WORDS = ["step by step.", "your way.", "from day one.", "together."];
 
-/* Step 02 renamed: "Start as yourself" (matches Visionary's personal, journey-first vibe)
-   Step 03 renamed: "Your space" (Visionary's word for the ongoing personal workspace — never "dashboard") */
+/* Step 02 renamed: "Start as yourself" (matches Visionary’s personal, journey-first vibe)
+   Step 03 renamed: "Your space" (Visionary’s word for the ongoing personal workspace — never "dashboard") */
 /* ═══ MODELS — user journey ═══ */
 const USER_JOURNEY_STEPS = [
   {
@@ -151,7 +166,7 @@ const USER_JOURNEY_STEPS = [
     Icon: RefreshCw,
     title: "Stay connected.",
     do: "Your learning never resets. Visionary remembers your context, connects you to the people who matter, and keeps everything moving forward.",
-    micro: "Yesterday's work becomes today's foundation. Your journey is always connected.",
+    micro: "Yesterday’s work becomes today’s foundation. Your journey is always connected.",
   },
 ];
 /* Step 01 — left column copy, synced with the right auth mock */
@@ -176,7 +191,7 @@ const AUTH_STATES = {
 const ONBOARDING_ROLES = [
   { id: "student", label: "Student", Icon: GraduationCap, desc: "Learn with a companion that keeps your place." },
   { id: "teacher", label: "Teacher", Icon: Users, desc: "See every learner and teach in your language." },
-  { id: "parent", label: "Parent", Icon: HeartHandshake, desc: "Follow your child's journey with confidence." },
+  { id: "parent", label: "Parent", Icon: HeartHandshake, desc: "Follow your child’s journey with confidence." },
   { id: "professional", label: "Professional", Icon: Briefcase, desc: "Grow the skills your work demands next." },
   { id: "organization", label: "Organization", Icon: Building2, desc: "Roll out learning across your institution." },
 ];
@@ -190,15 +205,15 @@ const SPACE_ANIMATIONS = [
 ];
 
 const ROLES = [
-  { id: "student", tab: "Student", prompt: "Explain this simply.", ui: "I need to understand fractions.", outcome: "The explanation clicks. You try the first problem. It's saved for tomorrow." },
-  { id: "teacher", tab: "Teacher", prompt: "How should I explain this?", ui: "Plan tomorrow's lesson for a mixed class.", outcome: "The lesson maps the gaps. You adapt before the bell rings." },
-  { id: "parent", tab: "Parent", prompt: "How is Priya doing?", ui: "Show me this week in one view.", outcome: "You see where she's stuck. You help before the test." },
+  { id: "student", tab: "Student", prompt: "Explain this simply.", ui: "I need to understand fractions.", outcome: "The explanation clicks. You try the first problem. It’s saved for tomorrow." },
+  { id: "teacher", tab: "Teacher", prompt: "How should I explain this?", ui: "Plan tomorrow’s lesson for a mixed class.", outcome: "The lesson maps the gaps. You adapt before the bell rings." },
+  { id: "parent", tab: "Parent", prompt: "How is Priya doing?", ui: "Show me this week in one view.", outcome: "You see where she’s stuck. You help before the test." },
   { id: "professional", tab: "Professional", prompt: "How do I improve this?", ui: "Reason through this architecture with me.", outcome: "The trade-offs surface. You ship with confidence." },
   { id: "organization", tab: "Organization", prompt: "Where does my team need help?", ui: "Show me progress across the cohort.", outcome: "You find the gap. You step in before results drop." },
 ];
 
 /* ═══ MOCK SHELL — the product visual rides a grey module field: a flat
-   white card with no window chrome, Apple's card-in-module treatment ═══ */
+   white card with no window chrome, Apple’s card-in-module treatment ═══ */
 const MockShell = React.memo(function MockShell({ children, label }) {
   return (
     <div className="w-full max-w-[440px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:max-w-none lg:p-10">
@@ -347,14 +362,14 @@ function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="01-hero" className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible}>
+      <HeroRise visible={visible}>
         <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           How <span className="accent-gradient">Visionary</span> works.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Understand, ask, practise, then build.
+          Explore the learning journey we’re developing, from asking a question to building a project. You can create an account and view saved learning history today.
         </p>
-      </FadeReveal>
+      </HeroRise>
     </section>
   );
 }
@@ -388,9 +403,9 @@ function HowJourneySection() {
       return (
         <>
           <BlueTag>{a.tag}</BlueTag>
-          <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+          <h2 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
             {a.blue} <span style={{ color: COLORS.ink }}>{a.title}</span>
-          </h3>
+          </h2>
           <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{a.do}</p>
           <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{a.micro}</p>
         </>
@@ -399,7 +414,7 @@ function HowJourneySection() {
     return (
       <>
         <BlueTag>{step.n} · {step.label}</BlueTag>
-        <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
+        <h2 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h2>
         <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>{step.do}</p>
         <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{step.micro}</p>
       </>
@@ -459,6 +474,7 @@ function HowLoopSection() {
   const { ref, visible } = useRevealOnce();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const signedIn = useSignedIn();
   useEffect(() => {
     if (paused) return undefined;
     /* Reduced motion: the loop must not auto-advance — user drives it. */
@@ -521,7 +537,7 @@ function HowLoopSection() {
           </p>
         </div>
 
-        {/* sequential a11y: the loop's full content, in order, for screen readers */}
+        {/* sequential a11y: the loop’s full content, in order, for screen readers */}
         <ol className="sr-only">
           {LOOP_STAGES.map((st) => (
             <li key={st.id}>{st.label}: {st.copy}</li>
@@ -529,7 +545,7 @@ function HowLoopSection() {
         </ol>
 
         <div className="mt-12 flex justify-center">
-          <QuietLink to="/register">
+          <QuietLink to={signedIn ? "/dashboard/home" : "/register"}>
             Try the loop yourself <ChevronIcon className="h-4 w-4" aria-hidden="true" />
           </QuietLink>
         </div>
@@ -551,7 +567,7 @@ function HowDifferentPeopleSection() {
           One intelligence. <span className="accent-gradient">Different ways to use it.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          The product doesn't change. What you're doing does.
+          The product doesn’t change. What you’re doing does.
         </p>
 
         <div className="mx-auto mt-12 flex h-[52px] w-full max-w-[900px] items-stretch overflow-x-auto rounded-full bg-[#f5f5f7] p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist" aria-label="Roles">
@@ -595,7 +611,7 @@ function HowDifferentPeopleSection() {
 }
 
 /* ═══ 07 · CTA — the closer bookends the hero: statement, one dark pill,
-   one quiet path, the small print beneath (Apple's product-hero anatomy) ═══ */
+   one quiet path, the small print beneath (Apple’s product-hero anatomy) ═══ */
 function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -603,9 +619,9 @@ function HowCTASection() {
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}>See it with your own question.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <AuthAwareLink to="/register" signedInLabel="Open Visionary" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
-          </Link>
+          </AuthAwareLink>
           <Link to="/pricing" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0066cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See pricing
             <ChevronIcon className="h-4 w-4" />

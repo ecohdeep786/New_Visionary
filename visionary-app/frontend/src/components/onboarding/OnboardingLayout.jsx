@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ArrowLeft, Check, Sparkles } from 'lucide-react';
 import VisionaryLogo from '@/components/VisionaryLogo';
-import LanguageSelector from '@/components/auth/LanguageSelector';
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import { Spinner, primaryBtnAutoClass } from '@/components/auth/AuthUI';
 import './product-onboarding.css';
@@ -15,7 +14,7 @@ export default function OnboardingLayout({ step = 1, totalSteps = 4, stepLabels 
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); heading.current?.focus({ preventScroll: true }); }, [title]);
   return <form data-font-surface="product" aria-busy={isSubmitting || undefined}
     onSubmit={event => { event.preventDefault(); if (canContinue && !isSubmitting) onContinue?.(); }} className="flex min-h-dvh flex-col bg-[#f5f5f7] text-[#1d1d1f]">
-    <header className="bg-white px-5 py-4 sm:px-8"><div className="mx-auto flex max-w-[1080px] items-center justify-between gap-4"><VisionaryLogo /><LanguageSelector /></div></header>
+    <header className="bg-white px-5 py-4 sm:px-8"><div className="mx-auto flex max-w-[1080px] items-center justify-between gap-4"><VisionaryLogo /></div></header>
     <div className="mx-auto w-full max-w-[1024px] px-5 pt-6 sm:px-8 sm:pt-8">
       <div className="mb-4 flex items-center justify-between gap-3 text-xs text-[#6e6e73]"><span>Set up Visionary</span><span>Step {step} of {totalSteps}</span></div>
       <div role="progressbar" aria-label="Completed setup steps" aria-valuemin={0} aria-valuemax={totalSteps} aria-valuenow={completed} className="h-1 overflow-hidden rounded-full bg-[#d2d2d7]/40"><div className="h-full rounded-full bg-[#1d1d1f] transition-[width] motion-reduce:transition-none" style={{ width: `${completed / totalSteps * 100}%` }} /></div>

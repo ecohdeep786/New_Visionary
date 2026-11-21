@@ -4,12 +4,16 @@
  * workspace conflicts with the app's own bootstrap and stalls the post-login
  * navigation. The Firebase session persists across the script's navigations.
  * The QA account (qa.designer@example.test) must exist in Firebase Auth with
- * a verified email and a completed onboarding; see the FAP-67 receipts. */
-export const QA_EMAIL = 'qa.designer@example.test';
-export const QA_PASSWORD = 'Visionary#2026';
+ * a verified email and a completed onboarding; see the FAP-67 receipts.
+ * F-02: the synthetic .test identities stay as documented defaults so the
+ * harnesses remain reproducible, but the real values can be supplied through
+ * the QA_EMAIL / QA_PASSWORD / QA_ONBOARDING_EMAIL environment variables
+ * without storing any additional credential in Git (see frontend/ENVIRONMENT.md). */
+export const QA_EMAIL = process.env.QA_EMAIL || 'qa.designer@example.test';
+export const QA_PASSWORD = process.env.QA_PASSWORD || 'Visionary#2026';
 /* A verified but un-onboarded account for surfaces that must render the
  * onboarding gate (the firebase profile carries onboarding_complete). */
-export const QA_ONBOARDING_EMAIL = 'qa.onboarding@example.test';
+export const QA_ONBOARDING_EMAIL = process.env.QA_ONBOARDING_EMAIL || 'qa.onboarding@example.test';
 
 export async function loginViaUi(page, base, { debug = false, email = QA_EMAIL } = {}) {
  for (let attempt = 0; attempt < 2; attempt++) {

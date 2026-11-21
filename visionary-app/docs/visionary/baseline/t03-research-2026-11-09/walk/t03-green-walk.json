@@ -1,0 +1,58 @@
+{
+  "persona": "t03g-1794206833537@example.com",
+  "settingsSave": {
+    "bg": "rgb(0, 113, 227)",
+    "color": "rgb(255, 255, 255)",
+    "cls": "v-button primary mt-5"
+  },
+  "checkedAccent": "green",
+  "emptyCta": {
+    "label": "empty-state-cta",
+    "text": "Create your first class",
+    "cls": "inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-medium text-w",
+    "type": null,
+    "inlineStyle": "background-color: rgb(19, 115, 51);",
+    "bg": "rgb(19, 115, 51)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 48,
+    "w": 214
+  },
+  "dialogSubmit": {
+    "label": "dialog-primary-submit",
+    "text": "Create class",
+    "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 text-sm fon",
+    "type": "submit",
+    "inlineStyle": "background-color: rgb(19, 115, 51);",
+    "bg": "rgb(19, 115, 51)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "9999px",
+    "h": 48,
+    "w": 120
+  },
+  "dialogCancel": {
+    "label": "dialog-cancel",
+    "text": "Cancel",
+    "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#ffffff]",
+    "type": "button",
+    "inlineStyle": null,
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(11, 87, 210)",
+    "radius": "9999px",
+    "h": 48,
+    "w": 85
+  },
+  "populatedHeader": {
+    "label": "page-header-create",
+    "text": "Create class",
+    "cls": "v-button primary",
+    "type": null,
+    "inlineStyle": null,
+    "bg": "rgb(0, 113, 227)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 48,
+    "w": 144
+  },
+  "verdict": "PASS"
+}

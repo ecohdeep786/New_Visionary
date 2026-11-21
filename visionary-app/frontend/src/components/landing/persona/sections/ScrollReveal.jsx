@@ -10,11 +10,11 @@ import { useInViewOnce } from "@/components/landing/system/hooks";
    transition to instant. */
 
 const ScrollReveal = React.memo(function ScrollReveal({ children, className = "", as: Tag = "div", threshold = 0.2, baseDelay = 0 }) {
-  const { ref, entered } = useInViewOnce(threshold);
+  const { ref, entered, armed } = useInViewOnce(threshold);
   return (
     <Tag
       ref={ref}
-      className={`scroll-reveal ${entered ? "in-view" : ""} ${className}`}
+      className={`scroll-reveal ${armed && !entered ? "reveal-armed" : ""} ${entered ? "in-view" : ""} ${className}`}
       style={{
         ["--reveal-base-delay"]: `${baseDelay}ms`,
       }}

@@ -1,0 +1,628 @@
+{
+  "headline": {
+    "320x720 /": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "320x720 /student": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "320x720 /teacher": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "320x720 /parent": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "320x720 /professional": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "320x720 /organization": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "320x720 /help": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "320x720 /pricing": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /student": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /teacher": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /parent": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /professional": {
+      "before": 0,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /organization": {
+      "before": 0,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /help": {
+      "before": 0,
+      "after": 0,
+      "pass": true
+    },
+    "390x844 /pricing": {
+      "before": 1,
+      "after": 0,
+      "pass": true
+    }
+  },
+  "residual": {
+    "320x720 /about": {
+      "before": 4,
+      "after": 1
+    },
+    "320x720 /partners": {
+      "before": 4,
+      "after": 2
+    },
+    "320x720 /careers": {
+      "before": 1,
+      "after": 1
+    },
+    "320x720 /research": {
+      "before": 4,
+      "after": 1
+    },
+    "390x844 /about": {
+      "before": 3,
+      "after": 1
+    },
+    "390x844 /partners": {
+      "before": 3,
+      "after": 1
+    },
+    "390x844 /careers": {
+      "before": 0,
+      "after": 0
+    },
+    "390x844 /research": {
+      "before": 3,
+      "after": 0
+    }
+  },
+  "pricingFunctional": {
+    "checks": {
+      "h1InsideViewport": true,
+      "spanInsideViewport": true,
+      "toggleInsideViewport": true,
+      "toggleButtonsInside": true,
+      "faqH2InsideViewport": true,
+      "allFaqButtonsInside": true,
+      "faqAccordionOpens": true,
+      "billingToggleWorks": true,
+      "noOverflowAfterInteractions": true,
+      "noClickError": true
+    },
+    "allPass": true,
+    "detail": {
+      "geom": {
+        "vw": 320,
+        "docOverflow": 0,
+        "h1": {
+          "left": 32,
+          "right": 288,
+          "top": 469,
+          "h": 141,
+          "fs": "44.8px",
+          "w": 256
+        },
+        "span": {
+          "left": 77,
+          "right": 231,
+          "top": 511,
+          "h": 103,
+          "fs": "44.8px",
+          "w": 154
+        },
+        "toggle": {
+          "left": 32,
+          "right": 288,
+          "top": 802,
+          "h": 104,
+          "fs": "31.9229px",
+          "w": 256
+        },
+        "toggleButtons": [
+          {
+            "text": "Monthly",
+            "left": 40,
+            "right": 123,
+            "pressed": "false"
+          },
+          {
+            "text": "Annual 2 months free",
+            "left": 123,
+            "right": 291,
+            "pressed": "true"
+          }
+        ],
+        "faqH2": {
+          "left": 48,
+          "right": 272,
+          "top": 10140,
+          "h": 183,
+          "fs": "41.6px",
+          "w": 224
+        },
+        "faqButtons": [
+          {
+            "id": "pricing-faq-question-0",
+            "left": 48,
+            "right": 272,
+            "expanded": "false"
+          },
+          {
+            "id": "pricing-faq-question-1",
+            "left": 48,
+            "right": 272,
+            "expanded": "false"
+          },
+          {
+            "id": "pricing-faq-question-2",
+            "left": 48,
+            "right": 272,
+            "expanded": "false"
+          },
+          {
+            "id": "pricing-faq-question-3",
+            "left": 48,
+            "right": 272,
+            "expanded": "false"
+          },
+          {
+            "id": "pricing-faq-question-4",
+            "left": 48,
+            "right": 272,
+            "expanded": "false"
+          },
+          {
+            "id": "pricing-faq-question-5",
+            "left": 48,
+            "right": 272,
+            "expanded": "false"
+          }
+        ]
+      },
+      "q0": {
+        "expanded": "true",
+        "hidden": "false",
+        "ansH": 798,
+        "ansVisible": "visible",
+        "ansRight": 272,
+        "textRight": 272
+      },
+      "pressed": [
+        {
+          "text": "Monthly",
+          "pressed": "false"
+        },
+        {
+          "text": "Annual 2 months free",
+          "pressed": "true"
+        }
+      ],
+      "afterOverflow": 0,
+      "clickError": null
+    }
+  },
+  "tokens": {
+    "320": {
+      "root": {
+        "before": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px",
+          "categoryStatement": "44px"
+        },
+        "after": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px",
+          "categoryStatement": "44px"
+        },
+        "equal": true
+      },
+      "section": {
+        "before": {
+          "display": "40px",
+          "h2": "40px",
+          "productSection": "40px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px"
+        },
+        "after": {
+          "display": "40px",
+          "h2": "40px",
+          "productSection": "40px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px"
+        },
+        "equal": true
+      },
+      "faqH2FontSize": {
+        "before": "40px",
+        "after": "40px",
+        "equal": true
+      },
+      "allEqual": true
+    },
+    "390": {
+      "root": {
+        "before": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px",
+          "categoryStatement": "44px"
+        },
+        "after": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px",
+          "categoryStatement": "44px"
+        },
+        "equal": true
+      },
+      "section": {
+        "before": {
+          "display": "40px",
+          "h2": "40px",
+          "productSection": "40px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px"
+        },
+        "after": {
+          "display": "40px",
+          "h2": "40px",
+          "productSection": "40px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "44px"
+        },
+        "equal": true
+      },
+      "faqH2FontSize": {
+        "before": "40px",
+        "after": "40px",
+        "equal": true
+      },
+      "allEqual": true
+    },
+    "768": {
+      "root": {
+        "before": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px",
+          "categoryStatement": "64px"
+        },
+        "after": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px",
+          "categoryStatement": "64px"
+        },
+        "equal": true
+      },
+      "section": {
+        "before": {
+          "display": "56px",
+          "h2": "56px",
+          "productSection": "48px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px"
+        },
+        "after": {
+          "display": "56px",
+          "h2": "56px",
+          "productSection": "48px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px"
+        },
+        "equal": true
+      },
+      "faqH2FontSize": {
+        "before": "56px",
+        "after": "56px",
+        "equal": true
+      },
+      "allEqual": true
+    },
+    "1024": {
+      "root": {
+        "before": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px",
+          "categoryStatement": "64px"
+        },
+        "after": {
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px",
+          "categoryStatement": "64px"
+        },
+        "equal": true
+      },
+      "section": {
+        "before": {
+          "display": "56px",
+          "h2": "56px",
+          "productSection": "48px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px"
+        },
+        "after": {
+          "display": "56px",
+          "h2": "56px",
+          "productSection": "48px",
+          "heroEyebrow": "40px",
+          "heroHeadline": "64px"
+        },
+        "equal": true
+      },
+      "faqH2FontSize": {
+        "before": "56px",
+        "after": "56px",
+        "equal": true
+      },
+      "allEqual": true
+    },
+    "1440": {
+      "root": {
+        "before": {
+          "heroEyebrow": "56px",
+          "heroHeadline": "80px",
+          "categoryStatement": "80px"
+        },
+        "after": {
+          "heroEyebrow": "56px",
+          "heroHeadline": "80px",
+          "categoryStatement": "80px"
+        },
+        "equal": true
+      },
+      "section": {
+        "before": {
+          "display": "64px",
+          "h2": "64px",
+          "productSection": "56px",
+          "heroEyebrow": "56px",
+          "heroHeadline": "140px"
+        },
+        "after": {
+          "display": "64px",
+          "h2": "64px",
+          "productSection": "56px",
+          "heroEyebrow": "56px",
+          "heroHeadline": "140px"
+        },
+        "equal": true
+      },
+      "faqH2FontSize": {
+        "before": "64px",
+        "after": "64px",
+        "equal": true
+      },
+      "allEqual": true
+    }
+  },
+  "geometry100": {
+    "h1": {
+      "before": {
+        "left": 16,
+        "right": 304,
+        "top": 245,
+        "h": 92,
+        "fs": "44px",
+        "w": 288
+      },
+      "after": {
+        "left": 16,
+        "right": 304,
+        "top": 245,
+        "h": 92,
+        "fs": "44px",
+        "w": 288
+      },
+      "equal": true
+    },
+    "span": {
+      "before": {
+        "left": 18,
+        "right": 291,
+        "top": 287,
+        "h": 56,
+        "fs": "44px",
+        "w": 273
+      },
+      "after": {
+        "left": 18,
+        "right": 291,
+        "top": 287,
+        "h": 56,
+        "fs": "44px",
+        "w": 273
+      },
+      "equal": true
+    },
+    "toggle": {
+      "before": {
+        "left": 25,
+        "right": 295,
+        "top": 471,
+        "h": 52,
+        "fs": "16px",
+        "w": 270
+      },
+      "after": {
+        "left": 25,
+        "right": 295,
+        "top": 471,
+        "h": 52,
+        "fs": "16px",
+        "w": 270
+      },
+      "equal": true
+    },
+    "toggleButtons": {
+      "before": [
+        {
+          "text": "Monthly",
+          "left": 29,
+          "right": 113,
+          "pressed": "false"
+        },
+        {
+          "text": "Annual 2 months free",
+          "left": 113,
+          "right": 291,
+          "pressed": "true"
+        }
+      ],
+      "after": [
+        {
+          "text": "Monthly",
+          "left": 29,
+          "right": 113,
+          "pressed": "false"
+        },
+        {
+          "text": "Annual 2 months free",
+          "left": 113,
+          "right": 291,
+          "pressed": "true"
+        }
+      ],
+      "equal": true
+    },
+    "faqH2": {
+      "before": {
+        "left": 24,
+        "right": 296,
+        "top": 4719,
+        "h": 132,
+        "fs": "40px",
+        "w": 272
+      },
+      "after": {
+        "left": 24,
+        "right": 296,
+        "top": 4719,
+        "h": 132,
+        "fs": "40px",
+        "w": 272
+      },
+      "equal": true
+    },
+    "faqButtons": {
+      "before": [
+        {
+          "id": "pricing-faq-question-0",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-1",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-2",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-3",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-4",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-5",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        }
+      ],
+      "after": [
+        {
+          "id": "pricing-faq-question-0",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-1",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-2",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-3",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-4",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        },
+        {
+          "id": "pricing-faq-question-5",
+          "left": 24,
+          "right": 296,
+          "expanded": "false"
+        }
+      ],
+      "equal": true
+    },
+    "docOverflow": {
+      "before": 0,
+      "after": 0
+    }
+  },
+  "docOverflow": []
+}

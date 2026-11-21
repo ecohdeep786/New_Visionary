@@ -1,10 +1,35 @@
-import React, { useCallback, useState } from "react";
+import React, { lazy, Suspense, useCallback, useState } from "react";
 import { Lock, ShieldCheck, HeartHandshake } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import studentHero from "@/assets/student-hero-main-2400w.webp";
 import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
 import PersonaHero from "@/components/landing/NewPersona";
+import { HERO_AVIF_SOURCES, HERO_SIZES } from "@/lib/heroVariants";
+
+/* LCP preload — the hero photograph is this page’s LCP element, but its
+   URL lives inside this module, so the browser cannot discover it before
+   module eval + render (under the lab throttle the request started ~200ms
+   after the entry chunk landed and queued behind the auth probe).
+   Preloading at module scope starts the fetch one commit earlier. The
+   srcset/sizes mirror the hero <picture>'s AVIF source exactly, so the
+   preload is reused, not re-fetched. Gated to this path: the eager front
+   doors all evaluate with the entry chunk on every route, and the
+   preload is only true on "/student". */
+if (typeof window !== "undefined" && window.location.pathname === "/student") {
+  const lcpPreload = document.createElement("link");
+  lcpPreload.setAttribute("rel", "preload");
+  lcpPreload.setAttribute("as", "image");
+  /* setAttribute, not the IDL property: this Chromium build does not reflect
+     imagesrcset/imagesizes assignments onto the DOM attributes, and an
+     attribute-less preload is inert (the same quirk PageMeta’s upsertPreload
+     works around). type="image/avif" byte-matches the hero <source>, so the
+     preload is reused by the <picture> instead of fighting the fallback. */
+  lcpPreload.setAttribute("imagesrcset", HERO_AVIF_SOURCES[studentHero].srcSet);
+  lcpPreload.setAttribute("imagesizes", HERO_SIZES);
+  lcpPreload.setAttribute("type", "image/avif");
+  document.head.appendChild(lcpPreload);
+}
 
 /* Problem Section */
 import problemexam from "@/assets/problem-exam.webp";
@@ -35,15 +60,17 @@ import {
   JourneyModal,
   ScrollReveal,
 } from "@/components/landing/persona/PersonaSections";
-import {
-  PremiumIntelligenceSection,
-  PremiumLanguageSection,
-  PremiumAchievementSection,
-  PremiumJourneyFlowSection,
-  PremiumTrustSection,
-  PremiumCTASection,
-  PremiumExploreSection,
-} from "@/components/landing/persona/PremiumPersonaSections";
+/* The premium sections sit below the fold; they load on demand (one shared
+ * Suspense boundary around the section run) so the entry graph carries only
+ * hero-first-commit content (T13 eager law). Direct module paths, not the
+ * barrel, so a section chunk never pulls its siblings. */
+const PremiumIntelligenceSection = lazy(() => import("@/components/landing/persona/premium/PremiumIntelligenceSection.jsx"));
+const PremiumLanguageSection = lazy(() => import("@/components/landing/persona/premium/PremiumLanguageSection.jsx"));
+const PremiumAchievementSection = lazy(() => import("@/components/landing/persona/premium/PremiumAchievementSection.jsx"));
+const PremiumJourneyFlowSection = lazy(() => import("@/components/landing/persona/premium/PremiumJourneyFlowSection.jsx"));
+const PremiumTrustSection = lazy(() => import("@/components/landing/persona/premium/PremiumTrustSection.jsx"));
+const PremiumCTASection = lazy(() => import("@/components/landing/persona/premium/PremiumCTASection.jsx"));
+const PremiumExploreSection = lazy(() => import("@/components/landing/persona/premium/PremiumExploreSection.jsx"));
 
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain } from "lucide-react";
 import { color, fontStack } from "@/components/landing/system/tokens";
@@ -68,9 +95,9 @@ const HERO_WORD_MS = 2800;
 const STRUGGLE_LINES = ["Every","student","struggles","with"];
 
 const SLIDES = [
-  { word: "understanding", quote: "I studied for hours. I still couldn't explain it.", image: problemunderstanding, alt: "Student studying on a tablet" },
+  { word: "understanding", quote: "I studied for hours. I still couldn’t explain it.", image: problemunderstanding, alt: "Student studying on a tablet" },
   { word: "remembering", quote: "I understood it in class. I forgot it by evening.", image: problemrevision, alt: "Student reviewing notes on a laptop" },
-  { word: "practice", quote: "I knew the formula. I didn't know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
+  { word: "practice", quote: "I knew the formula. I didn’t know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
   { word: "exams", quote: "I just needed someone to explain it differently.", image: problemexam, alt: "Student preparing before an exam" },
 ];
 
@@ -85,7 +112,7 @@ const JOURNEY_WORDS = [
 ];
 
 const JOURNEY_STAGES = [
-  { title: "Primary", statement: "Build the basics. Build them right.", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
+  { title: "Primary", statement: "Build the basics. Build them right.", copy: "From your first questions to the ideas you’re ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
   { title: "Secondary and higher secondary", statement: "One place for every subject.", copy: "When lessons get difficult, understanding keeps up through every chapter and every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
   { title: "Competitive exams", statement: "Prepare for the exam. Not just the syllabus.", copy: "Strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
   { title: "Vocational and skills", statement: "Learn by doing. Skills that work.", copy: "Practice, projects, and skills you can take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
@@ -103,9 +130,9 @@ const STAGE_META = {
 };
 
 const INTELLIGENCE_STEPS = [
-  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
-  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
-  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
+  { title: "Understand what you’re learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
+  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today’s lesson. Visionary already understands where you are and where you’re going next." },
+  { title: "Practice what you’re learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
   { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
 ];
 
@@ -113,22 +140,19 @@ const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
   { code: "bn", label: "Bengali" },
-  { code: "ta", label: "Tamil" },
-  { code: "kn", label: "Kannada" },
-  { code: "pa", label: "Punjabi" },
 ];
 
 const LANGUAGE_QUESTIONS = [
-  { hi: "Why do objects fall?", en: "Why do objects fall?", bn: "বস্তু কেন পড়ে?", ta: "பொருட்கள் ஏன் விழுகின்றன?", kn: "ವಸ್ತುಗಳು ಏಕೆ ಬೀಳುತ್ತವೆ?", pa: "ਚੀਜ਼ਾਂ ਕਿਉਂ ਡਿੱਗਦੀਆਂ ਹਨ?" },
-  { hi: "What is Python's list comprehension?", en: "What is Python's list comprehension?", bn: "Python-এ list comprehension কী?", ta: "Python-இல் list comprehension என்றால் என்ன?", kn: "Python ನಲ್ಲಿ list comprehension ಏನು?", pa: "Python ਦੀ list comprehension ਕੀ ਹੈ?" },
-  { hi: "Transformer mein primary winding ka kaam kya hai?", en: "What does the primary winding do in a transformer?", bn: "Transformer-এ primary winding-এর কাজ কী?", ta: "Transformer-இல் primary winding-இன் பணி என்ன?", kn: "Transformer ನಲ್ಲಿ primary winding ನ ಕೆಲಸ ಏನು?", pa: "Transformer ਵਿੱਚ primary winding ਦਾ ਕੰਮ ਕੀ ਹੈ?" },
-  { hi: "DCF valuation ke steps kya hain?", en: "What are the steps of DCF valuation?", bn: "DCF valuation-এর ধাপগুলো কী?", ta: "DCF valuation-இன் படிகள் எவை?", kn: "DCF valuation ನ ಹಂತಗಳು ಯಾವುವು?", pa: "DCF valuation ਦੇ ਕਦਮ ਕੀ ਹਨ?" },
-  { hi: "Integration by parts kab use karte hain?", en: "When do you use integration by parts?", bn: "Integration by parts কখন ব্যবহার করা হয়?", ta: "Integration by parts எப்போது பயன்படுத்துவது?", kn: "Integration by parts ಅನ್ನು ಯಾವಾಗ ಬಳಸುವುದು?", pa: "Integration by parts ਕਦੋਂ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ?" },
+  { hi: "Why do objects fall?", en: "Why do objects fall?", bn: "বস্তু কেন পড়ে?" },
+  { hi: "What is Python’s list comprehension?", en: "What is Python’s list comprehension?", bn: "Python-এ list comprehension কী?" },
+  { hi: "Transformer mein primary winding ka kaam kya hai?", en: "What does the primary winding do in a transformer?", bn: "Transformer-এ primary winding-এর কাজ কী?" },
+  { hi: "DCF valuation ke steps kya hain?", en: "What are the steps of DCF valuation?", bn: "DCF valuation-এর ধাপগুলো কী?" },
+  { hi: "Integration by parts kab use karte hain?", en: "When do you use integration by parts?", bn: "Integration by parts কখন ব্যবহার করা হয়?" },
 ];
 
 const ACHIEVEMENT_TABS = [
   { title: "Understand what matters.", copy: "Get a clear picture of the subjects and skills that matter today." },
-  { title: "Achieve what you're working toward.", copy: "Set your goal and keep moving, with support that adapts to you." },
+  { title: "Achieve what you’re working toward.", copy: "Set your goal and keep moving, with support that adapts to you." },
   { title: "Build something from what you know.", copy: "Turn what you know into real projects, real skills, and real work." },
 ];
 
@@ -136,7 +160,7 @@ const ACHIEVEMENT_IMAGE = [studentHeroContent, studentachivenment, studentbuild]
 
 const TRUST_VALUES = [
   { title: "Privacy", copy: "We design every part of Visionary so that what you share stays personal.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what's next.", Icon: ShieldCheck, to: "/security" },
+  { title: "Safety", copy: "We keep Visionary safe to grow with — from the first question to what’s next.", Icon: ShieldCheck, to: "/safety" },
   { title: "Responsibility", copy: "We believe intelligence should help people learn, never work against them.", Icon: HeartHandshake, to: "/terms" },
 ];
 
@@ -159,7 +183,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Sparkles, t: "When it gets difficult.", c: "Explanations adapt until the idea finally makes sense.", l: "See how it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise what matters.", c: "Practice tied to your syllabus and the way your exams ask.", l: "Start practising free", to: "/register" },
-      { Icon: BookOpen, t: "Remember it later.", c: "Yesterday's understanding stays available for today's lesson.", l: "Keep your place", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Remember it later.", c: "Yesterday’s understanding stays available for today’s lesson.", l: "Keep your place", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Boards and beyond.", c: "The same understanding carries into competitive preparation.", l: "Talk to us", to: "/contact" },
     ],
   },
@@ -180,7 +204,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: RefreshCw, t: "Practise the real thing.", c: "Skills build through doing. Guidance never gives the answer away.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Layers3, t: "Build a portfolio.", c: "Turn what you learn into work you can actually show.", l: "Start building free", to: "/register" },
+      { Icon: Layers3, t: "Build a portfolio.", c: "Turn what you learn into work you can actually show.", l: "Create an account", to: "/register" },
       { Icon: BookOpen, t: "Skills that carry forward.", c: "What you practise now connects to the next skill and job.", l: "Keep your place", to: "/how-it-works" },
       { Icon: UsersRound, t: "Learn with others.", c: "Communities and partners help you practise in real contexts.", l: "Find a partner", to: "/partners" },
     ],
@@ -192,7 +216,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Eye, t: "Understand at depth.", c: "Explanations that support serious subject work, not summaries.", l: "See how it works", to: "/how-it-works" },
       { Icon: BookOpen, t: "Research with context.", c: "Keep threads across papers, projects, and semesters.", l: "Keep your place", to: "/how-it-works" },
-      { Icon: Layers3, t: "Build from what you know.", c: "Turn coursework into research, projects, and new ideas.", l: "Start building free", to: "/register" },
+      { Icon: Layers3, t: "Build from what you know.", c: "Turn coursework into research, projects, and new ideas.", l: "Create an account", to: "/register" },
       { Icon: Building2, t: "Work with your institution.", c: "Visionary can support classrooms, labs, and departments.", l: "For organizations", to: "/organization" },
     ],
   },
@@ -202,7 +226,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your question, not a curriculum.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Clock, t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Start learning free", to: "/register" },
+      { Icon: Clock, t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Create an account", to: "/register" },
       { Icon: BookOpen, t: "Keep your place.", c: "Return after weeks away and continue where you stopped.", l: "Keep your place", to: "/how-it-works" },
       { Icon: UsersRound, t: "Find your people.", c: "Communities and updates keep independent learners connected.", l: "Join the community", to: "/community" },
     ],
@@ -215,10 +239,10 @@ const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Learning, to master, to build."
-    sub="Every concept you understand becomes the foundation for the next."
+    sub="See the idea, practise it, and use it in the next thing you build."
     img={studentHero}
     alt="A student smiling while carrying a new laptop"
-    ctaLabel="Start learning free"
+    ctaLabel="Create a free account"
   />
 ));
 
@@ -231,8 +255,8 @@ function StudentStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      {/* the bridge's compact band (02-struggle) carries the chapter breath;
-          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      {/* the bridge’s compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple’s hero-scroll-linked reveal */}
       <StruggleChapter
         linked
         slides={SLIDES}
@@ -241,7 +265,7 @@ function StudentStruggleSection() {
         lines={STRUGGLE_LINES}
         label="Student learning challenges"
         kicker="Where understanding slips"
-        copy="Studying isn't the difficulty. Knowing it landed is."
+        copy="Studying isn’t the difficulty. Knowing it landed is."
       />
     </section>
   );
@@ -257,10 +281,10 @@ function StudentJourneySection() {
   return (
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <ScrollReveal>
-        {/* header — Apple's card-chapter treatment (education: "From grade
+        {/* header — Apple’s card-chapter treatment (education: "From grade
             school to grad school."): statement LEFT-aligned at the measured
-            gutter, and the gallery's track carries the same gutter so the
-            first card starts exactly at the heading's left edge — one spine. */}
+            gutter, and the gallery’s track carries the same gutter so the
+            first card starts exactly at the heading’s left edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
             data-type="section"
@@ -296,16 +320,18 @@ export default function StudentPage() {
         <StudentHeroSection />
         <StudentStruggleSection />
         <StudentJourneySection />
+        <Suspense fallback={null}>
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="From the first question to using what you know."
+          note="The interactive learning journey is in development. Today, you can set up your free account — your saved learning history and privacy controls are yours from day one."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}
           questions={LANGUAGE_QUESTIONS}
           line1="The words change."
           accent="Understanding"
-          tail=" doesn't."
+          tail=" doesn’t."
           sub="Ask in the language you think in. The understanding that comes back is the same."
         />
         <PremiumAchievementSection
@@ -326,7 +352,7 @@ export default function StudentPage() {
         />
         <PremiumCTASection
           heading="Your learning starts with where you are."
-          sub="Ask your first question. Start building from what you know."
+          sub="Set up your learner profile and choose what you want to study."
         />
         <PremiumExploreSection
           headingRole="section"
@@ -334,6 +360,7 @@ export default function StudentPage() {
           categories={EXPLORE_CATEGORIES}
           images={EXPLORE_CAT_IMG}
         />
+        </Suspense>
       </main>
       <LandingFooter variant="quiet" />
     </div>

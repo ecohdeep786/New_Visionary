@@ -1,43 +1,29 @@
-// JOB-01/JOB-02/JOB-03 — owning-store outbox dispatcher and job lease runner.
+// JOB-01 — owning-store outbox dispatcher.
 //
-// JOB-01 guarantees (retained here):
-//   - commit safety: an event appended to the owning store is never lost; a
-//     dispatch that fails before ack leaves a PENDING row that a later poll
-//     re-dispatches (recovery after commit/dispatch/ack crashes).
-//   - bounded retry/backoff: each outbox event/job has a maxAttempts ceiling and
-//     exponential backoff; exceeding the ceiling quarantines the row (FAILED /
-//     QUARANTINED).
-//   - idempotent completion: delivering the same cursor twice never executes the
-//     underlying action twice because completion is keyed on the durable cursor.
-//   - per-workload queues: jobs are routed by `queue`; a client cannot inject a
-//     queue it does not own (server-authoritative assertAuthorized).
-//
-// JOB-02 adds (implemented here):
-//   - leases: `claim` mints a leaseToken + attemptToken and sets claimedUntil;
-//     only the holder can heartbeat/complete/fail, and only while unexpired.
-//   - attempt fencing: every state transition is conditional on the current
-//     lease token + state set (store.transition); a stale/disconnected worker is
-//     refused, so a cancelled/reclaimed job can never be completed by a zombie.
-//   - deadlines: `runBy` is a hard horizon; jobs not DONE by runBy are reclaimed
-//     by the sweeper, never executed.
-//   - cancellation: `cancel` fences CLAIMED/RUNNING jobs at the store level.
-//   - quarantine of failed cleanup: a run whose cleanup keeps failing is retried
-//     a bounded number of times and then QUARANTINED, never silently dropped.
-//
-// JOB-03 adds (implemented here):
-//   - admission limits + provider budgets are enforced at `enqueue` through the
-//     optional OutboxLimits runner; a refused enqueue never enters the queue.
-//   - every job transition records a durable JobEvent through OutboxLimits so
-//     devices can replay/refetch authorized state.
+// Review rework (10582): the dispatcher now REQUIRES confirmed private
+// delivery before acknowledgement and reports outcomes honestly.
+//   - atomic due claim: claimDueOutbox on the owning store claims each due
+//     event exactly once (concurrent polls cannot double-claim; a poll before
+//     nextAttemptAt never touches the row and never burns an attempt).
+//   - confirmed delivery: the registered topic handler (or the default
+//     handler) must confirm before the DONE ack is attempted. An asynchronous
+//     handler can leave the lease with the worker instead.
+//   - attempt fencing: only the current claim can settle the row. A delayed
+//     delivery reports the owning store's status after a new claim takes over.
+//   - recovery: a lost ack leaves the row DISPATCHED; once its lease expires
+//     the next poll re-claims and re-delivers it. Handlers are idempotent per
+//     cursor (the consumer dedupes on the durable cursor), so a redelivery
+//     never double-commits.
 import { randomUUID } from 'node:crypto';
-import type { BackoffPolicy, Job, JobState, OutboxEvent, OutboxStatus } from './outbox-types';
+import type { BackoffPolicy, Job, OutboxCursor, OutboxEvent, OutboxStatus } from './outbox-types';
 import { DEFAULT_BACKOFF } from './outbox-types';
-import type { JobPatch, JobWriteResult, OutboxStore } from './outbox-store';
+import type { JobPatch, JobStore, OutboxDeliveryStore, OutboxStore } from './outbox-store';
 import { backoffDelay } from './outbox-store';
-import { AdmissionError, type OutboxLimits } from './outbox.limits';
+import { AdmissionError } from './outbox.limits';
 
 export class JobPolicyError extends Error {
-  constructor(public readonly code: 'unauthorized_queue' | 'unknown_event' | 'unknown_job' | 'fenced' | 'conflict' | 'recovered' | 'quarantined' | 'deadline_exceeded' | 'admission' | 'admission_per_user' | 'admission_per_workspace' | 'admission_fleet' | 'provider_budget') {
+  constructor(public readonly code: 'unauthorized_queue' | 'unknown_event' | 'unknown_job' | 'recovered' |
+    'quarantined' | 'fenced' | 'conflict' | 'deadline_exceeded' | 'invalid_job_time') {
     super(code);
   }
 }
@@ -48,271 +34,299 @@ export interface JobClaim {
   attemptToken: string;
 }
 
-/** Enqueue opts (JOB-03): workspace scope + optional provider budget check. */
-export interface EnqueueOpts {
-  runBy?: string | null;
-  workspaceId?: string | null;
-  provider?: string | null;
+const releasedLease = { claimedUntil: null, leaseToken: null, attemptToken: null };
+
+function jobTime(value: string): number {
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) throw new JobPolicyError('invalid_job_time');
+  return timestamp;
 }
 
-export class OutboxDispatcher {
+function leaseDuration(ms: number): number {
+  if (!Number.isSafeInteger(ms) || ms < 1 || ms > 300_000) throw new JobPolicyError('invalid_job_time');
+  return ms;
+}
+
+function hasPassed(value: string | null, now: number): boolean {
+  return value !== null && jobTime(value) <= now;
+}
+
+function assertLease(job: Job, token: string, now: number) {
+  if (!job.leaseToken || job.leaseToken !== token || !job.claimedUntil || hasPassed(job.claimedUntil, now) ||
+      (job.state !== 'CLAIMED' && job.state !== 'RUNNING')) throw new JobPolicyError('fenced');
+  if (hasPassed(job.runBy, now)) throw new JobPolicyError('deadline_exceeded');
+}
+
+/** Handlers are idempotent per cursor. Return 'queued' when the worker owns acknowledgement. */
+export type DeliveryHandler = (event: OutboxEvent) => Promise<void | 'queued'>;
+
+export interface DispatchOutcome {
+  cursor: OutboxCursor;
+  /** Durable row status after this dispatch poll. */
+  status: OutboxStatus;
+  /** Whether the delivery handler confirmed the delivery. */
+  delivered: boolean;
+}
+
+export interface DispatcherHandlers {
+  /** Handler per topic; a topic without one falls back to `default`. */
+  topics?: Map<string, DeliveryHandler>;
+  /** Fallback delivery endpoint when a topic has no specific handler. */
+  default?: DeliveryHandler;
+}
+
+export class OutboxDeliveryDispatcher {
   constructor(
-    private readonly store: OutboxStore,
-    private readonly policy: BackoffPolicy = DEFAULT_BACKOFF,
-    private readonly limits: OutboxLimits | null = null,
+    private readonly store: OutboxDeliveryStore,
+    private readonly handlers: DispatcherHandlers = {},
+    protected readonly policy: BackoffPolicy = DEFAULT_BACKOFF,
   ) {}
 
   /**
-   * Dispatch the next batch of pending outbox events. Delivers at most once per
-   * cursor until an ack commits; a crash after dispatch but before ack is
-   * recovered on the next poll. Returns DELIVERED as `{cursor, status}`.
+   * Dispatch one batch of due outbox events. Each event is claimed atomically,
+   * delivered through its registered handler, and acknowledged only after the
+   * handler confirms. Returns one honest outcome per handled event.
    */
-  async dispatch(batchSize: number): Promise<{ cursor: number; status: OutboxStatus }[]> {
-    const pending = await this.store.pendingOutbox(batchSize);
-    const results: { cursor: number; status: OutboxStatus }[] = [];
-    for (const event of pending) {
-      const outcome = await this.attempt(event);
-      results.push({ cursor: event.cursor, status: outcome });
+  async dispatch(batchSize: number, now: Date = new Date()): Promise<DispatchOutcome[]> {
+    if (!Number.isSafeInteger(batchSize) || batchSize < 1) return [];
+    // Quarantine exhausted rows first: they are due but never claimed again.
+    const quarantined = await this.store.quarantineDueOutbox(batchSize, now, this.policy.maxAttempts);
+    const claimed = await this.store.claimDueOutbox(
+      batchSize - quarantined.length, now, this.policy.maxAttempts, this.policy.leaseMs,
+    );
+    const results: DispatchOutcome[] = quarantined.map(({ cursor, status }) => ({ cursor, status, delivered: false }));
+    for (const event of claimed) {
+      results.push(await this.deliver(event, now));
     }
     return results;
   }
 
-  private async attempt(event: OutboxEvent): Promise<OutboxStatus> {
-    const nextAttempt = event.attempts + 1;
-    if (nextAttempt > this.policy.maxAttempts) {
-      // Quarantine: bounded ceiling reached. Never silently dropped; marked FAILED.
-      await this.store.markOutbox(event.cursor, { status: 'FAILED', attempts: nextAttempt, lastError: 'MAX_ATTEMPTS_REACHED', dispatchedAt: new Date().toISOString() });
-      return 'FAILED';
-    }
-    // Durable claim: bump attempts and set the earliest re-claim time BEFORE
-    // delivering. Store failures propagate — a lost claim must never be
-    // mistaken for a delivered one (the ack below may only run after the
-    // claim is durable).
-    const delay = backoffDelay(this.policy, nextAttempt);
-    const claimed = await this.store.markOutbox(event.cursor, {
-      attempts: nextAttempt,
-      nextAttemptAt: new Date(Date.now() + delay).toISOString(),
-      dispatchedAt: new Date().toISOString(),
-    });
-    if (!claimed) throw new JobPolicyError('unknown_event');
-    // Acknowledge atomically; if the ack fails (crash) the row stays PENDING
-    // and immediately reclaimable (the ack handler clears the backoff) so the
-    // next poll recovers the delivery without a duplicate commit.
-    await this.ack(event.cursor);
-    return 'DISPATCHED';
+  private handlerFor(topic: string): DeliveryHandler | undefined {
+    return this.handlers.topics?.get(topic) ?? this.handlers.default;
   }
 
-  private async ack(cursor: number): Promise<void> {
-    // Idempotent completion keyed on durable cursor. If the ack is lost, the
-    // row's backoff is cleared so recovery re-delivers on the next poll
-    // instead of waiting out a delay that belongs to a real action failure.
-    await this.store.markOutbox(cursor, { status: 'DONE' }).catch(async () => {
-      await this.store.markOutbox(cursor, { nextAttemptAt: null }).catch(() => undefined);
-    });
-  }
-
-  /** Enqueue a job into a per-workload queue, validating the client owns the queue and admission limits allow it. */
-  async enqueue(uid: string, queue: string, kind: string, opts: EnqueueOpts = {}): Promise<Job> {
-    const authorized = await this.store.assertAuthorized(uid, queue);
-    if (!authorized) throw new JobPolicyError('unauthorized_queue');
-    const scope: Pick<Job, 'uid' | 'workspaceId'> = { uid, workspaceId: opts.workspaceId ?? null };
-    if (this.limits) {
+  private async deliver(event: OutboxEvent, now: Date): Promise<DispatchOutcome> {
+    const handler = this.handlerFor(event.topic);
+    let lastError = handler ? null : 'NO_DELIVERY_HANDLER';
+    let admission: void | 'queued' = undefined;
+    if (handler) {
       try {
-        await this.limits.assertAdmissible(scope, opts.provider ?? null);
-      } catch (e) {
-        if (e instanceof AdmissionError) throw new JobPolicyError(e.code as JobPolicyError['code']);
-        throw e;
+        admission = await handler(event);
+      } catch {
+        lastError = 'DELIVERY_FAILED';
       }
     }
+    if (admission === 'queued') {
+      const current = await this.store.outboxByCursor(event.cursor);
+      if (!current) throw new JobPolicyError('unknown_event');
+      return { cursor: event.cursor, status: current.status, delivered: current.status === 'DONE' };
+    }
+    const delivered = lastError === null;
+    const retry = !delivered && event.attempts < this.policy.maxAttempts;
+    const nextAttemptAt = retry
+      ? new Date(now.getTime() + backoffDelay(this.policy, event.attempts)).toISOString()
+      : null;
+    const settled = await this.store.settleOutbox(event.cursor, event.attempts, {
+      status: delivered ? 'DONE' : retry ? 'PENDING' : 'FAILED',
+      nextAttemptAt,
+      lastError,
+    }).catch(() => null);
+    // A write error can occur before or after commit. Read the current row
+    // to distinguish a lost acknowledgement from a successful state change.
+    const current = settled ?? await this.store.outboxByCursor(event.cursor);
+    if (!current) throw new JobPolicyError('unknown_event');
+    return { cursor: event.cursor, status: current.status, delivered };
+  }
+}
+
+export class JobDispatcher {
+  constructor(private readonly jobs: JobStore, private readonly policy: BackoffPolicy = DEFAULT_BACKOFF) {}
+
+  private async timestamp(now?: string): Promise<number> {
+    return now === undefined ? (await this.jobs.clock()).getTime() : jobTime(now);
+  }
+
+  /** Enqueue a job into a per-workload queue, validating the client uid owns it. */
+  async enqueue(uid: string, queue: string, kind: string, options: {
+    runBy?: string | null; workspaceId?: string | null; provider?: string | null;
+  } = {}): Promise<Job> {
+    const authorized = await this.jobs.assertAuthorized(uid, queue);
+    if (!authorized) throw new JobPolicyError('unauthorized_queue');
+    const createdAt = await this.jobs.clock();
+    const runBy = options.runBy === null ? null : new Date(options.runBy === undefined
+      ? createdAt.getTime() + 24 * 60 * 60 * 1000
+      : jobTime(options.runBy)).toISOString();
     const job: Job = {
       id: `job_${randomUUID()}`,
       uid,
-      workspaceId: scope.workspaceId,
+      workspaceId: options.workspaceId ?? null,
       queue,
+      provider: options.provider ?? null,
       kind,
       state: 'PENDING',
       attempt: 0,
       maxAttempts: this.policy.maxAttempts,
-      createdAt: new Date().toISOString(),
-      claimedUntil: null,
-      leaseToken: null,
-      attemptToken: null,
-      cleanupAttempts: 0,
-      cleanupError: null,
-      runBy: opts.runBy ?? null,
+      revision: 0,
+      createdAt: createdAt.toISOString(),
+      ...releasedLease,
+      nextAttemptAt: null,
+      runBy,
       completedAt: null,
       cancellationToken: null,
       lastError: null,
-      nextAttemptAt: null,
+      cleanupAttempts: 0,
+      cleanupError: null,
     };
-    await this.store.createJob(job);
-    if (this.limits) {
-      await this.limits.recordEvent(job, 'queued');
-      if (opts.provider) await this.limits.commitProvider(opts.provider);
-    }
+    await this.jobs.createJob(job);
     return job;
   }
 
-  /**
-   * Claim a job: transition PENDING → CLAIMED and mint fresh lease + attempt
-   * tokens. Every later mutation must present them (fencing). A dead lease or
-   * replaced token conflicts and refuses the new holder, so two workers never
-   * run the same job. The attempt counter is owned by fail()/sweep, not claim.
-   */
-  async claim(id: string, leaseMs: number, now: string | null = null): Promise<JobClaim> {
-    const at = now ?? new Date().toISOString();
-    const job = await this.store.jobById(id);
-    if (!job) throw new JobPolicyError('unknown_job');
-    if (job.nextAttemptAt && Date.parse(job.nextAttemptAt) > Date.parse(at)) {
-      // Backoff window not yet closed; do not run early.
-      throw new JobPolicyError('conflict');
+  private async changeJob(id: string, change: (job: Job) => JobPatch | null, requireLiveLease = false, fair = false): Promise<Job> {
+    for (let i = 0; i < 5; i++) {
+      const job = await this.jobs.jobById(id);
+      if (!job) throw new JobPolicyError('unknown_job');
+      const patch = change(job);
+      if (!patch) return job;
+      const validUntil = requireLiveLease ? job.claimedUntil : patch.state === 'CLAIMED' ? job.runBy : null;
+      const next = await this.jobs.compareJob(id, job.revision, patch, validUntil, fair);
+      if (next) return next;
     }
+    throw new JobPolicyError('conflict');
+  }
+
+  async claim(id: string, leaseMs: number, now?: string): Promise<JobClaim> {
+    return this.lease(id, leaseMs, now, false);
+  }
+
+  /** Schedule ready work through a store that can validate the fair order atomically. */
+  async claimNext(leaseMs: number): Promise<JobClaim | null> {
+    leaseDuration(leaseMs);
+    if (!this.jobs.nextReadyJob) throw new AdmissionError('policy_unavailable');
+    for (let i = 0; i < 5; i++) {
+      const id = await this.jobs.nextReadyJob();
+      if (!id) return null;
+      try {
+        return await this.lease(id, leaseMs, undefined, true);
+      } catch (error) {
+        if (!(error instanceof JobPolicyError && ['conflict', 'deadline_exceeded', 'fenced'].includes(error.code)) &&
+            !(error instanceof AdmissionError && error.code === 'provider_budget')) throw error;
+      }
+    }
+    return null;
+  }
+
+  private async lease(id: string, leaseMs: number, now: string | undefined, fair: boolean): Promise<JobClaim> {
+    const at = await this.timestamp(now);
+    const requestedExpiry = at + leaseDuration(leaseMs);
     const leaseToken = `lease_${randomUUID()}`;
-    const attemptToken = `attempt_${id}_${randomUUID()}`;
-    const result = await this.store.transition(id, ['PENDING'], null, {
-      state: 'CLAIMED',
-      claimedUntil: new Date(Date.parse(at) + leaseMs).toISOString(),
-      leaseToken,
-      attemptToken,
-    });
-    if (!result.ok) throw this.fromWriteResult(result, 'claim');
-    if (this.limits) await this.limits.recordEvent(result.job, 'claimed');
-    return { job: result.job, leaseToken, attemptToken };
+    const attemptToken = `attempt_${randomUUID()}`;
+    const job = await this.changeJob(id, current => {
+      if (current.state !== 'PENDING' || current.attempt >= current.maxAttempts ||
+          (current.nextAttemptAt && jobTime(current.nextAttemptAt) > at)) throw new JobPolicyError('conflict');
+      if (hasPassed(current.runBy, at)) throw new JobPolicyError('deadline_exceeded');
+      const expiry = current.runBy ? Math.min(requestedExpiry, jobTime(current.runBy)) : requestedExpiry;
+      return { state: 'CLAIMED', attempt: current.attempt + 1, claimedUntil: new Date(expiry).toISOString(),
+        leaseToken, attemptToken, nextAttemptAt: null, lastError: null };
+    }, false, fair);
+    return { job, leaseToken, attemptToken };
   }
 
-  /** Extend a lease while work is still making progress (heartbeat). */
-  async heartbeat(id: string, holder: Pick<JobClaim, 'leaseToken'>, extraMs: number, now: string | null = null): Promise<Job> {
-    const at = now ?? new Date().toISOString();
-    const result = await this.store.transition(id, ['CLAIMED', 'RUNNING'], holder.leaseToken, {
-      claimedUntil: new Date(Date.parse(at) + extraMs).toISOString(),
-    });
-    if (!result.ok) throw this.fromWriteResult(result, 'heartbeat');
-    return result.job;
+  async heartbeat(id: string, holder: Pick<JobClaim, 'leaseToken'>, extraMs: number, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
+    const requestedExpiry = at + leaseDuration(extraMs);
+    return this.changeJob(id, job => {
+      assertLease(job, holder.leaseToken, at);
+      const capped = job.runBy ? Math.min(requestedExpiry, jobTime(job.runBy)) : requestedExpiry;
+      return { claimedUntil: new Date(Math.max(capped, jobTime(job.claimedUntil!))).toISOString() };
+    }, true);
   }
 
-  /** Enter RUNNING from CLAIMED as the lease holder. The worker body runs after this. */
-  async startRun(id: string, holder: Pick<JobClaim, 'leaseToken'>, now: string | null = null): Promise<Job> {
-    const result = await this.store.transition(id, ['CLAIMED'], holder.leaseToken, { state: 'RUNNING' });
-    if (!result.ok) throw this.fromWriteResult(result, 'startRun');
-    if (this.limits) await this.limits.recordEvent(result.job, 'running');
-    return result.job;
+  async startRun(id: string, holder: Pick<JobClaim, 'leaseToken'>, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
+    return this.changeJob(id, job => {
+      assertLease(job, holder.leaseToken, at);
+      if (job.state !== 'CLAIMED') throw new JobPolicyError('conflict');
+      return { state: 'RUNNING' };
+    }, true);
   }
 
-  /**
-   * Idempotent fenced completion. Only the lease holder transitions a
-   * CLAIMED/RUNNING job to DONE, and only while its attempt token matches; a
-   * job already DONE stays DONE (never re-executed) and a stale runner is fenced.
-   */
-  async complete(jobId: string, holder: Pick<JobClaim, 'leaseToken' | 'attemptToken'>, now: string | null = null): Promise<Job> {
-    const at = now ?? new Date().toISOString();
-    const fresh = await this.store.jobById(jobId);
-    if (fresh?.state === 'DONE') return fresh; // idempotent — already completed
-    // Fence first: if the row no longer carries our lease/attempt token (it was
-    // reclaimed by the sweeper, cancelled, or re-claimed), the caller is a stale
-    // runner and must be refused as fenced, regardless of the row's visible state.
-    if (fresh && fresh.leaseToken !== holder.leaseToken) throw new JobPolicyError('fenced');
-    if (fresh && fresh.attemptToken !== holder.attemptToken) throw new JobPolicyError('fenced');
-    if (fresh && fresh.state !== 'CLAIMED' && fresh.state !== 'RUNNING') throw this.fromState('complete', fresh.state);
-    const result = await this.store.transition(jobId, ['CLAIMED', 'RUNNING'], holder.leaseToken, {
-      state: 'DONE',
-      completedAt: at,
-      claimedUntil: null,
-      leaseToken: null,
-      attemptToken: null,
-      lastError: null,
-      nextAttemptAt: null,
+  async complete(id: string, holder: Pick<JobClaim, 'leaseToken' | 'attemptToken'>, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
+    return this.changeJob(id, job => {
+      if (!job.attemptToken || job.attemptToken !== holder.attemptToken || job.leaseToken !== holder.leaseToken) {
+        throw new JobPolicyError('fenced');
+      }
+      if (job.completedAt && (job.state === 'DONE' || job.state === 'QUARANTINED')) return null;
+      assertLease(job, holder.leaseToken, at);
+      if (job.state !== 'RUNNING') throw new JobPolicyError('conflict');
+      return { state: 'DONE', completedAt: new Date(at).toISOString(), claimedUntil: null, lastError: null };
+    }, true);
+  }
+
+  async fail(id: string, holder: Pick<JobClaim, 'leaseToken'>, error: string, now?: string): Promise<Job> {
+    const at = await this.timestamp(now);
+    return this.changeJob(id, job => {
+      assertLease(job, holder.leaseToken, at);
+      if (job.attempt >= job.maxAttempts) return { ...releasedLease, state: 'QUARANTINED', lastError: error };
+      return { ...releasedLease, state: 'PENDING', lastError: error,
+        nextAttemptAt: new Date(at + backoffDelay(this.policy, job.attempt)).toISOString() };
+    }, true);
+  }
+
+  async cancel(id: string, _now?: string): Promise<Job> {
+    return this.changeJob(id, job => {
+      if (job.state !== 'PENDING' && job.state !== 'CLAIMED' && job.state !== 'RUNNING') return null;
+      return { ...releasedLease, state: 'CANCELLED', nextAttemptAt: null, cancellationToken: `cancel_${randomUUID()}` };
     });
-    if (!result.ok) {
-      const reloaded = await this.store.jobById(jobId);
-      if (reloaded?.state === 'DONE') return reloaded; // lost a race, someone finished first — idempotent
-      throw this.fromWriteResult(result, 'complete');
+  }
+
+  async failCleanup(id: string, error: string, maxCleanupAttempts: number, _now?: string): Promise<Job> {
+    if (!Number.isSafeInteger(maxCleanupAttempts) || maxCleanupAttempts < 1) throw new JobPolicyError('conflict');
+    return this.changeJob(id, job => {
+      if (job.state === 'QUARANTINED') return null;
+      if (job.state !== 'DONE' && job.state !== 'FAILED') throw new JobPolicyError('conflict');
+      const cleanupAttempts = job.cleanupAttempts + 1;
+      return { cleanupAttempts, cleanupError: error,
+        state: cleanupAttempts >= maxCleanupAttempts ? 'QUARANTINED' : job.state };
+    });
+  }
+
+  /** Use the same fenced lifecycle for callers that supply an in-process handler. */
+  async runJob(id: string, handler?: (job: Job) => Promise<void>, cancelToken?: string): Promise<void> {
+    const current = await this.jobs.jobById(id);
+    if (!current || current.state !== 'PENDING' || (current.cancellationToken && current.cancellationToken !== cancelToken)) return;
+    if (!handler) {
+      await this.jobs.compareJob(id, current.revision, { lastError: 'NO_JOB_HANDLER' });
+      return;
     }
-    if (this.limits) await this.limits.recordEvent(result.job, 'done');
-    return result.job;
-  }
-
-  /**
-   * Fail a CLAIMED/RUNNING job from its lease holder. Under the attempt ceiling
-   * the job returns to PENDING with exponential backoff for a fresh claim;
-   * at the ceiling it is QUARANTINED with the error recorded — never silently
-   * dropped.
-   */
-  async fail(jobId: string, holder: Pick<JobClaim, 'leaseToken'>, error: string, now: string | null = null): Promise<Job> {
-    const at = now ?? new Date().toISOString();
-    const job = await this.store.jobById(jobId);
-    if (!job) throw new JobPolicyError('unknown_job');
-    if (job.state === 'DONE' || job.state === 'QUARANTINED' || job.state === 'CANCELLED') return job; // terminal, idempotent
-    const attempt = job.attempt + 1;
-    const isFatal = attempt >= job.maxAttempts;
-    const patch: JobPatch = isFatal
-      ? { state: 'QUARANTINED', attempt, lastError: error, claimedUntil: null, leaseToken: null, attemptToken: null, completedAt: null, nextAttemptAt: null }
-      : {
-          state: 'PENDING',
-          attempt,
-          lastError: error,
-          claimedUntil: null,
-          leaseToken: null,
-          attemptToken: null,
-          nextAttemptAt: new Date(Date.parse(at) + backoffDelay(this.policy, attempt)).toISOString(),
-        };
-    const result = await this.store.transition(jobId, ['CLAIMED', 'RUNNING', 'PENDING'], holder.leaseToken, patch);
-    if (!result.ok) throw this.fromWriteResult(result, 'fail');
-    if (this.limits) await this.limits.recordEvent(result.job, result.job.state === 'QUARANTINED' ? 'quarantined' : 'failed', error);
-    return result.job;
-  }
-
-  /** Cancel a job: fence CLAIMED/RUNNING holders so no zombie can complete it. */
-  async cancel(id: string, now: string | null = null): Promise<Job> {
-    const at = now ?? new Date().toISOString();
-    const result = await this.store.transition(id, ['PENDING', 'CLAIMED', 'RUNNING'], null, {
-      state: 'CANCELLED',
-      cancellationToken: `cancel_${Date.now()}`,
-      claimedUntil: null,
-      leaseToken: null,
-      attemptToken: null,
-    });
-    if (!result.ok) {
-      const fresh = await this.store.jobById(id);
-      if (fresh?.state === 'CANCELLED' || fresh?.state === 'DONE') return fresh; // idempotent
-      throw this.fromWriteResult(result, 'cancel');
+    try {
+      const claim = await this.claim(id, this.policy.leaseMs);
+      const job = await this.startRun(id, claim);
+      try {
+        await handler(job);
+      } catch {
+        await this.fail(id, claim, 'JOB_FAILED');
+        return;
+      }
+      await this.complete(id, claim);
+    } catch (error) {
+      if (!(error instanceof JobPolicyError) ||
+          !['fenced', 'conflict', 'deadline_exceeded'].includes(error.code)) throw error;
     }
-    if (this.limits) await this.limits.recordEvent(result.job, 'cancelled');
-    return result.job;
   }
 
-  /**
-   * Record a failed post-run cleanup. Cleanup is retried a bounded number of
-   * times; past the ceiling the job is QUARANTINED so a tempting-but-lost
-   * resource (e.g. a private export that could not be revoked) is never dropped
-   * silently. Returns the updated job.
-   */
-  async failCleanup(jobId: string, error: string, maxCleanupAttempts: number, now: string | null = null): Promise<Job> {
-    const at = now ?? new Date().toISOString();
-    const job = await this.store.jobById(jobId);
-    if (!job) throw new JobPolicyError('unknown_job');
-    const attempts = job.cleanupAttempts + 1;
-    const quarantined = attempts >= maxCleanupAttempts;
-    const result = await this.store.transition(jobId, ['DONE', 'FAILED', 'QUARANTINED'], null, {
-      cleanupAttempts: attempts,
-      cleanupError: error,
-      state: quarantined ? 'QUARANTINED' : job.state,
-    });
-    if (!result.ok) throw this.fromWriteResult(result, 'failCleanup');
-    return result.job;
+  async queues(): Promise<string[]> { return this.jobs.queues(); }
+}
+
+export class OutboxDispatcher extends JobDispatcher {
+  private readonly delivery: OutboxDeliveryDispatcher;
+
+  constructor(store: OutboxStore, handlers: DispatcherHandlers = {}, policy: BackoffPolicy = DEFAULT_BACKOFF) {
+    super(store, policy);
+    this.delivery = new OutboxDeliveryDispatcher(store, handlers, policy);
   }
 
-  /** Queues currently holding jobs — the per-workload queue inventory. */
-  async queues(): Promise<string[]> {
-    return this.store.queues();
-  }
-
-  private fromWriteResult(r: JobWriteResult, op: string): JobPolicyError {
-    if ('reason' in r && r.reason === 'fenced') return new JobPolicyError('fenced');
-    if ('reason' in r && r.reason === 'conflict') return new JobPolicyError('conflict');
-    return new JobPolicyError('unknown_job');
-  }
-
-  private fromState(op: string, state: JobState | null): JobPolicyError {
-    return new JobPolicyError(state === 'QUARANTINED' ? 'quarantined' : 'conflict');
+  dispatch(batchSize: number, now?: Date): Promise<DispatchOutcome[]> {
+    return this.delivery.dispatch(batchSize, now);
   }
 }

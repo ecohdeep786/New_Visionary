@@ -2,9 +2,14 @@
    Extracted from NewPersona.jsx inline <style> to avoid runtime CSS injection
    on every render. */
 
+/* The cast's rise is transform-only: the cutouts paint from the first
+   frame. The opacity:0 start here was the landing LCP's second gate — an
+   element at opacity 0 cannot paint, so the LCP cutout waited for its
+   animation delay (260ms + slot stagger) before it could even be
+   considered, on top of the image wire. The rise motion is unchanged. */
 @keyframes figIn {
-  from { opacity: 0; transform: translateY(5%) scale(0.988); }
-  to { opacity: 1; transform: none; }
+  from { transform: translateY(5%) scale(0.988); }
+  to { transform: none; }
 }
 
 @keyframes appleFadeIn {

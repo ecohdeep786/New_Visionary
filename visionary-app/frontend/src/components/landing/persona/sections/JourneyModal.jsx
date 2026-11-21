@@ -4,13 +4,13 @@ import { PillButton } from "@/components/landing/system/ui";
 import ChevronIcon from "./ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
 
-/* The stage's story popup — Apple's modal-story anatomy (measured on the
+/* The stage’s story popup — Apple’s modal-story anatomy (measured on the
    education-initiative card click-through): a full-screen WHITE blur
    curtain (rgba(255,255,255,0.48) over blur(20px)), the white panel inset
-   16px at radius 30px, the media full-bleed at the panel's top edge with
+   16px at radius 30px, the media full-bleed at the panel’s top edge with
    the stage chip over its own smoke, then the story zone: 48px/600
    heading, 17px body, the canonical black primary pill, and the feature
-   blocks. Close is Apple's bare glyph over the media. Escape and the
+   blocks. Close is Apple’s bare glyph over the media. Escape and the
    backdrop close it; focus is trapped and restored. */
 const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, stageMeta, fallbackKey, secondaryLabel }) {
   const closeRef = useRef(null);
@@ -60,7 +60,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
         style={{ animation: "heroFadeUp 0.4s var(--ease-out-apple) both" }}
       >
         <div className="max-h-[calc(100vh-32px)] overflow-y-auto">
-          {/* the close — Apple's bare modal glyph, top-right over the media */}
+          {/* the close — Apple’s bare modal glyph, top-right over the media */}
           <button
             ref={closeRef}
             type="button"
@@ -73,10 +73,10 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             </svg>
           </button>
 
-          {/* media full-bleed to the panel's top/side edges. Apple's story
+          {/* media full-bleed to the panel’s top/side edges. Apple’s story
               modal clips the media by its OWN rounded container (the
               `.modal-contents` overflow:hidden + border-radius:30px), so the
-              popup's top border reads cleanly rounded even though the white
+              popup’s top border reads cleanly rounded even though the white
               card behind it is separate — we mirror that exactly. */}
           <div className="relative overflow-hidden rounded-[30px]">
             <img src={stage.image} alt={stage.alt} className="aspect-[16/9] w-full object-cover" />
@@ -90,7 +90,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             </span>
           </div>
 
-          {/* the story zone — Apple's measured breath, text inset from the
+          {/* the story zone — Apple’s measured breath, text inset from the
               panel edges; heading at the 48/600 story tier, body 17px */}
           <div className="px-6 pb-12 pt-10 sm:px-12 sm:pb-14 lg:px-16 lg:pb-[72px] lg:pt-14">
             <h3 id="journey-modal-title" data-type="story" className="max-w-[760px]" style={{ color: color.ink }}>

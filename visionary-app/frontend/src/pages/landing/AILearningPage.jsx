@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import AuthAwareLink from "@/components/landing/AuthAwareLink";
 import { ArrowRight, Check, ChevronDown, Minus, Sparkles } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
@@ -20,7 +21,7 @@ const COLORS = {
   blue: "#0066cc",
   grey: "#6e6e73",
   slate: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };
@@ -61,16 +62,34 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
+/* The hero’s entrance never hides the LCP element: the rise is
+   transform-only, so the headline and lead paint in the first commit.
+   The FadeReveal grammar (opacity-0 until revealed) delayed the hero’s
+   LCP text ~800ms past FCP under the lab throttle — invisible content
+   cannot paint — so above-fold content rides the same motion with the
+   opacity gate removed. Below-fold sections keep FadeReveal. */
+const HeroRise = React.memo(function HeroRise({ visible, children, className = "" }) {
+  return (
+    <div className={`transition-transform duration-700 ease-apple ${visible ? "translate-y-0" : "translate-y-6"} ${className}`}>
+      {children}
+    </div>
+  );
+});
+
 /* ═══ MODELS — single plan-config fixture (01-PM, Wave L3): src/data/pricingConfig.js ═══ */
 import { PLANS, COMPARISON, PERSONA_PLANS, PRICING_FAQ, formatPrice } from "@/data/pricingConfig";
 import { billingPath } from '@/lib/billingIntent';
 import { fontStack } from "@/components/landing/system/tokens";
 
 
-/* ═══ Billing toggle — same ink-pill language as site tabs ═══ */
+/* ═══ Billing toggle — the product’s segmented control: a quiet gray track
+   (the toggle must read as one control on the white page, not float as
+   two loose labels), the active period as the ink pill, the savings badge
+   carried inside. Reference basis: Apple HIG — Selection and input >
+   segmented controls; one visible container, one obvious selection. ═══ */
 const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
   return (
-    <div className="flex w-fit max-w-full items-stretch rounded-full bg-white p-1" role="group" aria-label="Billing period">
+    <div className="flex w-fit max-w-full items-stretch rounded-full bg-[#f5f5f7] p-1" role="group" aria-label="Billing period">
       {["monthly", "annual"].map((b) => {
         const active = billing === b;
         return (
@@ -79,11 +98,11 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
             type="button"
             aria-pressed={active}
             onClick={() => onChange(b)}
-            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#f5f5f7]"}`}
+            className={`flex min-h-11 items-center justify-center gap-2 rounded-full px-[min(1rem,5vw)] text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#1d1d1f] font-medium text-white" : "font-normal text-[#6e6e73] hover:bg-[#e8e8ed]"}`}
           >
             {b === "monthly" ? "Monthly" : "Annual"}
             {b === "annual" && (
-              <span className={`rounded-full px-2 py-0.5 text-[12px] font-medium tracking-[0] ${active ? "bg-white/15 text-white" : "bg-[#f5f5f7] text-[#6e6e73]"}`}>
+              <span className={`rounded-full px-2 py-0.5 text-[12px] font-medium tracking-[0] ${active ? "bg-white/15 text-white" : "bg-white text-[#6e6e73]"}`}>
                 2 months free
               </span>
             )}
@@ -95,10 +114,13 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
 });
 
 /* ═══ Comparison cell — the store-grade row values; strings render the
-   entitlement word for word, booleans the quiet ✓/– (truth: pricingConfig) ═══ */
+   entitlement word for word, booleans the quiet ✓/– (truth: pricingConfig).
+   The glyphs ARE the cell’s content, so each carries its own accessible name
+   (F-07-D1): role="img" + label keeps the visual quiet mark while screen
+   readers hear Included / Not included instead of an unnamed graphic. ═══ */
 const CellValue = React.memo(function CellValue({ value }) {
-  if (value === true) return <Check className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.blue }} />;
-  if (value === false) return <Minus className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.lightGrey }} />;
+  if (value === true) return <Check role="img" aria-label="Included" className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.blue }} />;
+  if (value === false) return <Minus role="img" aria-label="Not included" className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.lightGrey }} />;
   return <span className="font-normal tracking-[-0.022em] text-[17px]" style={{ color: COLORS.ink }}>{value}</span>;
 });
 
@@ -116,17 +138,19 @@ function PricingStoreSection() {
   const institution = PLANS.find((p) => p.id === "institution");
   return (
     <section ref={ref} data-section="01-hero" className="relative px-4 pb-16 pt-24 sm:px-6 lg:px-[var(--frame-x)] lg:pb-20 lg:pt-28" style={{ fontFamily: fontStack }}>
-      <FadeReveal visible={visible}>
+      <HeroRise visible={visible}>
         <div className="mx-auto max-w-[1440px] text-center">
           <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
             Plans for <span className="accent-gradient">every journey</span>.
           </h1>
           <p className="mx-auto max-w-[760px] text-[17px] font-normal leading-[25px] text-[#6e6e73]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-            Start free. Find the right fit for yourself, your family, or your organization.
+            Create an account for free. Personal and Family prices below are for the billing preview. The learning features in the comparison are planned.
           </p>
         </div>
         <div className="mx-auto mt-12 w-full max-w-[1240px]">
-          <div className="flex flex-col items-center gap-3 pb-8">
+          {/* the toggle sits on its own floor with the store’s breathing room
+              between the control and the table it drives */}
+          <div className="flex flex-col items-center pb-12">
             <BillingToggle billing={billing} onChange={setBilling} />
           </div>
           <div data-overflow className="overflow-x-auto lg:overflow-visible">
@@ -138,7 +162,6 @@ function PricingStoreSection() {
                     <th key={p.id} scope="col" className="sticky top-14 z-10 min-w-[210px] bg-white px-5 align-bottom">
                       <div className="flex flex-col items-stretch pb-6 pt-2 text-center">
                         <div className="flex h-7 items-center justify-center">
-                          {p.badge && <span className="rounded-full bg-[#1d1d1f] px-2.5 py-1 text-[12px] font-medium leading-none text-white">{p.badge}</span>}
                         </div>
                         <h2 className="mt-2 text-[21px] font-semibold leading-[1.19] tracking-[-0.009em]" style={{ color: COLORS.ink }}>{p.name}</h2>
                         <p className="mt-1.5 min-h-[40px] text-[14px] font-normal leading-[1.43]" style={{ color: COLORS.grey }}>{p.tagline}</p>
@@ -164,7 +187,7 @@ function PricingStoreSection() {
                         <Link
                           data-b3="cta"
                           to={["personal", "family"].includes(p.id) ? billingPath(p.id, billing) : p.to}
-                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                          className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
                         >
                           {p.cta}
                         </Link>
@@ -188,7 +211,7 @@ function PricingStoreSection() {
             </table>
           </div>
           <p className="mt-6 text-[12px] leading-[1.5]" style={{ color: COLORS.grey }}>
-            Prices in INR · Taxes may apply · Education discounts available
+            Preview prices in INR
           </p>
 
           {/* Institution — contact-shaped, priced-inside-config null: its own
@@ -202,20 +225,20 @@ function PricingStoreSection() {
                   {institution.features.join(" · ")}
                 </p>
                 <p data-b3="fine" className="mt-2 text-[12px] leading-[1.5]" style={{ color: COLORS.grey }}>
-                  Pricing shaped with you · pilots available
+                  Contact us to discuss an institutional rollout
                 </p>
               </div>
               <Link
                 data-b3="cta"
                 to={institution.to}
-                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#0066cc] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#0071e3] active:scale-[0.98] active:bg-[#006edb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                className="inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] text-center text-[17px] leading-[1.176] font-medium tracking-[-0.011em] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
               >
                 {institution.cta}
               </Link>
             </div>
           </div>
         </div>
-      </FadeReveal>
+      </HeroRise>
     </section>
   );
 }
@@ -237,7 +260,7 @@ function PricingPersonaSection() {
               <p className="font-normal tracking-[0] leading-[1.4] text-[16px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
               <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
-              {/* google.com card curve — tint sweeps into the white corner and the card's arrow floats in it with breath */}
+              {/* google.com card curve — tint sweeps into the white corner and the card’s arrow floats in it with breath */}
               <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white"  />
               <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.blue }} aria-hidden="true" /></div>
             </Link>
@@ -274,7 +297,7 @@ function PricingFAQSection() {
   return (
     <section ref={ref} data-section="04-faq" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div>
             <p className="text-[18px] font-medium" style={{ color: COLORS.grey }}>FAQ</p>
             <h2 className="mt-[var(--gap-eyebrow-title-display)] max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
@@ -313,9 +336,9 @@ function PricingCTASection() {
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <AuthAwareLink to="/register" signedInLabel="Open Visionary" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
-          </Link>
+          </AuthAwareLink>
           <Link to="/contact" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Talk to sales
             <ChevronIcon className="h-4 w-4" />

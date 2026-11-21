@@ -15,12 +15,13 @@ import assert from 'node:assert/strict';
 import { storage, fixture, reset, org } from '../../fixtures/classCurriculum.mjs';
 import * as w from '../../../src/services/workspaceService.ts';
 import { submitClassworkResponses } from '../../../src/services/classroomService.js';
+import { signInAs, registerPreviewProfile } from '../../helpers/previewAuth.mjs';
 
 beforeEach(reset);
 
 async function setup() {
   const f = await fixture();
-  storage.set('visionary_session_token', f.learner.personId);
+  signInAs(f.learner.personId);
   return f;
 }
 
@@ -92,16 +93,9 @@ test('frontend class-access deny: an authenticated outsider cannot submit; this 
   // this class — the enrollment boundary is what must deny here.
   const outsiderPersona = w.bootstrapPerson({ id: 'demo-outsider', email: 'outsider@visionary.test', identity: 'student' });
   const outsiderSpace = outsiderPersona.workspaces[0];
-  const db = JSON.parse(storage.get('visionary_workspace_v2'));
-  db.active['demo-outsider'] = outsiderSpace.id;
-  storage.set('visionary_workspace_v2', JSON.stringify(db));
-  const users = JSON.parse(storage.get('visionary_users'));
-  users.push({ id: 'demo-outsider', email: 'outsider@visionary.test', identity: 'student', roles: ['student'], age_band: outsiderPersona.person.ageBand, onboarding_complete: true });
-  storage.set('visionary_users', JSON.stringify(users));
-  const sessions = JSON.parse(storage.get('visionary_sessions'));
-  sessions.push({ token: 'demo-outsider', userId: 'demo-outsider', email: 'outsider@visionary.test', expiresAt: Date.now() + 86400000 });
-  storage.set('visionary_sessions', JSON.stringify(sessions));
-  storage.set('visionary_session_token', 'demo-outsider');
+  // FAP-93: identity comes from the preview seam (no local session store).
+  registerPreviewProfile({ id: 'demo-outsider', email: 'outsider@visionary.test', identity: 'student', roles: ['student'], age_band: outsiderPersona.person.ageBand, onboarding_complete: true });
+  signInAs('demo-outsider');
   const outsider = { personId: 'demo-outsider', workspaceId: outsiderSpace.id, role: 'student', locale: 'en' };
   // The class-scoping boundary denies first: the assignment is not open for
   // submissions to learners outside its class (the enrollment check sits

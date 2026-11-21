@@ -11,7 +11,7 @@ import QuietLink from "@/components/landing/QuietLink";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
-import { LEGAL_META, RESPONSE_TIMES } from "@/data/legalMeta";
+import { LEGAL_META } from "@/data/legalMeta";
 import { fontStack, CTA_LAW } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared public dialect (#1d1d1f ink pills, #0066cc quiet
@@ -49,7 +49,7 @@ function Reveal({ children, className = "", delay = 0 }) {
   );
 }
 
-/* Device-style frame — the reference's phone mockups, redrawn as quiet tinted
+/* Device-style frame — the reference’s phone mockups, redrawn as quiet tinted
    illustration panels in our voice */
 function DeviceFrame({ subject, title, className = "" }) {
   return (
@@ -59,59 +59,59 @@ function DeviceFrame({ subject, title, className = "" }) {
   );
 }
 
-/* ═══ BUILT-IN PROTECTIONS — the reference's alternating feature rows ═══ */
+/* ═══ BUILT-IN PROTECTIONS — the reference’s alternating feature rows ═══ */
 const PROTECTIONS = [
   {
     eyebrow: "Age-aware experiences", subject: "shield",
     title: <>Safety that fits <span className="text-[#1d1d1f]">the learner.</span></>,
-    copy: "Safety guidance and product boundaries follow the learner's age and context: a twelve-year-old and an adult professional see different guardrails for the same question.",
+    copy: "Account setup uses age range to determine eligibility. Under-18 access requires a verified guardian connection.",
     visualSide: "right",
   },
   {
     eyebrow: "Safe by default", subject: "lock",
     title: <>On from the <span className="text-[#1d1d1f]">first question.</span></>,
-    copy: "Core safeguards are part of the experience from the beginning. Families and organizations can add boundaries, but the default is already safe.",
+    copy: "We’re developing safeguards for interactive learning and tools for families and organizations.",
     visualSide: "left",
   },
   {
     eyebrow: "Private by design", subject: "eye",
     title: <>Your memory is <span className="text-[#1d1d1f]">yours.</span></>,
-    copy: "Parents follow progress through consent-based summaries. Organizations see patterns across cohorts, never an individual learner's answers. Details live in the privacy policy.",
+    copy: "We’re designing guardian summaries around consent and institutional reporting around aggregate patterns. Read the privacy policy for how we handle information today.",
     visualSide: "right",
   },
 ];
 
-/* ═══ FAMILY CONTROLS — the reference's action cards ═══ */
+/* ═══ FAMILY CONTROLS — the reference’s action cards ═══ */
 const FAMILY_CARDS = [
   {
     Icon: Eye, eyebrow: "For parents", to: "/parent", linkLabel: "See parent features",
     title: "Consent-scoped progress summaries",
-    copy: "Parents and guardians follow the journey with confidence: summaries shaped by consent, without opening the learner's private space.",
+    copy: "Guardian summaries are in development. They’re designed to share only information the guardian is authorized to see.",
   },
   {
     Icon: UsersRound, eyebrow: "For families", to: "/privacy", linkLabel: "Read the privacy policy",
     title: "Boundaries for younger learners",
-    copy: "Set boundaries that shape what younger learners see and do, without changing the default safety posture for everyone else.",
+    copy: "Under-18 setup remains restricted until the required guardian connection can be verified.",
   },
   {
     Icon: ShieldCheck, eyebrow: "For organizations", to: "/organization", linkLabel: "See organization features",
     title: "Aggregate insights, never individual answers",
-    copy: "Institutions see patterns across cohorts to guide support. An individual learner's answers stay individual, by design.",
+    copy: "Cohort reporting is in development. Its design uses aggregate patterns to guide support.",
   },
 ];
 
-/* ═══ REPORTING & REVIEW — the reference's eyebrow cards ═══ */
+/* ═══ REPORTING & REVIEW — the reference’s eyebrow cards ═══ */
 const REPORTING_CARDS = [
   {
     eyebrow: "Flag", subject: "flag",
-    title: "One tap to flag anything",
-    copy: "Every answer can be flagged in one tap, from any persona. Flagging is always available: no special mode, no forms to find.",
-    link: { to: "/community", label: "How moderation works" },
+    title: "Email a safety concern",
+    copy: "Include the page, relevant details, and a way to reach you.",
+    link: { to: "/contact", label: "Find safety contact details" },
   },
   {
     eyebrow: "Review", subject: "safety",
-    title: "A human reads every report",
-    copy: RESPONSE_TIMES.safety + " Automated filters help, but a person decides what stayed wrong and what changes.",
+    title: "Help the team review your concern",
+    copy: "Include what happened and when. Explain any immediate safety risk.",
     link: { to: "/contact", label: "Contact the safety team" },
   },
   {
@@ -122,7 +122,7 @@ const REPORTING_CARDS = [
   },
 ];
 
-/* ═══ BEFORE YOU SHARE — the reference's checklist band ═══ */
+/* ═══ BEFORE YOU SHARE — the reference’s checklist band ═══ */
 const SHARE_CHECKS = [
   "Never share passwords, payment details, or sensitive learner information. Not with us, not with anyone.",
   "No one from Visionary will ever ask for your password or verification codes.",
@@ -136,7 +136,7 @@ export default function SafetyPage() {
       <main id="main" tabIndex={-1}>
         <Breadcrumb page="Safety" />
 
-        {/* HERO — the reference's shield badge + two-tone heading + jump chips */}
+        {/* HERO — the reference’s shield badge + two-tone heading + jump chips */}
         <section data-section="01-hero" className="px-6 pb-16 pt-10 sm:px-8 lg:px-10 lg:pb-24 lg:pt-28">
           <Reveal className="mx-auto max-w-[880px]">
             <span className="flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
@@ -158,7 +158,7 @@ export default function SafetyPage() {
           </Reveal>
         </section>
 
-        {/* STATEMENT + ICON STRIP — the reference's icon row */}
+        {/* STATEMENT + ICON STRIP — the reference’s icon row */}
         <section data-section="02-statement" aria-labelledby="statement-title" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[880px] text-center">
             <h2 id="statement-title" data-type="section" className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-[#1d1d1f]">
@@ -172,7 +172,7 @@ export default function SafetyPage() {
               ))}
             </div>
             <p className="mx-auto mt-8 max-w-[640px] text-[16px] leading-[1.75] text-[#6e6e73]">
-              You shouldn't have to configure safety. It should be there before you ask your first question, and visible enough to check.
+              You shouldn’t have to configure safety. It should be there before you ask your first question, and visible enough to check.
             </p>
             <div className="mt-9 flex justify-center">
               <QuietLink href="#protections">
@@ -182,7 +182,7 @@ export default function SafetyPage() {
           </Reveal>
         </section>
 
-        {/* BUILT-IN PROTECTIONS — the reference's alternating rows */}
+        {/* BUILT-IN PROTECTIONS — the reference’s alternating rows */}
         <section id="protections" data-section="03-protections" aria-labelledby="protections-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1080px]">
             <h2 id="protections-title" className="sr-only">Built-in protections</h2>
@@ -210,7 +210,7 @@ export default function SafetyPage() {
           </Reveal>
         </section>
 
-        {/* FAMILY CONTROLS — the reference's centered heading + action cards */}
+        {/* FAMILY CONTROLS — the reference’s centered heading + action cards */}
         <section id="family" data-section="04-family" aria-labelledby="family-title" className="scroll-mt-28 bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
@@ -243,7 +243,7 @@ export default function SafetyPage() {
           </Reveal>
         </section>
 
-        {/* REPORTING & REVIEW — the reference's eyebrow cards */}
+        {/* REPORTING & REVIEW — the reference’s eyebrow cards */}
         <section id="reporting" data-section="05-reporting" aria-labelledby="reporting-title" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
@@ -251,7 +251,7 @@ export default function SafetyPage() {
                 Seen something wrong? <span className="text-[#1d1d1f]">Flag it.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[600px] text-[16px] leading-[1.75] text-[#6e6e73] sm:text-[16px]">
-                Reporting is one tap away everywhere in the product, and a person reads every report, not a queue.
+                Use the safety contact below to tell us what happened.
               </p>
             </div>
             <div className="mt-14 grid gap-3 md:grid-cols-3">
@@ -275,7 +275,7 @@ export default function SafetyPage() {
           </Reveal>
         </section>
 
-        {/* BEFORE YOU SHARE — the reference's checklist band */}
+        {/* BEFORE YOU SHARE — the reference’s checklist band */}
         <section id="share" data-section="06-share" className="scroll-mt-28 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1080px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-12 sm:px-12 lg:py-14">
@@ -322,7 +322,7 @@ export default function SafetyPage() {
           Last updated: <strong className="font-medium text-[#1d1d1f]">{LEGAL_META.safety.lastUpdated}</strong>
         </p>
 
-        {/* CLOSING — the reference's blue band, in our grey tray */}
+        {/* CLOSING — the reference’s blue band, in our grey tray */}
         <section aria-labelledby="closing-title" data-section="07-closing" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-14 text-center sm:px-12 lg:py-16">
@@ -330,7 +330,7 @@ export default function SafetyPage() {
                 Discover more ways we keep learning safe.
               </h2>
               <p className="mx-auto mt-4 max-w-[520px] text-[16px] leading-[1.7] text-[#1d1d1f]">
-                Tour the product's guardrails end to end, or write to the safety team directly. A human reads every message.
+                Tour the product’s guardrails end to end, or write to the safety team directly. A human reads every message.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <a

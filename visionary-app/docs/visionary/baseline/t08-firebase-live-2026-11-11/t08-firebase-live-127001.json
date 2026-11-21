@@ -1,0 +1,124 @@
+{
+  "email": "t08-firebase-1794385955600@visionary.test",
+  "base": "http://127.0.0.1:5173",
+  "steps": [
+    {
+      "step": "auth-mode",
+      "source": "firebase",
+      "enabled": true
+    },
+    {
+      "step": "after-register-view",
+      "url": "/register",
+      "headings": [
+        "Confirm your email address"
+      ],
+      "body": "Skip to content | isionary | Create a Visionary account | Start a learning journey shaped around you. | I already have an account. Sign in | Confirm your email address | Check t08-firebase-1794385955600@visionary.test for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification. | Your account could not be created. Please try again. | I ",
+      "resendBtn": "Resend verification link"
+    },
+    {
+      "step": "api-after-register",
+      "calls": [
+        {
+          "url": "identitytoolkit.googleapis.com/v2/passwordPolicy?key=AIzaSyB5bvllX215adZO5LVXhdMBRIaMrelSr",
+          "status": 200
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB5bvllX215adZO5LVXhdMBRIaMrelS",
+          "status": 200,
+          "body": "{\"returnSecureToken\":true,\"email\":\"t08-firebase-1794385955600@visionary.test\",\"password\":\"correct-horse-9\",\"clientType\":\"CLIENT_TYPE_WEB\"}"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB5bvllX215adZO5LVXhdMBRIaMrelS",
+          "status": 200,
+          "body": "{\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXV0aF90aW1lIjoxNzk0Mzg1OTY0LCJ1c2VyX2lkIjoiVlpUS2haZ1JRa2FIRW1CRGhIW"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyB5bvllX215adZO5LVXhdMBRIa",
+          "status": 400,
+          "body": "{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXV0aF90aW1lIjoxNzk0Mzg1OTY0LCJ1c2VyX2lk"
+        }
+      ]
+    },
+    {
+      "step": "resend-during-cooldown",
+      "label": "Resend verification link",
+      "disabled": false
+    },
+    {
+      "step": "resend-ready",
+      "label": "Resend verification link",
+      "disabled": false
+    },
+    {
+      "step": "after-resend",
+      "status": "We could not finish that request. Please try again.",
+      "resendStill": false,
+      "newApiCalls": [
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyB5bvllX215adZO5LVXhdMBRIa",
+          "status": 400,
+          "body": "{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXV0aF90aW1lIjoxNzk0Mzg1OTY0LCJ1c2VyX2lk"
+        }
+      ]
+    },
+    {
+      "step": "signin-gate",
+      "url": "/login",
+      "headings": [
+        "Confirm your email address"
+      ],
+      "hasVerifyError": true,
+      "body": "Skip to content | isionary | Sign in to Visionary | Use email or Google to continue. | Don't have an account? Create account | Confirm your email address | Check t08-firebase-1794385955600@visionary.test for a verification link, then return here. Check your spam folder too. If you closed this page or your sign-in expired, sign in again after verification. | I verified my email | Resend verification link | Sign in again | English | Hel"
+    },
+    {
+      "step": "api-final",
+      "calls": [
+        {
+          "url": "identitytoolkit.googleapis.com/v2/passwordPolicy?key=AIzaSyB5bvllX215adZO5LVXhdMBRIaMrelSr",
+          "status": 200
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB5bvllX215adZO5LVXhdMBRIaMrelS",
+          "status": 200,
+          "body": "{\"returnSecureToken\":true,\"email\":\"t08-firebase-1794385955600@visionary.test\",\"password\":\"correct-horse-9\",\"clientType\":\"CLIENT_TYPE_WEB\"}"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB5bvllX215adZO5LVXhdMBRIaMrelS",
+          "status": 200,
+          "body": "{\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXV0aF90aW1lIjoxNzk0Mzg1OTY0LCJ1c2VyX2lkIjoiVlpUS2haZ1JRa2FIRW1CRGhIW"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyB5bvllX215adZO5LVXhdMBRIa",
+          "status": 400,
+          "body": "{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXV0aF90aW1lIjoxNzk0Mzg1OTY0LCJ1c2VyX2lk"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyB5bvllX215adZO5LVXhdMBRIa",
+          "status": 400,
+          "body": "{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXV0aF90aW1lIjoxNzk0Mzg1OTY0LCJ1c2VyX2lk"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB5bvllX215adZO5LVX",
+          "status": 200,
+          "body": "{\"returnSecureToken\":true,\"email\":\"t08-firebase-1794385955600@visionary.test\",\"password\":\"correct-horse-9\",\"clientType\":\"CLIENT_TYPE_WEB\"}"
+        },
+        {
+          "url": "identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB5bvllX215adZO5LVXhdMBRIaMrelS",
+          "status": 200,
+          "body": "{\"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwNGIwZjkxYmU2ZWIwODY3ZGFiYmFhYjU4N2RmYzJlMzNmMDBhMjQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXVkIjoidmlzaW9uYXJ5LXJlc2VhcmNoIiwiYXV0aF90aW1lIjoxNzk0Mzg2MDM2LCJ1c2VyX2lkIjoiVlpUS2haZ1JRa2FIRW1CRGhIW"
+        }
+      ]
+    },
+    {
+      "step": "console",
+      "count": 4,
+      "msgs": [
+        "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+      ]
+    }
+  ]
+}

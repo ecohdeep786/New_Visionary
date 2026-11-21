@@ -7,12 +7,12 @@ import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
 
 /* ═══════════════════════ 11 · TRUST ═══════════════════════
-   Apple's education-page values anatomy ("Our values lead the way."): the
+   Apple’s education-page values anatomy ("Our values lead the way."): the
    statement opens left on the spine with no eyebrow, then the values stand
    directly on the white ground as typographic columns — noun title, one
-   supporting sentence in Apple's first-person voice, one quiet link —
+   supporting sentence in Apple’s first-person voice, one quiet link —
    separated by hairline rules. No icons and no cards: the type carries the
-   trust. (Icons keep the student page's quiet 20px line, nothing more.) */
+   trust. (Icons keep the student page’s quiet 20px line, nothing more.) */
 function PremiumTrustSection({ heading, sub, values, variant }) {
   const { ref } = useRevealOnce();
   const feature = variant === "feature";
@@ -40,8 +40,8 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
     </RevealItem>
   );
 
-  /* The feature card's supporting line is body copy, not the page's semibold
-     lead — the extra wrapper keeps it out of the h2-lead role so the panel's
+  /* The feature card’s supporting line is body copy, not the page’s semibold
+     lead — the extra wrapper keeps it out of the h2-lead role so the panel’s
      statement stays the only loud voice in the card. */
   const featureSubBlock = (
     <RevealItem idx={1}>
@@ -60,7 +60,7 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
     <section ref={ref} data-section="11-trust" className="public-values relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
         {feature ? (
-          /* The landing's feature-card variant — Apple Watch's close-card
+          /* The landing’s feature-card variant — Apple Watch’s close-card
              anatomy: the values stop being four columns on the page and become
              one designed panel on the white ground. The statement heads the
              card, then the four marks stand in a 2×2 Why-grid, each in the
@@ -114,7 +114,7 @@ function PremiumTrustSection({ heading, sub, values, variant }) {
             {subBlock}
 
             {/* the values — typographic columns on the ground, hairline rules.
-                Four values (the landing's trust doors) open a fourth column;
+                Four values (the landing’s trust doors) open a fourth column;
                 the three-value pages keep their accepted three-up rhythm. */}
             <RevealItem idx={2} className="stagger-group">
               <div className={`mt-14 grid grid-cols-1 lg:mt-20 ${values.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>

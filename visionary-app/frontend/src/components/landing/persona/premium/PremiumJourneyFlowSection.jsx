@@ -8,16 +8,16 @@ import { color } from "@/components/landing/system/tokens";
 import LazyImage from "@/components/landing/LazyImage";
 
 /* ═══════════════════════ 10 · JOURNEY FLOW ═══════════════════════
-   Apple's statement-then-row anatomy (AirPods "Get to know AirPods."): the
-   chapter's one idea stated at full display scale, then the content itself carries
+   Apple’s statement-then-row anatomy (AirPods "Get to know AirPods."): the
+   chapter’s one idea stated at full display scale, then the content itself carries
    it — two equal stage cards joined by a quiet arrow, auto-advancing one pair
-   per beat the way Apple's product highlights do, silent while off-screen,
-   with the page's bare control row and one muted link closing the chapter. */
+   per beat the way Apple’s product highlights do, silent while off-screen,
+   with the page’s bare control row and one muted link closing the chapter. */
 
-/* The journey tile — Apple's card anatomy measured on the AirPods tiles:
+/* The journey tile — Apple’s card anatomy measured on the AirPods tiles:
    no icon chrome, a 17px semibold stage label above a 28px semibold
    statement on the #f5f5f7 ground (32px padding, 18px radius), and the
-   photograph filling the card's lower field edge to edge — text never
+   photograph filling the card’s lower field edge to edge — text never
    overlays the image. */
 const JourneyPairCard = React.memo(function JourneyPairCard({ stage, className = "" }) {
   return (
@@ -69,7 +69,7 @@ const PremiumPlayPauseButton = React.memo(function PremiumPlayPauseButton({ play
   );
 });
 
-/* The chapter, parameterized by the page's own journey stages (each stage
+/* The chapter, parameterized by the page’s own journey stages (each stage
    needs title/statement/copy/image/alt — the same shape the journey gallery
    uses). Props: stages, eyebrow, heading (node), sub, linkLabel, linkTo. */
 function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, sub, linkLabel = "See how Visionary keeps it connected", linkTo = "/how-it-works" }) {
@@ -135,7 +135,7 @@ function PremiumJourneyFlowSection({ stages, eyebrow = "Your journey", heading, 
           <div ref={stageRef} className="mx-auto mt-14 w-full max-w-[1265px] px-6 lg:mt-20 lg:px-[80px]">
             <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-stretch lg:justify-center lg:gap-16">
               <JourneyPairCard stage={stageByTitle[first]} className="stagger-child h-[560px] w-full max-w-[440px] lg:h-[680px] lg:w-[440px]" />
-              {/* the continuity arc — Apple's crafted connector between stages */}
+              {/* the continuity arc — Apple’s crafted connector between stages */}
               <svg
                 viewBox="0 0 64 48"
                 fill="none"

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
+import AuthAwareLink from "@/components/landing/AuthAwareLink";
 import {
   Globe, Monitor, Apple, Laptop, Smartphone, TabletSmartphone,
   Download, ShieldCheck,
@@ -17,7 +18,7 @@ const COLORS = {
   surface: "#f5f5f7",
   blue: "#0066cc",
   grey: "#6e6e73",
-  lightGrey: "#86868b",
+  lightGrey: "#6e6e73",
   mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };
@@ -44,7 +45,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
   return { ref, visible };
 }
 
-/* Detect the visitor's OS client-side — SSR-safe, graceful fallback */
+/* Detect the visitor’s OS client-side — SSR-safe, graceful fallback */
 function useDetectedPlatform() {
   const [platform, setPlatform] = useState(null);
   useEffect(() => {
@@ -93,7 +94,6 @@ const REQUIREMENTS = [
   { platform: "Android", req: "Android 9 or later · ARM or x86" },
 ];
 
-const SYNC_WORDS = ["continue", "pick up", "learn"];
 
 /* ═══ 01 · HERO — Web vs App choice ═══ */
 function DownloadHeroSection() {
@@ -117,25 +117,24 @@ function DownloadHeroSection() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-white p-8 pb-20">
             <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
-              <Globe className="h-5 w-5" strokeWidth={1.8} />
+              <Globe className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Continue on web</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
-            {/* google.com card curve — tint sweeps into the corner and the card's action floats in it with breath */}
+            {/* google.com card curve — tint sweeps into the corner and the card’s action floats in it with breath */}
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
-            <Link
-              to="/register"
+            <AuthAwareLink to="/register"
               className="absolute bottom-3 right-3 inline-flex h-11 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
             >
               Open Visionary
-            </Link>
+            </AuthAwareLink>
           </div>
 
           <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-white p-8 pb-20">
             <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
-              <Download className="h-5 w-5" strokeWidth={1.8} />
+              <Download className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
@@ -197,7 +196,7 @@ function DownloadPlatformsSection() {
                   </span>
                 )}
                 <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
-                  <p.Icon className="h-5 w-5" strokeWidth={1.8} />
+                  <p.Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <h3 className="mt-5 font-medium tracking-[0] leading-[1.15] text-[20px]" style={{ color: COLORS.ink }}>{p.name}</h3>
                 <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.meta}</p>
@@ -264,7 +263,7 @@ function DownloadNotifySection() {
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[30px] bg-[#f5f5f7] p-8 text-center lg:p-10">
           <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
           <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-            The web product is live today; native apps are still being prepared. We'll email you the moment your platform ships.
+            The web product is live today; native apps are still being prepared. We’ll email you the moment your platform ships.
           </p>
           {status === "success" ? (
             <p role="status" className="mt-6 w-full rounded-[14px] bg-white px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>
@@ -297,7 +296,7 @@ function DownloadNotifySection() {
               </div>
               {status === "error" && (
                 <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#e30000" }}>
-                  Please enter a valid email address. We can't notify you without one.
+                  Please enter a valid email address. We can’t notify you without one.
                 </p>
               )}
             </form>
@@ -311,20 +310,16 @@ function DownloadNotifySection() {
 /* ═══ 03 · SYNC BAND — continuity across devices ═══ */
 function DownloadSyncSection() {
   const { ref, visible } = useRevealOnce();
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % SYNC_WORDS.length), 2500);
-    return () => clearInterval(id);
-  }, []);
   return (
     <section ref={ref} data-section="03-sync" className="relative px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
-      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
-        Start on one device.{" "}
-        <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
-        on every other.
-      </p>
+      {/* the statement is a real section heading — the document outline and
+          screen readers must see the same hierarchy the eye sees
+          (typography-audit law: no statement rendered as a bare paragraph) */}
+      <h2 className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+        One account. <span style={{ color: COLORS.blue }}>Open it in your browser.</span>
+      </h2>
       <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17px] transition-all duration-700 ease-apple delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
-        Conversations, progress, and context sync with your Visionary account, automatically and privately — web today, with apps as they launch.
+        Sign in on another device to access your account and saved learning history. Continuing a lesson or project across devices is still in development.
       </p>
       <div className="mt-9 flex justify-center">
         <QuietLink to="/contact">
@@ -371,7 +366,7 @@ function DownloadTrustBand() {
     <section ref={ref} data-section="04b-strip" className="relative px-6" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
-          <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
+          <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} aria-hidden="true" />
           <p className="text-center font-normal tracking-[0.24px] text-[16px]" style={{ color: COLORS.ink }}>
             Signed builds and automatic updates are planned for every platform. The web is live today, and your data stays yours.
           </p>
@@ -388,22 +383,22 @@ function DownloadCTASection() {
     <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-apple ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         {/* Section-head role — see 02-platforms (typography audit 2026-11-03):
-            the page's closing statement is a section head too, so it carries
+            the page’s closing statement is a section head too, so it carries
             the same section tier as its siblings. */}
         <h2 data-type="section" className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Still deciding? The web is one click away.
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
+          <AuthAwareLink to="/register" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full bg-[#1d1d1f] px-[21px] font-medium leading-[1.176] tracking-[-0.011em] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#272729] active:scale-[0.98] active:bg-[#18181a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Continue on web
-          </Link>
+          </AuthAwareLink>
           <Link to="/how-it-works" className="inline-flex h-11 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[-0.011em] text-[#0066cc] transition-colors duration-200 hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See how it works
             <ChevronIcon className="h-4 w-4" />
           </Link>
         </div>
         <p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]" style={{ color: COLORS.grey }}>
-          No install, no waiting. Pick up the app whenever you're ready.
+          No install, no waiting. Pick up the app whenever you’re ready.
         </p>
       </div>
     </section>

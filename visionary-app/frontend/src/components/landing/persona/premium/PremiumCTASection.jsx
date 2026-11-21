@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AuthAwareLink from "@/components/landing/AuthAwareLink";
 import { useRevealOnce } from "@/components/landing/system/hooks";
 import ScrollReveal from "../sections/ScrollReveal.jsx";
 import RevealItem from "../sections/RevealItem.jsx";
@@ -7,10 +8,10 @@ import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
 
 /* ═══════════════════════ 12 · CTA ═══════════════════════
-   The closer bookends the hero on Apple's product-hero anatomy: the statement
+   The closer bookends the hero on Apple’s product-hero anatomy: the statement
    opens the chapter (no eyebrow), one text-only primary pill with one quiet
-   path beside it, and the small print beneath — the way Apple's product
-   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page's forks under the actions — Apple's tail mini-router. */
+   path beside it, and the small print beneath — the way Apple’s product
+   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page’s forks under the actions — Apple’s tail mini-router. */
 function PremiumCTASection({ heading, sub, routeLinks, variant }) {
   const { ref } = useRevealOnce();
   const closing = variant === "closing";
@@ -24,9 +25,9 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           : "relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]"
       }
     >
-      {/* The landing's ceremonial close — Beats'/Apple's black closing band:
-          one line, one pair of actions, the product's own breath of light
-          beneath, and the orbit's two faint rings crossing the lower third.
+      {/* The landing’s ceremonial close — Beats'/Apple’s black closing band:
+          one line, one pair of actions, the product’s own breath of light
+          beneath, and the orbit’s two faint rings crossing the lower third.
           No grid, no columns: the page ends on a moment, not another reading
           task. */}
       {closing ? (
@@ -91,14 +92,14 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           </RevealItem>
           <RevealItem idx={2}>
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/register"
+            <AuthAwareLink to="/register"
+              signedInLabel="Open Visionary"
               className={`inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-[21px] font-medium text-[17px] leading-[1.176] tracking-[-0.011em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px] ${
                 closing ? "bg-white text-[#1d1d1f] hover:bg-[#f5f5f7]" : "bg-[#1d1d1f] text-white hover:bg-[#272729]"
               }`}
             >
               Get started
-            </Link>
+            </AuthAwareLink>
             <Link
               to="/contact"
               className={`inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px] ${

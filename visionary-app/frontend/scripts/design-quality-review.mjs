@@ -24,6 +24,20 @@ const ctx={personId:'design-quality',workspaceId:'design-quality:student',role:'
  * login UI in this script's own browser context; the Firebase session
  * persists for every later navigation. */
 const QA_EMAIL='qa.designer@example.test', QA_PASSWORD='Visionary#2026';
+/* Local dev builds run local auth mode: visionary_users lives in the context's
+ * own localStorage, so a fresh context cannot sign in for an account created
+ * elsewhere. DESIGN_REGISTER_FIXTURE=1 makes this instrument create the QA
+ * persona through the product's real /register → onboarding journey first,
+ * inside its own context; the cross-context login path below stays the
+ * fallback for a server-backed (VITE_AUTH_MODE=firebase) runtime. */
+const registerAndGo = async () => {
+ const { registerFixturePersona } = await import('./registerFixturePersona.mjs');
+ /* The onboarding journey is validated at desktop width; restore the audit
+  * viewport (390x900) afterwards. */
+ await page.setViewportSize({width:1280,height:900});
+ try { await registerFixturePersona({ page, base, email: QA_EMAIL, password: QA_PASSWORD, persona: { targets: ['I am a Learner', 'School'], name: 'Meera' } }); }
+ finally { await page.setViewportSize({width:390,height:900}); }
+};
 const loginViaUi = async () => {
  for (let attempt = 0; attempt < 2; attempt++) {
   await page.goto(`${base}/login`,{waitUntil:'domcontentloaded'});
@@ -94,7 +108,8 @@ const renderedAudit=()=>{
   };
 };
 try {
- await loginViaUi();
+ if (process.env.DESIGN_REGISTER_FIXTURE) await registerAndGo();
+ else await loginViaUi();
  /* The fixture services key on the signed-in identity: read the live session's
   * person/workspace ids after the UI login instead of the legacy constants. */
  const liveCtx = await page.evaluate(() => {

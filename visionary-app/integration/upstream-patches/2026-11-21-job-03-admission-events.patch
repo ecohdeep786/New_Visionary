@@ -1,0 +1,61 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index 27a9f6a0..3d310b12 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -641,0 +642 @@ model WorkloadJob {
++  provider          String?
+@@ -658,0 +660 @@ model WorkloadJob {
++  events            WorkloadJobEvent[]
+@@ -662,0 +665,3 @@ model WorkloadJob {
++  @@index([uid, state], map: "workload_jobs_owner_state_idx")
++  @@index([workspaceId, state], map: "workload_jobs_workspace_state_idx")
++  @@index([queue, state], map: "workload_jobs_queue_state_idx")
+@@ -665,0 +671,48 @@ model WorkloadJob {
++model WorkloadJobEvent {
++  jobId     String
++  cursor    Int
++  state     WorkloadJobState
++  attempt   Int
++  createdAt DateTime         @default(now()) @db.Timestamptz(3)
++  job       WorkloadJob      @relation(fields: [jobId], references: [id], onDelete: Cascade)
++
++  @@id([jobId, cursor])
++  @@map("workload_job_events")
++}
++
++model WorkloadAdmissionPolicy {
++  id           Int @id
++  perUser      Int
++  perWorkspace Int
++  perQueue     Int
++  fleet        Int
++
++  @@map("workload_admission_policy")
++}
++
++model WorkloadProviderLimit {
++  provider      String @id
++  dailyAttempts Int
++  usage         WorkloadProviderUsage[]
++
++  @@map("workload_provider_limits")
++}
++
++model WorkloadProviderUsage {
++  provider String
++  day      DateTime              @db.Date
++  used     Int
++  policy   WorkloadProviderLimit @relation(fields: [provider], references: [provider], onDelete: Restrict)
++
++  @@id([provider, day])
++  @@map("workload_provider_usage")
++}
++
++model WorkloadQueueTurn {
++  queue String @id
++  turn  BigInt
++
++  @@index([turn], map: "workload_queue_turn_idx")
++  @@map("workload_queue_turns")
++}
++

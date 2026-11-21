@@ -1,0 +1,601 @@
+{
+  "url": "http://localhost:5174",
+  "side": "before",
+  "started": "2026-11-09T07:14:52.026Z",
+  "checks": [
+    {
+      "stage": "A1-empty-cta",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": false,
+      "emptyStateCta": {
+        "label": "empty-state-cta",
+        "text": "Create your first class",
+        "cls": "inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-med",
+        "type": null,
+        "inlineStyle": "background-color: rgb(11, 87, 210);",
+        "bg": "rgb(11, 87, 210)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "12px",
+        "h": 48,
+        "w": 214,
+        "fgRatio": 6.35
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "A2-dialog-disabled-submit",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": false,
+      "emptyStateCta": {
+        "label": "empty-state-cta",
+        "text": "Create your first class",
+        "cls": "inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-med",
+        "type": null,
+        "inlineStyle": "background-color: rgb(11, 87, 210);",
+        "bg": "rgb(11, 87, 210)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "12px",
+        "h": 48,
+        "w": 214,
+        "fgRatio": 6.35
+      },
+      "dialogSubmit": {
+        "label": "dialog-primary-submit",
+        "text": "Create class",
+        "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+        "type": "submit",
+        "inlineStyle": "background-color: rgb(11, 87, 210);",
+        "bg": "rgb(11, 87, 210)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 120,
+        "fgRatio": 6.35
+      },
+      "dialogCancel": {
+        "label": "dialog-cancel",
+        "text": "Cancel",
+        "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+        "type": "button",
+        "inlineStyle": null,
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(11, 87, 210)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 85,
+        "fgRatio": 6.35
+      },
+      "focusedInput": {
+        "label": "modal-field-keyboard-focus",
+        "borderColor": "rgb(66, 133, 244)",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px, rgb(66, 133, 244) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "A2-dialog-enabled-submit",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": false,
+      "emptyStateCta": {
+        "label": "empty-state-cta",
+        "text": "Create your first class",
+        "cls": "inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-med",
+        "type": null,
+        "inlineStyle": "background-color: rgb(11, 87, 210);",
+        "bg": "rgb(11, 87, 210)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "12px",
+        "h": 48,
+        "w": 214,
+        "fgRatio": 6.35
+      },
+      "dialogSubmit": {
+        "label": "dialog-primary-submit",
+        "text": "Create class",
+        "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+        "type": "submit",
+        "inlineStyle": "background-color: rgb(11, 87, 210);",
+        "bg": "rgb(11, 87, 210)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 120,
+        "fgRatio": 6.35
+      },
+      "dialogCancel": {
+        "label": "dialog-cancel",
+        "text": "Cancel",
+        "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+        "type": "button",
+        "inlineStyle": null,
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(11, 87, 210)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 85,
+        "fgRatio": 6.35
+      },
+      "focusedInput": {
+        "label": "modal-field-keyboard-focus",
+        "borderColor": "rgb(66, 133, 244)",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px, rgb(66, 133, 244) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "A4-populated-header",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": false,
+      "headerCreate": {
+        "label": "page-header-create",
+        "text": "Create class",
+        "cls": "v-button primary",
+        "type": null,
+        "inlineStyle": null,
+        "bg": "rgb(0, 113, 227)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "12px",
+        "h": 48,
+        "w": 144,
+        "fgRatio": 4.7
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "B1-header-dark",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": true,
+      "headerCreate": {
+        "label": "page-header-create",
+        "text": "Create class",
+        "cls": "v-button primary",
+        "type": null,
+        "inlineStyle": null,
+        "bg": "rgb(170, 199, 255)",
+        "color": "rgb(9, 43, 97)",
+        "radius": "12px",
+        "h": 48,
+        "w": 144,
+        "fgRatio": 8.06
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "B2-dialog-dark-disabled-submit",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": true,
+      "headerCreate": {
+        "label": "page-header-create",
+        "text": "Create class",
+        "cls": "v-button primary",
+        "type": null,
+        "inlineStyle": null,
+        "bg": "rgb(170, 199, 255)",
+        "color": "rgb(9, 43, 97)",
+        "radius": "12px",
+        "h": 48,
+        "w": 144,
+        "fgRatio": 8.06
+      },
+      "dialogSubmit": {
+        "label": "dialog-primary-submit",
+        "text": "Create class",
+        "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+        "type": "submit",
+        "inlineStyle": "background-color: rgb(11, 87, 210);",
+        "bg": "rgb(11, 87, 210)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 120,
+        "fgRatio": 6.35
+      },
+      "dialogCancel": {
+        "label": "dialog-cancel",
+        "text": "Cancel",
+        "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+        "type": "button",
+        "inlineStyle": null,
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(11, 87, 210)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 85,
+        "fgRatio": 2.69
+      },
+      "focusedInput": {
+        "label": "modal-field-keyboard-focus",
+        "borderColor": "rgb(133, 143, 159)",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px, rgb(66, 133, 244) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "B2-dialog-dark-enabled-submit",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": true,
+      "headerCreate": {
+        "label": "page-header-create",
+        "text": "Create class",
+        "cls": "v-button primary",
+        "type": null,
+        "inlineStyle": null,
+        "bg": "rgb(170, 199, 255)",
+        "color": "rgb(9, 43, 97)",
+        "radius": "12px",
+        "h": 48,
+        "w": 144,
+        "fgRatio": 8.06
+      },
+      "dialogSubmit": {
+        "label": "dialog-primary-submit",
+        "text": "Create class",
+        "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+        "type": "submit",
+        "inlineStyle": "background-color: rgb(11, 87, 210);",
+        "bg": "rgb(11, 87, 210)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 120,
+        "fgRatio": 6.35
+      },
+      "dialogCancel": {
+        "label": "dialog-cancel",
+        "text": "Cancel",
+        "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+        "type": "button",
+        "inlineStyle": null,
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(11, 87, 210)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 85,
+        "fgRatio": 2.69
+      },
+      "focusedInput": {
+        "label": "modal-field-keyboard-focus",
+        "borderColor": "rgb(133, 143, 159)",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px, rgb(66, 133, 244) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "C0-after-save",
+      "url": "http://localhost:5174/dashboard/settings",
+      "dark": false,
+      "checkedAccent": "green"
+    },
+    {
+      "stage": "C1-populated-header-accentG",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": false,
+      "headerCreate": {
+        "label": "page-header-create",
+        "text": "Create class",
+        "cls": "v-button primary",
+        "type": null,
+        "inlineStyle": null,
+        "bg": "rgb(0, 113, 227)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "12px",
+        "h": 48,
+        "w": 144,
+        "fgRatio": 4.7
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "C2-dialog-accentG-disabled-submit",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": false,
+      "headerCreate": {
+        "label": "page-header-create",
+        "text": "Create class",
+        "cls": "v-button primary",
+        "type": null,
+        "inlineStyle": null,
+        "bg": "rgb(0, 113, 227)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "12px",
+        "h": 48,
+        "w": 144,
+        "fgRatio": 4.7
+      },
+      "dialogSubmit": {
+        "label": "dialog-primary-submit",
+        "text": "Create class",
+        "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+        "type": "submit",
+        "inlineStyle": "background-color: rgb(19, 115, 51);",
+        "bg": "rgb(19, 115, 51)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 120,
+        "fgRatio": 5.95
+      },
+      "dialogCancel": {
+        "label": "dialog-cancel",
+        "text": "Cancel",
+        "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+        "type": "button",
+        "inlineStyle": null,
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(11, 87, 210)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 85,
+        "fgRatio": 6.35
+      },
+      "focusedInput": {
+        "label": "modal-field-keyboard-focus",
+        "borderColor": "rgb(66, 133, 244)",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px, rgb(66, 133, 244) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "checkedAccent": null
+    },
+    {
+      "stage": "C2-dialog-accentG-enabled-submit",
+      "url": "http://localhost:5174/dashboard/classes",
+      "dark": false,
+      "headerCreate": {
+        "label": "page-header-create",
+        "text": "Create class",
+        "cls": "v-button primary",
+        "type": null,
+        "inlineStyle": null,
+        "bg": "rgb(0, 113, 227)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "12px",
+        "h": 48,
+        "w": 144,
+        "fgRatio": 4.7
+      },
+      "dialogSubmit": {
+        "label": "dialog-primary-submit",
+        "text": "Create class",
+        "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+        "type": "submit",
+        "inlineStyle": "background-color: rgb(19, 115, 51);",
+        "bg": "rgb(19, 115, 51)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 120,
+        "fgRatio": 5.95
+      },
+      "dialogCancel": {
+        "label": "dialog-cancel",
+        "text": "Cancel",
+        "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+        "type": "button",
+        "inlineStyle": null,
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(11, 87, 210)",
+        "radius": "9999px",
+        "h": 48,
+        "w": 85,
+        "fgRatio": 6.35
+      },
+      "focusedInput": {
+        "label": "modal-field-keyboard-focus",
+        "borderColor": "rgb(66, 133, 244)",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px, rgb(66, 133, 244) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "checkedAccent": null
+    }
+  ],
+  "persona": {
+    "emailDomain": "fap79-before-... (fresh, domain-redacted)"
+  },
+  "screenshots": [
+    "A1-empty-cta.png",
+    "A2-dialog-focused.png",
+    "A2-dialog-enabled.png",
+    "A3-created.png",
+    "A4-populated-header.png",
+    "B1-header-dark.png",
+    "B2-dialog-dark.png",
+    "B2-dialog-dark-enabled.png",
+    "C0-settings-saved.png",
+    "C1-populated-header-accentG.png",
+    "C2-dialog-accentG.png",
+    "C2-dialog-accentG-enabled.png",
+    "before-final.png"
+  ],
+  "A1": {
+    "label": "empty-state-cta",
+    "text": "Create your first class",
+    "cls": "inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-med",
+    "type": null,
+    "inlineStyle": "background-color: rgb(11, 87, 210);",
+    "bg": "rgb(11, 87, 210)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 48,
+    "w": 214,
+    "fgRatio": 6.35
+  },
+  "A2": {
+    "submit": {
+      "label": "dialog-primary-submit",
+      "text": "Create class",
+      "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+      "type": "submit",
+      "inlineStyle": "background-color: rgb(11, 87, 210);",
+      "bg": "rgb(11, 87, 210)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 120,
+      "fgRatio": 6.35
+    },
+    "cancel": {
+      "label": "dialog-cancel",
+      "text": "Cancel",
+      "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+      "type": "button",
+      "inlineStyle": null,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(11, 87, 210)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 85,
+      "fgRatio": 6.35
+    },
+    "focus": {
+      "label": "modal-field-keyboard-focus",
+      "borderColor": "rgb(66, 133, 244)",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px, rgb(66, 133, 244) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    }
+  },
+  "A2_enabled": {
+    "submit": {
+      "label": "dialog-primary-submit",
+      "text": "Create class",
+      "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+      "type": "submit",
+      "inlineStyle": "background-color: rgb(11, 87, 210);",
+      "bg": "rgb(11, 87, 210)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 120,
+      "fgRatio": 6.35
+    }
+  },
+  "A4": {
+    "label": "page-header-create",
+    "text": "Create class",
+    "cls": "v-button primary",
+    "type": null,
+    "inlineStyle": null,
+    "bg": "rgb(0, 113, 227)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 48,
+    "w": 144,
+    "fgRatio": 4.7
+  },
+  "B2": {
+    "submit": {
+      "label": "dialog-primary-submit",
+      "text": "Create class",
+      "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+      "type": "submit",
+      "inlineStyle": "background-color: rgb(11, 87, 210);",
+      "bg": "rgb(11, 87, 210)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 120,
+      "fgRatio": 6.35
+    },
+    "cancel": {
+      "label": "dialog-cancel",
+      "text": "Cancel",
+      "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+      "type": "button",
+      "inlineStyle": null,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(11, 87, 210)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 85,
+      "fgRatio": 2.69
+    }
+  },
+  "B2_enabled": {
+    "submit": {
+      "label": "dialog-primary-submit",
+      "text": "Create class",
+      "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+      "type": "submit",
+      "inlineStyle": "background-color: rgb(11, 87, 210);",
+      "bg": "rgb(11, 87, 210)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 120,
+      "fgRatio": 6.35
+    }
+  },
+  "C0": {
+    "checkedAccent": "green"
+  },
+  "C2": {
+    "header": {
+      "label": "page-header-create",
+      "text": "Create class",
+      "cls": "v-button primary",
+      "type": null,
+      "inlineStyle": null,
+      "bg": "rgb(0, 113, 227)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "12px",
+      "h": 48,
+      "w": 144,
+      "fgRatio": 4.7
+    },
+    "submit": {
+      "label": "dialog-primary-submit",
+      "text": "Create class",
+      "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+      "type": "submit",
+      "inlineStyle": "background-color: rgb(19, 115, 51);",
+      "bg": "rgb(19, 115, 51)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 120,
+      "fgRatio": 5.95
+    },
+    "cancel": {
+      "label": "dialog-cancel",
+      "text": "Cancel",
+      "cls": "h-10 rounded-full px-5 text-sm font-medium text-[#0b57d2] hover:bg-[#f",
+      "type": "button",
+      "inlineStyle": null,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(11, 87, 210)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 85,
+      "fgRatio": 6.35
+    }
+  },
+  "C2_enabled": {
+    "submit": {
+      "label": "dialog-primary-submit",
+      "text": "Create class",
+      "cls": "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 t",
+      "type": "submit",
+      "inlineStyle": "background-color: rgb(19, 115, 51);",
+      "bg": "rgb(19, 115, 51)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "9999px",
+      "h": 48,
+      "w": 120,
+      "fgRatio": 5.95
+    }
+  },
+  "paintVerdicts": {
+    "A1": true,
+    "A2_submit_disabled": true,
+    "A2_submit_enabled": true,
+    "A2_cancel": true,
+    "A2_focus": true,
+    "A4_header": true,
+    "B2_submit_dark_disabled": true,
+    "B2_submit_dark_enabled": true,
+    "B2_cancel_dark_contrast": true,
+    "C2_submit_accentG_disabled": true,
+    "C2_submit_accentG_enabled": true,
+    "C2_cancel_accentG": true,
+    "C2_header_stillToken": true,
+    "C0_saved": true
+  },
+  "verdict": "PASS",
+  "finished": "2026-11-09T07:15:37.688Z"
+}

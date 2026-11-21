@@ -12,6 +12,7 @@ export const imageInputs = Object.freeze([
   'frontend/src/', 'frontend/public/',
   'backend/upstream/backend/src/', 'backend/upstream/backend/prisma/schema.prisma',
   'backend/upstream/backend/tsconfig.json', 'backend/upstream/backend/tsconfig.product.json', 'backend/upstream/backend/nest-cli.json',
+  'backend/upstream/backend/tsconfig.outbox.json',
   'infrastructure/gcp/Dockerfile', 'infrastructure/gcp/Dockerfile.dockerignore',
   'infrastructure/gcp/runtime/package.json', 'infrastructure/gcp/runtime/package-lock.json',
   'infrastructure/gcp/firebase-web-config.json',

@@ -1,4 +1,5 @@
 import { professionalCopy } from '@/lib/professionalCopy';
+import WorkspaceOpening from '@/components/dashboard/WorkspaceOpening';
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BriefcaseBusiness, Layers, Target } from 'lucide-react';
@@ -131,7 +132,7 @@ function CareerWorkspace({
     }
   }
   if (workspaceError || result.error) return <div className="v-page" lang={locale}><h1 className="v-title">{t("Career path unavailable")}</h1><p className="v-notice v-error" role="alert" lang="en">{workspaceError || result.error}</p><p className="v-muted mt-3">{t("Use the workspace switcher to open your personal workspace. Your current edits can still be exported.")}</p><div className="mt-4 flex flex-wrap gap-3"><button className="v-button" onClick={() => {scope.refresh();setRetry(n => n + 1);}}>{t("Retry career path")}</button><button className="v-button" disabled={!ready && !title && !body} onClick={exportEdits}>{t("Export current edits")}</button></div></div>;
-  if (!ctx) return <div className="v-page" role="status" lang={locale}>{t("Opening your career workspace\u2026")}</div>;
+  if (!ctx) return <WorkspaceOpening locale={locale} title={t("Your next capability")} note={t("Opening your career workspace…")} />;
   if (ctx.role !== 'professional') return <div className="v-page" role="alert" lang={locale}>{t("Open a professional workspace to view this path.")}</div>;
   function save(event) {
     event.preventDefault();

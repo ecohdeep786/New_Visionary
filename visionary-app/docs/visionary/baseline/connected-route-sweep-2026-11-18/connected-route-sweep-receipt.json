@@ -1,0 +1,195 @@
+{
+  "at": "2026-11-18T08:37:54.250Z",
+  "base": "http://localhost:4200",
+  "routes": [
+    {
+      "route": "/dashboard/home",
+      "h1": "Your Visionary account",
+      "unavailable": false,
+      "blank": false,
+      "textLength": 172,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/learn",
+      "h1": "Saved learning",
+      "unavailable": false,
+      "blank": false,
+      "textLength": 178,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/ask",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/practice",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/build",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/explore",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/progress",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/notifications",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/profile",
+      "h1": "Your profile",
+      "unavailable": false,
+      "blank": false,
+      "textLength": 409,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/connections",
+      "h1": "Workspaces",
+      "unavailable": false,
+      "blank": false,
+      "textLength": 199,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/settings",
+      "h1": "Account security",
+      "unavailable": false,
+      "blank": false,
+      "textLength": 746,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/privacy",
+      "h1": "Approved data policy",
+      "unavailable": false,
+      "blank": false,
+      "textLength": 2187,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/subscription",
+      "h1": "Plans & payments",
+      "unavailable": false,
+      "blank": false,
+      "textLength": 94,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/support",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/classes",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/class/qa-class",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/learners",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/child",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/analytics",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/insights",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/people",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/cohorts",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    },
+    {
+      "route": "/dashboard/curriculum",
+      "h1": "This workspace area is not available yet",
+      "unavailable": true,
+      "blank": false,
+      "textLength": 224,
+      "pageErrors": []
+    }
+  ],
+  "totals": {
+    "routes": 23,
+    "failures": 0,
+    "pageErrorTotal": 0
+  }
+}

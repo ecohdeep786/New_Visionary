@@ -29,7 +29,10 @@ export class WorkspaceRepository {
   }
 
   private async assertConsentRuntime(tx: Store) {
-    if (!this.consentRuntime) return;
+    if (this.consentRuntime) await WorkspaceRepository.assertRuntimeIdentity(tx, this.consentRuntime);
+  }
+
+  static async assertRuntimeIdentity(tx: Pick<Store, '$queryRawUnsafe'>, expected: { role: string; schema: string; database: string }) {
     const rows = await tx.$queryRawUnsafe<Array<{ role: string; schema: string; database: string; privileged: boolean; delegated: boolean; owns_or_controls: boolean }>>(`
       SELECT current_user AS role, current_schema() AS schema, current_database() AS database,
         r.rolsuper OR r.rolcreatedb OR r.rolcreaterole OR r.rolbypassrls AS privileged,
@@ -42,7 +45,7 @@ export class WorkspaceRepository {
               WHEN c.relkind IN ('r','p') THEN has_table_privilege(d.oid,c.oid,'INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER')
               WHEN c.relkind='S' THEN has_sequence_privilege(d.oid,c.oid,'USAGE,UPDATE') ELSE FALSE END)))) AS owns_or_controls
         FROM pg_roles r WHERE r.rolname=current_user`);
-    const row = rows[0], expected = this.consentRuntime;
+    const row = rows[0];
     if (!row || row.role !== expected.role || row.schema !== expected.schema || row.database !== expected.database ||
         row.privileged || row.delegated || row.owns_or_controls) throw new ServiceUnavailableException('Consent runtime identity is unavailable.');
   }
@@ -92,7 +95,7 @@ export class WorkspaceRepository {
    * account lock as revokeConsent prevents a checked delivery from committing
    * after a concurrent revocation. Never perform provider/network I/O here. */
   async withConsentDelivery<T>(uid: string, purpose: string, resourceId: string | undefined,
-    consentVersion: string | undefined, commit: (tx: Store) => Promise<T>): Promise<T> {
+    consentVersion: string | undefined, commit: (tx: Store, grantId: string) => Promise<T>): Promise<T> {
     if (typeof uid !== 'string' || !uid.trim()) throw new ForbiddenException('A consent subject is required.');
     if (!purpose || !consentVersion) throw new ForbiddenException('An explicit purpose and policy version are required.');
     return this.prisma.$transaction(async tx => {
@@ -119,12 +122,13 @@ export class WorkspaceRepository {
       LIMIT 1
     `;
         if (!grants.length) throw new ForbiddenException('Required consent is unavailable or revoked.');
+        return grants[0].id;
       };
-      await authorized();
-      const result = await commit(tx);
+      const grantId = await authorized();
+      const result = await commit(tx, grantId);
       // Database writes can wait too. Expiry during the callback must roll
       // back its writes rather than commit a delivery using an earlier lease.
-      await authorized();
+      if (await authorized() !== grantId) throw new ForbiddenException('Required consent has changed.');
       return result;
     });
   }

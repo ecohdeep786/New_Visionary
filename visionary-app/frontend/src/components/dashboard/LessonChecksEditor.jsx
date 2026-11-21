@@ -8,7 +8,7 @@ export default function LessonChecksEditor({
   locale = 'en'
 }) {
   const copy = teacherCopy(locale);
-  return <section lang={locale} aria-labelledby="lesson-checks-title" className="rounded-2xl border border-[#dadce0] p-4 sm:p-5">
+  return <section lang={locale} aria-labelledby="lesson-checks-title" className="rounded-2xl border border-[#d2d2d7] p-4 sm:p-5">
     <div className="flex flex-wrap items-start justify-between gap-3">
       <div><h3 id="lesson-checks-title" className="text-base font-medium">{copy("Check understanding")}</h3><p className="v-muted mt-1">{copy("Write up to ten short-answer questions. Learners respond in their own words; you review their work.")}</p></div>
       <button type="button" className="v-button" disabled={checks.length >= 10} onClick={() => onChange([...checks, {

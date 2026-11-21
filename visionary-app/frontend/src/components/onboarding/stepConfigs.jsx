@@ -33,6 +33,13 @@ export const LANGUAGES = [
   "Urdu", "Odia", "Assamese", "Others",
 ].map((l) => ({ id: l, label: l }));
 
+// FAP-72: the deployed UI serves exactly en/hi/bn. The full 14 above are
+// only a saved CONTENT-INTEREST preference, never a UI switch; every
+// language-preference surface must carry the honest note so choosing
+// Tamil/Telugu/… never implies a switchable interface that does not exist.
+export const SERVED_UI_LANGUAGES = ["English", "Hindi", "Bengali"].map((l) => ({ id: l, label: l }));
+export const UI_LANGUAGE_NOTE = "UI currently available in English, Hindi and Bengali — your choice helps us prioritise.";
+
 export const CLASSES = [
   "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6",
   "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12",

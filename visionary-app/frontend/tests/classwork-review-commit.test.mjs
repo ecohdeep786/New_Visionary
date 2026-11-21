@@ -1,15 +1,16 @@
 import test,{beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {storage,fixture,reset} from './fixtures/classCurriculum.mjs';
+import {signInAs} from './helpers/previewAuth.mjs';
 import {appClient} from '../src/api/appClient.js';
 import {submitClassworkResponses,reviewClasswork} from '../src/services/classroomService.js';
 import {classworkReviewRevision} from '../src/lib/classworkRubric.js';
 beforeEach(reset);
 
 async function setup(){
- const f=await fixture();storage.set('visionary_session_token',f.learner.personId);
+ const f=await fixture();signInAs(f.learner.personId);
  const submission=await submitClassworkResponses(f.learner,{assignmentId:f.assignment.id,text:'One half divides the whole equally.',selfReview:{parts:'Two equal parts.'}});
- storage.set('visionary_session_token',f.teacher.personId);
+ signInAs(f.teacher.personId);
  return {...f,submission};
 }
 async function duringCommit(change,run){
@@ -27,9 +28,9 @@ test('a newer learner attempt at commit cannot receive feedback for the older at
  const f=await setup();let saved;
  await duringCommit(async entity=>{
   await entity.update(f.submission.id,{status:'revision_requested',grade:null,feedback:'Explain equal parts.',criterion_feedback:{},graded_date:'2026-10-04T12:00:00Z'});
-  storage.set('visionary_session_token',f.learner.personId);
+  signInAs(f.learner.personId);
   await submitClassworkResponses(f.learner,{assignmentId:f.assignment.id,text:'Two equal intervals form the whole.',selfReview:{parts:'Both intervals have equal length.'}});
-  storage.set('visionary_session_token',f.teacher.personId);saved=storage.get('visionary_entity_Submission');
+  signInAs(f.teacher.personId);saved=storage.get('visionary_entity_Submission');
  },async()=>assert.rejects(reviewClasswork(f.teacher,draft(f)),/review changed/));
  assert.equal(storage.get('visionary_entity_Submission'),saved);
  const rows=JSON.parse(saved);assert.equal(rows[0].attempt,2);assert.equal(rows[0].status,'submitted');assert.equal(rows[0].revision_history.length,1);

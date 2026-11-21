@@ -7,9 +7,9 @@ export function productSetupSteps(data) {
     { id: 'focus', title: 'What are you learning?', subtitle: 'Choose the starting point that fits you. Learning language and content availability are separate.', illustration: 'learn' },
     { id: 'context', title: { school: 'Choose your school context', higher_ed: 'What would you like to study?', competitive: 'Which exam are you preparing for?', professional: 'What would you like to explore?' }[data.education_stage] || 'Choose a starting point', subtitle: ['higher_ed', 'professional'].includes(data.education_stage) ? 'Add a course or interest if you have one in mind. You can also choose later.' : 'These details help you find relevant material. They do not connect you to an institution.', illustration: 'growth', optional: ['higher_ed', 'professional'].includes(data.education_stage) }];
 }
-export function setupStepReady(step, data, live = false) {
+export function setupStepReady(step, data) {
   const text = (key, maximum = 2000) => typeof data[key] === 'string' && !!data[key].trim() && data[key].trim().length <= maximum;
-  if (step.id === 'about') return text('full_name', 80) && ['adult', 'minor'].includes(data.age_band) && (!live || data.age_band === 'adult') && (data.identity === 'student' || data.age_band === 'adult');
+  if (step.id === 'about') return text('full_name', 80) && data.age_band === 'adult';
   if (step.id === 'focus') return ['school', 'higher_ed', 'competitive', 'professional'].includes(data.education_stage);
   if (step.id === 'context') {
     if (data.education_stage === 'school') return text('board') && text('grade_level') && (data.board !== 'State' || text('state'));

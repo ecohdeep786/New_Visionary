@@ -41,3 +41,11 @@ run(['--test', '--test-reporter=tap', ...concurrencyTests.map(f => join(root, 'b
 
 const admissionTests = readdirSync(join(root, 'backend/tests/contracts/data-09')).filter(f => f.endsWith('.test.mjs'));
 run(['--test', '--test-reporter=tap', ...admissionTests.map(f => join(root, 'backend/tests/contracts/data-09', f))]);
+
+run(['--test', '--test-reporter=tap',
+  join(root, 'backend/tests/contracts/data-jobs/outbox.test.mjs'),
+  join(root, 'backend/tests/contracts/data-jobs/outbox.sql.test.mjs'),
+  join(root, 'backend/tests/contracts/data-jobs/jobs.test.mjs'),
+  join(root, 'backend/tests/contracts/data-jobs/jobs.sql.test.mjs'),
+  join(root, 'backend/tests/contracts/data-jobs/admission.test.mjs'),
+]);

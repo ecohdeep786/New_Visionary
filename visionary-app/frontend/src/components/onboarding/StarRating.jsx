@@ -12,7 +12,7 @@ export default function StarRating({ value = 0, onChange, size = "w-6 h-6" }) {
         >
           <Star
             className={`${size} ${
-              n <= value ? "fill-[#fbbc05] text-[#fbbc05]" : "text-[#dadce0]"
+              n <= value ? "fill-[#fbbc05] text-[#fbbc05]" : "text-[#d2d2d7]"
             }`}
           />
         </button>

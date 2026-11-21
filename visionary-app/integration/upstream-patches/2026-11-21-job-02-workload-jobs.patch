@@ -1,0 +1,46 @@
+diff --git a/visionary-app/backend/upstream/backend/prisma/schema.prisma b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+index 08a979f0..27a9f6a0 100644
+--- a/visionary-app/backend/upstream/backend/prisma/schema.prisma
++++ b/visionary-app/backend/upstream/backend/prisma/schema.prisma
+@@ -353,0 +354 @@ model Person {
++  workloadJobs   WorkloadJob[]
+@@ -635,0 +637,39 @@ enum ConsentJobState {
++model WorkloadJob {
++  id                String           @id
++  uid               String
++  workspaceId       String?
++  queue             String
++  kind              String
++  state             WorkloadJobState @default(PENDING)
++  attempt           Int              @default(0)
++  maxAttempts       Int
++  revision          Int              @default(0)
++  createdAt         DateTime         @default(now()) @db.Timestamptz(3)
++  claimedUntil      DateTime?        @db.Timestamptz(3)
++  leaseToken        String?
++  attemptToken      String?
++  runBy             DateTime?        @db.Timestamptz(3)
++  nextAttemptAt     DateTime?        @db.Timestamptz(3)
++  completedAt       DateTime?        @db.Timestamptz(3)
++  cancellationToken String?
++  lastError         String?
++  cleanupAttempts   Int              @default(0)
++  cleanupError      String?
++  person            Person           @relation(fields: [uid], references: [uid], onDelete: Restrict)
++
++  @@index([queue, createdAt, id], map: "workload_jobs_queue_idx")
++  @@index([state, claimedUntil, id], map: "workload_jobs_lease_idx")
++  @@index([state, runBy, id], map: "workload_jobs_deadline_idx")
++  @@map("workload_jobs")
++}
++
++enum WorkloadJobState {
++  PENDING
++  CLAIMED
++  RUNNING
++  DONE
++  FAILED
++  CANCELLED
++  QUARANTINED
++}
++

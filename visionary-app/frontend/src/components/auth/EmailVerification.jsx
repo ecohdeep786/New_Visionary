@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { authErrorMessage } from '@/lib/authErrors';
+import { authLink } from '@/lib/authReturnTo';
 import { primaryBtnAutoClass, Spinner } from './AuthUI';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -25,6 +26,6 @@ export default function EmailVerification({ email, onVerified, initialMessage = 
     {message && <p role="status" className="text-sm">{message}</p>}
     <button className={primaryBtnAutoClass} disabled={busy} onClick={() => act(true)}>{busy ? <Spinner /> : 'I verified my email'}</button>
     <button className="text-sm text-[#0066cc]" disabled={busy || cooldown > 0} onClick={() => act(false)}>{cooldown ? 'Resend available in ' + cooldown + 's' : 'Resend verification link'}</button>
-    <Link to="/login" state={{ email }} className="text-sm text-[#0066cc] hover:underline">Sign in again</Link>
+    <Link to={authLink("/login")} state={{ email }} className="text-sm text-[#0066cc] hover:underline">Sign in again</Link>
   </div>;
 }
