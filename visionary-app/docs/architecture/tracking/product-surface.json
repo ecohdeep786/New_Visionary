@@ -164,10 +164,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:288:15",
-        "frontend/src/pages/Landing.jsx:327:11",
-        "frontend/src/pages/Landing.jsx:395:17",
-        "frontend/src/pages/Landing.jsx:485:13"
+        "frontend/src/pages/Landing.jsx:292:15",
+        "frontend/src/pages/Landing.jsx:331:11",
+        "frontend/src/pages/Landing.jsx:399:17",
+        "frontend/src/pages/Landing.jsx:493:13"
       ],
       "operations": [
         "public-discovery",
@@ -79166,9 +79166,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:288:15",
+      "id": "frontend/src/pages/Landing.jsx:292:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 288,
+      "line": 292,
       "column": 15,
       "tag": "ProgressDots",
       "events": [
@@ -79195,9 +79195,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:327:11",
+      "id": "frontend/src/pages/Landing.jsx:331:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 327,
+      "line": 331,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -79220,9 +79220,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:395:17",
+      "id": "frontend/src/pages/Landing.jsx:399:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 395,
+      "line": 399,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79244,9 +79244,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:485:13",
+      "id": "frontend/src/pages/Landing.jsx:493:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 485,
+      "line": 493,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -82718,7 +82718,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "e6df341388c0aa6fc6809a0f9662e42fd203a049831b3adef181198210667ee5"
+      "sourceSha256": "15c1f3ddc9d36439c4c7cb194e06770c32f10c12e4c9a39d586f0460a150f857"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

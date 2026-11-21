@@ -200,7 +200,11 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       words={LANDING_HERO_WORDS}
       staticHeadline="grows with you."
       srSentence="Learning that grows with you."
-      sub="Lessons, questions, practice and projects stay connected—so every step builds on the last, in the language you think in."
+      /* No hero sub — Apple's product heroes are name + fragment ("iPhone
+         Duo / Hello, hello.", measured 2026-11-21): the headline, the CTA
+         pair, and the audience rail are the whole first screen. The one
+         plain explanation lives in the One-intelligence chapter below,
+         where the reader arrives already primed to learn what this is. */
       cast={LANDING_HERO_LINEUP}
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaTo={signedIn ? "/dashboard/home" : "/register"}
@@ -417,7 +421,11 @@ function LandingIntelligenceSection() {
   return (
     <Suspense fallback={null}><PremiumIntelligenceSection
       steps={INTELLIGENCE_STEPS}
-      sub="From the first question to using what you know."
+      /* The front door's one plain explanation — the reader arrives from the
+         hero promise already primed, and this line says what the product is
+         in Apple's plain voice: concrete verbs, two short sentences, no
+         dashes. Every claim is the platform's own released promise. */
+      sub="It remembers where you stopped, answers your questions, and turns practice into progress. In your language."
       promo
       ctaLabel="See how it works"
       ctaTo="/how-it-works"
@@ -442,7 +450,7 @@ function LandingRouterSection() {
     <Suspense fallback={null}><PremiumExploreSection
       eyebrow="Who it’s for"
       heading={<>One intelligence, <span className="accent-gradient">five journeys.</span></>}
-      sub="Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to your stage and carries your progress forward."
+      sub="Learning, teaching, guiding, building, leading. Visionary adapts to your stage and carries your progress forward."
       headingRole="section"
       subRole="editorial-body"
       categories={ROUTER_CATEGORIES}
