@@ -164,10 +164,11 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:301:15",
-        "frontend/src/pages/Landing.jsx:340:11",
-        "frontend/src/pages/Landing.jsx:408:17",
-        "frontend/src/pages/Landing.jsx:502:13"
+        "frontend/src/pages/Landing.jsx:308:15",
+        "frontend/src/pages/Landing.jsx:318:15",
+        "frontend/src/pages/Landing.jsx:366:11",
+        "frontend/src/pages/Landing.jsx:434:17",
+        "frontend/src/pages/Landing.jsx:528:13"
       ],
       "operations": [
         "public-discovery",
@@ -79166,20 +79167,22 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:301:15",
+      "id": "frontend/src/pages/Landing.jsx:308:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 301,
+      "line": 308,
       "column": 15,
-      "tag": "ProgressDots",
+      "tag": "button",
       "events": [
         {
-          "event": "onSelect",
-          "expression": "{goTo}"
+          "event": "onClick",
+          "expression": "{() => goTo(index - 1)}"
         }
       ],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "e5069051b7204d1e7301c0c6a778aa6b275ca2fb63abf57fedfdb4b5672c2183",
+      "calls": [
+        "goTo"
+      ],
+      "disabled": "disabled={index === 0}",
+      "declarationSha256": "4cd1a73fe9298ed829abf943662770a35151efe8f3deeabc75fe16f8bd1801b3",
       "routeIds": [
         "/"
       ],
@@ -79195,9 +79198,40 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:340:11",
+      "id": "frontend/src/pages/Landing.jsx:318:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 340,
+      "line": 318,
+      "column": 15,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => goTo(index + 1)}"
+        }
+      ],
+      "calls": [
+        "goTo"
+      ],
+      "disabled": "disabled={index === PROBLEM_SLIDES.length - 1}",
+      "declarationSha256": "57d2101369b45a1cc72a60a161c79ee96bc50b260a1f4e58800ae62626b8cb6c",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:366:11",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 366,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -79220,9 +79254,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:408:17",
+      "id": "frontend/src/pages/Landing.jsx:434:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 408,
+      "line": 434,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79244,9 +79278,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:502:13",
+      "id": "frontend/src/pages/Landing.jsx:528:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 502,
+      "line": 528,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -82718,7 +82752,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "c4cd040e5ee02d4e7eaa3af92d1e55330fabfad8048c1cad6b25abbdea7a9ec7"
+      "sourceSha256": "53eeeb87f9e73a8da778be7280f8789d9d9400e1b815d9e8e8e180c432248fca"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85997,11 +86031,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1532,
-    "routeReachableDeclarations": 1529,
+    "controlDeclarations": 1533,
+    "routeReachableDeclarations": 1530,
     "controlFiles": 193,
     "states": {
-      "connected": 531,
+      "connected": 532,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3

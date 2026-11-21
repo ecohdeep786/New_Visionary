@@ -117,9 +117,13 @@ try {
 
   const problem = page.locator('main section[data-section="02-problem"]');
   await problem.scrollIntoViewIfNeeded();
-  await problem.getByRole('button', { name: 'Go to slide 2' }).click();
+  await problem.getByRole('button', { name: 'Previous story' }).waitFor({ state: 'visible' });
+  assert.equal(await problem.getByRole('button', { name: 'Previous story' }).isEnabled(), false);
+  await problem.getByRole('button', { name: 'Next story' }).click();
   await page.getByRole('heading', { name: 'Knowledge is everywhere. Turning it into capability isn’t.' }).waitFor({ state: 'visible' });
-  receipt.interactions.push('Problem carousel selects the professional story');
+  assert.equal(await problem.getByRole('button', { name: 'Next story' }).isEnabled(), false);
+  await problem.getByRole('button', { name: 'Previous story' }).click();
+  receipt.interactions.push('Problem story switches only through the manual prev/next controls (bounds disable)');
 
   const gallery = page.locator('main section[data-section="13-explore"]');
   await gallery.scrollIntoViewIfNeeded();

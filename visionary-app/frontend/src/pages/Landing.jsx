@@ -23,7 +23,7 @@ import orgmeet from "@/assets/org-face-main-1600w.webp";
 // Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
-import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
+import { Accessibility, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
 
 /* One source of truth: every color resolves from system/tokens.js (the
    measured Apple-neutral system, see APPLE_MEASURED_REFERENCE_2026-10-21.md).
@@ -31,7 +31,7 @@ import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHa
    system/ui.jsx and system/hooks.js — the landing consumes the system rather
    than re-declaring it. */
 import { color as BRAND } from "@/components/landing/system/tokens";
-import { Reveal, ProgressDots } from "@/components/landing/system/ui";
+import { Reveal } from "@/components/landing/system/ui";
 import { useCycleIndex, useRevealContinuous } from "@/components/landing/system/hooks";
 import { useAuth } from "@/lib/AuthContext";
 
@@ -46,7 +46,6 @@ const PROBLEM_SLIDES = [
   { black: "Accessing knowledge is easy.", blue: "Applying it isn’t", persona: "A student", quote: "I watched eight hours of videos and still couldn’t solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
   { black: "Knowledge is everywhere.", blue: "Turning it into capability isn’t", persona: "A professional", quote: "I read every article. I still can’t turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
 ];
-const PROBLEM_MS = 4200;
 
 /* The five journeys — the landing’s category router. Rendered with the
    accepted line-up module (white cards on the grey ground): the studio
@@ -231,10 +230,12 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
    beneath the card. The photography is studio-white, so inside the white card
    the subject stands on the card’s own floor — no frame, no crop. The grey
    ground gives the white card its edge (the initiative’s "Our work in
-   education doesn’t end here." grammar). The three subjects stay mounted and
-   crossfade; the dots let the reader pace it. */
+   education doesn’t end here." grammar). The two subjects stay mounted and
+   crossfade; the reader paces the story through Apple's own gallery
+   controls (measured on /education "Real stories. Real impact.": MANUAL
+   prev/next chevrons at the card row's bottom-right — never auto-advance). */
 function LandingProblemSection() {
-  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
+  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
@@ -287,18 +288,43 @@ function LandingProblemSection() {
                     />
                   ))}
                 </div>
+                {/* Apple's story-card anatomy (measured on /education
+                    "Real stories. Real impact."): the card eyebrow — who is
+                    speaking — sits ABOVE the statement, never below it. The
+                    quote is the card's statement; the persona is its label. */}
                 <figcaption key={`q-${index}`} className="hero-fade-up flex flex-col justify-center px-6 py-8 [animation-delay:80ms] [animation-fill-mode:both] sm:px-10 sm:py-10 min-[1069px]:px-12 min-[1069px]:py-12">
-                  <blockquote>
-                    <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "22ch" }}>{slide.quote}</p>
+                  <p className="text-[14px] font-semibold" style={{ color: BRAND.graphite }}>{slide.persona}</p>
+                  <blockquote className="mt-4">
+                    <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "24ch" }}>{slide.quote}</p>
                   </blockquote>
-                  <p className="mt-5 text-[16px] font-medium tracking-[0] leading-[20px]" style={{ color: BRAND.slate }}>{slide.persona}</p>
                 </figcaption>
               </div>
             </div>
-            {/* Apple’s carousel control row — the pager sits under the card,
-                on the section floor, where the initiative’s own controls sit */}
-            <div className="mt-6 flex justify-start">
-              <ProgressDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} />
+            {/* Apple's gallery control row — manual prev/next chevrons at the
+                card row's bottom-right (/education "Real stories." grammar):
+                the reader paces the story; nothing auto-advances. Bounds
+                disable, exactly like the journeys gallery's controls. */}
+            <div className="mt-6 flex items-center justify-end gap-5">
+              <button
+                type="button"
+                aria-label="Previous story"
+                onClick={() => goTo(index - 1)}
+                disabled={index === 0}
+                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                style={{ borderColor: `${BRAND.ink}33`, color: `${BRAND.ink}99` }}
+              >
+                <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next story"
+                onClick={() => goTo(index + 1)}
+                disabled={index === PROBLEM_SLIDES.length - 1}
+                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                style={{ borderColor: `${BRAND.ink}33`, color: `${BRAND.ink}99` }}
+              >
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </button>
             </div>
           </div>
         </figure>

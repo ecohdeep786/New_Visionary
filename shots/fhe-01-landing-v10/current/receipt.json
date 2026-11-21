@@ -73,7 +73,7 @@
     "Mobile menu opens with a labelled modal, locks background, and Escape restores focus and scroll",
     "Mobile-to-desktop resize closes the dialog and restores the page",
     "Desktop audience navigation opens from keyboard focus and Escape restores its trigger",
-    "Problem carousel selects the professional story",
+    "Problem story switches only through the manual prev/next controls (bounds disable)",
     "Audience gallery next/previous controls move and restore the card track"
   ],
   "errors": [],
