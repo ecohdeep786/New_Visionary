@@ -12,7 +12,7 @@ const FOOTER_SECTIONS = [
     links: [
       { label: "Students", to: "/student" },
       { label: "Teachers", to: "/teacher" },
-      { label: "Parents", to: "/parent" },
+      { label: "Parents and guardians", to: "/parent" },
       { label: "Professionals", to: "/professional" },
       { label: "Organizations", to: "/organization" },
       { label: "How it works", to: "/how-it-works" },
