@@ -155,7 +155,7 @@ test("the unified h1 role law carries the same viewport cap on every hardcoded s
    * token system; before FAP-82 the steps were fixed rem, so /pricing and
    * /help h1s computed 88px at 320/200% and overflowed the viewport. */
   const steps = [
-    { media: null, cap: "min(2.75rem, 14vw)", minSupported: 320 },
+    { media: null, cap: "min(3rem, 15vw)", minSupported: 320 },
     { media: "min-width: 640px", cap: "min(4rem, 14vw)", minSupported: 640 },
     { media: "min-width: 1280px", cap: "min(5rem, 14vw)", minSupported: 1280 },
   ];

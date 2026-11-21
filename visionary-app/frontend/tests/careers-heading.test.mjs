@@ -47,7 +47,7 @@ test("the unified h1 role law covers the marked presentation title with the iden
   assert.equal(three.length, 3, "the careers marker must appear in all three law blocks (base, sm, lg) like the legacy h1 ladder");
   const base = law.match(/main p\[data-hero-law="careers"\] \{[\s\S]*?\}/);
   assert.ok(base, "the base law block must include the careers marker");
-  for (const token of ["2.75rem", "600", "1.05", "-0.015em"]) {
+  for (const token of ["3rem", "600", "1.05", "-0.015em"]) {
     assert.ok(base[0].includes(token), `the base profile retains ${token} (identical to the former h1 rendering)`);
   }
   const heroLaw = law.match(/@media \(min-width: 1280px\) \{[\s\S]*?main p\[data-hero-law="careers"\] \{ font-size: min\(5rem, 14vw\) !important; \}[\s\S]*?\}/);
