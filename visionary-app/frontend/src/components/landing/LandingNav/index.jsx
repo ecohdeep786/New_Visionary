@@ -115,9 +115,26 @@ export default function LandingNav() {
     setMobileOpen(false);
   }, [pathname]);
 
+  /* Focus restores at the first frame the trigger is actually visible. The
+     single setTimeout(0) raced React's commit under prefers-reduced-motion:
+     the drawer unmounted while the trigger still carried the closing
+     "invisible" class, so focus() hit a visibility:hidden button and fell
+     to <body> (the quality gate caught it: Escape restored scroll but not
+     focus). Retrying per frame until the button paints is deterministic —
+     the class removal and the focus land in the same frame, every time. */
   const closeMobile = () => {
     setMobileOpen(false);
-    window.setTimeout(() => menuBtnRef.current?.focus({ preventScroll: true }), 0);
+    let frames = 0;
+    const restoreFocus = () => {
+      const btn = menuBtnRef.current;
+      if (!btn || frames++ > 12) return;
+      if (btn.offsetWidth > 0 && getComputedStyle(btn).visibility !== "hidden") {
+        btn.focus({ preventScroll: true });
+        return;
+      }
+      requestAnimationFrame(restoreFocus);
+    };
+    requestAnimationFrame(restoreFocus);
   };
 
   const megaTrigger = (key, pageActive = false) =>
