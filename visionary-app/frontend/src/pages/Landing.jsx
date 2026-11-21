@@ -159,16 +159,15 @@ if (typeof window !== "undefined" && window.location.pathname === "/") {
 }
 
 /* Apple Education principle: one inclusive promise, understood at a glance.
-   The static Visionary headline keeps that promise stable for every visitor,
-   while the audience line beneath it cycles through all five doors —
-   Apple's product-hero rhythm (static lead + moving fragment line). */
+   The promise's first word IS the cycle — the five verbs of the journeys
+   below fade up in place (Learning → Teaching → Guiding → Building →
+   Leading) while "that grows with you." stays put. */
 const LANDING_HERO_WORDS = ["Learning that"];
 
-/* The cycling audience line — tab-wise auto: the same five doors the rail
-   below renders, in the same order, so the line and the rail move as one
-   tab set. The rail previews and holds a door on hover/focus; the cycle
-   never auto-advances under reduced motion. */
-const HERO_AUDIENCE_WORDS = ["for students", "for teachers", "for parents", "for professionals", "for organizations"];
+/* The cycling verbs — the same five doors the rail below renders, in the
+   same order, so the word and the rail move as one tab set. Hover/focus
+   holds a door; the cycle never auto-advances under reduced motion. */
+const HERO_AUDIENCE_WORDS = ["Learning", "Teaching", "Guiding", "Building", "Leading"];
 
 /* The audience rail under the hero actions — one door per persona on the
    first screen. Order matches HERO_CATEGORY_WORDS one-to-one, so hovering

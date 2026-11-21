@@ -262,11 +262,13 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
         {/* Apple's dark chapters are flat black — no glow washes (measured
             2026-11-21 on /education + /iphone); the gradient statement and
             the product carry the scene's color. */}
-        {/* the words — left of the product: Apple's product-page grammar
-            (the words introduce, the product appears on the right).
-            Centered on phones, where the mark rises below. */}
+        {/* the words — left of the product on desktop: Apple's product-page
+            grammar (the words introduce, the product appears on the right).
+            On phones and tablets the whole block — statement, sub, button —
+            centers on the stage (founder directive 2026-11-21): mx-auto
+            centers the 560px measure, lg:mx-0 pins it to the frame. */}
         <ScrollReveal className="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-6 py-14 lg:px-[var(--frame-x)] lg:py-0">
-          <div className="max-w-[560px] text-center lg:text-left">
+          <div className="mx-auto max-w-[560px] text-center lg:mx-0 lg:text-left">
             <RevealItem idx={0}>
               <h2 data-type="section" className="text-balance font-semibold">
                 <span className="accent-gradient-on-dark">One intelligence.</span>

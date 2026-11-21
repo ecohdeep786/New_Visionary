@@ -143,11 +143,11 @@ export default function NewPersona({
      persona (label + route), in the cycling line's order. Absent on every
      persona page, so those heroes render exactly as before. */
   audienceLinks,
-  /* Landing-only cycling audience line beneath the static promise —
-     "for students." → "for teachers." → … — Apple's product-hero rhythm
-     (static lead + moving fragment line, "iPhone Duo / Hello, hello.").
-     Tab-wise auto: the line advances through all five doors, the rail
-     previews and holds on hover/focus, reduced motion holds the first. */
+  /* Landing-only cycling verbs for the promise's first word — Learning →
+     Teaching → Guiding → Building → Leading. Tab-wise auto: the rail below
+     is the tab set; hover/focus holds a door; reduced motion holds the
+     first. Absent on every persona page, so those heroes render exactly
+     as before. */
   audienceWords,
 }) {
   /* Persona pages can still use a cycling lead. The universal landing uses a
@@ -283,14 +283,30 @@ export default function NewPersona({
                     </span>
                   </>
                 ) : staticHeadline ? (
-                  /* The static promise stays put; beneath it the audience
-                     line cycles tab-wise through all five doors (the rail
-                     below is the tab set — hover/focus holds a door; the
-                     auto-advance never starts under reduced motion). The
-                     line is aria-hidden: the sr sentence names every
-                     audience, so the cycling word never double-reads. */
+                  /* The promise's first word IS the cycle: the verb fades up
+                     in place — Learning → Teaching → Guiding → Building →
+                     Leading — while "that grows with you." stays put. The
+                     rail below is the tab set and moves with the verb;
+                     hover/focus holds a door; the auto-advance never starts
+                     under reduced motion. The verb is plain ink: Apple's
+                     rotating lines stay in the headline's own voice. */
                   <>
-                    <span className="block text-balance tracking-[-0.00028em]" style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{words[0]}</span>
+                    <span className="block text-balance tracking-[-0.00028em]" style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>
+                      {audienceWords?.length ? (
+                        <>
+                          <span
+                            key={audienceStep.index}
+                            className="apple-anim inline-block"
+                            style={{ animation: "heroFadeUp var(--motion-duration-slow) var(--ease-out-apple) both" }}
+                          >
+                            {audienceWords[audienceStep.index]}
+                          </span>
+                          {" that"}
+                        </>
+                      ) : (
+                        words[0]
+                      )}
+                    </span>
                     <span className="block">
                       <span
                         ref={wordRef}
@@ -304,26 +320,6 @@ export default function NewPersona({
                         {staticHeadline}
                       </span>
                     </span>
-                    {audienceWords?.length ? (
-                      <span
-                        aria-hidden="true"
-                        className="block overflow-hidden"
-                        style={{ fontSize: "var(--fs-category-tagline)", height: "1.35em", marginTop: "0.4em" }}
-                      >
-                        <span
-                          key={audienceStep.index}
-                          className="apple-anim block whitespace-nowrap"
-                          style={{
-                            animation: "heroLineUp var(--motion-duration-slow) var(--ease-out-apple) both",
-                            color: "#6e6e73",
-                            fontWeight: 500,
-                            lineHeight: "1.35",
-                          }}
-                        >
-                          {audienceWords[audienceStep.index]}.
-                        </span>
-                      </span>
-                    ) : null}
                   </>
                 ) : (
                   <span className="accent-gradient">{words[0]}</span>
