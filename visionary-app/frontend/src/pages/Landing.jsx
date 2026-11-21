@@ -22,7 +22,7 @@ import orgmeet from "@/assets/org-face-main-1600w.webp";
 // Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
-import { Accessibility, BookOpen, ChevronLeft, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
+import { Accessibility, ChevronLeft, ChevronRight, HeartHandshake, Lock, ShieldCheck } from "lucide-react";
 
 /* One source of truth: every color resolves from system/tokens.js (the
    measured Apple-neutral system, see APPLE_MEASURED_REFERENCE_2026-10-21.md).
@@ -371,65 +371,6 @@ function LandingPromiseSection() {
    own block anatomy: the 24px mark, the line, and the achievement return’s
    quiet blue door. The chapter’s five-journey route line now closes the page
    at the CTA (the tail mini-router), so the returns stay the only text here. */
-const LX_RETURNS = [
-  { Icon: Layers3, title: "Your hours stack.", copy: "Every lesson builds on the last. This year’s work becomes next year’s strength.", l: "For students", to: "/student" },
-  { Icon: BookOpen, title: "Your place is kept.", copy: "Visionary remembers where you stopped, so every session continues.", l: "Your continuity", to: "/how-it-works" },
-  { Icon: Globe2, title: "Your language works.", copy: "Ask, reason, and learn in the language you think in — English, Hindi, and Bengali today.", l: "Language support", to: "/how-it-works" },
-  { Icon: Eye, title: "Your progress shows.", copy: "Teachers and parents see progress while it still matters.", l: "For parents", to: "/parent" },
-];
-
-/* The return chapter’s closing line — the five journeys, labelled exactly as
-   the footer labels them. It now rides the page’s closer (the CTA’s tail
-   mini-router) instead of trailing the values cards, so the return chapter
-   ends on its cards. */
-const LX_RETURN_ROUTES = [
-  { label: "Students", to: "/student" },
-  { label: "Teachers", to: "/teacher" },
-  { label: "Parents", to: "/parent" },
-  { label: "Professionals", to: "/professional" },
-  { label: "Organizations", to: "/organization" },
-];
-
-function LandingReturnSection() {
-  const { ref, visible } = useRevealContinuous();
-  return (
-    <section ref={ref} data-section="04-return" className="relative isolate bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <Reveal visible={visible}>
-        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
-          {/* The four returns, in Apple's values-column grammar (measured on
-              /education "Our values lead the way."): open typographic columns
-              under a thin top hairline — a 28px mark, the feature title, the
-              explanation, and the editorial door at the column's baseline.
-              Four-up on the desktop window, two-up from 640, stacked on the
-              phone. No tiles: the values chapter is type on the band. The
-              founder's personal quote is retired (founder directive). */}
-          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 min-[1069px]:grid-cols-4">
-            {LX_RETURNS.map((item) => (
-              <article
-                key={item.title}
-                className="flex flex-col border-t pt-7"
-              >
-                <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.8} style={{ color: BRAND.ink }} />
-                <h3 data-type="feature" className="mt-5" style={{ color: BRAND.ink }}>{item.title}</h3>
-                <p data-type="value-body" className="mt-3 max-w-[42ch]" style={{ color: BRAND.slate }}>{item.copy}</p>
-                {/* the editorial link law owns the door's colour and hover
-                    underline (#0066cc / underlined) */}
-                <Link
-                  to={item.to}
-                  className="mt-auto inline-flex items-center gap-1.5 pt-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
-                >
-                  {item.l}
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-    </section>
-  );
-}
-
 /* 05 · THE PRODUCT PROMO — the front door’s dark pivot: the product’s
    statement ("One intelligence.") over one slowly morphing stage, with one
    door out to the full mechanism. The four-beat loop lives where it is told
@@ -477,6 +418,16 @@ function LandingRouterSection() {
   );
 }
 
+/* The closer's tail mini-router — the five journeys, labelled exactly as
+   the footer labels them. */
+const LX_RETURN_ROUTES = [
+  { label: "Students", to: "/student" },
+  { label: "Teachers", to: "/teacher" },
+  { label: "Parents", to: "/parent" },
+  { label: "Professionals", to: "/professional" },
+  { label: "Organizations", to: "/organization" },
+];
+
 /* ═══════════════════════ PAGE ═══════════════════════
    The front-door anatomy (the company front door), ordered the way Apple
    tells a product story — show, then explain: the family stage pins to the
@@ -517,11 +468,9 @@ export default function LandingPage() {
         <LandingIntelligenceSection />
         <LandingProblemSection />
         <LandingPromiseSection />
-        <LandingRouterSection />
-        <LandingReturnSection />
+        <LandingRouterSection />
         <Suspense fallback={null}><PremiumTrustSection
-          heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
-          sub="Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way."
+          heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
           values={LX_TRUST_VALUES}
         /></Suspense>
         <Suspense fallback={null}><PremiumCTASection

@@ -122,13 +122,13 @@
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
         "frontend/src/components/landing/NewPersona.jsx:358:17",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:40:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:49:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:68:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:61:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:70:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -157,8 +157,7 @@
         "frontend/src/components/landing/system/ui.jsx:340:5",
         "frontend/src/pages/Landing.jsx:298:15",
         "frontend/src/pages/Landing.jsx:308:15",
-        "frontend/src/pages/Landing.jsx:356:11",
-        "frontend/src/pages/Landing.jsx:417:17"
+        "frontend/src/pages/Landing.jsx:356:11"
       ],
       "operations": [
         "public-discovery",
@@ -881,13 +880,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:40:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:49:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:68:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:61:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:70:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -1108,13 +1107,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:40:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:49:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:68:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:61:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:70:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -1335,13 +1334,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:40:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:49:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:68:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:61:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:70:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -1687,13 +1686,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:40:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:49:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:68:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:61:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:70:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -2094,13 +2093,13 @@
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:40:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:49:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:68:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:61:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:70:11",
         "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:87:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:19",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
+        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:29:5",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:114:9",
         "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx:146:9",
@@ -47584,9 +47583,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:40:11",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:61:11",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 40,
+      "line": 61,
       "column": 11,
       "tag": "RevealItem",
       "events": [],
@@ -47613,104 +47612,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:49:11",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:70:11",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 49,
+      "line": 70,
       "column": 11,
       "tag": "RevealItem",
       "events": [],
       "calls": [],
       "disabled": null,
       "declarationSha256": "c3a8b6b81d97fc4f28dbecff18f468da7e937967b9112d1ddfc73d0bf03a418f",
-      "routeIds": [
-        "/",
-        "/student",
-        "/teacher",
-        "/parent",
-        "/professional",
-        "/organization"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:66:11",
-      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 66,
-      "column": 11,
-      "tag": "RevealItem",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "2cca3233d3fd480b95a07c7fbb232ef122b9ca690a535294f34e3c2d8357ce9d",
-      "routeIds": [
-        "/",
-        "/student",
-        "/teacher",
-        "/parent",
-        "/professional",
-        "/organization"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:68:13",
-      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 68,
-      "column": 13,
-      "tag": "AuthAwareLink",
-      "events": [],
-      "calls": [],
-      "destination": "/register",
-      "disabled": null,
-      "declarationSha256": "620d0308cc04a05f0f5a28434208e54b37283d47f673ae7089106e42a57664da",
-      "routeIds": [
-        "/",
-        "/student",
-        "/teacher",
-        "/parent",
-        "/professional",
-        "/organization"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:76:13",
-      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 76,
-      "column": 13,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "destination": "/contact",
-      "disabled": null,
-      "declarationSha256": "1909d5765f5d737e0f67455395d4fb593015948f7fb7200f39f138bc0f259da7",
       "routeIds": [
         "/",
         "/student",
@@ -47739,6 +47649,95 @@
       "events": [],
       "calls": [],
       "disabled": null,
+      "declarationSha256": "2cca3233d3fd480b95a07c7fbb232ef122b9ca690a535294f34e3c2d8357ce9d",
+      "routeIds": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:89:13",
+      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
+      "line": 89,
+      "column": 13,
+      "tag": "AuthAwareLink",
+      "events": [],
+      "calls": [],
+      "destination": "/register",
+      "disabled": null,
+      "declarationSha256": "620d0308cc04a05f0f5a28434208e54b37283d47f673ae7089106e42a57664da",
+      "routeIds": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:97:13",
+      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
+      "line": 97,
+      "column": 13,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "destination": "/contact",
+      "disabled": null,
+      "declarationSha256": "1909d5765f5d737e0f67455395d4fb593015948f7fb7200f39f138bc0f259da7",
+      "routeIds": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:108:11",
+      "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
+      "line": 108,
+      "column": 11,
+      "tag": "RevealItem",
+      "events": [],
+      "calls": [],
+      "disabled": null,
       "declarationSha256": "afc9bba240eca70e0e4ae3ab7159804e7068fc17b2d822bc12e32038d4957f42",
       "routeIds": [
         "/",
@@ -47760,9 +47759,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:19",
+      "id": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:117:19",
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "line": 96,
+      "line": 117,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -79142,30 +79141,6 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:417:17",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 417,
-      "column": 17,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "891de48975fac82dc19b1fbbf1e4cacca4e080b932d9fd827c58d90e7b8c652e",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
       "id": "frontend/src/pages/Login.jsx:89:13",
       "file": "frontend/src/pages/Login.jsx",
       "line": 89,
@@ -81760,7 +81735,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-      "sourceSha256": "3c7587e239d65d67aadde1bc4af1d30cc266a03b351fd517b0fe54134635739e"
+      "sourceSha256": "e522384aafb47146381195f3b9d855ec786d95b2f8e9d8606039e4a6da8a44da"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx",
@@ -81780,7 +81755,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx",
-      "sourceSha256": "a000e35b7e552ec9dcf6b7584f4dc29df1b30c5290dada1c8de85ecfde6dddc3"
+      "sourceSha256": "c43560c28131cc9d7864a2dc1fbdeaecfc2326521e19367bfe5816a846edf29c"
     },
     {
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
@@ -82616,7 +82591,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "3576b057ec3a118d8bd72822396feee04f624ba1477285099583277460b6978f"
+      "sourceSha256": "3c30d392c9c8ab94a24f0df932c757d66da15438f81318c98f285cb78d0d519f"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85895,11 +85870,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1529,
-    "routeReachableDeclarations": 1526,
+    "controlDeclarations": 1528,
+    "routeReachableDeclarations": 1525,
     "controlFiles": 193,
     "states": {
-      "connected": 528,
+      "connected": 527,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3

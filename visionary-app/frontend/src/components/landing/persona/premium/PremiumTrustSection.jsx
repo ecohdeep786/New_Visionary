@@ -44,7 +44,7 @@ function PremiumTrustSection({ heading, sub, values }) {
               Four values (the landing's trust doors) open a fourth column;
               the three-value pages keep their accepted three-up rhythm. */}
           <RevealItem idx={2} className="stagger-group">
-            <div className={`mt-14 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:mt-20 ${values.length > 3 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
+            <div className={`mt-14 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:mt-20 ${values.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
               {values.map((value) => (
                 <article
                   key={value.title}

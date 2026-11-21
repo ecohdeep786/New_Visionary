@@ -6,12 +6,14 @@ import ScrollReveal from "../sections/ScrollReveal.jsx";
 import RevealItem from "../sections/RevealItem.jsx";
 import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
+import heroBotWebp from "@/assets/brand/visionary-bot.webp";
+import heroBotAvif from "@/assets/brand/visionary-bot.avif";
 
 /* ═══════════════════════ 12 · CTA ═══════════════════════
-   The closer bookends the hero on Apple’s product-hero anatomy: the statement
+   The closer bookends the hero on Apple's product-hero anatomy: the statement
    opens the chapter (no eyebrow), one text-only primary pill with one quiet
-   path beside it, and the small print beneath — the way Apple’s product
-   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page’s forks under the actions — Apple’s tail mini-router. */
+   path beside it, and the small print beneath — the way Apple's product
+   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page's forks under the actions — Apple's tail mini-router. */
 function PremiumCTASection({ heading, sub, routeLinks, variant }) {
   const { ref } = useRevealOnce();
   const closing = variant === "closing";
@@ -31,6 +33,25 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           bands are pure black; blue lives only in the links). No grid, no
           columns: the page ends on a moment, not another reading task. */}
       {closing ? null : null}
+      {/* the mark closes the page the way it opened it — the bot rises from
+          the band's floor at the right edge, the same edge-bleed the
+          intelligence chapter stages, so the product bookends the story
+          (founder directive: add the bot where it reads more premium) */}
+      {closing ? (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[38%] items-end justify-center lg:flex">
+          <picture>
+            <source type="image/avif" srcSet={heroBotAvif} />
+            <img
+              src={heroBotWebp}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+              className="pointer-events-none h-auto w-[min(26vw,360px)] translate-y-[24%] select-none"
+            />
+          </picture>
+        </div>
+      ) : null}
       <ScrollReveal>
         <div
           className={`mx-auto max-w-[1500px] text-center ${
