@@ -258,14 +258,14 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
 
   if (promo) {
     return (
-      <section ref={headRef} data-section="05-intelligence" className="scene-dark relative isolate flex min-h-[clamp(560px,74svh,780px)] flex-col items-center justify-center overflow-hidden lg:flex-row" style={{ fontFamily: fontStack }}>
+      <section ref={headRef} data-section="05-intelligence" className="scene-dark relative isolate flex min-h-[clamp(560px,74svh,780px)] flex-col overflow-hidden lg:flex-row lg:items-center" style={{ fontFamily: fontStack }}>
         {/* Apple's dark chapters are flat black — no glow washes (measured
             2026-11-21 on /education + /iphone); the gradient statement and
             the product carry the scene's color. */}
         {/* the words — left of the product: Apple's product-page grammar
             (the words introduce, the product appears on the right).
             Centered on phones, where the mark rises below. */}
-        <ScrollReveal className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
+        <ScrollReveal className="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-6 py-14 lg:px-[var(--frame-x)] lg:py-0">
           <div className="max-w-[560px] text-center lg:text-left">
             <RevealItem idx={0}>
               <h2 data-type="section" className="text-balance font-semibold">
@@ -313,7 +313,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
               loading="eager"
               decoding="async"
               draggable="false"
-              className="pointer-events-none h-auto w-[min(62vw,300px)] translate-y-[30%] select-none lg:w-[min(40vw,540px)] lg:translate-y-[24%]"
+              className="pointer-events-none h-auto w-[min(62vw,300px)] translate-y-[30%] sm:w-[min(42vw,420px)] select-none lg:w-[min(40vw,540px)] lg:translate-y-[24%]"
             />
           </picture>
         </div>

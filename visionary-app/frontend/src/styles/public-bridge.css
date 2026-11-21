@@ -236,6 +236,10 @@ main > section[data-section="05-intelligence"]:not([data-surface="light"]),
 main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) {
   background: var(--scene-ink, #000000) !important;
   color: #f5f7fa;
+  /* The promo band is a full-bleed stage (hero grammar): the mark anchors at
+     the section floor and bleeds past it — generic chapter padding would push
+     the edge below the product and strand voids around the words. */
+  padding-block: 0;
 }
 
 main > section[data-section="05-intelligence"]:not([data-surface="light"]) p,
