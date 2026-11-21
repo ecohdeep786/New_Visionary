@@ -159,8 +159,16 @@ if (typeof window !== "undefined" && window.location.pathname === "/") {
 }
 
 /* Apple Education principle: one inclusive promise, understood at a glance.
-   The static Visionary headline keeps that promise stable for every visitor. */
+   The static Visionary headline keeps that promise stable for every visitor,
+   while the audience line beneath it cycles through all five doors —
+   Apple's product-hero rhythm (static lead + moving fragment line). */
 const LANDING_HERO_WORDS = ["Learning that"];
+
+/* The cycling audience line — tab-wise auto: the same five doors the rail
+   below renders, in the same order, so the line and the rail move as one
+   tab set. The rail previews and holds a door on hover/focus; the cycle
+   never auto-advances under reduced motion. */
+const HERO_AUDIENCE_WORDS = ["for students", "for teachers", "for parents", "for professionals", "for organizations"];
 
 /* The audience rail under the hero actions — one door per persona on the
    first screen. Order matches HERO_CATEGORY_WORDS one-to-one, so hovering
@@ -199,7 +207,9 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
     <PersonaHero
       words={LANDING_HERO_WORDS}
       staticHeadline="grows with you."
-      srSentence="Learning that grows with you."
+      srSentence="Learning that grows with you, for students, teachers, parents, professionals, and organizations."
+      audienceWords={HERO_AUDIENCE_WORDS}
+      wordMs={2600}
       /* No hero sub — Apple's product heroes are name + fragment ("iPhone
          Duo / Hello, hello.", measured 2026-11-21): the headline, the CTA
          pair, and the audience rail are the whole first screen. The one

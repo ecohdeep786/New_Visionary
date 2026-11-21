@@ -143,6 +143,12 @@ export default function NewPersona({
      persona (label + route), in the cycling line's order. Absent on every
      persona page, so those heroes render exactly as before. */
   audienceLinks,
+  /* Landing-only cycling audience line beneath the static promise —
+     "for students." → "for teachers." → … — Apple's product-hero rhythm
+     (static lead + moving fragment line, "iPhone Duo / Hello, hello.").
+     Tab-wise auto: the line advances through all five doors, the rail
+     previews and holds on hover/focus, reduced motion holds the first. */
+  audienceWords,
 }) {
   /* Persona pages can still use a cycling lead. The universal landing uses a
      fixed product statement so the family lineup carries the variation. */
@@ -153,7 +159,7 @@ export default function NewPersona({
      keep the original auto-cycle untouched (one `useCycle` with the exact
      original arguments; the step hook stays inert there). */
   const cycleIndex = useCycle(cast ? 0 : animatedHeadlineWords?.length || 0, cast ? 0 : hasAnimatedHeadline ? wordMs : 0);
-  const audienceStep = useCycleStep(cast && hasAnimatedHeadline ? animatedHeadlineWords.length : 0, cast ? wordMs : 0);
+  const audienceStep = useCycleStep(cast ? audienceWords?.length ?? 0 : 0, cast ? wordMs : 0);
   const animatedIndex = cast ? audienceStep.index : cycleIndex;
   /* Apple's live-measured hero ladder (FAP-34, education-initiative):
      rotating fragment 140/96/64 → var(--fs-hero-headline); the statement
@@ -277,8 +283,12 @@ export default function NewPersona({
                     </span>
                   </>
                 ) : staticHeadline ? (
-                  /* A stable two-line promise: no live region, rotating copy,
-                     fixed-height mask or layout shift. */
+                  /* The static promise stays put; beneath it the audience
+                     line cycles tab-wise through all five doors (the rail
+                     below is the tab set — hover/focus holds a door; the
+                     auto-advance never starts under reduced motion). The
+                     line is aria-hidden: the sr sentence names every
+                     audience, so the cycling word never double-reads. */
                   <>
                     <span className="block text-balance tracking-[-0.00028em]" style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{words[0]}</span>
                     <span className="block">
@@ -294,6 +304,26 @@ export default function NewPersona({
                         {staticHeadline}
                       </span>
                     </span>
+                    {audienceWords?.length ? (
+                      <span
+                        aria-hidden="true"
+                        className="block overflow-hidden"
+                        style={{ fontSize: "var(--fs-category-tagline)", height: "1.35em", marginTop: "0.4em" }}
+                      >
+                        <span
+                          key={audienceStep.index}
+                          className="apple-anim block whitespace-nowrap"
+                          style={{
+                            animation: "heroLineUp var(--motion-duration-slow) var(--ease-out-apple) both",
+                            color: "#6e6e73",
+                            fontWeight: 500,
+                            lineHeight: "1.35",
+                          }}
+                        >
+                          {audienceWords[audienceStep.index]}.
+                        </span>
+                      </span>
+                    ) : null}
                   </>
                 ) : (
                   <span className="accent-gradient">{words[0]}</span>
