@@ -93,11 +93,9 @@ const LX_TRUST_VALUES = [
 
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
 
-/* 01 · HERO — the universal front door, on the one hero law: the static
-   "One Intelligence." headline, the promise, the CTA pair, and the five
-   personas as alpha cutouts rising from the fold. The section pins to the
-   viewport (sticky, in NewPersona’s cast branch) so the story can glide
-   over it on frosted glass — the Vision Pro page anatomy. */
+/* 01 · HERO — one inclusive learning promise, one plain-language sentence,
+   auth-aware next actions, and the five audience doors. The cast gives the
+   shared front door its human scale without making one role the default. */
 
 /* The family, as alpha cutouts on the page’s own white (the persona hero
    photography with the studio background removed) — so the landing stages
@@ -156,10 +154,8 @@ if (typeof window !== "undefined" && window.location.pathname === "/") {
    the five audience links remain directly available. */
 const LANDING_HERO_WORDS = ["Learning that"];
 
-/* The audience rail under the hero actions — one door per persona on the
-   first screen. Order matches HERO_CATEGORY_WORDS one-to-one, so hovering
-   a label previews exactly the line it names. Labels are the footer’s
-   existing audience names. */
+/* Five direct audience doors under the hero actions. Keep the labels aligned
+   with the role paths used in the page directory and footer. */
 const LANDING_AUDIENCE_LINKS = [
   { label: "Students", to: "/student" },
   { label: "Teachers", to: "/teacher" },
@@ -198,7 +194,7 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       cast={LANDING_HERO_LINEUP}
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaTo={signedIn ? "/dashboard/home" : "/register"}
-      ctaLabel={signedIn ? "Open Visionary" : "Start learning"}
+      ctaLabel={signedIn ? "Open Visionary" : "Create an account"}
       secondaryLabel="See how it works"
     />
   );
@@ -213,7 +209,7 @@ function LandingProblemSection() {
   return (
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-[#f5f5f7]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible}>
-        <p className="sr-only">Stories from a student and a professional about the moment understanding breaks down.</p>
+        <p className="sr-only">Illustrative situations for a student and a professional encountering the gap between understanding and application.</p>
         <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
           <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>Why Visionary exists</p>
           {/* the two lines break at the sentence — the claim, then the turn in
