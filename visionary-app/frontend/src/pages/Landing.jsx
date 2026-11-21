@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
@@ -468,9 +467,9 @@ export default function LandingPage() {
         <LandingIntelligenceSection />
         <LandingProblemSection />
         <LandingPromiseSection />
-        <LandingRouterSection />
+        <LandingRouterSection />
         <Suspense fallback={null}><PremiumTrustSection
-          heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
+          heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
           values={LX_TRUST_VALUES}
         /></Suspense>
         <Suspense fallback={null}><PremiumCTASection

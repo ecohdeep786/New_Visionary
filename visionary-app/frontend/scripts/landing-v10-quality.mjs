@@ -58,7 +58,15 @@ try {
       await settle(page);
       await page.waitForFunction(id => {
         const root = document.querySelector(`main section[data-section="${id}"]`);
-        return root && [...root.querySelectorAll('img')].every(image => image.complete && image.naturalWidth > 0);
+        // a horizontal slider's off-track slides sit outside the lazy-load
+        // threshold by design — the wait covers images the viewport can
+        // actually reach (those within the section's own vertical band)
+        return root && [...root.querySelectorAll('img')].every(image => {
+          if (image.complete && image.naturalWidth > 0) return true;
+          const r = image.getBoundingClientRect();
+          const sr = root.getBoundingClientRect();
+          return r.bottom < sr.top || r.top > sr.bottom;
+        });
       }, section, { timeout: 5000 });
       if (viewport.width === 390 || viewport.width === 1440) {
         await locator.screenshot({ path: path.join(output, `${section}-${viewport.width}.png`), animations: 'disabled' });

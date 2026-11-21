@@ -155,9 +155,9 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:298:15",
-        "frontend/src/pages/Landing.jsx:308:15",
-        "frontend/src/pages/Landing.jsx:356:11"
+        "frontend/src/pages/Landing.jsx:297:15",
+        "frontend/src/pages/Landing.jsx:307:15",
+        "frontend/src/pages/Landing.jsx:355:11"
       ],
       "operations": [
         "public-discovery",
@@ -79054,9 +79054,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:298:15",
+      "id": "frontend/src/pages/Landing.jsx:297:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 298,
+      "line": 297,
       "column": 15,
       "tag": "button",
       "events": [
@@ -79085,9 +79085,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:308:15",
+      "id": "frontend/src/pages/Landing.jsx:307:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 308,
+      "line": 307,
       "column": 15,
       "tag": "button",
       "events": [
@@ -79116,9 +79116,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:356:11",
+      "id": "frontend/src/pages/Landing.jsx:355:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 356,
+      "line": 355,
       "column": 11,
       "tag": "QuietLink",
       "events": [],
@@ -82591,7 +82591,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "3c30d392c9c8ab94a24f0df932c757d66da15438f81318c98f285cb78d0d519f"
+      "sourceSha256": "547c3c46553352e545bf7204dbcee7414516098d3b60031239bfbea8e2565c92"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
