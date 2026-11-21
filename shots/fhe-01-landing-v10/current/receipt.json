@@ -5,9 +5,9 @@
       "width": 320,
       "height": 568,
       "horizontalOverflow": false,
-      "heroHeight": 577.9375,
-      "audienceBottom": 469.9375,
-      "familyTop": 488.484375,
+      "heroHeight": 586.296875,
+      "audienceBottom": 478.296875,
+      "familyTop": 496.84375,
       "heroPadding": "0px"
     },
     {
@@ -15,7 +15,7 @@
       "height": 844,
       "horizontalOverflow": false,
       "heroHeight": 788,
-      "audienceBottom": 506.5625,
+      "audienceBottom": 533.1875,
       "familyTop": 666.734375,
       "heroPadding": "64px 0px",
       "sections": [

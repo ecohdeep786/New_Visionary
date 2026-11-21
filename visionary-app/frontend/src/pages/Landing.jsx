@@ -233,14 +233,13 @@ function LandingProblemSection() {
         <p className="sr-only">Stories from a student and a professional about the moment understanding breaks down.</p>
         <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
           <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>Why Visionary exists</p>
-          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "980px" }}>
-            {slide.black} <span className="accent-gradient">{slide.blue}</span>.
+          {/* the two lines break at the sentence — the claim, then the turn in
+              the accent voice — never mid-sentence the way text-balance broke
+              it ("Accessing knowledge / is easy. …") */}
+          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] font-semibold" style={{ color: BRAND.ink }}>
+            <span className="block">{slide.black}</span>
+            <span className="block"><span className="accent-gradient">{slide.blue}</span>.</span>
           </h2>
-          {/* Apple's chapter sub grammar (measured 2026-11-21): the statement
-              translates in 17px/400 — the body role, never a semibold lead */}
-          <p data-type="body" className="mt-[var(--gap-title-sub-display)] max-w-[54ch] tracking-[0]" style={{ color: BRAND.graphite }}>
-            Effort isn’t the gap. Knowing whether understanding landed is.
-          </p>
         </div>
         <figure className="m-0">
           <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
