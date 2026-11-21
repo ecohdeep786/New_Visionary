@@ -143,6 +143,12 @@ export default function NewPersona({
      persona (label + route), in the cycling line's order. Absent on every
      persona page, so those heroes render exactly as before. */
   audienceLinks,
+  /* Landing-only cycling verbs for the promise's first word — Learning →
+     Teaching → Guiding → Building → Leading. Tab-wise auto: the rail below
+     is the tab set; hover/focus holds a door; reduced motion holds the
+     first. Absent on every persona page, so those heroes render exactly
+     as before. */
+  audienceWords,
 }) {
   /* Persona pages can still use a cycling lead. The universal landing uses a
      fixed product statement so the family lineup carries the variation. */
@@ -153,7 +159,7 @@ export default function NewPersona({
      keep the original auto-cycle untouched (one `useCycle` with the exact
      original arguments; the step hook stays inert there). */
   const cycleIndex = useCycle(cast ? 0 : animatedHeadlineWords?.length || 0, cast ? 0 : hasAnimatedHeadline ? wordMs : 0);
-  const audienceStep = useCycleStep(cast && hasAnimatedHeadline ? animatedHeadlineWords.length : 0, cast ? wordMs : 0);
+  const audienceStep = useCycleStep(cast ? audienceWords?.length ?? 0 : 0, cast ? wordMs : 0);
   const animatedIndex = cast ? audienceStep.index : cycleIndex;
   /* Apple's live-measured hero ladder (FAP-34, education-initiative):
      rotating fragment 140/96/64 → var(--fs-hero-headline); the statement
@@ -219,9 +225,13 @@ export default function NewPersona({
     return (
       <section
         data-section="01-hero"
-        /* Apple Education principle: the opening story scrolls naturally;
-           the promise and people remain readable without a pinned stage. */
-        className="cast-stage relative z-0 isolate flex flex-col overflow-hidden"
+        /* Pinned stage — the landing-only cast hero sticks to the viewport
+           and the story glides over it on frosted glass (the Vision Pro page
+           anatomy; founder directive 2026-11-21: the hero stays fixed, the
+           sections scroll). The stage height lives in cast.css so short
+           windows can trade the pin for a readable story. Default persona
+           heroes scroll away naturally. */
+        className="cast-stage sticky top-0 z-0 isolate flex flex-col overflow-hidden"
         style={{
           backgroundColor: heroBg,
           marginTop: 56,
@@ -273,10 +283,30 @@ export default function NewPersona({
                     </span>
                   </>
                 ) : staticHeadline ? (
-                  /* A stable two-line promise: no live region, rotating copy,
-                     fixed-height mask or layout shift. */
+                  /* The promise's first word IS the cycle: the verb fades up
+                     in place — Learning → Teaching → Guiding → Building →
+                     Leading — while "that grows with you." stays put. The
+                     rail below is the tab set and moves with the verb;
+                     hover/focus holds a door; the auto-advance never starts
+                     under reduced motion. The verb is plain ink: Apple's
+                     rotating lines stay in the headline's own voice. */
                   <>
-                    <span className="block text-balance tracking-[-0.00028em]" style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{words[0]}</span>
+                    <span className="block text-balance tracking-[-0.00028em]" style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>
+                      {audienceWords?.length ? (
+                        <>
+                          <span
+                            key={audienceStep.index}
+                            className="apple-anim inline-block"
+                            style={{ animation: "heroFadeUp var(--motion-duration-slow) var(--ease-out-apple) both" }}
+                          >
+                            {audienceWords[audienceStep.index]}
+                          </span>
+                          {" that"}
+                        </>
+                      ) : (
+                        words[0]
+                      )}
+                    </span>
                     <span className="block">
                       <span
                         ref={wordRef}

@@ -112,7 +112,7 @@ main h2 + p.mt-6 {
 @media (max-width: 734px) {
   :root {
     --fs-hero-eyebrow: min(2.5rem, 13vw); /* phone 40px; FAP-82 vw cap */
-    --fs-hero-headline: min(2.75rem, 14vw); /* phone 44px — unified h1 law step; FAP-82 vw cap */
+    --fs-hero-headline: min(3rem, 15vw); /* phone 48px — unified h1 law step; FAP-82 vw cap */
   }
 }
 
@@ -372,7 +372,7 @@ main p + h2.mt-4 {
 
     /* Apple mobile-specific adjustments */
     --fs-hero-eyebrow: min(2.5rem, 13vw); /* FAP-82 vw cap */
-    --fs-hero-headline: min(2.75rem, 14vw); /* FAP-82 vw cap */
+    --fs-hero-headline: min(3rem, 15vw); /* FAP-82 vw cap */
     --fs-statement-elevated: 2.5rem;
     --fs-highlights: 2rem;
     --fs-compact-chapter: 2rem;

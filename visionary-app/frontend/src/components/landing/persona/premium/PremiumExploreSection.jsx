@@ -14,46 +14,48 @@ import LazyImage from "@/components/landing/LazyImage";
    statement’s spine with the rest peeking past the right edge as the scroll
    affordance, snap points for the swipe, and centred round chevrons beneath. */
 
-/* Apple’s line-up card, measured on the Watch "Explore the line-up." module:
-   a white card on the #f5f5f7 ground with the photograph full-bleed on top
-   and the text band beneath — 24px/600 name, 17px grey line, quiet blue
-   "Learn more" link with a trailing chevron. */
+/* The line-up card in the iPhone Duo chapter's grammar (founder's capture
+   of the live tile, measured across the device band): each card is a FULL
+   SLIDE — ~92vw at every width, the next card peeking past the right edge.
+   The tile is landscape on desktop (15/8) and turns portrait on phones
+   (4/5), the way Apple's own product tiles re-ratio. The name is the
+   tile's statement at the section tier, the fragment sits beneath it,
+   the blue "Learn more" pill rides top-right opposite — the Duo's exact
+   text row. The portrait renders oversized and bottom-weighted so the
+   face is the tile's hero and the chest crops at the floor like Apple's
+   product. */
 const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, image }) {
   return (
     <Link
       to={`/${category.slug}`}
       data-card
       aria-label={`Learn more about ${category.chip}`}
-      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[372px]"
+      className="stagger-child group relative block w-[82vw] sm:w-[88vw] lg:w-[calc(100vw-315px)] lg:max-w-[1150px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:rounded-[22px] lg:rounded-[28px]"
     >
-      <div className="media-settle relative aspect-square overflow-hidden">
+      <div className="media-settle relative aspect-[4/5] overflow-hidden bg-white sm:aspect-[4/3] lg:aspect-[15/8]">
         <LazyImage
           src={image}
           alt={category.alt}
           decoding="async"
           draggable="false"
-          className="h-full w-full select-none object-cover transition-transform duration-500 ease-apple group-hover:scale-[1.04]"
+          className="absolute left-1/2 top-[15%] h-[112%] w-auto max-w-none -translate-x-1/2 select-none transition-transform duration-500 ease-apple lg:top-[14%] lg:h-[118%] group-hover:scale-[1.03]"
         />
       </div>
-      <div className="p-7 lg:p-8">
-        <h3
-          data-type="feature"
-          className="text-balance"
-          style={{ color: color.ink, maxWidth: "18ch" }}
-        >
-          {category.chip}
-        </h3>
-        <p
-          className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]"
-          style={{ color: color.slate, maxWidth: "38ch" }}
-        >
-          {category.copy}
-        </p>
+      {/* the Duo text row: name and its fragment top-left, the pill top-right */}
+      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-6 sm:p-8 lg:p-12">
+        <div>
+          <h3
+            data-type="feature"
+            className="text-balance"
+            style={{ color: color.ink, maxWidth: "18ch" }}
+          >
+            {category.chip}
+          </h3>
+        </div>
         <span
-          className="public-text-link mt-4 inline-flex items-center transition-colors duration-200 group-hover:underline"
+          className="mt-1 inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-colors duration-200 hover:bg-[#272729] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:h-9 lg:h-11 lg:text-[18px]"
         >
           Learn more
-          <ChevronIcon className="h-4 w-4" />
         </span>
       </div>
     </Link>

@@ -17,21 +17,24 @@
   to { opacity: 1; }
 }
 
-/* Phones and tablets: the stage is content-height — copy, the family
-   reserve's breath, then the family flush to the fold, with the next
-   section's surface peeking above the fold as the scroll invitation. A
-   viewport-filled stage would strand a dead white pocket between the
-   audience rail and a phone-sized family (gap > family height). Desktop
-   keeps the full first-screen stage with the copy optically centered. */
+/* The pinned stage fills the first screen at every width — the hero sticks
+   (Vision Pro anatomy) and the story glides over it on frosted glass. The
+   height lives HERE, not inline, so the short-window rule below can retire
+   the pin: a 320×568 stage (512px) cannot hold the full phone copy plus
+   the family reserve, and clipping the story is worse than scrolling it.
+   Phones carry the keynote huddle: a large family whose outer figures
+   bleed past the screen edges, the center figure in front. */
 .cast-stage {
-  --cast-h: min(30svh, calc(100vw / 3.6));
-  height: auto;
+  --cast-h: min(34svh, calc(100vw / 2.2));
+  height: calc(100svh - 56px);
 }
 
-/* Short and landscape windows still fill the first screen when there is
-   room — the reserve establishes the floor, the viewport the ceiling. */
+/* Short and landscape windows trade the fixed stage for a readable story:
+   the hero scrolls naturally and the content establishes the height. */
 @media (max-height: 720px) {
   .cast-stage[data-section] {
+    position: relative;
+    height: auto;
     min-height: calc(100svh - 56px);
     padding-block: 0;
   }
@@ -44,7 +47,6 @@
 @media (min-width: 1024px) {
   .cast-stage {
     --cast-h: min(40svh, clamp(170px, calc((100vw - clamp(96px, 12vw, 240px)) / 5.17), 460px));
-    height: calc(100svh - 56px);
   }
   .cast-slot-1 { margin-left: calc(var(--cast-h) * 0.1200); }
   .cast-slot-2 { margin-left: calc(var(--cast-h) * 0.3459); }

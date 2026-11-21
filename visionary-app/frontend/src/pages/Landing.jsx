@@ -1,11 +1,9 @@
 import React, { lazy, Suspense } from "react";
-import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import QuietLink from "@/components/landing/QuietLink";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
-import SpotIllustration from "@/components/landing/SpotIllustration";
 /* The premium sections sit below the fold on every route that uses them;
  * they load on demand (Suspense fallback null) so the entry graph carries
  * only hero-first-commit content (T13 eager law). Direct module paths, not
@@ -23,7 +21,7 @@ import orgmeet from "@/assets/org-face-main-1600w.webp";
 // Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
-import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHandshake, Layers3, Lock, ShieldCheck } from "lucide-react";
+import { Accessibility, ChevronLeft, ChevronRight, HeartHandshake, Lock, ShieldCheck } from "lucide-react";
 
 /* One source of truth: every color resolves from system/tokens.js (the
    measured Apple-neutral system, see APPLE_MEASURED_REFERENCE_2026-10-21.md).
@@ -31,7 +29,7 @@ import { Accessibility, ArrowRight, BookOpen, ChevronRight, Eye, Globe2, HeartHa
    system/ui.jsx and system/hooks.js — the landing consumes the system rather
    than re-declaring it. */
 import { color as BRAND } from "@/components/landing/system/tokens";
-import { Reveal, ProgressDots } from "@/components/landing/system/ui";
+import { Reveal } from "@/components/landing/system/ui";
 import { useCycleIndex, useRevealContinuous } from "@/components/landing/system/hooks";
 import { useAuth } from "@/lib/AuthContext";
 
@@ -46,7 +44,6 @@ const PROBLEM_SLIDES = [
   { black: "Accessing knowledge is easy.", blue: "Applying it isn’t", persona: "A student", quote: "I watched eight hours of videos and still couldn’t solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
   { black: "Knowledge is everywhere.", blue: "Turning it into capability isn’t", persona: "A professional", quote: "I read every article. I still can’t turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
 ];
-const PROBLEM_MS = 4200;
 
 /* The five journeys — the landing’s category router. Rendered with the
    accepted line-up module (white cards on the grey ground): the studio
@@ -55,23 +52,14 @@ const PROBLEM_MS = 4200;
 const ROUTER_IMAGES = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
 
 const ROUTER_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "See the idea, practise it, and use it in the next thing you build.", alt: "Student studying with books" },
-  { slug: "teacher", chip: "Teacher", copy: "Plan, explain, and check understanding while the lesson is still in front of you.", alt: "Teacher presenting at a whiteboard" },
-  { slug: "parent", chip: "Parent", copy: "See the progress behind the report and find a useful next step at home.", alt: "Parent helping child with homework" },
-  { slug: "professional", chip: "Professional", copy: "Turn a question, project, or new skill into work you can use.", alt: "Professional writing notes beside a laptop" },
-  { slug: "organization", chip: "Organization", copy: "Give teams a shared view of learning across people, projects, and time.", alt: "Leader reviewing team progress on a tablet" },
+  { slug: "student", chip: "Student", copy: "Start where you are.", alt: "Student studying with books" },
+  { slug: "teacher", chip: "Teacher", copy: "Teach in the moment.", alt: "Teacher presenting at a whiteboard" },
+  { slug: "parent", chip: "Parent", copy: "See the progress.", alt: "Parent helping child with homework" },
+  { slug: "professional", chip: "Professional", copy: "Build what’s next.", alt: "Professional writing notes beside a laptop" },
+  { slug: "organization", chip: "Organization", copy: "Lead the learning.", alt: "Leader reviewing team progress on a tablet" },
 ];
 
-/* The suite — the four doors around the product (Apple’s services row):
-   every line is the destination page’s own hero statement, the card
-   anatomy is the About page’s explore module (white cards on the grey
-   ground, spot-illustration field, cutout arrow). */
-const SUITE_TILES = [
-  { to: "/download", label: "Download", copy: "Get Visionary on every device.", subject: "download" },
-  { to: "/pricing", label: "Pricing", copy: "Plans for every journey.", subject: "tag" },
-  { to: "/help", label: "Help", copy: "Find your answer.", subject: "help" },
-  { to: "/updates", label: "Updates", copy: "What’s new at Visionary.", subject: "updates" },
-];
+
 
 /* The mechanism chapter’s four beats — the umbrella voice of the loop every
    category page is built around. Verbatim from the student page’s
@@ -159,8 +147,15 @@ if (typeof window !== "undefined" && window.location.pathname === "/") {
 }
 
 /* Apple Education principle: one inclusive promise, understood at a glance.
-   The static Visionary headline keeps that promise stable for every visitor. */
+   The promise's first word IS the cycle — the five verbs of the journeys
+   below fade up in place (Learning → Teaching → Guiding → Building →
+   Leading) while "that grows with you." stays put. */
 const LANDING_HERO_WORDS = ["Learning that"];
+
+/* The cycling verbs — the same five doors the rail below renders, in the
+   same order, so the word and the rail move as one tab set. Hover/focus
+   holds a door; the cycle never auto-advances under reduced motion. */
+const HERO_AUDIENCE_WORDS = ["Learning", "Teaching", "Guiding", "Building", "Leading"];
 
 /* The audience rail under the hero actions — one door per persona on the
    first screen. Order matches HERO_CATEGORY_WORDS one-to-one, so hovering
@@ -199,8 +194,14 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
     <PersonaHero
       words={LANDING_HERO_WORDS}
       staticHeadline="grows with you."
-      srSentence="Learning that grows with you."
-      sub="Lessons, questions, practice and projects stay connected—so every step builds on the last, in the language you think in."
+      srSentence="Learning that grows with you, for students, teachers, parents, professionals, and organizations."
+      audienceWords={HERO_AUDIENCE_WORDS}
+      wordMs={2600}
+      /* No hero sub — Apple's product heroes are name + fragment ("iPhone
+         Duo / Hello, hello.", measured 2026-11-21): the headline, the CTA
+         pair, and the audience rail are the whole first screen. The one
+         plain explanation lives in the One-intelligence chapter below,
+         where the reader arrives already primed to learn what this is. */
       cast={LANDING_HERO_LINEUP}
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaTo={signedIn ? "/dashboard/home" : "/register"}
@@ -218,29 +219,30 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
    beneath the card. The photography is studio-white, so inside the white card
    the subject stands on the card’s own floor — no frame, no crop. The grey
    ground gives the white card its edge (the initiative’s "Our work in
-   education doesn’t end here." grammar). The three subjects stay mounted and
-   crossfade; the dots let the reader pace it. */
+   education doesn’t end here." grammar). The two subjects stay mounted and
+   crossfade; the reader paces the story through Apple's own gallery
+   controls (measured on /education "Real stories. Real impact.": MANUAL
+   prev/next chevrons at the card row's bottom-right — never auto-advance). */
 function LandingProblemSection() {
-  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
+  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-[#f5f5f7]" style={{ fontFamily: fontStack }}>
       <Reveal visible={visible}>
         <p className="sr-only">Stories from a student and a professional about the moment understanding breaks down.</p>
-        <div className="public-editorial-frame mx-auto">
+        <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
           <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>Why Visionary exists</p>
-          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "980px" }}>
-            {slide.black} <span className="accent-gradient">{slide.blue}</span>.
+          {/* the two lines break at the sentence — the claim, then the turn in
+              the accent voice — never mid-sentence the way text-balance broke
+              it ("Accessing knowledge / is easy. …") */}
+          <h2 key={`h-${index}`} data-type="section" className="hero-fade-up mt-[var(--gap-eyebrow-title-display)] font-semibold" style={{ color: BRAND.ink }}>
+            <span className="block">{slide.black}</span>
+            <span className="block"><span className="accent-gradient">{slide.blue}</span>.</span>
           </h2>
-          {/* Apple's chapter sub grammar (measured 2026-11-21): the statement
-              translates in 17px/400 — the body role, never a semibold lead */}
-          <p data-type="body" className="mt-[var(--gap-title-sub-display)] max-w-[54ch] tracking-[0]" style={{ color: BRAND.graphite }}>
-            Effort isn’t the gap. Knowing whether understanding landed is.
-          </p>
         </div>
         <figure className="m-0">
-          <div className="public-editorial-frame mx-auto">
+          <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
             {/* the story card — one white object on the grey ground: the
                 subject bleeds on the card’s left field, the voice sits on the
                 right panel. The card is the chapter’s one story unit, so the
@@ -274,18 +276,43 @@ function LandingProblemSection() {
                     />
                   ))}
                 </div>
+                {/* Apple's story-card anatomy (measured on /education
+                    "Real stories. Real impact."): the card eyebrow — who is
+                    speaking — sits ABOVE the statement, never below it. The
+                    quote is the card's statement; the persona is its label. */}
                 <figcaption key={`q-${index}`} className="hero-fade-up flex flex-col justify-center px-6 py-8 [animation-delay:80ms] [animation-fill-mode:both] sm:px-10 sm:py-10 min-[1069px]:px-12 min-[1069px]:py-12">
-                  <blockquote>
-                    <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "22ch" }}>{slide.quote}</p>
+                  <p className="text-[14px] font-semibold" style={{ color: BRAND.graphite }}>{slide.persona}</p>
+                  <blockquote className="mt-4">
+                    <p data-type="editorial-lead" className="flex min-h-[3.3em] items-center text-balance" style={{ color: BRAND.ink, maxWidth: "24ch" }}>{slide.quote}</p>
                   </blockquote>
-                  <p className="mt-5 text-[16px] font-medium tracking-[0] leading-[20px]" style={{ color: BRAND.slate }}>{slide.persona}</p>
                 </figcaption>
               </div>
             </div>
-            {/* Apple’s carousel control row — the pager sits under the card,
-                on the section floor, where the initiative’s own controls sit */}
-            <div className="mt-6 flex justify-start">
-              <ProgressDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} />
+            {/* Apple's gallery control row — manual prev/next chevrons at the
+                card row's bottom-right (/education "Real stories." grammar):
+                the reader paces the story; nothing auto-advances. Bounds
+                disable, exactly like the journeys gallery's controls. */}
+            <div className="mt-6 flex items-center justify-end gap-5">
+              <button
+                type="button"
+                aria-label="Previous story"
+                onClick={() => goTo(index - 1)}
+                disabled={index === 0}
+                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                style={{ borderColor: `${BRAND.ink}33`, color: `${BRAND.ink}99` }}
+              >
+                <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next story"
+                onClick={() => goTo(index + 1)}
+                disabled={index === PROBLEM_SLIDES.length - 1}
+                className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
+                style={{ borderColor: `${BRAND.ink}33`, color: `${BRAND.ink}99` }}
+              >
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </button>
             </div>
           </div>
         </figure>
@@ -342,72 +369,6 @@ function LandingPromiseSection() {
    own block anatomy: the 24px mark, the line, and the achievement return’s
    quiet blue door. The chapter’s five-journey route line now closes the page
    at the CTA (the tail mini-router), so the returns stay the only text here. */
-const LX_RETURNS = [
-  { Icon: Layers3, title: "Your hours stack.", copy: "Every lesson builds on the last. This year’s work becomes next year’s strength.", l: "For students", to: "/student" },
-  { Icon: BookOpen, title: "Your place is kept.", copy: "Visionary remembers where you stopped, so every session continues.", l: "Your continuity", to: "/how-it-works" },
-  { Icon: Globe2, title: "Your language works.", copy: "Ask, reason, and learn in the language you think in — English, Hindi, and Bengali today.", l: "Language support", to: "/how-it-works" },
-  { Icon: Eye, title: "Your progress shows.", copy: "Teachers and parents see progress while it still matters.", l: "For parents", to: "/parent" },
-];
-
-/* The return chapter’s closing line — the five journeys, labelled exactly as
-   the footer labels them. It now rides the page’s closer (the CTA’s tail
-   mini-router) instead of trailing the values cards, so the return chapter
-   ends on its cards. */
-const LX_RETURN_ROUTES = [
-  { label: "Students", to: "/student" },
-  { label: "Teachers", to: "/teacher" },
-  { label: "Parents", to: "/parent" },
-  { label: "Professionals", to: "/professional" },
-  { label: "Organizations", to: "/organization" },
-];
-
-function LandingReturnSection() {
-  const { ref, visible } = useRevealContinuous();
-  return (
-    <section ref={ref} data-section="04-return" className="relative isolate bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <Reveal visible={visible}>
-        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
-          <p className="text-[17px] font-medium" style={{ color: BRAND.graphite }}>What you get</p>
-          <figure className="m-0">
-            <blockquote className="mt-[clamp(20px,2.6vw,32px)]">
-              <p data-type="card-chapter" className="text-balance font-semibold" style={{ color: BRAND.ink, maxWidth: "30ch" }}>“A person should not have to start over every time life asks them to learn something new.”</p>
-            </blockquote>
-            <figcaption className="mt-5 text-[16px] font-normal" style={{ color: BRAND.slate }}>
-              Md Shahid Ali · Founder and CEO
-            </figcaption>
-          </figure>
-          {/* The four returns, as Apple’s feature cards: two broad #f5f5f7
-              cards per row on the wide card frame — a 28px mark, the feature
-              title, the explanation, and the editorial door pinned to the
-              card’s baseline. Two-up on the desktop window, two-up from 640,
-              stacked on the phone. */}
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1069px]:mt-16">
-            {LX_RETURNS.map((item) => (
-              <article
-                key={item.title}
-                className="flex flex-col rounded-[1.75rem] bg-[#f5f5f7] p-8 min-[1069px]:p-10"
-              >
-                <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.8} style={{ color: BRAND.ink }} />
-                <h3 data-type="feature" className="mt-6" style={{ color: BRAND.ink }}>{item.title}</h3>
-                <p data-type="value-body" className="max-w-[46ch]" style={{ color: BRAND.slate }}>{item.copy}</p>
-                {/* the editorial link law owns the door’s colour and hover
-                    underline (#0066cc / underlined) */}
-                <Link
-                  to={item.to}
-                  className="mt-auto inline-flex items-center gap-1.5 pt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
-                >
-                  {item.l}
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-    </section>
-  );
-}
-
 /* 05 · THE PRODUCT PROMO — the front door’s dark pivot: the product’s
    statement ("One intelligence.") over one slowly morphing stage, with one
    door out to the full mechanism. The four-beat loop lives where it is told
@@ -417,7 +378,11 @@ function LandingIntelligenceSection() {
   return (
     <Suspense fallback={null}><PremiumIntelligenceSection
       steps={INTELLIGENCE_STEPS}
-      sub="From the first question to using what you know."
+      /* The front door's one plain explanation — the reader arrives from the
+         hero promise already primed, and this line says what the product is
+         in Apple's plain voice: concrete verbs, two short sentences, no
+         dashes. Every claim is the platform's own released promise. */
+      sub="It remembers where you stopped, answers your questions, and turns practice into progress. In your language."
       promo
       ctaLabel="See how it works"
       ctaTo="/how-it-works"
@@ -442,7 +407,7 @@ function LandingRouterSection() {
     <Suspense fallback={null}><PremiumExploreSection
       eyebrow="Who it’s for"
       heading={<>One intelligence, <span className="accent-gradient">five journeys.</span></>}
-      sub="Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to your stage and carries your progress forward."
+      sub="Visionary adapts to your stage and carries your progress forward."
       headingRole="section"
       subRole="editorial-body"
       categories={ROUTER_CATEGORIES}
@@ -451,61 +416,8 @@ function LandingRouterSection() {
   );
 }
 
-/* 14 · THE SUITE — the four doors around the product (Apple’s services row):
-   Download, Pricing, Help, Updates. Every line is the destination page’s own
-   hero statement, so the front door invents nothing; the card anatomy is the
-   About page’s explore module (white cards on the grey ground, cutout arrow)
-   so the whole site speaks one card system. The line-up’s grey ground
-   continues straight through — one catalogue expanse carries the five
-   journeys and then the four doors around the product. */
-function LandingSuiteSection() {
-  const { ref, visible } = useRevealContinuous();
 
-  return (
-    <section ref={ref} data-section="14-suite" className="relative isolate bg-[#f5f5f7] [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <Reveal visible={visible} className="mx-auto w-full max-w-[1400px] px-6 lg:px-[var(--frame-x)]">
-        {/* Apple’s accessory/line-up chapters open with a statement over the
-            grid ("Explore Apple Vision Pro accessories."). The suite’s own
-            eyebrow promotes to the measured card-chapter statement tier —
-            same words, one statement period — so it reads as the sibling of
-            the journeys line-up above, not a second hero. */}
-        <h2
-          data-type="section"
-          className="text-balance font-semibold tracking-[-0.009em] leading-[1.06]"
-          style={{ color: BRAND.ink, maxWidth: "20ch" }}
-        >
-          Explore further.
-        </h2>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-8">
-          {SUITE_TILES.map((item) => (
-            /* Apple’s explore tile: one white card, the spot-illustration
-               field inset like a media well, the label/copy on the spine and
-               the arrow inside the card — no detached strip, no floating
-               notch. The whole card stays the door. */
-            <Link
-              key={item.to}
-              to={item.to}
-              className="group relative grid min-h-[220px] grid-cols-[1fr_118px] gap-3 overflow-hidden rounded-[20px] bg-white p-3 transition-shadow duration-200 hover:shadow-[0_12px_32px_rgba(29,29,31,0.07)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] sm:grid-cols-[1fr_180px]"
-            >
-              <div className="flex flex-col justify-between px-4 py-4 sm:px-6 sm:py-6">
-                <div>
-                  <h3 data-type="feature" style={{ color: BRAND.ink }}>{item.label}</h3>
-                  <p className="mt-2 max-w-[300px] text-[16px] leading-[1.6]" style={{ color: BRAND.graphite }}>{item.copy}</p>
-                </div>
-                <span aria-hidden="true" className="mt-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#f5f5f7] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none">
-                  <ArrowRight className="h-4 w-4" style={{ color: BRAND.link }} />
-                </span>
-              </div>
-              <div className="flex items-center justify-center rounded-[14px] bg-[#f5f5f7] sm:rounded-[16px]">
-                <SpotIllustration subject={item.subject} className="h-20 w-20 sm:h-36 sm:w-36" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </Reveal>
-    </section>
-  );
-}
+
 
 /* ═══════════════════════ PAGE ═══════════════════════
    The front-door anatomy (the company front door), ordered the way Apple
@@ -526,27 +438,36 @@ export default function LandingPage() {
       <LandingNav />
       <main id="main" tabIndex={-1}>
         <LandingHeroSection />
+        {/* the glass sheet — the hero's cover. The stage is pinned (founder
+            directive 2026-11-21: the hero stays fixed, the story scrolls);
+            this frosted sheet rides over it, and its frost fades in from
+            the leading edge (mask) so the sheet never slices the pinned
+            headline mid-glyph: the family and copy dissolve into white the
+            way the hero's own floor dissolves them. */}
+        <div
+          aria-hidden="true"
+          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#1d1d1f]/10"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+          }}
+        />
         {/* the product answers first — the front door shows what the
-            intelligence is on the first scroll after the hero (Apple’s
+            intelligence is on the first scroll after the hero (Apple's
             show-before-explain order), then the story explains why it exists
             and what the reader gets back. */}
         <LandingIntelligenceSection />
         <LandingProblemSection />
         <LandingPromiseSection />
-        <LandingReturnSection />
         <LandingRouterSection />
-        <LandingSuiteSection />
         <Suspense fallback={null}><PremiumTrustSection
-          variant="feature"
           heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
-          sub="Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way."
           values={LX_TRUST_VALUES}
         /></Suspense>
         <Suspense fallback={null}><PremiumCTASection
           variant="closing"
           heading="Your next step starts here."
-          sub="Ask a question. Explore an idea. Start learning. Visionary is ready when you are."
-          routeLinks={LX_RETURN_ROUTES}
+          sub="Free to start. Private by design."
         /></Suspense>
       </main>
       {/* quiet variant: Apple’s footer ends the page in air — no giant

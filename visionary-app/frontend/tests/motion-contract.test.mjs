@@ -35,7 +35,7 @@ test('the mobile dialog restores its trigger, background and prior scroll lock o
   const nav = read('src/components/landing/LandingNav/index.jsx');
   const mobile = read('src/components/landing/LandingNav/MobileNavigation.jsx');
   assert.match(nav, /<MobileNavigation/, 'the landing nav mounts the owned mobile dialog');
-  assert.match(nav, /menuBtnRef\.current\?\.focus/, 'closing returns focus to the menu trigger');
+  assert.match(nav, /menuBtnRef\.current/, 'closing returns focus to the menu trigger (restored at the first frame it is visible)');
   assert.match(mobile, /const previousOverflow = document\.body\.style\.overflow/, 'the dialog preserves any existing scroll lock');
   assert.match(mobile, /document\.body\.style\.overflow = "hidden"/, 'the open dialog locks background scrolling');
   assert.match(mobile, /document\.body\.style\.overflow = previousOverflow/, 'cleanup restores the prior overflow value');

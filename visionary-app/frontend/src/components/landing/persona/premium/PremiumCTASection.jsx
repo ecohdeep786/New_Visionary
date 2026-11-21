@@ -6,13 +6,15 @@ import ScrollReveal from "../sections/ScrollReveal.jsx";
 import RevealItem from "../sections/RevealItem.jsx";
 import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { color } from "@/components/landing/system/tokens";
+import heroBotWebp from "@/assets/brand/visionary-bot.webp";
+import heroBotAvif from "@/assets/brand/visionary-bot.avif";
 
 /* ═══════════════════════ 12 · CTA ═══════════════════════
-   The closer bookends the hero on Apple’s product-hero anatomy: the statement
+   The closer bookends the hero on Apple's product-hero anatomy: the statement
    opens the chapter (no eyebrow), one text-only primary pill with one quiet
-   path beside it, and the small print beneath — the way Apple’s product
-   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page’s forks under the actions — Apple’s tail mini-router. */
-function PremiumCTASection({ heading, sub, routeLinks, variant }) {
+   path beside it, and the small print beneath — the way Apple's product
+   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page's forks under the actions — Apple's tail mini-router. */
+function PremiumCTASection({ heading, sub, variant }) {
   const { ref } = useRevealOnce();
   const closing = variant === "closing";
   return (
@@ -31,10 +33,29 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
           bands are pure black; blue lives only in the links). No grid, no
           columns: the page ends on a moment, not another reading task. */}
       {closing ? null : null}
+      {/* the mark closes the page the way it opened it — the bot rises from
+          the band's floor at the right edge, the same edge-bleed the
+          intelligence chapter stages, so the product bookends the story
+          (founder directive: add the bot where it reads more premium) */}
+      {closing ? (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 hidden justify-center lg:flex">
+          <picture>
+            <source type="image/avif" srcSet={heroBotAvif} />
+            <img
+              src={heroBotWebp}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+              className="pointer-events-none h-auto w-[min(26vw,360px)] translate-y-[24%] select-none"
+            />
+          </picture>
+        </div>
+      ) : null}
       <ScrollReveal>
         <div
           className={`mx-auto max-w-[1500px] text-center ${
-            closing ? "relative flex min-h-[clamp(280px,36svh,420px)] flex-col justify-center" : ""
+            closing ? "relative flex min-h-[clamp(280px,36svh,420px)] flex-col justify-center pb-[240px] lg:pb-[300px]" : ""
           }`}
         >
           <RevealItem idx={0}>
@@ -74,44 +95,15 @@ function PremiumCTASection({ heading, sub, routeLinks, variant }) {
               Get started
             </AuthAwareLink>
             <Link
-              to="/contact"
+              to="/how-it-works"
               className={`inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px] ${
                 closing ? "text-[#2997ff] hover:text-[#6bb6ff]" : "text-[#0066cc] hover:text-[#0071e3]"
               }`}
             >
-              Talk to our team
+              How it works
               <ChevronIcon className="h-4 w-4" />
             </Link>
           </div>
-          </RevealItem>
-          <RevealItem idx={3}>
-          {routeLinks?.length ? (
-            <p
-              className={`mt-8 text-center font-normal tracking-[0] text-[16px] leading-[1.5] ${closing ? "text-white/50" : ""}`}
-              style={closing ? undefined : { color: color.slate }}
-            >
-              See how it works for{" "}
-              {routeLinks.map((route, i) => (
-                <React.Fragment key={route.to}>
-                  <Link
-                    to={route.to}
-                    className={`relative after:absolute after:-inset-y-3 after:-inset-x-1.5 rounded font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
-                      closing ? "text-[#2997ff] hover:text-[#6bb6ff]" : "text-[#0066cc] hover:text-[#0071e3]"
-                    }`}
-                  >
-                    {route.label}
-                  </Link>
-                  {i < routeLinks.length - 1 ? <span aria-hidden="true">{"\u00A0· "}</span> : null}
-                </React.Fragment>
-              ))}
-            </p>
-          ) : null}
-          <p
-            className={`mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5] ${closing ? "text-white/45" : ""}`}
-            style={closing ? undefined : { color: color.slate }}
-          >
-            Free to start. Private by design.
-          </p>
           </RevealItem>
         </div>
       </ScrollReveal>

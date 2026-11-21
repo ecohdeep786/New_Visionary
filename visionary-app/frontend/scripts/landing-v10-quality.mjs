@@ -58,7 +58,17 @@ try {
       await settle(page);
       await page.waitForFunction(id => {
         const root = document.querySelector(`main section[data-section="${id}"]`);
-        return root && [...root.querySelectorAll('img')].every(image => image.complete && image.naturalWidth > 0);
+        // a horizontal slider's off-track slides sit outside the lazy-load
+        // threshold by design — the wait covers images the viewport can
+        // actually reach (those within the section's own vertical band)
+        return root && [...root.querySelectorAll('img')].every(image => {
+          if (image.complete && image.naturalWidth > 0) return true;
+          const r = image.getBoundingClientRect();
+          const sr = root.getBoundingClientRect();
+          // outside the section's vertical band, or scrolled past the
+          // viewport horizontally (a slider's off-track slides)
+          return r.right <= 0 || r.left >= innerWidth || r.bottom < sr.top || r.top > sr.bottom;
+        });
       }, section, { timeout: 5000 });
       if (viewport.width === 390 || viewport.width === 1440) {
         await locator.screenshot({ path: path.join(output, `${section}-${viewport.width}.png`), animations: 'disabled' });
@@ -117,9 +127,13 @@ try {
 
   const problem = page.locator('main section[data-section="02-problem"]');
   await problem.scrollIntoViewIfNeeded();
-  await problem.getByRole('button', { name: 'Go to slide 2' }).click();
+  await problem.getByRole('button', { name: 'Previous story' }).waitFor({ state: 'visible' });
+  assert.equal(await problem.getByRole('button', { name: 'Previous story' }).isEnabled(), false);
+  await problem.getByRole('button', { name: 'Next story' }).click();
   await page.getByRole('heading', { name: 'Knowledge is everywhere. Turning it into capability isn’t.' }).waitFor({ state: 'visible' });
-  receipt.interactions.push('Problem carousel selects the professional story');
+  assert.equal(await problem.getByRole('button', { name: 'Next story' }).isEnabled(), false);
+  await problem.getByRole('button', { name: 'Previous story' }).click();
+  receipt.interactions.push('Problem story switches only through the manual prev/next controls (bounds disable)');
 
   const gallery = page.locator('main section[data-section="13-explore"]');
   await gallery.scrollIntoViewIfNeeded();
