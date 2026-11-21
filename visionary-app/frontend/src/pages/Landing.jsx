@@ -408,7 +408,7 @@ function LandingRouterSection() {
     <Suspense fallback={null}><PremiumExploreSection
       eyebrow="Who it’s for"
       heading={<>One intelligence, <span className="accent-gradient">five journeys.</span></>}
-      sub="Learning, teaching, guiding, building, leading. Visionary adapts to your stage and carries your progress forward."
+      sub="Visionary adapts to your stage and carries your progress forward."
       headingRole="section"
       subRole="editorial-body"
       categories={ROUTER_CATEGORIES}

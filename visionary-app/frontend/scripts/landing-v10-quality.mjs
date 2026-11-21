@@ -65,7 +65,9 @@ try {
           if (image.complete && image.naturalWidth > 0) return true;
           const r = image.getBoundingClientRect();
           const sr = root.getBoundingClientRect();
-          return r.bottom < sr.top || r.top > sr.bottom;
+          // outside the section's vertical band, or scrolled past the
+          // viewport horizontally (a slider's off-track slides)
+          return r.right <= 0 || r.left >= innerWidth || r.bottom < sr.top || r.top > sr.bottom;
         });
       }, section, { timeout: 5000 });
       if (viewport.width === 390 || viewport.width === 1440) {
