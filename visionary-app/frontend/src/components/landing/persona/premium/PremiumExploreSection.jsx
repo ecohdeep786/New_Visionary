@@ -15,13 +15,13 @@ import LazyImage from "@/components/landing/LazyImage";
    affordance, snap points for the swipe, and centred round chevrons beneath. */
 
 /* The line-up card in the iPhone Duo chapter's grammar (measured on
-   /iphone): the photograph IS the tile — the image fills the card and the
-   text lives inside it, never in a band beneath. Our studio portraits are
-   white-ground with the subject centred, so the text sits on a white
-   studio floor that dissolves the subject from below (the page's own
-   floor recipe, shared with the story card and the hero family): the
-   name as the tile's statement, the one quiet line, the blue link — all
-   inside the tile, the person rising above them. */
+   /iphone): a LONG tile — the photograph fills it completely, the subject
+   is large and cropped by the tile's edges the way Apple's product crops
+   at its tile, and the text lives inside it, never in a band beneath.
+   Our portraits are white-ground, so the 12% zoom crops only invisible
+   margin — the person reads Duo-large; the studio floor keeps the text's
+   legibility where the body runs under it (the page's own floor recipe,
+   shared with the story card and the hero family). */
 const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, image }) {
   return (
     <Link
@@ -30,20 +30,20 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
       aria-label={`Learn more about ${category.chip}`}
       className="stagger-child group relative block w-[82vw] max-w-[440px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:w-[440px]"
     >
-      <div className="media-settle relative aspect-[4/5] overflow-hidden">
+      <div className="media-settle relative aspect-[4/5.6] overflow-hidden">
         <LazyImage
           src={image}
           alt={category.alt}
           decoding="async"
           draggable="false"
-          className="h-full w-full select-none object-cover transition-transform duration-500 ease-apple group-hover:scale-[1.04]"
+          className="h-full w-full select-none object-cover transition-transform duration-500 ease-apple scale-[1.14] group-hover:scale-[1.18]"
         />
-        {/* the studio floor — the subject dissolves into it; the text sits
-            on it inside the tile (the Duo card's inside-the-image grammar) */}
+        {/* the studio floor — legibility under the text where the body
+            runs beneath it (the Duo card's inside-the-image grammar) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%]"
-          style={{ background: "linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.94) 52%, rgba(255,255,255,0) 100%)" }}
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[46%]"
+          style={{ background: "linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.92) 55%, rgba(255,255,255,0) 100%)" }}
         />
       </div>
       <div className="absolute inset-x-0 bottom-0 p-7 lg:p-8">
