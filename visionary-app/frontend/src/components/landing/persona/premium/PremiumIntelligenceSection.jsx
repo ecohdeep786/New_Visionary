@@ -46,16 +46,7 @@ function useCentredStep(total) {
 }
 
 const INTELLIGENCE_CLIPS = [null, null, null, null];
-const PROMO_STEP_LABELS = ["Understand", "Ask", "Practise", "Build"];
-/* The front door's loop strip: each beat keeps its one-line product meaning —
-   Apple Education pairs the promise with concrete meaning instead of leaving
-   four bare labels (the full mechanism stays on /how-it-works). */
-const PROMO_STEP_MEANINGS = [
-  "Every lesson starts from where you left off.",
-  "Question it in the language you think in.",
-  "Feedback that listens and adapts at your pace.",
-  "Turn what you know into real work.",
-];
+/* The promo chapter uses the same three-step learning story as its source data. */
 
 /* Four scenes of ONE intelligence — the same mark evolving, on Apple’s dark
    technology-chapter stage: near-black field, blue glow breathing behind,
@@ -233,19 +224,14 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
   );
 });
 
-function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo, note }) {
+function PremiumIntelligenceSection({ steps, sub, promo = false, promoHeading = "One intelligence.", ctaLabel, ctaTo, note }) {
   const { ref: headRef } = useRevealOnce();
   const { active, setStepRef, nodes } = useCentredStep(steps.length);
   const reduced = usePrefersReducedMotion();
 
-  /* promo mode — the front door’s product band: the chapter’s statement over
-     the one bare mark (the Visionary bot, unframed on the dark stage,
-     founder directive 2026-11-02: "remove the rectangle and use the
-     image"), one door out to the full mechanism. No beats, no drawers, no
-     dots — the door is the dark-band white pill (Apple’s dark chapters never
-     carry a filled accent button; the accent lives in the statement and the
-     light) and the mark floats bare. The default renders the full chapter
-     every category page carries. */
+  /* Promo mode gives the landing a concise statement, the same three visible
+     journey steps passed in as data, and one route to the full explanation.
+     Category pages continue to render the full scroll-led mechanism. */
 
   const scrollToBeat = useCallback((i) => {
     const node = nodes.current?.[i];
@@ -271,7 +257,7 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
           <div className="mx-auto max-w-[560px] text-center lg:mx-0 lg:text-left">
             <RevealItem idx={0}>
               <h2 data-type="section" className="text-balance font-semibold">
-                <span className="accent-gradient-on-dark">One intelligence.</span>
+                <span className="accent-gradient-on-dark">{promoHeading}</span>
               </h2>
             </RevealItem>
             <RevealItem idx={1}>
@@ -279,8 +265,22 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
                 {sub}
               </p>
             </RevealItem>
+            <RevealItem idx={2}>
+              <ol aria-label="Learning journey" className="mx-auto mt-8 grid w-full max-w-[560px] grid-cols-1 gap-5 text-left sm:grid-cols-3 lg:mx-0">
+                {steps.map((step, index) => (
+                  <li key={step.title} className="border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.18)" }}>
+                    <p className="text-[13px] font-medium tracking-[0.04em]" style={{ color: "#2997ff" }}>
+                      {String(index + 1).padStart(2, "0")} · {step.title}
+                    </p>
+                    <p className="mt-2 text-[14px] leading-[1.5]" style={{ color: "rgba(245,247,250,0.74)" }}>
+                      {step.copy}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </RevealItem>
             {ctaLabel ? (
-              <RevealItem idx={2}>
+              <RevealItem idx={3}>
                 <div className="mt-9 flex justify-center lg:justify-start">
                   <Link
                     to={ctaTo}
@@ -297,12 +297,10 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
         {/* the mark — half in the chapter, half beyond its edge: the bot
             rises from the section's own lower boundary (founder
             composition, 2026-11-21), face and shoulders fully alive, the
-            lower body hidden by the section itself. Larger than the old
-            centered mark so the product earns real stage presence; the
-            loop strip is retired — its mechanism lives on /how-it-works.
-            One element, one fetch: absolute at the chapter's right on
-            desktop, in flow under the words on phones. Eager-loaded — a
-            display:none lazy image would never decode. */}
+            lower body hidden by the section itself. The three-step story sits
+            beside it on desktop and above it on phones. One element, one
+            eager fetch; the image stays in the layout so it decodes on every
+            screen size. */}
         <div
           aria-hidden="true"
           className="pointer-events-none relative mt-10 flex w-full justify-center lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:w-[46%] lg:items-end lg:justify-center"
