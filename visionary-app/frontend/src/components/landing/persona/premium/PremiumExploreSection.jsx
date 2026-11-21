@@ -51,13 +51,6 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
           >
             {category.chip}
           </h3>
-          <p
-            data-type="value-body"
-            className="mt-1.5 text-balance"
-            style={{ maxWidth: "22ch" }}
-          >
-            {category.copy}
-          </p>
         </div>
         <span
           className="mt-1 inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-colors duration-200 hover:bg-[#272729] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:h-9 lg:h-11 lg:text-[18px]"
