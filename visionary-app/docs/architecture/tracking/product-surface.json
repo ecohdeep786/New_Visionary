@@ -167,8 +167,8 @@
         "frontend/src/pages/Landing.jsx:308:15",
         "frontend/src/pages/Landing.jsx:318:15",
         "frontend/src/pages/Landing.jsx:366:11",
-        "frontend/src/pages/Landing.jsx:434:17",
-        "frontend/src/pages/Landing.jsx:528:13"
+        "frontend/src/pages/Landing.jsx:435:17",
+        "frontend/src/pages/Landing.jsx:529:13"
       ],
       "operations": [
         "public-discovery",
@@ -79254,15 +79254,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:434:17",
+      "id": "frontend/src/pages/Landing.jsx:435:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 434,
+      "line": 435,
       "column": 17,
       "tag": "Link",
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "7dbc0fa5b14a49510dd526d8393efa69c08311c9dcc8bd630c5c1ab2dc217e82",
+      "declarationSha256": "891de48975fac82dc19b1fbbf1e4cacca4e080b932d9fd827c58d90e7b8c652e",
       "routeIds": [
         "/"
       ],
@@ -79278,9 +79278,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:528:13",
+      "id": "frontend/src/pages/Landing.jsx:529:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 528,
+      "line": 529,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -82752,7 +82752,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "53eeeb87f9e73a8da778be7280f8789d9d9400e1b815d9e8e8e180c432248fca"
+      "sourceSha256": "286cf3d46709ae6964789a3625625c168a47b8876c0a38b82d0f45f1f79dd29c"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

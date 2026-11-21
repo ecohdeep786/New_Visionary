@@ -415,25 +415,26 @@ function LandingReturnSection() {
               Md Shahid Ali · Founder and CEO
             </figcaption>
           </figure>
-          {/* The four returns, as Apple’s feature cards: two broad #f5f5f7
-              cards per row on the wide card frame — a 28px mark, the feature
-              title, the explanation, and the editorial door pinned to the
-              card’s baseline. Two-up on the desktop window, two-up from 640,
-              stacked on the phone. */}
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1069px]:mt-16">
+          {/* The four returns, in Apple's values-column grammar (measured on
+              /education "Our values lead the way."): open typographic columns
+              under a thin top hairline — a 28px mark, the feature title, the
+              explanation, and the editorial door at the column's baseline.
+              Four-up on the desktop window, two-up from 640, stacked on the
+              phone. No tiles: the values chapter is type on the band. */}
+          <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 min-[1069px]:mt-16 min-[1069px]:grid-cols-4">
             {LX_RETURNS.map((item) => (
               <article
                 key={item.title}
-                className="flex flex-col rounded-[1.75rem] bg-[#f5f5f7] p-8 min-[1069px]:p-10"
+                className="flex flex-col border-t pt-7"
               >
                 <item.Icon aria-hidden="true" className="h-7 w-7" strokeWidth={1.8} style={{ color: BRAND.ink }} />
-                <h3 data-type="feature" className="mt-6" style={{ color: BRAND.ink }}>{item.title}</h3>
-                <p data-type="value-body" className="max-w-[46ch]" style={{ color: BRAND.slate }}>{item.copy}</p>
-                {/* the editorial link law owns the door’s colour and hover
+                <h3 data-type="feature" className="mt-5" style={{ color: BRAND.ink }}>{item.title}</h3>
+                <p data-type="value-body" className="mt-3 max-w-[42ch]" style={{ color: BRAND.slate }}>{item.copy}</p>
+                {/* the editorial link law owns the door's colour and hover
                     underline (#0066cc / underlined) */}
                 <Link
                   to={item.to}
-                  className="mt-auto inline-flex items-center gap-1.5 pt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
+                  className="mt-auto inline-flex items-center gap-1.5 pt-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc]"
                 >
                   {item.l}
                   <ChevronRight className="h-3.5 w-3.5" />
