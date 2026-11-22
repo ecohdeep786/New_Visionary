@@ -26,7 +26,8 @@
    bleed past the screen edges, the center figure in front. */
 .cast-stage {
   --cast-h: min(34svh, calc(100vw / 2.2));
-  height: calc(100svh - 56px);
+  height: auto;
+  min-height: min(calc(100svh - 56px), 54rem);
 }
 
 /* Short and landscape windows trade the fixed stage for a readable story:
@@ -67,7 +68,7 @@
    floor on compact stages where the free space collapses to zero (320×568
    measures a 19px rail-to-family gap — the padding, not the margin, is
    what holds there). */
-.cast-copy { margin-top: auto; margin-bottom: auto; padding-top: clamp(16px, 2svh, 32px); }
+.cast-copy { margin-top: auto; margin-bottom: auto; padding-top: clamp(24px, 4svh, 56px); }
 
 .cast-slot-0 { z-index: 10; }
 .cast-slot-2 { z-index: 30; }
@@ -106,4 +107,23 @@
     animation-timing-function: var(--ease-out-apple) !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+.cast-copy h1 {
+  font-size: var(--fs-hero-headline);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+.cast-intro {
+  margin: 1.25rem auto 0;
+  max-width: 44ch;
+  color: #424245;
+  font-size: 1.1875rem;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+.cast-copy .cast-intro + div { margin-top: 1.5rem; }
+@media (max-width: 639px) {
+  .cast-intro { font-size: 1.0625rem; }
+  .cast-copy .audience-rail { max-width: 26rem; }
 }
