@@ -1,0 +1,72 @@
+.page-landing {
+  --public-section-py: clamp(4rem, 7vw, 7rem);
+}
+.page-landing [id="audiences"] { scroll-margin-top: 3.5rem; }
+.page-landing .home-example-text { max-width: 44ch; }
+.home-example-text p {
+  color: #424245;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  margin-top: .65rem;
+}
+.home-example-text h4 {
+  border-top: 1px solid #d2d2d7;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+.home-role-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 min(79vw, 22rem);
+  scroll-snap-align: start;
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.home-role-card .media-settle { aspect-ratio: 5 / 4; }
+.home-role-card .home-role-caption {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.35rem 1.5rem 1.5rem;
+}
+.home-role-caption p {
+  margin: .5rem 0 auto;
+  color: #424245;
+  line-height: 1.45;
+  font-size: 1.0625rem;
+}
+.home-role-card:focus-visible { outline: 3px solid #0066cc; outline-offset: -3px; }
+.home-role-card:hover h3 { color: #0066cc; }
+@media (min-width: 768px) {
+  .home-role-card { flex-basis: min(36vw, 22rem); }
+}
+@media (max-width: 639px) {
+  .page-landing [data-section="05-intelligence"] { min-height: auto; }
+}
+
+
+.home-product .home-product-copy { max-width: 31rem; position: relative; z-index: 1; }
+.home-product-copy p {
+  font-size: 1.1875rem;
+  line-height: 1.5;
+  margin: 1.2rem 0 1.7rem;
+  color: #d2d2d7;
+  text-wrap: pretty;
+}
+.home-product-mark { display: block; pointer-events: none; }
+.home-product-mark img { width: 100%; }
+@media (min-width: 900px) {
+  .page-landing .home-product { display: grid; align-content: center; min-height: 31rem; }
+  .home-product .public-editorial-frame { width: 100%; }
+  .home-product .home-product-copy { max-width: min(46%, 31rem); }
+  .home-product-mark { position: absolute; bottom: -20%; right: 6%; width: min(40%, 28rem); }
+}
+@media (max-width: 899px) {
+  .page-landing main > section.home-product { padding-bottom: 0; text-align: center; }
+  .home-product .home-product-copy { margin: 0 auto; }
+  .home-product-mark { width: min(66%, 19rem); margin: 2rem auto -4rem; }
+}

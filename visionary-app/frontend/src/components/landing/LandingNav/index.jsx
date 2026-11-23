@@ -97,6 +97,7 @@ export default function LandingNav() {
       clearTimeout(closeTimer.current);
       const activeRef = refs[openMega]?.current;
       if (activeRef?.contains(document.activeElement)) activeRef.querySelector("a")?.focus();
+      clearTimeout(openTimer.current);
       setOpenMega(null);
     };
 
@@ -151,13 +152,6 @@ export default function LandingNav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 h-14" style={{ fontFamily: fontStack }}>
-      {/* Skip link — first focusable element, Google/US-WAG convention */}
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-11 focus:items-center focus:rounded-full focus:bg-[#1d1d1f] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
-      >
-        Skip to main content
-      </a>
       {/* the Apple-state bar: always a frosted strip — translucent white,
           saturate + 20px blur, hairline beneath — deepening one step once
           the page scrolls. The frosted layer is an inner element on purpose
@@ -180,7 +174,12 @@ export default function LandingNav() {
             <VisionaryLogo />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex" onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              clearTimeout(openTimer.current);
+              setOpenMega(null);
+            }
+          }}>
             {/* WHO YOU ARE — Apple global-nav pattern: the item is a link
                (click navigates to the page), hover or keyboard focus opens
                the megamenu. Reference basis: Apple HIG — Navigation and
@@ -192,12 +191,16 @@ export default function LandingNav() {
               onMouseLeave={requestClose}
             >
               <Link
-                to={activeCategory ? activeCategory.path : "/student"}
+                to={activeCategory ? activeCategory.path : "/#audiences"}
                 aria-haspopup="true"
                 aria-expanded={openMega === "who"}
                 aria-controls="mega-who"
                 onFocus={() => requestOpen("who")}
-                onClick={() => setOpenMega(null)}
+                onClick={() => {
+                  clearTimeout(openTimer.current);
+                  clearTimeout(closeTimer.current);
+                  setOpenMega(null);
+                }}
                 className={`${megaTrigger("who", pageActive.who)} min-w-0`}
               >
                 {activeCategory ? activeCategory.label : "For you"}

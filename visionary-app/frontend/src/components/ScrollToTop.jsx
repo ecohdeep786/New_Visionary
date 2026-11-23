@@ -15,7 +15,7 @@ const prefersReducedMotion = () =>
   typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export default function ScrollToTop() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
   const navigationType = useNavigationType();
   /* F-09-D1: the browser's native anchor scroll on a direct URL load runs
    * against the pre-hydration layout; fonts and images then grow the page
@@ -26,6 +26,23 @@ export default function ScrollToTop() {
   const pendingHashLanding = useRef(Boolean(hash));
 
   useEffect(() => {
+    if (pathname === "/" && (hash === "#lesson-example" || hash === "#audiences")) {
+      pendingHashLanding.current = false;
+      const focusSection = () => {
+        const section = document.getElementById(getHashId(hash));
+        if (!section) return false;
+        section.focus({ preventScroll: true });
+        section.scrollIntoView({ block: "start", behavior: prefersReducedMotion() ? "instant" : "smooth" });
+        return true;
+      };
+      if (focusSection()) return;
+      // A direct link may arrive before the audience gallery's chunk has mounted.
+      const observer = new MutationObserver(() => {
+        if (focusSection()) observer.disconnect();
+      });
+      observer.observe(document.getElementById("root"), { childList: true, subtree: true });
+      return () => observer.disconnect();
+    }
     if (pendingHashLanding.current && hash) {
       pendingHashLanding.current = false;
       const id = getHashId(hash);
@@ -41,13 +58,13 @@ export default function ScrollToTop() {
     if (hash) {
       const id = getHashId(hash);
       const timer = window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
       }, 50);
       return () => window.clearTimeout(timer);
     }
 
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [pathname, hash, navigationType]);
+  }, [pathname, hash, key, navigationType]);
 
   return null;
 }

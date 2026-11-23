@@ -1,12 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { useRevealOnce, usePrefersReducedMotion } from "@/components/landing/system/hooks";
 import ScrollReveal from "../sections/ScrollReveal.jsx";
 import RevealItem from "../sections/RevealItem.jsx";
-import ChevronIcon from "../sections/ChevronIcon.jsx";
 import { fontStack } from "@/components/landing/system/tokens";
-import heroBotWebp from "@/assets/brand/visionary-bot.webp";
-import heroBotAvif from "@/assets/brand/visionary-bot.avif";
 
 function useCentredStep(total) {
   const nodes = useRef([]);
@@ -46,17 +42,6 @@ function useCentredStep(total) {
 }
 
 const INTELLIGENCE_CLIPS = [null, null, null, null];
-const PROMO_STEP_LABELS = ["Understand", "Ask", "Practise", "Build"];
-/* The front door's loop strip: each beat keeps its one-line product meaning —
-   Apple Education pairs the promise with concrete meaning instead of leaving
-   four bare labels (the full mechanism stays on /how-it-works). */
-const PROMO_STEP_MEANINGS = [
-  "Every lesson starts from where you left off.",
-  "Question it in the language you think in.",
-  "Feedback that listens and adapts at your pace.",
-  "Turn what you know into real work.",
-];
-
 /* Four scenes of ONE intelligence — the same mark evolving, on Apple’s dark
    technology-chapter stage: near-black field, blue glow breathing behind,
    hairline white rings, frost core, glowing blue satellites. */
@@ -233,19 +218,10 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
   );
 });
 
-function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo, note }) {
+function PremiumIntelligenceSection({ steps, sub, note }) {
   const { ref: headRef } = useRevealOnce();
   const { active, setStepRef, nodes } = useCentredStep(steps.length);
   const reduced = usePrefersReducedMotion();
-
-  /* promo mode — the front door’s product band: the chapter’s statement over
-     the one bare mark (the Visionary bot, unframed on the dark stage,
-     founder directive 2026-11-02: "remove the rectangle and use the
-     image"), one door out to the full mechanism. No beats, no drawers, no
-     dots — the door is the dark-band white pill (Apple’s dark chapters never
-     carry a filled accent button; the accent lives in the statement and the
-     light) and the mark floats bare. The default renders the full chapter
-     every category page carries. */
 
   const scrollToBeat = useCallback((i) => {
     const node = nodes.current?.[i];
@@ -255,73 +231,6 @@ function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     node.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
   }, [nodes]);
-
-  if (promo) {
-    return (
-      <section ref={headRef} data-section="05-intelligence" className="scene-dark relative isolate flex min-h-[clamp(560px,74svh,780px)] flex-col overflow-hidden lg:flex-row lg:items-center" style={{ fontFamily: fontStack }}>
-        {/* Apple's dark chapters are flat black — no glow washes (measured
-            2026-11-21 on /education + /iphone); the gradient statement and
-            the product carry the scene's color. */}
-        {/* the words — left of the product on desktop: Apple's product-page
-            grammar (the words introduce, the product appears on the right).
-            On phones and tablets the whole block — statement, sub, button —
-            centers on the stage (founder directive 2026-11-21): mx-auto
-            centers the 560px measure, lg:mx-0 pins it to the frame. */}
-        <ScrollReveal className="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-6 py-14 lg:px-[var(--frame-x)] lg:py-0">
-          <div className="mx-auto max-w-[560px] text-center lg:mx-0 lg:text-left">
-            <RevealItem idx={0}>
-              <h2 data-type="section" className="text-balance font-semibold">
-                <span className="accent-gradient-on-dark">One intelligence.</span>
-              </h2>
-            </RevealItem>
-            <RevealItem idx={1}>
-              <p data-type="body" className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] lg:mx-0">
-                {sub}
-              </p>
-            </RevealItem>
-            {ctaLabel ? (
-              <RevealItem idx={2}>
-                <div className="mt-9 flex justify-center lg:justify-start">
-                  <Link
-                    to={ctaTo}
-                    className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-[21px] text-[17px] leading-[1.176] tracking-[-0.011em] font-medium text-[#1d1d1f] transition-colors duration-200 hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#000000]"
-                  >
-                    {ctaLabel}
-                    <ChevronIcon className="h-4 w-4" />
-                  </Link>
-                </div>
-              </RevealItem>
-            ) : null}
-          </div>
-        </ScrollReveal>
-        {/* the mark — half in the chapter, half beyond its edge: the bot
-            rises from the section's own lower boundary (founder
-            composition, 2026-11-21), face and shoulders fully alive, the
-            lower body hidden by the section itself. Larger than the old
-            centered mark so the product earns real stage presence; the
-            loop strip is retired — its mechanism lives on /how-it-works.
-            One element, one fetch: absolute at the chapter's right on
-            desktop, in flow under the words on phones. Eager-loaded — a
-            display:none lazy image would never decode. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none relative mt-10 flex w-full justify-center lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:w-[46%] lg:items-end lg:justify-center"
-        >
-          <picture>
-            <source type="image/avif" srcSet={heroBotAvif} />
-            <img
-              src={heroBotWebp}
-              alt=""
-              loading="eager"
-              decoding="async"
-              draggable="false"
-              className="pointer-events-none h-auto w-[min(62vw,300px)] translate-y-[30%] sm:w-[min(42vw,420px)] select-none lg:w-[min(40vw,540px)] lg:translate-y-[24%]"
-            />
-          </picture>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>

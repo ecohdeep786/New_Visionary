@@ -29,35 +29,42 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
     <Link
       to={`/${category.slug}`}
       data-card
-      aria-label={`Learn more about ${category.chip}`}
-      className="stagger-child group relative block w-[82vw] sm:w-[88vw] lg:w-[calc(100vw-315px)] lg:max-w-[1150px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:rounded-[22px] lg:rounded-[28px]"
+      aria-label={category.detail ? undefined : `Learn more about ${category.chip}`}
+      className={category.detail ? "home-role-card stagger-child group" : "stagger-child group relative block w-[82vw] sm:w-[88vw] lg:w-[calc(100vw-315px)] lg:max-w-[1150px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-apple hover:-translate-y-1 sm:rounded-[22px] lg:rounded-[28px]"}
     >
       <div className="media-settle relative aspect-[4/5] overflow-hidden bg-white sm:aspect-[4/3] lg:aspect-[15/8]">
         <LazyImage
           src={image}
-          alt={category.alt}
+          alt={category.detail ? "" : category.alt}
           decoding="async"
           draggable="false"
           className="absolute left-1/2 top-[15%] h-[112%] w-auto max-w-none -translate-x-1/2 select-none transition-transform duration-500 ease-apple lg:top-[14%] lg:h-[118%] group-hover:scale-[1.03]"
         />
       </div>
-      {/* the Duo text row: name and its fragment top-left, the pill top-right */}
-      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-6 sm:p-8 lg:p-12">
-        <div>
-          <h3
-            data-type="feature"
-            className="text-balance"
-            style={{ color: color.ink, maxWidth: "18ch" }}
-          >
-            {category.chip}
-          </h3>
+      {category.detail ? (
+        <div className="home-role-caption">
+          <h3 data-type="card-name">{category.chip}</h3>
+          <p>{category.detail}</p>
+          <ChevronIcon className="mt-4 h-5 w-5 text-[#0066cc]" />
         </div>
-        <span
-          className="mt-1 inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-colors duration-200 hover:bg-[#272729] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:h-9 lg:h-11 lg:text-[18px]"
-        >
-          Learn more
-        </span>
-      </div>
+      ) : (
+        <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-6 sm:p-8 lg:p-12">
+          <div>
+            <h3
+              data-type="feature"
+              className="text-balance"
+              style={{ color: color.ink, maxWidth: "18ch" }}
+            >
+              {category.chip}
+            </h3>
+          </div>
+          <span
+            className="mt-1 inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-[#1d1d1f] px-[21px] text-[17px] font-medium leading-[1.176] tracking-[-0.011em] text-white transition-colors duration-200 hover:bg-[#272729] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 sm:h-9 lg:h-11 lg:text-[18px]"
+          >
+            Learn more
+          </span>
+        </div>
+      )}
     </Link>
   );
 });
@@ -69,7 +76,7 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
    headingRole/subRole let a page bind the header to a measured public type
    role (the landing’s router opens at Education’s card-chapter tier and reads
    its intro at the editorial-body tier); omitted, nothing changes. */
-function PremiumExploreSection({ heading, categories, images, eyebrow, sub, headingRole, subRole }) {
+function PremiumExploreSection({ id, heading, categories, images, eyebrow, sub, headingRole, subRole }) {
   const { ref } = useRevealOnce();
   const { trackRef, canPrev, canNext, scrollByCard, update } = useScrollTrack();
 
@@ -102,7 +109,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
   }, []);
 
   return (
-    <section ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
+    <section id={id} tabIndex={id ? -1 : undefined} aria-labelledby={id ? `${id}-title` : undefined} ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
         <RevealItem idx={0}>
           <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
@@ -112,6 +119,7 @@ function PremiumExploreSection({ heading, categories, images, eyebrow, sub, head
               </p>
             )}
             <h2
+              id={id ? `${id}-title` : undefined}
               data-type={headingRole}
               className="text-balance font-semibold"
               style={{ color: color.ink, maxWidth: "20ch", marginTop: eyebrow ? "var(--gap-eyebrow-title-display)" : undefined }}

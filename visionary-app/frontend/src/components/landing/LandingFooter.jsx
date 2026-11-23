@@ -44,7 +44,6 @@ const FOOTER_SECTIONS = [
       { label: "Help center", to: "/help" },
       { label: "Contact sales", to: "/contact" },
       { label: "Partner program", to: "/partners" },
-      { label: "Find a partner", to: "/partners" },
       { label: "Sign up for updates", to: "/updates" },
     ],
   },

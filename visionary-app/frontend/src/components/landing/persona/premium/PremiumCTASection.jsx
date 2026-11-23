@@ -32,7 +32,6 @@ function PremiumCTASection({ heading, sub, variant }) {
           wash, no orbit rings (the /education + /iphone study: Apple's dark
           bands are pure black; blue lives only in the links). No grid, no
           columns: the page ends on a moment, not another reading task. */}
-      {closing ? null : null}
       {/* the mark closes the page the way it opened it — the bot rises from
           the band's floor at the right edge, the same edge-bleed the
           intelligence chapter stages, so the product bookends the story
@@ -55,7 +54,7 @@ function PremiumCTASection({ heading, sub, variant }) {
       <ScrollReveal>
         <div
           className={`mx-auto max-w-[1500px] text-center ${
-            closing ? "relative flex min-h-[clamp(280px,36svh,420px)] flex-col justify-center pb-[240px] lg:pb-[300px]" : ""
+            closing ? "relative flex min-h-[clamp(280px,36svh,420px)] flex-col justify-center lg:pb-[300px]" : ""
           }`}
         >
           <RevealItem idx={0}>
@@ -92,7 +91,7 @@ function PremiumCTASection({ heading, sub, variant }) {
                 closing ? "bg-white text-[#1d1d1f] hover:bg-[#f5f5f7]" : "bg-[#1d1d1f] text-white hover:bg-[#272729]"
               }`}
             >
-              Get started
+              {closing ? "Create an account" : "Get started"}
             </AuthAwareLink>
             <Link
               to="/how-it-works"

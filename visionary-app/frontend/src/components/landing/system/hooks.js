@@ -186,7 +186,7 @@ export function useHorizontalTrack() {
     const gap = parseFloat(getComputedStyle(t).columnGap) || 0;
     t.scrollBy({
       left: dir * (card.getBoundingClientRect().width + gap),
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
     });
   }, []);
   return { trackRef, canPrev, canNext, scrollByCard, update };

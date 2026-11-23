@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HERO_SRCSETS, HERO_SIZES, HERO_AVIF_SOURCES } from "@/lib/heroVariants";
 import { CtaPair } from "@/components/landing/system/ui";
@@ -25,29 +25,6 @@ function useCycle(total, ms) {
     return () => clearInterval(id);
   }, [total, ms, reduced]);
   return index;
-}
-
-/* The audience line's cycle, with a hold — the landing's audience rail
-   previews a persona on hover/focus (setIndex) and holds the line there
-   (setPaused) until the pointer or keyboard focus leaves. Under
-   prefers-reduced-motion the auto-advance never starts; the rail still
-   lets the reader choose a line. */
-function useCycleStep(total, ms) {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(() => {
-    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
-    try {
-      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    } catch {
-      return false;
-    }
-  });
-  useEffect(() => {
-    if (!ms || ms <= 0 || total <= 1 || paused) return undefined;
-    const id = setInterval(() => setIndex((i) => (i + 1) % total), ms);
-    return () => clearInterval(id);
-  }, [total, ms, paused]);
-  return { index, setIndex, setPaused };
 }
 
 /* The shared CTA pair lives in system/ui.jsx (CtaPair) — one measured
@@ -123,8 +100,6 @@ export default function NewPersona({
   words,
   wordMs = 2800,
   staticHeadline,
-  animatedHeadlinePrefix,
-  animatedHeadlineWords,
   srSentence,
   sub,
   img,
@@ -143,83 +118,8 @@ export default function NewPersona({
      persona (label + route), in the cycling line's order. Absent on every
      persona page, so those heroes render exactly as before. */
   audienceLinks,
-  /* Landing-only cycling verbs for the promise's first word — Learning →
-     Teaching → Guiding → Building → Leading. Tab-wise auto: the rail below
-     is the tab set; hover/focus holds a door; reduced motion holds the
-     first. Absent on every persona page, so those heroes render exactly
-     as before. */
-  audienceWords,
 }) {
-  /* Persona pages can still use a cycling lead. The universal landing uses a
-     fixed product statement so the family lineup carries the variation. */
   const index = useCycle(words.length, wordMs);
-  const hasAnimatedHeadline = Boolean(animatedHeadlinePrefix && animatedHeadlineWords?.length);
-  /* The audience line is landing-only (cast). Its cycle is interruptible —
-     the audience rail previews and holds a persona — while non-cast heroes
-     keep the original auto-cycle untouched (one `useCycle` with the exact
-     original arguments; the step hook stays inert there). */
-  const cycleIndex = useCycle(cast ? 0 : animatedHeadlineWords?.length || 0, cast ? 0 : hasAnimatedHeadline ? wordMs : 0);
-  const audienceStep = useCycleStep(cast ? audienceWords?.length ?? 0 : 0, cast ? wordMs : 0);
-  const animatedIndex = cast ? audienceStep.index : cycleIndex;
-  /* Apple's live-measured hero ladder (FAP-34, education-initiative):
-     rotating fragment 140/96/64 → var(--fs-hero-headline); the statement
-     line 56/40/40 → var(--fs-hero-eyebrow); 600 weight, 1.0 leading,
-     -0.0021em tracking. Stepped values live in rhythm.css, so persona and
-     cast heroes share one token source. Long fragments may wrap on phones
-     (Apple's own hero words wrap; text-balance keeps it composed). */
-  const displayClass = "font-semibold tracking-[-0.0021em] leading-[1]";
-
-  const copyRef = useRef(null);
-  const wordRef = useRef(null);
-  /* One-line guarantee — and ONE voice for the whole cycle: the rotating
-     line's size is computed ONCE, from the widest fragment, so every
-     audience word renders at the same size at every width ("students." and
-     "organizations." hold one composition — the earlier per-word fit let
-     the stage re-rank words by length, which read as a size bug). Apple's
-     education hero measures its display line in a 980px box (the headline
-     container), so the fit targets that cap — never the mask, which would
-     let the word clip instead of scale. The line box stays at the base
-     display height, so the composition never moves between words. */
-  const [fittedPx, setFittedPx] = useState(0);
-  useLayoutEffect(() => {
-    if (!cast || !hasAnimatedHeadline) return undefined;
-    const fit = () => {
-      const word = wordRef.current;
-      const copy = copyRef.current;
-      if (!word || !copy) return;
-      /* Canvas measure at the line's true computed font: no remount churn,
-         every fragment measured in one pass (letter-spacing carried too via
-         ctx.letterSpacing where Chromium exposes it). */
-      const style = getComputedStyle(word);
-      const base = parseFloat(style.fontSize);
-      if (!(base > 0) || !(copy.clientWidth > 0)) return;
-      let widest = 0;
-      try {
-        const ctx = document.createElement("canvas").getContext("2d");
-        ctx.font = `${style.fontWeight} ${base}px ${style.fontFamily}`;
-        if ("letterSpacing" in ctx) ctx.letterSpacing = style.letterSpacing;
-        for (const fragment of animatedHeadlineWords) {
-          widest = Math.max(widest, ctx.measureText(`${fragment}.`).width);
-        }
-      } catch {
-        widest = 0;
-      }
-      const available = Math.min(980, copy.clientWidth);
-      const next =
-        widest > available
-          ? Math.floor((base * (available / widest)) * 2) / 2
-          : 0;
-      setFittedPx((prev) => (prev === next ? prev : next));
-    };
-    fit();
-    if (typeof document !== "undefined" && document.fonts?.ready) {
-      document.fonts.ready.then(fit).catch(() => {});
-    }
-    if (typeof ResizeObserver === "undefined" || !copyRef.current) return undefined;
-    const ro = new ResizeObserver(fit);
-    ro.observe(copyRef.current);
-    return () => ro.disconnect();
-  }, [cast, hasAnimatedHeadline]);
 
   if (cast) {
     return (
@@ -237,146 +137,21 @@ export default function NewPersona({
           marginTop: 56,
         }}
       >
-        {/* the words — static "One Intelligence." Centered mid-stage on every
-            device: auto margins balance the copy between the nav and the
-            bottom-anchored family, one composition at every width */}
-        {/* public-frame carries the canonical gutters — w-full would override
-            them and push the tagline against the screen edges */}
-        <div ref={copyRef} className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center text-center">
-          <div className="max-w-[980px]">
-            <h1 data-type="display" className="m-0">
-              <span
-                aria-hidden="true"
-                className={`${displayClass} ${hasAnimatedHeadline || staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
-                style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-headline)" }}
-              >
-                {hasAnimatedHeadline ? (
-                  /* Apple's stacked hero lines: the statement reads as its own
-                     line, the audience line below it — the same masked-line
-                     rhythm as an education-init headline, including the
-                     measured 0.05em line padding (2.8px at 56, 7px at 140).
-                     The audience line rises inside a clip box and never
-                     wraps: its size is fitted to the copy column above. */
-                  <>
-                    <span className="block text-balance tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>{animatedHeadlinePrefix}</span>
-                    <span
-                      className="block overflow-hidden"
-                      style={{ height: "calc(var(--fs-hero-headline) * 1.05)" }}
-                    >
-                      <span
-                        ref={wordRef}
-                        key={animatedIndex}
-                        className="apple-anim accent-gradient block whitespace-nowrap"
-                        style={{
-                          animation: "heroLineUp var(--motion-duration-cinematic) var(--ease-out-apple) both",
-                          paddingBottom: "0.05em",
-                          lineHeight: "var(--fs-hero-headline)",
-                          /* the fitted one-voice size survives the per-word
-                             remounts: it is held in state, not per-word */
-                          ...(cast && hasAnimatedHeadline && fittedPx
-                            ? { fontSize: `${fittedPx}px` }
-                            : null),
-                        }}
-                      >
-                        {animatedHeadlineWords[animatedIndex]}.
-                      </span>
-                    </span>
-                  </>
-                ) : staticHeadline ? (
-                  /* The promise's first word IS the cycle: the verb fades up
-                     in place — Learning → Teaching → Guiding → Building →
-                     Leading — while "that grows with you." stays put. The
-                     rail below is the tab set and moves with the verb;
-                     hover/focus holds a door; the auto-advance never starts
-                     under reduced motion. The verb is plain ink: Apple's
-                     rotating lines stay in the headline's own voice. */
-                  <>
-                    <span className="block text-balance tracking-[-0.00028em]" style={{ color: "#1d1d1f", fontSize: "var(--fs-hero-eyebrow)", paddingBottom: "0.05em" }}>
-                      {audienceWords?.length ? (
-                        <>
-                          <span
-                            key={audienceStep.index}
-                            className="apple-anim inline-block"
-                            style={{ animation: "heroFadeUp var(--motion-duration-slow) var(--ease-out-apple) both" }}
-                          >
-                            {audienceWords[audienceStep.index]}
-                          </span>
-                          {" that"}
-                        </>
-                      ) : (
-                        words[0]
-                      )}
-                    </span>
-                    <span className="block">
-                      <span
-                        ref={wordRef}
-                        className="apple-anim accent-gradient block text-balance"
-                        style={{
-                          animation: "heroLineUp var(--motion-duration-cinematic) var(--ease-out-apple) both",
-                          paddingBottom: "0.05em",
-                          lineHeight: "1.02"
-                        }}
-                      >
-                        {staticHeadline}
-                      </span>
-                    </span>
-                  </>
-                ) : (
-                  <span className="accent-gradient">{words[0]}</span>
-                )}
-              </span>
-              <span className="sr-only">{srSentence}</span>
-            </h1>
-            {/* Apple's education hero carries the large statement, ONE plain
-                line that translates it into the person's benefit, then the
-                actions (measured: headline claim → sub-line → CTA). The old
-                sub was dropped because it restated the headline; a purpose
-                line that adds information earns its place. */}
-            {sub ? (
-              <p
-                className="text-balance mx-auto mt-6 max-w-[680px]"
-                style={{ color: "#6e6e73", fontSize: "clamp(17px, 1.5vw, 20px)", lineHeight: 1.45, fontWeight: 400 }}
-              >
-                {sub}
-              </p>
-            ) : null}
-          </div>
-          {/* the hero pair — full buttons. This is the product's front door;
-              the same shared pills the persona heroes wear, so one button
-              system carries every hero. */}
+        <div className="cast-copy public-frame relative z-10 mx-auto flex flex-col items-center text-center">
+          <h1 data-type="display" className="m-0 font-semibold">
+            <span className="block">{words[0]}</span>
+            <span className="accent-gradient block">{staticHeadline}</span>
+          </h1>
+          <p className="cast-intro">{sub}</p>
           <CtaPair ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
-          {/* the audience rail — Apple's education local-nav row (measured
-              live 12px/400 quiet links; K–12 · Higher Education · College
-              Students · Success Stories), carried into the hero at our
-              chrome tier: every persona gets a door on the first screen
-              instead of waiting for its turn in the cycling line. Hover or
-              focus previews that line and holds it; the click opens the
-              persona page. Auto-advance pauses under reduced motion. */}
-          {audienceLinks?.length ? (
-            <nav aria-label="Audiences" className="audience-rail mt-8 items-center justify-center gap-x-1 gap-y-1">
-              {audienceLinks.map((audience, i) => (
-                <Link
-                  key={audience.to}
-                  to={audience.to}
-                  onMouseEnter={() => {
-                    audienceStep.setPaused(true);
-                    audienceStep.setIndex(i);
-                  }}
-                  onMouseLeave={() => audienceStep.setPaused(false)}
-                  onFocus={() => {
-                    audienceStep.setPaused(true);
-                    audienceStep.setIndex(i);
-                  }}
-                  onBlur={() => audienceStep.setPaused(false)}
-                  className={`inline-flex h-11 items-center whitespace-nowrap rounded-full px-4 text-[12px] tracking-[-0.010em] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 ${
-                    i === audienceStep.index ? "font-medium text-[#1d1d1f]" : "font-normal text-[#6e6e73] hover:text-[#1d1d1f]"
-                  }`}
-                >
-                  {audience.label}
-                </Link>
-              ))}
-            </nav>
-          ) : null}
+          <nav aria-label="Audiences" className="audience-rail mt-3 gap-x-1">
+            {audienceLinks.map((audience) => (
+              <Link key={audience.to} to={audience.to}
+                className="inline-flex min-h-11 items-center rounded-full px-3 text-sm text-[#1d1d1f]/75 hover:text-[#0066cc] hover:underline focus-visible:ring-2 focus-visible:ring-[#0066cc]">
+                {audience.label}
+              </Link>
+            ))}
+          </nav>
         </div>
 
         {/* the family's floor reserve, in flow — the copy's auto margins
