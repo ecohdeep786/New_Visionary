@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Pause, Play } from "lucide-react";
+import { useCycleIndex, usePrefersReducedMotion } from "./system/hooks";
 import { HERO_SRCSETS, HERO_SIZES, HERO_AVIF_SOURCES } from "@/lib/heroVariants";
 import { CtaPair } from "@/components/landing/system/ui";
 import "@/components/landing/cast.css";
@@ -82,107 +83,48 @@ const CAST_METRICS = {
 };
 const CAST_FALLBACK = { canvasH: 1, slotH: 1, slotW: 0.8, offX: 0 };
 
-/* Stage height: the painted subject row never exceeds the frame at any
-   width — the budget divides the gutter-trimmed viewport by each tier's
-   centroid-pitch span. On phones and tablets the row runs edge-to-edge (the
-   Apple mobile keynote crop — outer figures bleed off the screen edges) and
-   the pitch closes so the family earns real presence; desktop keeps its
-   framed gutters. The copy block — headline, sub, and the front-door CTA —
-   centers in the free stage ABOVE the family, on every device: an in-flow
-   spacer reserves the family's tallest visible zone (the student's painted
-   head tops out at 0.875·1.13·H ≈ 0.99·H above the fold) plus a breathing
-   gap, and the copy's auto margins balance the remaining space around it.
-   Dead-centering in the whole hero instead read as a dead void at the top
-   with the CTA sitting on the figures' heads on large/tall screens
-   (1536×864, 1920×1080). A real box reserves the zone — container padding
-   can lose a cascade fight (the bridge pads section[data-section] too). */
-export default function NewPersona({
-  words,
-  wordMs = 2800,
-  staticHeadline,
-  srSentence,
-  sub,
-  img,
-  alt,
-  /* Matches the photo's own background (#ffffff, sampled from image edges) so
-     the stage blends seamlessly into the page — Apple-style. */
-  heroBg = "#ffffff",
-  ctaTo = "/register",
-  ctaLabel = "Start learning free",
-  secondaryTo = "/how-it-works",
-  secondaryLabel = "See how it works",
-  /* Panorama-cast mode: the five alpha cutouts composed as one continuous
-     family stage on the landing page. */
-  cast,
-  /* Landing-only audience rail under the hero actions — one door per
-     persona (label + route), in the cycling line's order. Absent on every
-     persona page, so those heroes render exactly as before. */
-  audienceLinks,
-}) {
-  const index = useCycle(words.length, wordMs);
+function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
+  const reduced = usePrefersReducedMotion();
+  const [playback, setPlayback] = useState(null);
+  const paused = playback === null ? reduced : !playback;
+  useEffect(() => { setPlayback(null); }, [reduced]);
+  const [hovered, setHovered] = useState(false);
+  const { index, goTo } = useCycleIndex(audiences.length, paused || hovered ? 0 : 6500);
+  const audience = audiences[index];
 
-  if (cast) {
-    return (
-      <section
-        data-section="01-hero"
-        /* Pinned stage — the landing-only cast hero sticks to the viewport
-           and the story glides over it on frosted glass (the Vision Pro page
-           anatomy; founder directive 2026-11-21: the hero stays fixed, the
-           sections scroll). The stage height lives in cast.css so short
-           windows can trade the pin for a readable story. Default persona
-           heroes scroll away naturally. */
-        className="cast-stage sticky top-0 z-0 isolate flex flex-col overflow-hidden"
-        style={{
-          backgroundColor: heroBg,
-          marginTop: 56,
-        }}
-      >
-        <div className="cast-copy public-frame relative z-10 mx-auto flex flex-col items-center text-center">
-          <h1 data-type="display" className="m-0 font-semibold">
-            <span className="block">{words[0]}</span>
-            <span className="accent-gradient block">{staticHeadline}</span>
+  return (
+    <section data-section="01-hero" className="cast-stage home-audience-hero"
+      onFocusCapture={(event) => {
+        if (!event.target.closest("[data-playback]")) setPlayback(false);
+      }}>
+      <div className="audience-hero-frame">
+        <div className="cast-copy">
+          <h1 data-type="display">
+            <span>One intelligence.</span>
+            <span className="role-headlines">
+              {audiences.map((role, i) => (
+                <span key={role.slug} className={i === index ? "is-current" : undefined}
+                  aria-hidden={i !== index}>{role.headline}</span>
+              ))}
+            </span>
           </h1>
-          <p className="cast-intro">{sub}</p>
-          <CtaPair ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
-          <nav aria-label="Audiences" className="audience-rail mt-3 gap-x-1">
-            {audienceLinks.map((audience) => (
-              <Link key={audience.to} to={audience.to}
-                className="inline-flex min-h-11 items-center rounded-full px-3 text-sm text-[#1d1d1f]/75 hover:text-[#0066cc] hover:underline focus-visible:ring-2 focus-visible:ring-[#0066cc]">
-                {audience.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="cast-introduction">
+            <p className="cast-intro">A shared space to learn, teach and build in English, Hindi and Bengali.</p>
+            <CtaPair ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo="/#audiences" secondaryLabel="Find your page" />
+          </div>
         </div>
-
-        {/* the family's floor reserve, in flow — the copy's auto margins
-            balance the free stage above it, so the title card centers
-            between the nav and the figures and never lands on their heads
-            (the student's painted head tops out at ≈0.99·H above the fold;
-            the clamp is the guaranteed breath on the shortest stages). */}
-        <div aria-hidden="true" className="shrink-0" style={{ height: "calc(var(--cast-h) * 0.99 + clamp(20px, 3svh, 48px))" }} />
-
-        {/* the family — five alpha cutouts on the page's own white, rising
-            from the fold on every device. Slots carry the measured subject
-            boxes; the per-tier seam margins in CAST_CSS space the optical
-            centroids on one even pitch, closing into a gentle huddle on
-            small screens with the center figure in front. */}
-        <div className="absolute inset-x-0 bottom-0 z-0" aria-hidden="true">
-          {/* the family stands on the page's own clean white — no color wash
-              behind it (Apple's light stages are pure white; measured
-              2026-11-21 on /education + /iphone) */}
+        <div className="family-stage" aria-hidden="true">
           <div className="relative flex items-end justify-center">
             {cast.map((p, i) => {
               const m = CAST_METRICS[p.label] || CAST_FALLBACK;
               return (
                 <div
                   key={p.label}
-                  className={`cast-slot-${i} apple-anim relative flex-none`}
+                  data-current={p.label === audience.castLabel}
+                  className={`cast-slot-${i} cast-person relative flex-none`}
                   style={{
                     width: `calc(var(--cast-h) * ${m.slotW})`,
                     height: `calc(var(--cast-h) * ${m.slotH})`,
-                    animation: "figIn var(--motion-duration-cinematic) var(--ease-out-apple) both",
-                    animationDelay: `${260 + i * 70}ms`,
-                    transformOrigin: "50% 100%",
                   }}
                 >
                   {/* D3 image law: cast cutout prefers the AVIF sibling at the
@@ -213,9 +155,48 @@ export default function NewPersona({
             })}
           </div>
         </div>
-      </section>
-    );
-  }
+      </div>
+      <div className="role-controls">
+        <div className="role-switcher" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} role="group" aria-label="Choose a hero audience">
+          {audiences.map((role, i) => (
+            <button key={role.slug} type="button" aria-pressed={i === index} onClick={() => {
+              setPlayback(false);
+              goTo(i);
+            }}>{role.label}</button>
+          ))}
+        </div>
+        <button type="button" data-playback className="role-playback"
+          aria-label={paused ? "Play audience rotation" : "Pause audience rotation"}
+          onClick={() => setPlayback(paused)}>
+          {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+        </button>
+      </div>
+    </section>
+  );
+}
+
+export default function NewPersona({
+  words,
+  wordMs = 2800,
+  srSentence,
+  sub,
+  img,
+  alt,
+  /* Matches the photo's own background (#ffffff, sampled from image edges) so
+     the stage blends seamlessly into the page — Apple-style. */
+  heroBg = "#ffffff",
+  ctaTo = "/register",
+  ctaLabel = "Start learning free",
+  secondaryTo = "/how-it-works",
+  secondaryLabel = "See how it works",
+  /* Panorama-cast mode: the five alpha cutouts composed as one continuous
+     family stage on the landing page. */
+  cast,
+  audiences,
+}) {
+  const index = useCycle(words?.length ?? 0, wordMs);
+
+  if (cast) return <AudienceHero cast={cast} audiences={audiences} ctaTo={ctaTo} ctaLabel={ctaLabel} />;
 
   /* The persona product-page stage — the Vision Pro anatomy with the site's
      signature heading. The studio photograph fits the stage centered,

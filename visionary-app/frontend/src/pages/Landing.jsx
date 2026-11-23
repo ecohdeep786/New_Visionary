@@ -7,7 +7,6 @@ import PersonaHero from "@/components/landing/NewPersona";
 import { Link } from "react-router-dom";
 import heroBotWebp from "@/assets/brand/visionary-bot.webp";
 import heroBotAvif from "@/assets/brand/visionary-bot.avif";
-import LazyImage from "@/components/landing/LazyImage";
 /* The shared sections sit below the fold;
  * they load on demand (Suspense fallback null) so the entry graph carries
  * only hero-first-commit content (T13 eager law). Direct module paths, not
@@ -15,7 +14,6 @@ import LazyImage from "@/components/landing/LazyImage";
 
 const PremiumTrustSection = lazy(() => import("@/components/landing/persona/premium/PremiumTrustSection.jsx"));
 const PremiumCTASection = lazy(() => import("@/components/landing/persona/premium/PremiumCTASection.jsx"));
-const PremiumExploreSection = lazy(() => import("@/components/landing/persona/premium/PremiumExploreSection.jsx"));
 // These five portraits appear in the audience gallery.
 import studentmeet from "@/assets/student-hero-main-1600w.webp";
 import teachermeet from "@/assets/teacher-hero-main-1600w.webp";
@@ -25,41 +23,36 @@ import orgmeet from "@/assets/org-face-main-1600w.webp";
 // Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
-import { Accessibility, ChevronLeft, ChevronRight, HeartHandshake, Lock, ShieldCheck } from "lucide-react";
+import { Accessibility, ChevronDown, ChevronRight, HeartHandshake, Lock, ShieldCheck } from "lucide-react";
 
-/* One source of truth: every color resolves from system/tokens.js (the
-   measured Apple-neutral system, see APPLE_MEASURED_REFERENCE_2026-10-21.md).
-   The measured primitives (reveal, progress dots, CTA pair) live beside it in
-   system/ui.jsx and system/hooks.js — the landing consumes the system rather
-   than re-declaring it. */
-import { color as BRAND } from "@/components/landing/system/tokens";
-import { useCycleIndex } from "@/components/landing/system/hooks";
 import { useAuth } from "@/lib/AuthContext";
 
-/* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
-/* Every landing reveal rides Apple’s resolve-out curve
-   cubic-bezier(0.16,1,0.3,1) — the deceleration you feel on apple.com’s
-   own scroll reveals (the --ease-out-apple token in premium.css). */
-const EASE_APPLE = "ease-apple";
-
-/* ═══════════════════════ MODELS ═══════════════════════ */
-const EXAMPLES = [
-  { label: "Student example", content: BRIDGE_EXAMPLE, image: problemunderstanding, alt: "Student thinking over an open book" },
-  { label: "Professional example", content: PLANNING_EXAMPLE, image: proProblem, alt: "Professional working at a desk" },
-];
-
-/* The five journeys — the landing’s category router. Rendered with the
-   accepted line-up module (white cards on the grey ground): the studio
-   portrait shows WHOLE on its square field, the same anatomy every persona
-   page closes with — one card system across the entire product. */
-const ROUTER_IMAGES = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
-
-const ROUTER_CATEGORIES = [
-  { slug: "student", chip: "Student", detail: "Work through a lesson, practise a skill and try it in a project." },
-  { slug: "teacher", chip: "Teacher", detail: "Organize classwork, review submissions and give feedback." },
-  { slug: "parent", chip: "Parent or guardian", detail: "Follow learning through the summaries your child shares with you." },
-  { slug: "professional", chip: "Professional", detail: "Set a skill goal and build a project for your portfolio." },
-  { slug: "organization", chip: "Organization", detail: "Invite people to a workspace and organize learning for your team." },
+const AUDIENCES = [
+  {
+    slug: "student", label: "Students", castLabel: "Student", headline: "Learn by doing.",
+    question: "Where did I lose the thread?", answer: "Go back to the step that felt unclear. Ask about it in your own language, then try a practice question before moving on.",
+    detail: "Lessons, practice and projects", portrait: studentmeet, scene: problemunderstanding, example: BRIDGE_EXAMPLE,
+  },
+  {
+    slug: "teacher", label: "Teachers", castLabel: "Teacher", headline: "Teach with insight.",
+    question: "Who needs another explanation?", answer: "Bring the assignment, submissions and feedback into one class workspace. Read a learner’s work and respond to the step they missed.",
+    detail: "Classwork, submissions and feedback", portrait: teachermeet,
+  },
+  {
+    slug: "parent", label: "Parents", castLabel: "Parent", headline: "Follow progress.",
+    question: "How can I help from home?", answer: "Use the learning summary your child shares to start a conversation. See what they’ve been working on and ask what they’d like to try next.",
+    detail: "Shared progress for parents and guardians", portrait: parentmeet,
+  },
+  {
+    slug: "professional", label: "Professionals", castLabel: "Professional", headline: "Put skills to work.",
+    question: "How do I use what I just learned?", answer: "Start with a skill you need at work. Set a goal, practise it and build a project you can return to and refine.",
+    detail: "Skill goals, projects and portfolios", portrait: promeet, scene: proProblem, example: PLANNING_EXAMPLE,
+  },
+  {
+    slug: "organization", label: "Organizations", castLabel: "Organization", headline: "Grow your team.",
+    question: "How do we learn together?", answer: "Invite colleagues into a shared workspace. Organize members into cohorts so each group can find the learning meant for them.",
+    detail: "Members, cohorts and shared learning", portrait: orgmeet,
+  },
 ];
 
 /* Apple’s values anatomy (education-initiative: "Our values lead the way"):
@@ -76,20 +69,7 @@ const LX_TRUST_VALUES = [
   { title: "Accessibility", copy: "Explore keyboard navigation, text sizing and motion settings.", Icon: Accessibility, to: "/accessibility" },
 ];
 
-/* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
-
-/* 01 · HERO — the universal front door, on the one hero law: the static
-   "One Intelligence." headline, the promise, the CTA pair, and the five
-   personas as alpha cutouts rising from the fold. The section pins to the
-   viewport (sticky, in NewPersona’s cast branch) so the story can glide
-   over it on frosted glass — the Vision Pro page anatomy. */
-
-/* The family, as alpha cutouts on the page’s own white (the persona hero
-   photography with the studio background removed) — so the landing stages
-   them as one unbroken lineup, the way Apple stages a product family.
-   D3 image law: each tier ships an AVIF sibling at identical pixels
-   (generated by scripts/build-image-derivatives.mjs); NewPersona stages
-   them through <picture> with the WebP sizeset as the fallback. */
+// The original responsive cutouts compose the full audience lineup.
 import proCut480 from "@/assets/hero-cutouts/professional-480w.webp";
 import proCut800 from "@/assets/hero-cutouts/professional-800w.webp";
 import teacherCut480 from "@/assets/hero-cutouts/teacher-480w.webp";
@@ -134,18 +114,9 @@ if (typeof window !== "undefined" && window.location.pathname === "/") {
   lcpPreload.setAttribute("imagesrcset", `${studentCut480Avif} 480w, ${studentCut800Avif} 800w`);
   lcpPreload.setAttribute("imagesizes", "(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw");
   lcpPreload.setAttribute("type", "image/avif");
+  lcpPreload.setAttribute("fetchpriority", "high");
   document.head.appendChild(lcpPreload);
 }
-
-const LANDING_HERO_WORDS = ["From a question"];
-
-const LANDING_AUDIENCE_LINKS = [
-  { label: "Students", to: "/student" },
-  { label: "Teachers", to: "/teacher" },
-  { label: "Parents", to: "/parent" },
-  { label: "Professionals", to: "/professional" },
-  { label: "Organizations", to: "/organization" },
-];
 
 const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 /* avifSet mirrors cutSet for the same-pixel AVIF siblings; the <picture>
@@ -165,113 +136,65 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
 
   return (
     <PersonaHero
-      words={LANDING_HERO_WORDS}
-      staticHeadline="to a project."
-      sub="Learn in English, Hindi or Bengali. Explore an idea, practise it and build something of your own."
       cast={LANDING_HERO_LINEUP}
-      audienceLinks={LANDING_AUDIENCE_LINKS}
+      audiences={AUDIENCES}
       ctaTo={signedIn ? "/dashboard/home" : "/register"}
       ctaLabel={signedIn ? "Open Visionary" : "Create an account"}
-      secondaryTo="/#lesson-example"
-      secondaryLabel="Explore an example"
     />
   );
 });
 
-function LandingExamples() {
-  const { index, goTo } = useCycleIndex(EXAMPLES.length, 0);
-  const [language, setLanguage] = useState("en");
-  const example = EXAMPLES[index];
-  const lesson = example.content[language];
+function LessonExample({ content, language, setLanguage }) {
+  const lesson = content[language];
   return (
-    <section id="lesson-example" tabIndex={-1} data-section="02-problem" aria-labelledby="example-title" className="relative z-10 scroll-mt-14 bg-[#f5f5f7]">
-      <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <p className="mb-2 font-medium text-[#424245]">Sample lessons</p>
-            <h2 id="example-title" data-type="section">Put an idea to work.</h2>
-          </div>
-          <label className="flex flex-col gap-1 text-sm font-medium text-[#424245]">
-            Example language
-            <select value={language} onChange={(event) => setLanguage(event.target.value)}
-              className="min-h-11 rounded-lg border border-[#6e6e73] bg-white px-3 text-base text-[#1d1d1f] focus-visible:ring-2 focus-visible:ring-[#0066cc]">
-              {Object.entries(BRIDGE_EXAMPLE).map(([code, item]) => (
-                <option key={code} value={code} lang={code}>{item.language}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <figure className="m-0">
-          {/* the story card — one white object on the grey ground: the
-              subject bleeds on the card’s left field, the voice sits on the
-              right panel. The card is the chapter’s one story unit, so the
-              statement / image / text never stack as separate blocks. */}
-          <div className="mt-[clamp(28px,4vw,56px)] overflow-hidden rounded-[1.75rem] bg-white">
-            <div className="grid grid-cols-1 items-stretch min-[1069px]:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-              <div className="relative h-[clamp(280px,58vw,340px)] overflow-hidden sm:h-[clamp(320px,34vw,440px)] min-[1069px]:h-auto min-[1069px]:min-h-[440px]">
-                {EXAMPLES.map((s, i) => (
-                  <LazyImage
-                    key={s.alt}
-                    src={s.image}
-                    alt={i === index ? s.alt : ""}
-                    aria-hidden={i !== index}
-                    placeholderBg="transparent"
-                    decoding="async"
-                    draggable="false"
-                    style={{
-                      /* the studio photos' subjects touch their canvas edges;
-                         unframed, those cuts would read as hard lines — dissolve
-                         them into the card’s own white (the hero’s floor recipe).
-                         The img element is sized to the painted square (h-full
-                         w-auto, centered) so the mask tracks the photo, not the
-                         column. */
-                      WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 7%, black 78%, transparent 97%)",
-                      WebkitMaskComposite: "source-in",
-                      maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 7%, black 78%, transparent 97%)",
-                      maskComposite: "intersect",
-                    }}
-                    className={`absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 select-none transition-opacity duration-700 ${EASE_APPLE} motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
-                  />
-                ))}
-              </div>
-              <figcaption className="flex flex-col justify-center p-6 sm:p-10 lg:p-12" aria-live="polite" aria-atomic="true">
-                <p className="mb-4 text-sm font-medium text-[#424245]">{example.label} · {index + 1} of {EXAMPLES.length}</p>
-                <div lang={language} className="home-example-text">
-                  <h3 data-type="editorial-card">{lesson.question}</h3>
-                  <p>{lesson.explanation}</p>
-                  <h4>{lesson.prompt}</h4>
-                  <p>{lesson.activity}</p>
+    <details className="challenge-example">
+      <summary>Explore a sample lesson</summary>
+      <label>
+        Example language
+        <select value={language} onChange={(event) => setLanguage(event.target.value)}>
+          {Object.entries(content).map(([code, item]) => (
+            <option key={code} value={code} lang={code}>{item.language}</option>
+          ))}
+        </select>
+      </label>
+      <div lang={language} className="home-example-text">
+        <h4>{lesson.question}</h4><p>{lesson.explanation}</p>
+        <h4>{lesson.prompt}</h4><p>{lesson.activity}</p>
+      </div>
+    </details>
+  );
+}
+
+function LandingChallenges() {
+  const [active, setActive] = useState("student");
+  const [language, setLanguage] = useState("en");
+  return (
+    <section id="lesson-example" tabIndex={-1} data-section="02-problem" aria-labelledby="challenges-title" className="home-challenges">
+      <div className="home-frame">
+        <h2 id="challenges-title" data-type="section">What’s getting in your way?</h2>
+        <div className="challenge-layout">
+          {AUDIENCES.map((role) => {
+            const expanded = role.slug === active;
+            return (
+              <div className="challenge-row" key={role.slug}>
+                <h3 data-type="editorial-card">
+                  <button type="button" aria-expanded={expanded} aria-controls={`challenge-${role.slug}`}
+                    aria-disabled={expanded} onClick={() => setActive(role.slug)}>
+                    <span><small>{role.label}</small>{role.question}</span>
+                    <ChevronDown aria-hidden="true" size={20} />
+                  </button>
+                </h3>
+                <div id={`challenge-${role.slug}`} hidden={!expanded}>
+                  {expanded && <>
+                    <p className="challenge-answer">{role.answer}</p>
+                    {role.example && <LessonExample content={role.example} language={language} setLanguage={setLanguage} />}
+                    <div className="challenge-photo"><img src={role.scene || role.portrait} alt="" loading="lazy" decoding="async" /></div>
+                  </>}
                 </div>
-              </figcaption>
-            </div>
-          </div>
-          {/* Apple's gallery control row — manual prev/next chevrons at the
-              card row's bottom-right (/education "Real stories." grammar):
-              the reader paces the story; nothing auto-advances. Bounds
-              disable, exactly like the journeys gallery's controls. */}
-          <div className="mt-6 flex items-center justify-end gap-5">
-            <button
-              type="button"
-              aria-label="Previous example"
-              onClick={() => goTo(index - 1)}
-              disabled={index === 0}
-              className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-              style={{ borderColor: `${BRAND.ink}33`, color: `${BRAND.ink}99` }}
-            >
-              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next example"
-              onClick={() => goTo(index + 1)}
-              disabled={index === EXAMPLES.length - 1}
-              className="flex h-11 w-11 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2"
-              style={{ borderColor: `${BRAND.ink}33`, color: `${BRAND.ink}99` }}
-            >
-              <ChevronRight className="h-4 w-4" aria-hidden="true" />
-            </button>
-          </div>
-        </figure>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -279,14 +202,20 @@ function LandingExamples() {
 
 function LandingRouterSection() {
   return (
-    <Suspense fallback={null}><PremiumExploreSection
-      id="audiences"
-      eyebrow="Who it’s for"
-      heading="Find your place in Visionary."
-      headingRole="section"
-      categories={ROUTER_CATEGORIES}
-      images={ROUTER_IMAGES}
-    /></Suspense>
+    <section id="audiences" tabIndex={-1} data-section="13-explore" className="audience-directory" aria-labelledby="audiences-title">
+      <div className="home-frame">
+        <h2 id="audiences-title" data-type="section">Find your Visionary.</h2>
+        <nav aria-label="Audience pages">
+          {AUDIENCES.map((role) => (
+            <Link key={role.slug} to={`/${role.slug}`} className="audience-destination">
+              <span className="destination-portrait"><img src={role.portrait} alt="" loading="lazy" decoding="async" /></span>
+              <span className="destination-copy"><strong>{role.label}</strong><span>{role.detail}</span></span>
+              <span className="destination-arrow"><ChevronRight size={20} aria-hidden="true" /></span>
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </section>
   );
 }
 
@@ -296,13 +225,11 @@ export default function LandingPage() {
       <LandingNav />
       <main id="main" tabIndex={-1}>
         <LandingHeroSection />
-        <div aria-hidden="true" className="glass pointer-events-none relative z-10 h-12 sm:h-16"
-          style={{ maskImage: "linear-gradient(transparent, black)" }} />
         <section data-section="05-intelligence" className="scene-dark home-product relative isolate overflow-hidden">
           <div className="public-editorial-frame mx-auto">
             <div className="home-product-copy">
-              <h2 data-type="section">Go beyond <span className="accent-gradient-on-dark">the lesson.</span></h2>
-              <div><p data-type="editorial-body">In Learn, explore a concept and test it with practice. In Build, turn what you’ve learned into a project.</p></div>
+              <h2 data-type="section">Meet Visionary <span className="accent-gradient-on-dark">Intelligence.</span></h2>
+              <div><p data-type="editorial-body">Ask about the part that hasn’t clicked. Practise it in Learn, then take the same idea into Build and make something with it.</p></div>
               <Link to="/how-it-works" className="inline-flex min-h-11 items-center gap-1 rounded-full bg-white px-5 font-medium text-[#1d1d1f] focus-visible:ring-2 focus-visible:ring-[#2997ff]">
                 How Visionary works <ChevronRight aria-hidden="true" className="h-4 w-4" />
               </Link>
@@ -313,21 +240,20 @@ export default function LandingPage() {
             <img src={heroBotWebp} alt="" loading="lazy" decoding="async" />
           </picture>
         </section>
-        <LandingExamples />
+        <LandingChallenges />
         <LandingRouterSection />
         <Suspense fallback={null}><PremiumTrustSection
-          heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
+          heading={<>Know what you <span className="accent-gradient">share.</span></>}
+          sub="See how Visionary handles learning data, account access and consent."
           values={LX_TRUST_VALUES}
         /></Suspense>
         <Suspense fallback={null}><PremiumCTASection
           variant="closing"
-          heading="Where will you start?"
-          sub="Choose a workspace for learning, teaching or building."
+          heading="Your workspace starts here."
+          sub="Choose the workspace that fits how you learn, teach or support others."
         /></Suspense>
       </main>
-      {/* quiet variant: Apple’s footer ends the page in air — no giant
-          wordmark — the story itself is the signature */}
-      <LandingFooter variant="quiet" />
+      <LandingFooter variant="quiet" compactOnMobile />
     </div>
   );
 }
