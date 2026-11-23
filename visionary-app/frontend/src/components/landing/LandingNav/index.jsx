@@ -196,7 +196,11 @@ export default function LandingNav() {
                 aria-expanded={openMega === "who"}
                 aria-controls="mega-who"
                 onFocus={() => requestOpen("who")}
-                onClick={() => setOpenMega(null)}
+                onClick={() => {
+                  clearTimeout(openTimer.current);
+                  clearTimeout(closeTimer.current);
+                  setOpenMega(null);
+                }}
                 className={`${megaTrigger("who", pageActive.who)} min-w-0`}
               >
                 {activeCategory ? activeCategory.label : "For you"}

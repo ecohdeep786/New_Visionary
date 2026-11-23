@@ -109,7 +109,7 @@ function PremiumExploreSection({ id, heading, categories, images, eyebrow, sub, 
   }, []);
 
   return (
-    <section id={id} ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
+    <section id={id} tabIndex={id ? -1 : undefined} aria-labelledby={id ? `${id}-title` : undefined} ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
         <RevealItem idx={0}>
           <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
@@ -119,6 +119,7 @@ function PremiumExploreSection({ id, heading, categories, images, eyebrow, sub, 
               </p>
             )}
             <h2
+              id={id ? `${id}-title` : undefined}
               data-type={headingRole}
               className="text-balance font-semibold"
               style={{ color: color.ink, maxWidth: "20ch", marginTop: eyebrow ? "var(--gap-eyebrow-title-display)" : undefined }}

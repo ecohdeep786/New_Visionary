@@ -184,7 +184,7 @@ function LandingExamples() {
   const example = EXAMPLES[index];
   const lesson = example.content[language];
   return (
-    <section id="lesson-example" data-section="02-problem" aria-labelledby="example-title" className="relative z-10 scroll-mt-14 bg-[#f5f5f7]">
+    <section id="lesson-example" tabIndex={-1} data-section="02-problem" aria-labelledby="example-title" className="relative z-10 scroll-mt-14 bg-[#f5f5f7]">
       <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
