@@ -31,12 +31,6 @@
         "frontend/src/components/landing/LandingNav/nav-data.js",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx",
         "frontend/src/components/landing/NewPersona.jsx",
-        "frontend/src/components/landing/landingExamples.js",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx",
-        "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx",
-        "frontend/src/components/landing/persona/sections/ChevronIcon.jsx",
-        "frontend/src/components/landing/persona/sections/RevealItem.jsx",
-        "frontend/src/components/landing/persona/sections/ScrollReveal.jsx",
         "frontend/src/components/landing/system/hooks.js",
         "frontend/src/components/landing/system/tokens.js",
         "frontend/src/components/landing/system/ui.jsx",
@@ -118,19 +112,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:172:15",
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
-        "frontend/src/components/landing/NewPersona.jsx:96:5",
-        "frontend/src/components/landing/NewPersona.jsx:160:9",
-        "frontend/src/components/landing/NewPersona.jsx:162:13",
-        "frontend/src/components/landing/NewPersona.jsx:168:9",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:60:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:69:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:86:11",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:88:13",
-        "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx:96:13",
-        "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:25:11",
-        "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:34:11",
-        "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:46:11",
-        "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx:61:19",
+        "frontend/src/components/landing/NewPersona.jsx:54:5",
+        "frontend/src/components/landing/NewPersona.jsx:69:9",
+        "frontend/src/components/landing/NewPersona.jsx:114:7",
+        "frontend/src/components/landing/NewPersona.jsx:117:9",
+        "frontend/src/components/landing/NewPersona.jsx:121:9",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -138,12 +124,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:151:7",
-        "frontend/src/pages/Landing.jsx:154:9",
-        "frontend/src/pages/Landing.jsx:181:19",
-        "frontend/src/pages/Landing.jsx:212:13",
-        "frontend/src/pages/Landing.jsx:238:17",
-        "frontend/src/pages/Landing.jsx:239:17"
+        "frontend/src/pages/Landing.jsx:109:13",
+        "frontend/src/pages/Landing.jsx:141:15",
+        "frontend/src/pages/Landing.jsx:155:13",
+        "frontend/src/pages/Landing.jsx:161:13"
       ],
       "operations": [
         "public-discovery",
@@ -863,10 +847,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:96:5",
-        "frontend/src/components/landing/NewPersona.jsx:160:9",
-        "frontend/src/components/landing/NewPersona.jsx:162:13",
-        "frontend/src/components/landing/NewPersona.jsx:168:9",
+        "frontend/src/components/landing/NewPersona.jsx:54:5",
+        "frontend/src/components/landing/NewPersona.jsx:69:9",
+        "frontend/src/components/landing/NewPersona.jsx:114:7",
+        "frontend/src/components/landing/NewPersona.jsx:117:9",
+        "frontend/src/components/landing/NewPersona.jsx:121:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1088,10 +1073,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:96:5",
-        "frontend/src/components/landing/NewPersona.jsx:160:9",
-        "frontend/src/components/landing/NewPersona.jsx:162:13",
-        "frontend/src/components/landing/NewPersona.jsx:168:9",
+        "frontend/src/components/landing/NewPersona.jsx:54:5",
+        "frontend/src/components/landing/NewPersona.jsx:69:9",
+        "frontend/src/components/landing/NewPersona.jsx:114:7",
+        "frontend/src/components/landing/NewPersona.jsx:117:9",
+        "frontend/src/components/landing/NewPersona.jsx:121:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1313,10 +1299,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:96:5",
-        "frontend/src/components/landing/NewPersona.jsx:160:9",
-        "frontend/src/components/landing/NewPersona.jsx:162:13",
-        "frontend/src/components/landing/NewPersona.jsx:168:9",
+        "frontend/src/components/landing/NewPersona.jsx:54:5",
+        "frontend/src/components/landing/NewPersona.jsx:69:9",
+        "frontend/src/components/landing/NewPersona.jsx:114:7",
+        "frontend/src/components/landing/NewPersona.jsx:117:9",
+        "frontend/src/components/landing/NewPersona.jsx:121:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1664,10 +1651,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:96:5",
-        "frontend/src/components/landing/NewPersona.jsx:160:9",
-        "frontend/src/components/landing/NewPersona.jsx:162:13",
-        "frontend/src/components/landing/NewPersona.jsx:168:9",
+        "frontend/src/components/landing/NewPersona.jsx:54:5",
+        "frontend/src/components/landing/NewPersona.jsx:69:9",
+        "frontend/src/components/landing/NewPersona.jsx:114:7",
+        "frontend/src/components/landing/NewPersona.jsx:117:9",
+        "frontend/src/components/landing/NewPersona.jsx:121:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -2070,10 +2058,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:96:5",
-        "frontend/src/components/landing/NewPersona.jsx:160:9",
-        "frontend/src/components/landing/NewPersona.jsx:162:13",
-        "frontend/src/components/landing/NewPersona.jsx:168:9",
+        "frontend/src/components/landing/NewPersona.jsx:54:5",
+        "frontend/src/components/landing/NewPersona.jsx:69:9",
+        "frontend/src/components/landing/NewPersona.jsx:114:7",
+        "frontend/src/components/landing/NewPersona.jsx:117:9",
+        "frontend/src/components/landing/NewPersona.jsx:121:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -46701,7 +46690,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "2f9d6ced2d19121ed3f3c2f09848cc7af77fbff6aaf9d9eb30685e9a33402392",
+      "declarationSha256": "ab8575c0922767d6d1e083e04812cb4207a2e1ce4c32a51ada10127104246ca1",
       "routeIds": [
         "/",
         "/student",
@@ -47499,9 +47488,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:96:5",
+      "id": "frontend/src/components/landing/NewPersona.jsx:54:5",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 96,
+      "line": 54,
       "column": 5,
       "tag": "section",
       "events": [
@@ -47515,7 +47504,7 @@
         "setPlayback"
       ],
       "disabled": null,
-      "declarationSha256": "db8c700316c9af37c35588d368ef3e9dba5b976594c9dfbf3c855e78485c7360",
+      "declarationSha256": "aac9b20d46ca8bb3b82cfa756c54469e2024c18119652553695391094c4838ae",
       "routeIds": [
         "/",
         "/student",
@@ -47536,10 +47525,39 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:160:9",
+      "id": "frontend/src/components/landing/NewPersona.jsx:69:9",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 160,
+      "line": 69,
       "column": 9,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "ddc9a49c2ddae20120cdaeb93a96b8b9c718ffbe41ab0153f737479f6ce3a4ef",
+      "routeIds": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/landing/NewPersona.jsx:114:7",
+      "file": "frontend/src/components/landing/NewPersona.jsx",
+      "line": 114,
+      "column": 7,
       "tag": "div",
       "events": [
         {
@@ -47555,7 +47573,7 @@
         "setHovered"
       ],
       "disabled": null,
-      "declarationSha256": "3e876b8ac6443400450c00350307b0f88c5b0fd7770833a10545dab3e33fe0fe",
+      "declarationSha256": "ed499e2d65c8df148e718d3bb33d310028a24cbf11e682eb6179f60d05e063d8",
       "routeIds": [
         "/",
         "/student",
@@ -47576,15 +47594,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:162:13",
+      "id": "frontend/src/components/landing/NewPersona.jsx:117:9",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 162,
-      "column": 13,
+      "line": 117,
+      "column": 9,
       "tag": "button",
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\n              setPlayback(false);\n              goTo(i);\n            }}"
+          "expression": "{() => { setPlayback(false); goTo(index + 1); }}"
         }
       ],
       "calls": [
@@ -47592,7 +47610,7 @@
         "setPlayback"
       ],
       "disabled": null,
-      "declarationSha256": "a0764579a2f37bb177edadff2f92d6f0a95ef81f2871e64ef0f721cd6f4f9e70",
+      "declarationSha256": "2cf680a47079edeaa77fd147059710fc388bf4c7a360202fb9ccb8c1ce9a0790",
       "routeIds": [
         "/",
         "/student",
@@ -47613,9 +47631,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:168:9",
+      "id": "frontend/src/components/landing/NewPersona.jsx:121:9",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 168,
+      "line": 121,
       "column": 9,
       "tag": "button",
       "events": [
@@ -47628,7 +47646,7 @@
         "setPlayback"
       ],
       "disabled": null,
-      "declarationSha256": "e372a19db4ee61d3f62aa508fb5ff3df4a1642ea5d00bb47575723efdcc8d5d7",
+      "declarationSha256": "b7992ab14cce2b973d73a234f02df918defaff9fbcc7e8a3e2ad97f66336dda6",
       "routeIds": [
         "/",
         "/student",
@@ -47750,7 +47768,6 @@
       "disabled": null,
       "declarationSha256": "972482a19f35d8209b79543091a2423b4d4a72bea8737c2b79a01aa43e9e800f",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -47779,7 +47796,6 @@
       "disabled": null,
       "declarationSha256": "c3a8b6b81d97fc4f28dbecff18f468da7e937967b9112d1ddfc73d0bf03a418f",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -47808,7 +47824,6 @@
       "disabled": null,
       "declarationSha256": "2cca3233d3fd480b95a07c7fbb232ef122b9ca690a535294f34e3c2d8357ce9d",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -47838,7 +47853,6 @@
       "disabled": null,
       "declarationSha256": "620d0308cc04a05f0f5a28434208e54b37283d47f673ae7089106e42a57664da",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -47868,7 +47882,6 @@
       "disabled": null,
       "declarationSha256": "817ed8239c67a1bde52848955c125efef61e5e6ba27e9e3b315297e243604261",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -48910,7 +48923,6 @@
       "disabled": null,
       "declarationSha256": "972482a19f35d8209b79543091a2423b4d4a72bea8737c2b79a01aa43e9e800f",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -48939,7 +48951,6 @@
       "disabled": null,
       "declarationSha256": "c3a8b6b81d97fc4f28dbecff18f468da7e937967b9112d1ddfc73d0bf03a418f",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -48968,7 +48979,6 @@
       "disabled": null,
       "declarationSha256": "7675c43a4dbb35a31535db069ce5c64c7730900cff778053ad42593432248792",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -48997,7 +49007,6 @@
       "disabled": null,
       "declarationSha256": "a239950b679e360d51a4e682e047226d4e32421b1fd6c4ea53137199b7aac8f6",
       "routeIds": [
-        "/",
         "/student",
         "/teacher",
         "/parent",
@@ -79026,95 +79035,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:151:7",
+      "id": "frontend/src/pages/Landing.jsx:109:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 151,
-      "column": 7,
-      "tag": "summary",
-      "events": [],
-      "calls": [],
-      "disabled": null,
-      "declarationSha256": "02efe5f7daaff2f4daa440c4cf7e6cab07b89875118b1c1935b1ce31e36fe564",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Landing.jsx:154:9",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 154,
-      "column": 9,
-      "tag": "select",
-      "events": [
-        {
-          "event": "onChange",
-          "expression": "{(event) => setLanguage(event.target.value)}"
-        }
-      ],
-      "calls": [
-        "setLanguage"
-      ],
-      "disabled": null,
-      "declarationSha256": "79d293ac5827b7621ac11330f655ed9973f8d142a05b52bd6556a752b7348ad6",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Landing.jsx:181:19",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 181,
-      "column": 19,
-      "tag": "button",
-      "events": [
-        {
-          "event": "onClick",
-          "expression": "{() => setActive(role.slug)}"
-        }
-      ],
-      "calls": [
-        "setActive"
-      ],
-      "disabled": null,
-      "declarationSha256": "360ae5e0c38610847cd88f064b7a2c9bbde9788630791eeb82092ab2cdc47d77",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Landing.jsx:212:13",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 212,
+      "line": 109,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79136,16 +79059,16 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:238:17",
+      "id": "frontend/src/pages/Landing.jsx:141:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 238,
-      "column": 17,
+      "line": 141,
+      "column": 15,
       "tag": "Link",
       "events": [],
       "calls": [],
-      "destination": "/#lesson-example",
+      "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "b9b5d4eb1c418e460237804e831de583d7f5e1d9894bc1f1464a8bdd6f5fbcb4",
+      "declarationSha256": "bb2fe3c07a5e728cae6ff6cab9c7ab729ec7815834a75fb7e329f6f5087aa933",
       "routeIds": [
         "/"
       ],
@@ -79161,16 +79084,40 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:239:17",
+      "id": "frontend/src/pages/Landing.jsx:155:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 239,
-      "column": 17,
+      "line": 155,
+      "column": 13,
       "tag": "Link",
       "events": [],
       "calls": [],
-      "destination": "/how-it-works",
+      "destination": "/privacy#sharing",
       "disabled": null,
-      "declarationSha256": "caeeeb8da9ba32b3f9880e1db5d8d9421ccc5b0db46f768f333464b3eae26a7d",
+      "declarationSha256": "9d22c64b6be98e2bda2d649750eb054a1f254b195c928c184c06792ddd5388ee",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:161:13",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 161,
+      "column": 13,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "d307387c9a3834bc6a1ef3d7840ef7618bc38037da8e19c969646f4079cc6b9c",
       "routeIds": [
         "/"
       ],
@@ -81735,10 +81682,6 @@
       "sourceSha256": "1f8f3c4274c828d0ece468992e95fc61cdf1b9451374e27b1e90f98b8938bcd8"
     },
     {
-      "file": "frontend/src/components/landing/landingExamples.js",
-      "sourceSha256": "02de86d1538419aa0fa139b44c4d7a45acf4351720f118ad9b8ff10d965b3e2f"
-    },
-    {
       "file": "frontend/src/components/landing/LandingFAQ.jsx",
       "sourceSha256": "62b39a6e2ad5876bc29ecf6f2ae9eeed67e968bf73073f5b10e5040c75702c2c"
     },
@@ -81748,7 +81691,7 @@
     },
     {
       "file": "frontend/src/components/landing/LandingNav/index.jsx",
-      "sourceSha256": "18ffd16a814deac756070aac2ab4d385a7531cd5a1c52138f71de6fb33e58989"
+      "sourceSha256": "94a415c5fa4bb4cf5fec516ec6ad2d6ad1d4fbd7113f2a383925f584b36f65bf"
     },
     {
       "file": "frontend/src/components/landing/LandingNav/MobileNavigation.jsx",
@@ -81772,7 +81715,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "39a0088f0d3db30285e03da937c78bdead02cf91b028fc01e784ef6ffed6e0c9"
+      "sourceSha256": "3ffb2d53d63c9d2cb4705fec4f59e0625be6f7a8fe0494463ce3886772d6bb56"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82004,7 +81947,7 @@
     },
     {
       "file": "frontend/src/components/ScrollToTop.jsx",
-      "sourceSha256": "e2a92966e034af1d4d9bef4869434f30c64df6439876b9e13d863eda0bec5454"
+      "sourceSha256": "0e524e3d449b345b755e1a4a1b64b18939eb17f18d0ec4a10f488962ce0e78e4"
     },
     {
       "file": "frontend/src/components/SocialAuthButtons.jsx",
@@ -82640,7 +82583,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "0afa53467b591901a88c202614f7f7cf8e407c568da8746a11c4122cc3f9ba0c"
+      "sourceSha256": "74814afefddf78c7042f04e548b7b378d385e68a7a26a6d4ff1c431f7d3242c1"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85919,11 +85862,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1529,
-    "routeReachableDeclarations": 1526,
+    "controlDeclarations": 1528,
+    "routeReachableDeclarations": 1525,
     "controlFiles": 193,
     "states": {
-      "connected": 528,
+      "connected": 527,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3

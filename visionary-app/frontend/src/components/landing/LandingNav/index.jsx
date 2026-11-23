@@ -419,7 +419,7 @@ export default function LandingNav() {
             Help
           </Link>
 
-          <Link to={signedIn ? "/dashboard/home" : "/login"} className={`${navLink(false)} ${pathname === "/" && !scrolled ? "flex" : "hidden sm:flex"}`}>
+          <Link to={signedIn ? "/dashboard/home" : "/login"} className={`${navLink(false)} ${pathname === "/" && !scrolled ? "flex" : pathname === "/" && signedIn ? "hidden" : "hidden sm:flex"}`}>
             {signedIn ? "Open Visionary" : "Sign in"}
           </Link>
 

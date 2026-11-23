@@ -68,11 +68,11 @@ for (const [key, width, height] of [['desktop', 1440, 900], ['mobile', 390, 844]
   /* The hero is a fixed hero: the h1 wrapper is intentionally role-free and
    * the visible spans carry var(--fs-hero-headline) inline (styles/README:
    * "Original root tokens remain independent for fixed heroes"). */
-  const heroSpan = await typo(page, '.cast-copy span[style*="--fs-hero-headline"]');
+  const heroSpan = await typo(page, '.home-hero h1');
   const lead = await typo(page, '[data-type="lead"], [data-type="editorial-lead"]');
-  const bodyInScope = await typo(page, '#main section:not([data-section="01-hero"]) [data-type="body"]');
+  const bodyInScope = await typo(page, '#main section:not([data-section="01-hero"]) [data-type="editorial-body"]');
   const bodyLaw = await page.evaluate(() => {
-    const el = document.querySelector('#main section:not([data-section="01-hero"]) [data-type="body"]');
+    const el = document.querySelector('#main section:not([data-section="01-hero"]) [data-type="editorial-body"]');
     return el ? {
       lhVar: getComputedStyle(el).getPropertyValue('--lh-body').trim(),
       fsVar: getComputedStyle(el).getPropertyValue('--fs-body').trim(),

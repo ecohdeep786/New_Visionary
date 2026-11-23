@@ -133,11 +133,3 @@ html {
     .public-action:hover { transform: none; }
   }
 }
-
-/* Every audience remains discoverable without a hidden horizontal rail.
-   Compact links wrap into two centered rows on phones and retain 44px targets. */
-.audience-rail {display: flex;flex-wrap: wrap;justify-content: center;overflow: visible;max-width: 100%}
-@media(max-width:520px) {
-  .audience-rail.audience-rail {max-width: 380px;margin-inline: auto;-webkit-mask-image: none;mask-image: none}
-  .audience-rail > * {flex: none}
-}

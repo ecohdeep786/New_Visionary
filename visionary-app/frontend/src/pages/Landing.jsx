@@ -1,72 +1,41 @@
 import "./landing-home.css";
-import React, { lazy, Suspense, useState } from "react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import { BRIDGE_EXAMPLE, EXAMPLE_LANGUAGES, PLANNING_EXAMPLE } from "@/components/landing/landingExamples";
 import PersonaHero from "@/components/landing/NewPersona";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import heroBotWebp from "@/assets/brand/visionary-bot.webp";
 import heroBotAvif from "@/assets/brand/visionary-bot.avif";
-/* The shared sections sit below the fold;
- * they load on demand (Suspense fallback null) so the entry graph carries
- * only hero-first-commit content (T13 eager law). Direct module paths, not
- * the barrel, so a section chunk never pulls its siblings. */
-
-const PremiumTrustSection = lazy(() => import("@/components/landing/persona/premium/PremiumTrustSection.jsx"));
-const PremiumCTASection = lazy(() => import("@/components/landing/persona/premium/PremiumCTASection.jsx"));
-// These five portraits appear in the audience gallery.
+// Each audience destination keeps its original portrait.
 import studentmeet from "@/assets/student-hero-main-1600w.webp";
 import teachermeet from "@/assets/teacher-hero-main-1600w.webp";
 import parentmeet from "@/assets/parent-hero-main-1600w.webp";
 import promeet from "@/assets/pro-face-main-1600w.webp";
 import orgmeet from "@/assets/org-face-main-1600w.webp";
-// Problem section images — loaded lazily (below the fold)
-import problemunderstanding from "@/assets/problem-understanding.webp";
-import proProblem from "@/assets/professional-problem-2.webp";
-import { Accessibility, ChevronDown, ChevronRight, HeartHandshake, Lock, ShieldCheck } from "lucide-react";
+import { ChevronRight, Lock } from "lucide-react";
 
-import { useAuth } from "@/lib/AuthContext";
+import { useSignedIn } from "@/components/landing/AuthAwareLink";
 
 const AUDIENCES = [
   {
-    slug: "student", label: "Students", castLabel: "Student", headline: "Learn by doing.",
-    question: "Where did I lose the thread?", answer: "Go back to the step that felt unclear. Ask about it in your own language, then try a practice question before moving on.",
-    detail: "Lessons, practice and projects", portrait: studentmeet, scene: problemunderstanding, example: BRIDGE_EXAMPLE, exampleTitle: "Explore the paper bridge lesson",
+    slug: "student", label: "Students", castLabel: "Student", portrait: studentmeet,
+    headline: "to a project.", detail: "Work through a tough lesson and try it for yourself.",
   },
   {
-    slug: "teacher", label: "Teachers", castLabel: "Teacher", headline: "Teach with insight.",
-    question: "Who needs another explanation?", answer: "Bring the assignment, submissions and feedback into one class workspace. Read a learner’s work and respond to the step they missed.",
-    detail: "Classwork, submissions and feedback", portrait: teachermeet,
+    slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
+    headline: "to a lesson.", detail: "See where a learner needs another explanation.",
   },
   {
-    slug: "parent", label: "Parents", castLabel: "Parent", headline: "Follow progress.",
-    question: "How can I help from home?", answer: "Use the learning summary your child shares to start a conversation. See what they’ve been working on and ask what they’d like to try next.",
-    detail: "Shared progress for parents and guardians", portrait: parentmeet,
+    slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
+    headline: "to a conversation.", detail: "Follow the progress your child shares with you.",
   },
   {
-    slug: "professional", label: "Professionals", castLabel: "Professional", headline: "Put skills to work.",
-    question: "How do I use what I just learned?", answer: "Start with a skill you need at work. Set a goal, practise it and build a project you can return to and refine.",
-    detail: "Skill goals, projects and portfolios", portrait: promeet, scene: proProblem, example: PLANNING_EXAMPLE, exampleTitle: "Explore a planning example",
+    slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
+    headline: "to a new skill.", detail: "Turn a skill you’re learning into work you can show.",
   },
   {
-    slug: "organization", label: "Organizations", castLabel: "Organization", headline: "Grow your team.",
-    question: "How do we learn together?", answer: "Invite colleagues into a shared workspace. Organize members into cohorts so each group can find the learning meant for them.",
-    detail: "Members, cohorts and shared learning", portrait: orgmeet,
+    slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
+    headline: "to a team plan.", detail: "Bring your people and their learning together.",
   },
-];
-
-/* Apple’s values anatomy (education-initiative: "Our values lead the way"):
-   typographic columns on the shared persona pages — the type carries the
-   trust. The landing’s closing chapter takes Apple’s feature-card variant
-   instead (the Why-grid), so each value carries a distinct mark from the
-   public icon family: Lock (your choice), HeartHandshake (human review),
-   ShieldCheck (protection), Accessibility (every learner). The four values
-   are the four trust pages themselves. */
-const LX_TRUST_VALUES = [
-  { title: "Privacy", copy: "Understand what is collected and how to manage your data.", Icon: Lock, to: "/privacy" },
-  { title: "Safety", copy: "Find age guidance and ways to report a concern.", Icon: HeartHandshake, to: "/safety" },
-  { title: "Security", copy: "See how account access and sign-in sessions are protected.", Icon: ShieldCheck, to: "/security" },
-  { title: "Accessibility", copy: "Explore keyboard navigation, text sizing and motion settings.", Icon: Accessibility, to: "/accessibility" },
 ];
 
 // The original responsive cutouts compose the full audience lineup.
@@ -130,89 +99,20 @@ const LANDING_HERO_LINEUP = [
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800), avifSrcSet: cutSet(orgCut480Avif, orgCut800Avif) },
 ];
 
-const LandingHeroSection = React.memo(function LandingHeroSection() {
-  const { authChecked, isAuthenticated } = useAuth();
-  const signedIn = authChecked && isAuthenticated;
-
+function AudienceDirectory() {
   return (
-    <PersonaHero
-      cast={LANDING_HERO_LINEUP}
-      audiences={AUDIENCES}
-      ctaTo={signedIn ? "/dashboard/home" : "/register"}
-      ctaLabel={signedIn ? "Open Visionary" : "Create an account"}
-    />
-  );
-});
-
-function LessonExample({ content, title, anchor, initiallyOpen, language, setLanguage }) {
-  const lesson = content[language];
-  return (
-    <details className="challenge-example" open={initiallyOpen || undefined}>
-      <summary id={anchor}>{title}</summary>
-      <label>
-        Example language
-        <select value={language} onChange={(event) => setLanguage(event.target.value)}>
-          {Object.entries(EXAMPLE_LANGUAGES).map(([code, name]) => (
-            <option key={code} value={code} lang={code}>{name}</option>
-          ))}
-        </select>
-      </label>
-      <div lang={language} className="home-example-text">
-        <h4>{lesson.question}</h4><p>{lesson.explanation}</p>
-        <h4>{lesson.prompt}</h4><p>{lesson.activity}</p>
-      </div>
-    </details>
-  );
-}
-
-function LandingChallenges({ openLesson }) {
-  const [active, setActive] = useState("student");
-  const [language, setLanguage] = useState("en");
-  return (
-    <section data-section="02-problem" aria-labelledby="challenges-title" className="home-challenges">
-      <div className="home-frame">
-        <h2 id="challenges-title" data-type="section">What’s getting in your way?</h2>
-        <div className="challenge-layout">
-          {AUDIENCES.map((role) => {
-            const expanded = role.slug === active;
-            return (
-              <div className="challenge-row" key={role.slug}>
-                <h3 data-type="editorial-card">
-                  <button type="button" aria-expanded={expanded} aria-controls={`challenge-${role.slug}`}
-                    aria-disabled={expanded} onClick={() => setActive(role.slug)}>
-                    <span><small>{role.label}</small>{role.question}</span>
-                    <ChevronDown aria-hidden="true" size={20} />
-                  </button>
-                </h3>
-                <div id={`challenge-${role.slug}`} hidden={!expanded}>
-                  {expanded && <>
-                    <p className="challenge-answer">{role.answer}</p>
-                    {role.example && <LessonExample content={role.example} title={role.exampleTitle}
-                      anchor={role.slug === "student" ? "lesson-example" : undefined}
-                      initiallyOpen={role.slug === "student" && openLesson} language={language} setLanguage={setLanguage} />}
-                    <div className="challenge-photo"><img src={role.scene || role.portrait} alt="" loading="lazy" decoding="async" /></div>
-                  </>}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function LandingRouterSection() {
-  return (
-    <section id="audiences" tabIndex={-1} data-section="13-explore" className="audience-directory" aria-labelledby="audiences-title">
-      <div className="home-frame">
-        <h2 id="audiences-title" data-type="section">Find your Visionary.</h2>
+    <section id="audiences" tabIndex={-1} data-section="13-explore" className="home-audiences" aria-labelledby="audiences-title">
+      <div className="home-width audience-layout">
+        <h2 id="audiences-title" data-type="section">Find your path.</h2>
         <nav aria-label="Audience pages">
           {AUDIENCES.map((role) => (
             <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="audience-destination">
               <span className="destination-portrait"><img src={role.portrait} alt="" loading="lazy" decoding="async" /></span>
-              <span className="destination-copy"><strong>{role.label}</strong><span>{role.detail}</span></span>
-              <span className="destination-arrow"><ChevronRight size={20} aria-hidden="true" /></span>
+              <span className="destination-copy">
+                <strong>{role.label}</strong>
+                <span>{role.detail}</span>
+              </span>
+              <ChevronRight className="destination-arrow" size={21} aria-hidden="true" />
             </Link>
           ))}
         </nav>
@@ -222,43 +122,47 @@ function LandingRouterSection() {
 }
 
 export default function LandingPage() {
-  const location = useLocation();
-  const openLesson = location.hash === "#lesson-example";
+  const signedIn = useSignedIn();
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main" tabIndex={-1}>
-        <LandingHeroSection />
-        <section data-section="05-intelligence" className="scene-dark home-product relative isolate overflow-hidden">
-          <div className="public-editorial-frame mx-auto">
-            <div className="home-product-copy">
-              <h2 data-type="section">Meet Visionary <span className="accent-gradient-on-dark">Intelligence.</span></h2>
-              <p data-type="editorial-body">Ask about a step you’re stuck on. Work through it in Learn, then use the idea in Build. See how a question about folded paper becomes a bridge you can test.</p>
-              <div className="intelligence-actions">
-                <Link to="/#lesson-example" className="inline-flex min-h-11 items-center rounded-full bg-white px-5 font-medium text-[#1d1d1f] focus-visible:ring-2 focus-visible:ring-[#2997ff]">See the sample lesson</Link>
-                <Link to="/how-it-works" className="inline-flex min-h-11 items-center gap-1 rounded-sm px-1 text-[#9dcbff] focus-visible:ring-2 focus-visible:ring-[#2997ff]">
-                  How Visionary works <ChevronRight aria-hidden="true" className="h-4 w-4" />
-                </Link>
-              </div>
+        <PersonaHero
+          cast={LANDING_HERO_LINEUP}
+          audiences={AUDIENCES}
+          ctaTo={signedIn ? "/dashboard/home" : "/#audiences"}
+          ctaLabel={signedIn ? "Open Visionary" : "Find your path"}
+        />
+        <section id="intelligence" tabIndex={-1} data-section="05-intelligence" className="scene-dark home-intelligence" aria-labelledby="intelligence-heading">
+          <div className="home-width intelligence-layout">
+            <div className="intelligence-copy">
+              <h2 id="intelligence-heading" data-type="section">Visionary Intelligence.</h2>
+              <p data-type="editorial-body">Get an explanation for the step you missed. Practise it in Learn and put it to work in Build.</p>
+              <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
+            <picture className="intelligence-portrait" aria-hidden="true">
+              <source type="image/avif" srcSet={heroBotAvif} />
+              <img src={heroBotWebp} alt="" loading="lazy" decoding="async" />
+            </picture>
           </div>
-          <picture aria-hidden="true" className="home-product-mark">
-            <source type="image/avif" srcSet={heroBotAvif} />
-            <img src={heroBotWebp} alt="" loading="lazy" decoding="async" />
-          </picture>
         </section>
-        <LandingChallenges key={openLesson ? location.key : "challenges"} openLesson={openLesson} />
-        <LandingRouterSection />
-        <Suspense fallback={null}><PremiumTrustSection
-          heading={<>Know what you <span className="accent-gradient">share.</span></>}
-          sub="See how Visionary handles learning data, account access and consent."
-          values={LX_TRUST_VALUES}
-        /></Suspense>
-        <Suspense fallback={null}><PremiumCTASection
-          variant="closing"
-          heading="Your workspace starts here."
-          sub="Choose the workspace that fits how you learn, teach or support others."
-        /></Suspense>
+        <AudienceDirectory />
+        <section className="home-privacy" data-section="11-trust" aria-labelledby="privacy-heading">
+          <div className="home-width">
+            <Lock className="privacy-mark" strokeWidth={1.6} size={32} aria-hidden="true" />
+            <h2 id="privacy-heading" data-type="section">Know what’s shared.</h2>
+            <p data-type="editorial-body">Teachers and connected parents can see shared progress. Private conversations stay out of those views.</p>
+            <Link to="/privacy#sharing" className="home-text-link">How sharing works <ChevronRight aria-hidden="true" size={17} /></Link>
+          </div>
+        </section>
+        <section className="home-closing" data-section="12-cta" aria-labelledby="closing-heading">
+          <div className="home-width closing-layout">
+            <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Start your workspace."}</h2>
+            <Link className="home-action public-action" to={signedIn ? "/dashboard/home" : "/register"}>
+              {signedIn ? "Open Visionary" : "Create an account"}
+            </Link>
+          </div>
+        </section>
       </main>
       <LandingFooter variant="quiet" compactOnMobile />
     </div>

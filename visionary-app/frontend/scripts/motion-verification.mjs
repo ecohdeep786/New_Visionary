@@ -53,19 +53,19 @@ const animationProbe = (page, selector) => page.evaluate((sel) => {
   page.on('pageerror', (e) => errors.push(String(e).slice(0, 150)));
   await page.goto(`${base}/`, { waitUntil: 'load', timeout: 90000 });
   await settle(page);
-  const cta = await transitionProbe(page, '.cast-copy a, #main a[href*="login"], button');
-  records.push({ check: 'law-curve-computed', selector: '.cast-copy a / #main a / button', cta, errors });
+  const cta = await transitionProbe(page, '.home-hero .home-action');
+  records.push({ check: 'law-curve-computed', selector: '.home-hero .home-action', cta, errors });
   if (cta && !cta.curve.includes('0.16') && !cta.curve.includes('cubic-bezier(0.16,1,0.3,1)')) {
     findings.push(`landing CTA transition curve "${cta.curve}" is not the law curve`);
   }
-  const hero = await animationProbe(page, '.cast-copy span, [class*="hero-fade-up"]');
+  const hero = await animationProbe(page, '.role-headlines .is-current');
   records.push({ check: 'entrance-animation-default', hero });
   await page.screenshot({ path: path.join(evidence, 'motion-landing-default.png') });
 
   /* Hover feedback: scan visible primary controls; at least one must change
    * a computed paint property on hover. */
   const hover = await page.evaluate(() => new Promise((resolve) => {
-    const controls = [...document.querySelectorAll('#main a[href], #main button, .cast-copy a, .cast-copy button')]
+    const controls = [...document.querySelectorAll('#main a[href], #main button')]
       .filter((el) => el.offsetParent !== null && (el.textContent || '').trim().length > 2).slice(0, 6);
     const results = [];
     let index = 0;
@@ -127,7 +127,7 @@ const animationProbe = (page, selector) => page.evaluate((sel) => {
   const page = await context.newPage();
   await page.goto(`${base}/`, { waitUntil: 'load', timeout: 90000 });
   await settle(page, 600);
-  const heroReduce = await animationProbe(page, '.cast-copy span, [class*="hero-fade-up"]');
+  const heroReduce = await animationProbe(page, '.role-headlines .is-current');
   /* The D1 reduced contract: motion collapses to static-and-visible. Per-sheet
    * contracts (cast.css etc.) keep opacity-only fades so content is never
    * invisible — movement (transform) must not run. */

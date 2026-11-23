@@ -26,17 +26,18 @@ export default function ScrollToTop() {
   const pendingHashLanding = useRef(Boolean(hash));
 
   useEffect(() => {
-    if (pathname === "/" && (hash === "#lesson-example" || hash === "#audiences")) {
+    if (pathname === "/" && ["#intelligence", "#lesson-example", "#audiences"].includes(hash)) {
       pendingHashLanding.current = false;
       const focusSection = () => {
-        const section = document.getElementById(getHashId(hash));
+        // Earlier homepage links to the example now land at the product explanation.
+        const section = document.getElementById(hash === "#lesson-example" ? "intelligence" : getHashId(hash));
         if (!section) return false;
         section.focus({ preventScroll: true });
         section.scrollIntoView({ block: "start", behavior: prefersReducedMotion() ? "instant" : "smooth" });
         return true;
       };
       if (focusSection()) return;
-      // A direct link may arrive before the audience gallery's chunk has mounted.
+      // A direct visit can arrive before the homepage has mounted.
       const observer = new MutationObserver(() => {
         if (focusSection()) observer.disconnect();
       });
