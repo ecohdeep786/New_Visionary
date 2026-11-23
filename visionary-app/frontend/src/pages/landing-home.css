@@ -71,12 +71,12 @@
 .cast-copy h1 > span { display: block; }
 .cast-copy h1 .role-headlines { display: grid; color: #1756a4; }
 .role-headlines span { grid-area: 1 / 1; visibility: hidden; }
-.role-headlines .is-current { visibility: visible; animation: audience-arrive .48s ease-out; }
+.role-headlines .is-current { visibility: visible; animation: audience-arrive var(--motion-duration-slow) var(--ease-out-apple); }
 @keyframes audience-arrive { from { opacity: .25; transform: translateY(.1em); } to { opacity: 1; transform: none; } }
 .home-audience-hero .cast-intro { margin: 0; max-width: 33ch; font-size: clamp(1.05rem, 1.45vw, 1.35rem); line-height: 1.42; color: #394454; text-wrap: pretty; }
 .cast-introduction > div { justify-content: flex-start; margin-top: 1.15rem; }
 .family-stage { position: relative; padding-top: .5rem; }
-.cast-person { transition: transform .55s ease; transform-origin: 50% 100%; }
+.cast-person { transition: transform var(--motion-duration-slow) var(--ease-out-apple); transform-origin: 50% 100%; }
 .cast-person[data-current="true"] { transform: scale(1.055); }
 .role-controls { display: flex; align-items: center; justify-content: center; gap: .6rem; margin: 1.1rem auto 0; padding: 0 1rem; }
 .role-switcher { display: flex; flex-wrap: wrap; justify-content: center; padding: .25rem; border-radius: 2rem; background: #f5f5f7; }
