@@ -79119,7 +79119,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "143e1b4bf8a0adbf843510e4bb52422b1b2e1bd684d824903cdbedc2572e9f84",
+      "declarationSha256": "72392da17883f393525bdaab8736896b05fbce914bf6dc34b981b503aaf6a715",
       "routeIds": [
         "/"
       ],
@@ -82614,7 +82614,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "e4fd4cb7aef908bbe1b76b856c7c77d5d83fe6463caa2fd24bf6f0a24946981c"
+      "sourceSha256": "31f721acc7493cae9ee72df6d9f449d34acf53b2fb665b95f20620e86813b027"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

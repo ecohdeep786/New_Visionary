@@ -85,6 +85,9 @@
 .role-switcher button[aria-pressed="true"] { color: white; background: #1d1d1f; }
 .role-playback { display: grid; place-items: center; flex: none; width: 2.75rem; background: #f5f5f7; }
 .role-switcher button:focus-visible, .role-playback:focus-visible { outline: .18rem solid #0066cc; outline-offset: .15rem; }
+@media (forced-colors: active) {
+  .role-switcher button[aria-pressed="true"] { text-decoration: underline .15em; text-underline-offset: .25em; }
+}
 @media (min-width: 900px) {
   .page-landing #main .home-audience-hero { --cast-h: min(15.9vw, 15.4rem); }
   .home-audience-hero .cast-copy { grid-template-columns: minmax(0, 1.65fr) minmax(15rem, 1fr); }

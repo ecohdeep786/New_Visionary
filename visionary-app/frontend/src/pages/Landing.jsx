@@ -207,7 +207,7 @@ function LandingRouterSection() {
         <h2 id="audiences-title" data-type="section">Find your Visionary.</h2>
         <nav aria-label="Audience pages">
           {AUDIENCES.map((role) => (
-            <Link key={role.slug} to={`/${role.slug}`} className="audience-destination">
+            <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="audience-destination">
               <span className="destination-portrait"><img src={role.portrait} alt="" loading="lazy" decoding="async" /></span>
               <span className="destination-copy"><strong>{role.label}</strong><span>{role.detail}</span></span>
               <span className="destination-arrow"><ChevronRight size={20} aria-hidden="true" /></span>
