@@ -141,8 +141,9 @@
         "frontend/src/pages/Landing.jsx:151:7",
         "frontend/src/pages/Landing.jsx:154:9",
         "frontend/src/pages/Landing.jsx:181:19",
-        "frontend/src/pages/Landing.jsx:210:13",
-        "frontend/src/pages/Landing.jsx:233:15"
+        "frontend/src/pages/Landing.jsx:212:13",
+        "frontend/src/pages/Landing.jsx:238:17",
+        "frontend/src/pages/Landing.jsx:239:17"
       ],
       "operations": [
         "public-discovery",
@@ -79033,7 +79034,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "ffbaafa6f1041afb53cd7ad0681c841898649a4ed452cca7c0406b9fe8b5ffd2",
+      "declarationSha256": "02efe5f7daaff2f4daa440c4cf7e6cab07b89875118b1c1935b1ce31e36fe564",
       "routeIds": [
         "/"
       ],
@@ -79111,9 +79112,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:210:13",
+      "id": "frontend/src/pages/Landing.jsx:212:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 210,
+      "line": 212,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79135,16 +79136,41 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:233:15",
+      "id": "frontend/src/pages/Landing.jsx:238:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 233,
-      "column": 15,
+      "line": 238,
+      "column": 17,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "destination": "/#lesson-example",
+      "disabled": null,
+      "declarationSha256": "b9b5d4eb1c418e460237804e831de583d7f5e1d9894bc1f1464a8bdd6f5fbcb4",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:239:17",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 239,
+      "column": 17,
       "tag": "Link",
       "events": [],
       "calls": [],
       "destination": "/how-it-works",
       "disabled": null,
-      "declarationSha256": "63d616845ebdf8f5a61a95a45357e28a893e10bbf5cb123c6026dd238fdeea5f",
+      "declarationSha256": "caeeeb8da9ba32b3f9880e1db5d8d9421ccc5b0db46f768f333464b3eae26a7d",
       "routeIds": [
         "/"
       ],
@@ -81710,7 +81736,7 @@
     },
     {
       "file": "frontend/src/components/landing/landingExamples.js",
-      "sourceSha256": "47d80fac065ea9b2249d4e0439cddc08cd35b149ac66f272eda10471549cb113"
+      "sourceSha256": "02de86d1538419aa0fa139b44c4d7a45acf4351720f118ad9b8ff10d965b3e2f"
     },
     {
       "file": "frontend/src/components/landing/LandingFAQ.jsx",
@@ -81746,7 +81772,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "7860d162d8c255fb2eec2925a9a6f35ae44f52293ccad6fa5950df01dc5ef0ef"
+      "sourceSha256": "39a0088f0d3db30285e03da937c78bdead02cf91b028fc01e784ef6ffed6e0c9"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82614,7 +82640,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "31f721acc7493cae9ee72df6d9f449d34acf53b2fb665b95f20620e86813b027"
+      "sourceSha256": "0afa53467b591901a88c202614f7f7cf8e407c568da8746a11c4122cc3f9ba0c"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85893,11 +85919,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1528,
-    "routeReachableDeclarations": 1525,
+    "controlDeclarations": 1529,
+    "routeReachableDeclarations": 1526,
     "controlFiles": 193,
     "states": {
-      "connected": 527,
+      "connected": 528,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3

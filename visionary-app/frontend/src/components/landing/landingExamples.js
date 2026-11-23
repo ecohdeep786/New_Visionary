@@ -1,20 +1,19 @@
+export const EXAMPLE_LANGUAGES = { en: "English", hi: "हिन्दी", bn: "বাংলা" };
+
 export const BRIDGE_EXAMPLE = {
   en: {
-    language: "English",
     question: "Can a sheet of paper hold a stack of coins?",
     explanation: "A flat sheet sags between two supports. Fold the same sheet like a fan and the ridges give it depth, making it harder to bend along the folds.",
     prompt: "Build a paper bridge",
     activity: "Lay a sheet across two books. Add coins one at a time. Now fold the sheet, run the ridges from book to book and try again. Which bridge holds more?",
   },
   hi: {
-    language: "हिन्दी",
     question: "क्या कागज़ की एक शीट कई सिक्कों का भार उठा सकती है?",
     explanation: "दो सहारों के बीच रखी सपाट शीट झुक जाती है। उसी शीट को पंखे की तरह मोड़ने से उसमें उभरी हुई तहें बनती हैं। इन तहों की दिशा में शीट को झुकाना कठिन हो जाता है।",
     prompt: "कागज़ का पुल बनाएँ",
     activity: "दो किताबों के बीच कागज़ की शीट रखें। उस पर एक-एक करके सिक्के रखें। अब शीट को मोड़ें और तहों को एक किताब से दूसरी तक रखकर फिर कोशिश करें। कौन सा पुल ज़्यादा भार उठा पाता है?",
   },
   bn: {
-    language: "বাংলা",
     question: "একটি কাগজ কি কয়েকটি কয়েনের ভার বইতে পারে?",
     explanation: "দুই প্রান্তে ঠেকনা দিলে সমতল কাগজ মাঝখানে ঝুলে পড়ে। একই কাগজ পাখার মতো ভাঁজ করলে উঁচু-নিচু খাঁজ তৈরি হয়। তখন ভাঁজের দৈর্ঘ্য বরাবর কাগজ সহজে বেঁকে যায় না।",
     prompt: "কাগজের সেতু বানান",

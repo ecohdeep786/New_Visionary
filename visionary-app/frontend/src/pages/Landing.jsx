@@ -2,9 +2,9 @@ import "./landing-home.css";
 import React, { lazy, Suspense, useState } from "react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import { BRIDGE_EXAMPLE, PLANNING_EXAMPLE } from "@/components/landing/landingExamples";
+import { BRIDGE_EXAMPLE, EXAMPLE_LANGUAGES, PLANNING_EXAMPLE } from "@/components/landing/landingExamples";
 import PersonaHero from "@/components/landing/NewPersona";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import heroBotWebp from "@/assets/brand/visionary-bot.webp";
 import heroBotAvif from "@/assets/brand/visionary-bot.avif";
 /* The shared sections sit below the fold;
@@ -31,7 +31,7 @@ const AUDIENCES = [
   {
     slug: "student", label: "Students", castLabel: "Student", headline: "Learn by doing.",
     question: "Where did I lose the thread?", answer: "Go back to the step that felt unclear. Ask about it in your own language, then try a practice question before moving on.",
-    detail: "Lessons, practice and projects", portrait: studentmeet, scene: problemunderstanding, example: BRIDGE_EXAMPLE,
+    detail: "Lessons, practice and projects", portrait: studentmeet, scene: problemunderstanding, example: BRIDGE_EXAMPLE, exampleTitle: "Explore the paper bridge lesson",
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", headline: "Teach with insight.",
@@ -46,7 +46,7 @@ const AUDIENCES = [
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", headline: "Put skills to work.",
     question: "How do I use what I just learned?", answer: "Start with a skill you need at work. Set a goal, practise it and build a project you can return to and refine.",
-    detail: "Skill goals, projects and portfolios", portrait: promeet, scene: proProblem, example: PLANNING_EXAMPLE,
+    detail: "Skill goals, projects and portfolios", portrait: promeet, scene: proProblem, example: PLANNING_EXAMPLE, exampleTitle: "Explore a planning example",
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", headline: "Grow your team.",
@@ -144,16 +144,16 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   );
 });
 
-function LessonExample({ content, language, setLanguage }) {
+function LessonExample({ content, title, anchor, initiallyOpen, language, setLanguage }) {
   const lesson = content[language];
   return (
-    <details className="challenge-example">
-      <summary>Explore a sample lesson</summary>
+    <details className="challenge-example" open={initiallyOpen || undefined}>
+      <summary id={anchor}>{title}</summary>
       <label>
         Example language
         <select value={language} onChange={(event) => setLanguage(event.target.value)}>
-          {Object.entries(content).map(([code, item]) => (
-            <option key={code} value={code} lang={code}>{item.language}</option>
+          {Object.entries(EXAMPLE_LANGUAGES).map(([code, name]) => (
+            <option key={code} value={code} lang={code}>{name}</option>
           ))}
         </select>
       </label>
@@ -165,11 +165,11 @@ function LessonExample({ content, language, setLanguage }) {
   );
 }
 
-function LandingChallenges() {
+function LandingChallenges({ openLesson }) {
   const [active, setActive] = useState("student");
   const [language, setLanguage] = useState("en");
   return (
-    <section id="lesson-example" tabIndex={-1} data-section="02-problem" aria-labelledby="challenges-title" className="home-challenges">
+    <section data-section="02-problem" aria-labelledby="challenges-title" className="home-challenges">
       <div className="home-frame">
         <h2 id="challenges-title" data-type="section">What’s getting in your way?</h2>
         <div className="challenge-layout">
@@ -187,7 +187,9 @@ function LandingChallenges() {
                 <div id={`challenge-${role.slug}`} hidden={!expanded}>
                   {expanded && <>
                     <p className="challenge-answer">{role.answer}</p>
-                    {role.example && <LessonExample content={role.example} language={language} setLanguage={setLanguage} />}
+                    {role.example && <LessonExample content={role.example} title={role.exampleTitle}
+                      anchor={role.slug === "student" ? "lesson-example" : undefined}
+                      initiallyOpen={role.slug === "student" && openLesson} language={language} setLanguage={setLanguage} />}
                     <div className="challenge-photo"><img src={role.scene || role.portrait} alt="" loading="lazy" decoding="async" /></div>
                   </>}
                 </div>
@@ -220,6 +222,8 @@ function LandingRouterSection() {
 }
 
 export default function LandingPage() {
+  const location = useLocation();
+  const openLesson = location.hash === "#lesson-example";
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
@@ -229,10 +233,13 @@ export default function LandingPage() {
           <div className="public-editorial-frame mx-auto">
             <div className="home-product-copy">
               <h2 data-type="section">Meet Visionary <span className="accent-gradient-on-dark">Intelligence.</span></h2>
-              <div><p data-type="editorial-body">Ask about the part that hasn’t clicked. Practise it in Learn, then take the same idea into Build and make something with it.</p></div>
-              <Link to="/how-it-works" className="inline-flex min-h-11 items-center gap-1 rounded-full bg-white px-5 font-medium text-[#1d1d1f] focus-visible:ring-2 focus-visible:ring-[#2997ff]">
-                How Visionary works <ChevronRight aria-hidden="true" className="h-4 w-4" />
-              </Link>
+              <p data-type="editorial-body">Ask about a step you’re stuck on. Work through it in Learn, then use the idea in Build. See how a question about folded paper becomes a bridge you can test.</p>
+              <div className="intelligence-actions">
+                <Link to="/#lesson-example" className="inline-flex min-h-11 items-center rounded-full bg-white px-5 font-medium text-[#1d1d1f] focus-visible:ring-2 focus-visible:ring-[#2997ff]">See the sample lesson</Link>
+                <Link to="/how-it-works" className="inline-flex min-h-11 items-center gap-1 rounded-sm px-1 text-[#9dcbff] focus-visible:ring-2 focus-visible:ring-[#2997ff]">
+                  How Visionary works <ChevronRight aria-hidden="true" className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
           <picture aria-hidden="true" className="home-product-mark">
@@ -240,7 +247,7 @@ export default function LandingPage() {
             <img src={heroBotWebp} alt="" loading="lazy" decoding="async" />
           </picture>
         </section>
-        <LandingChallenges />
+        <LandingChallenges key={openLesson ? location.key : "challenges"} openLesson={openLesson} />
         <LandingRouterSection />
         <Suspense fallback={null}><PremiumTrustSection
           heading={<>Know what you <span className="accent-gradient">share.</span></>}

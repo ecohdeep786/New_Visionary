@@ -109,7 +109,7 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
             </span>
           </h1>
           <div className="cast-introduction">
-            <p className="cast-intro">A shared space to learn, teach and build in English, Hindi and Bengali.</p>
+            <p className="cast-intro">Explore ideas in English, Hindi or Bengali. Turn what you learn in class or at work into a project.</p>
             <CtaPair ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo="/#audiences" secondaryLabel="Find your page" />
           </div>
         </div>
