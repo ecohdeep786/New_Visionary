@@ -117,7 +117,7 @@
         "frontend/src/components/landing/NewPersona.jsx:75:9",
         "frontend/src/components/landing/NewPersona.jsx:79:9",
         "frontend/src/components/landing/NewPersona.jsx:85:13",
-        "frontend/src/components/landing/NewPersona.jsx:144:7",
+        "frontend/src/components/landing/NewPersona.jsx:145:7",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -857,7 +857,7 @@
         "frontend/src/components/landing/NewPersona.jsx:75:9",
         "frontend/src/components/landing/NewPersona.jsx:79:9",
         "frontend/src/components/landing/NewPersona.jsx:85:13",
-        "frontend/src/components/landing/NewPersona.jsx:144:7",
+        "frontend/src/components/landing/NewPersona.jsx:145:7",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1084,7 +1084,7 @@
         "frontend/src/components/landing/NewPersona.jsx:75:9",
         "frontend/src/components/landing/NewPersona.jsx:79:9",
         "frontend/src/components/landing/NewPersona.jsx:85:13",
-        "frontend/src/components/landing/NewPersona.jsx:144:7",
+        "frontend/src/components/landing/NewPersona.jsx:145:7",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1311,7 +1311,7 @@
         "frontend/src/components/landing/NewPersona.jsx:75:9",
         "frontend/src/components/landing/NewPersona.jsx:79:9",
         "frontend/src/components/landing/NewPersona.jsx:85:13",
-        "frontend/src/components/landing/NewPersona.jsx:144:7",
+        "frontend/src/components/landing/NewPersona.jsx:145:7",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1664,7 +1664,7 @@
         "frontend/src/components/landing/NewPersona.jsx:75:9",
         "frontend/src/components/landing/NewPersona.jsx:79:9",
         "frontend/src/components/landing/NewPersona.jsx:85:13",
-        "frontend/src/components/landing/NewPersona.jsx:144:7",
+        "frontend/src/components/landing/NewPersona.jsx:145:7",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -2072,7 +2072,7 @@
         "frontend/src/components/landing/NewPersona.jsx:75:9",
         "frontend/src/components/landing/NewPersona.jsx:79:9",
         "frontend/src/components/landing/NewPersona.jsx:85:13",
-        "frontend/src/components/landing/NewPersona.jsx:144:7",
+        "frontend/src/components/landing/NewPersona.jsx:145:7",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -45765,7 +45765,7 @@
       "calls": [],
       "destination": "/",
       "disabled": null,
-      "declarationSha256": "880bf2232078a78fc71f13646bf734bb0e084692b3114a6b952448c124a71963",
+      "declarationSha256": "688bc76f44f4b7ea92ddada49ca2985a99955e34fa5c18bccfc16df351d0e299",
       "routeIds": [
         "/",
         "/student",
@@ -47624,7 +47624,7 @@
         "preview"
       ],
       "disabled": null,
-      "declarationSha256": "e2f9b5751517688d33a0daac802728928458ebc72158e38eae6e7964bb55307d",
+      "declarationSha256": "b2a1710dd329dc6f3c9140e085132fe0331da15f31f4baa5a5057104c3afa535",
       "routeIds": [
         "/",
         "/student",
@@ -47645,9 +47645,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:144:7",
+      "id": "frontend/src/components/landing/NewPersona.jsx:145:7",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 144,
+      "line": 145,
       "column": 7,
       "tag": "button",
       "events": [
@@ -79144,7 +79144,7 @@
       "events": [],
       "calls": [],
       "disabled": null,
-      "declarationSha256": "45b372e9b3cc9661fa4decca81ea11e69712e4478135367551444306a817cec4",
+      "declarationSha256": "81026d5dee9649c67d892d185cecf063e6e8e1b58b79455c69e74169b4dfbf1a",
       "routeIds": [
         "/"
       ],
@@ -81816,7 +81816,7 @@
     },
     {
       "file": "frontend/src/components/landing/LandingNav/index.jsx",
-      "sourceSha256": "94a415c5fa4bb4cf5fec516ec6ad2d6ad1d4fbd7113f2a383925f584b36f65bf"
+      "sourceSha256": "ef86d9f54702924cddb60c09306a100822f3572d4a00ac6a267e89c1665ca507"
     },
     {
       "file": "frontend/src/components/landing/LandingNav/MobileNavigation.jsx",
@@ -81840,7 +81840,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "ae3b803313ff19659ae7678f1291a9c2932a41c736a6c85ac53a6fdda493bf8e"
+      "sourceSha256": "646d00d4f28fe80f80e6dacba15a64407ef069b8a6b0f9b54e81fe02007d2ec7"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82712,7 +82712,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "c899b37f0bb7ad0cf7e9f98a0aaefe54e484a312295224c0645f6ea4bf813c0e"
+      "sourceSha256": "9b475c97d45eb6c1399efd81b08ec75fa34ba2788fa598c6ec88c03c88fd258e"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

@@ -168,12 +168,12 @@ export default function LandingNav() {
         <div className="flex min-w-0 items-center gap-4 lg:gap-6">
           <Link
             to="/"
-            aria-label="Visionary home"
+            data-public-brand
             className={`shrink-0 relative rounded-full after:absolute after:-inset-y-2 after:-inset-x-7 ${FOCUS_RING}`}
           >
             <VisionaryLogo />
+            <span className="sr-only"> home</span>
           </Link>
-
           <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex" onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
               clearTimeout(openTimer.current);

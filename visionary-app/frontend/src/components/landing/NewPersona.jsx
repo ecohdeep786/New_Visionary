@@ -86,6 +86,7 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
               key={role.slug}
               to={`/${role.slug}`}
               className="hero-path"
+              tabIndex={0}
               data-active={i === index ? "true" : undefined}
               onMouseEnter={() => preview(i)}
               onFocus={() => preview(i)}

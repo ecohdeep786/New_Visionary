@@ -205,7 +205,7 @@ function AudienceDirectory() {
         </div>
         <nav id="audience-paths" aria-label="Audience pages" className="path-row" ref={pathRow}>
           {AUDIENCES.map((role) => (
-            <Link key={role.slug} to={`/${role.slug}`} className="path-card">
+            <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="path-card">
               <span className="path-media">
                 <img src={role.portrait} width="224" height="224" alt="" loading="lazy" decoding="async" />
               </span>

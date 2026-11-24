@@ -427,6 +427,7 @@
 .path-card:is(:hover, :focus-visible) .path-arrow { transform: translateX(3px); }
 .path-card:is(:hover, :focus-visible) .path-media img { transform: scale(1.03); }
 .path-card:focus-visible { outline: 3px solid #0066cc; outline-offset: 4px; border-radius: 1.75rem; }
+.path-row:focus-visible, .trust-row:focus-visible { outline: 3px solid #0066cc; outline-offset: -3px; }
 @media (max-width: 1279px) {
   .path-row {
     display: flex;
@@ -593,8 +594,8 @@
 .page-landing header [data-public-nav-bar] nav { gap: 2px; }
 .page-landing header [data-scroll-action] { margin-inline-start: 8px; gap: 6px; }
 .page-landing header [data-scroll-action] svg { width: 14px; height: 14px; }
-.page-landing header [aria-label="Visionary home"] > svg { width: min(109px, 29vw); height: auto; }
-.page-landing header [aria-label="Visionary home"]::after { inset-inline: 0; }
+.page-landing header [data-public-brand] > svg { width: min(109px, 29vw); height: auto; }
+.page-landing header [data-public-brand]::after { inset-inline: 0; }
 .page-landing header [data-public-nav-bar] button[aria-expanded] { width: 44px; height: 44px; }
 
 @media (max-width: 639px) {
@@ -604,7 +605,6 @@
   .page-landing header [data-public-nav-bar] { width: calc(100% - min(2.5rem, 10vw)); column-gap: min(0.5rem, 2vw); }
   .page-landing header [data-scroll-action] { margin-inline-start: 0; padding-inline: min(1.3125rem, 4vw); }
   .page-landing header [data-public-nav-bar] > div:last-child { gap: min(0.5rem, 2vw); }
-  .page-landing header [aria-label="Visionary home"]::after { inset-inline: 0; }
 }
 @media (max-width: 374px) {
   .page-landing header [data-public-nav-bar] { width: calc(100% - min(1.5rem, 6vw)); }

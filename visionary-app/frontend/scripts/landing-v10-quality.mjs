@@ -159,6 +159,9 @@ async function journeys(width, height) {
   await page.locator('.home-hero').getByRole('link', { name: 'Find your path' }).click();
   await page.waitForFunction(() => document.activeElement?.id === 'audiences');
   await page.keyboard.press('Tab');
+  if (await page.evaluate(() => document.activeElement?.id === 'audience-paths')) {
+    await page.keyboard.press('Tab');
+  }
   assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('href')), '/student');
   const directory = page.getByRole('navigation', { name: 'Audience pages' });
   assert.deepEqual(await directory.locator('a').evaluateAll(links => links.map(link => link.pathname)), roles.map(r => '/' + r));
