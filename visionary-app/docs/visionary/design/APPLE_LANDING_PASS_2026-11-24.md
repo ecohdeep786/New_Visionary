@@ -2,7 +2,7 @@
 
 Date: 2026-11-24
 Base: `aae98fdc` (`origin/dev`, PR #66 — the accepted five-audience homepage)
-Implementation candidate: `4500906f697b21f8910feab78eb7da5b1d6057e0`
+Implementation candidate: `fcc5756644e79aedc022330f4b977e0bacaf5c7a`
 Branch: `deepseek/frontend-work`
 Merge target: `dev` only after explicit owner approval. **Not merged yet.** `main` was not promoted.
 
@@ -30,9 +30,9 @@ The common laws: chapter breath **140–144px desktop / 120px phone**; editorial
 | K–12 | 11,093 | 750 · 753 · 1,723 · 2,612 · 2,207 · 1,655 · 524 |
 | iPhone | 8,581 | 896 · 946 · 831 · 854 · 848 · 916 · 1,087 |
 | Vision Pro | 24,830 | 636 · 954 · 1,648 · 10,232 · 2,105 · 5,319 · 1,362 · 1,062 |
-| **Visionary landing** | **5,925** | **844 · 832 · 608 · 747 · 752 · 799 · 590** |
+| **Visionary landing** | **5,983** | **844 · 832 · 608 · 816 · 742 · 799 · 590** |
 
-At 1980px the landing hero is 1,218px tall; the copy block is 433px and the cast stage 388px. The path frame is 1,264px with five 234px cards; trust and close are also 1,264px. This is intentionally the **front-door scale**, not Apple’s 8k–25k product-catalog length: deep media chapters, labels and product grids remain on the category pages.
+At 1980px the landing hero is 1,218px tall; the copy block is 433px and the cast stage 388px. The path frame is 1,264px with five ~225px cards and 36px gutters; trust and close are also 1,264px. This is intentionally the **front-door scale**, not Apple's 8k–25k product-catalog length: deep media chapters, labels and product grids remain on the category pages.
 
 ## Product source study
 
@@ -43,6 +43,20 @@ The landing must describe the actual product, not only the reference pages.
 - The landing therefore uses a **four-stage public summary** — Ask → Understand → Practise → Build — not the eight-stage internal page. The **One Intelligence** chapter carries the truth note immediately under the promise (“The guided experience is in development. Today, you can create an account and view saved learning history.”), and the loop chapter keeps the four-stage diagram with its single `/how-it-works` door.
 
 This is the “how” beat the landing was missing; it connects the product promise to the five role paths without duplicating the category pages.
+
+### The five sides of the same loop
+
+The five category stories were re-read at source before the second landing pass. They share the same four moves but enter from different sides:
+
+| Path | What its page story says | One verb for the loop lead |
+| --- | --- | --- |
+| Student | Understand → see/hear/ask → practise → build | asks |
+| Teacher | Understand the class → explain another way → know who is with you → learn what teaching demands next | explains |
+| Parent | What the child understood → where they are stuck → which way learning is moving → one shared view | supports |
+| Professional | Understand the work → turn projects into lessons → carry expertise → see what the work is building | builds |
+| Organization | See what people understand → find gaps early → support every role from one system → improve the next decision | learns what to change |
+
+The landing now states that bridge in one sentence under the loop heading: “A student asks. A teacher explains. A parent supports. A professional builds. An organization learns what to change. One loop, from every side.” The five names remain the only doors; the detail stays on each category page. The gate asserts that the loop lead names all five roles.
 
 ## Destination-page audit
 
@@ -99,7 +113,7 @@ The route-contract test is the executable receipt: 24 public routes, 6 auth surf
 | Body / lead | 17/25; 24/28–32 | 21/25; 24/600 |
 | Card / row gaps | 20–24px | 20–24px |
 | Section heights (desktop) | 608–1985px | 590–832px |
-| Page height | 7,657px education; 7,945px initiative | 5,925px front door |
+| Page height | 7,657px education; 7,945px initiative | 5,983px front door |
 
 The landing deliberately does not reproduce Apple's 12,000px product catalog. It takes the measured **chapter grammar** — 980 spine, 1264 wide row, 140 breath, 48–64 statements, 28px card radius, 5-up line-up and 3-up values row — and applies it to a seven-beat front door. The only full-bleed surfaces are the hero and the dark Intelligence chapter, so media stays meaningful.
 
@@ -118,13 +132,13 @@ Measured rendered line widths at 1440:
 - **Five audience doors on arrival.** Quiet 12–13px local row; hover/focus previews the matching story; Enter opens the category page; active underline and a visible pause/play control. The gate now asserts the row's bottom is inside every tested viewport, including 844×390, and that the primary action and all five doors keep 44px targets. The short-landscape pause control stays visible and pauses the 6.5s rotation; on 320×568 it is lifted fully inside the fold, and the gate asserts the control's top/bottom rather than mere presence.
 - **One Intelligence is a full product chapter.** 94svh dark stage capped at 52rem, 64px statement, 24/600 lead, complete guide on the band floor with a soft product glow. The body names the connected workspace, and the 13px availability note sits directly under it — not several chapters later.
 - **Shared challenge is an Apple story split.** 64px statement left on a 980px spine, supporting copy and 24/600 answer right. No centered text corridor.
-- **The learning loop is the missing “how”.** A 980px, four-stage product diagram — Ask → Understand → Practise → Build — with numbered nodes, a quiet connector, 28px stage names, 17px one-liners and a single `/how-it-works` door. The availability note lives in the One Intelligence chapter above it, where the promise is made.
-- **Five paths are an iPhone-style five-up lineup.** 1264px row, 4:5 portraits at 28px radius, 28px names and arrows. After the live user review, the abstract subhead and the five per-card descriptions were removed: the section now carries one heading, five faces, five clear role names and a single arrow per door. The Student card uses a normalized crop from the transparent hero cutout so all five portraits share the same white studio ground. Below 1280 it becomes a snap rail with quiet previous/next controls; desktop keeps all five visible. The rail controls render only when the row can actually scroll. At 200% text the container queries turn the desktop five-up into three columns and the phone rail into a compact list; role names never split mid-word, the compact list hides its arrows, and its titles stay inside their cards.
+- **The learning loop is the missing “how”.** A 980px, four-stage product diagram - Ask → Understand → Practise → Build - with numbered nodes, a quiet connector, 28px stage names, 17px one-liners and a single `/how-it-works` door. A one-sentence lead above the diagram names all five sides: “A student asks. A teacher explains. A parent supports. A professional builds. An organization learns what to change. One loop, from every side.” The gate asserts that the lead names every role. The availability note lives in the One Intelligence chapter above it, where the promise is made.
+- **Five paths are an iPhone-style five-up lineup.** 1264px row, 4:5 portraits at 28px radius, 28px names and arrows, with **35px gutters at 1440 and 36px at 1920** so the names and arrows do not crowd the next card. After the live user review, the abstract subhead and the five per-card descriptions were removed: the section now carries one heading, five faces, five clear role names and a single arrow per door. The Student card uses a normalized crop from the transparent hero cutout so all five portraits share the same white studio ground. Below 1280 it becomes a snap rail with 20px gaps and quiet previous/next controls; desktop keeps all five visible. The rail controls render only when the row can actually scroll. At 200% text the container queries turn the desktop five-up into three columns and the phone rail into a compact list; role names never split mid-word, the compact list hides its arrows, and its titles stay inside their cards.
 - **Trust is an Education-style values row.** 1264px row, three white 28px-radius cards on #f5f5f7: Private by design / Safe to learn / Open to everyone, each with a 32px icon, 28px title, 17/25 copy and a real page link. The sharing card speaks to all five audiences (“Your private work stays private. When you choose to share, the people you authorize see only what you shared”) rather than claiming a live parent view. Below 900 it becomes an Apple-style card rail with controls.
 - **Close is a 1264px, 28px-radius panel** with the trust line “Free to start. Private by design.”, the primary action and a quiet “See how it works” door.
 - **The phone header stays quiet.** The scroll-only black “Get started” pill is hidden below 640px, leaving logo + menu; the hero and close carry the action instead.
 - **Production accessibility fixes.** The mobile drawer's inert/scroll lock uses a layout effect; the gate waits for the settled a11y state after a resize. The destination category H1 now marks its rotating word `aria-hidden` so the complete spoken sentence is the accessible name once, not twice.
-- **Quality gate updated** to assert the fold, the five hero doors inside the viewport, five path doors, all three trust links, the horizontal rails and their controls, visible-card text containment at 200%, role/stage word integrity at 200%, and a retry-safe image decode that waits for load instead of treating a transient decode as a broken image.
+- **Quality gate updated** to assert the fold, the five hero doors inside the viewport, five path doors, the loop lead's five role names, at least 28px of path-card breathing room at desktop, all three trust links, the horizontal rails and their controls, visible-card text containment at 200%, role/stage word integrity at 200%, and a retry-safe image decode that waits for load instead of treating a transient decode as a broken image.
 
 ## Measured before → after
 
@@ -140,7 +154,7 @@ Measured rendered line widths at 1440:
 | 320×568 | 512px | no | 540px (scrolls 28px past the fold) | no |
 | 844×390 | 592px | no | 334px | no |
 
-Final desktop chapters: **hero 844 · Intelligence 832 · shared challenge 608 · learning loop 747 · five paths 752 · trust 799 · close 590**. Page height **5,925px**. Mobile page height **5,335px**.
+Final desktop chapters: **hero 844 · Intelligence 832 · shared challenge 608 · learning loop 816 · five paths 742 · trust 799 · close 590**. Page height **5,983px**. Mobile page height **5,444px**.
 
 ## Five real-user journeys (production build)
 
@@ -164,22 +178,22 @@ The destination H1 accessible names are single complete sentences, verified with
 | `/professional` | Building, to apply, to grow. |
 | `/organization` | Leading, to scale, to last. |
 
-**App-browser final check (1980×1274):** each path card was focused and activated with Enter. The destinations read `/student → Learning,`, `/teacher → Teaching.`, `/parent → Parenting.`, `/professional → Building.`, `/organization → Leading.`, with matching supporting lines. Back returned to `/` with “Find your path.” intact and refresh restored `/` with all five paths. The app-browser reading is deliberately image + role name; there is no explanatory copy to decode.
+**App-browser final check (1980×1274):** each path card was focused and activated with Enter. The destinations read `/student → Learning,`, `/teacher → Teaching.`, `/parent → Parenting.`, `/professional → Building.`, `/organization → Leading.`, with matching supporting lines. Back returned to `/` with “Find your path.” intact and refresh restored `/` with all five paths. The path cards are deliberately image + role name; the shared loop lead above them carries the five-sided explanation.
 
-**App-browser full-page audit:** header → hero → One Intelligence → shared challenge → five paths → trust → close → footer. The hero is complete at the fold; all five faces are visible; the path row breathes; the trust cards are legible; the closing panel is singular. No section needed a second media scene: adding one would repeat the cast or invent product imagery and make the front door heavier than Apple’s own landing.
+**App-browser full-page audit:** header → hero → One Intelligence → shared challenge → learning loop → five paths → trust → close → footer. The hero is complete at the fold; all five faces are visible; the loop lead names all five sides; the path row breathes with 35px gutters at 1440; the trust cards are legible; the closing panel is singular. No section needed a second media scene: adding one would repeat the cast or invent product imagery and make the front door heavier than Apple’s own landing.
 
 ## Verification
 
 - `eslint . --quiet`: clean.
 - `tsc -p jsconfig.json` and `tsc -p tsconfig.domain.json`: clean.
-- `vite build`: clean (2,166 modules; 5.99s).
+- `vite build`: clean (2,166 modules).
 - `node --test --test-concurrency=2 tests/*.test.mjs`: **872/872 passed**.
-- `landing-v10-quality.mjs`: **PASS on three consecutive runs** — 9 viewports, 7 interaction groups, production build. Asserts fold ownership, the five hero doors inside the viewport, 44px primary/audience targets, a visible pause/play control, all five path doors, all three trust links, rail controls, mobile menu, footer disclosures, returning-visitor fixtures, preload lifecycle, visible-card text containment at 200%, role/stage word integrity at 200%, path-control/no-op protection, and title containment at 200%.
+- `landing-v10-quality.mjs`: **PASS on three consecutive runs** — 9 viewports, 7 interaction groups, production build. Asserts fold ownership, the five hero doors inside the viewport, 44px primary/audience targets, a visible pause/play control, all five path doors, the loop lead naming all five roles, at least 28px of path-card breathing room at desktop (35px at 1440, 36px at 1920), all three trust links, rail controls, mobile menu, footer disclosures, returning-visitor fixtures, preload lifecycle, visible-card text containment at 200%, role/stage word integrity at 200%, path-control/no-op protection, and title containment at 200%.
 - `qa-motion.mjs`, `qa-taps.mjs`, `qa-continuity.mjs`: all pass.
 - `landing-apple-audit.mjs`: 9 viewports + 200% at 390/1280; zero horizontal overflow; **844×390 hero 334px with the five doors at the fold**; zero clipped visible text under the audit's definition; the only console entry is the audit fixture's intentional 401.
 - `landing-five-audiences.mjs`: 10 destination screens plus keyboard, reduced motion and pause.
 - `landing-scroll-audit.mjs`: 14 real-user screen captures for visual review; clipping and control behaviour are asserted by the landing gate and the 200% audit, not by this capture script.
-- Lighthouse production `/` mobile (`lighthouse-review-fix3`): performance **0.85**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT **29ms**, CLS 0; LCP **4.38s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
+- Lighthouse production `/` mobile (`lighthouse-loop-path`): performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT **36ms**, CLS 0; LCP **4.30s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
 - Product-surface inventory refreshed: 67 routes, 55 endpoints, 1,534 control declarations.
 
 ## Evidence
@@ -210,10 +224,15 @@ Local (worktree) evidence set:
 - `shots/apple-pass-2026-11-24/review-fix3-audiences/` - five-persona journey gate after the 320px playback fix.
 - `shots/apple-pass-2026-11-24/review-fix3-scroll/` - 14 real-user screens after the 320px playback fix.
 - `shots/apple-pass-2026-11-24/lighthouse-review-fix3/` - Lighthouse receipt for `4500906f`.
+- `shots/apple-pass-2026-11-24/loop-path-fix/`, `loop-path-gate-run1/`, `loop-path-gate-run2/` - three consecutive landing-gate passes for the five-sided loop and wider path gutters.
+- `shots/apple-pass-2026-11-24/loop-path-audit/` - nine-viewport + 200% audit for the five-sided loop and path gutters.
+- `shots/apple-pass-2026-11-24/loop-path-audiences/` - five-persona journey gate for the five-sided loop and path gutters.
+- `shots/apple-pass-2026-11-24/loop-path-scroll/` - 14 real-user screens for the five-sided loop and path gutters.
+- `shots/apple-pass-2026-11-24/lighthouse-loop-path/` - Lighthouse receipt for `fcc57566`.
 
 ## Acceptance decision
 
-**ACTIVE IN THE CURRENT WORKTREE — 320px playback fix applied; fourth review pending.** The first independent review of `a4964970` (source `e7864b49`) returned **CHANGES REQUIRED** on four blockers: the live AI-guide claim, the parent-sharing claim, 200% mid-word breaks in the role/stage names, and the 844×390 hero fold. Those were fixed in `22facb62`.
+**ACTIVE IN THE CURRENT WORKTREE — owner-feedback revision; re-review pending.** The first independent review of `a4964970` (source `e7864b49`) returned **CHANGES REQUIRED** on four blockers: the live AI-guide claim, the parent-sharing claim, 200% mid-word breaks in the role/stage names, and the 844×390 hero fold. Those were fixed in `22facb62`.
 
 The second review of `22facb62` verified those four as fixed and identified five residual defects introduced by the reflow: no-op path controls in the 200% compact list, a hidden pause control while the hero kept rotating in short landscape, 32/36px tap targets there, a 320px/200% title-row overflow, and a note that rendered at 17px while the receipt claimed 13px. All five were fixed in `87e4c22d`.
 
@@ -221,4 +240,8 @@ The third review of `87e4c22d` verified those five as fixed and found one narrow
 
 The production build now passes lint, both type checks, **872 tests**, three consecutive landing-gate runs, the Apple nine-viewport/200% audit, the five-persona gate, the 14-screen capture pass, motion/taps/continuity, and Lighthouse accessibility/SEO gates.
 
-Per the master directive, this is not self-certified for merge: a fresh independent review of `4500906f` is required. Not merged into `dev`. Not promoted to `main`. No production deployment is claimed. Live internal dashboard acceptance remains blocked by the auth/service realm and belongs to the ordered internal phase.
+**Independent review of `4500906f`: PASS.** The fourth review of source `4500906f` at docs/evidence head `125404f0` returned **PASS**. It measured the 320×568 playback control at **top 519.47 / bottom 563.47 / 44px** inside the 568px viewport, independently reproduced the short-landscape pause and 44px targets, the 200% control/title behaviour, the five destination headings, and the internal route graph. It also injected a clipped control and confirmed the gate's exact predicate fails. Its stated limits: live internal auth/service was not tested; Lighthouse was not independently rerun; physical notched devices and browser zoom were not tested; and the width-scoped 320px rule does not cover nonstandard 360×568 / 375×568 short-portrait heights outside the documented nine-viewport matrix.
+
+**Owner feedback after that PASS:** the learning loop still read as if it belonged to one kind of user, and the path-card labels felt crowded. This revision is `fcc57566`: the loop now carries the five-sided lead (“A student asks. A teacher explains. A parent supports. A professional builds. An organization learns what to change. One loop, from every side.”), and the path row uses **35px gutters at 1440 / 36px at 1920 / 31px at 1280**. The gate asserts that the lead names all five roles and that desktop path gutters stay at least 28px. Page height is **5,983px desktop / 5,444px mobile**; the loop chapter is **816px** and the path chapter **742px** at 1440.
+
+Per the master directive, merge authorization remains with the owner. Not merged into `dev`. Not promoted to `main`. No production deployment is claimed. A fresh independent review of `fcc57566` is required before any merge. Live internal dashboard acceptance remains blocked by the auth/service realm and belongs to the ordered internal phase.
