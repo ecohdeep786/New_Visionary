@@ -65,6 +65,8 @@ async function inspectViewport(width, height) {
   await checkHeader(page);
   const introduction = await hero.locator(".home-hero-copy p").innerText();
   for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
+  const loopLead = await page.locator(".home-loop .loop-lead").innerText();
+  for (const role of roles) assert.ok(loopLead.toLowerCase().includes(role), "The shared loop names " + role);
   const geometry = await hero.evaluate(el => {
     const familyEl = el.querySelector('.family-stage');
     const family = familyEl.getBoundingClientRect();
@@ -83,6 +85,10 @@ async function inspectViewport(width, height) {
       playbackBottom: el.querySelector('.hero-playback').getBoundingClientRect().bottom,
       actionHeight: el.querySelector('.home-action').getBoundingClientRect().height,
       pathHeights: [...el.querySelectorAll('.hero-path')].map(link => link.getBoundingClientRect().height),
+      pathGaps: (() => {
+        const cards = [...el.querySelectorAll('.path-card')];
+        return cards.slice(1).map((card, index) => Math.round(card.getBoundingClientRect().left - cards[index].getBoundingClientRect().right));
+      })(),
       nextTop: next.top,
       viewport: innerHeight,
       portraits: [...el.querySelectorAll('.cast-person')].map(person => {
@@ -97,6 +103,7 @@ async function inspectViewport(width, height) {
   assert.ok(geometry.playbackVisible && geometry.playbackTop >= 0 && geometry.playbackBottom <= geometry.viewport, 'Pause/play control stays fully visible at ' + width + 'x' + height);
   assert.ok(geometry.actionHeight >= 43.5, 'Primary action keeps a 44px target at ' + width + 'x' + height);
   assert.ok(geometry.pathHeights.every(value => value >= 43.5), 'Audience doors keep a 44px target at ' + width + 'x' + height);
+  if (width >= 1280) assert.ok(geometry.pathGaps.every(gap => gap >= 28), 'Path cards keep at least 28px of breathing room at ' + width + ': ' + geometry.pathGaps.join(', '));
   assert.ok(geometry.nextTop >= geometry.viewport - 1, 'The next chapter intrudes into the first screen at ' + width + 'x' + height);
   if (geometry.castVisible) {
     assert.equal(geometry.portraits.length, 5);

@@ -135,6 +135,7 @@ function LearningLoop() {
       <div className="home-width">
         <p className="loop-eyebrow" data-type="metadata">The learning loop</p>
         <h2 id="loop-heading" data-type="section">One loop. Every subject.</h2>
+        <p className="loop-lead" data-type="editorial-body">A student asks. A teacher explains. A parent supports. A professional builds. An organization learns what to change. One loop, from every side.</p>
         <div className="loop-row">
           {LOOP_STEPS.map(({ number, title, copy, Icon }) => (
             <div key={title} className="loop-step">

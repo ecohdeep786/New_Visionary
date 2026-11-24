@@ -343,6 +343,12 @@
 }
 .loop-eyebrow { margin: 0 0 1rem; color: #6e6e73; letter-spacing: 0.02em; }
 .home-loop h2 { max-width: 18ch; margin: 0 auto; text-wrap: balance; }
+.loop-lead {
+  max-width: 58ch;
+  margin: 1.25rem auto 0;
+  color: #6e6e73;
+  text-wrap: balance;
+}
 .loop-row {
   position: relative;
   display: grid;
@@ -438,7 +444,7 @@
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: start;
-  gap: clamp(1rem, 1.7vw, 1.5rem);
+  gap: clamp(1.75rem, 2.4vw, 2.25rem);
 }
 .path-card { display: flex; flex-direction: column; min-width: 0; color: #1d1d1f; text-decoration: none; }
 .path-media {
@@ -479,7 +485,7 @@
 @media (max-width: 1279px) {
   .path-row {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     margin-inline: -1.5rem;
     padding-inline: 1.5rem;
     padding-bottom: 0.75rem;
