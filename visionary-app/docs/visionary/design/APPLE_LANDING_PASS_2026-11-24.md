@@ -44,6 +44,21 @@ The landing must describe the actual product, not only the reference pages.
 
 This is the “how” beat the landing was missing; it connects the product promise to the five role paths without duplicating the category pages.
 
+## Destination-page audit
+
+The four remaining category pages were opened in the app browser at the final candidate and checked against the landing path promise:
+
+| Route | Page height | Hero continuation | Detail |
+| --- | --- | --- | --- |
+| `/teacher` | 13,086px | Teaching. Teaching, to grow, to reach. | Ten sections from struggle → journey → intelligence → language → achievement → continuity → trust → CTA → explore |
+| `/parent` | 13,313px | Parenting. Parenting, to see, to help. | Same ten-section grammar; child progress, language, trust |
+| `/professional` | 13,339px | Building. Building, to apply, to grow. | Work/career journey, private portfolio, trust |
+| `/organization` | 13,497px | Leading. Leading, to scale, to last. | Adoption, people/teams, language, governance, trust |
+
+Each page carries the detailed story that the landing deliberately does not repeat. One downstream copy finding is logged for the Professional page worktree: its struggle heading reads “Every professional wonders about Application.” with an unnecessary capital. It does not block the landing; the landing link and destination hero are correct.
+
+**Apple same-turn re-check:** Education’s live values row shows the same three-card, 28px-radius, icon → title → copy → Learn more grammar used by trust. iPhone’s live line-up shows large product images with names only and a pagination control; the landing path row uses the same names-only discipline. The loop chapter is original Visionary product vocabulary, not an Apple copy; no further source change was justified.
+
 ## Apple's measured space applied
 
 | Property | Apple measured | This pass |
