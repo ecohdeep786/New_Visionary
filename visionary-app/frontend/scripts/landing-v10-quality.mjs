@@ -78,6 +78,9 @@ async function inspectViewport(width, height) {
       clearance: familyVisible ? family.top - copy.bottom : null,
       heroBottom: rect.bottom,
       pathsBottom: el.querySelector('.hero-paths').getBoundingClientRect().bottom,
+      playbackVisible: !!el.querySelector('.hero-playback')?.getClientRects().length,
+      actionHeight: el.querySelector('.home-action').getBoundingClientRect().height,
+      pathHeights: [...el.querySelectorAll('.hero-path')].map(link => link.getBoundingClientRect().height),
       nextTop: next.top,
       viewport: innerHeight,
       portraits: [...el.querySelectorAll('.cast-person')].map(person => {
@@ -89,6 +92,9 @@ async function inspectViewport(width, height) {
   assert.ok(geometry.scrollWidth <= width && (!geometry.castVisible || geometry.clearance >= 0), 'Hero reflow at ' + width);
   assert.ok(geometry.heroBottom >= geometry.viewport - 1, 'Hero fills the first screen at ' + width + 'x' + height);
   assert.ok(geometry.pathsBottom <= geometry.viewport + 1, 'Five audience doors inside the first screen at ' + width + 'x' + height);
+  assert.ok(geometry.playbackVisible, 'Pause/play control stays visible at ' + width + 'x' + height);
+  assert.ok(geometry.actionHeight >= 43.5, 'Primary action keeps a 44px target at ' + width + 'x' + height);
+  assert.ok(geometry.pathHeights.every(value => value >= 43.5), 'Audience doors keep a 44px target at ' + width + 'x' + height);
   assert.ok(geometry.nextTop >= geometry.viewport - 1, 'The next chapter intrudes into the first screen at ' + width + 'x' + height);
   if (geometry.castVisible) {
     assert.equal(geometry.portraits.length, 5);
@@ -265,6 +271,29 @@ async function checkTextScaling() {
       return broken;
     });
     assert.deepEqual(broken, [], 'Role and stage names stay whole at 200% on ' + width + 'px');
+    const pathChrome = await page.evaluate(() => {
+      const row = document.querySelector('#audience-paths');
+      const controls = document.querySelector('.path-controls');
+      const visibleCards = [...document.querySelectorAll('.path-card')].filter(card => {
+        const rect = card.getBoundingClientRect();
+        return rect.right > 0 && rect.left < innerWidth;
+      });
+      const titleOverflow = visibleCards.flatMap(card => {
+        const rect = card.getBoundingClientRect();
+        const strong = card.querySelector('.path-title strong');
+        const arrow = card.querySelector('.path-arrow');
+        const strongRect = strong?.getBoundingClientRect();
+        const arrowRect = arrow && getComputedStyle(arrow).display !== 'none' ? arrow.getBoundingClientRect() : null;
+        return (strongRect && strongRect.right > rect.right + 1) || (arrowRect && arrowRect.right > rect.right + 1) ? [strong?.textContent] : [];
+      });
+      return {
+        scrollable: row.scrollWidth > row.clientWidth + 1,
+        controlsVisible: !!controls && controls.getClientRects().length > 0 && getComputedStyle(controls).display !== 'none',
+        titleOverflow,
+      };
+    });
+    assert.ok(!pathChrome.controlsVisible || pathChrome.scrollable, 'Path controls only appear when the path row scrolls at 200% on ' + width + 'px');
+    assert.deepEqual(pathChrome.titleOverflow, [], 'Path titles stay inside their cards at 200% on ' + width + 'px');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.locator('footer').scrollIntoViewIfNeeded();
     if (width >= 640) await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();

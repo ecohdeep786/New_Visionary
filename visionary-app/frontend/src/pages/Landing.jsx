@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./landing-home.css";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -157,6 +157,20 @@ function LearningLoop() {
 
 function AudienceDirectory() {
   const pathRow = useRef(null);
+  const [pathScrollable, setPathScrollable] = useState(false);
+  useEffect(() => {
+    const row = pathRow.current;
+    if (!row) return undefined;
+    const update = () => setPathScrollable(row.scrollWidth > row.clientWidth + 1);
+    update();
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
+    observer?.observe(row);
+    window.addEventListener("resize", update);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
   return (
     <section id="audiences" tabIndex={-1} data-section="13-explore" className="home-audiences" aria-labelledby="audiences-title">
       <div className="path-frame">
@@ -178,7 +192,7 @@ function AudienceDirectory() {
             </Link>
           ))}
         </nav>
-        <RailControls id="audience-paths" label="audience" onStep={(step) => scrollRail(pathRow, step)} className="path-controls" />
+        {pathScrollable && <RailControls id="audience-paths" label="audience" onStep={(step) => scrollRail(pathRow, step)} className="path-controls" />}
       </div>
     </section>
   );
@@ -202,7 +216,7 @@ export default function LandingPage() {
             <div className="intelligence-copy">
               <h2 id="intelligence-heading" data-type="display">One Intelligence.</h2>
               <p data-type="editorial-body">Learning, teaching and building, connected in one workspace. Use it in English, Hindi or Bengali.</p>
-              <p className="intelligence-note">The guided experience is in development. Today, you can create an account and view saved learning history.</p>
+              <p className="intelligence-note" data-type="fine">The guided experience is in development. Today, you can create an account and view saved learning history.</p>
               <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
             <picture className="intelligence-portrait" aria-hidden="true">

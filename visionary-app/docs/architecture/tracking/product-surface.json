@@ -128,13 +128,13 @@
         "frontend/src/pages/Landing.jsx:122:7",
         "frontend/src/pages/Landing.jsx:125:7",
         "frontend/src/pages/Landing.jsx:149:11",
-        "frontend/src/pages/Landing.jsx:168:13",
-        "frontend/src/pages/Landing.jsx:181:9",
-        "frontend/src/pages/Landing.jsx:206:15",
-        "frontend/src/pages/Landing.jsx:226:19",
-        "frontend/src/pages/Landing.jsx:230:13",
-        "frontend/src/pages/Landing.jsx:241:17",
-        "frontend/src/pages/Landing.jsx:244:17"
+        "frontend/src/pages/Landing.jsx:182:13",
+        "frontend/src/pages/Landing.jsx:195:28",
+        "frontend/src/pages/Landing.jsx:220:15",
+        "frontend/src/pages/Landing.jsx:240:19",
+        "frontend/src/pages/Landing.jsx:244:13",
+        "frontend/src/pages/Landing.jsx:255:17",
+        "frontend/src/pages/Landing.jsx:258:17"
       ],
       "operations": [
         "public-discovery",
@@ -79138,9 +79138,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:168:13",
+      "id": "frontend/src/pages/Landing.jsx:182:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 168,
+      "line": 182,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79162,10 +79162,10 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:181:9",
+      "id": "frontend/src/pages/Landing.jsx:195:28",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 181,
-      "column": 9,
+      "line": 195,
+      "column": 28,
       "tag": "RailControls",
       "events": [
         {
@@ -79193,9 +79193,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:206:15",
+      "id": "frontend/src/pages/Landing.jsx:220:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 206,
+      "line": 220,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -79218,9 +79218,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:226:19",
+      "id": "frontend/src/pages/Landing.jsx:240:19",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 226,
+      "line": 240,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -79242,9 +79242,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:230:13",
+      "id": "frontend/src/pages/Landing.jsx:244:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 230,
+      "line": 244,
       "column": 13,
       "tag": "RailControls",
       "events": [
@@ -79273,9 +79273,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:241:17",
+      "id": "frontend/src/pages/Landing.jsx:255:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 241,
+      "line": 255,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79297,9 +79297,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:244:17",
+      "id": "frontend/src/pages/Landing.jsx:258:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 244,
+      "line": 258,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -82776,7 +82776,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "90a14865cf080199e3a3a512dd04fe11bfbe6337ed4ee94f91fe9d15d9479591"
+      "sourceSha256": "c957363bf1046da4dec2d8849b23a3622881e392fc68353e46e88822fe5316bd"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
