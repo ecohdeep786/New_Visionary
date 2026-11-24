@@ -2,7 +2,7 @@
 
 Date: 2026-11-24
 Base: `aae98fdc` (`origin/dev`, PR #66 — the accepted five-audience homepage)
-Implementation candidate: `73c4cf314e2ce4dfc3f85512f3de35fb50a25b92`
+Implementation candidate: `f8ef025417a47902a0fd32dac45dd3d2c1fd5e17`
 Branch: `deepseek/frontend-work`
 Merge target: `dev` only after explicit owner approval. **Not merged yet.** `main` was not promoted.
 
@@ -52,9 +52,10 @@ Measured rendered line widths at 1440:
 - **Five audience doors on arrival.** Quiet 12–13px local row; hover/focus previews the matching story; Enter opens the category page; active underline and a visible pause/play control.
 - **One Intelligence is a full product chapter.** 94svh dark stage capped at 52rem, 64px statement, 24/600 lead, complete guide on the band floor with a soft product glow.
 - **Shared challenge is an Apple story split.** 64px statement left on a 980px spine, supporting copy and 24/600 answer right. No centered text corridor.
-- **Five paths are an iPhone-style five-up lineup.** 1264px row, 4:5 portraits at 28px radius, 28px names, 17/25 copy and arrows. Below 1280 it becomes a snap rail with quiet previous/next controls; desktop keeps all five visible.
+- **Five paths are an iPhone-style five-up lineup.** 1264px row, 4:5 portraits at 28px radius, 28px names, 17/25 copy and arrows. The Student card uses a normalized crop from the transparent hero cutout so all five portraits share the same white studio ground. Below 1280 it becomes a snap rail with quiet previous/next controls; desktop keeps all five visible.
 - **Trust is an Education-style values row.** 1264px row, three white 28px-radius cards on #f5f5f7: Private by design / Safe to learn / Open to everyone, each with a 32px icon, 28px title, 17/25 copy and a real page link. Below 900 it becomes an Apple-style card rail with controls.
 - **Close is a 1264px, 28px-radius panel** with the trust line “Free to start. Private by design.”, the primary action and a quiet “See how it works” door.
+- **The phone header stays quiet.** The scroll-only black “Get started” pill is hidden below 640px, leaving logo + menu; the hero and close carry the action instead.
 - **Production accessibility fix.** The mobile drawer's inert/scroll lock uses a layout effect; the gate waits for the settled a11y state after a resize.
 - **Quality gate updated** to assert the fold, five hero paths, five path doors, all three trust links, the horizontal rails and their controls, plus 200% text with intentional off-screen rail cards excluded.
 
@@ -90,13 +91,14 @@ The five portraits repeat as the path line-up; keyboard focus order is the five 
 
 - `eslint . --quiet`: clean.
 - `tsc -p jsconfig.json` and `tsc -p tsconfig.domain.json`: clean.
-- `vite build`: clean (2,166 modules; 8.83s).
+- `vite build`: clean (2,166 modules; 10.68s).
 - `node --test --test-concurrency=2 tests/*.test.mjs`: **871/871 passed**.
 - `landing-v10-quality.mjs`: **PASS** — 9 viewports, 7 interaction groups, on dev and production builds. Asserts fold ownership, all five hero doors, all five path doors, all three trust links, rail controls, mobile menu, footer disclosures, returning-visitor fixtures, preload lifecycle, 200% text and zero overflow.
 - `qa-motion.mjs`, `qa-taps.mjs`, `qa-continuity.mjs`: all pass.
 - `landing-apple-audit.mjs`: 9 viewports + 200% at 390/1280; zero horizontal overflow, zero clipped visible text; the only console entry is the audit fixture's intentional 401.
 - `landing-five-audiences.mjs`: 10 destination screens plus keyboard, reduced motion and pause.
-- Lighthouse production `/` mobile: performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT 29ms, CLS 0; LCP **4.29s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
+- `landing-scroll-audit.mjs`: 12 real-user screen captures (six desktop, six phone); no clipped interactive content, the phone header stays quiet, and each screen keeps one dominant focus.
+- Lighthouse production `/` mobile: performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT 32ms, CLS 0; LCP **4.22s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
 - Product-surface inventory refreshed: 67 routes, 55 endpoints, 1,533 control declarations.
 
 ## Evidence
@@ -104,11 +106,12 @@ The five portraits repeat as the path line-up; keyboard focus order is the five 
 Local (worktree) evidence set:
 
 - `shots/apple-refs/` — Apple references, `spacing.json`, and the pre-change landing.
-- `shots/apple-pass-2026-11-24/iteration-12/` — final section and viewport captures at nine sizes plus 200% text.
-- `shots/apple-pass-2026-11-24/final2-production-gate/` — production gate screenshots and `receipt.json`.
-- `shots/apple-pass-2026-11-24/final2-production-audiences/` — five visitor journeys, desktop + mobile, `receipt.json`.
-- `shots/apple-pass-2026-11-24/final2-production-audit/` — final nine-viewport audit and `receipt.json`.
-- `shots/apple-pass-2026-11-24/lighthouse-final2/` — Lighthouse receipt.
+- `shots/apple-pass-2026-11-24/iteration-13/` — final section and viewport captures at nine sizes plus 200% text.
+- `shots/apple-pass-2026-11-24/final4-real-user/` — 12 real-user scroll screens (desktop + phone).
+- `shots/apple-pass-2026-11-24/final4-production-gate/` — production gate screenshots and `receipt.json`.
+- `shots/apple-pass-2026-11-24/final4-production-audiences/` — five visitor journeys, desktop + mobile, `receipt.json`.
+- `shots/apple-pass-2026-11-24/final4-production-audit/` — final nine-viewport audit and `receipt.json`.
+- `shots/apple-pass-2026-11-24/lighthouse-final4/` — Lighthouse receipt.
 
 ## Acceptance decision
 
