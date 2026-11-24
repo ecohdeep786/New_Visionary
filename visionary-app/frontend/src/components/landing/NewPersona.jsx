@@ -66,7 +66,7 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
             ))}
           </span>
         </h1>
-        <p>A workspace for students, teachers, parents, professionals and organizations to learn and build.</p>
+        <p>A workspace for students, teachers, parents, professionals and organizations to learn, teach and build.</p>
         <Link className="home-action" to={ctaTo}>{ctaLabel}</Link>
       </div>
       <div className="family-stage" aria-hidden="true">

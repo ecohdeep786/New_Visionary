@@ -39,11 +39,13 @@ async function checkHeader(page) {
       !el.closest('[id^="mega-"]') && el.getBoundingClientRect().width && getComputedStyle(el).visibility !== 'hidden'
     ).map(el => {
       const { left, right, top, bottom } = el.getBoundingClientRect();
-      return { label: el.innerText || el.getAttribute('aria-label'), left, right, top, bottom };
+      const target = document.elementFromPoint((left + right) / 2, (top + bottom) / 2);
+      return { hit: el.contains(target), label: el.innerText || el.getAttribute('aria-label'), left, right, top, bottom };
     }).sort((a, b) => a.left - b.left);
     return { width: innerWidth, visible };
   });
   for (const [i, current] of geometry.visible.entries()) {
+    assert.ok(current.hit, "Header center is obstructed: " + current.label);
     assert.ok(current.left >= -1 && current.right <= geometry.width + 1, 'Header item outside the viewport: ' + current.label);
     if (i) assert.ok(geometry.visible[i - 1].right <= current.left + 1, 'Header collision: ' + JSON.stringify(geometry.visible));
   }
@@ -158,7 +160,7 @@ async function journeys(width, height) {
 }
 
 async function checkTextScaling() {
-  for (const [width, height] of [[320, 568], [390, 844], [768, 1024]]) {
+  for (const [width, height] of [[320, 568], [390, 844], [640, 900], [700, 900], [768, 1024], [1024, 768], [1280, 800]]) {
     const page = await openPage(width, height);
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
     await page.waitForFunction(() => getComputedStyle(document.documentElement).fontSize === '32px');
@@ -186,7 +188,7 @@ async function checkTextScaling() {
     await checkHeader(page);
     await page.close();
   }
-  receipt.interactions.push('200% text and header reflow at 320, 390 and 768px');
+  receipt.interactions.push('200% text, header reflow and pointer targets across seven widths');
 }
 
 async function checkPreloadLifecycle() {

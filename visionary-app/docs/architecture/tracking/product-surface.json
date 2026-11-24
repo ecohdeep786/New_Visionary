@@ -125,10 +125,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:112:13",
-        "frontend/src/pages/Landing.jsx:144:15",
-        "frontend/src/pages/Landing.jsx:159:13",
-        "frontend/src/pages/Landing.jsx:165:13"
+        "frontend/src/pages/Landing.jsx:96:13",
+        "frontend/src/pages/Landing.jsx:128:15",
+        "frontend/src/pages/Landing.jsx:143:13",
+        "frontend/src/pages/Landing.jsx:149:13"
       ],
       "operations": [
         "public-discovery",
@@ -79041,9 +79041,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:112:13",
+      "id": "frontend/src/pages/Landing.jsx:96:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 112,
+      "line": 96,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79065,9 +79065,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:144:15",
+      "id": "frontend/src/pages/Landing.jsx:128:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 144,
+      "line": 128,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -79090,9 +79090,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:159:13",
+      "id": "frontend/src/pages/Landing.jsx:143:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 159,
+      "line": 143,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79115,9 +79115,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:165:13",
+      "id": "frontend/src/pages/Landing.jsx:149:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 165,
+      "line": 149,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -81721,7 +81721,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "f52f1a910808c44d4e149112913a58134f41bf73ccd2d896a1a11fe8f8f86a2c"
+      "sourceSha256": "06660bb9c5ad3567a5f2814a78a671f281bdae1230ead97efd8cc9627524bbad"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82593,7 +82593,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "db46b06f2984c8e086295af276a11674e04eb4eaeef806df61dd631921bd24f6"
+      "sourceSha256": "9e1497ff6945371c2ddfaaae79b993e8761170f1266478f917567bd26af5a76c"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

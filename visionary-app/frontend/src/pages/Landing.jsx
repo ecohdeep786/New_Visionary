@@ -22,15 +22,15 @@ const AUDIENCES = [
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
-    headline: "to a lesson.", detail: "Find another way to explain a difficult idea.",
+    headline: "to a lesson.", detail: "Plan lessons and see where learners need support.",
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
-    headline: "to a conversation.", detail: "Follow the progress your child shares with you.",
+    headline: "to a conversation.", detail: "Follow your child’s shared progress and see where you can help.",
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
-    headline: "to a new skill.", detail: "Turn a skill you’re learning into work you can show.",
+    headline: "to a new skill.", detail: "Put a new skill to work on a project.",
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
@@ -74,29 +74,13 @@ const LANDING_HERO_LINEUP = [
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800), avifSrcSet: cutSet(orgCut480Avif, orgCut800Avif) },
 ];
 
-const LEARNING_STEPS = [
-  { name: "Learn", detail: "Start with an idea you want to understand." },
-  { name: "Ask", detail: "Get another explanation where you’re stuck." },
-  { name: "Practise", detail: "Try it yourself and see what you understand." },
-  { name: "Build", detail: "Put the idea to work in a project." },
-];
-
-function LearningJourney() {
+function SharedChallenge() {
   return (
     <section data-section="06-journey" className="home-journey" aria-labelledby="journey-heading">
-      <div className="home-width">
-        <div className="journey-intro">
-          <h2 id="journey-heading" data-type="section">Different goals. <br />The same disconnect.</h2>
-          <p data-type="editorial-body">A lesson in one place, practice in another, and a project you have to start from scratch. Visionary brings those steps together.</p>
-        </div>
-        <ol className="journey-steps" role="list" aria-label="How Visionary connects learning and building">
-          {LEARNING_STEPS.map(({ name, detail }) => (
-            <li key={name}>
-              <h3 data-type="feature-heading">{name}</h3>
-              <p>{detail}</p>
-            </li>
-          ))}
-        </ol>
+      <div className="home-width journey-intro">
+        <h2 id="journey-heading" data-type="section">Understanding is only the beginning.</h2>
+        <p data-type="editorial-body">It’s hard to put an idea to work or see where someone needs help when learning and progress live in different places.</p>
+        <p data-type="editorial-body">Visionary brings learning, practical work and the people who support it into one workspace.</p>
       </div>
     </section>
   );
@@ -140,7 +124,7 @@ export default function LandingPage() {
           <div className="home-width intelligence-layout">
             <div className="intelligence-copy">
               <h2 id="intelligence-heading" data-type="section">One Intelligence.</h2>
-              <p data-type="editorial-body">One AI guide connects what you learn to what you build. Use the workspace in English, Hindi or Bengali.</p>
+              <p data-type="editorial-body">One AI guide for learning, teaching and building. Use the workspace in English, Hindi or Bengali.</p>
               <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
             <picture className="intelligence-portrait" aria-hidden="true">
@@ -149,7 +133,7 @@ export default function LandingPage() {
             </picture>
           </div>
         </section>
-        <LearningJourney />
+        <SharedChallenge />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="privacy-heading">
           <div className="home-width">
