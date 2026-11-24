@@ -19,26 +19,11 @@ import { Accessibility, ChevronLeft, ChevronRight, Lock, ShieldCheck } from "luc
 import { useSignedIn } from "@/components/landing/AuthAwareLink";
 
 const AUDIENCES = [
-  {
-    slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
-    headline: "to a project.", detail: "Work through a tough lesson and try it for yourself.",
-  },
-  {
-    slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
-    headline: "to a lesson.", detail: "Plan lessons and see where learners need support.",
-  },
-  {
-    slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
-    headline: "to a conversation.", detail: "Follow your child’s shared progress and see where you can help.",
-  },
-  {
-    slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
-    headline: "to a new skill.", detail: "Put a new skill to work on a project.",
-  },
-  {
-    slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
-    headline: "to a team plan.", detail: "Coordinate learning across classes or teams.",
-  },
+  { slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup, headline: "to a project." },
+  { slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet, headline: "to a lesson." },
+  { slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet, headline: "to a conversation." },
+  { slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet, headline: "to a new skill." },
+  { slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet, headline: "to a team plan." },
 ];
 
 // The original responsive cutouts compose the full audience lineup.
@@ -144,7 +129,6 @@ function AudienceDirectory() {
       <div className="path-frame">
         <div className="path-intro">
           <h2 id="audiences-title" data-type="section">Find your path.</h2>
-          <p data-type="editorial-body">One intelligence. Five ways to begin.</p>
         </div>
         <nav id="audience-paths" aria-label="Audience pages" className="path-row" ref={pathRow}>
           {AUDIENCES.map((role) => (
@@ -157,7 +141,6 @@ function AudienceDirectory() {
                   <strong>{role.label}</strong>
                   <ChevronRight className="path-arrow" size={20} aria-hidden="true" />
                 </span>
-                <span className="path-copy">{role.detail}</span>
               </span>
             </Link>
           ))}
