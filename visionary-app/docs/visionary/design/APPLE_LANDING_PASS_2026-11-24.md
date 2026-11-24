@@ -2,7 +2,7 @@
 
 Date: 2026-11-24
 Base: `aae98fdc` (`origin/dev`, PR #66 — the accepted five-audience homepage)
-Implementation candidate: `87e4c22d9274721787df90de8e01e6bef2ed16bb`
+Implementation candidate: `4500906f697b21f8910feab78eb7da5b1d6057e0`
 Branch: `deepseek/frontend-work`
 Merge target: `dev` only after explicit owner approval. **Not merged yet.** `main` was not promoted.
 
@@ -115,7 +115,7 @@ Measured rendered line widths at 1440:
 ## What changed
 
 - **Hero owns the fold.** `min-height: calc(100dvh - 3.5rem)` and `margin-top: 3.5rem`; the next chapter never appears in the first screen at 390/768/834/1440/1920. The studio cast is alpha-masked into the page rather than hard-cropped. The sub is narrowed to 38ch so it reads as support, not a second headline. On a short landscape phone (`max-height: 520px`), the cast steps aside so the complete words, action and five doors still fit the first screen.
-- **Five audience doors on arrival.** Quiet 12–13px local row; hover/focus previews the matching story; Enter opens the category page; active underline and a visible pause/play control. The gate now asserts the row's bottom is inside every tested viewport, including 844×390, and that the primary action and all five doors keep 44px targets. The short-landscape pause control stays visible and pauses the 6.5s rotation.
+- **Five audience doors on arrival.** Quiet 12–13px local row; hover/focus previews the matching story; Enter opens the category page; active underline and a visible pause/play control. The gate now asserts the row's bottom is inside every tested viewport, including 844×390, and that the primary action and all five doors keep 44px targets. The short-landscape pause control stays visible and pauses the 6.5s rotation; on 320×568 it is lifted fully inside the fold, and the gate asserts the control's top/bottom rather than mere presence.
 - **One Intelligence is a full product chapter.** 94svh dark stage capped at 52rem, 64px statement, 24/600 lead, complete guide on the band floor with a soft product glow. The body names the connected workspace, and the 13px availability note sits directly under it — not several chapters later.
 - **Shared challenge is an Apple story split.** 64px statement left on a 980px spine, supporting copy and 24/600 answer right. No centered text corridor.
 - **The learning loop is the missing “how”.** A 980px, four-stage product diagram — Ask → Understand → Practise → Build — with numbered nodes, a quiet connector, 28px stage names, 17px one-liners and a single `/how-it-works` door. The availability note lives in the One Intelligence chapter above it, where the promise is made.
@@ -179,7 +179,7 @@ The destination H1 accessible names are single complete sentences, verified with
 - `landing-apple-audit.mjs`: 9 viewports + 200% at 390/1280; zero horizontal overflow; **844×390 hero 334px with the five doors at the fold**; zero clipped visible text under the audit's definition; the only console entry is the audit fixture's intentional 401.
 - `landing-five-audiences.mjs`: 10 destination screens plus keyboard, reduced motion and pause.
 - `landing-scroll-audit.mjs`: 14 real-user screen captures for visual review; clipping and control behaviour are asserted by the landing gate and the 200% audit, not by this capture script.
-- Lighthouse production `/` mobile (`lighthouse-review-fix2`): performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT **42ms**, CLS 0; LCP **4.22s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
+- Lighthouse production `/` mobile (`lighthouse-review-fix3`): performance **0.85**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT **29ms**, CLS 0; LCP **4.38s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
 - Product-surface inventory refreshed: 67 routes, 55 endpoints, 1,534 control declarations.
 
 ## Evidence
@@ -205,19 +205,20 @@ Local (worktree) evidence set:
 - `shots/apple-pass-2026-11-24/review-fix2-audiences/` - five-persona journey gate after the residual fixes.
 - `shots/apple-pass-2026-11-24/review-fix2-scroll/` - 14 real-user screens after the residual fixes.
 - `shots/apple-pass-2026-11-24/lighthouse-review-fix2/` - Lighthouse receipt for `87e4c22d`.
+- `shots/apple-pass-2026-11-24/review-fix3-gate/`, `review-fix3-gate-run1/`, `review-fix3-gate-run2/` - three consecutive landing-gate passes after the 320px playback fix.
+- `shots/apple-pass-2026-11-24/review-fix3-audit/` - nine-viewport + 200% audit after the 320px playback fix.
+- `shots/apple-pass-2026-11-24/review-fix3-audiences/` - five-persona journey gate after the 320px playback fix.
+- `shots/apple-pass-2026-11-24/review-fix3-scroll/` - 14 real-user screens after the 320px playback fix.
+- `shots/apple-pass-2026-11-24/lighthouse-review-fix3/` - Lighthouse receipt for `4500906f`.
 
 ## Acceptance decision
 
-**ACTIVE IN THE CURRENT WORKTREE — residual review fixes applied; third review pending.** The first independent review of `a4964970` (source `e7864b49`) returned **CHANGES REQUIRED** on four blockers: the live AI-guide claim, the parent-sharing claim, 200% mid-word breaks in the role/stage names, and the 844×390 hero fold. Those were fixed in `22facb62`.
+**ACTIVE IN THE CURRENT WORKTREE — 320px playback fix applied; fourth review pending.** The first independent review of `a4964970` (source `e7864b49`) returned **CHANGES REQUIRED** on four blockers: the live AI-guide claim, the parent-sharing claim, 200% mid-word breaks in the role/stage names, and the 844×390 hero fold. Those were fixed in `22facb62`.
 
-The second review of `22facb62` verified those four as fixed and identified five residual defects introduced by the reflow: no-op path controls in the 200% compact list, a hidden pause control while the hero kept rotating in short landscape, 32/36px tap targets there, a 320px/200% title-row overflow, and a note that rendered at 17px while the receipt claimed 13px. All five are fixed in `87e4c22d`:
+The second review of `22facb62` verified those four as fixed and identified five residual defects introduced by the reflow: no-op path controls in the 200% compact list, a hidden pause control while the hero kept rotating in short landscape, 32/36px tap targets there, a 320px/200% title-row overflow, and a note that rendered at 17px while the receipt claimed 13px. All five were fixed in `87e4c22d`.
 
-- Path rail controls render only when the row can actually scroll; the gate asserts no visible no-op control.
-- The short-landscape pause/play control is visible at the top right and pauses the rotation; measured “Students → Teachers” then held at “Teachers” after pause.
-- The short-landscape primary action and five doors are 44px high.
-- The compact 200% list hides its arrows and contains every title; the gate asserts title/arrow containment.
-- The availability note carries `data-type="fine"` and computes **13px/20px**.
+The third review of `87e4c22d` verified those five as fixed and found one narrow residual: at 320×568 the 44px pause/play control was partly below the fold, and the gate only checked presence rather than viewport containment. Fixed in `4500906f`: the control is lifted to 519–563px inside the 568px viewport, and the gate now asserts `top >= 0` and `bottom <= innerHeight` on every viewport.
 
-The production build now passes lint, both type checks, **872 tests**, three consecutive landing-gate runs, the Apple nine-viewport/200% audit, the five-persona gate, the 14-screen capture pass, motion/taps/continuity, and Lighthouse accessibility/SEO gates. No design, navigation or accessibility regression was observed.
+The production build now passes lint, both type checks, **872 tests**, three consecutive landing-gate runs, the Apple nine-viewport/200% audit, the five-persona gate, the 14-screen capture pass, motion/taps/continuity, and Lighthouse accessibility/SEO gates.
 
-Per the master directive, this is not self-certified for merge: a fresh independent review of `87e4c22d` is required. Not merged into `dev`. Not promoted to `main`. No production deployment is claimed. Live internal dashboard acceptance remains blocked by the auth/service realm and belongs to the ordered internal phase.
+Per the master directive, this is not self-certified for merge: a fresh independent review of `4500906f` is required. Not merged into `dev`. Not promoted to `main`. No production deployment is claimed. Live internal dashboard acceptance remains blocked by the auth/service realm and belongs to the ordered internal phase.
