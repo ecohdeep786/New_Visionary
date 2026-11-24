@@ -87,6 +87,8 @@ Final desktop chapters: **hero 844 · Intelligence 832 · shared challenge 608 �
 
 The five portraits repeat as the path line-up; keyboard focus order is the five cards; Enter opens the focused page. The path and trust rails also expose previous/next controls below their desktop breakpoints. Reduced motion holds the first story; pause holds the active story for 7 seconds.
 
+**App-browser final check (1980×1274):** each path card was focused and activated with Enter. The destinations read `/student → Learning,`, `/teacher → Teaching.`, `/parent → Parenting.`, `/professional → Building.`, `/organization → Leading.`, with matching supporting lines. Back returned to `/` with “Find your path.” intact and refresh restored `/` with all five paths. The app-browser reading is deliberately image + role name; there is no explanatory copy to decode.
+
 ## Verification
 
 - `eslint . --quiet`: clean.
