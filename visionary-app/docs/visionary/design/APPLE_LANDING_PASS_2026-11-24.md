@@ -8,7 +8,7 @@ Merge target: `dev` only after explicit owner approval. **Not merged yet.** `mai
 
 ## Scope
 
-The universal front door (`/`) was rebuilt as one focused product story for five audiences: hero → One Intelligence → shared challenge → five paths → trust → close. The five category pages (`/student`, `/teacher`, `/parent`, `/professional`, `/organization`) were read-only references and were re-verified as destinations.
+The universal front door (`/`) was rebuilt as one focused product story for five audiences: hero → One Intelligence → shared challenge → learning loop → five paths → trust → close. The five category pages (`/student`, `/teacher`, `/parent`, `/professional`, `/organization`) were read-only references and were re-verified as destinations.
 
 ## Per-page Apple study (live at 1440 / 834 / 390)
 
@@ -62,10 +62,18 @@ Each page carries the detailed story that the landing deliberately does not repe
 - **24 public routes** were opened in the app browser: `/`, five categories, how-it-works, help, pricing, download, about, research, community, updates, partners, referral, privacy, terms, cookies, safety, security, accessibility, careers, contact. Every route rendered a main H1 and correct title; none returned the 404 page.
 - **Claim consistency:** pricing states that Personal/Family prices are a billing preview and learning features are planned; how-it-works states the guided journey is in development and saved learning history is available today. The landing’s loop note uses the same truth language. Trust/legal pages match the landing’s privacy, safety and accessibility promises.
 - **Auth/recovery:** login, register, forgot-password, forgot-user-id and reset-password render their forms and controls. `/auth/action` previously inherited the 404 title; it is now added to the auth-surface boundary in `routeMeta.js`, and the browser verifies title “Visionary — Learn, Ask, Build” with H1 “Verify your email.”
-- **Internal surfaces:** the 22 dashboard/onboarding routes are inventoried in `App.jsx`; live inspection is blocked by the unconfigured auth/service realm and is outside the public landing page scope. No internal page was redesigned.
-- **Documents:** 379 docs were inventoried; the key contracts read were `VISIONARY_MASTER_v2.2.md`, `CURRENT_PRODUCT_STATUS.md`, `PRODUCT_GATE.md`, `SHARED_ACCEPTANCE.md`, `TRACEABILITY.md` and `AGI_LAUNCH_SEQUENCE.md`. They confirm that the learning/model experiences remain development/connected gates, so the landing does not claim a live AGI or completed model service.
+- **Internal surfaces:** all **32 `/dashboard` route declarations plus `/onboarding`** were audited from `App.jsx`, the guard components and the route-contract test. `/onboarding` sits behind `ProtectedRoute`; every dashboard route sits behind `ProtectedRoute` + `OnboardingGate`. `ProtectedRoute` preserves the intended path as `returnTo` when it sends an unauthenticated visitor to `/login`. This is a source/fixture audit, not a live sign-in claim: the worktree has only `.env.firebase.example`, no Firebase credentials and no emulator realm, so the auth surface fails closed by design.
+- **Production surface:** 9 declared paths mount a connected surface: `/dashboard`, `/dashboard/home`, `/dashboard/learn`, `/dashboard/learn/:topicId`, `/dashboard/subscription`, `/dashboard/profile`, `/dashboard/connections`, `/dashboard/privacy` and `/dashboard/settings`. The other 23 declared paths render the explicit “This workspace area is not available yet” room with a return-to-account-home link; the `production-graph` test pins that only `/dashboard/subscription` may mount through the Outlet. This is the same development truth the landing carries.
+- **Documents:** 379 docs were inventoried and sampled across the operative contract, current status, gate/acceptance/traceability, AGI sequence, launch architecture, five role charters, the design index, dated landing/design handoffs, the review index and the three living logs. The current-state documents consistently say AGI is the ambition, not a demonstrated capability; connected runtime covers account/auth/onboarding/device sessions, test billing and optional feedback, while durable learning/ML, verified role relationships, child admission, curriculum continuity and hosted/domain acceptance remain open. The older landing handoffs (v4–v14) are dated historical records with their original counts; the design index explicitly says a later continuation does not certify earlier journeys, and this pass supersedes them for `/`. No current document contradicts the landing’s truth note.
 
+### Internal route source audit
 
+| Production surface | Declared paths |
+| --- | --- |
+| Connected (9) | `/dashboard`, `/dashboard/home`, `/dashboard/learn`, `/dashboard/learn/:topicId`, `/dashboard/subscription`, `/dashboard/profile`, `/dashboard/connections`, `/dashboard/privacy`, `/dashboard/settings` |
+| Honest unavailable room (23) | `classes`, `ask`, `practice`, `build`, `class/:classId`, `child`, `people`, `curriculum`, `analytics`, `insights`, `explore`, `support`, `prepare`, `library`, `career`, `growth`, `progress`, `reports`, `notifications`, `personalization`, `audit`, `cohorts`, `learners` |
+
+The route-contract test is the executable receipt: 24 public routes, 6 auth surfaces, both redirect aliases, `/onboarding` behind `ProtectedRoute`, all 32 dashboard declarations behind both guards, and the 404 catch-all. The full suite passed 871/871 after the audit.
 
 **Apple same-turn re-check:** Education’s live values row shows the same three-card, 28px-radius, icon → title → copy → Learn more grammar used by trust. iPhone’s live line-up shows large product images with names only and a pagination control; the landing path row uses the same names-only discipline. The loop chapter is original Visionary product vocabulary, not an Apple copy; no further source change was justified.
 
